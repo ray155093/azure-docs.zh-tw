@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/25/2016"
+   ms.date="08/03/2016"
    ms.author="kipandya"/>
    
    
@@ -54,9 +54,7 @@ DocumentDB 在 P99 上保證 < 10 毫秒的讀取延遲和 < 15 毫秒的寫入�
 
 ## 啟用全球發佈 
 
-您可以決定要透過將一或多個 Azure 區域關聯至 DocumentDB 資料庫帳戶，在本機或全球發佈您的資料。您隨時都能藉由將區域新增至您的資料庫帳戶或從中移除，來決定要全球發佈資料，或將它侷限於單一區域。支援多個區域指派的 DocumentDB 資料庫帳戶可以透過 Azure Marketplace，藉由選取 [DocumentDB - 多個區域資料庫帳戶] 來建立。
-
-
+您可以決定要透過將一或多個 Azure 區域關聯至 DocumentDB 資料庫帳戶，在本機或全球發佈您的資料。您可以隨時新增或移除資料庫帳戶的區域。
 
 ## 後續步驟
 
@@ -81,12 +79,12 @@ DocumentDB 在 P99 上保證 < 10 毫秒的讀取延遲和 < 15 毫秒的寫入�
 [manageaccount-consistency]: https://azure.microsoft.com/documentation/articles/documentdb-manage-account/#consistency
 [manageaccount-addregion]: https://azure.microsoft.com/documentation/articles/documentdb-manage-account/#addregion
 [throughputandstorage]: https://azure.microsoft.com/documentation/articles/documentdb-manage/
-[arm]: https://azure.microsoft.com/zh-TW/documentation/articles/documentdb-automation-resource-manager-cli/
+[arm]: https://azure.microsoft.com/documentation/articles/documentdb-automation-resource-manager-cli/
 [regions]: https://azure.microsoft.com/regions/
-[serviceregions]: https://azure.microsoft.com/zh-TW/regions/#services
+[serviceregions]: https://azure.microsoft.com/regions/#services
 [pricing]: https://azure.microsoft.com/pricing/details/documentdb/
 [sla]: https://azure.microsoft.com/support/legal/sla/documentdb/
 [vldb]: http://www.vldb.org/pvldb/vol8/p1668-shukla.pdf
 [sqlqueries]: https://azure.microsoft.com/documentation/articles/documentdb-sql-query/
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

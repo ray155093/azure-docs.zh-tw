@@ -23,7 +23,7 @@
 
 整合 Web Apps 與 Azure CDN 提供下列優點：
 
-- 將內容部署 (影像、指令碼和樣式表) 整合到 Web 應用程式的[連續部署](web-sites-publish-source-control.md)程序中
+- 將內容部署 (影像、指令碼和樣式表) 整合到 Web 應用程式的[連續部署](app-service-continuous-deployment.md)程序中
 - 輕鬆地升級 Azure App Service 的 Web 應用程式中的 NuGet 封裝 (例如 jQuery 或 Bootstrap 版本)
 - 從相同的 Visual Studio 介面來管理 Web 應用程式和 CDN 提供的內容
 - 整合 ASP.NET 統合和縮製與 Azure CDN
@@ -571,4 +571,4 @@
 - [整合雲端服務與 Azure CDN](../cdn/cdn-cloud-service-with-cdn.md)
 - [ASP.NET 統合和縮製](http://www.asp.net/mvc/tutorials/mvc-4/bundling-and-minification)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->

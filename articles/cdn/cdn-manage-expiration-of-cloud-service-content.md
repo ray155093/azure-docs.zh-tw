@@ -12,7 +12,7 @@
  ms.tgt_pltfrm="na"
  ms.devlang="dotnet"
  ms.topic="article"
- ms.date="05/11/2016"
+ ms.date="07/28/2016"
  ms.author="casoper"/>
 
 # 如何管理 Azure 內容傳遞網路 (CDN) 中雲端服務內容的到期
@@ -25,15 +25,17 @@
 
 下列 XML 說明和設定 **clientCache** 指定最長使用期限 (3 天) 的範例：
 
-	<configuration>
-	  <system.webServer>
-	        <staticContent>
-	            <clientCache cacheControlMode="UseMaxAge" cacheControlMaxAge="3.00:00:00" />
-	        </staticContent>
-	  </system.webServer>
-	</configuration>
+```xml
+<configuration>
+	<system.webServer>
+		<staticContent>
+			<clientCache cacheControlMode="UseMaxAge" cacheControlMaxAge="3.00:00:00" />
+		</staticContent>
+	</system.webServer>
+</configuration>
+```
 
-指定 **UseMaxAge** 時會根據 **CacheControlMaxAge** 屬性中所指定的值將 Cache-Control: max-age=<nnn> 標頭加入回應。**cacheControlMaxAge** 屬性的 timespan 格式為 <days>.<hours>:<min>:<sec>。如需 **clientCache** 節點的詳細資訊，請參閱[用戶端快取<clientCache>](http://www.iis.net/ConfigReference/system.webServer/staticContent/clientCache)。
+指定 **UseMaxAge** 時會根據 **CacheControlMaxAge** 屬性中所指定的值將 Cache-Control: max-age=<nnn> 標頭加入回應。**cacheControlMaxAge** 屬性的 timespan 格式為 <days>.<hours>:<min>:<sec>。如需 **clientCache** 節點的詳細資訊，請參閱[用戶端快取 <clientCache>](http://www.iis.net/ConfigReference/system.webServer/staticContent/clientCache)。
 
 針對從應用程式傳回的內容 (例如 .aspx 頁面)，設定 **HttpResponse.Cache** 屬性，即可透過程式設計方式設定 CDN 快取行為。如需 **HttpResponse.Cache** 屬性的詳細資訊，請參閱 [HttpResponse.Cache 屬性](http://msdn.microsoft.com/library/system.web.httpresponse.cache.aspx)和 [HttpCachePolicy 類別](http://msdn.microsoft.com/library/system.web.httpcachepolicy.aspx)。
 
@@ -41,13 +43,15 @@
 
 例如，若要快取一個小時的內容，請加入下列內容：
 
-            // Set the caching parameters.
-            Response.Cache.SetExpires(DateTime.Now.AddHours(1));
-            Response.Cache.SetCacheability(HttpCacheability.Public);
-            Response.Cache.SetLastModified(DateTime.Now);
+```csharp
+// Set the caching parameters.
+Response.Cache.SetExpires(DateTime.Now.AddHours(1));
+Response.Cache.SetCacheability(HttpCacheability.Public);
+Response.Cache.SetLastModified(DateTime.Now);
+```
 
 ##另請參閱
 
 [如何管理 Azure 內容傳遞網路 (CDN) 中 Blob 內容的到期](./cdn-manage-expiration-of-blob-content.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0803_2016-->

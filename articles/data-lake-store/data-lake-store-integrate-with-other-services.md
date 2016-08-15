@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="05/17/2016"
+   ms.date="08/02/2016"
    ms.author="nitinme"/>
 
 # 整合資料湖存放區與其他 Azure 服務
@@ -82,6 +82,6 @@ Azure 資料湖存放區提供命令列工具 AdlCopy，可讓您將資料從 Az
 
 - [Azure 資料湖儲存區概觀](data-lake-store-overview.md)
 - [使用入口網站開始使用資料湖存放區](data-lake-store-get-started-portal.md)
-- [使用 PowerShell 開始使用資料湖存放區](data-lake-store-get-started-powershell.md)  
+- [使用 PowerShell 開始使用資料湖存放區](data-lake-store-get-started-powershell.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

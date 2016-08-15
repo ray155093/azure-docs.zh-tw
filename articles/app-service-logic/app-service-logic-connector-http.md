@@ -1,7 +1,7 @@
 <properties
    pageTitle="在 Logic Apps 中使用 HTTP 接聽程式和連接器 | Microsoft Azure App Service "
    description="如何建立並設定 HTTP 接聽程式和 HTTP 動作連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="anuragdalmia"
    manager="erikre"
@@ -89,4 +89,4 @@ HTTP 動作的輸出會是標頭和主體，可進一步在流程的下游中使
 [9]: ./media/app-service-logic-connector-http/9.png
 [10]: ./media/app-service-logic-connector-http/10.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

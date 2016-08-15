@@ -3,7 +3,7 @@
    description="了解如何使用 Azure SQL Database 的主動式異地複寫和異地還原功能，從區域資料中心中斷或失敗情況復原資料庫。" 
    services="sql-database" 
    documentationCenter="" 
-   authors="carlrabeler" 
+   authors="CarlRabeler" 
    manager="jhubbard" 
    editor="monicar"/>
 
@@ -112,4 +112,4 @@ Azure 團隊會努力儘快還原服務可用性，但需視根本原因而言�
 - 若要了解商務持續性設計及復原案例，請參閱[持續性案例](sql-database-business-continuity.md)
 - 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

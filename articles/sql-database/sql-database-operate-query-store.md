@@ -4,7 +4,7 @@
    keywords=""
    services="sql-database"
    documentationCenter=""
-   authors="carlrabeler"
+   authors="CarlRabeler"
    manager="jhubbard"
    editor=""/>
 
@@ -53,7 +53,7 @@ Azure 中查詢存放區的運作會使用有限的資源 (CPU、記憶體、磁
 
 Azure SQL Database 會使用收集到的資料，以便：
 
-- ***了解大量資料庫的使用模式，並藉此改善功能的可靠性及品質：***「查詢存放區」會隨著 Azure SQL Database 的每次更新獲得改善。 
+- ***了解大量資料庫的使用模式，並藉此改善功能的可靠性及品質：***「查詢存放區」會隨著 Azure SQL Database 的每次更新獲得改善。
 - ***解決或減輕查詢存放區所造成的問題：***Azure SQL Database 可以偵測並減輕對客戶工作負載具有實質影響的問題，而不會造成太多延遲 (少於一小時)。問題的最常見處理方式是將「查詢存放區」暫時設定為 ***OFF***。
 
 有時候，查詢存放區更新會造成套用至內部和極少外部 (面對客戶) 組態預設值的變更。因此，客戶對 Azure SQL Database 上「查詢存放區」的體驗可能會因 Azure 平台自動執行的動作而與內部部署環境上的體驗有所不同：
@@ -93,7 +93,7 @@ Azure SQL Database 會使用收集到的資料，以便：
 
 如需詳細資訊，請參閱下列文章：
 
-- [您的資料庫的航班資料錄製器](https://azure.microsoft.com/blog/query-store-a-flight-data-recorder-for-your-database) 
+- [您的資料庫的航班資料錄製器](https://azure.microsoft.com/blog/query-store-a-flight-data-recorder-for-your-database)
 
 - [使用查詢存放區來監視效能](https://msdn.microsoft.com/library/dn817826.aspx)
 
@@ -101,4 +101,4 @@ Azure SQL Database 會使用收集到的資料，以便：
 
 - [使用查詢存放區來監視效能](https://msdn.microsoft.com/library/dn817826.aspx)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0803_2016-->

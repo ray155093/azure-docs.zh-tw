@@ -34,7 +34,7 @@
 - Python 2.7 或 3.4
 - setuptools、pip、virtualenv (僅 Python 2.7)
 - Git
-- [Python Tools 2.2 for Visual Studio][] (PTVS) - 注意：此為選擇性項目
+- [Python Tools 2.2 for Visual Studio][] \(PTVS) - 注意：此為選擇性項目
 
 **注意**：Python 專案目前不支援 TFS 發佈。
 
@@ -44,7 +44,7 @@
 
 針對 Git，建議您安裝 [Git for Windows] 或 [GitHub for Windows]。如果您使用 Visual Studio，您可以使用整合式的 Git 支援。
 
-我們也建議您安裝 [Python Tools 2.2 for Visual Studio]。這是選擇性的，但如果您有 [Visual Studio] (包含免費的 Visual Studio Community 2013 或 Visual Studio Express 2013 for Web)，它會提供您絕佳的 Python IDE。
+我們也建議您安裝 [Python Tools 2.2 for Visual Studio]。這是選擇性的，但如果您有 [Visual Studio] \(包含免費的 Visual Studio Community 2013 或 Visual Studio Express 2013 for Web)，它會提供您絕佳的 Python IDE。
 
 ### Mac/Linux
 
@@ -55,11 +55,11 @@
 
 建立應用程式的第一步是透過 [Azure 入口網站](https://portal.azure.com)建立 Web 應用程式。
 
-1. 登入 Azure 入口網站中，並按一下左下角的 [新增] 按鈕。 
+1. 登入 Azure 入口網站中，並按一下左下角的 [新增] 按鈕。
 3. 在搜尋方塊中，輸入 "python"。
 4. 在搜尋結果中，選取 [Bottle]，然後按一下 [建立]。
 5. 設定新的 Bottle 應用程式，例如為其建立新的 App Service 方案和新的資源群組。然後按一下 [建立]。
-6. 遵循[在 Azure App Service 中使用 GIT 連續部署](web-sites-publish-source-control.md)的以下指示，為您新建立的 Web 應用程式設定 Git 發行功能。
+6. 依照 [本機 Git 部署至 Azure App Service](app-service-deploy-local-git.md) 的指示，為您新建立的 Web 應用程式設定 Git 發佈功能。
  
 ## 應用程式概觀
 
@@ -131,7 +131,7 @@ Python 虛擬環境。如果 Web 應用程式上不存在相容的虛擬環境�
 
 ### 複製儲存機制
 
-首先，使用 Azure 入口網站上提供的 URL 複製儲存機制。如需詳細資訊，請參閱[在 Azure App Service 中使用 GIT 連續部署](web-sites-publish-source-control.md)。
+首先，使用 Azure 入口網站上提供的 URL 複製儲存機制。如需詳細資訊，請參閱 [本機 Git 部署至 Azure App Service](app-service-deploy-local-git.md)。
 
 開啟包含在儲存機制根目錄中的方案檔 (.sln)。
 
@@ -198,7 +198,7 @@ Visual Studio 不會顯示部署進度。如果您想要檢閱輸出，請參閱
 
 ### 複製儲存機制
 
-首先，使用 Azure 入口網站上提供的 URL 複製儲存機制，並將 Azure 儲存機制加入為遠端。如需詳細資訊，請參閱[在 Azure App Service 中使用 GIT 連續部署](web-sites-publish-source-control.md)。
+首先，使用 Azure 入口網站上提供的 URL 複製儲存機制，並將 Azure 儲存機制加入為遠端。如需詳細資訊，請參閱 [本機 Git 部署至 Azure App Service](app-service-deploy-local-git.md)。
 
     git clone <repo-url>
     cd <repo-folder>
@@ -277,7 +277,7 @@ Visual Studio 不會顯示部署進度。如果您想要檢閱輸出，請參閱
 
 ### 複製儲存機制
 
-首先，使用 Azure 入口網站上提供的 URL 複製儲存機制，並將 Azure 儲存機制加入為遠端。如需詳細資訊，請參閱[在 Azure App Service 中使用 GIT 連續部署](web-sites-publish-source-control.md)。
+首先，使用 Azure 入口網站上提供的 URL 複製儲存機制，並將 Azure 儲存機制加入為遠端。如需詳細資訊，請參閱 [本機 Git 部署至 Azure App Service](app-service-deploy-local-git.md)。
 
     git clone <repo-url>
     cd <repo-folder>
@@ -397,4 +397,4 @@ Visual Studio 不會顯示部署進度。如果您想要檢閱輸出，請參閱
 [Bottle 說明文件]: http://bottlepy.org/docs/dev/index.html
  
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0803_2016-->

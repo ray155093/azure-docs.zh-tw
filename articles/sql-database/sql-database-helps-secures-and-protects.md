@@ -4,7 +4,7 @@
    keywords=""
    services="sql-database"
    documentationCenter=""
-   authors="carlrabeler"
+   authors="CarlRabeler"
    manager="jhubbard"
    editor=""/>
 
@@ -55,4 +55,4 @@ SQL Database 提供多個資料保護層。您的資料會在靜止時、移動�
  
 檢閱 [SQL Database 的技術概觀](sql-database-technical-overview.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,12 +1,12 @@
 <properties
 	pageTitle="在 Office 365 和 Azure 訂用帳戶之間共用單一 Azure AD 租用戶 | Microsoft Azure"
 	description="了解如何與 Azure 訂用帳戶分享 Office 365 Azure AD 租用戶和其使用者，反之亦然"
-	services="billing"
+	services=""
 	documentationCenter=""
 	authors="jiangchen79"
 	manager="mbaldwin"
 	editor=""
-	tags="top-support-issue"/>
+	tags="billing,top-support-issue"/>
 
 <tags
 	ms.service="billing"
@@ -147,4 +147,4 @@ Office 365 和 Azure 均使用 Azure Active Directory (AAD) 服務來管理使�
 ##後續步驟
 相關案例：您在過去分開取得 Azure 和 Office 365 訂用帳戶，而且想要能夠從 Azure 訂用帳戶存取 Office 365 租用戶。若要了解如何完成此工作，請參閱[將 Office 365 租用戶與 Azure 訂用帳戶建立關聯](billing-add-office-365-tenant-to-azure-subscription.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0803_2016-->

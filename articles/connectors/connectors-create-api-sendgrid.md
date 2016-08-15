@@ -1,7 +1,7 @@
 <properties
 pageTitle="SendGrid | Microsoft Azure"
 description="使用 Azure App Service 建立邏輯應用程式。SendGrid 連線提供者可讓您傳送電子郵件及管理收件者清單。"
-services="app-servicelogic"	
+services="logic-apps"	
 documentationCenter=".net,nodejs,java" 	
 authors="msftman"	
 manager="erikre"	
@@ -192,4 +192,4 @@ SendGrid 連接器可當做動作使用，它有觸發程序。所有連接器�
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/20/2016" 
+	ms.date="07/29/2016" 
 	ms.author="awills"/>
 
 
@@ -148,8 +148,10 @@
 ```AIQL
 
     exceptions | take 10
-    | extend method1 = details[0].parsedStack[1].method
+    | extend method1 = tostring(details[0].parsedStack[1].method)
 ```
+
+請注意，您必須使用[轉換](app-insights-analytics-reference.md#casts)到適當類型。
 
 ## 自訂屬性和測量
 
@@ -173,7 +175,7 @@
 
     customEvents
     | extend p1 = customDimensions.p1, 
-      m1 = todouble(customMeasurements.m1) // cast numerics
+      m1 = todouble(customMeasurements.m1) // cast to expected type
 
 ``` 
 
@@ -479,4 +481,4 @@
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

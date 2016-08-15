@@ -1,7 +1,7 @@
 <properties
    pageTitle="了解和在邏輯應用程式中建立 BizTalk 規則 API 應用程式 | Microsoft Azure"
    description="本主題說明 BizTalk 規則連接器的功能，並提供其使用方式的指示"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="anuragdalmia"
    manager="erikre"
@@ -96,7 +96,7 @@ _IF_ _條件_ _THEN_ _動作_
 3. 從結果清單中選取 BizTalk 規則[BizTalk 規則] 刀鋒視窗開啟
 4. 選取 [建立] 按鈕  
 ![替代文字][3]
-1. 在開啟的新分頁中，輸入下列資訊：
+1. 在開啟的新分頁中，輸入下列資訊：  
 	1. 名稱 - 提供規則 API 應用程式的名稱
 	1. App Service 方案 - 選取或建立新的 App Service 方案
 	1. 定價層 - 選擇您要讓此應用程式屬於哪個定價層
@@ -156,7 +156,8 @@ _IF_ _條件_ _THEN_ _動作_
 	4.	選取 [加入] 來加入新規則。這會使您進入新分頁。
 
 ##建立規則
-規則是條件和動作陳述式的集合。如果條件評估為 true，則會執行動作。在 [建立規則] 分頁中，提供唯一的規則名稱 (適用於該原則) 和說明 (選擇性)。[條件] (IF) 方塊可用來建立複雜的條件陳述式。以下是支援的關鍵字：
+規則是條件和動作陳述式的集合。如果條件評估為 true，則會執行動作。在 [建立規則] 分頁中，提供唯一的規則名稱 (適用於該原則) 和說明 (選擇性)。
+[條件] \(IF) 方塊可用來建立複雜的條件陳述式。以下是支援的關鍵字：
 1. 	And – 條件運算子
 2. 	Or – 條件運算子
 3. 	does\_not\_exist
@@ -187,7 +188,7 @@ Action(Then) 方塊可以包含多個陳述式 (每行一個)，用來建立要�
 
 ##明確向前鏈結
 BizTalk 規則支援明確向前鏈結，因此，如果使用者想要重新評估規則以回應特定動作，可以使用特定的關鍵字加以觸發。以下是支援的關鍵字：  
-   1.	update <詞彙定義> - 此關鍵字會重新評估在其條件中使用指定詞彙定義的所有規則。
+   1.	update <vocabulary definition> - 此關鍵字會重新評估在其條件中使用指定詞彙定義的所有規則。  
    2.	Halt – 此關鍵字會停止所有規則執行
 
 ##啟用\\停用規則
@@ -254,4 +255,4 @@ BizTalk 規則支援明確向前鏈結，因此，如果使用者想要重新評
 [10]: ./media/app-service-logic-use-biztalk-rules/APIDef.PNG
 [11]: ./media/app-service-logic-use-biztalk-rules/PublicAnon.PNG
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

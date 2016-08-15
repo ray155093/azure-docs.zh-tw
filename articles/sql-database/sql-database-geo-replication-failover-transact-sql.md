@@ -3,7 +3,7 @@
     description="使用 Transact-SQL 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉" 
     services="sql-database" 
     documentationCenter="" 
-    authors="carlrabeler" 
+    authors="CarlRabeler" 
     manager="jhubbard" 
     editor=""/>
 
@@ -102,4 +102,4 @@
 - 如需使用主動式異地複寫與彈性資料庫集區的相關資訊，請參閱[彈性集區災害復原策略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)。
 - 如需商務持續性的概觀，請參閱[商務持續性概觀](sql-database-business-continuity.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -119,7 +119,7 @@ Everbridge 與 Azure AD 整合提供下列優點：
 
 	![設定單一登入](./media/active-directory-saas-everbridge-tutorial/tutorial_everbridge_04.png)
 
-    a.在 [識別碼 URL] 文字方塊中，以下列模式輸入 URL：`https://sso.everbridge.net/{<company name>}`
+    a.在 [識別碼] 文字方塊中，以下列模式輸入 URL：`https://sso.everbridge.net/{<company name>}`
 
 	b.在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://manager.everbridge.net/saml/SSO/{<company name>}/alias/defaultAlias`
 
@@ -289,4 +289,4 @@ Everbridge 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-everbridge-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-everbridge-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

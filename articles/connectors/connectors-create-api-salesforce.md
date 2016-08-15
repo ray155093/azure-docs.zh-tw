@@ -1,7 +1,7 @@
 <properties
 pageTitle="了解在邏輯應用程式中使用 Salesforce 連接器 | Microsoft Azure"
 description="使用 Azure App Service 建立邏輯應用程式。Salesforce 連接器提供搭配 Salesforce 物件使用的 API。"
-services="app-servicelogic"	
+services="logic-apps"	
 documentationCenter=".net,nodejs,java" 	
 authors="msftman"	
 manager="erikre"	
@@ -281,4 +281,4 @@ TablesList
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

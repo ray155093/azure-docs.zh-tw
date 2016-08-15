@@ -510,7 +510,7 @@
 	> [AZURE.IMPORTANT]
 	如需詳細資訊，請參閱[連接埠和安全性考量](data-factory-move-data-between-onprem-and-cloud.md#port-and-security-considerations)。
 	>   
-	> 如需連接/閘道器相關問題的疑難排解秘訣，請參閱[閘道器疑難排解](data-factory-move-data-between-onprem-and-cloud.md#gateway-troubleshooting)。
+	> 如需連接/閘道器相關問題的疑難排解秘訣，請參閱[針對閘道問題進行疑難排解](data-factory-data-management-gateway.md#troubleshoot-gateway-issues)。
 
 ## 目標資料庫中的身分識別資料行
 本節提供的範例將示範，如何把資料從沒有身分識別資料行的來源資料表，複製到具有身分識別資料行的目的地資料表。
@@ -646,4 +646,4 @@
 ## 效能和微調  
 請參閱「[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)」一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

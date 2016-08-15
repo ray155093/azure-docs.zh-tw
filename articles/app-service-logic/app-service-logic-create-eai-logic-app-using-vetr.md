@@ -1,7 +1,7 @@
 <properties
    pageTitle="在 Azure App Service 中使用邏輯應用程式內的 VETR 建立 EAI Logic Apps | Microsoft Azure"
    description="BizTalk XML 服務的驗證、編碼和轉換功能"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="rajeshramabathiran"
    manager="erikre"
@@ -118,4 +118,4 @@
 [4]: ./media/app-service-logic-create-EAI-logic-app-using-VETR/BizTalkTransforms.PNG
 [5]: ./media/app-service-logic-create-EAI-logic-app-using-VETR/AzureServiceBus.PNG
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -100,7 +100,7 @@ Web 應用程式範例是一個範例儀表板，會轉譯匯入您**工作區**
 
 **Microsoft Power BI Embedded** 範例程式碼是以下列方式分隔。每個區段都包含 PowerBI-embedded.sln 解決方案中的檔案名稱，因此您可以很容易地在範例中找到程式碼。
 
-> [AZURE.NOTE] 本節是示範程式碼撰寫方式之範例程式碼的摘要。我們將在正式上市 (GA) 時擴充範例說明。若要檢視完整範例，請在 Visual Studio 中載入 PowerBI-embedded.sln 解決方案。
+> [AZURE.NOTE] 本節是示範程式碼撰寫方式之範例程式碼的摘要。若要檢視完整範例，請在 Visual Studio 中載入 PowerBI-embedded.sln 解決方案。
 
 ### 模型
 範例有 **ReportsViewModel** 和 **ReportViewModel**。
@@ -121,10 +121,19 @@ Web 應用程式範例是一個範例儀表板，會轉譯匯入您**工作區**
         public string AccessToken { get; set; }
     }
 
-### 檢視
-[檢視] 可管理 Power BI [報告] 和 Power BI [報告] 的顯示。
+### Connection string
+連接字串必須為下列格式：
 
-**Reports.cshtml**：反覆執行 **Model.Reports** 來建立 **ActionLink**。**ActionLink** 是由以下所示項目組成：
+```
+Data Source=tcp:MyServer.database.windows.net,1433;Initial Catalog=MyDatabase
+```
+
+使用一般伺服器和資料庫屬性將會失敗。例如：Server=tcp:MyServer.database.windows.net,1433;Database=MyDatabase,
+
+### 檢視
+[檢視] 可管理 Power BI [多個報表] 和 Power BI [報表] 的顯示。
+
+**Reports.cshtml**：反覆執行 **Model.Reports** 來建立 **ActionLink**。**ActionLink** 是由以下項目組成：
 
 |部分|說明
 |---|---
@@ -213,7 +222,7 @@ Task<ActionResult> Report(string reportId)
 
 ### 將報表整合到您的應用程式中
 
-在您擁有**報告**之後，您就可以使用 **IFrame** 來內嵌 Power BI **報告**。以下是來自 **Microsoft Power BI Embedded** 範例中 powerbi.js 的程式碼片段。
+在您擁有**報表**之後，您就可以使用 **IFrame** 來內嵌 Power BI **報表**。以下是來自 **Microsoft Power BI Embedded** 範例中 powerbi.js 的程式碼片段。
 
 ![](media\powerbi-embedded-get-started-sample\power-bi-embedded-iframe-code.png)
 
@@ -236,4 +245,4 @@ $filter={tableName/fieldName}%20eq%20'{fieldValue}'
 - [Microsoft Power BI Embedded 常見案例](power-bi-embedded-scenarios.md)
 - [在 Power BI Embedded 中驗證和授權](power-bi-embedded-app-token-flow.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

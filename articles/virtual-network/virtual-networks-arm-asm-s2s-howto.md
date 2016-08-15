@@ -40,7 +40,7 @@ Azure 目前有兩種管理模式：Azure 服務管理員 (稱為傳統) 和 Azu
 1. 從 https://manage.windowsazure.com 開啟傳統的入口網站，並在需要時輸入您的認證。
 2. 在畫面左下角，依序按一下 [**新增**] 按鈕、[**網絡服務**]、[**虛擬網路**] 和 [**新增區域網路**]。
 3. 在 [**指定您的區域網路詳細資料**] 視窗中，輸入您想要連接到 ARM VNet 名稱，然後在視窗的右下角，按一下箭號按鈕。
-3. 在位址空間的 [**起始 IP**] 文字方塊中，輸入您想要連接到的 ARM VNet 的網路首碼。 
+3. 在位址空間的 [**起始 IP**] 文字方塊中，輸入您想要連接到的 ARM VNet 的網路首碼。
 4. 在 [**CIDR (位址計數)**] 下拉式清單中，選取您想要連接到的 ARM VNet 所使用的 CIDR 區塊的網路部分所使用的位元數。
 5. 在 [**VPN 裝置 IP 位址 (選擇性)**] 中，輸入任何有效的公用 IP 位址。我們將在稍後變更此 IP 位址。然後，按一下畫面右下方的核取記號按鈕。下圖顯示此頁面的範例設定。
 
@@ -64,7 +64,7 @@ Azure 目前有兩種管理模式：Azure 服務管理員 (稱為傳統) 和 Azu
 
 3. 執行下列命令，來建立閘道的公用 IP 位址。
 
-		$ipaddress = New-AzureRmPublicIpAddress -Name gatewaypubIP`
+		$ipaddress = New-AzureRmPublicIpAddress -Name gatewaypubIP `
 			-ResourceGroupName RG1 -Location "East US" `
 			-AllocationMethod Dynamic
 
@@ -77,16 +77,17 @@ Azure 目前有兩種管理模式：Azure 服務管理員 (稱為傳統) 和 Azu
 
 5. 執行下列命令，來建立閘道的 IP 組態物件。請注意閘道子網路的識別碼。該子網路必須存在於 VNet 中。
 
+
 		$ipconfig = New-AzureRmVirtualNetworkGatewayIpConfig `
-			-Name ipconfig -PrivateIpAddress 10.1.2.4 `
-			-SubnetId $subnet.id -PublicIpAddressId $ipaddress.id
+		-Name ipconfig -SubnetId $subnet.id `
+		-PublicIpAddressId $ipaddress.id
 
 	>[AZURE.IMPORTANT] 必須分別從子網路和 IP 位址物件傳遞 id 屬性給 *SubnetId* 和 *PublicIpAddressId* 參數。您無法使用簡單的字串。
 	
 5. 執行下列命令，來建立 ARM VNet 閘道。
 
 		New-AzureRmVirtualNetworkGateway -Name v1v2Gateway -ResourceGroupName RG1 `
-			-Location "East US" -GatewayType Vpn -IpConfigurations $ipconfig `
+			-Location "East US" -GatewaySKU Standard -GatewayType Vpn -IpConfigurations $ipconfig `
 			-EnableBgp $false -VpnType RouteBased
 
 6. 一旦建立 VPN 閘道時，請執行下列命令來擷取其公用 IP 位址。複製 IP 位址，您必將需要它，來設定傳統 VNet 的區域網路。
@@ -118,4 +119,4 @@ Azure 目前有兩種管理模式：Azure 服務管理員 (稱為傳統) 和 Azu
 - 深入了解 [ARM 的網路資源提供者 (NRP)](resource-groups-networking.md)。
 - 建立[使用 S2S VPN 將傳統 VNet 連接到 ARM VNet 的端對端解決方案](virtual-networks-arm-asm-s2s.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0803_2016-->

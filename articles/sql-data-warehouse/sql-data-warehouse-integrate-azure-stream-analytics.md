@@ -3,7 +3,7 @@
    description="搭配使用 Azure 串流分析與 SQL 資料倉儲以便開發解決方案的秘訣。"
    services="sql-data-warehouse"
    documentationCenter="NA"
-   authors="shivaniguptamsft"
+   authors="kevinvngo"
    manager="barbkess"
    editor=""/>
 
@@ -96,4 +96,4 @@ Azure 串流分析是完全受管理的服務，可用來對雲端中的串流�
 <!--Other Web references-->
 [Azure Stream Analytics documentation]: http://azure.microsoft.com/documentation/services/stream-analytics/
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0803_2016-->

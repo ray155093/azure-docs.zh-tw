@@ -1,7 +1,7 @@
 <properties
 pageTitle="Outlook.com | Microsoft Azure"
 description="使用 Azure App Service 建立邏輯應用程式。Outlook.com 連接器可讓您管理您的郵件、行事曆和連絡人。您可以執行各種動作，例如傳送郵件、排程會議、新增連絡人等等。"
-services="app-servicelogic"	
+services="logic-apps"	
 documentationCenter=".net,nodejs,java" 	
 authors="msftman"	
 manager="erikre"	
@@ -914,4 +914,4 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

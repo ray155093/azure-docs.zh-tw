@@ -86,11 +86,14 @@ CREATE TABLE myTable
 WITH ( CLUSTERED INDEX (id) );
 ```
 
-若要在資料表上建立非叢集索引，只要在 WITH 子句中指定 CLUSTERED INDEX︰
+若要在資料表上新增非叢集索引，只要使用下列語法：
 
 ```SQL
 CREATE INDEX zipCodeIndex ON t1 (zipCode);
 ```
+
+> [AZURE.NOTE] 使用 CREATE INDEX 時，預設會建立非叢集索引。此外，資料列儲存體資料表僅允許非叢集索引 (HEAP 或 CLUSTERED INDEX)。目前不允許在 CLUSTERED COLUMNSTORE INDEX 最上方使用非叢集索引。
+
 
 ## 最佳化叢集資料行存放區索引
 
@@ -213,7 +216,7 @@ WHERE	COMPRESSED_rowgroup_rows_AVG < 100000
 
 ### 太多資料分割
 
-另一個考慮事項是資料分割對於叢集資料行存放區資料表的影響。資料分割之前，SQL 資料倉儲已將您的資料分成 60 個資料庫。進一步分割會分割您的資料。如果您將資料分割，則您要考慮的是**每個**資料分割必須有至少 1 百萬個資料列，使用叢集資料行存放區索引才有益。如果將您的資料表分割成 100 個分割區，則您的資料表需要至少有 60 億個資料列，才會受益於叢集資料行存放區 (60 個散發 * 100 個分割 * 1 百萬個資料列)。如果您的 100 個分割資料表沒有 60 億個資料列，請減少資料分割數目，或考慮改用堆積資料表。
+另一個考慮事項是資料分割對於叢集資料行存放區資料表的影響。資料分割之前，SQL 資料倉儲已將您的資料分成 60 個資料庫。進一步分割會分割您的資料。如果您將資料分割，則您要考慮的是**每個**資料分割必須有至少 1 百萬個資料列，使用叢集資料行存放區索引才有益。如果將您的資料表分割成 100 個分割區，則您的資料表需要至少有 60 億個資料列，才會受益於叢集資料行存放區索引 (60 個散發 * 100 個分割 * 1 百萬個資料列)。如果您的 100 個分割資料表沒有 60 億個資料列，請減少資料分割數目，或考慮改用堆積資料表。
 
 您的資料表載入一些資料之後，請依照下列步驟來識別並重建具有次佳叢集資料行存放區索引的資料表。
 
@@ -302,11 +305,11 @@ ALTER TABLE [dbo].[FactInternetSales] SWITCH PARTITION 2 TO  [dbo].[FactInternet
 ALTER TABLE [dbo].[FactInternetSales_20000101_20010101] SWITCH PARTITION 2 TO  [dbo].[FactInternetSales] PARTITION 2;
 ```
 
-如需使用 `CTAS` 重新建立資料分割的更多詳細資料，請參閱[資料表分割][]一文。
+如需使用 `CTAS` 重新建立資料分割的更多詳細資料，請參閱[分割區][]一文。
 
 ## 後續步驟
 
-若要深入了解，請參閱[資料表概觀][Overview]、[資料表資料類型][Data Types]、[散發資料表][Distribute]、[分割資料表][Partition]、[維護資料表統計資料][Statistics]、[暫存資料表][Temporary]等文章。若要深入了解最佳做法，請參閱 [SQL Data 資料倉儲最佳做法][]。
+若要深入了解，請參閱[資料表概觀][Overview]、[資料表資料類型][Data Types]、[散發資料表][Distribute]、[分割資料][Partition]表、[維護資料表統計資料][Statistics]及[暫存資料表][Temporary]等文章。若要深入了解最佳做法，請參閱 [SQL Data 資料倉儲最佳做法][]。
 
 <!--Image references-->
 
@@ -319,8 +322,8 @@ ALTER TABLE [dbo].[FactInternetSales_20000101_20010101] SWITCH PARTITION 2 TO  [
 [散發]: ./sql-data-warehouse-tables-distribute.md
 [Index]: ./sql-data-warehouse-tables-index.md
 [Partition]: ./sql-data-warehouse-tables-partition.md
+[分割區]: ./sql-data-warehouse-tables-partition.md
 [資料分割]: ./sql-data-warehouse-tables-partition.md
-[資料表分割]: ./sql-data-warehouse-tables-partition.md
 [Statistics]: ./sql-data-warehouse-tables-statistics.md
 [統計資料]: ./sql-data-warehouse-tables-statistics.md
 [Temporary]: ./sql-data-warehouse-tables-temporary.md
@@ -339,4 +342,4 @@ ALTER TABLE [dbo].[FactInternetSales_20000101_20010101] SWITCH PARTITION 2 TO  [
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

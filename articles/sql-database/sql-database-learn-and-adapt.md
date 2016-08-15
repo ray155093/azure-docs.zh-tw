@@ -4,7 +4,7 @@
    keywords=""
    services="sql-database"
    documentationCenter=""
-   authors="carlrabeler"
+   authors="CarlRabeler"
    manager="jhubbard"
    editor=""/>
 
@@ -59,4 +59,4 @@ SQL Database 提供您的應用程式需要的自動系統管理和資料保護�
  
 檢閱 [SQL Database 的技術概觀](sql-database-technical-overview.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -47,7 +47,7 @@
 - 使用入口網站中相同刀鋒視窗上顯示的 [手動安裝] 連結，下載安裝檔案並手動執行。成功安裝之後，您會看到 [資料管理閘道器組態] 對話方塊。從入口網站畫面複製**金鑰**，並且在組態管理員中使用它來手動向服務註冊閘道器。
 
 ### 問題：無法連線到內部部署 SQL Server 
-在閘道器機器上啟動 [資料管理閘道器組態管理員]，使用 [疑難排解] 索引標籤以測試從閘道器機器到 SQL Server 的連接。如需詳細資訊，請參閱[閘道器疑難排解](data-factory-move-data-between-onprem-and-cloud.md#gateway-troubleshooting)。
+在閘道器機器上啟動 [資料管理閘道器組態管理員]，使用 [疑難排解] 索引標籤以測試從閘道器機器到 SQL Server 的連接。如需連接/閘道器相關問題的疑難排解秘訣，請參閱[針對閘道問題進行疑難排解](data-factory-data-management-gateway.md#troubleshoot-gateway-issues)。
  
 
 ### 問題：輸入配量永遠處於 Waiting 狀態
@@ -85,7 +85,7 @@
 若要解決這個錯誤，請將 **external** 屬性和選用 **externalData** 區段加入輸入資料表的 JSON 定義，並重新建立資料表。
 
 ### 問題：混合式複製作業失敗
-請參閱[閘道器疑難排解](data-factory-move-data-between-onprem-and-cloud.md#gateway-troubleshooting)以取得對於使用資料管理閘道器複製到/自內部部署資料存放區的問題的疑難排解步驟。
+請參閱[針對閘道問題進行疑難排解](data-factory-data-management-gateway.md#troubleshoot-gateway-issues)以取得對於使用資料管理閘道器複製到/自內部部署資料存放區的問題的疑難排解步驟。
 
 ### 問題：隨選 HDInsight 佈建失敗
 使用 HDInsightOnDemand 類型的連結服務時，您必須指定指向 Azure Blob 儲存體的 linkedServiceName。Data Factory 服務會使用此儲存體來儲存記錄檔和您的隨選 HDInsight 叢集的支援檔案。有時候隨選 HDInsight 叢集的佈建會失敗，並且有下列錯誤︰
@@ -143,4 +143,4 @@
 [image-data-factory-troubleshoot-activity-run-details]: ./media/data-factory-troubleshoot/Walkthrough2ActivityRunDetails.png
  
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->

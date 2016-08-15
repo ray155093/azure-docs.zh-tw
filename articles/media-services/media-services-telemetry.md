@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="07/23/2016"   
+	ms.date="07/27/2016"   
 	ms.author="juliako"/>
 
 # Azure 媒體服務遙測搭配 .NET
@@ -21,11 +21,17 @@
 
 媒體服務遙測/監視可讓媒體服務客戶存取其服務的度量資料。目前的版本支援 "Channel" 和 "StreamingEndpoint" 實體的遙測資料。您可以設定元件層級細微度的遙測。詳細資料層級可分為「正常」和「詳細資訊」兩種。目前的版本僅支援「正常」。
 
-遙測會寫入由客戶提供的 Azure 儲存體帳戶 (儲存體帳戶必須附加至媒體服務帳戶)。遙測會寫入指定儲存體帳戶中的 Azure 儲存體資料表。遙測系統會以 00:00 UTC 為基準為每一天建立個別的資料表。以 "TelemetryMetrics20160321" 為例，其中的 "20160321" 即代表資料表的建立日期。每天都會有個別的資料表。
+遙測會寫入由客戶提供的 Azure 儲存體帳戶中的儲存體資料表 (儲存體帳戶必須附加至媒體服務帳戶)。遙測系統會以 00:00 UTC 為基準為每一天建立個別的資料表。以 "TelemetryMetrics20160321" 為例，其中的 "20160321" 即代表資料表的建立日期。每天都會有個別的資料表。
 
-遙測系統不提供資料保留，也不會自動刪除舊記錄。基於這個原因，您需要管理及刪除舊記錄。每天都有個別的資料表讓您能輕鬆地刪除舊記錄。您只要刪除舊的資料表就可以了。
+請注意遙測系統不會管理資料保留。您可以刪除儲存體資料表來移除舊的遙測資料。
 
-本主題示範如何為指定的 AMS 服務啟用遙測，以及如何使用 .NET 查詢度量。
+您可以使用下列其中一個方法取用遙測資料︰
+
+- 直接從 Azure 表格儲存體 (例如使用儲存體 SDK) 中讀取資料。如需遙測儲存體資料表的描述，請參閱[這個](https://msdn.microsoft.com/library/mt742089.aspx)主題中的＜Consuming telemetry information (取用遙測資訊)＞。
+
+或
+
+- 使用媒體服務 .NET SDK 中的支援讀取儲存體資料。本主題示範如何為指定的 AMS 帳戶啟用遙測，以及如何使用 Azure 媒體服務 .NET SDK 查詢度量。
 
 ## 設定媒體服務帳戶的遙測
 
@@ -52,7 +58,7 @@
 
 遙測資料會寫入設定媒體服務帳戶的遙測時指定的儲存體帳戶中的 Azure 儲存體資料表。遙測系統會以 00:00 UTC 為基準為每一天建立個別的資料表。以 "TelemetryMetrics20160321" 為例，其中的 "20160321" 即代表資料表的建立日期。每天都會有個別的資料表。
 
-您可以查詢下列度量資訊的資料表。
+您可以查詢下列度量資訊的遙測資料表。本主題稍後所示的範例示範如何使用媒體服務 .NET SDK 來查詢度量。
 
 ### StreamingEndpoint 記錄檔
 
@@ -94,8 +100,10 @@
 **DiscontinuityCount**|能取得不連續計數。|0
 **LastTimestamp**|能取得最後一個時間戳記。|1800488800
  
-## StreamingEndpoint 度量範例
-		
+## 範例  
+	
+下列範例示範如何為指定的 AMS 帳戶啟用遙測，以及如何使用 Azure 媒體服務 .NET SDK 查詢度量。
+
 	using System;
 	using System.Collections.Generic;
 	using System.Configuration;
@@ -246,4 +254,4 @@
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

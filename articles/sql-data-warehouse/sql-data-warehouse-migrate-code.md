@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/30/2016"
+   ms.date="08/02/2016"
    ms.author="lodipalm;barbkess;sonyama;jrj"/>
 
 # 將您的 SQL 程式碼移轉至 SQL 資料倉儲
@@ -80,7 +80,7 @@ SQL 資料倉儲針對通用資料表運算式 (CTE) 提供部分支援。目前
 
 SQL 資料倉儲並不支援遞迴 CTE。針對遞迴 CTE 的移轉可以取得某種程度的完成度，而最佳做法便是細分成多個步驟。一般來說，您可以使用迴圈，並在逐一執行遞迴中間的查詢時填入暫存資料表。一旦暫存資料表填完之後，您可以將資料傳回做為單一結果集。類似的方法已被用來解決在[由含有 rollup / cube / grouping sets options 的子句組成的群組][]文章中的 `GROUP BY WITH CUBE`。
 
-## 系統函數
+## 不支援的系統函式
 
 另外還有一些不支援的系統函式。您通常可能會發現資料倉儲中使用的主要函式包括：
 
@@ -91,26 +91,34 @@ SQL 資料倉儲並不支援遞迴 CTE。針對遞迴 CTE 的移轉可以取得�
 - ROWCOUNT\_BIG
 - ERROR\_LINE()
 
-同樣地許多這些問題都可以克服。
+這些問題中有部分可以解決。
 
-例如，下列程式碼擷取 @@ROWCOUNT 資訊的替代解決方案：
+## @@ROWCOUNT 因應措施
+
+若要解決缺少 @@ROWCOUNT 支援的問題，請建立會從 sys.dm\_pdw\_request\_steps 擷取最後一個資料列計數的預存程序，然後在 DML 陳述式之後執行 `EXEC LastRowCount`。
 
 ```sql
-SELECT  SUM(row_count) AS row_count
-FROM    sys.dm_pdw_sql_requests
-WHERE   row_count <> -1
-AND     request_id IN
-                    (   SELECT TOP 1    request_id
-                        FROM            sys.dm_pdw_exec_requests
-                        WHERE           session_id = SESSION_ID()
-                        AND             resource_class IS NOT NULL
-                        ORDER BY end_time DESC
-                    )
+CREATE PROCEDURE LastRowCount AS
+WITH LastRequest as 
+(   SELECT TOP 1    request_id
+    FROM            sys.dm_pdw_exec_requests
+    WHERE           session_id = SESSION_ID()
+    AND             resource_class IS NOT NULL
+    ORDER BY end_time DESC
+),
+LastRequestRowCounts as
+(
+    SELECT  step_index, row_count
+    FROM    sys.dm_pdw_request_steps
+    WHERE   row_count >= 0
+    AND     request_id IN (SELECT request_id from LastRequest)
+)
+SELECT TOP 1 row_count FROM LastRequestRowCounts ORDER BY step_index DESC
 ;
 ```
 
 ## 後續步驟
-如需所有支援的 T-SQL 陳述式完整清單，請參閱 [Transact-SQL 主題][]。
+如需所有所支援 T-SQL 陳述式的完整清單，請參閱 [Transact-SQL 主題][]。
 
 <!--Image references-->
 
@@ -134,4 +142,4 @@ AND     request_id IN
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->

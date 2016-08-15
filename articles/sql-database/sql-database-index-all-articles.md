@@ -189,8 +189,8 @@
 | --: | :-- | :-- |
 | 90 | [SQL Database 自動備份](sql-database-automated-backups.md) | 深入了解可讓您將 Azure SQL Database 回復到先前時間點，或將資料庫複製到地理區域中新資料庫 (最多 35 天) 的 SQL Database 內建備份。 |
 | 91 | [使用 Azure SQL Database 的商務持續性](sql-database-business-continuity.md) | 了解 Azure SQL Database 如何支援雲端商務持續性和資料庫復原，以及如何協助維持任務關鍵性雲端應用程式持續執行。 |
-| 92 | [在不停機的情況下升級應用程式](sql-database-business-continuity-application-upgrade.md) | 本節提供避免在應用程式升級期間停機的指引。 |
-| 93 | [Azure SQL Database 的商務持續性案例](sql-database-business-continuity-scenarios.md) | Azure SQL Database 商務續航力案例 |
+| 92 | [在不停機的情況下升級應用程式](sql-database-manage-application-rolling-upgrade.md) | 本文提供避免在應用程式升級期間停機的指引。 |
+| 93 | [Azure SQL Database 的商務持續性案例](sql-database-business-continuity.md) | Azure SQL Database 商務續航力案例 |
 | 94 | [如何從 Azure SQL Database 備份還原單一資料表](sql-database-cloud-migrate-restore-single-table-azure-backup.md) | 了解如何從 Azure SQL Database 備份還原單一資料表。 |
 | 95 | [使用 SQL Database 的作用中異地複寫設計雲端災害復原應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md) | 了解如何使用異地複寫針對商務持續性計劃設計雲端災害復原方案，以用於搭配 Azure SQL Database 備份應用程式資料。 |
 | 96 | [還原 Azure SQL Database 或容錯移轉到次要資料庫](sql-database-disaster-recovery.md) | 了解如何使用 Azure SQL Database 的作用中異地複寫和異地還原功能，從區域資料中心中斷或失敗情況復原資料庫。 |
@@ -205,7 +205,7 @@
 | 105 | [還原使用 Azure 入口網站的已刪除 Azure SQL Database](sql-database-restore-deleted-database-portal.md) | 還原已刪除的 Azure SQL Database (Azure 入口網站)。 |
 | 106 | [使用 PowerShell 還原已刪除的 Azure SQL Database](sql-database-restore-deleted-database-powershell.md) | 還原已刪除的 Azure SQL Database (PowerShell)。 |
 | 107 | [將資料庫還原至先前的時間點、還原已刪除的資料庫，或從資料中心中斷情況復原](sql-database-troubleshoot-backup-and-restore.md) | 了解如何使用 Azure SQL Database 中的備份和複本，從錯誤和中斷情況復原雲端資料庫。 |
-| 108 | [從錯誤復原 Azure SQL Database](sql-database-user-error-recovery.md) | 了解如何使用 Azure SQL Database 的還原時間點 (PITR) 功能，從使用者錯誤、意外的資料損毀或已刪除的資料庫復原。 |
+| 108 | [從錯誤復原 Azure SQL Database](sql-database-business-continuity.md) | 了解如何使用 Azure SQL Database 的還原時間點 (PITR) 功能，從使用者錯誤、意外的資料損毀或已刪除的資料庫復原。 |
 | 109 | [使用 Azure 儲存體進行 SQL Server 備份與還原](storage-use-storage-sql-server-backup-restore.md) | 了解如何將 SQL Server 備份到「Azure 儲存體」。說明將 SQL 資料庫備份到「Azure 儲存體」的好處。 |
 
 
@@ -396,4 +396,4 @@ This bullet link is improperly disallowed by publishing automation due to presen
 - [Search SQL Database documentation, with filters](http://azure.microsoft.com/docuXXmentation/arXXticles/?service=sql-database)
 -->
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

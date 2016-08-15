@@ -4,11 +4,11 @@
 	authors="kamathashwin"
 	manager=""
 	editor=""
-	services="azure-portal"
-	documentationCenter="na"/>
+	services="monitoring"
+	documentationCenter="monitoring"/>
 
 <tags
-	ms.service="azure-portal"
+	ms.service="monitoring"
 	ms.workload="na"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
@@ -102,7 +102,7 @@ Webhook 可讓您將 Azure 警示通知路由到其他系統進行後處理或�
 |timestamp|	Azure 服務產生事件的時間戳記，處理與事件對應的要求|
 |resourceId |可唯一識別該資源的資源識別碼 URI|
 |resourceGroupName|受影響資源的 resource-group-name|
-|屬性 |一組包含事件相關詳細資料的 <Key  Value> 配對 (也就是字典<String  String>)|
+|properties |一組包含事件相關詳細資料的 <Key, Value> 配對 (也就是字典<String, String>)|
 |事件|元素，包含事件相關中繼資料|
 |authorization|擷取事件的 RBAC 屬性。這些屬性通常包括「動作」、「角色」和「範圍」。|
 |category | 事件的類別。支援值包括︰管理、警示、安全性、ServiceHealth、建議|
@@ -119,4 +119,4 @@ Webhook 可讓您將 Azure 警示通知路由到其他系統進行後處理或�
 |status|字串，描述作業的狀態。常見的值包括︰已啟動、進行中、成功、失敗、使用中、已解決|
 |子狀態|	通常包含對應 REST 呼叫的 HTTP 狀態碼。它也可以包含其他描述子狀態的字串。常見子狀態的值包括：確定 (HTTP 狀態碼︰200)，已建立 (HTTP 狀態碼︰201)、接受 (HTTP 狀態碼︰202)、沒有內容 (HTTP 狀態碼︰204)、不正確的要求 (HTTP 狀態碼︰400)、找不到 (HTTP 狀態碼︰404)，衝突 (HTTP 狀態碼︰409)、內部伺服器錯誤 (HTTP 狀態碼︰500)、服務無法使用 (HTTP 狀態碼︰503)、閘道逾時 (HTTP 狀態碼︰504)|
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/19/2016"
+	ms.date="07/28/2016"
 	ms.author="casoper"/>
 
 # 開始使用 Azure CDN 開發
@@ -367,4 +367,4 @@ function cdnDelete() {
 
 若要尋找其他關於 Azure SDK for Node.js 的文件，請檢視[完整參考資料](http://azure.github.io/azure-sdk-for-node/)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

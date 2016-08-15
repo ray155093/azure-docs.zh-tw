@@ -1,8 +1,8 @@
 <properties
-	pageTitle="CDN - 使用規則引擎覆寫預設的 HTTP 行為"
-	description="規則引擎可讓您自訂 HTTP 要求的處理方式，例如封鎖傳遞特定類型的內容、定義快取原則及修改 HTTP 標頭。"
+	pageTitle="在 Azure CDN 使用規則引擎覆寫預設的 HTTP 行為 | Microsoft Azure"
+	description="規則引擎可讓您自訂 Azure CDN 處理 HTTP 要求的方式，例如封鎖傳遞特定類型的內容、定義快取原則及修改 HTTP 標頭。"
 	services="cdn"
-	documentationCenter=".NET"
+	documentationCenter=""
 	authors="camsoper"
 	manager="erikre"
 	editor=""/>
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/11/2016"
+	ms.date="07/28/2016"
 	ms.author="casoper"/>
 
 # 使用規則引擎覆寫預設的 HTTP 行為
@@ -28,7 +28,7 @@
 
 1. 在 [CDN 設定檔] 刀鋒視窗中，按一下 [管理] 按鈕。
 
-	![[CDN 設定檔] 刀鋒視窗的 [管理] 按鈕](./media/cdn-rules-engine/cdn-rules-manage-btn.png)
+	![[CDN 設定檔] 刀鋒視窗的 [管理] 按鈕](./media/cdn-rules-engine/cdn-manage-btn.png)
 
 	隨即開啟 CDN 管理入口網站。
 
@@ -48,7 +48,7 @@
 
 	>[AZURE.TIP] 下拉式清單中提供許多類型的相符條件。按一下相符條件左側的藍色資訊圖示，即會詳細說明目前選取的條件。
 	>
-	>如需完整相符條件清單的詳細資訊，請參閱[規則引擎相符條件和功能詳細資訊](cdn-rules-engine-details.md#match-conditions)。
+	>如需完整相符條件清單的詳細資訊，請參閱[規則引擎相符條件和功能詳細資訊](https://msdn.microsoft.com/library/mt757336.aspx#Anchor_0)。
 
 5.  按一下 [功能] 旁的 **+** 按鈕，以新增功能。在左側下拉式清單中，選取 [強制內部最大壽命]。在出現的文字方塊中，輸入 **300**。保留其餘預設值。
 
@@ -56,7 +56,7 @@
 
 	>[AZURE.NOTE] 如同相符條件，按一下新功能左側的藍色資訊圖示會顯示這項功能的詳細資訊。在 [強制內部最大壽命] 中，我們將覆寫資產的 **Cache-Control** 和 **Expires** 標頭，以控制 CDN 邊緣節點何時要從原始來源重新整理資產。我們的範例為 300 秒，表示 CDN 邊緣節點會快取資產 5 分鐘，再從其原始來源重新整理資產。
 	>
-	>如需完整功能清單的詳細資訊，請參閱[規則引擎相符條件和功能詳細資訊](cdn-rules-engine-details.md#features)。
+	>如需完整功能清單的詳細資訊，請參閱[規則引擎相符條件和功能詳細資訊](https://msdn.microsoft.com/library/mt757336.aspx#Anchor_1)。
 
 6.  按一下 [加入] 按鈕，以儲存新規則。新規則現在正在等待核准。核准後，狀態會從 [暫止 XML] 變更為 [使用中 XML]。
 
@@ -64,6 +64,6 @@
 
 ## 另請參閱
 * [Azure Fridays: Azure CDN's powerful new Premium Features (影片：Azure 星期五：Azure CDN 強大的新高階功能)](https://azure.microsoft.com/documentation/videos/azure-cdns-powerful-new-premium-features/)
-* [規則引擎相符條件和功能詳細資料](cdn-rules-engine-details.md)
+* [規則引擎相符條件和功能詳細資料](https://msdn.microsoft.com/library/mt757336.aspx)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

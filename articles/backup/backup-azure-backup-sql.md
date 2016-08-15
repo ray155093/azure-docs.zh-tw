@@ -3,8 +3,8 @@
 	description="使用 Azure 備份服務來備份 SQL Server 資料庫的簡介"
 	services="backup"
 	documentationCenter=""
-	authors="giridharreddy"
-	manager="shreeshd"
+	authors="adigan"
+	manager="Nkolli1"
 	editor=""/>
 
 <tags
@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="07/01/2016"
-	ms.author="giridham; jimpark;"/>
+	ms.author="giridham; jimpark;markgal;trinadhk"/>
 
 
 # 使用 DPM 進行 SQL Server 工作負載的 Azure 備份
@@ -174,4 +174,4 @@
 
 • [Azure 備份常見問題集](backup-azure-backup-faq.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->

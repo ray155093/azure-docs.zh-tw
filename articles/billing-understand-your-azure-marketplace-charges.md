@@ -1,7 +1,7 @@
 <properties
 	pageTitle="了解您的 Azure Marketplace 費用 | Microsoft Azure"
 	description="說明如何了解 Marketplace 訂單的相關費用。"
-	services="billing"
+	services=""
 	documentationCenter=""
 	authors="jiangchen79"
 	manager="felixwu"
@@ -98,4 +98,4 @@
 
     ![訂單詳細資料](./media/billing-understand-your-azure-marketplace-charges/order-details.jpg)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -70,7 +70,7 @@ azure vm reset-access -g <resource group> <vm name> -u <username> -p <new passwo
 如果使用 SSH 金鑰驗證，您可以針對指定的使用者重設 SSH 金鑰：
 
 ```bash
-azure vm reset-access -g <resource group> -n <vm name> -u <usernamer> -M <~/.ssh/azure_id_rsa.pub>
+azure vm reset-access -g <resource group> -n <vm name> -u <username> -M <~/.ssh/azure_id_rsa.pub>
 ```
 
 #### VM 存取擴充功能
@@ -134,4 +134,4 @@ azure vm extension set <resource group> <vmname> VMAccessForLinux Microsoft.OSTC
 
 - 如需針對使用傳統部署模型所建立之虛擬機器進行疑難排解的詳細資訊，請參閱[如何為 Linux 虛擬機器重設密碼或 SSH](virtual-machines-linux-classic-reset-access.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

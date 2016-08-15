@@ -1,7 +1,7 @@
 <properties
 	pageTitle="SaaS 連接器和 API Apps 中的 OAUTH 安全性 | Azure"
 	description="閱讀有關在 Azure App Service 的連接器和 API Apps 中的 OAUTH 安全性；微服務架構；saas"
-	services="app-service\logic"
+	services="logic-apps"
 	documentationCenter=""
 	authors="MandiOhlinger"
 	manager="dwrede"
@@ -51,4 +51,4 @@
 [4]: ./media/app-service-logic-oauth-security/TwitterApp.png
 [5]: ./media/app-service-logic-oauth-security/TwitterKeys.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

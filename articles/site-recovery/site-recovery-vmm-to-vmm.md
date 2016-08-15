@@ -81,7 +81,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 **必要條件** | **詳細資料** 
 --- | ---
-**Azure**| 您將需要 [Microsoft Azure](http://azure.microsoft.com/) 帳戶。您可以從[免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。[深入了解](https://azure.microsoft.com/pricing/details/site-recovery/) Site Recovery 價格。 
+**Azure**| 您將需要 [Microsoft Azure](http://azure.microsoft.com/) 帳戶。您可以從[免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。[深入了解](https://azure.microsoft.com/pricing/details/site-recovery/) Site Recovery 定價。 
 
 
 ## 內部部署必要條件
@@ -213,29 +213,38 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 
 	![安裝位置](./media/site-recovery-vmm-to-vmm/provider-register.png)
 
-4. 在 [Proxy 設定] 中，指定在 VMM 伺服器上執行的 Provider 透過網際網路連線到 Site Recovery 的方式。
+9. 在 [保存庫名稱] 中，確認要註冊伺服器的保存庫名稱。按 [下一步]。
 
-	- 如果您想要讓 Provider 直接連線，請選取 [不使用 Proxy 直接連線]。
-	- - 如果您要使用目前在伺服器上設定的 Proxy 來連線，請選取 [以現有的 Proxy 設定連線]。
-	- 如果現有的 Proxy 需要驗證，或是您想要讓提供者使用自訂 Proxy 來連線，請選取 [以自訂 Proxy 設定連線]。
-	- 如果您使用自訂 proxy，您必須指定位址、連接埠及認證。
-	- 如果您使用 Proxy，您應該已經允許[必要條件](#provider-and-agent-prerequisites)中所述的 URL。
-	- 如果您使用的是自訂 proxy，則會使用指定的 proxy 認證自動建立 VMM RunAs 帳戶 (DRAProxyAccount)。設定 proxy 伺服器，讓此帳戶可以成功進行驗證。在 VMM 主控台中，可以修改 VMM RunAs 帳戶設定。在 [設定] 中，展開 [安全性] > [執行身分帳戶]，然後修改 DRAProxyAccount 的密碼。您必須重新啟動 VMM 服務，這項設定才會生效。
+	![伺服器註冊](./media/site-recovery-vmm-to-vmm-classic/vaultcred.PNG)
 
-	![網際網路](./media/site-recovery-vmm-to-vmm/provider3.png)
+7. 在 [網際網路連線] 中，指定 VMM 伺服器上執行的提供者連接到網際網路的方式。選取 [使用現有的 Proxy 設定連線]，以使用在伺服器上設定的預設網際網路連線設定。
 
-4. 在 [保存庫設定] 中，按一下 [瀏覽] 來選取下載的金鑰檔案。指定 Azure 訂用帳戶和保存庫名稱。
+	![網際網路設定](./media/site-recovery-vmm-to-vmm-classic/proxydetails.PNG)
 
-	![伺服器註冊](./media/site-recovery-vmm-to-vmm/provider-key2.png)
+	- 如果您想要使用自訂 proxy，您應該在安裝提供者之前進行設定。當您進行自訂 proxy 設定時，會執行一項測試以檢查 proxy 連線。
+	- 如果您使用自訂 proxy，或者您的預設 proxy 需要驗證，您必須輸入 proxy 詳細資料，包含 proxy 位址和連接埠。
+	- 下列 URL 應可從 VMM 伺服器和 Hyper-V 主機存取
+		- *.hypervrecoverymanager.windowsazure.com
+		- *.accesscontrol.windows.net
+		- *.backup.windowsazure.com
+		- *.blob.core.windows.net
+		- *.store.core.windows.net
+	- 允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)中所述的 IP 位址和 HTTPS (443) 通訊協定。您必須具有打算使用以及美國西部之 Azure 區域的白名單 IP 範圍。
+	- 如果您使用的是自訂 proxy，則會使用指定的 proxy 認證自動建立 VMM RunAs 帳戶 (DRAProxyAccount)。設定 proxy 伺服器，讓此帳戶可以成功進行驗證。在 VMM 主控台中，可以修改 VMM RunAs 帳戶設定。若要這樣做，請開啟 [設定] 工作區、展開 [安全性]、按一下 [執行身分帳戶]，然後修改 DRAProxyAccount 的密碼。您必須重新啟動 VMM 服務，這項設定才會生效。
 
-5. 在 [註冊] > [儲存憑證的位置] 中，按 [下一步]。適用於加密的憑證與此案例無關。它只會在您複寫到 Azure 儲存體時使用。
 
-8. 在 [伺服器名稱] 中，指定可識別保存庫中 VMM 伺服器的易記名稱。在叢集設定中，指定 VMM 叢集角色名稱。
-9. 如果您想要將 VMM 伺服器上所有雲端的中繼資料與保存庫進行同步，請啟用 [同步處理雲端中繼資料]。這個動作只需要在每個伺服器上進行一次。如果不要同步所有雲端，您可以取消核取這項設定，再於 VMM 主控台的雲端屬性中個別同步每個雲端。按 [下一步]，完成此程序。
+8. 在 [註冊金鑰] 中，選取您從 Azure Site Recovery 下載並複製到 VMM 伺服器的金鑰。
 
-	![伺服器註冊](./media/site-recovery-vmm-to-vmm/provider-sync.png)
 
-10. 註冊作業隨即開始。註冊完成後，VMM 伺服器會顯示於保存庫的 [設定] > [伺服器] 刀鋒視窗上。
+10.  只有在您正在將 VMM 雲端中的 Hyper-V VM 複寫至 Azure 時，才會使用這項加密設定。如果您是在複寫至次要站台，則不會使用它。
+
+11.  在 [伺服器名稱] 中，指定保存庫中 VMM 伺服器的易記識別名稱。在叢集設定中，指定 VMM 叢集角色名稱。
+12.  在 [同步處理雲端中繼資料] 中，選取您是否要將 VMM 伺服器上所有雲端的中繼資料與保存庫同步。這個動作只需要在每個伺服器上進行一次。如果不要同步所有雲端，您可以取消核取這項設定，再於 VMM 主控台的雲端屬性中個別同步每個雲端。
+
+13.  按 [下一步]，完成此程序。註冊後，Azure Site Recovery 即可從 VMM 伺服器擷取中繼資料。此伺服器會顯示於保存庫中 [伺服器] 頁面的 [VMM 伺服器] 索引標籤上。
+ 	
+	![Lastpage](./media/site-recovery-vmm-to-vmm-classic/provider13.PNG)
+
 11. 當伺服器可以在 Site Recovery 主控台中使用之後，於 [來源] > [準備來源] 中選取 VMM 伺服器，然後選取 Hyper-V 主機所在的雲端。然後按一下 [確定]。
 
 #### 命令列安裝
@@ -288,10 +297,10 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 
 	> [AZURE.NOTE] VMM 雲端可以包含執行不同 (支援) 版本之 Windows Server 的 Hyper-V 主機，但一個複寫原則適用於執行相同作業系統的主機。如果您的主機會執行多個作業系統版本，請建立不同的複寫原則。
 
-4. 在 [驗證類型] 和 [驗證連接埠] 中，指定如何驗證主要與復原 Hyper-V 主機伺服器之間的流量。除非您有正常運作的 Kerberos 環境，否則請選取 [憑證]。Azure Site Recovery 會自動設定用於 HTTPS 驗證的憑證。您不需要手動執行任何動作。根據預設，連接埠 8083 和 8084 (用於憑證) 將在 Hyper-V 主機伺服器上的 Windows 防火牆中開啟。如果您確實已選取 [Kerberos]，Kerberos 票證將會用於主機伺服器的相互驗證。請注意，這項設定只有在 Hyper-V 主機伺服器是執行於 Windows Server 2012 R2 時才有重要性。
+4. 在 [驗證類型] 和 [驗證連接埠] 中，指定驗證主要與復原 Hyper-V 主機伺服器之間流量的方式。除非您有正常運作的 Kerberos 環境，否則請選取 [憑證]。Azure Site Recovery 會自動設定用於 HTTPS 驗證的憑證。您不需要手動執行任何動作。根據預設，連接埠 8083 和 8084 (用於憑證) 將在 Hyper-V 主機伺服器上的 Windows 防火牆中開啟。如果您選取 **Kerberos**，Kerberos 票證將會用於主機伺服器的相互驗證。請注意，這項設定只有在 Hyper-V 主機伺服器是執行於 Windows Server 2012 R2 時才有重要性。
 3. 在 [複製頻率] 中，指定您要在初始複寫後複寫差異資料的頻率 (每隔 30 秒、5 或 15 分鐘)。
 4. 在 [復原點保留] 中，針對每個復原點指定保留週期的長度 (以小時為單位)。受保護的機器可以復原到週期內的任意點。
-6. 在 [應用程式一致快照頻率] 中，指定建立包含應用程式一致快照的復原點的頻率 (1-12 小時)。Hyper-V 使用兩種類型的快照，一個是標準快照，提供整個虛擬機器的增量快照，另一個是應用程式一致快照，會建立虛擬機器內應用程式資料的時間點快照。應用程式一致快照會使用「磁碟區陰影複製服務」(VSS) 來確保建立快照時，應用程式是處於一致狀態。請注意，如果您啟用應用程式一致快照，它會影響在來源虛擬機器上執行的應用程式效能。確認您設定的值低於您設定的其他復原點數目。
+6. 在 [應用程式一致快照頻率] 中，指定建立包含應用程式一致快照之復原點的頻率 (1-12 小時)。Hyper-V 使用兩種類型的快照，一個是標準快照，提供整個虛擬機器的增量快照，另一個是應用程式一致快照，會建立虛擬機器內應用程式資料的時間點快照。應用程式一致快照會使用「磁碟區陰影複製服務」(VSS) 來確保建立快照時，應用程式是處於一致狀態。請注意，如果您啟用應用程式一致快照，它會影響在來源虛擬機器上執行的應用程式效能。確認您設定的值低於您設定的其他復原點數目。
 7. 在 [資料傳輸壓縮] 中，指定是否應該將傳輸的已複寫資料壓縮。
 8. 選取 [刪除複本 VM]，以指定如果您停用對來源 VM 的保護，則應刪除複本虛擬機器。如果啟用此設定，當您停用對來源 VM 的保護時，便會從 Site Recovery 主控台中加以移除、在 VMM 主控台中移除 VMM 的 Site Recovery 設定，並刪除複本。
 3. 在 [初始複寫方法] 中，如果您要透過網路進行複寫，請指定是否要啟動初始複寫，或將它排程。若要節省網路頻寬，您可能要將它排程在離峰時間執行。然後按一下 [確定]。
@@ -373,7 +382,7 @@ Site Recovery 會提供以 Excel 為基礎的 Capacity Planner，協助您為來
 您可以使用頻寬權重設定，或利用每個次要的位元來限制流量。如果您使用叢集，就必須在所有叢集節點上執行這項操作。如需詳細資訊，請參閱：
 
 
-- Thomas Maurer 的部落格 [Throttling Hyper-V Replica Traffic (節流處理 Hyper-V 複本流量)](http://www.thomasmaurer.ch/2013/12/throttling-hyper-v-replica-traffic/)
+- Thomas Maurer 針對 [Throttling Hyper-V Replica Traffic (節流處理 Hyper-V 複本流量)](http://www.thomasmaurer.ch/2013/12/throttling-hyper-v-replica-traffic/) 所撰寫的部落格文章
 - 其他關於 [New-NetQosPolicy Cmdlet](https://technet.microsoft.com/library/hh967468.aspx) 的資訊。
 
 
@@ -394,7 +403,7 @@ Site Recovery 會提供以 Excel 為基礎的 Capacity Planner，協助您為來
 
 	![啟用虛擬機器保護](./media/site-recovery-vmm-to-vmm/enable-replication5.png)
 
-您可以在 [設定] > [作業] > [Site Recovery 作業] 中，追蹤 [啟用保護] 動作的進度。執行「完成保護」工作之後，虛擬機器即準備好進行容錯移轉。
+您可以在 [設定] > [作業] > [Site Recovery 作業] 中，追蹤 [啟用保護] 動作的進度。執行 [完成保護] 作業之後，虛擬機器即準備好進行容錯移轉。
 
 
 >[AZURE.NOTE] 您也可以在 VMM 主控台中啟用虛擬機器的保護。在虛擬機器屬性 > [Azure Site Recovery] 索引標籤中的工具列上按一下 [啟用保護]。
@@ -437,7 +446,7 @@ Site Recovery 會提供以 Excel 為基礎的 Capacity Planner，協助您為來
 
 	![測試容錯移轉](./media/site-recovery-vmm-to-vmm/test-failover1.png)
 
-3. 按一下 [確定] 即可開始容錯移轉。您可以按一下 VM 以開啟其屬性，或在 [設定] > [作業] > [Site Recovery 作業] 中的 [測試容錯移轉] 作業上追蹤進度。
+3. 按一下 [確定] 即可開始容錯移轉。若要追蹤進度，您可以按一下 VM 以開啟其屬性，或在 [設定] > [作業] > [Site Recovery 作業] 中的 [測試容錯移轉] 作業上查看。
 4. 當容錯移轉作業到達 [完成測試] 階段時，執行下列作業：
 
 	-  在次要 VMM 雲端中檢視複本 VM。
@@ -482,6 +491,6 @@ Site Recovery 會提供以 Excel 為基礎的 Capacity Planner，協助您為來
 
 ## 後續步驟
 
-在您的部署設定完成並開始執行之後，[深入了解](site-recovery-failover.md)不同類型的容錯移轉。
+在您的部署設定完成並開始執行之後，請[深入了解](site-recovery-failover.md)不同類型的容錯移轉。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

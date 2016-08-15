@@ -4,7 +4,7 @@
 	authors="jeffhollan" 
 	manager="erikre" 
 	editor="" 
-	services="app-service\logic" 
+	services="logic-apps" 
 	documentationCenter=""/>
 
 <tags
@@ -138,4 +138,4 @@
 - [建立邏輯應用程式部署範本](app-service-logic-create-deploy-template.md)
 - [企業整合功能](app-service-logic-enterprise-integration-overview.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

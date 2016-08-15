@@ -1,7 +1,7 @@
 <properties 
 	pageTitle="在 Azure App Service 中使用 Azure 資源管理員範本建立邏輯應用程式 | Microsoft Azure" 
 	description="使用 Azure 資源管理員範本，部署空的邏輯應用程式以定義工作流程。" 
-	services="app-service\logic" 
+	services="logic-apps" 
 	documentationCenter="" 
 	authors="MSFTMan" 
 	manager="erikre" 
@@ -116,4 +116,4 @@
 
  
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

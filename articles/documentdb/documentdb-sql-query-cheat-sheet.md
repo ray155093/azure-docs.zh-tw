@@ -14,10 +14,10 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/13/2016" 
+	ms.date="07/29/2016" 
 	ms.author="mimig"/>
 
-# DocumentDB SQL 功能提要 PDF 檔
+# DocumentDB SQL 查詢速查表 PDF
 
 **DocumentDB SQL 查詢功能提要**中顯示常用的資料庫查詢、關鍵字、內建函式和運算子，可協助您快速撰寫 DocumentDB 資料查詢，且其格式適合列印成 PDF 檔參考表格。
 
@@ -31,7 +31,7 @@ DocumentDB 支援使用 [SQL](documentdb-sql-query.md) 的關聯式、階層式�
 
 ![DocumentDB 的 SQL 查詢功能提要：DocumentDB 所支援 SQL 語法的快速參考 PDF - SQL 功能提要、SQL 功能提要 PDF、SQL 快速參考][cheat-sheet]
 
-[cheat-sheet]: ./media/documentdb-sql-query-cheat-sheet/microsoft-documentdb-sql-query-cheat-sheet-v2.png
+[cheat-sheet]: ./media/documentdb-sql-query-cheat-sheet/microsoft-documentdb-sql-query-cheat-sheet-v4.png
 
 
 ## 撰寫 SQL 查詢的詳細說明
@@ -39,4 +39,8 @@ DocumentDB 支援使用 [SQL](documentdb-sql-query.md) 的關聯式、階層式�
 - 如需 DocumentDB 中可用查詢選項的逐步說明，請參閱[查詢 DocumentDB](documentdb-sql-query.md)。
 - 如需相關的參考文件，請參閱 [DocumentDB SQL 查詢語言](https://msdn.microsoft.com/library/azure/dn782250.aspx)。
 
-<!---HONumber=AcomDC_0720_2016-->
+## 版本資訊
+
+2016 年 7 月 29 日更新以納入 TOP。
+
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,7 +1,7 @@
 <properties
    pageTitle="在 Microsoft Azure App Service 中使用 Informix 連接器 | Microsoft Azure"
    description="如何使用 Informix 連接器搭配邏輯應用程式觸發程序和動作"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="gplarsen"
    manager="erikre"
@@ -76,7 +76,7 @@ PollToAlterData | 否 | 要搭配邏輯應用程式觸發程序使用的 UPDATE 
 4. 在 [觸發程序和動作] 刀鋒視窗中，選取 [邏輯應用程式範本] 中的 [從頭建立]。
 5. 在 API Apps 面板中，選取 [週期]，設定頻率和間隔，然後選取**核取記號**。
 6. 在 [API Apps] 面板中，選取 [Informix 連接器]，展開作業清單以選取 [插入 NEWORDER]。
-7. 展開參數清單以輸入下列值：  
+7. 展開參數清單以輸入下列值：
 
 	名稱 | 值
 --- | --- 
@@ -101,8 +101,8 @@ SHIPZIP | 99362
 
 - 形成邏輯應用程式的動作名稱時，連接器會截斷 Informix 資料表名稱。例如，[插入 NEWORDERS] 作業會被截斷成 [插入 NEWORDER]。
 - 儲存邏輯應用程式的 [觸發程序和動作] 之後，邏輯應用程式會處理此作業。在邏輯應用程式處理此作業前，可能會有數秒的延遲 (例如 3-5 秒)。或者，您可以按一下 [立即執行] 來處理此作業。
-- Informix 連接器會以屬性定義 EntitySet 成員，包括成員是否對應至具有預設值的 Informix 資料行或產生的資料行 (例如身分識別)。邏輯應用程式會在 EntitySet 成員識別碼名稱旁邊顯示一個紅色星號，表示需有值的 Informix 資料行。您不應輸入 ORDID 成員的值，其對應至 Informix 身分識別資料行。您可以輸入其他選擇性成員 (ITEMS、ORDDATE、REQDATE、SHIPID、FREIGHT、SHIPCTRY) 的值，其對應至具有預設值的 Informix 資料行。 
-- Informix 連接器會將 Post to EntitySet 回應 (包含身分識別資料行的值) 傳回至邏輯應用程式，而該回應衍生自已備妥 SQL INSERT 陳述式上的 DRDA SQLDARD (SQL 資料區域回覆資料)。Informix 伺服器不會對具有預設值的資料行傳回插入的值。  
+- Informix 連接器會以屬性定義 EntitySet 成員，包括成員是否對應至具有預設值的 Informix 資料行或產生的資料行 (例如身分識別)。邏輯應用程式會在 EntitySet 成員識別碼名稱旁邊顯示一個紅色星號，表示需有值的 Informix 資料行。您不應輸入 ORDID 成員的值，其對應至 Informix 身分識別資料行。您可以輸入其他選擇性成員 (ITEMS、ORDDATE、REQDATE、SHIPID、FREIGHT、SHIPCTRY) 的值，其對應至具有預設值的 Informix 資料行。
+- Informix 連接器會將 Post to EntitySet 回應 (包含身分識別資料行的值) 傳回至邏輯應用程式，而該回應衍生自已備妥 SQL INSERT 陳述式上的 DRDA SQLDARD (SQL 資料區域回覆資料)。Informix 伺服器不會對具有預設值的資料行傳回插入的值。
 
 
 ## 以 Informix 連接器動作新增大量資料的邏輯應用程式 ##
@@ -114,7 +114,7 @@ SHIPZIP | 99362
 4. 在 [觸發程序和動作] 刀鋒視窗中，選取 [邏輯應用程式範本] 中的 [從頭建立]。
 5. 在 API Apps 面板中，選取 [週期]，設定頻率和間隔，然後選取**核取記號**。
 6. 在 [API Apps] 面板中，選取 [Informix 連接器]，展開作業清單以選取 [大量插入 NEW]。
-7. 輸入**資料列**值做為陣列。例如，複製並貼上下列程式碼：  
+7. 輸入**資料列**值做為陣列。例如，複製並貼上下列程式碼：
 
 	```
     [{"custid":10081,"shipid":10000,"shipname":"Trail's Head Gourmet Provisioners","shipaddr":"722 DaVinci Blvd.","shipcity":"Kirkland","shipreg":"WA","shipzip":"98034"},{"custid":10088,"shipid":10000,"shipname":"White Clover Markets","shipaddr":"305 14th Ave. S. Suite 3B","shipcity":"Seattle","shipreg":"WA","shipzip":"98128","shipctry":"USA"}]
@@ -145,7 +145,7 @@ SHIPZIP | 99362
 --- | --- | ---
 PollToCheckData | SELECT COUNT(*) FROM NEWORDERS WHERE SHIPDATE IS NULL
 PollToReadData | SELECT * FROM NEWORDERS WHERE SHIPDATE IS NULL FOR UPDATE
-PollToAlterData | <no value specified>
+PollToAlterData | <未指定值>
 
 
 此外，您可定義邏輯應用程式觸發程序，使用 API 輪詢資料複合作業來輪詢、讀取及變更 Informix 資料表中的資料。例如，您可以讀取一或多筆新的客戶訂單記錄、更新資料列值，並將選取 (更新前) 的記錄傳回至邏輯應用程式。Informix Connection 封裝/應用程式設定應如下所示：
@@ -285,4 +285,4 @@ App Service 使用混合式組態管理員來安全地連線到內部部署系�
 [13]: ./media/app-service-logic-connector-informix/LogicApp_RemoveOrdersInformix_TriggersActions.png
 [14]: ./media/app-service-logic-connector-informix/LogicApp_RemoveOrdersInformix_Outputs.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

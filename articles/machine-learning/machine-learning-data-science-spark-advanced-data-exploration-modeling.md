@@ -22,8 +22,8 @@
 
 本逐步解說會使用 HDInsight Spark，在 NYC 計程車車程和費用 2013 資料集的取樣上，使用交叉驗證和超參數最佳化來執行資料探索和定型二進位分類和迴歸模型。它將引導您逐步完成[資料科學程序](http://aka.ms/datascienceprocess)、端對端、使用 HDInsight Spark 叢集處理，並使用 Azure blob 來儲存資料和模型。程序會探索和視覺化從 Azure 儲存體 Blob 中引進的資料，然後準備資料來建立預測模型。已使用 Python 來編寫解決方案程式碼，並顯示相關的繪圖。這些模型是使用 Spark MLlib 工具組來執行二進位分類和迴歸模型工作。
 
-- **二進位分類**工作可預測是否已支付某趟車程的小費。 
-- **迴歸**工作可根據其他小費功能來預測小費金額。 
+- **二進位分類**工作可預測是否已支付某趟車程的小費。
+- **迴歸**工作可根據其他小費功能來預測小費金額。
 
 模型化步驟也包含程式碼來示範如何訓練、評估和儲存每類模型。這個主題涵蓋一些與[使用 Spark 資料探索和模型化](machine-learning-data-science-spark-data-exploration-modeling.md)主題相同的內容，但是所謂「進階」，是指它也會使用交叉驗證搭配超參數掃掠，以最佳地定型精確分類和迴歸模型。
 
@@ -35,7 +35,7 @@
 
 我們使用的模型包括羅吉斯和線性迴歸、隨機樹系和漸層停駐推進式決策樹︰
 
-- [使用 SGD 的線性迴歸](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.regression.LinearRegressionWithSGD)是一種使用隨機梯度下降 (SGD) 方法的線性迴歸模型，並使用最佳化和功能縮放比例來預測支付的小費金額。 
+- [使用 SGD 的線性迴歸](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.regression.LinearRegressionWithSGD)是一種使用隨機梯度下降 (SGD) 方法的線性迴歸模型，並使用最佳化和功能縮放比例來預測支付的小費金額。
 - [使用 LBFGS 的羅吉斯迴歸](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.classification.LogisticRegressionWithLBFGS)或「對數優劣比」迴歸是使用相依變數來執行資料分類時，可使用的迴歸模型。LBFGS 是牛頓最佳化演算法，可使用有限的電腦記憶體量來逼近 Broyden–Fletcher–Goldfarb–Shanno (BFGS) 演算法，且廣泛用於機器學習中。
 - [隨機樹系](http://spark.apache.org/docs/latest/mllib-ensembles.html#Random-Forests)是整體的決策樹。其結合許多決策樹以降低風險過度膨脹。隨機樹系適用於迴歸和分類，並可處理分類功能、擴充至多類別分類設定、不需要調整功能，而且能夠擷取非線性和功能互動。隨機樹系是其中一個最成功的分類和迴歸的機器學習模型。
 - [漸層停駐推進式決策樹](http://spark.apache.org/docs/latest/ml-classification-regression.html#gradient-boosted-trees-gbts) (GBT) 是整體的決策樹。GBT 反覆地訓練決策樹以盡可能降低遺失函式。GBT 適用於迴歸和分類，並可處理分類功能、不需要調整功能，而且能夠擷取非線性和功能互動。它們也可用於多類別分類設定。
@@ -108,23 +108,23 @@ datetime.datetime(2016, 4, 18, 17, 36, 27, 832799)
 
 使用和 Jupyter Notebook 一併提供的 PySpark 核心時，已具備預設內容，所以您不需要先明確地設定 Spark 或 Hive 內容，即可開始使用您開發的應用程式；這些都是預設可供您使用的項目。這些內容包括：
 
-- sc - 代表 Spark 
+- sc - 代表 Spark
 - sqlContext - 代表 Hive
 
 PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 呼叫的特殊命令。在這些程式碼範例中，就使用了兩個此類型的命令。
 
 - **%%local** 會指定後續行所列的程式碼，將在本機執行。程式碼必須是有效的 Python 程式碼。
-- **%%sql -o <variable name>** 會針對 sqlContext 執行 Hive 查詢。如果傳遞 -o 參數，則查詢的結果會當做 Pandas 資料框架，保存在 %%local Python 內容中。
+- **%%sql -o <variable name>** 針對 sqlContext 執行 Hive 查詢。如果傳遞 -o 參數，則查詢的結果會當做 Pandas 資料框架，保存在 %%local Python 內容中。
  
 
-如需關於 Jupyter Notebook 核心，以及其所提供的名稱包含 %% 之預先定義「magic」(例如：%%local) 的詳細資訊，請參閱 [HDInsight 上的 HDInsight Spark Linux 叢集可供 Jupyter Notebook 使用的核心](../hdinsight/hdinsight-apache-spark-jupyter-notebook-kernels.md)。
+如需關於 Jupyter Notebook 核心，以及預先定義「magic」(使用它們提供的 %% 呼叫 (例如：%%local)) 的詳細資訊，請參閱 [HDInsight 上的 HDInsight Spark Linux 叢集可供 Jupyter Notebook 使用的核心](../hdinsight/hdinsight-apache-spark-jupyter-notebook-kernels.md)。
 
 
 ## 來自公用 Blob 的資料擷取： 
 
 本節包含一系列工作的程式碼，為擷取要模型化的資料範例所必要。在聯結的 0.1% 取樣的計程車車程和費用檔案中讀取 (儲存為 .tsv 檔案)、格式化和清除資料、建立和快取記憶體中的資料框架，然後將它登錄為 SQL 內容中的暫存資料表。
 
-資料科學程序的第一個步驟是從外部來源或系統 (位於資料探索和模型化環境) 擷取要分析的資料。這種環境在本逐步解說中是 Spark。本節包含程式碼來完成一系列的工作︰
+資料科學程序的第一個步驟是從外部來源或系統 (位於資料探索和模型化環境) 內嵌要分析的資料。這種環境在本逐步解說中是 Spark。本節包含程式碼來完成一系列的工作︰
 
 - 擷取要模型化的資料範例
 - 在輸入資料集中讀取 (儲存為 .tsv 檔案)
@@ -204,8 +204,8 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 此程式碼與後續程式碼片段使用了 SQL magic 來查詢範例及本機 magic 以繪製資料。
 
-- **SQL magic (`%%sql`)** HDInsight PySpark 核心支援透過 sqlContext 進行簡單的內嵌 HiveQL 查詢。「-o VARIABLE\_NAME」引數會將 SQL 查詢的輸出，保存為 Jupyter 伺服器上的 Pandas dataframe。這代表會在本機模式中使用此引數。
-- **`%%local` magic** 用來在 Jupyter 伺服器本機 (通常是 HDInsight 叢集的前端節點) 上執行程式碼。一般而言，您會使用 `%%local` magic 來搭配含有 -o 參數的 `%%sql` magic。-o 參數會保存本機 SQL 查詢的輸出，然後 %%local magic 會針對已保存在本機上的 SQL 查詢輸出，觸發下一組要在本機上執行的程式碼片段。
+- **SQL magic (`%%sql`)** HDInsight PySpark 核心支援針對 sqlContext 進行簡單的內嵌 HiveQL 查詢。「-o VARIABLE\_NAME」引數會將 SQL 查詢的輸出，保存為 Jupyter 伺服器上的 Pandas dataframe。這代表會在本機模式中使用此引數。
+- **`%%local` magic** 是用來在 Jupyter 伺服器本機 (HDInsight 叢集的前端節點) 上執行程式碼。通常您會使用 `%%local` magic 來搭配含有 -o 參數的 `%%sql` magic。-o 參數會保存本機 SQL 查詢的輸出，然後 %%local magic 會針對已保存在本機上的 SQL 查詢輸出，觸發下一組要在本機上執行的程式碼片段。
 
 執行完程式碼後，輸出將會自動以視覺化方式呈現。
 
@@ -218,7 +218,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 	SELECT passenger_count, COUNT(*) as trip_counts FROM taxi_train WHERE passenger_count > 0 and passenger_count < 7 GROUP BY passenger_count
 
 
-此程式碼從查詢輸出中建立了本機資料框架，以及繪製資料。`%%local` magic 建立了本機資料框架「`sqlResults`」，其能用於搭配 Matplotlib 進行繪製。
+此程式碼從查詢輸出中建立了本機資料框架，以及繪製資料。`%%local` magic 建立了本機資料框架「`sqlResults`」，可用於搭配 Matplotlib 進行繪製。
 
 >[AZURE.NOTE] 在本逐步解說中，會多次使用此 PySpark magic。如果資料總量很大，您應該取樣以建立可容納於本機記憶體的資料框架。
 
@@ -250,7 +250,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 ![按乘客計數排列的車程頻率](./media/machine-learning-data-science-spark-advanced-data-exploration-modeling/frequency-of-trips-by-passenger-count.png)
 
-在 Notebook 內使用 [類型] 功能表按鈕，您可以選擇多種不同類型的視覺效果 (資料表、折線圖、圓形圖、橫條圖、區域圖)。橫條圖繪製結果會在此顯示。
+在 Notebook 內使用 [類型] 功能表按鈕，您可以選擇幾種不同類型的視覺效果 (資料表、圓形圖、折線圖、區域圖或橫條圖)。橫條圖繪製結果會在此顯示。
 
 
 ### 繪製小費金額，和小費金額如何隨乘客計數和費用金額變化的長條圖。
@@ -503,7 +503,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 ### 調整功能
 
-調整功能，也稱為資料正規化，以確保具廣泛分散值的功能在目標函式中沒有過多權重。調整功能的程式碼會使用 [StandardScaler](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.feature.StandardScaler)，將功能縮放至單位變異數。這是由 MLlib 提供，用於使用隨機梯度下降 (SGD) 的線性迴歸，為訓練廣泛的其他機器學習模型的常用演算法，例如正則化迴歸或支援向量機器 (SVM)。
+調整功能，也稱為資料正規化，以確保具廣泛分散值的功能在目標函式中沒有過多權重。用於調整功能的程式碼會使用 [StandardScaler](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.feature.StandardScaler)，將功能調整至單位變異數。這是由 MLlib 提供，用於使用隨機梯度下降 (SGD) 的線性迴歸，為訓練廣泛的其他機器學習模型的常用演算法，例如正則化迴歸或支援向量機器 (SVM)。
 
 >[AZURE.TIP] 我們找到了適用於調整功能的 LinearRegressionWithSGD 演算法。
 
@@ -578,20 +578,20 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 本節說明如何為二進位分類工作使用三個模型，預測是否支付計程車車程的小費。顯示模型如下︰
 
-- 羅吉斯迴歸 
+- 羅吉斯迴歸
 - 隨機樹系
 - 漸層停駐提升樹狀結構
 
 每個模型建置程式碼區段會分成步驟︰
 
-1. 使用一個參數集的**模型訓練**資料
+1. 使用一個參數集的**模型定型**資料
 2. 在含計量的測試資料集上的**模型評估**
-3. blob 中供未來取用的**儲存模型**
+3. Blob 中供未來取用的**儲存模型**
 
 我們會示範如何以兩種方式使用參數掃掠執行交叉驗證 (CV)︰
 
-1. 使用**泛型**自訂程式碼，可以套用至 MLlib 中的任何演算法，以及演算法中的任何參數集。 
-1. 使用 **pySpark CrossValidator 管線函式**。請注意，雖然很方便，根據我們的經驗，CrossValidator 對於 Spark 1.5.0 有幾項限制︰ 
+1. 使用**泛型**自訂程式碼，可以套用至 MLlib 中的任何演算法，以及套用至演算法中的任何參數集。
+1. 使用 **pySpark CrossValidator 管線函式**。請注意，雖然很方便，根據我們的經驗，CrossValidator 對於 Spark 1.5.0 有幾項限制︰
 
 	- 管線模型無法儲存/保存供未來取用。
 	- 無法用於模型中的每個參數。
@@ -600,7 +600,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 ### 針對二進位分類搭配使用一般交叉驗證和超參數掃掠與羅吉斯迴歸演算法
 
-本節的程式碼會顯示如何訓練、評估，以及使用 [LBFGS](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm) 來儲存羅吉斯迴歸模型，其可預測是否針對 NYC 計程車車程和費用資料集的某趟車程支付小費。模型是使用交叉驗證 (CV) 和超參數掃掠定型，這兩種方法是使用自訂程式碼實作，可以套用至 MLlib 中的任何學習演算法。
+本節的程式碼顯示如何定型、評估及使用 [LBFGS](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm) 來儲存羅吉斯迴歸模型，可預測是否針對 NYC 計程車車程和費用資料集的某趟車程支付小費。模型是使用交叉驗證 (CV) 和超參數掃掠定型，這兩種方法是使用自訂程式碼實作，可以套用至 MLlib 中的任何學習演算法。
 
 >[AZURE.NOTE] 執行此自訂 CV 程式碼可能需要數分鐘的時間。
 
@@ -759,7 +759,7 @@ F1 分數 = 0.984174341679
 
 **繪製 ROC 曲線。**
 
-predictionAndLabelsDF 已在先前的儲存格中註冊為 tmp\_results 資料表。tmp\_results 可用來執行查詢，並將結果輸出至 sqlResults 資料框架供繪製之用。程式碼如下。
+*predictionAndLabelsDF* 已在先前的儲存格中註冊為 *tmp\_results* 資料表。*tmp\_results* 可用來執行查詢，並將結果輸出至 sqlResults 資料框架供繪製之用。程式碼如下。
 
 
 	# QUERY RESULTS                              
@@ -830,7 +830,7 @@ predictionAndLabelsDF 已在先前的儲存格中註冊為 tmp\_results 資料�
 
 ### 搭配使用 MLlib 的 CrossValidator 管線函式與 LogisticRegression (彈性迴歸) 模型
 
-本節的程式碼會顯示如何訓練、評估，以及使用 [LBFGS](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm) 來儲存羅吉斯迴歸模型，其可預測是否針對 NYC 計程車車程和費用資料集的某趟車程支付小費。模型是使用交叉驗證 (CV) 和超參數掃掠定型，這兩種方法是使用 CV 的 MLlib CrossValidator 管線函式和參數掃掠進行實作。
+本節的程式碼顯示如何定型、評估及使用 [LBFGS](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm) 來儲存羅吉斯迴歸模型，可預測是否針對 NYC 計程車車程和費用資料集的某趟車程支付小費。模型是使用交叉驗證 (CV) 和超參數掃掠定型，這兩種方法是使用 CV 的 MLlib CrossValidator 管線函式和參數掃掠進行實作。
 
 
 >[AZURE.NOTE] 執行此 MLlib CV 程式碼可能需要數分鐘的時間。
@@ -887,7 +887,7 @@ predictionAndLabelsDF 已在先前的儲存格中註冊為 tmp\_results 資料�
 
 **繪製 ROC 曲線。**
 
-predictionAndLabelsDF 已在先前的儲存格中註冊為 tmp\_results 資料表。tmp\_results 可用來執行查詢，並將結果輸出至 sqlResults 資料框架供繪製之用。程式碼如下。
+*predictionAndLabelsDF* 已在先前的儲存格中註冊為 *tmp\_results* 資料表。*tmp\_results* 可用來執行查詢，並將結果輸出至 sqlResults 資料框架供繪製之用。程式碼如下。
 
 
 	# QUERY RESULTS
@@ -1035,9 +1035,9 @@ ROC 下的領域 = 0.985336538462
 
 這些模型將在簡介中說明。每個模型建置程式碼區段會分成步驟︰
 
-1. 使用一個參數集的**模型訓練**資料
+1. 使用一個參數集的**模型定型**資料
 2. 在含計量的測試資料集上的**模型評估**
-3. blob 中供未來取用的**儲存模型**   
+3. Blob 中供未來取用的**儲存模型**
 
 
 >AZURE 附註︰交叉驗證未與本節中的三個迴歸模型搭配使用，因為這是用來顯示羅吉斯迴歸模型詳細資料的方法。本主題的「附錄」會示範如何針對線性迴歸使用 CV 與 Elastic Net。
@@ -1464,7 +1464,7 @@ R-sqr = 0.740751197012
 PythonRDD[122] at RDD at PythonRDD.scala:43
 
 
-*** * 列印要在 Consumption notebook 中使用的模型檔案路徑。* * 對於耗用量和獨立資料集的評分，您必須複製這些檔案名稱並貼至「Consumption notebook」內。
+**列印出要在耗用量 Notebook 中使用的模型檔案路徑。**針對獨立資料集的耗用量與評分，您將需要在「耗用量 Notebook」中複製並貼上這些檔案名稱。
 
 
 	# PRINT MODEL FILE LOCATIONS FOR CONSUMPTION
@@ -1478,17 +1478,17 @@ PythonRDD[122] at RDD at PythonRDD.scala:43
 
 **輸出**
 
-logisticRegFileLoc = modelDir + "LogisticRegressionWithLBFGS\_2016-05-0316\_47\_30.096528"
+logisticRegFileLoc = modelDir + "LogisticRegressionWithLBFGS_2016-05-0316_47\_30.096528"
 
-linearRegFileLoc = modelDir + "LinearRegressionWithSGD\_2016-05-0316\_51\_28.433670"
+linearRegFileLoc = modelDir + "LinearRegressionWithSGD_2016-05-0316_51\_28.433670"
 
-randomForestClassificationFileLoc = modelDir + "RandomForestClassification\_2016-05-0316\_50\_17.454440"
+randomForestClassificationFileLoc = modelDir + "RandomForestClassification_2016-05-0316_50\_17.454440"
 
-randomForestRegFileLoc = modelDir + "RandomForestRegression\_2016-05-0316\_51\_57.331730"
+randomForestRegFileLoc = modelDir + "RandomForestRegression_2016-05-0316_51\_57.331730"
 
-BoostedTreeClassificationFileLoc = modelDir + "GradientBoostingTreeClassification\_2016-05-0316\_50\_40.138809"
+BoostedTreeClassificationFileLoc = modelDir + "GradientBoostingTreeClassification_2016-05-0316_50\_40.138809"
 
-BoostedTreeRegressionFileLoc = modelDir + "GradientBoostingTreeRegression\_2016-05-0316\_52\_18.827237"
+BoostedTreeRegressionFileLoc = modelDir + "GradientBoostingTreeRegression_2016-05-0316_52\_18.827237"
 
 ## 後續步驟
 
@@ -1496,4 +1496,4 @@ BoostedTreeRegressionFileLoc = modelDir + "GradientBoostingTreeRegression\_2016-
 
 **模型耗用量︰**若要瞭解如何評分及評估本主題中所建立的分類和迴歸模型，請參閱[評分及評估 Spark 建置機器學習服務模型](machine-learning-data-science-spark-model-consumption.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0803_2016-->

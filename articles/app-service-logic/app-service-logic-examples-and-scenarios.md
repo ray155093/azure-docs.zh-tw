@@ -1,9 +1,9 @@
 <properties
    pageTitle="Logic Apps 範例和案例 | Microsoft Azure"
    description="請參閱常見的邏輯應用程式範例，並了解如何實作常見的案例"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
-   authors="msftman"
+   authors="jeffhollan"
    manager="erikre"
    editor=""/>
 
@@ -13,34 +13,39 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration"
-   ms.date="04/25/2016"
-   ms.author="deonhe"/>
+   ms.date="08/01/2016"
+   ms.author="jehollan"/>
 
 # Logic Apps 範例和常見案例
 
 本文件詳述常見案例和範例，協助您了解可使用邏輯應用程式將商務程序自動化的一些方法。
 
-## 觸發邏輯應用程式
+## 觸發程序及動作
 
 有幾種方法可從另一個應用程式觸發邏輯應用程式。以下是其中幾個方法：
 
-- [HTTP 要求 (POST)](app-service-logic-http-endpoint.md)
-- [接收 webhook](app-service-logic-create-api-app.md)
-- [輪詢端點](app-service-logic-create-api-app.md)
+- [建立自訂觸發程序或動作](app-service-logic-create-api-app.md)
+- [長時間執行的動作](app-service-logic-create-api-app.md)
+- [HTTP 要求觸發程序 (POST)](app-service-logic-http-endpoint.md)
+- [Webhook 觸發程序和動作](app-service-logic-create-api-app.md)
+- [輪詢觸發程序](app-service-logic-create-api-app.md)
 
 ### 案例
 
-- [邏輯應用程式要求同步回應](app-service-logic-http-endpoint.md)
+- [要求同步回應](app-service-logic-http-endpoint.md)
 
-## 自訂和長時間執行的動作
+## 錯誤處理和記錄
 
-- [建立自訂動作](app-service-logic-create-api-app.md)
+- [設定 Azure 警示和診斷](app-service-logic-monitor-your-logic-apps.md)
 
-## 部署和管理邏輯應用程式
+### 案例
 
-- [建立邏輯應用程式部署範本](app-service-logic-create-deploy-template.md)
-- [診斷邏輯應用程式的問題](app-service-logic-diagnosing-failures.md)
-- [從 Visual Studio 部署邏輯應用程式](app-service-logic-deploy-from-vs.md)
+- [使用案例︰錯誤和例外狀況處理](app-service-logic-scenario-error-and-exception-handling.md)
+
+## 部署和管理
+
+- [建立自動部署](app-service-logic-create-deploy-template.md)
+- [在 Visual Studio 中建置和部署 Logic Apps](app-service-logic-deploy-from-vs.md)
 - [監視邏輯應用程式](app-service-logic-monitor-your-logic-apps.md)
 
 ## 內容類型、轉換 (Conversion) 及轉換 (Transformation)
@@ -72,4 +77,4 @@ Logic Apps [工作流程定義語言](http://aka.ms/logicappsdocs)包含許多�
 
 我們將持續在本文件中加入範例和案例。請使用下列意見段落，讓我們知道您想要在這裡看到的範例或案例。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,7 +1,7 @@
 <properties
 pageTitle="OneDrive for Business | Microsoft Azure"
 description="使用 Azure App Service 建立邏輯應用程式。連接到 OneDrive for Business 來管理您的檔案。您可以對檔案執行各種動作，例如上傳、更新、取得及刪除。"
-services="app-servicelogic"	
+services="logic-apps"	
 documentationCenter=".net,nodejs,java" 	
 authors="msftman"	
 manager="erikre"	
@@ -366,4 +366,4 @@ OneDrive for Business 連接器可當成動作使用，它有觸發程序。所�
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

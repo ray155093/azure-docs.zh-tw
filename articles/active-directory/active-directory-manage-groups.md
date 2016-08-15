@@ -20,7 +20,7 @@
 
 # 使用 Azure Active Directory 群組來管理資源的存取權
 
-Azure Active Directory (Azure AD) 是一個身分識別與存取管理的綜合性解決方案，提供許多強大的功能來管理內部部署和雲端應用程式和資源的存取權，包括如 Office 365 的 Microsoft 線上服務，以及非 Microsoft 的 SaaS 應用程式。本文會提供概觀，但如果您要立即開始使用 Azure AD 群組，請遵循[在 Azure AD 中管理安全性群組](active-directory-accessmanagement-manage-groups.md)的指示。
+Azure Active Directory (Azure AD) 是一個身分識別與存取管理的綜合性解決方案，提供許多強大的功能來管理內部部署和雲端應用程式和資源的存取權，包括如 Office 365 的 Microsoft 線上服務，以及非 Microsoft 的 SaaS 應用程式。本文會提供概觀，但如果您要立即開始使用 Azure AD 群組，請遵循[在 Azure AD 中管理安全性群組](active-directory-accessmanagement-manage-groups.md)的指示。如果您想要看看如何使用 PowerShell 管理 Azure Active directory 中的群組，則可以在[適用於群組管理的 Azure Active Directory Preview Cmdlet](active-directory-accessmanagement-groups-settings-v2-cmdlets.md) 中深入了解。
 
 
 > [AZURE.NOTE] 若要使用 Azure Active Directory，您需要 Azure 帳戶。如果您沒有帳戶，您可以[註冊免費的 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)。
@@ -91,4 +91,4 @@ Azure AD 存取管理解決方案的重點是安全性群組。使用安全性�
 
 * [設定群組設定的 Azure Active Directory Cmdlet](active-directory-accessmanagement-groups-settings-cmdlets.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->

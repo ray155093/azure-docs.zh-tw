@@ -1,11 +1,11 @@
 <properties
 	pageTitle="我無法登入來管理我的 Azure 訂用帳戶 | Microsoft Azure"
 	description="說明疑難排解一些常見 Azure 訂用帳戶登入問題的資訊"
-	services="billing"
+	services=""
 	documentationCenter=""
 	authors="genlin"
 	manager="msmbaldwin"
-	editor="na"
+	editor=""
 	tags="billing"
 	/>
 
@@ -54,4 +54,4 @@
 
 使用 IE InPrivate 瀏覽模式，並也使用其他瀏覽器嘗試刪除快取/Cookies。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->

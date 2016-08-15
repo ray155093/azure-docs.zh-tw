@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="required"
-   ms.date="07/06/2016"
+   ms.date="07/29/2016"
    ms.author="vturecek"/>
 
 # 開始使用：Service Fabric Web API 服務與 OWIN 自我裝載 | Microsoft Azure
@@ -92,7 +92,7 @@ namespace WebService.Controllers
 
 ```
 
-接下來，在專案根目錄加入 Startup 類別以註冊路由、格式器及任何其他組態設定。這也是 Web API 插入至主機的位置，稍後我們將再重返此處。
+接下來，在專案根目錄加入 Startup 類別以註冊路由、格式器及任何其他組態設定。這也是 Web API 插入至*主機*的位置，稍後我們將再重返此處。
 
 **Startup.cs**
 
@@ -362,17 +362,17 @@ OpenAsync 實作是 Web 伺服器 (或任何通訊堆疊) 之所以實作為 ICo
 
     try
     {
-        this.eventSource.ServiceMessage(this.serviceContext, "Starting web server on " + this.listeningAddress);
+        this.eventSource.Message("Starting web server on " + this.listeningAddress);
 
         this.webApp = WebApp.Start(this.listeningAddress, appBuilder => this.startup.Invoke(appBuilder));
 
-        this.eventSource.ServiceMessage(this.serviceContext, "Listening on " + this.publishAddress);
+        this.eventSource.Message("Listening on " + this.publishAddress);
 
         return Task.FromResult(this.publishAddress);
     }
     catch (Exception ex)
     {
-        this.eventSource.ServiceMessage(this.serviceContext, "Web server failed to open endpoint {0}. {1}", this.endpointName, ex.ToString());
+        this.eventSource.Message("Web server failed to open endpoint {0}. {1}", this.endpointName, ex.ToString());
 
         this.StopWebServer();
 
@@ -384,7 +384,7 @@ OpenAsync 實作是 Web 伺服器 (或任何通訊堆疊) 之所以實作為 ICo
 
 請注意，這會參考傳遞給建構函式中之 OwinCommunicationListener 的 Startup 類別。這個 startup 執行個體由 Web 伺服器用來啟動 Web API 應用程式。
 
-稍後當您執行應用程式時，`ServiceEventSource.Current.ServiceMessage()` 列會出現在 [診斷事件] 視窗，確認已成功啟動 Web 伺服器。
+稍後當您執行應用程式時，`ServiceEventSource.Current.Message()` 列會出現在 [診斷事件] 視窗，確認已成功啟動 Web 伺服器。
 
 ## 實作 CloseAsync 和 Abort
 
@@ -393,7 +393,7 @@ OpenAsync 實作是 Web 伺服器 (或任何通訊堆疊) 之所以實作為 ICo
 ```csharp
 public Task CloseAsync(CancellationToken cancellationToken)
 {
-    this.eventSource.ServiceMessage(this.serviceContext, "Closing web server on endpoint {0}", this.endpointName);
+    this.eventSource.Message("Closing web server on endpoint {0}", this.endpointName);
             
     this.StopWebServer();
 
@@ -402,7 +402,7 @@ public Task CloseAsync(CancellationToken cancellationToken)
 
 public void Abort()
 {
-    this.eventSource.ServiceMessage(this.serviceContext, "Aborting web server on endpoint {0}", this.endpointName);
+    this.eventSource.Message("Aborting web server on endpoint {0}", this.endpointName);
     
     this.StopWebServer();
 }
@@ -441,7 +441,7 @@ protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceLis
 }
 ```
 
-這正是 Web API 應用程式和 OWIN 主機最後相會之處。提供應用程式的執行個體 (透過 startup 的 Web API) 給主機 (OwinCommunicationListener)。然後 Service Fabric 會管理其生命週期。通常可以針對任何通訊堆疊運用相同的模式。
+這正是 Web API 應用程式和 OWIN 主機最後相會之處。透過 Startup 類別提供應用程式的執行個體 (Web API) 給主機 (OwinCommunicationListener)。然後 Service Fabric 會管理其生命週期。通常可以針對任何通訊堆疊運用相同的模式。
 
 ## 組合在一起
 
@@ -496,51 +496,49 @@ namespace WebService
 {
     internal class OwinCommunicationListener : ICommunicationListener
     {
-    private readonly ServiceEventSource eventSource;
-    private readonly Action<IAppBuilder> startup;
-    private readonly ServiceContext serviceContext;
-    private readonly string endpointName;
-    private readonly string appRoot;
+        private readonly ServiceEventSource eventSource;
+        private readonly Action<IAppBuilder> startup;
+        private readonly ServiceContext serviceContext;
+        private readonly string endpointName;
+        private readonly string appRoot;
 
-    private IDisposable webApp;
-    private string publishAddress;
-    private string listeningAddress;
+        private IDisposable webApp;
+        private string publishAddress;
+        private string listeningAddress;
 
-    public OwinCommunicationListener(Action<IAppBuilder> startup, ServiceContext serviceContext, ServiceEventSource eventSource, string endpointName)
-        : this(startup, serviceContext, eventSource, endpointName, null)
-    {
-    }
-
-    public OwinCommunicationListener(Action<IAppBuilder> startup, ServiceContext serviceContext, ServiceEventSource eventSource, string endpointName, string appRoot)
-    {
-        if (startup == null)
+        public OwinCommunicationListener(Action<IAppBuilder> startup, ServiceContext serviceContext, ServiceEventSource eventSource, string endpointName)
+            : this(startup, serviceContext, eventSource, endpointName, null)
         {
-            throw new ArgumentNullException(nameof(startup));
         }
 
-        if (serviceContext == null)
+        public OwinCommunicationListener(Action<IAppBuilder> startup, ServiceContext serviceContext, ServiceEventSource eventSource, string endpointName, string appRoot)
         {
-            throw new ArgumentNullException(nameof(serviceContext));
+            if (startup == null)
+            {
+                throw new ArgumentNullException(nameof(startup));
+            }
+
+            if (serviceContext == null)
+            {
+                throw new ArgumentNullException(nameof(serviceContext));
+            }
+
+            if (endpointName == null)
+            {
+                throw new ArgumentNullException(nameof(endpointName));
+            }
+
+            if (eventSource == null)
+            {
+                throw new ArgumentNullException(nameof(eventSource));
+            }
+
+            this.startup = startup;
+            this.serviceContext = serviceContext;
+            this.endpointName = endpointName;
+            this.eventSource = eventSource;
+            this.appRoot = appRoot;
         }
-
-        if (endpointName == null)
-        {
-            throw new ArgumentNullException(nameof(endpointName));
-        }
-
-        if (eventSource == null)
-        {
-            throw new ArgumentNullException(nameof(eventSource));
-        }
-
-        this.startup = startup;
-        this.serviceContext = serviceContext;
-        this.endpointName = endpointName;
-        this.eventSource = eventSource;
-        this.appRoot = appRoot;
-    }
-
-        public bool ListenOnSecondary { get; set; }
 
         public Task<string> OpenAsync(CancellationToken cancellationToken)
         {
@@ -580,31 +578,31 @@ namespace WebService
                 throw new InvalidOperationException();
             }
 
-    this.publishAddress = this.listeningAddress.Replace("+", FabricRuntime.GetNodeContext().IPAddressOrFQDN);
+            this.publishAddress = this.listeningAddress.Replace("+", FabricRuntime.GetNodeContext().IPAddressOrFQDN);
 
-    try
-    {
-        this.eventSource.ServiceMessage(this.serviceContext, "Starting web server on " + this.listeningAddress);
+            try
+            {
+                this.eventSource.Message("Starting web server on " + this.listeningAddress);
 
-        this.webApp = WebApp.Start(this.listeningAddress, appBuilder => this.startup.Invoke(appBuilder));
+                this.webApp = WebApp.Start(this.listeningAddress, appBuilder => this.startup.Invoke(appBuilder));
 
-        this.eventSource.ServiceMessage(this.serviceContext, "Listening on " + this.publishAddress);
+                this.eventSource.Message("Listening on " + this.publishAddress);
 
-        return Task.FromResult(this.publishAddress);
-    }
-    catch (Exception ex)
-    {
-        this.eventSource.ServiceMessage(this.serviceContext, "Web server failed to open endpoint {0}. {1}", this.endpointName, ex.ToString());
+                return Task.FromResult(this.publishAddress);
+            }
+            catch (Exception ex)
+            {
+                this.eventSource.Message("Web server failed to open endpoint {0}. {1}", this.endpointName, ex.ToString());
 
-        this.StopWebServer();
+                this.StopWebServer();
 
-        throw;
-    }
-}
+                throw;
+            }
+        }
 
         public Task CloseAsync(CancellationToken cancellationToken)
         {
-            this.eventSource.ServiceMessage(this.serviceContext, "Closing web server on endpoint {0}", this.endpointName);
+            this.eventSource.Message("Closing web server on endpoint {0}", this.endpointName);
 
             this.StopWebServer();
 
@@ -613,7 +611,7 @@ namespace WebService
 
         public void Abort()
         {
-            this.eventSource.ServiceMessage(this.serviceContext, "Aborting web server on endpoint {0}", this.endpointName);
+            this.eventSource.Message("Aborting web server on endpoint {0}", this.endpointName);
 
             this.StopWebServer();
         }
@@ -634,7 +632,6 @@ namespace WebService
         }
     }
 }
-
 ```
 
 所有細節就緒之後，您的專案看起來應該像一般 Web API 應用程式，並且具有 Reliable Services API 進入點與 OWIN 主機：
@@ -687,4 +684,4 @@ New-ServiceFabricService -ApplicationName "fabric:/WebServiceApplication" -Servi
 
 [使用 Visual Studio 偵錯 Service Fabric 應用程式](service-fabric-debugging-your-application.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

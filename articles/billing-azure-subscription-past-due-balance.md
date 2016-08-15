@@ -1,11 +1,11 @@
 <properties
 	pageTitle="為什麼會收到 Azure 訂用帳戶有逾期未付帳款的通知 | Microsoft Azure"
 	description="描述如果 Azure 訂用帳戶有逾期未付帳款要如何付款"
-	services="billing"
+	services=""
 	documentationCenter=""
 	authors="genlin"
 	manager="jarrettr"
-	editor="meerak"
+	editor=""
 	tags="billing"
 	/>
 
@@ -45,4 +45,4 @@
 
 > [AZURE.NOTE] 如果您的 Azure 訂用帳戶被停用，您可以使用本文中的步驟重新啟用它：[如果我的 Azure 訂用帳戶被取消，該怎麼辦？](billing-subscription-become-disable.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0803_2016-->

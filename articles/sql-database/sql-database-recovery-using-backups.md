@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="07/09/2016"
+   ms.date="08/01/2016"
    ms.author="sstein"/>
 
 # 使用自動資料庫備份復原 Azure SQL Database
@@ -65,7 +65,7 @@ SQL Database 提供三個選項，可使用 [SQL Database 自動備份](sql-data
 
 > [AZURE.IMPORTANT] 如果您刪除 Azure SQL Database 伺服器執行個體，其所有資料庫也會一併刪除且無法加以復原。目前不支援還原已刪除的伺服器。
 
-您可以針對已還原資料庫使用相同或新的資料庫名稱。您可以使用 [Azure 入口網站](sql-database-restore-deleted-database-portal.md)、[PowerShell](sql-database-restore-deleted-database-powershell.md) 或 [REST API](https://msdn.microsoft.com/library/azure/mt163685.aspx)。
+您可以針對已還原資料庫使用相同或新的資料庫名稱。您可以使用 [Azure 入口網站](sql-database-restore-deleted-database-portal.md)、[PowerShell](sql-database-restore-deleted-database-powershell.md) 或 [REST (createMode=Restore)](https://msdn.microsoft.com/library/azure/mt163685.aspx)。
 
 > [AZURE.SELECTOR]
 - [還原已刪除的資料庫︰Azure 入口網站](sql-database-restore-deleted-database-portal.md)
@@ -73,7 +73,7 @@ SQL Database 提供三個選項，可使用 [SQL Database 自動備份](sql-data
 
 ## 異地還原
 
-異地還原可讓您從最新異地複寫的[每日自動備份](sql-database-automated-backups.md)，在任何 Azure 區域中的任何伺服器上還原 SQL Database。異地還原使用異地備援備份做為其來源，即使因為中斷而無法存取資料庫或資料中心，也能用來復原資料庫。您可以使用 [Azure 入口網站](sql-database-geo-restore-portal.md)、[PowerShell](sql-database-geo-restore-powershell.md) 或 [REST (createMode=Restore)](https://msdn.microsoft.com/library/azure/mt163685.aspx)
+異地還原可讓您從最新異地複寫的[每日自動備份](sql-database-automated-backups.md)，在任何 Azure 區域中的任何伺服器上還原 SQL Database。異地還原使用異地備援備份做為其來源，即使因為中斷而無法存取資料庫或資料中心，也能用來復原資料庫。您可以使用 [Azure 入口網站](sql-database-geo-restore-portal.md)、[PowerShell](sql-database-geo-restore-powershell.md) 或 [REST (createMode=Recovery)](https://msdn.microsoft.com/library/azure/mt163685.aspx)
 
 > [AZURE.SELECTOR]
 - [異地還原：Azure 入口網站](sql-database-geo-restore-portal.md)
@@ -105,7 +105,7 @@ SQL Database 提供三個選項，可使用 [SQL Database 自動備份](sql-data
 
 |API|說明|
 |---|-----------|
-|[REST (createMode=Restore)](https://msdn.microsoft.com/library/azure/mt163685.aspx)|還原資料庫|
+|[REST (createMode=Recovery)](https://msdn.microsoft.com/library/azure/mt163685.aspx)|還原資料庫|
 |[取得建立或更新資料庫狀態](https://msdn.microsoft.com/library/azure/mt643934.aspx)|在還原作業期間傳回狀態|
 ||||
 
@@ -122,4 +122,4 @@ SQL Database 提供三個選項，可使用 [SQL Database 自動備份](sql-data
 - 若要了解更快速的復原選項，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)
 - 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

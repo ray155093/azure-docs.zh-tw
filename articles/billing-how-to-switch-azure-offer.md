@@ -5,7 +5,7 @@
 	documentationCenter=""
 	authors="genlin"
 	manager="msmbaldwin"
-	editor="n/a"
+	editor=""
 	tags="billing,top-support-issue"/>
 
 <tags
@@ -77,4 +77,4 @@
 
 如需其他優惠變更，[請連絡支援中心](http://go.microsoft.com/fwlink/?LinkID=619338)。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

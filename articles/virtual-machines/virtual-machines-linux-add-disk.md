@@ -240,6 +240,8 @@ boot  dev        home  lib         lost+found  mnt    proc  run   srv   tmp  var
 		# sudo yum install util-linux
 		# sudo fstrim /datadrive
 
+## 疑難排解
+[AZURE.INCLUDE [virtual-machines-linux-lunzero](../../includes/virtual-machines-linux-lunzero.md)]
 
 ## 後續步驟
 
@@ -247,4 +249,4 @@ boot  dev        home  lib         lost+found  mnt    proc  run   srv   tmp  var
 - 檢閱[最佳化您的 Linux 機器效能](virtual-machines-linux-optimization.md)建議，以確保您的 Linux VM 已正確設定。
 - 新增其他磁碟以擴充儲存體容量，並[設定 RAID](virtual-machines-linux-configure-raid.md) 以提升效能。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

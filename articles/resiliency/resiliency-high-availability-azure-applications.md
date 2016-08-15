@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/18/2016"
-   ms.author="hanuk;jroth;aglick"/>
+   ms.date="08/01/2016"
+   ms.author="aglick"/>
 
 #建置在 Microsoft Azure 上之應用程式的高可用性
 
@@ -143,4 +143,4 @@ Web 角色會不同於基礎結構的其餘部分而變成是自發性的。其�
 
 本文屬於著重[在 Microsoft Azure 上建置的應用程式的災害復原和高可用性](./resiliency-disaster-recovery-high-availability-azure-applications.md)的系列文章。這一系列中的下一篇文章是[在 Microsoft Azure 上建置的應用程式的災害復原](./resiliency-disaster-recovery-azure-applications.md)。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

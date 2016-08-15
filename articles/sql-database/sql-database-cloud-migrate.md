@@ -4,7 +4,7 @@
    keywords="database migration,sql server database migration,database migration tools,migrate database,migrate sql database,資料庫移轉,sql server 資料庫移轉,資料庫移轉工具,移轉資料庫,移轉 sql database"
    services="sql-database"
    documentationCenter=""
-   authors="carlrabeler"
+   authors="CarlRabeler"
    manager="jhubbard"
    editor=""/>
 
@@ -23,9 +23,9 @@
 
 若要移轉，以下是您將採取的步驟︰
 
-- **相容性測試**︰您必須先驗證資料庫與 [SQL Database V12](sql-database-v12-whats-new.md) 的相容性。 
-- **如果有任何相容性問題，加以修正**︰如果驗證失敗，您必須先修正驗證錯誤。  
-- **執行移轉**如果資料庫相容，您可以使用一或多個方法來執行移轉。 
+- **相容性測試**︰您必須先驗證資料庫與 [SQL Database V12](sql-database-v12-whats-new.md) 的相容性。
+- **如果有任何相容性問題，加以修正**︰如果驗證失敗，您必須先修正驗證錯誤。
+- **執行移轉**如果資料庫相容，您可以使用一或多個方法來執行移轉。
 
 SQL Server 提供數種方法來完成每個工作。這篇文章將提供可供每個工作使用的方法概觀。下圖說明步驟和方法。
 
@@ -44,11 +44,11 @@ SQL Server 提供數種方法來完成每個工作。這篇文章將提供可供
 - [Upgrade Advisor](http://www.microsoft.com/download/details.aspx?id=48119)
 - [SAMW](sql-database-cloud-migrate-fix-compatibility-issues.md)
 
-- [適用於 Visual Studio 的 SQL Server Data Tools ("SSDT")](sql-database-cloud-migrate-fix-compatibility-issues-ssdt.md)：SSDT 會使用最新的相容性規則來偵測 SQL Database V12 不相容性。如果偵測到不相容，您可以直接在此工具中修正偵測到的問題。這是目前用來測試和修正 SQL Database V12 相容性問題的建議方法。 
-- [SqlPackage](sql-database-cloud-migrate-determine-compatibility-sqlpackage.md)：SqlPackage 是一個命令提示字元公用程式，將會測試相容性問題，並在發現問題時產生包含所偵測到相容性問題的報表。如果您使用此工具，請確定您使用的是最新版本，才能使用最新的相容性規則。如果偵測到錯誤，您必須使用其他工具來修正任何偵測到的相容性問題 - 建議使用 SSDT。  
+- [適用於 Visual Studio 的 SQL Server Data Tools ("SSDT")](sql-database-cloud-migrate-fix-compatibility-issues-ssdt.md)：SSDT 會使用最新的相容性規則來偵測 SQL Database V12 不相容性。如果偵測到不相容，您可以直接在此工具中修正偵測到的問題。這是目前用來測試和修正 SQL Database V12 相容性問題的建議方法。
+- [SqlPackage](sql-database-cloud-migrate-determine-compatibility-sqlpackage.md)：SqlPackage 是一個命令提示字元公用程式，將會測試相容性問題，並在發現問題時產生包含所偵測到相容性問題的報表。如果您使用此工具，請確定您使用的是最新版本，才能使用最新的相容性規則。如果偵測到錯誤，您必須使用其他工具來修正任何偵測到的相容性問題 - 建議使用 SSDT。
 - [SQL Server Management Studio 中的匯出資料層應用程式精靈](sql-database-cloud-migrate-determine-compatibility-ssms.md)：此精靈將會偵測錯誤並回報至畫面上。如果沒有偵測到錯誤，您可以繼續並完成移轉至 SQL Database。如果偵測到錯誤，您必須使用其他工具來修正任何偵測到的相容性問題 - 建議使用 SSDT。
-- [Microsoft SQL Server 2016 Upgrade Advisor 預覽](http://www.microsoft.com/download/details.aspx?id=48119)︰這項獨立工具目前為預覽版，將會偵測 SQL Database V12 不相容性並產生報告。此工具還沒有最新的相容性規則。如果沒有偵測到錯誤，您可以繼續並完成移轉至 SQL Database。如果偵測到錯誤，您必須使用其他工具來修正任何偵測到的相容性問題 - 建議使用 SSDT。 
-- [SQL Azure 移轉精靈 ("SAMW")](sql-database-cloud-migrate-fix-compatibility-issues.md)：SAMW 是一個 CodePlex 工具，會使用 Azure SQL Database V11 相容性規則來偵測 Azure SQL Database V12 不相容性。如果偵測到不相容，有些問題可以直接在此工具中修正。這項工具可能會發現不需要修正的不相容，但它是第一個可使用的 Azure SQL Database 移轉協助工具，而且有很多來自 SQL Server 社群的支援。此外，此工具可以在工具本身內部完成移轉。 
+- [Microsoft SQL Server 2016 Upgrade Advisor 預覽](http://www.microsoft.com/download/details.aspx?id=48119)︰這項獨立工具目前為預覽版，將會偵測 SQL Database V12 不相容性並產生報告。此工具還沒有最新的相容性規則。如果沒有偵測到錯誤，您可以繼續並完成移轉至 SQL Database。如果偵測到錯誤，您必須使用其他工具來修正任何偵測到的相容性問題 - 建議使用 SSDT。
+- [SQL Azure 移轉精靈 ("SAMW")](sql-database-cloud-migrate-fix-compatibility-issues.md)：SAMW 是一個 CodePlex 工具，會使用 Azure SQL Database V11 相容性規則來偵測 Azure SQL Database V12 不相容性。如果偵測到不相容，有些問題可以直接在此工具中修正。這項工具可能會發現不需要修正的不相容，但它是第一個可使用的 Azure SQL Database 移轉協助工具，而且有很多來自 SQL Server 社群的支援。此外，此工具可以在工具本身內部完成移轉。
 
 ## 修正資料庫移轉相容性問題
 
@@ -61,7 +61,7 @@ SQL Server 提供數種方法來完成每個工作。這篇文章將提供可供
 - [SQL Server 2008 R2 中已終止的資料庫引擎功能](https://msdn.microsoft.com/library/ms144262%28v=sql.105%29)
 - [SQL Server 2005 中已終止的資料庫引擎功能](https://msdn.microsoft.com/library/ms144262%28v=sql.90%29)
 
-除了搜尋網際網路和使用這些資源之外，如需識別如何以最佳方式修正不相容問題的另一項優良資源，可使用 [MSDN SQL Server 社群論壇](https://social.msdn.microsoft.com/Forums/sqlserver/home?category=sqlserver)或 [StackOverflow](http://stackoverflow.com/)。
+如需識別如何以最佳方式修正不相容問題，除了搜尋網際網路和使用這些資源之外，另一項優良資源便是使用 [MSDN SQL Server 社群論壇](https://social.msdn.microsoft.com/Forums/sqlserver/home?category=sqlserver)或 [StackOverflow](http://stackoverflow.com/)。
 
 使用下列其中一個資料庫移轉工具來修正偵測到的問題︰
 
@@ -70,8 +70,8 @@ SQL Server 提供數種方法來完成每個工作。這篇文章將提供可供
 - [SSMS](sql-database-cloud-migrate-fix-compatibility-issues-ssms.md)
 - [SAMW](sql-database-cloud-migrate-fix-compatibility-issues.md)
 
-- 使用[適用於 Visual Studio 的 SQL Server Data Tools ("SSDT")](sql-database-cloud-migrate-fix-compatibility-issues-ssdt.md)︰若要使用 SSDT，您需將資料庫結構描述匯入「適用於 Visual Studio 的 SQL Server Data Tools」("SSDT")、為 SQL Database V12 部署建置專案、在 SSDT 中修正所有偵測到的相容性問題，然後透過同步處理將變更存回來源資料庫 (或來源資料庫的複本)。這是目前用來測試和修正 SQL Database V12 相容性問題的建議方法。依照[使用 SSDT 的逐步解說](sql-database-cloud-migrate-fix-compatibility-issues-ssdt.md)的連結操作。
-- 使用 [SQL Server Management Studio ("SSMS")](sql-database-cloud-migrate-fix-compatibility-issues-ssms.md)︰若要使用 SSMS，您需執行 Transact-SQL 命令來修正使用另一個工具偵測到的錯誤。這個方法主要是供進階使用者直接在來源資料庫中修改資料庫結構描述。 
+- 使用[適用於 Visual Studio 的 SQL Server Data Tools ("SSDT")](sql-database-cloud-migrate-fix-compatibility-issues-ssdt.md)︰若要使用 SSDT，您需將資料庫結構描述匯入「適用於 Visual Studio 的 SQL Server Data Tools」("SSDT")，為 SQL Database V12 部署建置專案，在 SSDT 中修正所有偵測到的相容性問題，然後透過同步處理將變更存回來源資料庫 (或來源資料庫的複本)。這是目前用來測試和修正 SQL Database V12 相容性問題的建議方法。請透過連結取得[使用 SSDT 的逐步解說](sql-database-cloud-migrate-fix-compatibility-issues-ssdt.md)。
+- 使用 [SQL Server Management Studio ("SSMS")](sql-database-cloud-migrate-fix-compatibility-issues-ssms.md)︰若要使用 SSMS，您需執行 Transact-SQL 命令來修正使用另一個工具偵測到的錯誤。這個方法主要是供進階使用者直接在來源資料庫中修改資料庫結構描述。
 - 使用 [SQL Azure 移轉精靈 ("SAMW")](sql-database-cloud-migrate-fix-compatibility-issues.md)︰若要使用 SAMW，您必須從來源資料庫產生 Transact-SQL 指令碼，然後由精靈在適當時機轉換此指令碼，以讓結構描述與 SQL Database V12 相容。完成時，SAMW 可以連接到 SQL Database V12 以執行指令碼。這項工具也會分析追蹤檔案以判斷相容性問題。只能使用結構描述產生指令碼，或者指令碼可以 BCP 格式包含資料。
 
 ## 將相容 SQL Server 資料庫移轉到 SQL Database
@@ -108,4 +108,4 @@ SQL Server 提供數種方法來完成每個工作。這篇文章將提供可供
 - [SQL Database V12](sql-database-v12-whats-new.md) [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
 - [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0803_2016-->

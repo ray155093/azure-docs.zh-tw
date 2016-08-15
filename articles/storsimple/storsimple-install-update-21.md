@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="07/21/2016"
+   ms.date="08/02/2016"
    ms.author="alkohli" />
 
 # 在 StorSimple 裝置上安裝 Update 2.2
@@ -21,7 +21,7 @@
 
 本教學課程說明如何透過 Azure 傳統入口網站及使用 Hotfix 方法，在執行舊版軟體的 StorSimple 裝置上安裝 Update 2.2。當閘道器是設定於 StorSimple 裝置之 DATA 0 以外的網路介面上，且您正嘗試從 Update 1 以前的軟體版本更新時，就會使用 Hotfix 方法。
 
-Update 2.2 包括裝置軟體、WMI 及 iSCSI 更新。如果是從 Update 2 以前的版本更新，您也將需要套用 LSI 驅動程式、Spaceport、Storport 及磁碟韌體更新。裝置軟體、WMI、iSCSI、LSI 驅動程式、Spaceport 及 Storport 修正程式為非干擾性更新，且可透過 Azure 傳統入口網站套用。磁碟韌體更新為干擾性更新，且只能透過裝置的 Windows PowerShell 介面套用。
+Update 2.2 包括裝置軟體、WMI 及 iSCSI 更新。如果從 2.1 版更新，只需要套用裝置軟體更新。如果是從 Update 2 以前的版本更新，您也將需要套用 LSI 驅動程式、Spaceport、Storport 及磁碟韌體更新。裝置軟體、WMI、iSCSI、LSI 驅動程式、Spaceport 及 Storport 修正程式為非干擾性更新，且可透過 Azure 傳統入口網站套用。磁碟韌體更新為干擾性更新，且只能透過裝置的 Windows PowerShell 介面套用。
 
 > [AZURE.IMPORTANT]
 
@@ -77,7 +77,7 @@ Hotfix 方法涉及下列三個步驟：
 
 #### 下載適用於執行 Update 2.1 軟體之裝置的更新
 
-**如果您裝置執行的是 Update 2.1**，您必須只下載 KB3179904 裝置軟體更新。請只安裝開頭為 'all-hcsmdssoftwareudpate' 的二進位檔。不要安裝開頭為 `all-cismdsagentupdatebundle` 的 Cis 和 MDS 代理程式更新。若沒有這麼做，可能會導致發生錯誤。
+**如果您裝置執行的是 Update 2.1**，您必須只下載 KB3179904 裝置軟體更新。請只安裝開頭為 'all-hcsmdssoftwareudpate' 的二進位檔。不要安裝開頭為 `all-cismdsagentupdatebundle` 的 Cis 和 MDS 代理程式更新。若沒有這麼做，可能會導致發生錯誤。這是非干擾性更新，IO 不會中斷，裝置也不會有任何停機時間。
 
 
 #### 下載適用於執行 Update 2 軟體的裝置的更新
@@ -86,9 +86,9 @@ Hotfix 方法涉及下列三個步驟：
 
 | 順序 | KB | 說明 | 更新類型 | 安裝時間 |
 |--------|-----------|-------------------------|------------- |-------------|
-| 1\. | KB3179904 | 軟體更新 &#42; | 定期 | ~ 45 分鐘 |
-| 2\. | KB3146621 | iSCSI 封裝 | 定期 | ~ 20 分鐘 |
-| 3\. | KB3103616 | WMI 封裝 | 定期 | ~ 12 分鐘 |
+| 1\. | KB3179904 | 軟體更新 &#42; | 定期 <br></br>非干擾性 | ~ 45 分鐘 |
+| 2\. | KB3146621 | iSCSI 封裝 | 定期 <br></br>非干擾性 | ~ 20 分鐘 |
+| 3\. | KB3103616 | WMI 封裝 | 定期 <br></br>非干擾性 | ~ 12 分鐘 |
 
 
  &#42; *請注意，軟體更新是由兩個二進位檔組成︰開頭為 `all-hcsmdssoftwareupdate` 的裝置軟體更新，以及開頭為 `all-cismdsagentupdatebundle` 的 Cis 和 Mds 代理程式。必須先安裝裝置軟體更新，再安裝 Cis 和 Mds 代理程式。您還必須在套用 Cis 和 MDS 代理程式更新之後，先透過 `Restart-HcsController` Cmdlet 重新啟動作用中的控制器，然後再套用剩餘的更新。*
@@ -99,15 +99,15 @@ Hotfix 方法涉及下列三個步驟：
  
 | 順序 | KB | 說明 | 更新類型 | 安裝時間 |
 |--------|-----------|-------------------------|------------- |-------------|
-| 4\. | KB3121900 | LSI 驅動程式與韌體 | 定期 | ~ 20 分鐘 |
+| 4\. | KB3121900 | LSI 驅動程式與韌體 | 定期 <br></br>非干擾性 | ~ 20 分鐘 |
 
 
 <br></br> **如果您裝置執行的版本是 0.2、0.3、1.0、1.1 及 1.2**，您就必須下載並安裝 Spaceport 和 Storport 修正程式。如果您是執行 Update 2，則已經安裝這些修正程式。
 
 | 順序 | KB | 說明 | 更新類型 | 安裝時間 |
 |--------|-----------|-------------------------|------------- |-------------|
-| 5\. | KB3090322 | Spaceport 修正程式 </br> Windows Server 2012 R2 | 定期 | ~ 20 分鐘 |
-| 6\. | KB3080728 | Storport 修正程式 </br> Windows Server 2012 R2 | 定期 | ~ 20 分鐘 |
+| 5\. | KB3090322 | Spaceport 修正程式 </br> Windows Server 2012 R2 | 定期 <br></br>非干擾性 | ~ 20 分鐘 |
+| 6\. | KB3080728 | Storport 修正程式 </br> Windows Server 2012 R2 | 定期 <br></br>非干擾性 | ~ 20 分鐘 |
 
 
 
@@ -116,7 +116,7 @@ Hotfix 方法涉及下列三個步驟：
 
 | 順序 | KB | 說明 | 更新類型 | 安裝時間 |
 |--------|-----------|-------------------------|------------- |-------------|
-| 7\. | KB3121899 | 磁碟韌體 | 維護 | ~ 30 分鐘 |
+| 7\. | KB3121899 | 磁碟韌體 | 維護 <br></br>干擾性 | ~ 30 分鐘 |
  
 <br></br>
 
@@ -136,4 +136,4 @@ Hotfix 方法涉及下列三個步驟：
 
 深入了解 [Update 2.1 版](storsimple-update21-release-notes.md)。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

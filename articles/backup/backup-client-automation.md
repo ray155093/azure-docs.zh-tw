@@ -3,7 +3,7 @@
 	description="了解如何使用 PowerShell 部署和管理 Azure 備份"
 	services="backup"
 	documentationCenter=""
-	authors="nkolli1"
+	authors="saurabhsensharma"
 	manager="shivamg"
 	editor=""/>
 
@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="05/23/2016"
-	ms.author="markgal;jimpark;nkolli"/>
+	ms.author="markgal;jimpark;nkolli;trinadhk"/>
 
 
 # 使用 PowerShell 部署和管理 Windows Server/Windows 用戶端的 Azure 備份
@@ -627,4 +627,4 @@ PS C:\> Invoke-Command -Session $s -Script { param($d, $a) Start-Process -FilePa
 - [Azure 備份的簡介](backup-introduction-to-azure-backup.md)
 - [備份 Windows 伺服器](backup-configure-vault.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0803_2016-->

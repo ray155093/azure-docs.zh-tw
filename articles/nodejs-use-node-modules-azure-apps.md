@@ -74,8 +74,7 @@ Azure App Service 不支援所有的原生模組，而且在編譯具有非常�
 [如何使用適用於 Mac 和 Linux 的 Azure 命令列介面]: xplat-cli-install.md
 [建置與部署 Node.js Web 應用程式]: web-sites-nodejs-develop-deploy-mac.md
 [Node.js Web Application with Storage on MongoDB (MongoLab)]: store-mongolab-web-sites-nodejs-store-data-mongodb.md
-[Publishing with Git]: web-sites-publish-source-control.md
 [Build and deploy a Node.js application to an Azure Cloud Service]: cloud-services-nodejs-develop-deploy-app.md
 [使用 Kudu 自訂網站部署指令碼]: /documentation/videos/custom-web-site-deployment-scripts-with-kudu/
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0803_2016-->

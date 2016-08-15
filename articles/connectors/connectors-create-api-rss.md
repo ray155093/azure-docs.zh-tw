@@ -1,7 +1,7 @@
 <properties
 pageTitle="RSS | Microsoft Azure"
 description="使用 Azure App Service 建立邏輯應用程式。RSS 連接器可讓使用者發佈和擷取摘要項目。它也可讓使用者在新項目發佈到摘要中時觸發作業。"
-services="app-servicelogic"	
+services="logic-apps"	
 documentationCenter=".net,nodejs,java" 	
 authors="msftman"	
 manager="erikre"	
@@ -132,4 +132,4 @@ RSS 連接器可當做動作使用，它有觸發程序。所有連接器都支�
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

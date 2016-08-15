@@ -4,7 +4,7 @@
 	authors="stepsic-microsoft-com" 
 	manager="dwrede" 
 	editor="" 
-	services="app-service\logic" 
+	services="logic-apps" 
 	documentationCenter=""/>
 
 <tags
@@ -464,4 +464,4 @@ PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/p
 ## 敬請期待：企業整合 API
 目前，我們尚未提供 Managed 版本的企業整合 API (例如 AS2)。這些都已納入[藍圖](http://www.zdnet.com/article/microsoft-outlines-its-cloud-and-server-integration-roadmap-for-2016/)中，敬請期待。在此期間，您可以透過 HTTP 動作來使用現有已部署的 BizTalk API，如以上的「使用您已部署的 API 應用程式」所述。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

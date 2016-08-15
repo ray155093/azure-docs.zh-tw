@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/19/2016"
+	ms.date="07/28/2016"
 	ms.author="casoper"/>
 
 # 開始使用 Azure CDN 開發
@@ -337,4 +337,4 @@ private static void PromptDeleteCdnProfile(CdnManagementClient cdn)
 
 若要尋找適用於 .NET 的 Azure CDN 管理程式庫的其他相關文件，請檢視 [MSDN 上的參考](https://msdn.microsoft.com/library/mt657769.aspx)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,6 +1,6 @@
 <properties
-	pageTitle="CDN - 依國家 (地區) 限制存取您的內容"
-	description="當使用者要求您的內容時，預設會提供內容，不論使用者從哪裡提出這項要求。在某些情況下，您可能想要依國家 (地區) 限制存取您的內容。本主題說明如何使用 **國家 (地區) 篩選** 功能設定服務，以依國家 (地區) 允許或封鎖存取。"
+	pageTitle="依國家/地區限制您的 Azure CDN 內容的存取 | Microsoft Azure"
+	description="了解如何使用國家 (地區) 篩選功能限制您的 Azure CDN 內容的存取。"
 	services="cdn"
 	documentationCenter=""
 	authors="camsoper"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/14/2016"
+	ms.date="07/28/2016"
 	ms.author="casoper"/>
 
 #依國家 (地區) 限制存取您的內容
@@ -47,24 +47,24 @@
 
 ##步驟 3：定義國家 (地區)
 
-選取您想要封鎖或允許路徑的國家 (地區)。如需詳細資訊，請參閱[國碼](cdn-country-codes.md)主題。
+選取您想要封鎖或允許路徑的國家 (地區)。如需詳細資訊，請參閱[來自 Verizon 的 Azure CDN 國家/地區代碼](https://msdn.microsoft.com/library/mt761717.aspx)。
 
 例如，封鎖 /Photos/Strasbourg/ 的規則會篩選檔案，包括：
 
-	http://az123456.azureedge.net/Photos/Strasbourg/1000.jpg
-	http://az123456.azureedge.net/Photos/Strasbourg/Cathedral/1000.jpg
+	http://<endpoint>.azureedge.net/Photos/Strasbourg/1000.jpg
+	http://<endpoint>.azureedge.net/Photos/Strasbourg/Cathedral/1000.jpg
 
 
 ##國碼
 
-**國家 (地區) 篩選**功能可使用國碼來定義國家 (地區)，以允許或封鎖該國家 (地區) 對受保護目錄的要求。您會在[本](cdn-country-codes.md)主題中找到國碼。如果您指定 "EU" (歐洲) 或 "AP" (亞太地區)，來自該區域中任何國家 (地區) 的 IP 位址子集將會被封鎖或允許。
+**國家 (地區) 篩選**功能可使用國碼來定義國家 (地區)，以允許或封鎖該國家 (地區) 對受保護目錄的要求。您可以在[來自 Verizon 的 Azure CDN 國家/地區代碼](https://msdn.microsoft.com/library/mt761717.aspx)找到國家/地區代碼。如果您指定 "EU" (歐洲) 或 "AP" (亞太地區)，來自該區域中任何國家 (地區) 的 IP 位址子集將會被封鎖或允許。
 
 
 ##<a id="considerations"></a>考量
 
-- 可能需要一小時，您對國家 (地區) 篩選組態的變更才會生效。
+- 最多可能需要 90 分鐘，您對國家 (地區) 篩選組態的變更才會生效。
 - 這項功能不支援萬用字元 (例如，‘*’)。
 - 會將相對路徑相關聯的國家 (地區) 篩選組態，遞迴地套用到該路徑。
 - 只有一個規則可套用至相同的相對路徑，您無法建立指向相同之相對路徑的多個國家 (地區) 篩選。不過，一個資料夾可有多個國家 (地區) 篩選。這是因為國家 (地區) 篩選的遞迴本質。換句話說，可以將不同的國家 (地區) 篩選指派給先前設定之資料夾的子資料夾。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

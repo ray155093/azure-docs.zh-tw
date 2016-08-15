@@ -56,7 +56,7 @@
 
 **若要從資源庫新增 Degreed，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
  
 	![Active Directory][1]
 
@@ -117,7 +117,7 @@
 	![設定單一登入](./media/active-directory-saas-degreed-tutorial/tutorial_degreed_04.png)
 
 
-    a.在 [登入 URL] 文字方塊中，以下列模式輸入使用者用來登入您 Degreed 應用程式的 URL：**“https://<公司名稱>.degreed.com”**。
+    a.在 [登入 URL] 文字方塊中，使用以下模式輸入使用者登入您的 Degreed 應用程式時所使用的 URL：`https://degreed.com/?orgsso=<company code>`
 
     b.按 [下一步]。
 
@@ -271,4 +271,4 @@
 [204]: ./media/active-directory-saas-degreed-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-degreed-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0803_2016-->

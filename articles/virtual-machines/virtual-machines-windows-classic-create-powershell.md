@@ -101,6 +101,8 @@
 
 如需 D、DS 或 G 系列虛擬機器的 InstanceSize 值，請參閱 [Azure 的虛擬機器和雲端服務大小](https://msdn.microsoft.com/library/azure/dn197896.aspx)。
 
+>[AZURE.NOTE] 如果您擁有「附帶軟體保證的 Enterprise 合約」，而想要利用 Windows Server [Hybrid Use Benefit](https://azure.microsoft.com/pricing/hybrid-use-benefit/)，請將 **-LicenseType** 參數新增到 **New-AzureVMConfig** Cmdlet 中，其中傳遞適用於一般使用案例的 **Windows\_Server** 值。請確定您使用的是已上傳的映像；您無法搭配 Hybrid Use Benefit 使用來自「資源庫」的標準映像。
+
 對於獨立 Windows 電腦，也可選擇指定本機系統管理員帳戶和密碼。
 
 	$cred=Get-Credential -Message "Type the name and password of the local administrator account."
@@ -175,7 +177,7 @@
 如果您將再次建立這個虛擬機器或類似的虛擬機器，您可以：
 
 - 將此命令集儲存為 PowerShell 指令碼檔案 (*.ps1)。
-- 將這個命令集儲存為 Azure 傳統入口網站 [自動化] 區段中的 Azure 自動化 Runbook。
+- 在 Azure 傳統入口網站的 [自動化] 區段中，將這個命令集儲存為 Azure 自動化 Runbook。
 
 ## <a id="examples"></a>範例
 
@@ -258,6 +260,6 @@
 
 ## 後續步驟
 
-如果您需要大於 127 GB 的 OS 磁碟，可以[擴充 OS 磁碟機](virtual-machines-windows-expand-os-disk.md)。
+如果您需要大於 127 GB 的 OS 磁碟，可以[展開 OS 磁碟機](virtual-machines-windows-expand-os-disk.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,7 +1,7 @@
 <properties
    pageTitle="Logic Apps 迴圈、範圍和解除批次處理 | Microsoft Azure"
    description="邏輯應用程式迴圈、範圍和解除批次處理的概念"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="jeffhollan"
    manager="dwrede"
@@ -141,4 +141,4 @@ SplitOn 可以指定於程式碼檢視中，如下列範例所示。這將會接
 }
 ```
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

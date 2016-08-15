@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/12/2016"
+	ms.date="08/02/2016"
 	ms.author="asteen"/>
 
 # 如何更新自己的密碼
@@ -27,6 +27,10 @@
 * [**常見問題及其解決方案**](#common-problems-and-their-solutions)
 
 ## 如何註冊密碼重設
+
+> [AZURE.IMPORTANT]
+**為什麼會看到此內容？** 如果您是透過連結來到此頁面，則看見此內容的原因可能是因為系統管理員要求您註冊密碼重設以取得您應用程式的存取權。系統可能會要求您提供電話或電子郵件資訊，或是設定安全性問題。別擔心，我們不會利用這項資訊來對您廣發垃圾郵件，這麼做只是為了讓您的帳戶更安全。此處所提供的步驟應該可幫助您達到您的目標。
+
 要註冊密碼重設，最快的方法是移至 http://aka.ms/ssprsetup。
 
  1. 瀏覽至 http://aka.ms/ssprsetup。
@@ -253,4 +257,4 @@
 [014]: ./media/active-directory-passwords-update-your-own-password/014.jpg "Image_014.jpg"
 [015]: ./media/active-directory-passwords-update-your-own-password/015.jpg "Image_015.jpg"
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

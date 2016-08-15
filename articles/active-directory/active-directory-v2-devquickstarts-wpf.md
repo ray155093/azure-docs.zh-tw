@@ -1,39 +1,38 @@
 <properties
-	pageTitle="Azure AD v2.0 .NET 原生 App | Microsoft Azure"
-	description="如何建置可使用個人 Microsoft 帳戶及工作或學校帳戶登入使用者的 .NET 原生應用程式。"
-	services="active-directory"
-	documentationCenter=""
-	authors="dstrockis"
-	manager="mbaldwin"
-	editor=""/>
+pageTitle="Azure Active Directory v2.0 .NET 原生應用程式 | Microsoft Azure"
+description="如何建置可使用個人 Microsoft 帳戶及工作或學校帳戶登入使用者的 .NET 原生應用程式。"
+services="active-directory"
+documentationCenter=""
+authors="dstrockis"
+manager="mbaldwin"
+editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-  ms.tgt_pltfrm="na"
-	ms.devlang="dotnet"
-	ms.topic="article"
-	ms.date="05/31/2016"
-	ms.author="dastrock"/>
+ms.service="active-directory"
+ms.workload="identity"
+ms.tgt_pltfrm="na"
+ms.devlang="dotnet"
+ms.topic="article"
+ms.date="07/30/2016"
+ms.author="dastrock; vittorib"/>
 
 # 將登入新增至 Windows 桌面應用程式
 
 v2.0 端點可讓您快速地將驗證加入您的桌面應用程式，同時支援個人 Microsoft 帳戶以及工作或學校帳戶。它也可讓您的應用程式安全地與後端 Web API，以及 [Microsoft Graph](https://graph.microsoft.io) 和幾個 [Office 365 統一 API](https://www.msdn.com/office/office365/howto/authenticate-Office-365-APIs-using-v2) 進行通訊。
 
-> [AZURE.NOTE]
-	v2.0 端點並非支援每個 Azure Active Directory 案例和功能。如果要判斷是否應該使用 v2.0 端點，請閱讀 [v2.0 限制](active-directory-v2-limitations.md)。
+> [AZURE.NOTE] v2.0 端點並非支援每個 Azure Active Directory (AD) 案例和功能。如果要判斷是否應該使用 v2.0 端點，請閱讀 [v2.0 限制](active-directory-v2-limitations.md)。
 
 對於[在裝置上執行的 .NET 原生應用程式](active-directory-v2-flows.md#mobile-and-native-apps)，Azure AD 提供 Microsoft Identity Authentication Library，或稱 MSAL。MSAL 存在的唯一目的是為了讓您的應用程式輕鬆取得權杖以呼叫 Web 服務。為了示範這有多麼簡單，我們將在此建置一個執行下列動作的 .NET WPF 待辦事項清單應用程式：
 
--	使用 [OAuth 2.0 驗證通訊協定](active-directory-v2-protocols.md#oauth2-authorization-code-flow)登入使用者並取得存取權杖。
--	安全地呼叫受 OAuth 2.0 保護的後端待辦事項清單 Web 服務。
--	將使用者登出。
+- 使用 [OAuth 2.0 驗證通訊協定](active-directory-v2-protocols.md#oauth2-authorization-code-flow)登入使用者並取得存取權杖。
+- 安全地呼叫受 OAuth 2.0 保護的後端待辦事項清單 Web 服務。
+- 將使用者登出。
 
 ## 下載範例程式碼
 
 本教學課程的程式碼保留在 [GitHub](https://github.com/AzureADQuickStarts/AppModelv2-NativeClient-DotNet)。若要遵循執行，您可以[用 .zip 格式下載應用程式的基本架構](https://github.com/AzureADQuickStarts/AppModelv2-NativeClient-DotNet/archive/skeleton.zip)，或複製基本架構：
 
-```git clone --branch skeleton https://github.com/AzureADQuickStarts/AppModelv2-NativeClient-DotNet.git```
+    git clone --branch skeleton https://github.com/AzureADQuickStarts/AppModelv2-NativeClient-DotNet.git
 
 本教學課程最後也會提供完整的應用程式。
 
@@ -247,9 +246,10 @@ MSAL 可使用個人和工作帳戶，輕鬆地將通用的身分識別功能納
 
 您現在可以進入更進階的主題。您可以嘗試：
 
-- [透過 v2.0 端點保護 TodoListService Web API >>](active-directory-v2-devquickstarts-dotnet-api.md)
+- [透過 v2.0 端點保護 TodoListService Web API](active-directory-v2-devquickstarts-dotnet-api.md)
 
 如需其他資源，請參閱：
+
 - [v2.0 開發人員指南 >>](active-directory-appmodel-v2-overview.md)
 - [StackOverflow "msal" 標籤 >>](http://stackoverflow.com/questions/tagged/msal)
 
@@ -257,4 +257,4 @@ MSAL 可使用個人和工作帳戶，輕鬆地將通用的身分識別功能納
 
 我們鼓勵您造訪[此頁面](https://technet.microsoft.com/security/dd252948)並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

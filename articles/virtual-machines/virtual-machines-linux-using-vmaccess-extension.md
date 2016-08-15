@@ -97,7 +97,7 @@ Linux VM 的磁碟顯示錯誤。您不知怎麼重設 Linux VM的根密碼，�
 執行 VMAccess 指令碼搭配︰
 
 ```bash
-azure vm extension set exampleResourceGruop exampleVM \
+azure vm extension set exampleResourceGroup exampleVM \
 VMAccessForLinux Microsoft.OSTCExtensions * \
 --private-config-path disk_check_repair.json
 ```
@@ -120,7 +120,7 @@ VMAccessForLinux Microsoft.OSTCExtensions * \
 執行 VMAccess 指令碼搭配︰
 
 ```bash
-azure vm extension set exampleResourceGruop exampleVM \
+azure vm extension set exampleResourceGroup exampleVM \
 VMAccessForLinux Microsoft.OSTCExtensions * \
 --private-config-path reset_root_password.json
 ```
@@ -139,7 +139,7 @@ VMAccessForLinux Microsoft.OSTCExtensions * \
 執行 VMAccess 指令碼搭配︰
 
 ```bash
-azure vm extension set exampleResourceGruop exampleVM \
+azure vm extension set exampleResourceGroup exampleVM \
 VMAccessForLinux Microsoft.OSTCExtensions * \
 --private-config-path reset_ssh_key.json
 ```
@@ -163,7 +163,7 @@ VMAccess 是一種 Python 指令碼，可用來管理 Linux VM 上的使用者�
 執行 VMAccess 指令碼搭配︰
 
 ```bash
-azure vm extension set exampleResourceGruop exampleVM \
+azure vm extension set exampleResourceGroup exampleVM \
 VMAccessForLinux Microsoft.OSTCExtensions * \
 --private-config-path create_new_user.json
 ```
@@ -181,7 +181,7 @@ VMAccessForLinux Microsoft.OSTCExtensions * \
 執行 VMAccess 指令碼搭配︰
 
 ```bash
-azure vm extension set exampleResourceGruop exampleVM \
+azure vm extension set exampleResourceGroup exampleVM \
 VMAccessForLinux Microsoft.OSTCExtensions * \
 --private-config-path remove_user.json
 ```
@@ -203,9 +203,9 @@ VMAccessForLinux Microsoft.OSTCExtensions * \
 執行 VMAccess 指令碼搭配︰
 
 ```bash
-azure vm extension set exampleResourceGruop exampleVM \
+azure vm extension set exampleResourceGroup exampleVM \
 VMAccessForLinux Microsoft.OSTCExtensions * \
 --private-config-path reset_sshd.json
 ```
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->

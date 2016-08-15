@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="05/13/2016"
+   ms.date="08/02/2016"
    ms.author="rickbyh"/>
 
 # Azure SQL Database 安全性方針和限制
@@ -50,7 +50,7 @@ Azure SQL Database 服務唯有透過 TCP 通訊埠 1433 才能使用。若要�
 管理 SQL Database 的登入和使用者時，會有一些限制。
 
 
-- 執行 ``CREATE/ALTER/DROP DATABASE`` 陳述式時您必須連線至 **master** 資料庫 - 對應至伺服器層級主體登入的 master 資料庫中的資料庫使用者，無法予以更改或卸除。 
+- 執行 ``CREATE/ALTER/DROP DATABASE`` 陳述式時您必須連線至 **master** 資料庫 - 對應至伺服器層級主體登入的 master 資料庫中的資料庫使用者，無法予以更改或卸除。
 - 英文 (美國) 是伺服器層級主體登入的預設語言。
 - 若要存取 **master** 資料庫，每一個登入都必須對應到 **master** 資料庫中的使用者帳戶。**master** 資料庫不支援自主資料庫使用者。
 - 只有伺服器層級的主體登入以及 **master** 資料庫中 **dbmanager** 資料庫角色的成員，才有權執行 ``CREATE DATABASE`` 和 ``DROP DATABASE`` 陳述式。
@@ -71,7 +71,7 @@ GO
 - 搭配執行 ``CREATE USER`` 陳述式和 ``FOR/FROM LOGIN`` 選項時，它必須是 Transact-SQL 批次中唯一的陳述式。
 - 搭配執行 ``ALTER USER`` 陳述式和 ``WITH LOGIN`` 選項時，它必須是 Transact-SQL 批次中唯一的陳述式。
 - 若要 ``CREATE/ALTER/DROP``，使用者必須擁有資料庫的 ``ALTER ANY USER`` 權限。
-- 當資料庫角色的擁有者嘗試針對該資料庫角色加入或移除另一個資料庫使用者時，可能會發生下列錯誤：**此資料庫中沒有使用者或角色 'Name'**。 因為擁有者看不到使用者，所以會發生此錯誤。若要解決這個問題，請為角色擁有者授與使用者的 ``VIEW DEFINITION`` 權限。 
+- 當資料庫角色的擁有者嘗試針對該資料庫角色加入或移除另一個資料庫使用者時，可能會發生下列錯誤：**此資料庫中沒有使用者或角色 'Name'**。 因為擁有者看不到使用者，所以會發生此錯誤。若要解決這個問題，請為角色擁有者授與使用者的 ``VIEW DEFINITION`` 權限。
 
 如需登入和使用者的詳細資訊，請參閱[管理 Azure SQL Database 的資料庫和登入](sql-database-manage-logins.md)。
 
@@ -86,4 +86,4 @@ GO
 
 [SQL Server Database Engine 和 Azure SQL Database 的資訊安全中心](https://msdn.microsoft.com/library/bb510589)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

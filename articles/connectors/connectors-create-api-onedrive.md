@@ -1,7 +1,7 @@
 <properties
 	pageTitle="在您的 Logic Apps 中新增 OneDrive 連接器 | Microsoft Azure"
 	description="搭配 REST API 參數來使用 OneDrive 連接器的概觀"
-	services="app-servicelogic"    
+	services="logic-apps"    
 	documentationCenter=""     
 	authors="MandiOhlinger"    
 	manager="erikre"    
@@ -414,4 +414,4 @@ BlobMetadata
 
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

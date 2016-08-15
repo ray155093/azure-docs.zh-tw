@@ -9,22 +9,22 @@
 [追蹤與記錄](../articles/application-insights/app-insights-search-diagnostic-logs.md)資料速率 | 200 dp/s | 500 dp/s
 [例外狀況](../articles/application-insights/app-insights-asp-net-exceptions.md)資料速率 | 50 dp/s | 50 dp/s
 要求、事件、相依性及頁面檢視遙測的總資料速率 | 200 dp/s | 500 dp/s
-[原始資料](../articles/application-insights/app-insights-diagnostic-search.md)保留期間 | 7 天
-[彙總資料](../articles/application-insights/app-insights-metrics-explorer.md)保留期間 | 90 天
+[搜尋](../articles/application-insights/app-insights-diagnostic-search.md)和[分析](../articles/application-insights/app-insights-analytics.md)的未經處理資料保留 | 7 天
+[計量瀏覽器](../articles/application-insights/app-insights-metrics-explorer.md)的彙總資料保留 | 90 天
 [屬性](../articles/application-insights/app-insights-api-custom-events-metrics.md#properties)名稱計數 | 100 |
-屬性名稱長度 | 100 | 
-屬性值長度 | 1000 | 
+屬性名稱長度 | 150 | 
+屬性值長度 | 8192 | 
 追蹤和例外狀況的訊息長度 | 10000 |
-[計量](../articles/application-insights/app-insights-api-custom-events-metrics.md#properties)名稱計數 | 100 |
-度量名稱長度 | 100 | 
+[度量](../articles/application-insights/app-insights-api-custom-events-metrics.md#properties)名稱計數 | 100 |
+度量名稱長度 | 150 | 
 [可用性測試](../articles/application-insights/app-insights-monitor-web-app-availability.md) | 10 | 
 
 <sup>1</sup> 資料點是個別的度量值或事件，具有附加的屬性和測量值。
 
-<sup>2</sup> 工作階段資料點會記錄工作階段的開始或結束，以及記錄使用者識別。
+<sup>2</sup> 工作階段資料點會記錄工作階段的開始或結束，以及記錄使用者身分識別。
 
-<sup>3</sup> 您可購買超過 5 千萬的額外容量。
+<sup>3</sup> 您可以購買超過 5 千萬的額外容量。
  
 [關於 Application Insights 中的定價和配額](../articles/application-insights/app-insights-pricing.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0803_2016-->
