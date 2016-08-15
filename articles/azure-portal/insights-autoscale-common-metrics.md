@@ -4,16 +4,16 @@
 	authors="kamathashwin"
 	manager=""
 	editor=""
-	services="azure-portal"
-	documentationCenter="na"/>
+	services="monitoring"
+	documentationCenter="monitoring"/>
 
 <tags
-	ms.service="azure-portal"
+	ms.service="monitoring"
 	ms.workload="na"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/30/2016"
+	ms.date="08/02/2016"
 	ms.author="ashwink"/>
 
 # Azure Insights 自動調整的常用度量
@@ -51,33 +51,33 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 
 |度量名稱|	單位|
 |---|---|
-|\\Processor(\_Total)\\% Processor Time |百分比|
+|\\Processor(\_Total)\\% 處理器時間 |百分比|
 |\\Processor(\_Total)\\% Privileged Time |百分比|
 |\\Processor(\_Total)\\% User Time |百分比|
-|\\Processor Information(\_Total)\\Processor Frequency |計數|
-|\\System\\Processes| 計數|
-|\\Process(\_Total)\\Thread Count| 計數|
-|\\Process(\_Total)\\Handle Count |計數|
+|\\Processor Information(\_Total)\\Processor Frequency |Count|
+|\\System\\Processes|	Count|
+|\\Process(\_Total)\\Thread Count|	Count|
+|\\Process(\_Total)\\Handle Count |Count|
 |\\Memory\\% Committed Bytes In Use |百分比|
-|\\Memory\\Available Bytes| 位元組|
+|\\Memory\\Available Bytes|	位元組|
 |\\Memory\\Committed Bytes |位元組|
-|\\Memory\\Commit Limit| 位元組|
-|\\Memory\\Pool Paged Bytes| 位元組|
-|\\Memory\\Pool Nonpaged Bytes| 位元組|
-|\\PhysicalDisk(\_Total)\\% Disk Time| 百分比|
-|\\PhysicalDisk(\_Total)\\% Disk Read Time| 百分比|
-|\\PhysicalDisk(\_Total)\\% Disk Write Time| 百分比|
-|\\PhysicalDisk(\_Total)\\Disk Transfers/sec |每秒計數|
+|\\Memory\\Commit Limit|	位元組|
+|\\Memory\\Pool Paged Bytes|	位元組|
+|\\Memory\\Pool Nonpaged Bytes|	位元組|
+|\\PhysicalDisk(\_Total)\\% Disk Time|	百分比|
+|\\PhysicalDisk(\_Total)\\% Disk Read Time|	百分比|
+|\\PhysicalDisk(\_Total)\\% Disk Write Time|	百分比|
+|\\PhysicalDisk(\_Total)\\每秒的磁碟傳輸數 |每秒計數|
 |\\PhysicalDisk(\_Total)\\Disk Reads/sec |每秒計數|
 |\\PhysicalDisk(\_Total)\\Disk Writes/sec |每秒計數|
 |\\PhysicalDisk(\_Total)\\Disk Bytes/sec |每秒位元組|
-|\\PhysicalDisk(\_Total)\\Disk Read Bytes/sec| 每秒位元組|
+|\\PhysicalDisk(\_Total)\\Disk Read Bytes/sec|	每秒位元組|
 |\\PhysicalDisk(\_Total)\\Disk Write Bytes/sec |每秒位元組|
-|\\PhysicalDisk(\_Total)\\Avg.Disk Queue Length| 計數|
-|\\PhysicalDisk(\_Total)\\Avg.Disk Read Queue Length| 計數|
-|\\PhysicalDisk(\_Total)\\Avg.Disk Write Queue Length |計數|
-|\\LogicalDisk(\_Total)\\% Free Space| 百分比|
-|\\LogicalDisk(\_Total)\\Free Megabytes| 計數|
+|\\PhysicalDisk(\_Total)\\Avg.磁碟佇列長度|	Count|
+|\\PhysicalDisk(\_Total)\\Avg.磁碟讀取佇列長度|	Count|
+|\\PhysicalDisk(\_Total)\\Avg.磁碟寫入佇列長度 |Count|
+|\\LogicalDisk(\_Total)\\% Free Space|	百分比|
+|\\LogicalDisk(\_Total)\\Free Megabytes|	Count|
 
 
 
@@ -139,7 +139,7 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 
 ## 常用的 Web (伺服器陣列) 度量
 
-您也可以根據常用的 Web 伺服器度量 (如 Http 佇列長度) 執行自動調整。它的度量名稱是 **HttpQueueLength**。下一節會列出可用的伺服器陣列 (Web Apps) 度量。
+您也可以根據常用的 Web 伺服器度量 (如 Http 佇列長度) 執行自動調整。它的計量名稱是 **HttpQueueLength**。下一節會列出可用的伺服器陣列 (Web Apps) 度量。
 
 ### Web Apps 度量
 
@@ -171,7 +171,7 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 "metricName": "ApproximateMessageCount",
  "metricNamespace": "",
  "metricResourceUri": "/subscriptions/s1/resourceGroups/rg1/providers/Microsoft.ClassicStorage/storageAccounts/mystorage/services/queue/queues/mystoragequeue"
-```
+ ```
 
 ## 常用的服務匯流排衡量標準
 
@@ -187,4 +187,4 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 
 >[AZURE.NOTE] 若使用服務匯流排，資源群組的概念不存在，但 Azure Resource Manager 會建立每個區域的預設資源群組。此資源群組通常是 'Default-ServiceBus-[region]' 的格式。例如，'Default-ServiceBus-EastUS'、'Default-ServiceBus-WestUS'、'Default-ServiceBus-AustraliaEast' 等。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0803_2016-->

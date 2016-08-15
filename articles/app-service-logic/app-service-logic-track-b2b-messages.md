@@ -1,7 +1,7 @@
 <properties 
    pageTitle="在 Azure App Service 的 Logic Apps 中追蹤 B2B 訊息 | Microsoft Azure" 
    description="本主題說明 B2B 處理的追蹤" 
-   services="app-service\logic" 
+   services="logic-apps" 
    documentationCenter=".net,nodejs,java" 
    authors="rajram" 
    manager="erikre" 
@@ -47,4 +47,4 @@ B2B 通訊牽涉到交易夥伴之間的訊息處理。關聯性定義為兩個�
 [1]: ./media/app-service-logic-track-b2b-messages/AS2Tracking.png
 [2]: ./media/app-service-logic-track-b2b-messages/EDIFACTTracking.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

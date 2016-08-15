@@ -14,30 +14,29 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/06/2016"
+	ms.date="08/02/2016"
 	ms.author="cynthn"/>
 
 # 將 Windows VM 映像上傳至 Azure 供 Resource Manager 部署使用
 
 
-本文說明如何使用 Windows 作業系統上傳虛擬硬碟 (VHD)，讓您可以使用它來透過 Azure Resource Manager 部署模型建立新的 Windows 虛擬機器 (VM)。如需 Azure 中磁碟和 VHD 的詳細資訊，請參閱[關於虛擬機器的磁碟和 VHD](virtual-machines-linux-about-disks-vhds.md)。
-
+本文說明如何建立及上傳 Windows 虛擬硬碟 (VHD)，以便快速建立 VM。如需 Azure 中磁碟和 VHD 的詳細資訊，請參閱[關於虛擬機器的磁碟和 VHD](virtual-machines-linux-about-disks-vhds.md)。
 
 
 ## 必要條件
 
-本文假設您已經：
+本文假設您擁有：
 
-- **Azure 訂用帳戶** - 如果您沒有 Azure 訂用帳戶，請[免費註冊 Azure 帳戶](/pricing/free-trial/?WT.mc_id=A261C142F)，然後[啟用 MSDN 啟用 MSDN 訂戶權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
+- **Azure 訂用帳戶** - 如果您尚未擁有 Azure 訂用帳戶，請[免費註冊 Azure 帳戶](/pricing/free-trial/?WT.mc_id=A261C142F)，或[啟用 MSDN 啟用 MSDN 訂戶權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
 
 - **Azure PowerShell 1.4 版或更高** - 如果尚未安裝，請參閱 [How to install and configure Azure PowerShell (如何安裝和設定 Azure PowerShell)](../powershell-install-configure.md)。
 
-- **執行 Windows 的虛擬機器** - 有許多工具可讓您在內部部署建立虛擬機器。如需範例，請參閱[安裝 Hyper-V 角色及設定虛擬機器](http://technet.microsoft.com/library/hh846766.aspx)。若要知道 Azure 支援哪些 Windows 作業系統，請參閱 [Microsoft Azure 虛擬機器的 Microsoft 伺服器軟體支援](https://support.microsoft.com/kb/2721672)。
+- **執行 Windows 的虛擬機器** - 有許多工具可讓您在內部部署建立虛擬機器。如需範例，請參閱[安裝 Hyper-V 角色及設定虛擬機器](http://technet.microsoft.com/library/hh846766.aspx)。如需有關 Azure 上支援哪些 Windows 作業系統的資訊，請參閱 [Microsoft Azure 虛擬機器的 Microsoft 伺服器軟體支援](https://support.microsoft.com/kb/2721672)。
 
 
-## 確定 VM 具有正確的檔案格式
+## 確定 VM 的檔案格式正確
 
-Azure 能接受以 VHD 檔案格式儲存的[第 1 代虛擬機器](http://blogs.technet.com/b/ausoemteam/archive/2015/04/21/deciding-when-to-use-generation-1-or-generation-2-virtual-machines-with-hyper-v.aspx)映像。VHD 大小必須固定且為整數 MB，也就是可被 8 整除。允許的 VHD 大小上限為 1023 GB。
+在 Azure 中，您只能使用採用 VHD 檔案格式的[第 1 代虛擬機器](http://blogs.technet.com/b/ausoemteam/archive/2015/04/21/deciding-when-to-use-generation-1-or-generation-2-virtual-machines-with-hyper-v.aspx)。VHD 的大小必須固定且為整數 MB，也就是可被 8 整除。允許的 VHD 大小上限為 1023 GB。
 
 - 如果您的 Windows VM 映像是 VHDX 格式，請使用下列做法將它轉換成 VHD︰
 
@@ -50,7 +49,7 @@ Azure 能接受以 VHD 檔案格式儲存的[第 1 代虛擬機器](http://blogs
 
 ## 準備將 VHD 上傳
 
-本節說明如何將您的 Windows 虛擬機器一般化。但如此除了會移除某些資訊之外，也會移除您的所有個人帳戶資訊。通常是在您想利用此 VM 映像來迅速部署類似的虛擬機器時，才會這麼做。如需 Sysprep 的詳細資訊，請參閱[如何使用 Sysprep：簡介](http://technet.microsoft.com/library/bb457073.aspx)。
+本節說明如何將您的 Windows 虛擬機器一般化。Sysprep 除了會移除某些資訊之外，也會移除您的所有個人帳戶資訊。如需 Sysprep 的詳細資訊，請參閱[如何使用 Sysprep：簡介](http://technet.microsoft.com/library/bb457073.aspx)。
 
 1. 登入 Windows 虛擬機器。
 
@@ -66,104 +65,80 @@ Azure 能接受以 VHD 檔案格式儲存的[第 1 代虛擬機器](http://blogs
 
 	![啟動 Sysprep](./media/virtual-machines-windows-upload-image/sysprepgeneral.png)
 
-</br> <a id="createstorage"></a>
-## 建立或尋找 Azure 儲存體帳戶
-
-您在 Azure 中需要有儲存體帳戶才能上傳 VM 映像。您可以使用現有的儲存體帳戶或建立新帳戶。您可以使用入口網站或 Azure 入口網站來執行此作業。
-
-### 使用 Azure 入口網站建立 Azure 儲存體帳戶
-
-1. 登入[入口網站](https://portal.azure.com)。
-
-2. 按一下 [瀏覽] > [儲存體帳戶]。
-
-3. 檢查您想要用來上傳此映像的儲存體帳戶是否存在。記下此儲存體帳戶的名稱。如果您要使用現有的儲存體帳戶，可以移至[上傳 VM 映像](#uploadvm)一節。
-
-4. 如果您想要建立新的儲存體帳戶，請按一下 [新增] 並輸入下列資訊：
-
-	1. 輸入儲存體帳戶的 [名稱]。只能包含 3 至 24 個小寫字母和數字。此名稱會成為您從儲存體帳戶存取 blob、檔案和其他資源時所用的 URL 的一部分。
-	
-	2. 選取 [Resource Manager] 做為 [部署模型]。
-
-	3. 選取適當的[帳戶類型]、[效能] 和 [複寫] 值。將滑鼠移至資訊圖示上方可深入了解這些值。
-
-	4. 在 [資源群組] 選取 [+新增] 建立新的，或選取現有的資源群組。如果您想要建立新的資源群組，請輸入資源群組的名稱。
-
-	5. 選擇儲存體帳戶的 [位置]，按一下 [建立]。帳戶現在會出現於 [儲存體帳戶] 面板下方。
-
-		![輸入儲存體帳戶詳細資料](./media/virtual-machines-windows-upload-image/portal_create_storage_account.png)
-
-	6. 此步驟和接下來的步驟示範如何在此儲存體帳戶中建立 blob 容器。這是選擇性的，因為您也可以使用用於上傳映像的 PowerShell 命令為映像建立新的 blob 容器。如果您不想自行建立，請移至[上傳 VM 映像](#uploadvm)一節。否則，請按一下 [服務] 圖格中的 [Blob]。
-
-		![Blob 服務](./media/virtual-machines-windows-upload-image/portal_create_blob.png)
-
-	7. 當 [Blob] 面板出現後，按一下 [+ 容器] 來建立新的 blob 儲存體容器。輸入容器的名稱和存取類型。
-
-		![建立新的 blob](./media/virtual-machines-windows-upload-image/portal_create_container.png)
-
-  		> [AZURE.NOTE] 容器預設為私人，且只能由帳戶擁有者存取。若要允許公開讀取容器中 blob 的權限，但不允許存取容器屬性和中繼資料，請使用 [Blob] 選項。若要允許完整公開讀取容器和 blob 的權限，請使用 [容器] 選項。
-
-	8. [Blob 服務] 面板會列出新的 blob 容器。記下此容器的 URL，使用 PowerShell 命令上傳映像時需要此資訊。可能會有部分 URL 被隱藏起來，取決於 URL 的長度和螢幕解析度。如果發生這種情況，按一下右上角的**最大化**圖示將面板最大化。
+</br>
 
 
-### 使用 PowerShell 建立或尋找 Azure 儲存體帳戶
+## 登入 Azure
 
 1. 開啟 Azure PowerShell，並登入您的 Azure 帳戶。
 
 		Login-AzureRmAccount
 
-	這個命令將會開啟可輸入 Azure 認證的快顯視窗。
+	這會開啟一個可供您輸入 Azure 帳戶認證的快顯視窗。
 
-2. 如果預設選取的訂用帳戶識別碼與您想要使用的識別碼不同，請使用下列其中一個命令來設定正確的訂用帳戶。
+2. 取得您可用訂用帳戶的訂用帳戶識別碼。
 
-		Set-AzureRmContext -SubscriptionId "xxxx-xxxx-xxxx-xxxx"
+		Get-AzureRmSubscription
 
-	或
+3. 使用訂用帳戶識別碼來設定正確的訂用帳戶。
 
-		Select-AzureRmSubscription -SubscriptionId "xxxx-xxxx-xxxx-xxxx"
+		Select-AzureRmSubscription -SubscriptionId "<subscriptionID>"
 
-	您可以使用 `Get-AzureRmSubscription` 命令來尋找您的 Azure 帳戶擁有的訂用帳戶。
+	
+## 取得儲存體帳戶
 
-3. 尋找此訂用帳戶下可用的儲存體帳戶。
+您需要一個 Azure 中的儲存體帳戶來裝載上傳的 VM 映像。您可以使用現有的儲存體帳戶或建立新帳戶。
+
+顯示可用的儲存體帳戶。
 
 		Get-AzureRmStorageAccount
 
-	如果您想要使用現有的儲存體帳戶，請移至[上傳 VM 映像](#uploadvm)一節。
+如果您想要使用現有的儲存體帳戶，請移至[上傳 VM 映像](#upload-the-vm-image-to-your-storage-account)一節。
 
-4. 如果您想要建立新的儲存體帳戶來存放此映像，請遵循下列步驟：
+如果您想要建立儲存體帳戶，請依照下列步驟操作：
 
-	1. 請確定您有此儲存體帳戶的資源群組。使用下列命令找出您的訂用帳戶中的所有資源群組：
+1. 請確定您有此儲存體帳戶的資源群組。使用下列命令找出您的訂用帳戶中的所有資源群組：
 
-			Get-AzureRmResourceGroup
+		Get-AzureRmResourceGroup
 
-	2. 如果您想要建立新的資源群組，請使用此命令：
+2. 若要建立資源群組，請使用此命令：
 
-			New-AzureRmResourceGroup -Name YourResourceGroup -Location "West US"
+		New-AzureRmResourceGroup -Name <resourceGroupName> -Location "West US"
 
-	3. 使用下列命令在此資源群組中建立新的儲存體帳戶：
+3. 使用 [New-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607148.aspx) Cmdlet 在此資源群組中建立儲存體帳戶：
 
-			New-AzureRmStorageAccount -ResourceGroupName YourResourceGroup -Name YourStorageAccountName -Location "West US" -SkuName "Standard_GRS" -Kind "Storage"
+		New-AzureRmStorageAccount -ResourceGroupName <resourceGroupName> -Name <storageAccountName> -Location "<location>" -SkuName "<skuName>" -Kind "Storage"
+			
+-SkuName 的有效值包括：
+
+- **Standard\_LRS** - 本地備援儲存體。
+- **Standard\_ZRS** - 區域備援儲存體。
+- **Standard\_GRS** - 異地備援儲存體。
+- **Standard\_RAGRS** - 讀取權限異地備援儲存體。
+- **Premium\_LRS** - 進階本地備援儲存體。
 
 
-</br> <a id="uploadvm"></a>
 
 ## 將 VM 映像上傳至儲存體帳戶
 
-在 Azure PowerShell 中使用下列步驟，將 VM 映像上傳至儲存體帳戶。您的映像將會上傳至此帳戶中的 Blob 儲存體容器。您可以使用現有容器或建立新的。
+使用 [Add-AzureRmVhd](https://msdn.microsoft.com/library/mt603554.aspx) Cmdlet 將映像上傳到您儲存體帳戶中的容器：
 
-1. 使用 `Login-AzureRmAccount` 登入 Azure PowerShell 1.0.x。使用 `Set-AzureRmContext -SubscriptionId "xxxx-xxxx-xxxx-xxxx"` 來確定您使用的是正確的訂用帳戶 (如上一節所述)。
+		$rgName = "<resourceGroupName>"
+		$urlOfUploadedImageVhd = "<storageAccount>/<blobContainer>/<targetVHDName>.vhd"
+		Add-AzureRmVhd -ResourceGroupName $rgName -Destination $urlOfUploadedImageVhd -LocalFilePath <localPathOfVHDFile>
 
-2. 使用 [Add-AzureRmVhd](https://msdn.microsoft.com/library/mt603554.aspx) Cmdlet 將一般化 Azure VHD 加入儲存體帳戶：
+其中：
 
-		Add-AzureRmVhd -ResourceGroupName YourResourceGroup -Destination "<StorageAccountURL>/<BlobContainer>/<TargetVHDName>.vhd" -LocalFilePath <LocalPathOfVHDFile>
+- **storageAccount** 是映像的儲存體帳戶名稱。
 
-	其中：
-	- **StorageAccountURL** 是儲存體帳戶的 URL。通常是這種格式：`https://YourStorageAccountName.blob.core.windows.net`。請注意，您必須使用現有或新儲存體帳戶的名稱取代 *YourStorageAccountName*。
-	- **BlobContainer** 是您要用來儲存映像的 blob 容器。如果 Cmdlet 找不到具有此名稱的現有 Blob 容器，它會為您建立一個新的。
-	- **TargetVHDName** 是您想要用來儲存映像的名稱。
-	- **LocalPathOfVHDFile** 是 .vhd 檔案在您本機電腦上的完整路徑和名稱。
+- **blobContainer** 是您要用來儲存映像的 blob 容器。如果找不到具有此名稱的現有 blob 容器，則會為您建立此容器。
 
-	`Add-AzureRmVhd` 執行成功會顯示如下：
+- **targetVHDName** 是您想要用於所上傳 VHD 檔案的名稱。
+
+- **localPathOfVHDFile** 是您本機電腦上 .vhd 檔案的完整路徑和名稱。
+
+
+如果成功，您會得到看起來如以下的回應：
 
 		C:\> Add-AzureRmVhd -ResourceGroupName testUpldRG -Destination https://testupldstore2.blob.core.windows.net/testblobs/WinServer12.vhd -LocalFilePath "C:\temp\WinServer12.vhd"
 		MD5 hash is being calculated for the file C:\temp\WinServer12.vhd.
@@ -176,40 +151,79 @@ Azure 能接受以 VHD 檔案格式儲存的[第 1 代虛擬機器](http://blogs
 		-------------           --------------
 		C:\temp\WinServer12.vhd https://testupldstore2.blob.core.windows.net/testblobs/WinServer12.vhd
 
-	此命令需要一些時間才能完成，視網路連線和 VHD 檔案的大小而定。
+視您的網路連線和 VHD 檔案大小而定，此命令可能需要一些時間才能完成。
+
+
+
+
+## 建立虛擬網路
+
+建立[虛擬網路](../virtual-network/virtual-networks-overview.md)的 vNet 和 subNet。
+
+1. 使用您自己的資訊來取代變數的值。以 CIDR 格式提供子網路的位址首碼。建立變數和子網路。
+
+    	$rgName = "<resourceGroup>"
+		$location = "<location>"
+        $subnetName = "<subNetName>"
+        $singleSubnet = New-AzureRmVirtualNetworkSubnetConfig -Name $subnetName -AddressPrefix <0.0.0.0/0>
+        
+2. 使用虛擬網路的名稱來取代 **$vnetName** 的值。以 CIDR 格式提供虛擬網路的位址首碼。建立變數和具有子網路的虛擬網路。
+
+        $vnetName = "<vnetName>"
+        $vnet = New-AzureRmVirtualNetwork -Name $vnetName -ResourceGroupName $rgName -Location $locName -AddressPrefix <0.0.0.0/0> -Subnet $singleSubnet
+        
+            
+## 建立公用 IP 位址和網路介面
+
+若要能夠與虛擬網路中的虛擬機器進行通訊，您需要[公用 IP 位址](../virtual-network/virtual-network-ip-addresses-overview-arm.md)和網路介面。
+
+1. 使用公用 IP 位址的名稱來取代 **$ipName** 的值。建立變數和公用 IP 位址。
+
+        $ipName = "<ipName>"
+        $pip = New-AzureRmPublicIpAddress -Name $ipName -ResourceGroupName $rgName -Location $locName -AllocationMethod Dynamic
+        
+2. 使用網路介面的名稱來取代 **$nicName** 的值。建立變數和網路介面。
+
+        $nicName = "<nicName>"
+        $nic = New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName $rgName -Location $locName -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id
+
+		
+
+## 建立 VM
+
+下列 PowerShell 指令碼示範如何設定虛擬機器組態，以及使用已上傳的 VM 映像做為新安裝的來源。
+
+>[AZURE.NOTE] VM 必須位於與已上傳的 VHD 檔案相同的儲存體帳戶中。
 
 </br>
-## 從已上傳的映像部署新的 VM
 
-現在，您可以使用已上傳的映像來建立新的 Windows VM。下列步驟說明如何使用 Azure PowerShell 及上述步驟所上傳的 VM 映像，在新的虛擬網路中建立 VM。
-
->[AZURE.NOTE] VM 映像應該位於將會建立實際虛擬機器的儲存體帳戶中。
-
-### 建立網路資源
-
-請使用下列範例 PowerShell 指令碼，來為新的 VM 設定虛擬網路和 NIC。以 **$** 符號表示的變數請使用適合您應用程式的值。
-
-	$pip = New-AzureRmPublicIpAddress -Name $pipName -ResourceGroupName $rgName -Location $location -AllocationMethod Dynamic
-
-	$subnetconfig = New-AzureRmVirtualNetworkSubnetConfig -Name $subnet1Name -AddressPrefix $vnetSubnetAddressPrefix
-
-	$vnet = New-AzureRmVirtualNetwork -Name $vnetName -ResourceGroupName $rgName -Location $location -AddressPrefix $vnetAddressPrefix -Subnet $subnetconfig
-
-	$nic = New-AzureRmNetworkInterface -Name $nicname -ResourceGroupName $rgName -Location $location -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id
-
-### 建立新的 VM
-
-下列 PowerShell 指令碼示範如何設定虛擬機器組態，以及使用已上傳的 VM 映像作為新安裝的來源。</br>
-
-	#Enter a new user name and password in the pop-up window for the following
+	
+	
+	#Create variables
+	# Enter a new user name and password to use as the local administrator account for the remotely accessing the VM
 	$cred = Get-Credential
+	
+	# Name of the storage account where the VHD file is and where the OS disk will be created
+	$storageAccName = "<storageAccountName>"
+	
+	# Name of the virtual machine
+	$vmName = "<vmName>"
+	
+	# Size of the virtual machine. See the VM sizes documentation for more information: https://azure.microsoft.com/documentation/articles/virtual-machines-windows-sizes/
+	$vmSize = "<vmSize>"
+	
+	# Computer name for the VM
+	$computerName = "<computerName>"
+	
+	# Name of the disk that holds the OS
+	$osDiskName = "<osDiskName>"
 
 	#Get the storage account where the uploaded image is stored
 	$storageAcc = Get-AzureRmStorageAccount -ResourceGroupName $rgName -AccountName $storageAccName
 
 	#Set the VM name and size
 	#Use "Get-Help New-AzureRmVMConfig" to know the available options for -VMsize
-	$vmConfig = New-AzureRmVMConfig -VMName $vmName -VMSize "Standard_A4"
+	$vmConfig = New-AzureRmVMConfig -VMName $vmName -VMSize $vmSize
 
 	#Set the Windows operating system configuration and add the NIC
 	$vm = Set-AzureRmVMOperatingSystem -VM $vmConfig -Windows -ComputerName $computerName -Credential $cred -ProvisionVMAgent -EnableAutoUpdate
@@ -217,41 +231,18 @@ Azure 能接受以 VHD 檔案格式儲存的[第 1 代虛擬機器](http://blogs
 	$vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
 
 	#Create the OS disk URI
-	$osDiskUri = '{0}vhds/{1}{2}.vhd' -f $storageAcc.PrimaryEndpoints.Blob.ToString(), $vmName.ToLower(), $osDiskName
+	$osDiskUri = '{0}vhds/{1}-{2}.vhd' -f $storageAcc.PrimaryEndpoints.Blob.ToString(), $vmName.ToLower(), $osDiskName
 
 	#Configure the OS disk to be created from the image (-CreateOption fromImage), and give the URL of the uploaded image VHD for the -SourceImageUri parameter
-	#You can find this URL in the result of the Add-AzureRmVhd cmdlet above
+	#You set this variable when you uploaded the VHD
 	$vm = Set-AzureRmVMOSDisk -VM $vm -Name $osDiskName -VhdUri $osDiskUri -CreateOption fromImage -SourceImageUri $urlOfUploadedImageVhd -Windows
 
 	#Create the new VM
 	New-AzureRmVM -ResourceGroupName $rgName -Location $location -VM $vm
 
-例如，您的工作流程看起來可能像這樣：
 
-		C:\> $pipName = "testpip6"
-		C:\> $pip = New-AzureRmPublicIpAddress -Name $pipName -ResourceGroupName $rgName -Location $location -AllocationMethod Dynamic
-		C:\> $subnet1Name = "testsub6"
-		C:\> $nicname = "testnic6"
-		C:\> $vnetName = "testvnet6"
-		C:\> $subnetconfig = New-AzureRmVirtualNetworkSubnetConfig -Name $subnet1Name -AddressPrefix $vnetSubnetAddressPrefix
-		C:\> $vnet = New-AzureRmVirtualNetwork -Name $vnetName -ResourceGroupName $rgName -Location $location -AddressPrefix $vnetAddressPrefix -Subnet $subnetconfig
-		C:\> $nic = New-AzureRmNetworkInterface -Name $nicname -ResourceGroupName $rgName -Location $location -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id
-		C:\> $vmName = "testupldvm6"
-		C:\> $vmConfig = New-AzureRmVMConfig -VMName $vmName -VMSize "Standard_A4"
-		C:\> $computerName = "testupldcomp6"
-		C:\> $vm = Set-AzureRmVMOperatingSystem -VM $vmConfig -Windows -ComputerName $computerName -Credential $cred -ProvisionVMAgent -EnableAutoUpdate
-		C:\> $vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
-		C:\> $osDiskName = "testupos6"
-		C:\> $osDiskUri = '{0}vhds/{1}{2}.vhd' -f $storageAcc.PrimaryEndpoints.Blob.ToString(), $vmName.ToLower(), $osDiskName
-		C:\> $urlOfUploadedImageVhd = "https://testupldstore2.blob.core.windows.net/testblobs/WinServer12.vhd"
-		C:\> $vm = Set-AzureRmVMOSDisk -VM $vm -Name $osDiskName -VhdUri $osDiskUri -CreateOption fromImage -SourceImageUri $urlOfUploadedImageVhd -Windows
-		C:\> $result = New-AzureRmVM -ResourceGroupName $rgName -Location $location -VM $vm
-		C:\> $result
-		RequestId IsSuccessStatusCode StatusCode ReasonPhrase
-		--------- ------------------- ---------- ------------
-		                         True         OK OK
 
-從 [Azure 入口網站](https://portal.azure.com)的 [瀏覽] > [虛擬機器] 下，或是使用下列 PowerShell 命令，應可看到新建立的 VM：
+完成時，在 [Azure 入口網站](https://portal.azure.com)的 [瀏覽] > [虛擬機器] 底下，或是使用下列 PowerShell 命令，應該就可以看到新建立的 VM：
 
 	$vmList = Get-AzureRmVM -ResourceGroupName $rgName
 	$vmList.Name
@@ -259,6 +250,6 @@ Azure 能接受以 VHD 檔案格式儲存的[第 1 代虛擬機器](http://blogs
 
 ## 後續步驟
 
-若要使用 Azure PowerShell 管理新的虛擬機器，請參閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)。
+若要使用 Azure PowerShell 來管理新的虛擬機器，請參閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0803_2016-->

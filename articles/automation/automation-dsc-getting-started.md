@@ -96,7 +96,7 @@
 
 3. 在 [自動化帳戶] 刀鋒視窗上，按一下 [DSC 設定]
 
-4. 在 [DSC 設定] 刀鋒視窗上，按一下 [TestConfig]\ (這是您在上一個程序中匯入的設定名稱)。
+4. 在 [DSC 設定] 刀鋒視窗上，按一下 [TestConfig] (這是您在上一個程序中匯入的設定名稱)。
 
 5. 在 [TestConfig 設定] 刀鋒視窗上，按一下 [檢視設定來源]。
 
@@ -114,7 +114,7 @@
 
 3. 在 [自動化帳戶] 刀鋒視窗上，按一下 [DSC 設定]
 
-4. 在 [DSC 設定] 刀鋒視窗上，按一下 [TestConfig] \(先前匯入的設定名稱)。
+4. 在 [DSC 設定] 刀鋒視窗上，按一下 [TestConfig] (先前匯入的設定名稱)。
 
 5. 在 [TestConfig 設定] 刀鋒視窗上，按一下 [編譯]，然後按一下 [是]。這會啟動編譯作業。
     
@@ -132,7 +132,7 @@
 
 3. 在 [自動化帳戶] 刀鋒視窗上，按一下 [DSC 設定]。
 
-4. 在 [DSC 設定] 刀鋒視窗上，按一下 [TestConfig] \(先前匯入的設定名稱)。
+4. 在 [DSC 設定] 刀鋒視窗上，按一下 [TestConfig] (先前匯入的設定名稱)。
 
 5. 在 [TestConfig 設定] 刀鋒視窗的 [編譯作業] 圖格上，按一下任何列出的工作。[編譯作業] 刀鋒視窗隨即開啟，並標示編譯作業的啟動日期。
 
@@ -211,6 +211,7 @@ Azure 會啟動 VM 上架的程序。完成時，VM 將會顯示在自動化帳�
     ![[報告] 刀鋒視窗的螢幕擷取畫面](./media/automation-dsc-getting-started/NodeReport.png)
 
 在個別報告的刀鋒視窗上，您可以看到相對應一致性檢查的下列狀態資訊︰
+
 - 報告狀態 — 節點是否「相容」、設定「失敗」，或節點「不相容」(當節點處於 **applyandmonitor** 模式且機器不在預期狀態時)。
 - 一致性檢查的開始時間。
 - 一致性檢查的總執行時間。
@@ -266,4 +267,4 @@ Azure 會啟動 VM 上架的程序。完成時，VM 將會顯示在自動化帳�
 * [Azure 自動化 DSC Cmdlet](https://msdn.microsoft.com/library/mt244122.aspx)
 * [Azure 自動化 DSC 價格](https://azure.microsoft.com/pricing/details/automation/)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

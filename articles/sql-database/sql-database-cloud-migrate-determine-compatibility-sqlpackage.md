@@ -3,7 +3,7 @@
    description="Microsoft Azure SQL Database, 資料庫移轉, SQL Database 相容性, SqlPackage"
    services="sql-database"
    documentationCenter=""
-   authors="carlrabeler"
+   authors="CarlRabeler"
    manager="jhubbard"
    editor=""/>
 
@@ -32,17 +32,17 @@
 1. 開啟命令提示字元並變更包含最新版 sqlpackage.exe 的目錄。此公用程式隨附於 Visual Studio 和 SQL Server。下載[最新版本 Visual Studio 的 SQL Server Data Tools](https://msdn.microsoft.com/library/mt204009.aspx) 以取得最新版本的 SqlPackage 公用程式。
 2. 以環境的下列引數執行下列 SqlPackage 命令：
 
-	'sqlpackage.exe /Action:Export /ssn:< server_name > /sdn:< database_name > /tf:< target_file > /p:TableData=< schema_name.table_name > > < output_file > 2>&1'
+	'sqlpackage.exe /Action:Export /ssn:< server\_name > /sdn:< database\_name > /tf:< target\_file > /p:TableData=< schema\_name.table\_name > > < output\_file > 2>&1'
 
 	| 引數 | 說明 |
 	|---|---|
-	| < server_name > | 來源伺服器名稱 |
-	| < database_name > | 來源資料庫名稱 |
-	| < target_file > | BACPAC 檔案的檔案名稱和位置 |
-	| < schema_name.table_name > | 其資料將會輸出到目標檔案的資料表 |
-	| < output_file > | 具有錯誤的輸出檔案的檔案名稱和位置 (若有的話) |
+	| < server\_name > | 來源伺服器名稱 |
+	| < database\_name > | 來源資料庫名稱 |
+	| < target\_file > | BACPAC 檔案的檔案名稱和位置 |
+	| < schema\_name.table\_name > | 其資料將會輸出到目標檔案的資料表 |
+	| < output\_file > | 具有錯誤的輸出檔案的檔案名稱和位置 (若有的話) |
 
-	使用 /P:TableName 引數的原因是我們只想要測試資料庫相容性以匯出至 Azure SQL DB V12，而不是從所有資料表匯出資料。不幸的是，sqlpackage.exe 的匯出引數不支援不擷取任何資料表，因此您必須指定單一的小型資料表。< output_file > 將包含任何錯誤的報告。"> 2>&1" 字串會將從命令執行產生的標準輸出和標準錯誤輸送到指定的輸出檔。
+	使用 /P:TableName 引數的原因是我們只想要測試資料庫相容性以匯出至 Azure SQL DB V12，而不是從所有資料表匯出資料。不幸的是，sqlpackage.exe 的匯出引數不支援不擷取任何資料表，因此您必須指定單一的小型資料表。< output\_file > 將包含任何錯誤的報告。"> 2>&1" 字串會將從命令執行產生的標準輸出和標準錯誤輸送到指定的輸出檔。
 
 	![從 [工作] 功能表匯出資料層應用程式](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSQLPackage01.png)
 
@@ -62,4 +62,4 @@
 - [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
 - [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0803_2016-->

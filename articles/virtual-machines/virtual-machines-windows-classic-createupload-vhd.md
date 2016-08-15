@@ -1,5 +1,5 @@
 <properties
-	pageTitle="使用 Powershell 建立並上傳 Windows Server 映像 | Microsoft Azure"
+	pageTitle="使用 Powershell 建立並上傳 VM 映像 | Microsoft Azure"
 	description="了解如何使用傳統部署模型和 Azure Powershell 來建立並上傳一般化 Windows Server 映像 (VHD)。"
 	services="virtual-machines-windows"
 	documentationCenter=""
@@ -104,4 +104,4 @@
 
 您現在可以使用您上傳的映像來[建立自訂的 VM](virtual-machines-windows-classic-createportal.md)。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

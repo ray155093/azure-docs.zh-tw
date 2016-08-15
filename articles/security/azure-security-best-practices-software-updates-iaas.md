@@ -13,18 +13,22 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/18/2016"
+   ms.date="08/02/2016"
    ms.author="yurid"/>
 
-#Microsoft Azure IaaS 上軟體更新的最佳作法
+# Microsoft Azure IaaS 上軟體更新的最佳作法
 
-在探究 Azure [IaaS](https://azure.microsoft.com/overview/what-is-iaas/) 環境的任何最佳作法討論之前，請務必先了解可讓您管理軟體更新的案例。下圖應有所幫助：
+在探究 Azure [IaaS](https://azure.microsoft.com/overview/what-is-iaas/) 環境的任何最佳作法討論之前，請務必先了解可讓您管理軟體更新的案例和責任。下圖可協助您了解這些界限︰
 
-![雲端模型和職責](./media/azure-security-best-practices-software-updates-iaas/sec-cloudstack.png)
+![雲端模型和職責](./media/azure-security-best-practices-software-updates-iaas/sec-cloudstack-new.png)
 
-在整個基礎結構位於內部部署的傳統資料中心模型中，您需負起全責來管理作業系統、應用程式、網路裝置 (路由器、交換器等) 和硬體 (韌體) 的更新。在 IaaS 案例中，您仍然必須管理作業系統和應用程式的更新。不過，作業系統和應用程式之下的整個基礎結構是由 Microsoft 管理。在所有這些模型中，客戶仍是其資料的擁有者且仍必須負責在端點層級保護資料。
+最左邊資料行中顯示組織應該考量的七個責任 (定義於下列各節)，全部都與運算環境的安全性和隱私權有關。
+ 
+資料的分類與責任和用戶端與端點保護完全是客戶的責任，而實體、主機和網路的責任則在於 PaaS 和 SaaS 模型中的雲端服務提供者。
 
-在 PaaS 案例中，您對軟體更新所負的責任比較少，因為作業系統的更新是 Microsoft 的責任。在 SaaS 案例中，整個堆疊的軟體更新責任是由 Microsoft 所承擔。
+其餘的責任則是由客戶和雲端服務提供者共同分擔。某些責任需要 CSP 和客戶一同管理責任，包括其網域的稽核。例如，使用 Azure Active Directory 服務時的身分識別與存取管理；如 Multi-Factor Authentication 等服務的組態是由客戶負責，但是確保功能有效是 Microsoft Azure 的責任。
+
+> [AZURE.NOTE] 如需雲端中共同責任的詳細資訊，請閱讀 [Shared Responsibilities for Cloud Computing (雲端運算的共同責任)](https://gallery.technet.microsoft.com/Shared-Responsibilities-81d0ff91/file/153019/1/Shared%20responsibilities%20for%20cloud%20computing.pdf)
 
 這些相同的原則會套用在混合式案例中，其中貴公司使用 Azure IaaS VM 與內部部署資源通訊，如下圖所示。
 
@@ -118,4 +122,4 @@ Azure IaaS 的某些備份選項包括：
 
 使用本文所述的指導方針，可協助您判斷適用於 Azure IaaS 中虛擬機器軟體更新的最佳選項。傳統資料中心與 Azure IaaS 之間的軟體更新最佳作法有許多相似之處，因此建議您評估目前的軟體更新原則，以包含 Azure VM 並將本文中的相關最佳作法章納入整體軟體更新程序中。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

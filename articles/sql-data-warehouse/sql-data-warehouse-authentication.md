@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="07/23/2016"
+   ms.date="07/29/2016"
    ms.author="rickbyh;barbkess;sonyama"/>
 
 # 適用於 Azure SQL 資料倉儲的驗證
@@ -37,11 +37,9 @@
 - 密碼
 - 預設資料庫 (選擇性)
 
-請務必注意，使用者必須使用 SQL 驗證進行驗證。此時不支援受信任的驗證。
-
 根據預設，您的連線會連線至主要資料庫，而非您的使用者資料庫。若要連線到您的使用者資料庫，您可以選擇執行下列兩個動作之一：
 
-1. 使用伺服器註冊 SSDT 或應用程式連接字串中的 SQL Server 物件總管時，請指定預設資料庫。例如，藉由包含 ODBC 連線的 InitialCatalog 參數。
+1. 使用伺服器註冊 SSDT、SSMS 或應用程式連接字串中的 SQL Server 物件總管時，請指定預設資料庫。例如，藉由包含 ODBC 連線的 InitialCatalog 參數。
 2. 在 SSDT 中建立工作階段之前先反白顯示使用者資料庫。
 
 > [AZURE.NOTE] 如需連線到 SQL 資料倉儲與 SSDT 的指引，請回頭參閱[使用 Visual Studio 查詢][]文章。
@@ -78,7 +76,7 @@
 5. 在對應至 Azure AD 身分識別的資料庫中建立自主資料庫使用者
 6. 使用 Azure AD 身分識別連接到您的資料倉儲。
 
-搭配 Azure SQL Database 及搭配 Azure SQL 資料倉儲使用 Azure Active Directory 驗證的主要差異，是您必須使用 SQL Server Data Tools (而非 SQL Server Management Studio) 來連接到 SQL 資料倉儲。SQL 資料倉儲至少需要 2016 年 4 月 (版本 14.0.60311.1) 的 SQL Server Data Tools for Visual Studio 2015。Azure Active Directory 使用者目前不會顯示在 SSDT 物件總管中。解決方法是在 [sys.database\_principals](https://msdn.microsoft.com/library/ms187328.aspx) 中檢視使用者。
+Azure Active Directory 使用者目前不會顯示在 SSDT 物件總管中。解決方法是在 [sys.database\_principals](https://msdn.microsoft.com/library/ms187328.aspx) 中檢視使用者。
   
 ### 尋找詳細資料
 - 完成詳細的步驟。針對 Azure SQL Database 及針對 Azure SQL 資料倉儲設定並使用 Azure Active Directory 驗證的詳細步驟幾乎完全相同。請依照[使用 Azure Active Directory 驗證連線到 SQL Database 或 SQL 資料倉儲](../sql-database/sql-database-aad-authentication.md)主題中的詳細步驟操作。
@@ -93,4 +91,4 @@
 [使用 Visual Studio 查詢]: ./sql-data-warehouse-query-visual-studio.md
 [What is Azure Active Directory]: ../active-directory/active-directory-whatis.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

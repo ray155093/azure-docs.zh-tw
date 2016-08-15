@@ -1,7 +1,7 @@
 <properties
    pageTitle="在邏輯應用程式中使用 JavaScript API 應用程式 | Microsoft Azure"
    description="JavaScript API 應用程式或連接器"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="stepsic-microsoft-com"
    manager="dwrede"
@@ -99,4 +99,4 @@ return Attachments.map(function(obj){var a = obj.Content; a.FileName = obj.Name;
 <!--Links -->
 [Creating a Logic app]: app-service-logic-create-a-logic-app.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

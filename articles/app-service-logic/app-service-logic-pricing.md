@@ -4,29 +4,29 @@
 	authors="kevinlam1" 
 	manager="dwrede" 
 	editor="" 
-	services="app-service\logic" 
+	services="logic-apps" 
 	documentationCenter=""/>
 
 <tags
-	ms.service="app-service-logic"
+	ms.service="logic-apps"
 	ms.workload="na"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article" 
-	ms.date="07/25/2016"
+	ms.date="07/27/2016"
 	ms.author="klam"/>
 
 # Logic Apps 的定價模式
 
-Logic Apps 可讓您在雲端中執行整合工作流程和調整其規模。以下是 Azure Logic Apps 計費和定價方案的詳細資料。
+Azure Logic Apps 可讓您在雲端中執行整合工作流程和調整其規模。以下是 Logic Apps 計費和定價方案的詳細資料。
 
 ## 取用定價
 
-新建立的 Logic Apps 會使用取用方案。使用 Logic Apps 的取用定價模式時，您只需針對使用的部分付費。使用取用方案時，Logic Apps 不會執行節流。在執行邏輯應用程式執行個體時所執行的所有動作執行都會加以計量。
+新建立的 Logic Apps 會使用取用方案。使用 Logic Apps 的取用定價模式時，您只需針對使用的部分付費。使用取用方案時，Logic Apps 不會執行節流。在執行邏輯應用程式執行個體時所執行的所有動作都會計量。
 
 ### 什麼是動作執行？
 
-邏輯應用程式定義的每一個步驟都是一個動作。這包括觸發程序、控制流程步驟 (如條件、範圍、for each 迴圈和 do until 迴圈)、呼叫連接器和呼叫原生動作。觸發程序就是設計用來在收到特定事件時，具現化新的邏輯應用程式執行個體的特殊動作。觸發程序擁有一些會影響邏輯應用程式計量方式的不同行為。
+邏輯應用程式定義的每一個步驟都是一個動作。這包括觸發程序、控制流程步驟 (如條件、範圍、for each 迴圈、do until 迴圈、呼叫連接器和呼叫原生動作)。觸發程序就是設計用來在特定事件發生時，具現化新的邏輯應用程式執行個體的特殊動作。觸發程序擁有一些會影響邏輯應用程式計量方式的不同行為。
 
 -	**輪詢觸發程序** – 此觸發程序會持續輪詢端點，直到它收到的訊息符合用來建立新的邏輯應用程式執行個體的準則。在 Logic Apps 設計工具中，可於觸發程序內設定輪詢間隔。即使是未建立新的邏輯應用程式執行個體的輪詢要求也會計算為一個動作執行。
 
@@ -44,7 +44,7 @@ Logic Apps 可讓您在雲端中執行整合工作流程和調整其規模。以
 
 ## App Service 方案
 
-建立邏輯應用程式時不再需要 App Service 方案。先前使用 App Service 方案所建立的 Logic Apps 會繼續保持之前的行為方式，而根據您選擇的方案而定，其將會在超過一定的每日執行次數時遭到節流，但不會使用動作執行計量器進行計費。
+建立邏輯應用程式時不再需要 App Service 方案。您也可以參考具有現有邏輯應用程式的 App Service 方案。先前使用 App Service 方案所建立的邏輯應用程式會繼續保持之前的行為方式，而根據您選擇的方案而定，其將會在超過一定的每日執行次數時遭到節流，但不會使用動作執行計量器進行計費。
 
 App Service 方案和其每日允許的動作執行次數︰
 
@@ -52,7 +52,41 @@ App Service 方案和其每日允許的動作執行次數︰
 |---|---|---|---|
 |每日的動作執行次數| 200|10,000|50,000|
 
-若要將具有相關聯 App Service 方案的邏輯應用程式變更為取用模式，請在邏輯應用程式定義中移除 App Service 方案的參考。只要呼叫 PowerShell Cmdlet 即可完成此作業︰
+### 從取用定價轉換為 App Service 方案定價
+
+若要為取用邏輯應用程式參考 App Service 方案，您只需要[執行下列 PowerShell 指令碼](https://github.com/logicappsio/ConsumptionToAppServicePlan)。請確定您已先安裝 [Azure PowerShell 工具](https://github.com/Azure/azure-powershell)。
+
+``` powershell
+Param(
+    [string] $AppService_RG = '<app-service-resource-group>',
+	[string] $AppService_Name = '<app-service-name>',
+    [string] $LogicApp_RG = '<logic-app-resource-group>',
+    [string] $LogicApp_Name = '<logic-app-name>',
+    [string] $subscriptionId = '<azure-subscription-id>'
+)
+
+Login-AzureRmAccount 
+$subscription = Get-AzureRmSubscription -SubscriptionId $subscriptionId
+$appserviceplan = Get-AzureRmResource -ResourceType "Microsoft.Web/serverFarms" -ResourceGroupName $AppService_RG -ResourceName $AppService_Name
+$logicapp = Get-AzureRmResource -ResourceType "Microsoft.Logic/workflows" -ResourceGroupName $LogicApp_RG -ResourceName $LogicApp_Name
+
+$sku = @{
+    "name" = $appservicePlan.Name;
+    "plan" = @{
+      "id" = $appserviceplan.ResourceId;
+      "type" = "Microsoft.Web/ServerFarms";
+      "name" = $appserviceplan.Name  
+    }
+}
+
+$updatedProperties = $logicapp.Properties | Add-Member @{sku = $sku;} -PassThru
+
+$updatedLA = Set-AzureRmResource -ResourceId $logicapp.ResourceId -Properties $updatedProperties -ApiVersion 2015-08-01-preview
+```
+
+### 從 App Service 方案定價轉換為取用定價
+
+若要將具有相關聯 App Service 方案的邏輯應用程式變更為取用模式，請在邏輯應用程式定義中移除 App Service 方案的參考。呼叫 PowerShell Cmdlet 即可完成此作業︰
 
 `Set-AzureRmLogicApp -ResourceGroupName ‘rgname’ -Name ‘wfname’ –UseConsumptionModel -Force`
 
@@ -69,4 +103,4 @@ App Service 方案和其每日允許的動作執行次數︰
 [whatis]: app-service-logic-what-are-logic-apps.md
 [create]: app-service-logic-create-a-logic-app.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

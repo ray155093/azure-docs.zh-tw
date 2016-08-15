@@ -29,7 +29,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 ODBC �
 
 除了資料管理閘道器，您也需要在閘道器機器上的資料存放區安裝 ODBC 驅動程式。
 
-> [AZURE.NOTE] 如需連接/閘道器相關問題的疑難排解秘訣，請參閱[閘道器疑難排解](data-factory-move-data-between-onprem-and-cloud.md#gateway-troubleshooting)。
+> [AZURE.NOTE] 如需連接/閘道器相關問題的疑難排解秘訣，請參閱[針對閘道問題進行疑難排解](data-factory-data-management-gateway.md#troubleshoot-gateway-issues)。
 
 ## 範例：從 ODBC 資料存放區複製資料到 Azure Blob
 
@@ -368,4 +368,4 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 ODBC �
 ## 效能和微調  
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

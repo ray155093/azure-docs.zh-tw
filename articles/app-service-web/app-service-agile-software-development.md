@@ -21,7 +21,7 @@
 
 在本教學課程中，您將學習如何使用支援[敏捷式軟體開發](https://en.wikipedia.org/wiki/Agile_software_development)的方式來建立高級別複雜應用程式與 [Azure App Service](/services/app-service/)。假設您已經知道如何[透過可預測方式在 Azure 中部署複雜應用程式](app-service-deploy-complex-application-predictably.md)。
 
-技術程序限制通常會妨礙成功的實作敏捷式方法。如果在 [Azure 資源管理員](../resource-group-overview.md)中明智地結合部署的協調流程與管理，則 Azure App Service 與功能 (例如[持續發行](web-sites-publish-source-control.md)、[預備環境](web-sites-staged-publishing.md) (位置) 和[監視](web-sites-monitor.md)) 是非常適合採用敏捷式軟體開發之開發人員的解決方案。
+技術程序限制通常會妨礙成功的實作敏捷式方法。如果在 [Azure 資源管理員](../resource-group-overview.md)中明智地結合部署的協調流程與管理，則 Azure App Service 與功能 (例如[持續發行](app-service-continuous-deployment.md)、[預備環境](web-sites-staged-publishing.md) (位置) 和[監視](web-sites-monitor.md)) 是非常適合採用敏捷式軟體開發之開發人員的解決方案。
 
 下表是敏捷式開發相關需求以及 Azure 服務如何啟用它們的簡短清單。
 
@@ -77,7 +77,7 @@
 
 >[AZURE.NOTE] 本教學課程中使用的指令碼會自動從 GitHub 儲存機制設定連續發行。這需要您的 GitHub 認證已儲存在 Azure 中，否則，嘗試設定 Web 應用程式的原始檔控制設定時，指令碼部署會失敗。
 >
->若要在 Azure 中儲存您的 GitHub 認證，請在 [Azure 入口網站](https://portal.azure.com/)中建立 Web 應用程式，並[設定 GitHub 部署](web-sites-publish-source-control.md#Step7)。您只需要做一次這個動作。
+>若要在 Azure 中儲存您的 GitHub 認證，請在 [Azure 入口網站](https://portal.azure.com/)中建立 Web 應用程式，並[設定 GitHub 部署](app-service-continuous-deployment.md)。您只需要做一次這個動作。
 
 在一般 DevOps 案例中，應用程式是在 Azure 中即時執行，而且您想要透過連續發行對它進行變更。在此案例中，您會有您所開發、測試以及用來部署生產環境的範本。您將在本節中設定它。
 
@@ -282,4 +282,4 @@
 -	[在 Azure AD 中建立或編輯使用者](https://msdn.microsoft.com/library/azure/hh967632.aspx#BKMK_1)
 -	[專案 Kudu Wiki](https://github.com/projectkudu/kudu/wiki)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->

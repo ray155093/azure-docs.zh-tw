@@ -72,7 +72,7 @@
 
 ### 安裝 Express 及產生樣板
 
-1. 從命令列中，建立名為 **tasklist** 的新目錄，並切換至該目錄。  
+1. 從命令列中，建立名為 **tasklist** 的新目錄，並切換至該目錄。
 
 2. 輸入下列命令以安裝 Express 模組。
 
@@ -601,7 +601,6 @@
 <!-- URLs -->
 
 [在 Azure App Service 中建置和部署 Node.js Web 應用程式]: web-sites-nodejs-develop-deploy-mac.md
-[Continuous deployment using GIT in Azure App Service]: web-sites-publish-source-control.md
 [Azure Developer Center]: /develop/nodejs/
 
 [node]: http://nodejs.org
@@ -613,7 +612,6 @@
 [使用 MongoDB 的 Node.js Web 應用程式]: web-sites-nodejs-store-data-mongodb.md
 [Azure CLI]: ../xplat-cli-install.md
 
-[Continuous deployment using GIT in Azure App Service]: web-sites-publish-source-control.md
 [azure]: https://github.com/Azure/azure-sdk-for-node
 [node-uuid]: https://www.npmjs.com/package/node-uuid
 [nconf]: https://www.npmjs.com/package/nconf
@@ -637,4 +635,4 @@
 [app-settings-save]: ./media/storage-nodejs-use-table-storage-web-site/savebutton.png
 [app-settings]: ./media/storage-nodejs-use-table-storage-web-site/storage-tasks-appsettings.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0803_2016-->

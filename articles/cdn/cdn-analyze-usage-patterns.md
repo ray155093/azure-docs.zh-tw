@@ -1,8 +1,8 @@
 <properties
-	pageTitle="分析 CDN 使用模式"
+	pageTitle="分析 Azure CDN 使用模式 | Microsoft Azure"
 	description="您可以使用下列報告檢視 CDN 的使用模式：頻寬、傳輸的資料、點擊、快取狀態、快取點擊率、已傳輸的 IPV4/IPV6 資料。"
 	services="cdn"
-	documentationCenter=".NET"
+	documentationCenter=""
 	authors="camsoper"
 	manager="erikre"
 	editor=""/>
@@ -13,10 +13,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/11/2016"
+	ms.date="07/28/2016"
 	ms.author="casoper"/>
 
-# 分析 CDN 使用模式
+# 分析 Azure CDN 使用模式
 
 [AZURE.INCLUDE [cdn-verizon-only](../../includes/cdn-verizon-only.md)]
 
@@ -28,6 +28,19 @@
 - 快取狀態
 - 快取點擊率
 - 已轉送的 IPV4/IPV6 資料
+
+## 存取進階 HTTP 報告
+
+1. 在 CDN 設定檔刀鋒視窗中，按一下 [管理] 按鈕。
+
+	![[CDN 設定檔] 刀鋒視窗的 [管理] 按鈕](./media/cdn-reports/cdn-manage-btn.png)
+
+	隨即開啟 CDN 管理入口網站。
+
+2. 將滑鼠暫留在 [分析] 索引標籤，然後暫留在 [核心報告] 彈出式視窗。在功能表中按一下所需的報表。
+
+	![CDN 管理入口網站 - 核心報告功能表](./media/cdn-reports/cdn-core-reports.png)
+
 
 ## 頻寬
 
@@ -122,7 +135,7 @@
 - 資產的要求，其標頭指出他們不應該快取。例如，Cache-Control: private、Cache-Control: no-cache 或 Pragma: no-cache 等標頭會防止資產被快取。
 - 部分快取內容的位元組範圍要求。
 
-公式為：(TCP\_ HIT/(TCP\_ HIT+TCP\_MISS))*100
+公式為：(TCP HIT/(TCP HIT+TCP\_MISS))*100
 
 - 選取日期範圍來檢視今天/本週/本月份等資料，或輸入自訂日期，然後按一下 [執行] 來確定已更新您的選擇。
 - 您可以藉由按一下 [執行] 旁的 excel 工作表圖示以匯出和下載資料。
@@ -144,4 +157,4 @@
 
 報告只會產生於過去 18 個月內。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

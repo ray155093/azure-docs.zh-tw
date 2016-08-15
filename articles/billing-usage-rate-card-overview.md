@@ -1,11 +1,12 @@
 <properties
    pageTitle="深入了解 Microsoft Azure 資源耗用量 | Microsoft Azure"
    description="提供 Azure 計費使用情況和 RateCard API 的概念性概觀，可用來提供 Azure 資源耗用量和趨勢的見解。"
-   services="billing"
+   services=""
    documentationCenter=""
    authors="BryanLa"
    manager="mbaldwin"
-   editor=""/>
+   editor=""
+   tags="billing"/>
 
 <tags
    ms.service="billing"
@@ -50,7 +51,7 @@ Azure 資源使用情況和 RateCard API 會實作為資源提供者，並由 Az
 
 以下是一些案例，可產生使用情況和 RateCard API 的組合：
 
-- **Azure 月份花費** - 客戶可以使用使用情況和 RateCard API 組合，藉由分析每小時和每天的使用情形及收費評估值區，取得當月份雲端花費的更佳見解。 
+- **Azure 月份花費** - 客戶可以使用使用情況和 RateCard API 組合，藉由分析每小時和每天的使用情形及收費評估值區，取得當月份雲端花費的更佳見解。
 
 - **設定警示** – 客戶和合作夥伴可以藉由使用使用情況和 RateCard API 取得預估的耗用量和收費評估，針對雲端耗用量設定以資源為基礎或以貨幣為基礎的警示。
 
@@ -78,4 +79,4 @@ Azure 資源使用情況和 RateCard API 會實作為資源提供者，並由 Az
 + 請參閱 [Azure 資源管理員概觀](resource-group-overview.md)一文，以深入了解 Azure 資源管理員。
 + 如需協助了解雲端花費之必要工具套件的其他資訊，請參閱 Gartner 文章 [IT 財務管理 (ITFM) 工具的市場指南](http://www.gartner.com/technology/reprints.do?id=1-212F7AL&ct=140909&st=sb)。
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0803_2016-->

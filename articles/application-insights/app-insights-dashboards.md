@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="multiple"
 	ms.topic="article" 
-	ms.date="06/14/2016"
+	ms.date="07/30/2016"
 	ms.author="awills"/>
 
 # Application Insights 入口網站中的導覽與儀表板
@@ -56,18 +56,24 @@
 您登入 [Microsoft Azure 入口網站](https://portal.azure.com)之後最先看到的是儀表板。您可以在這裡結合對您而言最重要的所有 Azure 資源的圖表，包括來自 [Visual Studio Application Insights](app-insights-overview.md) 的遙測。
  
 
-![自訂的儀表板。](./media/app-insights-dashboards/30.png)
+![自訂的儀表板。](./media/app-insights-dashboards/31.png)
 
-1. 隨時按一下左上角，即可返回儀表板。
-2. 按一下儀表板上的圖表或圖格，即可查看更多詳細資料。
-3. 使用導覽列可完整檢視所有資源。
-4. 使用儀表板工具列來編輯、建立和共用儀表板。
+
+1. 使用儀表板工具列來編輯、建立和共用儀表板。
+2. 回到目前的儀表板，或切換至其他最近的檢視。
+3. 切換儀表板。
+4. 建立、編輯和共用儀表板。
+5. 將滑鼠停留在圖格上，然後使用其頂端列加以移動、自訂或移除。
 
 ## 加入儀表板中
 
 當您尋找特別感興趣的刀鋒視窗或一組圖表時，您可將其釘選一份到儀表板。您將會在下次返回該處時見到它。
 
 ![若要釘選圖表，可將滑鼠停留在其上方，然後按一下標頭中的 [...]。](./media/app-insights-dashboards/33.png)
+
+1. 將圖表釘選到儀表板。圖表的複本會出現在儀表板上。
+2. 將整個刀鋒視窗釘選到儀表板 - 它會在儀表板上顯示為圖格以供您點選。
+3. 按一下左上角以返回目前的儀表板。然後您可以使用下拉式功能表，返回目前的檢視。
 
 請注意，圖表會分組為圖格︰一個圖格中可包含多個圖表。您將整個圖格釘選至儀表板。
 
@@ -77,7 +83,7 @@
 
 ![暫留在一個圖表，以進行編輯。](./media/app-insights-dashboards/36.png)
 
-1. 將圖表加入圖格中。 
+1. 將圖表加入圖格中。
 2. 設定度量、分組依據的維度，和圖表的樣式 (資料表、圖形)。
 3. 針對圖格上的圖表設定時間範圍和篩選屬性。您可以設定圖表自己的時間範圍，或繼承自儀表板的時間範圍。
 4. 設定圖格的標題。
@@ -146,4 +152,4 @@
 |[診斷搜尋](app-insights-diagnostic-search.md)<br/>尋找和檢查事件、相關的事件，並建立 Bug |![搜尋範例](./media/app-insights-dashboards/61.png)
 |[分析](app-insights-analytics.md)<br/>功能強大的查詢語言| ![搜尋範例](./media/app-insights-dashboards/63.png)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0803_2016-->

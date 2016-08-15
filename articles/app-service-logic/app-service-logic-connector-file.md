@@ -4,7 +4,7 @@
 	authors="rajeshramabathiran"
 	manager="erikre"
 	editor=""
-	services="app-service\logic"
+	services="logic-apps"
 	documentationCenter=""/>
 
 <tags
@@ -87,4 +87,4 @@ API 應用程式執行個體建立之後，瀏覽至其儀表板。作法是按�
 [檔案連接器 API 定義]: https://msdn.microsoft.com/library/dn936296.aspx
 [使用混合式連線管理員]: app-service-logic-hybrid-connection-manager.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

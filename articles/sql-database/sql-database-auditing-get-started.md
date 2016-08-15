@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="07/10/2016"
-	ms.author="carlrabeler; ronitr"/>
+	ms.author="CarlRabeler; ronitr"/>
 
 # 開始使用 SQL Database 稽核
 Azure SQL Database 稽核會追蹤資料庫事件，並將稽核事件寫入 Azure 儲存體帳戶中的稽核記錄。基本、標準和進階服務層皆提供稽核功能。
@@ -175,4 +175,4 @@ SQL Database 稽核可讓您：
 [7]: ./media/sql-database-auditing-get-started/7_auditing_get_started_classic_portal_storage.png
 [8]: ./media/sql-database-auditing-get-started/8_auditing_get_started_storage_key_rotation.png
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

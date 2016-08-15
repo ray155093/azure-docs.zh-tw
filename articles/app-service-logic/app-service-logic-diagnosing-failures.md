@@ -1,7 +1,7 @@
 <properties
    pageTitle="診斷邏輯應用程式錯誤 | Microsoft Azure"
    description="用以了解邏輯應用程式失敗位置的常見方法"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="jeffhollan"
    manager="erikre"
@@ -84,4 +84,4 @@ Azure 入口網站提供許多工具，在每個步驟中診斷每個邏輯應�
 [3]: ./media/app-service-logic-diagnosing-failures/triggerOutputsLink.PNG
 [4]: ./media/app-service-logic-diagnosing-failures/ActionOutputs.PNG
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

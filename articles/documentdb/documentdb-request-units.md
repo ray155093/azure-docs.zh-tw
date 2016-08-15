@@ -189,7 +189,7 @@ DocumentDB 服務的每個回應都會包括自訂標頭 (x-ms-request-charge)�
 
 在此情況下，我們預期平均輸送量需求為 1,275 RU/秒。四捨五入至最接近 100 的數目，我們會針對此應用程式的集合佈建 1,300 RU/秒。
 
-##超過保留的輸送量限制
+##<a id="RequestRateTooLarge"></a>超過保留的輸送量限制
 您應該記得，要求單位耗用量是以每秒的速率來評估。對於超過集合上佈建的要求單位速率的應用程式，對於該集合的要求會受到節流控制，直到該速率降到預留層級以下。當節流發生時，伺服器將預先使用 RequestRateTooLargeException (HTTP 狀態碼 429) 來結束要求，並傳回 x-ms-retry-after-ms 標頭，以指出使用者重試要求之前必須等候的時間量 (毫秒)。
 
 	HTTP Status 429
@@ -220,4 +220,4 @@ DocumentDB 服務的每個回應都會包括自訂標頭 (x-ms-request-charge)�
 [4]: ./media/documentdb-request-units/RUEstimatorResults.png
 [5]: ./media/documentdb-request-units/RUCalculator2.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

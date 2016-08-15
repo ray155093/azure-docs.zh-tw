@@ -1,7 +1,7 @@
 <properties
 pageTitle="了解在您的邏輯應用程式中使用 Azure 服務匯流排連接器。| Microsoft Azure"
 description="使用 Azure App Service 建立邏輯應用程式。連線到 Azure 服務匯流排來傳送及接收訊息。您可以執行動作，例如傳送至佇列、傳送至主題、從佇列接收、從訂用帳戶接收等等。"
-services="app-servicelogic"	
+services="logic-apps"	
 documentationCenter=".net,nodejs,java" 	
 authors="msftman"	
 manager="erikre"	
@@ -14,7 +14,7 @@ ms.devlang="multiple"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="integration"
-ms.date="07/27/2016"
+ms.date="08/02/2016"
 ms.author="deonhe"/>
 
 # 開始使用 Azure 服務匯流排連接器
@@ -77,8 +77,26 @@ Azure 服務匯流排具有下列動作︰
 
 |屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|訊息*|訊息|要傳送的訊息|
+|ContentData*|內容|訊息的內容|
+|ContentType|內容類型|訊息內容的內容類型|
+|屬性|屬性|每個訊息代理程式屬性的索引鍵-值配對|
 |entityName*|佇列/主題名稱|佇列或主題的名稱|
+
+這些進階參數也可供使用︰
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|MessageId|訊息識別碼|這是服務匯流排可用來識別重複訊息的使用者定義值 (如果已啟用)。|
+|收件人|收件人|傳送至地址|
+|ReplyTo|回覆地址|要回覆的佇列位址|
+|ReplyToSessionId|回覆至工作階段識別碼|要回覆的工作階段識別碼|
+|標籤|標籤|應用程式特定標籤|
+|ScheduledEnqueueTimeUtc|ScheduledEnqueueTimeUtc|訊息將加入佇列的日期和時間 (UTC 格式)|
+|SessionId|工作階段識別碼|工作階段識別碼|
+|CorrelationId|相互關連識別碼|相互關聯的識別項|
+|TimeToLive|存留時間|這是訊息有效的持續時間 (以刻度為單位)。持續時間從訊息傳送至服務匯流排開始計算。|
+
+
 
 * 表示這是必要屬性
 
@@ -93,6 +111,7 @@ Azure 服務匯流排具有下列動作︰
 | ---|---|---|
 |queueName*|Queue name|佇列的名稱|
 
+
 * 表示這是必要屬性
 
 #### 輸出詳細資料
@@ -104,7 +123,6 @@ ServiceBusMessage︰此物件具有服務匯流排訊息的內容和屬性。
 |---|---|---|
 |ContentData|字串|訊息的內容|
 |ContentType|字串|訊息內容的內容類型|
-|ContentTransferEncoding|字串|訊息內容的內容傳送編碼 ([無]|[base64])|
 |屬性|物件|每個訊息代理程式屬性的索引鍵-值配對|
 |MessageId|字串|這是服務匯流排可用來識別重複訊息的使用者定義值 (如果已啟用)。|
 |收件人|字串|傳送至地址|
@@ -128,6 +146,7 @@ ServiceBusMessage︰此物件具有服務匯流排訊息的內容和屬性。
 |topicName*|主題名稱|主題的名稱|
 |subscriptionName*|主題訂用帳戶名稱|主題訂用帳戶的名稱|
 
+
 * 表示這是必要屬性
 
 #### 輸出詳細資料
@@ -139,7 +158,6 @@ ServiceBusMessage︰此物件具有服務匯流排訊息的內容和屬性。
 |---|---|---|
 |ContentData|字串|訊息的內容|
 |ContentType|字串|訊息內容的內容類型|
-|ContentTransferEncoding|字串|訊息內容的內容傳送編碼 ([無]|[base64])|
 |屬性|物件|每個訊息代理程式屬性的索引鍵-值配對|
 |MessageId|字串|這是服務匯流排可用來識別重複訊息的使用者定義值 (如果已啟用)。|
 |收件人|字串|傳送至地址|
@@ -171,4 +189,4 @@ ServiceBusMessage︰此物件具有服務匯流排訊息的內容和屬性。
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

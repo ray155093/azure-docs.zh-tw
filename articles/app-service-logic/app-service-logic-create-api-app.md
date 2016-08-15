@@ -4,7 +4,7 @@
 	authors="jeffhollan" 
 	manager="dwrede" 
 	editor="" 
-	services="app-service\logic" 
+	services="logic-apps" 
 	documentationCenter=""/>
 
 <tags
@@ -91,4 +91,4 @@ Webhook 觸發程序的作用很像上面的 Webhook 動作。每次新增和儲
 
 您可以在[這裡](https://github.com/jeffhollan/LogicAppTriggersExample/tree/master/LogicAppTriggers)查看 Webhook 觸發程序在 GitHub 中的範例
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

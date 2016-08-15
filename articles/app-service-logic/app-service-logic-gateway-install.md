@@ -1,7 +1,7 @@
 <properties
    pageTitle="Logic Apps 安裝內部部署資料閘道 | Microsoft Azure"
    description="如何安裝內部部署資料閘道用於邏輯應用程式的相關資訊。"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="jeffhollan"
    manager="erikre"
@@ -221,4 +221,4 @@ TcpTestSucceeded       : True
 - [企業整合功能](app-service-logic-enterprise-integration-overview.md)
 - [Logic Apps 連接器](../connectors/apis-list.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

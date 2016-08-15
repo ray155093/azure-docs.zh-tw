@@ -41,13 +41,13 @@
 
 - 在 Azure SDK 2.6 及更新版本中，Visual studio 會使用診斷連接字串，在發佈期間設定內含適當儲存體帳戶資訊的診斷延伸模組。連接字串可讓您為 Visual Studio 在發佈時將使用的不同服務組態定義不同的儲存體帳戶。不過，因為診斷外掛程式 (在 Azure SDK 2.5 之後) 不再提供使用，所以 .cscfg 檔案本身無法啟用診斷延伸模組。您必須個別透過 Visual Studio 或 PowerShell 等工具啟用延伸模組。
 
-- 為了使用 PowerShell 簡化診斷延伸模組的設定程序，從 Visual Studio 的封裝輸出也包含每個角色之診斷延伸模組的公用組態 XML。Visual Studio 使用診斷連接字串填入出現在公用組態的儲存體帳戶資訊。公用設定檔會在延伸模組資料夾中建立並遵循模式 PaaSDiagnostics.<RoleName>.PubConfig.xml。任何以 PowerShell 為基礎的部署都可以使用此模式將每個組態對應至角色。
+- 為了使用 PowerShell 簡化診斷延伸模組的設定程序，從 Visual Studio 的封裝輸出也包含每個角色之診斷延伸模組的公用組態 XML。Visual Studio 使用診斷連接字串填入出現在公用組態的儲存體帳戶資訊。公用設定檔會在延伸模組資料夾中建立並遵循模式 PaaSDiagnostics.&lt;RoleName>.PubConfig.xml。任何以 PowerShell 為基礎的部署都可以使用此模式將每個組態對應至角色。
 
 - [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)也會使用 .cscfg 檔案中的連接字串來存取診斷資料，所以它也可以出現在 [監視] 索引標籤中。若要在入口網站中顯示詳細監視資料，必須要有連接字串。
 
 ## 將專案移轉至 Azure SDK 2.6 及、更新版本
 
-從 Azure SDK 2.5 移轉至 Azure SDK 2.6 或更新版本時，如果您在 .wadcfgx 檔案中指定診斷儲存體帳戶，它就會留在那裡。若要利用將不同儲存體帳戶用於不同儲存體組態的彈性，您必須手動將連接字串新增至您的專案。如果您正在將專案從 Azure SDK 2.4 或更舊版本移轉至 Azure SDK 2.6，則會保留診斷連接字串。不過，請注意上一節中指定之 Azure SDK 2.6 中連接字串處理方式的變更。
+從 Azure SDK 2.5 移轉至 Azure SDK 2.6 或更新版本時，如果您在 .wadcfgx 檔案中指定診斷儲存體帳戶，它就會留在那裡。若要針對不同儲存體組態充分利用不同儲存體帳戶的靈活性，您必須手動將連接字串加入專案。如果您將專案從 Azure SDK 2.4 或更早版本移轉至 Azure SDK 2.6，系統會保留診斷連接字串。不過，請注意上一節中指定之 Azure SDK 2.6 中連接字串處理方式的變更。
 
 ### Visual Studio 如何決定診斷儲存體帳戶
 
@@ -101,7 +101,7 @@
 
   - 如果您選擇「手動輸入的認證」選項，您會收到提示以輸入您想要使用之 Azure 帳戶的名稱和金鑰。
 
-1. 選擇 [設定] 按鈕以檢視 [診斷組態] 對話方塊。每個索引標籤 (除了 [一般] 和 [記錄檔目錄] 之外) 都表示您可以收集的診斷資料來源。預設索引標籤 [一般] 提供下列診斷資料收集選項：[只記錄錯誤]、[所有資訊] 和 [自訂計劃]。預設選項 [只記錄錯誤] 會佔用最少的儲存體，因為它不會傳輸警告或追蹤訊息。[所有資訊] 選項會傳輸大部分的資訊，因此它是對儲存體而言最昂貴的選項。
+1. 選擇 [設定] 按鈕以檢視 [診斷組態] 對話方塊。每個索引標籤 (除了 [一般] 和 [記錄檔目錄] 之外) 都代表您可以收集的診斷資料來源。預設索引標籤 [一般] 提供下列診斷資料收集選項：[只記錄錯誤]、[所有資訊] 和 [自訂計劃]。預設選項 [只記錄錯誤] 會佔用最少的儲存體，因為它不會傳輸警告或追蹤訊息。[所有資訊] 選項會傳輸大部分的資訊，因此它是對儲存體而言最昂貴的選項。
 
     ![啟用 Azure 診斷和組態](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC758144.png)
 
@@ -109,7 +109,7 @@
 
 1. [以 MB 為單位的磁碟配額] 方塊可指定您想要在儲存體帳戶中配置診斷資料的空間大小。您可以任意變更預設值。
 
-1. 在您想要收集之診斷資料的每個索引標籤上，選取其 [啟用 <log type> 的傳輸] 核取方塊。例如，如果您想要收集應用程式記錄檔，請選取 [應用程式記錄檔] 索引標籤上的 [啟用應用程式記錄檔的傳輸] 核取方塊 。此外，請指定每個診斷資料類型所需的其他資訊。請參閱本主題稍後的**設定診斷資料來源**一節，以取得每個索引標籤上的組態資訊。
+1. 在您想要收集之診斷資料的每個索引標籤上，選取其 [啟用 <記錄檔類型> 的傳輸] 核取方塊。例如，如果您想要收集應用程式記錄檔，請選取 [應用程式記錄檔] 索引標籤上的 [啟用應用程式記錄檔的傳輸] 核取方塊。此外，請指定每個診斷資料類型所需的其他資訊。請參閱本主題稍後的**設定診斷資料來源**一節，以取得每個索引標籤上的組態資訊。
 
 1. 啟用所有您想要的診斷資料收集之後，請選擇 [確定] 按鈕。
 
@@ -149,7 +149,7 @@
 
 1. [以 MB 為單位的磁碟配額] 方塊可指定您想要在儲存體帳戶中配置診斷資料的空間大小。您可以任意變更預設值。
 
-1. 在您想要收集之診斷資料的每個索引標籤上，選取其 [啟用 <log type> 的傳輸] 核取方塊。
+1. 在您想要收集之診斷資料的每個索引標籤上，選取其 [啟用 <記錄檔類型> 的傳輸] 核取方塊。
 
     例如，如果您想要收集應用程式記錄檔，請選取 [應用程式記錄檔] 索引標籤上的 [啟用應用程式記錄檔的傳輸] 核取方塊。此外，請指定每個診斷資料類型所需的其他資訊。請參閱本主題稍後的**設定診斷資料來源**一節，以取得每個索引標籤上的組態資訊。
 
@@ -177,7 +177,7 @@
 
   ![事件記錄檔](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796664.png)
 
-如果您正在使用 Azure SDK 2.6 或更新版本並想要指定自訂資料來源，請在 [<Data source name>] 文字方塊中將其輸入，然後選擇旁邊的 [新增] 按鈕。資料來源會新增至 diagnostics.cfcfg 檔案。
+如果您正在使用 Azure SDK 2.6 或更新版本並想要指定自訂資料來源，請在 [<資料來源名稱>] 文字方塊中將其輸入，然後選擇旁邊的 [新增] 按鈕。資料來源會新增至 diagnostics.cfcfg 檔案。
 
 如果您正在使用 Azure SDK 2.5 且想要指定自訂資料來源，您可以將它新增至 diagnostics.wadcfgx 檔案的 `WindowsEventLog` 區段，如下列範例所示。
 
@@ -215,13 +215,13 @@
 
 ### ETW 記錄檔
 
-如果您使用 [Windows 事件追蹤](https://msdn.microsoft.com/library/windows/desktop/bb968803(v=vs.85).aspx) (ETW) 而且想要擷取 ETW 記錄檔，請選取 [啟用 ETW 記錄檔的傳輸] 核取方塊。您可以在記錄檔傳輸至儲存體帳戶時，藉由變更**傳輸期間 (分鐘)** 值來增加或減少分鐘數。
+如果您使用 [Windows 事件追蹤] (https://msdn.microsoft.com/library/windows/desktop/bb968803(v=vs.85).aspx) (ETW) 而且想要擷取 ETW 記錄檔，請選取 [啟用 ETW 記錄檔的傳輸] 核取方塊。您可以在記錄檔傳輸至儲存體帳戶時，藉由變更**傳輸期間 (分鐘)** 值來增加或減少分鐘數。
 
 從事件來源和您指定的事件資訊清單擷取事件。若要指定事件來源，請在 [事件來源] 區段中輸入名稱，然後選擇 [新增事件來源] 按鈕。同樣地，您可以指定 [事件資訊清單] 區段中的事件資訊清單，然後選擇 [新增事件資訊清單] 按鈕。
 
   ![ETW 記錄檔](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC766025.png)
 
-  ASP.NET 中透過 [System.Diagnostics.aspx](https://msdn.microsoft.com/library/system.diagnostics(v=vs.110)) 命名空間中的類別支援 ETW 架構。Microsoft.WindowsAzure.Diagnostics 命名空間 (繼承自標準 [System.Diagnostics.aspx](https://msdn.microsoft.com/library/system.diagnostics(v=vs.110)) 類別並將其延伸 會啟用 [System.Diagnostics.aspx](https://msdn.microsoft.com/library/system.diagnostics(v=vs.110)) 做為 Azure 環境中的記錄架構。如需詳細資訊，請參閱[在 Microsoft Azure 中控制記錄和追蹤](https://msdn.microsoft.com/magazine/ff714589.aspx)和[在 Azure 雲端服務和虛擬機器中啟用診斷](./cloud-services/cloud-services-dotnet-diagnostics.md)。
+  ASP.NET 中透過 [System.Diagnostics.aspx] (https://msdn.microsoft.com/library/system.diagnostics(v=vs.110) 命名空間中的類別支援 ETW 架構。Microsoft.WindowsAzure.Diagnostics 命名空間 (繼承自標準 [System.Diagnostics.aspx] (https://msdn.microsoft.com/library/system.diagnostics(v=vs.110) 類別並將其延伸) 會啟用 [System.Diagnostics.aspx] (https://msdn.microsoft.com/library/system.diagnostics(v=vs.110) 做為 Azure 環境中的記錄架構。如需詳細資訊，請參閱[在 Microsoft Azure 中控制記錄和追蹤](https://msdn.microsoft.com/magazine/ff714589.aspx)和[在 Azure 雲端服務和虛擬機器中啟用診斷](./cloud-services/cloud-services-dotnet-diagnostics.md)。
 
 ### 損毀傾印
 
@@ -357,4 +357,4 @@ RoleEntryPoint 的方法是在 WAIISHost.exe 的內容中呼叫，而不是 IIS�
 
 若要深入了解 Azure 中的診斷記錄，請參閱[在 Azure 雲端服務和虛擬機器中啟用診斷](./cloud-services/cloud-services-dotnet-diagnostics.md)和[在 Azure App Service 中啟用 web 應用程式的診斷記錄](./app-service-web/web-sites-enable-diagnostic-log.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0803_2016-->

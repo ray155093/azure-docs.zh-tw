@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/07/2016"
+	ms.date="07/21/2016"
 	ms.author="femila"/>
 
 # 設定和資料漫遊常見問題集
@@ -39,7 +39,7 @@
 
 主要帳戶是定義為用來登入 Windows 的帳戶 – 可以是 Microsoft 帳戶、Azure Active Directory (Azure AD) 帳戶、內部部署 Active Directory 帳戶或本機帳戶。除了主要帳戶，Windows 10 使用者可以將一或多個次要雲端帳戶新增至他們的裝置。這些次要帳戶通常是 Microsoft 帳戶、Azure Active Directory 帳戶或其他例如 Gmail 或 Facebook 的帳戶。這些次要帳戶提供其他服務的存取權，例如單一登入和 Windows 市集，但是它們無法進行設定同步處理。
 
-在 Windows 10 中，只有裝置的主要帳戶可用來進行設定同步處理 (請參閱[我該如何從 Windows 8 中的 Microsoft 帳戶設定同步處理升級至 Windows 10 中的 Azure AD 設定同步處理？](active-directory-windows-enterprise-state-roaming-faqs.md#How-do-I-upgrade-from-Microsoft-account-settings-sync-in-Windows-8-to-Azure-AD-settings-sync-in Windows-10?))。
+在 Windows 10 中，只有裝置的主要帳戶可用來進行設定同步處理 (請參閱＜我該如何從 Windows 8 中的 Microsoft 帳戶設定同步處理升級至 Windows 10 中的 Azure AD 設定同步處理？＞(active-directory-windows-enterprise-state-roaming-faqs.md#How-do-I-upgrade-from-Microsoft-account-settings-sync-in-Windows-8-to-Azure-AD-settings-sync-in Windows-10?))。
 
 裝置上不同使用者帳戶之間的資料永遠不會混合。有兩個設定可用來同步處理設定：
 - Windows 設定一律會使用主要帳戶進行漫遊。
@@ -67,19 +67,20 @@
 
 1. 首先，針對每個 Azure AD 租用戶您需要 GUID。開啟 Azure 傳統入口網站，然後選取 Azure AD 租用戶。租用戶的 GUID 位於瀏覽器網址列的 URL 中，如下所示：`https://manage.windowsazure.com/YourAccount.onmicrosoft.com#Workspaces/ActiveDirectoryExtension/Directory/Tenant GUID/directoryQuickStart`
 2. 具有 GUID 之後，您必須新增下列登錄機碼：**HKEY\_LOCAL\_MACHINE\\SOFTWARE\\Microsoft\\Windows\\SettingSync\\WinMSIPC<租用戶識別碼 GUID>**。從 <**租用戶識別碼 GUID**> 機碼，建立名為 **AllowedRMSServerUrl** 的新多字串值 (REG-MULTI-SZ)，並針對其資料，指定裝置存取之其他 Azure 租用戶的授權發佈點 URL。
-3. 您可以藉由執行 **Get-AadrmConfiguration** Cmdlet 來尋找授權發佈點 URL。如果 **LicensingIntranetDistributionPointUrl** 與 **LicenseingExtranetDistributionPointUrl** 的值不相同，則指定兩個值。如果值相同，則只要指定值一次。
+3. 您可以藉由執行 **Get-AadrmConfiguration** Cmdlet 來尋找授權發佈點 URL。如果 **LicensingIntranetDistributionPointUrl** 與 **LicenseingExtranetDistributionPointUrl** 的值不同，則同時指定這兩個值。如果值相同，則只要指定值一次。
 
 
 ## 適用於現有 Windows 傳統型應用程式的漫遊設定選項有哪些？
 漫遊僅適用於通用 Windows 應用程式。有兩個選項可用來在現有 Windows 傳統型應用程式上啟用漫遊：
 
 - 使用[桌面橋接器](http://aka.ms/desktopbridge)，您可以輕鬆地將現有的 Windows 傳統型應用程式帶入通用 Windows 平台。從這裡開始，僅需最少的程式碼變更就能夠充分利用 Azure AD appdata 漫遊。桌面橋接器會為應用程式提供應用程式身分識別，需要有此身分識別才能為現有的傳統型應用程式啟用應用程式資料漫遊。
-- 使用 [User Experience Virtualization (UE-V)](https://technet.microsoft.com/library/dn458947.aspx)，您可以針對現有的 Windows 傳統型應用程式建立自訂設定範本，並只針對 Win32 應用程式啟用漫遊。這個選項不需要應用程式開發人員變更應用程式的程式碼。UE-V 僅限於已購買 Microsoft 桌面最佳化套件之客戶的內部部署 Active Directory 漫遊。 
+- 使用 [User Experience Virtualization (UE-V)](https://technet.microsoft.com/library/dn458947.aspx)，您可以針對現有的 Windows 傳統型應用程式建立自訂設定範本，並只針對 Win32 應用程式啟用漫遊。這個選項不需要應用程式開發人員變更應用程式的程式碼。UE-V 僅限於已購買 Microsoft 桌面最佳化套件之客戶的內部部署 Active Directory 漫遊。
 
 管理員可以將 UEV 設定為只能漫遊 Windows 傳統型應用程式資料，方法是透過 [UE-V 群組原則](https://technet.microsoft.com/itpro/mdop/uev-v2/configuring-ue-v-2x-with-group-policy-objects-both-uevv2)停用 Windows 作業系統設定和通用應用程式資料的漫遊。
 
 - 停用「漫遊 Windows 設定」群組原則
 - 啟用「不要同步處理 Windows 應用程式」群組原則
+- 在應用程式區段停用「IE」漫遊
 
 在未來，Microsoft 可能會調查讓 UE-V 深度整合到 Windows 及透過 Azure AD 雲端擴充 UE-V 漫遊設定的方式。
 
@@ -96,15 +97,15 @@ Microsoft 致力於保護客戶資料。企業使用者的設定資料會在離�
 在 Windows 10 中，沒有 MDM 或群組原則設定可以停用個別應用程式的漫遊。租用戶系統管理員可以停用受管理的裝置上所有應用程式的 appdata 同步處理，但是在每個應用程式或應用程式內的層級不會有更細微的控制。
 
 ## 個別使用者如何啟用/停用漫遊？
-在 [設定] 應用程式中，移至 [帳戶] -> **[同步處理您的設定]**。您可以從這個頁面看見正在使用哪一個帳戶漫遊設定，您可以啟用或停用要漫遊得個別群組設定。
+在 [設定] 應用程式中，移至 [帳戶] -> [同步處理您的設定]。您可以從這個頁面看見正在使用哪一個帳戶漫遊設定，您可以啟用或停用要漫遊得個別群組設定。
 
 ##Microsoft 對於在 Windows 10 中立即啟用漫遊的建議是什麼？
 Microsoft 提供數個不同的設定漫遊解決方案可供使用，包括漫遊使用者設定檔、UE-V 和企業狀態漫遊。Microsoft 承諾將在未來的 Windows 版本中，致力於發展企業狀態漫遊。如果您的組織尚未就緒或不想要將資料移到雲端，Microsoft 建議使用 UE-V 做為主要的漫遊技術。如果您的組織需要針對現有的 Windows 傳統型應用程式支援漫遊，但是想要移往雲端，Microsoft 建議您同時使用企業狀態漫遊和 UE-V。UE-V 和企業狀態漫遊是非常類似的技術，不會互斥，現在它們彼此互補，確保您的組織提供使用者所需的漫遊服務。
 
 使用企業狀態漫遊和 UE-V 時，適用下列規則：
 
-- 企業狀態漫遊是裝置上主要的漫遊代理程式。UE-V 是用來補充「Win32 間距」。 
-- 您應該使用 UE-V 群組原則來停用 Windows 設定和現代 UWP 應用程式資料的 UE-V 漫遊，因為這些功能已經透過企業狀態漫遊涵蓋在內。 
+- 企業狀態漫遊是裝置上主要的漫遊代理程式。UE-V 是用來補充「Win32 間距」。
+- 您應該使用 UE-V 群組原則來停用 Windows 設定和現代 UWP 應用程式資料的 UE-V 漫遊，因為這些功能已經透過企業狀態漫遊涵蓋在內。
 
 ##企業狀態漫遊如何支援虛擬桌面基礎結構 (VDI)？
 只有 Windows 10 用戶端 SKU 支援企業狀態漫遊，伺服器 SKU 不支援。如果用戶端 VM 裝載於 Hypervisor 電腦上且使用者從遠端連接到虛擬機器，則使用者的資料將會漫遊。如果有多位使用者共用相同的作業系統且使用者從遠端連接到伺服器以取得完整的桌面體驗，漫遊就不一定會運作。未正式支援以後者工作階段為基礎的案例。
@@ -116,11 +117,12 @@ Microsoft 提供數個不同的設定漫遊解決方案可供使用，包括漫�
 ## 已知問題
 
 - 智慧卡或虛擬智慧卡登入 Windows 會導致設定同步處理停止運作。如果您嘗試使用智慧卡或虛擬智慧卡登入您的裝置，同步處理將會停止運作。Windows 10 未來的更新可能會解決此問題。
-- 同步處理 IE 我的最愛不適用於較舊版本的 Windows 10 組建。您將需要適用於 Windows 10 的五月份累積更新 (組建 10.0.10586.318 或更高版本)，才能使 IE 我的最愛進行同步處理。
-- 在某些情況下，如果設定了 Multi-Factor Authentication (MFA)，企業狀態漫遊就無法同步處理資料。 
-    - 如果使用者已設定為在 Azure AD 入口網站中需要 [Azure MFA](multi-factor-authentication.md)，使用者可能無法在使用密碼登入 Windows 10 裝置時同步處理設定。這種類型的 MFA 設定是用來保護 Azure 管理員帳戶。管理員使用者仍然能夠藉由使用 [Microsoft Passport for Work](active-directory-azureadjoin-passport.md) PIN 來登入他們的 Windows 10 裝置，或者在存取其他 Azure 服務 (例如 Office 365) 時完成 Multi-Factor Authentication 來同步處理。 
+- 同步處理 IE 我的最愛不適用於較舊版本的 Windows 10 組建。您將需要適用於 Windows 10 的 7 月份累積更新 (組建 10586.494 或更高版本)，才能使 IE 我的最愛進行同步處理。
+- 在某些情況下，如果設定了 Multi-Factor Authentication (MFA)，企業狀態漫遊就無法同步處理資料。
+    - 如果使用者已設定為在 Azure AD 入口網站中需要 [Azure MFA](multi-factor-authentication.md)，使用者可能無法在使用密碼登入 Windows 10 裝置時同步處理設定。這種類型的 MFA 設定是用來保護 Azure 管理員帳戶。管理員使用者仍然能夠藉由使用 [Microsoft Passport for Work](active-directory-azureadjoin-passport.md) PIN 來登入他們的 Windows 10 裝置，或者在存取其他 Azure 服務 (例如 Office 365) 時完成 Multi-Factor Authentication 來同步處理。
     - 如果管理員設定 AD FS MFA 條件式存取原則，而且裝置上的存取權杖到期，則同步處理可能會失敗。請確定您會先登出，然後再使用 [Microsoft Passport for Work](active-directory-azureadjoin-passport.md) PIN 登入，或者在存取其他 Azure 服務 (例如 Office 365) 時完成 Multi-Factor Authentication。
-
+   
+- 如果電腦透過自動註冊到 Azure AD 裝置來加入網域，而電腦已離站很久，它可能會遇到同步處理失敗，而且網域驗證無法完成。若要解決此問題，請將電腦連線到公司網路，以讓同步處理繼續執行。
 
 
 ## 相關主題
@@ -129,4 +131,4 @@ Microsoft 提供數個不同的設定漫遊解決方案可供使用，包括漫�
 - [設定同步處理的群組原則和 MDM 設定](active-directory-windows-enterprise-state-roaming-group-policy-settings.md)
 - [Windows 10 漫遊設定參考](active-directory-windows-enterprise-state-roaming-windows-settings-reference.md)
 
-<!------HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0803_2016-->

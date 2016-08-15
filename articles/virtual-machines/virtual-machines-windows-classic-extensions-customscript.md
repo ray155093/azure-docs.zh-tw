@@ -19,12 +19,11 @@
 
 # Windows 虛擬機器的自訂指令碼擴充功能
 
-本文概要說明如何使用 Azure PowerShell Cmdlet，在 Windows VM 上使用自訂指令碼擴充功能。
+本文概要說明如何使用 Azure PowerShell Cmdlet 搭配「Azure 服務管理 API」，在 Windows VM 上使用「自訂指令碼」擴充功能。
 
 Microsoft 和受信任的協力廠商發行者建置的虛擬機器 (VM) 延伸模組，可延伸 VM 的功能。如需 VM 擴充功能的概觀，請參閱 [Azure VM 擴充功能與功能](virtual-machines-windows-extensions-features.md)。
 
-連結：
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](virtual-machines-windows-classic-extensions-customscript.md)。
+連結： [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](virtual-machines-windows-classic-extensions-customscript.md)。
 
 
 ## 自訂指令碼擴充功能概觀
@@ -87,9 +86,9 @@ Windows 的自訂指令碼擴充功能可讓您在遠端 VM 上執行 PowerShell
 
 ### 搭配範本使用自訂指令碼擴充功能
 
-若要了解搭配 Azure 資源管理員範本使用自訂指令碼延伸模組的相關資訊，請參閱[這裡](virtual-machines-windows-classic-extensions-customscript.md)的文件。
+若要了解搭配 Azure 資源管理員範本使用自訂指令碼延伸模組的相關資訊，請參閱[這裡](virtual-machines-windows-extensions-customscript.md)的文件。
 
 <!--Image references-->
 [5]: ./media/virtual-machines-windows-classic-extensions-customscript/addcse.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0803_2016-->

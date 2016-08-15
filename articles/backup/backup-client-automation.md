@@ -3,7 +3,7 @@
 	description="了解如何使用 PowerShell 部署和管理 Azure 備份"
 	services="backup"
 	documentationCenter=""
-	authors="nkolli1"
+	authors="saurabhsensharma"
 	manager="shivamg"
 	editor=""/>
 
@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="05/23/2016"
-	ms.author="markgal;jimpark;nkolli"/>
+	ms.author="markgal;jimpark;nkolli;trinadhk"/>
 
 
 # 使用 PowerShell 部署和管理 Windows Server/Windows 用戶端的 Azure 備份
@@ -115,16 +115,7 @@ PS C:\> MARSAgentInstaller.exe /?
 
 | 選項 | 詳細資料 | 預設值 |
 | ---- | ----- | ----- |
-| /q | 無訊息安裝 | - | 
-| /p:"location" | Azure 備份代理程式的安裝資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent | 
-| /s:"location" | Azure 備份代理程式的快取資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent\\Scratch | 
-| /m | 選擇加入 Microsoft Update | - | 
-| /nu | 安裝完成後不要檢查更新 | - | 
-| /d | 解除安裝 Microsoft Azure 復原服務代理程式 | - | 
-| /ph | Proxy 主機位址 | - | 
-| /po | Proxy 主機連接埠號碼 | - | 
-| /pu | Proxy 主機使用者名稱 | - | 
-| /pw | Proxy 密碼 | - |
+| /q | 無訊息安裝 | - | | /p:"location" | Azure 備份代理程式的安裝資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent | | /s:"location" | Azure 備份代理程式的快取資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent\\Scratch | | /m | 選擇加入 Microsoft Update | - | | /nu | 安裝完成後不要檢查更新 | - | | /d | 解除安裝 Microsoft Azure 復原服務代理程式 | - | | /ph | Proxy 主機位址 | - | | /po | Proxy 主機連接埠號碼 | - | | /pu | Proxy 主機使用者名稱 | - | | /pw | Proxy 密碼 | - |
 
 
 ## 向復原服務保存庫註冊 Windows Server 或 Windows 用戶端電腦
@@ -627,4 +618,4 @@ PS C:\> Invoke-Command -Session $s -Script { param($d, $a) Start-Process -FilePa
 - [Azure 備份的簡介](backup-introduction-to-azure-backup.md)
 - [備份 Windows 伺服器](backup-configure-vault.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0803_2016-->

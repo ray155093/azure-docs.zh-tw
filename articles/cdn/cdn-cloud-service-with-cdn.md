@@ -1,5 +1,5 @@
 <properties
-	pageTitle="整合雲端服務與 Azure CDN"
+	pageTitle="整合雲端服務與 Azure CDN | Microsoft Azure"
 	description="指導如何部署雲端服務來提供整合式 Azure CDN 端點內容的教學課程"
 	services="cdn, cloud-services"
 	documentationCenter=".net"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="05/11/2016"
+	ms.date="07/28/2016"
 	ms.author="casoper"/>
 
 
@@ -140,7 +140,7 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 
 ## 測試 CDN 端點
 
-若發佈狀態為 [**已完成**]，請開啟瀏覽器視窗並瀏覽至 **http://<cdnName>*.azureedge.net/Content/bootstrap.css**。在我的設定中，此 URL 為：
+若發佈狀態為 [已完成]，請開啟瀏覽器視窗並瀏覽至 *http://<cdnName>.azureedge.net/Content/bootstrap.css**。在我的設定中，此 URL 為：
 
 	http://camservice.azureedge.net/Content/bootstrap.css
 
@@ -148,25 +148,25 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 
 	http://camcdnservice.cloudapp.net/Content/bootstrap.css
 
-瀏覽至 **http://*&lt;cdnName>*.azureedge.net/Content/bootstrap.css** 時，取決於您的瀏覽器而定，系統會提示您下載或開啟來自已發佈 Web 應用程式的 bootstrap.css。
+瀏覽至 *http://*&lt;cdnName>.azureedge.net/Content/bootstrap.css** 時，取決於您的瀏覽器而定，系統會提示您下載或開啟來自已發佈 Web 應用程式的 bootstrap.css。
 
 ![](media/cdn-cloud-service-with-cdn/cdn-1-browser-access.PNG)
 
-同樣地，您可以直接從 CDN 端點，以 **http://*&lt;serviceName>*.cloudapp.net/** 存取任何可公開存取的 URL。例如：
+同樣地，您可以直接從 CDN 端點，以 *http://*&lt;serviceName>.cloudapp.net/** 存取任何可公開存取的 URL。例如：
 
 -	/Script 路徑中的 .js 檔案
 -	/Content 路徑中的任何內容檔案
 -	任何控制器/動作
 -	任何含有查詢字串的 URL (若 CDN 端點已啟用查詢字串的話)
 
-實際上，上述組態可讓您從 **http://*&lt;cdnName>*.azureedge.net/** 託管整個雲端服務。若瀏覽至 **http://camservice.azureedge.net/**，則會從 Home/Index 取得動作結果。
+實際上，上述組態可讓您從 *http://*&lt;cdnName>.azureedge.net/** 託管整個雲端服務。若瀏覽至 **http://camservice.azureedge.net/**，則會從 Home/Index 取得動作結果。
 
 ![](media/cdn-cloud-service-with-cdn/cdn-2-home-page.PNG)
 
 然而，這不表示透過 Azure CDN 來提供整個雲端服務一定是好辦法 (或通常是好辦法)。有幾點需要注意：
 
 -	此作法需要公開整個網站，因為目前 Azure CDN 無法提供任何私人內容。
--	除非系統能夠將客戶重新導向至原始 URL **http://*&lt;serviceName>*.cloudapp.net/**，否則假如 CDN 端點離線 (無論是因為排程的維護或使用者錯誤，或者任何其他的原因)，整個雲端服務也會離線。
+-	除非系統能夠將客戶重新導向至原始 URL *http://*&lt;serviceName>.cloudapp.net/**，否則假如 CDN 端點離線 (無論是因為排程的維護或使用者錯誤，或者任何其他的原因)，整個雲端服務也會離線。
 -	就算使用自訂的 Cache-Control 設定 (請參閱[在雲端服務中設定靜態檔案的快取選項](#caching))，CDN 端點也無法改善高度動態內容的效能。如果您嘗試從 CDN 端點載入首頁，如上所示，請注意，第一次載入預設首頁 (非常簡單的頁面) 至少需要 5 秒。設想，如果此頁面包含必須每分鐘更新的動態內容，客戶體驗有何影響。從 CDN 端點提供動態內容需要有較短的快取到期時間，這也說明 CDN 端點經常會發生快取遺漏。這會降低雲端服務的效能，也會折損 CDN 的效用。
 
 替代方法是在雲端服務中依個別情況決定從 Azure CDN 提供什麼內容。總之，您已了解如何從 CDN 端點存取個別的內容檔案。我將在[透過 Azure CDN 從控制器動作提供內容](#controller)中說明如何透過 CDN 端點提供特定的控制器動作。
@@ -213,7 +213,7 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 
 請依照上述步驟來設定此控制器動作：
 
-1. 在 *\\Controllers* 資料夾中，建立一個新的 .cs 檔案稱為 *MemeGeneratorController.cs*，並將內容改成下列程式碼。請務必以您的 CDN 名稱取代醒目提示的部分。  
+1. 在 *\\Controllers* 資料夾中，建立一個新的 .cs 檔案稱為 *MemeGeneratorController.cs*，並將內容改成下列程式碼。請務必以您的 CDN 名稱取代醒目提示的部分。
 
 		using System;
 		using System.Collections.Generic;
@@ -331,7 +331,7 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 		    <input class="btn" type="submit" value="Generate meme" />
 		</form>
 
-5. 重新發佈雲端服務，然後使用瀏覽器瀏覽至 **http://*&lt;serviceName>*.cloudapp.net/MemeGenerator/Index**。
+5. 重新發佈雲端服務，然後使用瀏覽器瀏覽至 *http://*&lt;serviceName>.cloudapp.net/MemeGenerator/Index**。
 
 當您將表單值提交至 `/MemeGenerator/Index` 時，`Index_Post` 動作方法會傳回 `Show` 動作方法的連結及個別的輸入識別碼。按一下連結會執行下列程式碼：
 
@@ -407,7 +407,7 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 
 請遵循下列步驟來整合 ASP.NET 統合和縮製與 CDN 端點。
 
-1. 回到 *App\_Start\\BundleConfig.cs*，修改 `bundles.Add()` 方法來使用不同的 [Bundle 建構函數](http://msdn.microsoft.com/library/jj646464.aspx) (此函數會指定 CDN 位址)。若要這樣做，請將 `RegisterBundles` 方法定義改成下列程式碼：  
+1. 回到 *App\_Start\\BundleConfig.cs*，修改 `bundles.Add()` 方法來使用不同的 [Bundle 建構函數](http://msdn.microsoft.com/library/jj646464.aspx) (此函數會指定 CDN 位址)。若要這樣做，請將 `RegisterBundles` 方法定義改成下列程式碼：
 
 		public static void RegisterBundles(BundleCollection bundles)
 		{
@@ -450,7 +450,7 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 
 	-	此 CDN URL 的來源是 `http://<yourCloudService>.cloudapp.net/bundles/jquery?v=<W.X.Y.Z>`，事實上就是雲端服務中指令碼套件組合的虛擬目錄。
 	-	由於是使用 CDN 建構函式，套件組合的 CDN 指令碼標籤在轉譯的 URL 中已不再包含自動產生的版本字串。指令碼套件組合每次修改時，您都必須手動產生唯一的版本字串，以強制在 Azure CDN 上發生快取遺漏。同時，在部署套件組合之後，此唯一的版本字串在部署的整個存在期間內必須保持不變，讓 Azure CDN 的快取命中率達到最高。
-	-	查詢字串 v=<W.X.Y.Z> 會從 Web 角色專案的 *Properties\\AssemblyInfo.cs* 中提取。您的部署工作流程中可以包含每次發佈至 Azure 時就遞增組件版本。或者，您可以直接修改專案中的 *Properties\\AssemblyInfo.cs*，使用萬用字元 '*' 表示每次建置時就自動遞增版本字串。例如：
+	-	查詢字串 v=<W.X.Y.Z> 會從 Web 角色專案的「Properties\\AssemblyInfo.cs」中提取。您的部署工作流程中可以包含每次發佈至 Azure 時就遞增組件版本。或者，您可以直接修改專案中的 *Properties\\AssemblyInfo.cs*，使用萬用字元 '*' 表示每次建置時就自動遞增版本字串。例如：
 
 			[assembly: AssemblyVersion("1.0.0.*")]
 
@@ -501,7 +501,7 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 
 [Bundle](http://msdn.microsoft.com/library/system.web.optimization.bundle.aspx) 類別包含一個稱為 [CdnFallbackExpression](http://msdn.microsoft.com/library/system.web.optimization.bundle.cdnfallbackexpression.aspx) 的屬性，可讓您設定 CDN 失敗時的後援機制。若要使用此屬性，請遵循下列步驟：
 
-1. 在 Web 角色專案中，開啟 *App\_Start\\BundleConfig.cs* (您已在該檔案中，將 CDN URL 加入每個 [Bundle 建構函式](http://msdn.microsoft.com/library/jj646464.aspx))，透過下列醒目提示的變更將後援機制加入預設套件組合：  
+1. 在 Web 角色專案中，開啟 *App\_Start\\BundleConfig.cs* (您已在該檔案中，將 CDN URL 加入每個 [Bundle 建構函式](http://msdn.microsoft.com/library/jj646464.aspx))，透過下列醒目提示的變更將後援機制加入預設套件組合：
 
 		public static void RegisterBundles(BundleCollection bundles)
 		{
@@ -619,4 +619,4 @@ CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 C
 [cdn-add-endpoint]: ./media/cdn-cloud-service-with-cdn/cdn-add-endpoint.png
 [cdn-endpoint-success]: ./media/cdn-cloud-service-with-cdn/cdn-endpoint-success.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

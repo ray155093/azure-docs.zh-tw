@@ -4,7 +4,7 @@
 	authors="stepsic-microsoft-com" 
 	manager="erikre" 
 	editor="" 
-	services="app-service\logic" 
+	services="logic-apps" 
 	documentationCenter=""/>
 
 <tags
@@ -112,4 +112,4 @@ Logic Apps 的某些功能只能在程式碼檢視中使用。例如，參數就
 <!-- Shared links -->
 [Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

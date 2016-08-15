@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/17/2016"
+   ms.date="08/02/2016"
    ms.author="yurid"/>
 
 # Microsoft 安全性回應中心
@@ -40,4 +40,4 @@ Microsoft 獎勵計畫會就嶄新的入侵技術、可以減輕嶄新入侵的�
 
 若要深入了解 MSRC，請造訪 [MSRC 首頁](https://technet.microsoft.com/library/dn440717.aspx)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0803_2016-->

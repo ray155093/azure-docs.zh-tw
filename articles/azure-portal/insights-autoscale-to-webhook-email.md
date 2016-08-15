@@ -4,11 +4,11 @@
 	authors="kamathashwin"
 	manager=""
 	editor=""
-	services="azure-portal"
-	documentationCenter="na"/>
+	services="monitoring"
+	documentationCenter="monitoring"/>
 
 <tags
-	ms.service="azure-portal"
+	ms.service="monitoring"
 	ms.workload="na"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
@@ -127,4 +127,4 @@ Webhook 可讓您將 Azure 警示通知路由到其他系統進行後處理或�
 |newCapacity|	是 |自動調整要將資源調整為此數目的新執行個體計數|
 |屬性|	否|	選用。<索引鍵, 值> 組 (例如，字典 <字串, 字串>)。properties 欄位是選擇性的。在自訂 UI 或邏輯應用程式的工作流程中，您可以輸入可使用承載傳遞的索引鍵和值。另一個將自訂屬性傳回給連出 Webhook 呼叫的替代做法，是使用 Webhook URI 本身 (做為查詢參數)|
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

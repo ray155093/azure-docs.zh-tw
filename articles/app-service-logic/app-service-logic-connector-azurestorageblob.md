@@ -1,7 +1,7 @@
 <properties 
    pageTitle="在 Logic Apps 中使用 Azure 儲存體 Blob 連接器 | Microsoft Azure App Service" 
    description="如何建立並設定 Azure 儲存體 Blob 連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它" 
-   services="app-service\logic" 
+   services="logic-apps" 
    documentationCenter=".net,nodejs,java" 
    authors="msftman" 
    manager="erikre" 
@@ -25,4 +25,4 @@
 - [深入了解這個新連接器](../connectors/connectors-create-api-azureblobstorage.md)
 - 請參閱在新的邏輯應用程式結構描述版本 2015-08-01 預覽上執行之所有連接器的[完整清單](../connectors/apis-list.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

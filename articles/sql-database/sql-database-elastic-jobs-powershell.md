@@ -434,7 +434,7 @@
 * 工作逾時：彈性資料庫工作取消工作之前的總時間。
 * 初始重試間隔：第一次重試之前等候的間隔。
 * 最大重試間隔：要使用的重試間隔端點。
-* 重試間隔輪詢係數：用來計算重試之間下一個間隔的係數。使用下列公式：(初始重試間隔) * Math.pow ((間隔輪詢係數), (重試次數) -2)。 
+* 重試間隔輪詢係數：用來計算重試之間下一個間隔的係數。使用下列公式：(初始重試間隔) * Math.pow ((間隔輪詢係數), (重試次數) -2)。
 * 嘗試上限：工作內執行的重試嘗試數目上限。
 
 預設的執行原則會使用下列值：
@@ -521,7 +521,7 @@
 
 若要將資料庫新增至特定的自訂集合，請使用 [**Add-AzureSqlJobChildTarget**](https://msdn.microsoft.comlibrary/mt346064.aspx) Cmdlet。
 
-	$serverName = "{Database Server Name}"
+	$databaseServerName = "{Database Server Name}"
 	$databaseName = "{Database Name}"
 	$customCollectionName = "{Custom Database Collection Name}"
 	Add-AzureSqlJobChildTarget -CustomCollectionName $customCollectionName -DatabaseName $databaseName -ServerName $databaseServerName 
@@ -680,4 +680,4 @@
 [2]: ./media/sql-database-elastic-jobs-powershell/portal.png
 <!--anchors-->
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0803_2016-->

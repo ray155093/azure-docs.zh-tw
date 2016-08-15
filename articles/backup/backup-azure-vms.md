@@ -21,14 +21,14 @@
 # 備份 Azure 虛擬機器
 
 > [AZURE.SELECTOR]
-- [將 ARM VM 備份至 Azure](backup-azure-arm-vms.md)
-- [備份 Azure 虛擬機器](backup-azure-vms.md)
+- [將 VM 備份到復原服務保存庫](backup-azure-arm-vms.md)
+- [將 VM 備份到備份保存庫](backup-azure-vms.md)
 
-本文提供如何備份 Azure 虛擬機器 (VM) 的程序。
-
-首先，您必須注意幾件事，才能備份 Azure 虛擬機器。如果您尚未這樣做，請完成[必要條件](backup-azure-vms-prepare.md)，讓您的環境準備好進行備份 VM 的工作。
+本文提供將傳統部署的 Azure 虛擬機器 (VM) 備份到備份保存庫的程序。您必須先處理幾件工作，才能備份 Azure 虛擬機器。如果您尚未這樣做，請完成[必要條件](backup-azure-vms-prepare.md)，讓您的環境準備好進行備份 VM 的工作。
 
 如需詳細資訊，請參閱[在 Azure 中規劃 VM 備份基礎結構](backup-azure-vms-introduction.md)和 [Azure 虛擬機器](https://azure.microsoft.com/documentation/services/virtual-machines/)的文件。
+
+>[AZURE.NOTE] Azure 有兩種用來建立和使用資源的部署模型：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。備份保存庫只能保護傳統部署的 VM。您無法使用備份保存庫保護 Resource Manager 部署的 VM。如需使用復原服務保存庫的詳細資訊，請參閱[將 VM 備份到復原服務保存庫](backup-azure-arm-vms.md)。
 
 備份 Azure 虛擬機器需要三個主要步驟：
 
@@ -39,11 +39,9 @@
 ## 步驟 1 - 探索 Azure 虛擬機器
 若要在註冊前確保能夠識別任何已加入至訂用帳戶的新虛擬機器 (VM)，請執行探索程序。此程序會在 Azure 中查詢訂用帳戶中的虛擬機器清單，以及其他資訊，例如雲端服務名稱、區域等。
 
-1. 登入[傳統入口網站](http://manage.windowsazure.com/)。
+1. 登入[傳統入口網站](http://manage.windowsazure.com/)
 
-2. 在 Azure 傳統服務清單中，按一下 [復原服務] 以開啟備份和 Site Recovery 保存庫清單。
-
-	![開啟保存庫清單](./media/backup-azure-vms/choose-vault-list.png)
+2. 在 Azure 傳統服務清單中，按一下 [復原服務] 以開啟備份和 Site Recovery 保存庫清單。![開啟保存庫清單](./media/backup-azure-vms/choose-vault-list.png)
 
 3. 在備份保存庫清單中，選取要備份 VM 的保存庫。
 
@@ -61,8 +59,7 @@
 
     ![選取工作負載](./media/backup-azure-vms/discovery-select-workload.png)
 
-6. 按一下頁面底部的 [**探索**]。
-![探索按鈕](./media/backup-azure-vms/discover-button-only.png)
+6. 按一下頁面底部的 [**探索**]。![探索按鈕](./media/backup-azure-vms/discover-button-only.png)
 
     在列表顯示虛擬機器時，探索程序可能需花費幾分鐘的時間。畫面底部會有通知讓您知道程序正在執行中。
 
@@ -186,4 +183,4 @@
 - [管理和監視虛擬機器](backup-azure-manage-vms.md)
 - [還原虛擬機器](backup-azure-restore-vms.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->

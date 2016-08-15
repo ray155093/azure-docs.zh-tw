@@ -13,23 +13,23 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="12/06/2015"
+   ms.date="07/27/2016"
    ms.author="hascipio" />
 
 
 # 您需要的入口網站
 在您開始發行供應項目程序之前，讓我們簡介您所需的各種入口網站。以下是有關入口網站的簡短摘要，包括：開發人員中心、Azure 發佈入口網站和 Azure 入口網站 (依您將與之互動的順序顯示)。
 ## 開發人員中心
-[http://dev.windows.com](http://dev.windows.com/registration?accountprogram=azure)
+[http://dev.windows.com/registration?accountprogram=azure](http://dev.windows.com/registration?accountprogram=azure)
 ### 說明
 建立您的 Microsoft 開發人員中心帳戶是一次性的工作。當您嘗試建立開發人員中心帳戶之前，請確認公司確實未曾擁有開發人員中心帳戶。在這個程序期間，我們會收集銀行帳戶資訊、稅務資訊和公司地址資訊。
 
-> [AZURE.NOTE]如果您只要發佈免費的供應項目 (或自備授權)，即不需要稅捐和銀行資訊。
+> [AZURE.NOTE] 如果您只要發佈免費的供應項目 (或自備授權)，即不需要稅捐和銀行資訊。
 
 ### 使用的身分識別/帳戶
-理想的情況下，這會是通訊群組清單或安全性群組 (例如 azurepublishing@*partnercompany*.com)。此通訊群組清單或安全性群組**必須**已註冊為 Microsoft 帳戶。
+在理想情況下，這是通訊群組清單或安全性群組 (例如 azurepublishing@*partnercompany*.com)。此通訊群組清單或安全性群組**必須**已註冊為 Microsoft 帳戶。
 
-> [AZURE.TIP]建議使用通訊群組清單或安全性群組，因為它會移除任何個別帳戶的相依性；雖然也會使用個別帳戶。
+> [AZURE.TIP] 建議使用通訊群組清單或安全性群組，因為它會移除任何個別帳戶的相依性；雖然也會使用個別帳戶。
 
 ## 發佈入口網站
 [https://publish.windowsazure.com](https://publish.windowsazure.com)
@@ -50,4 +50,4 @@
 ## 另請參閱
 - [使用者入門：如何將供應項目發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)
 
-<!-------HONumber=AcomDC_1210_2015--->
+<!---HONumber=AcomDC_0803_2016-->

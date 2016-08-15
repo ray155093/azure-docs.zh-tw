@@ -117,4 +117,8 @@
     3. 在構件儲存機制中輸入儲存的**個人存取權杖**。
     4. 選取 [**儲存**]。
 
-<!---HONumber=AcomDC_0608_2016-->
+## 相關部落格文章
+- [如何在 AzureDevTestLabs 疑難排解失敗的構件](http://www.visualstudiogeeks.com/blog/DevOps/How-to-troubleshoot-failing-artifacts-in-AzureDevTestLabs)
+- [在 Azure 研發測試實驗室使用 ARM 範本將 VM 加入至現有 AD 網域](http://www.visualstudiogeeks.com/blog/DevOps/Join-a-VM-to-existing-AD-domain-using-ARM-template-AzureDevTestLabs)
+
+<!---HONumber=AcomDC_0803_2016-->

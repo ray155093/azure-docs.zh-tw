@@ -3,8 +3,8 @@
 	description="了解如何使用 PowerShell 部署和管理 Data Protection Manager (DPM) 的 Azure 備份"
 	services="backup"
 	documentationCenter=""
-	authors="AnuragMehrotra"
-	manager=""
+	authors="NKolli1"
+	manager="shreeshd"
 	editor=""/>
 
 <tags
@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="05/23/2016"
-	ms.author="jimpark; aashishr; anuragm"/>
+	ms.author="jimpark; anuragm;trinadhk;markgal"/>
 
 
 # 使用 PowerShell 部署和管理 Data Protection Manager (DPM) 伺服器的 Azure 備份
@@ -138,16 +138,7 @@ PS C:\> MARSAgentInstaller.exe /?
 
 | 選項 | 詳細資料 | 預設值 |
 | ---- | ----- | ----- |
-| /q | 無訊息安裝 | - |
-| /p:"location" | Azure 備份代理程式的安裝資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent |
-| /s:"location" | Azure 備份代理程式的快取資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent\\Scratch |
-| /m | 選擇加入 Microsoft Update | - |
-| /nu | 安裝完成後不要檢查更新 | - |
-| /d | 解除安裝 Microsoft Azure 復原服務代理程式 | - |
-| /ph | Proxy 主機位址 | - |
-| /po | Proxy 主機連接埠號碼 | - |
-| /pu | Proxy 主機使用者名稱 | - |
-| /pw | Proxy 密碼 | - |
+| /q | 無訊息安裝 | - | | /p:"location" | Azure 備份代理程式的安裝資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent | | /s:"location" | Azure 備份代理程式的快取資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent\\Scratch | | /m | 選擇加入 Microsoft Update | - | | /nu | 安裝完成後不要檢查更新 | - | | /d | 解除安裝 Microsoft Azure 復原服務代理程式 | - | | /ph | Proxy 主機位址 | - | | /po | Proxy 主機連接埠號碼 | - | | /pu | Proxy 主機使用者名稱 | - | | /pw | Proxy 密碼 | - |
 
 ## 向復原服務保存庫註冊 DPM
 
@@ -262,7 +253,7 @@ PS C:\> $MPG = Get-ModifiableProtectionGroup $PG
 PS C:\> $server = Get-ProductionServer -DPMServerName "TestingServer" | where {($_.servername) –contains “productionserver01”
 ```
 
-現在使用 [Get-DPMDatasource](https://technet.microsoft.com/library/hh881605) Cmdlet 擷取 ```$server``` 上的資料來源清單。在此範例中，我們要篩選要設定備份的磁碟區 *D:*。然後此資料來源會使用 [Add-DPMChildDatasource](https://technet.microsoft.com/library/hh881732) Cmdlet 加入至保護群組。記得使用 *modifable* 保護群組物件 ```$MPG``` 以進行新增。
+現在使用 [Get-DPMDatasource](https://technet.microsoft.com/library/hh881605) Cmdlet 擷取 ```$server``` 上的資料來源清單。在此範例中，我們要篩選要設定備份的磁碟區 *D:*。然後此資料來源會使用 [Add-DPMChildDatasource](https://technet.microsoft.com/library/hh881732) Cmdlet 加入至保護群組。記得使用「可修改的」*保護群組物件 ```$MPG``` 來進行新增。
 
 ```
 PS C:\> $DS = Get-Datasource -ProductionServer $server -Inquire | where { $_.Name -contains “D:\” }
@@ -373,4 +364,4 @@ PS C:\> Restore-DPMRecoverableItem -RecoverableItem $RecoveryPoints[0] -Recovery
 
 - 如需 DPM 的 Azure 備份詳細資訊，請參閱 [DPM 備份簡介](backup-azure-dpm-introduction.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0803_2016-->

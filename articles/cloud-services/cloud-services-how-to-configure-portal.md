@@ -13,11 +13,8 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/22/2016"
+	ms.date="07/27/2016"
 	ms.author="adegeo"/>
-
-
-
 
 # 如何設定雲端服務
 
@@ -56,7 +53,7 @@
 - 磁碟寫入
 - 網路輸入
 - 網路輸出
-- CPU 百分比 
+- CPU 百分比
 
 ![](./media/cloud-services-how-to-configure-portal/cs-alert-item.png)
 
@@ -113,4 +110,4 @@
 * [管理您的雲端服務](cloud-services-how-to-manage-portal.md)。
 * 設定 [SSL 憑證](cloud-services-configure-ssl-certificate-portal.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0803_2016-->

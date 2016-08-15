@@ -3,7 +3,7 @@
    description="客戶詢問有關雲端資料庫與 Azure SQL Database、Microsoft 的關聯式資料庫管理系統 (RDBMS) 以及資料庫作為雲端中服務的一般問題的解答。" 
    services="sql-database" 
    documentationCenter="" 
-   authors="carlrabeler" 
+   authors="CarlRabeler" 
    manager="jhubbard" 
    editor=""/>
 
@@ -89,4 +89,4 @@ Azure SQL Web 和 Business 資料庫現已淘汰。基本、標準、高階和�
 ## 若要監視主要資料庫和地區資料庫之間的複寫延遲，有哪些工具可以使用？
 我們會透過 DMV 將主要資料庫和地區次要資料庫之間的即時複寫延遲公開。如需詳細資訊，請參閱 [sys.dm\_geo\_replication\_link\_status](https://msdn.microsoft.com/library/mt575504.aspx)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0803_2016-->

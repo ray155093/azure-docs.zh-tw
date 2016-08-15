@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/13/2016"
+   ms.date="07/21/2016"
    ms.author="masashin"/>
 
 # 背景作業指引
@@ -89,6 +89,7 @@
 - [**Azure Web Apps 及 WebJobs**](#azure-web-apps-and-webjobs)。您可以根據 Web 應用程式內容中各種不同類型的指令碼或可執行程式，來使用 Web 工作執行自訂工作。
 - [**Azure 雲端服務 Web 和背景工作角色**](#azure-cloud-services-web-and-worker-roles)。您可以在做為背景工作執行的角色內撰寫程式碼。
 - [**Azure 虛擬機器**](#azure-virtual-machines)。如果您使用 Windows 服務，或您想要使用 Windows 工作排程器，它一般會在專用的虛擬機器內裝載您的背景工作。
+- [**Azure Batch**](./batch/batch-technical-overview.md)。它是一項平台服務，可排程要在一組受管理的虛擬機器上執行的計算密集型工作，而且可以調整計算資源以符合工作的需求。
 
 下列各節更詳細描述其中每個選項，並包含可協助您選擇適當選項的注意事項。
 
@@ -254,7 +255,7 @@ Web 和背景工作角色在啟動、執行和停止時會經歷一組不同的�
 - **Run** 方法的典型實作包含用來啟動每一個背景工作的程式碼，以及定期檢查所有背景工作狀態的迴圈建構。它可以重新啟動任何失敗，或監視指出作業已完成的取消權杖。
 - 如果背景工作擲回未處理的例外狀況，應該回收該工作，同時允許角色中的任何其他背景工作繼續執行。不過，如果例外狀況由工作的外部物件損毀所造成，例如共用儲存體，則必須由 **RoleEntryPoint** 類別處理例外狀況，且應該取消所有工作，並允許 **Run** 方法結束。Azure 接著會重新啟動角色。
 - 使用 **OnStop** 方法來暫停或終止背景工作並清除資源。這可能需要停止長時間執行或多步驟的工作。請務必考慮如何完成這項動作來避免資料不一致。如果角色執行個體因任何使用者起始關機以外的原因停止的話，**OnStop** 方法中執行的程式碼必須在五分鐘內完成，否則它將會強制終止。請確定您的程式碼可以在這段期間內完成，或是可以容忍執行不完成。
-- 當 **RoleEntryPoint.OnStart** 方法傳回 **true** 時，Azure 負載平衡器會開始將流量導向至角色執行個體。因此，請考慮將所有初始化程式碼置於 **OnStart** 方法中，讓未成功初始化的角色執行個體不會收到任何流量。
+- 當 **RoleEntryPoint.OnStart** 方法傳回 **true** 時，Azure Load Balancer 會開始將流量導向至角色執行個體。因此，請考慮將所有初始化程式碼置於 **OnStart** 方法中，讓未成功初始化的角色執行個體不會收到任何流量。
 - 除了 **RoleEntryPoint** 類別的方法外，您還可以使用啟動工作。您應該使用啟動工作來初始化任何需要在 Azure 負載平衡器中變更的設定，因為這些工作會在角色接收任何要求前執行。如需詳細資訊，請參閱[Run startup tasks in Azure (在 Azure 中執行啟動工作)](./cloud-services/cloud-services-startup-tasks.md)。
 - 如果啟動工作中發生錯誤，它可能會強制角色持續地重新啟動。這可能會防止您執行虛擬 IP (VIP) 位址交換回到先前預備的版本，因為交換需要角色的獨佔存取權。這獨佔存取權無法在角色重新啟動時取得。若要解決這個問題：
 	-  在您的角色中，將下列程式碼新增至 **OnStart** 和 **Run** 方法的開頭：
@@ -270,7 +271,7 @@ Web 和背景工作角色在啟動、執行和停止時會經歷一組不同的�
 	}
 	```
 
-   - 針對角色，將 **Freeze** 設定的定義做為布林值新增至 ServiceDefinition.csdef 和 ServiceConfiguration.*.cscfg 檔案，並將它設定為 false*。如果角色進入重複的重新啟動模式，您可以將設定變更為true ** 以凍結角色執行，並允許它交換先前版本。
+   - 針對角色，將 **Freeze** 設定的定義做為布林值新增至 ServiceDefinition.csdef 和 ServiceConfiguration.*.cscfg 檔案，並將它設定為「false」*。如果角色進入重複的重新啟動模式，您可以將設定變更為「true」** 以凍結角色執行，並允許它交換先前版本。
 
 ## 恢復功能考量
 
@@ -320,4 +321,4 @@ Web 和背景工作角色在啟動、執行和停止時會經歷一組不同的�
 - [Azure 佇列和服務匯流排佇列 - 異同比較 (英文)](./service-bus/service-bus-azure-and-service-bus-queues-compared-contrasted.md)
 - [如何在雲端服務中啟用診斷](./cloud-services/cloud-services-dotnet-diagnostics.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

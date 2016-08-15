@@ -3,8 +3,8 @@
 	description="使用 Azure 資源群組部署專案在 Visual Studio Team Services 中進行連續整合"
 	services="visual-studio-online"
 	documentationCenter="na"
-	authors="tfitzmac"
-	manager="timlt"
+	authors="mlearned"
+	manager="erickson-doug"
 	editor="" />
 
  <tags
@@ -13,8 +13,8 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="na"
-	ms.date="04/19/2016"
-	ms.author="tomfitz" />
+	ms.date="08/01/2016"
+	ms.author="mlearned" />
 
 # 使用 Azure 資源群組部署專案在 Visual Studio Team Services 中進行連續整合
 
@@ -160,4 +160,4 @@
 [10]: ./media/vs-azure-tools-resource-groups-ci-in-vsts/walkthrough11b.png
 [11]: ./media/vs-azure-tools-resource-groups-ci-in-vsts/walkthrough12.png
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

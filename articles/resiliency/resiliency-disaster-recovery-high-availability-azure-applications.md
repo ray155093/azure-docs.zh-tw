@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/20/2016"
-   ms.author="hanuk;jroth;aglick"/>
+   ms.date="08/01/2016"
+   ms.author="aglick"/>
 
 #建置在 Microsoft Azure 上之應用程式的災害復原和高可用性
 
@@ -131,4 +131,4 @@ Azure 會偵測及處理許多失敗，但有許多類型的失敗需要應用�
 
 本文屬於著重在 Azure 應用程式的災害復原和高可用性的系列文章。這一系列中的下一篇文章是[建置在 Microsoft Azure 上之應用程式的高可用性](resiliency-high-availability-azure-applications.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -55,12 +55,12 @@
 
 建立應用程式的第一步是透過 [Azure 入口網站](https://portal.azure.com)建立 Web 應用程式。
 
-1. 登入 Azure 入口網站中，並按一下左下角的 [新增] 按鈕。 
+1. 登入 Azure 入口網站中，並按一下左下角的 [新增] 按鈕。
 2. 按一下 [Web + 行動]。
 3. 在搜尋方塊中，輸入 "python"。
 4. 在搜尋結果中，選取 [Flask]，然後按一下 [建立]。
 5. 設定新的 Flask 應用程式，例如為它建立新的 App Service 計劃和新的資源群組。然後按一下 [建立]。
-6. 遵循[在 Azure App Service 中使用 GIT 連續部署](web-sites-publish-source-control.md)的以下指示，為您新建立的 Web 應用程式設定 Git 發行功能。
+6. 依照 [本機 Git 部署至 Azure App Service](app-service-deploy-local-git.md) 的指示，為您新建立的 Web 應用程式設定 Git 發佈功能。
 
 
 ## 應用程式概觀
@@ -134,7 +134,7 @@ Python 虛擬環境。如果應用程式上不存在相容的虛擬環境，會�
 
 ### 複製儲存機制
 
-首先，使用 Azure 入口網站上提供的 URL 複製儲存機制。如需詳細資訊，請參閱[在 Azure App Service 中使用 GIT 連續部署](web-sites-publish-source-control.md)。
+首先，使用 Azure 入口網站上提供的 URL 複製儲存機制。如需詳細資訊，請參閱 [本機 Git 部署至 Azure App Service](app-service-deploy-local-git.md)。
 
 開啟包含在儲存機制根目錄中的方案檔 (.sln)。
 
@@ -201,7 +201,7 @@ Visual Studio 不會顯示部署進度。如果您想要檢閱輸出，請參閱
 
 ### 複製儲存機制
 
-首先，使用 Azure 入口網站上提供的 URL 複製儲存機制，並將 Azure 儲存機制加入為遠端。如需詳細資訊，請參閱[在 Azure App Service 中使用 GIT 連續部署](web-sites-publish-source-control.md)。
+首先，使用 Azure 入口網站上提供的 URL 複製儲存機制，並將 Azure 儲存機制加入為遠端。如需詳細資訊，請參閱 [本機 Git 部署至 Azure App Service](app-service-deploy-local-git.md)。
 
     git clone <repo-url>
     cd <repo-folder>
@@ -280,7 +280,7 @@ Visual Studio 不會顯示部署進度。如果您想要檢閱輸出，請參閱
 
 ### 複製儲存機制
 
-首先，使用 Azure 入口網站上提供的 URL 複製儲存機制，並將 Azure 儲存機制加入為遠端。如需詳細資訊，請參閱[在 Azure App Service 中使用 GIT 連續部署](web-sites-publish-source-control.md)。
+首先，使用 Azure 入口網站上提供的 URL 複製儲存機制，並將 Azure 儲存機制加入為遠端。如需詳細資訊，請參閱 [本機 Git 部署至 Azure App Service](app-service-deploy-local-git.md)。
 
     git clone <repo-url>
     cd <repo-folder>
@@ -402,4 +402,4 @@ Visual Studio 不會顯示部署進度。如果您想要檢閱輸出，請參閱
 [Flask 說明文件 (英文)]: http://flask.pocoo.org/
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0803_2016-->

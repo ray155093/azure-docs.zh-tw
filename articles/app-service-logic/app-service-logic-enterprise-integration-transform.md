@@ -1,7 +1,7 @@
 <properties 
 	pageTitle="企業整合套件的概觀 | Microsoft Azure App Service | Microsoft Azure" 
 	description="利用企業整合套件的功能，使用 Microsoft Azure App service 啟用商務程序和整合案例" 
-	services="app-service\logic" 
+	services="logic-apps" 
 	documentationCenter=".net,nodejs,java"
 	authors="msftman" 
 	manager="erikre" 
@@ -74,4 +74,4 @@
 - [深入了解對應](./app-service-logic-enterprise-integration-maps.md "了解企業整合對應")
  
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="07/27/2016"
+   ms.date="08/01/2016"
    ms.author="larryfr"/>
 
 #使用 HDInsight 上的 Apache Storm 和 Maven 開發基本字數統計應用程式的 Java 型拓撲
@@ -169,13 +169,13 @@ Java 型 Storm 拓撲包含三個您必須編寫 (或參考) 為相依性的元�
 
 ###建立 Spout
 
-若要減少設定外部資料來源的需求，下列 Spout 只會發出隨機的句子。它是隨附於 (<a href="https://github.com/apache/storm/blob/master/examples/storm-starter/" target="_blank">Storm-Starter 範例</a>) 的 Spout 修正版。
+若要減少設定外部資料來源的需求，下列 Spout 只會發出隨機的句子。它是隨附於 ([Storm-Starter 範例](https://github.com/apache/storm/blob/0.10.x-branch/examples/storm-starter/src/jvm/storm/starter)) 的 Spout 修正版。
 
 > [AZURE.NOTE] 如需從外部資料來源讀取之 Spout 的範例，請參閱下列其中一個範例：
 >
-> * <a href="https://github.com/apache/storm/blob/master/examples/storm-starter/src/jvm/storm/starter/spout/TwitterSampleSpout.java" target="_blank">TwitterSampleSpout</a>從 Twitter 讀取的 Spout 範例
+> * [TwitterSampleSPout](https://github.com/apache/storm/blob/0.10.x-branch/examples/storm-starter/src/jvm/storm/starter/spout/TwitterSampleSpout.java)：從 Twitter 讀取的 Spout 範例
 >
-> * <a href="https://github.com/apache/storm/tree/master/external/storm-kafka" target="_blank">Storm-Kafka</a>從 Kafka 讀取的 Spout
+> * [Storm-Kafka](https://github.com/apache/storm/tree/0.10.x-branch/external/storm-kafka)：從 Kafka 讀取的 Spout
 
 針對 Spout，在 **src\\main\\java\\com\\microsoft\\example** 目錄中建立名為 **RandomSentenceSpout.java** 的新檔案，並使用下列項目做為內容：
 
@@ -526,4 +526,4 @@ Trident 是 Storm 提供的高層級抽象。它支援具狀態的處理。Tride
 
 您可透過瀏覽 [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)找到更多範例 Storm 拓撲。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/21/2016"
+   ms.date="07/29/2016"
    ms.author="terrylan"/>
 
 # 在 Azure 資訊安全中心套用系統更新
@@ -60,4 +60,4 @@ Azure 資訊安全中心每日監視 Windows 和 Linux 虛擬機器 (VM) 是否�
 [5]: ./media/security-center-apply-system-updates/reboot-after-system-updates.png
 [6]: ./media/security-center-apply-system-updates/restart-pending.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

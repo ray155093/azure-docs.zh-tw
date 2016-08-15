@@ -1,11 +1,11 @@
 <properties
 	pageTitle="如何取消 Azure 訂用帳戶 | Microsoft Azure"
 	description="說明如何取消 Azure 訂用帳戶"
-	services="billing"
+	services=""
 	documentationCenter=""
 	authors="genlin"
 	manager="jarrettr"
-	editor="meerak"
+	editor=""
 	tags="billing"
 	/>
 
@@ -30,4 +30,4 @@
 4. 選取 [**是，取消我的訂用帳戶**]。</br> ![cancelbox](.\media\billing-how-to-cancel-azure-subscription\cancelbox.png)
 5. 按一下 ![checkbutton](.\media\billing-how-to-cancel-azure-subscription\checkbutton.png) 關閉對話視窗並返回您的訂用帳戶頁面。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0803_2016-->

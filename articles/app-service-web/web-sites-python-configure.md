@@ -44,7 +44,7 @@ Azure Marketplace 包含 Bottle、Django 和 Flask 架構的範本。如果您�
 
 ## Git 發行
 
-遵循[在 Azure App Service 中使用 GIT 連續部署](web-sites-publish-source-control.md)的以下指示，為您新建立的 Web 應用程式設定 Git 發行功能。本教學課程將使用 Git 來建立、管理並將您的 Python Web 應用程式發佈至 Azure App Service。
+依照 [本機 Git 部署至 Azure App Service](app-service-deploy-local-git.md) 的指示，為您新建立的 Web 應用程式設定 Git 發佈功能。本教學課程將使用 Git 來建立、管理並將您的 Python Web 應用程式發佈至 Azure App Service。
 
 Git 發佈設定完畢後，會建立一個 Git 儲存機制並與您的 Web 應用程式產生關聯。該儲存機制的 URL 會加以顯示，方便您將資料從本機開發環境推送到雲端。若要透過 Git 發佈應用程式，請確保同時安裝了 Git 用戶端，並遵守提供的指示將您的 Web 應用程式內容推送到 Azure App Service。
 
@@ -385,4 +385,4 @@ Python 3.4 的 `web.config` 範例：
 
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0803_2016-->

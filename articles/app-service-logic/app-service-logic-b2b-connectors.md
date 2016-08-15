@@ -1,7 +1,7 @@
 <properties 
-	pageTitle="Microsoft Azure App Service 中的企業對企業連接器和 API Apps | Microsoft Azure" 
+	pageTitle="Logic Apps 中的企業對企業連接器和 API Apps | Microsoft Azure" 
 	description="了解如何建立及設定 EDI、EDIFACT、AS2 和 TPM 連接器；微服務架構" 
-	services="app-service\logic" 
+	services="logic-apps" 
 	documentationCenter="" 
 	authors="MandiOhlinger" 
 	manager="erikre" 
@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/20/2016" 
+	ms.date="07/28/2016" 
 	ms.author="mandia"/>
 
-# Microsoft Azure App Service 中的企業對企業連接器和 API Apps
+# 企業對企業連接器和 API Apps
 
 [AZURE.INCLUDE [app-service-logic-version-message](../../includes/app-service-logic-version-message.md)]
 
-Microsoft Azure App Service (或簡稱 App Service) 包含許多對整合環境很重要的 BizTalk API Apps。這些 API Apps 會以 BizTalk Server 內所使用的概念和工具為基礎，但現在可做為 Azure App Service 的一部分提供。
+Logic Apps 包含許多對整合環境很重要的 BizTalk API Apps。這些 API Apps 會以 BizTalk Server 內所使用的概念和工具為基礎，但現在可做為 Logic Apps 的一部分提供。
 
 這些 API Apps 的其中一個類別是企業對企業 (B2B) API Apps。使用這些 B2B API Apps，您可以輕鬆地加入夥伴、建立協議，以及使用 EDI、AS2 和 EDIFACT 對內部部署進行您所要的作業。
 
@@ -194,7 +194,7 @@ Microsoft Azure App Service 會公開可使用這些 B2B API Apps 的不同應�
 
 4. 選取 [**確定**] 以儲存變更。
 
->[AZURE.NOTE] 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure Logic Apps，請按一下[試用 Logic Apps](https://tryappservice.azure.com/?appservice=logic)。您可以在 App Service 中立即建立短期的入門邏輯應用程式。不需要信用卡；無需承諾。
+>[AZURE.NOTE] 若要在註冊 Azure 帳戶之前先開始使用 Azure Logic Apps，請按一下[試用 Logic Apps](https://tryappservice.azure.com/?appservice=logic)。您可以立即建立短期的入門邏輯應用程式。不需要信用卡；沒有承諾。
 
 ## 其他 B2B 資源
 
@@ -209,4 +209,4 @@ Microsoft Azure App Service 會公開可使用這些 B2B API Apps 的不同應�
 
 [連接器和 API Apps 清單](app-service-logic-connectors-list.md)<br/><br/>[什麼是連接器和 BizTalk API Apps](app-service-logic-what-are-biztalk-api-apps.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

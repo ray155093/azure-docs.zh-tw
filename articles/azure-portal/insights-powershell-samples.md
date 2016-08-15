@@ -4,11 +4,11 @@
 	authors="kamathashwin"
 	manager=""
 	editor=""
-	services="azure-portal"
-	documentationCenter="na"/>
+	services="monitoring"
+	documentationCenter="monitoring"/>
 
 <tags
-	ms.service="azure-portal"
+	ms.service="monitoring"
 	ms.workload="na"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
@@ -148,13 +148,13 @@ Get-AzureRmAlertRule -ResourceGroup montest -TargetResourceId /subscriptions/s1/
 |此警示規則的位置|	美國東部|
 |ResourceGroup|	montest|
 |TargetResourceId|	/subscriptions/s1/resourceGroups/montest/providers/Microsoft.Compute/virtualMachines/testconfig|
-|所建立警示的 MetricName|	\\PhysicalDisk(\_Total)\\Disk Writes/sec。請參閱以下的 `Get-MetricDefinitions` Cmdlet，了解如何擷取確實的計量名稱|
-|運算子| GreaterThan|
-|臨界值 (此計量每秒的計數)| 1|
-|WindowSize (hh:mm:ss 格式)| 00:05:00|
-|彙總器 (計量的統計資料，在此範例中使用的是 Average 計數)| Average|
-|自訂電子郵件 (字串陣列)|'foo@example.com','bar@example.com'|
-|將電子郵件傳送給擁有者、參與者和讀取者| -SendToServiceOwners|
+|所建立警示的 MetricName|	\\PhysicalDisk(\_Total)\\Disk Writes/sec。請參閱下面的 `Get-MetricDefinitions` Cmdlet 以了解如何擷取確切的計量名稱|
+|operator|	GreaterThan|
+|臨界值 (此計量的計數/秒）|	1|
+|WindowSize (hh:mm:ss 格式)|	00:05:00|
+|彙總工具 (在此情況為計量的統計資料，其使用平均計數)|	平均值|
+|自訂電子郵件 (字串陣列)|'foo@example.com'、'bar@example.com'|
+|傳送電子郵件給擁有者、參與者和讀者|	-SendToServiceOwners|
 
 建立電子郵件動作
 
@@ -384,4 +384,4 @@ Set-AzureRmDiagnosticSetting -ResourceId /subscriptions/s1/resourceGroups/myrg1/
 Set-AzureRmDiagnosticSetting -ResourceId /subscriptions/s1/resourceGroups/insights-integration/providers/Microsoft.Network/networkSecurityGroups/viruela1 -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/sakteststorage -Categories NetworkSecurityGroupEvent -Enable $true -RetentionEnabled $true -RetentionInDays 90
 ```
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0803_2016-->

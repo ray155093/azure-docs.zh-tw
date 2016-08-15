@@ -3,8 +3,8 @@
 	description="了解如何使用 PowerShell 部署和管理 Data Protection Manager (DPM) 的 Azure 備份"
 	services="backup"
 	documentationCenter=""
-	authors="AnuragMehrotra"
-	manager="jwhit"
+	authors="Nkolli1"
+	manager="shreeshd"
 	editor=""/>
 
 <tags
@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="07/01/2016"
-	ms.author="jimpark; aashishr; anuragm"/>
+	ms.author="jimpark; trinadhk; anuragm; markgal"/>
 
 
 # 使用 PowerShell 部署和管理 Data Protection Manager (DPM) 伺服器的 Azure 備份
@@ -102,16 +102,7 @@ PS C:\> MARSAgentInstaller.exe /?
 
 | 選項 | 詳細資料 | 預設值 |
 | ---- | ----- | ----- |
-| /q | 無訊息安裝 | - |
-| /p:"location" | Azure 備份代理程式的安裝資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent |
-| /s:"location" | Azure 備份代理程式的快取資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent\\Scratch |
-| /m | 選擇加入 Microsoft Update | - |
-| /nu | 安裝完成後不要檢查更新 | - |
-| /d | 解除安裝 Microsoft Azure 復原服務代理程式 | - |
-| /ph | Proxy 主機位址 | - |
-| /po | Proxy 主機連接埠號碼 | - |
-| /pu | Proxy 主機使用者名稱 | - |
-| /pw | Proxy 密碼 | - |
+| /q | 無訊息安裝 | - | | /p:"location" | Azure 備份代理程式的安裝資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent | | /s:"location" | Azure 備份代理程式的快取資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent\\Scratch | | /m | 選擇加入 Microsoft Update | - | | /nu | 安裝完成後不要檢查更新 | - | | /d | 解除安裝 Microsoft Azure 復原服務代理程式 | - | | /ph | Proxy 主機位址 | - | | /po | Proxy 主機連接埠號碼 | - | | /pu | Proxy 主機使用者名稱 | - | | /pw | Proxy 密碼 | - |
 
 ### 向 Azure 備份服務進行註冊
 在可註冊 Azure 備份服務之前，您必須確定已符合[先決條件](backup-azure-dpm-introduction.md)。您必須：
@@ -340,4 +331,4 @@ PS C:\> Restore-DPMRecoverableItem -RecoverableItem $RecoveryPoints[0] -Recovery
 
 - 如需 DPM 的 Azure 備份詳細資訊，請參閱 [DPM 備份簡介](backup-azure-dpm-introduction.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->

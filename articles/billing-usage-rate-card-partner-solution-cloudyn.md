@@ -1,11 +1,12 @@
 <properties
    pageTitle="Microsoft Azure 使用量和 RateCard API 可讓 Cloudyn 提供 ITFM 給客戶 | Microsoft Azure"
    description="提供 Microsoft Azure 計費合作夥伴 Cloudyn 將 Azure 計費 API 整合至其產品的經驗所得來的獨特觀點。這特別適用於有興趣使用/嘗試將 Cloudyn 用於 Azure 服務的客戶。"
-   services="billing"
+   services=""
    documentationCenter=""
    authors="BryanLa"
    manager="mbaldwin"
-   editor=""/>
+   editor=""
+   tags="billing"/>
 
 <tags
    ms.service="billing"
@@ -48,7 +49,7 @@ RateCard API 需要數個輸入參數 -- 例如區域資訊、貨幣及區域設
 
 ![成本配置 360 圖表][4]
 
-+ **具有成本效益的大小** - 提供正確的大小建議給使用量過低的虛擬機器，進而減少客戶對於過大或過度佈建機器的費用。它是藉由檢查虛擬機器 CPU 和 RAM 計量 (透過效能 API)、執行階段的時數 (透過使用情況 API) 和成本 (透過 RateCard API) 來達成效果。然後 Cloudyn 會根據使用量過低的 CPU 或 RAM 資源 (效能) 提供正確大小的建議，並且將 VM 之間的價格差異 (RateCard) 乘以使用量過低機器的實際使用時間 (使用情況)，以計算出預估的節約效益。 
++ **具有成本效益的大小** - 提供正確的大小建議給使用量過低的虛擬機器，進而減少客戶對於過大或過度佈建機器的費用。它是藉由檢查虛擬機器 CPU 和 RAM 計量 (透過效能 API)、執行階段的時數 (透過使用情況 API) 和成本 (透過 RateCard API) 來達成效果。然後 Cloudyn 會根據使用量過低的 CPU 或 RAM 資源 (效能) 提供正確大小的建議，並且將 VM 之間的價格差異 (RateCard) 乘以使用量過低機器的實際使用時間 (使用情況)，以計算出預估的節約效益。
 
 ![符合成本效益的大小][5]
 
@@ -72,7 +73,7 @@ RateCard API 需要數個輸入參數 -- 例如區域資訊、貨幣及區域設
 ## 後續步驟
 
 + 開始免費 [Cloudyn for Azure](https://www.cloudyn.com/microsoft-azure/) 試用版，查看如何利用 Microsoft Azure 雲端部署的自訂報告和分析取得成本透明度。
-+ 請參閱[深入了解 Microsoft Azure 資源耗用量](billing-usage-rate-card-overview.md)以取得 Azure 資源使用情況和 RateCard API 的概觀。 
++ 請參閱[深入了解 Microsoft Azure 資源耗用量](billing-usage-rate-card-overview.md)以取得 Azure 資源使用情況和 RateCard API 的概觀。
 + 查看 [Azure 計費 REST API 參考](https://msdn.microsoft.com/library/azure/1ea5b323-54bb-423d-916f-190de96c6a3c)以取得屬於 Azure 資源管理員所提供之 API 集合的兩個 API 之詳細資訊。
 + 如果您想要探究範例程式碼，請查看 [Azure 程式碼範例](https://azure.microsoft.com/documentation/samples/?term=billing)上的＜Microsoft Azure 計費 API 程式碼範例＞。
 
@@ -90,4 +91,4 @@ RateCard API 需要數個輸入參數 -- 例如區域資訊、貨幣及區域設
 [6]: ./media/billing-usage-rate-card-partner-solution-cloudyn/Cloudyn-Performance-Reports.png
 [7]: ./media/billing-usage-rate-card-partner-solution-cloudyn/Cloudyn-Category-Manager.png
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0803_2016-->

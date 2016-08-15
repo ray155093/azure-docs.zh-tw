@@ -1,8 +1,8 @@
 <properties
-	pageTitle="CDN - 使用查詢字串控制 CDN 要求的快取行為 - 高階"
-	description="CDN 查詢字串快取可控制檔案內含查詢字串時的檔案快取方式。"
+	pageTitle="使用查詢字串控制「來自 Verizon 的 Azure CDN 進階」要求的快取行為 | Microsoft Azure"
+	description="Azure CDN 查詢字串快取可控制檔案內含查詢字串時的檔案快取方式。"
 	services="cdn"
-	documentationCenter=".NET"
+	documentationCenter=""
 	authors="camsoper"
 	manager="erikre"
 	editor=""/>
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/11/2016"
+	ms.date="07/28/2016"
 	ms.author="casoper"/>
 
 #使用查詢字串控制 CDN 要求的快取行為 - 高階
@@ -38,7 +38,7 @@
 
 1. 在 [CDN 設定檔] 刀鋒視窗中，按一下 [管理] 按鈕。
 
-	![CDN 設定檔刀鋒視窗管理按鈕](./media/cdn-query-string-premium/cdn-manage-btn.png)
+	![[CDN 設定檔] 刀鋒視窗的 [管理] 按鈕](./media/cdn-query-string-premium/cdn-manage-btn.png)
 
 	隨即開啟 CDN 管理入口網站。
 
@@ -53,4 +53,4 @@
 
 > [AZURE.IMPORTANT] 設定變更可能無法立即看見，因為註冊資訊需要一段時間才能傳遍 CDN。若為<b>來自 Verizon 的 Azure CDN</b> 設定檔，則通常會在 90 分鐘之內完成傳播，但在某些情況下可能會更久。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

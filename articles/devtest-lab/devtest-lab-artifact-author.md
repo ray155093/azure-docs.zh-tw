@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/01/2016"
+	ms.date="08/01/2016"
 	ms.author="tarcher"/>
 
 #為您的研發/測試實驗室 VM 建立自訂構件
 
-> [AZURE.NOTE] 檢視本文隨附的影片：[如何撰寫自訂構件](/documentation/videos/how-to-author-custom-artifacts)
+> [AZURE.VIDEO how-to-author-custom-artifacts] 
 
 ## 概觀
 **構件**是在佈建 VM 之後用來部署和設定您的應用程式。構件包含構件定義檔和其他儲存於 Git 儲存機制之資料夾中的指令碼檔案。構件定義檔是由 JSON 和可用來指定您想要在 VM 上安裝的運算式所組成。例如，您可以定義構件名稱、要執行的命令，以及命令執行時使其可供使用的參數。您可以依照名稱來參考構件定義檔中的其他指令碼檔案。
@@ -120,8 +120,12 @@
 
 1. 將構件儲存機制加入實驗室 - 請參閱[將 Git 構件儲存機制加入實驗室](devtest-lab-add-artifact-repo.md)一文。
 
+## 相關部落格文章
+- [如何在 AzureDevTestLabs 疑難排解失敗的構件](http://www.visualstudiogeeks.com/blog/DevOps/How-to-troubleshoot-failing-artifacts-in-AzureDevTestLabs)
+- [在 Azure 研發測試實驗室使用 ARM 範本將 VM 加入至現有 AD 網域](http://www.visualstudiogeeks.com/blog/DevOps/Join-a-VM-to-existing-AD-domain-using-ARM-template-AzureDevTestLabs)
+
 ## 後續步驟
 
 - 了解如何[將 Git 構件儲存機制加入實驗室](devtest-lab-add-artifact-repo.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/05/2016"
-   ms.author="patw;jroth;aglick"/>
+   ms.date="08/01/2016"
+   ms.author="aglick"/>
 
 #Azure 復原技術指導：從 Azure 的本機失敗中復原
 
@@ -223,4 +223,4 @@ Azure 行動服務有兩個可用性考量。首先，定期備份與行動服�
 
 這篇文章是一系列文章的一部分，著重在 [Azure 復原技術指導](./resiliency-technical-guidance.md)。這一系列文章的下一篇是[從全區域服務中斷復原](./resiliency-technical-guidance-recovery-loss-azure-region.md)。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -42,7 +42,7 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 
 ## Azure 必要條件
 
-- 您將需要 [Microsoft Azure](https://azure.microsoft.com/) 帳戶。您可以從[免費試用](pricing/free-trial/)開始。
+- 您將需要 [Microsoft Azure](https://azure.microsoft.com/) 帳戶。您可以從[免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。
 - 您需要 Azure 儲存體帳戶來儲存複寫的資料。此帳戶必須啟用異地複寫。它應該與 Azure Site Recovery 保存庫位於相同的區域，且和同一個訂用帳戶產生關聯。[深入了解 Azure 儲存體](../storage/storage-introduction.md)。請注意，我們不支援使用[新的 Azure 入口網站](../storage/storage-create-storage-account.md)來跨資源群組移動所建立的儲存體帳戶。
 - 您將需要 Azure 虛擬網路，如此一來，當您從主要網站容錯移轉時，Azure 虛擬機器就會連接至網路。
 
@@ -90,7 +90,7 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 
 4. 在 [名稱] 中，輸入保存庫的易記識別名稱。
 
-5. 在 [地區] 中，選取保存庫的地理區域。若要查看支援的區域，請參閱 [Azure Site Recovery 定價詳細資料](pricing/details/site-recovery/)中的＜各地區上市情況＞。
+5. 在 [地區] 中，選取保存庫的地理區域。若要查看支援的區域，請參閱 [Azure Site Recovery 定價詳細資料](https://azure.microsoft.com/pricing/details/site-recovery/)中的＜各地區上市情況＞。
 
 6. 按一下 [建立保存庫]。
 
@@ -138,25 +138,19 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 
 8. 安裝完成之後，請繼續設定以在保存庫中註冊伺服器。
 
-	![安裝完成](./media/site-recovery-hyper-v-site-to-azure-classic/provider3.png)
-
-
-9. 在 [網際網路連線] 頁面上，您將指定提供者連接到 Azure Site Recovery 的方式。選取 [Use default system proxy settings]，以使用在伺服器上設定的預設網際網路連線設定。如果未指定值，將使用預設設定。
-
-	![網際網路設定](./media/site-recovery-hyper-v-site-to-azure-classic/provider4.png)
-
 9. 在 [保存庫設定] 頁面上，按一下 [瀏覽] 來選取金鑰檔案。指定 Azure Site Recovery 訂用帳戶、保存庫名稱，以及 Hyper-V 伺服器所屬的 Hyper-V 站台。
 
-	![伺服器註冊](./media/site-recovery-hyper-v-site-to-azure-classic/select-key.png)
+	![伺服器註冊](./media/site-recovery-hyper-v-site-to-azure-classic/provider8.PNG)
 
+10. 在 [網際網路連線] 頁面上，您將指定提供者連接到 Azure Site Recovery 的方式。選取 [Use default system proxy settings]，以使用在伺服器上設定的預設網際網路連線設定。如果未指定值，將使用預設設定。
+
+	![網際網路設定](./media/site-recovery-hyper-v-site-to-azure-classic/provider7.PNG)
 
 11. 註冊作業會開始在保存庫中註冊伺服器。
 
-	![伺服器註冊](./media/site-recovery-hyper-v-site-to-azure-classic/provider5.png)
+	![伺服器註冊](./media/site-recovery-hyper-v-site-to-azure-classic/provider15.PNG)
 
 11. 註冊完成之後，Azure Site Recovery 便會抓取來自 Hyper-V 伺服器的中繼資料，而該伺服器會顯示在保存庫中 [伺服器] 頁面的 [Hyper-V 站台] 索引標籤上 。
-
-	![伺服器註冊](./media/site-recovery-hyper-v-site-to-azure-classic/provider6.png)
 
 
 ### 從命令列安裝提供者
@@ -221,7 +215,7 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 
 >[AZURE.NOTE] 不支援保護使用靜態 IP 位址執行 Linux 的 VM。
 
-1. 在保護群組的 [機器] 索引標籤上，按一下 [新增虛擬機器至保護群組以啟用保護]****。
+1. 在保護群組的 [機器] 索引標籤上，按一下 [新增虛擬機器至保護群組以啟用保護]。
 2. 在 [啟用虛擬機器保護] 頁面上，選取要保護的虛擬機器。
 
 	![啟用虛擬機器保護](./media/site-recovery-hyper-v-site-to-azure-classic/add-vm.png)
@@ -235,7 +229,7 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 		- **大小**：要容錯移轉之虛擬機器的目標大小。
 
 		![設定虛擬機器屬性](./media/site-recovery-hyper-v-site-to-azure-classic/vm-properties.png)
-	- 在 [受保護的項目] > [保護群組] > *protectiongroup\_name* > [虛擬機器] *virtual\_machine\_name* > [設定] 中，設定其他的虛擬機器設定，包括：
+	- 在 [受保護的項目] > [保護群組] > protectiongroup\_name > [虛擬機器] virtual\_machine\_name > [設定]* 中，設定其他的虛擬機器設定，包括：
 
 		- **網路介面卡**：網路介面卡的數目取決於您針對目標虛擬機器所指定的大小。查看[虛擬機器大小規格](../virtual-machines/virtual-machines-linux-sizes.md#size-tables)，了解虛擬機器大小所支援的 NIC 數目。
 
@@ -245,7 +239,7 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 
 			- 如果來源電腦上的網路介面卡數目小於或等於針對目標機器大小所允許的介面卡數目，則目標將具備與來源相同的介面卡數目。
 			- 如果來源虛擬機器的介面卡數目超過針對目標大小所允許的數目，則將使用目標大小的最大值。
-			- 例如，如果來源機器具有兩張網路介面卡，而目標機器大小支援四張，則目標機器將會有兩張介面卡。如果來源機器具有兩張介面卡，但支援的目標大小僅支援一張，則目標機器將只會有一張介面卡。 	
+			- 例如，如果來源機器具有兩張網路介面卡，而目標機器大小支援四張，則目標機器將會有兩張介面卡。如果來源機器具有兩張介面卡，但支援的目標大小僅支援一張，則目標機器將只會有一張介面卡。
 		- **Azure 網路**：指定應將虛擬機器容錯移轉到其中的目標網路。如果虛擬機器具有多張網路介面卡，則所有的介面卡都應該連接到同一個 Azure 網路。
 		- **子網路**：針對虛擬機器上的每張網路介面卡，請選取 Azure 網路中的子網路，機器在容錯移轉之後應會連接到該子網路。
 		- **目標 IP 位址**：如果來源虛擬機器的網路介面卡已設定為使用靜態 IP 位址，則您可以指定目標虛擬機器的 IP 位址，以確保機器在容錯移轉後會有相同的 IP 位址。如果您未指定 IP 位址，則系統將在容錯移轉期間指派任何可用的位址。如果您指定了使用中的位址，則容錯移轉將會失敗。
@@ -275,7 +269,7 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 
 執行測試容錯移轉，如下所示：
 
->[AZURE.NOTE] 若要在執行容錯移轉至 Azure 時獲得最佳效能，請確保您已經在受保護的機器上安裝 Azure 代理程式。這有助於更快速開機，也有助於診斷發生的問題。Linux 代理程式可在[這裡](https://github.com/Azure/WALinuxAgent)找到，而 Windows 代理程式可在 [這裡](http://go.microsoft.com/fwlink/?LinkID=394789)找到。
+>[AZURE.NOTE] 若要在執行容錯移轉至 Azure 時獲得最佳效能，請確保您已經在受保護的機器上安裝 Azure 代理程式。這有助於更快速開機，也有助於診斷發生的問題。您可以在[這裡](https://github.com/Azure/WALinuxAgent)找到 Linux 代理程式，而 Windows 代理程式則可在[這裡](http://go.microsoft.com/fwlink/?LinkID=394789)找到
 
 1. 在 [復原計畫] 索引標籤上，選取計畫，然後按一下 [測試容錯移轉]。
 2. 在 [確認測試容錯移轉] 頁面上，選取 [無] 或特定的 Azure 網路。請注意，如果選取 [無]，測試容錯移轉將會檢查虛擬機器是否會正確複寫到 Azure，但並不會檢查您的複寫網路組態。
@@ -303,6 +297,6 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 
 ## 後續步驟
 
-在您的部署設定完成並開始執行之後，[深入了解](site-recovery-failover.md)容錯移轉。
+在您的部署設定完成並開始執行之後，請[深入了解](site-recovery-failover.md)容錯移轉。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/05/2016"
+	ms.date="07/28/2016"
 	ms.author="cynthn"/>
 
 
@@ -24,8 +24,9 @@
 
 您想要連線至 Linux VM 嗎？ 請參閱[如何登入執行 Linux 的虛擬機器](virtual-machines-linux-classic-log-on.md)。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](virtual-machines-windows-connect-logon.md)。
+了解如何[使用 Azure 入口網站來執行這些步驟](virtual-machines-windows-connect-logon.md)。
 
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 ## 影片逐步解說
 
@@ -44,7 +45,7 @@
 
 	![登入虛擬機器](./media/virtual-machines-windows-classic-connect-logon/connectwindows.png)
 	
-> [AZURE.TIP] 如果 [連接] 按鈕無法使用，請參閱本文結尾處的疑難排解提示。
+> [AZURE.TIP] 如果 [連接] 按鈕無法使用，請參閱本文結尾的疑難排解提示。
 
 ## 登入虛擬機器
 
@@ -57,4 +58,4 @@
 
 如果這些秘訣無效，或者不是您所需要的，請參閱[針對以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線進行疑難排解](virtual-machines-windows-troubleshoot-rdp-connection.md)。本文會逐步帶領您診斷及解決常見的問題。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0803_2016-->

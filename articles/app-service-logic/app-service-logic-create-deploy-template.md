@@ -1,7 +1,7 @@
 <properties
    pageTitle="建立邏輯應用程式部署範本 | Microsoft Azure"
    description="了解如何建立邏輯應用程式部署範本，並使用它進行發行管理"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="jeffhollan"
    manager="erikre"
@@ -85,4 +85,4 @@
 <!-- Image References -->
 [1]: ./media/app-service-logic-create-deploy-template/emptyReleaseDefinition.PNG
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

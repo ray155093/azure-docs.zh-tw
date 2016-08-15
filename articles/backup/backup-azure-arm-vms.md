@@ -1,10 +1,10 @@
 <properties
-	pageTitle="備份 Azure Resource Manager 虛擬機器 | Microsoft Azure"
-	description="利用 Azure 虛擬機器備份的這些程序來探索、註冊，以及將 ARM 虛擬機器備份到復原服務保存庫。"
+	pageTitle="將 Azure VM 備份到復原服務保存庫 | Microsoft Azure"
+	description="利用 Azure 虛擬機器備份的這些程序來探索、註冊，以及將 Azure 虛擬機器備份到復原服務保存庫。"
 	services="backup"
 	documentationCenter=""
 	authors="markgalioto"
-	manager="jwhit"
+	manager="cfreeman"
 	editor=""
 	keywords="虛擬機器備份; 備份虛擬機器; 備份和災害復原; arm vm 備份"/>
 
@@ -14,19 +14,19 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/04/2016"
+	ms.date="07/29/2016"
 	ms.author="trinadhk; jimpark; markgal;"/>
 
 
-# 備份 Azure Resource Manager (ARM) 虛擬機器
+# 將 Azure VM 備份到復原服務保存庫
 
 > [AZURE.SELECTOR]
-- [將 ARM VM 備份至 Azure](backup-azure-arm-vms.md)
-- [備份 Azure 虛擬機器](backup-azure-vms.md)
+- [將 VM 備份到復原服務保存庫](backup-azure-arm-vms.md)
+- [將 VM 備份到備份保存庫](backup-azure-vms.md)
 
-本文章提供將 Azure Resource Manager (ARM) 虛擬機器 (VM) 備份至復原服務保存庫的程序。備份 ARM VM 的主要工作與準備有關。在備份或保護 Azure 虛擬機器之前，您必須完成[必要條件](backup-azure-arm-vms-prepare.md)來備妥 VM 的保護環境。完成必要條件後，您就可以起始備份作業來製作 VM 的快照集。
+本文提供將 Azure VM (以 Resource Manager 部署的 VM 和傳統部署的 VM) 備份至復原服務保存庫的程序。備份 VM 的主要工作與準備有關。在備份或保護 VM 之前，您必須完成[必要條件](backup-azure-arm-vms-prepare.md)來備妥 VM 的保護環境。完成必要條件後，您就可以起始備份作業來製作 VM 的快照集。
 
->[AZURE.NOTE] Azure 有兩種用來建立和使用資源的部署模型：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。本文適用於 Resource Manager VM 和以 ARM 為基礎的 VM。如需使用傳統部署模型 VM 的詳細資料，請參閱[備份 Azure 虛擬機器](backup-azure-vms.md)。
+>[AZURE.NOTE] Azure 有兩種用來建立和使用資源的部署模型：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。您可以使用復原服務保存庫保護 Resource Manager 部署的 VM 和傳統 VM。如需使用傳統部署模型 VM 的詳細資料，請參閱[備份 Azure 虛擬機器](backup-azure-vms.md)。
 
 如需詳細資訊，請參閱[在 Azure 中規劃 VM 備份基礎結構](backup-azure-vms-introduction.md)和 [Azure 虛擬機器](https://azure.microsoft.com/documentation/services/virtual-machines/)的文件。
 
@@ -77,4 +77,4 @@
 - [管理和監視虛擬機器](backup-azure-manage-vms.md)
 - [還原虛擬機器](backup-azure-arm-restore-vms.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

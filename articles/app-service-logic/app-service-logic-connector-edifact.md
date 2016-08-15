@@ -1,7 +1,7 @@
 <properties 
    pageTitle="在 Logic Apps 中使用 BizTalk Edifact 連接器 | Microsoft Azure App Service" 
    description="如何建立並設定 BizTalk Edifact 連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它" 
-   services="app-service\logic" 
+   services="logic-apps" 
    documentationCenter=".net,nodejs,java" 
    authors="rajeshramabathiran" 
    manager="erikre" 
@@ -42,25 +42,17 @@ Edifact 連接器可以當作觸發程序或動作使用。
 
 ### 觸發程序
 - 啟動 Azure Logic Apps 流程設計工具
-- 從右窗格中按一下 [Edifact 連接器]︰  
-![觸發程序設定][3]
-- 按一下 ->：  
-![觸發程序選項][4]
-- EDIFACT 連接器會公開單一觸發程序。選取 [發行批次]：  
-![發行批次輸入][5]
-- 這個觸發程序沒有輸入。按一下 ->：  
-![已設定發行批次][6]
+- 從右窗格中按一下 [Edifact 連接器]︰![觸發程序設定][3]
+- 按一下 ->：![觸發程序選項][4]
+- EDIFACT 連接器會公開單一觸發程序。選取 [發行批次]：![發行批次輸入][5]
+- 這個觸發程序沒有輸入。按一下 ->：![已設定發行批次][6]
 - 做為輸出的一部分，連接器會傳回 Edifact 承載、協議識別碼，以及訊息是否為批次處理等資訊。
 
 ### 動作
-- 從右窗格中按一下 [Edifact 連接器]︰  
-![動作設定][7]
-- 按一下 ->：  
-![動作清單][8]
-- Edifact 連接器支援許多動作。選取 [編碼]：  
-![編碼輸入][9]
-- 提供動作的輸入，並進行設定：  
-![已設定編碼][10]
+- 從右窗格中按一下 [Edifact 連接器]︰![動作設定][7]
+- 按一下 ->：![動作清單][8]
+- Edifact 連接器支援許多動作。選取 [編碼]：![編碼輸入][9]
+- 提供動作的輸入，並進行設定：![已設定編碼][10]
 
 	參數|類型|參數說明
 ---|---|---
@@ -100,4 +92,4 @@ Edifact 連接器可以當作觸發程序或動作使用。
 [9]: ./media/app-service-logic-connector-edifact/EncodeInput.PNG
 [10]: ./media/app-service-logic-connector-edifact/EncodeConfigured.PNG
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

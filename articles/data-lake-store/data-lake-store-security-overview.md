@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="07/18/2016"
+   ms.date="08/02/2016"
    ms.author="nitinme"/>
 
 # Azure Data Lake Store 安全性
@@ -68,7 +68,7 @@
 
 ### 在檔案系統上使用 ACL 執行作業
 
-Azure Data Lake Store 是階層式檔案系統 (如 HDFS)，可支援 [POSIX ACL](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html#ACLs_Access_Control_Lists) - 允許對授與擁有者、歸屬群組及其他使用者/群組的資源，提供讀取 (r)、寫入 (w) 及執行 (x) 存取權限。在 Data Lake Store 公開預覽版本 (目前的版本) 中，ACL 只會在根資料夾上啟用，這表示您套用至根資料夾的 ACL 也適用於所有子資料夾/檔案。在未來的版本中，您將能夠在任何檔案或資料夾上設定 ACL。
+Azure Data Lake Store 是階層式檔案系統 (如 HDFS)，可支援 [POSIX ACL](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html#ACLs_Access_Control_Lists) - 允許對授與擁有者、歸屬群組及其他使用者/群組的資源，提供讀取 (r)、寫入 (w) 及執行 (x) 存取權限。在 Data Lake Store 公開預覽 (目前版本) 中，可以在根資料夾、子資料夾，以及個別檔案上啟用 ACL。您套用至根資料夾的 ACL 也適用於所有子資料夾/檔案。
 
 建議您使用[安全性群組](../active-directory/active-directory-accessmanagement-manage-groups.md)為許多使用者定義 ACL。將使用者分組到安全性群組，然後將檔案和資料夾的 ACL 指派給該安全性群組。提供自訂存取權時，這非常有用，因為您只能在自訂存取權中新增最多九個項目的情況有所限制。如需有關使用 AAD 安全性群組保護 Data Lake Store 中所存放資料的詳細資訊，請參閱[將使用者或安全性群組以 ACL 形式指派給 Azure Data Lake Store 檔案系統](data-lake-store-secure-data.md#filepermissions)。
 
@@ -109,6 +109,8 @@ Azure Data Lake Store 可讓您進一步在網路層級鎖定資料存放區的�
 
 一旦您啟用了診斷設定，即可在 [診斷記錄] 索引標籤中查看記錄。
 
+如需使用 Azure Data Lake Store 診斷記錄檔的詳細資訊，請參閱[存取 Data Lake Store 的診斷記錄檔](data-lake-store-diagnostic-logs.md)。
+
 ## 摘要
 
 企業客戶要求安全且容易使用的資料分析雲端平台。Azure Data Lake Store 的設計是透過 Azure Active Direction 整合、以 ALC 為基礎的授權、網路隔離、傳輸中和待用資料加密 (未來即將提供) 以及稽核，來滿足身分識別管理和驗證的需求。
@@ -121,4 +123,4 @@ Azure Data Lake Store 可讓您進一步在網路層級鎖定資料存放區的�
 - [開始使用 Data Lake Store](data-lake-store-get-started-portal.md)
 - [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

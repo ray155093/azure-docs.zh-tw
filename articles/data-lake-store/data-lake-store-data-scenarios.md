@@ -94,11 +94,13 @@
 
 若要上傳動輒數 TB 的資料集，使用上述方法有時候可能會過於緩慢且昂貴。此時，您可以使用下列選項。
 
-* **「離線」上傳資料**。您可以使用 [Azure 匯入/匯出服務](../storage/storage-import-export-service.md)來將容納資料的硬碟運送到 Azure 資料中心，之後再上傳到 Azure 儲存體 Blob。接下來，您可以使用 [Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md#sample-copy-data-from-azure-blob-to-azure-data-lake-store) 或 [AdlCopy 工具](data-lake-store-copy-data-azure-storage-blob.md)，將資料從 Azure 儲存體 Blob 移到 Data Lake Store。
+* **使用 Azure ExpressRoute**。Azure ExpressRoute 可讓您在 Azure 資料中心與內部部署的基礎結構之間建立私人連線。這是傳輸大量資料的可靠選項。如需詳細資訊，請參閱 [Azure ExpressRoute 文件](../expressroute/expressroute-introduction.md)。
+
+
+* **「離線」上傳資料**。如果因為任何原因而無法使用 Azure ExpressRoute，您可以使用 [Azure 匯入/匯出服務](../storage/storage-import-export-service.md)來將容納資料的硬碟運送到 Azure 資料中心。您的資料會先上傳到 Azure 儲存體 Blob。接下來，您可以使用 [Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md#sample-copy-data-from-azure-blob-to-azure-data-lake-store) 或 [AdlCopy 工具](data-lake-store-copy-data-azure-storage-blob.md)，將資料從 Azure 儲存體 Blob 複製到 Data Lake Store。
 
 	>[AZURE.NOTE] 在使用匯入/匯出服務時，運送到 Azure 資料中心之磁碟上的檔案大小不得大於 200 GB。
 
-* **使用 Azure ExpressRoute**。Azure ExpressRoute 可讓您在 Azure 資料中心與內部部署的基礎結構之間建立私人連線。這是傳輸大量資料的可靠選項。如需詳細資訊，請參閱 [Azure ExpressRoute 文件](../expressroute/expressroute-introduction.md)。
 
 ## 處理儲存在 Data Lake 存放區中的資料
 
@@ -143,4 +145,4 @@
 * 您可以從使用 [Azure Data Factory 將資料從 Data Lake Store 移到 Azure SQL 資料倉儲](../data-factory/data-factory-data-movement-activities.md#supported-data-stores)開始
 * 之後，您可以[整合 Power BI 與 Azure SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-integrate-power-bi.md)，以視覺化方式呈現資料。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0803_2016-->

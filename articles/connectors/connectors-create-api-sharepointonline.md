@@ -1,7 +1,7 @@
 <properties
 pageTitle="了解如何在邏輯應用程式中使用 SharePoint Online 連接器 | Microsoft Azure"
 description="使用 SharePoint Online 連接器建立邏輯應用程式來管理 SharePoint 上的清單。"
-services="app-servicelogic"	
+services="logic-apps"	
 documentationCenter=".net,nodejs,java" 	
 authors="msftman"	
 manager="erikre"	
@@ -668,4 +668,4 @@ TablesList
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

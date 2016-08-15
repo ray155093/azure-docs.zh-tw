@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/24/2016"
+   ms.date="08/02/2016"
    ms.author="nicw;barbkess;sonyama"/>
 
 # 移轉至進階儲存體詳細資料
@@ -73,8 +73,8 @@ SQL 資料倉儲最新引進了[進階儲存體，以獲得更高的效能可預
 | **區域** | **預估開始日期** | **預估結束日期** |
 | :------------------ | :--------------------------- | :--------------------------- |
 | 澳洲東部 | 尚未決定 | 尚未決定 |
-| 澳洲東南部 | 尚未決定 | 尚未決定 |
-| 巴西南部 | 尚未決定 | 尚未決定 |
+| 澳大利亞東南部 | 2016 年 8 月 10 日 | 2016 年 8 月 24 日 |
+| 巴西南部 | 2016 年 8 月 10 日 | 2016 年 8 月 24 日 |
 | 加拿大中部 | 2016 年 6 月 23日 | 2016 年 7 月 1 日 |
 | 加拿大東部 | 2016 年 6 月 23日 | 2016 年 7 月 1 日 |
 | 美國中部 | 2016 年 6 月 23日 | 2016 年 7 月 4 日 |
@@ -86,10 +86,10 @@ SQL 資料倉儲最新引進了[進階儲存體，以獲得更高的效能可預
 | 印度中部 | 2016 年 6 月 23日 | 2016 年 7 月 1 日 |
 | 印度南部 | 2016 年 6 月 23日 | 2016 年 7 月 1 日 |
 | 印度西部 | 尚未決定 | 尚未決定 |
-| 日本東部 | 尚未決定 | 尚未決定 |
+| 日本東部 | 2016 年 8 月 10 日 | 2016 年 8 月 24 日 |
 | 日本西部 | 尚未決定 | 尚未決定 |
 | 美國中北部 | 尚未決定 | 尚未決定 |
-| 北歐 | 尚未決定 | 尚未決定 |
+| 北歐 | 2016 年 8 月 10 日 | 2016 年 8 月 24 日 |
 | 美國中南部 | 2016 年 6 月 23日 | 2016 年 7 月 2 日 |
 | 東南亞 | 2016 年 6 月 23日 | 2016 年 7 月 1 日 |
 | 西歐 | 2016 年 6 月 23日 | 2016 年 7 月 8 日 |
@@ -97,8 +97,6 @@ SQL 資料倉儲最新引進了[進階儲存體，以獲得更高的效能可預
 
 ## 自行移轉至進階儲存體
 如果您想要控制發生停機的時間，您可以使用下列步驟，將標準儲存體上的現有資料倉儲移轉至進階儲存體。如果您選擇自行移轉，則必須在該區域的自動移轉開始前，先完成自行移轉，以避免任何會造成衝突的自動移轉風險 (請參閱[自動移轉排程][])。
-
-> [AZURE.NOTE] 採用進階儲存體的 SQL 資料倉儲目前不會進行異地備援。這表示您的資料倉儲一旦移轉至進階儲存體，資料只會放在您目前的區域中。異地備份一旦可用，就會每隔 24 小時將您的資料倉儲複製到 [Azure 配對區域][]，讓您從異地備份還原到 Azure 中的任何區域。一旦異地備份功能可用於自行移轉，就會在我們的[主要文件網站][]上發佈。相反地，自動移轉不會有這項限制。
 
 ### 自行移轉指示
 如果您想要控制停機時間，您可使用備份/還原自行移轉您的資料倉儲。每個 DW 每 TB 的儲存體預計需要約 1 小時的時間來進行移轉作業的還原部分。如果您要在移轉完成後保留相同的名稱，請遵循以下適用於[重新命名因應措施][]的步驟。
@@ -112,18 +110,18 @@ SQL 資料倉儲最新引進了[進階儲存體，以獲得更高的效能可預
 >	-  Auditing at the Database level will need to be re-enabled
 >	-  Firewall rules at the **Database** level will need to be re-added.  Firewall rules at the **Server** level will not be impacted.
 
-#### 選擇性︰重新命名因應措施 
-相同邏輯伺服器上的兩個資料庫不能具有相同的名稱。SQL 資料倉儲目前不支援重新命名 DW 功能。以下指示可讓您在自行移轉期間解決這項遺漏功能 (附註︰自動移轉不會有這項限制)。
+#### 選用︰在移轉期間重新命名的步驟 
+相同邏輯伺服器上的兩個資料庫不能具有相同的名稱。SQL 資料倉儲現在支援重新命名 DW。
 
 基於此範例的目的，假設您在標準儲存體上的現有 DW 目前名為 “MyDW”。
 
-1.	[暫停][]將進行自動備份的 "MyDW"
-2.	從最新的快照集[還原][]至具有不同名稱 (如 "MyDWTemp") 的新資料庫
-3.	刪除 "MyDW"。**如果您無法執行此步驟，您需支付這兩個 DW 的費用。**
-4.	由於 "MyDWTemp" 是新建立的 DW，備份將有一段時間無法用於還原。建議繼續在 "MyDWTemp" 上執行作業數小時，然後繼續進行步驟 5 和 6。
-5.	[暫停][]將進行自動備份的 "MyDWTemp"。
-6.	從最新的 "MyDWTemp" 快照集[還原][]至名稱為 "MyDW" 的新資料庫。
-7.	刪除 "MyDWTemp"。**如果您無法執行此步驟，您需支付這兩個 DW 的費用。**
+1.	使用 ALTER DATABASE 命令重新命名 "MyDW" 的結果會像是 "MyDW\_BeforeMigration"。這將會終止所有現有的交易，而且必須在主要資料庫中進行，才能成功完成。
+```
+ALTER DATABASE CurrentDatabasename MODIFY NAME = NewDatabaseName;
+```
+2.	[暫停][]將進行自動備份的 "MyDW\_BeforeMigration"
+3.	從您最近使用的快照集搭配您使用過的名稱 (例如："MyDW") 來[還原][]新的資料庫
+4.	刪除 "MyDW\_BeforeMigration"。**如果您無法執行此步驟，您需支付這兩個 DW 的費用。**
 
 > [AZURE.NOTE] 這些設定不會在移轉過程中沿用︰
 > 
@@ -139,8 +137,8 @@ SQL 資料倉儲最新引進了[進階儲存體，以獲得更高的效能可預
 [自動移轉排程]: #automatic-migration-schedule
 [self-migration to Premium Storage]: #self-migration-to-premium-storage
 [建立支援票證]: ./sql-data-warehouse-get-started-create-support-ticket.md
-[Azure 配對區域]: ./best-practices-availability-paired-regions.md
-[主要文件網站]: ./services/sql-data-warehouse.md
+[Azure paired region]: ./best-practices-availability-paired-regions.md
+[main documentation site]: ./services/sql-data-warehouse.md
 [暫停]: ./sql-data-warehouse-manage-compute-portal.md/#pause-compute
 [還原]: ./sql-data-warehouse-manage-database-restore-portal.md
 [重新命名因應措施]: #optional-rename-workaround
@@ -152,4 +150,4 @@ SQL 資料倉儲最新引進了[進階儲存體，以獲得更高的效能可預
 [進階儲存體，以獲得更高的效能可預測性]: https://azure.microsoft.com/zh-TW/blog/azure-sql-data-warehouse-introduces-premium-storage-for-greater-performance/
 [Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0803_2016-->

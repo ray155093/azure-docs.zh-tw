@@ -1,11 +1,11 @@
 <properties
 	pageTitle="我收到一封電子郵件通知我服務可能會中斷 | Microsoft Azure"
 	description="無法針對您的訂用帳戶向您的信用卡收取費用時，本文說明如何解決此問題"
-	services="billing"
+	services=""
 	documentationCenter=""
 	authors="genlin"
 	manager="jarrettr"
-	editor="na"
+	editor=""
 	tags="billing"
 	/>
 
@@ -30,4 +30,4 @@
 
 如果您需要建立支援票證的協助，請參閱[如何針對 Azure 計費和訂用帳戶問題建立支援票證](billing-how-to-create-billing-support-ticket.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0803_2016-->

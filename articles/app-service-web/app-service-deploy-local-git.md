@@ -24,7 +24,7 @@
 
 若要完成本教學課程，您需要：
 
-- Git。您可以在[這裡](http://www.git-scm.com/downloads)下載安裝二進位檔。  
+- Git。您可以在[這裡](http://www.git-scm.com/downloads)下載安裝二進位檔。
 - Git 基本知識。
 - Microsoft Azure 帳戶。如果您沒有這類帳戶，可以[申請免費試用](https://azure.microsoft.com/pricing/free-trial)，或是[啟用自己的 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details)。
 
@@ -46,7 +46,7 @@
 
 App Service 支援以各種程式設計語言建立的應用程式。
 
-1. 如果您的儲存機制已經包含內容，請略過這點，並移至下面的第 2 點。如果您的儲存機制尚未包含內容，請只要填入靜態的 .html 檔案，如下所示︰ 
+1. 如果您的儲存機制已經包含內容，請略過這點，並移至下面的第 2 點。如果您的儲存機制尚未包含內容，請只要填入靜態的 .html 檔案，如下所示︰
 
     - 使用文字編輯器，在 Git 儲存機制的根目錄建立新檔案 **index.html**。
     - 在 index.html 檔案中加入並儲存下列文字內容：*Hello Git!*
@@ -166,7 +166,7 @@ App Service 支援以各種程式設計語言建立的應用程式。
 
 * [Git 文件](http://git-scm.com/documentation)
 * [專案 Kudu 文件](https://github.com/projectkudu/kudu/wiki)
-* [持續部署至 Azure App Service](app-service-continous-deployment.md)
+* [持續部署至 Azure App Service](app-service-continuous-deployment.md)
 * [如何使用適用於 Azure 的 PowerShell](../powershell-install-configure.md)
 * [如何使用 Azure 命令列介面](../xplat-cli-install.md)
 
@@ -175,9 +175,9 @@ App Service 支援以各種程式設計語言建立的應用程式。
 [Azure 入口網站]: https://portal.azure.com
 [Git website]: http://git-scm.com
 [Installing Git]: http://git-scm.com/book/en/Getting-Started-Installing-Git
-[Azure 命令列工具介面]: https://azure.microsoft.com/documentation/articles/xplat-cli-azure-resource-manager/
+[Azure 命令列工具介面]: https://azure.microsoft.com/zh-TW/documentation/articles/xplat-cli-azure-resource-manager/
 
 [Using Git with CodePlex]: http://codeplex.codeplex.com/wikipage?title=Using%20Git%20with%20CodePlex&referringTitle=Source%20control%20clients&ProjectName=codeplex
 [Quick Start - Mercurial]: http://mercurial.selenic.com/wiki/QuickStart
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0803_2016-->

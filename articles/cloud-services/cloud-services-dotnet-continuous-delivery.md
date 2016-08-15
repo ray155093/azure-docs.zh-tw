@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="05/08/2016"
+	ms.date="07/30/2016"
 	ms.author="tarcher"/>
 
 # Azure 中雲端服務的連續傳遞
@@ -30,7 +30,7 @@
 
 組建伺服器上不需要安裝 Visual Studio。若要使用 Team Foundation Build Service 來管理組建伺服器，請遵循 [Team Foundation Build Service][] 文件。
 
-1.  在組建伺服器上，安裝 [.NET Framework 4.5.2][] \(其中包含 MSBuild)。
+1.  在組建伺服器上，安裝 [.NET Framework 4.5.2][] (其中包含 MSBuild)。
 2.  安裝最新版的[適用於 .NET 的 Azure 編寫工具](https://azure.microsoft.com/develop/net/)。
 3.	安裝 [Azure Libraries for .NET](http://go.microsoft.com/fwlink/?LinkId=623519)。
 4.  將 Microsoft.WebApplication.targets 檔案從 Visual Studio 安裝複製到組建伺服器上。
@@ -69,7 +69,7 @@
 
         MSBuild /t:Publish /p:TargetProfile=Cloud
 
-6.  指定輸出的位置。使用 /p:PublishDir=*Directory*\\ 選項來設定路徑 (包括最後的反斜線分隔符號)，如下列範例所示：
+6.  指定輸出的位置。使用 /p:PublishDir=Directory\\ 選項來設定路徑 (包括最後的反斜線分隔符號)，如下列範例所示：
 
         MSBuild /target:Publish /p:PublishDir=\\myserver\drops\
 
@@ -83,7 +83,7 @@
 
 1.  在開發電腦上的 Visual Studio 中，於 [檢視] 功能表上，選取 [**Team Explorer**] 或選取 Ctrl+\\、Ctrl+M。在 Team Explorer 視窗中，展開 [**組建**] 節點或選擇 [**組建**] 頁面，然後選擇 [**新增組建定義**]。
 
-    ![][0]
+    ![新增組建定義選項][0]
 
 2.  選擇 [觸發程序] 索引標籤，然後指定所需的條件來代表套件的組建時機。例如，指定 [連續整合]，會在每次發生原始檔控制簽入時建置套件。
 
@@ -95,7 +95,7 @@
 
 6.  選擇 [MSBuild 引數]，然後依上面步驟 2 所述，設定適當的 MSBuild 命令列引數。例如，輸入 **/t:Publish /p:PublishDir=\\\myserver\\drops\** 以建置套件，並將套件檔複製至位置 \\\myserver\\drops\\：
 
-    ![][2]
+    ![MSBuild 引數][2]
 
     **：**將檔案複製至公用共用，將可更輕鬆地手動從開發電腦部署套件。
 
@@ -105,7 +105,7 @@
 
 本節說明如何建構 Windows PowerShell 指令碼，以使用選用參數將雲端應用程式套件發佈至 Azure。呼叫此指令碼的時機可以是執行自訂組建自動化中的組建步驟之後。也可以從 Visual Studio TFS Team Build 中的「流程範本」工作流程活動中呼叫。
 
-1.  安裝 [Azure PowerShell Cmdlet][] \(0.6.1 版或更高版本)。在 Cmdlet 設定階段期間，請選擇安裝為嵌入式管理單元。請注意，此正式支援的版本會取代透過 CodePlex 提供的更舊版本 (這些舊版本的編號為 2.x.x)。
+1.  安裝 [Azure PowerShell Cmdlet][] (0.6.1 版或更高版本)。在 Cmdlet 設定階段期間，請選擇安裝為嵌入式管理單元。請注意，此正式支援的版本會取代透過 CodePlex 提供的更舊版本 (這些舊版本的編號為 2.x.x)。
 
 2.  使用 [開始] 功能表或 [開始] 頁面啟動 Azure PowerShell。如果以此方式啟動，則會載入 Azure PowerShell Cmdlet。
 
@@ -204,7 +204,7 @@
         PublishScriptLocation
         ServiceName
 
-    ![][3]
+    ![引數清單][3]
 
     對應的 XAML 看起來如下：
 
@@ -256,7 +256,7 @@
 
         -   PublishScriptFilePath，型別為 String
 
-            ![][4]
+            ![新變數][4]
 
     4.  如果您使用 TFS 2012 或更早版本，請在新序列的開頭新增 ConvertWorkspaceItem 活動。如果您使用 TFS 2013 或更新版本，請在新序列的開頭新增 GetLocalPath 活動。針對 ConvertWorkspaceItem，請依以下方式設定內容：Direction=ServerToLocal、DisplayName='Convert publish script filename'、Input=' PublishScriptLocation'、Result='PublishScriptFilePath'、Workspace='Workspace'。針對 GetLocalPath 活動，請將內容 IncomingPath 設定為 'PublishScriptLocation'，以及將 Result 設定為 'PublishScriptFilePath'。此活動會將發佈指令碼的路徑從 TFS 伺服器位置 (如果適用的話) 轉換為標準本機磁碟路徑。
 
@@ -284,7 +284,7 @@
 
     在設計工具中，發佈工作流程活動的最終結果將看起來如下：
 
-    ![][5]
+    ![工作流程活動][5]
 
     在 XAML 中，發佈工作流程活動的最終結果將看起來如下：
 
@@ -343,7 +343,7 @@
 
     8.  SubscriptionName = 'default'
 
-    ![][6]
+    ![參數屬性值][6]
 
 10. 儲存組建定義的變更。
 
@@ -573,4 +573,4 @@ Write-Output "$(Get-Date -f $timeStampFormat) - Azure Cloud Service deploy scrip
   [5]: ./media/cloud-services-dotnet-continuous-delivery/common-task-tfs-05.png
   [6]: ./media/cloud-services-dotnet-continuous-delivery/common-task-tfs-06.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0803_2016-->

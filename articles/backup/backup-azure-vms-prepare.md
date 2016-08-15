@@ -43,7 +43,7 @@
 - 不支援跨區域備份和還原。
 - Azure 的所有公用區域皆支援使用「Azure 備份」服務來備份虛擬機器 (請參閱支援的區域[檢查清單](https://azure.microsoft.com/regions/#services))。如果您尋找的區域目前不受支援，在建立保存庫期間，該區域就不會顯示在下拉式清單中。
 - 只有特定的作業系統版本才支援使用「Azure 備份」服務來備份虛擬機器：
-  - **Linux**：請參閱[經 Azure 背書的散發套件清單](../virtual-machines/virtual-machines-linux-endorsed-distros.md)。只要虛擬機器上有 VM 代理程式，其他「攜帶您自己的 Linux」散發套件應該也可以運作。
+  - **Linux**：Azure 備份支援 [Azure 所背書的散發套件清單](../virtual-machines/virtual-machines-linux-endorsed-distros.md)，但核心作業系統 Linux 除外。只要虛擬機器上有 VM 代理程式並且可支援 Python，其他「攜帶您自己的 Linux」散發套件可能也可以運作。
   - **Windows Server**：不支援比 Windows Server 2008 R2 更舊的版本。
 - 只有透過 PowerShell 才支援還原屬於多網域控制站 (DC) 組態的 DC VM。進一步了解[還原多 DC 網域控制站](backup-azure-restore-vms.md#restoring-domain-controller-vms)。
 - 僅支援透過 PowerShell 還原具有以下特殊網路組態的虛擬機器。藉由使用 UI 中的還原工作流程來建立的 VM 在還原作業完成之後，將不會具有這些網路組態。若要深入了解，請參閱[還原具有特殊網路組態的 VM](backup-azure-restore-vms.md#restoring-vms-with-special-netwrok-configurations)。
@@ -65,7 +65,7 @@
 
     ![Ibiza 入口網站](./media/backup-azure-vms-prepare/Ibiza-portal-backup01.png)
 
-    >[AZURE.NOTE] 如果您上次是在傳統入口網站中使用訂用帳戶，則您的訂用帳戶可能會在傳統入口網站中開啟。在此情況下，若要建立備份保存庫，請按一下 [新增] > [資料服務] > [復原服務] > [備份保存庫] > [快速建立] \(請參閱下圖)。
+    >[AZURE.NOTE] 如果您上次是在傳統入口網站中使用訂用帳戶，則您的訂用帳戶可能會在傳統入口網站中開啟。在此情況下，若要建立備份保存庫，請按一下 [新增] > [資料服務] > [復原服務] > [備份保存庫] > [快速建立] (請參閱下圖)。
 
     ![建立備份保存庫](./media/backup-azure-vms-prepare/backup_vaultcreate.png)
 
@@ -131,7 +131,7 @@
      ```
      psexec -i -s "c:\Program Files\Internet Explorer\iexplore.exe"
      ```
-    它會開啟 Internet Explorer 視窗。
+     它會開啟 Internet Explorer 視窗。
 3. 移至 [工具]-> [網際網路選項]-> [連線]-> [區域網路設定]。
 4. 確認系統帳戶的 Proxy 設定。設定 Proxy IP 和連接埠。
 5. 關閉 Internet Explorer。
@@ -238,4 +238,4 @@ Set-AzureNetworkSecurityRule -Name "allow-proxy " -Action Allow -Protocol TCP -T
 - [規劃 VM 備份基礎結構](backup-azure-vms-introduction.md)
 - [管理虛擬機器備份](backup-azure-manage-vms.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0803_2016-->

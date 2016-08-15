@@ -1,11 +1,11 @@
 <properties
 	pageTitle="如何註冊、購買、升級或啟動 Azure 訂用帳戶 | Microsoft Azure"
 	description="說明如何購買或註冊 Azure 訂用帳戶"
-	services="billing"
+	services=""
 	documentationCenter=""
 	authors="genlin"
 	manager="msmbaldwin"
-	editor="meerak"
+	editor=""
 	tags="billing,top-support-issue"
 	/>
 
@@ -115,8 +115,8 @@ Azure 提供各種優惠來符合您的業務需求並開始使用 Azure。請�
 
 1. 前往[訂用帳戶摘要頁面](https://account.windowsazure.com/subscriptions)。
 
-2. 選取 [Azure in Open]。在 [Azure in Open 授權金鑰](https://azure.microsoft.com/offers/ms-azr-0111p/) 頁面中，選取 [啟用新的訂用帳戶] 或 [啟用現有的訂用帳戶]。
+2. 選取 [Azure in Open]。在 [Azure in Open 授權金鑰][](https://azure.microsoft.com/offers/ms-azr-0111p/) 頁面中，選取 [啟用新的訂用帳戶] 或 [啟用現有的訂用帳戶]。
 
 3. 輸入產品金鑰，然後查看合約選項。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

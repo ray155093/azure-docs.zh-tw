@@ -1,8 +1,8 @@
 <properties
-	pageTitle="如何使用 CDN |Microsoft Azure"
-	description="了解如何使用 Azure 內容傳遞網路 (CDN) 來快取 Blob 和靜態內容，以傳遞高頻寬內容。"
+	pageTitle="整合儲存體帳戶與 CDN | Microsoft Azure"
+	description="了解如何使用 Azure 內容傳遞網路 (CDN)，透過快取 Azure 儲存體中的 Blob 來傳遞高頻寬內容。"
 	services="cdn"
-	documentationCenter=".net"
+	documentationCenter=""
 	authors="camsoper"
 	manager="erikre"
 	editor=""/>
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/11/2016"
+	ms.date="07/28/2016"
 	ms.author="casoper"/>
 
 
@@ -33,13 +33,13 @@
 **為 Azure 訂用帳戶建立儲存體帳戶**
 
 1.  登入 [Azure 入口網站](https://portal.azure.com)。
-2.  在左下角，選取 [**新增**]。在 [**新增**] 對話方塊中，選取 [**資料 + 儲存體**]，然後按一下 [**儲存體帳戶**]。選取 [**傳統**] 做為部署模型，然後按一下 [**建立**]。
+2.  在左下角，選取 [**新增**]。在 [**新增**] 對話方塊中，選取 [**資料 + 儲存體**]，然後按一下 [**儲存體帳戶**]。
 
-    此時會顯示 [**儲存體帳戶**] 刀鋒視窗。
+    此時會顯示 [建立儲存體帳戶] 刀鋒視窗。
 
     ![建立儲存體帳戶][create-new-storage-account]
 
-4. 在 [**儲存體**] 欄位中，輸入子網域名稱。此項目可以包含 3 至 24 個小寫字母與數字。
+4. 在 [名稱] 欄位中，輸入子網域名稱。此項目可以包含 3 至 24 個小寫字母與數字。
 
     此值會成為 URI 內用來將訂用帳戶的 Blob、「佇列」或「資料表」資源定址的主機名稱。若要將 Blob 服務中的容器資源定址，您需要使用下列格式的 URI，其中 *&lt;StorageAccountLabel&gt;* 是指在 [**輸入 URL**] 中輸入的值：
 
@@ -49,15 +49,15 @@
 
 	此值也用作這個儲存體帳戶在入口網站中的名稱，或用於透過程式設計方式存取此帳戶時。
 
-5.  選取 [**定價層**] 或使用預設值。如需定價層的詳細資訊，請參閱 [Azure 儲存體價格](https://azure.microsoft.com/pricing/details/storage/)。
+5. 保留 [部署模型]、[帳戶種類]、[效能] 和 [複寫] 的預設值。
 
-6.  選取或建立 [**資源群組**]。如需資源群組的資訊，請參閱 [Azure 資源管理員概觀](resource-group-overview.md#resource-groups)。
+6. 選取將與儲存體帳戶搭配使用的 [**訂用帳戶**]。
 
-7. 選取將與儲存體帳戶搭配使用的 [**訂用帳戶**]。
+7. 選取或建立**資源群組**。如需資源群組的詳細資訊，請參閱 [Azure 資源管理員概觀](resource-group-overview.md#resource-groups)。
 
-8.  按一下 [建立]。建立儲存體帳戶的程序可能需要幾分鐘才能完成。
+8. 選取儲存體帳戶的位置。
 
-9.  若要確認已順利建立儲存體帳戶，請確認帳戶出現在 [儲存體] 所列出的項目中，且狀態為 [線上]。
+8. 按一下 [建立]。建立儲存體帳戶的程序可能需要幾分鐘才能完成。
 
 
 ## 步驟 2：建立新的 CDN 設定檔
@@ -135,4 +135,4 @@ http://<*EndpointName*>.azureedge.net/<*myPublicContainer*>/<*BlobName*>
 [cdn-add-endpoint]: ./media/cdn-create-a-storage-account-with-cdn/cdn-add-endpoint.png
 [cdn-endpoint-success]: ./media/cdn-create-a-storage-account-with-cdn/cdn-endpoint-success.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

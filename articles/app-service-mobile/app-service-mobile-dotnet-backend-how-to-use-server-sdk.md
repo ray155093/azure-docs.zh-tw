@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="mobile-multiple"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="07/18/2016"
+	ms.date="08/02/2016"
 	ms.author="glenga"/>
 
 # 使用適用於 Azure 行動應用程式的 .NET 後端伺服器 SDK
@@ -41,9 +41,7 @@
 
 [AZURE.INCLUDE [app-service-mobile-dotnet-backend-create-new-service](../../includes/app-service-mobile-dotnet-backend-create-new-service.md)]
 
-&nbsp;&nbsp;9.回到 [開始] 刀鋒視窗，在 [建立資料表 API] 底下，選擇 [C#] 作為您的 [後端語言]。
-
-&nbsp;&nbsp;10.按一下 [下載]，將壓縮的專案檔案解壓縮至您的本機電腦，並在 Visual Studio 中開啟方案。
+回到 [開始] 刀鋒視窗，在 [建立資料表 API] 底下，選擇 [C#] 作為您的 [後端語言]。按一下 [下載]，將壓縮的專案檔案解壓縮至您的本機電腦，並在 Visual Studio 中開啟方案。
 
 ### 使用 Visual Studio 2013 和 Visual Studio 2015 建立 .NET 後端
 
@@ -194,7 +192,7 @@ Azure 入口網站的伺服器快速入門會呼叫 **UseDefaultConfiguration()*
 
 1. 在 Visual Studio 中，以滑鼠右鍵按一下 [控制器] 資料夾，然後按一下 [加入] > [控制器]，選取 [Web API 2 控制器&mdash;空白]，然後按一下 [加入]。
 
-2. 提供 [控制器名稱] \(例如 `CustomController`)，然後按一下 [加入]。這會建立繼承自 **ApiController** 的新 **CustomController** 類別。
+2. 提供 [控制器名稱] (例如 `CustomController`)，然後按一下 [加入]。這會建立繼承自 **ApiController** 的新 **CustomController** 類別。
 
 3. 在新的控制器類別檔案中，新增下列 Using 陳述式：
 
@@ -481,4 +479,4 @@ Azure App Service 提供了數個適用於 ASP.NET 應用程式的偵錯和疑�
 [Microsoft.Azure.Mobile.Server.Notifications]: http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Notifications/
 [MapHttpAttributeRoutes]: https://msdn.microsoft.com/library/dn479134(v=vs.118).aspx
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->
