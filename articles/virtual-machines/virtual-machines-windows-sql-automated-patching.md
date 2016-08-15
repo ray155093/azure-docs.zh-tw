@@ -24,8 +24,7 @@
 
 自動修補會針對執行 SQL Server 的 Azure 虛擬機器建立維護時間範圍。自動更新只能在此維護時間範圍內安裝。對於 SQL Server，這可以確保系統更新和任何相關聯的重新啟動會在對資料庫最好的時間發生。自動修補相依於 [SQL Server IaaS 代理程式擴充](virtual-machines-windows-sql-server-agent-extension.md)。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]
-傳統部署模型。如需本文的精簡版本，請參閱 [Azure 虛擬機器中的 SQL Server 自動修補 (傳統)](virtual-machines-windows-classic-sql-automated-patching.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型。如需本文的精簡版本，請參閱 [Azure 虛擬機器中的 SQL Server 自動修補 傳統](virtual-machines-windows-classic-sql-automated-patching.md)。
 
 ## 必要條件
 
@@ -118,4 +117,4 @@
 
 如需有關在 Azure VM 上執行 SQL Server 的詳細資訊，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!----HONumber=AcomDC_0720_2016--->
+<!-----HONumber=AcomDC_0720_2016--->
