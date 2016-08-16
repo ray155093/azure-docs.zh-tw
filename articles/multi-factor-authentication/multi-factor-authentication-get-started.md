@@ -20,12 +20,12 @@
 
 因為 Azure Multi-Factor Authentication 的種類繁多，我們必須從幾個重點來判斷，以便找出最合適的版本。這些重點包括：
 
--	[我要保護什麼](#what-am-i-trying-to-secure)
--	[使用者位於何處](#where-are-the-users-located)
+-	<a href="#-1">我要保護什麼</a>
+-	<a href="#-2">使用者位於何處</a>
 
 下列小節將提供如何判斷以上重點的指引。
 
-## 我要保護什麼？
+<h2 id="-1">我要保護什麼？</h2>
 
 為了判斷出正確的 Multi-Factor Authentication 解決方案，首先我們必須回答一個問題：您試圖使用第二個驗證方法來保護什麼？它是 Azure 中的應用程式嗎？ 或者是遠端存取系統之類的系統。藉由判斷我們嘗試保護的東西，我們可以找出該在何處啟用 Multi-Factor Authentication 這個問題的答案。
 
@@ -40,7 +40,7 @@ VPN、RDG 等遠端存取| |* |
 
 
 
-## 使用者位於何處
+<h2 id="-2">使用者位於何處</h2>
 
 接下來，不論是雲端中的 Multi-Factor Authentication 或使用 MFA Server 的內部部署 Multi-Factor Authentication，只要根據使用者的所在位置，我們就可以判斷出合適的解決方案。
 
