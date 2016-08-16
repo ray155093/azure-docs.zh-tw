@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="05/12/2016" 
+	ms.date="08/04/2016" 
 	ms.author="billmath"/>
 
 # Windows 驗證與 Azure Multi-Factor Authentication Server
@@ -22,7 +22,7 @@
 
 -  需要重新開機，Azure Multi-Factor Authentication for Terminal Services 才會生效。
 -  如果已核取 [需要進行 Azure Multi-Factor Authentication 使用者比對]，但您不在使用者清單中，則重新開機之後，您將無法登入機器。
--  信任的 IP 取決於應用程式是否可以提供用於驗證的用戶端 IP。目前僅支援終端機服務。  
+-  信任的 IP 取決於應用程式是否可以提供用於驗證的用戶端 IP。目前僅支援終端機服務。
 
 
 
@@ -46,7 +46,7 @@
 7. 按一下 [新增...] 按鈕。
 8. 如果您想要跳過單一 IP 位址，請選取 [單一 IP]。
 9. 如果您想要跳過整個 IP 範圍，請選取 [IP 範圍]。範例：10.63.193.1-10.63.193.100。
-10. 如果您想要使用子網路標記法指定 IP 範圍，請選取 [子網路]。輸入子網路的起始 IP，並從下拉式清單中挑選適當的網路遮罩。 
+10. 如果您想要使用子網路標記法指定 IP 範圍，請選取 [子網路]。輸入子網路的起始 IP，並從下拉式清單中挑選適當的網路遮罩。
 11. 按一下 [確定] 按鈕。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016-->

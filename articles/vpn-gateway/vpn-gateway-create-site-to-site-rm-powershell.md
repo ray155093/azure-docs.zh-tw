@@ -183,7 +183,7 @@ Azure 會使用您指定的 IP 位址前置詞來識別要傳送至內部部署�
 
 過一會兒，連接將會建立。
 
-## 9\.驗證 VPN 連線
+## <a name="toverify"></a>驗證 VPN 連線
 
 VPN 連線有幾種不同的驗證方式。下面我們將討論如何使用 Azure 入口網站和使用 PowerShell 執行基本驗證。
 
@@ -191,15 +191,18 @@ VPN 連線有幾種不同的驗證方式。下面我們將討論如何使用 Azu
 
 ## <a name="modify"></a>修改區域網路閘道的 IP 位址首碼
 
-如果您需要變更區域網路閘道首碼，請使用下列指示。所提供的指示有兩組。要選擇哪組指示取決於您是否已建立 VPN 閘道連線。
+如果您需要變更區域網路閘道首碼，請使用下列指示。所提供的指示有兩組。要選擇哪組指示取決於您是否已建立閘道連線。
 
 [AZURE.INCLUDE [vpn-gateway-modify-ip-prefix-rm](../../includes/vpn-gateway-modify-ip-prefix-rm-include.md)]
 
+## <a name="modifygwipaddress"></a>修改區域網路閘道的閘道 IP 位址
+
+[AZURE.INCLUDE [vpn-gateway-modify-lng-gateway-ip-rm](../../includes/vpn-gateway-modify-lng-gateway-ip-rm-include.md)]
 
 ## 後續步驟
 
 - 您可以將虛擬機器加入您的虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
 
-- 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md) 和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
+- 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md)和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

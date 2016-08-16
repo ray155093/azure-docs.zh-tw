@@ -32,7 +32,7 @@
 名稱 | 說明
 --- | ---
 [Azure 服務匯流排](app-service-logic-connector-azureservicebus.md) | 可以從「服務匯流排佇列和主題」傳送訊息，並接收來自「服務匯流排佇列和訂用帳戶」的訊息。
-[Bing 翻譯](https://azure.microsoft.com/marketplace/partners/microsoft_com/bingtranslator) | 使用 Bing，將文字翻譯成其他語言。
+[Bing 翻譯](https://azure.microsoft.com/marketplace/partners/bing/microsofttranslator/) | 使用 Bing，將文字翻譯成其他語言。
 [HTTP](app-service-logic-connector-http.md) | HTTP 接聽程式會開啟當做 HTTP 伺服器的端點，並接聽內送的 HTTP 或 HTTPS 要求。HTTP 動作不需要 API Apps，Logic Apps 內原本就支援。
 [Microsoft Office 365](app-service-logic-connector-office365.md) | Office 365 連接器可以使用 Office 365 帳戶來傳送和接收電子郵件、管理您的行事曆及管理您的連絡人。
 [QuickBooks](app-service-logic-connector-quickbooks.md) | 您可以完成不同的工作，包括建立、更新和查詢來自 Intuit QuickBooks (如客戶、項目、發票等等) 的不同實體。
@@ -80,4 +80,4 @@ MQ | 連接至內部部署和執行 Windows 作業系統的 Azure 虛擬機器�
 ## 連接器和 API Apps 的詳細資訊
 [什麼是連接器和 BizTalk API Apps](app-service-logic-what-are-biztalk-api-apps.md) [在 Azure App Service 中使用混合式連接管理員](app-service-logic-hybrid-connection-manager.md) [管理和監視內建 API Apps 和連接器](app-service-logic-monitor-your-connectors.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

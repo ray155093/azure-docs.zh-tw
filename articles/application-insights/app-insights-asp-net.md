@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="06/21/2016" 
+	ms.date="08/09/2016" 
 	ms.author="daviste"/>
 
 
@@ -88,10 +88,22 @@
 
 入口網站會開啟應用程式的遙測檢視︰![](./media/app-insights-asp-net/66.png)
 
-* 個別事件會出現在 [搜尋] \(1)。資料會先出現在這裡 (和[即時度量串流](app-insights-metrics-explorer.md#live-metrics-stream)中)。按一下任何事件以查看其屬性。
+* 第一個遙測會出現在[即時計量串流](app-insights-metrics-explorer.md#live-metrics-stream)。
+* 個別事件會出現在 [搜尋] (1)。資料可能需要數分鐘才會出現。按任一事件查看其屬性。
 * 彙總度量會出現在圖表 (2)。資料可能需要一兩分鐘的時間才會出現在這裡。按一下任何圖表即可開啟內含更多詳細資料的刀鋒視窗。
 
 [深入了解在 Azure 入口網站中使用 Application Insights](app-insights-dashboards.md)。
+
+## 4\.發佈您的應用程式
+
+將您的應用程式發佈至 IIS 伺服器或 Azure。監看[即時計量串流](app-insights-metrics-explorer.md#live-metrics-stream)以確定一切順利執行。
+
+您會在 Application Insights 入口網站看到遙測累積，您還可以在此監視計量，搜尋您的遙測，以及設定[儀表板](app-insights-dashboards.md)。您也可以使用功能強大的[分析查詢語言](app-insights-analytics.md)來分析使用狀況和效能或尋找特定事件。
+
+您也可以繼續在 [Visual Studio](app-insights-visual-studio.md) 中以診斷搜尋和[趨勢](app-insights-visual-studio-trends.md)等工具來分析您的遙測。
+
+> [AZURE.NOTE] 如果應用程式傳送足夠的遙測資料達到[節流限制](app-insights-pricing.md#limits-summary)，則會切換為自動 [取樣](app-insights-sampling.md)。取樣可減少從應用程式傳送的遙測數量，同時為供診斷之用保留相互關聯的資料。
+
 
 ##<a name="land"></a>「加入 Application Insights」執行了哪些動作？
 
@@ -102,12 +114,12 @@ Application Insights 會將應用程式的遙測傳送至 Application Insights �
 因此命令會執行三項工作︰
 
 1. 將 Application Insights Web SDK NuGet 封裝加入您的專案。若要在 Visual Studio 中看到它，請以滑鼠右鍵按一下專案，然後選擇 [管理 NuGet 封裝]。
-2. 在 [Azure 入口網站](https://portal.azure.com/) 中建立 Application Insights 資源。這是您會看到您的資料的位置。它會擷取可識別資源的「檢測金鑰」。
+2. 在 [Azure 入口網站](https://portal.azure.com/)中建立 Application Insights 資源。這是您會看到您的資料的位置。它會擷取可識別資源的「檢測金鑰」。
 3. 在 `ApplicationInsights.config` 中插入檢測金鑰，讓 SDK 可以將遙測傳送至入口網站。
 
 如果您想要的話，可以為 [ASP.NET 4](app-insights-asp-net-manual.md) 或 [ASP.NET 核心](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Getting-Started)手動進行這些步驟。
 
-## 若要升級至未來的 SDK 版本
+### 若要升級至未來的 SDK 版本
 
 若要升級至[新版的 SDK](app-insights-release-notes-dotnet.md)，請再次開啟 NuGet 封裝管理員，並篩選出已安裝的封裝。選取 Microsoft.ApplicationInsights.Web 然後選擇 [升級]。
 
@@ -119,8 +131,8 @@ Application Insights 會將應用程式的遙測傳送至 Application Insights �
 
 | | 
 |---|---
-|**[在 Visual Studio 中使用 Application Insights](app-insights-visual-studio.md)**<br/>使用遙測來偵錯、診斷搜尋、鑽研程式碼。|![Visual studio](./media/app-insights-asp-net/61.png)
-|**[使用 Application Insights 入口網站](app-insights-dashboards.md)**<br/>儀表板、功能強大的診斷和分析工具、警示、即時的應用程式相依性對應，以及遙測匯出。 |![Visual studio](./media/app-insights-asp-net/62.png)
+|**[在 Visual Studio 中使用 Application Insights](app-insights-visual-studio.md)**<br/> 使用遙測來偵錯、診斷搜尋、鑽研程式碼。|![Visual studio](./media/app-insights-asp-net/61.png)
+|**[使用 Application Insights 入口網站](app-insights-dashboards.md)**<br/>儀表板、功能強大的診斷和分析工具、警示、即時的應用程式相依性對應，以及遙測匯出等功能。 |![Visual studio](./media/app-insights-asp-net/62.png)
 |**[新增更多資料](app-insights-asp-net-more.md)**<br/>監視使用狀況、可用性、相依性、例外狀況。整合來自記錄架構的追蹤。撰寫自訂遙測。 | ![Visual studio](./media/app-insights-asp-net/64.png)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0810_2016-->

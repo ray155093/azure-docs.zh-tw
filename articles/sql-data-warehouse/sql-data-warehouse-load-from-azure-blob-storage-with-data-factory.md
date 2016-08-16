@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="04/29/2016"
+   ms.date="08/08/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 # 從 Azure blob 儲存體將資料載入 Azure SQL 資料倉儲 (Azure Data Factory)
@@ -239,4 +239,4 @@ AzCopy /Source:<Sample Data Location>  /Dest:https://<storage account>.blob.core
 [Azure 入口網站]: https://portal.azure.com
 [載入範例資料]: https://migrhoststorage.blob.core.windows.net/adfsample/FactInternetSales.csv
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0810_2016-->

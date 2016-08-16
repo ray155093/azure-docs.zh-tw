@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-xamarin-ios"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="06/28/2016"
+	ms.date="08/04/2016"
 	ms.author="normesta"/>
 
 
@@ -52,15 +52,6 @@
 請遵循下列步驟來設定伺服器專案使用 Node.js 或 .NET 後端。
 
 [AZURE.INCLUDE [app-service-mobile-configure-new-backend](../../includes/app-service-mobile-configure-new-backend.md)]
-
-
-## (選擇性) 在本機測試您的後端專案
-
-如果您選擇上述的 .NET 後端組態，您可以在本機選擇性地測試後端。
-
-[AZURE.INCLUDE [app-service-mobile-dotnet-backend-test-local-service](../../includes/app-service-mobile-dotnet-backend-test-local-service.md)]
-
-
 
 ## 下載並執行 Xamarin.iOS 應用程式
 
@@ -108,4 +99,4 @@
 <!-- URLs. -->
 [Azure 入口網站]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0810_2016-->

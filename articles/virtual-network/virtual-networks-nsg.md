@@ -3,7 +3,7 @@
    description="深入了解 Azure 中使用網路安全性群組 (NSG) 的分散式防火牆，以及如何使用 NSG 隔離及控制您的虛擬網路 (VNet) 中的流量流程。"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor="tysonn" />
 <tags 
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/11/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # 什麼是網路安全性群組 (NSG)？
 
@@ -40,7 +40,8 @@ NSG 規則包含下列屬性。
 |---|---|---|---|
 |**名稱**|規則的名稱|在區域內必須是唯一<br/>可以包含字母、數字、底線、句號和連字號<br/>必須以字母或數字開頭<br/>必須以字母、數字或底線結尾<br/>可以有最多 80 個字元|在 NSG 內可以有數個規則，因此請確定您遵循可讓您識別規則的功能的命名慣例|
 |**通訊協定**|規則要符合的通訊協定|TCP、UDP 或 *|使用 * 作為包括 ICMP (僅東西向流量) 以及 UDP 和 TCP 的通訊協定，而且可能會減少所需規則的數目<br/>同時，使用 * 可能是過於廣泛的方法，因此請確定您只在真的必要時使用|
-|**來源連接埠範圍**|規則要符合的來源連接埠範圍|1 到 65535 的單一連接埠號碼、連接埠範圍 (亦即 1-65635)，或 * (所有連接埠)|來源連接埠可以是暫時的。除非您的用戶端程式使用特定連接埠，否則請在大部分情況下使用 "*"。<br/>請嘗試儘可能使用連接埠範圍以避免需要多個規則<br/>多個連接埠或連接埠範圍不可使用逗號群組在一起 |目的地連接埠範圍|規則要符合的目的地連接埠範圍|1 到 65535 的單一連接埠號碼、連接埠範圍 (亦即 1-65535)，或 * (所有連接埠)|請嘗試儘可能使用連接埠範圍以避免需要多個規則<br/>多個連接埠或連接埠範圍不可使用逗號群組在一起
+|**來源連接埠範圍**|規則要符合的來源連接埠範圍|1 到 65535 的單一連接埠號碼、連接埠範圍 (亦即 1-65635)，或 * (所有連接埠)|來源連接埠可以是暫時的。除非您的用戶端程式使用特定連接埠，否則請在大部分情況下使用 "*"。<br/>請嘗試儘可能使用連接埠範圍以避免需要多個規則<br/>多個連接埠或連接埠範圍不可使用逗號分組
+|**目的地連接埠範圍**|規則要符合的目的地連接埠範圍|1 到 65535 的單一連接埠號碼、連接埠範圍 (亦即 1-65535)，或 * (所有連接埠)|請嘗試儘可能使用連接埠範圍以避免需要多個規則<br/>多個連接埠或連接埠範圍不可使用逗號分組
 |**來源位址首碼**|規則要符合的來源位址首碼或標籤|單一 IP 位址 (亦即 10.10.10.10)、IP 子網路 (亦即 192.168.1.0/24)、[預設標籤](#Default-Tags)或 * (用於所有位址)|考慮使用範圍、預設標籤和 * 以降低規則的數量|
 |**Destination address prefix**|規則要符合的目的地位址首碼或標籤|單一 IP 位址 (亦即 10.10.10.10)、IP 子網路 (亦即 192.168.1.0/24)、[預設標籤](#Default-Tags)或 * (用於所有位址)|考慮使用範圍、預設標籤和 * 以降低規則的數量|
 |**Direction**|規則要符合的流量方向|inbound (輸入) 或 outbound (輸出)|輸入和輸出規則會根據方向分別處理|
@@ -91,7 +92,7 @@ NSG 包含兩組規則：輸入和輸出。規則的優先順序在每一個集�
 
 [AZURE.INCLUDE [learn-about-deployment-models-both-include.md](../../includes/learn-about-deployment-models-both-include.md)]
  
-- **將 NSG 與 VM 建立關聯 (僅傳統部署)。** 當您將 NSG 與 VM 建立關聯時，NSG 中的網路存取規則會套用到預定要進入和離開 VM 的所有流量。 
+- **將 NSG 與 VM 建立關聯 (僅傳統部署)。** 當您將 NSG 與 VM 建立關聯時，NSG 中的網路存取規則會套用到預定要進入和離開 VM 的所有流量。
 
 - **將 NSG 與 NIC 建立關聯 (僅資源管理員部署)。** 當您將 NSG 與 NIC 建立關聯時，NSG 中的網路存取規則只會套用到該 NIC。這表示多 NIC 的 VM 中，如果 NSG 已套用到單一 NIC，則它不會影響繫結至其他 NIC 的流量。
 
@@ -100,21 +101,21 @@ NSG 包含兩組規則：輸入和輸出。規則的優先順序在每一個集�
 您可以將不同 NSG 與 VM (或 NIC，根據部署模型而定) 和 NIC 或 VM 繫結的子網路建立關聯。當發生這種情況時，所有網路存取規則都會依每個 NSG 中的優先順序，以下列順序套用到流量：
 
 - **輸入流量**
-	1. NSG 已套用到子網路。 
+	1. NSG 已套用到子網路。
 	
-        如果子網路 NSG 有拒絕流量的相符規則，封包會在此遭到捨棄。
-	2. NSG 已套用至 NIC (資源管理員) 或 VM (傳統)。 
+           如果子網路 NSG 有拒絕流量的相符規則，封包會在此遭到捨棄。
+	2. NSG 已套用至 NIC (資源管理員) 或 VM (傳統)。
 	   
-        如果 VM\\NIC NSG 有拒絕流量的相符規則，封包會在 VM\\NIC 遭到捨棄，雖然子網路 NSG 有允許流量的相符規則。
+           如果 VM\\NIC NSG 有拒絕流量的相符規則，封包會在 VM\\NIC 遭到捨棄，雖然子網路 NSG 有允許流量的相符規則。
 - **輸出流量**
-	1. NSG 已套用至 NIC (資源管理員) 或 VM (傳統)。 
+	1. NSG 已套用至 NIC (資源管理員) 或 VM (傳統)。
 	  
-        如果 VM\\NIC NSG 有拒絕流量的相符規則，封包會在此遭到捨棄。
+           如果 VM\\NIC NSG 有拒絕流量的相符規則，封包會在此遭到捨棄。
 	2. NSG 已套用到子網路。
 	   
            如果子網路 NSG 有拒絕流量的相符規則，封包會在此遭到捨棄，雖然 VM\\NIC NSG 有允許流量的相符規則。
 
-![NSG ACL](./media/virtual-network-nsg-overview/figure2.png)
+	![NSG ACL](./media/virtual-network-nsg-overview/figure2.png)
 
 >[AZURE.NOTE] 雖然您只能將單一 NSG 與子網路、VM 或 NIC 建立關聯，但您可以盡量將同一個 NSG 與許多您想要的資源建立關聯。
 
@@ -124,10 +125,10 @@ NSG 包含兩組規則：輸入和輸出。規則的優先順序在每一個集�
 |部署工具|傳統|資源管理員|
 |---|---|---|
 |傳統入口網站|![否][red]|![否][red]|
-|Azure 入口網站|![是][green]|<a href="https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-arm-pportal">![是][green]</a>|
-|PowerShell|<a href="https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-classic-ps">![是][green]</a>|<a href="https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-arm-ps">![是][green]</a>|
-|Azure CLI|<a href="https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-classic-cli">![是][green]</a>|<a href="https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-arm-cli">![是][green]</a>|
-|ARM 範本|![否][red]|<a href="https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-arm-template">![是][green]</a>|
+|Azure 入口網站|![是][green]|[](virtual-networks-create-nsg-arm-pportal.md)![是][green]|
+|PowerShell|[](virtual-networks-create-nsg-classic-ps.md)![是][green]|[](virtual-networks-create-nsg-arm-ps.md)![是][green]|
+|Azure CLI|[](virtual-networks-create-nsg-classic-cli.md)![是][green]|[](virtual-networks-create-nsg-arm-cli.md)![是][green]|
+|ARM 範本|![否][red]|[](virtual-networks-create-nsg-arm-template.md)![是][green]|
 
 |**Key**|![是][green] 支援。按一下文章。|![否][red] 不支援。|
 |---|---|---|
@@ -172,11 +173,11 @@ NSG 包含兩組規則：輸入和輸出。規則的優先順序在每一個集�
 
 ### ICMP 流量
 
-目前的 NSG 規則僅可用於通訊協定 TCP 或 UDP。ICMP 沒有特定的標記。不過，系統依預設會透過輸入 VNet 規則 (預設規則 65000 輸入) 來允許虛擬網路內的 ICMP 流量，該規則會允許 VNet 內任何連接埠的輸入/輸出流量以及通訊協定。
+目前的 NSG 規則僅可用於通訊協定 *TCP* 或 *UDP*。*ICMP* 沒有特定的標記。不過，系統依預設會透過輸入 VNet 規則 (預設規則 65000 輸入) 來允許虛擬網路內的 ICMP 流量，該規則會允許 VNet 內任何連接埠的輸入/輸出流量以及通訊協定。
 
 ### 子網路
 
-- 請考慮您的工作負載所需要的階層數目。每個層級可以使用子網路與套用至子網路的 NSG 來隔離。 
+- 請考慮您的工作負載所需要的階層數目。每個層級可以使用子網路與套用至子網路的 NSG 來隔離。
 - 如果您需要為 VPN 閘道或 ExpressRoute 電路實作子網路，請確定您**不**對該子網路套用 NSG。如果您這麼做，您的跨 VNet 或跨內部部署連線將無法運作。
 - 如果您需要實作虛擬應用裝置，請確定您在其自己的子網路上部署虛擬應用裝置，使得使用者定義的路由 (UDR) 可以正確運作。您可以實作子網路層級 NSG，以篩選流入和流出此子網路的流量。深入了解[如何控制流量和使用虛擬應用裝置](virtual-networks-udr-overview.md)。
 
@@ -209,7 +210,7 @@ NSG 包含兩組規則：輸入和輸出。規則的優先順序在每一個集�
 
 ![NSG](./media/virtual-network-nsg-overview/figure1.png)
 
-在以上圖表中可以看到，Web1 和 Web2 VM 連接到 FrontEnd 子網路，而 DB1 和 DB2 VM 連接到 BackEnd 子網路。這兩個子網路屬於 TestVNet VNet。所有的資源指派給美國西部 Azure 區域。
+在以上圖表中可以看到，*Web1* 和 *Web2* VM 連接到 *FrontEnd* 子網路，而 *DB1* 和 *DB2* VM 連接到 *BackEnd* 子網路。這兩個子網路屬於 *TestVNet* VNet。所有的資源指派給*美國西部* Azure 區域。
 
 上述的需求 1-6 (3 例外) 均限制在子網路空間。若要將每個 NSG 所需的規則數目降至最低，並讓您輕鬆加入其他 VM 至與現有 VM 執行相同工作負載類型的子網路，我們可以實作下列子網路層級的 NSG。
 
@@ -249,7 +250,7 @@ NSG 包含兩組規則：輸入和輸出。規則的優先順序在每一個集�
 
 |規則|Access|優先順序|來源位址範圍|來源連接埠|目的地連接埠範圍|目的地連接埠|通訊協定|
 |---|---|---|---|---|---|---|---|
-|允許 RDP 來自網際網路|允許|100|網際網路|**|*|3389|TCP|
+|允許 RDP 來自網際網路|允許|100|網際網路|*|*|3389|TCP|
 
 >[AZURE.NOTE] 注意這項規則的來源位址範圍為何是**網際網路**，而不是負載平衡器的 VIP；來源連接埠是 *****，而不是 500001。不要在 NAT 規則/負載平衡規則和 NSG 規則之間感到混淆。NSG 規則永遠與流量的原始來源和最終目的地的相關，而**不是**兩者之間的負載平衡器。
 
@@ -259,7 +260,7 @@ NSG 包含兩組規則：輸入和輸出。規則的優先順序在每一個集�
 
 |規則|Access|優先順序|來源位址範圍|來源連接埠|目的地連接埠範圍|目的地連接埠|通訊協定|
 |---|---|---|---|---|---|---|---|
-|允許 RDP 來自前端|允許|100|192\.168.1.0/24|**|*|3389|TCP|
+|允許 RDP 來自前端|允許|100|192\.168.1.0/24|*|*|3389|TCP|
 
 ### 用於後端資料庫存取 NIC 的 NSG
 
@@ -267,7 +268,7 @@ NSG 包含兩組規則：輸入和輸出。規則的優先順序在每一個集�
 
 |規則|Access|優先順序|來源位址範圍|來源連接埠|目的地連接埠範圍|目的地連接埠|通訊協定|
 |---|---|---|---|---|---|---|---|
-|允許 SQL 來自前端|允許|100|192\.168.1.0/24|**|*|1433|TCP|
+|允許 SQL 來自前端|允許|100|192\.168.1.0/24|*|*|1433|TCP|
 
 由於上述的部分 NSG 必須與個別的 NIC 關聯，您必須將此案例部署為資源管理員部署。請注意子網路和 NIC 層級的規則如何結合，視其套用的方式而定。
 
@@ -281,4 +282,4 @@ NSG 包含兩組規則：輸入和輸出。規則的優先順序在每一個集�
 [yellow]: ./media/virtual-network-nsg-overview/yellow.png
 [red]: ./media/virtual-network-nsg-overview/red.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016-->

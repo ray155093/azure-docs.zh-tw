@@ -98,15 +98,16 @@
 
 ![趨勢](./media/app-insights-visual-studio/51.png)
 
+[深入了解趨勢](app-insights-visual-studio-trends.md)。
 
 ## 後續步驟
 
 ||
 |---|---
 |**[新增更多資料](app-insights-asp-net-more.md)**<br/>監視使用狀況、可用性、相依性、例外狀況。整合來自記錄架構的追蹤。撰寫自訂遙測。 | ![Visual Studio](./media/app-insights-asp-net/64.png)
-|**[搭配 Application Insights 入口網站](app-insights-dashboards.md)**<br/>儀表板、功能強大的診斷和分析工具、警示、即時的應用程式相依性對應，以及遙測匯出等功能。 |![Visual studio](./media/app-insights-asp-net/62.png)
+|**[使用 Application Insights 入口網站](app-insights-dashboards.md)**<br/>儀表板、功能強大的診斷和分析工具、警示、即時的應用程式相依性對應，以及遙測匯出等功能。 |![Visual studio](./media/app-insights-asp-net/62.png)
 
 
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0810_2016-->

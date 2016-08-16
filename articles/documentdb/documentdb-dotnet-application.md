@@ -4,7 +4,7 @@
 	keywords="asp.net mvc 教學課程, web 應用程式開發, mvc web 應用程式, asp net mvc 教學課程逐步解說"
 	services="documentdb" 
 	documentationCenter=".net" 
-	authors="aliuy" 
+	authors="AndrewHoh" 
 	manager="jhubbard" 
 	editor="cgronlun"/>
 
@@ -16,7 +16,7 @@
 	ms.devlang="dotnet" 
 	ms.topic="hero-article" 
 	ms.date="08/01/2016" 
-	ms.author="andrl"/>
+	ms.author="anhoh"/>
 
 #<a name="_Toc395809351"></a>ASP.NET MVC 教學課程：使用 DocumentDB 開發 Web 應用程式
 
@@ -591,4 +591,4 @@
 [ASP.NET MVC 中的基本 CRUD 作業]: http://go.microsoft.com/fwlink/?LinkId=317598
 [GitHub]: https://github.com/Azure-Samples/documentdb-net-todo-app
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

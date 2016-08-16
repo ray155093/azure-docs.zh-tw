@@ -3,7 +3,7 @@
    description="了解 Azure 中的虛擬網路 (VNet)。"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor="tysonn" />
 <tags
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/15/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # 虛擬網路概觀
 
@@ -95,4 +95,4 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。它是專屬於
 - 了解 [NSG](virtual-networks-nsg.md)。
 - 了解[使用者定義的路由和 IP 轉送](virtual-networks-udr-overview.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0810_2016-->

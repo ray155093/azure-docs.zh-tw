@@ -3,8 +3,8 @@
 	description="您可以使用 Azure 備份和復原服務，從 Windows Server、Windows 用戶端電腦、System Center DPM 伺服器和 Azure 虛擬機器備份和還原資料與應用程式。"
 	services="backup"
 	documentationCenter=""
-	authors="Jim-Parker"
-	manager="jwhit"
+	authors="markgalioto"
+	manager="cfreeman"
 	editor="tysonn"
 	keywords="備份與還原；復原服務；備份解決方案"/>
 
@@ -228,4 +228,4 @@ Azure 備份會在內部部署和雲端備份資料。Azure Site Recovery 可協
 [yellow]: ./media/backup-introduction-to-azure-backup/yellow.png
 [red]: ./media/backup-introduction-to-azure-backup/red.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -4,7 +4,7 @@
 	keywords="應用程式開發、資料庫教學課程、java 應用程式、java web 應用程式教學課程、documentdb、azure、Microsoft azure"
 	services="documentdb"
 	documentationCenter="java"
-	authors="aliuy"
+	authors="AndrewHoh"
 	manager="jhubbard"
 	editor="mimig"/>
 
@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="NA"
 	ms.workload="data-services"
 	ms.date="03/10/2016"
-	ms.author="andrl"/>
+	ms.author="anhoh"/>
 
 # 使用 DocumentDB 來建置 Java Web 應用程式
 
@@ -784,4 +784,4 @@
 
 [1]: media/documentdb-java-application/keys.png
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0810_2016-->

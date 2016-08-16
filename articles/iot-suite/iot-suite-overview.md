@@ -14,7 +14,7 @@
      ms.topic="get-started-article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="05/23/2016"
+     ms.date="08/09/2016"
      ms.author="dobett"/>
 
 # 什麼是 Azure IoT 套件？
@@ -65,4 +65,4 @@ IoT 套件包括預先設定的解決方案，可讓您快速地開始使用，�
 [iot-suite-what-is-azure-iot]: iot-suite-what-is-azure-iot.md
 [lnk-what-are-preconfig]: iot-suite-what-are-preconfigured-solutions.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016-->

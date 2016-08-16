@@ -33,7 +33,7 @@
 
 ##必要條件
 
-> [AZURE.IMPORTANT] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-android-get-started)。
+> [AZURE.IMPORTANT] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdocumentation%2Farticles%2Fnotification-hubs-android-get-started)。
 
 除了上述的作用中 Azure 帳戶，本教學課程只需要最新版的 [Android Studio](http://go.microsoft.com/fwlink/?LinkId=389797)。
 
@@ -231,8 +231,8 @@
 		                regID = hub.register(token).getRegistrationId();
 
 		                // If you want to use tags...
-						// Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
-		                // regID = hub.register(token, "tag1,tag2").getRegistrationId();
+						// Refer to : https://azure.microsoft.com/zh-TW/documentation/articles/notification-hubs-routing-tag-expressions/
+		                // regID = hub.register(token, "tag1", "tag2").getRegistrationId();
 
 		                resultString = "Registered Successfully - RegId : " + regID;
 		                Log.i(TAG, resultString);		
@@ -621,7 +621,7 @@
 	
 	                        // Include any tags
 	                        // Example below targets 3 specific tags
-	                        // Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
+	                        // Refer to : https://azure.microsoft.com/zh-TW/documentation/articles/notification-hubs-routing-tag-expressions/
 	                        // urlConnection.setRequestProperty("ServiceBusNotification-Tags", 
 							//		"tag1 || tag2 || tag3");
 	
@@ -726,4 +726,4 @@
 [使用通知中樞傳送即時新聞]: notification-hubs-aspnet-backend-android-breaking-news.md
 [Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0810_2016-->

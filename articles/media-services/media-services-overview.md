@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="hero-article" 
-	ms.date="06/22/2016"
+	ms.date="08/07/2016"
 	ms.author="juliako;anilmur"/>
 
 #Azure 媒體服務概觀和常見案例
@@ -60,7 +60,7 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 
 如需 Azure 媒體服務概念，請參閱[概念](media-services-concepts.md)。
 
-如需介紹 Azure 媒體服務的所有主要元件的操作說明系列，請參閱 [Azure 媒體服務逐步教學課程](https://docs.com/fukushima-shigeyuki/3439/english-azure-media-services-step-by-step-series)。這一系列有絕佳的概念概觀，並使用 AMSE 工具來示範 AME 工作。請注意，AMSE 工具是一種 Windows 工具。這項工具支援大部分可以使用 [AMS SDK for .NET](https://github.com/Azure/azure-sdk-for-media-services)、[Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java) 或 [Azure PHP SDK](https://github.com/Azure/azure-sdk-for-php) 以程式設計方式完成的工作。
+如需介紹 Azure 媒體服務的所有主要元件的操作說明系列，請參閱 [Azure 媒體服務逐步教學課程](https://docs.com/fukushima-shigeyuki/3439/english-azure-media-services-step-by-step-series)。這一系列有絕佳的概念概觀，並使用 AMSE 工具來示範 AMS 工作。請注意，AMSE 工具是一種 Windows 工具。這項工具支援大部分可以使用 [AMS SDK for .NET](https://github.com/Azure/azure-sdk-for-media-services)、[Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java) 或 [Azure PHP SDK](https://github.com/Azure/azure-sdk-for-php) 以程式設計方式完成的工作。
 
 ##<a id="vod_scenarios"></a>使用 Azure 媒體服務傳遞點播媒體：常見案例和工作
 
@@ -220,4 +220,4 @@ Azure 媒體服務提供一些工具，供您用來建立適用於大部分平�
 [live-overview2]: ./media/media-services-live-streaming-workflow/media-services-live-streaming-current.png
  
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0810_2016-->

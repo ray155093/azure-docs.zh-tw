@@ -76,7 +76,7 @@ Azure Resource Manager 範本是說明資源和相關相依性的 JSON 檔案。
 
     ![新增變數](./media/resource-manager-vs-code/add-variables.png)
 
-5. Intellisense 也可以建議可用的值或函式。若要將屬性設定為參數值，請建立包含 **""** 和 **Ctrl+空格鍵**的運算式。您可以開始輸入函式的名稱。當您找到想要的函式時，請選取 **Tab**。
+5. IntelliSense 也可以建議可用的值或函式。若要將屬性設定為參數值，請建立包含 **""** 和 **Ctrl+空格鍵**的運算式。您可以開始輸入函式的名稱。當您找到想要的函式時，請選取 **Tab**。
 
     ![新增參數](./media/resource-manager-vs-code/select-parameters.png)
 
@@ -136,4 +136,4 @@ Azure Resource Manager 範本是說明資源和相關相依性的 JSON 檔案。
 - 若要了解範本函式，請參閱 [Azure Resource Manager 範本函式](resource-group-template-functions.md)。
 - 如需更多使用 Visual Studio Code 的範例，請參閱來自 [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 Connect [示範](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/)的 [Build cloud apps with Visual Studio Code (使用 Visual Studio Code 建置雲端應用程式)](https://github.com/Microsoft/HealthClinic.biz/wiki/Build-cloud-apps-with-Visual-Studio-Code)。如需來自 HealthClinic.biz 示範的更多快速入門，請參閱 [Azure Developer Tools Quickstarts (Azure 開發人員工具快速入門)](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

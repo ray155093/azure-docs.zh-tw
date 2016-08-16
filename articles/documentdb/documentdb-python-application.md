@@ -4,7 +4,7 @@
 	keywords="應用程式開發, 資料庫教學課程, python flask, python Web 應用程式, python Web 開發, documentdb, azure, Microsoft azure"
     services="documentdb"
     documentationCenter="python"
-    authors="aliuy"
+    authors="AndrewHoh"
     manager="jhubbard"
     editor="cgronlun"/>
 
@@ -15,7 +15,7 @@
     ms.devlang="python"
     ms.topic="hero-article"
     ms.date="04/18/2016"
-    ms.author="andrl"/>
+    ms.author="anhoh"/>
 
 # 使用 DocumentDB 進行 Python Flask Web 應用程式開發
 
@@ -44,10 +44,10 @@
 在依照本文中的指示進行之前，您應確定已安裝下列項目：
 
 - 使用中的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-- [Visual Studio 2013](http://www.visualstudio.com/) 或更高版本，或免費版本的 [Visual Studio Express]()。本教學課程中的指示專為 Visual Studio 2015 所編寫。 
-- [GitHub](http://microsoft.github.io/PTVS/) 的 Python Tools for Visual Studio。本教學課程使用 Python Tools for VS 2015。 
+- [Visual Studio 2013](http://www.visualstudio.com/) 或更高版本，或免費版本的 [Visual Studio Express]()。本教學課程中的指示專為 Visual Studio 2015 所編寫。
+- [GitHub](http://microsoft.github.io/PTVS/) 的 Python Tools for Visual Studio。本教學課程使用 Python Tools for VS 2015。
 - [azure.com](https://azure.microsoft.com/downloads/) 提供 Azure Python SDK for Visual Studio 2.4 版或更高版本。我們使用 Microsoft Azure SDK for Python 2.7。
-- 來自 [python.org][2] 的 Python 2.7。我們使用 Python 2.7.11。 
+- 來自 [python.org][2] 的 Python 2.7。我們使用 Python 2.7.11。
 
 > [AZURE.IMPORTANT] 如果您是第一次安裝 Python 2.7，請確定在自訂 Python 2.7.11 畫面中，選取 [將 python.exe 加入路徑]。
 > 
@@ -61,8 +61,7 @@
 
 [AZURE.INCLUDE [documentdb-create-dbaccount](../../includes/documentdb-create-dbaccount.md)]
 
-<br/>
-我們現在將從頭開始逐步解說如何建立新的 Python Flask Web 應用程式。
+<br/>我們現在將從頭開始逐步解說如何建立新的 Python Flask Web 應用程式。
 
 ## 步驟 2：建立新的 Python Flask Web 應用程式
 
@@ -134,7 +133,7 @@
 
 現在請加入新檔案並更新其他檔案，以建立您的投票應用程式。
 
-1. 在「方案總管」中，以滑鼠右鍵按一下 [教學課程] 專案，然後按一下 [加入]，再按一下 [新增項目]。選取 [空白 Python 檔案]，並將檔案命名為 **forms.py**。  
+1. 在「方案總管」中，以滑鼠右鍵按一下 [教學課程] 專案，然後按一下 [加入]，再按一下 [新增項目]。選取 [空白 Python 檔案]，並將檔案命名為 **forms.py**。
 2. 將下列程式碼加入 forms.py 檔案，然後儲存該檔案。
 
 ```python
@@ -151,7 +150,7 @@ class VoteForm(Form):
 
 ### 將必要匯入新增至 views.py
 
-1. 在「方案總管」中，展開 [教學課程] 資料夾，然後開啟 **views.py** 檔案。 
+1. 在「方案總管」中，展開 [教學課程] 資料夾，然後開啟 **views.py** 檔案。
 2. 在 **views.py** 檔案頂端新增下列 import 陳述式，然後儲存檔案。這些陳述式會匯入 DocumentDB 的 PythonSDK 和 Flask 封裝。
 
 	```python
@@ -257,8 +256,8 @@ def vote():
 
 ### 建立 HTML 檔案
 
-1. 在「方案總管」中，以滑鼠右鍵按一下 [教學課程] 資料夾中的 [範本] 資料夾，，然後按一下 [加入]，再按一下 [新增項目]。 
-2. 選取 [HTML 頁面]，在名稱方塊中輸入 **create.html**。 
+1. 在「方案總管」中，以滑鼠右鍵按一下 [教學課程] 資料夾中的 [範本] 資料夾，，然後按一下 [加入]，再按一下 [新增項目]。
+2. 選取 [HTML 頁面]，在名稱方塊中輸入 **create.html**。
 3. 重複步驟 1 和 2 來建立其他兩個 HTML 檔案，分別是 results.html 和 vote.html。
 4. 將下列程式碼新增至 `<body>` 元素中的 **create.html**。此程式碼可顯示訊息，指出我們已建立新的資料庫、集合和文件。
 
@@ -343,7 +342,7 @@ def vote():
 
 3. 在 [Azure 入口網站](https://portal.azure.com/)中，按一下 [瀏覽]、[DocumentDB 帳戶]，按兩下要使用的帳戶名稱，再按一下 [基本功能] 區域中的 [金鑰] 按鈕瀏覽到 [金鑰] 刀鋒視窗。在 [金鑰] 刀鋒視窗中複製 **URI** 值並貼到 **config.py** 檔案中，做為 **DOCUMENTDB\_HOST** 屬性的值。
 4. 回到 Azure 入口網站，在 [金鑰] 刀鋒視窗中複製**主要金鑰**或**次要金鑰**值，貼到 **config.py** 檔案中，做為 **DOCUMENTDB\_KEY** 屬性的值。
-5. 在 **\_\_init\_\_.py** 檔案中，加入以下這一行。 
+5. 在 **\_\_init\_\_.py** 檔案中，加入以下這一行。
 
         app.config.from_object('config')
 
@@ -386,7 +385,7 @@ def vote():
 
 您已經擁有可在DocumentDB 正常運作的完整應用程式，我們現在要將此應用程式部署至 Azure 網站。
 
-1. 以滑鼠右鍵按一下「方案總管」中的專案 (請確定您已沒有在本機上執行該案)，然後選取 [發佈]。  
+1. 以滑鼠右鍵按一下「方案總管」中的專案 (請確定您已沒有在本機上執行該案)，然後選取 [發佈]。
 
  	![[方案總管] 中選取之教學課程 (具有反白顯示的 [發佈] 選項) 的螢幕擷取畫面](./media/documentdb-python-application/image20.png)
 
@@ -434,4 +433,4 @@ def vote():
   [Microsoft Web Platform Installer]: http://www.microsoft.com/web/downloads/platform.aspx
   [Azure portal]: http://portal.azure.com
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0810_2016-->
