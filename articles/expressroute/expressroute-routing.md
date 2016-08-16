@@ -3,8 +3,8 @@
    description="此頁面提供用來設定和管理 ExpressRoute 循環路由的詳細需求。"
    documentationCenter="na"
    services="expressroute"
-   authors="cherylmc"
-   manager="carmonm"
+   authors="ganesr"
+   manager="rossort"
    editor=""/>
 <tags
    ms.service="expressroute"
@@ -12,8 +12,8 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="06/01/2016"
-   ms.author="cherylmc"/>
+   ms.date="08/10/2016"
+   ms.author="ganesr"/>
 
 
 # ExpressRoute 路由需求  
@@ -35,10 +35,10 @@
  - 您必須為路由介面保留一個 /29 子網路或兩個 /30 子網路。
  - 用於路由的子網路可以是私人 IP 位址或公用 IP 位址。
  - 子網路不得與客戶保留以便用於 Microsoft Cloud 的範圍衝突。
- - 如果使用 /29 子網路，它就會分割成兩個 /30 子網路。 
+ - 如果使用 /29 子網路，它就會分割成兩個 /30 子網路。
 	 - 第一個 /30 子網路將用於主要連結，而第二個 /30 子網路將用於次要連結。
 	 - 針對每個 /30 子網路，您必須在您的路由器上使用 /30 子網路的第一個 IP 位址。Microsoft 會使用 /30 子網路的第二個 IP 位址來設定 BGP 工作階段。
-	 - 您必須設定兩個 BGP 工作階段，我們的[可用性 SLA](https://azure.microsoft.com/support/legal/sla/) 才會有效。  
+	 - 您必須設定兩個 BGP 工作階段，我們的[可用性 SLA](https://azure.microsoft.com/support/legal/sla/) 才會有效。
 
 #### 私人對等互連範例
 
@@ -55,8 +55,8 @@ a.b.c.d/29 會分割成 a.b.c.d/30 和 a.b.c.d+4/30 並透過佈建 API 向下�
 
 您必須使用自己的公用 IP 位址來設定 BGP 工作階段。Microsoft 必須能夠透過路由網際網路登錄和網際網路路由登錄來驗證 IP 位址的擁有權。
 
-- 您必須使用唯一的 /29 子網路或兩個 /30 子網路來為每個 ExpressRoute 循環 (如果您有多個) 的每個對等互連設定 BGP 對等互連。 
-- 如果使用 /29 子網路，它就會分割成兩個 /30 子網路。 
+- 您必須使用唯一的 /29 子網路或兩個 /30 子網路來為每個 ExpressRoute 循環 (如果您有多個) 的每個對等互連設定 BGP 對等互連。
+- 如果使用 /29 子網路，它就會分割成兩個 /30 子網路。
 	- 第一個 /30 子網路將用於主要連結，而第二個 /30 子網路將用於次要連結。
 	- 針對每個 /30 子網路，您必須在您的路由器上使用 /30 子網路的第一個 IP 位址。Microsoft 會使用 /30 子網路的第二個 IP 位址來設定 BGP 工作階段。
 	- 您必須設定兩個 BGP 工作階段，我們的[可用性 SLA](https://azure.microsoft.com/support/legal/sla/) 才會有效。
@@ -124,6 +124,8 @@ Microsoft 會以適當的 BGP 社群值標記透過公用對等互連和 Microso
 | | 美國東部 | 12076:51004 |
 | | 美國東部 2 | 12076:51005 |
 | | 美國西部 | 12076:51006 |
+| | 美國西部 2 | 12076:51022 |
+| | 美國中西部 | 12076:51023 |
 | | 美國中北部 | 12076:51007 |
 | | 美國中南部 | 12076:51008 |
 | | 美國中部 | 12076:51009 |
@@ -173,4 +175,4 @@ Microsoft 會以適當的 BGP 社群值標記透過公用對等互連和 Microso
 	- [設定傳統部署模型的路由](expressroute-howto-routing-classic.md)或[設定 Resource Manager 部署模型的路由](expressroute-howto-routing-arm.md)
 	- [將傳統 VNet 連結至 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)或[將 Resource Manager VNet 連結至 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0810_2016-->

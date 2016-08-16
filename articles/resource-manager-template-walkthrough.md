@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/04/2016"
+   ms.date="08/04/2016"
    ms.author="navale;tomfitz"/>
    
 # Resource Manager 範本逐步解說
@@ -579,4 +579,4 @@ azure group deployment create -f azuredeploy.json -g ExampleResourceGroup -n Exa
 - 若要深入了解範本的結構，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
 - 若要了解如何部署範本，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0810_2016-->

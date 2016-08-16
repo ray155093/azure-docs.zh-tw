@@ -3,8 +3,8 @@
 	description="您可以使用 Azure 備份和復原服務，從 Windows Server、Windows 用戶端電腦、System Center DPM 伺服器和 Azure 虛擬機器備份和還原資料與應用程式。"
 	services="backup"
 	documentationCenter=""
-	authors="Jim-Parker"
-	manager="jwhit"
+	authors="markgalioto"
+	manager="cfreeman"
 	editor="tysonn"
 	keywords="備份與還原；復原服務；備份解決方案"/>
 
@@ -69,8 +69,7 @@ Azure 備份是您用來備份和還原 Microsoft 雲端資料的服務。它將
 | Microsoft SQL Server | Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ Azure 備份代理程式)、</p> <p>[Azure 備份伺服器](backup-azure-microsoft-azure-backup.md) (包括 Azure 備份代理程式)</p> |
 | Microsoft SharePoint | Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ Azure 備份代理程式)、</p> <p>[Azure 備份伺服器](backup-azure-microsoft-azure-backup.md) (包括 Azure 備份代理程式)</p> |
 | Microsoft Exchange | Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ Azure 備份代理程式)、</p> <p>[Azure 備份伺服器](backup-azure-microsoft-azure-backup.md) (包括 Azure 備份代理程式)</p> |
-| Azure IaaS VM (Windows) | - | [Azure 備份 (VM 延伸模組)](backup-azure-vms-introduction.md) |
-| Azure IaaS VM (Linux) | - | [Azure 備份 (VM 延伸模組)](backup-azure-vms-introduction.md) |
+| Azure IaaS VM (Windows) | - | [Azure 備份 (VM 延伸模組)](backup-azure-vms-introduction.md) | | Azure IaaS VM (Linux) | - | [Azure 備份 (VM 延伸模組)](backup-azure-vms-introduction.md) |
 
 ## ARM 和 Linux 支援
 
@@ -228,4 +227,4 @@ Azure 備份會在內部部署和雲端備份資料。Azure Site Recovery 可協
 [yellow]: ./media/backup-introduction-to-azure-backup/yellow.png
 [red]: ./media/backup-introduction-to-azure-backup/red.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016-->

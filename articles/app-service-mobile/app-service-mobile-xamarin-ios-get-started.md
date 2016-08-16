@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-xamarin-ios"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="06/28/2016"
+	ms.date="08/04/2016"
 	ms.author="normesta"/>
 
 
@@ -53,20 +53,11 @@
 
 [AZURE.INCLUDE [app-service-mobile-configure-new-backend](../../includes/app-service-mobile-configure-new-backend.md)]
 
-
-## (選擇性) 在本機測試您的後端專案
-
-如果您選擇上述的 .NET 後端組態，您可以在本機選擇性地測試後端。
-
-[AZURE.INCLUDE [app-service-mobile-dotnet-backend-test-local-service](../../includes/app-service-mobile-dotnet-backend-test-local-service.md)]
-
-
-
 ## 下載並執行 Xamarin.iOS 應用程式
 
 1. 在瀏覽器視窗中開啟 [Azure 入口網站]。
 
-2. 在行動應用程式的設定刀鋒視窗上，按一下 [開始使用] > [Xamarin.Forms]。在步驟 3 中，按一下 [建立新的應用程式] \(如果尚未選取的話)。接著按一下 [下載] 按鈕。
+2. 在行動應用程式的設定刀鋒視窗上，按一下 [開始使用] > [Xamarin.Forms]。在步驟 3 中，按一下 [建立新的應用程式] (如果尚未選取的話)。接著按一下 [下載] 按鈕。
 
   	這會下載包含連線到您行動應用程式之用戶端應用程式的專案。將此壓縮專案檔案儲存到您的本機電腦，並記錄儲存位置。
 
@@ -108,4 +99,4 @@
 <!-- URLs. -->
 [Azure 入口網站]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0810_2016-->

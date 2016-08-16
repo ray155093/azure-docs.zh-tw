@@ -2,7 +2,9 @@ VNet 對等互連是透過 Azure 骨幹網路來連接同一區域中兩個虛�
 
 VNet 對等互連處於公開預覽狀態，若要能使用您必須使用下列命令註冊︰
 
-> [AZURE.NOTE] Register-AzureRmProviderFeature -FeatureName AllowVnetPeering -ProviderNamespace Microsoft.Network –force
+    Register-AzureRmProviderFeature -FeatureName AllowVnetPeering -ProviderNamespace Microsoft.Network
+
+    Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network
  
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

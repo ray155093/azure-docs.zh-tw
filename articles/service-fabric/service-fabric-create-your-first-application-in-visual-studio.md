@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="06/09/2016"
+   ms.date="06/10/2016"
    ms.author="ryanwi"/>
 
 # 在 Visual Studio 中建立第一個 Azure Service Fabric 應用程式
@@ -42,7 +42,7 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 
 	![Visual Studio 中的新增專案對話方塊][1]
 
-4. 在下一頁上，系統會要求您選擇要包含在您的應用程式中的第一個服務類型。基於本教學課程的用途，我們將選擇 [具狀態]。予以命名，然後按一下 [確定]。
+4. 在下一頁選擇 [具狀態]，做為要包含在應用程式中的第一個服務類型。予以命名，然後按一下 [確定]。
 
 	![Visual Studio 中的新增服務對話方塊][2]
 
@@ -56,9 +56,9 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 
 	- **發佈設定檔**：用來管理不同環境的工具喜好設定。
 
-	- **指令碼**：包含用來部署/升級應用程式的 PowerShell 指令碼。此指令碼是由 Visual Studio 在幕後使用，可以直接在命令列叫用。
+	- **指令碼**：包含用來部署/升級應用程式的 PowerShell 指令碼。Visual Studio 會在幕後使用指令碼。該指令碼也可以直接在命令列叫用。
 
-	- **應用程式定義**：包含 *ApplicationPackageRoot* 之下的應用程式資訊清單和 *ApplicationParameters* 之下相關聯的應用程式參數檔案，而這些參數檔案可定義應用程式並可讓您特別為指定的環境設定應用程式。
+	- **應用程式定義**︰包含 *ApplicationPackageRoot* 下的應用程式資訊清單。相關聯的應用程式參數檔案位於 *ApplicationParameters* 下方，它們可以定義應用程式，讓您得以特別為指定的環境設定應用程式。
 
     如需服務專案的內容概觀，請參閱[開始使用 Reliable Services](service-fabric-reliable-services-quick-start.md)。
 
@@ -68,7 +68,7 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 
 1. 在 Visual Studio 中按 F5，部署應用程式以供偵錯。
 
-	>[AZURE.NOTE] 第一次需要一些時間，因為 Visual Studio 正在建立本機叢集進行開發。本機叢集會只會在一部電腦上執行您將在多部電腦的叢集中建置的相同平台程式碼。您會在 Visual Studio 輸出視窗中看見叢集建立狀態。
+	>[AZURE.NOTE] 第一次部署需要一些時間，因為 Visual Studio 正在建立本機叢集進行開發。本機叢集會只會在一部電腦上執行您將在多部電腦的叢集中建置的相同平台程式碼。叢集建立狀態會顯示在 Visual Studio 輸出視窗中。
 
 	備妥叢集時，您將會收到來自 SDK 隨附的本機叢集系統匣管理員應用程式的通知。
 
@@ -80,7 +80,7 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 
 	在具狀態服務範本的情況下，訊息只會顯示在 MyStatefulService.cs 的 `RunAsync` 方法中遞增的計數器值。
 
-3. 展開其中一個事件以查看更多詳細資料，包括程式碼執行所在的節點。在此情況下是 \_Node\_2，雖然這在您的電腦上可能有所不同。
+3. 展開其中一個事件以查看更多詳細資料，包括程式碼執行所在的節點。在此情況下是 _Node_2，雖然這在您的電腦上可能有所不同。
 
 	![診斷事件檢視器詳細資訊][6]
 
@@ -92,15 +92,15 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 
 	![具狀態服務 RunAsync 方法的中斷點][7]
 
-5. 以滑鼠右鍵按一下 [本機叢集管理員] 系統匣應用程式並選擇 [管理本機叢集]，以啟動 Service Fabric 總管。
+5. 以滑鼠右鍵按一下 [本機叢集管理員] 系統匣應用程式並選擇 [管理本機叢集]，以啟動 Service Fabric Explorer。
 
     ![從本機叢集管理員啟動 Service Fabric 總管][systray-launch-sfx]
 
-    Service Fabric 總管提供了叢集的視覺表示法，包括部署至叢集合的應用程式集以及構成叢集的實體節點集合。若要了解 Service Fabric Explorer，請參閱[視覺化叢集](service-fabric-visualizing-your-cluster.md)。
+    Service Fabric Explorer 提供了叢集的視覺表示法，包括部署至叢集的應用程式集以及構成叢集的實體節點集合。若要了解 Service Fabric 總管，請參閱[視覺化叢集](service-fabric-visualizing-your-cluster.md)。
 
 6. 在左窗格中展開 [叢集] > [節點]，並尋找您的程式碼執行所在的節點。
 
-7. 按一下 [動作] > [停用 (重新啟動)] 來模擬電腦重新啟動。(請注意，您也可以選取三個點，在左窗格中節點清單檢視的內容功能表中執行此動作。)
+7. 按一下 [動作] > [停用 (重新啟動)] 來模擬電腦重新啟動。(請注意，您也可以從左窗格之節點清單檢視中的內容功能表停用)。
 
 	![在 Service Fabric 總管中停止節點][sfx-stop-node]
 
@@ -112,11 +112,11 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 
 ## 清除
 
-  在我們做結論之前，請務必記得本機叢集非常真實。停止偵錯工具將會移除應用程式執行個體，並取消註冊應用程式類型。但叢集會繼續在背景中執行。您有數個選項可管理此項目：
+  在我們做結論之前，請務必記得本機叢集非常真實。停止偵錯工具將會移除應用程式執行個體，並取消註冊應用程式類型。但叢集會繼續在背景中執行。您有數個選項可管理叢集：
 
   1. 若要關閉叢集，但保留應用程式資料及追蹤，請按一下系統匣應用程式中的 [停止本機叢集]。
 
-  2. 若要完全刪除叢集，請按一下系統匣應用程式中的 [移除本機叢集]。請注意，此選項會導致下次您在 Visual Studio 中按 F5 鍵時發生其他緩慢部署。只有在您有時候不打算使用本機叢集或您需要回收資源時，才能使用此選項。
+  2. 若要完全刪除叢集，請按一下系統匣應用程式中的 [移除本機叢集]。請注意，此選項會導致下次您在 Visual Studio 中按 F5 鍵時發生其他緩慢部署。唯有您打算停用本機叢集一陣子或需要回收資源時，再刪除叢集。
 
 ## 後續步驟
 
@@ -138,4 +138,4 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 [diagnostic-events-viewer-detail-post-failover]: ./media/service-fabric-create-your-first-application-in-visual-studio/diagnostic-events-viewer-detail-post-failover.png
 [sfe-delete-application]: ./media/service-fabric-create-your-first-application-in-visual-studio/sfe-delete-application.png
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0810_2016-->

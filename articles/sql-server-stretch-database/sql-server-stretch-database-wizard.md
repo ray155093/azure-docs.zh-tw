@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="06/27/2016"
+	ms.date="08/05/2016"
 	ms.author="douglasl"/>
 
 # 開始執行為資料庫啟用延伸功能精靈
@@ -21,6 +21,8 @@
 若要為資料庫設定 Stretch Database，請執行 [為資料庫啟用延伸功能] 精靈。本主題說明您在精靈中必須輸入及做出選擇之項目的資訊。
 
 若要深入了解 Stretch Database，請參閱 [Stretch Database](sql-server-stretch-database-overview.md)。
+
+ >   [AZURE.NOTE] 之後，如果您停用 Stretch Database，請記得停用資料表或資料庫的 Stretch Database 並不會刪除遠端物件。如果您想要刪除遠端資料表或遠端資料庫，您必須使用 Azure 管理入口網站加以卸除。遠端物件會繼續產生 Azure 成本，直到您手動刪除它們為止。
 
 ## 啟動精靈
 
@@ -191,4 +193,4 @@
 [StretchWizardImage8]: ./media/sql-server-stretch-database-wizard/stretchwiz8.png
 [StretchWizardImage9]: ./media/sql-server-stretch-database-wizard/stretchwiz9.png
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="05/12/2016" 
+	ms.date="08/04/2016" 
 	ms.author="billmath"/>
 
 # 開始使用 MFA Server Mobile App Web 服務
 
-Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項。Azure Multi-Factor Authentication 會將通知推送到使用者智慧型手機或平板電腦上的 Azure Multi-Factor Authentication 應用程式，取代在登入時撥打自動電話或傳送 SMS 給使用者。使用者只需要在應用程式中點選 [驗證] \(或輸入 PIN 再點選 [驗證]) 即可登入。
+Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項。Azure Multi-Factor Authentication 會將通知推送到使用者智慧型手機或平板電腦上的 Azure Multi-Factor Authentication 應用程式，取代在登入時撥打自動電話或傳送 SMS 給使用者。使用者只需要在應用程式中點選 [驗證] (或輸入 PIN 再點選 [驗證]) 即可登入。
 
 若要使用 Azure Multi-Factor Authentication 應用程式，使用者必須滿足以下條件，應用程式才能與 Mobile App Web 服務成功通訊：
 
@@ -51,9 +51,9 @@ Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項�
 ## 安裝 Mobile App Web 服務
 在安裝 Mobile App Web 服務之前，請注意下列各項：
 
-- 如果您已將 Azure Multi-Factor Authentication 使用者入口網站安裝在網際網路對向伺服器上，可以從使用者入口網站的 web.config 檔案將使用者名稱、密碼及 URL 複製到 Web 服務 SDK。 
+- 如果您已將 Azure Multi-Factor Authentication 使用者入口網站安裝在網際網路對向伺服器上，可以從使用者入口網站的 web.config 檔案將使用者名稱、密碼及 URL 複製到 Web 服務 SDK。
 - 在網際網路對向 Web 伺服器上開啟網頁瀏覽器，並瀏覽至輸入 web.config 檔案中的 Web 服務 SDK URL，如此將有所幫助。如果瀏覽器可以順利連接 Web 服務，它應該會提示您輸入認證。輸入使用者名稱和密碼 (與輸入 web.config 檔案中的使用者名稱和密碼完全相同)。確定未出現任何憑證警告或錯誤。
-- 如果反向 Proxy 或防火牆座落於 Mobile App Web 服務 Web 伺服器之前，而且正在執行 SSL 卸載，您可以編輯 Mobile App Web 服務的 web.config 檔案，並將下列機碼新增至 <appSettings> 區段，讓 Mobile App Web 服務可以使用 http，而不是 https。不過，從 Mobile App 到防火牆/反向 Proxy 仍然需要 SSL。 <add key="SSL_REQUIRED" value="false"/> 
+- 如果反向 Proxy 或防火牆座落於 Mobile App Web 服務 Web 伺服器之前，而且正在執行 SSL 卸載，您可以編輯 Mobile App Web 服務的 web.config 檔案，並將下列機碼新增至 <appSettings> 區段，讓 Mobile App Web 服務可以使用 http，而不是 https。不過，從 Mobile App 到防火牆/反向 Proxy 仍然需要 SSL。<add key="SSL\_REQUIRED" value="false"/>
 
 ### 安裝 Mobile App Web 服務
 
@@ -83,11 +83,11 @@ Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項�
 2. 勾選 [允許使用者啟用行動應用程式] 方塊。
 3. 勾選 [允許使用者註冊] 方塊。
 4. 按一下 [行動應用程式] 圖示。
-5. 輸入安裝 Azure Multi-Factor AuthenticationMobileAppWebServiceSetup 時建立之虛擬目錄搭配使用的 URL。您可以在提供的空間內輸入帳戶名稱。此處的公司名稱會顯示在行動應用程式中。如果保留空白，系統會改為顯示在 Azure 管理入口網站中建立的 Multi-Factor Auth Provider 名稱。 
+5. 輸入安裝 Azure Multi-Factor AuthenticationMobileAppWebServiceSetup 時建立之虛擬目錄搭配使用的 URL。您可以在提供的空間內輸入帳戶名稱。此處的公司名稱會顯示在行動應用程式中。如果保留空白，系統會改為顯示在 Azure 管理入口網站中建立的 Multi-Factor Auth Provider 名稱。
 
 
 
 <center>![Setup](./media/multi-factor-authentication-get-started-server-webservice/mobile.png)</center>
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016-->
