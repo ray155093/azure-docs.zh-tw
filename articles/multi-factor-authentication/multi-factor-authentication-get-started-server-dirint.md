@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="05/12/2016" 
+	ms.date="08/04/2016" 
 	ms.author="billmath"/>
 
 # Azure MFA Server 與 Active Directory 之間的目錄整合
@@ -69,7 +69,7 @@ Azure Multi-Factor Authentication 具有下列三個選項。
 | 唯一識別碼 | 輸入屬性的屬性名稱，做為容器、安全性群組和使用者記錄的唯一識別碼。在 Active Directory 中，這通常是 objectGUID。在其他 LDAP 實作中，它可能是 entryUUID 或類似的項目。預設值是 objectGUID。 |
 | ...[選取屬性] 按鈕 | 每個屬性欄位旁邊有 [...] 按鈕，可顯示 [選取屬性] 對話方塊，讓您從清單中選取屬性。<br><br>[選取屬性] 對話方塊。<br><br>注意：您可以手動輸入屬性，並不需要符合屬性清單中的屬性。 |
 | 唯一識別碼類型 | 選取唯一識別碼屬性的類型。在 Active Directory 中，objectGUID 屬性為 GUID 類型。在其他 LDAP 實作中，它可能是 ASCII 位元組陣列或字串類型。預設值是 GUID。<br><br>注意：這必須正確設定，因為同步處理項目是依照其唯一識別碼來參考，而唯一識別碼類型是用來直接在目錄中尋找物件。當目錄實際上將值儲存為 ASCII 字元的位元組陣列時，設定為字串會導致同步處理無法正確運作。 |
-| 辨別名稱 | 輸入屬性的屬性名稱，此屬性包含每一筆記錄的辨別名稱。在 Active Directory 中，這通常是 distinguishedName。在其他 LDAP 實作中，它可能是 entryDN 或類似的項目。預設值是 distinguishedName。<br><br>注意：如果不存在只包含辨別名稱的屬性，可以使用 adspath 屬性。路徑的 "LDAP://<server>/" 部分將會自動去除，只保留物件的辨別名稱。 |
+| 辨別名稱 | 輸入屬性的屬性名稱，此屬性包含每一筆記錄的辨別名稱。在 Active Directory 中，這通常是 distinguishedName。在其他 LDAP 實作中，它可能是 entryDN 或類似的項目。預設值是 distinguishedName。<br><br>注意：如果不存在只包含辨別名稱的屬性，可以使用 adspath 屬性。路徑的 LDAP://<server>/" 部分將會自動去除，只保留物件的辨別名稱。 |
 | 容器名稱 | 輸入屬性的屬性名稱，此屬性包含容器記錄中的名稱。從 Active Directory 匯入或新增同步處理項目時，這個屬性的值會顯示在容器階層中。預設值是 name。<br><br>注意：如果不同容器使用不同的屬性做為名稱，則可以指定多個容器名稱屬性 (以分號隔開)。在容器物件上找到的第一個容器名稱屬性將會用來顯示其名稱。 |
 | 安全性群組名稱 | 輸入屬性的屬性名稱，此屬性包含安全性群組記錄中的名稱。從 Active Directory 匯入或新增同步處理項目時，這個屬性的值會顯示在安全性群組清單中。預設值是 name。 |
 | 使用者 | 下列屬性用於搜尋、顯示、匯入和同步處理目錄中的使用者資訊。 |
@@ -137,4 +137,4 @@ Multi-Factor Auth ADSync 服務使用 Microsoft 所提供的 DirSync LDAP 伺服
 
 ![Multi-Factor-Auth Server](./media/multi-factor-authentication-get-started-server-dirint/dirint6.png)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016-->

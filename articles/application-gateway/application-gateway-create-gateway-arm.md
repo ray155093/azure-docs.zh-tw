@@ -3,7 +3,7 @@
    description="本頁面提供使用 Azure 資源管理員建立、設定、啟動和刪除 Azure 應用程式閘道的指示。"
    documentationCenter="na"
    services="application-gateway"
-   authors="joaoma"
+   authors="georgewallace"
    manager="carmonm"
    editor="tysonn"/>
 <tags
@@ -12,8 +12,8 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/05/2016"
-   ms.author="joaoma"/>
+   ms.date="08/09/2016"
+   ms.author="gwallace"/>
 
 
 # 使用 Azure 資源管理員建立、啟動或刪除應用程式閘道
@@ -22,8 +22,9 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 
 
 > [AZURE.SELECTOR]
-- [Azure 傳統 PowerShell 步驟](application-gateway-create-gateway.md)
+- [Azure 入口網站](application-gateway-create-gateway-portal.md)
 - [Azure Resource Manager PowerShell](application-gateway-create-gateway-arm.md)
+- [Azure 傳統 PowerShell](application-gateway-create-gateway.md)
 - [Azure Resource Manager 範本](application-gateway-create-gateway-arm-template.md)
 
 
@@ -33,15 +34,15 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 本文將逐步引導您完成建立、設定、啟動及刪除應用程式閘道的步驟。
 
 
->[AZURE.IMPORTANT] 使用 Azure 資源之前，請務必了解 Azure 目前有「資源管理員」和「傳統」兩種部署模型。在使用任何 Azure 資源之前，請先確認您了解[部署模型和工具](../azure-classic-rm.md)。您可以按一下本文頂端的索引標籤，檢視不同工具的文件。本文件將討論如何使用 Azure 資源管理員建立應用程式閘道。若要使用傳統的版本，請移至[使用 PowerShell 建立應用程式閘道傳統部署](application-gateway-create-gateway.md)。
+>[AZURE.IMPORTANT] 使用 Azure 資源之前，請務必了解 Azure 目前有「資源管理員」和「傳統」兩種部署模型。在使用任何 Azure 資源之前，請先確認您了解[部署模型和工具](../azure-classic-rm.md)。您可以按一下本文頂端的索引標籤，檢視不同工具的文件。本文件會討論如何使用 Azure Resource Manager 建立應用程式閘道。若要使用傳統的版本，請移至[使用 PowerShell 建立應用程式閘道傳統部署](application-gateway-create-gateway.md)。
 
 
 
 ## 開始之前
 
 1. 使用 Web Platform Installer 安裝最新版的 Azure PowerShell Cmdlet。您可以從[下載頁面](https://azure.microsoft.com/downloads/)的 **Windows PowerShell** 區段下載並安裝最新版本。
-2. 如果您有現有的虛擬網路，請選取現有的空白子網路，或在現有的虛擬網路中建立新的子網路，僅供應用程式閘道使用。您無法將應用程式閘道部署到與您打算部署於應用程式閘道後方的資源不同的虛擬網路。
-3. 您要設定為使用應用程式閘道的伺服器必須存在，或是在虛擬網路中建立其端點，或是已指派公用 IP/VIP。
+2. 如果您有現有的虛擬網路，請選取現有的空白子網路，或在現有的虛擬網路中建立子網路，僅供應用程式閘道使用。您無法將應用程式閘道部署到與您打算部署於應用程式閘道後方的資源不同的虛擬網路。
+3. 您要設定來使用應用程式閘道的伺服器必須存在，或是在虛擬網路中建立其端點，或是已指派公用 IP/VIP。
 
 ## 建立應用程式閘道需要什麼？
 
@@ -54,11 +55,11 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 
 
 
-## 建立新的應用程式閘道
+## 建立應用程式閘道
 
-使用「Azure 傳統」和「Azure 資源管理員」的差別，在於您建立應用程式閘道和需設定項目的順序。
+使用「Azure 傳統」和「Azure Resource Manager」的差別，在於您建立應用程式閘道和需設定項目的順序。
 
-使用資源管理員，組成應用程式閘道的所有項目都將個別設定，然後放在一起建立應用程式閘道資源。
+透過 Resource Manager，組成應用程式閘道的所有項目會個別進行設定，然後一併建立應用程式閘道資源。
 
 
 以下是建立應用程式閘道所需的步驟：
@@ -71,7 +72,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 
 ## 建立資源管理員的資源群組
 
-確定您使用最新版本的 Azure PowerShell。如需詳細資訊，請參閱[搭配使用 Windows PowerShell 與資源管理員](../powershell-azure-resource-manager.md)。
+確定您使用最新版本的 Azure PowerShell。如需詳細資訊，請參閱 [搭配使用 Windows PowerShell 與 Resource Manager](../powershell-azure-resource-manager.md)。
 
 ### 步驟 1
 登入 Azure Login-AzureRmAccount
@@ -96,7 +97,7 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 
 在上述範例中，我們建立名為 "appgw-RG" 的資源群組，且位置為美國西部 ("West US")。
 
->[AZURE.NOTE] 如果您需要設定應用程式閘道的自訂探查，請參閱[使用 PowerShell 建立具有自訂探查的應用程式閘道](application-gateway-create-probe-ps.md)。請參閱[自訂探查和健康狀況監視](application-gateway-probe-overview.md)以取得詳細資訊。
+>[AZURE.NOTE] 如果您需要設定應用程式閘道的自訂探查，請參閱[使用 PowerShell 建立具有自訂探查的應用程式閘道](application-gateway-create-probe-ps.md)。請參閱[自訂探查和健全狀況監視](application-gateway-probe-overview.md) 以取得詳細資訊。
 
 
 
@@ -145,7 +146,7 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 
 ### 步驟 2
 
-設定名為 "pool01" 的後端 IP 位址集區，其 IP 位址有 "134.170.185.46, 134.170.188.221,134.170.185.50"。這些 IP 位址將接收來自前端 IP 端點的網路流量。您要取代上述 IP 位址，加入您自己的應用程式 IP 位址端點。
+設定名為 "pool01" 的後端 IP 位址集區，其 IP 位址有 "134.170.185.46, 134.170.188.221,134.170.185.50"。這些 IP 位址會接收來自前端 IP 端點的網路流量。請取代上述 IP 位址，加入自己的應用程式 IP 位址端點。
 
 	$pool = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 134.170.185.46, 134.170.188.221,134.170.185.50
 
@@ -270,4 +271,4 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 - [Azure 負載平衡器](https://azure.microsoft.com/documentation/services/load-balancer/)
 - [Azure 流量管理員](https://azure.microsoft.com/documentation/services/traffic-manager/)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0810_2016-->

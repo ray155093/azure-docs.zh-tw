@@ -1,14 +1,14 @@
 <properties
-	pageTitle="監視服務計量"
+	pageTitle="在 Microsoft Azure 中監視服務計量 | Microsoft Azure"
 	description="了解如何在 Azure 自訂監視圖表。"
 	authors="stepsic-microsoft-com"
 	manager="ronmart"
 	editor=""
-	services="azure-portal"
-documentationCenter=""/>
+	services="monitoring"
+    documentationCenter="monitoring"/>
 
 <tags
-	ms.service="azure-portal"
+	ms.service="monitoring"
 	ms.workload="na"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
@@ -72,4 +72,4 @@ documentationCenter=""/>
 * 使用 [JavaScript 應用程式和網頁適用的 Application Insights](../application-insights/app-insights-web-track-usage.md)，以取得有關造訪網頁瀏覽器的用戶端分析。
 * 使用 Application Insights [監視任何網頁的可用性和回應性](../application-insights/app-insights-monitor-web-app-availability.md)，讓您可以找出您的頁面是否關閉。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0803_2016-->

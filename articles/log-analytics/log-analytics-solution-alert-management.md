@@ -119,11 +119,11 @@ OMS 內產生的警示立即可供方案使用。警示資料每 3 分鐘從 SCO
 |:--|:--|
 | Type=Alert SourceSystem=OpsManager AlertSeverity=error TimeRaised>NOW-24HOUR | 過去 24 小時期間引發的重大警示 |
 | Type=Alert AlertSeverity=warning TimeRaised>NOW-24HOUR | 過去 24 小時期間引發的警告警示 |
-| Type=Alert SourceSystem=OpsManager AlertState!=Closed TimeRaised>NOW-24HOUR | measure count() as Count by SourceDisplayName | 來源和過去 24 小時期間引發的作用中警示 |
+| Type=Alert SourceSystem=OpsManager AlertState!=Closed TimeRaised>NOW-24HOUR &#124; measure count() as Count by SourceDisplayName | 來源和過去 24 小時期間引發的作用中警示 |
 | Type=Alert SourceSystem=OpsManager AlertSeverity=error TimeRaised>NOW-24HOUR AlertState!=Closed | 過去 24 小時期間引發的重大且仍在作用中的警示 |
 | Type=Alert SourceSystem=OpsManager TimeRaised>NOW-24HOUR AlertState=Closed | 過去 24 小時期間引發但現在已關閉的警示 |
-| Type=Alert SourceSystem=OpsManager TimeRaised>NOW-1DAY | measure count() as Count by AlertSeverity | 過去 1 天期間引發的警示 (依嚴重性分組) |
-| Type=Alert SourceSystem=OpsManager TimeRaised>NOW-1DAY | sort RepeatCount desc | 過去 1 天期間引發的警示 (依重複計數值排序) |
+| Type=Alert SourceSystem=OpsManager TimeRaised>NOW-1DAY &#124; measure count() as Count by AlertSeverity | 過去 1 天期間引發的警示 (依嚴重性分組) |
+| Type=Alert SourceSystem=OpsManager TimeRaised>NOW-1DAY &#124; sort RepeatCount desc | 過去 1 天期間引發的警示 (依重複計數值排序) |
 
 ## 後續步驟
 

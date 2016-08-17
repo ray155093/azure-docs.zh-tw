@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/16/2016"
+	ms.date="08/01/2016"
 	ms.author="georgem;tomfitz"/>
 
 
@@ -23,7 +23,7 @@
 
 本主題假設您熟悉 Azure 資源管理員中的角色型存取控制 (RBAC)。如需詳細資訊，請參閱 [Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
 
-本主題是較大份白皮書的一部分。若要閱讀完整的文件，請下載「[世界級 ARM 範本注意事項和證明可行的作法](http://download.microsoft.com/download/8/E/1/8E1DBEFA-CECE-4DC9-A813-93520A5D7CFE/WorldClass ARM Templates - Considerations and Proven Practices.pdf)」。
+本主題是較大份白皮書的一部分。若要閱讀完整的文件，請下載「世界級 ARM 範本注意事項和證明可行的作法」(http://download.microsoft.com/download/8/E/1/8E1DBEFA-CECE-4DC9-A813-93520A5D7CFE/WorldClass ARM Templates - Considerations and Proven Practices.pdf)。
 
 ## 密碼和憑證
 
@@ -35,7 +35,7 @@ Azure 虛擬機器、Azure 資源管理員和 Azure 金鑰保存庫經過完全�
       - 部署金鑰的範本
       - 使用金鑰的參考部署 VM 的範本
       - 保存庫中的實際金鑰資料。每個範本 (和動作) 都可以從屬於不同 RBAC 角色，以完整區分職責。
-- 若要在部署階段將密碼載入到 VM 中，可以透過 Microsoft 資料中心範圍內 Azure 網狀架構和金鑰保存庫之間的直接通道進行。一旦金鑰位於金鑰保存庫之後，他們就永遠不會在資料中心外部不受信任的通道「見光」。  
+- 若要在部署階段將密碼載入到 VM 中，可以透過 Microsoft 資料中心範圍內 Azure 網狀架構和金鑰保存庫之間的直接通道進行。一旦金鑰位於金鑰保存庫之後，他們就永遠不會在資料中心外部不受信任的通道「見光」。
 - 金鑰保存庫永遠是地區性的，因此，密碼與 VM 永遠具有區域性 (以及主權)。沒有全域金鑰保存庫。
 
 ### 將金鑰與部署分開
@@ -339,4 +339,4 @@ Azure 使用路由表決定如何根據每個封包的目的地轉送 IP 流量�
 - 若要設定路由和 IP 轉送，請參閱[在 Resource Manager 中使用範本建立使用者定義的路由 (UDR)](./virtual-network/virtual-network-create-udr-arm-template.md)。
 - 如需角色型存取控制的概觀，請參閱 Microsoft Azure 入口網站中的[角色型存取控制](./active-directory/role-based-access-control-configure.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

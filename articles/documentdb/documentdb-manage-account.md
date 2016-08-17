@@ -144,4 +144,4 @@ DocumentDB 可在大部分的 [Azure 區域][azureregions]中使用。選取資�
 [azureregions]: https://azure.microsoft.com/zh-TW/regions/#services
 [offers]: https://azure.microsoft.com/zh-TW/pricing/details/documentdb/
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0727_2016--->

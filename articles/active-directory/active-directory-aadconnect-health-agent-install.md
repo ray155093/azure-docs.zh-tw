@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="07/14/2016"
+	ms.date="08/05/2016"
 	ms.author="vakarand"/>
 
 
@@ -168,12 +168,11 @@
 
 ![驗證 Azure AD Connect Health](./media/active-directory-aadconnect-health/aadconnect-health-adds-agent-install3.png)
 
-
 登入後，PowerShell 將會繼續。一旦完成之後，您就可以關閉 PowerShell，且設定已完成。
 
 此時，應該會自動啟動服務，且代理程式現在將會監視並收集資料。以下螢幕擷取畫面是輸出的範例。請注意，如果您還未符合前幾節所述的所有必要條件，您將會在 PowerShell 視窗中看到警告。請務必在安裝代理程式之前，先完成[這裡](active-directory-aadconnect-health-agent-install.md#requirements)的需求。
 
-![驗證 Azure AD Connect Health](./media/active-directory-aadconnect-health/aadconnect-health-adds-agent-install4.png)
+![驗證適用於 AD DS 的 Azure AD Connect Health](./media/active-directory-aadconnect-health/aadconnect-health-adds-agent-install4.png)
 
 若要確認已安裝代理程式，請開啟服務，並尋找下列項目：
 
@@ -183,6 +182,11 @@
 這兩項服務將不會啟動，直到設定完成為止。
 
 ![驗證 Azure AD Connect Health](./media/active-directory-aadconnect-health/aadconnect-health-adds-agent-install5.png)
+
+## 在 Server Core 上安裝適用於 AD DS 的 Azure AD Connect Health 代理程式。 
+安裝 .exe 檔案之後，您可以使用下列 PowerShell 命令來完成註冊程序︰
+
+`Register-AzureADConnectHealthADDSAgent -Credentials $cred
 
 ## 設定 Azure AD Connect Health 代理程式使用 HTTP Proxy
 您可以設定 Azure AD Connect Health 代理程式使用 HTTP Proxy。
@@ -248,7 +252,7 @@
 
     Test-AzureADConnectHealthConnectivity -Role Sync -ShowResult
 
->[AZURE.NOTE]為了使用連線工具，您必須先完成代理程式註冊。如果您無法完成代理程式註冊，請確定您已符合 Azure AD Connect Health 的所有 [需求](active-directory-aadconnect-health-agent-install.md#requirements)。這項連線測試預設是在代理程式註冊期間執行。
+>[AZURE.NOTE]為了使用連線工具，您必須先完成代理程式註冊。如果您無法完成代理程式註冊，請確定您已符合 Azure AD Connect Health 的所有[需求](active-directory-aadconnect-health-agent-install.md#requirements)。這項連線測試預設是在代理程式註冊期間執行。
 
 
 
@@ -262,4 +266,4 @@
 * [Azure AD Connect Health 常見問題集](active-directory-aadconnect-health-faq.md)
 * [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0810_2016-->

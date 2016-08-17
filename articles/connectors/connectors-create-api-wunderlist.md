@@ -1,7 +1,7 @@
 <properties
 pageTitle="Wunderlist | Microsoft Azure"
 description="使用 Azure App Service 建立邏輯應用程式。Wunderlist 提供待辦事項清單和工作管理員，協助使用者完成其工作。無論是與親愛的人共用購物清單、處理專案，還是計劃假期，Wunderlist 都能讓您輕鬆擷取、共用及完成待辦事項。Wunderlist 立即同步處理您的電話、平板電腦及電腦，讓您可在任何地方存取工作。"
-services="app-servicelogic"	
+services="logic-apps"	
 documentationCenter=".net,nodejs,java" 	
 authors="msftman"	
 manager="erikre"	
@@ -904,4 +904,4 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

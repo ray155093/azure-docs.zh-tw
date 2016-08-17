@@ -1,6 +1,6 @@
 <properties
-	pageTitle="VM 常見問題集 | Microsoft Azure"
-	description="針對以傳統部署模型建立的 Azure 虛擬機器，回答一些相關常見問題。"
+	pageTitle="傳統 VM 的常見問題集 | Microsoft Azure"
+	description="針對以傳統部署模型建立的 Azure Linux 虛擬機器，提供一些相關常見問題的解答。"
 	services="virtual-machines-linux"
 	documentationCenter=""
 	authors="cynthn"
@@ -14,13 +14,13 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/05/2016"
+	ms.date="07/28/2016"
 	ms.author="cynthn"/>
 
-# 關於以傳統部署模型建立之 Azure 虛擬機器的常見問題集
+# 以傳統部署模型建立之 Azure Linux 虛擬機器的相關常見問題集
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 [AZURE.INCLUDE [virtual-machines-common-classic-faq](../../includes/virtual-machines-common-classic-faq.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0803_2016-->

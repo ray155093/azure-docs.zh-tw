@@ -3,7 +3,7 @@
 	description="本主題說明在資料庫還原或容錯移轉之後管理安全性的安全性考量。"
 	services="sql-database"
 	documentationCenter="na"
-	authors="carlrabeler"
+	authors="CarlRabeler"
 	manager="jhubbard"
 	editor="monicar" />
 
@@ -95,4 +95,4 @@
 
 ## 其他資源
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

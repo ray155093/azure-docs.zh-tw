@@ -1,7 +1,7 @@
 <properties 
    pageTitle="在 Logic Apps 中使用 BizTalk 交易夥伴管理連接器 | Microsoft Azure App Service" 
    description="如何建立並設定 BizTalk 交易夥伴管理連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它" 
-   services="app-service\logic" 
+   services="logic-apps" 
    documentationCenter=".net,nodejs,java" 
    authors="rajeshramabathiran" 
    manager="erikre" 
@@ -43,4 +43,4 @@ TPM API 應用程式是 AS2 連接器、X12 API 應用程式和 EDIFACT API 應�
 <!--References-->
 [1]: app-service-logic-create-a-trading-partner-agreement.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

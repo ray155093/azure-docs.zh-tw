@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="07/28/2016"
+	ms.date="08/09/2016"
 	ms.author="casoper"/>
 
 # Azure 內容傳遞網路 (CDN) 概觀
@@ -57,6 +57,7 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 | 負載平衡 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
 | DDoS 保護 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
 | IPv4/IPv6 雙重堆疊 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
+| [HTTP/2](https://msdn.microsoft.com/library/mt762901.aspx) | **&#x2713;** | | |
 | [自訂網域名稱支援](cdn-map-content-to-custom-domain.md) | **&#x2713;** | **&#x2713;** | **&#x2713;** |
 | [查詢字串快取](cdn-query-string.md) | **&#x2713;** | **&#x2713;** | **&#x2713;** |
 | [國家 (地區) 篩選](cdn-restrict-access-by-country.md) | | **&#x2713;** | **&#x2713;** |
@@ -76,10 +77,10 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 
 現有的 CDN 客戶現在可以透過 [Microsoft Azure 入口網站](https://portal.azure.com)管理您的 CDN 端點。
 
-若要查看作用中的 CDN，請參閱 [Build 2016 會議的影片](https://azure.microsoft.com/documentation/videos/build-2016-leveraging-the-new-azure-cdn-apis-to-build-wicked-fast-applications/)。
+若要查看作用中的 CDN，請參閱 [2016 組建會議的影片](https://azure.microsoft.com/documentation/videos/build-2016-leveraging-the-new-azure-cdn-apis-to-build-wicked-fast-applications/)。
 
 了解如何透過 [.NET](./cdn-app-dev-net.md) 或 [Node.js](./cdn-app-dev-node.md) 自動化 Azure CDN。
 
 如需價格資訊，請參閱 [CDN 價格](https://azure.microsoft.com/pricing/details/cdn/)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

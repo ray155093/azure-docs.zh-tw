@@ -1,8 +1,8 @@
 <properties
-	pageTitle="搭配 CORS 使用 Azure CDN"
+	pageTitle="搭配 CORS 使用 Azure CDN | Microsoft Azure"
 	description="了解如何使用 Azure 內容傳遞網路 (CDN) 搭配跨來源資源共用 (CORS)。"
 	services="cdn"
-	documentationCenter=".net"
+	documentationCenter=""
 	authors="camsoper"
 	manager="erikre"
 	editor=""/>
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/19/2016"
+	ms.date="07/28/2016"
 	ms.author="casoper"/>
     
 # 搭配 CORS 使用 Azure CDN     
@@ -23,7 +23,7 @@
 CORS (Cross Origin Resource Sharing；跨來源資源共用) 是一項 HTTP 功能，可讓在某個網域下執行的 Web 應用程式存取其他網域中的資源。為了減少跨網站指令碼攻擊的可能性，所有現代網頁瀏覽器都實作稱為 [Same-Origin Policy (同源原則)](http://www.w3.org/Security/wiki/Same_Origin_Policy) 的安全性限制。這樣可以防止網頁呼叫其他網域中的 API。CORS 提供安全的方式來允許從一個網域 (來源網域) 呼叫其他網域中的 API。
  
 ## 運作方式
-1.	瀏覽器傳送包含 **Origin** HTTP 標頭的 OPTIONS 要求。這個標頭的值是提供父頁面的網域。當來自 https://www.contoso.com 的頁面嘗試存取位於 fabrikam.com 網域的使用者資料時，會傳送以下要求標頭到 fabrikam.com： 
+1.	瀏覽器傳送包含 **Origin** HTTP 標頭的 OPTIONS 要求。這個標頭的值是提供父頁面的網域。當來自 https://www.contoso.com 的頁面嘗試存取位於 fabrikam.com 網域的使用者資料時，會傳送以下要求標頭到 fabrikam.com：
     
     `Origin: https://www.contoso.com`
  
@@ -41,7 +41,7 @@ CORS (Cross Origin Resource Sharing；跨來源資源共用) 是一項 HTTP 功�
  
 ## 萬用字元或單一來源的狀況
 
-當 **Access-Control-Allow-Origin** 標頭設為萬用字元 (\*) 或單一來源時，Azure CDN 上的 CORS 不需要額外設定就會自動生效。CDN 會快取第一個回應，且後續的要求將使用相同的標頭。
+當 **Access-Control-Allow-Origin** 標頭設為萬用字元 (\\*) 或單一來源時，Azure CDN 上的 CORS 不需要額外設定就會自動生效。CDN 會快取第一個回應，且後續的要求將使用相同的標頭。
  
 如果在您的來源上設定 CORS 之前已經向 CDN 發出要求，您必須清除您端點內容上的內容，以重新載入包含 **Access-Control-Allow-Origin** 標頭的內容。
  
@@ -81,4 +81,4 @@ CORS (Cross Origin Resource Sharing；跨來源資源共用) 是一項 HTTP 功�
 
 在 Azure CDN 標準設定檔上，在不使用萬用字元來源情況下允許多重來源的唯一機制是使用[查詢字串快取](cdn-query-string.md)。您需要啟用 CDN 端點的查詢字串設定，然後針對來自每個允許之網域的查詢使用唯一的查詢字串。這樣做將使 CDN 針對每個唯一的查詢字串快取個別物件。但是這不是最理想的方法，因為它會導致在 CDN 上快取同一個檔案的多個複本。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,7 +1,7 @@
 <properties
    pageTitle="在 Microsoft Azure App Service 中使用 DB2 連接器 | Microsoft Azure"
    description="如何使用 DB2 連接器搭配邏輯應用程式觸發程序和動作"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="gplarsen"
    manager="erikre"
@@ -271,4 +271,4 @@ App Service 使用混合式組態管理員來安全地連線到內部部署系�
 [13]: ./media/app-service-logic-connector-db2/LogicApp_RemoveOrdersDb2_TriggersActions.png
 [14]: ./media/app-service-logic-connector-db2/LogicApp_RemoveOrdersDb2_Outputs.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

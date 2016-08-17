@@ -1,6 +1,6 @@
 <properties
 	pageTitle="在 App Service 中管理和監視連接器和 API Apps | Microsoft Azure"
-	description="在 Azure App Service 中檢視連接器和 API 應用程式的效能；microservices 架構"
+	description="在 Logic Apps 中檢視連接器和 API Apps 的效能；microservices 架構"
 	services="app-service\logic"
 	documentationCenter=".net,nodejs,java"
 	authors="MandiOhlinger"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/10/2016"
+	ms.date="07/28/2016"
 	ms.author="mandia"/>
 
 # 管理和監視內建 API 應用程式和連接器
@@ -80,7 +80,7 @@ Hybrid Connection Manager 可讓您連線至內部部署系統 (例如 SQL Serve
 您可以：
 
 - 選取 [**要求和錯誤**]，加入包括已知 HTTP 錯誤代碼的不同效能度量 (例如 200、400 或 500 HTTP 狀態碼)。您也可以查看回應時間、對 API 應用程式提出多少要求，以及有多少輸入資料和輸出資料。根據效能度量，如果度量超出您選擇的臨界值，則可以建立電子郵件警示。
-- 在 [使用情況] 中，您可以查看 API 應用程式使用多少 [CPU]、檢閱目前 [使用量配額] (MB)，以及查看根據成本層而定的最大資料使用量。[預估的花費] 可協助您判斷執行 API 應用程式的潛在成本。
+- 在 [使用情況] 中，您可以查看 API 應用程式使用多少 [CPU]、檢閱目前 \[使用量配額] \(MB)，以及查看根據成本層而定的最大資料使用量。[預估的花費] 可協助您判斷執行 API 應用程式的潛在成本。
 - 選取 [**程序**] 開啟程序總管。這會顯示 Web 執行個體和其屬性 (包括執行緒計數和記憶體使用量)。
 
 使用這些工具，您可以根據業務需求來判斷應該調升或調降 App Service 方案的規模。這些都是入口網站的內建功能，並不需要額外工具。
@@ -110,19 +110,19 @@ API 應用程式使用以角色為基礎的安全性。這些角色會套用至�
 - 選取 [API 定義]，開啟針對特定 API 應用程式自動建立的 Swagger 檔案。
 - 選取 [相依性] 以檢視您 API 應用程式所需的檔案。例如，如果您使用 SAP 連接器，則會在內部部署混合式連線管理員上安裝一些額外檔案。這些相依性顯示於 [API 應用程式] 刀鋒視窗中。
 
-> [AZURE.IMPORTANT] 如果您開啟 API 應用程式屬性，並查看 [程式集] 下方，則會有可開啟新刀鋒視窗的 [主機] 和 [閘道] 連結：
+>[AZURE.IMPORTANT] 如果您開啟 API 應用程式屬性，並查看 [程式集] 下方，則會有可開啟新刀鋒視窗的 [主機] 和 [閘道] 連結：
 >
 > ![][host]
 >
-> 這些屬性專屬於裝載您 API 應用程式的網站。使用內建 API 應用程式或連接器時，這些屬性大部分並未實際套用，因此建議您不要更新這些屬性。如果您已在 Visual Studio 中建立專屬 API 應用程式，並將其部署至 Azure 訂用帳戶，則可以使用 [主機] 和 [閘道] 刀鋒視窗。
+>這些屬性專屬於裝載您 API 應用程式的網站。使用內建 API 應用程式或連接器時，這些屬性大部分並未實際套用，因此建議您不要更新這些屬性。如果您已在 Visual Studio 中建立專屬 API 應用程式，並將其部署至 Azure 訂用帳戶，則可以使用 [主機] 和 [閘道] 刀鋒視窗。<br/><br/>
 
 
->[AZURE.NOTE] 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure Logic Apps，請移至[試用 Logic App](https://tryappservice.azure.com/?appservice=logic)。您可以在 App Service 中建立短期的入門邏輯應用程式。不需要信用卡，無需承諾。
+>[AZURE.NOTE] 若要在註冊 Azure 帳戶之前開始使用 Logic Apps，請移至[試用邏輯應用程式](https://tryappservice.azure.com/?appservice=logic)。您可以建立短期的入門邏輯應用程式。不需要信用卡，無需承諾。
 
 ## 閱讀更多資訊
 
-[監視邏輯應用程式](app-service-logic-monitor-your-logic-apps.md)<br/>
-[App Service 中的連接器和 API 應用程式清單](app-service-logic-connectors-list.md)<br/>
+[監視邏輯應用程式](app-service-logic-monitor-your-logic-apps.md)<br/> 
+[App Service 中的連接器和 API 應用程式清單](app-service-logic-connectors-list.md)<br/> 
 [Microsoft Azure 入口網站中以角色為基礎的存取控制](../active-directory/role-based-access-control-configure.md)<br/>
 [在 Azure App Service 中使用混合連線管理員](app-service-logic-hybrid-connection-manager.md)
 
@@ -137,4 +137,4 @@ API 應用程式使用以角色為基礎的安全性。這些角色會套用至�
 [hostsettings]: ./media/app-service-logic-monitor-your-connectors/hostsettings.png
 [apiapphost]: ./media/app-service-logic-monitor-your-connectors/apiapphost.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

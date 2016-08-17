@@ -28,7 +28,7 @@
 
 2. 在 [Azure 入口網站]上您的應用程式刀鋒視窗中，按一下 [設定] > [部署來源]。例如，按一下 [**選擇來源**]，然後按一下 **GitHub**。
 
-	![](./media/app-service-continous-deployment/cd_options.png)
+	![](./media/app-service-continuous-deployment/cd_options.png)
 	
     > [AZURE.NOTE] 若要設定適用於 App Service 部署的 VSTS 帳戶，請參閱這個[教學課程](https://github.com/projectkudu/kudu/wiki/Setting-up-a-VSTS-account-so-it-can-deploy-to-a-Web-App)。
     
@@ -36,7 +36,7 @@
 
 4. 在 [部署來源] 刀鋒視窗中，選擇專案以及要從中部署的分支。完成後，按一下 [**確定**]。
   
-	![](./media/app-service-continous-deployment/github_option.png)
+	![](./media/app-service-continuous-deployment/github_option.png)
 
 	> [AZURE.NOTE] 啟用搭配 GitHub 或 BitBucket 的持續部署時，將會同時顯示公用和私人專案。
 
@@ -54,7 +54,7 @@
 
 -	使用 Visual Studio 原始檔控制選項來產生 `.gitignore` 檔案 (如下圖所示)，或使用類似這個 [.gitignore 範例](https://github.com/github/gitignore/blob/master/VisualStudio.gitignore)的內容，在您的儲存機制根目錄中手動新增 `.gitignore` 檔案。
 
-    ![](./media/app-service-continous-deployment/VS_source_control.png)
+    ![](./media/app-service-continuous-deployment/VS_source_control.png)
  
 -	使用儲存機制根目錄中的 .sln 檔案，將整個解決方案的目錄樹狀結構新增至您的儲存機制。
 
@@ -66,7 +66,7 @@
 
 1. 在 [Azure 入口網站]上您的應用程式刀鋒視窗中，按一下 [設定] > [部署來源]。然後按一下 [部署] 刀鋒視窗中的 [中斷連線]。
 
-    ![](./media/app-service-continous-deployment/cd_disconnect.png)
+    ![](./media/app-service-continuous-deployment/cd_disconnect.png)
 
 2. 在確認訊息中回答 [是] 之後，如果您要設定從其他來源發佈，您可以返回應用程式的刀鋒視窗，然後按一下 [設定] > [部署來源]。
 
@@ -80,7 +80,7 @@
 
 >[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
 
-[Azure App Service]: https://azure.microsoft.com/zh-TW/documentation/articles/app-service-changes-existing-services/
+[Azure App Service]: https://azure.microsoft.com/documentation/articles/app-service-changes-existing-services/
 [Azure 入口網站]: https://portal.azure.com
 [VSTS Portal]: https://www.visualstudio.com/zh-TW/products/visual-studio-team-services-vs.aspx
 [Installing Git]: http://git-scm.com/book/en/Getting-Started-Installing-Git
@@ -93,4 +93,4 @@
 [開始使用 VSTS]: https://www.visualstudio.com/get-started/overview-of-get-started-tasks-vs
 [Continuous delivery to Azure using Visual Studio Team Services]: ../articles/cloud-services/cloud-services-continuous-delivery-use-vso.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

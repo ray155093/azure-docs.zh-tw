@@ -48,7 +48,7 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 ## 我是否可以複製或再製現有的 Azure VM？
 
-是。如需指示，請參閱[如何在 Resource Manager 部署模型中建立 Linux 虛擬機器的複本](virtual-machines-linux-specialized-image.md)。
+是。如需相關指示，請參閱[如何在 Resource Manager 部署模型中建立 Linux 虛擬機器的複本](virtual-machines-linux-copy-vm.md)。
 
 ## 為什麼我透過 Azure Resource Manager 沒看到加拿大中部和加拿大東部區域？
 
@@ -58,4 +58,4 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 否。目前只能在建立時這樣做。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->

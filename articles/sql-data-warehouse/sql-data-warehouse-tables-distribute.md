@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/11/2016"
+   ms.date="08/01/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 # 在 SQL 資料倉儲中散發資料表
@@ -187,7 +187,7 @@ from dbo.vTableSizes
 where two_part_name in 
     (
     select two_part_name
-    from dbo.vDistributionSkew 
+    from dbo.vTableSizes
     where row_count > 0
     group by two_part_name
     having min(row_count * 1.000)/max(row_count * 1.000) > .10
@@ -286,7 +286,9 @@ RENAME OBJECT [dbo].[FactInternetSales_ROUND_ROBIN] TO [FactInternetSales];
 
 ## 後續步驟
 
-若要深入了解資料表設計，請參閱[散發][]、[索引][]、[資料分割][]、[資料類型][]、[統計資料][]、[暫存資料表][Temporary]等文章。如需最佳做法的概觀，請參閱 [SQL Data 資料倉儲最佳做法][]。
+若要深入了解資料表設計，請參閱[散發][]、[索引][]、[資料分割][]、[資料類型][]、[統計資料][]、[暫存資料表][Temporary]等文章。
+
+如需最佳做法的概觀，請參閱 [SQL 資料倉儲最佳做法][]。
 
 
 <!--Image references-->
@@ -302,7 +304,7 @@ RENAME OBJECT [dbo].[FactInternetSales_ROUND_ROBIN] TO [FactInternetSales];
 [統計資料]: ./sql-data-warehouse-tables-statistics.md
 [Temporary]: ./sql-data-warehouse-tables-temporary.md
 [暫存]: ./sql-data-warehouse-tables-temporary.md
-[SQL Data 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
+[SQL 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
 [查詢監視]: ./sql-data-warehouse-manage-monitor.md
 [dbo.vTableSizes]: ./sql-data-warehouse-tables-overview.md#querying-table-sizes
 
@@ -311,4 +313,4 @@ RENAME OBJECT [dbo].[FactInternetSales_ROUND_ROBIN] TO [FactInternetSales];
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

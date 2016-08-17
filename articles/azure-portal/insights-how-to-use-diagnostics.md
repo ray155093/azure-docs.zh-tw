@@ -1,19 +1,19 @@
-<properties 
-	pageTitle="啟用監視和診斷" 
-	description="了解如何在 Azure 設定資源的診斷。" 
-	authors="stepsic-microsoft-com" 
-	manager="ronmart" 
-	editor="" 
-	services="azure-portal" 
-	documentationCenter="na"/>
+<properties
+	pageTitle="在 Microsoft Azure 中啟用監視和診斷 | Microsoft Azure "
+	description="了解如何在 Azure 設定資源的診斷。"
+	authors="stepsic-microsoft-com"
+	manager="ronmart"
+	editor=""
+	services="monitoring"
+	documentationCenter="monitoring"/>
 
-<tags 
-	ms.service="azure-portal" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/08/2015" 
+<tags
+	ms.service="monitoring"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/08/2015"
 	ms.author="stepsic"/>
 
 # 啟用監視和診斷
@@ -26,7 +26,7 @@
 
 當您在 [Azure 入口網站](https://portal.azure.com)中首次建立服務時，大部分的服務可讓您啟用診斷功能。
 
-1. 移至 [**新增**] 並選擇您感興趣的資源。 
+1. 移至 [**新增**] 並選擇您感興趣的資源。
 
 2. 選取 [**選用組態**]。![[診斷] 刀鋒視窗](./media/insights-how-to-use-diagnostics/Insights_CreateTime.png)
 
@@ -49,12 +49,12 @@
 ### 虛擬機器的資料收集類別
 在虛擬機器中，所有的計量與記錄都將以一分鐘的間隔來記錄，以便您隨時保有最新的機器相關資訊。
 
-- **基本計量**：有關您的虛擬機器的健康情況計量，例如處理器與記憶體 
+- **基本計量**：有關您的虛擬機器的健康情況計量，例如處理器與記憶體
 - **網路和 Web 計量**：有關您的網路連線與 Web 服務的計量
 - **.NET 計量**：有關在您的虛擬機器上執行的 .NET 與 ASP.NET 應用程式計量
 - **SQL 計量**：如果您執行的是 Microsoft SQL 服務，這會是其效能計量
 - **Windows 事件應用程式記錄檔**：傳送至應用程式通道的 Windows 事件
-- **Windows 事件系統記錄檔**：傳送至系統通道的 Windows 事件。此事件同時包含來自 [Microsoft 反惡意程式碼](http://go.microsoft.com/fwlink/?LinkID=404171&clcid=0x409) (英文) 的所有事件。 
+- **Windows 事件系統記錄檔**：傳送至系統通道的 Windows 事件。此事件同時包含來自 [Microsoft 反惡意程式碼](http://go.microsoft.com/fwlink/?LinkID=404171&clcid=0x409) (英文) 的所有事件。
 - **Windows 事件安全性記錄檔**：傳送至安全性通道的 Windows 事件
 - **診斷基礎結構記錄檔**：記錄有關診斷收集基礎結構的資訊
 - **IIS 記錄檔**：有關 IIS 伺服器的記錄
@@ -68,7 +68,6 @@
 * [自動調整執行個體計數](insights-how-to-scale.md)以確保您的服務可根據需求進行調整。
 * 如果您想要了解您的程式碼如何在雲端中執行，可以[監視應用程式效能](insights-perf-analytics.md)。
 * [檢視事件和稽核記錄檔](insights-debugging-with-events.md)以了解在您服務內發生的所有內容。
-* [追蹤服務健康狀況](insights-service-health.md)可以找出 Azure 何時遭遇效能降低或服務中斷。 
- 
+* [追蹤服務健康狀況](insights-service-health.md)可以找出 Azure 何時遭遇效能降低或服務中斷。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0803_2016-->

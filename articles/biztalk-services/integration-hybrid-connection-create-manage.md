@@ -21,12 +21,20 @@
 
 
 ## 步驟概觀
-1. 輸入私人網路中內部部署資源的主機名稱或 IP 位址，建立「混合式連線」。
+1. 輸入私人網路中內部部署資源的**主機名稱**或 **FQDN**，以建立「混合式連線」。
 2. 將 Azure Web Apps 或 Azure Mobile Apps 連結至混合式連線。
 3. 安裝混合式連線管理員在內部部署資源上，並連接至特定的混合式連線。Azure 入口網站提供按一下即可安裝和連接的體驗。
 4. 管理混合式連線及其連接金鑰。
 
 本主題列出這些步驟。
+
+> [AZURE.IMPORTANT] 可以將「混合式連線」端點設定為 IP 位址。如果您使用 IP 位址，視您的用戶端而言，您不一定會觸達內部部署資源。「混合式連線」取決於執行 DNS 查閱的用戶端。在大部分情況下，__用戶端__是您的應用程式程式碼。如果用戶端不執行 DNS 查閱 (不會嘗試解析 IP 位址，彷彿它是網域名稱 (x.x.x.x) 一樣)，則不會透過「混合式連線」傳送流量。
+>
+> 例如 (虛擬程式碼)，您會定義 **10.4.5.6** 做為內部部署主機︰
+> 
+> **下列案例可運作︰** `Application code -> GetHostByName("10.4.5.6") -> Resolves to 127.0.0.3 -> Connect("127.0.0.3") -> Hybrid Connection -> on-prem host`
+> 
+> **下列案例無法運作︰** `Application code -> Connect("10.4.5.6") -> ?? -> No route to host`
 
 
 ## <a name="CreateHybridConnection"></a>建立混合式連線
@@ -48,7 +56,7 @@
 	屬性 | 說明
 --- | ---
 名稱 | 混合式連線名稱必須是唯一的，且不能與 BizTalk 服務的名稱相同。您可以輸入任何名稱，但要能夠具體表示用途。範例包括︰<br/><br/>Payroll*SQLServer*<br/>SupplyList*SharepointServer*<br/>Customers*OracleServer*
-主機名稱 | 輸入內部部署資源的完整主機名稱、僅主機名稱，或 IPv4 位址。範例包括︰<br/><br/>mySQLServer<br/>*mySQLServer*.*Domain*.corp.*yourCompany*.com<br/>*myHTTPSharePointServer*<br/>*myHTTPSharePointServer*.*yourCompany*.com<br/>10.100.10.10
+主機名稱 | 輸入內部部署資源的完整主機名稱、僅主機名稱，或 IPv4 位址。範例包括︰<br/><br/>mySQLServer<br/>*mySQLServer*.*Domain*.corp.*yourCompany*.com<br/>*myHTTPSharePointServer*<br/>*myHTTPSharePointServer*.*yourCompany*.com<br/>10.100.10.10<br/><br/>如果您使用 IPv4 位址，請注意，您的用戶端或應用程式程式碼可能不會解析此 IP 位址。請參閱本主題頂端的「重要事項」。
 連接埠 | 輸入內部部署資源的連接埠號碼。例如，如果您使用 Web Apps，請輸入連接埠 80 或 443。如果您使用 SQL Server，請輸入連接埠 1433。
 
 5. 選取核取記號以完成設定。
@@ -152,4 +160,4 @@ You can also download the Hybrid Connection Manager MSI file and copy the file t
 [HCOnPremSetup]: ./media/integration-hybrid-connection-create-manage/WABS_HybridConnectionOnPremSetup.png
 [HCManageConnection]: ./media/integration-hybrid-connection-create-manage/WABS_HybridConnectionManageConn.png
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

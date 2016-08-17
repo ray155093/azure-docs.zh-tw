@@ -3,8 +3,8 @@
    description="了解如何從 Windows Server 或 Windows 用戶端進行還原。"
    services="backup"
    documentationCenter=""
-   authors="Jim-Parker"
-   manager="jwhit"
+   authors="saurabhsensharma"
+   manager="shivamg"
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	 ms.tgt_pltfrm="na"
 	 ms.devlang="na"
 	 ms.topic="article"
-	 ms.date="05/10/2016"
+	 ms.date="08/02/2016"
 	 ms.author="trinadhk; jimpark; markgal;"/>
 
 # 使用 Resource Manager 部署模型將檔案還原到 Windows Server 或 Windows 用戶端電腦
@@ -29,7 +29,7 @@
 
 這兩種情況之下，都會從 Azure 復原服務保存庫擷取資料。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型。
 
 ## 將資料還原到相同電腦
 如果您不小心刪除檔案，而您想要將它還原到相同的電腦 (備份進行處)，下列步驟可協助您復原資料。
@@ -117,4 +117,4 @@
 ## 後續步驟
 - 現在您已復原檔案和資料夾，接下來您可以[管理您的備份](backup-azure-manage-windows-server.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

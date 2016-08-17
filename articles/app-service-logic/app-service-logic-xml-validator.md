@@ -1,7 +1,7 @@
 <properties
    pageTitle="在 Logic Apps 中使用 BizTalk XML 驗證器 | Microsoft Azure App Service"
    description="邏輯應用程式中使用 BizTalk XML 驗證器驗證結構描述"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="rajram"
    manager="erikre"
@@ -64,4 +64,4 @@ BizTalk XML 驗證器會將結構描述納入其組態中。直接從 Azure 入�
 [4]: ./media/app-service-logic-xml-validator/XmlValidator.ListOfActions.PNG
 [5]: ./media/app-service-logic-xml-validator/XmlValidator.ValidateXml.PNG
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

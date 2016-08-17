@@ -1,7 +1,7 @@
 <properties
    pageTitle="在邏輯應用程式的 C# API 應用程式中執行 C# 運算式 | Microsoft Azure"
    description="C# API 應用程式或連接器"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net"
    authors="jeffhollan"
    manager="dwrede"
@@ -112,4 +112,4 @@ return YammerAttachments;
 <!--Links -->
 [Creating a Logic App]: app-service-logic-create-a-logic-app.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

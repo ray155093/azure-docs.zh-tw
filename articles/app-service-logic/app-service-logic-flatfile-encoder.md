@@ -1,7 +1,7 @@
 <properties 
    pageTitle="在邏輯應用程式中使用 BizTalk 一般檔案編碼器 | Microsoft Azure" 
    description="BizTalk 一般檔案編碼器 API 應用程式或連接器" 
-   services="app-service\logic" 
+   services="logic-apps" 
    documentationCenter=".net,nodejs,java" 
    authors="rajram" 
    manager="erikre" 
@@ -86,4 +86,4 @@
 
  
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,11 +1,11 @@
 <properties
-	pageTitle="如果我的 Azure 訂用帳戶被取消，該怎麼辦？| Microsoft Azure"
+	pageTitle="如果我的 Azure 訂用帳戶被停用，該怎麼辦？| Microsoft Azure"
 	description="說明 Azure 訂用帳戶遭停用的原因和解決方式"
-	services="billing"
+	services=""
 	documentationCenter=""
 	authors="genlin"
 	manager="msmbaldwin"
-	editor="na"
+	editor=""
 	tags="billing"
 	/>
 
@@ -15,10 +15,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/17/2016"
+	ms.date="07/27/2016"
 	ms.author="genli"/>
 
-# 如果我的 Azure 訂用帳戶被取消，該怎麼辦？
+# 如果我的 Azure 訂用帳戶被停用，該怎麼辦？
 
 如果您的 Azure 訂用帳戶被停用，您可以使用本文中的步驟重新啟用它。您的 Azure 訂用帳戶遭停用原因可能如下：
 
@@ -29,15 +29,24 @@
 移除消費限制的方法如下：
 
 1. 登入 [Azure 帳戶中心](https://account.windowsazure.com/Home/Index)。
-2. 按一下 [帳戶]，然後按一下 [訂用帳戶]。
+
+2. 按一下 [訂用帳戶]。
+
 3. 選取一個訂用帳戶。
-4. 如果訂用帳戶因為達到消費限制而被停用，請按一下這個通知：「訂用帳戶已達到消費限制，為防止產生費用已被停用。」 否則，請按一下 [訂用帳戶狀態] 區域中的 [移除消費限制]。
+
+4. 如果您看到「此訂用帳戶已達消費限制，並已停用以避免收費」，請對它按一下。
+	
+	或者，按一下 [訂用帳戶狀態] 區域中的 [移除消費限制]。
+	
 5. 選取下列適合您的選項之一︰
 
 |選項|效果|
 |------|------|
 |無限期移除消費限制|移除消費限制，不在下一個計費週期開始時自動開啟。|
 |移除目前計費週期的消費限制|移除消費限制，讓它在下一個計費週期開始時自動開啟。|
+
+>[AZURE.NOTE] 如果您使用免費試用訂用帳戶，則移除消費限制將會在免費試用結束時把您的訂用帳戶轉換為隨用隨付。
+
 ## 您的帳單逾期未繳
 
 全額支付您未付的差額。若要執行這項作業，請參閱[為什麼會收到 Azure 訂用帳戶有逾期未付帳款的通知？](billing-azure-subscription-past-due-balance.md#what-can-you-do-to-resolve-the-issue)
@@ -48,7 +57,6 @@
 
 - [如何變更用來支付 Azure 訂用帳戶的信用卡](billing-how-to-change-credit-card.md)。
 - 如果您是企業用戶，請參閱 [Azure 發票](https://azure.microsoft.com/pricing/invoicing/)。
-
 
 ## 如何重新啟用訂用帳戶
 
@@ -63,4 +71,4 @@
 
 如需詳細資訊，請參閱[如何針對 Azure 計費和訂用帳戶問題建立支援票證](billing-how-to-create-billing-support-ticket.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0803_2016-->

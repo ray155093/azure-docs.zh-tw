@@ -1,8 +1,8 @@
 <properties
-	pageTitle="在 Azure CDN 端點上預先載入資產"
+	pageTitle="在 Azure CDN 端點上預先載入資產 | Microsoft Azure"
 	description="了解如何預先載入 CDN 端點上的快取內容。"
 	services="cdn"
-	documentationCenter=".NET"
+	documentationCenter=""
 	authors="camsoper"
 	manager="erikre"
 	editor=""/>
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/11/2016"
+	ms.date="07/28/2016"
 	ms.author="casoper"/>
 
 # 在 Azure CDN 端點上預先載入資產
@@ -60,4 +60,4 @@
 - [清除 Azure CDN 端點](cdn-purge-endpoint.md)
 - [Azure CDN REST API 參考資料 - 清除或預先載入端點](https://msdn.microsoft.com/library/mt634451.aspx)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

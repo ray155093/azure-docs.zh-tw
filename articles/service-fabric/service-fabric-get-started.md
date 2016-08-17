@@ -13,11 +13,11 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="06/15/2016"
+   ms.date="06/16/2016"
    ms.author="ryanwi"/>
 
 # 準備您的開發環境
- 若要在您的開發機器上建置並執行 [Azure Service Fabric 應用程式][1]，您需要安裝執行階段、SDK 和工具。您也必須執行 SDK 中包含的 Windows PowerShell 指令碼。
+ 若要在您的開發機器上建置並執行 [Azure Service Fabric 應用程式][1]，請安裝執行階段、SDK 和工具。您也必須執行 SDK 中包含的 Windows PowerShell 指令碼。
 
 ## 必要條件
 ### 支援的作業系統版本
@@ -28,7 +28,7 @@
 - Windows Server 2012 R2
 - Windows 10
 
->[AZURE.NOTE] 根據預設，Windows 7 只包含 Windows PowerShell 2.0。您必須安裝 PowerShell 3.0 或更新版本，才能使用 Service Fabric PowerShell Cmdlet。您可以從 Microsoft 下載中心[下載 Windows PowerShell 5.0][powershell5-download]。
+>[AZURE.NOTE] 根據預設，Windows 7 只包含 Windows PowerShell 2.0。Service Fabric PowerShell Cmdlet 需要 PowerShell 3.0 或更新版本。您可以從 Microsoft 下載中心[下載 Windows PowerShell 5.0][powershell5-download]。
 
 ## 安裝執行階段、SDK 和工具
 
@@ -64,4 +64,4 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -Scope CurrentUser
 [core-sdk]: http://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=ServiceFabricSDK_2_1 "Core SDK WebPI 連結"
 [powershell5-download]: https://www.microsoft.com/zh-TW/download/details.aspx?id=50395
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0810_2016-->

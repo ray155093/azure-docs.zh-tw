@@ -11,7 +11,7 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="01/14/2016" 
+    ms.date="04/06/2016" 
     ms.author="jeedes" />
 
 #教學課程：針對輸入同步設定 Workday
@@ -19,18 +19,18 @@
 
 本教學課程的目的是說明將連絡人從 Workday 匯入 Microsoft Azure AD 時，在 Workday 和 Microsoft Azure AD 中需要執行的步驟。本教學課程中說明的案例假設您已經具有下列項目：
 
--   有效的 Azure 訂閱  
--   Workday 中的租用戶  
+-   有效的 Azure 訂閱
+-   Workday 中的租用戶
 
 本教學課程中說明的案例由下列建置組塊組成：
 
-1.  啟用 Workday 的應用程式整合  
-2.  建立整合系統使用者  
-3.  建立安全性群組  
-4.  將整合系統使用者指派到安全性群組  
-5.  設定安全性群組選項  
-6.  啟用安全性原則變更  
-7.  在 Microsoft Azure AD 中設定匯入使用者  
+1.  啟用 Workday 的應用程式整合
+2.  建立整合系統使用者
+3.  建立安全性群組
+4.  將整合系統使用者指派到安全性群組
+5.  設定安全性群組選項
+6.  啟用安全性原則變更
+7.  在 Microsoft Azure AD 中設定匯入使用者
 
 ##啟用 Workday 的應用程式整合
 
@@ -38,7 +38,7 @@
 
 ###若要啟用 Workday 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory]。    
+1.  在 Azure 管理入口網站的左方瀏覽窗格中，按一下 [Active Directory]。
 
 	![Active Directory](./media/active-directory-saas-inbound-synchronization-tutorial/IC700993.png "Active Directory")
 
@@ -50,7 +50,7 @@
 
 4.  若要開啟 [應用程式庫]，請按一下 [新增應用程式]，然後按一下 [新增應用程式讓我的組織使用]。
 
-	![欲執行動作](./media/active-directory-saas-inbound-synchronization-tutorial/IC700995.png "您要如何處理？")
+	![欲執行動作](./media/active-directory-saas-inbound-synchronization-tutorial/IC700995.png "欲執行動作")
 
 5.  在**搜尋方塊**中，輸入 **Workday**。
 
@@ -62,7 +62,7 @@
 
 ##建立整合系統使用者
 
-1.  在 [工作日工作台] 中的搜尋方塊輸入 **create user**，然後按一下 [建立整合系統使用者] 連結。     
+1.  在 [工作日工作台] 中的搜尋方塊輸入 **create user**，然後按一下 [建立整合系統使用者] 連結。
 
 	![建立使用者](./media/active-directory-saas-inbound-synchronization-tutorial/IC750979.png "建立使用者")
 
@@ -74,7 +74,7 @@
 
 對於本教學課程中所述的案例，您需要建立未受限制的整合系統安全性群組，並將使用者指派至該群組。
 
-1.  在搜尋方塊中輸入 create security group，然後按一下 [Create Security Group] 連結。     
+1.  在搜尋方塊中輸入 create security group，然後按一下 [Create Security Group] 連結。
 
 	![建立安全性群組](./media/active-directory-saas-inbound-synchronization-tutorial/IC750981.png "建立安全性群組")
 
@@ -84,7 +84,7 @@
 
 ##將整合系統使用者指派到安全性群組
 
-1.  在搜尋方塊中輸入 edit security group，然後按一下 [Edit Security Group] 連結。     
+1.  在搜尋方塊中輸入 edit security group，然後按一下 [Edit Security Group] 連結。
 
 	![編輯安全性群組](./media/active-directory-saas-inbound-synchronization-tutorial/IC750983.png "編輯安全性群組")
 
@@ -100,15 +100,15 @@
 
 在此步驟中，您授予新的安全性群組，對受下列網域安全性原則保護之物件進行 Get 和 Put 作業：
 
--   外部帳戶佈建  
--   人員資料：公用人員報告  
--   人員資料：所有職位  
--   人員資料：目前人員配置資訊  
--   人員資料：人員個人檔案的職稱  
+-   外部帳戶佈建
+-   人員資料：公用人員報告
+-   人員資料：所有職位
+-   人員資料：目前人員配置資訊
+-   人員資料：人員個人檔案的職稱
 
 &nbsp;
 
-1.  在搜尋方塊中輸入 domain security policies，然後按一下 [功能區域的網域安全性原則]。     
+1.  在搜尋方塊中輸入 domain security policies，然後按一下 [功能區域的網域安全性原則]。
 
 	![網域安全性原則](./media/active-directory-saas-inbound-synchronization-tutorial/IC750986.png "網域安全性原則")
 
@@ -130,16 +130,16 @@
 
 6.  在 [人員配置] 功能區域的安全性原則清單中，展開 [人員資料：人員配置]，並對其餘的各安全性原則重複上述步驟 4：
 
-	-   人員資料：公用人員報告  
-    -   人員資料：所有職位  
-    -   人員資料：目前人員配置資訊  
-    -   人員資料：人員個人檔案的職稱    
+	-   人員資料：公用人員報告
+    -   人員資料：所有職位
+    -   人員資料：目前人員配置資訊
+    -   人員資料：人員個人檔案的職稱
 
 	![網域安全性原則](./media/active-directory-saas-inbound-synchronization-tutorial/IC750991.png "網域安全性原則")
 
 ##啟用安全性原則變更
 
-1.  在搜尋方塊中輸入 activate，然後按一下 [啟用擱置的安全性原則變更] 連結。    
+1.  在搜尋方塊中輸入 activate，然後按一下 [啟用擱置的安全性原則變更] 連結。
 
 	![啟動](./media/active-directory-saas-inbound-synchronization-tutorial/IC750992.png "啟動")
 
@@ -157,15 +157,15 @@
 
 ###若要在 Microsoft Azure AD 中設定匯入使用者，請執行下列步驟：
 
-1.  在 [Workday] 應用程式整合頁面上，按一下 [設定使用者匯入] 以開啟 [設定佈建] 對話方塊。    
+1.  在 [Workday] 應用程式整合頁面上，按一下 [設定使用者匯入] 以開啟 [設定佈建] 對話方塊。
 
 2.  在 [設定及管理員認證] 頁面上，執行以下步驟，然後按一下 [下一步]：
 
 	![設定及管理員認證](./media/active-directory-saas-inbound-synchronization-tutorial/IC750995.png "設定及管理員認證")
 
-	1.  在 [Workday 管理員使用者名稱] 文字方塊中，輸入您在[建立整合系統使用者](https://msdn.microsoft.com/library/azure/Dn762434.aspx#BKMK_CreateUser)一節中建立的使用者名稱。    
-    2.  在 [Workday 管理員使用者密碼] 文字方塊中，輸入您在[建立整合系統使用者](https://msdn.microsoft.com/library/azure/Dn762434.aspx#BKMK_CreateUser)一節中建立的使用者密碼。    
-    3.  在 [Workday 租用戶 URL] 文字方塊中，輸入您 Workday 租用戶的 URL。    
+	1.  在 [Workday 管理員使用者名稱] 文字方塊中，輸入您在[建立整合系統使用者](https://msdn.microsoft.com/library/azure/Dn762434.aspx#BKMK_CreateUser)一節中建立的使用者名稱。
+    2.  在 [Workday 管理員使用者密碼] 文字方塊中，輸入您在[建立整合系統使用者](https://msdn.microsoft.com/library/azure/Dn762434.aspx#BKMK_CreateUser)一節中建立的使用者密碼。
+    3.  在 [Workday 租用戶 URL] 文字方塊中，輸入您 Workday 租用戶的 URL。
 
 3.  在 [測試連接] 頁面上，按一下 [開始測試] 來確認連接，然後按一下 [下一步]。
 
@@ -181,4 +181,4 @@
 
 您現在可以移至 [使用者] 區段，並檢查是否已匯入您的 Workday 使用者。
 
-<!---HONumber=AcomDC_0121_2016-->
+<!---HONumber=AcomDC_0810_2016-->

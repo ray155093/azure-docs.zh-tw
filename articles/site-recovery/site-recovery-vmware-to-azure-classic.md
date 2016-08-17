@@ -196,7 +196,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 **必要條件** | **詳細資料**
 --- | ---
-**管理伺服器** | 您需要在虛擬機器或實體伺服器上執行的內部部署 Windows 2012 R2 伺服器。所有內部部署 Site Recovery 元件都是安裝在此管理伺服器上<br/><br/>建議您將伺服器部署成高可用性的 VMware VM。從 Azure 容錯回復到內部部署網站一律是 VMware VM，無論您容錯移轉 VM 或實體伺服器。如果您不將管理伺服器設定為 VMware VM，就必須設定一部個別的主要目標伺服器來做為 VMware VM 以接收容錯回復流量。<br/><br/>此伺服器不應該是「網域控制站」。<br/><br/>此伺服器應該要有靜態 IP 位址。<br/><br/>此伺服器的主機名稱應該不超過 15 個字元。<br/><br/>作業系統的地區設定應該僅限英文。<br/><br/>管理伺服器必須能夠存取網際網路。<br/><br/>您需要從伺服器對外存取的權限，如下：安裝 Site Recovery 元件期間 HTTP 80 上的暫時存取權 (以便下載 MySQL)；HTTPS 443 上的持續對外存取權，用於管理複寫；HTTPS 9443 上的持續對外存取權，用於處理複寫流量 (可以修改此連接埠)<br/><br/>請確定可從管理伺服器存取這些 URL： <br/>- *.hypervrecoverymanager.windowsazure.com<br/>- *.accesscontrol.windows.net<br/>- *.backup.windowsazure.com<br/>- *.blob.core.windows.net<br/>- *.store.core.windows.net<br/>-https://www.msftncsi.com/ncsi.txt<br/>- [ https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi](https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi "https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi")<br/><br/>如果您的伺服器上有以 IP 位址為基礎的防火牆規則，請檢查這些規則是否允許對 Azure 進行通訊。您將需要允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653) 和 HTTPS (433) 通訊協定。您也必須將訂用帳戶的 Azure 區域和美國西部的 IP 位址範圍列於白名單。[https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi](https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi "https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi") 是用來下載 MySQL 的 URL。
+**管理伺服器** | 您需要在虛擬機器或實體伺服器上執行的內部部署 Windows 2012 R2 伺服器。所有內部部署 Site Recovery 元件都是安裝在此管理伺服器上<br/><br/>建議您將伺服器部署成高可用性的 VMware VM。從 Azure 容錯回復到內部部署網站一律是 VMware VM，無論您容錯移轉 VM 或實體伺服器。如果您不將管理伺服器設定為 VMware VM，就必須設定一部個別的主要目標伺服器來做為 VMware VM 以接收容錯回復流量。<br/><br/>此伺服器不應該是「網域控制站」。<br/><br/>此伺服器應該要有靜態 IP 位址。<br/><br/>此伺服器的主機名稱應該不超過 15 個字元。<br/><br/>作業系統的地區設定應該僅限英文。<br/><br/>管理伺服器必須能夠存取網際網路。<br/><br/>您需要從伺服器對外存取的權限，如下：安裝 Site Recovery 元件期間 HTTP 80 上的暫時存取權 (以便下載 MySQL)；HTTPS 443 上的持續對外存取權，用於管理複寫；HTTPS 9443 上的持續對外存取權，用於處理複寫流量 (可以修改此連接埠)<br/><br/>請確定可從管理伺服器存取這些 URL： <br/>- *.hypervrecoverymanager.windowsazure.com<br/>- *.accesscontrol.windows.net<br/>- *.backup.windowsazure.com<br/>- *.blob.core.windows.net<br/>- *.store.core.windows.net<br/>-https://www.msftncsi.com/ncsi.txt<br/>- [ https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi](https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi "https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi")<br/><br/>如果您的伺服器上有以 IP 位址為基礎的防火牆規則，請檢查這些規則是否允許對 Azure 進行通訊。您將需要允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653) 和 HTTPS (433) 通訊協定。您也必須將訂用帳戶的 Azure 區域和美國西部的 IP 位址範圍列於允許清單。[https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi](https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi "https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi") 是用來下載 MySQL 的 URL。
 **VMware vCenter/ESXi 主機**： | 您需要一或多個 vMware vSphere ESX/ESXi Hypervisor 來管理您 VMware 虛擬機器，這些 Hypervisor 需執行帶有最新更新項目的 6.0、5.5 或 5.1 版 ESX/ESXi。<br/><br/> 建議您部署 VMware vCenter 伺服器來管理您的 ESXi 主機。它應該執行帶有最新更新項目的 6.0 或 5.5 版 vCenter。<br/><br/>請注意，Site Recovery 不支援新的 vCenter 和 vSphere 6.0 功能，例如跨 vCenter vMotion、虛擬磁碟區和儲存體 DRS。Site Recovery 支援僅限於 5.5 版中可用的功能。
 **受保護的機器**： | **AZURE**<br/><br/>您想要保護的機器應該要符合建立 Azure VM 的 [Azure 必要條件](site-recovery-best-practices.md#azure-virtual-machine-requirements)。<br><br/>如果您要在容錯移轉之後連接到 Azure VM，就必須在本機防火牆上啟用「遠端桌面」連線。<br/><br/>受保護機器上的個別磁碟容量不應超過 1023 GB。VM 可以有多達 64 個磁碟 (因此多達 64 TB)。如果您有容量大於 1 TB 的磁碟，請考慮使用資料庫複寫，例如 SQL Server Always On 或 Oracle Data Guard<br/><br/>不支援共用磁碟客體叢集。如果您有叢集部署，請考慮使用資料庫複寫，例如 SQL Server Always On 或 Oracle Data Guard。<br/><br/>不支援「整合可延伸韌體介面」(UEFI)/「可延伸韌體介面」(EFI) 開機。<br/><br/>機器名稱應包含 1 到 63 個字元 (字母、數字和連字號)。名稱必須以字母或數字開頭，並以字母或數字結尾。機器受到保護之後，您就可以修改 Azure 的名稱。<br/><br/>**VMware VM**<br/><br>您將需要在管理伺服器 (組態伺服器) 上安裝 VMware vSphere PowerCLI 6.0。<br/><br/>您想要保護的 VMware VM 應該已安裝並執行 VMware 工具。<br/><br/>如果來源 VM 有 NIC 小組，在容錯移轉至 Azure 之後，它會轉換成單一 NIC。<br/><br/>如果受保護的 VM 具有 iSCSI 磁碟，則當 VM 容錯移轉至 Azure 時，Site Recovery 會將受保護的 VM iSCSI 磁碟轉換成 VHD 檔案。如果 Azure VM 可以觸達 iSCSI 目標，則它會連接到 iSCSI 目標，並且基本上查看兩個磁碟 – Azure VM 上的 VHD 磁碟和來源 iSCSI 磁碟。在此情況下，您必須將出現在已容錯移轉之 Azure VM 上的 iSCSI 目標中斷連線。<br/><br/>[深入了解](#vmware-permissions-for-vcenter-access) Site Recovery 所需的 VMware 使用者權限。<br/><br/> **WINDOWS SERVER 機器 (在 VMware VM 或實體伺服器上)**<br/><br/>伺服器應執行受支援的 64 位元作業系統：Windows Server 2012 R2、Windows Server 2012 或 Windows Server 2008 R2 (至少為 SP1)。<br/><br/>作業系統應該安裝在 C:\\ 磁碟機上，且作業系統磁碟應該是 Windows 基本磁碟 (作業系統不應該安裝在 Windows 動態磁碟上)。<br/><br/>對於 Windows Server 2008 R2 機器，您必須安裝 .NET Framework 3.5.1。<br/><br/>您將需要提供系統管理員帳戶 (必須是 Windows 電腦上的本機系統管理員)，以便在 Windows 伺服器上進行行動服務的推送安裝。如果提供的帳戶是非網域帳戶，您必須停用本機電腦上的遠端使用者存取控制。[深入了解](#install-the-mobility-service-with-push-installation)。<br/><br/>Site Recovery 支援具有 RDM 磁碟的 VM。在容錯回復期間，如果原始來源 VM 和 RDM 磁碟可用，則 Site Recovery 會重複使用 RDM 磁碟。如果無法使用它們，Site Recovery 就會在容錯回復期間為每個磁碟建立新的 VMDK 檔案。<br/><br/>**LINUX 機器**<br/><br/>您將需要受支援的 64 位元作業系統：Red Hat Enterprise Linux 6.7；Centos 6.5、6.6、6.7；執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3) 的 Oracle Enterprise Linux 6.4、6.5；SUSE Linux Enterprise Server 11 SP3。<br/><br/>受保護機器上的 /etc/hosts 檔案應該包含將本機主機名稱對應至與所有網路介面卡關聯之 IP 位址的項目。<br/><br/>如果您想要在容錯移轉之後，使用「安全殼層」用戶端 (SSH) 來連線到執行 Linux 的 Azure 虛擬機器，請確定受保護機器上的「安全殼層」服務已設定為在系統開機時自動啟動，而且防火牆規則允許對其進行 SSH 連線。<br/><br/>只能針對具有下列儲存體的 Linux 機器啟用保護：檔案系統 (EXT3、ETX4、ReiserFS、XFS)；多重路徑軟體裝置對應工具 (multipath)；磁碟區管理員：(LVM2)。不支援使用 HP CCISS 控制站儲存體的實體伺服器。只有在 SUSE Linux Enterprise Server 11 SP3 上才支援 ReiserFS 檔案系統。<br/><br/>Site Recovery 支援具有 RDM 磁碟的 VM。在 Linux 的容錯回復期間，Site Recovery 不會重複使用 RDM 磁碟。而是會針對每個對應的 RDM 磁碟建立新的 VMDK 檔案。
 
@@ -256,62 +256,79 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 [AZURE.VIDEO enhanced-vmware-to-azure-setup-registration]
 
 1. 在 [快速入門] 頁面中，將已整合的安裝檔案下載至伺服器。
+
 2. 執行安裝檔案以在 Site Recovery 整合安裝精靈啟動安裝程式。
-3. 在 [開始之前] 中，選取 [安裝組態伺服器和處理序伺服器]。根據您部署的大小，稍後可能需要額外的處理序伺服器，但是第一次設定此部署時不需要。
+
+3.	在 [開始之前] 中，選取 [安裝組態伺服器和處理序伺服器]。
 
 	![開始之前](./media/site-recovery-vmware-to-azure-classic/combined-wiz1.png)
+4. 在 [協力廠商軟體授權] 中，按一下 [我接受] 來下載並安裝 MySQL。
 
-4. 在 [協力廠商軟體安裝] 中，按一下 [我接受] 來下載並安裝 MySQL。
+	![第三方=廠商軟體](./media/site-recovery-vmware-to-azure-classic/combined-wiz105.PNG)
 
-	![第三方=廠商軟體](./media/site-recovery-vmware-to-azure-classic/combined-wiz2.png)
+5. 在 [註冊] 中，瀏覽並選取您從保存庫下載的註冊金鑰。
 
-5. 在 [網際網路設定] 中，指定將安裝在伺服器上的 Provider 要如何透過網際網路連接到 Azure Site Recovery。
+	![註冊](./media/site-recovery-vmware-to-azure-classic/combined-wiz3.png)
 
+6. 在 [網際網路設定] 中，指定在組態伺服器上執行的 Provider 將如何透過網際網路連接到 Azure Site Recovery。
+
+	- 如果您想要使用機器上目前設定的 Proxy 來連線，請選取 [以現有的 Proxy 設定連線]。
 	- 如果您想要讓 Provider 直接連線，請選取 [不使用 Proxy 直接連線]。
-	- 如果您想要使用伺服器上目前設定的 Proxy 來連線，請選取 [以現有的 Proxy 設定連線]。
 	- 如果現有的 Proxy 需要驗證，或是您想要讓 Provider 使用自訂 Proxy 來連線，請選取 [以自訂 Proxy 設定連線]。
-	- 如果您使用自訂 proxy，您必須指定位址、連接埠以及認證
-	- 如果您使用 proxy，則應該可以透過它存取下列 URL：
+		- 如果您使用自訂 proxy，您必須指定位址、連接埠以及認證
+		- 如果您使用 Proxy，您應該已經允許下列 URL：
+			- *.hypervrecoverymanager.windowsazure.com;
+			- *.accesscontrol.windows.net;
+			- *.backup.windowsazure.com;
+			- *.blob.core.windows.net;
+			- *.store.core.windows.net
+			
 
-	![防火牆](./media/site-recovery-vmware-to-azure-classic/combined-wiz3.png)
+	![防火牆](./media/site-recovery-vmware-to-azure-classic/combined-wiz4.png)
 
-7. 在 [必要條件檢查] 中，安裝程式會對伺服器執行必要條件檢查。
+7. 在 [必要條件檢查] 中，安裝程式會執行檢查來確定可以執行安裝。
 
-	![必要條件](./media/site-recovery-vmware-to-azure-classic/combined-wiz4.png)
+	
+	![必要條件](./media/site-recovery-vmware-to-azure-classic/combined-wiz5.png)
 
->[AZURE.WARNING] 如果您看到「通用時間同步處理」必要條件檢查的警告，請檢查您系統時鐘上的時間是否與時區相同。
+	 如果出現有關「通用時間同步處理檢查」的警告，請確認系統時鐘上的時間 ([日期和時間] 設定) 與時區相同。
 
-![TimeSyncIssue](./media/site-recovery-vmware-to-azure-classic/time-sync-issue.png)
+ 	![TimeSyncIssue](./media/site-recovery-vmware-to-azure-classic/time-sync-issue.png)
 
-8. 在 [MySQL 組態] 中，建立認證來登入 MySQL 伺服器執行個體。您可以指定這些特殊字元：'\_'、'!'、'@'、'$'、'\\'、'%'。
-
-	![MySQL](./media/site-recovery-vmware-to-azure-classic/combined-wiz5.png)
-
-9. 在 [環境詳細資料] 中，指定您是否要複寫 VMware VM。如果是的話，安裝程式會檢查是否已安裝 PowerCLI 6.0。
+8. 在 [MySQL 組態] 中，建立認證來登入將要安裝的 MySQL 伺服器執行個體。
 
 	![MySQL](./media/site-recovery-vmware-to-azure-classic/combined-wiz6.png)
 
-10. 在 [安裝位置] 中，選取您要安裝二進位檔及儲存快取的位置。我們建議快取磁碟機有 600 GB 或更大的可用空間。
+9. 在 [環境詳細資料] 中，選取您是否要複寫 VMware VM。如果是的話，安裝程式會檢查是否已安裝 PowerCLI 6.0。
 
-	![安裝位置](./media/site-recovery-vmware-to-azure-classic/combined-wiz7.png)
+	![MySQL](./media/site-recovery-vmware-to-azure-classic/combined-wiz7.png)
 
-11. 在 [網路選取] 中，指定伺服器將用來傳送和接收複寫資料的接聽程式 (網路介面卡和 SSL 連接埠)。您可以修改預設連接埠 (9443)。除了此連接埠之外，會在伺服器上開啟連接埠 443 以傳送和接收複寫協調流程的相關資訊。443 不應該用於複寫資料。
+10. 在 [安裝位置] 中，選取您要安裝二進位檔及儲存快取的位置。您可以選取至少有 5 GB 可用儲存體的磁碟機，但我們建議快取磁碟機至少有 600 GB 的可用空間。
+
+	![安裝位置](./media/site-recovery-vmware-to-azure-classic/combined-wiz8.png)
+
+11. 在 [網路選取] 中，指定組態伺服器將用來傳送和接收複寫資料的接聽程式 (網路介面卡和 SSL 連接埠)。您可以修改預設連接埠 (9443)。除了此連接埠之外，網頁伺服器將會使用連接埠 443 來協調複寫作業。443 不應該用於接收複寫流量。
 
 
-	![網路選擇](./media/site-recovery-vmware-to-azure-classic/combined-wiz8.png)
+	![網路選擇](./media/site-recovery-vmware-to-azure-classic/combined-wiz9.png)
 
-12. 在 [註冊] 中，瀏覽並選取您從保存庫下載的註冊金鑰。
 
-	![註冊](./media/site-recovery-vmware-to-azure-classic/combined-wiz9.png)
+
+12.  在 [摘要] 中檢閱資訊，然後按一下 [安裝]。安裝完成時，會產生複雜密碼。在您啟用複寫時會需要它，所以請將它複製並保存在安全的位置。
+
+	![摘要](./media/site-recovery-vmware-to-azure-classic/combined-wiz10.png)
+
+
 
 13.  在 [摘要] 中，檢閱資訊。
 
 	![摘要](./media/site-recovery-vmware-to-azure-classic/combined-wiz10.png)
+
 >[AZURE.WARNING] 必須安裝 Microsoft Azure 復原服務代理程式的 Proxy。安裝完成之後，從 Windows [開始] 功能表啟動名為「Microsoft Azure 復原服務殼層」的應用程式。在開啟的命令視窗中，執行下列命令組來設定 Proxy 伺服器設定。
 >
-	$pwd = ConvertTo-SecureString -String ProxyUserPassword 
-	Set-OBMachineSetting -ProxyServer http://myproxyserver.domain.com -ProxyPort PortNumb – ProxyUserName domain\\username -ProxyPassword $pwd 
-	net stop obengine 
+	$pwd = ConvertTo-SecureString -String ProxyUserPassword
+	Set-OBMachineSetting -ProxyServer http://myproxyserver.domain.com -ProxyPort PortNumb – ProxyUserName domain\username -ProxyPassword $pwd
+	net stop obengine
 	net start obengine
 
 
@@ -715,6 +732,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 	![新增處理序伺服器](./media/site-recovery-vmware-to-azure-classic/add-ps1.png)
 
 3. 以您[設定](#step-5-install-the-management-server)第一部管理伺服器時的相同方式完成精靈。
+
 4. 在 [組態伺服器詳細資料] 中，為您之前安裝組態伺服器的原始管理伺服器指定 IP 位址，以及指定複雜密碼。在原始管理伺服器上執行 **<SiteRecoveryInstallationFolder>\\home\\sysystems\\bin\\genpassphrase.exe –n** 以取得複雜密碼。
 
 	![新增處理序伺服器](./media/site-recovery-vmware-to-azure-classic/add-ps2.png)
@@ -764,4 +782,4 @@ The complete file may be found on the [Microsoft Download Center](http://go.micr
 
 [深入了解容錯回復](site-recovery-failback-azure-to-vmware-classic.md)，以便將在 Azure 中容錯移轉的機器回復到您的內部部署環境。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

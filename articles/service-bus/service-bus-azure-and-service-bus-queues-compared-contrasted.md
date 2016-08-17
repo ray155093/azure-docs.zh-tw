@@ -179,7 +179,7 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 |---|---|---|
 |佇列大小上限|**200 TB**<br/><br/>(限制為單一儲存體帳戶容量)|**1 GB 到 80 GB**<br/><br/>(在建立佇列和[啟用分割](service-bus-partitioning.md)時定義 - 請參閱＜其他資訊＞一節)|
 |訊息大小上限|**64 KB**<br/><br/>(使用 **Base64** 編碼時，則為 48 KB)<br/><br/>Azure 可以結合佇列和 Blob 來支援大型訊息，因此您最多可以將 200GB 的單一項目加入佇列。|**256 KB** 或 **1 MB**<br/><br/>(包括標頭和主體，標頭大小上限：64 KB)。<br/><br/>取決於[服務層](service-bus-premium-messaging.md)。|
-|訊息 TTL 上限|**7 天**|**無限制**|
+|訊息 TTL 上限|**7 天**|**`TimeSpan.Max`**|
 |佇列數目上限|**無限制**|**10,000**<br/><br/>(每個服務命名空間，可以增加)|
 |並行用戶端數目上限|**無限制**|**無限制**<br/><br/>(100 個並行連接限制只適用於以 TCP 通訊協定為基礎的通訊)|
 
@@ -204,7 +204,7 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 |比較準則|Azure 佇列|服務匯流排佇列|
 |---|---|---|
 |管理通訊協定|**REST over HTTP/HTTPS**|**REST over HTTPS**|
-|執行階段通訊協定|**REST over HTTP/HTTPS**|**REST over HTTPS**<br/><br/>**AMQP 1.0 標準 (TCP 和 TLS)**|
+|執行階段通訊協定|**REST over HTTP/HTTPS**|**REST over HTTPS**<br/><br/>**AMQP 1.0 標準 (具 TLS 的 TCP)**|
 |.NET Managed API|**是**<br/><br/>(.NET Managed 儲存體用戶端 API)|**是**<br/><br/>(.NET Managed 代理傳訊 API)|
 |Native C++|**是**|**否**|
 |Java API|**是**|**是**|
@@ -313,4 +313,4 @@ Azure 佇列和服務匯流排佇列都是 Microsoft Azure 目前所提供之訊
 [Azure 傳統入口網站]: http://manage.windowsazure.com
  
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->

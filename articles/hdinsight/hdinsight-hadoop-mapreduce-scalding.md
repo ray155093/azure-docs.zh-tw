@@ -13,7 +13,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="na"
  ms.workload="big-data"
- ms.date="05/18/2016"
+ ms.date="08/02/2016"
  ms.author="larryfr"/>
 
 # 使用 HDInsight 上的 Apache Hadoop 開發 Scalding MapReduce 工作
@@ -209,7 +209,7 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。�
 
 4. 工作完成後，請使用下列命令來檢視輸出。
 
-        hdfs dfs -text wasbs:///example/wordcountout/part-00000
+        hdfs dfs -text wasbs:///example/wordcountout/*
 
     這時將會顯示類似以下的說明資訊：
 
@@ -254,6 +254,8 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。�
         $fileToUpload = "scaldingwordcount-1.0-SNAPSHOT.jar"
         $blobPath = "example/jars/scaldingwordcount-1.0-SNAPSHOT.jar"
         
+        #Login to your Azure subscription
+        Login-AzureRmAccount
         #Get HTTPS/Admin credentials for submitting the job later
         $creds = Get-Credential
         #Get the cluster info so we can get the resource group, storage, etc.
@@ -343,4 +345,4 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。�
 
 * [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

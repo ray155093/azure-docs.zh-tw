@@ -1,7 +1,7 @@
 <properties 
 	pageTitle="使用憑證搭配企業整合套件 | Microsoft Azure App Service" 
 	description="了解如何使用憑證搭配企業整合套件與 Logic Apps" 
-	services="app-service\logic" 
+	services="logic-apps" 
 	documentationCenter=".net,nodejs,java"
 	authors="msftman" 
 	manager="erikre" 
@@ -73,4 +73,4 @@
 - [使用 B2B 功能建立邏輯應用程式](./app-service-logic-enterprise-integration-b2b.md)
 - [深入了解金鑰保存庫](../key-vault/key-vault-get-started.md "了解金鑰保存庫")
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

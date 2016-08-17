@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="05/12/2016" 
+	ms.date="08/04/2016" 
 	ms.author="billmath"/>
 
 
@@ -43,21 +43,21 @@ MFA 伺服器在做為 RADIUS 伺服器時，僅支援 PAP (密碼驗證通訊�
 9. 您可以重複步驟 4 到 8，新增其他 RADIUS 用戶端。
 10. 按一下 [目標] 索引標籤。
 11. 如果 Azure Multi-Factor Authentication Server 安裝在 Active Directory 環境中已加入網域的伺服器上，請選取 [Windows 網域]。
-12. 如果應該向 LDAP 目錄驗證使用者，請選取 [LDAP 繫結]。當使用 LDAP 繫結時，您必須按一下 [目錄整合] 圖示，並編輯 [設定] 索引標籤上的 LDAP 組態，讓「伺服器」可以繫結至您的目錄。在 LDAP Proxy 組態指南中可以找到設定 LDAP 的指示。 
+12. 如果應該向 LDAP 目錄驗證使用者，請選取 [LDAP 繫結]。當使用 LDAP 繫結時，您必須按一下 [目錄整合] 圖示，並編輯 [設定] 索引標籤上的 LDAP 組態，讓「伺服器」可以繫結至您的目錄。在 LDAP Proxy 組態指南中可以找到設定 LDAP 的指示。
 13. 如果應該向另一部 RADIUS 伺服器驗證使用者，選取 [RADIUS 伺服器]。
 14. 按一下 [新增...] 按鈕，設定用來代理「伺服器」處理 RADIUS 要求的伺服器。
 15. 在 [新增 RADIUS 伺服器] 對話方塊中，輸入 RADIUS 伺服器的 IP 位址和 [共用密碼]。共用密碼在 Azure Multi-Factor Authentication Server 和 RADIUS 伺服器上必須相同。如果 RADIUS 伺服器使用不同的通訊埠，請變更 [驗證連接埠] 和 [帳戶處理連接埠]。
-16. 按一下 [確定] 按鈕。 
+16. 按一下 [確定] 按鈕。
 17. 您必須在另一部 RADIUS 伺服器中新增 Azure Multi-Factor Authentication Server 做為 RADIUS 用戶端，它才會處理從 Azure Multi-Factor Authentication Server 送來的存取要求。您必須使用 Azure Multi-Factor Authentication Server 中設定的相同共用密碼。
-18. 您可以重複此步驟來新增其他 RADIUS 伺服器，並使用 [上移] 和 [下移] 按鈕設定「伺服器」呼叫它們的順序。如此便完成 Azure Multi-Factor Authentication Server 組態。「伺服器」正在設定的連接埠上接聽來自設定的用戶端的 RADIUS 存取要求。   
+18. 您可以重複此步驟來新增其他 RADIUS 伺服器，並使用 [上移] 和 [下移] 按鈕設定「伺服器」呼叫它們的順序。如此便完成 Azure Multi-Factor Authentication Server 組態。「伺服器」正在設定的連接埠上接聽來自設定的用戶端的 RADIUS 存取要求。
 
 
 ## RADIUS 用戶端組態
 
 若要設定 RADIUS 用戶端，請遵循下列指導方針：
 
-- 將您的應用裝置/伺服器設定為透過 RADIUS 向 Azure Multi-Factor Authentication Server (將做為 RADIUS 伺服器) 的 IP 位址驗證。 
-- 使用上述設定的相同共用密碼。 
+- 將您的應用裝置/伺服器設定為透過 RADIUS 向 Azure Multi-Factor Authentication Server (將做為 RADIUS 伺服器) 的 IP 位址驗證。
+- 使用上述設定的相同共用密碼。
 - 將 RADIUS 逾時設定為 30 至 60 秒，以保留足夠的時間來驗證使用者的認證、執行多因素驗證、接收回應，然後回應 RADIUS 存取要求。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016-->

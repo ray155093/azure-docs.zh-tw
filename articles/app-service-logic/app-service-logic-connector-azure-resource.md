@@ -1,7 +1,7 @@
 <properties
    pageTitle="在 Logic Apps 中使用 Azure 資源連接器 | Microsoft Azure App Service"
    description="如何建立並設定 Azure 資源連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="stepsic-microsoft-com"
    manager="erikre"
@@ -98,4 +98,4 @@ David Ebbo 寫了[一篇很棒的部落格文章](http://blog.davidebbo.com/2014
 <!--Links -->
 [Creating a Logic app]: app-service-logic-create-a-logic-app.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

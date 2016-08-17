@@ -12,15 +12,12 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="06/21/2016"
+	ms.date="08/10/2016"
 	ms.author="awills"/>
 
 # 監視任何網站的可用性和回應性
 
-
-[AZURE.INCLUDE [app-insights-selector-get-started-dotnet](../../includes/app-insights-selector-get-started-dotnet.md)]
-
-開發 Web 應用程式之後，您可以設定 Web 測試來監視其可用性和回應性。Application Insights 會定期傳送來自全球各地的 Web 要求，如果應用程式回應太慢或完全沒有回應，則會警告您。
+將 Web 應用程式部署至任一主機之後，您可以設定 Web 測試來監視其可用性和回應性。[Visual Studio Application Insights](app-insights-overview.md) 會定期傳送來自全球各地的 Web 要求，如果應用程式回應太慢或完全沒有回應，則會警告您。
 
 ![Web 測試範例](./media/app-insights-monitor-web-app-availability/appinsights-10webtestresult.png)
 
@@ -40,7 +37,7 @@ Web 測試可分為兩種：
 
 如果您已經為這個應用程式[設定 Application Insights 資源][start]，而且想要在相同位置中查看可用性資料，請略過此步驟。
 
-註冊 [Microsoft Azure](http://azure.com)，移至 [Azure 入口網站](https://portal.azure.com)，然後建立新的 Application Insights 資源。
+註冊 [Microsoft Azure](http://azure.com)，移至 [Azure 入口網站](https://portal.azure.com)，然後建立 Application Insights 資源。
 
 ![New > Application Insights](./media/app-insights-monitor-web-app-availability/11-new-app.png)
 
@@ -55,7 +52,7 @@ Web 測試可分為兩種：
 - **URL** 必須可在公用網際網路上顯示。它可以包含查詢字串 - 例如，您可以訓練一下您的資料庫。如果 URL 解析為重新導向，我們將會跟隨它，最多 10 個重新導向。
 - **剖析相依要求**：測試時會要求映像、指令碼、樣式檔和頁面的其他資源。如果無法在逾時內為整個測試成功下載所有這些資源，則測試將會失敗。
 - **啟用重試**：當測試失敗時，就會在短時間內進行重試。只有在連續三次重試失敗後，才會回報失敗。後續測試則會以一般測試頻率執行。重試會暫時停止，直到下次成功為止。此規則可個別套用在每個測試位置。(我們建議使用這個設定。平均來說，大約 80%的失敗會在重試後消失。)
-- **測試頻率**：設定從每個測試位置執行測試的頻率。若頻率為 5 分鐘並有五個測試位置，將平均每一分鐘測試您的網站。
+- **測試頻率**：設定從每個測試位置執行測試的頻率。頻率為 5 分鐘且有五個測試位置，則您的網站平均每一分鐘會執行測試。
 - **測試位置**是我們的伺服器將 Web 要求傳送至您的 URL 的位置。請選擇多個位置，以便區分網站問題與網路問題。您最多可以選取 16 個位置。
 
 - **成功準則**：
@@ -64,12 +61,12 @@ Web 測試可分為兩種：
 
     **HTTP 回應**：視為成功的回覆狀態碼。200 是表示已傳回標準 Web 網頁的代碼。
 
-    **內容比對**：字串，例如「歡迎！」 我們將測試它出現在每個回應中。必須是單純字串，不含萬用字元。別忘了，如果頁面內容變更，則可能需要更新。
+    **內容比對**：字串，例如「歡迎！」 我們會測試它是否出現在每個回應中。必須是單純字串，不含萬用字元。別忘了，如果頁面內容變更，則可能需要更新。
 
 
 - 如果五分鐘內有三個位置發生失敗，則依預設會將 [警示]傳送給您。某個位置的失敗很可能是網路問題，而不是您的網站發生問題。但您可以將臨界值變更為更敏感或更不敏感，也可以變更應該將電子郵件傳送給哪一個人。
 
-    您可以設定會在產生警示時呼叫的 [Webhook](../azure-portal/insights-webhooks-alerts.md)。(不過請注意，查詢參數目前不會當作屬性傳遞)。
+    您可以設定會在產生警示時呼叫的 [webhook](../azure-portal/insights-webhooks-alerts.md)。(不過請注意，查詢參數目前不會當作屬性傳遞)。
 
 #### 測試更多 URL
 
@@ -82,13 +79,13 @@ Web 測試可分為兩種：
 
 ![Summary results on the home blade](./media/app-insights-monitor-web-app-availability/14-availSummary.png)
 
-按一下上方摘要圖表上的任何橫條，以取得該時段的更詳細檢視。
+按一下摘要圖表上的任何橫條，以取得該時段的更詳細檢視。
 
 這些圖表會結合此應用程式的所有 Web 測試的結果。
 
 #### 網頁的元件
 
-在測試中會要求您要測試的網頁的影像、樣式表、指令碼及其他靜態元件。
+在測試中會要求您要測試的網頁的映像、樣式表、指令碼及其他靜態元件。
 
 記錄的回應時間是所有元件完成載入所花費的時間。
 
@@ -104,7 +101,7 @@ Web 測試可分為兩種：
 
 ![Click a specific webtest](./media/app-insights-monitor-web-app-availability/15-webTestList.png)
 
-這會顯示該測試的結果。
+該測試的結果會開啟。
 
 ![Click a specific webtest](./media/app-insights-monitor-web-app-availability/16-1test.png)
 
@@ -123,7 +120,7 @@ Web 測試可分為兩種：
 或者，您可以下載結果檔案，然後在 Visual Studio 中檢查。
 
 
-*看起來正常，但回報為失敗？* 請檢查所有映像、指令碼、樣式表和頁面載入的任何其他檔案。If any of them fails, the test will be reported as failed, even if the main html page loads OK.
+*看起來正常，但回報為失敗？* 請檢查所有映像、指令碼、樣式表和頁面載入的任何其他檔案。如果其中有任何一個失敗，即使主要的 html 頁面載入正常，測試皆會回報為失敗。
 
 
 
@@ -141,7 +138,7 @@ Web 測試可分為兩種：
 
 1. 建立 Web 效能測試專案。
 
-    ![在 Visual Studio 中，從「Web 效能」和「負載測試」範本建立新的專案。](./media/app-insights-monitor-web-app-availability/appinsights-71webtest-multi-vs-create.png)
+    ![在 Visual Studio 中，從「Web 效能」和「負載測試」範本建立專案。](./media/app-insights-monitor-web-app-availability/appinsights-71webtest-multi-vs-create.png)
 
 2. 開啟 .webtest 檔案，並開始記錄。
 
@@ -182,7 +179,7 @@ Web 測試可分為兩種：
 
 失敗的常見原因是在測試執行太長。不可執行超過兩分鐘。
 
-別忘了，頁面的所有資源必須正確載入，測試才能成功 (包括指令碼、樣式表、映像等等)。
+別忘了，必須正確載入頁面的所有資源，測試才能成功 (包括指令碼、樣式表、映像等等)。
 
 請注意，Web 測試必須完全包含在 .webtest 檔案中：您無法在測試中使用編碼的函式。
 
@@ -195,7 +192,7 @@ Web 測試可分為兩種：
 
 當您執行測試時，希望 EndTime 永遠為目前時間，而 StartTime 為 15 分鐘前。
 
-Web 測試外掛程式提供這種作法。
+Web 測試外掛程式提供將時間參數化的方法。
 
 1. 針對您想要的每個變數參數值，各加入一個 Web 測試外掛程式。在 Web 測試工具列中，選擇 [加入 Web 測試外掛程式]。
 
@@ -215,18 +212,18 @@ Web 測試外掛程式提供這種作法。
 
 ## 處理登入
 
-如果使用者登入您的應用程式，有許多選項可模擬登入，以便在登入背後測試頁面。您使用的方法取決於應用程式所提供的安全性類型。
+如果使用者登入您的應用程式，您有許多模擬登入的選項，以便在登入後方測試頁面。您使用的方法取決於應用程式所提供的安全性類型。
 
 在所有情況下，您應該只建立測試用途的帳戶。可能的話，請將帳戶限定為只有唯讀權限。
 
-* 簡單的使用者名稱和密碼：只以一般方式記錄 Web 測試。先刪除 Cookie。
-* SAML 驗證。為此，您可以使用適用於 Web 測試的 SAML 外掛程式。
-* 用戶端密碼：如果您的應用程式牽涉到用戶端密碼的登入路由，請使用此方法。Azure Active Directory 提供這種方法。 
+* 簡單的使用者名稱和密碼：以一般方式記錄 Web 測試。先刪除 Cookie。
+* SAML 驗證。使用適用於 Web 測試的 SAML 外掛程式。
+* 用戶端密碼：如果應用程式的登入路由牽涉到用戶端密碼，請使用此路由。Azure Active Directory 提供用戶端密碼登入。
 * 開放驗證：例如，使用您的 Microsoft 或 Google 帳戶登入。許多使用 OAuth 的應用程式都提供替代用戶端密碼，第一個技巧就是調查這一點。如果您的測試必須使用 OAuth 登入，則常用的方式是：
- * 使用 Fiddler 等工具來檢查網頁瀏覽器、驗證網站及您的應用程式之間的流量。 
+ * 使用 Fiddler 等工具來檢查網頁瀏覽器、驗證網站及您的應用程式之間的流量。
  * 使用不同的電腦或瀏覽器，或以較長時間間隔 (讓權杖過期) 執行兩次以上的登入。
- * 藉由比較不同的工作階段，識別從驗證網站傳回的權杖，登入之後此權杖會傳遞至您的應用程式伺服器。 
- * 使用 Visual Studio 記錄 Web 測試。 
+ * 藉由比較不同的工作階段，識別從驗證網站傳回的權杖，登入之後此權杖會傳遞至您的應用程式伺服器。
+ * 使用 Visual Studio 記錄 Web 測試。
  * 將權杖參數化，當驗證器傳回權杖時設定參數，然後在查詢網站時使用參數。(Visual Studio 會嘗試將測試參數化，但不會正確地將權杖參數化。)
 
 
@@ -260,7 +257,7 @@ Web 測試外掛程式提供這種作法。
 
 * *是否支援 HTTPS？*
 
-    我們目前支援 SSL 3.0 和 TLS 1.0。
+    我們支援 TLS 1.1 和 TLS 1.2。
 
 * *「Web 測試」和「可用性測試」之間有任何差異嗎？*
 
@@ -272,7 +269,7 @@ Web 測試外掛程式提供這種作法。
 
 * *上傳多步驟 Web 測試失敗*
 
-    有 300k 的大小限制。
+    有 300 K 的大小限制。
 
     不支援迴圈。
 
@@ -312,4 +309,4 @@ Web 測試外掛程式提供這種作法。
 [qna]: app-insights-troubleshoot-faq.md
 [start]: app-insights-overview.md
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/04/2016" 
+	ms.date="08/02/2016" 
 	ms.author="stbaro"/>
 
 # 使用 Azure 資源管理員範本部署 DocumentDB 和 Azure App Service Web Apps
@@ -73,7 +73,7 @@
 
 7.  部署完成時，就會開啟資源群組的刀鋒視窗。![資源群組刀鋒視窗的螢幕擷取畫面](./media/documentdb-create-documentdb-website/TemplateDeployment7.png)
 
-8.  若要使用應用程式，只要瀏覽至 Web 應用程式 URL (上述範例中的 URL 會是 http://mydemodocdbwebapp.azurewebsites.net))。您會看到下列的 Web 應用程式：
+8.  若要使用應用程式，只要瀏覽至 Web 應用程式 URL (上述範例中的 URL 會是 http://mydemodocdbwebapp.azurewebsites.net)。您會看到下列的 Web 應用程式：
 
 	![範例待辦事項應用程式](./media/documentdb-create-documentdb-website/image2.png)
 
@@ -141,4 +141,4 @@
 >[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0803_2016-->

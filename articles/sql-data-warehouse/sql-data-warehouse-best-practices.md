@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/30/2016"
+   ms.date="07/29/2016"
    ms.author="sonyama;barbkess"/>
 
 # Azure SQL 資料倉儲最佳做法
@@ -80,7 +80,7 @@ SQL 資料倉儲支援透過數種工具 (包括 Azure Data Factory、PolyBase�
 
 查詢資料行存放區資料表時，如果您只選取您需要的資料行，查詢執行會更快速。
 
-另請參閱[資料表索引][]、[資料行存放區索引指南][]
+另請參閱[資料表索引][]、[資料行存放區索引指南][]、[重建資料行存放區索引][]
 
 ## 使用較大的資源類別來改善查詢效能
 SQL 資料倉儲會使用資源群組，做為將記憶體配置給查詢的一種方式。根據預設，所有使用者都會被指派小型資源類別，此類別授予每個散發 100 MB 的記憶體。因為永遠會有 60 個散發，每個散發有至少 100 MB，整個系統的總記憶體配置為 6000 MB 或是剛好接近6 GB。有些查詢，像是大型聯結或載入叢集資料行存放區資料表，將受益於較大的記憶體配置。有些查詢，像是純掃描，則沒有任何好處。另一方面，使用較大的資源類別會影響並行存取，因此您將所有的使用者移到大型資源類別之前，要先將這一點列入考慮。
@@ -100,7 +100,7 @@ SQL 資料倉儲有數個 DMV 可用來監視查詢的執行。下列的監視�
 ## 其他資源
 另請參閱[疑難排解][]一文中的常見問題和解決方案。
 
-如果您在此文件中找不到想要尋找的內容，請嘗試使用此頁面左邊的 [搜尋文件] 來搜尋所有 Azure SQL 資料倉儲文件。我們也建立了 [Azure SQL 資料倉儲 MSDN 論壇][]，讓您可以向其他使用者和 SQL 資料倉儲的產品群組提出問題。我們會主動監看這個論壇，以確保您的問題有其他使用者或是我們回答。如果您比較想在 Stack Overflow上詢問您的問題，我們也有 [Azure SQL 資料倉儲 Stack Overflow 論壇][]。
+如果您在此文件中找不到想要尋找的內容，請嘗試使用此頁面左邊的 [搜尋文件] 來搜尋所有 Azure SQL 資料倉儲文件。我們也建立了 [Azure SQL 資料倉儲 MSDN 論壇][]，讓您可以向其他使用者和 SQL 資料倉儲產品群組提出問題。我們會主動監看這個論壇，以確保您的問題有其他使用者或是我們回答。如果您比較想在 Stack Overflow上詢問您的問題，我們也有 [Azure SQL 資料倉儲 Stack Overflow 論壇][]。
 
 最後，請使用 [Azure SQL 資料倉儲意見反應][]頁面來提出功能要求。加入您的要求或票選其他要求確實可協助我們決定功能的優先順序。
 
@@ -115,6 +115,7 @@ SQL 資料倉儲有數個 DMV 可用來監視查詢的執行。下列的監視�
 [資料表散發]: ./sql-data-warehouse-tables-distribute.md
 [資料表索引]: ./sql-data-warehouse-tables-index.md
 [資料行存放區索引品質不佳的原因]: ./sql-data-warehouse-tables-index.md#causes-of-poor-columnstore-index-quality
+[重建資料行存放區索引]: ./sql-data-warehouse-tables-index.md#rebuilding-indexes-to-improve-segment-quality
 [資料表分割]: ./sql-data-warehouse-tables-partition.md
 [管理資料表的統計資料]: ./sql-data-warehouse-tables-statistics.md
 [暫存資料表]: ./sql-data-warehouse-tables-temporary.md
@@ -159,4 +160,4 @@ SQL 資料倉儲有數個 DMV 可用來監視查詢的執行。下列的監視�
 [Azure SQL 資料倉儲 Stack Overflow 論壇]: http://stackoverflow.com/questions/tagged/azure-sqldw
 [Azure SQL 資料倉儲載入模式和策略]: https://blogs.msdn.microsoft.com/sqlcat/2016/02/06/azure-sql-data-warehouse-loading-patterns-and-strategies
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->

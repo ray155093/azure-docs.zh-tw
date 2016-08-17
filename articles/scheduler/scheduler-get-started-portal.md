@@ -12,7 +12,7 @@
  ms.tgt_pltfrm="na"
  ms.devlang="dotnet"
  ms.topic="hero-article"
- ms.date="06/30/2016"
+ ms.date="08/10/2016"
  ms.author="krisragh"/>
 
 # 開始在 Azure 入口網站中使用 Azure 排程器
@@ -25,7 +25,7 @@
 
 2.  按一下 [+新增] > 在搜尋方塊中輸入_排程器_ > 在結果中選取 [排程器] > 按一下 [建立]。
 
-   ![][marketplace-create]
+     ![][marketplace-create]
 
 3.  讓我們使用 GET 要求建立只要點擊 http://www.microsoft.com/ 的工作。在 [排程器作業] 畫面中，輸入下列資訊：
 
@@ -41,13 +41,13 @@
 
     2.  **方法：** `GET`
 
-    3.  **URL：**` http://www.microsoft.com`
+    3.  **URL：** ` http://www.microsoft.com`
 
-   ![][action-settings]
+      ![][action-settings]
 
 5.  最後，讓我們定義排程。作業可以定義為一次性的工作，但我們挑選週期性排程：
 
-    1. **週期**：`Recurring`
+    1. **循環**：`Recurring`
 
     2. **開始**：今天的日期
 
@@ -55,7 +55,7 @@
 
     4. **結束於**：今天日期的前兩天
 
-   ![][recurrence-schedule]
+      ![][recurrence-schedule]
 
 6.  按一下 [建立]
 
@@ -73,7 +73,7 @@
 
 5.  使用者
 
-   ![][job-overview]
+    ![][job-overview]
 
 ### 屬性
 
@@ -182,4 +182,4 @@ Azure 角色型存取控制 (RBAC) 可以對 Azure 排程器進行更細緻的�
 [14]: ./media/scheduler-get-started-portal/scheduler-get-started-portal014.png
 [15]: ./media/scheduler-get-started-portal/scheduler-get-started-portal015.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0810_2016-->

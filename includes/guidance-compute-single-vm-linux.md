@@ -48,6 +48,8 @@
 
 - 為了達到最佳的磁碟 I/O 效能，我們建議使用[進階儲存體][premium-storage]，這會將資料儲存在固態硬碟 (SSD)。成本是依佈建的磁碟大小而定。IOPS 和輸送量 (亦即，資料傳輸速率) 也取決於磁碟大小，因此當您佈建磁碟時，請考慮以下三個因素 (容量、IOPS 和輸送量)。
 
+- 一個儲存體帳戶可以支援 1 到 20 個 VM。
+
 - 新增一或多個資料磁碟。當您建立新的 VHD 時，它仍未格式化。登入 VM 來格式化磁碟。資料磁碟會顯示為 `/dev/sdc`、`/dev/sdd`，依此類推。您可以執行 `lsblk` 以列出區塊裝置，包括磁碟。若要使用資料磁碟，請建立新的磁碟分割和檔案系統，並掛接該磁碟。例如：
 
     ```bat
@@ -66,7 +68,7 @@
 
 - 當您新增資料磁碟時，會指派邏輯單元編號 (LUN) 識別碼給磁碟。或者，您可以指定 LUN 識別碼 &mdash;例如，如果您要更換磁碟，而且想要保留相同的 LUN 識別碼，或者您有會查看特定 LUN 識別碼的 App。不過，請記住，每個磁碟的 LUN 識別碼不能重複。
 
-- 您可能會想變更 I/O 排程器以最佳化 SSD (用於進階儲存體) 的效能。一般建議是使用 SSD 的 NOOP 排程器，但您應該使用 [iostat] 等工具，來監視特定工作負載的磁碟 I/O 效能。
+- 您可能會想變更 I/O 排程器以最佳化 SSD (用於進階儲存體) 的效能。一般建議是使用適用於 SSD 的 NOOP 排程器，但您應該使用 [iostat] 之類的工具，來監視特定工作負載的磁碟 I/O 效能。
 
 - 為了達到最佳效能，請建立個別的儲存體帳戶來保存診斷記錄。標準本地備援儲存體 (LRS) 帳戶已足以保存診斷記錄。
 
@@ -75,7 +77,7 @@
 
 - 此公用 IP 位址可以是動態或靜態。預設值為動態。
 
-    - 如果您需要不會變更的固定 IP 位址，請保留[靜態 IP 位址][static-ip] &mdash; 例如，如果您需要在 DNS 中建立 A 記錄，或需要將 IP 位址列入白名單。
+    - 如果您需要一個不會變更的固定 IP 位址 (例如，如果您需要在 DNS 中建立一個 A 記錄，或需要將 IP 位址列入白名單)，請保留一個[靜態 IP 位址][static-ip]。
 
     - 您也可以建立 IP 位址的完整網域名稱 (FQDN)。然後您可以在 DNS 中註冊指向該 FQDN 的 [CNAME 記錄][cname-record]。如需詳細資訊，請參閱[在 Azure 入口網站中建立完整網域名稱][fqdn]。
 
@@ -87,7 +89,7 @@
 
 - 您可以藉由[變更 VM 大小][vm-resize]來相應放大或相應縮小 VM。
 
-- 若要水平相應放大，請將兩個以上的 VM 置於附載平衡器後方的可用性設定組中。如需詳細資訊，請參閱[在 Azure 上執行多個 VM][multi-vm]。
+- 若要水平相應放大，請將兩個以上的 VM 置於附載平衡器後方的可用性設定組中。如需詳細資料，請參閱[在 Azure 上執行多個 VM][multi-vm]。
 
 ## 可用性考量
 
@@ -95,17 +97,17 @@
 
 - 您的 VM 可能會受到[計劃性維護][planned-maintenance]或[非計劃性維護][manage-vm-availability]影響。您可以使用 [VM 重新啟動記錄檔][reboot-logs]來判斷 VM 重新啟動是否是因為計劃性維護所造成。
 
-- VHD 是由 [Azure 儲存體][azure-storage]支援，而 Azure 儲存體會為了維持持久性和可用性而進行複寫。
+- VHD 是由 [Azure 儲存體][azure-storage]支援，而系統會複寫此儲存體來提供持久性和可用性。
 
-- 為了防止在正常作業期間意外遺失資料 (例如，由於使用者錯誤)，您也應該使用 [Blob 快照][blob-snapshot]或其他工具實作時間點備份。
+- 為了防止在正常作業期間意外遺失資料 (例如，因使用者錯誤而造成)，您也應該使用 [Blob 快照][blob-snapshot]或其他工具來實作時間點備份。
 
 ## 管理性考量
 
-- **資源群組。** 將關係密切且共用相同生命週期的資源置於同一個[資源群組][resource-manager-overview]。資源群組可讓您以群組為單位來部署和監視資源，並根據資源群組列出帳單成本。您也可以刪除整組資源，這對於測試部署非常有用。為資源提供有意義的名稱。這樣能更容易找到特定資源及了解其角色。請參閱 [Azure 資源的建議命名慣例][naming conventions]。
+- **資源群組。** 將關係密切且共用相同生命週期的資源置於同一個[資源群組][resource-manager-overview]。資源群組可讓您以群組為單位來部署和監視資源，並根據資源群組列出帳單成本。您也可以刪除整組資源，這對於測試部署非常有用。為資源提供有意義的名稱。這樣能更容易找到特定資源及了解其角色。請參閱 [Recommended Naming Conventions for Azure Resources (建議的 Azure 資源命名慣例)][naming conventions]。
 
 - **ssh**。在您建立 VM 之前，先產生 2048 位元 RSA 公開-私密金鑰組。建立 VM 的時候使用公開金鑰檔案。如需詳細資訊，請參閱[如何在 Azure 上搭配 Linux 與 Mac 使用 SSH][ssh-linux]。
 
-- **VM 診斷。** 啟用監視和診斷，包括基本健康情況度量、診斷基礎結構記錄檔及[開機診斷][boot-diagnostics]。如果您的 VM 進入無法開機的狀態，開機診斷能協助您診斷開機失敗。如需詳細資訊，請參閱[啟用監視和診斷][enable-monitoring]。
+- **VM 診斷。** 啟用監視和診斷，包括基本健康狀況度量、診斷基礎結構記錄檔及[開機診斷][boot-diagnostics]。如果您的 VM 進入無法開機的狀態，開機診斷能協助您診斷開機失敗。如需詳細資訊，請參閱[啟用監視和診斷][enable-monitoring]。
 
     下列 CLI 命令會啟用診斷：
 
@@ -121,72 +123,75 @@
     azure vm deallocate <resource-group> <vm-name>
     ```
 
-    Azure 入口網站中的 [停止] 按鈕也會取消配置 VM。不過，如果您在登入時透過作業系統來關閉，VM 會停止但_不會_取消配置，因此您仍需付費。
+    Azure 入口網站中的 [停止] 按鈕也會將 VM 取消配置。不過，如果您是在登入時透過作業系統進行關閉，則會將 VM 停止但_不會_取消配置，因此您仍需付費。
 
-- **刪除 VM。** 如果您刪除 VM，並不會刪除 VHD。這表示您可以放心地刪除 VM，而不會遺失任何資料。不過，您仍需支付儲存體費用。若要刪除 VHD，請將檔案從 [Blob 儲存體][blob-storage]刪除。
+- **刪除 VM。** 如果您刪除 VM，並不會刪除 VHD。這表示您可以放心地刪除 VM，而不會遺失任何資料。不過，您仍需支付儲存體費用。若要刪除 VHD，請將檔案從 [Blob 儲存體][blob-storage]中刪除。
 
   若要防止意外刪除，請使用[資源鎖定][resource-lock]來鎖定整個資源群組或鎖定個別資源 (例如 VM)。
 
 ## 安全性考量
 
-- 藉由使用 [OSPatching] VM 擴充，來將作業系統更新自動化。請在您佈建 VM 的時候安裝此擴充。您可以指定安裝修補程式的頻率，以及安裝後是否要重新開機。
+- 藉由使用 [OSPatching] VM 擴充功能，來自動執行作業系統更新。請在您佈建 VM 的時候安裝此擴充。您可以指定安裝修補程式的頻率，以及安裝後是否要重新開機。
 
-- 使用[角色型存取控制][rbac] (RBAC) 來控制對您所部署的 Azure 資源的存取。RBAC 可讓您指派授權角色給您 DevOps 小組的成員。例如，「讀取者」角色能檢視 Azure 資源但不能建立、管理或刪除它們。某些角色專門用於特定的 Azure 資源類型。例如，「虛擬機器參與者」角色能重新啟動或解除配置 VM、重設系統管理員密碼、建立新的 VM 等等。對此參考架構可能有用的其他[內建 RBAC 角色][rbac-roles]包括 [DevTest Lab 使用者][rbac-devtest]和[網路參與者][rbac-network]。使用者可以被指派多個角色，且您可以針對更詳細的權限建立角色。
+- 使用[角色型存取控制][rbac] \(RBAC) 來控制對您所部署 Azure 資源的存取。RBAC 可讓您指派授權角色給您 DevOps 小組的成員。例如，「讀取者」角色能檢視 Azure 資源但不能建立、管理或刪除它們。某些角色專門用於特定的 Azure 資源類型。例如，「虛擬機器參與者」角色能重新啟動或解除配置 VM、重設系統管理員密碼、建立新的 VM 等等。其他對此參考架構可能有用的[內建 RBAC 角色][rbac-roles]包括 [DevTest Lab 使用者][rbac-devtest]和[網路參與者][rbac-network]。使用者可以被指派多個角色，且您可以針對更詳細的權限建立角色。
 
     > [AZURE.NOTE] RBAC 不會限制使用者登入 VM 可執行的動作。這些權限是由客體 OS上的帳戶類型來決定。
 
 - 使用[稽核記錄檔][audit-logs]來查看佈建動作和其他 VM 事件。
 
-- 如果您要加密作業系統和資料磁碟，請考慮使用 [Azure 磁碟加密][disk-encryption]。
+- 如果您需要將作業系統和資料磁碟加密，請考慮使用 [Azure 磁碟加密][disk-encryption]。
 
 ## 解決方案元件
 
-範例解決方案指令碼 [Deploy-ReferenceArchitecture.ps1][solution-script] 可讓您用來依照本文中所述的建議實作結構。此指令碼是利用 [Azure Resource Manager][arm-templates] 範本。範本可做為一組基本建置組塊使用，每個組塊都可以執行特定動作，例如建立 VNet 或設定 NSG。指令碼的用途是協調範本部署。
+範例解決方案指令碼 [Deploy-ReferenceArchitecture.ps1][solution-script] 可供您用來實作遵循本文中所述建議的結構。此指令碼利用的是 [Azure Resource Manager][arm-templates] 範本。範本可做為一組基本建置組塊使用，每個組塊都可以執行特定動作，例如建立 VNet 或設定 NSG。指令碼的用途是協調範本部署。
 
 範例已經參數化，使用個別 JSON 檔案保留參數。您可以在這些檔案中修改參數來設定部署以符合您自己的需求。您不需要修改範本本身。請注意，您不可以在範本檔案中變更物件的結構描述。
 
-當您編輯範本時，請依據 [Azure 資源的建議命名慣例][naming conventions]中所述的命名慣例來建立物件。
+當您編輯範本時，請依照 [Recommended Naming Conventions for Azure Resources (建議的 Azure 資源命名慣例)][naming conventions] 中所述的命名慣例來建立物件。
 
 指令碼會參考以下參數檔案來建置 VM 和周圍的基礎結構：
 
 - **[virtualNetwork.parameters.json][vnet-parameters]**。此檔案定義 VNet 設定，例如名稱、位址空間、子網路及任何必要 DNS 伺服器的位址。請注意，子網路位址必須納入 VNet 的位址空間。
 
 	```json
-	"parameters": {
-      "virtualNetworkSettings": {
-        "value": {
-          "name": "app1-vnet",
-          "addressPrefixes": [
-            "172.17.0.0/16"
-          ],
-          "subnets": [
-            {
-              "name": "app1-subnet",
-              "addressPrefix": "172.17.0.0/24"
-            }
-          ],
-          "dnsServers": [ ]
-        }
+  "parameters": {
+    "virtualNetworkSettings": {
+      "value": {
+        "name": "app1-vnet",
+        "resourceGroup": "app1-dev-rg",
+        "addressPrefixes": [
+          "172.17.0.0/16"
+        ],
+        "subnets": [
+          {
+            "name": "app1-subnet",
+            "addressPrefix": "172.17.0.0/24"
+          }
+        ],
+        "dnsServers": [ ]
       }
-	}
+    }
+  }
 	```
 
-- **[networkSecurityGroup.parameters.json][nsg-parameters]**。此檔案包含 NSG 和 NSG 規則的定義。`virtualNetworkSettings` 區塊中的 `name` 參數會指定 NSG 要連接的 VNet。`networkSecurityGroupSettings` 區塊中的 `subnets` 參數會識別 VNet 中套用 NSG 規則的任何子網路。這些應該是 **virtualNetwork.parameters.json** 檔案中定義的項目。
+- **[networkSecurityGroup.parameters.json][nsg-parameters]**。此檔案包含 NSG 和 NSG 規則的定義。`virtualNetworkSettings` 區塊中的 `name` 參數可指定 NSG 要連接的 VNet。`networkSecurityGroupSettings` 區塊中的 `subnets` 參數可識別 VNet 中套用 NSG 規則的任何子網路。這些應該是 **virtualNetwork.parameters.json** 檔案中定義的項目。
 
-	範例中顯示的安全性規則可讓使用者透過 SSH 連線來連線到 VM。您可以在 `securityRules` 陣列中新增其他項目來開啟額外的連接埠 (或拒絕透過特定連接埠存取)。
+	範例中顯示的安全性規則可讓使用者透過 SSH 連線來連線到 VM。您可以在 `securityRules` 陣列中新增其他項目來開啟額外的連接埠 (或拒絕透過特定連接埠的存取)。
 
 	```json
-	"parameters": {
-      "virtualNetworkSettings": {
-        "value": {
-          "name": "app1-vnet"
-        },
-        "metadata": {
-          "description": "Infrastructure Settings"
-        }
+  "parameters": {
+    "virtualNetworkSettings": {
+      "value": {
+        "name": "app1-vnet",
+        "resourceGroup": "app1-dev-rg"
       },
-      "networkSecurityGroupSettings": {
-        "value": {
+      "metadata": {
+        "description": "Infrastructure Settings"
+      }
+    },
+    "networkSecurityGroupSettings": {
+      "value": [
+        {
           "name": "app1-nsg",
           "subnets": [
             "app1-subnet"
@@ -205,88 +210,89 @@
             }
           ]
         }
-      }
-	}
+      ]
+    }
+  }
 	```
 
 - **[virtualMachineParameters.json][vm-parameters]**。此檔案定義 VM 本身的設定，包括 VM 的名稱與大小、系統管理員使用者的安全性認證、要建立的磁碟，以及要保有這些磁碟的儲存體帳戶。
 
-	請確定您是將 `osType` 參數設定為 `linux`。您也必須在 `imageReference` 區段中指定一個映像。下面顯示的值會建立包含 RedHat Linux 7.2 最新組建的 VM。您可以使用以下 Azure CLI 命令來取得區域 (此範例使用 westus 區域) 中所有可用 RedHat 映像的清單：
+	請確定將 `osType` 參數設定為 `linux`。您也必須在 `imageReference` 區段中指定一個映像。下面顯示的值會建立包含 RedHat Linux 7.2 最新組建的 VM。您可以使用以下 Azure CLI 命令來取得區域 (此範例使用 westus 區域) 中所有可用 RedHat 映像的清單：
 
 	```powershell
 	azure vm image list westus redhat rhel
 	```
 
-	`nics`區段中的 `subnetName` 參數會指定 VM 的子網路。同樣地，`virtualNetworkSettings` 中的 `name` 參數會識別要使用的 VNet。這些應該是 **virtualNetwork.parameters.json** 檔案中所定義子網路和 VNet 的名稱。
+	`nics` 區段中的 `subnetName` 參數可指定 VM 的子網路。同樣地，`virtualNetworkSettings` 中的 `name` 參數可識別要使用的 VNet。這些應該是 **virtualNetwork.parameters.json** 檔案中所定義子網路和 VNet 的名稱。
 
-	您可以透過修改 `buildingBlockSettings` 區段中的設定，建立共用儲存體帳戶或各自擁有儲存體帳戶的多個 VM。如果您建立多個 VM，您也必須指定可用性設定組的名稱，以在 `availabilitySet` 區段中使用及建立。
+	您可以透過修改 `buildingBlockSettings` 區段中的設定，建立共用儲存體帳戶或各自擁有儲存體帳戶的多個 VM。如果您建立多個 VM，您也必須在 `availabilitySet` 區段中指定要使用或建立的可用性設定組名稱。
 
 	```json
-	"parameters": {
-      "virtualMachinesSettings": {
-        "value": {
-          "namePrefix": "app1",
-          "computerNamePrefix": "",
-          "size": "Standard_DS1",
-          "osType": "linux",
-          "adminUsername": "testuser",
-          "adminPassword": "AweS0me@PW",
-          "osAuthenticationType": "password",
-          "nics": [
-            {
-              "isPublic": "true",
-              "subnetName": "app1-subnet",
-              "privateIPAllocationMethod": "dynamic",
-              "publicIPAllocationMethod": "dynamic",
-              "isPrimary": "true"
-            }
-          ],
-          "imageReference": {
-            "publisher": "RedHat",
-            "offer": "RHEL",
-            "sku": "7.2",
-            "version": "latest"
-          },
-          "dataDisks": {
-            "count": 2,
-            "properties": {
-              "diskSizeGB": 128,
-              "caching": "None",
-              "createOption": "Empty"
-            }
-          },
-          "osDisk": {
-            "caching": "ReadWrite"
-          },
-          "availabilitySet": {
-            "useExistingAvailabilitySet": "No",
-            "name": ""
+  "parameters": {
+    "virtualMachinesSettings": {
+      "value": {
+        "namePrefix": "app1",
+        "computerNamePrefix": "cn",
+        "size": "Standard_DS1",
+        "osType": "linux",
+        "adminUsername": "testuser",
+        "adminPassword": "AweS0me@PW",
+        "osAuthenticationType": "password",
+        "nics": [
+          {
+            "isPublic": "true",
+            "subnetName": "app1-subnet",
+            "privateIPAllocationMethod": "dynamic",
+            "publicIPAllocationMethod": "dynamic",
+            "isPrimary": "true"
+          }
+        ],
+        "imageReference": {
+          "publisher": "RedHat",
+          "offer": "RHEL",
+          "sku": "7.2",
+          "version": "latest"
+        },
+        "dataDisks": {
+          "count": 2,
+          "properties": {
+            "diskSizeGB": 128,
+            "caching": "None",
+            "createOption": "Empty"
           }
         },
-        "metadata": {
-          "description": "Settings for Virtual Machines"
+        "osDisk": {
+          "caching": "ReadWrite"
+        },
+        "availabilitySet": {
+          "useExistingAvailabilitySet": "No",
+          "name": ""
         }
       },
-      "virtualNetworkSettings": {
-        "value": {
-          "name": "app1-vnet",
-          "resourceGroup": "app1-dev-rg"
-        },
-        "metadata": {
-          "description": "Infrastructure Settings"
-        }
-      },
-      "buildingBlockSettings": {
-        "value": {
-          "storageAccountsCount": 1,
-          "vmCount": 1,
-          "vmStartIndex": 0
-        },
-        "metadata": {
-          "description": "Settings specific to the building block"
-        }
+      "metadata": {
+        "description": "Settings for Virtual Machines"
       }
-	}
+    },
+    "virtualNetworkSettings": {
+      "value": {
+        "name": "app1-vnet",
+        "resourceGroup": "app1-dev-rg"
+      },
+      "metadata": {
+        "description": "Infrastructure Settings"
+      }
+    },
+    "buildingBlockSettings": {
+      "value": {
+        "storageAccountsCount": 1,
+        "vmCount": 1,
+        "vmStartIndex": 0
+      },
+      "metadata": {
+        "description": "Settings specific to the building block"
+      }
+    }
+  }
 	```
 
 ## 部署
@@ -324,7 +330,7 @@
 	```
 6. 編輯 [範本/Linux] 資料夾中的每個 json 檔案，以針對虛擬網路、NSG 及 VM 設定參數，如上面的＜解決方案元件＞小節中所述。
 
-	>[AZURE.NOTE] 確定您有將 virtualMachineParameters.json 檔案中 `virtualNetworkSettings` 區段的 `resourceGroup` 參數設定成和您在 Deploy-ReferenceArchitecture.ps1 指令碼檔案中指定的參數相同。
+	>[AZURE.NOTE] 請務必將 virtualMachineParameters.json 檔案中 `virtualNetworkSettings` 區段的 `resourceGroup` 參數，設定成和您在 Deploy-ReferenceArchitecture.ps1 指令碼檔案中指定的參數相同。
 
 7. 開啟 Azure PowerShell 視窗，移動到 [指令碼] 資料夾，然後執行以下命令：
 
@@ -332,25 +338,25 @@
 	.\Deploy-ReferenceArchitecture.ps1 <subscription id> <location> Linux
 	```
 
-	使用您的 Azure 訂用帳戶識別碼取代 `<subscription id>`。
+	使用您的 Azure 訂用帳戶識別碼來取代 `<subscription id>`。
 
-	對於 `<location>`，請指定 Azure 區域，例如`eastus` 或 `westus`。
+	為 `<location>` 指定 Azure 區域，例如 `eastus` 或 `westus`。
 
 8. 當指令碼完成時，請使用 Azure 入口網站確認已經成功建立網路、NSG 及 VM。
 
 ## 後續步驟
 
-為了能適用[虛擬機器 SLA][vm-sla]，您必須在「可用性設定組」中部署兩部以上的執行個體。如需詳細資訊，請參閱[在 Azure 上執行多個 VM][multi-vm]。
+為了能適用[虛擬機器 SLA][vm-sla]，您必須在「可用性設定組」中部署兩個或更多個執行個體。如需詳細資訊，請參閱[在 Azure 上執行多個 VM][multi-vm]。
 
 <!-- links -->
 
-[audit-logs]: https://azure.microsoft.com/zh-TW/blog/analyze-azure-audit-logs-in-powerbi-more/
+[audit-logs]: https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/
 [azure-cli]: ../articles/virtual-machines-command-line-tools.md
 [azure-linux]: ../articles/virtual-machines/virtual-machines-linux-azure-overview.md
 [azure-storage]: ../articles/storage/storage-introduction.md
 [blob-snapshot]: ../articles/storage/storage-blob-snapshots.md
 [blob-storage]: ../articles/storage/storage-introduction.md
-[boot-diagnostics]: https://azure.microsoft.com/zh-TW/blog/boot-diagnostics-for-virtual-machines-v2/
+[boot-diagnostics]: https://azure.microsoft.com/blog/boot-diagnostics-for-virtual-machines-v2/
 [cname-record]: https://en.wikipedia.org/wiki/CNAME_record
 [data-disk]: ../articles/virtual-machines/virtual-machines-linux-about-disks-vhds.md
 [disk-encryption]: ../articles/azure-security-disk-encryption.md
@@ -369,20 +375,20 @@
 [rbac-roles]: ../articles/active-directory/role-based-access-built-in-roles.md
 [rbac-devtest]: ../articles/active-directory/role-based-access-built-in-roles.md#devtest-lab-user
 [rbac-network]: ../articles/active-directory/role-based-access-built-in-roles.md#network-contributor
-[reboot-logs]: https://azure.microsoft.com/zh-TW/blog/viewing-vm-reboot-logs/
+[reboot-logs]: https://azure.microsoft.com/blog/viewing-vm-reboot-logs/
 [Resize-VHD]: https://technet.microsoft.com/zh-TW/library/hh848535.aspx
-[Resize virtual machines]: https://azure.microsoft.com/zh-TW/blog/resize-virtual-machines/
+[Resize virtual machines]: https://azure.microsoft.com/blog/resize-virtual-machines/
 [resource-lock]: ../articles/resource-group-lock-resources.md
 [resource-manager-overview]: ../articles/resource-group-overview.md
 [select-vm-image]: ../articles/virtual-machines/virtual-machines-linux-cli-ps-findimage.md
-[services-by-region]: https://azure.microsoft.com/zh-TW/regions/#services
+[services-by-region]: https://azure.microsoft.com/regions/#services
 [ssh-linux]: ../articles/virtual-machines/virtual-machines-linux-ssh-from-linux.md
 [static-ip]: ../articles/virtual-network/virtual-networks-reserved-public-ip.md
 [storage-price]: https://azure.microsoft.com/pricing/details/storage/
 [virtual-machine-sizes]: ../articles/virtual-machines/virtual-machines-linux-sizes.md
 [vm-disk-limits]: ../articles/azure-subscription-service-limits.md#virtual-machine-disk-limits
 [vm-resize]: ../articles/virtual-machines/virtual-machines-linux-change-vm-size.md
-[vm-sla]: https://azure.microsoft.com/zh-TW/support/legal/sla/virtual-machines/v1_0/
+[vm-sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_0/
 [arm-templates]: https://azure.microsoft.com/documentation/articles/resource-group-authoring-templates/
 [solution-script]: https://raw.githubusercontent.com/mspnp/arm-building-blocks/master/guidance-compute-single-vm/Scripts/Deploy-ReferenceArchitecture.ps1
 [vnet-parameters]: https://raw.githubusercontent.com/mspnp/arm-building-blocks/master/guidance-compute-single-vm/Templates/linux/virtualNetwork.parameters.json
@@ -391,4 +397,4 @@
 [azure-powershell-download]: https://azure.microsoft.com/documentation/articles/powershell-install-configure/
 [0]: ./media/guidance-blueprints/compute-single-vm.png "Azure 中的單一 Linux VM 架構"
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

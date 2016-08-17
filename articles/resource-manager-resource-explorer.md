@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/16/2016"
+   ms.date="08/01/2016"
    ms.author="stuartle;tomfitz"/>
 
 # 使用 Azure 資源總管來檢視及修改資源
@@ -34,7 +34,7 @@
 
 您可以在那裡開始深入了解資源執行個體。在下面的螢幕擷取畫面中，您可以在樹狀檢視中看到 `sltest` SQL Server 執行個體。您可以在右邊看到可和該資源搭配使用之 REST API 要求的相關資訊。透過瀏覽至資源的節點，資源總管會自動發出 GET 要求來接收資源的相關資訊。在 URL 下方的大型文字區域中，您將會看到來自 API 的回應。
 
-在您熟悉 ARM 範本之後，就會開始覺得文本內容看起來很熟悉！ 回應的 [屬性] 區段與您可在範本的[屬性] 區段中提供的值相符。
+在您熟悉 Resource Manager 範本之後，就會開始覺得文本內容看起來很熟悉！ 回應的 [屬性] 區段與您可在範本的[屬性] 區段中提供的值相符。
 
 ![sql 伺服器](./media/resource-manager-resource-explorer/are-03-sqlserver-with-response.png)
 
@@ -70,8 +70,8 @@
 如需 Azure PowerShell Cmdlet 的詳細資訊，請參閱[搭配使用 Azure PowerShell 與 Azure Resource Manager](powershell-azure-resource-manager.md)。
 
 ## 摘要
-與 ARM 搭配使用時，資源總管可以成為非常有用的工具。這是用來探索如何使用 PowerShell 來查詢及變更的好方法。如果您正在使用 REST API，這是在您開始撰寫程式碼之前開始使用及快速測試 API 的好方法。以及如果您正在撰寫 ARM 範本，這可以是了解資源階層及尋找組態放置位置的好方法 - 您可以在入門網站中變更，然後在資源總管中尋找相對應的項目。
+與 Resource Manager 搭配使用時，資源總管可以成為非常有用的工具。這是用來探索如何使用 PowerShell 來查詢及變更的好方法。如果您正在使用 REST API，這是在您開始撰寫程式碼之前開始使用及快速測試 API 的好方法。以及如果您正在撰寫範本，這可以是了解資源階層及尋找組態放置位置的好方法 - 您可以在入門網站中變更，然後在資源總管中尋找相對應的項目。
 
 如需詳細資訊，請參閱 [Channel 9 video with Scott Hanselman and David Ebbo (Channel 9 中 Scott Hanselman 和 David Ebbo 的影片)](https://channel9.msdn.com/Shows/Azure-Friday/Azure-Resource-Manager-Explorer-with-David-Ebbo)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

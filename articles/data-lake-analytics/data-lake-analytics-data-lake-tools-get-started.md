@@ -132,26 +132,26 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
     - **展開 * 資料行**
 
-        按一下 * 的右邊，您應該會看到 * 下方的藍色底線。把滑鼠游標移動到藍色底線上，然後按一下向下箭頭。  
-    	![Data Lake visual studio tools expand *](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-expand-asterisk.png)
+        按一下 * 的右邊，您應該會看到 * 下方的藍色底線。將滑鼠游標移到藍色底線上，然後按一下向下箭號。  
+    	![展開 Data Lake Visual Studio 工具 *](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-expand-asterisk.png)
 
         按一下 [展開資料行]，然後工具將會用資料行名稱取代 *。
 
 	- **自動格式化**
 
-		使用者可以根據指令碼結構，在 [編輯] -> [進階] 底下變更範圍指令碼的縮排：
+		使用者可以根據程式碼結構，在 [編輯] -> [進階] 底下變更 U-SQL 指令碼的縮排：
 
-		- 格式化文件 (Ctrl+E、D)：格式化整份文件   
-		- 格式化選取範圍 (Ctrl+K、Ctrl+F)：格式化選取範圍。如果未進行選取，這個快速鍵會格式化游標所在的行。  
+		- 格式化文件 (Ctrl+E、D)：格式化整份文件
+		- 格式化選取範圍 (Ctrl+K、Ctrl+F)：格式化選取範圍。如果未進行選取，這個快速鍵會格式化游標所在的行。
 
-		所有格式化規則可在 [工具] -> [選項] -> [文字編輯器] -> [SIP] -> [格式化] 底下進行設定。  
+		所有格式化規則可在 [工具] -> [選項] -> [文字編輯器] -> [SIP] -> [格式化] 底下進行設定。
 	- **智慧縮排**
 
 		適用於 Visual Studio 的資料湖工具能夠在您撰寫指令碼時自動縮排運算式。這項功能預設會停用，使用者需要透過檢查 [U-SQL] -> [選項和設定] -> [切換] -> [啟用智慧縮排] 來啟用它。
 
 	- **移至定義並尋找所有參考**
 
-		以滑鼠右鍵按一下資料列集/參數/資料行/UDO 等的名稱，然後按一下 [移至定義] \(F12) 可讓您瀏覽至其定義。按一下 [尋找所有參考] \(Shift + F12) 會顯示所有參考。
+		以滑鼠右鍵按一下資料列集/參數/資料行/UDO 等的名稱，然後按一下 [移至定義] (F12) 可讓您瀏覽至其定義。按一下 [尋找所有參考] (Shift + F12) 會顯示所有參考。
 
 	- **插入 Azure 路徑**
 
@@ -173,7 +173,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
 	![U SQL Visual Studio 資料湖分析工作效能圖表](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-performance-graph.png)
 
-	* 工作摘要。顯示目前工作的摘要資訊，例如：狀態、進度、執行時間、執行階段名稱、傳送者等。   
+	* 工作摘要。顯示目前工作的摘要資訊，例如：狀態、進度、執行時間、執行階段名稱、傳送者等。
 	* 工作詳細資料。提供這項工作的詳細資訊，包括指令碼、資源、頂點執行檢視。
 	* 工作圖形。提供四個圖形以視覺化呈現作業的資訊：進度、資料讀取、資料寫入、執行時間、每個節點平均執行時間、輸入輸送量、輸出輸送量。
 	* 中繼資料作業。它會顯示所有中繼資料作業。
@@ -216,7 +216,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 - 在本機偵錯 C# 組件。
 - 在伺服器總管中建立/刪除/檢視本機資料庫、組件、結構描述及資料表，就跟您能為 Azure 資料湖分析服務做的一樣。
 
-您將會在 Visual Studio 中看到「本機」帳戶，且安裝程式會建立 DataRoot 資料夾 (位於 C:\\LocalRunRoot)。DataRoot 資料夾將用於：
+您將會在 Visual Studio 中看到「本機」帳戶，且安裝程式會建立 *DataRoot* 資料夾 (位於 *C:\\LocalRunRoot*)。DataRoot 資料夾將用於：
 
 - 儲存中繼資料 (包括資料表、資料庫、TVF 等)。
 - 針對特定指令碼：如果會在輸入/輸出路徑中參考相對路徑，則我們將查閱 DataRoot (以及指令碼的路徑 (如果它是輸入))
@@ -261,19 +261,19 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
 您可以偵錯 C# 組件，而不需提交並向 Azure 資料湖分析服務註冊。您可以在這兩個程式碼後置檔案和參考的 C# 專案中設定中斷點。
 
-**如何為程式碼後置檔案中的本機程式碼偵錯**
+如何為程式碼後置檔案中的本機程式碼偵錯
 1.	在程式碼後置檔案中設定中斷點。
 2.	按下 **F5** 以便在本機為指令碼偵錯。
 
 下列程序僅適用於 Visual Studio 2015。在舊版 Visual Studio 中，您可能需要手動加入 pdb 檔案。
 
-**如何為參考的 C# 專案中的本機程式碼偵錯**
+如何為參考的 C# 專案中的本機程式碼偵錯
 1.	建立 C# 組件專案，並建置它來產生輸出 dll。
 2.	使用 U-SQL 陳述式來註冊 dll：
 
         CREATE ASSEMBLY assemblyname FROM @"..\..\path\to\output\.dll";
 3.	在 C# 程式碼中設定中斷點。
-4.	按下 **F5** 以便在本機為參考 C# dll 的指令碼偵錯。  
+4.	按下 **F5** 以便在本機為參考 C# dll 的指令碼偵錯。
 
 ##另請參閱
 
@@ -292,7 +292,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
 ##附錄 A：準備教學課程所需的 PowerShell 範例
 
-下列 PowerShell 指令碼會為您準備 Azure Data Lake Analytics 帳戶和來源資料，讓您可以跳到＜[開發 U SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md#develop-u-sql-scripts)＞一節。
+下列 PowerShell 指令碼會為您準備 Azure Data Lake Analytics 帳戶和來源資料，讓您可以跳到[開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md#develop-u-sql-scripts)一節。
 
     #region - used for creating Azure service names
     $nameToken = "<Enter an alias>"
@@ -362,4 +362,4 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
     Get-AzureRmDataLakeStoreChildItem -Account $dataLakeStoreName -Path  "/Samples/Data/"
     #endregion
 
-<!----HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0810_2016-->

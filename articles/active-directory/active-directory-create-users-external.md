@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="06/21/2016"
-	ms.author="curtand;viviali"/>
+	ms.date="08/02/2016"
+	ms.author="curtand"/>
 
 # 新增來自 Azure Active Directory 中其他目錄或合作夥伴公司的使用者
 
-請新增使用者來填入您的目錄。本文說明如何新增 Azure Active Directory 中其他目錄的使用者或新增合作夥伴公司的使用者。如需新增您的組織內之使用者以及新增具有 Microsoft 帳戶之使用者的相關資訊，請參閱[將新的使用者加入 Azure Active Directory](active-directory-create-users.md)。新增的使用者預設不會有系統管理員權限，但是您可以隨時指派角色給他們。
+本文說明如何新增 Azure Active Directory 中其他目錄的使用者或新增合作夥伴公司的使用者。如需新增您的組織內之使用者以及新增具有 Microsoft 帳戶之使用者的相關資訊，請參閱[將新的使用者加入 Azure Active Directory](active-directory-create-users.md)。新增的使用者預設不會有系統管理員權限，但是您可以隨時指派角色給他們。
 
 ## 新增使用者
 
@@ -84,4 +84,4 @@
 - [在 Azure AD 中管理密碼](active-directory-manage-passwords.md)
 - [在 Azure AD 中管理群組](active-directory-manage-groups.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0810_2016-->

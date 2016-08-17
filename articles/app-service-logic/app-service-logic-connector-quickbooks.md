@@ -1,7 +1,7 @@
 <properties
    pageTitle="在 Logic Apps 中使用 QuickBooks 連接器 | Microsoft Azure App Service"
    description="如何建立並設定 QuickBooks 連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="anuragdalmia"
    manager="erikre"
@@ -144,4 +144,4 @@ SalesReceipt|此實體代表提供給客戶的銷售收據。
 [12]: ./media/app-service-logic-connector-quickbooks/12_Update_Account_Address.png
 [13]: ./media/app-service-logic-connector-quickbooks/13_Create_new_quickbooks_connector.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

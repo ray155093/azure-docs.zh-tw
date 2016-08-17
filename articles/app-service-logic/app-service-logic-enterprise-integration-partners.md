@@ -1,7 +1,7 @@
 <properties 
 	pageTitle="了解夥伴與企業整合套件 | Microsoft Azure App Service | Microsoft Azure" 
 	description="了解如何使用夥伴搭配企業整合套件與 Logic Apps" 
-	services="app-service\logic" 
+	services="logic-apps" 
 	documentationCenter=".net,nodejs,java"
 	authors="msftman" 
 	manager="erikre" 
@@ -61,4 +61,4 @@
 ## 後續步驟
 - [深入了解合約](./app-service-logic-enterprise-integration-agreements.md "了解企業整合合約")
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

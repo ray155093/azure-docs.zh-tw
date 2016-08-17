@@ -1,7 +1,7 @@
 <properties
    pageTitle="在 Logic Apps 中使用 Azure 機器學習服務連接器 | Microsoft Azure App Service"
    description="如何建立並設定 Azure 機器學習服務連接器，並在 Azure App Service 的邏輯應用程式中使用它"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="jeffhollan"
    manager="erikre"
@@ -88,4 +88,4 @@ BES 作業的其他變化，例如沒有 Web 服務輸入或輸出的作業，�
 [6]: ./media/app-service-logic-connector-azureml/img6.png
 [7]: ./media/app-service-logic-connector-azureml/img7.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

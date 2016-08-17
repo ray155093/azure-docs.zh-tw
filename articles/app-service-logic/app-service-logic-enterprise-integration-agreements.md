@@ -1,7 +1,7 @@
 <properties 
 	pageTitle="夥伴與企業整合套件的概觀 | Microsoft Azure App Service" 
 	description="了解如何使用夥伴搭配企業整合套件與 Logic Apps" 
-	services="app-service\logic" 
+	services="logic-apps" 
 	documentationCenter=".net,nodejs,java"
 	authors="msftman" 
 	manager="erikre" 
@@ -65,4 +65,4 @@
 ## 後續步驟
 - [建立 AS2 合約](./app-service-logic-enterprise-integration-as2.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

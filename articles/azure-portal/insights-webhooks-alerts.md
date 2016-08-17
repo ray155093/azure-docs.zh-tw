@@ -1,14 +1,14 @@
 <properties
-	pageTitle="如何設定 Azure 警示以傳送至其他系統"
+	pageTitle="如何設定 Azure 警示以傳送至其他系統 | Microsoft Azure"
 	description="重設 Azure 警示的路徑到其他非 Azure 系統。"
 	authors="kamathashwin"
 	manager=""
 	editor=""
-	services="azure-portal"
-	documentationCenter="na"/>
+	services="monitoring"
+	documentationCenter="monitoring"/>
 
 <tags
-	ms.service="azure-portal"
+	ms.service="monitoring"
 	ms.workload="na"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
@@ -33,8 +33,8 @@ Webhook URI 必須是有效的 HTTP 或 HTTPS 端點。Azure 警示服務會在�
 
 驗證可以有兩種類型：
 
-1. **權杖驗證** - 此種驗證是指您將使用權杖識別碼 (例如 **https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue*) 儲存 Webhook URI
-2.	**基本驗證** - 使用使用者識別碼和密碼：此種驗證是指您會儲存 Webhook URI 為 **https://userid:password@mysamplealert/webcallback?someparamater=somevalue&foo=bar*
+1. **權杖驗證** - 此種驗證是指您將使用權杖識別碼 (例如 *https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue*) 儲存 Webhook URI
+2.	**基本驗證** - 使用使用者識別碼和密碼：此種驗證是指您會儲存 Webhook URI 為 *https://userid:password@mysamplealert/webcallback?someparamater=somevalue&foo=bar*
 
 ## 承載結構描述
 
@@ -100,7 +100,7 @@ POST 作業對於所有以計量為基礎的警示將會包含下列 JSON 承載
 |resourceId |Y | |可唯一識別該資源的資源識別碼 URI|
 |resourceRegion |Y | |受影響資源的區域/位置|
 |portalLink |Y | |連到資源摘要頁面的直接 Azure 入口網站連結|
-|properties |N |選用 |是一組包含事件相關詳細資料的 <Key  Value> 配對 (也就是字典<String  String>)。properties 欄位是選擇性的。在自訂 UI 或邏輯應用程式的工作流程中，使用者可以輸入可透過承載傳遞的索引鍵/值。另一種將自訂屬性傳回給 Webhook 的替代方式是透過 Webhook URI 本身 (做為查詢參數)|
+|properties |N |選用 |是一組包含事件相關詳細資料的 <Key, Value> 配對 (也就是字典<String, String>)。properties 欄位是選擇性的。在自訂 UI 或邏輯應用程式的工作流程中，使用者可以輸入可透過承載傳遞的索引鍵/值。另一種將自訂屬性傳回給 Webhook 的替代方式是透過 Webhook URI 本身 (做為查詢參數)|
 
 
 >[AZURE.NOTE] 透過入口網站無法使用 properties 欄位。在我們即將推出的 Insights SDK 中，您可以透過警示 API 設定屬性。
@@ -123,4 +123,4 @@ POST 作業對於所有以計量為基礎的警示將會包含下列 JSON 承載
 
 [使用邏輯應用程式傳送訊息至 Azure 佇列](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app)
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0803_2016-->

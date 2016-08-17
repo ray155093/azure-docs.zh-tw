@@ -1,7 +1,7 @@
 <properties
    pageTitle="Logic Apps 內部部署資料閘道連接 | Microsoft Azure"
    description="如何從邏輯應用程式建立內部部署資料閘道連接的相關資訊。"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="jeffhollan"
    manager="erikre"
@@ -70,4 +70,4 @@
 [2]: ./media/app-service-logic-gateway-connection/blankconnection.PNG
 [3]: ./media/app-service-logic-gateway-connection/checkbox.PNG
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

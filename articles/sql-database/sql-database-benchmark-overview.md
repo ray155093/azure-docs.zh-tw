@@ -3,7 +3,7 @@
 	description="本主題說明用來測量 Azure SQL Database 效能的 Azure SQL Database 基準測試。"
 	services="sql-database"
 	documentationCenter="na"
-	authors="carlrabeler"
+	authors="CarlRabeler"
 	manager="jhubbard"
 	editor="monicar" />
 
@@ -130,4 +130,4 @@ Azure SQL Database 基準測試會測量跨某範圍可用服務層和效能等�
 
 [單一資料庫的效能指引](sql-database-performance-guidance.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/11/2016"
+   ms.date="07/31/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 # SQL 資料倉儲中的交易
@@ -56,19 +56,21 @@ SQL 資料倉儲實作 ACID 交易。不過，交易支援的隔離僅限於 `RE
 ## 交易狀態
 SQL 資料倉儲會使用 XACT\_STATE() 函式 (採用值 -2) 來報告失敗的交易。這表示交易已失敗並標示為僅可復原
 
-> [AZURE.NOTE] XACT\_STATE 函式使用 -2 表示失敗的交易，以代表 SQL Server 中不同的行為。SQL Server 使用值 -1 來代表無法認可的交易。SQL Server 可以容忍交易內的某些錯誤，而不需將其標示為無法認可。例如，SELECT 1/0 會導致錯誤，但不會強制交易進入無法認可的狀態。SQL Server 也允許讀取無法認可的交易。不過，在 SQLDW 中，情況並非如此。如果 SQLDW 交易內發生錯誤，它就會自動進入 -2 狀態：包含 SELECT 1/0 錯誤。因此，一定要查看您的應用程式程式碼是否使用 XACT\_STATE()。
+> [AZURE.NOTE] XACT\_STATE 函式使用 -2 表示失敗的交易，以代表 SQL Server 中不同的行為。SQL Server 使用值 -1 來代表無法認可的交易。SQL Server 可以容忍交易內的某些錯誤，而不需將其標示為無法認可。例如，`SELECT 1/0` 會導致錯誤，但不會強制交易進入無法認可的狀態。SQL Server 也允許讀取無法認可的交易。不過，SQL 資料倉儲不會讓您這樣做作。如果 SQL 資料倉儲交易內部發生錯誤，就會自動進入 -2 狀態，而且您不能進行任何進一步的 Select 陳述式，直到陳述式回復為止。因此，檢查您的應用程式程式碼是否使用 XACT\_STATE() 就相當重要，因為您可能需要修改程式碼。
 
-在 SQL Server 中，您可能會看到如下所示的程式碼片段：
+比方說，在 SQL Server 中，您可能會看到類似這樣的交易：
 
 ```sql
+SET NOCOUNT ON;
+DECLARE @xact_state smallint = 0;
+
 BEGIN TRAN
     BEGIN TRY
         DECLARE @i INT;
-        SET     @i = CONVERT(int,'ABC');
+        SET     @i = CONVERT(INT,'ABC');
     END TRY
     BEGIN CATCH
-
-        DECLARE @xact smallint = XACT_STATE();
+        SET @xact_state = XACT_STATE();
 
         SELECT  ERROR_NUMBER()    AS ErrNumber
         ,       ERROR_SEVERITY()  AS ErrSeverity
@@ -76,27 +78,49 @@ BEGIN TRAN
         ,       ERROR_PROCEDURE() AS ErrProcedure
         ,       ERROR_MESSAGE()   AS ErrMessage
         ;
-
-        ROLLBACK TRAN;
+        
+        IF @@TRANCOUNT > 0
+        BEGIN
+            PRINT 'ROLLBACK';
+            ROLLBACK TRAN;
+        END
 
     END CATCH;
+
+IF @@TRANCOUNT >0
+BEGIN
+    PRINT 'COMMIT';
+    COMMIT TRAN;
+END
+
+SELECT @xact_state AS TransactionState;
 ```
 
-請注意，`SELECT` 陳述式發生在 `ROLLBACK` 陳述式之前。另外請注意，`@xact` 變數的設定會使用 DECLARE 而非 `SELECT`。
+如果您將您的程式碼保持原狀 (如上方所示)，您將會收到下列錯誤訊息：
 
-在 SQL 資料倉儲中，程式碼必須看起來像這樣：
+Msg 111233, Level 16, State 1, Line 1 111233;目前的交易已經中止，並已回復任何暫止的變更。原因︰處於僅限復原狀態中的交易，未在使用 DDL、DML 或 SELECT 陳述式之前明確復原。
+
+您也不會收到 ERROR\_* 函式的輸出。
+
+SQL 資料倉儲中的程式碼需要稍微變更：
 
 ```sql
+SET NOCOUNT ON;
+DECLARE @xact_state smallint = 0;
+
 BEGIN TRAN
     BEGIN TRY
         DECLARE @i INT;
-        SET     @i = CONVERT(int,'ABC');
+        SET     @i = CONVERT(INT,'ABC');
     END TRY
     BEGIN CATCH
-
-        ROLLBACK TRAN;
-
-        DECLARE @xact smallint = XACT_STATE();
+        SET @xact_state = XACT_STATE();
+        
+        IF @@TRANCOUNT > 0
+        BEGIN
+            PRINT 'ROLLBACK';
+            ROLLBACK TRAN;
+        END
 
         SELECT  ERROR_NUMBER()    AS ErrNumber
         ,       ERROR_SEVERITY()  AS ErrSeverity
@@ -106,13 +130,21 @@ BEGIN TRAN
         ;
     END CATCH;
 
-SELECT @xact;
+IF @@TRANCOUNT >0
+BEGIN
+    PRINT 'COMMIT';
+    COMMIT TRAN;
+END
+
+SELECT @xact_state AS TransactionState;
 ```
 
-請注意，交易的復原必須發生於在 `CATCH` 區塊中讀取錯誤資訊之前。
+目前已觀察到預期的行為。已管理交易中的錯誤，且 ERROR\_* 函式提供了預期的值。
+
+唯一的變更就是交易的 `ROLLBACK` 必須在讀取 `CATCH` 區塊中的錯誤資訊之前發生。
 
 ## Error\_Line() 函式
-另外值得注意的是，SQL 資料倉儲不會實作或支援 ERROR\_LINE() 函式。如果您的程式碼中有此函式，您必須將它移除才能符合 SQL 資料倉儲。在程式碼中使用查詢標籤，而不需實作對等的功能。如需這項功能的詳細資訊，請參閱 [LABEL][] 一文。
+另外值得注意的是，SQL 資料倉儲不會實作或支援 ERROR\_LINE() 函式。如果您的程式碼中有此函式，您必須將它移除才能符合 SQL 資料倉儲。在程式碼中使用查詢標籤，而不需實作對等的功能。如需這項功能的詳細資料，請參閱 [LABEL][] 一文。
 
 ## 使用 THROW 和 RAISERROR
 THROW 是在 SQL 資料倉儲中引發例外狀況的新式作法，但也支援 RAISERROR。不過，有一些值得注意的差異。
@@ -129,10 +161,12 @@ SQL 資料倉儲有一些與交易相關的其他限制。
 - 沒有分散式交易
 - 不允許巢狀交易
 - 不允許儲存點
+- 沒有具名的交易
+- 沒有標示的交易
 - 使用者定義的交易內部不支援 DDL，例如 `CREATE TABLE`
 
 ## 後續步驟
-若要深入了解最佳化交易，請參閱[交易的最佳作法][]。若要深入了解 SQL 資料倉儲最佳作法，請參閱 [SQL 資料倉儲最佳作法][]。
+若要深入了解最佳化交易，請參閱[交易的最佳作法][]。若要深入了解其他 SQL 資料倉儲最佳作法，請參閱 [SQL 資料倉儲最佳作法][]。
 
 <!--Image references-->
 
@@ -147,4 +181,4 @@ SQL 資料倉儲有一些與交易相關的其他限制。
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

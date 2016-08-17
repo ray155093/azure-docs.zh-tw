@@ -58,7 +58,7 @@
 
 1. 登入 Azure 入口網站中，並按一下左下角的 [新增] 按鈕。
 3. 在搜尋方塊中，輸入 "python"。
-4. 在搜尋結果中，選取 [Django]，然後按一下 [建立]。
+4. 在搜尋結果中，選取 [Django (由 PTVS 發佈)]，然後按一下 [建立]。
 5. 設定新的 Django 應用程式，例如為它建立新的應用程式服務方案和新的資源群組。然後按一下 [建立]。
 6. 依照 [本機 Git 部署至 Azure App Service](app-service-deploy-local-git.md) 的指示，為您新建立的 Web 應用程式設定 Git 發佈功能。
 
@@ -517,4 +517,4 @@ Azure 提供了資料庫服務，可從 Django 應用程式輕鬆使用。從 Dj
 [Python Tools for Visual Studio 說明文件]: http://aka.ms/ptvsdocs
 [Django 說明文件]: https://www.djangoproject.com/
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

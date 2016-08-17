@@ -1,11 +1,11 @@
 <properties
 	pageTitle="如何針對 Azure 計費和訂用帳戶問題建立支援票證 | Microsoft Azure"
 	description="說明如何針對 Azure 計費和訂用帳戶問題建立支援票證"
-	services="billing"
+	services=""
 	documentationCenter=""
 	authors="genlin"
 	manager="mbaldwin"
-	editor="na"
+	editor=""
 	tags="billing"
 	/>
 
@@ -44,4 +44,4 @@ Azure 支援代表將會根據合約條款來與您聯絡。
 
  >[AZURE.NOTE]僅 Azure 帳戶管理員有權存取帳戶中心。如需有關如何找出訂用帳戶管理員的詳細資訊，請參閱[常見問題集](billing-subscription-transfer.md#faq)。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,7 +1,7 @@
 <properties 
 	pageTitle="App Service API 應用程式觸發程序 | Microsoft Azure" 
 	description="如何在 Azure App Service 的 API 應用程式中實作觸發程序" 
-	services="app-service\logic" 
+	services="logic-apps" 
 	documentationCenter=".net" 
 	authors="guangyang"
 	manager="wpickett" 
@@ -342,4 +342,4 @@ API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採�
     }
  
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

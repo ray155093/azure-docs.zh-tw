@@ -1,7 +1,7 @@
 <properties
    pageTitle="在 Logic Apps 中使用 Oracle Database 連接器 | Microsoft Azure App Service"
    description="如何建立並設定 Oracle Database 連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="anuragdalmia"
    manager="erikre"
@@ -120,4 +120,4 @@ App Service 使用混合式組態管理員來安全地連線到內部部署系�
 [11]: ./media/app-service-logic-connector-oracle/LogicApp7.png
 [12]: ./media/app-service-logic-connector-oracle/LogicApp8.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,7 +1,7 @@
 <properties
    pageTitle="在 Logic Apps 中使用 BizTalk XPath 擷取程式 | Microsoft Azure App Service"
    description="BIzTalk XPath 擷取程式"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="rajram"
    manager="erikre"
@@ -47,4 +47,4 @@ XPath|字串|查詢 xml 內的路徑。
 <!-- Links -->
 [建立新的邏輯應用程式]: app-service-logic-create-a-logic-app.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

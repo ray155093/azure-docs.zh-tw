@@ -68,7 +68,7 @@ Web 應用程式必須在 [標準] 或 [高階] 模式中執行，您才能啟�
 
 5. 在位置的刀鋒視窗中按一下應用程式 URL。請注意，部署位置有自己的主機名稱，同時也是作用中的應用程式。若要限制對部署位置的公用存取，請參閱 [App Service Web 應用程式 - 封鎖對非生產部署位置的 Web 存取](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)。
 
-建立部署位置之後不會有任何內容。您可以從不同的儲存機制分支，或從整個不同的儲存機制部署至位置。您也可以變更位置的組態。更新內容時，請使用與部署位置相關聯的發行設定檔或部署認證。例如，您可以[使用 Git 發行至此位置](web-sites-publish-source-control.md)。
+建立部署位置之後不會有任何內容。您可以從不同的儲存機制分支，或從整個不同的儲存機制部署至位置。您也可以變更位置的組態。更新內容時，請使用與部署位置相關聯的發行設定檔或部署認證。例如，您可以[使用 Git 發行至此位置](app-service-deploy-local-git.md)。
 
 <a name="AboutConfiguration"></a>
 ## 部署位置組態 ##
@@ -100,7 +100,7 @@ Web 應用程式必須在 [標準] 或 [高階] 模式中執行，您才能啟�
 
 >[AZURE.IMPORTANT] 在您將 Web 應用程式從部署位置交換到生產位置之前，請確定所有非位置特定的設定已完全依照您想要在交換目標中擁有它的方式明確地加以設定。
 
-1. 若要交換部署位置，可按一下 Web 應用程式命令列或部署位置命令列中的 [交換] 按鈕。請確定交換來源和交換目標都已正確設定。交換目標通常是生產位置。  
+1. 若要交換部署位置，可按一下 Web 應用程式命令列或部署位置命令列中的 [交換] 按鈕。請確定交換來源和交換目標都已正確設定。交換目標通常是生產位置。
 
 	![Swap Button][SwapButtonBar]
 
@@ -114,7 +114,7 @@ Web 應用程式必須在 [標準] 或 [高階] 模式中執行，您才能啟�
 
 為位置設定自動交換很容易。請依照下列步驟執行：
 
-1. 在 [部署位置] 刀鋒視窗中，選取非生產位置，按一下該位置刀鋒視窗的 [所有設定]。  
+1. 在 [部署位置] 刀鋒視窗中，選取非生產位置，按一下該位置刀鋒視窗的 [所有設定]。
 
 	![][Autoswap1]
 
@@ -162,7 +162,7 @@ Web 應用程式必須在 [標準] 或 [高階] 模式中執行，您才能啟�
 
 Azure PowerShell 模組提供透過 Windows PowerShell 來管理 Azure 的 Cmdlet，包括支援管理 Azure App Service 中的 Web 應用程式部署位置。
 
-- 如需安裝與設定 Azure PowerShell，以及使用您的 Azure 訂用帳戶驗證 Azure PowerShell 的詳細資訊，請參閱[如何安裝和設定 Microsoft Azure PowerShell](../powershell-install-configure.md) (英文)。  
+- 如需安裝與設定 Azure PowerShell，以及使用您的 Azure 訂用帳戶驗證 Azure PowerShell 的詳細資訊，請參閱[如何安裝和設定 Microsoft Azure PowerShell](../powershell-install-configure.md) (英文)。
 
 ----------
 
@@ -283,4 +283,4 @@ Azure CLI 提供跨平台命令供您處理 Azure，包括支援管理 Web 應�
 [SlotSettings]: ./media/web-sites-staged-publishing/SlotSetting.png
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0803_2016-->

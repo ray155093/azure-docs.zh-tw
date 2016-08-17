@@ -3,7 +3,7 @@
     description="使用 Transact-SQL 為 Azure SQL Database 設定異地複寫"
     services="sql-database"
     documentationCenter=""
-    authors="carlrabeler"
+    authors="CarlRabeler"
     manager="jhubbard"
     editor=""/>
 
@@ -187,4 +187,4 @@
 - 若要深入了解主動式異地複寫，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)
 - 如需商務持續性概觀和案例，請參閱[商務持續性概觀](sql-database-business-continuity.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -34,9 +34,9 @@ Azure 磁碟加密是可讓您加密您的 Windows 和 Linux IaaS 虛擬機器�
 Azure 磁碟加密解決方案支援下列客戶案例：
 
 - 對透過加密的 VHD 和加密金鑰建立的新 IaaS VM 啟用加密
-- 對透過 Azure 資源庫映像建立的新 IaaS VM 啟用加密 
-- 在 Azure 中已執行的現有 IaaS VM 上啟用加密 
-- 在 Windows IaaS VM 上停用加密 
+- 對透過 Azure 資源庫映像建立的新 IaaS VM 啟用加密
+- 在 Azure 中已執行的現有 IaaS VM 上啟用加密
+- 在 Windows IaaS VM 上停用加密
 
 在 Microsoft Azure 中啟用時，解決方案會對 IaaS VM 支援下列各項：
 
@@ -89,7 +89,7 @@ Azure 磁碟加密解決方案支援下列客戶案例：
 
 - 從 IaaS 虛擬機器移除磁碟加密組態設定
 
-Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密解決方案包含 Windows 適用的磁碟加密擴充、Linux 適用的磁碟加密擴充、磁碟加密 PowerShell Cmdlet、磁碟加密 CLI Cmdlet 和磁碟加密 Azure 資源管理員範本。在執行 Windows 或 Linux OS 的 IaaS VM 上支援 Azure 磁碟加密解決方案。如需支援的作業系統的詳細資訊，請參閱以下的必要條件一節。
+Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密解決方案包含 Windows 適用的磁碟加密擴充、Linux 適用的磁碟加密擴充、磁碟加密 PowerShell Cmdlet、磁碟加密 CLI Cmdlet 和磁碟加密 Azure Resource Manager 範本。在執行 Windows 或 Linux OS 的 IaaS VM 上支援 Azure 磁碟加密解決方案。如需支援的作業系統的詳細資訊，請參閱以下的必要條件一節。
 
 **注意：**使用 Azure 磁碟加密來加密 VM 磁碟完全免費。
 
@@ -153,11 +153,11 @@ Azure 磁碟加密管理解決方案可帶來雲端中的下列商務需求：
 
 **注意** - Azure 磁碟加密需要金鑰保存庫和 VM 位於相同的 Azure 區域。在不同區域中設定它們會導致啟用 Azure 磁碟加密功能失敗。
 
-- 若要針對 Azure 磁碟加密的使用方式設定與配置 Azure 金鑰保存庫，請參閱本文的*必要條件*一節中的**針對 Azure 磁碟加密的使用方式設定與配置 Azure 金鑰保存庫**章節。
+- 若要針對 Azure 磁碟加密的使用方式設定與配置 Azure 金鑰保存庫，請參閱本文的＜必要條件＞一節中的**針對 Azure 磁碟加密的使用方式設定與配置 Azure 金鑰保存庫**章節。
 
-- 若要針對 Azure 磁碟加密的使用方式在 Azure Active Directory 安裝與設定 Azure AD 應用程式 ，請參閱本文的*必要條件*一節中的**在 Azure Active Directory 中設定 Azure AD 應用程式**章節。
+- 若要針對 Azure 磁碟加密的使用方式在 Azure Active Directory 安裝與設定 Azure AD 應用程式 ，請參閱本文的＜必要條件＞一節中的**在 Azure Active Directory 中設定 Azure AD 應用程式**章節。
 
-- 若要設定和配置 Azure AD 應用程式的金鑰保存庫存取原則，請參閱本文的*必要條件*一節中的**設定 Azure AD 應用程式的金鑰保存庫存取原則**章節。
+- 若要設定和配置 Azure AD 應用程式的金鑰保存庫存取原則，請參閱本文的＜必要條件＞一節中的**設定 Azure AD 應用程式的金鑰保存庫存取原則**章節。
 
 - 若要準備預先加密的 Windows VHD，請參閱本文附錄的**準備已預先加密的 Windows VHD**一節。
 
@@ -197,7 +197,7 @@ Azure 磁碟加密管理解決方案可帶來雲端中的下列商務需求：
 
 - 使用最新版的 Azure PowerShell SDK 版本來設定 Azure 磁碟加密。下載最新版的 [Azure PowerShell 1.3.0](https://github.com/Azure/azure-powershell/releases/download/v1.3.0-March2016/azure-powershell.1.3.0.msi) 和更新版本
 
-**注意：**[Azure PowerShell SDK 1.1.0 版](https://github.com/Azure/azure-powershell/releases/tag/v1.1.0-January2016)不支援 Azure 磁碟加密。如果您收到與使用 Azure PowerShell 1.1.0 相關的錯誤，請參閱[與 Azure PowerShell 1.1.0 相關的 Azure 磁碟加密錯誤](http://blogs.msdn.com/b/azuresecurity/archive/2016/02/10/azure-disk-encryption-error-related-to-azure-powershell-1-1-0.aspx)文。
+**注意：**[Azure PowerShell SDK 1.1.0 版](https://github.com/Azure/azure-powershell/releases/tag/v1.1.0-January2016)不支援 Azure 磁碟加密。如果您收到與使用 Azure PowerShell 1.1.0 相關的錯誤，請參閱[與 Azure PowerShell 1.1.0 相關的 Azure 磁碟加密錯誤](http://blogs.msdn.com/b/azuresecurity/archive/2016/02/10/azure-disk-encryption-error-related-to-azure-powershell-1-1-0.aspx)一文。
 
 - 若要執行任何 Azure CLI 命令並將它與您的 Azure 訂用帳戶產生關聯，您必須先安裝 Azure CLI 版本：
 
@@ -287,7 +287,7 @@ Azure AD 用戶端識別碼和密碼也可使用在 https://manage.windowsazure.
 
 為了執行下列命令，您需要 Azure AD PowerShell 模組，其可從[這裡](https://technet.microsoft.com/library/jj151815.aspx)取得。
 
-**附註：**必須從新的 PowerShell 視窗執行下列命令。請勿使用 Azure PowerShell 或 Azure 資源管理員視窗來執行這些命令。這項建議的原因是因為這些 Cmdlet 在 MSOnline 模組或 Azure AD PowerShell 中。
+**附註：**必須從新的 PowerShell 視窗執行下列命令。請勿使用 Azure PowerShell 或 Azure Resource Manager 視窗來執行這些命令。這項建議的原因是因為這些 Cmdlet 在 MSOnline 模組或 Azure AD PowerShell 中。
 
     $clientSecret = ‘<yourAadClientSecret>’
     $aadClientID = '<Client ID of your AAD app>'
@@ -366,7 +366,7 @@ Azure AD 用戶端識別碼和密碼也可使用在 https://manage.windowsazure.
     $sourceVaultId = (Get-AzureRmKeyVault -VaultName $keyVaultName -ResourceGroupName $resourceGroupName).ResourceId
     $vm = Get-AzureRmVM -ResourceGroupName $resourceGroupName -Name $vmName
     $vm = Add-AzureRmVMSecret -VM $vm -SourceVaultId $sourceVaultId -CertificateStore "My" -CertificateUrl $certUrl
-    Update-AzureRmVM -VM $vm  -ResourceGroupName $resourceGroupName
+    Update-AzureRmVM -VM $vm -ResourceGroupName $resourceGroupName
 
 
 #### 設定 Azure AD 應用程式的金鑰保存庫存取原則
@@ -386,7 +386,7 @@ Azure AD 用戶端識別碼和密碼也可使用在 https://manage.windowsazure.
 |-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Azure AD | Azure AD [是 Azure Active Directory](https://azure.microsoft.com/documentation/services/active-directory/)。Azure AD 帳戶是從金鑰保存庫驗證、儲存和擷取密碼的必要條件。 |
 | Azure 金鑰保存庫 [AKV] | Azure 金鑰保存庫是密碼編譯金鑰管理服務，其基於 FIPS 驗證的硬體安全性模組來安全地保護您的密碼編譯金鑰和敏感性密碼。如需詳細資料，請參閱[金鑰保存庫](https://azure.microsoft.com/services/key-vault/)文件。 |
-| ARM | Azure 資源管理員 |
+| ARM | Azure Resource Manager |
 | BitLocker | [BitLocker](https://technet.microsoft.com/library/hh831713.aspx) 是一種業界認可的 Windows 磁碟區加密技術，用來在 Windows IaaS VM 上啟用磁碟加密 |
 | BEK | BitLocker 加密金鑰可用來加密作業系統開機磁碟區和資料磁碟區。BitLocker 金鑰會在客戶的 Azure 金鑰保存庫中以密碼形式保護。 |
 | CLI | [Azure 命令列介面](xplat-cli-install.md) |
@@ -460,8 +460,8 @@ Azure AD 用戶端識別碼和密碼也可使用在 https://manage.windowsazure.
 1. 設定金鑰保存庫的存取原則：
 	- 設定 ‘EnabledForDiskEncryption’ 旗標：“azure keyvault set-policy --vault-name <keyVaultName> --enabled-for-disk-encryption true”
 	- 設定權限給 Azure AD 應用程式，以將密碼寫入 KeyVault：“azure keyvault set-policy --vault-name <keyVaultName> --spn <aadClientID> --perms-to-keys ["all"] --perms-to-secrets ["all"]”
-2. 若要啟用現有/執行中 VM 上的加密，請輸入：*azure vm enable-disk-encryption --resource-group <resourceGroupName> --name <vmName> --aad-client-id <aadClientId> --aad-client-secret <aadClientSecret> --disk-encryption-key-vault-url <keyVaultURL> --disk-encryption-key-vault-id <keyVaultResourceId>*
-3. 取得加密狀態：*“azure vm show-disk-encryption-status --resource-group <resourceGroupName> --name <vmName> --json”*
+2. 若要啟用現有/執行中 VM 上的加密，請輸入：azure vm enable-disk-encryption --resource-group <resourceGroupName> --name <vmName> --aad-client-id <aadClientId> --aad-client-secret <aadClientSecret> --disk-encryption-key-vault-url <keyVaultURL> --disk-encryption-key-vault-id <keyVaultResourceId>
+3. 取得加密狀態：“azure vm show-disk-encryption-status --resource-group <resourceGroupName> --name <vmName> --json”
 4. 若要從客戶加密的 VHD 啟用新 VM 上的加密，請使用以下參數搭配 “azure vm create” 命令：
 	- disk-encryption-key-vault-id <disk-encryption-key-vault-id>
 	- disk-encryption-key-url <disk-encryption-key-url>
@@ -503,8 +503,8 @@ Azure AD 用戶端識別碼和密碼也可使用在 https://manage.windowsazure.
 1. 設定金鑰保存庫的存取原則：
 	- 設定 ‘EnabledForDiskEncryption’ 旗標：“azure keyvault set-policy --vault-name <keyVaultName> --enabled-for-disk-encryption true”
 	- 設定權限給 Azure AD 應用程式，以將密碼寫入 KeyVault：“azure keyvault set-policy --vault-name <keyVaultName> --spn <aadClientID> --perms-to-keys ["all"] --perms-to-secrets ["all"]”
-2. 若要啟用現有/執行中 VM 上的加密，請輸入：*azure vm enable-disk-encryption --resource-group <resourceGroupName> --name <vmName> --aad-client-id <aadClientId> --aad-client-secret <aadClientSecret> --disk-encryption-key-vault-url <keyVaultURL> --disk-encryption-key-vault-id <keyVaultResourceId>*
-3. 取得加密狀態：*“azure vm show-disk-encryption-status --resource-group <resourceGroupName> --name <vmName> --json”*
+2. 若要啟用現有/執行中 VM 上的加密，請輸入：azure vm enable-disk-encryption --resource-group <resourceGroupName> --name <vmName> --aad-client-id <aadClientId> --aad-client-secret <aadClientSecret> --disk-encryption-key-vault-url <keyVaultURL> --disk-encryption-key-vault-id <keyVaultResourceId>
+3. 取得加密狀態：“azure vm show-disk-encryption-status --resource-group <resourceGroupName> --name <vmName> --json”
 4. 若要從客戶加密的 VHD 啟用新 VM 上的加密，請使用以下參數搭配 “azure vm create” 命令：
 	- disk-encryption-key-vault-id <disk-encryption-key-vault-id>
 	- disk-encryption-key-url <disk-encryption-key-url>
@@ -538,7 +538,7 @@ Azure AD 用戶端識別碼和密碼也可使用在 https://manage.windowsazure.
 1. 設定金鑰保存庫的存取原則：
 	- 設定 ‘EnabledForDiskEncryption’ 旗標：“azure keyvault set-policy --vault-name <keyVaultName> --enabled-for-disk-encryption true”
 	- 設定權限給 Azure AD 應用程式，以將密碼寫入 KeyVault：“azure keyvault set-policy --vault-name <keyVaultName> --spn <aadClientID> --perms-to-keys ["all"] --perms-to-secrets ["all"]”
-2. 若要啟用現有/執行中 VM 上的加密，請輸入：*azure vm enable-disk-encryption --resource-group <resourceGroupName> --name <vmName> --aad-client-id <aadClientId> --aad-client-secret <aadClientSecret> --disk-encryption-key-vault-url <keyVaultURL> --disk-encryption-key-vault-id <keyVaultResourceId>*
+2. 若要啟用現有/執行中 VM 上的加密，請輸入：azure vm enable-disk-encryption --resource-group <resourceGroupName> --name <vmName> --aad-client-id <aadClientId> --aad-client-secret <aadClientSecret> --disk-encryption-key-vault-url <keyVaultURL> --disk-encryption-key-vault-id <keyVaultResourceId>
 3. 取得加密狀態：“azure vm show-disk-encryption-status --resource-group <resourceGroupName> --name <vmName> --json”
 4. 若要從客戶加密的 VHD 啟用新 VM 上的加密，請使用以下參數搭配 “azure vm create” 命令。
 	- *disk-encryption-key-vault-id <disk-encryption-key-vault-id>*
@@ -593,7 +593,7 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 設定值設定為 "True"，顯示這
 
 | ​vmName | ​要執行加密作業所在 VM 的名稱 |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ​volumeType | ​執行解密作業所在磁碟區的類型。有效值為 "OS"、"Data"、"All"。**注意︰**若未在 "Data" 磁碟區上停用加密，則無法在執行中 Windows IaaS VM OS/開機磁碟區上停用加密。 |
+| ​volumeType | ​執行解密作業所在磁碟區的類型。有效值為 "OS"、"Data"、"All"。<br>**注意︰**若未在 "Data" 磁碟區上停用加密，則無法在執行中 Windows IaaS VM OS/開機磁碟區上停用加密。 |
 | sequenceVersion | BitLocker 作業的順序版本。每當在相同的 VM 上執行磁碟解密作業時便遞增此版本號碼 |
 
 ##### 使用 PS Cmdlet 在 Azure 中的現有/執行中 IaaS Windows 上停用加密
@@ -845,4 +845,4 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 設定值設定為 "True"，顯示這
 
 [探索使用 Azure PowerShell 的 Azure 磁碟加密 - 第 2 部分](http://blogs.msdn.com/b/azuresecurity/archive/2015/11/21/explore-azure-disk-encryption-with-azure-powershell-part-2.aspx)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0803_2016-->

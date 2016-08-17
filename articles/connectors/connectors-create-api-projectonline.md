@@ -1,7 +1,7 @@
 <properties
 pageTitle="ProjectOnline | Microsoft Azure"
 description="使用 Azure App Service 建立邏輯應用程式。Project Online 是專案組合管理 (PPM) 與 Microsoft 日常工作的彈性線上方案。Project Online 透過 Office 365 傳遞，可讓組織快速開始使用功能強大的專案管理功能，來規劃、設定優先順序以及管理專案和專案組合投資，不受場地和裝置的限制。"
-services="app-servicelogic"	
+services="logic-apps"	
 documentationCenter=".net,nodejs,java" 	
 authors="msftman"	
 manager="erikre"	
@@ -524,4 +524,4 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

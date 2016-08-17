@@ -1,7 +1,7 @@
 <properties
    pageTitle="在 Logic Apps 中使用 Azure 服務匯流排連接器 | Microsoft Azure App Service"
    description="如何建立並設定 Azure 服務匯流排連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它"
-   services="app-service\logic"
+   services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="rajeshramabathiran"
    manager="erikre"
@@ -95,4 +95,4 @@ Azure 服務匯流排連接器提供下列觸發程序和動作：
 [7]: ./media/app-service-logic-connector-azureservicebus/img7.PNG
 [8]: ./media/app-service-logic-connector-azureservicebus/img8.PNG
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

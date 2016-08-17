@@ -25,10 +25,13 @@
 
 [AZURE.INCLUDE [virtual-machines-common-about-disks-vhds](../../includes/virtual-machines-common-about-disks-vhds.md)]
 
+## 疑難排解
+[AZURE.INCLUDE [virtual-machines-linux-lunzero](../../includes/virtual-machines-linux-lunzero.md)]
+
 ## 後續步驟
 
--  [連接磁碟](virtual-machines-linux-attach-disk-portal.md)以為您的 VM 加入額外的儲存空間。
--  [設定軟體 RAID](virtual-machines-linux-configure-raid.md) 以提供備援性。
--  [擷取 Linux 虛擬機器](virtual-machines-linux-classic-capture-image.md)，讓您能快速部署額外的 VM。
+-  [連接磁碟](virtual-machines-linux-attach-disk-portal.md)以為您的 VM 新增額外的儲存空間。
+-  [設定軟體 RAID](virtual-machines-linux-configure-raid.md) 以提供備援。
+-  [擷取 Linux 虛擬機器](virtual-machines-linux-classic-capture-image.md)以便快速部署額外的 VM。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0803_2016-->

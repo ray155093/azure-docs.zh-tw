@@ -1,40 +1,40 @@
-## How to create VNet Peering in Azure portal
+## 如何在 Azure 入口網站中建立 VNet 對等互連
 
-To create a VNet peering based on the scenario above by using the Azure portal, follow the steps below.
+若要透過 Azure 入口網站依據上述案例建立 VNet 對等互連，請依照下列步驟執行。
 
-1. From a browser, navigate to http://portal.azure.com and, if necessary, sign in with your Azure account.
-2. To establish VNET peering, you need to create two links, one for each direction, between two VNets. You can create VNET peering link for VNET1 to VNET2 first. On the portal, 
-Click **Browse** > **choose Virtual Networks** 
+1. 透過瀏覽器瀏覽至 http://portal.azure.com，並視需要使用您的 Azure 帳戶登入。
+2. 若要建立 VNET 對等互連，您必須在兩個 VNet 之間建立兩個連結，每個方向各一。您可以先建立 VNET1 至 VNET2 的 VNET 對等互連連結。在入口網站中，按一下 [瀏覽] > 選擇 [虛擬網路]
 
-	![Create VNet peering in Azure portal](./media/virtual-networks-create-vnetpeering-arm-pportal-include/figure01.png)
+	![在 Azure 入口網站中建立 VNet 對等互連](./media/virtual-networks-create-vnetpeering-arm-pportal-include/figure01.png)
 
-3. In Virtual Networks blade, choose VNET1, click Peerings, then click Add
+3. 在 [虛擬網路] 刀鋒視窗中，選擇 [VNET1]，按一下 [對等互連]，然後按一下 [新增]
 
-	![Choose peering](./media/virtual-networks-create-vnetpeering-arm-pportal-include/figure02.png)
+	![選擇對等互連](./media/virtual-networks-create-vnetpeering-arm-pportal-include/figure02.png)
 
-4. In the Add Peering blade, give a peering link name LinkToVnet2, choose the subscription and the peer Virtual Network VNET2, click OK.
+4. 在 [新增對等互連] 刀鋒視窗中，輸入對等互連連結名稱 LinkToVnet2，選擇訂用帳戶和對等虛擬網路 VNET2，按一下 [確定]。
 
-	![Link to VNet](./media/virtual-networks-create-vnetpeering-arm-pportal-include/figure03.png)
+	![連結至 VNet](./media/virtual-networks-create-vnetpeering-arm-pportal-include/figure03.png)
 
-5. Once this VNET peering link is created. You can see the link state as following:
+5. 建立此 VNET 對等互連連結之後，您就可以看到如以下的連結狀態︰
 
-	![Link State](./media/virtual-networks-create-vnetpeering-arm-pportal-include/figure04.png)
+	![連結狀態](./media/virtual-networks-create-vnetpeering-arm-pportal-include/figure04.png)
 
-6. Next create the VNET peering link for VNET2 to VNET1. In Virtual Networks blade, choose VNET2, click Peerings, then click Add 
+6. 接下來，建立 VNET2 至 VNET1 的 VNet 對等互連連結。在 [虛擬網路] 刀鋒視窗中，選擇 VNET2，按一下 [對等互連]，然後按一下 [新增]
 
-	![Peer from other VNet](./media/virtual-networks-create-vnetpeering-arm-pportal-include/figure05.png)
+	![從其他 VNet 對等互連](./media/virtual-networks-create-vnetpeering-arm-pportal-include/figure05.png)
 
-7. In the Add Peering blade, give a peering link name LinkToVnet1, choose the subscription and the peer Virtual Network, Click OK.
+7. 在 [新增對等互連] 刀鋒視窗中，輸入對等互連連結名稱 LinkToVnet1，選擇訂用帳戶和對等虛擬網路，按一下 [確定]。
 
-	![Creating virtual network tile](./media/virtual-networks-create-vnetpeering-arm-pportal-include/figure06.png)
+	![建立虛擬網路磚](./media/virtual-networks-create-vnetpeering-arm-pportal-include/figure06.png)
 
-8. Once this VNET peering link is created. You can see the link state as following:
+8. 建立此 VNET 對等互連連結之後，您就可以看到如以下的連結狀態︰
 
-	![Final link state](./media/virtual-networks-create-vnetpeering-arm-pportal-include/figure07.png)
+	![最終連結狀態](./media/virtual-networks-create-vnetpeering-arm-pportal-include/figure07.png)
 
-9. Check the state for LinkToVnet2 and it now changes to Connected as well.  
+9. 檢查 LinkToVnet2 的狀態，它現在也變更為 [已連接]。
 
-	![Final link state 2](./media/virtual-networks-create-vnetpeering-arm-pportal-include/figure08.png)
+	![最終連結狀態 2](./media/virtual-networks-create-vnetpeering-arm-pportal-include/figure08.png)
 
-10. NOTE: VNET peering is only established if both links are connected. 
+10. 注意：只有當兩個連結都已連接時，才會建立 VNET 對等互連。
 
+<!---HONumber=AcomDC_0803_2016-->

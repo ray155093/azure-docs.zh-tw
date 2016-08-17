@@ -12,7 +12,7 @@
 	ms.workload="identity" 
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" ms.topic="get-started-article" 
-	ms.date="05/12/2016" 
+	ms.date="08/04/2016" 
 	ms.author="billmath"/>
 
 # 開始使用 Azure Multi-Factor Authentication Server 和 Active Directory Federation Services
@@ -23,8 +23,8 @@
 
 如果貴組織已使用 AD FS 讓內部部署 Active Directory 與 Azure Active Directory 同盟，便可以使用以下 2 個 Azure Multi-Factor Authentication 使用選項。
 
-- 使用 Azure Multi-Factor Authentication 或 Active Directory Federation Services 保護雲端資源 
-- 使用 Azure Multi-Factor Authentication Server 保護雲端和內部部署資源 
+- 使用 Azure Multi-Factor Authentication 或 Active Directory Federation Services 保護雲端資源
+- 使用 Azure Multi-Factor Authentication Server 保護雲端和內部部署資源
 
 下表摘要說明保護使用 Azure Multi-Factor Authentication 和 AD FS 兩者保護資源的驗證體驗
 
@@ -54,4 +54,4 @@
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -3,7 +3,7 @@
    description="Microsoft Azure SQL Database, 資料庫移轉, 匯出資料庫, 匯出 BACPAC 檔案, sqlpackage"
    services="sql-database"
    documentationCenter=""
-   authors="carlrabeler"
+   authors="CarlRabeler"
    manager="jhubbard"
    editor=""/>
 
@@ -27,13 +27,13 @@
 1. 開啟命令提示字元並變更包含 sqlpackage.exe 命令列公用程式的目錄 - 此公用程式隨附於 Visual Studio 和 SQL Server。使用電腦上的搜尋功能來尋找您環境中的路徑。
 2. 以環境的下列引數執行下列 sqlpackage.exe 命令：
 
-	'sqlpackage.exe /Action:Export /ssn:< server_name > /sdn:< database_name > /tf:< target_file >
+	'sqlpackage.exe /Action:Export /ssn:< server\_name > /sdn:< database\_name > /tf:< target\_file >
 
 	| 引數 | 說明 |
 	|---|---|
-	| < server_name > | 來源伺服器名稱 |
-	| < database_name > | 來源資料庫名稱 |
-	| < target_file > | BACPAC 檔案的檔案名稱和位置 |
+	| < server\_name > | 來源伺服器名稱 |
+	| < database\_name > | 來源資料庫名稱 |
+	| < target\_file > | BACPAC 檔案的檔案名稱和位置 |
 
 	![從 [工作] 功能表匯出資料層應用程式](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSQLPackage01b.png)
 
@@ -52,4 +52,4 @@
 - [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
 - [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0803_2016-->

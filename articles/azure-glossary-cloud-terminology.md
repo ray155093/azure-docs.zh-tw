@@ -14,7 +14,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="04/04/2016"
+    ms.date="08/03/2016"
     ms.author="monicar"/>
 
 
@@ -146,8 +146,8 @@ Azure 方案一部分的項目。每個 Azure 服務可讓您部署不同類型�
 
 ###**另請參閱**  
 - [開始使用 Azure](https://azure.microsoft.com/get-started/)
-- [雲端資源中心](https://azure.microsoft.com/resources/)  
+- [雲端資源中心](https://azure.microsoft.com/resources/)
 - [讓 Azure 助您擴展商務應用程式](https://azure.microsoft.com/overview/business-apps-on-azure/)
-- [Azure 之於您的資料中心](https://azure.microsoft.com/overview/business-apps-on-azure/) 
+- [Azure 之於您的資料中心](https://azure.microsoft.com/overview/business-apps-on-azure/)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0803_2016-->

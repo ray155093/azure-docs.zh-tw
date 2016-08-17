@@ -1,11 +1,12 @@
 <properties
 	pageTitle="Microsoft Azure 新支援要求檔案上傳公用程式指導方針 | Microsoft Azure"
 	description="說明使用 Microsoft Azure 新支援要求檔案上傳公用程式的指導方針"
-	services="billing"
+	services=""
 	documentationCenter=""
 	authors="genlin"
 	manager="mbaldwin"
-	editor="v-jesits"
+	editor=""
+	tags="billing"
 	/>
 
 <tags
@@ -63,4 +64,4 @@
 | | | | | | | .zix |
 | | | | | | | .zzz |
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

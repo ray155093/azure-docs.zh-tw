@@ -219,10 +219,8 @@ Cmdlet 將會傳回所指定群組的擁有者清單︰
 
 您可以在 [Azure Active Directory Cmdlet](http://go.microsoft.com/fwlink/p/?LinkId=808260) 中找到更多 Azure Active Directory PowerShell 文件。
 
-如需 Microsoft 專案經理 Rob de Jong 提供的其他指示，請參閱 [Rob 的群組部落格](http://robsgroupsblog.com/blog/configuring-settings-for-office-365-groups-in-azure-ad)。
-
-* [使用 Azure Active Directory 群組管理資源的存取權](active-directory-manage-groups.md)
+* [使用 Azure Active Directory 群組來管理資源的存取權](active-directory-manage-groups.md)
 
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -3,8 +3,8 @@
 	description="了解如何使用 Azure 自動化服務管理 Azure RemoteApp。"
 	services="automation"
 	documentationCenter=""
-	authors="csand-msft"
-	manager="eamono"
+	authors="mgoedtel"
+	manager="jwhit"
 	editor=""/>
 
 <tags
@@ -13,10 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/07/2016"
-	ms.author="csand"/>
-
-
+	ms.date="07/29/2016"
+	ms.author="magoedte;csand"/>
 
 #使用 Azure 自動化管理 Azure RemoteApp
 
@@ -24,7 +22,7 @@
 
 ## 什麼是 Azure 自動化？
 
-[Azure 自動化](https://azure.microsoft.com/services/automation/) 是一項 Azure 服務，可經由程序自動化簡化雲端管理。使用 Azure 自動化，可以自動執行手動、經常重複、長時間執行及容易出錯的工作，以提高您的組織的可靠性、 效率和時間價值。
+[Azure 自動化](../automation/automation-intro.md) 是一項 Azure 服務，可經由程序自動化簡化雲端管理。使用 Azure 自動化，可以自動執行手動、經常重複、長時間執行及容易出錯的工作，以提高您的組織的可靠性、 效率和時間價值。
 
 Azure 自動化提供高度可靠、高度可用的工作流程執行引擎，可加以調整以符合您的需求。在 Azure 自動化中，可以手動方式、由協力廠商系統或依排定的間隔開始執行程序，讓工作只發生在必要時刻。
 
@@ -42,4 +40,4 @@ Azure RemoteApp 可透過 [Azure PowerShell](https://msdn.microsoft.com/library/
 
 * 請參閱 Azure 自動化[入門指南](../automation/automation-first-runbook-graphical.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0803_2016-->

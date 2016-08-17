@@ -60,7 +60,7 @@ Hotfix 必須可同時從兩個控制器存取，以偵測來自對等控制器�
 
 6. 當系統提示您確認 Hotfix 安裝時，請輸入 **Y**。
 
-> [AZURE.IMPORTANT] 若安裝 Update 2.2，請只安裝開頭為 'all-hcsmdssoftwareudpate' 的二進位檔。不要安裝開頭為 all-cismdsagentupdatebundle 的 Cis 和 MDS 代理程式更新。若沒有這麼做，可能會導致發生錯誤。
+	> [AZURE.IMPORTANT] 若安裝 Update 2.2，請只安裝開頭為 'all-hcsmdssoftwareudpate' 的二進位檔。不要安裝開頭為 all-cismdsagentupdatebundle 的 Cis 和 MDS 代理程式更新。若沒有這麼做，可能會導致發生錯誤。
 
 7. 使用 `Get-HcsUpdateStatus` Cmdlet 來監視更新。會先在被動控制站上完成更新。更新被動控制器之後，將進行容錯移轉，然後更新將套用到另一個控制器。兩個控制器皆更新後，即更新完畢。
 
@@ -102,13 +102,13 @@ Hotfix 必須可同時從兩個控制器存取，以偵測來自對等控制器�
     - `MdsAgentVersion: 30.0.4698.16`
 
 	如果在套用更新後版本號碼並未變更，則表示此 Hotfix 未成功套用。若您看到這種情況，請連絡 [Microsoft 支援](storsimple-contact-microsoft-support.md)以取得進一步的協助。
+	
+	> [AZURE.IMPORTANT] 您必須先透過 `Restart-HcsController` Cmdlet 重新啟動作用中的控制站，再套用其餘的更新。
 
 9. 重複步驟 3-5 來安裝剩餘的一般模式 Hotfix。
 
-	> [AZURE.IMPORTANT] 您必須先透過 `Restart-HcsController` Cmdlet 重新啟動作用中的控制站，再套用其餘的更新。
-	
-	
 	- iSCSI 更新 KB3146621
+	
 	- WMI 更新 KB3103616
 	
 
@@ -171,7 +171,7 @@ Hotfix 必須可同時從兩個控制器存取，以偵測來自對等控制器�
 		[Y] Yes [N] No (Default is "Y"): Y
 		WARNING: Installation is currently in progress. This operation can take several minutes to complete.
 
-1.  使用 `Get-HcsUpdateStatus` 命令監視安裝進度。當 `RunInProgress` 變成 `False` 時，代表更新完成。
+1.  使用 `Get-HcsUpdateStatus` 命令來監視安裝進度。當 `RunInProgress` 變成 `False` 時，即表示更新完成。
 
 2.  安裝完成之後，維護模式 Hotfix 安裝所在的控制器將會重新開機。以具有完整存取權的選項 1 登入，並驗證磁碟韌體版本。輸入：
 
@@ -235,10 +235,10 @@ Hotfix 必須可同時從兩個控制器存取，以偵測來自對等控制器�
     	  SEAGATE:ST4000NM0023:XMGG
     	  SEAGATE:ST4000NM0023:XMGG
 
-	 在第二個控制站上執行 `Get-HcsFirmwareVersion` 命令來驗證軟體版本已經更新。然後您就可以結束維護模式。若要這麼做，請針對每個裝置控制器輸入以下命令：
+	 請在第二個控制站上執行 `Get-HcsFirmwareVersion` 命令，以確認軟體版本是否已經更新。然後您就可以結束維護模式。若要這麼做，請針對每個裝置控制器輸入以下命令：
 
     `Exit-HcsMaintenanceMode`
 
 1. 當您離開維護模式時，控制器便會重新啟動。在磁碟韌體更新已成功套用且裝置已結束維護模式後，返回 Azure 傳統入口網站。請注意，入口網站可能有 24 小時的時間不會顯示您已安裝維護模式更新。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

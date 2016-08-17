@@ -3,8 +3,8 @@
    description="了解如何從 Windows Server 或 Windows 用戶端進行還原。"
    services="backup"
    documentationCenter=""
-   authors="Jim-Parker"
-   manager="jwhit"
+   authors="saurabhsensharma"
+   manager="shivamg"
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	 ms.tgt_pltfrm="na"
 	 ms.devlang="na"
 	 ms.topic="article"
-	 ms.date="05/09/2016"
+	 ms.date="08/02/2016"
 	 ms.author="trinadhk; jimpark; markgal;"/>
 
 # 使用傳統部署模型將檔案還原到 Windows Server 或 Windows 用戶端電腦
@@ -123,4 +123,4 @@
 - [備份 Azure 虛擬機器](backup-azure-vms-introduction.md)
 - [備份 Microsoft 工作負載](backup-azure-dpm-introduction.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0803_2016-->

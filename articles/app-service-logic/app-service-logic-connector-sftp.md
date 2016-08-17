@@ -4,7 +4,7 @@
 	authors="msftman"
 	manager="erikre"
 	editor=""
-	services="app-service\logic"
+	services="logic-apps"
 	documentationCenter=""/>
 
 <tags
@@ -26,4 +26,4 @@
 - [深入了解這個新連接器](../connectors/connectors-create-api-sftp.md)
 - 請參閱在新的邏輯應用程式結構描述版本 2015-08-01 預覽上執行之所有連接器的[完整清單](../connectors/apis-list.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

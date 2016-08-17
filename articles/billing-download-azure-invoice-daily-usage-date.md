@@ -1,11 +1,11 @@
 <properties
 	pageTitle="如何下載您的 Azure 帳單發票和每日使用量資料 | Microsoft Azure"
 	description="說明如何下載您的 Azure 帳單發票和每日使用量資料"
-	services="billing"
+	services=""
 	documentationCenter=""
 	authors="genlin"
 	manager="mbaldwin"
-	editor="meerak"
+	editor=""
 	tags="billing"
 	/>
 
@@ -33,4 +33,4 @@
 6. 選取 [下載發票] 來查看您的最後一個帳單的副本。</br>![DLInvoice](./media/billing-download-azure-invoice-daily-usage-date/DLInvoice1.png)
 7. 選取 [下載使用量]，以 CSV 檔案形式下載每日使用量資料。</br>![DLusage](./media/billing-download-azure-invoice-daily-usage-date/DLusage.png)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -29,7 +29,7 @@
 
 為使資料管理閘道器連接到 DB2 資料庫，自閘道器 2.1 版起，Azure Data Factory 提供包含 DB2 支援 (SQLAM 9 / 10 / 11) 的內建驅動程式，包括 DB2 for LUW (Linux、Unix、Windows)、DB2 for z/OS 和 DB2 for i (也稱為 AS/400)，因此，從 DB2 複製資料時，您不再需要手動安裝驅動程式。
 
-> [AZURE.NOTE] 如需連接/閘道器相關問題的疑難排解秘訣，請參閱[閘道器疑難排解](data-factory-move-data-between-onprem-and-cloud.md#gateway-troubleshooting)。
+> [AZURE.NOTE] 如需連接/閘道器相關問題的疑難排解秘訣，請參閱[針對閘道問題進行疑難排解](data-factory-data-management-gateway.md#troubleshoot-gateway-issues)。
 
 
 ## 範例：從 DB2 複製資料到 Azure Blob
@@ -322,4 +322,4 @@ Char | String
 ## 效能和微調  
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

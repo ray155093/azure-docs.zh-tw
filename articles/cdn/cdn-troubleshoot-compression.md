@@ -1,6 +1,6 @@
 <properties
-	pageTitle="CDN - 檔案壓縮疑難排解"
-	description="針對 CDN 檔案壓縮的問題進行疑難排解。"
+	pageTitle="在 Azure CDN 中疑難排解檔案壓縮 | Microsoft Azure"
+	description="針對 Azure CDN 檔案壓縮的問題進行疑難排解。"
 	services="cdn"
 	documentationCenter=""
 	authors="camsoper"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/14/2016"
+	ms.date="07/28/2016"
 	ms.author="casoper"/>
     
 # CDN 檔案壓縮疑難排解
@@ -99,4 +99,4 @@
 - **IIS 6**：[在 IIS Metabase 屬性中設定 HcNoCompressionForProxies="FALSE"](https://msdn.microsoft.com/library/ms525390.aspx)
 - **IIS 7 和更新版本**：[在伺服器組態中將 **noCompressionForHttp10** 和 **noCompressionForProxies** 設定為 False](http://www.iis.net/configreference/system.webserver/httpcompression)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

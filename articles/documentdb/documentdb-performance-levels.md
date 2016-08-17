@@ -95,7 +95,7 @@ DocumentDB 集合可讓您根據查詢模式和應用程式的效能需求來群
 
 建議您的應用程式使用少量的集合，除非您具有大量儲存體或輸送量的需求。確定您更加了解建立新集合的應用程式模式。您可以選擇將集合建立保留做為在您的應用程式外部處理的管理動作。同樣地，調整集合的效能等級也將變更對集合收取的小時費率。如果您的應用程式動態調整等級，您應該監控集合的效能等級。
 
-## <a href="changing-performance-levels-using-the-azure-portal"></a>從 S1、S2、S3 變更為使用者定義的效能
+## <a id="changing-performance-levels-using-the-azure-portal"></a>從 S1、S2、S3 變更為使用者定義的效能
 
 請遵循下列步驟，在 Azure 入口網站中從使用預先定義的輸送量層級變更為使用使用者定義的輸送量層級。藉由使用使用者定義的輸送量層級，您可以調整輸送量以符合需求。如果您仍在使用 S1 帳戶，只須按幾下滑鼠，就可以將預設輸送量從 250 RU/s 增加至 400 RU/s。
 
@@ -162,7 +162,7 @@ DocumentDB 集合可讓您根據查詢模式和應用程式的效能需求來群
 - [**ReplaceOfferAsync**](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.replaceofferasync.aspx)
 - [**CreateOfferQuery**](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.linq.documentqueryable.createofferquery.aspx)
 
-## <a href="change-throughput"></a>變更集合的輸送量
+## <a id="change-throughput"></a>變更集合的輸送量
 
 如果您已經在使用使用者定義的效能，您可以透過下列方式變更集合的輸送量。如果您需要從 S1、S2 或 S3 效能層級 (預先定義的效能) 變更為使用者定義的效能，請參閱 [從 S1、S2、S3 變更為使用者定義的效能](#changing-performance-levels-using-the-azure-portal)。
 
@@ -193,4 +193,4 @@ DocumentDB 集合可讓您根據查詢模式和應用程式的效能需求來群
 [1]: ./media/documentdb-performance-levels/documentdb-change-collection-performance7-9.png
 [2]: ./media/documentdb-performance-levels/documentdb-change-collection-performance10-11.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

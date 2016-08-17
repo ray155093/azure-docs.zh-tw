@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/15/2016"
+   ms.date="08/01/2016"
    ms.author="aglick"/>
 
 #高可用性檢查清單
@@ -79,4 +79,4 @@ __如果您不使用 CDN，會發生什麼事？__ 如果不使用 CDN，則所�
 ##後續步驟：
 如果您想要詳細了解如何設計高可用性的應用程式，請參閱[建置在 Microsoft Azure 上之應用程式的高可用性](resiliency-high-availability-azure-applications.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->
