@@ -41,7 +41,7 @@
 |Windows Storage Server 2012 和最新的 SP |64 位元 |Standard、Workgroup
 |Windows Server 2012 R2 和最新的 SP |64 位元|	Essential|
 |Windows Server 2008 R2 SP1 |64 位元|	Standard、Enterprise、Datacenter、Foundation|
-|Windows Server 2008 R2 |64 位元|	Standard、Enterprise、Datacenter、Foundation|
+|Windows Server 2008 SP2 |64 位元|	Standard、Enterprise、Datacenter、Foundation|
 
 **Q2.哪裡可以下載最新的 Azure 備份代理程式？** <br/> A2.您可以下載最新的代理程式，以便從[這裡](http://aka.ms/azurebackup_agent)備份 Windows Server、System Center DPM 或 Windows 用戶端。如果您想要備份虛擬機器，請使用 VM 代理程式 (這會自動安裝適當的擴充功能)。從 Azure 資源庫建立的虛擬機器上已經有 VM 代理程式。
 
