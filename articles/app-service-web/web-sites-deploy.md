@@ -103,7 +103,7 @@ Azure App Service 會維護您的應用程式架構 (ASP.NET、PHP、Node.js 等
 ###<a name="vsts"></a>如何從雲端型原始檔控制服務進行持續部署
 在 [Azure 入口網站](https://portal.azure.com)中，您可以透過 GitHub、Bitbucket 和 Visual Studio Team Services 設定持續部署。
 
-* [持續部署至 Azure App Service](app-service-continous-deployment.md)。
+* [持續部署至 Azure App Service](app-service-continuous-deployment.md)。
 
 ## <a name="localgitdeployment"></a>從本機 Git 進行部署
 如果開發團隊使用以 Git 為基礎的內部部署本機原始程式碼管理 (SCM) 服務，則您可將其設為 App Service 的部署來源。
@@ -234,4 +234,4 @@ Microsoft 可讓您透過[適用於 Eclipse 的 Azure 工具組](../azure-toolki
 
  
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

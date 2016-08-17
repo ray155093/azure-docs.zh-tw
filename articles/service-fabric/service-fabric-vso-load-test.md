@@ -13,7 +13,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="multiple"
-    ms.date="10/28/2015"
+    ms.date="07/29/2016"
     ms.author="cawa" />
 
 # 使用 Visual Studio Team Services 對您的應用程式執行負載測試
@@ -141,4 +141,4 @@ Visual Studio Team Services 負載測試會提供 API 協助您管理負載測�
 [8]: ./media/service-fabric-vso-load-test/RunTest2.png
 [9]: ./media/service-fabric-vso-load-test/Graph.png
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0803_2016-->

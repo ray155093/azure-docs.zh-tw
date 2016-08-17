@@ -1,19 +1,19 @@
 <properties
-  pageTitle="在 Azure 儲存體中儲存和檢視診斷資料 | Microsoft Azure"
-  description="將 Azure 診斷資料放入 Azure 儲存體並加以檢視"
-  services="cloud-services"
-  documentationCenter=".net"
-  authors="rboucher"
-  manager="jwhit"
-  editor="tysonn" />
+	pageTitle="在 Azure 儲存體中儲存和檢視診斷資料 | Microsoft Azure"
+	description="將 Azure 診斷資料放入 Azure 儲存體並加以檢視"
+	services="cloud-services"
+	documentationCenter=".net"
+	authors="rboucher"
+	manager="jwhit"
+	editor="tysonn" />
 <tags
-  ms.service="cloud-services"
-  ms.devlang="na"
-  ms.topic="article"
-  ms.tgt_pltfrm="na"
-  ms.workload="na"
-  ms.date="02/20/2016"
-  ms.author="robb" />
+	ms.service="cloud-services"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.tgt_pltfrm="na"
+	ms.workload="na"
+	ms.date="08/01/2016"
+	ms.author="robb" />
 
 # 在 Azure 儲存體中儲存和檢視診斷資料
 
@@ -85,7 +85,7 @@
 
 - Visual Studio 中的伺服器總管 - 如果您已安裝 Azure Tools for Microsoft Visual Studio，您可以在伺服器總管中使用 Azure 儲存體節點，從您的 Azure 儲存體帳戶檢視唯讀的 Blob 和資料表資料。您可以從您的本機儲存體模擬器帳戶顯示資料，也可以從您為 Azure 建立的儲存體帳戶顯示資料。如需詳細資訊，請參閱[使用伺服器總管瀏覽和管理儲存體資源](../vs-azure-tools-storage-resources-server-explorer-browse-manage.md)。
 
-- [Neudesic 所提供的 Azure 儲存體總管](http://azurestorageexplorer.codeplex.com/)是一個實用的圖形化使用者介面工具，用於檢查及更改 Azure 儲存體專案中的資料 (包括 Azure 應用程式的記錄檔)。
+- [Microsoft Azure 儲存體 Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) 是一個獨立應用程式，可讓您在 Windows、OSX 和 Linux 上輕鬆使用 Azure 儲存體資料。
 
 - [Azure Management Studio](http://www.cerebrata.com/products/azure-management-studio/introduction) 包含 Azure 診斷管理員，可讓您檢視、下載及管理在 Azure 上執行的應用程式所收集的診斷資料。
 
@@ -94,4 +94,4 @@
 
 [使用 Azure 診斷追蹤雲端服務應用程式中的流程](cloud-services-dotnet-diagnostics-trace-flow.md)
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0803_2016-->

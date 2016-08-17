@@ -13,12 +13,17 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="05/11/2016"
+   ms.date="08/02/2016"
    ms.author="nitinme"/>
 
 # 使用 Distcp 在 Azure 儲存體 Blob 與資料湖存放區之間複製資料
 
-在您建立可存取資料湖存放區帳戶的 HDInsight 叢集後，您可以使用 Distcp 之類的 Hadoop 生態系統工具，將**送至/來自** HDInsight 叢集儲存體 (WASB) 的資料複製到資料湖存放區帳戶中。本文提供執行此作業的相關指示。
+> [AZURE.SELECTOR]
+- [使用 DistCp](data-lake-store-copy-data-wasb-distcp.md)
+- [使用 AdlCopy](data-lake-store-copy-data-azure-storage-blob.md)
+
+
+在您建立可存取 Data Lake Store 帳戶的 HDInsight 叢集後，您可以使用 Distcp 之類的 Hadoop 生態系統工具，將**送至/來自** HDInsight 叢集儲存體 (WASB) 的資料複製到 Data Lake Store 帳戶中。本文提供執行此作業的相關指示。
 
 ##必要條件
 
@@ -26,7 +31,7 @@
 
 - **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 - **啟用您的 Azure 訂用帳戶**以使用資料湖存放區公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
-- 可存取資料湖存放區帳戶的 **Azure HDInsight 叢集**。請參閱[建立具有資料湖存放區的 HDInsight 叢集](data-lake-store-hdinsight-hadoop-use-portal.md)。請確實為叢集啟用遠端桌面。
+- 可存取 Data Lake Store 帳戶的 **Azure HDInsight 叢集**。請參閱[建立具有 Data Lake Store 的 HDInsight 叢集](data-lake-store-hdinsight-hadoop-use-portal.md)。請確實為叢集啟用遠端桌面。
 
 ## 使用影片快速學習？
 
@@ -71,4 +76,4 @@ HDInsight 叢集隨附 Distcp 公用程式，可用來將不同來源的資料�
 - [搭配資料湖存放區使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 - [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

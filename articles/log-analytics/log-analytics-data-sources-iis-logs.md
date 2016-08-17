@@ -71,9 +71,9 @@ IIS 記錄檔記錄都具有 **W3CIISLog** 類型以及下表中的屬性。
 |:--|:--|
 | Type=IISLog | 所有 IIS 記錄檔記錄。 |
 | Type=IISLog EventLevelName=error | 所有 Windows 事件與錯誤的嚴重性。 |
-| Type=W3CIISLog | Measure count() by cIP | 依據用戶端 IP 位址的 IIS 記錄項目計數。 |
-| Type=W3CIISLog csHost="www.contoso.com" | Measure count() by csUriStem | 依據主機 www.contoso.com 之 URL 的 IIS 記錄項目計數。 |
-| Type=W3CIISLog | Measure Sum(csBytes) by Computer | top 500000| 每部 IIS 電腦所接收的位元組總數。 |
+| Type=W3CIISLog &#124; Measure count() by cIP | 依據用戶端 IP 位址的 IIS 記錄項目計數。 |
+| Type=W3CIISLog csHost="www.contoso.com" &#124; Measure count() by csUriStem | 依據主機 www.contoso.com 之 URL 的 IIS 記錄項目計數。 |
+| Type=W3CIISLog &#124; Measure Sum(csBytes) by Computer &#124; top 500000| 每部 IIS 電腦所接收的位元組總數。 |
 
 ## 後續步驟
 

@@ -1,8 +1,8 @@
 <properties
-	pageTitle="CDN - 針對傳回 404 狀態的 CDN 端點進行疑難排解"
-	description="針對 CDN 端點的 404 回應碼進行疑難排解。"
+	pageTitle="疑難排解傳回 404 狀態的 Azure CDN 端點 | Microsoft Azure"
+	description="針對 Azure CDN 端點的 404 回應碼進行疑難排解。"
 	services="cdn"
-	documentationCenter=".NET"
+	documentationCenter=""
 	authors="camsoper"
 	manager="erikre"
 	editor=""/>
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/11/2016"
+	ms.date="07/28/2016"
 	ms.author="casoper"/>
     
 # 針對傳回 404 狀態的 CDN 端點進行疑難排解
@@ -67,7 +67,7 @@
 
 不過，假如您在稍早測試的原始檔案 URL 為 `http://www.contoso.com:8080/file.txt`。請注意主機名稱區段結尾的 `:8080`。這會告知瀏覽器使用連接埠 `8080` 來連線到於 `www.contoso.com` 的 Web 伺服器，因此您必須在 [HTTP 連接埠] 欄位輸入 8080。請務必注意，這些連接埠設定只會影響端點用來從來源擷取資訊的連接埠。
 
-> [AZURE.NOTE] **來自 Akamai 的 Azure CDN** 端點不允許原始來源的完整 TCP 連接埠範圍。如需不允許的原始連接埠清單，請參閱[來自 Akamai 的 Azure CDN 行為詳細資料](cdn-akamai-behavior-details.md)。
+> [AZURE.NOTE] **來自 Akamai 的 Azure CDN** 端點不允許原始來源的完整 TCP 連接埠範圍。如需不允許的原始連接埠清單，請參閱[來自 Akamai 的 Azure CDN 允許的原始連接埠](https://msdn.microsoft.com/library/mt757337.aspx)。
   
 ### 請檢查端點設定
 
@@ -97,4 +97,4 @@
 
 但如果我不想在我的來源上的每個路徑使用 CDN 呢？ 假設我只想要公開 `publicblob` 路徑。如果我在 [原始路徑] 欄位中輸入 */publicblob*，將導致端點在對來源做每個要求之前，都要插入 */publicblob*。這表示，對於 `https://cdndocdemo.azureedge.net/publicblob/lorem.txt` 的要求，現在實際上會取 URL 的 `/publicblob/lorem.txt` 要求部分，並將 `/publicblob` 附加至開頭。這會造成從來源對 `/publicblob/publicblob/lorem.txt` 進行要求。如果該路徑未解析為實際檔案，來源會傳回 404 狀態。實際上，在此範例中擷取 lorem.txt 的正確 URL 會是 `https://cdndocdemo.azureedge.net/lorem.txt`。請注意，我們完全不會納入 */publicblob * 路徑，因為 URL 要求的部份是 `/lorem.txt`，且端點新增 `/publicblob` 會造成 `/publicblob/lorem.txt` 將要求傳遞至來源。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

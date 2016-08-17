@@ -1,14 +1,14 @@
 <properties
-	pageTitle="追蹤服務健全狀況"
+	pageTitle="使用 Azure Insights 追蹤服務健全狀況 | Microsoft Azure"
 	description="在 Azure 發生效能降低或服務中斷時獲知消息。"
 	authors="stepsic-microsoft-com"
 	manager="kamrani"
 	editor=""
-	services="azure-portal"
-	documentationCenter="na"/>
+	services="monitoring"
+	documentationCenter="monitoring"/>
 
 <tags
-	ms.service="azure-portal"
+	ms.service="monitoring"
 	ms.workload="na"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
@@ -52,4 +52,4 @@
 * [監視服務計量](insights-how-to-customize-monitoring.md)以確保您的服務可用且可回應。
 * 使用 Application Insights [監視任何網頁的可用性和回應性](../application-insights/app-insights-monitor-web-app-availability.md)，讓您可以找出您的頁面是否關閉。
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0803_2016-->

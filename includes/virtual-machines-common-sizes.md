@@ -219,8 +219,33 @@
 |Standard\_GS4|16|224|8|本機 SSD 磁碟 = 448 GB |32|2112| 40,000 每秒 1,000 MB | 極高 |
 |Standard\_GS5|32|448|8|本機 SSD 磁碟 = 896 GB |64|4224| 80,000 每秒 2,000 MB | 極高 |
 
+## N 系列
+
+NC 和 NV 大小也稱為已啟用 GPU 功能的執行個體。這些是包含 NVIDIA GPU 卡並已針對不同情況和使用案例進行最佳化的特製化虛擬機器。NV 大小會針對遠端視覺效果、串流、遊戲、編碼及利用 OpenGL 和 DirectX 這類架構的 VDI 案例進行最佳化和設計。NC 大小則是針對運算密集型和網路密集型應用程式、演算法 (包括以 CUDA 和 OpenCL 為基礎的應用程式) 及模擬，有更深入的最佳化。
 
 
+### NV 執行個體
+NV 執行個體是由 NVIDIA 的 Tesla M60 GPU 和 NVIDIA GRID 提供技術支援，適用於桌面加速應用程式和虛擬桌面，可供客戶從中將其資料或模擬視覺化。使用者將能夠在 NV 執行個體上，將其圖形密集型工作流程視覺化以獲得較佳的圖形功能，此外還能夠執行單精確度工作負載，例如編碼和轉譯。Tesla M60 以雙 GPU 設計提供 4096 個 CUDA 核心，最多可達 36 個 1080p H.264 的串流。
+
+
+| 大小 | 核心 | GPU | 記憶體 | 磁碟 |
+|------|-------|----------------|--------|-------------|
+| NV6 | 6 | 1 x NVIDIA M60 | 56 GB | 380 GB SSD |
+| NV12 | 12 | 2 x NVIDIA M60 | 112 GB | 680 GB SSD |
+| NV24 | 24 | 4 x NVIDIA M60 | 224 GB | 1440 GB SSD | 
+
+
+
+### NC 執行個體
+
+NC 執行個體是由 NVIDIA 的 Tesla K80 提供技術支援。使用者現在可以藉由將 CUDA 用於能源探勘應用程式、當機模擬、光線追蹤轉譯、深入學習等等，更快速地處理資料。Tesla K80 以雙 GPU 設計提供 4992 個 CUDA 核心，最多可達 2.91 個兆級浮點運算 (Teraflop) 的雙精確度效能及最多 8.93 個兆級浮點運算的單精確度效能。
+
+
+| 大小 | 核心 | GPU | 記憶體 | 磁碟 |
+|------|-------|----------------|--------|-------------|
+| NC6 | 6 | 1 x NVIDIA K80 | 56 GB | 380 GB SSD |
+| NC12 | 12 | 2 x NVIDIA K80 | 112 GB | 680 GB SSD |
+| NC24 | 24 | 4 x NVIDIA K80 | 224 GB | 1440 GB SSD |
 
 ## 注意︰使用 CLI 和 PowerShell 的標準 A0 - A4 
 
@@ -237,6 +262,6 @@
 ## 後續步驟
 
 - 了解 [Azure 訂用帳戶和服務限制、配額與限制](../articles/azure-subscription-service-limits.md)。
-- 深入了解適用於「高效能運算」(HPC) 這類工作負載的[關於 A8、A9、A10 和 A11 密集運算執行個體](../articles/virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)。
+- 深入了解適用於「高效能運算」(HPC) 這類工作負載的[關於 A8、A9、A10 和 A11 運算密集型執行個體](../articles/virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

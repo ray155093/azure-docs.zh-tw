@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/20/2016" 
+	ms.date="07/28/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Data Factory .NET SDK 來建立、監視及管理 Azure Data Factory
@@ -24,7 +24,7 @@
 
 ## 必要條件
 
-- Visual Studio 2012 或 2013
+- Visual Studio 2012、2013 或 2015
 - 下載並安裝 [Azure .NET SDK][azure-developer-center]。
 - 下載並安裝適用於 Azure Data Factory 的 NuGet 封裝逐步解說中包含相關指示。
 
@@ -43,19 +43,23 @@
 3.	在 [Package Manager Console]<b></b> 中，逐一執行下列命令。</b>。
 
 		Install-Package Microsoft.Azure.Management.DataFactories
-		Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory
+		Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.19.208020213
 6. 將下列 **appSetttings** 區段加入 **App.config** 檔案。Helper 方法使用的是：**Microsoft.identitymodel.waad.preview.graph.graphinterface**。
 
-	以您的 Azure 訂用帳戶與租用戶識別碼取代 **SubscriptionId** 和 **ActiveDirectoryTenantId** 的值。從 Azure PowerShell 執行 **Get-AzureAccount** 即可取得這些值 (您可能需要先使用 Add-AzureAccount 登入)。
+	以您自己的值取代 **AdfClientId**、**RedirectUri**、**SubscriptionId** 和 **ActiveDirectoryTenantId** 的值。
+
+	您可以在使用 Login-AzureRmAccount 登入之後，透過從 Azure PowerShell 執行 **Get-AzureAccount -Format-List** (您可能需要先使用 Add-AzureAccount 進行登入) 來取得訂用帳戶識別碼和租用戶識別碼的值。
+
+	您可以從 Azure 入口網站取得用戶端識別碼，並重新導向 AD 應用程式的 URI。
  
 		<appSettings>
-		    <!--CSM Prod related values-->
 		    <add key="ActiveDirectoryEndpoint" value="https://login.windows.net/" />
 		    <add key="ResourceManagerEndpoint" value="https://management.azure.com/" />
 		    <add key="WindowsManagementUri" value="https://management.core.windows.net/" />
-		    <add key="AdfClientId" value="1950a258-227b-4e31-a9cf-717495945fc2" />
-		    <add key="RedirectUri" value="urn:ietf:wg:oauth:2.0:oob" />
-		    <!--Make sure to write your own tenenat id and subscription ID here-->
+
+		    <!-- Replace the following values with your own -->
+		    <add key="AdfClientId" value="Your AD application ID" />
+		    <add key="RedirectUri" value="Your AD application's redirect URI" />
 		    <add key="SubscriptionId" value="your subscription ID" />
     		<add key="ActiveDirectoryTenantId" value="your tenant ID" />
 		</appSettings>
@@ -380,9 +384,52 @@
 18. 確認輸出檔案已建立在 **adftutorial** 容器的 **apifactoryoutput** 資料夾中。
 
 
+## 不使用快顯對話方塊來登入 
+上述範例程式碼會啟動一個對話方塊供您輸入 Azure 認證。如果您需要以程式設計的方式登入，而不使用對話方塊，請參閱[使用 Azure 資源管理員驗證服務主體](resource-group-authenticate-service-principal.md#authenticate-service-principal-with-certificate---powershell)。
 
-> [AZURE.NOTE] 上述範例程式碼會啟動一個對話方塊供您輸入 Azure 認證。如果您需要以程式設計的方式登入，而不使用對話方塊，請參閱[使用 Azure 資源管理員驗證服務主體](resource-group-authenticate-service-principal.md#authenticate-service-principal-with-certificate---powershell)。
+### 範例
 
+建立 GetAuthorizationHeaderNoPopup 方法，如下所示︰
+
+    public static string GetAuthorizationHeaderNoPopup()
+    {
+        var authority = new Uri(new Uri("https://login.windows.net"), ConfigurationManager.AppSettings["ActiveDirectoryTenantId"]);
+        var context = new AuthenticationContext(authority.AbsoluteUri);
+        var credential = new ClientCredential(ConfigurationManager.AppSettings["AdfClientId"], ConfigurationManager.AppSettings["AdfClientSecret"]);
+        AuthenticationResult result = context.AcquireTokenAsync(ConfigurationManager.AppSettings["WindowsManagementUri"], credential).Result;
+        if (result != null)
+            return result.AccessToken;
+
+        throw new InvalidOperationException("Failed to acquire token");
+    }
+
+在 **Main** 函式中將 **GetAuthorizationHeader** 呼叫取代為 **GetAuthorizationHeaderNoPopup** 呼叫︰
+
+        TokenCloudCredentials aadTokenCredentials =
+            new TokenCloudCredentials(
+            ConfigurationManager.AppSettings["SubscriptionId"],
+            GetAuthorizationHeaderNoPopup());
+
+以下說明如何建立 Active Directory 應用程式和服務主體，然後將其指派給 Data Factory 參與者角色︰
+
+1. 建立 AD 應用程式。
+
+		$azureAdApplication = New-AzureRmADApplication -DisplayName "MyADAppForADF" -HomePage "https://www.contoso.org" -IdentifierUris "https://www.myadappforadf.org/example" -Password "Pass@word1"
+
+2. 建立 AD 服務主體。
+
+		New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
+
+3. 對 Data Factory 參與者角色新增服務主體。
+
+		New-AzureRmRoleAssignment -RoleDefinitionName "Data Factory Contributor" -ServicePrincipalName $azureAdApplication.ApplicationId.Guid
+
+4. 取得應用程式識別碼。
+
+		$azureAdApplication
+
+
+記下應用程式識別碼和密碼 (用戶端密碼)，並在上面的程式碼中使用它。
 
 [data-factory-introduction]: data-factory-introduction.md
 [adf-getstarted]: data-factory-copy-data-from-azure-blob-storage-to-sql-database.md
@@ -393,4 +440,4 @@
 [azure-developer-center]: http://azure.microsoft.com/downloads/
  
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0803_2016-->

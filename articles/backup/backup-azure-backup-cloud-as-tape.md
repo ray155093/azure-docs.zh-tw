@@ -3,8 +3,8 @@
    description="了解 Azure 備份如何提供可讓您在 Azure 中備份和還原資料的磁帶式語意"
    services="backup"
    documentationCenter=""
-   authors="Jim-Parker"
-   manager="jwhit"
+   authors="trinadhk"
+   manager="vijayts"
    editor=""/>
 <tags
    ms.service="backup"
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="storage-backup-recovery"
    ms.date="06/08/2016"
-   ms.author="jimpark;"/>
+   ms.author="jimpark;trinadhk;markgal"/>
 
 # 使用 Azure 備份來取代您的磁帶基礎結構
 使用 Azure 備份和 System Center Data Protection Manager 的客戶可以進行下列操作：
@@ -71,4 +71,4 @@
 - [Azure 備份的簡介](backup-introduction-to-azure-backup.md)
 - [試用 Azure 備份](backup-try-azure-backup-in-10-mins.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0803_2016-->

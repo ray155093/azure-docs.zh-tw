@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/17/2016"
+   ms.date="08/02/2016"
    ms.author="yurid"/>
 
 # Azure 安全性 MVP 計畫
@@ -28,4 +28,4 @@ Microsoft Most Valuable Professionals (Microsoft 最有價值專家，MVP) 是�
 
 您是 Azure 安全性方面的專家嗎？ 您知道有人是嗎？ 那麼，請[為自己或為他人提名](https://mvp.microsoft.com/Nomination/nominate-an-mvp)，立即成為 Azure 安全性 MVP！
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0803_2016-->

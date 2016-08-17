@@ -37,6 +37,7 @@
 
 ![](./media/machine-learning-data-science-spark-overview/spark-cluster-on-portal.png)
 
+> [AZURE.NOTE] 如需示範如何使用 Scala 而非 Python 完成端對端資料科學程序工作的主題，請參閱[在 Azure 上使用 Spark 與 Spark 的資料科學](machine-learning-data-science-process-scala-walkthrough.md)。
 
 >[AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
@@ -111,7 +112,7 @@
 
 ![](./media/machine-learning-data-science-spark-overview/spark-jupyter-notebook.png)
 
-選取 [PySpark] 來查看包含一些預先封裝 Notebook 範例的目錄，這些範例使用了 PySpark API。適用於此 Spark 套件主題的 Notebook (包含程式碼範例)，可在 [Github](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark) 上找到。
+選取 [PySpark] 來查看包含一些預先封裝 Notebook 範例的目錄，這些範例使用了 PySpark API。適用於此 Spark 套件主題的 Notebook (包含程式碼範例)，可在 [Github](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark) 上找到
 
 
 您可以將 Notebook 直接從 Github 上傳至 Spark 叢集上的 Jupyter Notebook 伺服器。在您的 Jupyter 首頁，按一下螢幕右側的 [上傳] 按鈕。它會開啟檔案總管。您可以在這裡貼上 Notebook 的 Github (原始內容) URL，然後按一下 [開啟]。下列 URL 有 PySpark Notebook 可供使用：
@@ -122,16 +123,16 @@
 
 您會在 Jupyter 檔案清單上看到檔案名稱，並重新出現 [上傳] 按鈕。按一下此 [上傳] 按鈕。現在您已匯入 Notebook。重複這些步驟，從此逐步解說上傳下列 Notebook。
 
-> [AZURE.TIP] 您可以用滑鼠右鍵按一下瀏覽器上的下列連結，然後選取 [複製連結] 取得可貼到 [Jupyter 上傳檔案總管] 對話方塊中的 github 原始內容 URL。
+> [AZURE.TIP] 您可以用滑鼠右鍵按一下瀏覽器上的下列連結，然後選取 [複製連結] 取得可貼到 [Jupyter 上傳檔案總管] 對話方塊中的 Github 原始內容 URL。
 
 現在您可以：
 
 - 按一下 Notebook 以查看程式碼
-- 按 [SHIFT-ENTER] 執行每個儲存格。
-- 按一下 [儲存格] -> [執行] 執行整個 Notebook
+- 按 **SHIFT-ENTER** 執行每個儲存格
+- 按一下 [儲存格] -> [執行] 執行整個筆記本
 - 使用查詢的自動視覺效果。
 
-> [AZURE.TIP] PySpark 核心會將 SQL (HiveQL) 查詢的輸出自動視覺化。在 Notebook 內使用 [類型] 功能表按鈕，系統提供您多種不同類型的視覺效果 (資料表、折線圖、圓形圖、橫條圖、區域圖) 可選擇。
+> [AZURE.TIP] PySpark 核心會將 SQL (HiveQL) 查詢的輸出自動視覺化。在 Notebook 內使用 [類型] 功能表按鈕，系統提供您幾種不同類型的視覺效果 (資料表、圓形圖、折線圖、區域圖或橫條圖) 可選擇。
 
 ![泛型方法的羅吉斯迴歸 ROC 曲線](./media/machine-learning-data-science-spark-overview/pyspark-jupyter-autovisualization.png)
 
@@ -145,4 +146,4 @@
 
 **交叉驗證和超參數清除**：請參閱[使用 Spark 進階資料探索和模型化](machine-learning-data-science-spark-advanced-data-exploration-modeling.md)有關如何使用交叉驗證和超參數清除訓練模型
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0803_2016-->

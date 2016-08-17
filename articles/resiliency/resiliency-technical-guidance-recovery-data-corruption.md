@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/13/2016"
-   ms.author="patw;jroth;aglick"/>
+   ms.date="08/01/2016"
+   ms.author="aglick"/>
 
 #Azure 復原技術指導：從資料損毀或意外刪除復原
 
@@ -91,4 +91,4 @@ Microsoft Azure SQL Database 的時間點備份，是透過[複製您的 Azure S
 
 這篇文章是一系列文章的一部分，著重在 [Azure 復原技術指導](./resiliency-technical-guidance.md)。如果您要尋找更多恢復、災害復原和高可用性的資源，請參閱 Azure 復原技術指導[其他資源](./resiliency-technical-guidance.md#additional-resources)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0803_2016-->

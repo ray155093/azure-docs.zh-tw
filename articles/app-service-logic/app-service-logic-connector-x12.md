@@ -1,7 +1,7 @@
 <properties 
    pageTitle="在 Logic Apps 中使用 BizTalk X12 連接器 | Microsoft Azure App Service" 
    description="如何建立並設定 BizTalk X12 連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它" 
-   services="app-service\logic" 
+   services="logic-apps" 
    documentationCenter=".net,nodejs,java" 
    authors="rajeshramabathiran" 
    manager="erikre" 
@@ -87,4 +87,4 @@ X12 連接器可用做觸發程序或動作。
 [10]: ./media/app-service-logic-connector-x12/EncodeConfigured.PNG
 [11]: ./media/app-service-logic-connector-x12/TriggerSettings.PNG
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

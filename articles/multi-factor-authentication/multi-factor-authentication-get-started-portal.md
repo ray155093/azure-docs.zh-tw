@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="05/16/2016" 
+	ms.date="08/04/2016" 
 	ms.author="billmath"/>
 
 # 部署 Azure Multi-factor Authentication Server 使用者入口網站
@@ -30,12 +30,12 @@
 
 若要在與 Azure Multi-Factor Authentication Server 相同的伺服器上安裝使用者入口網站，您必須滿足以下必要條件：
 
-- 必須安裝 IIS，包括 asp.net 及 IIS 6 metabase 相容性 (適用於 IIS 7 或更高版本) 
+- 必須安裝 IIS，包括 asp.net 及 IIS 6 metabase 相容性 (適用於 IIS 7 或更高版本)
 - 登入的使用者必須擁有電腦及網域的管理員權限 (若有的話)。這是因為帳戶需有建立 Active Directory 安全性群組的權限。
 
 ### 部署 Azure Multi-Factor Authentication Server 使用者入口網站
 
-1. 在 Azure Multi-Factor Authentication Server 內：按一下左側功能表中的 [使用者入口網站] 圖示，然後按一下 [安裝使用者入口網站] 按鈕。 
+1. 在 Azure Multi-Factor Authentication Server 內：按一下左側功能表中的 [使用者入口網站] 圖示，然後按一下 [安裝使用者入口網站] 按鈕。
 1. 按 [下一步]。
 1. 按 [下一步]。
 1. 如果電腦已加入網域，但用來保護使用者入口網站和 Azure Multi-Factor Authentication 服務之間通訊的 Active Directory 設定尚未完成，Active Directory 步驟將會出現。按 [下一步] 按鈕以自動完成此設定。
@@ -80,7 +80,7 @@
 將使用者入口網站安裝在其他伺服器之前，請注意以下事項：
 
 - 在網際網路對向 Web 伺服器上開啟網頁瀏覽器，並瀏覽至輸入 web.config 檔案中的 Web 服務 SDK URL，如此將有所幫助。如果瀏覽器可以順利連接 Web 服務，它應該會提示您輸入認證。輸入使用者名稱和密碼 (與輸入 web.config 檔案中的使用者名稱和密碼完全相同)。確定未出現任何憑證警告或錯誤。
-- 如果反向 Proxy 或防火牆座落於使用者入口網站 Web 伺服器之前，而且正在執行 SSL 卸載，您可以編輯使用者入口網站的 web.config 檔案，並將下列機碼新增至 <appSettings> 區段，讓使用者入口網站可以使用 http，而不是 https。<add key="SSL_REQUIRED" value="false"/>
+- 如果反向 Proxy 或防火牆座落於使用者入口網站 Web 伺服器之前，而且正在執行 SSL 卸載，您可以編輯使用者入口網站的 web.config 檔案，並將下列機碼新增至 <appSettings> 區段，讓使用者入口網站可以使用 http，而不是 https。<add key="SSL\_REQUIRED" value="false"/>
 
 #### 安裝使用者入口網站
 
@@ -189,4 +189,4 @@ Azure Multi-Factor Authentication 伺服器為使用者入口網站提供數個�
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -11,7 +11,7 @@
 
 		info:    New mode is arm
 
-3. 如有必要，請執行 **azure group create** 來建立新的資源群組，如下所示。請查看命令的輸出內容。輸出後顯示的清單可說明所使用的參數。如需資源群組的詳細資訊，請瀏覽 [Azure 資源管理員概觀](../articles/virtual-network/resource-group-overview.md/#resource-groups)。
+3. 如有必要，請執行 **azure group create** 來建立新的資源群組，如下所示。請查看命令的輸出內容。輸出後顯示的清單可說明所使用的參數。如需資源群組的詳細資訊，請瀏覽 [Azure 資源管理員概觀](../articles/virtual-network/resource-group-overview.md#resource-groups)。
 
 		azure group create -n TestRG -l centralus
 
@@ -106,4 +106,4 @@
 		data:
 		info:    network vnet show command OK
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0810_2016-->

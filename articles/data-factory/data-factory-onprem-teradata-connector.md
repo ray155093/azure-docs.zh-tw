@@ -30,7 +30,7 @@
 
 若要讓資料管理閘道器連接至 Teradata 資料庫，您必須在與資料管理閘道器相同的系統上安裝 [Teradata 的 .NET 資料提供者](http://go.microsoft.com/fwlink/?LinkId=278886)。
 
-> [AZURE.NOTE] 如需連接/閘道器相關問題的疑難排解秘訣，請參閱[閘道器疑難排解](data-factory-move-data-between-onprem-and-cloud.md#gateway-troubleshooting)。
+> [AZURE.NOTE] 如需連接/閘道器相關問題的疑難排解秘訣，請參閱[針對閘道問題進行疑難排解](data-factory-data-management-gateway.md#troubleshoot-gateway-issues)。
 
 ### 範例：從 Teradata 複製資料到 Azure Blob
 
@@ -311,4 +311,4 @@ Xml | String
 ## 效能和微調  
 請參閱「[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)」一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

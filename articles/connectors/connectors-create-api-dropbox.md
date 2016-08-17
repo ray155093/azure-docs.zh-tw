@@ -1,7 +1,7 @@
 <properties
 pageTitle="Dropbox | Microsoft Azure"
 description="使用 Azure App Service 建立邏輯應用程式。連線到 Dropbox 來管理您的檔案。您可以執行各種動作，例如上傳、更新、取得及刪除 Dropbox 中的檔案。"
-services="app-servicelogic"	
+services="logic-apps"	
 documentationCenter=".net,nodejs,java" 	
 authors="msftman"	
 manager="erikre"	
@@ -39,7 +39,7 @@ ms.author="deonhe"/>
 
 1. 在 Logic Apps 設計工具的搜尋方塊中輸入 dropbox，然後選取 [Dropbox - 當檔案建立時] 觸發程序。![](../../includes/media/connectors-create-api-dropbox/using-dropbox-trigger.PNG)
   
-2. 選取您想要追蹤檔案建立所在的資料夾。選取 [...] (以紅色方塊識別)，並瀏覽至您想要針對觸發程序的輸入而選取的資料夾。![](../../includes/media/connectors-create-api-dropbox/using-dropbox-trigger-2.PNG)
+2. 選取您想要追蹤檔案建立所在的資料夾。選取 [...] \(以紅色方塊識別)，並瀏覽至您想要針對觸發程序的輸入而選取的資料夾。![](../../includes/media/connectors-create-api-dropbox/using-dropbox-trigger-2.PNG)
 
 ## 使用 Dropbox 動作
 
@@ -433,4 +433,4 @@ BlobMetadata
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

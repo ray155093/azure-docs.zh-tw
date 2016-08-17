@@ -1,7 +1,7 @@
 <properties 
 	pageTitle="整合帳戶與企業整合套件的概觀 | Microsoft Azure App Service | Microsoft Azure" 
 	description="了解關於整合帳戶、企業整合套件與邏輯應用程式的一切" 
-	services="app-service\logic" 
+	services="logic-apps" 
 	documentationCenter=".net,nodejs,java"
 	authors="msftman" 
 	manager="erikre" 
@@ -74,4 +74,4 @@
 
  
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

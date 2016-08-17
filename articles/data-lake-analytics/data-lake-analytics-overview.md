@@ -25,7 +25,7 @@ Azure 資料湖分析是一個全新的服務，其目的是為了讓巨量資�
 
 ## 主要功能
 
-- **動態調整** 
+- **動態調整**
 
     資料湖分析專為雲端規模與效能全新打造。資料湖分析服務會動態部署資源，讓您可以分析數 TB 乃至於數 EB 的資料。當工作完成時，其會自動逐步釋放這些資源，因此您只需要支付所用處理功能的費用。當您所儲存的資料量或所用的計算量有所增減時，也無需重新編寫程式碼。如此您便可將心力全數投注在商業邏輯，而無需分神在處理與儲存大型資料集的方式上。
 
@@ -67,6 +67,7 @@ Azure 資料湖分析是一個全新的服務，其目的是為了讓巨量資�
     - [使用 Azure 入口網站管理 Azure 資料湖分析](data-lake-analytics-manage-use-portal.md)
     - [使用 Azure PowerShell 管理 Azure 資料湖分析](data-lake-analytics-manage-use-powershell.md)
     - [使用 Azure 入口網站監視和疑難排解 Azure 資料湖分析作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
+    - [為 Azure Data Lake Analytics 存取診斷記錄檔](data-lake-analytics-diagnostic-logs.md)
 
 - 端對端教學課程
     - [使用 Azure 資料湖分析互動式教學課程](data-lake-analytics-use-interactive-tutorials.md)
@@ -77,4 +78,4 @@ Azure 資料湖分析是一個全新的服務，其目的是為了讓巨量資�
     - [提交要求功能](http://aka.ms/adlafeedback)
     - [在論壇上取得協助](http://aka.ms/adlaforums)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0810_2016-->

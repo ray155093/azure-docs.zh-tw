@@ -3,7 +3,7 @@
    description="了解 Azure Functions 如何調整以符合您事件驅動工作負載的需求。"
    services="functions"
    documentationCenter="na"
-   authors="eduardolaureano"
+   authors="dariagrigoriu"
    manager="erikre"
    editor=""
    tags=""
@@ -15,8 +15,8 @@
    ms.topic="reference"
    ms.tgt_pltfrm="multiple"
    ms.workload="na"
-   ms.date="03/09/2016"
-   ms.author="edlaure"/>
+   ms.date="08/03/2016"
+   ms.author="dariagrigoriu"/>
 
 # 如何調整 Azure Functions
 
@@ -47,4 +47,4 @@ App Service 方案在現有 VM 上裝載函數，而這些 VM 也可能用來執
 
 [AZURE.INCLUDE [動態服務方案](../../includes/functions-dynamic-service-plan.md)]
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0803_2016-->

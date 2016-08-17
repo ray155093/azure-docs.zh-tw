@@ -11,7 +11,7 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="06/17/2016" 
+    ms.date="07/27/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Cherwell 整合
@@ -62,6 +62,8 @@
 7.  在結果窗格中，選取 [Cherwell]，然後按一下 [完成] 以加入應用程式。
 ##設定單一登入
 
+	![Cherwell](./media/active-directory-saas-cherwell-tutorial/IC798996.png "Cherwell")
+
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證至 Cherwell。
 
 ###若要設定單一登入，請執行下列步驟：
@@ -78,17 +80,21 @@
 
     ![設定應用程式 URL](./media/active-directory-saas-cherwell-tutorial/IC798992.png "設定應用程式 URL")
 
-    1.  在 [登入 URL] 文字方塊中，輸入您的使用者用來登入 **Cherwell** 的 URL (例如：**https://pictdev.cherwellondemand.com/cherwellclient*))。
-	2.  按 [**下一步**]
+    a.在 [登入 URL] 文字方塊中，輸入您的使用者用來登入 **Cherwell** 的 URL (例如：https://\<公司名稱>.cherwellondemand.com/cherwellclient)。
+
+    b.按 [**下一步**]
 
 4.  於 [在 Cherwell 設定單一登入] 頁面上，執行下列步驟：
 
     ![設定單一登入](./media/active-directory-saas-cherwell-tutorial/IC798993.png "設定單一登入")
 
-    1.  按 [下載憑證]，然後將憑證儲存在您的本機電腦中。
-    2.  複製 [識別提供者 URL]。
-    3.  複製 [單一登入服務 URL]。
-    4.  按 [下一步]。
+    a.按 [下載憑證]，然後將憑證儲存在您的本機電腦中。
+
+    b.複製 [識別提供者 URL]。
+
+    c.複製 [單一登入服務 URL]。
+
+    d.按 [下一步]。
 
 5.  將下載的憑證、**識別提供者 URL** 和**單一登入服務 URL** 提交給 Cherwell 支援小組。
 
@@ -97,6 +103,7 @@
 6.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-cherwell-tutorial/IC798994.png "設定單一登入")
+
 ##設定使用者佈建
 
 若要讓 Azure AD 使用者可以登入 Cherwell，必須將他們佈建到 Cherwell。Cherwell 的使用者帳戶必須由 Cherwell 支援小組建立。
@@ -121,4 +128,4 @@
 
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0803_2016-->

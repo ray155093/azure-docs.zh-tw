@@ -248,7 +248,7 @@ PublishSettings 檔案會下載至您的電腦。此檔案通常名為 _sitename
 您的通知中樞將透過 [Azure 入口網站]受到管理。請記下通知中樞名稱 (您可以使用 [應用程式設定] 找到此項目)：
 
   1. 登入 [Azure 入口網站]。
-  2. 選取 [瀏覽>]，然後選取 \[通知中樞]
+  2. 選取 [瀏覽>]，然後選取 [通知中樞]
   3. 按一下與行動服務相關聯的通知中樞名稱。
 
 > [AZURE.NOTE] 您的通知中樞如果是「混合」類型，則不會顯示。「混合」類型的通知中樞會同時使用「通知中樞」和舊版的「服務匯流排」功能。您將必須[轉換混合式命名空間]。轉換完成後，您的通知中樞會出現在 [Azure 入口網站]中。
@@ -287,17 +287,17 @@ PublishSettings 檔案會下載至您的電腦。此檔案通常名為 _sitename
 | mobile show _name_ | site show _name_ |
 | mobile restart _name_ | site restart _name_ |
 | mobile redeploy _name_ | site deployment redeploy _commitId_ _name_ |
-| mobile key set _name_ _type_ _value_ | site appsetting delete _key_ _name_ <br/> site appsetting add _key_=\_value\_ _name_ |
+| mobile key set _name_ _type_ _value_ | site appsetting delete _key_ _name_ <br/> site appsetting add _key_=_value_ _name_ |
 | mobile config list _name_ | site appsetting list _name_ |
 | mobile config get _name_ _key_ | site appsetting show _key_ _name_ |
-| mobile config set _name_ _key_ | site appsetting delete _key_ _name_ <br/> site appsetting add _key_=\_value\_ _name_ |
+| mobile config set _name_ _key_ | site appsetting delete _key_ _name_ <br/> site appsetting add _key_=_value_ _name_ |
 | mobile domain list _name_ | site domain list _name_ |
 | mobile domain add _name_ _domain_ | site domain add _domain_ _name_ |
 | mobile domain delete _name_ | site domain delete _domain_ _name_ |
 | mobile scale show _name_ | site show _name_ |
 | mobile scale change _name_ | site scale mode _mode_ _name_ <br /> site scale instances _instances_ _name_ |
 | mobile appsetting list _name_ | site appsetting list _name_ |
-| mobile appsetting add _name_ _key_ _value_ | site appsetting add _key_=\_value\_ _name_ |
+| mobile appsetting add _name_ _key_ _value_ | site appsetting add _key_=_value_ _name_ |
 | mobile appsetting delete _name_ _key_ | site appsetting delete _key_ _name_ |
 | mobile appsetting show _name_ _key_ | site appsetting delete _key_ _name_ |
 
@@ -390,7 +390,7 @@ Azure App Service 通常會停用 [診斷記錄]。若要啟用診斷記錄：
 [Azure 入口網站]: https://portal.azure.com
 [Azure 區域]: https://azure.microsoft.com/regions/
 [Azure 排程器方案]: ../scheduler/scheduler-plans-billing.md
-[連續部署]: ../app-service-web/web-sites-publish-source-control.md
+[連續部署]: ../app-service-web/app-service-continuous-deployment.md
 [轉換混合式命名空間]: https://azure.microsoft.com/blog/updates-from-notification-hubs-independent-nuget-installation-model-pmt-and-more/
 [curl]: http://curl.haxx.se/
 [自訂網域名稱]: ../app-service-web/web-sites-custom-domain-name.md
@@ -409,4 +409,4 @@ Azure App Service 通常會停用 [診斷記錄]。若要啟用診斷記錄：
 [WebJob]: ../app-service-web/websites-webjobs-resources.md
 [XDT 轉換範例]: https://github.com/projectkudu/kudu/wiki/Xdt-transform-samples
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,8 +1,8 @@
 <properties
-	pageTitle="CDN - 分析邊緣效能"
+	pageTitle="在 Azure CDN 中分析邊緣效能 | Microsoft Azure"
 	description="在 Microsoft Azure CDN 中分析邊緣節點效能。邊緣效能分析詳細提供 CDN 的資訊流量和頻寬使用量。"
 	services="cdn"
-	documentationCenter=".NET"
+	documentationCenter=""
 	authors="camsoper"
 	manager="erikre"
 	editor=""/>
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/11/2016"
+	ms.date="07/28/2016"
 	ms.author="casoper"/>
 
 # 在 Microsoft Azure CDN 中分析邊緣節點效能
@@ -190,6 +190,6 @@ HTTP 回應碼 | 分解由我們的邊緣伺服器傳遞至 HTTP 用戶端的 HT
 * [Azure CDN 概觀](cdn-overview.md)
 * [Microsoft Azure CDN 中的即時統計資料](cdn-real-time-stats.md)
 * [使用規則引擎覆寫預設的 HTTP 行為](cdn-rules-engine.md)
-* [進階 HTTP 報告](cdn-advanced-http-reports.md)
+* [進階的 HTTP 報表](cdn-advanced-http-reports.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

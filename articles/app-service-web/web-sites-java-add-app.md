@@ -25,7 +25,7 @@
 - 如果您使用 Azure Marketplace 來設定 Web 應用程式，則 **webapps** 資料夾的路徑會是 **d:\\home\\site\\wwwroot\\bin\\application\_server\\webapps** 的格式，其中 **application\_server** 是您 Web Apps 執行個體中生效的應用程式伺服器的名稱。
 - 如果您使用 Azure 組態 UI 來設定 Web 應用程式，則 **webapps** 資料夾的路徑會是 **d:\\home\\site\\wwwroot\\webapps** 的格式。
 
-請注意，您可以使用原始檔控制來上傳應用程式或網頁，包括連續整合案例。如需在 Web 應用程式中使用原始檔控制的指示，請參閱[在 Azure App Service 中使用 GIT 連續部署](web-sites-publish-source-control.md)。FTP 也是一個可上傳應用程或網頁的選項。
+請注意，您可以使用原始檔控制來上傳應用程式或網頁，包括[連續整合案例](app-service-continuous-deployment.md)。FTP 也是一個可上傳應用程或網頁的選項。
 
 Tomcat Web 應用程式注意事項：將 WAR 檔案上傳至 **webapps** 資料夾之後，Tomcat 應用程式伺服器便會偵測到您已新增該檔案，並會將其自動載入。請注意，如果您將檔案 (WAR 檔案除外) 複製到根目錄，則在使用這些檔案之前，必須重新啟動應用程式伺服器。在 Azure 上執行的 Tomcat Java Web 應用程式，其自動載入功能會視新增的 WAR 檔案或新增至 **webapps** 資料夾的新檔案或目錄而定。
 
@@ -40,4 +40,4 @@ Tomcat Web 應用程式注意事項：將 WAR 檔案上傳至 **webapps** 資料
 <!-- External Links -->
 [Azure App Service]: http://go.microsoft.com/fwlink/?LinkId=529714
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0803_2016-->

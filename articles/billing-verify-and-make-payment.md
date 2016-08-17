@@ -1,11 +1,12 @@
 <properties
 	pageTitle="如何驗證 Azure 訂用帳戶的付款方法和進行付款 | Microsoft Azure"
 	description="說明如何驗證 Azure 訂用帳戶的付款方法和進行付款"
-	services="billing"
+	services=""
 	documentationCenter=""
 	authors="genlin"
 	manager="msmbaldwin"
-	editor="meerak"
+	editor=""
+	tags="billing"
 	/>
 
 <tags
@@ -44,4 +45,4 @@
 
 如果您使用發票付款方法，請將您的付款交付至您發票底部所列的位置。如需其他協助，請聯絡 [Microsoft 支援服務](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

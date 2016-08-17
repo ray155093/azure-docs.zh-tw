@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/27/2016"
+	ms.date="08/02/2016"
 	ms.author="andkjell;markvi"/>
 
 
@@ -657,12 +657,18 @@
 
 **語法：**`String PCase(string)`
 
+**備註：**
+
+- 此函式目前未提供可轉換全大寫文字 (例如縮略字) 的正確大小寫。
+
 **範例：**`PCase("TEsT")` 傳回 "Test"。
+
+`PCase(LCase("TEST"))`傳回 "Test"
 
 ----------
 ### RandomNum
 
-**說明：**RandomNum 函數會傳回指定區間內的隨機數字。
+**說明：**RandomNum 函式會傳回指定區間內的隨機數字。
 
 **語法：**`num RandomNum(num start, num end)`
 
@@ -674,7 +680,7 @@
 ----------
 ### RemoveDuplicates
 
-**說明：**RemoveDuplicates 函數會接受多重值的字串，並確定每個值都是唯一的。
+**說明：**RemoveDuplicates 函式會接受多重值的字串，並確定每個值都是唯一的。
 
 **語法：**`mvstr RemoveDuplicates(mvstr attribute)`
 
@@ -683,7 +689,7 @@
 ----------
 ### 將
 
-**說明：**Replace 函數會將所有出現的字串取代為另一個字串。
+**說明：**Replace 函式會將所有出現的字串取代為另一個字串。
 
 **語法：**`str Replace(str string, str OldValue, str NewValue)`
 
@@ -691,7 +697,7 @@
 - OldValue：要搜尋並取代的字串。
 - NewValue：要取代的字串。
 
-**備註：**這個函數會辨識下列特殊的 Moniker：
+**備註：**這個函式會辨識下列特殊的 Moniker：
 
 - \\n – 新行
 - \\r – 歸位字元
@@ -702,7 +708,7 @@
 ----------
 ### ReplaceChars
 
-**說明：**ReplaceChars 函數會取代 ReplacePattern 字串中找到的所有出現的字元。
+**說明：**ReplaceChars 函式會取代 ReplacePattern 字串中找到的所有出現的字元。
 
 **語法：**`str ReplaceChars(str string, str ReplacePattern)`
 
@@ -731,7 +737,7 @@
 ----------
 ### Right
 
-**說明：**Right 函數會從字串右邊 (結尾處) 傳回指定的字元數。
+**說明：**Right 函式會從字串右邊 (結尾處) 傳回指定的字元數。
 
 **語法：**`str Right(str string, num NumChars)`
 
@@ -753,16 +759,16 @@
 ----------
 ### RTrim
 
-**說明：**RTrim 函數會從字串移除結尾空白字元。
+**說明：**RTrim 函式會從字串移除結尾空白字元。
 
 **語法：**`str RTrim(str value)`
 
-**範例：**`RTrim(" Test ")` 傳回 "Test"。
+**範例：**`RTrim(" Test ")` 傳回 " Test"。
 
 ----------
 ### 分割
 
-**說明：**Split 函數會接受以分隔符號分隔的字串，並使其成為多重值的字串。
+**說明：**Split 函式會接受以分隔符號分隔的字串，並使其成為多重值的字串。
 
 **語法：**`mvstr Split(str value, str delimiter)` `mvstr Split(str value, str delimiter, num limit)`
 
@@ -775,28 +781,28 @@
 ----------
 ### StringFromGuid
 
-**說明：**StringFromGuid 函數會接受二進位 GUID，並將其轉換為字串
+**說明：**StringFromGuid 函式會接受二進位 GUID，並將其轉換為字串
 
 **語法：**`str StringFromGuid(bin GUID)`
 
 ----------
 ### StringFromSid
 
-**說明：**StringFromSid 函數會將位元組陣列或包含安全性識別碼的多重值位元組陣列，轉換為字串或多重值的字串。
+**說明：**StringFromSid 函式會將位元組陣列或包含安全性識別碼的多重值位元組陣列，轉換為字串或多重值的字串。
 
 **語法：**`str StringFromSid(bin ObjectSID)` `mvstr StringFromSid(mvbin ObjectSID)`
 
 ----------
 ### Switch
 
-**說明：**Switch 函數可用來根據評估的條件傳回單一值。
+**說明：**Switch 函式可用來根據評估的條件傳回單一值。
 
 **語法：**`var Switch(exp expr1, var value1[, exp expr2, var value … [, exp expr, var valueN]])`
 
 - expr：您想要評估的 Variant 運算式。
 - value：當對應的運算式為 True 時要傳回的值。
 
-**備註：**Switch 函數引數清單是由運算式和值的配對所組成。運算式是以從左到右的方式進行評估，並會傳回與要評估為 True 的第一個運算式相關聯的值。如果未正確配對組件，就會發生執行階段錯誤。
+**備註：**Switch 函式引數清單是由運算式和值的配對所組成。運算式是以從左到右的方式進行評估，並會傳回與要評估為 True 的第一個運算式相關聯的值。如果未正確配對組件，就會發生執行階段錯誤。
 
 例如，如果 expr1 為 True，Switch 就會傳回 value1。如果 expr-1 為 False，但 expr-2 為 True，Switch 就會傳回 value-2，依此類推。
 
@@ -814,7 +820,7 @@ Value 也可以是會傳回自訂字串的 Error 函式。
 ----------
 ### Trim
 
-**說明：**Trim 函數會從字串移除開頭和結尾的空白字元。
+**說明：**Trim 函式會從字串移除開頭和結尾的空白字元。
 
 **語法：**`str Trim(str value)` `mvstr Trim(mvstr value)`
 
@@ -825,7 +831,7 @@ Value 也可以是會傳回自訂字串的 Error 函式。
 ----------
 ### UCase
 
-**說明：**UCase 函數會將字串中的所有字元轉換為大寫。
+**說明：**UCase 函式會將字串中的所有字元轉換為大寫。
 
 **語法：**`str UCase(str string)`
 
@@ -834,7 +840,7 @@ Value 也可以是會傳回自訂字串的 Error 函式。
 ----------
 ### Word
 
-**說明：**Word 函數會根據描述要使用之分隔符號及要傳回之字數的參數，傳回字串內含的單字。
+**說明：**Word 函式會根據描述要使用之分隔符號及要傳回之字數的參數，傳回字串內含的單字。
 
 **語法：**`str Word(str string, num WordNumber, str delimiters)`
 
@@ -859,4 +865,4 @@ Value 也可以是會傳回自訂字串的 Error 函式。
 * [Azure AD Connect 同步處理：自訂同步處理選項](active-directory-aadconnectsync-whatis.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0803_2016-->

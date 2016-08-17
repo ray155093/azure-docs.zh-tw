@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/18/2016"
+   ms.date="08/01/2016"
    ms.author="sonyama;barbkess"/>
 
 
@@ -25,14 +25,7 @@
 - [驅動程式](sql-data-warehouse-connection-strings.md)
 
 
-您可以使用下列任一個應用程式通訊協定連線到 SQL 資料倉儲：
-
-- [ADO.NET][]
-- [ODBC][]
-- [PHP][]
-- [JDBC][]
-
-以下是每個通訊協定連接字串的一些範例。您也可以使用 Azure 入口網站來協助您設定連接字串。只要瀏覽至您在 Azure 入口網站上的資料庫。按一下 [基本資訊] 下的 [顯示資料庫連接字串]。
+您可以使用數個不同的應用程式通訊協定 (例如[ADO.NET][]、[ODBC][]、[PHP][] 和 [JDBC][]) 連線到 SQL 資料倉儲。以下是每個通訊協定連接字串的一些範例。您也可以使用 Azure 入口網站來建立連接字串。若要使用 Azure 入口網站建置連接字串，請瀏覽至您資料庫的刀鋒視窗，在 [程式集] 底下，按一下 [顯示資料庫連接字串]。
 
 ## 範例 ADO.NET 連接字串
 
@@ -58,6 +51,8 @@ Server: {your_server}.database.windows.net,1433 \r\nSQL Database: {your_database
 jdbc:sqlserver://yourserver.database.windows.net:1433;database=yourdatabase;user={your_user_name};password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
 ```
 
+> [AZURE.NOTE] 請考慮將連線逾時設定為 300 秒，以便在短時間無法使用時能夠維持連線。
+
 ## 後續步驟
 
 若要透過 Visual Studio 和其他應用程式開始查詢您的資料倉儲，請參閱[使用 Visual Studio 查詢][]。
@@ -75,4 +70,4 @@ jdbc:sqlserver://yourserver.database.windows.net:1433;database=yourdatabase;user
 
 <!--Other references-->
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

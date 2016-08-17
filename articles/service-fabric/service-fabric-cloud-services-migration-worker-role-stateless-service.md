@@ -226,7 +226,7 @@ private void CodePackageActivationContext_ConfigurationPackageModifiedEvent(obje
 排序 | 「簡單」、「背景」、「前景」 | 必須先成功執行啟動工作才會啟動服務。
 
 ### 雲端服務
-雲端服務中的啟動進入點是在 ServiceDefintion.csdef 中針對每個角色進行設定。
+雲端服務中的啟動進入點是在 ServiceDefinition.csdef 中針對每個角色進行設定。
 
 ```xml
 
@@ -267,7 +267,7 @@ Service Fabric 中的啟動進入點是在 ServiceManifest.xml 中針對每個�
 
 ##後續步驟
 
-請深入了解 Service Fabric Reliable Services 以及雲端服務與 Service Fabric 應用程式架構之間的差異，以了解如何利用 Service Fabric 的整組功能。
+請深入了解 Service Fabric Reliable Services 以及雲端服務與 Service Fabric 應用程式架構之間的基本差異，以了解如何利用 Service Fabric 的整組功能。
 
  - [開始使用 Service Fabric Reliable Services](./service-fabric-reliable-services-quick-start.md)
 
@@ -277,4 +277,4 @@ Service Fabric 中的啟動進入點是在 ServiceManifest.xml 中針對每個�
 [3]: ./media/service-fabric-cloud-services-migration-worker-role-stateless-service/service-fabric-cloud-service-projects.png
 [4]: ./media/service-fabric-cloud-services-migration-worker-role-stateless-service/worker-role-to-stateless-service.png
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

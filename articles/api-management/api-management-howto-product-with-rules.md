@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/25/2016"
+	ms.date="08/09/2016"
 	ms.author="sdanie"/>
 
 # 使用 Azure API 管理以頻率限制保護 API
@@ -46,7 +46,8 @@
 
 在 [標題] 文字方塊中輸入**免費試用**。
 
-在 [描述] 文字方塊中輸入下列文字：**存取遭到拒絕後，訂戶每分鐘可以執行 10 次呼叫，每週最多 200 次呼叫**。
+在 [描述] 文字方塊中輸入下列文字：
+**存取遭到拒絕後，訂戶每分鐘可以執行 10 次呼叫，每週最多 200 次呼叫**。
 
 API 管理中的產品可以是受保護或開放的。受保護的產品必須先訂閱才能使用。開放產品不需要訂用帳戶即可使用。若要建立需要訂用帳戶的受保護產品，請務必選取 [需要訂用帳戶]。這是預設設定。
 
@@ -120,7 +121,7 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 	<rate-limit calls="10" renewal-period="60">
 	</rate-limit>
 
-若要設定 [設定每個訂用帳戶的使用量配額] 原則，請將游標放置在 **inbound** 元素內新加入的 **rate-limit** 元素正下方，然後按一下 [設定每個訂用帳戶的使用量配額] 左側的箭頭。
+若要設定 \[設定每個訂用帳戶的使用量配額] 原則，請將游標放置在 **inbound** 元素內新加入的 **rate-limit** 元素正下方，然後按一下 \[設定每個訂用帳戶的使用量配額] 左側的箭頭。
 
 	<quota calls="number" bandwidth="kilobytes" renewal-period="seconds">
 	<api name="name" calls="number" bandwidth="kilobytes">
@@ -143,7 +144,7 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 	<quota calls="200" renewal-period="604800">
 	</quota>
 
->原則間隔是依秒來指定。若要計算一週的間隔，您可以將天數 (7) x 一天的小時數 (24) x 每小時的分鐘數 (60) x 每分鐘的秒數 (60)：7 * 24 * 60 * 60 = 604800。
+>原則間隔是依秒來指定。若要計算一週的間隔，您可以將天數 (7) x 一天的小時數 (24) x 每小時的分鐘數 (60) x 每分鐘的秒數 (60)：7 24 60 * 60 = 604800。
 
 完成設定原則之後，應該符合以下範例。
 
@@ -187,7 +188,7 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 
 ![Configure developer][api-management-configure-developer]
 
-按一下 [加入訂閱]。
+按一下 [**加入訂閱**]。
 
 ![Add subscription][api-management-add-subscription-menu]
 
@@ -199,7 +200,7 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 
 ![Add subscription][api-management-add-subscription-multiple]
 
-按一下 [訂閱] 後，產品會出現在使用者的 [訂閱] 清單中。
+按一下 [**訂閱**] 後，產品會出現在使用者的 [**訂閱**] 清單中。
 
 ![Subscription added][api-management-subscription-added]
 
@@ -221,9 +222,9 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 
 ![Subscription key][api-management-select-key]
 
->[AZURE.NOTE] 如果您有多個訂用帳戶，請務必選取**免費試用**的金鑰，否則在先前步驟中設定的原則將不會生效。
+>[AZURE.NOTE] 如果您有多個訂用帳戶，請務必選取「免費試用」的金鑰，否則在先前步驟中設定的原則將不會生效。
 
-按一下 [傳送]，然後檢視回應。記下 [200 OK] 的 [回應狀態]。
+按一下 [傳送]，然後檢視回應。記下 [**200 OK**] 的 [**回應狀態**]。
 
 ![Operation results][api-management-http-get-results]
 
@@ -231,7 +232,7 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 
 ![Operation results][api-management-http-get-429]
 
-[回應內容] 指出重試成功的剩餘間隔時間。
+**回應內容**指出重試成功的剩餘間隔時間。
 
 每分鐘 10 次呼叫的頻率限制原則生效時，在超出頻率限制之前，從最初成功呼叫產品 10 次後需要經過 60 秒，否則後續的呼叫會失敗。在本範例中，剩餘間隔為 54 秒。
 
@@ -293,4 +294,4 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 [Limit call rate]: https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate
 [Set usage quota]: https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016-->

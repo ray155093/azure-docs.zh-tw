@@ -27,6 +27,7 @@
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
+<br>
 
 > [AZURE.NOTE] 如果您會從 Windows 電腦執行這項工作，可以使用 PuTTY 來 SSH 到 Linux 機器。如需詳細資訊，請參閱[如何登入執行 Linux 的虛擬機器](virtual-machines-linux-classic-log-on.md)。
 
@@ -40,9 +41,11 @@
 
     #sudo yum install waagent
 
-如為 Oracle Linux，請確定已啟用 `Addons` 儲存機制。視您的情況，編輯檔案 `/etc/yum.repo.d/public-yum-ol6.repo`(Oracle Linux 6) 或 `/etc/yum.repo.d/public-yum-ol7.repo`(Oracle Linux)，將此檔案中 **[ol6\_addons]** 或 **[ol7\_addons]** 底下的 `enabled=0` 一行變更為 `enabled=1`。
+
+針對 Oracle Linux，請確定已啟用 `Addons` 儲存機制。視您的情況，編輯檔案 `/etc/yum.repos.d/public-yum-ol6.repo`(Oracle Linux 6) 或 `/etc/yum.repos.d/public-yum-ol7.repo`(Oracle Linux)，然後將此檔案中 **[ol6\_addons]** 或 **[ol7\_addons]** 底下的 `enabled=0` 一行變更為 `enabled=1`。
 
 接下來，若要安裝最新版的 Azure Linux 代理程式，請輸入：
+
 
     #sudo yum install WALinuxAgent
 
@@ -50,11 +53,21 @@
 
 Oracle Linux 6 虛擬機器︰
 
-  [ol6\_addons] name=Add-Ons for Oracle Linux $releasever ($basearch) baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/addons/x86\_64 gpgkey=http://public-yum.oracle.com/RPM-GPG-KEY-oracle-ol6 gpgcheck=1 enabled=1
+    [ol6_addons]
+    name=Add-Ons for Oracle Linux $releasever ($basearch)
+    baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL6/addons/x86_64
+    gpgkey=http://public-yum.oracle.com/RPM-GPG-KEY-oracle-ol6
+    gpgcheck=1
+    enabled=1
 
 Oracle Linux 7 虛擬機器︰
 
-  [ol7\_addons] name=Oracle Linux $releasever Add ons ($basearch) baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL7/addons/$basearch/ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle gpgcheck=1 enabled=0
+    [ol7_addons]
+    name=Oracle Linux $releasever Add ons ($basearch)
+    baseurl=http://public-yum.oracle.com/repo/OracleLinux/OL7/addons/$basearch/
+    gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+    gpgcheck=1
+    enabled=0
 
 然後輸入：
 
@@ -118,7 +131,7 @@ Oracle Linux 7 虛擬機器︰
 
 ### 針對 2.1.x 版本，請使用：
 
-您可能需要先安裝封裝 `setuptools`，請參閱[此處](https://pypi.python.org/pypi/setuptools)。然後，執行：
+您可能需要先安裝套件 `setuptools`，請參閱[這裡](https://pypi.python.org/pypi/setuptools)。然後，執行：
 
     #sudo python setup.py install
 
@@ -144,6 +157,6 @@ Oracle Linux 7 虛擬機器︰
 
 您會看到 Azure Linux 代理程式版本已更新為新的版本。
 
-如需 Azure Linux 代理程式的詳細資訊，請參閱 [Azure Linux 代理程式讀我檔案](https://github.com/Azure/WALinuxAgent)。
+如需有關「Azure Linux 代理程式」的詳細資訊，請參閱 [Azure Linux 代理程式讀我檔案](https://github.com/Azure/WALinuxAgent)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0803_2016-->

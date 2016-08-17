@@ -18,6 +18,10 @@
 
 # 將資料從 Azure 儲存體 Blob 複製到資料湖存放區
 
+> [AZURE.SELECTOR]
+- [使用 DistCp](data-lake-store-copy-data-wasb-distcp.md)
+- [使用 AdlCopy](data-lake-store-copy-data-azure-storage-blob.md)
+
 Azure Data Lake Store 提供命令列工具 [AdlCopy](http://aka.ms/downloadadlcopy) 以從下列來源複製資料：
 
 * 從 Azure 儲存體 Blob 複製到 Data Lake Store 中。您無法使用 AdlCopy 將資料從資料湖存放區複製到 Azure 儲存體 Blob。
@@ -169,4 +173,4 @@ Azure Data Lake Store 提供命令列工具 [AdlCopy](http://aka.ms/downloadadlc
 - [搭配資料湖存放區使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 - [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

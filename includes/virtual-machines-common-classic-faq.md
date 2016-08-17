@@ -3,6 +3,14 @@
 
 本文可解決以傳統部署模型建立之 Azure 虛擬機器的一些使用者常見問題。
 
+## 我是否可以將在傳統部署模型中建立的 VM 移轉到新的 Resource Manager 模型？
+
+是。如需有關如何移轉的指示，請參閱：
+
+- [使用 Azure PowerShell 從傳統移轉至 Azure Resource Manager](../articles/virtual-machines/virtual-machines-windows-ps-migration-classic-resource-manager.md)。
+
+- [使用 Azure CLI 從傳統移轉至 Azure Resource Manager](../articles/virtual-machines/virtual-machines-linux-cli-migration-classic-resource-manager.md)。
+
 ## 我可以在 Azure VM 上執行什麼？
 
 所有的訂閱者都可以在 Azure 虛擬機器上執行伺服器軟體。您可以執行最新版本的 Windows Server，以及各種 Linux 散發套件。如需支援的詳細資料，請參閱：
@@ -29,7 +37,7 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 ## 可以使用哪些虛擬硬碟類型？
 
-Azure 僅支援固定的 VHD 格式虛擬硬碟。如果您想要在 Azure 中使用 VHDX，則需要先使用 Hyper-V 管理員或 [convert-VHD](http://go.microsoft.com/fwlink/p/?LinkId=393656) Cmdlet 進行轉換。接著，請使用 [Add-AzureVHD](https://msdn.microsoft.com/library/azure/dn495173.aspx) Cmdlet (以 [服務管理] 模式) 將 VHD 上傳到 Azure 中的儲存體帳戶，您便可以在虛擬機器上使用。
+Azure 僅支援固定的 VHD 格式虛擬硬碟。如果您想要在 Azure 中使用 VHDX，則需要先使用「Hyper-V 管理員」或 [convert-VHD](http://go.microsoft.com/fwlink/p/?LinkId=393656) Cmdlet 進行轉換。接著，請使用 [Add-AzureVHD](https://msdn.microsoft.com/library/azure/dn495173.aspx) Cmdlet (以 [服務管理] 模式) 將 VHD 上傳到 Azure 中的儲存體帳戶，您便可以在虛擬機器上使用。
 
 - 如需適用於 Linux 的指示，請參閱[建立及上傳含有 Linux 作業系統的虛擬硬碟](../articles/virtual-machines/virtual-machines-linux-classic-create-upload-vhd.md)。
 
@@ -53,7 +61,7 @@ Azure 僅支援固定的 VHD 格式虛擬硬碟。如果您想要在 Azure 中�
 
 您需要建立遠端連線以登入虛擬機器，針對 Windows VM，請使用遠端桌面連線；針對 Linux VM，請使用安全殼層 (SSH)。如需相關指示，請參閱：
 
-- [如何登入執行 Windows Server 的虛擬機器](../articles/virtual-machines/virtual-machines-windows-classic-connect-logon.md)：最多支援 2 個並行連線，除非伺服器設定為遠端桌面服務工作階段主機。  
+- [如何登入執行 Windows Server 的虛擬機器](../articles/virtual-machines/virtual-machines-windows-classic-connect-logon.md)：最多支援 2 個並行連線，除非伺服器設定為遠端桌面服務工作階段主機。
 - [如何登入執行 Linux 的虛擬機器](../articles/virtual-machines/virtual-machines-linux-classic-log-on.md)。根據預設，SSH 允許最多 10 個並行連線。您可以編輯組態檔以增加這個數字。
 
 
@@ -138,6 +146,8 @@ Azure 有時會重新啟動您的 VM，這是 Azure 資料中心中定期、計�
 
 若要提供備援，請在相同的可用性集合中放入兩個以上同樣設定的 VM。這有助於確保在計劃性或非計劃性的維護期間，至少有一個 VM 仍可使用。Azure 保證此組態的 VM 可用性特定層級。如需詳細資訊，請參閱[管理虛擬機器的可用性](../articles/virtual-machines/virtual-machines-windows-manage-availability.md)。
 
+
+
 ## 其他資源
 
 [關於 Azure 虛擬機器](../articles/virtual-machines/virtual-machines-linux-about.md)
@@ -145,3 +155,5 @@ Azure 有時會重新啟動您的 VM，這是 Azure 資料中心中定期、計�
 [建立 Linux 虛擬機器的不同方式](../articles/virtual-machines/virtual-machines-linux-creation-choices.md)
 
 [建立 Windows 虛擬機器的不同方式](../articles/virtual-machines/virtual-machines-windows-creation-choices.md)
+
+<!---HONumber=AcomDC_0803_2016-->

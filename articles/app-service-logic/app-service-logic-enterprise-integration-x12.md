@@ -1,7 +1,7 @@
 <properties 
 	pageTitle="X12 與企業整合套件的概觀 | Microsoft Azure App Service | Microsoft Azure" 
 	description="了解如何使用 X12 合約來建立 Logic Apps" 
-	services="app-service\logic" 
+	services="logic-apps" 
 	documentationCenter=".net,nodejs,java"
 	authors="msftman" 
 	manager="erikre" 
@@ -189,4 +189,4 @@
 ## 詳細資訊
 - [深入了解企業整合套件](./app-service-logic-enterprise-integration-overview.md "了解企業整合套件")
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

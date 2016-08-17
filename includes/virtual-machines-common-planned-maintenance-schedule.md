@@ -8,7 +8,7 @@
 單一執行個體和多重執行個體的 VM 計劃性維護更新會分別發生。藉由將 VM 重新設定維單一執行個體 (如果它們是多重執行個體)，或設定為多重執行個體 (如果它們是單一執行個體)，您可以控制其 VM 收到計劃性維護的時間。如需 Azure VM 計劃性維護的詳細資料，請參閱 [Azure Linux 虛擬機器的維護計劃](../articles/virtual-machines/virtual-machines-linux-planned-maintenance.md)或 [Azure Windows 虛擬機器的維護計劃](../articles/virtual-machines/virtual-machines-windows-planned-maintenance.md)。
 
 ## 對於多重執行個體組態
-您可以藉由將 VM 從可用性設定組移除，以選取計劃性維護影響部署在可用性設定組設定中之 VM 的時間。
+您可以藉由將 VM 從可用性設定組中移除，來選取計劃性維護影響部署在「可用性設定組」組態中之 VM 的時間。
 
 1.	在計劃性維護 7 天前，會傳送電子郵件給您在多重執行個體設定中的 VM。受影響多重執行個體的訂用帳戶識別碼和名稱會包含在電子郵件將電子郵件的本文中。
 
@@ -16,7 +16,7 @@
 
 3.	您可以在傳統入口網站中從可用性設定組移除 VM。
    
-    1.	在傳統入口網站中，按一下 VM，然後選取 [設定]。 
+    1.	在傳統入口網站中，按一下 VM，然後選取 [設定]。
 
     2.	在 [設定] 下方，您可以看到 VM 所在的可用性設定組。
 
@@ -43,7 +43,7 @@ Get-AzureVM -ServiceName "<VmCloudServiceName>" -Name "<VmName>" | Remove-AzureA
 
 逐步說明
 
-1.	在計劃性維護 7 天前，會傳送電子郵件給單一執行個體設定中的 VM。受影響單一執行個體的訂用帳戶識別碼和名稱會包含在電子郵件將電子郵件的本文中。 
+1.	在計劃性維護 7 天前，會傳送電子郵件給單一執行個體設定中的 VM。受影響單一執行個體的訂用帳戶識別碼和名稱會包含在電子郵件將電子郵件的本文中。
 
 2.	在這 7 天內，您可以藉由移動單一執行個體 VM (方法是將它們移至相同區域中的可用性設定組)，以選擇執行個體重新啟動的時間。此設定中的變更會導致重新開機，因為虛擬機器正在從一部以維護為目標的實體主機，移至另一部不是以維護為目標的實體主機。
 
@@ -64,3 +64,5 @@ Get-AzureVM -ServiceName "<VmCloudServiceName>" -Name "<VmName>" | Remove-AzureA
 <!--Link references-->
 [Virtual Machines Manage Availability]: virtual-machines-windows-tutorial.md
 [Understand planned versus unplanned maintenance]: virtual-machines-manage-availability.md#Understand-planned-versus-unplanned-maintenance/
+
+<!---HONumber=AcomDC_0803_2016-->

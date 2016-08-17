@@ -1,7 +1,7 @@
 <properties
 pageTitle="了解如何在您的邏輯應用程式中使用 SFTP 連接器 | Microsoft Azure"
 description="使用 Azure App Service 建立邏輯應用程式。連接到 SFTP API 來傳送及接收檔案。您可以執行各種作業，例如建立、更新、取得或刪除檔案。"
-services="app-servicelogic"	
+services="logic-apps"	
 documentationCenter=".net,nodejs,java" 	
 authors="msftman"	
 manager="erikre"	
@@ -419,4 +419,4 @@ BlobMetadata
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

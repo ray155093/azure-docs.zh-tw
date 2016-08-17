@@ -11,7 +11,7 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="07/22/2016" 
+    ms.date="08/02/2016" 
     ms.author="markvi" />
 
 
@@ -98,7 +98,7 @@ ADFS 權杖必須要有下列宣告，Azure Active Directory 才能撤銷用戶�
 ### Exchange ActiveSync 用戶端支援 
 
 
-支援 iOS 9 或更新版本上的某些 Exchange ActiveSync 應用程式。若要判斷電子郵件應用程式是否支援這項功能，請連絡您的應用程式開發人員。
+iOS 9 或更新版本支援原生 iOS 郵件用戶端。針對其他所有 Exchange ActiveSync 應用程式，若要判斷這項功能是否受支援，請連絡您的應用程式開發人員。
 
 
 
@@ -278,4 +278,4 @@ ADFS 權杖必須要有下列宣告，Azure Active Directory 才能撤銷用戶�
 <!--Image references-->
 [1]: ./media/active-directory-certificate-based-authentication-ios/ic195031.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

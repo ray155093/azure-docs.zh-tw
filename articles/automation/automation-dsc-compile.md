@@ -208,7 +208,7 @@ Azure 自動化 DSC 組態和 Runbook 中的資產參考是相同的。如需詳
     	}
     }
 
-您可以使用 PowerShell 編譯上述 DSC 組態。PowerShell 會將以下兩個節點組態新增至 Azure Automation DSC 提取伺服器：**CredentialSample.MyVM1** 和 **CredentialSample.MyVM2**：
+您可以使用 PowerShell 編譯上述 DSC 組態。PowerShell 會將以下兩個節點組態新增至 Azure Automation DSC 提取伺服器：**CredentialSample.MyVM1** 和 **CredentialSample.MyVM2**。
 
 
     $ConfigData = @{
@@ -228,4 +228,4 @@ Azure 自動化 DSC 組態和 Runbook 中的資產參考是相同的。如需詳
     
     Start-AzureRmAutomationDscCompilationJob -ResourceGroupName "MyResourceGroup" -AutomationAccountName "MyAutomationAccount" -ConfigurationName "CredentialSample" -ConfigurationData $ConfigData
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

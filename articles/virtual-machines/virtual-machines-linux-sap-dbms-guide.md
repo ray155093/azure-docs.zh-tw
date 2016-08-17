@@ -14,7 +14,7 @@
    ms.topic="campaign-page"
    ms.tgt_pltfrm="vm-linux"
    ms.workload="na"
-   ms.date="05/17/2016"
+   ms.date="08/02/2016"
    ms.author="sedusch"/>
 
 # Azure 虛擬機器 (VM) 上的 SAP NetWeaver - DBMS 部署指南
@@ -445,7 +445,7 @@ ___
 > ![Linux][Logo_Linux] Linux
 >
 > 只支援使用 MDADM 和 LVM (邏輯磁碟區管理員) 在 Linux 上建立軟體 RAID。如需詳細資訊，請參閱下列文章：
-> * [在 Linux 上設定軟體 RAID][virtual-machines-linux-configure-raid] (適用於 MDADM)
+> * [在 Linux 上設定軟體 RAID][virtual-machines-linux-configure-raid] \(適用於 MDADM)
 > * [設定 Azure 中 Linux VM 的 LVM][virtual-machines-linux-configure-lvm]
 
 
@@ -1137,7 +1137,7 @@ SAP 目前支援 SAP ASE 版本 16.0，可與 SAP 商務套件產品搭配使用
 針對備份 / 還原功能，利用與標準 Windows Server 作業系統和 Hyper-V 上所做的相同方式來支援 SAP BR*Tools for Oracle。Oracle 復原管理員 (RMAN) 也支援備份至磁碟，以及從磁碟還原。
 
 #### 高可用性
-[註解]: <> (連結是指 ASM)
+[註解]: <> (連結是指 ASM) 
 基於高可用性和災害復原目的支援 Oracle Data Guard。如需詳細資料，請參閱[這份][virtual-machines-windows-classic-configure-oracle-data-guard]文件。
 
 #### 其他
@@ -1358,4 +1358,4 @@ SAP 快取伺服器是一個額外的伺服器架構元件，可提供在本機�
 
 另請參閱 [適用於 Azure 上 SAP 的一般 SQL Server 摘要][dbms-guide-5.8]。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

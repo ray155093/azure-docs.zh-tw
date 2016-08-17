@@ -1,7 +1,7 @@
 <properties
    pageTitle="邏輯應用程式案例︰建立 Azure Functions 服務匯流排觸發程序 | Microsoft Azure"
    description="使用 Azure Functions 建立邏輯應用程式的服務匯流排觸發程序"
-   services="app-service\logic,functions"
+   services="logic-apps,functions"
    documentationCenter=".net,nodejs,java"
    authors="jeffhollan"
    manager="dwrede"
@@ -66,4 +66,4 @@
 [1]: ./media/app-service-logic-scenario-function-sb-trigger/manualTrigger.PNG
 [2]: ./media/app-service-logic-scenario-function-sb-trigger/newQueueTriggerFunction.PNG
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

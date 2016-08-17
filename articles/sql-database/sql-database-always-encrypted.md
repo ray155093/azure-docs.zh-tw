@@ -320,7 +320,7 @@ SSMS 提供一個精靈，透過設定加密資料行主要金鑰 (CMK)、資料
         {
             int returnValue = 0;
 
-            string sqlCmdText = @"INSERT INTO [dbo].[Patients] \([SSN], [FirstName], [LastName], [BirthDate])
+            string sqlCmdText = @"INSERT INTO [dbo].[Patients] ([SSN], [FirstName], [LastName], [BirthDate])
          VALUES (@SSN, @FirstName, @LastName, @BirthDate);";
 
             SqlCommand sqlCmd = new SqlCommand(sqlCmdText);
@@ -537,7 +537,7 @@ SSMS 提供一個精靈，透過設定加密資料行主要金鑰 (CMK)、資料
 - 從不同的電腦執行此範例。它無法存取加密金鑰，因此無法存取純文字資料也無法成功執行。
 - [旋轉和清除金鑰](https://msdn.microsoft.com/library/mt607048.aspx)。
 - [Migrate data that is already encrypted with Always Encrypted (移轉已使用 [永遠加密] 加密的資料)](https://msdn.microsoft.com/library/mt621539.aspx)
-- 將 [永遠加密] 憑證部署至其他用戶端電腦。
+- [將 [永遠加密] 憑證部署到其他用戶端電腦](https://msdn.microsoft.com/library/mt723359.aspx#Anchor_1) (請參閱標題為 *Making Certificates Available to Applications and Users (使憑證可供應用程式和使用者使用)* 的區段)。
 
 
 ## 相關資訊
@@ -548,4 +548,4 @@ SSMS 提供一個精靈，透過設定加密資料行主要金鑰 (CMK)、資料
 - [Always Encrypted Wizard (永遠加密精靈)](https://msdn.microsoft.com/library/mt459280.aspx)
 - [Always Encrypted Blog (永遠加密部落格)](http://blogs.msdn.com/b/sqlsecurity/archive/tags/always-encrypted/)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0803_2016-->

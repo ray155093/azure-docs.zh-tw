@@ -1,7 +1,7 @@
 <properties
 pageTitle="了解如何在邏輯應用程式中使用 FTP 連接器 | Microsoft Azure"
 description="使用 Azure App Service 建立邏輯應用程式。連線到 FTP 伺服器來管理您的檔案。您可以執行各種動作，例如上傳、更新、取得及刪除 FTP 伺服器中的檔案。"
-services="app-servicelogic"	
+services="logic-apps"	
 documentationCenter=".net,nodejs,java" 	
 authors="msftman"	
 manager="erikre"	
@@ -438,4 +438,4 @@ BlobMetadata
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!----HONumber=AcomDC_0803_2016-->

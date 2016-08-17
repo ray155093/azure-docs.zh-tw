@@ -1,7 +1,7 @@
 <properties
 pageTitle="Trello | Microsoft Azure"
 description="使用 Azure App Service 建立邏輯應用程式。Trello 讓您無論在辦公室及在家都能管理所有專案。您可以用簡單、免費、具彈性且以視覺的方式來管理專案並組織所有項目。連線到 Trello 以管理面板、清單和卡片"
-services="app-servicelogic"	
+services="logic-apps"	
 documentationCenter=".net,nodejs,java" 	
 authors="msftman"	
 manager="erikre"	
@@ -610,4 +610,4 @@ Trello 連接器可當成動作使用，它有觸發程序。所有連接器都�
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

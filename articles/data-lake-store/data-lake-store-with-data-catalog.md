@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="05/17/2016"
+   ms.date="08/02/2016"
    ms.author="nitinme"/>
 
 # 在 Azure 資料目錄中從 Data Lake Store 註冊資料
@@ -94,4 +94,4 @@
 * [記錄資料目錄中的資料來源](../data-catalog/data-catalog-how-to-documentation.md)
 * [整合 Data Lake Store 與其他 Azure 服務](data-lake-store-integrate-with-other-services.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

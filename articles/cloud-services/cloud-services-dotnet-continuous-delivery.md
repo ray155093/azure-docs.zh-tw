@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="05/08/2016"
+	ms.date="07/30/2016"
 	ms.author="tarcher"/>
 
 # Azure 中雲端服務的連續傳遞
@@ -69,7 +69,7 @@
 
         MSBuild /t:Publish /p:TargetProfile=Cloud
 
-6.  指定輸出的位置。使用 /p:PublishDir=*Directory*\\ 選項來設定路徑 (包括最後的反斜線分隔符號)，如下列範例所示：
+6.  指定輸出的位置。使用 /p:PublishDir=Directory\\ 選項來設定路徑 (包括最後的反斜線分隔符號)，如下列範例所示：
 
         MSBuild /target:Publish /p:PublishDir=\\myserver\drops\
 
@@ -83,7 +83,7 @@
 
 1.  在開發電腦上的 Visual Studio 中，於 [檢視] 功能表上，選取 [**Team Explorer**] 或選取 Ctrl+\\、Ctrl+M。在 Team Explorer 視窗中，展開 [**組建**] 節點或選擇 [**組建**] 頁面，然後選擇 [**新增組建定義**]。
 
-    ![][0]
+    ![新增組建定義選項][0]
 
 2.  選擇 [觸發程序] 索引標籤，然後指定所需的條件來代表套件的組建時機。例如，指定 [連續整合]，會在每次發生原始檔控制簽入時建置套件。
 
@@ -95,7 +95,7 @@
 
 6.  選擇 [MSBuild 引數]，然後依上面步驟 2 所述，設定適當的 MSBuild 命令列引數。例如，輸入 **/t:Publish /p:PublishDir=\\\myserver\\drops\** 以建置套件，並將套件檔複製至位置 \\\myserver\\drops\\：
 
-    ![][2]
+    ![MSBuild 引數][2]
 
     **：**將檔案複製至公用共用，將可更輕鬆地手動從開發電腦部署套件。
 
@@ -204,7 +204,7 @@
         PublishScriptLocation
         ServiceName
 
-    ![][3]
+    ![引數清單][3]
 
     對應的 XAML 看起來如下：
 
@@ -256,7 +256,7 @@
 
         -   PublishScriptFilePath，型別為 String
 
-            ![][4]
+            ![新變數][4]
 
     4.  如果您使用 TFS 2012 或更早版本，請在新序列的開頭新增 ConvertWorkspaceItem 活動。如果您使用 TFS 2013 或更新版本，請在新序列的開頭新增 GetLocalPath 活動。針對 ConvertWorkspaceItem，請依以下方式設定內容：Direction=ServerToLocal、DisplayName='Convert publish script filename'、Input=' PublishScriptLocation'、Result='PublishScriptFilePath'、Workspace='Workspace'。針對 GetLocalPath 活動，請將內容 IncomingPath 設定為 'PublishScriptLocation'，以及將 Result 設定為 'PublishScriptFilePath'。此活動會將發佈指令碼的路徑從 TFS 伺服器位置 (如果適用的話) 轉換為標準本機磁碟路徑。
 
@@ -284,7 +284,7 @@
 
     在設計工具中，發佈工作流程活動的最終結果將看起來如下：
 
-    ![][5]
+    ![工作流程活動][5]
 
     在 XAML 中，發佈工作流程活動的最終結果將看起來如下：
 
@@ -343,7 +343,7 @@
 
     8.  SubscriptionName = 'default'
 
-    ![][6]
+    ![參數屬性值][6]
 
 10. 儲存組建定義的變更。
 
@@ -573,4 +573,4 @@ Write-Output "$(Get-Date -f $timeStampFormat) - Azure Cloud Service deploy scrip
   [5]: ./media/cloud-services-dotnet-continuous-delivery/common-task-tfs-05.png
   [6]: ./media/cloud-services-dotnet-continuous-delivery/common-task-tfs-06.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,8 +1,8 @@
 <properties
-	pageTitle="CDN - 進階 HTTP 報告"
+	pageTitle="Azure CDN 進階 HTTP 報告 | Microsoft Azure"
 	description="Microsoft Azure CDN 中的進階 HTTP 報告。這些報告提供有關 CDN 活動的詳細資訊。"
 	services="cdn"
-	documentationCenter=".NET"
+	documentationCenter=""
 	authors="camsoper"
 	manager="erikre"
 	editor=""/>
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/11/2016"
+	ms.date="07/28/2016"
 	ms.author="casoper"/>
 
 # Microsoft Azure CDN 中的進階 HTTP 報告
@@ -28,13 +28,15 @@
 
 1. 在 CDN 設定檔刀鋒視窗中，按一下 [管理] 按鈕。
 
-	![CDN 設定檔刀鋒視窗管理按鈕](./media/cdn-advanced-http-reports/cdn-manage-btn.png)
+	![[CDN 設定檔] 刀鋒視窗的 [管理] 按鈕](./media/cdn-advanced-http-reports/cdn-manage-btn.png)
 
 	CDN 管理入口網站隨即開啟。
 
 2. 將滑鼠暫留在 [分析] 索引標籤，然後暫留在 [進階 HTTP 報告] 彈出式視窗。按一下 [HTTP 大型平台]。
 
-	報告選項即使顯示。
+	![CDN 管理入口網站 - 進階報告功能表](./media/cdn-advanced-http-reports/cdn-advanced-reports.png)
+
+	報告選項隨即顯示。
 
 ## 地理位置報告 (以地圖為基礎)
 
@@ -196,4 +198,4 @@
 * [使用規則引擎覆寫預設的 HTTP 行為](cdn-rules-engine.md)
 * [分析邊緣效能](cdn-edge-performance.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0803_2016-->

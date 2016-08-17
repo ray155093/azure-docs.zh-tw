@@ -3,7 +3,7 @@
    description="此頁面描述 Azure SQL Database 的部分一般限制，以及互通性與支援的範圍。"
    services="sql-database"
    documentationCenter="na"
-   authors="carlrabeler"
+   authors="CarlRabeler"
    manager="jhubbard"
    editor="monicar" />
 <tags
@@ -63,4 +63,4 @@ Microsoft Azure SQL Database 使用的預設資料庫定序是 **SQL\_LATIN1\_GE
 
 - 如需驅動程式的可用性和 SQL Database 支援的相關資訊，請參閱 [SQL Database 與 SQL Server 的連線庫](sql-database-libraries.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0803_2016-->

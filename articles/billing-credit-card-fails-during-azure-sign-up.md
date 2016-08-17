@@ -1,12 +1,12 @@
 <properties
 	pageTitle="註冊時信用卡或金融卡遭到拒絕 | Microsoft Azure"
 	description="討論 Microsoft Azure 註冊問題的常見原因，例如信用卡或金融卡遭到拒絕。"
-	services="billing"
+	services=""
 	documentationCenter=""
 	authors="jiangchen79"
 	manager="felixwu"
 	editor=""
-	tags="top-support-issue"
+	tags="billing,top-support-issue"
 	keywords="信用卡遭到拒絕, 金融卡遭到拒絕, 您的信用卡遭到拒絕, 不接受信用卡"/>
 
 <tags
@@ -41,4 +41,4 @@
 
 若要啟動發票的設定程序，請參閱[Azure 帳單 - 如何開立發票](https://azure.microsoft.com/pricing/invoicing/)以取得詳細資訊。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

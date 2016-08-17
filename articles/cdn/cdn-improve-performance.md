@@ -1,8 +1,8 @@
 <properties
-	pageTitle="CDN - 藉由壓縮檔案來改善效能"
-	description="您可以藉由壓縮檔案來改善檔案傳輸速度並增加頁面載入效能。"
+	pageTitle="在 Azure CDN 中壓縮檔案以改善效能 | Microsoft Azure"
+	description="了解如何藉由在 Azure CDN 中壓縮檔案來改善檔案傳輸速度並增加頁面載入效能。"
 	services="cdn"
-	documentationCenter=".NET"
+	documentationCenter=""
 	authors="camsoper"
 	manager="erikre"
 	editor=""/>
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/06/2016"
+	ms.date="07/28/2016"
 	ms.author="casoper"/>
 
 # 藉由壓縮檔案來改善效能
@@ -126,4 +126,4 @@
 ## 另請參閱
 - [CDN 檔案壓縮疑難排解](cdn-troubleshoot-compression.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,11 +1,13 @@
 <properties
    pageTitle="Cloud Cruiser 和 Microsoft Azure 計費 API 整合 | Microsoft Azure"
    description="提供 Microsoft Azure 計費合作夥伴 Cloud Cruiser 將 Azure 計費 API 整合至其產品的經驗所得來的獨特觀點。這特別適用於有興趣使用/嘗試將 Cloud Cruiser 用於 Microsoft Azure Pack 的客戶。"
-   services="billing"
+   services=""
    documentationCenter=""
    authors="BryanLa"
    manager="mbaldwin"
-   editor=""/>
+   editor=""
+   tags="billing"
+   />
 
 <tags
    ms.service="billing"
@@ -235,4 +237,4 @@ Cloud Cruiser 活頁簿提供自動化的方式收集和處理來自 Usage API �
 [13]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/4_NewTagField.png "圖 13 - 建立新的標記資訊欄位"
 [14]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/5_PopulateAccountStructure.png "圖 14 - 利用來自查閱的資訊填入帳戶結構中"
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0803_2016-->

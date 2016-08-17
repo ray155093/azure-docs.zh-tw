@@ -1,5 +1,5 @@
 <properties
-	pageTitle="建立和管理相應放大的 Azure SQL Database | Micosoft Azure"
+	pageTitle="使用彈性工作建立和管理相應放大的 Azure SQL Database | Micosoft Azure"
 	description="逐步解說如何建立和管理彈性資料庫工作。"
 	services="sql-database"
 	documentationCenter=""
@@ -13,10 +13,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/27/2016"
+	ms.date="07/27/2016"
 	ms.author="ddove"/>
 
-# 建立和管理相應放大的 Azure SQL Database (預覽)
+# 使用彈性工作建立和管理相應放大的 Azure SQL Database (預覽)
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](sql-database-elastic-jobs-create-and-manage.md)
@@ -27,7 +27,7 @@
 
 ## 必要條件
 
-* Azure 訂閱。如需免費試用，請參閱[免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。
+* Azure 訂用帳戶。如需免費試用，請參閱[免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。
 * 彈性資料庫集區。請參閱[關於彈性資料庫集區](sql-database-elastic-pool.md)。
 * 安裝彈性資料庫工作服務元件。請參閱[安裝彈性資料庫工作服務](sql-database-elastic-jobs-service-installation.md)。
 
@@ -115,4 +115,4 @@
 
  
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0803_2016-->

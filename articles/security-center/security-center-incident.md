@@ -13,7 +13,7 @@
    ms.devlang="na"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/20/2016"
+   ms.date="08/03/2016"
    ms.author="yurid"/>
 
 # 在 Azure 資訊安全中心處理安全性事件 
@@ -56,11 +56,11 @@
 
 在本文件中，您已了解如何使用資訊安全中心的安全性事件功能。如要深入了解資訊安全中心，請參閱下列主題：
 
+- [管理及回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md)
+- [Azure 資訊安全中心的偵測功能](security-center-detection-capabilities.md)
 - [Azure 資訊安全中心規劃和操作指南](security-center-planning-and-operations-guide.md)
 - [管理及回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md)
-- [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健全狀況。
-- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健全狀況。
 - [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 尋找有關 Azure 安全性與相容性的部落格文章。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -1,6 +1,6 @@
 <properties 
-	pageTitle="使用混合式連線管理員 | Microsoft Azure App Service" 
-	description="在 Azure App Service 中安裝和設定混合式連線管理員，並連線至內部部署連接器" 
+	pageTitle="使用混合式連線管理員 | Microsoft Azure" 
+	description="在 Logic Apps 中安裝和設定混合式連線管理員，並連線至內部部署連接器" 
 	services="app-service\logic" 
 	documentationCenter=".net,nodejs,java"
 	authors="MandiOhlinger" 
@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/10/2016" 
+	ms.date="07/28/2016" 
 	ms.author="mandia"/>
 
-# 使用混合式連線管理員連線至 Azure App Service 中的內部部署連接器
+# 使用混合式連線管理員連線至內部部署連接器
 
->[AZURE.NOTE] 這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
+>[AZURE.NOTE] 這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。Logic Apps 公開上市 (GA) 版使用閘道來進行內部部署連線。深入了解新的[閘道](app-service-logic-gateway-connection.md)和 [Logic Apps GA](https://azure.microsoft.com/documentation/services/logic-apps/)。
 
-為了使用內部部署系統，Azure App Service 會使用混合式連線管理員。某些連結器可以連接到內部部署系統，例如 SQL Server、SAP、SharePoint 等等。
+為了使用內部部署系統，Logic Apps 會使用混合式連線管理員。某些連結器可以連接到內部部署系統，例如 SQL Server、SAP、SharePoint 等等。
 
 混合式連線管理員 (HCM) 是 Click Once 安裝程式，安裝在您的網路內防火牆後方的 IIS 伺服器上。HCM 會使用 Azure 服務匯流排轉送，向 Azure 中的連接器驗證內部部署系統。
 
@@ -87,7 +87,7 @@ TCP 連接埠 | 理由
  - 在 IIS 管理員 (inetmgr) 中，***MicrosoftAzureBizTalkHybridListener*** 網站應該會列出且在執行中。
  - 此網站使用以 *NetworkService* 本機內建使用者帳戶執行的 ***HybridListenerAppPool***。此 AppPool 也應該啟動。
 3. 在 IIS 伺服器上，確認該連接器已安裝且在執行中：
- - 已經為您的 App Service 連接器建立一個網站。例如，如果您已建立 SQL 連接器，則會有 ***MicrosoftSqlConnector\_nnn*** 網站。在 IIS 管理員 (inetmgr) 中，請確認此網站列出且已啟動。
+ - 已經為您的連接器建立一個網站。例如，如果您已建立 SQL 連接器，則會有 ***MicrosoftSqlConnector\_nnn*** 網站。在 IIS 管理員 (inetmgr) 中，請確認此網站列出且已啟動。
  - 此網站使用自己的 IIS 應用程式集區，名稱為 ***HybridAppPoolnnn***。此 AppPool 以 *NetworkService* 本機內建使用者帳戶執行。此網站和 AppPool 都應該啟動。
  - 瀏覽本機連接器。例如，如果您的連接器網站使用連接埠 6569，請瀏覽至 http://localhost:6569。因為沒有設定預設文件，所以會發生 `HTTP Error 403.14 - Forbidden error`。
 4. 在您的防火牆，請確認本主題列出的 TCP 連接埠已開啟。
@@ -140,4 +140,4 @@ TCP 連接埠 | 理由
 
  
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

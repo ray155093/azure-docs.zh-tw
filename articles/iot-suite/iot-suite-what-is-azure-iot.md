@@ -14,14 +14,14 @@
  ms.topic="get-started-article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="05/25/2016"
+ ms.date="08/09/2016"
  ms.author="dobett"/>
 
 [AZURE.INCLUDE [iot-azure-and-iot](../../includes/iot-azure-and-iot.md)]
 
 ## Azure IoT 套件
 
-Microsoft Azure IoT 套件是企業級解決方案，可透過一組可延伸的預先設定解決方案讓您快速入門，此方案可解決常見的 IoT 案例，例如[遠端監視][lnk-preconfigured-solutions]和[預測性維護][lnk-predictive-maintenance]。這些解決方案是先前所述的 IoT 解決方案架構的實作。
+Microsoft Azure IoT 套件是企業級解決方案，可透過一組可延伸的預先設定解決方案讓您快速入門，此方案可解決常見的 IoT 案例，例如[遠端監視][lnk-preconfigured-solutions]和[預測性維護][lnk-predictive-maintenance]。這些解決方案是本文章概述之 IoT 解決方案架構的實作。
 
 預先設定的解決方案是完整、實用的端對端解決方案，包含協助您開始的模擬裝置，還有預先設定的 Azure 服務，例如 [Azure IoT 中樞][]、[Azure 事件中樞][]、[Azure 串流分析][]、[Azure Machine Learning][] 和 [Azure 儲存體][]，以及解決方案特定的管理主控台。預先設定的解決方案包含已實證且已準備好用於生產環境的程式碼，您可以用來自訂及擴充，以實作您自己的特定 IoT 案例。
 
@@ -45,4 +45,4 @@ Microsoft Azure IoT 套件是企業級解決方案，可透過一組可延伸的
 [Azure 儲存體]: https://azure.microsoft.com/documentation/services/storage/
 [lnk-predictive-maintenance]: iot-suite-predictive-overview.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016-->

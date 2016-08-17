@@ -1,7 +1,7 @@
 <properties 
 	pageTitle="結構描述與企業整合套件的概觀 | Microsoft Azure App Service | Microsoft Azure" 
 	description="了解如何使用結構描述搭配企業整合套件與 Logic Apps" 
-	services="app-service\logic" 
+	services="logic-apps" 
 	documentationCenter=".net,nodejs,java"
 	authors="msftman" 
 	manager="erikre" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/08/2016" 
+	ms.date="07/29/2016" 
 	ms.author="deonhe"/>
 
 # 了解結構描述與企業整合套件  
@@ -30,7 +30,7 @@
 5. 在開啟的 [結構描述] 刀鋒視窗中選取 [新增] 按鈕 ![](./media/app-service-logic-enterprise-integration-schemas/schema-2.png)
 6. 輸入結構描述的**名稱**，接著，若要上傳結構描述檔案，可選取 [結構描述] 文字方塊右邊的資料夾圖示。完成上傳程序之後，選取 [確定] 按鈕。![](./media/app-service-logic-enterprise-integration-schemas/schema-3.png)
 7. 選取「鈴鐺」通知圖示，以查看結構描述上傳程序的進度。![](./media/app-service-logic-enterprise-integration-schemas/schema-4.png)
-8. 選取 [結構描述] 圖格。這會重新整理該圖格，而您應該會看到結構描述數目增加，反映已成功加入新的結構描述。選取 [結構描述] 圖格之後，您也會看見新加入的夥伴顯示於 [結構描述] 刀鋒視窗的右邊。![](./media/app-service-logic-enterprise-integration-schemas/schema-5.png)
+8. 選取 [結構描述] 圖格。這會重新整理該圖格，而您應該會看到結構描述數目增加，反映已成功加入新的結構描述。選取 [結構描述] 圖格之後，您也會看見新加入的結構描述顯示於 [結構描述] 刀鋒視窗的右邊。![](./media/app-service-logic-enterprise-integration-schemas/schema-5.png)
 
 
 ## 如何使用結構描述
@@ -57,4 +57,4 @@
 
       
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->

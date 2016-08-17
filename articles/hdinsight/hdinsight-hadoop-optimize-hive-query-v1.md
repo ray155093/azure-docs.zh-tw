@@ -33,8 +33,9 @@
 
 - 在佈建階段，您可以使用 Azure 入口網站、Azure PowerShell 或跨平台命令列介面指定背景工作節點的數目。如需詳細資訊，請參閱[佈建 HDInsight 叢集](hdinsight-provision-clusters.md)。下列畫面顯示 Azure 入口網站上的工作者節點組態：
 
-	![scaleout\_1][image-hdi-optimize-hive-scaleout\_1]
-- 在執行階段，您可以也相應放大叢集，而不需重新一個叢集。如下所示。![scaleout\_1][image-hdi-optimize-hive-scaleout\_2]
+	![scaleout_1][image-hdi-optimize-hive-scaleout_1]
+- 在執行階段，您可以也相應放大叢集，而不需重新一個叢集。如下所示。
+	![scaleout_1][image-hdi-optimize-hive-scaleout_2]
 
 如需 HDInsight 支援的各種虛擬機器的詳細資訊，請參閱 [HDInsight 定價](https://azure.microsoft.com/pricing/details/hdinsight/)。
 
@@ -42,7 +43,7 @@
 
 [Apache Tez](http://hortonworks.com/hadoop/tez/) 是 MapReduce 引擎的替代執行引擎：
 
-![tez\_1][image-hdi-optimize-hive-tez\_1]
+![tez_1][image-hdi-optimize-hive-tez_1]
 
 
 Tez 比較迅速，因為：
@@ -90,7 +91,7 @@ I/O 作業是執行 Hive 查詢的主要效能瓶頸。如果可以減少需要�
 
 Hive 分割的實作方法是將未經處理的資料重新整理成新的目錄，而每個分割區都有自己的目錄 - 其中的分割區是由使用者定義。下圖說明如何依據*年度* 資料行來分割 Hive 資料表。每年都會建立新的目錄。
 
-![partitioning][image-hdi-optimize-hive-partitioning\_1]
+![partitioning][image-hdi-optimize-hive-partitioning_1]
 
 一些分割考量：
 
@@ -215,6 +216,9 @@ ORC (最佳化的資料列單欄式) 格式是儲存 Hive 資料的高效率方�
 - [使用 HDInsight 上的 Hive 分析網站的記錄](hdinsight-hive-analyze-website-log.md)
 
 
-[image-hdi-optimize-hive-scaleout_1]: ./media/hdinsight-hadoop-optimize-hive-query-v1/scaleout_1.png [image-hdi-optimize-hive-scaleout_2]: ./media/hdinsight-hadoop-optimize-hive-query-v1/scaleout_2.png [image-hdi-optimize-hive-tez_1]: ./media/hdinsight-hadoop-optimize-hive-query-v1/tez_1.png [image-hdi-optimize-hive-partitioning_1]: ./media/hdinsight-hadoop-optimize-hive-query-v1/partitioning_1.png
+[image-hdi-optimize-hive-scaleout_1]: ./media/hdinsight-hadoop-optimize-hive-query-v1/scaleout_1.png 
+[image-hdi-optimize-hive-scaleout_2]: ./media/hdinsight-hadoop-optimize-hive-query-v1/scaleout_2.png 
+[image-hdi-optimize-hive-tez_1]: ./media/hdinsight-hadoop-optimize-hive-query-v1/tez_1.png 
+[image-hdi-optimize-hive-partitioning_1]: ./media/hdinsight-hadoop-optimize-hive-query-v1/partitioning_1.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!----HONumber=AcomDC_0727_2016-->

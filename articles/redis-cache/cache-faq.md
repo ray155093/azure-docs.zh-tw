@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/21/2016" 
+	ms.date="07/29/2016" 
 	ms.author="sdanie"/>
 
 # Azure Redis 快取常見問題集
@@ -28,6 +28,40 @@
 -	您可以將問題張貼在此常見問題集尾端的[討論串](#comments)，與 Azure 快取小組和其他社群成員交流此篇文章。
 -	若要觸及更多讀者，您可以將問題張貼在 [Azure Cache MSDN Forum (Azure 快取 MSDN 論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=azurecache)，與 Azure 快取小組和社群的其他成員交流。
 -	您也可以傳送電子郵件到下列信箱：[Azure 快取外部意見反應](mailto:azurecache@microsoft.com)。
+
+## Azure Redis 快取基本知識
+
+本節中的常見問題集涵蓋一些 Azure Redis 快取的基本知識。
+
+-    [何謂 Azure Redis 快取？](#what-is-azure-redis-cache)
+-    [我該如何開始使用 Azure Redis 快取？](#how-can-i-get-started-with-azure-redis-cache)
+
+下列常見問題集涵蓋關於 Azure Redis 快取的基本概念和問題，並在其他常見問題集其中一節有所解答。
+
+-	[應該使用哪個 Redis 快取供應項目和大小？](#what-redis-cache-offering-and-size-should-i-use)
+-	[我可以使用哪些 Redis 快取用戶端？](#what-redis-cache-clients-can-i-use)
+-	[Azure Redis 快取有本機模擬器嗎？](#is-there-a-local-emulator-for-azure-redis-cache)
+-	[如何監視快取的健全狀況和效能？](#how-do-i-monitor-the-health-and-performance-of-my-cache)
+
+
+### 何謂 Azure Redis 快取？
+
+Azure Redis 快取是以常用的開放原始碼 [Redis 快取](http://redis.io)為基礎。它可讓您從 Azure 內的任何應用程式存取由 Microsoft 管理的安全、專用 Redis 快取。如需更詳細的概觀，請參閱 Azure.com 上的 [Azure Redis 快取](https://azure.microsoft.com/services/cache/)產品頁面。
+
+
+### 我該如何開始使用 Azure Redis 快取？
+
+有數種方式可讓您開始使用 Azure Redis 快取。
+
+-    您可以查看我們針對 [.NET](cache-dotnet-how-to-use-azure-redis-cache.md)、[ASP.NET](cache-web-app-howto.md)、[Java](cache-java-get-started.md)、[Node.js](cache-nodejs-get-started.md) 和 [Python](cache-python-get-started.md) 提供的其中一套教學課程。
+-    您可以觀賞 [How to Build High Performance Apps Using Microsoft Azure Redis Cache (如何使用 Microsoft Redis 快取建立高效能 App)](https://azure.microsoft.com/documentation/videos/how-to-build-high-performance-apps-using-microsoft-azure-cache/)。
+-    您可以取出符合您專案開發語言用戶端的用戶端文件，來查看如何使用 Redis。有許多的 Redis 用戶端可和 Azure Redis 快取搭配使用。如需 Redis 用戶端的清單，請參閱 [http://redis.io/clients](http://redis.io/clients)。
+
+
+如果您還沒有 Azure 帳戶，您可以：
+
+-    [免費申請 Azure 帳戶](/pricing/free-trial/?WT.mc_id=redis_cache_hero)。您將獲得能用來試用 Azure 付費服務的額度。即使在額度用完後，您仍可保留帳戶並使用免費的 Azure 服務和功能。
+-    [啟用 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=redis_cache_hero)。您的 MSDN 訂用帳戶每月會提供您額度，您可以用在 Azure 付費服務。
 
 ## 規劃常見問題集
 
@@ -122,7 +156,7 @@ ConnectTimeout|連線作業的逾時 (毫秒)。| 如需指引，請參閱下方
 	-	雪球處理 - 有時，您可能會在重試此雪球時碰到問題，永遠無法復原。在此情況下，您應該考慮使用指數輪詢重試演算法 (如 Microsoft Patterns & Practices 群組所發佈的[重試一般指引](best-practices-retry-general.md)所述)。
 -	**逾時值**
 	-	請考慮您的工作負載，並據此設定值。如果您要儲存大的值，請將逾時設定為較高的值。
-	-	將 `AbortOnConnectFail` 設為 false，並讓 StackExchange.Redis 自動重新連線。
+	-	將 `AbortOnConnectFail` 設為 false，並讓 StackExchange.Redis 為您重新連線。
 	-	使用應用程式的單一 ConnectionMultiplexer 執行個體。您可以使用 LazyConnection 建立 Connection 屬性所傳回的單一執行個體 (如[使用 ConnectionMultiplexer 類別連線至快取](cache-dotnet-how-to-use-azure-redis-cache.md#connect-to-the-cache)所示)。
 	-	將 `ConnectionMultiplexer.ClientName` 屬性設定為應用程式執行個體唯一名稱，以進行診斷。
 	-	針對自訂工作負載，使用多個 `ConnectionMultiplexer` 執行個體。
@@ -142,7 +176,7 @@ Redis 最大的好處是，有許多用戶端支援許多不同的開發語言�
 <a name="cache-emulator"></a>
 ### Azure Redis 快取有本機模擬器嗎？
 
-Azure Redis 快取沒有本機模擬器，但您可以從本機電腦的 [Redis 命令列工具](https://github.com/MSOpenTech/redis/releases/)執行 MSOpenTech 版本的 redis-server.exe，連接它以取得類似本機快取模擬器的體驗，如下例所示。
+Azure Redis 快取沒有本機模擬器，但您可以從本機電腦的 [Redis 命令列工具](https://github.com/MSOpenTech/redis/releases/)執行 MSOpenTech 版本的 redis-server.exe，連接它以取得類似本機快取模擬器的體驗，如以下範例所示。
 
 
 	private static Lazy<ConnectionMultiplexer>
@@ -162,7 +196,7 @@ Azure Redis 快取沒有本機模擬器，但您可以從本機電腦的 [Redis 
 	    }
 
 
-如有需要，您也可以選擇設定 [redis.conf](http://redis.io/topics/config) 檔案以更貼近線上 Azure Redis 快取的[預設快取設定](cache-configure.md#default-redis-server-configuration)。
+如有需要，您也可以選擇性設定 [redis.conf](http://redis.io/topics/config) 檔案以更貼近線上 Azure Redis 快取的[預設快取設定](cache-configure.md#default-redis-server-configuration)。
 
 <a name="cache-commands"></a>
 ### 如何執行 Redis 命令？
@@ -181,7 +215,7 @@ Azure Redis 快取沒有本機模擬器，但您可以從本機電腦的 [Redis 
 <a name="cache-reference"></a>
 ### Azure Redis 快取為什麼沒有像一些其他 Azure 服務的 MSDN 類別庫參考？
 
-Microsoft Azure Redis 快取是以受歡迎的開放原始碼 Redis 快取為依據，並可透過各種不同的 [Redis 用戶端](http://redis.io/clients)來存取，這類用戶端適用於許多程式設計語言。每個用戶端都有它自己的 API，以使用 [Redis 命令](http://redis.io/commands)來呼叫 Redis 快取執行個體。
+Microsoft Azure Redis 快取是以受歡迎的開放原始碼 Redis 快取為基礎，並可透過各種不同的 [Redis 用戶端](http://redis.io/clients)來存取，這類用戶端適用於許多程式設計語言。每個用戶端都有它自己的 API，以使用 [Redis 命令](http://redis.io/commands)來呼叫 Redis 快取執行個體。
 
 因為每個用戶端都不同，所以 MSDN 上沒有一個集中式類別參考；而是每個用戶端都會維護其專屬的參考文件。除了參考文件之外，還有數個教學課程，可示範如何使用不同的語言和快取用戶端來開始使用 Azure Redis 快取。若要存取這些教學課程，請參閱[如何使用 Azure Redis 快取](cache-dotnet-how-to-use-azure-redis-cache.md)，然後在文章上方的語言切換器中，按一下所需的語言。
 
@@ -235,7 +269,7 @@ Redis 工具 (例如 `redis-cli`) 未使用 SSL 連接埠，但您可以遵循[�
 
 CLR 執行緒集區有兩種類型的執行緒：「背景工作」和「I/O 完成連接埠」(也稱為 IOCP) 執行緒。
 
--	背景工作執行緒用於處理 `Task.Run(…)` 或 `ThreadPool.QueueUserWorkItem(…)` 方法之類的作業。需要在背景執行緒上開啟工作時，CLR 中的各種元件也會使用這些執行緒。
+-	背景工作執行緒是用於處理 `Task.Run(…)` 或 `ThreadPool.QueueUserWorkItem(…)` 方法之類的作業。需要在背景執行緒上開啟工作時，CLR 中的各種元件也會使用這些執行緒。
 -	發生非同步 IO (例如從網路讀取) 時，會使用 IOCP 執行緒。
 
 執行緒集區可視需要提供新背景工作執行緒或 I/O 完成執行緒 (而不需要任何節流)，直到它到達每個類型執行緒的「最低」設定。根據預設，執行緒的數目下限設為系統上的處理器數目。
@@ -264,7 +298,7 @@ CLR 執行緒集區有兩種類型的執行緒：「背景工作」和「I/O 完
 
 如何設定這項設定：
 
--	在 ASP.NET 中，使用 web.config 中 `<processModel>` 組態元素下的 ["minIoThreads" 組態設定][]。如果您在 Azure 網站內執行，此設定不會透過組態選項公開。不過，您應該仍然能夠透過 global.asax.cs 的 Application\_Start 方法以程式設計方式設定 (如下所示)。
+-	在 ASP.NET 中，請使用 web.config 中 `<processModel>` 組態元素下的 ["minIoThreads" 組態設定][]。如果您在 Azure 網站內執行，此設定不會透過組態選項公開。不過，您應該仍然能夠透過 global.asax.cs 的 Application\_Start 方法以程式設計方式設定 (如下所示)。
 
 > **重要事項：**這個組態元素中指定的值是「每一核心」設定。例如，如果您有 4 核心的電腦，並且想要在執行階段將 minIOThreads 設為 200，您會使用 `<processModel minIoThreads="50"/>`。
 
@@ -285,7 +319,7 @@ CLR 執行緒集區有兩種類型的執行緒：「背景工作」和「I/O 完
 
 ## 監視與疑難排解常見問題集
 
-本節的常見問題集涵蓋常見的監視和疑難排解問題。如需監視和疑難排解 Azure Redis 快取執行個體的詳細資訊，請參閱[如何監視 Azure Redis 快取](cache-how-to-monitor.md)和[如何針對 Azure Redis 快取進行疑難排解](cache-how-to-troubleshoot.md)。
+本節的常見問題集涵蓋常見的監視和疑難排解問題。如需監視 Azure Redis 快取執行個體和進行疑難排解的詳細資訊，請參閱[如何監視 Azure Redis 快取](cache-how-to-monitor.md)和[如何針對 Azure Redis 快取進行疑難排解](cache-how-to-troubleshoot.md)。
 
 -	[如何監視快取的健全狀況和效能？](#how-do-i-monitor-the-health-and-performance-of-my-cache)
 -	[我的快取診斷儲存體帳戶設定已變更，發生了什麼事？](#my-cache-diagnostics-storage-account-settings-changed-what-happened)
@@ -298,18 +332,18 @@ CLR 執行緒集區有兩種類型的執行緒：「背景工作」和「I/O 完
 
 Microsoft Azure Redis 快取執行個體可以在 [Azure 入口網站](https://portal.azure.com)中進行監視。您可以檢視度量、將度量圖表釘選到「開始面板」、自訂監視圖表的日期和時間範圍、新增和移除圖表中的度量，以及設定符合特定條件時的警示。如需詳細資訊，請參閱[監視 Azure Redis 快取](cache-how-to-monitor.md)。
 
-Redis 快取 [設定] 刀鋒視窗的 [支援 + 疑難排解] 區段也包含數個工具，可用來監視和疑難排解您的快取。
+Redis 快取 [設定] 刀鋒視窗的 [支援 + 疑難排解] 區段也包含數個工具，可用來監視快取及進行疑難排解。
 
 -	**疑難排解**會提供常見問題的相關資訊，以及解決問題的策略。
--	**稽核記錄檔**會提供在快取上執行的動作相關資訊。您也可以使用篩選，來展開此檢視以包含其他資源。
--	**資源健康狀態**會監看您的資源，並告知您其是否正在如預期般執行。如需 Azure 資源健康狀態服務的詳細資訊，請參閱 [Azure 資源健康狀態概觀](../resource-health/resource-health-overview.md)。
--	**新增支援要求**提供選項來開啟快取的支援要求。
+-	**稽核記錄檔**會提供在快取上所執行動作的相關資訊。您也可以使用篩選，來展開此檢視以包含其他資源。
+-	**資源健康狀態**會監看您的資源，並告知您資源是否正如預期般執行。如需 Azure 資源健康狀態服務的詳細資訊，請參閱 [Azure 資源健康狀態概觀](../resource-health/resource-health-overview.md)。
+-	**新增支援要求**提供選項來提出快取的支援要求。
 
-這些工具可讓您監視 Azure Redis 快取執行個體的健全狀況，並協助您管理快取應用程式。如需詳細資訊，請參閱[支援和疑難排解設定](cache-configure.md#support-amp-troubleshooting-settings)。
+這些工具可讓您監視 Azure Redis 快取執行個體的健全狀況，並協助您管理快取應用程式。如需詳細資訊，請參閱[支援與疑難排解設定](cache-configure.md#support-amp-troubleshooting-settings)。
 
 ### 我的快取診斷儲存體帳戶設定已變更，發生了什麼事？
 
-在相同區域和訂用帳戶中，快取會共用相同的診斷儲存體設定，當組態變更時 (啟用/停用診斷或變更儲存體帳戶)，會套用至訂用帳戶中所有位於該區域的快取。如果適用於快取的診斷設定已變更，請進行檢查，以查看相同訂用帳戶與區域中其他快取的診斷設定是否已變更。有一個檢查方法是，針對 `Write DiagnosticSettings` 事件檢視快取的稽核記錄檔。如需使用稽核記錄檔的詳細資訊，請參閱[檢視事件和稽核記錄檔](../azure-portal/insights-debugging-with-events.md)及[使用 Resource Manager 來稽核作業](../resource-group-audit.md)。如需如何監視 Azure Redis 快取事件的詳細資訊，請參閱[作業和警示](cache-how-to-monitor.md#operations-and-alerts)。
+在相同區域和訂用帳戶中，快取會共用相同的診斷儲存體設定，當組態變更時 (啟用/停用診斷或變更儲存體帳戶)，會套用至訂用帳戶中所有位於該區域的快取。如果適用於快取的診斷設定已變更，請進行檢查，以查看相同訂用帳戶與區域中其他快取的診斷設定是否已變更。有一個檢查方法是，針對 `Write DiagnosticSettings` 事件檢視快取的稽核記錄檔。如需使用稽核記錄檔的詳細資訊，請參閱[檢視事件和稽核記錄檔](../azure-portal/insights-debugging-with-events.md)及[使用 Resource Manager 來稽核作業](../resource-group-audit.md)。如需有關監視 Azure Redis 快取事件的詳細資訊，請參閱[作業和警示](cache-how-to-monitor.md#operations-and-alerts)。
 
 ### 為什麼會針對某些新的快取啟用診斷，而不會針對其他快取啟用？
 
@@ -319,7 +353,7 @@ Redis 快取 [設定] 刀鋒視窗的 [支援 + 疑難排解] 區段也包含數
 <a name="cache-timeouts"></a>
 ### 為什麼看到逾時？
 
-用來與 Redis 溝通的用戶端發生逾時。在大多數的情況下，Redis 伺服器不會逾時。將命令傳送到 Redis 伺服器時，會將命令排入佇列，而且 Redis 伺服器最後會挑選並執行命令。不過，用戶端可能會在此程序期間逾時，而且，如果是這樣，則會在呼叫端引發例外狀況。如需疑難排解逾時問題的詳細資訊，請參閱[用戶端疑難排解](cache-how-to-troubleshoot.md#client-side-troubleshooting)和 [StackExchange.Redis 逾時例外狀況](用戶端疑難排解](cache-how-to-troubleshoot.md#stackexchangeredis-timeout-exceptions)。
+用來與 Redis 溝通的用戶端發生逾時。在大多數的情況下，Redis 伺服器不會逾時。將命令傳送到 Redis 伺服器時，會將命令排入佇列，而且 Redis 伺服器最後會挑選並執行命令。不過，用戶端可能會在此程序期間逾時，而且，如果是這樣，則會在呼叫端引發例外狀況。如需針對逾時問題進行疑難排解的詳細資訊，請參閱[用戶端疑難排解](cache-how-to-troubleshoot.md#client-side-troubleshooting)和 [StackExchange.Redis 逾時例外狀況](用戶端疑難排解](cache-how-to-troubleshoot.md#stackexchangeredis-timeout-exceptions)。
 
 '<-- 翻譯註解：中斷的連結：[StackExchange.Redis timeout exceptions](用戶端疑難排解](cache-how-to-troubleshoot.md#stackexchangeredis-timeout-exceptions)。應移除 "(用戶端疑難排解]"。 -->'
 
@@ -376,4 +410,4 @@ Redis 成功的另一個重要層面是建置健全、有活力的開放原始�
 
 ["minIoThreads" 組態設定]: https://msdn.microsoft.com/library/vstudio/7w2sway1(v=vs.100).aspx
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0803_2016-->
