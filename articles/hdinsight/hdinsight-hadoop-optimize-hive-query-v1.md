@@ -33,8 +33,9 @@
 
 - 在佈建階段，您可以使用 Azure 入口網站、Azure PowerShell 或跨平台命令列介面指定背景工作節點的數目。如需詳細資訊，請參閱[佈建 HDInsight 叢集](hdinsight-provision-clusters.md)。下列畫面顯示 Azure 入口網站上的工作者節點組態：
 
-	![scaleout\_1][image-hdi-optimize-hive-scaleout\_1]
-- 在執行階段，您可以也相應放大叢集，而不需重新一個叢集。如下所示。![scaleout\_1][image-hdi-optimize-hive-scaleout\_2]
+	![scaleout_1][image-hdi-optimize-hive-scaleout_1]
+- 在執行階段，您可以也相應放大叢集，而不需重新一個叢集。如下所示。
+	![scaleout_1][image-hdi-optimize-hive-scaleout_2]
 
 如需 HDInsight 支援的各種虛擬機器的詳細資訊，請參閱 [HDInsight 定價](https://azure.microsoft.com/pricing/details/hdinsight/)。
 
