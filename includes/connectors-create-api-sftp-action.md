@@ -10,14 +10,21 @@
 
 讓我們開始新增要在先前定義的條件評估為 *True* 時擷取檔案的動作。
 
-1. 選取 [新增動作]。![SFTP 動作條件圖像 6](./media/connectors-create-api-sftp/condition-6.png)
-- 選取 [SFTP - 擷取資料夾] 動作 ![SFTP 動作條件圖像 7](./media/connectors-create-api-sftp/condition-7.png)
-- 選取 [來源封存檔案路徑] ![SFTP 動作條件圖像 9](./media/connectors-create-api-sftp/condition-9.png)
-- 選取 [檔案路徑] 語彙基元。這表示您將使用觸發程序所找到檔案的檔案路徑做為來源封存檔案路徑。![SFTP 動作條件圖像 10](./media/connectors-create-api-sftp/condition-10.png)
-- 選取 [目的地資料夾路徑] ![SFTP 動作條件圖像 11](./media/connectors-create-api-sftp/condition-11.png)
+1. 選取 [新增動作]。  
+![SFTP 動作條件圖像 6](./media/connectors-create-api-sftp/condition-6.png)  
+- 選取 [SFTP - 擷取資料夾] 動作   
+![SFTP 動作條件圖像 7](./media/connectors-create-api-sftp/condition-7.png)  
+- 選取 [來源封存檔案路徑]  
+![SFTP 動作條件圖像 9](./media/connectors-create-api-sftp/condition-9.png)  
+- 選取 [檔案路徑] 語彙基元。這表示您將使用觸發程序所找到檔案的檔案路徑做為來源封存檔案路徑。  
+![SFTP 動作條件圖像 10](./media/connectors-create-api-sftp/condition-10.png)  
+- 選取 [目的地資料夾路徑]  
+![SFTP 動作條件圖像 11](./media/connectors-create-api-sftp/condition-11.png)  
 - 選取 [檔案路徑] 語彙基元。這表示您將使用觸發程序所找到檔案的檔案路徑做為所擷取檔案的目的地路徑。
-- 在 [目的地資料夾路徑] 控制項中，輸入 *\\ExtractedFile*。請在 [目的地資料夾路徑] 控制項中緊接 [檔案路徑] 語彙基元之後執行這項操作。![SFTP 動作條件圖像 12](./media/connectors-create-api-sftp/condition-12.png)
-- 在 *[覆寫？] 控制項中輸入 *True*，以指示當現有檔案與所擷取檔案同名時應該覆寫現有檔案。![SFTP 動作條件圖像 13](./media/connectors-create-api-sftp/condition-13.png)
+- 在 [目的地資料夾路徑] 控制項中，輸入 *\\ExtractedFile*。請在 [目的地資料夾路徑] 控制項中緊接 [檔案路徑] 語彙基元之後執行這項操作。  
+![SFTP 動作條件圖像 12](./media/connectors-create-api-sftp/condition-12.png)  
+- 在 *[覆寫？] 控制項中輸入 *True*，以指示當現有檔案與所擷取檔案同名時應該覆寫現有檔案。  
+![SFTP 動作條件圖像 13](./media/connectors-create-api-sftp/condition-13.png)  
 - 儲存對您工作流程所做的變更
 
 <!---HONumber=AcomDC_0727_2016-->
