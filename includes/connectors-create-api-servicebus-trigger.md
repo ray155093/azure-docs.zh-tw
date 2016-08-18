@@ -2,9 +2,12 @@
 
 >[AZURE.NOTE]如果您尚未建立與「服務匯流排」的「連線」，系統將會提示您使用您的「服務匯流排」連接字串進行登入。
 
-1. 在邏輯應用程式設計工具的搜尋方塊中輸入「服務匯流排」，然後選取 [服務匯流排 - 在佇列中收到訊息時] 觸發程序。![服務匯流排觸發程序圖像 1](./media/connectors-create-api-servicebus/trigger-1.png)
-- [在佇列中收到訊息時] 控制項隨即顯示。![服務匯流排觸發程序圖像 2](./media/connectors-create-api-servicebus/trigger-2.png)
-- 輸入您想要讓觸發程序監視的「服務匯流排」佇列名稱。![服務匯流排觸發程序圖像 3](./media/connectors-create-api-servicebus/trigger-3.png)
+1. 在邏輯應用程式設計工具的搜尋方塊中輸入「服務匯流排」，然後選取 [服務匯流排 - 在佇列中收到訊息時] 觸發程序。  
+![服務匯流排觸發程序圖像 1](./media/connectors-create-api-servicebus/trigger-1.png)   
+- [在佇列中收到訊息時] 控制項隨即顯示。  
+![服務匯流排觸發程序圖像 2](./media/connectors-create-api-servicebus/trigger-2.png)   
+- 輸入您想要讓觸發程序監視的「服務匯流排」佇列名稱。  
+![服務匯流排觸發程序圖像 3](./media/connectors-create-api-servicebus/trigger-3.png)   
 
 此時，邏輯應用程式已設有觸發程序，該觸發程序會在您選取的佇列中收到新項目時，開始執行工作流程中的其他觸發程序和動作。
 
