@@ -40,4 +40,4 @@
 
 您是否已準備好要開始對主控於 Microsoft Azure 的您的應用程式進行滲透測試？ 如果是，請前往[滲透測試概觀](https://security-forms.azure.com/penetration-testing/terms)頁面，然後按一下頁面底部的 [建立測試要求] 按鈕。您也可以在條款與條件中找到有關滲透測試的詳細資訊，以及如何報告與 Azure 或任何其他 Microsoft 服務的安全性問題的相關實用連結。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

@@ -60,4 +60,4 @@ Get-AzureRMAuthorizationChangeLog -StartTime ([DateTime]::Now - [TimeSpan]::From
 - 開始使用 [Azure 角色型存取控制](role-based-access-control-configure.md)
 - 使用 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

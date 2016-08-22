@@ -70,4 +70,4 @@
 * [檢視事件和稽核記錄檔](insights-debugging-with-events.md)以了解在您服務內發生的所有內容。
 * [追蹤服務健康狀況](insights-service-health.md)可以找出 Azure 何時遭遇效能降低或服務中斷。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

@@ -15,4 +15,4 @@
 - 儲存對您工作流程所做的變更。
 ![服務匯流排動作圖像 4](./media/connectors-create-api-servicebus/action-4.png)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

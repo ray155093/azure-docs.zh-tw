@@ -68,4 +68,4 @@ IoT 使得全球企業面臨獨特的安全性、隱私權及相容性挑戰。�
 - [IoT 解決方案部署人員](../iot-suite/iot-security-best-practices.md#iot-solution-deployer)
 - [IoT 解決方案操作人員](../iot-suite/iot-security-best-practices.md#iot-solution-operator)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

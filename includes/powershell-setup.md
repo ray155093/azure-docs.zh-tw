@@ -78,4 +78,4 @@
 
 如需 Azure 訂用帳戶和帳戶的詳細資訊，請參閱[如何：連線至訂用帳戶](powershell-install-configure.md#Connect)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

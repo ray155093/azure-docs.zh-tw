@@ -48,4 +48,4 @@ AD FS 會將其權杖簽署至 Azure Active Directory，以確保它們無法被
 
 * [使用 AAD Connect 修復 O365 信任](./active-directory-aadconnect-federation-management.md#repairing-the-trust)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

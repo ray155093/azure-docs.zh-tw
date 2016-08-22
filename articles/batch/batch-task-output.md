@@ -242,4 +242,4 @@ Batch 的[應用程式封裝](batch-application-packages.md)功能提供了簡�
 [1]: ./media/batch-task-output/task-output-01.png "入口網站中的 [已儲存的輸出檔案] 和 [已儲存的記錄檔] 選取器"
 [2]: ./media/batch-task-output/task-output-02.png "Azure 入口網站中的 [工作輸出] 刀鋒視窗"
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

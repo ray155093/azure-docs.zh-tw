@@ -121,4 +121,4 @@
 |**資料存取 API**<br/>即將推出。|
 |[**取樣**](app-insights-sampling.md)<br/>縮短資料速率，並協助您維持在您定價層的限制內。|![取樣圖格](./media/app-insights-asp-net-more/030.png)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

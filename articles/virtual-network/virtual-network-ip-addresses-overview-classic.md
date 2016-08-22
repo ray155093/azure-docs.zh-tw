@@ -166,4 +166,4 @@ Azure [應用程式閘道](../application-gateway/application-gateway-introducti
 ## 後續步驟
 - 使用傳統入口網站[部署使用靜態私人 IP 位址的 VM](virtual-networks-static-private-ip-classic-pportal.md)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

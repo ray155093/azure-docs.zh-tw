@@ -86,4 +86,4 @@ SQL Database 使用防火牆規則以允許連接到您的伺服器和資料庫�
 [2]: ./media/sql-database-configure-firewall-settings/AzurePortalFirewallSettings.png
 <!--anchors-->
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

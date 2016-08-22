@@ -138,4 +138,4 @@ Azure 有提供監視您服務 (從裸機基礎結構到應用程式遙測) 的�
 - [針對 Azure 儲存體進行疑難排解](../storage/storage-e2e-troubleshooting.md)，如果您正在使用儲存體 Blob、資料表或佇列
 - [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics/) 及 [Operations Management Suite](https://www.microsoft.com/cloud-platform/operations-management-suite)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

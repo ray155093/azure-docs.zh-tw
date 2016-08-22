@@ -137,4 +137,4 @@ Azure 會使用下列設定在 SQL Server VM 上建立存放集區。
 ## 後續步驟
 如需有關在 Azure VM 中執行 SQL Server 的其他主題，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

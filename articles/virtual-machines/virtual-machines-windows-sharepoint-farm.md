@@ -73,4 +73,4 @@ Azure 入口網站會在具有網際網路對向網站空間的純雲端虛擬�
 
 - 探索 Azure 基礎結構服務中的其他 [SharePoint 組態](https://technet.microsoft.com/library/dn635309.aspx)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

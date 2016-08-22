@@ -339,4 +339,4 @@
 
 - [啟用 NSG 的記錄](virtual-network-nsg-manage-log.md)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

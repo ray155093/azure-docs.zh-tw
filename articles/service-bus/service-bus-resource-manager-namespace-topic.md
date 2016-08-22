@@ -160,4 +160,4 @@ azure group deployment create <my-resource-group> <my-deployment-name> --templat
   [Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../xplat-cli-azure-resource-manager.md
   [服務匯流排命名空間與主題和訂用帳戶範本]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-topic-and-subscription/
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

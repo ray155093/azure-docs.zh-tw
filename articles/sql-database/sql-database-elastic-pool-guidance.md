@@ -131,4 +131,4 @@ SQL Database 會自動評估現有 SQL Database 伺服器中資料庫過去的�
 - [SQL Database 選項和效能：了解每個服務層中可用的項目](sql-database-service-tiers.md)
 - [用來識別彈性資料庫集區適用資料庫的 PowerShell 指令碼](sql-database-elastic-pool-database-assessment-powershell.md)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

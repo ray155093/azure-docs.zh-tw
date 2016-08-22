@@ -45,4 +45,4 @@
 
 > [AZURE.NOTE] 如果您的 Azure 訂用帳戶被停用，您可以使用本文中的步驟重新啟用它：[如果我的 Azure 訂用帳戶被停用，該怎麼辦？](billing-subscription-become-disable.md)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

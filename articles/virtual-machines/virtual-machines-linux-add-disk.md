@@ -277,4 +277,4 @@ UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults   1   2
 - 若要確保您的 Linux VM 已正確設定，請檢閱[最佳化您的 Linux 機器效能](virtual-machines-linux-optimization.md)建議。
 - 新增其他磁碟以擴充儲存體容量，並[設定 RAID](virtual-machines-linux-configure-raid.md) 以提升效能。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

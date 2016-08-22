@@ -166,4 +166,4 @@ Batch 的[應用程式封裝](batch-application-packages.md)功能提供了簡�
 [2]: ./media/batch-task-dependency/02_one_to_many.png "圖表︰一對多相依性"
 [3]: ./media/batch-task-dependency/03_task_id_range.png "圖表︰工作識別碼範圍相依性"
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

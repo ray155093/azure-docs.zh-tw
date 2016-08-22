@@ -84,4 +84,4 @@ Windows 提供了稱為[效能監視器](https://technet.microsoft.com/magazine/
 
 - **UI 未顯示資料傳輸的進度**。開啟位於 C:\\Microsoft Azure Recovery Services Agent\\Temp 的記錄檔，並查看記錄檔中的 FileProvider::EndData 項目。此項目表示資料傳輸完成，且目錄作業正在進行中。請勿取消備份工作。請稍微多等待一些時間讓目錄作業完成。若問題持續發生，請連絡 [Azure 支援](https://portal.azure.com/#create/Microsoft.Support)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

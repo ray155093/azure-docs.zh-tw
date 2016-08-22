@@ -106,4 +106,4 @@ PATCH 說明頁面包含必須使用的 PATCH URL，並提供可用來呼叫它�
 [image5]: ./media/machine-learning-troubleshooting-retraining-a-model/ml-help-page-patch-url.png
 [image6]: ./media/machine-learning-troubleshooting-retraining-a-model/retraining-output.png
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

@@ -261,4 +261,4 @@ VNet 名稱 = RMVNet <br> 資源群組 = RG1 <br> 虛擬網路 IP 位址空間 =
 
 [AZURE.INCLUDE [vpn-gateway-vnet-vnet-faq](../../includes/vpn-gateway-vnet-vnet-faq-include.md)]
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

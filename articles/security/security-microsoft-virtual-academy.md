@@ -62,4 +62,4 @@ Microsoft Virtual Academy 提供免費線上訓練，協助開發人員、IT 和
 
 找出資訊保護為什麼是貴組織絕對必要的項目，以及版權管理如何保護貴組織的智慧財產 (只要通過裝置和雲端)。向 Microsoft 專家取得實際操作經驗和技術實用知識。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

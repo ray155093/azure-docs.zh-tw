@@ -164,4 +164,4 @@
 * 設定[自訂網域名稱](cloud-services-custom-domain-name.md)。
 * 設定 [SSL 憑證](cloud-services-configure-ssl-certificate.md)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

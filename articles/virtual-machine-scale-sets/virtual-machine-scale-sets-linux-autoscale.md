@@ -557,4 +557,4 @@
 - 在[使用自動調整動作在 Azure Insights 中傳送電子郵件和 Webhook 警示通知](../azure-portal/insights-autoscale-to-webhook-email.md)和[使用稽核記錄在 Azure Insights 中傳送電子郵件和 Webhook 警示通知](../azure-portal/insights-auditlog-to-webhook-email.md)中深入了解通知功能
 - 請參閱[自動調整執行 Ubuntu/Apache/PHP 應用程式範本以設定 LAMP 堆疊的 VM 擴展集](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-lapstack-autoscale)，以執行虛擬機器擴展集的自動調整功能。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

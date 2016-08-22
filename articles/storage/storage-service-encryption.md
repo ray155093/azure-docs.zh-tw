@@ -229,4 +229,4 @@ AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率�
 
 Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共同建置安全應用程式。如需詳細資訊，請參閱[儲存體安全性指南](storage-security-guide.md)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

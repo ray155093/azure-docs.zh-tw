@@ -265,4 +265,4 @@ VNET 包含下列屬性：
 - 深入了解[NSG，以及如何規劃和設計](virtual-networks-nsg.md) NSG 方案。
 - 深入了解您的[跨單位和 VNet 連線選項](../vpn-gateway/vpn-gateway-cross-premises-options.md)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

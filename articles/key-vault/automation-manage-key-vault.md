@@ -55,4 +55,4 @@ Azure 自動化提供高度可靠、高度可用的工作流程執行引擎，�
 * 請參閱 Azure 自動化[快速入門教學課程](../automation/automation-first-runbook-graphical.md)。
 * 請參閱 [Azure 金鑰保存庫 PowerShell 指令碼](https://gallery.technet.microsoft.com/scriptcenter/site/search?query=azure%20key%20vault&f%5B0%5D.Value=azure%20key%20vault&f%5B0%5D.Type=SearchText&ac=5)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->
