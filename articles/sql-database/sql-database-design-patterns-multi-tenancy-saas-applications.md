@@ -164,4 +164,4 @@ SQL Database 中的彈性資料庫集區會結合租用戶隔離與租用戶資�
 
 如有問題，您可在 [SQL Database 論壇](http://social.msdn.microsoft.com/forums/azure/home?forum=ssdsgetstarted)中找到我們。在 [SQL Database 意見反應論壇](https://feedback.azure.com/forums/217321-sql-database/)中提出功能要求。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

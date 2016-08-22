@@ -339,4 +339,4 @@ AuthAnvil Single Sign On 4.5 可實作廣泛使用的 WS 同盟/WS-Trust 身分�
 
 如需詳細資訊，請參閱 [AuthAnvil 單一登入](https://help.scorpionsoft.com/entries/26538603-How-can-I-Configure-Single-Sign-On-for-Office-365-)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

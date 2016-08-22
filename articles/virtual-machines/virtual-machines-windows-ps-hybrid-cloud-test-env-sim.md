@@ -213,4 +213,4 @@ Ping 命令應該會收到來自 IP 位址 10.0.0.4 的 4 次成功回覆。這�
 
 - 在此環境中設定 [Web 型企業營運應用程式](virtual-machines-windows-ps-hybrid-cloud-test-env-lob.md)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

@@ -193,4 +193,4 @@ Multi-Factor Authentication SDK 中的 API 結構相當簡單。您可以使用�
 	    }
 	}
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

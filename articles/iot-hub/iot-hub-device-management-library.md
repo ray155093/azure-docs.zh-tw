@@ -235,4 +235,4 @@ LWM2M 資料模型引進了物件和資源的概念︰
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

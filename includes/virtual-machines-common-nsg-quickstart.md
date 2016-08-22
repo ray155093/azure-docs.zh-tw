@@ -11,4 +11,4 @@
     
 您可以建立複雜的網路組態，以使用網路安全性群組和規則保護您的環境。我們的範例僅使用一個或兩個規則，允許 HTTP 流量或遠端管理。如需詳細資訊，請參閱下一節的[「相關資訊」](#more-information-on-network-security-groups)，或[什麼是網路安全性群組？](../articles/virtual-network/virtual-networks-nsg.md)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

@@ -221,4 +221,4 @@ azure group deployment create --resource-group TestTemplateRG
 ## 後續步驟
 在您備妥並上傳自訂虛擬磁碟之後，您可以深入了解如何[使用 Resource Manager 和範本](../resource-group-overview.md)。您也可以[將資料磁碟新增](virtual-machines-linux-add-disk.md)至您的新 VM。如果您需要存取在您的 VM 上執行的應用程式，請務必[開啟連接埠和端點](virtual-machines-linux-nsg-quickstart.md)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

@@ -169,4 +169,4 @@
 [2]: ./media/sql-database-query-performance/top-queries.png
 [3]: ./media/sql-database-query-performance/query-details.png
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

@@ -65,4 +65,4 @@
 <!--Other Web references--> 
 [下載移轉公用程式]: https://migrhoststorage.blob.core.windows.net/sqldwsample/DataWarehouseMigrationUtility.zip
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

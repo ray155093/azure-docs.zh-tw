@@ -181,4 +181,4 @@ ServiceBusMessage︰此物件具有服務匯流排訊息的內容和屬性。
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

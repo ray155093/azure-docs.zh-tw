@@ -145,4 +145,4 @@ GO
 
 [FirewallRule]: ./media/sql-server-stretch-database-enable-database/firewall.png
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

@@ -189,4 +189,4 @@ ms.author="adegeo"/>
 
 為角色啟用[遠端桌面](cloud-services-role-enable-remote-desktop.md)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

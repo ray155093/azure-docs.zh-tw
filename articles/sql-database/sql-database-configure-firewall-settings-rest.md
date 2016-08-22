@@ -88,4 +88,4 @@ Microsoft Azure SQL Database 使用防火牆規則以允許連接到您的伺服
 
  
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

@@ -50,4 +50,4 @@ Azure Data Factory 可讓資料在內部部署來源與不同的 Azure 服務之
 <!--Other Web references-->
 [Azure Data Factory 文件]: https://azure.microsoft.com/documentation/services/data-factory/
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

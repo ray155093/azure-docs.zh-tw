@@ -129,4 +129,4 @@
 5. 按一下 [是] 確認刪除。
 6. 應用程式密碼刪除之後，就可以按一下 [關閉]。![關閉](./media/multi-factor-authentication-end-user-app-passwords/delete3.png)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

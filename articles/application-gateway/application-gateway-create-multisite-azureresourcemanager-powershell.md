@@ -210,4 +210,4 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 	                             "Fqdn": "00000000-0000-xxxx-xxxx-xxxxxxxxxxxx.cloudapp.net"
 	                           }
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

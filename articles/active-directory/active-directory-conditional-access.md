@@ -123,4 +123,4 @@ Azure Active Directory 中的條件式存取控制功能可提供一些簡單的
 - [條件式存取常見問題集](active-directory-conditional-faqs.md)
 - [技術參考](active-directory-conditional-access-technical-reference.md)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

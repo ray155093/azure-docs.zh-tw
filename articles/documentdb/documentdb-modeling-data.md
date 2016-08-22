@@ -394,4 +394,4 @@
 最後，如需資料模型化和多租用戶應用程式分區化的指引，請參閱[使用 Azure DocumentDB 調整多租用戶應用程式](http://blogs.msdn.com/b/documentdb/archive/2014/12/03/scaling-a-multi-tenant-application-with-azure-documentdb.aspx)。
  
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

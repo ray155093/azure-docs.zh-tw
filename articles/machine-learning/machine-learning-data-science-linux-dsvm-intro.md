@@ -346,4 +346,4 @@ Rattle (R Analytical Tool To Learn Easily) 可讓您用 GUI 類型資料探索�
 * 了解如何使用 [Team Data Science Process](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 以系統化方式建置端對端分析方案
 * 請造訪 [Cortana Analytics Gallery](http://gallery.cortanaanalytics.com) 以取得使用 Cortana Analytics Suite 的機器學習服務和資料分析範例。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

@@ -76,4 +76,4 @@ Azure Active Directory (AD) Privileged Identity Management 是高階功能，可
 
 Amit Bapat 向 Scott 介紹 Azure 金鑰保存庫。有了 Azure 金鑰保存庫，您即可加密金鑰和小型密碼，例如存放在硬體安全性模組 (HSM) 中且使用金鑰的密碼。它是 Microsoft Azure 的雲端型、硬體型密碼管理！
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

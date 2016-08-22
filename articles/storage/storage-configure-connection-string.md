@@ -163,4 +163,4 @@
 - [使用 Azure 儲存體模擬器進行開發和測試](storage-use-emulator.md)
 - [Azure 儲存體總管](storage-explorers.md)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

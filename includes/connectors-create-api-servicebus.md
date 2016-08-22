@@ -18,4 +18,4 @@
 3. 請注意，連線已經建立，您現在可以繼續進行邏輯應用程式中的其他步驟。
 ![服務匯流排連線圖像 3](./media/connectors-create-api-servicebus/servicebus-3.png)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

@@ -297,4 +297,4 @@ StackExchange.Redis 使用名為 `synctimeout` 的組態設定來進行預設值
 -	[如何執行 Redis 命令？](cache-faq.md#how-can-i-run-redis-commands)
 -	[如何監視 Azure Redis 快取](cache-how-to-monitor.md)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

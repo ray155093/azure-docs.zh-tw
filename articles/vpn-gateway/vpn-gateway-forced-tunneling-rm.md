@@ -155,4 +155,4 @@ Azure 中的強制通道會透過虛擬網路使用者定義的路由進行設�
 		Get-AzureRmVirtualNetworkGatewayConnection -Name "Connection1" -ResourceGroupName "ForcedTunneling"
 		
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

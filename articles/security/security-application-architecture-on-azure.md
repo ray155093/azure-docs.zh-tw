@@ -56,4 +56,4 @@ Microsoft 發佈一組高階[架構藍圖](http://aka.ms/azblueprints)，示範�
 - 下載 [Microsoft 3D 藍圖 Visio 範本](http://aka.ms/3DBlueprintTemplate)
 - 下載[雲端和企業符號](../architecture-overview.md#drawing-symbol-and-icon-sets)以搭配 3D 範本使用
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

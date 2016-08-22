@@ -169,4 +169,4 @@ SQL Database V12 是最新的版本，因此建議將現有的伺服器升級至
 [6]: ./media/sql-database-upgrade-server-portal/recommendations.png
 [7]: ./media/sql-database-upgrade-server-portal/new-elastic-pool.png
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

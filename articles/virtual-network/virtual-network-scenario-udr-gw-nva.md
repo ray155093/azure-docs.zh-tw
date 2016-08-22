@@ -178,4 +178,4 @@ AZF2 代表包含下列規則的 Azure 虛擬設備︰
 4.	佈建 **onpremvnet** 到 **azurevnet** 的通道。
 5.	佈建好所有資源之後，請登入 **onpremvm2** 並 ping 10.0.3.101 來測試 **onpremsn2** 和 **azsn3** 之間的連線。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

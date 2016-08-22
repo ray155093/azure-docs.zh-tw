@@ -113,4 +113,4 @@ Azure 入口網站不會像目前 Azure 傳統入口網站一樣將資源連結�
 * 設定[自訂網域名稱](cloud-services-custom-domain-name-portal.md)。
 * 設定 [SSL 憑證](cloud-services-configure-ssl-certificate-portal.md)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

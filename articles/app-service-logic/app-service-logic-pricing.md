@@ -103,4 +103,4 @@ $updatedLA = Set-AzureRmResource -ResourceId $logicapp.ResourceId -Properties $u
 [whatis]: app-service-logic-what-are-logic-apps.md
 [create]: app-service-logic-create-a-logic-app.md
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

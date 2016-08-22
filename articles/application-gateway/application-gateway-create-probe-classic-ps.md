@@ -228,4 +228,4 @@
 
 如果您想要設定要與內部負載平衡器搭配使用的應用程式閘道，請參閱[建立具有內部負載平衡器 (ILB) 的應用程式閘道](application-gateway-ilb.md)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

@@ -101,4 +101,4 @@
 - [在入口網站中建立搜尋服務](search-create-service-portal.md)
 - [變更分割區和複本的配置以調整您的服務](search-capacity-planning.md)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

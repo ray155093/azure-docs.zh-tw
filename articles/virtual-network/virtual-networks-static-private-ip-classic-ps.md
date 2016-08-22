@@ -127,4 +127,4 @@
 - 深入了解[執行個體層級公用 IP (ILPIP)](virtual-networks-instance-level-public-ip.md) 位址。
 - 請參閱[保留 IP REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

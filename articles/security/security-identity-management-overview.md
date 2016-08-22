@@ -157,4 +157,4 @@ Microsoft 的身分識別方法可跨越內部部署和雲端架構功能，建�
 - [Azure Active Directory](https://azure.microsoft.com/documentation/services/active-directory/)
 - [Active Directory 小組部落格](https://blogs.technet.microsoft.com/ad/)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->

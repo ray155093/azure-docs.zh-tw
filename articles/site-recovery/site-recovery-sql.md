@@ -352,4 +352,4 @@ Site Recovery 原生支援 SQL AlwaysOn。如果您已經建立 SQL 可用性群
 
  
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016---->
