@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="07/29/2016"
+   ms.date="08/04/2016"
    ms.author="rickbyh;barbkess;sonyama"/>
 
 # 適用於 Azure SQL 資料倉儲的驗證
@@ -63,7 +63,6 @@
 - Azure Active Directory 驗證會使用自主資料庫使用者，在資料庫層級驗證身分。
 - Azure Active Directory 針對連線到 SQL 資料倉儲的應用程式支援權杖型驗證。
 
-> [AZURE.IMPORTANT] Azure Active Directory 驗證是預覽功能，必須遵循授權合約 (例如，Enterprise 合約、Microsoft Azure 合約或Microsoft 線上訂用帳戶合約) 中的預覽條款，以及任何適用的 [Microsoft Azure 預覽版補充使用條款](https://azure.microsoft.com/support/legal/preview-supplemental-terms/)。
 
 ### 組態步驟
 
@@ -91,4 +90,4 @@ Azure Active Directory 使用者目前不會顯示在 SSDT 物件總管中。解
 [使用 Visual Studio 查詢]: ./sql-data-warehouse-query-visual-studio.md
 [What is Azure Active Directory]: ../active-directory/active-directory-whatis.md
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

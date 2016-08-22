@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/23/2016" 
+	ms.date="08/08/2016" 
 	ms.author="spelluru"/>
 
 # Azure Data Factory - 範例
@@ -97,7 +97,7 @@
 	4. 選取 Data Factory 的 [資源群組]。
 	5. 針對 [區域]，選取 [美國西部]、[美國東部] 或 [北歐]。
 	6. 按 [下一步]。
-9. 在 [設定資料存放區] 頁面上，指定現有的 [Azure SQL Database] 和 [Azure 儲存體帳戶] \(或建立新項目)，然後按 [下一步]。 
+9. 在 [設定資料存放區] 頁面上，指定現有的 [Azure SQL Database] 和 [Azure 儲存體帳戶] (或建立新項目)，然後按 [下一步]。
 10. 在 [設定計算] 頁面上，選取預設值，然後按 [下一步]。
 11. 在 [摘要] 頁面上，檢閱所有設定，然後按 [下一步]。
 12. 在 [部署狀態] 頁面上，等候部署完成，然後按一下 [完成]。
@@ -117,4 +117,4 @@
 
 如需有關使用 Visual Studio 來撰寫 Data Factory 實體並將其發行至 Azure 的詳細資料，請參閱[建置您的第一個 Data Factory (Visual Studio)](data-factory-build-your-first-pipeline-using-vs.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0810_2016-->

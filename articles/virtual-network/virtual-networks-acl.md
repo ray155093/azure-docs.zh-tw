@@ -3,7 +3,7 @@
    description="了解 ACL"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor="tysonn" />
 <tags
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/15/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # 什麼是端點存取控制清單 (ACL)？
 
@@ -99,4 +99,4 @@ ACL 是包含規則清單的物件。當您建立 ACL 並將它套用到虛擬�
 
 [如何使用 PowerShell 管理存取控制清單 (ACL) 端點](virtual-networks-acl-powershell.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0810_2016-->

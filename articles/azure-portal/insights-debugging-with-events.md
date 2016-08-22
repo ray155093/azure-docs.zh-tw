@@ -1,20 +1,20 @@
 <properties
 	pageTitle="檢視事件和稽核記錄檔"
 	description="了解如何查看發生在 Azure 訂用帳戶中的所有事件。"
-	authors="HaniKN-MSFT"
-	manager="kamrani"
+	authors="rboucher"
+	manager=""
 	editor=""
-	services="monitoring"
-	documentationCenter="monitoring"/>
+	services="monitoring-and-diagnostics"
+	documentationCenter="monitoring-and-diagnostics"/>
 
 <tags
-	ms.service="monitoring"
+	ms.service="monitoring-and-diagnostics"
 	ms.workload="na"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="04/28/2015"
-	ms.author="hanikn"/>
+	ms.author="robb"/>
 
 # 檢視事件和稽核記錄檔
 
@@ -37,7 +37,7 @@ Azure 資源管理員會完全稽核在 Azure 資源上執行的所有作業，�
 
 5. 您可以從這裡移至 [詳細資料] 刀鋒視窗，以查看事件的細節。
 
-    ![Resource groups](./media/insights-debugging-with-events/Insights_EventDetails.png)
+    ![資源群組](./media/insights-debugging-with-events/Insights_EventDetails.png)
 
     對於**失敗**事件，此頁面通常會顯示 [子狀態] 和 [屬性] 區段，其中包含可用於偵錯的詳細資料。
 
@@ -72,4 +72,4 @@ Azure 資源管理員會完全稽核在 Azure 資源上執行的所有作業，�
 * [監視服務計量](insights-how-to-customize-monitoring.md)以確保您的服務可用且可回應。
 * [追蹤服務健康狀況](insights-service-health.md)可以找出 Azure 何時遭遇效能降低或服務中斷。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

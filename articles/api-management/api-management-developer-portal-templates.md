@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/25/2016" 
+	ms.date="08/09/2016" 
 	ms.author="sdanie"/>
 
 
@@ -141,7 +141,7 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 
 ![發佈範本][api-management-publish-templates]
 
-請按一下 [Publish customizations] \(發佈自訂) 確認。
+請按一下 [Publish customizations] (發佈自訂) 確認。
 
 ![確認發佈][api-management-publish-customizations]
 
@@ -171,7 +171,7 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 
 ![Confirm][api-management-reset-template-confirm]
 
-若要還原所有範本的預設版本，請按一下範本清單的 [Restore default templates] \(還原預設範本)。
+若要還原所有範本的預設版本，請按一下範本清單的 [Restore default templates] (還原預設範本)。
 
 ![還原範本][api-management-restore-templates]
 
@@ -207,4 +207,4 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 [api-management-reset-template-confirm]: ./media/api-management-developer-portal-templates/api-management-reset-template-confirm.png
 [api-management-restore-templates]: ./media/api-management-developer-portal-templates/api-management-restore-templates.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="08/02/2016"
+   ms.date="08/05/2016"
    ms.author="nicw;barbkess;sonyama"/>
 
 # 移轉至進階儲存體詳細資料
@@ -27,8 +27,8 @@ SQL 資料倉儲最新引進了[進階儲存體，以獲得更高的效能可預
 | **區域** | **在此日期前建立的 DW** |
 | :------------------ | :-------------------------------- |
 | 澳洲東部 | 尚未提供進階儲存體 |
-| 澳洲東南部 | 尚未提供進階儲存體 |
-| 巴西南部 | 尚未提供進階儲存體 |
+| 澳大利亞東南部 | 2016 年 8 月 5 日 |
+| 巴西南部 | 2016 年 8 月 5 日 |
 | 加拿大中部 | 2016 年 5 月 25 日 |
 | 加拿大東部 | 2016 年 5 月 26 日 |
 | 美國中部 | 2016 年 5 月 26 日 |
@@ -40,10 +40,10 @@ SQL 資料倉儲最新引進了[進階儲存體，以獲得更高的效能可預
 | 印度中部 | 2016 年 5 月 27 日 |
 | 印度南部 | 2016 年 5 月 26 日 |
 | 印度西部 | 尚未提供進階儲存體 |
-| 日本東部 | 尚未提供進階儲存體 |
+| 日本東部 | 2016 年 8 月 5 日 |
 | 日本西部 | 尚未提供進階儲存體 |
 | 美國中北部 | 尚未提供進階儲存體 |
-| 北歐 | 尚未提供進階儲存體 |
+| 北歐 | 2016 年 8 月 5 日 |
 | 美國中南部 | 2016 年 5 月 27 日 |
 | 東南亞 | 2016 年 5 月 24 日 |
 | 西歐 | 2016 年 5 月 25 日 |
@@ -99,7 +99,7 @@ SQL 資料倉儲最新引進了[進階儲存體，以獲得更高的效能可預
 如果您想要控制發生停機的時間，您可以使用下列步驟，將標準儲存體上的現有資料倉儲移轉至進階儲存體。如果您選擇自行移轉，則必須在該區域的自動移轉開始前，先完成自行移轉，以避免任何會造成衝突的自動移轉風險 (請參閱[自動移轉排程][])。
 
 ### 自行移轉指示
-如果您想要控制停機時間，您可使用備份/還原自行移轉您的資料倉儲。每個 DW 每 TB 的儲存體預計需要約 1 小時的時間來進行移轉作業的還原部分。如果您要在移轉完成後保留相同的名稱，請遵循以下適用於[重新命名因應措施][]的步驟。
+如果您想要控制停機時間，您可使用備份/還原自行移轉您的資料倉儲。每個 DW 每 TB 的儲存體預計需要約 1 小時的時間來進行移轉作業的還原部分。如果您要在移轉完成後保留相同的名稱，請遵循以下[在移轉期間內重新命名][]的步驟。
 
 1.	[暫停][]將進行自動備份的 DW
 2.	從最新的快照集[還原][]
@@ -129,6 +129,34 @@ ALTER DATABASE CurrentDatabasename MODIFY NAME = NewDatabaseName;
 >	-  Firewall rules at the **Database** level will need to be re-added.  Firewall rules at the **Server** level will not be impacted.
 
 ## 後續步驟
+除了變更為進階儲存體，我們也會增加資料倉儲基礎架構中的資料庫 blob 檔案數目。如果您遇到任何效能問題，建議您使用下列指令碼重建叢集資料行存放區索引。這會強制將某些現有的資料移至其他 blob。如果您不採取任何動作，隨著您將更多的資料載入資料倉儲資料表中，資料會在一段時間後自然重新分配。
+
+**必要條件：**
+
+1.	資料倉儲應以 1000 DWU 或更多數量執行 (請參閱[調整計算能力][])
+2.	執行指令碼的使用者應具有 [mediumrc 角色][]或更高權限
+	1.	若要將使用者新增至此角色，請執行下列作業︰
+		1.	````EXEC sp_addrolemember 'xlargerc', 'MyUser'````
+
+````sql
+-------------------------------------------------------------------------------
+-- 步驟 1︰建立資料表以控制索引重建
+-- 以具有 mediumrc 角色或更高權限的使用者身分執行
+--------------------------------------------------------------------------------
+create table sql\_statements WITH (distribution = round\_robin) as select 'alter index all on ' + s.name + '.' + t.NAME + ' rebuild;' as statement, row\_number() over (order by s.name, t.name) as sequence from sys.schemas s inner join sys.tables t on s.schema\_id = t.schema\_id where is\_external = 0 ; go
+ 
+--------------------------------------------------------------------------------
+-- 步驟 2︰執行索引重建。如果指令碼失敗，可以重新執行以下程式碼從最後中斷的地方重新開始
+-- 以具有 mediumrc 角色或更高權限的使用者身分執行
+--------------------------------------------------------------------------------
+
+declare @nbr\_statements int = (select count(*) from sql\_statements) declare @i int = 1 while(@i <= @nbr\_statements) begin declare @statement nvarchar(1000)= (select statement from sql\_statements where sequence = @i) print cast(getdate() as nvarchar(1000)) + ' Executing... ' + @statement exec (@statement) delete from sql\_statements where sequence = @i set @i += 1 end;
+go
+-------------------------------------------------------------------------------
+-- 步驟 3︰清除在步驟 1 中建立的資料表
+--------------------------------------------------------------------------------
+drop table sql\_statements; go ````
+
 如果您遇到任何關於資料倉儲的問題，請[建立支援票證][]和參考「移轉至進階儲存體」做為可能的原因。
 
 <!--Image references-->
@@ -141,13 +169,15 @@ ALTER DATABASE CurrentDatabasename MODIFY NAME = NewDatabaseName;
 [main documentation site]: ./services/sql-data-warehouse.md
 [暫停]: ./sql-data-warehouse-manage-compute-portal.md/#pause-compute
 [還原]: ./sql-data-warehouse-manage-database-restore-portal.md
-[重新命名因應措施]: #optional-rename-workaround
+[在移轉期間內重新命名]: #optional-steps-to-rename-during-migration
+[調整計算能力]: ./sql-data-warehouse-manage-compute-portal/#scale-compute-power
+[mediumrc 角色]: ./sql-data-warehouse-develop-concurrency/#workload-management
 
 <!--MSDN references-->
 
 
 <!--Other Web references-->
-[進階儲存體，以獲得更高的效能可預測性]: https://azure.microsoft.com/blog/azure-sql-data-warehouse-introduces-premium-storage-for-greater-performance/
+[進階儲存體，以獲得更高的效能可預測性]: https://azure.microsoft.com/zh-TW/blog/azure-sql-data-warehouse-introduces-premium-storage-for-greater-performance/
 [Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

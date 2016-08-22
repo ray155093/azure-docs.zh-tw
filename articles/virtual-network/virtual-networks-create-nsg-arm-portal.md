@@ -3,7 +3,7 @@
    description="了解如何在 ARM 中使用 Azure 入口網站建立和部署 NSG"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor="tysonn"
    tags="azure-resource-manager"
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/04/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # 如何使用 Azure 入口網站管理 NSG
 
@@ -23,7 +23,7 @@
 
 [AZURE.INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]本文涵蓋之內容包括資源管理員部署模型。您也可以[在傳統部署模型中建立 NSG](virtual-networks-create-nsg-classic-ps.md)。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] 本文涵蓋之內容包括資源管理員部署模型。您也可以[在傳統部署模型中建立 NSG](virtual-networks-create-nsg-classic-ps.md)。
 
 [AZURE.INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
@@ -58,7 +58,7 @@
 
 4. 在 [輸入安全性規則] 清單中，按一下 [新增]。
 
-	![Azure 入口網站 - 加入規則](./media/virtual-networks-create-nsg-arm-pportal/figure3.png)
+	![Azure 入口網站 - 新增規則](./media/virtual-networks-create-nsg-arm-pportal/figure3.png)
 
 5. 在 [新增輸入安全性規則] 刀鋒視窗中，建立一個名為 [web-rule] 的規則，優先順序設為 [200]，以允許從任何來源經由 [TCP] 與連接埠 [80] 存取任何 VM，然後按一下 [確定]。請注意，這些設定大部分已是預設值。
 
@@ -103,4 +103,4 @@
 - 了解如何[管理現有的 NSG](virtual-network-manage-nsg-arm-portal.md)
 - [啟用 NSG 的記錄](virtual-network-nsg-manage-log.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/16/2016"
+	ms.date="08/08/2016"
 	ms.author="billmath"/>
 
 
 # 更新 Office 365 和 Azure Active Directory 的同盟憑證
 
-##概觀
+##Overview
 
 為了讓 Azure Active Directory (Azure AD) 與 Active Directory Federation Services (AD FS) 之間能夠成功地同盟，AD FS 用來向 Azure AD 簽署安全性權杖的憑證應該符合 Azure AD 中所設定的憑證。任何不相符都可能導致信任受損。Azure AD 會確保這項資訊在您部署 AD FS 和 Web 應用程式 Proxy (適用於外部網路存取) 時保持同步。
 
@@ -84,9 +84,7 @@ Azure AD 會嘗試監視同盟中繼資料，並依照此中繼資料的指示�
 
 | AutoCertificateRollover | 憑證與 Azure AD 同步 | 可公開取得同盟中繼資料 | 有效期 | 動作 |
 |:-----------------------:|:-----------------------:|:-----------------------:|:-----------------------:|:-----------------------:|
-| 是 | 是 | 是 | - | 不需要採取動作。請參閱[自動更新權杖簽署憑證](#autorenew)。| 
-| 是 | 否 | - | 不到 15 天 | 立即更新。請參閱[手動更新權杖簽署憑證](#manualrenew)。| 
-| 否 | - | - | 不到 30 天 | 立即更新。請參閱[手動更新權杖簽署憑證](#manualrenew)。|
+| 是 | 是 | 是 | - | 不需要採取動作。請參閱[自動更新權杖簽署憑證](#autorenew)。| | 是 | 否 | - | 不到 15 天 | 立即更新。請參閱[手動更新權杖簽署憑證](#manualrenew)。| | 否 | - | - | 不到 30 天 | 立即更新。請參閱[手動更新權杖簽署憑證](#manualrenew)。|
 
 [-] 無關緊要
 
@@ -163,4 +161,4 @@ https://(your_FS_name)/federationmetadata/2007-06/federationmetadata.xml
 
 如需詳細資訊，請參閱[修復信任](./active-directory-aadconnect-federation-management.md#repairing-the-trust)。
 
-<!----HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -3,7 +3,7 @@
 	description="您將為混合式身分識別解決方案定義資料保護策略，以符合您已定義的商務需求："
 	documentationCenter=""
 	services="active-directory"
-	authors="yuridio"
+	authors="billmath"
 	manager="stevenpo"
 	editor=""/>
 
@@ -13,8 +13,8 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity"
-	ms.date="04/28/2016"
-	ms.author="yuridio"/>
+	ms.date="08/08/2016"
+	ms.author="billmath"/>
 
 
 # 定義混合式身分識別解決方案的資料保護策略
@@ -155,4 +155,4 @@ Azure AD 中還有其他可在事件回應調查期間使用的重要內建報�
 ## 另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0810_2016-->

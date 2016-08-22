@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/12/2016"
+	ms.date="08/08/2016"
 	ms.author="billmath"/>
 
 
@@ -105,9 +105,9 @@ UserPrincipalName - 屬性 userPrincipalName 是使用者登入 Azure AD 和 Off
 針對以下資訊，讓我們假設我們所關注的 UPN 尾碼 contoso.com，會在內部部署目錄中做為 UPN 的一部分，例如 user@contoso.com。
 
 ###### 快速設定/密碼同步處理
-| 狀況 | 對使用者的 Azure 登入體驗的影響 |
+| State | 對使用者的 Azure 登入體驗的影響 |
 |:-------------:|:----------------------------------------|
-| 未新增 | 在此案例中，Azure AD 目錄內並未針對 contoso.com 新增任何自訂網域。在內部部署中具有尾碼 @contoso.com 的 UPN 的使用者，將不能使用其內部部署 UPN 來登入 Azure。他們必須為預設的 Azure AD 目錄新增尾碼，以改為使用 Azure AD 提供給他們的新 UPN。例如，如果您要將使用者同步處理至 Azure AD 目錄 azurecontoso.onmicrosoft.com，則內部部署使用者 user@contoso.com 將得到 user@azurecontoso.onmicrosoft.com| 的 UPN
+| 未新增 | 在此案例中，Azure AD 目錄內並未針對 contoso.com 新增任何自訂網域。在內部部署中具有尾碼 @contoso.com 的 UPN 的使用者，將不能使用其內部部署 UPN 來登入 Azure。他們必須為預設的 Azure AD 目錄新增尾碼，以改為使用 Azure AD 提供給他們的新 UPN。例如，如果您要將使用者同步至 Azure AD 目錄 azurecontoso.onmicrosoft.com，則內部部署使用者 user@contoso.com 將得到的 UPN 會是 user@azurecontoso.onmicrosoft.com|
 | 未驗證 | 在此案例中，我們已在 Azure AD 目錄中新增自訂網域 contoso.com，但其尚未驗證。如果您不先驗證網域就繼續同步處理使用者，則 Azure AD 會對使用者指派新的 UPN，正如它在「未新增」案例中所做的動作。|
 | Verified | 在此案例中，我們已在 Azure AD 中為 UPN 尾碼新增並驗證自訂網域 contoso.com。使用者可以使用其內部部署使用者主體名稱 (例如 user@contoso.com)，在其同步處理至 Azure AD 之後登入至 Azure|
 
@@ -116,9 +116,9 @@ UserPrincipalName - 屬性 userPrincipalName 是使用者登入 Azure AD 和 Off
 
 如果您選取的使用者登入選項為 [與 AD FS 同盟]，您就必須擁有自訂網域，才能繼續在 Azure AD 中建立同盟。在我們的討論中，這表示我們應該在 Azure AD 目錄中新增自訂網域 contoso.com。
 
-| 狀況 | 對使用者的 Azure 登入體驗的影響 |
+| State | 對使用者的 Azure 登入體驗的影響 |
 |:-------------:|:----------------------------------------|
-| 未新增 | 在此案例中，Azure AD Connect 無法在 Azure AD 目錄中找到 UPN 尾碼 contoso.com 的匹配自訂網域。如果您需要讓使用者搭配使用 AD FS 與其內部部署 UPN (像是 user@contoso.com.|) 來進行登入，您必須新增自訂網域 contoso.com
+| 未新增 | 在此案例中，Azure AD Connect 無法在 Azure AD 目錄中找到 UPN 尾碼 contoso.com 的匹配自訂網域。如果您需要讓使用者使用 AD FS 搭配其內部部署 UPN (例如 user@contoso.com.) 來進行登入，您就必須新增自訂網域 contoso.com|
 | 未驗證 | 在此案例中，Azure AD Connect 會提示您適當的詳細資料，指導您如何在稍後的階段驗證網域|
 | Verified | 在此案例中，您可以繼續進行設定而不需要採取任何進一步的動作|  
 
@@ -136,11 +136,11 @@ UserPrincipalName - 屬性 userPrincipalName 是使用者登入 Azure AD 和 Off
 
 ![連接至 Azure AD](./media/active-directory-aadconnect-user-signin/changeusersignin3.png)
 
->[AZURE.NOTE] 如果您只是要暫時切換到密碼同步處理，則請勾選 [不要轉換使用者帳戶]。不勾選該選項將會導致每個使用者轉換為同盟，而且它可以採取
+>[AZURE.NOTE] 如果您只是要暫時切換到密碼同步處理，則請勾選 [不要轉換使用者帳戶]。不勾選該選項會導致將每個使用者都轉換為同盟使用者，而這可能耗時數小時。
   
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
 深入了解 [Azure AD Connect：設計概念](active-directory-aadconnect-design-concepts.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016-->

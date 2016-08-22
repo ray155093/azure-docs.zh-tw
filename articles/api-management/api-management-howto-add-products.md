@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/25/2016" 
+	ms.date="08/09/2016" 
 	ms.author="sdanie"/>
 
 # 如何在 Azure API 管理中建立及發行產品
@@ -60,7 +60,7 @@ API 管理中的產品可以是**開放**或**受保護**的。受保護產品�
 
 [**產品**] 頁面包含組態的四個連結：**摘要**、**設定**、**可見度**和**訂閱者**。[**摘要**] 索引標籤可讓您加入 API，以及發行或取消發行產品。
 
-![摘要][api-management-new-product-summary]
+![Summary][api-management-new-product-summary]
 
 發行產品之前，您必須加入一或多個 API。若要這樣做，請安一下 [加入 API 至產品]。
 
@@ -148,4 +148,4 @@ API 管理中的產品可以是**開放**或**受保護**的。受保護產品�
 [如何在 Azure API 管理中建立和使用群組來管理開發人員帳戶]: api-management-howto-create-groups.md
 [如何在 Azure API 管理中建立和設定進階產品設定]: api-management-howto-product-with-rules.md
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -12,12 +12,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/18/2016"
+	ms.date="08/03/2016"
 	ms.author="robinsh"/>
 
 # 搭配使用 Azure PowerShell 與 Azure 儲存體
 
-## 概觀
+## Overview
 
 Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows PowerShell 管理 Azure。它是以工作為基礎的命令列殼層和指令碼語言，特別為系統管理所設計。使用 PowerShell，您可以輕鬆控制和自動執行 Azure 服務和應用程式的管理。例如，您可透過 [Azure 入口網站](https://portal.azure.com)執行的工作，大多也可使用 Cmdlet 來執行。
 
@@ -235,13 +235,13 @@ Azure 儲存體內容是 PowerShell 中用以封裝儲存體認證的物件。�
 
 您現已設定您的電腦並學會如何使用 Azure PowerShell 管理訂用帳戶和儲存體帳戶，請移至下一節，以了解如何管理 Azure Blob 和 Blob 快照集。
 
-### 如何抓取和重新產生 Azure 儲存體金鑰
+### 如何擷取和重新產生 Azure 儲存體金鑰
 
-Azure 儲存體帳戶會隨附兩個帳戶金鑰。您可以使用下列 Cmdlet 來抓取您的金鑰。
+Azure 儲存體帳戶會隨附兩個帳戶金鑰。您可以使用下列 Cmdlet 來擷取您的金鑰。
 
 	Get-AzureStorageKey -StorageAccountName "yourstorageaccount"
 
-使用下列 Cmdlet 來抓取特定的金鑰。有效值為 Primary 和 Secondary。
+使用下列 Cmdlet 來擷取特定的金鑰。有效值為 Primary 和 Secondary。
 
 	(Get-AzureStorageKey -StorageAccountName $StorageAccountName).Primary
 
@@ -752,4 +752,4 @@ Azure 環境是 Microsoft Azure 的獨立部署，例如[適用於美國政府�
 [How to use Azure Storage for U.S. government and Azure China]: #gov
 [Next Steps]: #next
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0810_2016-->

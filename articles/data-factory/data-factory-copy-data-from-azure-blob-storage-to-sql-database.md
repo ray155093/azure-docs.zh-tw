@@ -45,9 +45,9 @@
 1. 登入 [Azure 入口網站][azure-portal]。
 2. 按一下左邊的 [瀏覽] 中樞，然後選取 [儲存體帳戶]。
 3. 在 [**儲存體帳戶**] 刀鋒視窗中，選取您想要在本教學課程中使用的 [**Azure 儲存體帳戶**]。
-4. 在 [**儲存體**] 刀鋒視窗中，按一下 [**金鑰**] 磚。
-5. 在 [**管理金鑰**] 刀鋒視窗中，按一下 [**儲存體帳戶名稱**] 文字方塊旁的 [**複製** (影像)] 按鈕，然後將它儲存/貼到某個位置 (例如：在文字檔中)。
-6. 重複上述步驟，複製或記下 [主要存取金鑰]。
+4. 選取 [設定] 底下的 [存取金鑰] 連結。
+5.  按一下 [儲存體帳戶名稱] 文字方塊旁的 [複製 (影像)] 按鈕，然後將它儲存/貼到某個位置 (例如：在文字檔中)。
+6. 重複上述步驟，複製或記下 **key1**。
 7. 按一下 **X**，關閉所有刀鋒視窗。
 
 ## 收集 SQL Server、資料庫、使用者名稱
@@ -116,4 +116,4 @@
 [data-factory-create-storage]: http://azure.microsoft.com/documentation/articles/storage-create-storage-account/#create-a-storage-account
 [data-factory-create-sql-database]: ../sql-database/sql-database-get-started.md
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

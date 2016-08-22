@@ -1,9 +1,9 @@
 <properties 
-	pageTitle="DocumentDB Node.js SDK | Microsoft Azure" 
-	description="了解所有 Node.js SDK 相關資訊，包括 發行日期、停用日期及 DocumentDB Node.js SDK 每個版本之間的變更。" 
+	pageTitle="DocumentDB Node.js API 和 SDK | Microsoft Azure" 
+	description="了解所有 Node.js API 和 SDK 相關資訊，包括 發行日期、停用日期及 DocumentDB Node.js SDK 每個版本之間的變更。" 
 	services="documentdb" 
 	documentationCenter="nodejs" 
-	authors="aliuy" 
+	authors="rnagpal" 
 	manager="jhubbard" 
 	editor="cgronlun"/>
 
@@ -13,25 +13,29 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="nodejs" 
 	ms.topic="article" 
-	ms.date="07/07/2016" 
-	ms.author="andrl"/>
+	ms.date="08/09/2016" 
+	ms.author="rnagpal"/>
 
-# DocumentDB SDK
+# DocumentDB API 和 SDK
 
 > [AZURE.SELECTOR]
-- [.NET SDK](documentdb-sdk-dotnet.md)
-- [Node.js SDK](documentdb-sdk-node.md)
-- [Java SDK](documentdb-sdk-java.md)
-- [Python SDK](documentdb-sdk-python.md)
+- [.NET](documentdb-sdk-dotnet.md)
+- [Node.js](documentdb-sdk-node.md)
+- [Java](documentdb-sdk-java.md)
+- [Python](documentdb-sdk-python.md)
+- [REST](https://go.microsoft.com/fwlink/?LinkId=402413)
+- [SQL](https://msdn.microsoft.com/library/azure/dn782250.aspx)
 
-##DocumentDB Node.js SDK
+##DocumentDB Node.js API 和 SDK
 
 <table>
-<tr><td>**下載**</td><td>[NPM](https://www.npmjs.com/package/documentdb)</td></tr>
-<tr><td>**參與**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-node/tree/master/source)</td></tr>
-<tr><td>**說明文件**</td><td>[Node.js SDK 參考文件](http://azure.github.io/azure-documentdb-node/)</td></tr>
-<tr><td>**範例**</td><td>[Node.js 程式碼範例](https://github.com/Azure/azure-documentdb-node/tree/master/samples)</td></tr>
-<tr><td>**開始使用**</td><td>[開始使用 Node.js SDK](documentdb-nodejs-get-started.md)</td></tr>
+<tr><td>**下載 SDK**</td><td>[NPM](https://www.npmjs.com/package/documentdb)</td></tr>
+<tr><td>**API 文件**</td><td>[Node.js API 參考文件](http://azure.github.io/azure-documentdb-node/DocumentClient.html)</td></tr>
+<tr><td>**SDK 安裝指示**</td><td>[安裝指示](http://azure.github.io/azure-documentdb-node/)</td></tr>
+<tr><td>**提供給 SDK**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-node/tree/master/source)</td></tr>
+<tr><td>**範例**</td><td>[Node.js 程式碼範例](documentdb-nodejs-samples.md)</td></tr>
+<tr><td>**開始使用教學課程**</td><td>[開始使用 Node.js SDK](documentdb-nodejs-get-started.md)</td></tr>
+<tr><td>**Web 應用程式教學課程**</td><td>[使用 DocumentDB 建置 Node.js Web 應用程式](documentdb-nodejs-application.md)</td></tr>
 <tr><td>**目前支援的平台**</td><td>[Node.js v0.10](https://nodejs.org/en/blog/release/v0.10.0/)<br/>[Node.js v0.12](https://nodejs.org/en/blog/release/v0.12.0/)<br/>[Node.js v4.2.0](https://nodejs.org/en/blog/release/v4.2.0/)</td></tr>
 </table></br>
 
@@ -47,7 +51,7 @@
 
 ###<a name="1.8.0"/>1.8.0</a>
 
-  - 新增對多重區域資料庫帳戶的支援。
+ - 新增對多重區域資料庫帳戶的支援。
 
 ###<a name="1.7.0"/>1.7.0</a>
 
@@ -79,7 +83,7 @@
 
 ###<a name="1.5.1"/>1.5.1</a>
 
-- 修正問題 [#92](https://github.com/Azure/azure-documentdb-node/issues/90) - 重新命名資料夾雜湊以針對區分大小寫的系統進行雜湊。
+- Fixes issue [#92](https://github.com/Azure/azure-documentdb-node/issues/90) - rename folder Hash to hash for case sensitive systems.
 
 ### <a name="1.5.0"/>1.5.0</a>
 
@@ -145,32 +149,7 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 
 | 版本 | 發行日期 | 停用日期 
 | ---	  | ---	         | ---
-| [1\.9.0](#1.9.0) | 2016 年 7 月 7 日 |--- 
-| [1\.8.0](#1.8.0) | 2016 年 6 月 14 日 |--- 
-| [1\.7.0](#1.7.0) | 2016 年 4 月 26 日 |--- 
-| [1\.6.0](#1.6.0) | 2016 年 3 月 29 日 |--- 
-| [1\.5.6](#1.5.6) | 2016 年 3 月 8 日 |--- 
-| [1\.5.5](#1.5.5) | 2016 年 2 月 2 日 |--- 
-| [1\.5.4](#1.5.4) | 2016 年 2 月 1 日 |--- 
-| [1\.5.2](#1.5.2) | 2016 年 1 月 26 日 |--- 
-| [1\.5.2](#1.5.2) | 2016 年 1 月 22 日 |--- 
-| [1\.5.1](#1.5.1) | 2016 年 1 月 4 日 |--- 
-| [1\.5.0](#1.5.0) | 2015 年 12 月 31 日 |--- 
-| [1\.4.0](#1.4.0) | 2015 年 10 月 6 日 |--- 
-| [1\.3.0](#1.3.0) | 2015 年 10 月 6 日 |--- 
-| [1\.2.2](#1.2.2) | 2015 年 9 月 10 日 |--- 
-| [1\.2.1](#1.2.1) | 2015 年 8 月 15 日 |--- 
-| [1\.2.0](#1.2.0) | 2015 年 8 月 5 日 |--- 
-| [1\.1.0](#1.1.0) | 2015 年 7 月 9 日 |--- 
-| [1\.0.3](#1.0.3) | 2015 年 6 月 4 日 |--- 
-| [1\.0.2](#1.0.2) | 2015 年 5 月 23 日 |--- 
-| [1\.0.1](#1.0.1) | 2015 年 5 月 15 日 |--- 
-| [1\.0.0](#1.0.0) | 2015 年 4 月 8 日 |--- 
-| 0.9.4-發行前版本 | 2015 年 4 月 6 日 | 2016 年 2 月 29 日 
-| 0.9.3-發行前版本 | 2015 年 1 月 14 日 | 2016 年 2 月 29 日 
-| 0.9.2-發行前版本 | 2014 年 12 月 18 日 | 2016 年 2 月 29 日 
-| 0.9.1-發行前版本 | 2014 年 8 月 22 日 | 2016 年 2 月 29 日 
-| 0.9.0-發行前版本 | 2014 年 8 月 21 日 | 2016 年 2 月 29 日
+| [1\.9.0](#1.9.0) | 2016 年 7 月 7 日 |--- | [1\.8.0](#1.8.0) | 2016 年 6 月 14 日 |--- | [1\.7.0](#1.7.0) | 2016 年 4 月 26 日 |--- | [1\.6.0](#1.6.0) | 2016 年 3 月 29 日 |--- | [1\.5.6](#1.5.6) | 2016 年 3 月 8 日 |--- | [1\.5.5](#1.5.5) | 2016 年 2 月 2 日 |--- | [1\.5.4](#1.5.4) | 2016 年 2 月 1 日 |--- | [1\.5.2](#1.5.2) | 2016 年 1 月 26 日 |--- | [1\.5.2](#1.5.2) | 2016 年 1 月 22 日 |--- | [1\.5.1](#1.5.1) | 2016 年 1 月 4 日 |--- | [1\.5.0](#1.5.0) | 2015 年 12 月 31 日 |--- | [1\.4.0](#1.4.0) | 2015 年 10 月 6 日 |--- | [1\.3.0](#1.3.0) | 2015 年 10 月 6 日 |--- | [1\.2.2](#1.2.2) | 2015 年 9 月 10 日 |--- | [1\.2.1](#1.2.1) | 2015 年 8 月 15 日 |--- | [1\.2.0](#1.2.0) | 2015 年 8 月 5 日 |--- | [1\.1.0](#1.1.0) | 2015 年 7 月 9 日 |--- | [1\.0.3](#1.0.3) | 2015 年 6 月 4 日 |--- | [1\.0.2](#1.0.2) | 2015 年 5 月 23 日 |--- | [1\.0.1](#1.0.1) | 2015 年 5 月 15 日 |--- | [1\.0.0](#1.0.0) | 2015 年 4 月 8 日 |--- | 0.9.4-發行前版本 | 2015 年 4 月 6 日 | 2016 年 2 月 29 日 | 0.9.3-發行前版本 | 2015 年 1 月 14 日 | 2016 年 2 月 29 日 | 0.9.2-發行前版本 | 2014 年 12 月 18 日 | 2016 年 2 月 29 日 | 0.9.1-發行前版本 | 2014 年 8 月 22 日 | 2016 年 2 月 29 日 | 0.9.0-發行前版本 | 2014 年 8 月 21 日 | 2016 年 2 月 29 日
 
 
 ## 常見問題集
@@ -180,4 +159,4 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 
 若要深入了解 DocumentDB，請參閱 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 服務頁面。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0810_2016-->

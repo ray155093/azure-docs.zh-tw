@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/02/2016"
+	ms.date="08/10/2016"
 	ms.author="adegeo"/>
 
 # 設定 Azure 雲端服務的自訂網域名稱
@@ -49,7 +49,7 @@ CNAME 記錄將*特定的*網域 (例如 **contoso.com** 或 **www.contoso.com**
 
 ### A 記錄
 
-*A* 記錄將網域 (例如 **contoso.com** 或 **www.contoso.com**、*或萬用字元網域*，像是 ***.contoso.com**) 對應至 IP 位址。以 Azure 雲端服務而言，就是指服務的虛擬 IP。相較於 CNAME 記錄，A 記錄的主要優點在於只需要有一個項目使用 ***.contoso.com** 之類的萬用字元，即可處理多個子網域 (例如 **mail.contoso.com**、**login.contoso.com** 或 **www.contso.com**) 的要求。
+*A* 記錄將網域 (例如 **contoso.com** 或 **www.contoso.com**、*或萬用字元網域*，像是 **\\*.contoso.com**) 對應至 IP 位址。以 Azure 雲端服務而言，就是指服務的虛擬 IP。相較於 CNAME 記錄，A 記錄的主要優點在於只需要有一個項目使用萬用字元，例如 **\\*.contoso.com**，即可處理多個子網域的要求，例如 **mail.contoso.com**、**login.contoso.com** 或 **www.contso.com**。
 
 > [AZURE.NOTE]
 因為 A 記錄會對應至靜態 IP 位址，所以無法自動解析雲端服務 IP 位址的變更。第一次將雲端服務部署到空的位置時 (生產或預備)，將會配置雲端服務所使用的 IP 位址。 如果刪除此位置的部署，則 Azure 會釋放此 IP 位址，而未來再部署到此位置時，可能會給予新的 IP 位址。
@@ -67,7 +67,7 @@ CNAME 記錄將*特定的*網域 (例如 **contoso.com** 或 **www.contoso.com**
 
         ![快速瀏覽區段，其中顯示網站 URL][csurl]
             
-        **OR**
+        **或**
   
     * 安裝並設定 [Azure Powershell](../powershell-install-configure.md)，然後使用下列命令：
 
@@ -94,7 +94,7 @@ CNAME 記錄將*特定的*網域 (例如 **contoso.com** 或 **www.contoso.com**
 > [AZURE.NOTE]
 **www.contoso.com** 的訪客絕對看不到真正的主機 (contoso.cloudapp.net)，所以使用者不會察覺到轉送過程。
 
-> 上述範例僅適用於 **www** 子網域的流量。因為 CNAME 記錄不能使用萬用字元，所以您必須為每一個網域/子網域建立一個 CNAME。如果要將來自子網域 (例如 *.contoso.com) 的流量導向您的 cloudapp.net 位址，您可以在 DNS 設定中設定 [URL 重新導向] 或 [URL 轉送] 項目，或建立一筆 A 記錄。
+> 上述範例僅適用於 **www** 子網域的流量。因為 CNAME 記錄不能使用萬用字元，所以您必須為每一個網域/子網域建立一個 CNAME。如果要將來自子網域 (例如 \\*.contoso.com) 的流量導向您的 cloudapp.net 位址，您可以在 DNS 設定中設定「URL 重新導向」或「URL 轉送」項目，或建立一筆 A 記錄。
 
 
 ## 新增自訂網域的 A 記錄
@@ -107,7 +107,7 @@ CNAME 記錄將*特定的*網域 (例如 **contoso.com** 或 **www.contoso.com**
 
         ![快速瀏覽區段，其中顯示 VIP][vip]
 
-        **OR**
+        **或**
 
     * 安裝並設定 [Azure Powershell](../powershell-install-configure.md)，然後使用下列命令：
 
@@ -121,7 +121,7 @@ CNAME 記錄將*特定的*網域 (例如 **contoso.com** 或 **www.contoso.com**
 
 2.  現在找出可選取或輸入 A 記錄的地方。您可能需要從下拉式清單中或移至進階設定頁面，才能選取記錄類型。
 
-3. 選取或輸入將使用此 A 記錄的網域或子網域。例如，若要建立 **www.customdomain.com** 的別名，請選取 **www**。如果要為所有子網域建立萬用字元項目，請輸入 '\_\_*\_\_'。這將會涵蓋所有子網域，例如 **mail.customdomain.com**、**login.customdomain.com** 和 **www.customdomain.com**。
+3. 選取或輸入將使用此 A 記錄的網域或子網域。例如，若要建立 **www.customdomain.com** 的別名，請選取 **www**。如果要為所有子網域建立萬用字元項目，請輸入 '\_\_*\_\_'。這將會涵蓋所有子網域，例如 **mail.customdomain.com**、**login.customdomain.com* 和 *www.customdomain.com**。
 
     如果要建立根網域的 A 記錄，註冊機構的 DNS 工具中可能會以 '**@**' 符號列出此記錄。
 
@@ -134,7 +134,7 @@ CNAME 記錄將*特定的*網域 (例如 **contoso.com** 或 **www.contoso.com**
 | @ | 137\.135.70.239 |
 
 
-此範例示範建立根網域的 A 記錄。如果想要建立萬用字元項目來涵蓋所有子網域，請輸入 '\_\_*\_\_' 作為子網域。
+此範例示範建立根網域的 A 記錄。如果想要建立萬用字元項目來涵蓋所有子網域，請輸入 '__*__' 做為子網域。
 
 >[AZURE.WARNING]
 依預設，Azure 中的 IP 位址是動態的。您可能想要使用[保留的 IP 位址](../virtual-network/virtual-networks-reserved-public-ip.md)，以確保您的 IP 位址不會變更。
@@ -157,4 +157,4 @@ CNAME 記錄將*特定的*網域 (例如 **contoso.com** 或 **www.contoso.com**
 [csurl]: ./media/cloud-services-custom-domain-name-portal/csurl.png
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0810_2016-->

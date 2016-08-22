@@ -12,7 +12,7 @@
    ms.topic="article" 
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="06/13/2016"
+   ms.date="08/04/2016"
    ms.author="cherylmc"/>
 
 # ExpressRoute 常見問題集
@@ -184,21 +184,10 @@ ExpressRoute Premium 是下面所列功能的集合。
  - 可連線至 Office 365 服務和 CRM Online。
 
 ### 如果已啟用 ExpressRoute Premium，我可以將多少個 VNet 連結至 ExpressRoute 電路？
-下表提供針對可連結至 ExpressRoute 電路的 VNet 數目所提高的限制。預設限制為 10
+下表顯示 ExpressRoute 限制和每個 ExpressRoute 電路的 VNet 數目。
 
-**電路限制**
 
-| **電路大小** | **預設設定的 VNet 連結數目** | **ExpressRoute Premium 中的 VNet 連結數目** |
-|--------------|----------------------------------------|-----------------------------------------------|
-| 50 Mbps | 10 | 10 |
-| 100 Mbps | 10 | 20 |
-| 200 Mbps | 10 | 25 |
-| 500 Mbps | 10 | 40 |
-| 1 Gbps | 10 | 50 |
-| 2 Gbps | 10 | 60 |
-| 5 Gbps | 10 | 75 |
-| 10 Gbps | 10 | 100 |
-
+[AZURE.INCLUDE [expressroute-limits](../../includes/expressroute-limits.md)]
 
 
 ### 我要如何啟用 ExpressRoute Premium？
@@ -251,4 +240,4 @@ ExpressRoute Premium 是下面所列功能的集合。
 ### 可以透過 ExpressRoute 連線存取 Dynamics AX Online 嗎？
 不，不支援此做法。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0810_2016-->

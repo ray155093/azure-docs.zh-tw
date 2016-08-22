@@ -1,5 +1,12 @@
-<properties pageTitle="Azure 自動化中的變數資產 | Microsoft Azure" description="變數資產是可用於 Azure 自動化中所有 Runbook 和 DSC 設定的值。這篇文章說明變數的詳細資料，以及如何以文字式和圖形化編寫形式加以使用。" services="automation" documentationCenter="" authors="mgoedtel" manager="jwhit"" editor="tysonn" />
-<tags  
+<properties 
+   pageTitle="Azure 自動化中的變數資產 | Microsoft Azure"
+   description="變數資產是可用於 Azure 自動化中所有 Runbook 和 DSC 設定的值。這篇文章說明變數的詳細資料，以及如何以文字式和圖形化編寫形式加以使用。"
+   services="automation"
+   documentationCenter=""
+   authors="mgoedtel"
+   manager="jwhit"
+   editor="tysonn" />
+<tags 
    ms.service="automation"
    ms.devlang="na"
    ms.topic="article"
@@ -32,7 +39,7 @@
 
 ## Cmdlet 和工作流程活動
 
-下表中的 Cmdlet 是用來使用 Windows PowerShell 建立和管理自動化變數。它們是隨附於 [Azure PowerShell 模組](../powershell-install-configure.md)中一起推出，可供在自動化 Runbook 和 DSC 設定中使用。
+下表中的 Cmdlet 是用來使用 Windows PowerShell 建立和管理自動化變數。它們是隨著 [Azure PowerShell 模組](../powershell-install-configure.md)的一部分推出，可供在自動化 Runbook 和 DSC 設定中使用。
 
 |Cmdlet|說明|
 |:---|:---|
@@ -179,6 +186,6 @@
 ## 後續步驟
 
 - 若要深入了解如何在圖形化編寫中將活動連接在一起，請參閱[圖形化編寫中的連結](automation-graphical-authoring-intro.md#links-and-workflow)
-- 若要開始使用圖形化 Runbook，請參閱[我的第一個圖形化 Runbook](automation-first-runbook-graphical.md) 
+- 若要開始使用圖形化 Runbook，請參閱[我的第一個圖形化 Runbook](automation-first-runbook-graphical.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0810_2016-->

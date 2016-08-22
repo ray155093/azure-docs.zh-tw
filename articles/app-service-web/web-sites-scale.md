@@ -20,7 +20,7 @@
 
 本文將說明如何在 Azure App Service 中相應增加應用程式的規模。有兩個工作流程適合用來相應增加和相應放大規模，而本文說明相應增加工作流程。
 
-- [相應增加](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling)︰取得更多的 CPU、記憶體、磁碟空間和額外的功能，例如專用虛擬機器 (VM)、自訂網域和憑證、預備位置，以及自動調整等等。您可以藉由變更應用程式所屬的 App Service 方案定價層來相應放大。
+- [相應增加](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling)︰取得更多的 CPU、記憶體、磁碟空間和額外的功能，例如專用虛擬機器 (VM)、自訂網域和憑證、預備位置，以及自動調整等等。您可以藉由變更應用程式所屬的 App Service 方案定價層來相應增加。
 - [相應放大](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling)︰增加執行您的應用程式的 VM 執行個體數目。視您的定價層而定，最多可以相應放大至 20 個執行個體。**進階**層中的 [App Service 環境](../app-service/app-service-app-service-environments-readme.md)，可進一步將您的相應放大計數增加到 50 個執行個體。如需相應放大的詳細資訊，請參閱[手動或自動調整執行個體計數](../azure-portal/insights-how-to-scale.md)。您可以在該文章中了解如何使用自動調整，也就是根據預先定義的規則與排程，自動調整執行個體計數。
 
 這些調整設定只需幾秒鐘便能套用，且影響範圍遍及 [App Service 方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)內的所有應用程式。在此過程中，您不需要變更程式碼或重新部署應用程式。
@@ -137,4 +137,4 @@
 [ScaleDatabase]: ./media/web-sites-scale/scale11SQLScale.png
 [GeoReplication]: ./media/web-sites-scale/scale12SQLGeoReplication.png
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

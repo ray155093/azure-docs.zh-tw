@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/12/2016" 
+	ms.date="08/04/2016" 
 	ms.author="billmath"/>
 
 
@@ -77,7 +77,7 @@
 
 ![Add Account](./media/multi-factor-authentication-azure-authenticator/addaccount3.png)
 
-- 掃描條碼。 
+- 掃描條碼。
 
 ![Add Account](./media/multi-factor-authentication-azure-authenticator/scan.png)
 
@@ -147,7 +147,7 @@
 
 ![Add Account](./media/multi-factor-authentication-azure-authenticator/msaccount.png)
 
-- 完成處理程序，方法是輸入您的帳戶底下的代碼 (在此案例中是 875 756)，然後將代碼輸入您收到秘密金鑰的頁面上的方塊中，然後按 [下一步]。  
+- 完成處理程序，方法是輸入您的帳戶底下的代碼 (在此案例中是 875 756)，然後將代碼輸入您收到秘密金鑰的頁面上的方塊中，然後按 [下一步]。
 
 ![Add Account](./media/multi-factor-authentication-azure-authenticator/verify.png)
 
@@ -168,4 +168,4 @@
 
 ![移除帳戶](./media/multi-factor-authentication-azure-authenticator/remove.png)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016-->

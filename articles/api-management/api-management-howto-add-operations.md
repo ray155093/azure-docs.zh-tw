@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/25/2016" 
+	ms.date="08/09/2016" 
 	ms.author="sdanie"/>
 
 # 如何將操作加入至 Azure API 管理中的 API
@@ -86,9 +86,9 @@
 -	**描述** - 參數的簡短描述 (選擇性)。
 -	**類型** - 參數類型，從下拉式清單中選取。
 -	**值** - 可指派給此參數的值。其中一個值可標示為預設值 (選擇性)。
--	**必要** - 選取此核取方塊將參數標示為必要。 
+-	**必要** - 選取此核取方塊將參數標示為必要。
 
-![Request parameters][api-management-request-parameters]
+![要求參數][api-management-request-parameters]
 
 ## <a name="request-body"> </a>要求本文
 
@@ -168,4 +168,4 @@
 [如何建立和發佈產品]: api-management-howto-add-products.md
 [如何在 Azure API 管理中快取操作結果]: api-management-howto-cache.md
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016-->

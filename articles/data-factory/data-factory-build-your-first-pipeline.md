@@ -66,7 +66,7 @@
 
 1.	**Azure 訂用帳戶** - 如果您沒有 Azure 訂用帳戶，只需要幾分鐘就可以建立免費試用帳戶。請參閱[免費試用](https://azure.microsoft.com/pricing/free-trial/)一文了解如何取得免費試用帳戶。
 
-2.	**Azure 儲存體** – 在本教學課程中，您將使用 Azure 儲存體帳戶來儲存資料。如果您沒有 Azure 儲存體帳戶，請參閱[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)一文。建立儲存體帳戶之後，您必須取得用來存取儲存體的帳戶金鑰。請參閱[檢視、複製和重新產生儲存體存取金鑰](../storage/storage-create-storage-account.md#view-copy-and-regenerate-storage-access-keys)。
+2.	**Azure 儲存體** – 在本教學課程中，您將使用 Azure 儲存體帳戶來儲存資料。如果您沒有 Azure 儲存體帳戶，請參閱[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)一文。建立儲存體帳戶之後，您必須取得用來存取儲存體的帳戶金鑰。請參閱[檢視、複製和重新產生儲存體存取金鑰](../storage/storage-create-storage-account.md#view-and-copy-storage-access-keys)。
 
 ## 將教學課程使用的檔案上傳到 Azure 儲存體
 開始教學課程之前，您必須準備內含教學課程所需檔案的 Azure 儲存體。
@@ -227,4 +227,4 @@
 - [使用 PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
 - [使用資源管理員範本](data-factory-build-your-first-pipeline-using-arm.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016-->

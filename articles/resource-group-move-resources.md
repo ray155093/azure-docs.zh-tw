@@ -54,6 +54,7 @@
 - DocumentDB
 - HDInsight 叢集
 - 金鑰保存庫
+- 媒體服務
 - Mobile Engagement
 - 通知中樞
 - Operational Insights
@@ -268,8 +269,8 @@
 
 ## 後續步驟
 - 若要了解用於管理訂用帳戶的 PowerShell Cmdlet，請參閱[搭配使用 Azure PowerShell 與 Azure Resource Manager](powershell-azure-resource-manager.md)。
-- 若要了解用於管理訂用帳戶的 Azure CLI 命令，請參閱[搭配使用 Azure CLI 與 Resource Manager](xplat-cli-azure-resource-manager.md)。
+- 若要了解用於管理訂用帳戶的 Azure CLI 命令，請參閱[搭配使用 Azure CLI 與 Azure Resource Manager](xplat-cli-azure-resource-manager.md)。
 - 若要了解用於管理訂用帳戶的入口網站功能，請參閱[使用 Azure 入口網站來管理資源](./azure-portal/resource-group-portal.md)。
-- 若要了解如何將邏輯組織套用到您的資源，請參閱[使用標籤來組織您的資源](resource-group-using-tags.md)。
+- 若要了解如何將邏輯組織套用到您的資源，請參閱[使用標記來組織您的資源](resource-group-using-tags.md)。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016-->

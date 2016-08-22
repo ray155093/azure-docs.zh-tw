@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/14/2016"
+	ms.date="08/08/2016"
 	ms.author="billmath"/>
 
 # Azure AD 同盟相容性清單
@@ -22,8 +22,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 對於已經投資非 Microsoft 同盟方案的組織，此主題包含使用來自下面「Azure Active Directory 同盟相容性清單」中的非 Microsoft 識別提供者，為其 Windows Server Active Directory 使用者在 Microsoft 線上服務設定單一登入的指引。
 
 
-![](./media/active-directory-aadconnect-federation-compatibility/oxford2.jpg)   
-[Oxford Computer Group](http://oxfordcomputergroup.com/) 這家代表 Microsoft 的協力廠商已使用非 Microsoft 識別提供者，針對一組常見的 Azure Active Directory 使用案例測試這些單一登入體驗。
+![](./media/active-directory-aadconnect-federation-compatibility/oxford2.jpg) [Oxford Computer Group](http://oxfordcomputergroup.com/) 這家代表 Microsoft 的協力廠商已使用非 Microsoft 識別提供者，針對一組常見的 Azure Active Directory 使用案例測試這些單一登入體驗。
 
 如需如何取得此處所列的協力廠商識別提供者資訊，請與 Oxford Computer Group 連絡：[idp@oxfordcomputergroup.com](mailto:idp@oxfordcomputergroup.com)。
 
@@ -37,7 +36,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 - [Optimal IDM Virtual Identity Server Federation Services](#optimal-idm-virtual-identity-server-federation-services)
 - [PingFederate 6.11](#pingfederate-611)
 - [PingFederate 7.2](#pingfederate-72)
-- [PingFederate 8.x](#pingfederate-8.x)
+- [PingFederate 8.x](#pingfederate-8x)
 - [Centrify](#centrify)
 - [IBM Tivoli Federated Identity Manager 6.2.2](#ibm-tivoli-federated-identity-manager-622)
 - [SecureAuth IdP 7.2.0](#secureauth-idp-720)
@@ -339,4 +338,4 @@ AuthAnvil Single Sign On 4.5 可實作廣泛使用的 WS 同盟/WS-Trust 身分�
 
 如需詳細資訊，請參閱 [AuthAnvil 單一登入](https://help.scorpionsoft.com/entries/26538603-How-can-I-Configure-Single-Sign-On-for-Office-365-)。
 
-<!----HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0810_2016-->

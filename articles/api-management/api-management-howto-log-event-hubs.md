@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/25/2016" 
+	ms.date="08/09/2016" 
 	ms.author="sdanie"/>
 
 # 如何將事件記錄到 Azure API 管理中的 Azure 事件中樞
@@ -117,7 +117,7 @@
 -	深入了解 API 管理和事件中樞的整合
 	-	[記錄器實體參考](https://msdn.microsoft.com/library/azure/mt592020.aspx)
 	-	[log-to-eventhub 原則參考](https://msdn.microsoft.com/library/azure/dn894085.aspx#log-to-eventhub)
-	-	[利用 Azure API 管理、事件中樞及 Runscope 監視您的 API](api-management-log-to-eventhub-sample.md)	
+	-	[利用 Azure API 管理、事件中樞及 Runscope 監視您的 API](api-management-log-to-eventhub-sample.md)
 
 ## 觀看影片逐步解說
 
@@ -133,4 +133,4 @@
 [event-hub-policy]: ./media/api-management-howto-log-event-hubs/event-hub-policy.png
 [add-policy]: ./media/api-management-howto-log-event-hubs/add-policy.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016-->

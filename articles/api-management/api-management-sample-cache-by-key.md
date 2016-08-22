@@ -13,8 +13,8 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="na"
-	ms.date="05/25/2016"
-	ms.author="v-darmi"/>
+	ms.date="08/09/2016"
+	ms.author="darrmi"/>
 
 # 在 Azure API 管理中自訂快取
 Azure API 管理服務以資源 URL 做為索引鍵，內建對 [HTTP 回應的快取](api-management-howto-cache.md)的支援。可以在要求標頭中使用 `vary-by` 屬性修改索引鍵。這很適合用於快取整個 HTTP 回應 (也稱為｢表示法｣)，但是有時候也很適合用於只快取部分表示法。新的 [cache-lookup-value](https://msdn.microsoft.com/library/azure/dn894086.aspx#GetFromCacheByKey) 和 [cache-store-value](https://msdn.microsoft.com/library/azure/dn894086.aspx#StoreToCacheByKey) 原則提供了可儲存及擷取原則定義中任意資料的能力。這個能力也讓先前推出的 [send-request](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendRequest) 原則更有價值，因為您現在可以快取外部服務的回應。
@@ -239,10 +239,10 @@ API 管理服務使用共用的個別租用戶資料快取，所以，當您相�
 
 您將會傳回將租用戶與指派之硬體群組建立關聯的識別碼，而不是傳回每個訂用帳戶金鑰的 API 慣用的版本。這個識別碼可以用來建構適當的後端 URL。
 
-## 摘要
+## Summary
 能夠自由地使用 Azure API 管理快取來儲存任何種類的資料，可讓您有效率地存取組態資料，而這些資料可能會影響輸入要求的處理方式。上述快取也可以用來儲存資料片段，此種片段可以增加從後端 API 傳回的回應。
 
 ## 後續步驟
 如果這些原則為您達成其他案例，或是有案例您想要達成但認為目前無法執行，敬請不吝賜教在 Disqus 的本主題系列中提供意見。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016-->

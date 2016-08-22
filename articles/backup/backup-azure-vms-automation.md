@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="storage-backup-recovery"
-   ms.date="06/03/2016"
+   ms.date="08/03/2016"
    ms.author="markgal; trinadhk"/>
 
 # 使用 PowerShell 部署和管理 Resource Manager 部署之 VM 的備份
@@ -179,9 +179,17 @@ NewPolicy           AzureVM            AzureVM              4/24/2016 1:30:00 AM
 
 啟用保護牽涉到兩個物件：項目和原則。這兩個物件是啟用保存庫保護的必要項目。一旦原則與保存庫相關聯，備份工作流程將依照原則排程定義的時間觸發。
 
-若要啟用保護原則，
+在非加密 ARM VM 上啟用保護
 
 ```
+PS C:\> $pol=Get-AzureRmRecoveryServicesBackupProtectionPolicy -Name "NewPolicy"
+PS C:\> Enable-AzureRmRecoveryServicesBackupProtection -Policy $pol -Name "V2VM" -ResourceGroupName "RGName1"
+```
+
+若要在加密的 VM 上 [使用 BEK 與 KEK 加密] 啟用保護，您必須提供 Azure 備份服務權限，來讀取金鑰保存庫中的金鑰和密碼。
+
+```
+PS C:\> Set-AzureRmKeyVaultAccessPolicy -VaultName 'KeyVaultName' -ResourceGroupName 'RGNameOfKeyVault' -PermissionsToKeys backup,get,list -PermissionsToSecrets get,list -ServicePrincipalName 262044b1-e2ce-469f-a196-69ab7ada62d3
 PS C:\> $pol=Get-AzureRmRecoveryServicesBackupProtectionPolicy -Name "NewPolicy"
 PS C:\> Enable-AzureRmRecoveryServicesBackupProtection -Policy $pol -Name "V2VM" -ResourceGroupName "RGName1"
 ```
@@ -254,11 +262,11 @@ PS C:\> Wait-AzureRmRecoveryServicesBackupJob -Job $joblist[0] -Timeout 43200
 
 ![顯示 BackupContainer 的復原服務物件階層](./media/backup-azure-vms-arm-automation/backuprecoverypoint-only.png)
 
-若要還原備份資料，請識別備份的「項目」和保存時間點資料的「復原點」。然後使用 **[Restore-AzureRmRecoveryServicesBackupItem](https://msdn.microsoft.com/library/mt723316.aspx)** Cmdlet，將保存庫中的資料還原至客戶的帳戶。
+若要還原備份資料，請識別備份的「項目」和保存時間點資料的「復原點」。然後使用 **[Restore-AzureRmRecoveryServicesBackupItem](https://msdn.microsoft.com/library/mt723316.aspx)**，將資料從保存庫還原至客戶的帳戶。
 
 ### 選取 VM
 
-若要取得可識別正確備份項目的 PowerShell 物件，請從保存庫中的容器開始，向下深入物件階層。若要選取代表 VM 的容器，請使用 **[Get-AzureRmRecoveryServicesBackupContainer](https://msdn.microsoft.com/library/mt723319.aspx)** Cmdlet，並透過管道將其傳送到 **[Get-AzureRmRecoveryServicesBackupItem](https://msdn.microsoft.com/library/mt723305.aspx)** Cmdlet。
+若要取得可識別正確備份項目的 PowerShell 物件，請從保存庫中的容器開始，向下深入物件階層。若要選取代表 VM 的容器，請使用 **[Get-AzureRmRecoveryServicesBackupContainer](https://msdn.microsoft.com/library/mt723319.aspx)** Cmdlet，並透過管道將它傳送到 **[Get-AzureRmRecoveryServicesBackupItem](https://msdn.microsoft.com/library/mt723305.aspx)** Cmdlet。
 
 ```
 PS C:\> $namedContainer = Get-AzureRmRecoveryServicesBackupContainer  -ContainerType AzureVM –Status Registered -Name 'V2VM'
@@ -346,14 +354,25 @@ PS C:\> $details = Get-AzureRmRecoveryServicesBackupJobDetails
 
 4. 連接作業系統磁碟與資料磁碟。
 
-    ```
-    PS C:\> Set-AzureRmVMOSDisk -VM $vm -Name "osdisk" -VhdUri $obj.StorageProfile.OSDisk.VirtualHardDisk.Uri
-    PS C:\> $vm.StorageProfile.OsDisk.OsType = $obj.StorageProfile.OSDisk.OperatingSystemType foreach($dd in $obj.StorageProfile.DataDisks)
-    {
-    $vm = Add-AzureRmVMDataDisk -VM $vm -Name "datadisk1" -VhdUri $dd.VirtualHardDisk.Uri -DiskSizeInGB 127 -Lun $dd.Lun -CreateOption Attach
-    }
-    ```
+      針對非加密的 VM，
 
+       ```
+       PS C:\> Set-AzureRmVMOSDisk -VM $vm -Name "osdisk" -VhdUri $obj.StorageProfile.OSDisk.VirtualHardDisk.Uri -CreateOption “Attach”
+       PS C:\> $vm.StorageProfile.OsDisk.OsType = $obj.StorageProfile.OSDisk.OperatingSystemType foreach($dd in $obj.StorageProfile.DataDisks)
+       {
+       $vm = Add-AzureRmVMDataDisk -VM $vm -Name "datadisk1" -VhdUri $dd.VirtualHardDisk.Uri -DiskSizeInGB 127 -Lun $dd.Lun -CreateOption Attach
+       }
+       ```
+      針對加密的 VM，您必須在您連接磁碟之前，指定[金鑰保存庫資訊](https://msdn.microsoft.com/library/dn868052.aspx)。
+      
+      ```
+      PS C:\> Set-AzureRmVMOSDisk -VM $vm -Name "osdisk" -VhdUri $obj.StorageProfile.OSDisk.VirtualHardDisk.Uri -DiskEncryptionKeyUrl "https://ContosoKeyVault.vault.azure.net:443/secrets/ContosoSecret007" -DiskEncryptionKeyVaultId "/subscriptions/abcdedf007-4xyz-1a2b-0000-12a2b345675c/resourceGroups/ContosoRG108/providers/Microsoft.KeyVault/vaults/ContosoKeyVault" -KeyEncryptionKeyUrl "https://ContosoKeyVault.vault.azure.net:443/keys/ContosoKey007" -KeyEncryptionKeyVaultId "subscriptions/abcdedf007-4xyz-1a2b-0000-12a2b345675c/resourceGroups/ContosoRG108/providers/Microsoft.KeyVault/vaults/ContosoKeyVault" -CreateOption "Attach" -Windows
+      PS C:\> $vm.StorageProfile.OsDisk.OsType = $obj.StorageProfile.OSDisk.OperatingSystemType foreach($dd in $obj.StorageProfile.DataDisks)
+       {
+       $vm = Add-AzureRmVMDataDisk -VM $vm -Name "datadisk1" -VhdUri $dd.VirtualHardDisk.Uri -DiskSizeInGB 127 -Lun $dd.Lun -CreateOption Attach
+       }
+      ```
+      
 5. 設定網路設定。
 
     ```
@@ -373,6 +392,6 @@ PS C:\> $details = Get-AzureRmRecoveryServicesBackupJobDetails
 
 ## 後續步驟
 
-如果您偏好使用 PowerShell 來與您的 Azure 資源交流，請參閱保護 Windows Server 的 PowerShell 文章：[部署和管理 Windows Server 的備份](./backup-client-automation.md)。另請參閱管理 DPM 備份的 PowerShell 文章：[部署和管理 DPM 的備份](./backup-dpm-automation.md)。這兩篇文章都有適用於 Resource Manager 部署以及傳統部署的版本。
+如果您偏好使用 PowerShell 來與您的 Azure 資源交流，請參閱保護 Windows Server 的 PowerShell 文章：[部署和管理 Windows Server 的備份](./backup-client-automation.md)。另請參閱管理 DPM 備份的 PowerShell 文章：[部署及管理 DPM 的備份](./backup-dpm-automation.md)。這兩篇文章都有適用於 Resource Manager 部署以及傳統部署的版本。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0810_2016-->

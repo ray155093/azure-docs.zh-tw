@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="01/20/2016"
+   ms.date="08/10/2016"
    ms.author="aprameyr"/>
 
 # Service Fabric 服務的可用性
@@ -50,4 +50,4 @@ Azure Service Fabric 服務可能是具狀態或無狀態。本文章概述 Serv
 
 - [定義和管理狀態](service-fabric-concepts-state.md)
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0810_2016-->

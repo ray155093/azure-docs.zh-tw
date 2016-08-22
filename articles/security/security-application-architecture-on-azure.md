@@ -1,10 +1,10 @@
 <properties
    pageTitle="Azure 上的應用程式架構 | Microsoft Azure"
-   description="本文將協助您了解 Azure 上的應用程式及服務架構，可以更輕易地將安全性整合至設計及實作。"
+   description=" 本文將協助您了解 Azure 上的應用程式及服務架構，可以更輕易地將安全性整合至設計及實作。"
    services="security"
    documentationCenter="na"
    authors="TomShinder"
-   manager="StevenPo"
+   manager="MBaldwin"
    editor="TomSh"/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/19/2016"
+   ms.date="08/09/2016"
    ms.author="terrylan"/>
 
 # Azure 的應用程式架構
@@ -56,4 +56,4 @@ Microsoft 發佈一組高階[架構藍圖](http://aka.ms/azblueprints)，示範�
 - 下載 [Microsoft 3D 藍圖 Visio 範本](http://aka.ms/3DBlueprintTemplate)
 - 下載[雲端和企業符號](../architecture-overview.md#drawing-symbol-and-icon-sets)以搭配 3D 範本使用
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016-->

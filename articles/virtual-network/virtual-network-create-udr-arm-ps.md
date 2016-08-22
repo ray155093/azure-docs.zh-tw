@@ -3,7 +3,7 @@
    description="深入了解在資源管理員中使用 PowerShell 控制路由和使用虛擬應用裝置"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor=""
    tags="azure-resource-manager"
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/23/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 #在資源管理員中使用 PowerShell 建立使用者定義的路由 (UDR)
 
@@ -23,7 +23,7 @@
 
 [AZURE.INCLUDE [virtual-network-create-udr-intro-include.md](../../includes/virtual-network-create-udr-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]本文涵蓋之內容包括資源管理員部署模型。您也可以[在傳統部署模型中建立 UDR](virtual-network-create-udr-classic-ps.md)。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] 本文涵蓋之內容包括資源管理員部署模型。您也可以[在傳統部署模型中建立 UDR](virtual-network-create-udr-classic-ps.md)。
 
 [AZURE.INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
@@ -236,4 +236,4 @@
 		NetworkSecurityGroup : null
 		Primary              : True
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0810_2016-->

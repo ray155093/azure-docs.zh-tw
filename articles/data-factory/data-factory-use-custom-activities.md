@@ -565,7 +565,7 @@
 
 ### 建立並執行使用自訂活動的管線
 
-1. 在 Data Factory 編輯器中，按一下工具列上的 [**新增管線**]。如果看不到此命令，請按一下 [...] \(省略符號) 就可看到。
+1. 在 Data Factory 編輯器中，按一下工具列上的 [**新增管線**]。如果看不到此命令，請按一下 [...] (省略符號) 就可看到。
 2. 使用下列 JSON 指令碼取代右窗格中的 JSON。
 
 		{
@@ -620,7 +620,7 @@
 	- **PackageLinkedService** 已設定為 **AzureStorageLinkedService**，它會指向包含自訂活動 zip 檔案的 Blob 儲存體。如果您將不同的 Azure 儲存體帳戶用於輸入/輸出檔案和自訂活動 zip 檔案，您必須建立另一個 Azure 儲存體連結服務。本文假設您使用相同的 Azure 儲存體帳戶。
 	- **PackageFile** 設定為 **customactivitycontainer/MyDotNetActivity.zip**。其格式為：containerforthezip/nameofthezip.zip。
 	- 自訂活動會採用 **InputDataset** 做為輸入和 **OutputDataset** 做為輸出。
-	- 自訂活動的 linkedServiceName 屬性指向 **HDInsightLinkedService**，這會告知 Azure Data Factory 自訂活動必須在 Azure HDInsight 叢集上執行。
+	- 自訂活動的 linkedServiceName 屬性會指向 **AzureBatchLinkedService**，這會告知 Azure Data Factory 自訂活動必須在 Azure Batch VM 上執行。
 	- **isPaused** 屬性預設為 **false**。在此範例中，管線會立即執行，因為配量已在過去開始。您可以將此屬性設為 true，以暫停管線，並將其設回 false，以重新啟動。
 	- **啟動**時間和**結束**時間距離 **5** 小時，而配量會每小時產生，因此管線會產生 5 個配量。
 
@@ -894,4 +894,4 @@ Azure Data Factory 服務支援建立隨選叢集，並使用它處理輸入來�
 
 [image-data-factory-download-logs-from-custom-activity]: ./media/data-factory-use-custom-activities/DownloadLogsFromCustomActivity.png
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

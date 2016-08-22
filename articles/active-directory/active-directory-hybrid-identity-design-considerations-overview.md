@@ -3,7 +3,7 @@
 	description="混合式身分識別設計考量指南的概觀和內容對應"
 	documentationCenter=""
 	services="active-directory"
-	authors="yuridio"
+	authors="billmath"
 	manager="stevenpo"
 	editor=""/>
 
@@ -13,8 +13,8 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="04/25/2016"
-	ms.author="yuridio"/>
+	ms.date="08/08/2016"
+	ms.author="billmath"/>
 
 # Azure Active Directory 混合式身分識別設計考量
 
@@ -55,4 +55,4 @@
 
                                                              
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0810_2016-->

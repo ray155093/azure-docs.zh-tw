@@ -43,7 +43,7 @@
 
 如果要透過 PowerShell 新增標記，您可以使用 `Set-AzureRmResource` 命令。請注意，透過 PowerShell 標記更新時，標記會整體進行更新。所以，如果您將一個標記新增至已有標記的資源，您必須包含想要置於資源上的所有標記。以下是如何透過 PowerShell Cmdlet 將其他標記新增至資源的範例。
 
-第一個 Cmdlet 會使用 `Get-AzureRmResource` 和 `Tags` 函數，將置於 *MyTestVM* 上的所有標記設為 *tags* 變數。
+第一個 Cmdlet 會使用 `Get-AzureRmResource` 和 `Tags` 屬性，將置於 MyTestVM 上的所有標記設為 $tags 變數。
 
         PS C:\> $tags = (Get-AzureRmResource -ResourceGroupName MyResourceGroup -Name MyTestVM).Tags
 
@@ -62,11 +62,11 @@
         Value		Production
         Name		Environment
 
-第三個命令會將一個額外標記新增至 *tags* 變數。請注意，可使用 **+=** 將新的「索引鍵/值」組附加至 *tags* 清單。
+第三個命令會將一個額外標記新增至 $tags 變數。請注意，可使用 **+=** 將新的索引鍵/值組附加至 $tags 清單。
 
-        PS C:\> $tags +=@{Name="Location";Value="MyLocation"}
+        PS C:\> $tags += @{Name="Location";Value="MyLocation"}
 
-第四個命令會將 *tags* 變數中定義的所有標記設定為指定的資源。本例中是 MyTestVM。
+第四個命令會將 $tags 變數中定義的所有標記設定為指定的資源。本例中是 MyTestVM。
 
         PS C:\> Set-AzureRmResource -ResourceGroupName MyResourceGroup -Name MyTestVM -ResourceType "Microsoft.Compute/VirtualMachines" -Tag $tags
 
@@ -103,4 +103,4 @@
 [了解 Azure 帳單]: ../billing-understand-your-bill.md
 [深入了解 Microsoft Azure 資源耗用量]: ../billing-usage-rate-card-overview.md
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0810_2016-->

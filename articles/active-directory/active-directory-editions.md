@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/08/2016"
+	ms.date="08/10/2016"
 	ms.author="markvi"/>
 
 # Azure Active Directory 版本
@@ -51,13 +51,6 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 ##比較正式推出的功能
 
 > [AZURE.NOTE] 如需這項資料的不同檢視，請參閱 [Azure Active Directory 功能](https://www.microsoft.com/en/server-cloud/products/azure-active-directory/features.aspx)。
-
-| | Azure AD Free | Azure AD Basic | Azure AD Premium |
-| ---                      | :-:           | :-:            | :-:              |
-| 常用功能 | ![勾選][12] | ![勾選][12] | ![勾選][12] |
-| 基本功能 | | ![勾選][12] | ![勾選][12] |
-| 進階功能 | | | ![勾選][12] |
-
 
 
 
@@ -488,7 +481,7 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 
 
 
-## 接下來
+## 後續步驟
 
 - [開始使用 Azure Active Directory Premium](active-directory-get-started-premium.md)
 - [在登入和存取面板頁面加上公司商標](active-directory-add-company-branding.md)
@@ -497,4 +490,4 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 <!--Image references-->
 [12]: ./media/active-directory-editions/ic195031.png
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0810_2016-->

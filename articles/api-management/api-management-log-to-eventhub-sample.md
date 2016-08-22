@@ -13,8 +13,8 @@
     ms.tgt_pltfrm="na"
     ms.devlang="dotnet"
     ms.topic="article"
-    ms.date="05/25/2016"
-    ms.author="v-darmi"/>
+    ms.date="08/09/2016"
+    ms.author="darrmi"/>
 
 # 利用 Azure API 管理、事件中樞及 Runscope 監視您的 API
 
@@ -254,7 +254,7 @@ HTTP 標頭可以直接轉換成採用簡單索引鍵/值組格式的訊息格�
 
 ![示範將要求轉送到 Runscope](./media/api-management-log-to-eventhub-sample/apim-eventhub-runscope.gif)
 
-## 摘要
+## Summary
 Azure API 管理服務提供了一個理想位置，可供擷取您的 API 的雙向 HTTP 流量。Azure 事件中樞是一個可高度擴充、低成本的解決方案，用來擷取該流量並將它饋送到次要處理系統中，以便進行記錄、監視和其他複雜的分析。連接到協力廠商監視系統 (像是 Runscope) 就像數十行程式碼一樣簡單。
 
 ## 後續步驟
@@ -268,4 +268,4 @@ Azure API 管理服務提供了一個理想位置，可供擷取您的 API 的�
 	-	[log-to-eventhub 原則參考](https://msdn.microsoft.com/library/azure/dn894085.aspx#log-to-eventhub)
 	
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016-->

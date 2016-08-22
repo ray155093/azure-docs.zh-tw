@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="04/20/2016"
+   ms.date="08/08/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 
@@ -22,9 +22,9 @@
 > [AZURE.SELECTOR]
 - [下載移轉公用程式][]
 
-資料倉儲移轉公用程式是一種工具，專門用來將結構描述和資料從 SQL Server 和 Azure SQL Database 移轉至 Azure SQL 資料倉儲。在結構描述移轉的過程中，此工具會在來源與目的地之間自動對應相應的結構描述。結構描述完成移轉後，使用者也能選擇以自動產生的指令碼來移動資料。
+資料倉儲移轉公用程式是一種工具，專門用來將結構描述和資料從 SQL Server 和 Azure SQL Database 移轉至 Azure SQL 資料倉儲。在結構描述移轉的過程中，此工具會在來源與目的地之間自動對應相應的結構描述。結構描述完成移轉後，工具提供以自動產生的指令碼移動資料的選項。
 
-除了結構描述和資料移轉之外，此工具還能讓使用者選擇產生相容性報告，以摘要的形式列出目標和來源執行個體之間可能會妨礙移轉作業的不相容問題。
+除了結構描述和資料移轉之外，此工具還能讓您選擇產生相容性報告，以摘要的形式列出目標和來源執行個體之間可能會妨礙移轉作業的不相容問題。
 
 ## 開始使用
 安裝的先決條件是，您必須使用 BCP 命令列公用程式來執行移轉指令碼和 Office，才能檢視相容性報告。啟動所下載的可執行檔之後，系統會提示您接受標準 EULA，才能繼續安裝此工具。
@@ -65,4 +65,4 @@
 <!--Other Web references--> 
 [下載移轉公用程式]: https://migrhoststorage.blob.core.windows.net/sqldwsample/DataWarehouseMigrationUtility.zip
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016-->

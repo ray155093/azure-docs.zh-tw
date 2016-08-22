@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/14/2016"
+   ms.date="08/08/2016"
    ms.author="barbkess;sonyama"/>
 
 # 管理 Azure SQL 資料倉儲中的計算能力 (REST)
@@ -100,4 +100,4 @@ POST https://management.azure.com/subscriptions{subscription-id}/resourceGroups/
 
 [Azure portal]: http://portal.azure.com/
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0810_2016-->

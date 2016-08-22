@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/25/2016" 
+	ms.date="08/09/2016" 
 	ms.author="sdanie"/>
 
 # 如何在 Azure API 管理中使用 Azure Active Directory 授權開發人員帳戶
 
 
-## 概觀
+## Overview
 本指南說明如何為一或多個 Azure Active Directory 中的所有使用者啟用開發人員入口網站的存取。本指南也說明如何管理 Azure Active Directory 的使用者，方法是加入包含 Azure Active Directory 的使用者的外部群組。
 
 >若要完成本指南中的步驟，您必須先具備要在其中建立應用程式的 Azure Active Directory。
@@ -50,7 +50,7 @@
 
 針對 [**登入 URL**]，請從發行者入口網站 [**外部身分識別**] 索引標籤的 [**Azure Active Directory**] 區段，複製 [**重新導向 URL**]，並從 URL 結尾移除 **-aad** 尾碼。在此範例中，[**登入 URL**] 為 `https://aad03.portal.current.int-azure-api.net/signin`。
 
-針對 [**應用程式識別碼 URL**]，請輸入 Azure Active Directory 的預設網域或自訂網域，並為其附加獨特的字串。在此範例中，使用 **https://contoso5api.onmicrosoft.com** 的預設網域時搭配指定了 **/api** 尾碼。
+針對 [**應用程式識別碼 URL**]，請輸入 Azure Active Directory 的預設網域或自訂網域，並為其附加獨特的字串。在此範例中，使用了 **https://contoso5api.onmicrosoft.com** 的預設網域並指定尾碼** /api**。
 
 ![新 Azure Active Directory 應用程式屬性][api-management-new-aad-application-2]
 
@@ -228,4 +228,4 @@
 
 [使用 Azure Active Directory 帳戶登入開發人員入口網站]: #Log-in-to-the-Developer-portal-using-an-Azure-Active-Directory-account
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016-->

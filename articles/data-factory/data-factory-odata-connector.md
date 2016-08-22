@@ -19,9 +19,11 @@
 # 使用 Azure Data Factory 來移動 OData 來源的資料
 本文章將概述如何使用 Azure 資料處理站中的複製活動，來把 OData 來源的資料移動到另一個資料存放區。本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
 
+> [AZURE.NOTE] 此 OData 連接器支援從雲端 OData 和內部部署 OData 來源複製資料。若為後者，您必須安裝資料管理閘道。如需資料管理閘道的詳細資訊，請參閱[在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文。
+
 ## 範例：把 OData 來源的資料複製到 Azure Blob
 
-這個範例示範如何把 OData 來源的資料複製到 Azure Blob 儲存體。不過，您可以利用 Azure Data Factory 中的複製活動，「直接」把資料複製到[此處](data-factory-data-movement-activities.md#supported-data-stores)所述的任何接收器。
+這個範例示範如何把 OData 來源的資料複製到 Azure Blob 儲存體。不過，您可以在 Azure Data Factory 中使用複製活動，**直接**將資料複製到[這裡](data-factory-data-movement-activities.md#supported-data-stores)所說的任何接收器。
  
 此範例具有下列 Data Factory 實體：
 
@@ -33,7 +35,7 @@
 
 範例會每隔一小時依照 OData 來源，把查詢來的資料複製到 Azure Blob 中。範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
-**OData 連結服務** 此範例會使用基本驗證。請參閱＜[OData 連結服務](#odata-linked-service-properties)＞一節，來了解您可以使用的不同驗證類型。
+**OData 連結服務** 此範例會使用基本驗證。請參閱 [OData 連結服務](#odata-linked-service-properties)一節，來了解您可以使用的不同驗證類型。
 
     {
 		"name": "ODataLinkedService",
@@ -154,7 +156,7 @@
 
 **具有複製活動的管線**
 
-此管線包含複製活動，該活動已設定為使用上述輸入和輸出資料集並排定為每小時執行。在管線 JSON 定義中，已將 **source** 類型設為 **RelationalSource**，並將 **sink** 類型設為 **BlobSink**。針對 **query** 屬性所指定的 SQL 查詢，會從 OData 來源選取最新的資料。
+此管線包含複製活動，該活動已設定為使用上述輸入和輸出資料集並排定為每小時執行。在管線 JSON 定義中，**source** 類型設為 **RelationalSource**，而 **sink** 類型設為 **BlobSink**。針對 **query** 屬性所指定的 SQL 查詢，會從 OData 來源選取最新的資料。
 	
 	{
 	    "name": "CopyODataToBlob",
@@ -211,15 +213,16 @@
 | -------- | ----------- | -------- | 
 | 類型 | 類型屬性必須設為：**OData** | 是 |
 | url| OData 服務的 URL。 | 是 |
-| authenticationType | 用來連線到 OData 來源的驗證類型。可能的值為：Anonymous 和 Basic。 | 是 | 
+| authenticationType | 用來連線到 OData 來源的驗證類型。<br/><br/> 若為雲端 OData，可能值為匿名和基本；若為內部部署 OData，可能值為匿名、基本和 Windows。 | 是 | 
 | username | 如果您要使用 Basic 驗證，請指定使用者名稱。 | 是 (只在您使用基本驗證時) | 
 | password | 指定您為使用者名稱所指定之使用者帳戶的密碼。 | 是 (只在您使用基本驗證時) | 
+| gatewayName | Data Factory 服務應該用來連接到內部部署 OData 服務的閘道器名稱。只在要從內部部署 OData 來源複製資料時才指定。 | 否 |
 
 ### 使用基本驗證
 
     {
         "name": "inputLinkedService",
-       "properties": 
+        "properties": 
         {
             "type": "OData",
            	"typeProperties": 
@@ -239,10 +242,28 @@
        	"properties": 
         {
             "type": "OData",
-           "typeProperties": 
+            "typeProperties": 
             {
                "url": "http://services.odata.org/OData/OData.svc",
                "authenticationType": "Anonymous"
+           }
+       }
+    }
+
+### 使用存取內部部署 OData 來源的 Windows 驗證
+
+    {
+        "name": "inputLinkedService",
+        "properties": 
+        {
+            "type": "OData",
+           	"typeProperties": 
+            {
+               "url": "<endpoint of on-premises OData source e.g. Dynamics CRM>",
+               "authenticationType": "Windows",
+                "username": "domain\\user",
+               "password": "password",
+               "gatewayName": "mygateway"
            }
        }
     }
@@ -288,6 +309,6 @@
 [AZURE.INCLUDE [data-factory-type-repeatability-for-relational-sources](../../includes/data-factory-type-repeatability-for-relational-sources.md)]
 
 ## 效能和微調  
-請參閱「[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)」一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
+請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016-->

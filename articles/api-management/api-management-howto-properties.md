@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/25/2016" 
+	ms.date="08/09/2016" 
 	ms.author="sdanie"/>
 
 
@@ -26,8 +26,8 @@ API 管理原則是系統的強大功能，可讓發行者透過設定來變更 
 
 | 屬性 | 類型 | 說明 |
 |-----------|-----------------|---------------------------------------------------------------------------------------------------------|
-| 名稱 | 字串 | 屬性的名稱。只能包含字母、數字、句點、破折號和底線字元。 |
-| 值 | 字串 | 屬性的值。不能是空白或只由空白字元組成。 |
+| Name | string | 屬性的名稱。只能包含字母、數字、句點、破折號和底線字元。 |
+| 值 | string | 屬性的值。不能是空白或只由空白字元組成。 |
 | Secret | 布林值 | 決定該值是否為密碼且是否應該加密。 |
 | 標記 | 字串陣列 | 若有提供選用的標記，則可用來篩選屬性清單。 |
 
@@ -37,7 +37,7 @@ API 管理原則是系統的強大功能，可讓發行者透過設定來變更 
 
 屬性值可以包含常值字串及[原則運算式](https://msdn.microsoft.com/library/azure/dn910913.aspx)。下表顯示之前的三個範例屬性和其屬性。`ExpressionProperty` 的值是會傳回包含目前日期與時間之字串的運算式。`ContosoHeaderValue` 屬性已標記為密碼，所以未顯示其值。
 
-| 名稱 | 值 | Secret | 標記 |
+| Name | 值 | Secret | 標記 |
 |--------------------|----------------------------|--------|---------|
 | ContosoHeader | TrackingId | False | Contoso |
 | ContosoHeaderValue | •••••••••••••••••••••• | True | Contoso |
@@ -149,4 +149,4 @@ API 管理原則是系統的強大功能，可讓發行者透過設定來變更 
 [api-management-properties-filter]: ./media/api-management-howto-properties/api-management-properties-filter.png
 [api-management-api-inspector-trace]: ./media/api-management-howto-properties/api-management-api-inspector-trace.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016-->

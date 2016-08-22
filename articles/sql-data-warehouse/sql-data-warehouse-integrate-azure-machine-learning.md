@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/17/2016"
-   ms.author="shigu;barbkess;sonyama"/>
+   ms.date="08/08/2016"
+   ms.author="kevin;barbkess;sonyama"/>
 
 # 搭配使用 Azure 機器學習服務與 SQL 資料倉儲
 
@@ -149,4 +149,4 @@ FROM dbo.DimProduct;
 
 [Azure Machine Learning documentation]: http://azure.microsoft.com/documentation/services/machine-learning/
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

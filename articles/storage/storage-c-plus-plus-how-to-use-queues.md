@@ -13,14 +13,14 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="07/26/2016"
+    ms.date="08/03/2016"
     ms.author="dineshm"/>
 
 # 如何使用 C++ 的佇列儲存體  
 
 [AZURE.INCLUDE [storage-selector-queue-include](../../includes/storage-selector-queue-include.md)] <br/> [AZURE.INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-queues.md)]
 
-## 概觀
+## Overview
 本指南將示範如何使用 Azure 佇列儲存服務執行一般案例。這些範例均以 C++ 撰寫，並使用 [Azure Storage Client Library for C++](http://github.com/Azure/azure-storage-cpp/blob/master/README.md)。所涵蓋的案例包括「插入」、「查看」、「取得」和「刪除」佇列訊息，以及「建立和刪除佇列」。
 
 >[AZURE.NOTE] 本指南以 Azure Storage Client Library for C++ 1.0.0 版和更新版本為對象。建議的版本是 Storage Client Library 2.2.0，可透過 [NuGet](http://www.nuget.org/packages/wastorage) 或 [GitHub](http://github.com/Azure/azure-storage-cpp/) 取得。
@@ -236,4 +236,4 @@ Azure 儲存體用戶端會使用儲存體連接字串來儲存存取資料管�
 -	[Storage Client Library for C++ 參考資料](http://azure.github.io/azure-storage-cpp)
 -	[Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016-->

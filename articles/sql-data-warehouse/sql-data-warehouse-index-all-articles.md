@@ -24,7 +24,7 @@
 
 
 
-## 概觀
+## Overview
 
 | &nbsp; | Url-Id | 課程名稱 | 說明 |
 | --: | :-- | :-- | :-- |
@@ -47,7 +47,6 @@
 | 10 | get-started-create-support-ticket | [如何為 SQL 資料倉儲建立支援票證](sql-data-warehouse-get-started-create-support-ticket.md) | 如何在 Azure SQL 資料倉儲中建立支援票證。 |
 | 11 | get-started-load-with-azure-data-factory | [使用 Azure Data Factory 載入資料](sql-data-warehouse-get-started-load-with-azure-data-factory.md) | 了解如何使用 Azure Data Factory 載入資料 |
 | 12 | get-started-load-with-polybase | [在 SQL 資料倉儲中使用 PolyBase 載入資料](sql-data-warehouse-get-started-load-with-polybase.md) | 瞭解 PolyBase 是什麼及如何用於資料倉儲案例。 |
-| 13 | get-started-new-server | [建立新的邏輯伺服器](sql-data-warehouse-get-started-new-server.md) | 了解如何在 Azure 入口網站中建立 Azure SQL 資料倉儲 |
 | 14 | get-started-provision | [建立 Azure SQL 資料倉儲](sql-data-warehouse-get-started-provision.md) | 了解如何在 Azure 入口網站中建立 Azure SQL 資料倉儲 |
 | 15 | get-started-provision-powershell | [使用 Powershell 建立 SQL 資料倉儲](sql-data-warehouse-get-started-provision-powershell.md) | 使用 Powershell 建立 SQL 資料倉儲 |
 | 16 | get-started-visualize-with-power-bi | [使用 Power BI 視覺化資料](sql-data-warehouse-get-started-visualize-with-power-bi.md) | 使用 Power BI 視覺化 SQL 資料倉儲資料 |
@@ -120,7 +119,7 @@
 
 
 
-## 負載
+## 載入
 
 | &nbsp; | Url-Id | 課程名稱 | 說明 |
 | --: | :-- | :-- | :-- |
@@ -193,4 +192,4 @@
 | 86 | service-capacity-limits | [SQL 資料倉儲容量限制](sql-data-warehouse-service-capacity-limits.md) | SQL 資料倉儲的連接、資料庫、資料表及查詢最大值。 |
 | 87 | troubleshoot | [針對 Azure SQL 資料倉儲問題進行疑難排解](sql-data-warehouse-troubleshoot.md) | 針對 Azure SQL 資料倉儲問題進行疑難排解。 |
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016-->

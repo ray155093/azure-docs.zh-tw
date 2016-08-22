@@ -13,18 +13,18 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/18/2016"
+   ms.date="08/08/2016"
    ms.author="sonyama;barbkess;mausher"/>
 
 # 適用於 SQL 資料倉儲的 PowerShell Cmdlet 和 REST API
 
 您可使用 Azure PowerShell Cmdlet 或 REST API 管理許多 SQL 資料倉儲系統管理工作。下列為一些在 SQL 資料倉儲中使用 PowerShell 命令來自動化一般工作的範例。如需一些良好的 REST 範例，請參閱[使用 REST 管理延展性][]一文。
 
-> [AZURE.NOTE]  若要搭配使用 Azure Powershell 與 SQL 資料倉儲，您需要安裝 Azure PowerShell 1.0.3 版或更高版本。您可以執行 **Get-Module -ListAvailable -Name Azure** 來檢查您的版本。可透過 [Microsoft Web Platform Installer][] 安裝最新的版本。如需安裝最新版本的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell][]。
+> [AZURE.NOTE]  若要搭配使用 Azure Powershell 與 SQL 資料倉儲，需要有 Azure PowerShell 1.0.3 版或更高版本。您可以執行 **Get-Module -ListAvailable -Name Azure** 來檢查您的版本。可透過 [Microsoft Web Platform Installer][] 安裝最新的版本。如需安裝最新版本的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell][]。
 
 ## 開始使用 Azure PowerShell Cmdlet
 
-1. 開啟 Windows PowerShell。 
+1. 開啟 Windows PowerShell。
 2. 在 PowerShell 提示中，執行下列命令來登入 Azure Resource Manager，並選取您的訂用帳戶。
 
     ```PowerShell
@@ -74,7 +74,7 @@ $resultDatabase = $database | Resume-AzureRmSqlDatabase
 - [Get-AzureRmSqlDatabaseRestorePoints][]
 - [New-AzureRmSqlDatabase][]
 - [Remove-AzureRmSqlDatabase][]
-- [Restore-AzureRmSqlDatabase][] 
+- [Restore-AzureRmSqlDatabase][]
 - [Resume-AzureRmSqlDatabase][]
 - [Select-AzureRmSubscription][]
 - [Set-AzureRmSqlDatabase][]
@@ -114,4 +114,4 @@ $resultDatabase = $database | Resume-AzureRmSqlDatabase
 <!--Other Web references-->
 [Microsoft Web Platform Installer]: https://aka.ms/webpi-azps
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0810_2016-->

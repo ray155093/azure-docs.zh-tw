@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/12/2016" 
+	ms.date="08/04/2016" 
 	ms.author="billmath"/>
 
 # 搭配 Azure AD 帳戶使用 Azure Multi-Factor Authentication 的安全性最佳做法
@@ -23,7 +23,7 @@
 ## 雲端中的 Azure Multi-Factor Authentication 的最佳做法
 為了提供所有使用者 Multi-Factor Authentication 並且利用 Azure Multi-factor Authentication 提供的擴充功能，您必須為所有使用者啟用 Azure Multi-Factor Authentication。可以藉由使用下列其中一個項目來完成：
 
-- Azure AD Premium 或 Enterprise Mobility Suite 
+- Azure AD Premium 或 Enterprise Mobility Suite
 - Multi-Factor Auth Provider
 
 ### Azure AD Premium/Enterprise Mobility Suite
@@ -44,7 +44,7 @@
 
 如果您沒有 Azure AD Premium 或 Enterprise Mobility Suite，則在雲端中採用 Azure MFA 的第一個建議步驟是建立 MFA Auth Provider。雖然 MFA 預設可供擁有 Azure Active Directory 的全域系統管理員使用，當您為您的組織部署 MFA 時，您需要將 Multi-Factor Authentication 功能延伸到所有使用者，若要完成這項操作，您需要 Multi-Factor Auth Provider。選取 Auth Provider 時，您必須選取目錄並考慮下列項目：
 
-- 您不需要 Azure AD 目錄即可建立 Multi-Factor Auth Provider。 
+- 您不需要 Azure AD 目錄即可建立 Multi-Factor Auth Provider。
 - 如果您想要將 Multi-Factor Authentication 延伸到所有使用者，以及/或想要讓全域管理員充分利用管理入口網站、自訂問候語及報告等功能，您需要建立 Multi-Factor Auth Provider 與 Azure AD 目錄之間的關聯。
 - 如果您要讓內部部署 Active Directory 環境與 Azure AD 目錄同步處理，DirSync 或 AAD Sync 只是一項需求。如果您只要使用不與內部部署 Active Directory 執行個體同步處理的 Azure AD 目錄，就不需要 DirSync 或 AAD Sync。
 - 如果您擁有 Azure AD Premium 或 Enterprise Mobility Suite，便不需要建立 Multi-Factor Auth Provider。您只需要將授權指派給使用者，接著就可以開始為使用者開啟 MFA。
@@ -62,14 +62,14 @@
 
 因為大多數使用者已經習慣僅使用密碼來驗證，貴公司務必讓所有使用者了解此程序。了解程度可以降低使用者針對與 MFA 相關的一些小問題尋求技術支援人員協助的可能性。不過，有一些案例是需要暫時停用 MFA。使用以下的指導方針了解如何處理這些案例：
 
-- 請確定您的技術支援人員都受過訓練，可以處理行動應用程式或電話未收到通知或來電，以及因為上述原因讓使用者無法登入的案例。他們可以啟用一次性略過選項，讓使用者「略過」Multi-Factor Authentication 來通過驗證一次。略過的效力是暫時的，因此會在指定的秒數過後到期。 
+- 請確定您的技術支援人員都受過訓練，可以處理行動應用程式或電話未收到通知或來電，以及因為上述原因讓使用者無法登入的案例。他們可以啟用一次性略過選項，讓使用者「略過」Multi-Factor Authentication 來通過驗證一次。略過的效力是暫時的，因此會在指定的秒數過後到期。
 - 如有必要，您可以利用 Azure MFA 中的信任的 IP 功能。此功能可賦予受管理或同盟租用戶管理員，讓從公司近端內部網路登入之使用者略過 Multi-Factor Authentication 的能力。這些功能適用於擁有 Azure AD Premium、Enterprise Mobility Suite 或 Azure Multi-Factor Authentication 授權的 Azure AD 租用戶。
 
 
 ## 內部部署 Azure Multi-Factor Authentication 的最佳做法
 如果您的公司決定運用自己的基礎結構來啟用 MFA，必須內部部署 Azure Multi-factor Authentication Server。下圖顯示 MFA Server 元件：
 
-![Multi-Factor Auth Provider](./media/multi-factor-authentication-security-best-practices/server.png) * 預設未安裝 ** 安裝但預設未啟用
+![Multi-Factor Auth Provider](./media/multi-factor-authentication-security-best-practices/server.png) 「預設未安裝」* 安裝但預設未啟用
 
 
 Azure Multi-Factor Authentication Server 可以用於保護由 Azure AD 帳戶存取的雲端資源和內部部署資源的安全。不過，這僅能透過使用同盟來完成。也就是您必須擁有 AD FS 並讓它與您的 Azure AD 租用戶同盟。設定 Multi-Factor Authentication Server 時，請考慮下列項目：
@@ -94,7 +94,7 @@ Azure Multi-Factor Authentication Server 可以用於保護由 Azure AD 帳戶�
 - 對於同盟 (SSO) 使用者，密碼會儲存在組織識別碼中。如果使用者離開公司，這些資訊必須使用 DirSync 即時流向組織識別碼。帳戶停用/刪除最長可能需要 3 個小時才能完成同步處理，導致 Azure AD 中的應用程式密碼停用/刪除延遲。
 - 應用程式密碼不會遵守內部部署用戶端存取控制設定
 - 應用程式密碼不適用內部部署驗證記錄 / 稽核功能
-- Microsoft Lync 2013 用戶端需要更多使用者教育。 
+- Microsoft Lync 2013 用戶端需要更多使用者教育。
 - 某些進階架構設計在使用 Multi-Factor Authentication 時，可能需要搭配使用組織使用者名稱和密碼及應用程式密碼，須視驗證的位置而定。對於根據內部部署基礎結構進行驗證的用戶端，您可以使用組織使用者名稱和密碼。對於根據 Azure AD 進行驗證的用戶端，您需要使用應用程式密碼。
 - 依預設，使用者無法建立應用程式密碼，如果貴公司需要，或如果您要允許使用者在某些情況下建立應用程式密碼，請確定已選取允許使用者建立應用程式密碼以登入非瀏覽器應用程式的選項。
 
@@ -121,4 +121,4 @@ Azure Multi-Factor Authentication Server 可以用於保護由 Azure AD 帳戶�
 - [Azure Multi-factor Authentication 的設定體驗](multi-factor-authentication-end-user-first-time.md)
 - [Azure Multi-Factor Authentication 常見問題集](multi-factor-authentication-faq.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016-->

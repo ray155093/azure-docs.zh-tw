@@ -3,7 +3,7 @@
    description="了解如何在資源管理員中使用 Preview 入口網站管理管理現有的 NSG"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor=""
    tags="azure-resource-manager"
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/14/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # 使用 Preview 入口網站管理 NSG
 
@@ -23,7 +23,7 @@
 
 [AZURE.INCLUDE [virtual-network-manage-nsg-intro-include.md](../../includes/virtual-network-manage-nsg-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型。
 
 [AZURE.INCLUDE [virtual-network-manage-nsg-arm-scenario-include.md](../../includes/virtual-network-manage-nsg-arm-scenario-include.md)]
 
@@ -184,4 +184,4 @@
 
 - [啟用 NSG 的記錄](virtual-network-nsg-manage-log.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="06/09/2016"
+   ms.date="08/08/2016"
    ms.author="ganesr" />
 
 # 將虛擬網路連結到 ExpressRoute 電路
@@ -40,7 +40,9 @@
 	- 請確定已設定 Azure 私用對等，且已開啟您的網路與 Microsoft 之間的 BGP 對等，讓您可以啟用端對端連線。
 	- 請確定您有已建立且完整佈建的虛擬網路和虛擬網路閘道。請依照指示來建立 [VPN 閘道](../articles/vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell.md)，但務必要使用 `-GatewayType ExpressRoute`。
 
-您最多可以將 10 個虛擬網路連結至 ExpressRoute 電路。所有的虛擬網路都必須位於同一個地理區域。如果您已啟用 ExpressRoute 高階附加元件，則可將更大量的虛擬網路連結到您的 ExpressRoute 電路，或是連結其他地理區域的虛擬網路。如需進階附加元件的詳細資訊，請參閱[常見問題集](expressroute-faqs.md)。
+您最多可以將 10 個虛擬網路連結至標準 ExpressRoute 電路。在使用標準 ExpressRoute 電路時，所有虛擬網路都必須位於相同的地理政治區域內。
+
+如果您已啟用 ExpressRoute 高階附加元件，則可連結 ExpressRoute 電路的地理政治區域以外的虛擬網路，或是將大量的虛擬網路連接到 ExpressRoute 電路。如需高階附加元件的詳細資訊，請參閱[常見問題集](expressroute-faqs.md)。
 
 ## 將相同訂用帳戶中的虛擬網路連接到線路
 
@@ -138,4 +140,4 @@
 
 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016-->

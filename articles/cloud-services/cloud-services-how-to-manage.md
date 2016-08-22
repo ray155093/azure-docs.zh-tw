@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/26/2016"
+	ms.date="08/10/2016"
 	ms.author="adegeo"/>
 
 
@@ -45,15 +45,15 @@
 
 5. 若要升級雲端服務中的所有角色，請在 [角色] 中選取 [全部]。若要執行單一角色更新，請選取您要更新的角色。即使您選取特定角色來更新，服務組態檔中的更新還是會套用至所有角色。
 
-6. 如果更新會造成角色數目或任何角色的大小變更，請選取 [如果角色大小或角色數目變更則允許更新] 核取方塊，讓更新能夠繼續。
+6. 如果更新會造成角色數目或任何角色的大小變更，請選取 [Allow update if role sizes or number of roles changes] 核取方塊，讓更新能夠繼續。
 
 	請注意，如果您變更角色的大小 (亦即，角色執行個體所裝載於之虛擬機器的大小) 或角色數目，則必須重新製作每個角色執行個體 (虛擬機器) 的映像，因而遺失本機資料。
 
-7. 如果有任何服務角色只有一個角色執行個體，請選取 [即使一或多個角色包含單一執行個體也一律更新] 核取方塊，讓升級能夠繼續。
+7. 如果有任何服務角色只有一個角色執行個體，請選取 [Update even if one or more role contain a single instance] 核取方塊，讓升級能夠繼續。
 
 	要讓 Azure 保證服務在雲端服務更新期間有 99.95% 的可用性，每個角色都至少必須有兩個角色執行個體 (虛擬機器)。如此才能讓一個虛擬機器在受到更新時，還有另一個虛擬機器可以處理用戶端要求。
 
-8. 按一下 [確定] \(核取記號) 開始更新服務。
+8. 按一下 [確定] (核取記號) 開始更新服務。
 
 
 
@@ -63,7 +63,7 @@
 
 您可以在 [雲端服務] 頁面或儀表板交換部署。
 
-1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com/)中，按一下 [**雲端服務**]。
+1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com/)中，按一下 [雲端服務]。
 
 2. 在雲端服務清單中，按一下雲端服務加以選取。
 
@@ -83,7 +83,7 @@
 
 若要顯示您的雲端服務對其他資源的依存性，您可以將 Azure SQL Database 執行個體或儲存體帳戶連結到雲端服務。您可以在 [**連結的資源**] 頁面上連結和取消連結資源，然後在雲端服務儀表板上監視其使用率。如果連結的儲存體帳戶已開啟監視功能，則您可以在雲端服務儀表板上監視 [要求總數]。
 
-您可以使用 [連結] 將新的或現有 SQL Database 執行個體或儲存體帳戶連結到您的雲端服務。然後，您便可以在 [調整] 頁面上調整資料庫以及使用該資料庫的雲端服務角色。(儲存體帳戶會在使用量增加時自動調整。) 如需詳細資訊，請參閱[如何調整雲端服務和連結的資源](cloud-services-how-to-scale.md) (英文)。
+您可以使用 [連結] 將新的或現有 SQL Database 執行個體或儲存體帳戶連結到您的雲端服務。然後，您便可以在 [調整] 頁面上調整資料庫以及使用該資料庫的雲端服務角色。(儲存體帳戶會在使用量增加時自動調整。) 如需詳細資訊，請參閱[如何自動調整雲端服務](cloud-services-how-to-scale.md)。
 
 您也可以在 Azure 傳統入口網站的**資料庫**節點中監視、管理和調整資料庫。
 
@@ -93,21 +93,21 @@
 
 ### 將 SQL Database 執行個體連結到雲端服務
 
-1. 在 [Azure 傳統入口網站](http://manage.windowsazure.com/)中，按一下 [**雲端服務**]。然後按一下雲端服務的名稱以開啟儀表板。
+1. 在 [Azure 傳統入口網站](http://manage.windowsazure.com/)中，按一下 [雲端服務]。然後按一下雲端服務的名稱以開啟儀表板。
 
-2. 按一下 [連結的資源]。
+2. 按一下 [Linked Resources]。
 
-	[連結的資源] 頁面隨即開啟。
+	[Linked Resources] 頁面隨即開啟。
 
 	![LinkedResourcesPage](./media/cloud-services-how-to-manage/CloudServices_LinkedResourcesPage.png)
 
-3. 按一下 [連結資源] 或 [連結]。
+3. 按一下 [Link a Resource] 或 [連結]。
 
-	[連結資源] 精靈隨即啟動。
+	[Link Resource] 精靈隨即啟動。
 
 	![Link Page1](./media/cloud-services-how-to-manage/CloudServices_LinkedResources_LinkPage1.png)
 
-4. 按一下 [建立新的資源] 或 [連結現有資源]。
+4. 按一下 [建立新的資源] 或 [Link an existing resource]。
 
 5. 選擇要連結的資源類型。在 [Azure 傳統入口網站](http://manage.windowsazure.com/)中，按一下 [**SQL Database**]。(預覽版的 Azure 傳統入口網站不支援將儲存體帳戶連結到雲端服務)。
 
@@ -148,7 +148,7 @@
 	![Delete Menu](./media/cloud-services-how-to-manage/CloudServices_DeleteMenu.png)
 
 
-3. 若要刪除部署，請按一下 [刪除生產部署] 或 [刪除生產部署]。然後，在確認提示處按一下 [是]。
+3. 若要刪除部署，請按一下 [Delete production deployment] 或 [Delete staging deployment]。然後，在確認提示處按一下 [是]。
 
 4. 如果您計劃刪除雲端服務，請重複步驟 3 (如果需要) 來刪除另一個部署。
 
@@ -164,4 +164,4 @@
 * 設定[自訂網域名稱](cloud-services-custom-domain-name.md)。
 * 設定 [SSL 憑證](cloud-services-configure-ssl-certificate.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -1,9 +1,9 @@
 <properties 
-	pageTitle="DocumentDB Python SDK | Microsoft Azure" 
-	description="了解所有 Python SDK 相關資訊，包括 發行日期、停用日期及 DocumentDB Python SDK 每個版本之間的變更。" 
+	pageTitle="DocumentDB Python API 和 SDK | Microsoft Azure" 
+	description="了解所有 Python API 和 SDK 相關資訊，包括 發行日期、停用日期及 DocumentDB Python SDK 每個版本之間的變更。" 
 	services="documentdb" 
 	documentationCenter="python" 
-	authors="aliuy" 
+	authors="rnagpal" 
 	manager="jhubbard" 
 	editor="cgronlun"/>
 
@@ -13,23 +13,26 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="python" 
 	ms.topic="article" 
-	ms.date="07/07/2016" 
+	ms.date="08/09/2016" 
 	ms.author="rnagpal"/>
 
-# DocumentDB SDK
+# DocumentDB API 和 SDK
 
 > [AZURE.SELECTOR]
-- [.NET SDK](documentdb-sdk-dotnet.md)
-- [Node.js SDK](documentdb-sdk-node.md)
-- [Java SDK](documentdb-sdk-java.md)
-- [Python SDK](documentdb-sdk-python.md)
+- [.NET](documentdb-sdk-dotnet.md)
+- [Node.js](documentdb-sdk-node.md)
+- [Java](documentdb-sdk-java.md)
+- [Python](documentdb-sdk-python.md)
+- [REST](https://go.microsoft.com/fwlink/?LinkId=402413)
+- [SQL](https://msdn.microsoft.com/library/azure/dn782250.aspx)
 
-##DocumentDB Python SDK
+## DocumentDB Python API 和 SDK
 
 <table>
-<tr><td>**下載**</td><td>[PyPI](https://pypi.python.org/pypi/pydocumentdb)</td></tr>
-<tr><td>**參與**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-python)</td></tr>
-<tr><td>**說明文件**</td><td>[Python SDK 參考文件](http://azure.github.io/azure-documentdb-python/)</td></tr>
+<tr><td>**下載 SDK**</td><td>[PyPI](https://pypi.python.org/pypi/pydocumentdb)</td></tr>
+<tr><td>**API 文件**</td><td>[Python API 參考文件](http://azure.github.io/azure-documentdb-python/api/pydocumentdb.html)</td></tr>
+<tr><td>**SDK 安裝指示**</td><td>[Python SDK 安裝指示](http://azure.github.io/azure-documentdb-python/)</td></tr>
+<tr><td>**提供給 SDK**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-python)</td></tr>
 <tr><td>**開始使用**</td><td>[開始使用 Python SDK](documentdb-python-application.md)</td></tr>
 <tr><td>**目前支援的平台**</td><td>[Python 2.7](https://www.python.org/download/releases/2.7/)</td></tr>
 </table></br>
@@ -90,23 +93,7 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 
 | 版本 | 發行日期 | 停用日期 
 | ---	  | ---	         | ---
-| [1\.9.0](#1.9.0) | 2016 年 7 月 7 日 |--- 
-| [1\.8.0](#1.8.0) | 2016 年 6 月 14 日 |--- 
-| [1\.7.0](#1.7.0) | 2016 年 4 月 26 日 |--- 
-| [1\.6.1](#1.6.1) | 2016 年 4 月 8 日 |--- 
-| [1\.6.0](#1.6.0) | 2016 年 3 月 29 日 |--- 
-| [1\.5.0](#1.5.0) | 2016 年 1 月 3 日 |--- 
-| [1\.4.2](#1.4.2) | 2015 年 10 月 6 日 |--- 
-| [1\.4.1](#1.4.1) | 2015 年 10 月 6 日 |--- 
-| [1\.2.0](#1.2.0) | 2015 年 8 月 6 日 |--- 
-| [1\.1.0](#1.1.0) | 2015 年 7 月 9 日 |--- 
-| [1\.0.1](#1.0.1) | 2015 年 5 月 25 日 |--- 
-| [1\.0.0](#1.0.0) | 2015 年 4 月 7 日 |--- 
-| 0.9.4-發行前版本 | 2015 年 1 月 14 日 | 2016 年 2 月 29 日 
-| 0.9.3-發行前版本 | 2014 年 12 月 9 日 | 2016 年 2 月 29 日 
-| 0.9.2-發行前版本 | 2014 年 11 月 25 日 | 2016 年 2 月 29 日 
-| 0.9.1-發行前版本 | 2014 年 9 月 23 日 | 2016 年 2 月 29 日 
-| 0.9.0-發行前版本 | 2014 年 8 月 21 日 | 2016 年 2 月 29 日
+| [1\.9.0](#1.9.0) | 2016 年 7 月 7 日 |--- | [1\.8.0](#1.8.0) | 2016 年 6 月 14 日 |--- | [1\.7.0](#1.7.0) | 2016 年 4 月 26 日 |--- | [1\.6.1](#1.6.1) | 2016 年 4 月 8 日 |--- | [1\.6.0](#1.6.0) | 2016 年 3 月 29 日 |--- | [1\.5.0](#1.5.0) | 2016 年 1 月 3 日 |--- | [1\.4.2](#1.4.2) | 2015 年 10 月 6 日 |--- | [1\.4.1](#1.4.1) | 2015 年 10 月 6 日 |--- | [1\.2.0](#1.2.0) | 2015 年 8 月 6 日 |--- | [1\.1.0](#1.1.0) | 2015 年 7 月 9 日 |--- | [1\.0.1](#1.0.1) | 2015 年 5 月 25 日 |--- | [1\.0.0](#1.0.0) | 2015 年 4 月 7 日 |--- | 0.9.4-發行前版本 | 2015 年 1 月 14 日 | 2016 年 2 月 29 日 | 0.9.3-發行前版本 | 2014 年 12 月 9 日 | 2016 年 2 月 29 日 | 0.9.2-發行前版本 | 2014 年 11 月 25 日 | 2016 年 2 月 29 日 | 0.9.1-發行前版本 | 2014 年 9 月 23 日 | 2016 年 2 月 29 日 | 0.9.0-發行前版本 | 2014 年 8 月 21 日 | 2016 年 2 月 29 日
 
 ## 常見問題集
 [AZURE.INCLUDE [documentdb-sdk-faq](../../includes/documentdb-sdk-faq.md)]
@@ -115,4 +102,4 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 
 若要深入了解 DocumentDB，請參閱 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 服務頁面。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -1,5 +1,5 @@
 <properties 
-   pageTitle="在 Azure 自動化中排程 Runbook"
+   pageTitle="在 Azure 自動化中排程 Runbook | Microsoft Azure"
    description="描述如何在 Azure 自動化中建立排程，以便以特定時間或循環排程來自動啟動 Runbook。"
    services="automation"
    documentationCenter=""
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="07/12/2016"
+   ms.date="08/05/2016"
    ms.author="bwren" />
 
 # 在 Azure 自動化中排程 Runbook
@@ -32,20 +32,20 @@
 1. 選取 [**資產**] 索引標籤。
 1. 在視窗的底端按一下 [**加入設定**]。
 1. 按一下 [**加入排程**]。
-1. 為新排程輸入 [名稱] 並選擇性地輸入 [描述]。您的排程將會執行 [一次]、[每小時] 執行或 [每日] 執行。
+1. 為新排程輸入 [名稱] 並選擇性地輸入 [描述]。您的排程將會以 [一次]、[每小時]、[每日]、[每週]，或 [每月] 的方式執行。
 1. 視您選取的排程類型而定，指定 [**開始時間**] 和其他選項。
 
 ### 在 Azure 入口網站中建立新排程
 
-1. 在 Azure 入口網站中，從您的自動化帳戶按一下 [資產] 圖格，以開啟 [資產] 刀鋒視窗。
-2. 按一下 [排程] 圖格，以開啟 [排程] 刀鋒視窗。
+1. 在 Azure 入口網站中，從您的自動化帳戶按一下 [資產] 磚，以開啟 [資產] 刀鋒視窗。
+2. 按一下 [排程] 磚，以開啟 [排程] 刀鋒視窗。
 3. 在刀鋒視窗的頂端按一下 [加入排程]。
 4. 在 [新增排程] 刀鋒視窗中，為新排程輸入 [名稱] 並選擇性地輸入 [描述]。
-5. 選取 [一次] 或 [週期]，以選取排程將會執行一次或以重複排程來執行。如果您選取 [一次]，請指定 [開始時間]，然後按一下 [建立]。如果您選取 [週期]，則請指定 [開始時間] 和所需的 Runbook 重複頻率是要依 [小時]、[天]、[週] 還是 [月]。如果您在下拉式清單中選取 [週] 或 [月]，刀鋒視窗將會出現 [週期選項]，一經選取，就會顯示 [週期選項] 刀鋒視窗，而且如果您選取了 [週]，您就可以選取星期幾。如果您選取了 [月]，則可以選擇要依 [工作日] 或行事曆上當月的特定幾天，最後則是您是否要在當月最後一天執行，然後按一下 [確定]。
+5. 選取 [一次] 或 [週期]，以選取排程將會執行一次或以週期性的排程執行。如果您選取 [一次]，請指定 [開始時間]，然後按一下 [建立]。如果您選取 [週期]，則請指定 [開始時間] 和所需的 Runbook 重複頻率：依 [小時]、[天]、[週] 還是 [月] 執行。如果您在下拉式清單中選取 [週] 或 [月]，刀鋒視窗將會出現 [週期選項]，一經選取，就會顯示 [週期選項] 刀鋒視窗，如果您選取了 [週]，將可以進一步選取星期幾。如果您選取了 [月]，則可以在行事曆上選擇要依 [工作日] 或當月的特定幾天，最後則是您是否要在當月最後一天執行，然後按一下 [確定]。
 
 ### 使用 Windows PowerShell 建立新排程
 
-您可以使用 [New-AzureAutomationSchedule](http://msdn.microsoft.com/library/azure/dn690271.aspx) Cmdlet 在 Azure 自動化中為傳統 Runbook 建立新的排程，或使用 [New-AzureRmAutomationSchedule](https://msdn.microsoft.com/library/mt603577.aspx) Cmdlet 在 Azure 入口網站中為 Runbook 建立新的排程。您必須指定排程的開始時間，以及其應該執行的頻率。
+您可以使用 [New-AzureAutomationSchedule](http://msdn.microsoft.com/library/azure/dn690271.aspx) Cmdlet 在 Azure 自動化中為傳統 Runbook 建立新的排程，或使用 [New-AzureRmAutomationSchedule](https://msdn.microsoft.com/library/mt603577.aspx) Cmdlet 為 Azure 入口網站中的 Runbook 建立新的排程。您必須指定排程的開始時間，以及其應該執行的頻率。
 
 下列範例命令顯示如何使用 Azure 服務管理 Cmdlet 建立新的排程，從 2015 年 1 月 20 日起於每日下午 3:30 執行。
 
@@ -79,14 +79,14 @@ Runbook 可以連結至多個排程，而排程可以有多個與其連結的 Ru
 
 ### 使用 Azure 入口網站將排程連結至 Runbook
 
-1. 在 Azure 入口網站中，從您的自動化帳戶按一下 [Runbook] 圖格，以開啟 [Runbook] 刀鋒視窗。
+1. 在 Azure 入口網站中，從您的自動化帳戶按一下 [Runbook] 磚，以開啟 [Runbook] 刀鋒視窗。
 2. 按一下要排程的 Runbook 名稱。
 3. 如果 Runbook 目前未連結至排程，則將提供您建立新排程或連結至現有排程的選項。
 4. 如果 Runbook 有參數，您可以選取 [修改執行設定 (預設值: Azure)] 選項，隨即便會顯示 [參數] 刀鋒視窗供您據以輸入資訊。
 
 ### 使用 Windows PowerShell 將排程連結至 Runbook
 
-您可以使用 [Register-AzureAutomationScheduledRunbook](http://msdn.microsoft.com/library/azure/dn690265.aspx) 將排程連結至傳統 Runbook，或將 [Register-AzureRmAutomationScheduledRunbook](https://msdn.microsoft.com/library/mt603575.aspx) Cmdlet 用於 Azure 入口網站中的 Runbook。您可以使用 Parameters 參數來指定 Runbook 參數的值。請參閱[在 Azure 自動化中啟動 Runbook](automation-starting-a-runbook.md)，以取得指定參數值的詳細資訊。
+您可以使用 [Register-AzureAutomationScheduledRunbook](http://msdn.microsoft.com/library/azure/dn690265.aspx) 將排程連結至傳統 Runbook，或使用 [Register-AzureRmAutomationScheduledRunbook](https://msdn.microsoft.com/library/mt603575.aspx) Cmdlet 將排程連結至 Azure 入口網站中的 Runbook。您可以使用 Parameters 參數來指定 Runbook 參數的值。請參閱[在 Azure 自動化中啟動 Runbook](automation-starting-a-runbook.md)，以取得指定參數值的詳細資訊。
 
 下列範例命令顯示如何使用 Azure 服務管理 Cmdlet 與參數來連結排程。
 
@@ -122,14 +122,14 @@ Runbook 可以連結至多個排程，而排程可以有多個與其連結的 Ru
 
 ### 從 Azure 入口網站停用排程
 
-1. 在 Azure 入口網站中，從您的自動化帳戶按一下 [資產] 圖格，以開啟 [資產] 刀鋒視窗。
-2. 按一下 [排程] 圖格，以開啟 [排程] 刀鋒視窗。
+1. 在 Azure 入口網站中，從您的自動化帳戶按一下 [資產] 磚，以開啟 [資產] 刀鋒視窗。
+2. 按一下 [排程] 磚，以開啟 [排程] 刀鋒視窗。
 2. 按一下排程的名稱以開啟詳細資料刀鋒視窗。
 3. 將 [**已啟用**] 變更為 [**否**]。
 
 ### 使用 Windows PowerShell 停用排程
 
-您可以使用 [Set-AzureAutomationSchedule](http://msdn.microsoft.com/library/azure/dn690270.aspx) Cmdlet 為傳統 Runbook 變更現有排程的屬性，或使用 [Set-AzureRmAutomationSchedule](https://msdn.microsoft.com/library/mt603566.aspx) Cmdlet 在 Azure 入口網站中為 Runbook 變更現有排程的屬性。若要停用排程，請對 **IsEnabled** 參數指定 **false**。
+您可以使用 [Set-AzureAutomationSchedule](http://msdn.microsoft.com/library/azure/dn690270.aspx) Cmdlet 為傳統 Runbook 變更現有排程的屬性，或使用 [Set-AzureRmAutomationSchedule](https://msdn.microsoft.com/library/mt603566.aspx) Cmdlet 為 Azure 入口網站中的 Runbook 變更現有排程的屬性。若要停用排程，請對 **IsEnabled** 參數指定 **false**。
 
 下列範例命令顯示如何使用 Azure 服務管理 Cmdlet 來停用排程。
 
@@ -151,4 +151,4 @@ Runbook 可以連結至多個排程，而排程可以有多個與其連結的 Ru
 - 若要深入了解如何使用排程，請參閱 [Azure 自動化中的排程資產](http://msdn.microsoft.com/library/azure/dn940016.aspx)
 - 若要在 Azure 自動化中開始使用 Runbook，請參閱[在 Azure 自動化中啟動 Runbook](automation-starting-a-runbook.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0810_2016-->

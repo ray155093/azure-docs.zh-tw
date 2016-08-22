@@ -19,7 +19,7 @@
 # 為 Azure 上的 Stretch Database 啟用透明資料加密 (TDE)
 > [AZURE.SELECTOR]
 - [Azure 入口網站](sql-server-stretch-database-encryption-tde.md)
-- [TSQL](sql-server-stretch-database-encryption-tde-tsql.md)
+- [TSQL](sql-server-stretch-database-tde-tsql.md)
 
 透明資料加密 (TDE) 可在不需變更應用程式的情況下，對靜止的資料庫、相關聯的備份和交易記錄檔執行即時加密和解密，協助防止惡意活動的威脅。
 
@@ -58,4 +58,4 @@ TDE 會使用稱為資料庫加密金鑰的對稱金鑰來加密整個資料庫�
 
 <!--Link references-->
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -3,7 +3,7 @@
    description="本頁面提供使用 URL 路由規則建立和設定 Azure 應用程式閘道的指示。"
    documentationCenter="na"
    services="application-gateway"
-   authors="joaoma"
+   authors="georgewallace"
    manager="jdial"
    editor="tysonn"/>
 <tags
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/10/2016"
-   ms.author="joaoma"/>
+   ms.author="gwallace"/>
 
 
 # 使用 URL 型路由建立應用程式閘道 
@@ -22,12 +22,12 @@ URL 路徑型路由可讓您根據 Http 要求的 URL 路徑來關聯路由。�
 
 URL 型路由會將新的規則類型引進應用程式閘道。應用程式閘道具有 2 種規則類型：基本和 PathBasedRouting。基本規則類型會針對後端集區提供循環配置資源服務，而 PathBasedRouting 除了循環配置資源發佈之外也會在選擇後端集區時將要求 URL 的路徑模式納入考慮。
 
->[AZURE.IMPORTANT] PathPattern：要比對的路徑模式清單。每個都必須以 / 開始，而且唯一允許出現 * 的地方是結尾處。有效範例包括 /xyz、/xyz* 或 /xyz/*。傳送給路徑比對器的字串未在第一個 ? 或 # 之後包含任何文字，而這些字元是不允許的。
+>[AZURE.IMPORTANT] PathPattern：要比對的路徑模式清單。每個路徑都必須以 / 開頭，而且只有結尾允許使用 *。有效範例包括 /xyz、/xyz* 或 /xyz/*。傳送給路徑比對器的字串未在第一個 ? 或 # 之後包含任何文字，而這些字元是不允許的。
 
 ## 案例
 在下列範例中，應用程式閘道會利用兩個後端伺服器集區來為 contoso.com 提供流量：視訊伺服器集區和映像伺服器集區。
 
-對於 http://contoso.com/image* 的要求將會路由傳送到映像伺服器集區 (pool1)，而 http://contoso.com/video* 將會路由傳送到視訊伺服器集區 (pool2)。如果沒有任何路徑模式相符，則會選取預設的伺服器集區 (pool1)。
+對 http://contoso.com/image* 的要求會路由傳送到映像伺服器集區 (pool1)，而 http://contoso.com/video* 則會路由傳送到視訊伺服器集區 (pool2)。如果沒有任何路徑模式相符，則會選取預設的伺服器集區 (pool1)。
 
 ![URL 路由](./media/application-gateway-create-url-route-arm-ps/figure1.png)
 
@@ -43,10 +43,10 @@ URL 型路由會將新的規則類型引進應用程式閘道。應用程式閘�
 
 
 - **後端伺服器集區：**後端伺服器的 IP 位址清單。列出的 IP 位址應屬於虛擬網路子網路或是公用 IP/VIP。
-- **後端伺服器集區設定：**每個集區都有一些設定，例如連接埠、通訊協定和以 Cookie 為基礎的同質性。這些設定會繫結至集區，並套用至集區內所有伺服器。
-- **前端連接埠：**此連接埠是在應用程式閘道上開啟的公用連接埠。流量會達到此連接埠，然後重新導向至其中一個後端伺服器。
+- **後端伺服器集區設定：**每個集區都包括一些設定，例如連接埠、通訊協定和以 Cookie 為基礎的同質性。這些設定會繫結至集區，並套用至集區內所有伺服器。
+- **前端連接埠：**此連接埠是在應用程式閘道上開啟的公用連接埠。流量會到達此連接埠，然後重新導向至其中一個後端伺服器。
 - **接聽程式：**接聽程式具有前端連接埠、通訊協定 (Http 或 Https，都區分大小寫) 和 SSL 憑證名稱 (如果已設定 SSL 卸載)。
-- **規則：**規則會繫結接聽程式和後端伺服器集區，並定義流量達到特定接聽程式時應該導向至哪個後端伺服器集區。
+- **規則：**規則會繫結接聽程式和後端伺服器集區，並定義當流量到達特定接聽程式時，應該導向到哪個後端伺服器集區。
 
 ## 建立新的應用程式閘道
 
@@ -69,7 +69,7 @@ URL 型路由會將新的規則類型引進應用程式閘道。應用程式閘�
 ### 步驟 1
 登入 Azure Login-AzureRmAccount
 
-系統會提示使用您的認證進行驗證。<BR>
+系統會提示您使用您的認證進行驗證。<BR>
 
 ### 步驟 2
 檢查帳戶的訂用帳戶。
@@ -94,7 +94,7 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 
 在上述範例中，我們建立名為 "appgw-RG" 的資源群組，且位置為美國西部 ("West US")。
 
->[AZURE.NOTE] 如果您需要設定應用程式閘道的自訂探查，請參閱[使用 PowerShell 建立具有自訂探查的應用程式閘道](application-gateway-create-probe-ps.md)。請參閱[自訂探查和健康狀況監視](application-gateway-probe-overview.md)以取得詳細資訊。
+>[AZURE.NOTE] 如果您需要為應用程式閘道設定自訂探查，請參閱[使用 PowerShell 建立具有自訂探查的應用程式閘道](application-gateway-create-probe-ps.md)。請參閱[自訂探查和健全狀況監視](application-gateway-probe-overview.md)以取得詳細資訊。
 
 ## 建立應用程式閘道的虛擬網路和子網路
 
@@ -196,4 +196,4 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 ## 取得應用程式閘道
 	$getgw =  Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-RG
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0810_2016-->

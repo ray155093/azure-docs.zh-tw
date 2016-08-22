@@ -21,7 +21,7 @@
 
 [AZURE.INCLUDE [pnp-header](../includes/guidance-pnp-header-include.md)]
 
-## 概觀
+## Overview
 
 在許多大型解決方案中，資料分成個別的分割區，可以個別管理和存取。您必須仔細選擇資料分割策略，才能最大化利益，同時將不良影響降至最低。資料分割有助於改善延展性、減少爭用，以及最佳化效能。資料分割的另一項優點是可提供一種機制，藉由使用模式來區分資料。例如，您可以將較舊且較不使用 (冷) 的資料封存至成本較低的資料儲存體。
 
@@ -324,7 +324,7 @@ Blob 儲存體會根據 blob 名稱自動分割。每個 Blob 會保留在自己
 
 寫入單一區塊 (區塊 blob) 或分頁 (分頁 blob) 的動作是不可部分完成的，但跨越區塊、分頁或 blob 的作業卻不是。如果您必須在跨區塊、分頁和 Blob 執行寫入作業時確保一致性，請使用 Blob 租用來執行寫入鎖定。
 
-Azure Blob 儲存體支援高達每秒 60 MB 的傳輸速率或每個 Blob 每秒 500 個要求。如果您預期會超過這些限制，而且 Blob 資料相對靜態，則考慮使用 Azure 內容傳遞網路來複寫 Blob。如需詳細資訊，請參閱 Microsoft 網站上的\[使用 Azure 的內容傳遞網路] 頁面。如需其他指引和考量，請參閱＜使用 Azure 的內容傳遞網路＞。
+Azure Blob 儲存體支援高達每秒 60 MB 的傳輸速率或每個 Blob 每秒 500 個要求。如果您預期會超過這些限制，而且 Blob 資料相對靜態，則考慮使用 Azure 內容傳遞網路來複寫 Blob。如需詳細資訊，請參閱 Microsoft 網站上的[使用 Azure 的內容傳遞網路] 頁面。如需其他指引和考量，請參閱＜使用 Azure 的內容傳遞網路＞。
 
 ## 分割 Azure 儲存體佇列
 
@@ -567,4 +567,4 @@ _圖 10.Redis 儲存體中記錄客戶訂單及其詳細資料的建議結構_
 [何謂 Azure 搜尋服務？]: search/search-what-is-azure-search.md
 [什麼是 Azure SQL Database？]: sql-database/sql-database-technical-overview.md
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0810_2016-->

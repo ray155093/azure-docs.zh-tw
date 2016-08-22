@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/06/2016" 
+	ms.date="08/04/2016" 
 	ms.author="raynew"/>
 
 
@@ -26,7 +26,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 
 
-## 概觀
+## Overview
 
 許多工作負載都使用 SQL Server 做為基礎。SharePoint、Dynamics 和 SAP 之類的應用程式會使用 SQL Server 實作資料服務。應用程式會以下列各種不同的方式部署 SQL Server：
 
@@ -105,24 +105,23 @@ SQL Server (任何版本) | Enterprise 或 Standard | 容錯移轉叢集執行�
 
 ## 使用 SQL Server Always-On (內部部署至 Azure) 整合保護
 
-### 在 VMM 雲端中保護 Hyper-V VM
 
 Site Recovery 原生支援 SQL AlwaysOn。如果您已經建立 SQL 可用性群組且 Azure 虛擬機器設定為「次要」，則您可以使用 Site Recovery 管理可用性群組的容錯移轉。
 
->[AZURE.NOTE] 這項功能目前是在預覽階段，當主要資料中心的 Hyper-V 主機是在 VMM 雲端中管理時可供使用。
+>[AZURE.NOTE] 這項功能目前是預覽版，其會變成可用的條件是主要資料中心內的 Hyper-V 主機伺服器是在 VMM 雲端中管理時以及 VMware 設定是由[組態伺服器](site-recovery-vmware-to-azure.md#configuration-server-prerequisites)管理時。這項功能目前不適用於新的 Azure 入口網站。
 
 #### 必要條件
 
-以下是當您從 VMM 複寫時，整合 SQL AlwaysOn 與 Site Recovery 所需的項目：
+以下是為了整合 SQL AlwaysOn 與 Site Recovery 所需的項目：
 
 - 內部部署 SQL Server (獨立伺服器或容錯移轉叢集)。
 - 已安裝 SQL Server 的一或多個 Azure 虛擬機器
 - 在內部部署 SQL Server 和在 Azure 中執行的 SQL Server 之間設定的 SQL 可用性群組
-- PowerShell 遠端應該在內部部署 SQL Server 機器上啟用。VMM 伺服器應該可以讓 PowerShell 遠端呼叫 SQL Server。
+- PowerShell 遠端應該在內部部署 SQL Server 機器上啟用。VMM 伺服器或組態伺服器應該可以讓 PowerShell 遠端呼叫 SQL Server。
 - 使用者帳戶應該加入內部部署 SQL Server，在這些 SQL 使用者群組中具有至少下列權限：
 	- ALTER AVAILABILITY GROUP：權限[這裡](https://msdn.microsoft.com/library/hh231018.aspx)，和[這裡](https://msdn.microsoft.com/library/ff878601.aspx#Anchor_3)
 	- ALTER DATABASE - 權限[這裡](https://msdn.microsoft.com/library/ff877956.aspx#Security)
-- 執行身分帳戶應該在上一個步驟中針對帳戶在 VMM 伺服器上建立
+- 應該為先前步驟中所提到的使用者在 VMM 伺服器上建立 RunAs 帳戶，或應該使用 CSPSConfigtool.exe 在組態伺服器上建立帳戶
 - SQL PS 模組應該安裝在內部部署執行和 Azure 虛擬機器上的 SQL Server
 - VM 代理程式應該安裝在 Azure 上執行的虛擬機器
 - NTAUTHORITY\\System 應該有在 Azure 中的虛擬機器上執行的 SQL Server 的下列權限：
@@ -139,8 +138,8 @@ Site Recovery 原生支援 SQL AlwaysOn。如果您已經建立 SQL 可用性群
 2. 在 [設定 SQL 設定] > [名稱] 中提供易記的名稱來代表 SQL Server。
 3. 在 [SQL Server (FQDN)] 中指定您想要加入的來源 SQL Server 的 FQDN。如果 SQL Server 安裝在容錯移轉叢集上，則提供叢集的 FQDN，而不是任何叢集節點的 FQDN。
 4. 在 [SQL Server 執行個體] 中選擇預設執行個體或提供自訂執行個體的名稱。
-5. 在 [VMM 伺服器] 中選取在 Site Recovery 保存庫中註冊的 VMM 伺服器。Site Recovery 會使用此 VMM 伺服器與 SQL Server 通訊。
-6. 在 [執行身分帳戶] 中提供在 VMM 伺服器上建立的執行身分帳戶的名稱。此帳戶會用來存取 SQL Server，且應該有 SQL Server 機器上可用性群組的讀取和容錯移轉權限。
+5. 在 [管理伺服器] 中選取在 Site Recovery 保存庫中註冊的 VMM 伺服器或組態伺服器。Site Recovery 會使用此管理伺服器與 SQL Server 通訊。
+6. 在 [執行身分帳戶] 中提供在指定之 VMM 伺服器上建立的執行身分帳戶或在組態伺服器上建立的帳戶的名稱。此帳戶會用來存取 SQL Server，且應該有 SQL Server 機器上可用性群組的讀取和容錯移轉權限。
 
 	![加入 SQL 對話方塊](./media/site-recovery-sql/add-sql-dialog.png)
 
@@ -165,7 +164,7 @@ Site Recovery 原生支援 SQL AlwaysOn。如果您已經建立 SQL 可用性群
 
 #### 步驟 3：建立復原計畫
 
-下一步是使用虛擬機器和可用性群組建立復原計劃。選取在步驟 1 中所使用的相同 VMM 伺服器做為來源，選取 Microsoft Azure 做為目標。
+下一步是使用虛擬機器和可用性群組建立復原計劃。選取在步驟 1 中所使用的相同 VMM 伺服器或組態伺服器做為來源，選取 Microsoft Azure 做為目標。
 
 ![建立復原計畫](./media/site-recovery-sql/create-rp1.png)
 
@@ -203,9 +202,9 @@ Site Recovery 原生支援 SQL AlwaysOn。如果您已經建立 SQL 可用性群
 
 
 
-### 不使用 VMM 保護機器
+### 保護沒有 VMM 伺服器或組態伺服器的機器
 
-針對不是由 VMM 伺服器管理的環境，Azure 自動化 Runbook 可以用於設定 SQL 可用性群組的指令碼式容錯移轉。以下是進行設定的步驟：
+針對不是由 VMM 伺服器或組態伺服器管理的環境，Azure 自動化 Runbook 可以用於設定 SQL 可用性群組的指令碼式容錯移轉。以下是進行設定的步驟：
 
 1.	建立指令碼的本機檔案以容錯移轉可用性群組。此範例指令碼會在 Azure 複本上指定可用性群組的路徑，並將其容錯移轉至該複本執行個體。此指令碼會藉由使用自訂指令碼擴充功能傳遞該指令碼，以便在 SQL Server 複本虛擬機器上執行。
 
@@ -353,4 +352,4 @@ Site Recovery 原生支援 SQL AlwaysOn。如果您已經建立 SQL 可用性群
 
  
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0810_2016-->
