@@ -71,7 +71,7 @@
 
 > [AZURE.NOTE] 在訂用帳戶層級設定資料收集，並選擇每個區域的儲存體帳戶。
 
-選取 [防止原則] (見上文) 以開啟 [防止原則] 刀鋒視窗。顯示建議可讓您選擇想要監視的安全性控制項，並根據訂用帳戶內的資源安全性需求提出建議。
+選取 [防止原則]\(見上文) 以開啟 [防止原則] 刀鋒視窗。顯示建議可讓您選擇想要監視的安全性控制項，並根據訂用帳戶內的資源安全性需求提出建議。
 
 接下來，選取要加以檢視原則詳細資訊的資源群組。
 
@@ -150,7 +150,7 @@
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) — 取得最新的 Azure 安全性新聞和資訊。
 
 <!--Image references-->
-[1]: ./media/security-center-intro/security-tile.png
+[1]: ./media/security-center-intro/security-tile.PNG
 [2]: ./media/security-center-intro/security-center.png
 [3]: ./media/security-center-intro/security-policy.png
 [4]: ./media/security-center-intro/security-policy-blade.png
@@ -160,4 +160,4 @@
 [8]: ./media/security-center-intro/security-alert-detail.png
 [9]: ./media/security-center-intro/partner-solutions.png
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0810_2016--->

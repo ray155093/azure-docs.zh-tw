@@ -54,7 +54,7 @@
 - 按一下 [完成]。
 
 
-## 手動新增帳戶
+<h2 id="zhtw">手動新增帳戶</h2>
 如果想要手動新增帳戶，請選取手動輸入帳戶的按鈕。
 
 ![設定](./media/multi-factor-authentication-end-user-first-time-mobile-app/addaccount.png)

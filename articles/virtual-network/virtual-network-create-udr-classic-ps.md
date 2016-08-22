@@ -23,8 +23,9 @@
 
 [AZURE.INCLUDE [virtual-network-create-udr-intro-include.md](../../includes/virtual-network-create-udr-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] 本文涵蓋之內容包括傳統部署模型。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
+本文涵蓋之內容包括傳統部署模型。
 [AZURE.INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
 以下的 Azure PowerShell 命令範例假設您已根據上述案例建立簡單的環境。如果您想要執行如本文件中所示的命令，請建立[使用 PowerShell 建立 VNet (傳統)](virtual-networks-create-vnet-classic-netcfg-ps.md) 中所示的環境。

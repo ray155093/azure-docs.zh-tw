@@ -60,7 +60,7 @@ Azure 自動化 Runbook 資源庫已發佈垂直調整 VM 擴展集所需之 Run
 
 * [Azure 自動化的 Runbook 和模組資源庫](../automation/automation-runbook-gallery.md)
 
-從 [Runbooks] 功能表選擇 [瀏覽資源庫] 選項︰
+從 \[Runbooks] 功能表選擇 [瀏覽資源庫] 選項︰
 
 ![要匯入的 Runbook][runbooks]
 

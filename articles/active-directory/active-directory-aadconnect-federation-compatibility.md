@@ -22,7 +22,8 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 對於已經投資非 Microsoft 同盟方案的組織，此主題包含使用來自下面「Azure Active Directory 同盟相容性清單」中的非 Microsoft 識別提供者，為其 Windows Server Active Directory 使用者在 Microsoft 線上服務設定單一登入的指引。
 
 
-![](./media/active-directory-aadconnect-federation-compatibility/oxford2.jpg) [Oxford Computer Group](http://oxfordcomputergroup.com/) 這家代表 Microsoft 的協力廠商已使用非 Microsoft 識別提供者，針對一組常見的 Azure Active Directory 使用案例測試這些單一登入體驗。
+![](./media/active-directory-aadconnect-federation-compatibility/oxford2.jpg) 
+[Oxford Computer Group](http://oxfordcomputergroup.com/) 這家代表 Microsoft 的協力廠商已使用非 Microsoft 識別提供者，針對一組常見的 Azure Active Directory 使用案例測試這些單一登入體驗。
 
 如需如何取得此處所列的協力廠商識別提供者資訊，請與 Oxford Computer Group 連絡：[idp@oxfordcomputergroup.com](mailto:idp@oxfordcomputergroup.com)。
 
