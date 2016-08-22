@@ -176,7 +176,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 
 	![選擇目標](./media/site-recovery-vmm-to-azure/choose-goals.png)
 
-3. 在 [Protection goal] (保護目標) 中選取 [To Azure] (至 Azure)，然後選取 [Yes, with Hyper-V] (是，利用 Hyper-V)。選取 [是]，確認您使用 VMM 來管理 Hyper-V 主機和復原網站。然後按一下 [確定]。
+3. 在 [Protection goal]\(保護目標) 中選取 [To Azure]\(至 Azure)，然後選取 [Yes, with Hyper-V]\(是，利用 Hyper-V)。選取 [是]，確認您使用 VMM 來管理 Hyper-V 主機和復原網站。然後按一下 [確定]。
 
 	![選擇目標](./media/site-recovery-vmm-to-azure/choose-goals2.png)
 
@@ -319,7 +319,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 	- 如果您想要使用傳統模型建立儲存體帳戶，請在 Azure 入口網站中執行該作業。[深入了解](../storage/storage-create-storage-account-classic-portal.md)
 	- 如果您將進階儲存體帳戶使用於複寫的資料，則必須設定其他標準儲存體帳戶來儲存複寫記錄檔，而這類記錄檔會擷取內部部署資料的進行中變更。
 
-4.	如果您尚未建立 Azure 網路，而且想要使用 ARM 建立一個，請按一下 [+Network] (+網路) 以內嵌方式執行該作業。在 [建立虛擬網路] 刀鋒視窗上，指定網路名稱、位址範圍、子網路詳細資料、訂用帳戶和位置。此網路應位於與復原服務保存庫相同的位置。
+4.	如果您尚未建立 Azure 網路，而且想要使用 ARM 建立一個，請按一下 [+Network]\(+網路) 以內嵌方式執行該作業。在 [建立虛擬網路] 刀鋒視窗上，指定網路名稱、位址範圍、子網路詳細資料、訂用帳戶和位置。此網路應位於與復原服務保存庫相同的位置。
 
 	![網路](./media/site-recovery-vmm-to-azure/gs-createnetwork.png)
 
@@ -437,7 +437,7 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 	![啟用複寫](./media/site-recovery-vmm-to-azure/enable-replication-target.png)
 
 4. 選取您要使用的儲存體帳戶。如果您想使用與現有不同的儲存體帳戶，您可以[建立一個](#set-up-an-azure-storage-account)。若要使用 ARM 模型來建立儲存體帳戶，請按一下 [新建]。如果您想要使用傳統模型建立儲存體帳戶，請在 [Azure 入口網站](../storage/storage-create-storage-account-classic-portal.md)中執行該作業。然後按一下 [確定]。
-5. 選取 Azure VM 在容錯移轉後啟動時所要啟動的 Azure 網路和子網路。選取 [Configure now for selected machines] (立即針對選取的機器進行設定)，將網路設定套用至您選取要進行保護的所有機器。選取 [稍後設定] 以選取每部機器的 Azure 網路。如果您想使用與現有不同的網路，您可以[建立一個](#set-up-an-azure-network)。若要使用 ARM 模型建立網路，請按一下 [新建]。如果您想要使用傳統模型建立網路，請在 [Azure 入口網站](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)中執行該作業。選取適用的子網路。然後按一下 [確定]。
+5. 選取 Azure VM 在容錯移轉後啟動時所要啟動的 Azure 網路和子網路。選取 [Configure now for selected machines]\(立即針對選取的機器進行設定)，將網路設定套用至您選取要進行保護的所有機器。選取 [稍後設定] 以選取每部機器的 Azure 網路。如果您想使用與現有不同的網路，您可以[建立一個](#set-up-an-azure-network)。若要使用 ARM 模型建立網路，請按一下 [新建]。如果您想要使用傳統模型建立網路，請在 [Azure 入口網站](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)中執行該作業。選取適用的子網路。然後按一下 [確定]。
 6. 在 [虛擬機器] > [選取虛擬機器] 中，按一下並選取您要複寫的每部機器。您只能選取可以啟用複寫的機器。然後按一下 [確定]。
 
 	![啟用複寫](./media/site-recovery-vmm-to-azure/enable-replication5.png)
