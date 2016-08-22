@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/17/2016"
+	ms.date="08/10/2016"
 	ms.author="nicking"/>
 # 使用 PowerShell 來備份及還原 App Service 應用程式
 
@@ -26,10 +26,24 @@
 ## 必要條件
 若要使用 PowerShell 來管理您的應用程式備份，您需要下列項目︰
 
-- **SAS URL**，提供 Azure 儲存體容器的讀取和寫入存取權。如需 SAS URL 的詳細資訊，請參閱[了解 SAS 模型](../storage/storage-dotnet-shared-access-signature-part-1.md)。
+- **SAS URL**，提供 Azure 儲存體容器的讀取和寫入存取權。如需 SAS URL 的說明，請參閱[了解 SAS 模型](../storage/storage-dotnet-shared-access-signature-part-1.md)。如需使用 PowerShell 管理 Azure 儲存體的範例，請參閱[搭配使用 Azure PowerShell 與 Azure 儲存體](../storage/storage-powershell-guide-full.md)。
 - **資料庫連接字串**，如果您想要備份資料庫和 Web 應用程式。
 
-##安裝 Azure PowerShell 1.3.2 或更新版本
+### 如何產生 SAS URL 以搭配 Web 應用程式備份 Cmdlet 使用
+您可以使用 PowerShell 產生 SAS URL。以下是如何產生一個 SAS URL 以搭配本文所討論的 Cmdlet 使用的範例。
+
+		$storageAccountName = "<your storage account's name>"
+		$storageAccountRg = "<your storage account's resource group>"
+
+		# This returns an array of keys for your storage account. Be sure to select the appropriate key. Here we select the first key as a default.
+		$storageAccountKey = Get-AzureRmStorageAccountKey -ResourceGroupName $storageAccountRg -Name $storageAccountName
+		$context = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey[0].Value
+
+		$blobContainerName = "<name of blob container for app backups>"
+		$token = New-AzureStorageContainerSASToken -Name $blobContainerName -Permission rwdl -Context $context -ExpiryTime (Get-Date).AddMonths(1)
+		$sasUrl = $context.BlobEndPoint + $blobContainerName + $token
+
+## 安裝 Azure PowerShell 1.3.2 或更新版本
 
 如需安裝和使用 Azure PowerShell 的指示，請參閱[搭配使用 Azure PowerShell 與 Azure Resource Manager](../powershell-install-configure.md)。
 
@@ -47,7 +61,7 @@
 
 		$backup = New-AzureRmWebAppBackup -ResourceGroupName $resourceGroupName -Name $appName -StorageAccountUrl $sasUrl -BackupName MyBackup
 
-如果您要將資料庫納入備份中，請先使用 New-AzureRmWebAppDatabaseBackupSetting Cmdlet 建立資料庫備份設定，然後在 New-AzureRmWebAppBackup Cmdlet 的 Databases 參數中提供該設定。Databases 參數可接受資料庫設定陣列，讓您備份一個以上的資料庫。
+若要將資料庫包含在備份中，請先使用 New-AzureRmWebAppDatabaseBackupSetting Cmdlet 建立資料庫備份設定，然後在 New-AzureRmWebAppBackup Cmdlet 的 Databases 參數中提供該設定。Databases 參數可接受資料庫設定陣列，讓您備份一個以上的資料庫。
 
 		$dbSetting1 = New-AzureRmWebAppDatabaseBackupSetting -Name DB1 -DatabaseType SqlAzure -ConnectionString "<connection_string>"
 		$dbSetting2 = New-AzureRmWebAppDatabaseBackupSetting -Name DB2 -DatabaseType SqlAzure -ConnectionString "<connection_string>"
@@ -112,7 +126,7 @@ Get-AzureRmWebAppBackupList Cmdlet 會傳回 Web 應用程式的所有備份陣�
 
 若要從備份中還原 Web 應用程式，請使用 Restore-AzureRmWebAppBackup Cmdlet。使用這個 Cmdlet 的最簡單方式就是透過管線傳入從 Get-AzureRmWebAppBackup Cmdlet 或 Get-AzureRmWebAppBackupList Cmdlet 擷取的備份物件。
 
-一旦有備份物件，即可透過管線將該物件送至 Restore-AzureRmWebAppBackup Cmdlet。您必須指定 Overwrite 切換參數，以指出您打算以備份的內容覆寫 Web 應用程式的內容。如果備份包含資料庫，也將會還原這些資料庫。
+一旦有備份物件，即可透過管線將該物件送至 Restore-AzureRmWebAppBackup Cmdlet。指定 Overwrite 切換參數，以指出您打算以備份的內容覆寫 Web 應用程式的內容。如果備份包含資料庫，也將會還原這些資料庫。
 
 		$backup | Restore-AzureRmWebAppBackup -Overwrite
 
@@ -128,7 +142,7 @@ Get-AzureRmWebAppBackupList Cmdlet 會傳回 Web 應用程式的所有備份陣�
 
 ## 刪除備份
 
-若要刪除備份，請使用 Remove-AzureRmWebAppBackup Cmdlet。這會從您的儲存體帳戶移除備份。您必須指定您的應用程式名稱、其資源群組和您想要刪除之備份的識別碼。
+若要刪除備份，請使用 Remove-AzureRmWebAppBackup Cmdlet。這會從您的儲存體帳戶移除備份。指定您的應用程式名稱、其資源群組和您想要刪除之備份的識別碼。
 
 		$resourceGroupName = "Default-Web-WestUS"
 		$appName = "ContosoApp"
@@ -139,4 +153,4 @@ Get-AzureRmWebAppBackupList Cmdlet 會傳回 Web 應用程式的所有備份陣�
 		$backup = Get-AzureRmWebAppBackup -Name $appName -ResourceGroupName $resourceGroupName -BackupId 10102
 		$backup | Remove-AzureRmWebAppBackup -Overwrite
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0810_2016-->

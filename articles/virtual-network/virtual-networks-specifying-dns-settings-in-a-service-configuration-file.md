@@ -3,7 +3,7 @@
    description="使用虛擬網路的服務組態檔指定自訂的 DNS 設定"
    services="virtual-network"
    documentationCenter="na"
-   authors="joaoma"
+   authors="jimdial"
    manager="carmonm"
    editor="tysonn" />
 <tags 
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/24/2016"
-   ms.author="joaoma" />
+   ms.author="jdial" />
 
 # 指定服務組態檔中的 DNS 設定
 
@@ -41,4 +41,4 @@
 
 [關於管理入口網站中的虛擬網路設定](http://go.microsoft.com/fwlink/?LinkId=248092)
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0810_2016-->

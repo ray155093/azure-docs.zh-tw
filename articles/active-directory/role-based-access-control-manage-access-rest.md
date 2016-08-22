@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter="na"
 	authors="kgremban"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="rest-api"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/13/2016"
+	ms.date="08/04/2016"
 	ms.author="kgremban"/>
 
 # 使用 REST API 管理角色型存取控制
@@ -23,14 +23,13 @@
 - [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
 - [REST API](role-based-access-control-manage-access-rest.md)
 
-Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 (RBAC) 功能，可讓您精確管理訂用帳戶與資源的存取。透過這項功能，您可以為 Active Directory 使用者、群組或是服務主體指派特定範圍的一些角色，藉此賦予其存取權限。
-
+Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制」(RBAC) 可協助您精確管理對您訂用帳戶與資源的存取。透過這項功能，您可以為 Active Directory 使用者、群組或是服務主體指派特定範圍的一些角色，藉此賦予其存取權限。
 
 ## 列出所有角色指派
 
-列出所有在指定的範圍和子範圍內的角色指派。
+列出在指定的範圍和子範圍內的所有角色指派。
 
-若要列出角色指派，您必須具有範圍內的 `Microsoft.Authorization/roleAssignments/read` 作業存取權。所有內建的角色都會獲得這項作業的存取權。如需角色指派和管理 Azure 資源存取的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+若要列出角色指派，您必須具有範圍內的 `Microsoft.Authorization/roleAssignments/read` 作業存取權。所有內建角色都會獲得這項作業的存取權。如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 ### 要求
 
@@ -40,26 +39,19 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 在 URI 內進行下列替代動作以自訂要求：
 
-將 *{scope}* 取代為您要列出的角色指派範圍。下列範例顯示如何指定不同層級的範圍：
+1. 將 *{scope}* 取代為您要列出角色指派的範圍。下列範例顯示如何指定不同層級的範圍：
 
-| Level | *{Scope}* |
-|-------|-----------|
-| 訂閱 | /subscriptions/{subscription-id} |
-| 資源群組 | /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1 |
-| 資源 | /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1 |
+  - 訂用帳戶：/subscriptions/{subscription-id}
+  - 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1
+  - 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1
 
-將 *{api-version}* 取代為 2015-07-01。
+2. 將 *{api-version}* 取代為 2015-07-01。
 
-將 *{filter}* 取代為篩選角色指派清單所要套用的條件。支援下列條件：
+3. 將 *{filter}* 取代為要針對角色指派清單篩選套用的條件：
 
-
-| 條件 | *{Filter}* | 將 |
-|-----------|------------|---------|
-| 若僅要列出指定範圍的角色指派，不包括子範圍內的角色指派。 | `atScope()` | |
-| 若僅要列出特定使用者、群組或應用程式的角色指派 | `principalId%20eq%20'{objectId}'` | 將 *{objectId}* 取代為使用者、群組或服務主體的 Azure AD objectId。例如，`&$filter=principalId%20eq%20'3a477f6a-6739-4b93-84aa-3be3f8c8e7c2'` |
-| 若僅要列出特定使用者的角色指派，包括指派給群組的使用者，而使用者為該群組的成員 | `assignedTo('{objectId}')` | 將 *{objectId}* 取代為使用者的 Azure AD objectId。例如，`&$filter=assignedTo('3a477f6a-6739-4b93-84aa-3be3f8c8e7c2')` |
-
-
+  - 僅列出指定範圍的角色指派，不包括子範圍內的角色指派：`atScope()`
+  - 僅列出特定使用者、群組或應用程式的角色指派：`principalId%20eq%20'{objectId of user, group, or service principal}'`
+  - 僅列出特定使用者的角色指派，包括從群組繼承的角色指派 | `assignedTo('{objectId of user}')`
 
 ### Response
 
@@ -92,7 +84,7 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 取得由角色指派識別碼所指定的單一角色指派相關資訊。
 
-若要取得角色指派的相關資訊，您必須具有 `Microsoft.Authorization/roleAssignments/read` 作業存取權。所有內建的角色都會獲得這項作業的存取權。如需角色指派和管理 Azure 資源存取的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+若要取得角色指派的相關資訊，您必須具有 `Microsoft.Authorization/roleAssignments/read` 作業的存取權。所有內建角色都會獲得這項作業的存取權。如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 ### 要求
 
@@ -102,17 +94,15 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 在 URI 內進行下列替代動作以自訂要求：
 
-將 *{scope}* 取代為您要列出的角色指派範圍。下列範例顯示如何指定不同層級的範圍：
+1. 將 *{scope}* 取代為您要列出角色指派的範圍。下列範例顯示如何指定不同層級的範圍：
 
-| Level | *{Scope}* |
-|-------|-----------|
-| 訂閱 | /subscriptions/{subscription-id} |
-| 資源群組 | /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1 |
-| 資源 | /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1 |
+  - 訂用帳戶：/subscriptions/{subscription-id}
+  - 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1
+  - 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1
 
-將 *{role-assignment-id}* 取代為角色指派的 GUID 識別碼。
+2. 將 *{role-assignment-id}* 取代為角色指派的 GUID 識別碼。
 
-將 *{api-version}* 取代為 2015-07-01。
+3. 將 *{api-version}* 取代為 2015-07-01。
 
 ### Response
 
@@ -140,7 +130,7 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 在指定範圍中建立指定主體授與指定角色的角色指派。
 
-若要建立角色指派，您必須具有 `Microsoft.Authorization/roleAssignments/write` 作業存取權。內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。如需角色指派和管理 Azure 資源存取的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+若要建立角色指派，您必須具有 `Microsoft.Authorization/roleAssignments/write` 作業的存取權。在內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 ### 要求
 
@@ -150,17 +140,15 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 在 URI 內進行下列替代動作以自訂要求：
 
-將 *{scope}* 取代為您要建立的角色指派範圍。當您在父範圍內建立角色指派時，所有的子範圍會繼承相同的角色指派。下列範例顯示如何指定不同層級的範圍：
+1. 將 *{scope}* 取代為您要建立角色指派的範圍。當您在父範圍內建立角色指派時，所有的子範圍會繼承相同的角色指派。下列範例顯示如何指定不同層級的範圍：
 
-| Level | *{Scope}* |
-|-------|-----------|
-| 訂閱 | /subscriptions/{subscription-id} |
-| 資源群組 | /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1 |
-| 資源 | /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1 |
+  - 訂用帳戶：/subscriptions/{subscription-id}
+  - 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1
+  - 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1
 
-將 *{role-assignment-id}* 取代為新的 GUID。這將會用做新角色指派的 GUID 識別碼。
+2. 將 *{role-assignment-id}* 取代為新的 GUID，此 GUID 將成為新角色指派的 GUID 識別碼。
 
-將 *{api-version}* 取代為 2015-07-01。
+3. 將 *{api-version}* 取代為 2015-07-01。
 
 對於要求本文，提供下列格式的值：
 
@@ -176,8 +164,8 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 | 元素名稱 | 必要 | 類型 | 說明 |
 |------------------|----------|--------|-------------|
-| roleDefinitionId | 是 | String | 要指派角色的識別碼。識別碼的格式是：`{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id-guid}` |
-| principalId | 是 | String | 角色要指派至 Azure AD 主體的 objectId (使用者、群組或服務主體)。 |
+| roleDefinitionId | 是 | String | 角色的識別碼。此識別碼的格式是：`{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id-guid}` |
+| principalId | 是 | String | 做為角色指派對象之 Azure AD 主體的 objectId (使用者、群組或服務主體)。 |
 
 ### Response
 
@@ -205,7 +193,7 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 刪除指定範圍內的角色指派。
 
-若要刪除角色指派，您必須具有 `Microsoft.Authorization/roleAssignments/delete` 作業存取權。內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。如需角色指派和管理 Azure 資源存取的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+若要刪除角色指派，您必須具有 `Microsoft.Authorization/roleAssignments/delete` 作業的存取權。在內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 ### 要求
 
@@ -215,17 +203,15 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 在 URI 內進行下列替代動作以自訂要求：
 
-將 *{scope}* 取代為您要建立的角色指派範圍。下列範例顯示如何指定不同層級的範圍：
+1. 將 *{scope}* 取代為您要建立角色指派的範圍。下列範例顯示如何指定不同層級的範圍：
 
-| Level | *{Scope}* |
-|-------|-----------|
-| 訂閱 | /subscriptions/{subscription-id} |
-| 資源群組 | /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1 |
-| 資源 | /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1 |
+  - 訂用帳戶：/subscriptions/{subscription-id}
+  - 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1
+  - 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1
 
-將 *{role-assignment-id}* 取代為角色指派 ID 的 GUID。
+2. 將 *{role-assignment-id}* 取代為角色指派識別碼 GUID。
 
-將 *{api-version}* 取代為 2015-07-01。
+3. 將 *{api-version}* 取代為 2015-07-01。
 
 ### Response
 
@@ -251,9 +237,9 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 ## 列出所有角色
 
-列出所有在指定的範圍內可指派的角色。
+列出在指定的範圍內可供指派的所有角色。
 
-若要列出角色，您必須具有範圍內的 `Microsoft.Authorization/roleDefinitions/read` 作業存取權。所有內建的角色都會獲得這項作業的存取權。如需角色指派和管理 Azure 資源存取的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+若要列出角色，您必須具有該範圍內 `Microsoft.Authorization/roleDefinitions/read` 作業的存取權。所有內建角色都會獲得這項作業的存取權。如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 ### 要求
 
@@ -263,24 +249,18 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 在 URI 內進行下列替代動作以自訂要求：
 
-將 *{scope}* 取代為您要列出的角色範圍。下列範例顯示如何指定不同層級的範圍：
+1. 將 *{scope}* 取代為您要列出角色的範圍。下列範例顯示如何指定不同層級的範圍：
 
-| Level | *{Scope}* |
-|-------|-----------|
-| 訂閱 | /subscriptions/{subscription-id} |
-| 資源群組 | /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1 |
-| 資源 | /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1 |
+  - 訂用帳戶：/subscriptions/{subscription-id}
+  - 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1
+  - 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1
 
-將 *{api-version}* 取代為 2015-07-01。
+2. 將 *{api-version}* 取代為 2015-07-01。
 
-將 *{filter}* 取代為篩選角色清單所要套用的條件。支援下列條件：
+3. 將 *{filter}* 取代為要針對角色清單篩選套用的條件：
 
-| 條件 | *{Filter}* | 將 |
-|-----------|------------|---------|
-| 若要列出所有在指定的範圍及任何其子範圍內可指派的角色。 | `atScopeAndBelow()` | |
-| 若要使用確切的顯示名稱搜尋角色。 | `roleName%20eq%20'{role-display-name}'` | 將 *{role-display-name}* 取代為角色確切顯示名稱的 URL 編碼型式。例如：`$filter=roleName%20eq%20'Virtual%20Machine%20Contributor'` |
-
-
+  - 列出在指定的範圍及其任何子範圍內可供指派的角色：`atScopeAndBelow()`
+  - 使用確切的顯示名稱來搜尋角色：`roleName%20eq%20'{role-display-name}'`。使用角色確切顯示名稱的 URL 編碼型式。例如，`$filter=roleName%20eq%20'Virtual%20Machine%20Contributor'` |
 
 ### Response
 
@@ -345,9 +325,9 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 ## 取得角色的相關資訊
 
-取得由角色定義識別碼所指定的單一角色相關資訊。若要取得使用其顯示名稱的單一角色相關資訊，請參閱列出所有角色和 RoleName 篩選條件。
+取得由角色定義識別碼所指定的單一角色相關資訊。若要使用角色的顯示名稱來取得單一角色的相關資訊，請參閱[列出所有角色](role-based-access-control-manage-access-rest.md#list-all-roles)。
 
-若要取得角色的相關資訊，您必須具有 `Microsoft.Authorization/roleDefinitions/read` 作業存取權。所有內建的角色都會獲得這項作業的存取權。如需角色指派和管理 Azure 資源存取的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+若要取得角色的相關資訊，您必須具有 `Microsoft.Authorization/roleDefinitions/read` 作業的存取權。所有內建角色都會獲得這項作業的存取權。如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 ### 要求
 
@@ -357,15 +337,15 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 在 URI 內進行下列替代動作以自訂要求：
 
-將 *{scope}* 取代為您要列出的角色指派範圍。下列範例顯示如何指定不同層級的範圍：
+1. 將 *{scope}* 取代為您要列出角色指派的範圍。下列範例顯示如何指定不同層級的範圍：
 
-| Level | *{Scope}* |
-|-------|-----------|
-| 訂閱 | /subscriptions/{subscription-id} |
-| 資源群組 | /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1 |
-| 資源 | /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1 |
+  - 訂用帳戶：/subscriptions/{subscription-id}
+  - 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1
+  - 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1
 
-將 *{role-definition-id}* 取代為角色定義的 GUID 識別碼。將 *{api-version}* 取代為 2015-07-01。
+2. 將 *{role-definition-id}* 取代為角色定義的 GUID 識別碼。
+
+3. 將 *{api-version}* 取代為 2015-07-01。
 
 ### Response
 
@@ -431,7 +411,7 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 ## 建立自訂角色
 建立自訂角色。
 
-若要建立自訂角色，您必須在角色所有的 `AssignableScopes` 上具有 `Microsoft.Authorization/roleDefinitions/write` 作業存取權。內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。如需角色指派和管理 Azure 資源存取的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+若要建立自訂角色，您必須在所有 `AssignableScopes` 上都具有 `Microsoft.Authorization/roleDefinitions/write` 作業的存取權。在內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 ### 要求
 
@@ -441,17 +421,15 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 在 URI 內進行下列替代動作以自訂要求：
 
-將 *{scope}* 取代為自訂角色的第一個 *AssignableScope*。下列範例顯示如何指定不同層級的範圍。
+1. 將 *{scope}* 取代為自訂角色的第一個 *AssignableScope*。下列範例顯示如何指定不同層級的範圍。
 
-| Level | *{Scope}* |
-|-------|-----------|
-| 訂閱 | /subscriptions/{subscription-id} |
-| 資源群組 | /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1 |
-| 資源 | /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1 |
+  - 訂用帳戶：/subscriptions/{subscription-id}
+  - 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1
+  - 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1
 
-將 *{role-definition-id}* 取代為新的 GUID。這將會用做新自訂角色的 GUID 識別碼。
+2. 將 *{role-definition-id}* 取代為新的 GUID，此 GUID 將成為新自訂角色的 GUID 識別碼。
 
-將 *{api-version}* 取代為 2015-07-01。
+3. 使用 2015-07-01 取代 *{api-version}*。
 
 對於要求本文，提供下列格式的值：
 
@@ -491,10 +469,10 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 | 名稱 | 是 | String | 自訂角色的 GUID 識別碼。 |
 | properties.roleName | 是 | String | 自訂角色的顯示名稱。大小上限為 128 個字元。 |
 | properties.description | 否 | String | 自訂角色的說明。大小上限為 1024 個字元。 |
-| properties.type | 是 | String | 將此項目設為「CustomRole」。 |
-| properties.permissions.actions | 是 | String | 動作字串的陣列會指定自訂角色授與存取權的作業。 |
-| properties.permissions.notActions | 否 | String | 動作字串的陣列會指定作業，而該作業會從自訂角色授與存取權的作業中排除。 |
-| properties.assignableScopes | 是 | String | 範圍的陣列，在其中自訂角色可以用來管理存取。 |
+| properties.type | 是 | String | 設定為 "CustomRole"。 |
+| properties.permissions.actions | 是 | String | 動作字串陣列，此陣列指定自訂角色所授權的作業。 |
+| properties.permissions.notActions | 否 | String | 動作字串陣列，此陣列指定要從自訂角色所授權的作業中排除的作業。 |
+| properties.assignableScopes | 是 | String | 範圍陣列，此陣列指定可在其中使用自訂角色的範圍。 |
 
 ### Response
 
@@ -541,7 +519,7 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 修改自訂角色。
 
-若要修改自訂角色，您必須在角色所有的 `AssignableScopes` 上具有 `Microsoft.Authorization/roleDefinitions/write` 作業存取權。內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。如需角色指派和管理 Azure 資源存取的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+若要修改自訂角色，您必須在所有 `AssignableScopes` 上都具有 `Microsoft.Authorization/roleDefinitions/write` 作業的存取權。在內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 ### 要求
 
@@ -551,17 +529,15 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 在 URI 內進行下列替代動作以自訂要求：
 
-將 *{scope}* 取代為自訂角色的第一個 *AssignableScope*。下列範例顯示如何指定不同層級的範圍：
+1. 將 *{scope}* 取代為自訂角色的第一個 *AssignableScope*。下列範例顯示如何指定不同層級的範圍：
 
-| Level | *{Scope}* |
-|-------|-----------|
-| 訂閱 | /subscriptions/{subscription-id} |
-| 資源群組 | /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1 |
-| 資源 | /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1 |
+  - 訂用帳戶：/subscriptions/{subscription-id}
+  - 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1
+  - 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1
 
-將 *{role-definition-id}* 取代為要更新的自訂角色 GUID 識別碼。
+2. 將 *{role-definition-id}* 取代為自訂角色的 GUID 識別碼。
 
-將 *{api-version}* 取代為 2015-07-01。
+3. 將 *{api-version}* 取代為 2015-07-01。
 
 對於要求本文，提供下列格式的值：
 
@@ -598,13 +574,13 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 | 元素名稱 | 必要 | 類型 | 說明 |
 |--------------|----------|------|-------------|
-| 名稱 | 是 | String | 要更新的自訂角色 GUID 識別碼。 |
+| 名稱 | 是 | String | 自訂角色的 GUID 識別碼。 |
 | properties.roleName | 是 | String | 已更新的自訂角色顯示名稱。 |
 | properties.description | 否 | String | 已更新的自訂角色說明。 |
-| properties.type | 是 | String | 將此項目設為「CustomRole」。 |
+| properties.type | 是 | String | 設定為 "CustomRole"。 |
 | properties.permissions.actions | 是 | String | 動作字串的陣列會指定已更新自訂角色授與存取權的作業。 |
-| properties.permissions.notActions | 否 | String | 動作字串的陣列會指定作業，而該作業會從已更新自訂角色授與存取權的作業中排除。 |
-| properties.assignableScopes | 是 | String | 範圍的陣列，在其中已更新的自訂角色可以用來管理存取。 |
+| properties.permissions.notActions | 否 | String | 動作字串陣列，此陣列指定要從已更新之自訂角色所授權的作業中排除的作業。 |
+| properties.assignableScopes | 是 | String | 範圍陣列，此陣列指定可在其中使用已更新之自訂角色的範圍。 |
 
 ### Response
 
@@ -651,7 +627,7 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 刪除自訂角色。
 
-若要刪除自訂角色，您必須在角色所有的 `AssignableScopes` 上具有 `Microsoft.Authorization/roleDefinitions/delete` 作業存取權。內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。如需角色指派和管理 Azure 資源存取的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+若要刪除自訂角色，您必須在所有 `AssignableScopes` 上都具有 `Microsoft.Authorization/roleDefinitions/delete` 作業的存取權。在內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 ### 要求
 
@@ -661,17 +637,15 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 在 URI 內進行下列替代動作以自訂要求：
 
-將 *{scope}* 取代為您要刪除的角色定義範圍。下列範例顯示如何指定不同層級的範圍：
+1. 將 *{scope}* 取代為您要刪除角色定義的範圍。下列範例顯示如何指定不同層級的範圍：
 
-| Level | *{Scope}* |
-|-------|-----------|
-| 訂閱 | /subscriptions/{subscription-id} |
-| 資源群組 | /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1 |
-| 資源 | /subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1 |
+  - 訂用帳戶：/subscriptions/{subscription-id}
+  - 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1
+  - 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1
 
-將 *{role-definition-id}* 取代為要刪除的自訂角色 GUID 角色定義識別碼。
+2. 將 *{role-definition-id}* 取代為自訂角色的 GUID 角色定義識別碼。
 
-將 *{api-version}* 取代為 2015-07-01。
+3. 將 *{api-version}* 取代為 2015-07-01。
 
 ### Response
 
@@ -714,4 +688,7 @@ Azure 入口網站以及 Azure Resource Manager API 裡的角色型存取控制 
 
 ```
 
-<!---HONumber=AcomDC_0518_2016-->
+
+[AZURE.INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]
+
+<!---HONumber=AcomDC_0810_2016-->

@@ -1,9 +1,9 @@
 <properties
 	pageTitle="Azure Active Directory 混合式身分識別設計考量 - 判斷混合式身分識別管理工作|Microsoft Azure"
-	description="透過條件式存取控制，Azure Active Directory 會在驗證使用者時以及允許存取應用程式之前，檢查您挑選的特定條件。一旦符合這些條件，就會驗證使用者並允許存取應用程式。"
+	description="透過條件式存取控制，Azure Active Directory 會在驗證使用者時以及允許存取應用程式之前，檢查您挑選的特定條件。一旦符合這些條件，使用者就會通過驗證並獲允許存取應用程式。"
 	documentationCenter=""
 	services="active-directory"
-	authors="femila"
+	authors="billmath"
 	manager="stevenpo"
 	editor=""/>
 
@@ -13,8 +13,8 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="02/10/2016"
-	ms.author="femila"/>
+	ms.date="08/08/2016"
+	ms.author="billmath"/>
 
 # 規劃混合式身分識別生命週期 
 
@@ -33,19 +33,19 @@
 
 定義這些需求時，至少要回答下列問題
 
-- 佈建選項： 
+- 佈建選項：
  - 混合式身分識別解決方案是否支援健全的帳戶存取管理和佈建系統？
  - 使用者、群組和密碼將以何種方式受到管理？
- - 身分識別生命週期管理是否有因應能力？ 
+ - 身分識別生命週期管理是否有因應能力？
       - 密碼更新的帳戶暫止需要多久的時間？
       
 - 授權管理：
  - 混合式身分識別解決方案是否會處理授權管理？
      - 如果是，可用的功能為何？
-- 解決方案是否會處理以群組為基礎的授權管理？ 
-      - 如果是，是否可以將安全性群組指派給它？ 
-       - 如果是，雲端目錄是否會自動將授權指派給群組的所有成員？ 
-        - 如果後續在群組中新增或移除使用者，將會有何情況？會適當地自動指派或移除授權嗎？ 
+- 解決方案是否會處理以群組為基礎的授權管理？
+      - 如果是，是否可以將安全性群組指派給它？
+       - 如果是，雲端目錄是否會自動將授權指派給群組的所有成員？
+        - 如果後續在群組中新增或移除使用者，將會有何情況？會適當地自動指派或移除授權嗎？
 
 - 與其他協力廠商身分識別提供者整合：
 - 此混合式解決方案是否可與協力廠商身分識別提供者整合，以實作單一登入？
@@ -64,4 +64,4 @@
 ## 另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0810_2016-->

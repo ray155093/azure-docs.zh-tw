@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="06/16/2016"
+	ms.date="08/03/2016"
 	ms.author="robinsh"/>
 
 #Azure 儲存體安全性指南
 
-##概觀
+##Overview
 
 Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共同建置安全應用程式。您可以使用角色型存取控制與 Azure Active Directory 來保護儲存體帳戶本身。您可以使用[用戶端加密](storage-client-side-encryption.md)、HTTPS 或 SMB 3.0，在應用程式和 Azure 之間進行傳輸時保護資料的安全。使用[儲存體服務加密 (SSE)](storage-service-encryption.md) 寫入 Azure 儲存體時，可將資料設定為自動加密。您可以使用 [Azure 磁碟加密](../azure-security-disk-encryption.md)，將虛擬機器所使用的作業系統和資料磁碟設定為加密。Azure 儲存體中資料物件的委派存取權可以使用[共用存取簽章](storage-dotnet-shared-access-signature-part-1.md)來授與。
 
@@ -516,7 +516,7 @@ SSE 是由 Azure 儲存體所管理，且可輕鬆管理。使用 SSE 不會針�
 
     1\.0;2015-11-16T18:30:05.6556115Z;GetBlob;**SASSuccess**;200;416;64;**sas**;;mystorage…
 
-3.  Blob 是私人且使用儲存體金鑰來存取它。在此案例中，要求狀態為 “**Success**” 且驗證類型為 “**authenticated**”。
+3.  Blob 是私人且使用儲存體金鑰來存取它。在此案例中，request-status 為 “**Success**” 且 authorization-type 為 “**authenticated**”。
 
     1\.0;2015-11-16T18:32:24.3174537Z;GetBlob;**Success**;206;59;22;**authenticated**;mystorage…
 
@@ -614,7 +614,7 @@ Azure 儲存體可讓您啟用 CORS – 跨原始來源資源共用。對於每�
 	
 	如需詳細資訊，請查看 [Azure Blob MD5 概觀](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/02/18/windows-azure-blob-md5-overview.aspx)。
 
-2.  **有哪些與美國政府的 FIPS 相符性相關的資訊？**
+2.  **美國政府的 FIPS 相符性為何？**
 
 	美國聯邦資訊處理標準 (FIPS) 會定義由美國聯邦政府電腦系統核准使用的密碼編譯演算法，以便保護機密資料。在 Windows 伺服器或桌面上啟用 FIPS 模式，會告知作業系統僅應使用 FIPS 驗證的密碼編譯演算法。如果應用程式使用不相容的演算法，該應用程式將會中斷。利用 .NET Framework 4.5.2 或更新版本，應用程式會在電腦處於 FIPS 模式時，自動切換密碼編譯演算法來使用 FIPS 相容的演算法。
 
@@ -634,4 +634,4 @@ Azure 儲存體可讓您啟用 CORS – 跨原始來源資源共用。對於每�
 
 	本文討論如何在較舊的 Windows 電腦中使用 FIPS 模式。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0810_2016-->

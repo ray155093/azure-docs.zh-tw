@@ -10,7 +10,7 @@
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="05/23/2016"
+	ms.date="08/08/2016"
 	ms.author="sstein"
 	ms.workload="data-management"
 	ms.topic="article"
@@ -22,7 +22,7 @@
 
 - 如需集區的概觀，請參閱 [SQL Database 彈性資料庫集區](sql-database-elastic-pool.md)。
 
-> [AZURE.NOTE] 彈性集區已在所有 Azure 區域中正式運作 (GA)，但美國中北部、印度西部及中國北方除外，在這些區域目前是提供預覽版。我們將儘速在這些區域提供彈性集區的 GA。
+> [AZURE.NOTE] 彈性集區已在所有 Azure 區域中正式運作 (GA)，但美國中北部和印度西部除外，在這些區域目前是提供預覽版。我們將儘速在這些區域提供彈性集區的 GA。
 
 ## 彈性資料庫集區
 
@@ -131,4 +131,4 @@ SQL Database 會自動評估現有 SQL Database 伺服器中資料庫過去的�
 - [SQL Database 選項和效能：了解每個服務層中可用的項目](sql-database-service-tiers.md)
 - [用來識別彈性資料庫集區適用資料庫的 PowerShell 指令碼](sql-database-elastic-pool-database-assessment-powershell.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0810_2016-->

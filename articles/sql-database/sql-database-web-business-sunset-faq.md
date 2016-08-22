@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="05/09/2016"
+   ms.date="08/08/2016"
    ms.author="sstein" />
 
 # Web 和 Business 版本終止常見問題集
@@ -55,7 +55,7 @@ Microsoft 也會變更 Premium 資料庫的資料庫複製體驗。先前由於 
 
 ## 基本、標準和高階如何改善我的計費體驗？
 
-基本、標準和高階 Azure SQL Database 是以小時計費，您可以在 24 小時內向上或向下調整每個資料庫 4 次。將根據您每小時選擇的最高服務層和效能層級，以固定費率向您計費。此外，效能層級 (範例：Basic、S1 和 P2) 會在帳單中細分，讓您更易於查看針對每個效能層級在單一月份中產生的資料庫天數或時數。Web 和 Business 資料庫仍會繼續基於「資料庫單位」根據資料庫大小計費。請瀏覽 [SQL Database 價格頁面](https://azure.microsoft.com/pricing/details/sql-database/)，以深入了解新服務層之間的價格和差異。
+基本、標準和高階 Azure SQL Database 是以小時計費，您可以相應增加或減少每個資料庫。將根據您每小時選擇的最高服務層和效能層級，以固定費率向您計費。此外，效能層級 (範例：Basic、S1 和 P2) 會在帳單中細分，讓您更易於查看針對每個效能層級在單一月份中產生的資料庫天數或時數。Web 和 Business 資料庫仍會繼續基於「資料庫單位」根據資料庫大小計費。請瀏覽 [SQL Database 價格頁面](https://azure.microsoft.com/pricing/details/sql-database/)，以深入了解新服務層之間的價格和差異。
 
 
 ## 另請參閱
@@ -68,4 +68,4 @@ Microsoft 也會變更 Premium 資料庫的資料庫複製體驗。先前由於 
 
 [升級至 Azure SQL Database V12](sql-database-upgrade-server-portal.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -291,7 +291,7 @@ Removed as these two are not confirmed / supported under SQLDW
 	GRANT CONTROL ON DATABASE::MySQLDW to newperson;
 	```
 
-4. **增加資源類別︰**若要將使用者加入至增加工作負載管理角色，請使用下列查詢。
+4. **增加資源類別︰**若要將使用者加入至更高的工作負載管理角色，請使用下列查詢。
 
 	```sql
 	EXEC sp_addrolemember 'largerc', 'newperson'
@@ -428,4 +428,4 @@ FROM	sys.dm_pdw_wait_stats w;
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

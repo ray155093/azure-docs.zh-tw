@@ -1,3 +1,4 @@
+
 <properties
    pageTitle="使用 Azure CLI 建立完整的 Linux 環境 | Microsoft Azure"
    description="使用 Azure CLI 從頭開始建立儲存體、Linux VM、虛擬網路和子網路、負載平衡器、NIC、公用 IP 以及網路安全性群組。"
@@ -1275,4 +1276,4 @@ azure group deployment create -f TestRG.json -g NewRGFromTemplate
 
 現在您已準備好開始使用多個網路元件和 VM。您可以利用這裡介紹的核心元件，使用這個範例環境來建置您的應用程式。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016-->

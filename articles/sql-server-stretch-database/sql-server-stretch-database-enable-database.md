@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/27/2016"
+	ms.date="08/05/2016"
 	ms.author="douglasl"/>
 
 # 為資料庫啟用 Stretch Database
@@ -24,9 +24,11 @@
 
 在資料庫或資料表上啟用 Stretch Database 需要 db\_owner 權限。在資料庫或資料表上啟用 Stretch Database 也需要 CONTROL DATABASE 權限。
 
+ >   [AZURE.NOTE] 之後，如果您停用 Stretch Database，請記得停用資料表或資料庫的 Stretch Database 並不會刪除遠端物件。如果您想要刪除遠端資料表或遠端資料庫，您必須使用 Azure 管理入口網站加以卸除。遠端物件會繼續產生 Azure 成本，直到您手動刪除它們為止。
+
 ## 開始之前
 
--   在您為資料庫設定延伸功能之前，我們建議您執行 Stretch Database Advisor 以識別符合延伸功能資格的資料庫和資料表。Stretch Database Advisor 也能識別封鎖問題。如需詳細資訊，請參閱 [Identify databases and tables for Stretch Database (為資料庫和資料表識別 Stretch Database)](sql-server-stretch-database-identify-databases.md)。
+-   在您為資料庫設定延伸功能之前，我們建議您執行 Stretch Database Advisor 以識別符合延伸功能資格的資料庫和資料表。Stretch Database Advisor 也能識別封鎖問題。如需詳細資訊，請參閱[為 Stretch Database 識別資料庫和資料表](sql-server-stretch-database-identify-databases.md)。
 
 -   檢閱 [Stretch Database 的限制](sql-server-stretch-database-limitations.md)。
 
@@ -50,12 +52,12 @@ GO
 RECONFIGURE;
 GO
 ```
-如需詳細資訊，請參閱 [Configure the remote data archive Server Configuration Option (設定遠端資料封存伺服器組態選項)](https://msdn.microsoft.com/library/mt143175.aspx) 以及 [sp\_configure (Transact-SQL)](https://msdn.microsoft.com/library/ms188787.aspx)。
+如需詳細資訊，請參閱 [設定遠端資料封存伺服器組態選項](https://msdn.microsoft.com/library/mt143175.aspx) 以及 [sp\_configure (Transact-SQL)](https://msdn.microsoft.com/library/ms188787.aspx)。
 
 ## <a name="Wizard"></a>使用精靈以在資料庫上啟用 Stretch Database
-如需有關「為資料庫啟用延展功能精靈」的資訊 (包括您必須輸入的資訊及必須做的選擇)，請參閱[開始執行為資料庫啟用延伸功能精靈](sql-server-stretch-database-wizard.md)。
+如需有關「為資料庫啟用 Stretch 精靈」的資訊 (包括您必須輸入的資訊及必須做的選擇)，請參閱[開始執行為資料庫啟用 Stretch 精靈](sql-server-stretch-database-wizard.md)。
 
-## <a name="EnableTSQLDatabase"></a>使用 Transact-SQL 以在資料庫上啟用 Stretch Database
+## <a name="EnableTSQLDatabase"></a>使用 Transact-SQL 在資料庫上啟用 Stretch Database
 在您可以在個別資料表上啟用 Stretch Database 之前，您必須先在資料庫上啟用它。
 
 在資料庫或資料表上啟用 Stretch Database 需要 db\_owner 權限。在資料庫或資料表上啟用 Stretch Database 也需要 CONTROL DATABASE 權限。
@@ -133,7 +135,7 @@ GO
 
 -   [Manage and troubleshoot Stretch Database (Stretch Database 的管理和疑難排解)](sql-server-stretch-database-manage.md)
 
--   [備份已啟用延展功能的資料庫](sql-server-stretch-database-backup.md)
+-   [備份已啟用 Stretch 的資料庫](sql-server-stretch-database-backup.md)
 
 ## 另請參閱
 
@@ -143,4 +145,4 @@ GO
 
 [FirewallRule]: ./media/sql-server-stretch-database-enable-database/firewall.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0810_2016-->

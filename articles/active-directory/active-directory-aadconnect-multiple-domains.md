@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/12/2016"
+	ms.date="08/08/2016"
 	ms.author="billmath"/>
 
 # 與 Azure AD 同盟的多網域支援
@@ -90,10 +90,10 @@
 
 請使用下列步驟來移除 Microsoft Online 信任，然後更新您的原始網域。
 
-2.  在 AD FS 同盟伺服器上，開啟 [AD FS 管理]。 
+2.  在 AD FS 同盟伺服器上，開啟 [AD FS 管理]。
 2.  展開左側的 [信任關係] 和 [信賴憑證者信任]
 3.  刪除右側的 **Microsoft Office 365 身分識別平台**項目。![移除 Microsoft Online](./media/active-directory-multiple-domains/trust4.png)
-1.  在已安裝[適用於 Windows PowerShell 的 Microsoft Azure Active Directory 模組](https://msdn.microsoft.com/library/azure/jj151815.aspx)的機器上執行下列命令︰`$cred=Get-Credential`。  
+1.  在已安裝[適用於 Windows PowerShell 的 Microsoft Azure Active Directory 模組](https://msdn.microsoft.com/library/azure/jj151815.aspx)的機器上執行下列命令︰`$cred=Get-Credential`。
 2.  輸入欲同盟之 Azure AD 網域的全域管理員使用者名稱和密碼
 2.  在 PowerShell 中輸入 `Connect-MsolService -Credential $cred`
 4.  在 PowerShell 中輸入 `Update-MSOLFederatedDomain -DomainName <Federated Domain Name> -SupportMultipleDomain`。這是針對原始網域。所以使用上述網域後，它將會成為︰`Update-MsolFederatedDomain -DomainName bmcontoso.com -SupportMultipleDomain`
@@ -101,7 +101,7 @@
 
 使用下列步驟以透過 PowerShell 加入新的最上層網域
 
-1.  在已安裝[適用於 Windows PowerShell 的 Microsoft Azure Active Directory 模組](https://msdn.microsoft.com/library/azure/jj151815.aspx)的機器上執行下列命令︰`$cred=Get-Credential`。  
+1.  在已安裝[適用於 Windows PowerShell 的 Microsoft Azure Active Directory 模組](https://msdn.microsoft.com/library/azure/jj151815.aspx)的機器上執行下列命令︰`$cred=Get-Credential`。
 2.  輸入欲同盟之 Azure AD 網域的全域管理員使用者名稱和密碼
 2.  在 PowerShell 中輸入 `Connect-MsolService -Credential $cred`
 3.  在 PowerShell 中輸入 `New-MsolFederatedDomain –SupportMultipleDomain –DomainName`
@@ -128,7 +128,7 @@
 ##子網域的支援
 在加入子網域時，因為 Azure AD 處理網域的方式，導致子網域會繼承父項的設定。這表示 IssuerUri 需要與父項相符。
 
-因此，假設我有 bmcontoso.com，後來再加入 corp.bmcontoso.com。這表示來自 corp.bmcontoso.com 之使用者的 IssuerUri 必須是 **http://bmcontoso.com/adfs/services/trust.** 然而，根據前述針對 Azure AD 實作的標準規則，產生之權杖的簽發者會是 **http://corp.bmcontoso.com/adfs/services/trust.** 由於它與網域的必要值不符，因此驗證將會失敗。
+因此，假設我有 bmcontoso.com，後來再加入 corp.bmcontoso.com。這表示來自 corp.bmcontoso.com 之使用者的 IssuerUri 將必須是 **http://bmcontoso.com/adfs/services/trust.** 不過，上述針對 Azure AD 實作的標準規則將會產生一個簽發者為 **http://corp.bmcontoso.com/adfs/services/trust.** 的權杖，這與網域所需的值不符，因此驗證將會失敗。
 
 ### 如何啟用子網域的支援
 若要解決這個問題，您需要更新 Microsoft Online 的 AD FS 信賴憑證者信任。若要這樣做，您必須設定自訂宣告規則，以使其在建構自訂簽發者值時能夠從使用者的 UPN 尾碼移除任何子網域。
@@ -153,4 +153,4 @@
 ![取代宣告](./media/active-directory-multiple-domains/sub2.png)
 5.	按一下 [確定]。按一下 [套用]。按一下 [確定]。關閉 [AD FS 管理]。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016-->

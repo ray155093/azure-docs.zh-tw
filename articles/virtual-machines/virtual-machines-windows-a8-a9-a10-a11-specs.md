@@ -1,5 +1,5 @@
 <properties
- pageTitle="關於 A8 - A11 執行個體和 Windows | Microsoft Azure"
+ pageTitle="關於 A8、A9、A10、A11 VM 大小和 Windows | Microsoft Azure"
  description="取得使用 Windows VM 和雲端服務適用的 Azure A8、A9、A10 和 A11 密集計算大小的背景資訊和考量"
  services="virtual-machines-windows, cloud-services"
  documentationCenter=""
@@ -13,7 +13,7 @@ ms.service="virtual-machines-windows"
  ms.topic="article"
  ms.tgt_pltfrm="vm-windows"
  ms.workload="infrastructure-services"
- ms.date="04/26/2016"
+ ms.date="08/04/2016"
  ms.author="danlep"/>
 
 # 關於 A8、A9、A10 和 A11 密集運算執行個體
@@ -28,7 +28,7 @@ ms.service="virtual-machines-windows"
 
 在單一雲端服務、可用性設定組或 Azure Batch 集區中的 A8 和 A9 執行個體可以存取 Azure 中的 RDMA 網路，來執行會使用 Microsoft Network Direct 介面在執行個體之間通訊的 Windows MPI 應用程式。
 
-請參閱下表取得 MPI 應用程式的必要條件，以存取 Windows 虛擬機器中的 RDMA 網路、雲端服務、A8 或 A9 執行個體的 Azure Batch 集區。如需典型部署案例，請參閱[使用 HPC Pack 設定 Windows RDMA 叢集以執行 MPI 應用程式](virtual-machines-windows-classic-hpcpack-rdma-cluster.md)和[在 Azure Batch 中使用多重執行個體工作來執行訊息傳遞介面 (MPI) 應用程式](../batch/batch-mpi.md)。
+請遵循 MPI 應用程式的必要條件，以存取 Windows 虛擬機器中的 RDMA 網路、雲端服務、A8 或 A9 執行個體的 Azure Batch 集區。如需典型部署案例，請參閱[使用 HPC Pack 設定 Windows RDMA 叢集以執行 MPI 應用程式](virtual-machines-windows-classic-hpcpack-rdma-cluster.md)和[在 Azure Batch 中使用多重執行個體工作來執行訊息傳遞介面 (MPI) 應用程式](../batch/batch-mpi.md)。
 
 
 必要條件 | 虛擬機器 | 雲端服務或 Batch 集區 
@@ -58,4 +58,4 @@ MPI | MS-MPI 2012 R2 或更新版本，或 Intel MPI Library 5 | MS-MPI 2012 R2 
 
 * 如需以 Azure Batch 使用 A8 和 A9 執行個體執行 MPI 應用程式的資訊，請參閱[在 Azure Batch 中使用多重執行個體工作來執行訊息傳遞介面 (MPI) 應用程式](../batch/batch-mpi.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0810_2016-->

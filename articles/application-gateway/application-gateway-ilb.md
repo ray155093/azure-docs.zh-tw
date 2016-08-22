@@ -3,7 +3,7 @@
    description="本頁面提供的指示可讓您使用內部負載平衡端點來設定 Azure 應用程式閘道"
    documentationCenter="na"
    services="application-gateway"
-   authors="joaoma"
+   authors="georgewallace"
    manager="jdial"
    editor="tysonn"/>
 <tags 
@@ -12,14 +12,14 @@
    ms.topic="article" 
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services" 
-   ms.date="01/21/2016"
-   ms.author="joaoma"/>
+   ms.date="04/05/2016"
+   ms.author="gwallace"/>
 
 # 搭配內部負載平衡器 (ILB) 的應用程式閘道
 
 > [AZURE.SELECTOR]
-- [Azure classic steps](application-gateway-ilb.md)
-- [Resource Manager Powershell steps](application-gateway-ilb-arm.md)
+- [Azure 傳統步驟](application-gateway-ilb.md)
+- [Resource Manager PowerShell 步驟](application-gateway-ilb-arm.md)
 
 
 可以使用面對網際網路的虛擬 IP 或不會對網際網路公開的內部端點 (也稱為內部負載平衡器 (ILB) 端點) 來設定應用程式閘道。使用 ILB 設定閘道適合不會對網際網路公開的內部企業營運應用程式。對於位在不會對網際網路公開的安全性界限中的多層式應用程式內的服務/階層也很有用的，但仍需要循環配置資源負載散發、工作階段綁定或 SSL 終止。本文將逐步引導您完成使用 ILB 設定應用程式閘道。
@@ -79,11 +79,11 @@
  
 值如下：
 
-- **後端伺服器集區：**後端伺服器的 IP 位址清單。列出的 IP 位址應該屬於 VNet 子網路，或應該是公用 IP/VIP。 
-- **後端伺服器集區設定：**每個集區都有一些設定，例如連接埠、通訊協定和以 Cookie 為基礎的同質。這些設定會繫結至集區，並套用至集區內所有伺服器。
-- **前端連接埠：**此連接埠是在應用程式閘道上開啟的公用連接埠。流量會達到此連接埠，然後重新導向至其中一個後端伺服器。
-- **接聽程式：**接聽程式具有前端連接埠、通訊協定 (Http 或 Https，這些都區分大小寫) 和 SSL 憑證名稱 (如果已設定 SSL 卸載)。 
-- **規則：**規則會繫結接聽程式和後端伺服器集區，並在符合特定接聽程式時定義應該將流量重新導向至其中的後端伺服器集區。目前，只支援*基本*規則。「基本」規則是循環配置資源的負載分散。
+- **後端伺服器集區：**後端伺服器的 IP 位址清單。列出的 IP 位址應該屬於 VNet 子網路，或應該是公用 IP/VIP。
+- **後端伺服器集區設定：**每個集區都有一些設定，例如連接埠、通訊協定和以 Cookie 為基礎的同質性。這些設定會繫結至集區，並套用至集區內所有伺服器。
+- **前端連接埠：**此連接埠是在應用程式閘道上開啟的公用連接埠。流量會到達此連接埠，然後重新導向至其中一個後端伺服器。
+- **接聽程式：**接聽程式具有前端連接埠、通訊協定 (Http 或 Https，這些都區分大小寫) 和 SSL 憑證名稱 (如果已設定 SSL 卸載)。
+- **規則：**規則會繫結接聽程式和後端伺服器集區，並定義當流量到達特定接聽程式時，應該導向到哪個後端伺服器集區。目前，只支援*基本*規則。「基本」規則是循環配置資源的負載分散。
 
 建立組態物件或使用組態 XML 檔案，即可建構組態。若要使用組態 XML 檔案以建構組態，請使用下面的範例。
 
@@ -92,7 +92,7 @@
 請注意：
 
 
-- *FrontendIPConfigurations* 元素描述設定搭配 ILB 之應用程式閘道器的相關 ILB 詳細資料。 
+- *FrontendIPConfigurations* 元素描述設定搭配 ILB 之應用程式閘道器的相關 ILB 詳細資料。
 
 - 前端 IP *類型*應該設定為「私人」
 
@@ -174,7 +174,7 @@
 設定閘道之後，請使用 `Start-AzureApplicationGateway` Cmdlet 來啟動閘道。成功啟動閘道之後，會開始應用程式閘道計費。
 
 
-**注意：**`Start-AzureApplicationGateway` Cmdlet 最多可能需要 15 到 20 分鐘的時間才能完成。
+> [AZURE.NOTE] `Start-AzureApplicationGateway` Cmdlet 最多可能需要 15 到 20 分鐘才能完成。
    
 	PS C:\> Start-AzureApplicationGateway AppGwTest 
 
@@ -188,7 +188,7 @@
 
 使用 `Get-AzureApplicationGateway` Cmdlet 來檢查閘道狀態。如果 *Start-AzureApplicationGateway* 在上一個步驟成功，則狀態應該為 [正在執行]，且 Vip 和 DnsName 應該具備有效的項目。這個範例的第一行顯示 Cmdlet，後面接著輸出。在此範例中，閘道正在執行，且準備好要接受流量。
 
-**注意：**此範例中將應用程式閘道器設定為在設定的 ILB 端點 10.0.0.10 接受流量。
+> [AZURE.NOTE] 此範例中是將應用程式閘道器設定為在所設定的 ILB 端點 10.0.0.10 接受流量。
 
 	PS C:\> Get-AzureApplicationGateway AppGwTest 
 
@@ -212,4 +212,4 @@
 - [Azure 負載平衡器](https://azure.microsoft.com/documentation/services/load-balancer/)
 - [Azure 流量管理員](https://azure.microsoft.com/documentation/services/traffic-manager/)
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0810_2016-->

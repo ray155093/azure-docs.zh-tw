@@ -63,7 +63,7 @@ Azure App Service 可讓您將下列類別的自訂網域對應至您的應用�
 - [A](https://en.wikipedia.org/wiki/List_of_DNS_record_types#A) - 直接將自訂網域名稱對應至 Azure 應用程式的虛擬 IP 位址。
 - [CNAME](https://en.wikipedia.org/wiki/CNAME_record) - 將自訂網域名稱對應至您的應用程式的 Azure 網域名稱，**&lt;appname>.azurewebsites.net**。
 
-CNAME 的優點是它會存留在 IP 位址變更中。若您刪除後重新建立應用程式，或是從較高定價層變回**共用**層，則應用程式的虛擬 IP 位址可能會變更。透過此種變更，CNAME 記錄仍然有效，但必須更新 A 記錄。
+CNAME 的優點是它會存留在 IP 位址變更中。若您刪除後重新建立應用程式，或是從較高定價層變回**共用**層，則應用程式的虛擬 IP 位址可能會變更。透過此種變更，CNAME 記錄仍然有效，但 A 記錄需要更新。
 
 本教學課程示範使用 A 記錄以及使用 CNAME 記錄的步驟。
 
@@ -79,7 +79,7 @@ CNAME 的優點是它會存留在 IP 位址變更中。若您刪除後重新建�
 
 4.	按一下您的應用程式，然後按一下 [設定] > [自訂網域和 SSL] > [帶出外部網域]。
 
-6.  記下 IP 位址，以供日後使用。
+6.  記下 IP 位址。
 
     ![對應自訂網域名稱與 A 記錄︰取得 Azure App Service 應用程式的 IP 位址](./media/web-sites-custom-domain-name/virtual-ip-address.png)
 
@@ -91,7 +91,7 @@ CNAME 的優點是它會存留在 IP 位址變更中。若您刪除後重新建�
 登入網域註冊機構，並使用它們的工具加入 A 記錄或 CNAME 記錄。每個註冊機構的 UI 稍有不同，所以您應該參閱您的提供者的文件。不過，以下有幾個一般方針。
 
 1.	尋找管理 DNS 記錄的頁面。在網站中尋找標示為**網域名稱**、**DNS** 或**名稱伺服器管理**的連結或區域。通常可透過檢視您的帳戶資訊，然後尋找**我的網域**之類的連結來找到此連結。
-2.	尋找可讓您加入或編輯 DNS 記錄的連結。這可能會以 [區域檔案]、[DNS 記錄] 或 [進階] 設定連結的形式列出。
+2.	尋找可讓您加入或編輯 DNS 記錄的連結。這可能是 [區域檔案]、[DNS 記錄] 連結或 [進階] 設定連結。
 3.  建立記錄並儲存您的變更。
     - [A 記錄的指示在此處](#a)。
     - [CNAME 記錄的指示在此處](#cname)。
@@ -126,7 +126,7 @@ A 記錄應該設定如下 (@ 通常代表根網域)︰
   </tr>
 </table>
 
-額外的 CNAME 記錄會採用從 awverify.&lt;subdomain>.&lt;rootdomain> 對應至 awverify.&lt;subdomain>.azurewebsites.net 的慣例。請參閱以下範例︰
+額外的 CNAME 記錄會採用從 awverify.&lt;subdomain>.&lt;rootdomain> 對應至 awverify.&lt;subdomain>.azurewebsites.net 的慣例。CNAME 記錄應該設定如下︰
 
 <table cellspacing="0" border="1">
   <tr>
@@ -142,7 +142,7 @@ A 記錄應該設定如下 (@ 通常代表根網域)︰
   <tr>
     <td>www.contoso.com (子網域)</td>
     <td>awverify.www</td>
-    <td>awverify.www.&lt;<i>appname</i>>.azurewebsites.net</td>
+    <td>awverify.&lt;<i>appname</i>>.azurewebsites.net</td>
   </tr>
   <tr>
     <td>*.contoso.com (萬用字元)</td>
@@ -181,7 +181,7 @@ CNAME 記錄應該設定如下 (@ 通常代表根網域)︰
 <a name="enable"></a>
 ## 步驟 3.為您的應用程式啟用自訂網域名稱
 
-回到 Azure 入口網站中的 [帶出外部網域] 刀鋒視窗 (請參閱[步驟 1](#vip))，您需要將自訂網域的完整網域名稱 (FQDN) 加入至清單。
+回到 Azure 入口網站中的 [使用外部網域] 刀鋒視窗 (請參閱[步驟 1](#vip))，您需要將自訂網域的完整網域名稱 (FQDN) 加入至清單。
 
 1.	如果您尚未這麼做，請登入 [Azure 入口網站](https://portal.azure.com)。
 
@@ -193,11 +193,11 @@ CNAME 記錄應該設定如下 (@ 通常代表根網域)︰
 
     ![將自訂網域名稱對應至 Azure 應用程式：加入至網域名稱清單](./media/web-sites-custom-domain-name/add-custom-domain.png)
 
-    >[AZURE.NOTE] Azure 會嘗試驗證您在這裡使用的網域名稱，所以請確定它是您在[步驟 2](#createdns) 中建立 DNS 記錄的相同網域名稱。如果您確定，
+    >[AZURE.NOTE] Azure 會嘗試確認您在這裡使用的網域名稱。確定它是您在[步驟 2](#createdns) 中為其建立 DNS 記錄的相同網域名稱。
 
 6.  按一下 [儲存]。
 
-7.  順利設定新的自訂網域名稱後，請在瀏覽器中瀏覽至您的自訂網域名稱。您現在應會看到您的應用程式執行中以及您的自訂
+7.  Azure 完成設定新的自訂網域名稱後，請在瀏覽器中瀏覽至您的自訂網域名稱。您現在應會看到您的應用程式執行中以及您的自訂
 
 <a name="verify"></a>
 ## 確認 DNS 傳播
@@ -209,13 +209,14 @@ CNAME 記錄應該設定如下 (@ 通常代表根網域)︰
 > [AZURE.NOTE] 傳播 DNS 項目最多需要 48 小時 (有時候更久)。如果您已正確設定所有項目，仍然需要等待傳播成功。
 
 ## 後續步驟
-
-[開始使用 Azure DNS](../dns/dns-getstarted-create-dnszone.md) [在自訂網域中建立 Web 應用程式的 DNS 記錄](../dns/dns-web-sites-custom-domain.md) [將網域委派給 Azure DNS](../dns/dns-domain-delegation.md)
+了解如何[在 Azure 中購買 SSL 憑證](web-sites-purchase-ssl-web-site.md)或[使用來自其他位置的 SSL 憑證](web-sites-configure-ssl-certificate.md)來使用 HTTPS 保護自訂網域名稱。
 
 >[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
+
+[開始使用 Azure DNS](../dns/dns-getstarted-create-dnszone.md) [在自訂網域中建立 Web 應用程式的 DNS 記錄](../dns/dns-web-sites-custom-domain.md) [將網域委派給 Azure DNS](../dns/dns-domain-delegation.md)
 
 
 <!-- Images -->
 [subdomain]: media/web-sites-custom-domain-name/azurewebsites-subdomain.png
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

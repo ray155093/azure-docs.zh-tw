@@ -3,7 +3,7 @@
    description="了解保留的 IP 以及如何管理"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor="tysonn" />
 <tags
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/10/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # 保留的 IP 概觀
 Azure 中的 IP 位址分為兩個類別：動態和保留。依預設由 Azure 管理的公用 IP 位址是動態的。這表示當資源時關閉或解除配置時，用於指定雲端服務 (VIP)，或直接存取 VM 或角色執行個體 (ILPIP) 的 IP 位址可以隨時變更。
@@ -130,4 +130,4 @@ Azure 中的 IP 位址分為兩個類別：動態和保留。依預設由 Azure 
 
 - 深入了解[執行個體層級公用 IP (ILPIP) 位址](virtual-networks-instance-level-public-ip.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -385,7 +385,7 @@ Azure AD 用戶端識別碼和密碼也可使用在 https://manage.windowsazure.
 | 術語 | 定義 |
 |-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Azure AD | Azure AD [是 Azure Active Directory](https://azure.microsoft.com/documentation/services/active-directory/)。Azure AD 帳戶是從金鑰保存庫驗證、儲存和擷取密碼的必要條件。 |
-| Azure 金鑰保存庫 [AKV] | Azure 金鑰保存庫是密碼編譯金鑰管理服務，其基於 FIPS 驗證的硬體安全性模組來安全地保護您的密碼編譯金鑰和敏感性密碼。如需詳細資料，請參閱[金鑰保存庫](https://azure.microsoft.com/services/key-vault/)文件。 |
+| Azure 金鑰保存庫 [AKV] | Azure 金鑰保存庫是密碼編譯金鑰管理服務，它是基於 FIPS 驗證的硬體安全性模組來安全地保護您的密碼編譯金鑰和敏感性密碼。如需詳細資料，請參閱[金鑰保存庫](https://azure.microsoft.com/services/key-vault/)文件。 |
 | ARM | Azure Resource Manager |
 | BitLocker | [BitLocker](https://technet.microsoft.com/library/hh831713.aspx) 是一種業界認可的 Windows 磁碟區加密技術，用來在 Windows IaaS VM 上啟用磁碟加密 |
 | BEK | BitLocker 加密金鑰可用來加密作業系統開機磁碟區和資料磁碟區。BitLocker 金鑰會在客戶的 Azure 金鑰保存庫中以密碼形式保護。 |
@@ -845,4 +845,4 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 設定值設定為 "True"，顯示這
 
 [探索使用 Azure PowerShell 的 Azure 磁碟加密 - 第 2 部分](http://blogs.msdn.com/b/azuresecurity/archive/2015/11/21/explore-azure-disk-encryption-with-azure-powershell-part-2.aspx)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

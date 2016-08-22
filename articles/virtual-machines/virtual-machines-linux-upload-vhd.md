@@ -86,7 +86,7 @@ azure vm create TestVM -l "WestUS" --resource-group TestRG \
 
 
 <a id="prepimage"> </a>
-## 準備要上傳的映像
+## 備妥要上傳的映像
 
 Azure 支援各種 Linux 散發套件 (請參閱[背書散發套件](virtual-machines-linux-endorsed-distros.md))。下列文章會逐步引導您了解如何準備 Azure 上支援的各種 Linux 散發套件：
 
@@ -201,7 +201,7 @@ Azure Resource Manager 範本是「JavaScript 物件標記法」(JSON) 檔案，
           }
 ```
 
-您可以使用[這個現有的範本以從自訂映像建立 VM](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-from-user-image) 或閱讀 [建立您自己的 Azure Resource Manager 範本](../resource-group-authoring templates.md)。
+您可以使用[這個現有的範本以從自訂映像建立 VM](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-from-user-image) 或閱讀[建立您自己的 Azure Resource Manager 範本](../resource-group-authoring-templates.md)。
 
 設定完範本之後，您需使用 `azure group deployment create` 命令來建立 VM。請使用 `--template-uri` 參數來指定您 JSON 範本的 URI︰
 
@@ -221,4 +221,4 @@ azure group deployment create --resource-group TestTemplateRG
 ## 後續步驟
 在您備妥並上傳自訂虛擬磁碟之後，您可以深入了解如何[使用 Resource Manager 和範本](../resource-group-overview.md)。您也可以[將資料磁碟新增](virtual-machines-linux-add-disk.md)至您的新 VM。如果您需要存取在您的 VM 上執行的應用程式，請務必[開啟連接埠和端點](virtual-machines-linux-nsg-quickstart.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0810_2016-->

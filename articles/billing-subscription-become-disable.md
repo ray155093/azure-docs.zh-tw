@@ -60,7 +60,7 @@
 
 ## 如何重新啟用訂用帳戶
 
-若要重新啟用取消的訂用帳戶，您必須建立支援票證︰登入 [Azure 入口網站](https://portal.azure.com/)，然後選取 [說明 + 支援] > [新增支援要求]。
+若要重新啟用已停用的訂用帳戶，您必須建立支援票證︰登入 [Azure 入口網站](https://portal.azure.com/)，然後選取 [說明 + 支援] > [新增支援要求]。
 
 ![helpandsupportbutton](./media/billing-how-to-create-billing-support-ticket/helpandsupport.png)
 
@@ -71,4 +71,4 @@
 
 如需詳細資訊，請參閱[如何針對 Azure 計費和訂用帳戶問題建立支援票證](billing-how-to-create-billing-support-ticket.md)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

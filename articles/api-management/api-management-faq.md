@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/25/2016" 
+	ms.date="08/09/2016" 
 	ms.author="sdanie"/>
 
 # Azure API 管理常見問題集
@@ -150,4 +150,4 @@ API 管理使用[效能流量路由方法](../traffic-manager/traffic-manager-ro
 
 如果您使用 GIT 認證管理員，或嘗試透過 Visual Studio 複製儲存機制，您可能遇到 Windows 認證對話方塊的已知問題，此對話方塊將密碼長度限制為最多 127 個字元，因此會截斷我們產生的密碼。我們正在努力縮短密碼。目前請使用 GIT Bash 來複製。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0810_2016-->

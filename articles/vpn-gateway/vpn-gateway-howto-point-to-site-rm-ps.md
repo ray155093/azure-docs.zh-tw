@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="設定 Azure 虛擬網路的點對站 VPN 閘道連線 |Microsoft Azure"
-   description="建立點對站 VPN 連線來安全地連線到您的 Azure 虛擬網路。當需要從遠端位置進行交叉部署連線而不使用 VPN 裝置時，此設定很有用，並且可以與混合網路設定搭配使用。這篇文章包含使用資源管理員部署模型建立的 VNet 的 PowerShell 指示。"
+   pageTitle="使用 Resource Manager 部署模型設定虛擬網路的點對站 VPN 連線 | Microsoft Azure"
+   description="建立點對站 VPN 連線來安全地連線到您的 Azure 虛擬網路。"
    services="vpn-gateway"
    documentationCenter="na"
    authors="cherylmc"
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/30/2016"
+   ms.date="08/03/2016"
    ms.author="cherylmc" />
 
 # 使用 PowerShell 設定虛擬網路的點對站連線
@@ -48,7 +48,7 @@
 - 名稱：**TestVNet**，使用位址空間 **192.168.0.0/16** 與 **10.254.0.0/16**。請注意，您可以針對 VNet 使用一個以上的位址空間。
 - 子網路名稱：**FrontEnd**，使用 **192.168.1.0/24**。
 - 子網路名稱：**BackEnd**，使用 **10.254.1.0/24**。
-- 子網路名稱：**GatewaySubnet**，使用 **192.168.200.0/24**。子網路名稱 *GatewaySubnet* 是閘道器能夠運作的必要項目。 
+- 子網路名稱：**GatewaySubnet**，使用 **192.168.200.0/24**。子網路名稱 *GatewaySubnet* 是閘道器能夠運作的必要項目。
 - VPN 用戶端位址集區：**172.16.201.0/24**。使用這個點對站連線連線到 VNet 的 VPN 用戶端會接收來自這個集區的 IP 位址。
 - 訂用帳戶：如果您有一個以上的訂用帳戶，請確認您使用正確的訂用帳戶。
 - 資源群組：**TestRG**
@@ -123,16 +123,22 @@
 		$pip = New-AzureRmPublicIpAddress -Name $GWIPName -ResourceGroupName $RG -Location $Location -AllocationMethod Dynamic
 		$ipconf = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName -Subnet $subnet -PublicIpAddress $pip
 		
-10. 將根憑證 .cer 檔案上傳至 Azure。您可以使用來自您的企業憑證環境的根憑證，或者您可以使用自我簽署的根憑證。您最多可上傳 20 個根憑證。如需使用 *makecert* 建立自我簽署根憑證的相關指示，請參閱[使用點對站設定的自我簽署根憑證](vpn-gateway-certificates-point-to-site.md)。請注意，.cer 檔案不應該包含根憑證的私密金鑰。若要取得如下例所示的公開金鑰，請將 .cer 檔匯出成 Base-64 編碼的 X.509 (.CER) 檔案，再使用記事本開啟該檔案。複製兩者間的所有項目：-----BEGIN CERTIFICATE----- & -----END CERTIFICATE-----
-	
-	以下是其外觀的範例。上傳公開憑證資料的具挑戰性部分是您必須複製並貼上整個字串，且不含空格。否則，上傳將無法運作。您將需要針對此步驟使用您自己的憑證 .cer 檔案。請勿嘗試從下方複製並貼上範例。
+10. 將受信任的憑證新增至 Azure。您最多可新增 20 個憑證。如需使用 *makecert* 建立自我簽署根憑證的相關指示，請參閱[使用點對站設定的自我簽署根憑證](vpn-gateway-certificates-point-to-site.md)。當您將 Base64 編碼 X.509 (.cer) 檔案新增至 Azure 時，便是告訴 Azure 信任該檔案所代表的根憑證。
 
-		$MyP2SRootCertPubKeyBase64 = "MIIDUzCCAj+gAwIBAgIQRggGmrpGj4pCblTanQRNUjAJBgUrDgMCHQUAMDQxEjAQBgNVBAoTCU1pY3Jvc29mdDEeMBwGA1UEAxMVQnJrIExpdGUgVGVzdCBSb290IENBMB4XDTEzMDExOTAwMjQxOFoXDTIxMDExOTAwMjQxN1owNDESMBAGA1UEChMJTWljcm9zb2Z0MR4wHAYDVQQDExVCcmsgTGl0ZSBUZXN0IFJvb3QgQ0EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC7SmE+iPULK0Rs7mQBO/6a6B6/G9BaMxHgDGzAmSG0Qsyt5e08aqgFnPdkMl3zRJw3lPKGha/JCvHRNrO8UpeAfc4IXWaqxx2iBipHjwmHPHh7+VB8lU0EJcUe7WBAI2n/sgfCwc+xKtuyRVlOhT6qw/nAi8e5don/iHPU6q7GCcnqoqtceQ/pJ8m66cvAnxwJlBFOTninhb2VjtvOfMQ07zPP+ZuYDPxvX5v3nd6yDa98yW4dZPuiGO2s6zJAfOPT2BrtyvLekItnSgAw3U5C0bOb+8XVKaDZQXbGEtOw6NZvD4L2yLd47nGkN2QXloiPLGyetrj3Z2pZYcrZBo8hAgMBAAGjaTBnMGUGA1UdAQReMFyAEOncRAPNcvJDoe4WP/gH2U+hNjA0MRIwEAYDVQQKEwlNaWNyb3NvZnQxHjAcBgNVBAMTFUJyayBMaXRlIFRlc3QgUm9vdCBDQYIQRggGmrpGj4pCblTanQRNUjAJBgUrDgMCHQUAA4IBAQCGyHhMdygS0g2tEUtRT4KFM+qqUY5HBpbIXNAav1a1dmXpHQCziuuxxzu3iq4XwnWUF1OabdDE2cpxNDOWxSsIxfEBf9ifaoz/O1ToJ0K757q2Rm2NWqQ7bNN8ArhvkNWa95S9gk9ZHZLUcjqanf0F8taJCYgzcbUSp+VBe9DcN89sJpYvfiBiAsMVqGPc/fHJgTScK+8QYrTRMubtFmXHbzBSO/KTAP5rBTxse88EGjK5F8wcedvge2Ksk6XjL3sZ19+Oj8KTQ72wihN900p1WQldHrrnbixSpmHBXbHr9U0NQigrJp5NphfuU5j81C8ixvfUdwyLmTv7rNA7GTAD"
-		$p2srootcert = New-AzureRmVpnClientRootCertificate -Name $P2SRootCertName -PublicCertData $MyP2SRootCertPubKeyBase64
+	若要取得公開金鑰，將憑證匯出為 Base64 編碼的 X.509 (.CER) 檔案。請記下匯出為 .cer 檔案的檔案路徑。以下是取得您的憑證的 Base64 字串表示法的範例。您將需要對此步驟使用自己的 .cer 檔案路徑。
+    
+		$filePathForCert = "pasteYourCerFilePathHere"
+		$cert = new-object System.Security.Cryptography.X509Certificates.X509Certificate2($filePathForCert)
+		$CertBase64 = [system.convert]::ToBase64String($cert.RawData)
+		$p2srootcert = New-AzureRmVpnClientRootCertificate -Name $P2SRootCertName -PublicCertData $CertBase64
 
-11. 建立 VNet 的虛擬網路閘道。GatewayType 必須是 Vpn，而且 VpnType 必須是 RouteBased。
 
-		New-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG -Location $Location -IpConfigurations $ipconf -GatewayType Vpn -VpnType RouteBased -EnableBgp $false -GatewaySku Standard -VpnClientAddressPool $VPNClientAddressPool -VpnClientRootCertificates $p2srootcert
+11. 建立 VNet 的虛擬網路閘道。-GatewayType 必須是 **Vpn**，而且 -VpnType 必須是 **RouteBased**。
+
+		New-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG `
+		-Location $Location -IpConfigurations $ipconf -GatewayType Vpn `
+		-VpnType RouteBased -EnableBgp $false -GatewaySku Standard `
+		-VpnClientAddressPool $VPNClientAddressPool -VpnClientRootCertificates $p2srootcert
 
 ## 用戶端組態
 
@@ -140,7 +146,8 @@
 
 1. 下載 VPN 用戶端組態封裝。在此步驟中，使用下列範例下載用戶端組態封裝。
 
-		Get-AzureRmVpnClientPackage -ResourceGroupName $RG -VirtualNetworkGatewayName $GWName -ProcessorArchitecture Amd64
+		Get-AzureRmVpnClientPackage -ResourceGroupName $RG `
+		-VirtualNetworkGatewayName $GWName -ProcessorArchitecture Amd64
 
 	PowerShell Cmdlet 會傳回 URL 連結。複製-貼上傳回網頁瀏覽器的連結以將封裝下載至您的電腦。以下是傳回的 URL 的外觀範例。
 
@@ -148,7 +155,7 @@
 	
 2. 產生並安裝從用戶端電腦上的根憑證建立的用戶端憑證 (*.pfx)。您可以使用您習慣的任何安裝方法。如果您使用自我簽署根憑證，但不熟悉如何執行這項操作，您可以參考[使用點對站設定的自我簽署根憑證](vpn-gateway-certificates-point-to-site.md)。
 
-3. 若要連接至您的 VNet，在用戶端電腦上瀏覽到 VPN 連線，然後找出剛建立的 VPN 連線。它的名稱將會與虛擬網路相同。按一下 [連接]。可能會出現與使用憑證有關的快顯訊息。如果出現，按一下 [繼續] 以使用較高的權限。
+3. 若要連接至您的 VNet，在用戶端電腦上瀏覽到 VPN 連線，然後找出剛建立的 VPN 連線。它的名稱將會與虛擬網路相同。按一下 [**連接**]。可能會出現與使用憑證有關的快顯訊息。如果出現，按一下 [繼續] 以使用較高的權限。
 
 4. 在 [連線] 狀態頁面上，按一下 [連接] 以便開始連接。如果出現 [選取憑證] 畫面，請確認顯示的用戶端憑證是要用來連接的憑證。如果沒有，請使用下拉箭頭來選取正確的憑證，然後按一下 [確定]。
 
@@ -171,32 +178,33 @@
 			Default Gateway.................:
 			NetBIOS over Tcpip..............: Enabled
 
-## 新增或移除根憑證
+## 新增或移除受信任的根憑證
 
-憑證是用於點對站 VPN 的 VPN 用戶端驗證。下列步驟將逐步引導您新增和移除根憑證。
+憑證是用於點對站 VPN 的 VPN 用戶端驗證。下列步驟將逐步引導您新增和移除根憑證。當您將 Base64 編碼 X.509 (.cer) 檔案新增至 Azure 時，便是告訴 Azure 信任該檔案所代表的根憑證。
 
-### 新增根憑證
+### 新增受信任的根憑證
 
-您最多可新增 20 個根憑證至 Azure。請遵循下列步驟來新增根憑證。
+您最多可新增 20 個受信任的根憑證至 Azure。請遵循下列步驟來新增根憑證。
 
-1. 建立並準備要上傳的新根憑證。
+1. 建立並準備要新增 Azure 的新根憑證。
 
 		$P2SRootCertName2 = "ARMP2SRootCert2.cer"
 		$MyP2SCertPubKeyBase64_2 = "MIIC/zCCAeugAwIBAgIQKazxzFjMkp9JRiX+tkTfSzAJBgUrDgMCHQUAMBgxFjAUBgNVBAMTDU15UDJTUm9vdENlcnQwHhcNMTUxMjE5MDI1MTIxWhcNMzkxMjMxMjM1OTU5WjAYMRYwFAYDVQQDEw1NeVAyU1Jvb3RDZXJ0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyjIXoWy8xE/GF1OSIvUaA0bxBjZ1PJfcXkMWsHPzvhWc2esOKrVQtgFgDz4ggAnOUFEkFaszjiHdnXv3mjzE2SpmAVIZPf2/yPWqkoHwkmrp6BpOvNVOpKxaGPOuK8+dql1xcL0eCkt69g4lxy0FGRFkBcSIgVTViS9wjuuS7LPo5+OXgyFkAY3pSDiMzQCkRGNFgw5WGMHRDAiruDQF1ciLNojAQCsDdLnI3pDYsvRW73HZEhmOqRRnJQe6VekvBYKLvnKaxUTKhFIYwuymHBB96nMFdRUKCZIiWRIy8Hc8+sQEsAML2EItAjQv4+fqgYiFdSWqnQCPf/7IZbotgQIDAQABo00wSzBJBgNVHQEEQjBAgBAkuVrWvFsCJAdK5pb/eoCNoRowGDEWMBQGA1UEAxMNTXlQMlNSb290Q2VydIIQKazxzFjMkp9JRiX+tkTfSzAJBgUrDgMCHQUAA4IBAQA223veAZEIar9N12ubNH2+HwZASNzDVNqspkPKD97TXfKHlPlIcS43TaYkTz38eVrwI6E0yDk4jAuPaKnPuPYFRj9w540SvY6PdOUwDoEqpIcAVp+b4VYwxPL6oyEQ8wnOYuoAK1hhh20lCbo8h9mMy9ofU+RP6HJ7lTqupLfXdID/XevI8tW6Dm+C/wCeV3EmIlO9KUoblD/e24zlo3YzOtbyXwTIh34T0fO/zQvUuBqZMcIPfM1cDvqcqiEFLWvWKoAnxbzckye2uk1gHO52d8AVL3mGiX8wBJkjc/pMdxrEvvCzJkltBmqxTM6XjDJALuVh16qFlqgTWCIcb7ju"
 
-2. 上傳新的根憑證。請注意，您一次只能新增一個根憑證。
+2. 加入新的根憑證。請注意，您一次只能新增一個憑證。
 
 		Add-AzureRmVpnClientRootCertificate -VpnClientRootCertificateName $P2SRootCertName2 -VirtualNetworkGatewayname $GWName -ResourceGroupName $RG -PublicCertData $MyP2SCertPubKeyBase64_2
 
 3. 您可使用下列 Cmdlet 確認新憑證已正確新增。
 
-		Get-AzureRmVpnClientRootCertificate -ResourceGroupName $RG -VirtualNetworkGatewayName $GWName
+		Get-AzureRmVpnClientRootCertificate -ResourceGroupName $RG `
+		-VirtualNetworkGatewayName $GWName
 
-### 移除根憑證
+### 移除受信任的根憑證
 
-您可以從 Azure 移除根憑證。當您移除根憑證後，從該根憑證產生的用戶端憑證將無法再經由點對站連線到 Azure，直到它們安裝 Azure 中的有效根憑證所產生的用戶端憑證為止。
+您可以從 Azure 移除受信任的根憑證。當您移除受信任的憑證後，從根憑證產生的用戶端憑證將無法再經由點對站連線到 Azure，直到它們安裝 Azure 中受信任的憑證所產生的用戶端憑證為止。
 
-1. 移除根憑證。
+1. 若要移除受信任的根憑證，請修改下列範例。
 
 		Remove-AzureRmVpnClientRootCertificate -VpnClientRootCertificateName $P2SRootCertName2 -VirtualNetworkGatewayName $GWName -ResourceGroupName $RG -PublicCertData "MIIC/zCCAeugAwIBAgIQKazxzFjMkp9JRiX+tkTfSzAJBgUrDgMCHQUAMBgxFjAUBgNVBAMTDU15UDJTUm9vdENlcnQwHhcNMTUxMjE5MDI1MTIxWhcNMzkxMjMxMjM1OTU5WjAYMRYwFAYDVQQDEw1NeVAyU1Jvb3RDZXJ0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyjIXoWy8xE/GF1OSIvUaA0bxBjZ1PJfcXkMWsHPzvhWc2esOKrVQtgFgDz4ggAnOUFEkFaszjiHdnXv3mjzE2SpmAVIZPf2/yPWqkoHwkmrp6BpOvNVOpKxaGPOuK8+dql1xcL0eCkt69g4lxy0FGRFkBcSIgVTViS9wjuuS7LPo5+OXgyFkAY3pSDiMzQCkRGNFgw5WGMHRDAiruDQF1ciLNojAQCsDdLnI3pDYsvRW73HZEhmOqRRnJQe6VekvBYKLvnKaxUTKhFIYwuymHBB96nMFdRUKCZIiWRIy8Hc8+sQEsAML2EItAjQv4+fqgYiFdSWqnQCPf/7IZbotgQIDAQABo00wSzBJBgNVHQEEQjBAgBAkuVrWvFsCJAdK5pb/eoCNoRowGDEWMBQGA1UEAxMNTXlQMlNSb290Q2VydIIQKazxzFjMkp9JRiX+tkTfSzAJBgUrDgMCHQUAA4IBAQA223veAZEIar9N12ubNH2+HwZASNzDVNqspkPKD97TXfKHlPlIcS43TaYkTz38eVrwI6E0yDk4jAuPaKnPuPYFRj9w540SvY6PdOUwDoEqpIcAVp+b4VYwxPL6oyEQ8wnOYuoAK1hhh20lCbo8h9mMy9ofU+RP6HJ7lTqupLfXdID/XevI8tW6Dm+C/wCeV3EmIlO9KUoblD/e24zlo3YzOtbyXwTIh34T0fO/zQvUuBqZMcIPfM1cDvqcqiEFLWvWKoAnxbzckye2uk1gHO52d8AVL3mGiX8wBJkjc/pMdxrEvvCzJkltBmqxTM6XjDJALuVh16qFlqgTWCIcb7ju"
 
@@ -218,7 +226,8 @@
 
 2. 將指紋新增到撤銷的指紋清單。
 
-		Add-AzureRmVpnClientRevokedCertificate -VpnClientRevokedCertificateName $RevokedClientCert1 -VirtualNetworkGatewayName $GWName -ResourceGroupName $RG -Thumbprint $RevokedThumbprint1
+		Add-AzureRmVpnClientRevokedCertificate -VpnClientRevokedCertificateName $RevokedClientCert1 `
+		-VirtualNetworkGatewayName $GWName -ResourceGroupName $RG -Thumbprint $RevokedThumbprint1
 
 3. 確認指紋已新增到憑證撤銷清單。您必須一次新增一個指紋。
 
@@ -230,7 +239,8 @@
 
 1.  從撤銷的用戶端憑證指紋清單中移除指紋。
 
-		Remove-AzureRmVpnClientRevokedCertificate -VpnClientRevokedCertificateName $RevokedClientCert1 -VirtualNetworkGatewayName $GWName -ResourceGroupName $RG -Thumbprint $RevokedThumbprint1
+		Remove-AzureRmVpnClientRevokedCertificate -VpnClientRevokedCertificateName $RevokedClientCert1 `
+		-VirtualNetworkGatewayName $GWName -ResourceGroupName $RG -Thumbprint $RevokedThumbprint1
 
 2. 檢查指紋是否已從撤銷的清單中移除。
 
@@ -240,4 +250,4 @@
 
 您可以將虛擬機器新增至虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016-->

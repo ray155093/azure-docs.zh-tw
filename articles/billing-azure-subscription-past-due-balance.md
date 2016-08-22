@@ -43,6 +43,6 @@
 
 **案例 3**：如果因為帳戶管理員已離職或變更角色而沒有收到帳單通知，請連絡 [Azure 支援服務](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade) 以解決此問題。
 
-> [AZURE.NOTE] 如果您的 Azure 訂用帳戶被停用，您可以使用本文中的步驟重新啟用它：[如果我的 Azure 訂用帳戶被取消，該怎麼辦？](billing-subscription-become-disable.md)
+> [AZURE.NOTE] 如果您的 Azure 訂用帳戶被停用，您可以使用本文中的步驟重新啟用它：[如果我的 Azure 訂用帳戶被停用，該怎麼辦？](billing-subscription-become-disable.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

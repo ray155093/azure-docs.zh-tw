@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/03/2016"
+	ms.date="08/09/2016"
 	ms.author="spelluru"/>
 
 
@@ -252,7 +252,7 @@ enableCompression | 指定資料在從來源資料存放區移至接收資料存
 ### 關聯式資料存放區
 *(包括 Azure SQL Database、Azure SQL 資料倉儲、SQL Server Database、Oracle 資料庫、MySQL 資料庫、DB2 資料庫、Teradata 資料庫、Sybase 資料庫、PostgreSQL 資料庫)*
 
-- **資料模式**：資料表結構描述對複製輸送量會有影響。若要複製相同的資料量，較大的資料列大小將會有優於較小資料列大小的效能，因為資料庫可以更有效率地擷取包含較少資料列數的較少資料批次。
+- **資料模式**：資料表結構描述對複製輸送量會有影響。若要複製相同的資料量，較大的資料列大小將會有優於較小資料列大小的效能，因為資料庫可以更有效率地擷取包含較少資料列的較少資料批次。
 - **查詢或預存程序**：最佳化您在複製活動來源中指定的查詢或預存程序邏輯，以更有效率地擷取資料。
 - 此外，對於必須使用**資料管理閘道器**的**內部部署關聯式資料庫** (例如 SQL Server 和 Oracle)，請參閱[閘道器的考量](#considerations-on-data-management-gateway)一節。
 
@@ -392,4 +392,4 @@ enableCompression | 指定資料在從來源資料存放區移至接收資料存
 - 內部部署 SQL Server：[效能的監視與微調](https://msdn.microsoft.com/library/ms189081.aspx)。
 - 內部部署檔案伺服器：[檔案伺服器的效能微調](https://msdn.microsoft.com/library/dn567661.aspx)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016-->

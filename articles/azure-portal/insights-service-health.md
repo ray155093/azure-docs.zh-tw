@@ -1,20 +1,20 @@
 <properties
 	pageTitle="使用 Azure Insights 追蹤服務健全狀況 | Microsoft Azure"
 	description="在 Azure 發生效能降低或服務中斷時獲知消息。"
-	authors="stepsic-microsoft-com"
-	manager="kamrani"
+	authors="rboucher"
+	manager=""
 	editor=""
-	services="monitoring"
-	documentationCenter="monitoring"/>
+	services="monitoring-and-diagnostics"
+	documentationCenter="monitoring-and-diagnostics"/>
 
 <tags
-	ms.service="monitoring"
+	ms.service="monitoring-and-diagnostics"
 	ms.workload="na"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="09/08/2015"
-	ms.author="stepsic"/>
+	ms.author="robb"/>
 
 # 追蹤服務健全狀況
 
@@ -24,9 +24,9 @@
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 
-2. 在 [**首頁**]，您會看到名為 [**服務健全狀況**] 的磚![Home](./media/insights-service-health/Insights_Home.png)
+2. 在 [**首頁**]，您會看到名為 [**服務健全狀況**] 的磚![首頁](./media/insights-service-health/Insights_Home.png)
 
-3. 按一下該磚，會顯示 Azure 中所有地區的清單。您可以按一下任何地區，查看該地區的服務健全狀況記錄。![Home](./media/insights-service-health/Insights_Regions.png)
+3. 按一下該磚，會顯示 Azure 中所有地區的清單。您可以按一下任何地區，查看該地區的服務健全狀況記錄。![首頁](./media/insights-service-health/Insights_Regions.png)
 
 4. 您也可以按一下表格中的個別事件，查看該事件的詳細資料。
 
@@ -42,7 +42,7 @@
 
 6. 按一下 [**已更新**]。
 
-7. 您即可查看所有對您的訂用帳戶造成影響的服務健全狀況事件：![Resource groups](./media/insights-service-health/Insights_HealthEvent.png)
+7. 您即可查看所有對您的訂用帳戶造成影響的服務健全狀況事件：![資源群組](./media/insights-service-health/Insights_HealthEvent.png)
 
 8. 您可以從這裡移至 [詳細資料] 刀鋒視窗，以查看事件的細節。
 
@@ -52,4 +52,4 @@
 * [監視服務計量](insights-how-to-customize-monitoring.md)以確保您的服務可用且可回應。
 * 使用 Application Insights [監視任何網頁的可用性和回應性](../application-insights/app-insights-monitor-web-app-availability.md)，讓您可以找出您的頁面是否關閉。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -14,12 +14,12 @@
 	ms.tgt_pltfrm="command-line-interface"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/05/2016"
+	ms.date="08/05/2016"
 	ms.author="danlep"/>
 
 # Resource Manager 模式中的 Azure CLI 命令
 
-本文提供在 Azure Resource Manager 部署模型中建立和管理 Azure 資源時，常用的 Azure 命令列介面 (CLI) 命令的語法和選項。您可以在 Resource Manager (ARM) 模式中執行 CLI 來存取這些命令。這不是完整的參考，您的 CLI 版本可能會顯示稍微不同的命令或參數。
+本文提供在 Azure Resource Manager 部署模型中建立和管理 Azure 資源時，常用的 Azure 命令列介面 (CLI) 命令的語法和選項。您可以在 Resource Manager (ARM) 模式中執行 CLI 來存取這些命令。這不是完整的參考，您的 CLI 版本可能會顯示稍微不同的命令或參數。如需 Azure 資源及資源群組的一般概觀，請參閱 [Azure Resource Manager 概觀](../resource-group-overview.md)。
 
 若要開始，首先[安裝 Azure CLI](../xplat-cli-install.md)，並使用工作或學校帳戶或 Microsoft 帳戶身分識別[連接到 Azure 訂用帳戶](../xplat-cli-connect.md)。
 
@@ -35,13 +35,7 @@
 
 	azure config mode arm
 
->[AZURE.NOTE] Azure 資源管理員模式與 Azure 服務管理模式是互斥的。亦即，任一模式所建立的資源，將無法由另一種模式來管理。
-
-## 命令式和宣告式方法
-
-如同 [Azure 服務管理模式](../virtual-machines-command-line-tools.md)，Azure CLI 的 資源管理員模式提供的命令可讓您在命令列以命令方式建立資源。例如，若您輸入 `azure group create <groupname> <location>` 表示要求 Azure 建立資源群組，若輸入 `azure group deployment create <resourcegroup> <deploymentname>` 表示指示 Azure 建立任意數目的項目部署，並將其放在群組中。因為每一種資源類型皆具有命令式指令，您可以將他們鏈結在一起以建立相當複雜的部署。
-
-不過，使用說明資源群組是以更強大宣告式方法所建立的資源群組_範本_時，可讓您基於 (幾乎) 任何用途自動進行 (幾乎) 任意資源數目的複雜部署。使用範本時，唯一的命令式指令是進行部署。如需範本、資源及資源群組的一般概觀，請參閱＜[Azure 資源群組概觀](../resource-group-overview.md)＞。
+>[AZURE.NOTE] Azure Resource Manager 模式與 Azure 服務管理模式是互斥的。亦即，任一模式所建立的資源，將無法由另一種模式來管理。
 
 
 ## azure account：用來管理帳戶資訊
@@ -326,7 +320,7 @@
 **用來管理虛擬網路的命令**
 
 	network vnet create [options] <resource-group> <name> <location>
-允許建立新的虛擬網路。在下列範例中，我們會針對美國西部區域中的 myresourcegroup 資源群組，建立名為 newvnet 的虛擬網路。
+建立新的虛擬網路。在下列範例中，我們會針對美國西部區域中的 myresourcegroup 資源群組，建立名為 newvnet 的虛擬網路。
 
 
 	azure network vnet create myresourcegroup newvnet "west us"
@@ -1590,7 +1584,7 @@
 
 ## azure provider：用來管理資源提供者註冊的命令
 
-**列出 ARM 中目前已註冊的提供者**
+**列出 Resource Manager 中目前已註冊的提供者**
 
 	provider list [options]
 
@@ -1872,4 +1866,4 @@
 	vm image list-skus [options] <location> <publisher> <offer>
 	vm image list [options] <location> <publisher> [offer] [sku]
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0810_2016-->

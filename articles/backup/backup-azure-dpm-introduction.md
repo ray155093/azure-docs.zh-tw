@@ -14,8 +14,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/10/2016"
-	ms.author="trinadhk;giridham;jimpark;markgal"/>
+	ms.date="08/08/2016"
+	ms.author="trinadhk;giridham;jimpark;markgal;adigan"/>
 
 # 準備使用 DPM 將工作負載備份到 Azure
 
@@ -39,22 +39,20 @@ System Center DPM 會備份檔案和應用程式資料。備份到 DPM 的資料
 - **DPM 部署為實體伺服器或內部部署虛擬機器** — 如果 DPM 部署為實體伺服器或內部部署 Hyper-V 虛擬機器，除了備份到磁碟和磁帶上，您還可以將資料備份到復原服務保存庫。
 - **DPM 部署為 Azure 虛擬機器** — 從 System Center 2012 R2 Update 3 開始，DPM 可以部署為 Azure 虛擬機器。如果 DPM 部署為 Azure 虛擬機器，您可以將資料備份到連接至 DPM Azure 虛擬機器的 Azure 磁碟，或者您也可以將資料備份到復原服務保存庫以卸載資料儲存體。
 
-## 為何要備份 DPM 伺服器？
+## 為什麼要從 DPM 備份到 Azure？
 
 使用 Azure 備份來備份 DPM 伺服器的商業利益包括：
 
 - 在內部部署 DPM 部署中，您可以使用 Azure 來替代長期的磁帶部署。
 - 在 Azure 的 DPM 部署中，Azure 備份可讓您卸載 Azure 磁碟中的儲存體，並在復原服務保存庫中儲存較舊的資料，而將較新的資料儲存在磁碟上以進行擴充。
 
-## DPM 伺服器備份的運作方式
-為了提供磁碟型資料保護，DPM 伺服器會建立及維護受保護伺服器上的資料複本。複本會存放在儲存體集區 (由 DPM 伺服器上的一組磁碟所組成) 或自訂磁碟區上。不論您要保護檔案資料或應用程式資料，保護的第一步一律是從建立資料來源的複本開始。系統會根據您配置的設定定期同步處理或更新複本。當您使用短期磁碟型保護和長期雲端保護時，DPM 可以將資料從複本磁碟區備份到復原服務保存庫，因此不會對受保護的電腦造成影響。
-
 ## 必要條件
 如下所示讓 Azure 備份做好備份 DPM 資料的準備：
 
 1. **建立復原服務保存庫** — 在 Azure 入口網站中建立保存庫。
 2. **下載保存庫認證** — 下載用來向復原服務保存庫註冊 DPM 伺服器的認證。
-3. **安裝 Azure 備份代理程式及註冊伺服器** — 從 Azure 備份，在每一部 DPM 伺服器上安裝代理程式，並向復原服務保存庫註冊 DPM 伺服器。
+3. **安裝 Azure 備份代理程式** — 從 Azure 備份，在每一部 DPM 伺服器上安裝代理程式。
+4. **註冊伺服器** — 向 [復原服務保存庫] 註冊 DPM 伺服器。
 
 ### 1\.建立復原服務保存庫。
 若要建立復原服務保存庫：
@@ -116,7 +114,7 @@ System Center DPM 會備份檔案和應用程式資料。備份到 DPM 的資料
 
 	![開啟 [保存庫] 刀鋒視窗](./media/backup-azure-dpm-introduction/vault-settings-dpm.png)
 
-4. 在 [屬性] 頁面中，按一下 [備份認證] 下方的 [下載] 。入口網站會產生可供下載的保存庫認證檔。
+4. 在 [屬性] 頁面中，按一下 [備份認證] 下方的 [下載]。入口網站會產生可供下載的保存庫認證檔。
 
     ![下載](./media/backup-azure-dpm-introduction/vault-credentials.png)
 
@@ -149,13 +147,19 @@ System Center DPM 會備份檔案和應用程式資料。備份到 DPM 的資料
 
 5.	Azure 備份代理程式會安裝 .NET Framework 4.5 和 Windows PowerShell (若尚未安裝) 來完成安裝。
 
-6.	安裝代理程式之後，按一下 [**前往註冊**] 按鈕以繼續與工作流程。
+6.	安裝代理程式之後， 請**關閉**視窗。
 
-    ![註冊](../../includes/media/backup-install-agent/register.png)
+    ![關閉](../../includes/media/backup-install-agent/dpm_FinishInstallation.png)
 
-7. 在保存庫認證畫面中，瀏覽並選取先前已下載的保存庫認證檔。
+7. 若要向保存庫**註冊 DPM 伺服器**，請在 [管理] 索引標籤中，按一下 [線上]。接著，選取 [註冊]。隨即會開啟 [註冊設定] 精靈。
 
-    ![保存庫認證](../../includes/media/backup-install-agent/vc.png)
+8. 若您使用 Proxy 伺服器連接至網際網路，請在 [**Proxy 組態**] 畫面上，輸入 Proxy 伺服器詳細資料。若您使用已驗證的 Proxy，請在此畫面中輸入使用者名稱和密碼的詳細資料。
+
+	![Proxy 組態](../../includes/media/backup-install-agent/DPM_SetupOnlineBackup_Proxy.png)
+
+9. 在保存庫認證畫面中，瀏覽並選取先前已下載的保存庫認證檔。
+
+    ![保存庫認證](../../includes/media/backup-install-agent/DPM_SetupOnlineBackup_Credentials.jpg)
 
     保存庫認證檔僅於 48 小時內有效 (從入口網站下載後起算)。如果您在此畫面中遇到任何錯誤 (例如，「提供的保存庫認證檔已過期」)，請登入 Azure 入口網站，並再次下載保存庫認證檔。
 
@@ -163,21 +167,23 @@ System Center DPM 會備份檔案和應用程式資料。備份到 DPM 的資料
 
     如果您遇到無效的保存庫認證錯誤 (例如，「提供的保存庫認證無效」)，檔案可能損毀或沒有復原服務所關聯的最新認證。從入口網站下載新的保存庫認證檔後重試作業。若使用者在 Azure 入口網站中連續快速地按下 [**下載保存庫認證**] 選項，則通常會看見此錯誤。在此情況下，僅第二個保存庫認證檔為有效。
 
-8. 在 [**加密設定**] 畫面中，您可以產生複雜密碼或提供複雜密碼 (最少 16 個字元)。請記得將複雜密碼存放在安全的位置。
+10. 若要控制工作期間以及非工作期間的網路頻寬使用，您可以在 [節流設定] 畫面中，設定頻寬使用限制，並定義工作與非工作時間。
 
-    ![加密](../../includes/media/backup-install-agent/encryption.png)
+    ![節流設定](../../includes/media/backup-install-agent/DPM_SetupOnlineBackup_Throttling.png)
+
+11. 在 [復原資料夾設定] 畫面上，瀏覽將暫存從 Azure 所下載檔案的資料夾。
+
+    ![復原資料夾設定](../../includes/media/backup-install-agent/DPM_SetupOnlineBackup_RecoveryFolder.png)
+
+12. 在 [**加密設定**] 畫面中，您可以產生複雜密碼或提供複雜密碼 (最少 16 個字元)。請記得將複雜密碼存放在安全的位置。
+
+    ![加密](../../includes/media/backup-install-agent/DPM_SetupOnlineBackup_Encryption.png)
 
     > [AZURE.WARNING] 如果遺失或忘記複雜密碼，Microsoft 將無法協助您復原備份資料。加密複雜密碼為使用者所有，Microsoft 將不會看到使用者所使用的複雜密碼。請將檔案儲存在安全的位置，在復原作業期間需要該檔案。
 
-9. 一旦您按一下 [**完成**] 按鈕，電腦即成功註冊至保存庫，且現在您已準備好開始備份至 Microsoft Azure。
+13. 一旦您按一下 [註冊] 按鈕，電腦即成功註冊至保存庫，且現在您已準備好開始備份至 Microsoft Azure。
 
-10. 使用 Microsoft Azure 備份單機版時，您可透過按一下 Azure 備份 MMC 嵌入式管理單元中 [**變更屬性**] 選項，來修改註冊工作流程期間所指定的設定。
-
-    ![變更屬性](../../includes/media/backup-install-agent/change.png)
-
-    或者，使用 Data Protection Manager 時，您可以修改註冊工作流程期間所指定的設定，方法是選取 [**管理**] 索引標籤下的 [**線上**]，接著按一下 [**設定**] 選項。
-
-    ![設定 Azure 備份](../../includes/media/backup-install-agent/configure.png)
+14. 當使用 Data Protection Manager 時，您可以修改註冊工作流程期間所指定的設定，方法是選取 [管理] 索引標籤下的 [線上]，接著按一下 [設定] 選項。
 
 ## 需求 (和限制)
 
@@ -209,4 +215,4 @@ System Center DPM 會備份檔案和應用程式資料。備份到 DPM 的資料
 
 >[AZURE.NOTE] 從 System Center 2012 DPM SP1 開始，您可以使用 Microsoft Azure 備份將受到 DPM 保護的工作負載備份至 Azure。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

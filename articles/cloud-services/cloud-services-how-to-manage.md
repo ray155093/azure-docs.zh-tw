@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/26/2016"
+	ms.date="08/10/2016"
 	ms.author="adegeo"/>
 
 
@@ -63,7 +63,7 @@
 
 您可以在 [雲端服務] 頁面或儀表板交換部署。
 
-1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com/)中，按一下 [**雲端服務**]。
+1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com/)中，按一下 [雲端服務]。
 
 2. 在雲端服務清單中，按一下雲端服務加以選取。
 
@@ -83,7 +83,7 @@
 
 若要顯示您的雲端服務對其他資源的依存性，您可以將 Azure SQL Database 執行個體或儲存體帳戶連結到雲端服務。您可以在 [**連結的資源**] 頁面上連結和取消連結資源，然後在雲端服務儀表板上監視其使用率。如果連結的儲存體帳戶已開啟監視功能，則您可以在雲端服務儀表板上監視 [要求總數]。
 
-您可以使用 [連結] 將新的或現有 SQL Database 執行個體或儲存體帳戶連結到您的雲端服務。然後，您便可以在 [調整] 頁面上調整資料庫以及使用該資料庫的雲端服務角色。(儲存體帳戶會在使用量增加時自動調整。) 如需詳細資訊，請參閱[如何調整雲端服務和連結的資源](cloud-services-how-to-scale.md) (英文)。
+您可以使用 [連結] 將新的或現有 SQL Database 執行個體或儲存體帳戶連結到您的雲端服務。然後，您便可以在 [調整] 頁面上調整資料庫以及使用該資料庫的雲端服務角色。(儲存體帳戶會在使用量增加時自動調整。) 如需詳細資訊，請參閱[如何自動調整雲端服務](cloud-services-how-to-scale.md)。
 
 您也可以在 Azure 傳統入口網站的**資料庫**節點中監視、管理和調整資料庫。
 
@@ -93,7 +93,7 @@
 
 ### 將 SQL Database 執行個體連結到雲端服務
 
-1. 在 [Azure 傳統入口網站](http://manage.windowsazure.com/)中，按一下 [**雲端服務**]。然後按一下雲端服務的名稱以開啟儀表板。
+1. 在 [Azure 傳統入口網站](http://manage.windowsazure.com/)中，按一下 [雲端服務]。然後按一下雲端服務的名稱以開啟儀表板。
 
 2. 按一下 [連結的資源]。
 
@@ -164,4 +164,4 @@
 * 設定[自訂網域名稱](cloud-services-custom-domain-name.md)。
 * 設定 [SSL 憑證](cloud-services-configure-ssl-certificate.md)。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0810_2016-->

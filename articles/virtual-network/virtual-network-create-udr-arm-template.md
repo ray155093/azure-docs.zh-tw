@@ -3,7 +3,7 @@
    description="深入了解在 Azure Resource Manager 中使用範本控制路由和使用虛擬應用裝置"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor=""
    tags="azure-resource-manager"
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/23/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 #在資源管理員中使用範本建立使用者定義的路由 (UDR)
 
@@ -23,7 +23,7 @@
 
 [AZURE.INCLUDE [virtual-network-create-udr-intro-include.md](../../includes/virtual-network-create-udr-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]本文涵蓋之內容包括資源管理員部署模型。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] 本文涵蓋之內容包括資源管理員部署模型。
 
 [AZURE.INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
@@ -183,7 +183,7 @@
 
 		info:    New mode is arm
 
-3. 從您的瀏覽器，瀏覽至 ****https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json**，複製 json 檔案的內容並貼上到您電腦中的新檔案。在此案例中，您會將以下的值複製到名為 **c:\\udr\\azuredeploy.parameters.json** 的檔案。
+3. 從您的瀏覽器，瀏覽至 **https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json**，複製 json 檔案的內容並貼上到您電腦中的新檔案。在此案例中，您會將以下的值複製到名為 **c:\\udr\\azuredeploy.parameters.json** 的檔案。
 
 		{
 		  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
@@ -396,4 +396,4 @@
 
 >[AZURE.TIP] 如果看不到所有資源，請執行 `azure group deployment show` 命令，以確保部署的佈建狀態為 [成功]。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0810_2016-->

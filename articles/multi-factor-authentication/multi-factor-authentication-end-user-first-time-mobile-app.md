@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/12/2016" 
+	ms.date="08/04/2016" 
 	ms.author="billmath"/>
 
 # 搭配 Azure Multi-Factor Authentication 使用行動應用程式做為連絡方式
@@ -31,7 +31,7 @@
 ![設定](./media/multi-factor-authentication-end-user-first-time-mobile-app/mobileapp.png)
 
 - 選取 [通知] 或 [單次密碼]，然後按一下 [設定]。
-- 在已安裝 Azure Authenticator 應用程式的電話上，啟動該應用程式並按一下 [掃描條碼]。若要加入已經有 Azure MFA 的帳戶或協力廠商帳戶，請參閱 <a href="#zhtw">手動新增帳戶</a> 。
+- 在已安裝 Azure Authenticator 應用程式的電話上，啟動該應用程式並按一下 [掃描條碼]。若要加入已經有 Azure MFA 的帳戶或協力廠商帳戶，請參閱[手動新增帳戶](#adding-an-account-manually)。
 
 ![設定](./media/multi-factor-authentication-end-user-first-time-mobile-app/scan.png)
 
@@ -45,7 +45,7 @@
 
 - 按一下 [關閉]。此時，您的驗證應會成功。
 - 現在建議您輸入您的行動電話號碼，以防萬一您無法存取行動應用程式。
-- 從下拉式清單中指定您的國家/地區，然後在國家/地區旁邊的方塊中輸入您的行動電話號碼。按 [下一步]。
+- 從下拉式清單中指定您的國家/地區，然後在國家/地區旁邊的方塊中輸入您的行動電話號碼。按一下 [下一步]。
 - 此時，您已設定好連絡方式，現在可以設定非瀏覽器應用程式 (例如 Outlook 2010 或更舊版本) 的應用程式密碼。如果不使用這些應用程式，請按一下 [完成]。否則，請繼續下一個步驟。
 
 ![設定](./media/multi-factor-authentication-end-user-first-time-mobile-app/step4.png)
@@ -73,4 +73,4 @@
 >[AZURE.NOTE]如果您看到「新增工作帳戶」，這是針對「加入工作場所」而非多因素驗證。您可以忽略此項目。
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016-->

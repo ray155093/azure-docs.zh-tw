@@ -14,52 +14,50 @@
 	ms.tgt_pltfrm="vm-windows" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/19/2016" 
+	ms.date="08/08/2016" 
 	ms.author="josephd"/>
 
 # 在混合式雲端中設定 Web 型 LOB 應用程式進行測試
 
-本主題將逐步引導您建立混合式雲端環境測試 Microsoft Azure 代管的 Web 型企業營運 (LOB) 應用程式。以下是產生的組態。
+本主題將逐步引導您建立模擬混合式雲端環境測試 Microsoft Azure 代管的 Web 型企業營運 (LOB) 應用程式。以下是產生的組態。
 
 ![](./media/virtual-machines-windows-ps-hybrid-cloud-test-env-lob/virtual-machines-windows-ps-hybrid-cloud-test-env-lob-ph3.png)
 
-如需 Azure 代管生產 LOB 應用程式的範例，請參閱 [Microsoft 軟體架構圖表和藍圖](http://msdn.microsoft.com/dn630664)的**企業營運應用程式**架構藍圖。
+此組態包含下列各項：
 
-這個組態會從您在網際網路上的位置模擬 Azure 生產環境中的 LOB 應用程式。其中包括：
-
-- 簡化的內部部署網路 (公司網路子網路)。
+- Azure (TestLab VNet) 代管的模擬內部部署網路。
 - Azure (TestVNET) 代管的跨單位部署虛擬網路。
-- 站對站 VPN 連線。
-- 企業營運伺服器、SQL 伺服器，以及 TestVNET 虛擬網路中的第二個網域控制站。
+- VNet 對 VNet VPN 連線。
+- Web 型 LOB 伺服器、SQL 伺服器，以及 TestVNET 虛擬網路中的第二個網域控制站。
 
 這個組態一般可供您開始：
 
 - 針對 Azure 中的 SQL Server 2014 資料庫後端開發和測試網際網路資訊服務 (IIS) 代管的 LOB 應用程式。
-- 執行此混合式雲端型 IT 工作負載的測試。
+- 執行此模擬混合式雲端型 IT 工作負載的測試。
 
 設定此混合式雲端測試環境分為三個主要階段：
 
-1.	設定混合式雲端環境進行測試。
+1.	設定模擬混合式雲端環境。
 2.	設定 SQL 伺服器電腦 (SQL1)。
 3.	設定 LOB 伺服器 (LOB1)。
 
 此工作負載需要 Azure 訂用帳戶。如果您有 MSDN 或 Visual Studio 訂用帳戶，請參閱 [Visual Studio 訂閱者的每月 Azure 點數](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。
 
-## 第 1 階段：設定混合式雲端環境
+如需 Azure 代管生產 LOB 應用程式的範例，請參閱 [Microsoft 軟體架構圖表和藍圖](http://msdn.microsoft.com/dn630664)的**企業營運應用程式**架構藍圖。
 
-使用[設定用於測試的混合式雲端環境](virtual-machines-windows-ps-hybrid-cloud-test-env-base.md)主題中的指示。由於這個測試環境不需要公司網路子網路上的 APP1 伺服器，因此可以暫時將它關閉。
+## 步驟 1：設定模擬混合式雲端環境
+
+建立[模擬混合式雲端測試環境](virtual-machines-windows-ps-hybrid-cloud-test-env-sim.md)。由於這個測試環境不需要公司網路子網路上的 APP1 伺服器，您可以暫時將它關閉。
 
 這是您目前的組態。
 
 ![](./media/virtual-machines-windows-ps-hybrid-cloud-test-env-lob/virtual-machines-windows-ps-hybrid-cloud-test-env-lob-ph1.png)
-
-> [AZURE.NOTE] 針對第 1 階段，您也可以設定[模擬混合式雲端測試環境](virtual-machines-windows-ps-hybrid-cloud-test-env-sim.md)。
  
 ## 第 2 階段：設定 SQL 伺服器電腦 (SQL1)
 
 從 Azure 入口網站，視需要啟動 DC2 電腦。
 
-然後，在本機電腦的 Azure PowerShell 命令提示字元下，使用下列命令建立 SQL1 的 Azure 虛擬機器。執行這些命令之前，請先填入變數值並移除 < 和 > 字元。
+然後，在本機電腦的 Azure PowerShell 命令提示字元下，使用下列命令建立 SQL1 的虛擬機器。執行這些命令之前，請先填入變數值並移除 < 和 > 字元。
 
 	$rgName="<your resource group name>"
 	$locName="<the Azure location of your resource group>"
@@ -83,18 +81,9 @@
 	$vm=Set-AzureRMVMOSDisk -VM $vm -Name "OSDisk" -VhdUri $osDiskUri -CreateOption fromImage
 	New-AzureRMVM -ResourceGroupName $rgName -Location $locName -VM $vm
 
-使用 Azure 入口網站，利用本機系統管理員帳戶連線到 SQL1。
+使用 Azure 入口網站，利用 SQL1 的本機系統管理員帳戶連線到 SQL1。
 
-1.	在 Azure 管理入口網站的左窗格中，按一下 [虛擬機器]，然後按一下 SQL1 [狀態] 欄中的 [執行]。
-2.	在工作列上，按一下 [連接]。
-3.	提示開啟 SQL1.rdp 時，按一下 [開啟]。
-4.	顯示 [遠端桌面連線] 訊息方塊後，按一下 [連接]。
-5.	出現輸入認證的提示時，使用這些：
-	- 名稱：**SQL1\**[本機系統管理員帳戶名稱]
-	- 密碼：[本機系統管理員帳戶密碼]
-6.	顯示憑證相關的 [遠端桌面連線] 訊息方塊提示時，按一下 [是]。
-
-接著，設定 Windows 防火牆規則，允許基本連線測試和 SQL Server 的流量。從 SQL1 的系統管理員層級 Windows PowerShell 命令提示字元下，執行這些命令。
+接著，設定 Windows 防火牆規則，允許基本連線測試和 SQL Server 流量。從 SQL1 的系統管理員層級 Windows PowerShell 命令提示字元下，執行這些命令。
 
 	New-NetFirewallRule -DisplayName "SQL Server" -Direction Inbound -Protocol TCP -LocalPort 1433,1434,5022 -Action allow 
 	Set-NetFirewallRule -DisplayName "File and Printer Sharing (Echo Request - ICMPv4-In)" -enabled True
@@ -102,10 +91,10 @@
 
 Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 
-接著，將額外的資料磁碟新增為磁碟機代號 F: 的新磁碟區。
+接著，將 SQL1 上額外的資料磁碟新增為磁碟機代號 F: 的新磁碟區。
 
 1.	在 [伺服器管理員] 的左窗格中，按一下 [檔案和存放服務]，然後按一下 [磁碟]。
-2.	在 [內容] 窗格的 [磁碟] 群組中，按一下 [磁碟 2] \([磁碟分割] 設為 [不明])。
+2.	在 [內容] 窗格的 [磁碟] 群組中，按一下 [磁碟 2] ([磁碟分割] 設為 [不明])。
 3.	按一下 [工作]，然後按一下 [新增磁碟區]。
 4.	在 [新增磁碟區精靈] 的 [在您開始前] 頁面上，按 [下一步]。
 5.	在 [選取伺服器和磁碟] 頁面上，按一下 [磁碟 2]，然後按 [下一步]。出現提示時，按一下 **[確定]**。
@@ -121,14 +110,14 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 	md f:\Log
 	md f:\Backup
 
-接下來，在 Windows PowerShell 提示字元中使用下列命令將 SQL1 加入 CORP Active Directory 網域中。
+接下來，在 SQL1 上的 Windows PowerShell 提示字元中使用下列命令將 SQL1 加入 CORP Windows Server Active Directory 網域中。
 
 	Add-Computer -DomainName corp.contoso.com
 	Restart-Computer
 
 當系統提示您為 **Add-Computer** 命令提供網域帳戶認證時，請使用 CORP\\User1 帳戶。
 
-重新啟動之後，請使用 Azure 入口網站，利用「本機系統管理員帳戶」連線到 SQL1。
+重新啟動之後，請使用 Azure 入口網站，利用 SQL1 的本機系統管理員帳戶連線到 SQL1。
 
 接著，對於新資料庫和使用者帳戶權限設定 SQL Server 2014 使用 F: 磁碟機。
 
@@ -154,7 +143,7 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
  
 ## 第 3 階段：設定 LOB 伺服器 (LOB1)。
 
-首先，在本機電腦的 Azure PowerShell 命令提示字元下，使用下列命令建立 LOB1 的 Azure 虛擬機器。
+首先，在本機電腦的 Azure PowerShell 命令提示字元下，使用下列命令建立 LOB1 的虛擬機器。
 
 	$rgName="<your resource group name>"
 	$locName="<your Azure location, such as West US>"
@@ -174,7 +163,7 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 	$vm=Set-AzureRMVMOSDisk -VM $vm -Name LOB1-TestVNET-OSDisk -VhdUri $osDiskUri -CreateOption fromImage
 	New-AzureRMVM -ResourceGroupName $rgName -Location $locName -VM $vm
 
-接下來，使用 Azure 入口網站，利用本機系統管理員帳戶的認證連線到 LOB1。
+接下來，使用 Azure 入口網站，利用 LOB1 的本機系統管理員帳戶的認證連線到 LOB1。
 
 接著，設定 Windows 防火牆規則，允許基本連線測試的流量。從 LOB1 的系統管理員層級 Windows PowerShell 命令提示字元下，執行這些命令。
 
@@ -194,28 +183,28 @@ Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 
 接著，為 IIS 設定 LOB1，並且測試從 CLIENT1 進行的存取。
 
-1.	執行伺服器管理員，然後按一下 [新增角色及功能]。
-2.	在 [開始之前] 頁面中按 [下一步]。
+1.	在 [伺服器管理員] 中，按一下 [新增角色及功能]。
+2.	在 [在您開始前] 頁面上，按 [下一步]。
 3.	在 [選取安裝類型] 頁面上，按 [下一步]。
 4.	在 [選取目的地伺服器] 頁面上，按 [下一步]。
 5.	在 [伺服器角色] 頁面上，按一下 [角色] 清單中的 [網頁伺服器 (IIS)]。
 6.	出現提示時，按一下 [新增功能]，然後按 [下一步]。
 7.	在 [選取功能] 頁面上，按 [下一步]。
 8.	在 [網頁伺服器 (IIS)] 頁面上，按一下 [下一步]。
-9.	在 [選取角色服務] 頁面上，選取或清除測試 LOB 應用程式所需服務的核取方塊，然後按一下 [下一步]。
+9.	在 [選取角色服務] 頁面上，選取或清除測試 LOB 應用程式所需服務的核取方塊，然後按 [下一步]。
 10.	在 [確認安裝選項] 頁面上，按一下 [安裝]。
 11.	等候元件安裝完成，然後按一下 [關閉]。
-12.	以 CORP\\User1 帳戶認證登入 CLIENT1 電腦，然後啟動 Internet Explorer。
+12.	從 Azure 入口網站，以 CORP\\User1 帳戶認證登入 CLIENT1 電腦，然後啟動 Internet Explorer。
 13.	在網址列中，鍵入 **http://lob1/**，然後按 ENTER。您應該會看見預設的 IIS 8 網頁。
 
 這是您目前的組態。
 
 ![](./media/virtual-machines-windows-ps-hybrid-cloud-test-env-lob/virtual-machines-windows-ps-hybrid-cloud-test-env-lob-ph3.png)
  
-這個環境此時即可供您在 LOB1 部署 Web 型應用程式，並且測試公司網路子網路的功能和效能。
+這個環境此時即可供您在 LOB1 部署 Web 型應用程式，並且從公司網路子網路上的 CLIENT1 測試功能。
 
 ## 後續步驟
 
-- 在此環境中部署其他[工作負載](virtual-machines-windows-ps-hybrid-cloud-test-envs.md)。
+- 使用 [Azure 入口網站](virtual-machines-windows-hero-tutorial.md)來新增虛擬機器。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0810_2016-->

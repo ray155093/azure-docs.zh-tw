@@ -24,7 +24,7 @@
 - [REST API](role-based-access-control-manage-access-rest.md)
 
 
-在 Azure 入口網站和 Azure 資源管理 API 中的角色型存取控制 (RBAC) 可讓您精確地管理訂用帳戶的存取。透過這項功能，您可以為 Active Directory 使用者、群組或是服務主體指派特定範圍的一些角色，藉此賦予其存取權限。
+您可以使用 Azure 入口網站和「Azure 資源管理」API 中的「角色型存取控制」(RBAC) 來精確地管理對訂用帳戶的存取。透過這項功能，您可以為 Active Directory 使用者、群組或是服務主體指派特定範圍的一些角色，藉此賦予其存取權限。
 
 在使用 PowerShell 來管理 RBAC 之前，您必須具備下列項目：
 
@@ -35,7 +35,7 @@
 ## 列出角色
 
 ### 列出所有可用的角色
-若要列出可以指派的 RBAC 角色，以及若要檢查它們獲得存取權的作業，請使用 `Get-AzureRmRoleDefinition`。
+若要列出可供指派的 RBAC 角色，以及若要檢查它們授與存取權的作業，請使用 `Get-AzureRmRoleDefinition`。
 
 ```
 Get-AzureRmRoleDefinition | FT Name, Description
@@ -58,7 +58,7 @@ Get-AzureRmRoleDefinition Contributor | FL Actions, NotActions
 若要列出 RBAC 存取權指派，請使用 `Get-AzureRmRoleAssignment`。
 
 ###	列出特定範圍的角色指派
-您可以查看指定訂用帳戶、資源群組或資源的所有存取權指派。例如，若要查看資源群組的所有使用中指派，請使用 `Get-AzureRmRoleAssignment -ResourceGroupName <resource group name>`。
+您可以查看指定訂用帳戶、資源群組或資源的所有存取權指派。例如，若要查看某個資源群組的所有使用中指派，請使用 `Get-AzureRmRoleAssignment -ResourceGroupName <resource group name>`。
 
 ```
 Get-AzureRmRoleAssignment -ResourceGroupName Pharma-Sales-ProjectForcast | FL DisplayName, RoleDefinitionName, Scope
@@ -67,7 +67,7 @@ Get-AzureRmRoleAssignment -ResourceGroupName Pharma-Sales-ProjectForcast | FL Di
 ![RBAC PowerShell - 資源群組的 Get-AzureRmRoleAssignment - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/4-get-azure-rm-role-assignment1.png)
 
 ### 列出指派給使用者的角色
-若要列出指派給指定使用者的所有角色，包括指派給其所屬群組的角色，請使用 `Get-AzureRmRoleAssignment -SignInName <User email> -ExpandPrincipalGroups`。
+若要列出指派給指定使用者的所有角色，以及指派給該使用者所屬群組的角色，請使用 `Get-AzureRmRoleAssignment -SignInName <User email> -ExpandPrincipalGroups`。
 
 ```
 Get-AzureRmRoleAssignment -SignInName sameert@aaddemo.com | FL DisplayName, RoleDefinitionName, Scope
@@ -86,7 +86,7 @@ Get-AzureRmRoleAssignment -SignInName sameert@aaddemo.com -ExpandPrincipalGroups
 ### 搜尋物件識別碼
 若要指派角色，您必須識別物件 (使用者、群組或應用程式) 和範圍。
 
-如果您不知道訂用帳戶 ID，可以在 Azure 入口網站的 **[訂用帳戶]** 刀鋒視窗中找到。或者，您也可以在 MSDN 中了解如何使用 [Get-AzureSubscription](https://msdn.microsoft.com/library/dn495302.aspx) 加以查詢。
+如果您不知道訂用帳戶 ID，可以在 Azure 入口網站的 **[訂用帳戶]** 刀鋒視窗中找到。若要了解如何查詢訂用帳戶 ID，請參閱 MSDN 上的 [Get-AzureSubscription](https://msdn.microsoft.com/library/dn495302.aspx)。
 
 若要取得 Azure AD 群組的物件識別碼，請使用：
 
@@ -127,9 +127,9 @@ Get-AzureRmRoleAssignment -SignInName sameert@aaddemo.com -ExpandPrincipalGroups
 ## 建立自訂角色
 若要建立自訂角色，請使用 `New-AzureRmRoleDefinition` 命令。
 
-當您在 PowerShell 中建立自訂角色時，您需要從其中一種[內建角色](role-based-access-built-in-roles.md)來開始進行。編輯屬性並加入任何所需 Actions、notActions 或範圍，然後將變更儲存為新的角色。
+當您使用 PowerShell 來建立自訂角色時，您必須從其中一個[內建角色](role-based-access-built-in-roles.md)開始進行。請編輯屬性來新增您想要的 *Actions*、*notActions* 或 *scopes*，然後將變更儲存為新角色。
 
-下列範例會從「虛擬機器參與者」角色來開始，並使用它來建立稱為「虛擬機器操作者」的自訂角色。新角色會授與「Microsoft.Compute」、「Microsoft.Storage」和「Microsoft.Network」資源提供者對所有讀取作業的存取權限，以及授與啟動、重新啟動和監視虛擬機器的存取權限。自訂角色可用於兩個訂用帳戶中。
+下列範例會從 *Virtual Machine Contributor* 角色開始著手，然後使用它來建立一個名為 *Virtual Machine Operator* 的自訂角色。新角色會授與對 *Microsoft.Compute*、*Microsoft.Storage* 及 *Microsoft.Network* 資源提供者之所有讀取作業的存取權，以及授與對啟動、重新啟動和監視虛擬機器的存取權。自訂角色可用於兩個訂用帳戶中。
 
 ```
 $role = Get-AzureRmRoleDefinition "Virtual Machine Contributor"
@@ -155,7 +155,7 @@ New-AzureRmRoleDefinition -Role $role
 ![RBAC PowerShell - Get-AzureRmRoleDefinition - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/2-new-azurermroledefinition.png)
 
 ## 修改自訂角色
-若要先修改自訂角色，請使用 `Get-AzureRmRoleDefinition` 命令擷取角色定義。接著，對角色定義進行想要的變更。最後，使用 `Set-AzureRmRoleDefinition` 命令儲存已修改的角色定義。
+若要修改自訂角色，請先使用 `Get-AzureRmRoleDefinition` 命令來擷取角色定義。接著，對角色定義進行想要的變更。最後，使用 `Set-AzureRmRoleDefinition` 命令來儲存已修改的角色定義。
 
 下列範例會將 `Microsoft.Insights/diagnosticSettings/*` 作業加入到 *Virtual Machine Operator* 自訂角色。
 
@@ -167,7 +167,7 @@ Set-AzureRmRoleDefinition -Role $role
 
 ![RBAC PowerShell - Set-AzureRmRoleDefinition - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/3-set-azurermroledefinition-1.png)
 
-下列範例會將 Azure 訂用帳戶加入到 Virtual Machine Operator 自訂角色的可指派範圍。
+下列範例會將 Azure 訂用帳戶新增到 *Virtual Machine Operator* 自訂角色的可指派範圍。
 
 ```
 Get-AzureRmSubscription - SubscriptionName Production3
@@ -196,7 +196,7 @@ Get-AzureRmRoleDefinition "Virtual Machine Operator" | Remove-AzureRmRoleDefinit
 ## 列出自訂角色
 若要列出範圍中可供指派的角色，請使用 `Get-AzureRmRoleDefinition` 命令。
 
-下列範例會列出選取的訂用帳戶中所有可供指派的角色。
+下列範例會列出選取的訂用帳戶中可供指派的所有角色。
 
 ```
 Get-AzureRmRoleDefinition | FT Name, IsCustom
@@ -212,4 +212,4 @@ Get-AzureRmRoleDefinition | FT Name, IsCustom
 - [搭配使用 Azure PowerShell 與 Azure 資源管理員](../powershell-azure-resource-manager.md)
 [AZURE.INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016-->

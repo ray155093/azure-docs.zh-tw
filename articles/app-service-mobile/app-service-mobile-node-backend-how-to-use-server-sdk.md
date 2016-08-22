@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-multiple"
 	ms.devlang="node"
 	ms.topic="article"
-	ms.date="05/27/2016"
+	ms.date="08/02/2016"
 	ms.author="adrianhall"/>
 
 # 如何使用 Azure Mobile Apps Node.js SDK
@@ -126,6 +126,17 @@ Visual Studio 2015 需要延伸模組才能在整合式開發環境 (IDE) 內開
 
 10. 在本機執行應用程式 (API 將在 http://localhost:3000 上提供)，或發佈至 Azure。
 
+### <a name="create-node-backend-portal"></a>作法：使用 Azure 入口網站建立 Node.js 後端
+
+您可以在 [Azure 入口網站]中直接建立新的行動應用程式後端。
+
+您可以遵循下列步驟，或者依照[建立行動應用程式](app-service-mobile-ios-get-started.md)教學課程，一起建立新的用戶端和伺服器。本教學課程包含下列指示的簡化版本，最適合用於概念驗證專案。
+
+[AZURE.INCLUDE [app-service-mobile-dotnet-backend-create-new-service-classic](../../includes/app-service-mobile-dotnet-backend-create-new-service-classic.md)]
+
+回到 [開始] 刀鋒視窗，在 [建立資料表 API] 底下，選擇 [Node.js] 作為您的 [後端語言]。核取 [我了解此將覆寫所有網站內容] 方塊，然後按一下 [建立 TodoItem 資料表]。
+
+
 ### <a name="download-quickstart"></a>作法：使用 Git 下載 Node.js 後端快速入門程式碼專案
 
 當您使用入口網站的 [快速入門] 刀鋒視窗建立新的 Node.js 行動應用程式後端時，系統會為您建立新的 Node.js 專案並將其部署至您的網站。您可以在入口網站中新增資料表和 API，並編輯 Node.js 後端的程式碼檔案。您也可以使用各種部署工具的其中一個來下載後端專案，以便新增或修改資料表和 API，然後重新發佈專案。如需詳細資訊，請參閱 [Azure App Service 部署指南]。下列程序使用 Git 儲存機制來下載快速入門專案程式碼。
@@ -160,7 +171,7 @@ Azure App Service 提供 Node.js 應用程式方面的具體建議，您應該�
 - 如何[指定 Node 版本]
 - 如何[使用 Node 模組]
 
-### <a name="howto-enable-homepage"></a>做法：啟用應用程式的首頁
+### <a name="howto-enable-homepage"></a>作法：啟用應用程式的首頁
 
 許多應用程式是 Web 和行動應用程式的組合，ExpressJS 架構可讓您結合兩方面。但是有時候，您可能只想要實作行動介面。它對於提供登陸頁面以確保 App Service 已啟動並執行很有用。您可以提供您自己的首頁，或啟用暫時的首頁。若要啟用暫時的首頁，將行動應用程式建構函式調整為以下內容：
 
@@ -433,7 +444,7 @@ _azureMobile.js_ 檔案中的大部分設定在 [Azure 入口網站]中都有對
 
 ### <a name="howto-tables-getidentity"></a>作法：透過資料表使用驗證宣告
 
-您可以設定驗證設定時所要求的多個宣告。這些宣告通常無法透過 `context.user` 物件取得。但可使用 `context.user.getIdentity()` 方法擷取。`getIdentity()` 方法會傳回可解析成一項物件的 Promise。物件會以驗證方法 (facebook、google、twitter、microsoftaccount 或 aad) 建立索引。
+您可以設定驗證設定時所要求的多個宣告。這些宣告通常無法透過 `context.user` 物件取得。但可使用 `context.user.getIdentity()` 方法取出。`getIdentity()` 方法會傳回可解析成一項物件的 Promise。物件會以驗證方法 (facebook、google、twitter、microsoftaccount 或 aad) 建立索引。
 
 例如，如果您設定 Microsoft 帳戶驗證並要求電子郵件地址宣告時，可以利用下列來將電子郵件地址加入記錄：
 
@@ -629,7 +640,7 @@ Swagger 端點將會位於 http://_yoursite_.azurewebsites.net/swagger。您可�
 
 ## <a name="push">推播通知
 
-行動應用程式會與 Azure 通知中樞整合，讓您能跨越所有主要平台，將目標推播通知傳送給數百萬部裝著。藉由使用通知中樞，您可以傳送推播通知至 iOS、Android 和 Windows 裝置。若要深入了解您可以使用通知中樞執行的所有功能，請參閱[通知中樞概觀](../notification-hubs/notification-hubs-push-notification-overview.md)。
+Mobile Apps 會與 Azure 通知中樞整合，讓您能跨越所有主要平台，將目標推播通知傳送給數百萬部裝著。藉由使用通知中樞，您可以傳送推播通知至 iOS、Android 和 Windows 裝置。若要深入了解您可以使用通知中樞執行的所有功能，請參閱[通知中樞概觀](../notification-hubs/notification-hubs-push-notification-overview.md)。
 
 ### </a><a name="send-push"></a>作法：傳送推播通知
 
@@ -789,7 +800,7 @@ Azure Mobile Apps SDK 使用[本文剖析器中介軟體](https://github.com/exp
 
 ### <a name="howto-customapi-sql"></a>作法：執行自訂 SQL 陳述式
 
-Azure 行動應用程式 SDK 允許透過要求物件存取整個「內容」，讓您能輕鬆地針對定義的資料提供者執行參數化的 SQL 陳述式：
+Azure Mobile Apps SDK 允許透過要求物件存取整個「內容」，讓您能輕鬆地針對定義的資料提供者執行參數化的 SQL 陳述式：
 
     var api = {
         get: function (request, response, next) {
@@ -917,4 +928,4 @@ Azure 入口網站可讓您在 App Service 編輯器中編輯 Node.js 後端指�
 [ExpressJS 中介軟體]: http://expressjs.com/guide/using-middleware.html
 [Winston]: https://github.com/winstonjs/winston
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

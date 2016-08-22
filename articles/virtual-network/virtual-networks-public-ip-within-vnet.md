@@ -3,7 +3,7 @@
    description="了解如何設定虛擬網路以使用公用 IP 位址"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor="tysonn" />
 <tags 
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="04/27/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # 在虛擬網路 (VNet) 中使用公用 IP 位址
 
@@ -45,6 +45,6 @@
 
 ## 後續步驟
 
-[如何管理 VNet 所使用的 DNS 伺服器](../virtual-networks-manage-dns-in-vnet)
+[如何管理 VNet 所使用的 DNS 伺服器](virtual-networks-manage-dns-in-vnet.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0810_2016-->

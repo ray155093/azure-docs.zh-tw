@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/06/2016"
+   ms.date="08/08/2016"
    ms.author="barbkess;sonyama"/>
 
 # 管理 Azure SQL 資料倉儲中的計算能力 (T-SQL)
@@ -45,7 +45,7 @@
 
 1. 在 Visual Studio 2015 中開啟 [SQL Server 物件總管]。
 2. 連接到與邏輯 SQL Database 伺服器相關聯的 master 資料庫。
-2. 從 sys.database\_service\_objectives 動態管理檢視中選取。下列是一個範例： 
+2. 從 sys.database\_service\_objectives 動態管理檢視中選取。下列是一個範例：
 
 ```
 SELECT
@@ -67,7 +67,7 @@ FROM
 
 
 1. 連接到與您的邏輯 SQL Database 伺服器相關聯的 master 資料庫。
-2. 使用 [ALTER DATABASE][] TSQL 陳述式。下例範例會將資料庫 MySQLDW 的服務等級目標設定為 DW1000。 
+2. 使用 [ALTER DATABASE][] TSQL 陳述式。下例範例會將資料庫 MySQLDW 的服務等級目標設定為 DW1000。
 
 ```Sql
 ALTER DATABASE MySQLDW
@@ -97,4 +97,4 @@ MODIFY (SERVICE_OBJECTIVE = 'DW1000')
 
 [Azure portal]: http://portal.azure.com/
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0810_2016-->

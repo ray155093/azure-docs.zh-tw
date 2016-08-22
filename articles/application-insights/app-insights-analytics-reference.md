@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/07/2016" 
+	ms.date="08/09/2016" 
 	ms.author="awills"/>
 
 # 適用於分析的參考
@@ -105,7 +105,7 @@ Set 子句可設定查詢持續時間的選項。查詢選項可控制查詢如�
     set OptionName [= OptionValue] ; query
 
 
-|名稱 | 設為 true 時的含意
+|Name | 設為 true 時的含意
 |---|---
 |querytrace| 提高查詢所產生之偵錯追蹤的層級。 
 |noexecute| 停止實際執行查詢 (只執行查詢規劃階段)。 
@@ -713,7 +713,7 @@ range x from 1 to 1 step 1
 | project-away x, s
 ```
 
-resource | slice | lock | release | previous
+資源 | slice | lock | release | previous
 ---|---|---|---|---
 排程器 | 16 | 02/17/2016 08:41:00 | 02/17/2016 08:41 | 2016-02-17T08:40:00Z
 
@@ -910,7 +910,7 @@ Traces 資料表中具有特定 `ActivityId` 的所有資料列，按其時間�
 
     T | summarize count() by price_range=bin(price, 10.0)
 
-顯示有多少項目的價格落在 [0,10.0]、[10.0,20.0] 等依此類推的間隔中的資料表。此範例有一個用於放置計數的資料行，以及一個用於放置價格範圍的資料行。其他所有輸入資料行則會遭到忽略。
+顯示有多少項目的價格落在 [0,10.0] 、[10.0,20.0] 等依此類推的間隔中的資料表。此範例有一個用於放置計數的資料行，以及一個用於放置價格範圍的資料行。其他所有輸入資料行則會遭到忽略。
 
 
 **語法**
@@ -1508,8 +1508,8 @@ Accuracy (若已指定) 會控制速度和精確度之間的平衡。
 `<=`|小於或等於
 `>` |大於
 `>=`|大於或等於
-`<>`|Not Equals
-`!=`|Not Equals 
+`<>`|不等於
+`!=`|不等於 
 `in`| 右運算元是 (動態) 陣列，且左運算元等於右運算元的其中一個項目。
 `!in`| 右運算元是 (動態) 陣列，且左運算元不等於右運算元的任何一個項目。
 
@@ -1872,7 +1872,7 @@ true 或 false，取決於值是 null 或不是 null。
 `<=`|小於或等於
 `>` |大於
 `>=`|大於或等於
-`<>`|Not Equals
+`<>`|不等於
 `!=`|不等於 
 
 
@@ -2124,16 +2124,18 @@ h"hello"
 `!~`|不等於 |否| `"aBc" !~ "xyz"`
 `has`|右側 (RHS) 是左側 (LHS) 中的完整詞彙|否| `"North America" has "america"`
 `!has`|RHS 不是 LHS 中的完整詞彙|否|`"North America" !has "amer"` 
-`hasprefix`|RHS 是 LHS 中的詞彙前置詞|否|`"North America" hasprefix "ame"`
-`!hasprefix`|RHS 不是 LHS 中的詞彙前置詞|否|`"North America" !hasprefix "mer"`
-`contains` | RHS 是 LHS 的子序列|否| `"FabriKam" contains "BRik"`
+`hasprefix`|RHS 是 LHS 中詞彙的前置詞|否|`"North America" hasprefix "ame"`
+`!hasprefix`|RHS 不是 LHS 中任何詞彙的前置詞|否|`"North America" !hasprefix "mer"`
+`hassuffix`|RHS 是 LHS 中詞彙的尾碼|否|`"North America" hassuffix "rth"`
+`!hassuffix`|RHS 不是 LHS 中任何詞彙的尾碼|否|`"North America" !hassuffix "mer"`
+`contains` | RHS 會以 LHS 子字串的方式顯示|否| `"FabriKam" contains "BRik"`
 `!contains`| RHS 未出現在 LHS|否| `"Fabrikam" !contains "xyz"`
-`containscs` | RHS 是 LHS 的子序列|是| `"FabriKam" contains "Kam"`
+`containscs` | RHS 會以 LHS 子字串的方式顯示|是| `"FabriKam" contains "Kam"`
 `!containscs`| RHS 未出現在 LHS|是| `"Fabrikam" !contains "Kam"`
-`startswith`|RHS 是 LHS 開頭的子序列。|否|`"Fabrikam" startswith "fab"`
-`!startswith`|RHS 不是 LHS 開頭的子序列。|否|`"Fabrikam" !startswith "abr"`
-`endswith`|RHS 是 LHS 末端的子序列。|否|`"Fabrikam" endswith "kam"`
-`!endswith`|RHS 不是 LHS 末端的子序列。|否|`"Fabrikam" !endswith "ka"`
+`startswith`|RHS 是 LHS 的初始子字串。|否|`"Fabrikam" startswith "fab"`
+`!startswith`|RHS 不是 LHS 的初始子字串。|否|`"Fabrikam" !startswith "abr"`
+`endswith`|RHS 是 LHS 的終結子字串。|否|`"Fabrikam" endswith "kam"`
+`!endswith`|RHS 不是 LHS 的終結子字串。|否|`"Fabrikam" !endswith "ka"`
 `matches regex`|LHS 包含 RHS 的相符項目|是| `"Fabrikam" matches regex "b.*k"`
 `in`|等於任何元素|是|`"abc" in ("123", "345", "abc")`
 `!in`|不等於任何元素|是|`"bc" !in ("123", "345", "abc")`
@@ -2162,7 +2164,7 @@ h"hello"
 
 * text：字串。
 * search︰用來在 text 中進行比對的純文字字串或規則運算式。
-* kind：`"normal"|"regex"`。預設值 `normal`。
+* kind：`"normal"|"regex"`預設值 `normal`。
 
 **傳回**
 
@@ -2359,8 +2361,8 @@ split("aabbcc", "bb")         // ["aa","cc"]
 **引數**
 
 * source︰要從中擷取子字串的來源字串。
-* startingIndex：所要求子字串的以零為基礎的起始字元位置。
-* length：可用來指定子字串中要求的字元數目的選擇性參數。
+* startingIndex：所要求子字串以零為基礎的起始字元位置。
+* length：可用來指定子字串中所要求字元數目的選擇性參數。
 
 **傳回**
 
@@ -2589,7 +2591,7 @@ arraylength(parsejson('21')) == null
 
 * 先套用 where 子句，再使用 `extractjson()`
 * 請考慮改為搭配使用規則運算式相符項目與 [extract](#extract)。如果 JSON 是從範本產生，這麼做可以執行的非常快並且有效。
-* 如果您需要從 JSON 中擷取不只一個值，請使用 `parsejson()`。
+* 如果您需要從 JSON 中擷取多個值，請使用 `parsejson()`。
 * 請考慮在擷取 JSON 時透過將資料行的類型宣告為動態以剖析 JSON。
 
 ### JSON 路徑運算式
@@ -2722,4 +2724,4 @@ range(1, 8, 3)
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016-->

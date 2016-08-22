@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/27/2016" 
+	ms.date="08/08/2016" 
 	ms.author="naziml"/>
 
 # 如何設定 Web 應用程式的 TLS 相互驗證
 
-## 概觀 ##
+## Overview ##
 為 Azure Web 應用程式啟用不同類型的驗證，即可限制其存取。這樣做的其中一種方法是要求透過 TLS/SSL 時使用用戶端憑證進行驗證。這項機制稱為 TLS 相互驗證或用戶端憑證驗證，本文將詳細說明如何設定 Web 應用程式使用用戶端憑證驗證。
 
 > **附註：**如果您透過 HTTP 存取您的網站，而非 HTTPS，將不會收到任何用戶端憑證。因此如果您的應用程式需要用戶端憑證，請勿允許透過 HTTP 傳入您應用程式的要求。
@@ -37,9 +37,9 @@
 
 > { "location": "My Web App Location", "properties": { "clientCertEnabled": true } }
 
-
 請一定要將 "location" 的值變更為您 Web 應用程式所在的位置 (例如 North Central US 或 West US 等)。
 
+> **附註︰**如果您從 Powershell 執行 ARMClient，您必須使用重音符 ` 為 JSON 檔案逸出 @ 符號。
 
 ## 從 Web 應用程式存取用戶端憑證 ##
 如果您使用 ASP.NET，並將您的應用程式設定為使用用戶端憑證，便可透過 **HttpRequest.ClientCertificate** 屬性取得憑證。若為其他應用程式堆疊，您則可透過「X-ARR-ClientCert」要求標頭中的 base64 編碼值取得用戶端憑證。您的應用程式可以從這個值建立憑證，然後將它用於您應用程式中的驗證和授權用途。
@@ -182,4 +182,4 @@ Azure Web 應用程式平台不會對傳送給應用程式的用戶端憑證進�
         }
     }
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0810_2016-->

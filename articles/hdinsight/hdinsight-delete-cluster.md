@@ -13,7 +13,7 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="05/20/2016"
+ms.date="08/09/2016"
 ms.author="larryfr"/>
 
 #如何刪除 HDInsight 叢集
@@ -48,4 +48,4 @@ HDInsight 叢集的費用是從建立叢集時開始計算，而於刪除叢集�
     
 將 __CLUSTERNAME__ 取代為 HDInsight 叢集的名稱。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016-->

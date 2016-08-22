@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/25/2016" 
+	ms.date="08/09/2016" 
 	ms.author="antonba"/>
 
 # 如何委派使用者註冊和產品訂閱
@@ -36,7 +36,7 @@
 
 ![Delegation page][api-management-delegation-signin-up]
 
-* 決定特殊委派端點的 URL，並在 [**Delegation endpoint URL**] 欄位中輸入。 
+* 決定特殊委派端點的 URL，並在 [**Delegation endpoint URL**] 欄位中輸入。
 
 * 在 [**Delegation authentication key**] 欄位中輸入密碼，用來計算提供給您驗證的簽章，以確定要求確實來自 Azure API 管理。您可以按一下 [**產生**] 按鈕，讓 API 管理為您隨機產生金鑰。
 
@@ -178,4 +178,4 @@
 
 [api-management-delegation-signin-up]: ./media/api-management-howto-setup-delegation/api-management-delegation-signin-up.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016-->

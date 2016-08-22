@@ -90,6 +90,7 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 | Contains | "contains" : "&lt;值&gt;"|
 | 在 | "in" : [ "&lt;值 1&gt;","&lt;值 2&gt;" ]|
 | ContainsKey | "containsKey" : "&lt;機碼名稱&gt;" |
+| exists | "exists" : "&lt;bool&gt;" |
 
 ### 欄位
 
@@ -97,7 +98,7 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 
 支援下列欄位和來源：
 
-欄位：**name**、**kind**、**type**、**location**、**tags**、**tags.*** 和**property alias**。
+欄位：**name**、**kind**、**type**、**location**、**tags**、**tags.*** 和 **property alias**。
 
 ### 屬性別名 
 屬性別名可在原則定義中用來存取資源類型特定屬性，例如設定和 SKU。它適用於所有具有屬性的 API 版本。別名可使用如下所示的 REST API 來擷取 (未來將新增 Powershell 支援)：
@@ -157,7 +158,7 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 - 稽核會在稽核記錄檔中產生事件，但不會使要求失敗
 - 附加會在要求中加入一組已定義的欄位
 
-對於 **append**，您必須提供的詳細資訊如下所示︰
+對於 **append**，您必須提供如下所示的詳細資料︰
 
     ....
     "effect": "append",
@@ -468,4 +469,4 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
     Get-AzureRmLog | where {$_.OperationName -eq "Microsoft.Authorization/policies/audit/action"} 
     
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -4,11 +4,11 @@
 	authors="kamathashwin"
 	manager=""
 	editor=""
-	services="monitoring"
-	documentationCenter="monitoring"/>
+	services="monitoring-and-diagnostics"
+	documentationCenter="monitoring-and-diagnostics"/>
 
 <tags
-	ms.service="monitoring"
+	ms.service="monitoring-and-diagnostics"
 	ms.workload="na"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
@@ -104,7 +104,7 @@ Webhook 可讓您將 Azure 警示通知路由到其他系統進行後處理或�
 |resourceGroupName|受影響資源的 resource-group-name|
 |properties |一組包含事件相關詳細資料的 <Key, Value> 配對 (也就是字典<String, String>)|
 |事件|元素，包含事件相關中繼資料|
-|authorization|擷取事件的 RBAC 屬性。這些屬性通常包括「動作」、「角色」和「範圍」。|
+|授權|擷取事件的 RBAC 屬性。這些屬性通常包括「動作」、「角色」和「範圍」。|
 |category | 事件的類別。支援值包括︰管理、警示、安全性、ServiceHealth、建議|
 |呼叫者|已執行作業的使用者的電子郵件地址，根據可用性的 UPN 宣告或 SPN 宣告。特定系統呼叫可為 Null。|
 |correlationId|	通常是字串格式的 GUID。具有屬於同一個較大動作的 correlationId 的事件，通常會共用相同的 correlationId。|
@@ -115,8 +115,8 @@ Webhook 可讓您將 Azure 警示通知路由到其他系統進行後處理或�
 |層級|下列其中一個值：重大、錯誤、警告、資訊和詳細資訊|
 |operationId|通常是對應至單一作業的事件之間共用的 GUID|
 |operationName|作業的名稱|
-|屬性 |事件元素內的元素包含事件的屬性。|
+|properties |事件元素內的元素包含事件的屬性。|
 |status|字串，描述作業的狀態。常見的值包括︰已啟動、進行中、成功、失敗、使用中、已解決|
 |子狀態|	通常包含對應 REST 呼叫的 HTTP 狀態碼。它也可以包含其他描述子狀態的字串。常見子狀態的值包括：確定 (HTTP 狀態碼︰200)，已建立 (HTTP 狀態碼︰201)、接受 (HTTP 狀態碼︰202)、沒有內容 (HTTP 狀態碼︰204)、不正確的要求 (HTTP 狀態碼︰400)、找不到 (HTTP 狀態碼︰404)，衝突 (HTTP 狀態碼︰409)、內部伺服器錯誤 (HTTP 狀態碼︰500)、服務無法使用 (HTTP 狀態碼︰503)、閘道逾時 (HTTP 狀態碼︰504)|
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

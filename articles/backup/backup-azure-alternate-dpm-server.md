@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/05/2016"
+	ms.date="08/08/2016"
 	ms.author="giridham;jimpark;trinadhk;markgal"/>
 
 # 從備份保存庫的另一部 DPM 伺服器復原資料
@@ -82,7 +82,7 @@
     ![清除外部 DPM](./media/backup-azure-alternate-dpm-server/clear-external-dpm.png)
 
 ## 疑難排解錯誤訊息
-|編號 |	錯誤訊息 |	疑難排解步驟 |
+|否。 |	錯誤訊息 |	疑難排解步驟 |
 | :-------------: |:-------------| :-----|
 |1\.|		保存庫認證所指定的保存庫中未登錄此伺服器。|	**原因：**選取的保存庫認證檔案如果不屬於與所嘗試復原的 DPM 伺服器關聯的備份保存庫，就會出現此錯誤。<br> **解決方法：**從已登錄 DPM 伺服器的備份保存庫下載保存庫認證檔。|
 |2\.|		可復原資料無法使用，或選取的伺服器不是 DPM 伺服器。|	**原因：**沒有任何其他具有 DPM 2012 R2 UR7 的 DPM 伺服器已向備份保存庫登錄，或具有 DPM 2012 R2 UR7 的 DPM 伺服器尚未上傳中繼資料，或選取的伺服器不是 DPM 伺服器 (也稱為 Windows Server 或 Windows 用戶端)。<br> **解決方法：**如果有其他已向備份保存庫登錄的 DPM 伺服器，請確認已安裝 SCDPM 2012 R2 UR7 和最新的 Azure Backup Agent。<br>如果有其他具有 DPM 2012 R2 UR7 的 DPM 伺服器已向備份保存庫登錄，請在安裝 UR7 後等候一天，再開始復原程序。夜間工作會針對先前所有受保護的備份，將中繼資料上傳至雲端。資料將可供復原。|
@@ -103,4 +103,4 @@
 ## 後續步驟：
 • [Azure 備份常見問題集](backup-azure-backup-faq.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

@@ -20,19 +20,21 @@
 
 [AZURE.INCLUDE [app-service-mobile-selector-get-started-users](../../includes/app-service-mobile-selector-get-started-users.md)]
 
-## 摘要
+## Summary
 
-在本教學課程中，您可以使用支援的身分識別提供者，將驗證加入 Apache Cordova 上的 TodoList 快速入門專案。本教學課程以[開始使用行動應用程式]為基礎，您必須先完成該教學課程。
+在本教學課程中，您可以使用支援的身分識別提供者，將驗證加入 Apache Cordova 上的 TodoList 快速入門專案。本教學課程以[開始使用 Mobile Apps] 為基礎，您必須先完成該教學課程。
 
 ##<a name="register"></a>註冊應用程式進行驗證，並設定應用程式服務
 
 [AZURE.INCLUDE [app-service-mobile-register-authentication](../../includes/app-service-mobile-register-authentication.md)]
 
+[觀看示範類似步驟的影片](https://channel9.msdn.com/series/Azure-connected-services-with-Cordova/Azure-connected-services-task-8-Azure-authentication)
+
 ##<a name="permissions"></a>限制只有通過驗證的使用者具有權限
 
 [AZURE.INCLUDE [app-service-mobile-restrict-permissions-dotnet-backend](../../includes/app-service-mobile-restrict-permissions-dotnet-backend.md)]
 
-現在，您可以驗證是否已停用後端的匿名存取。當您完成[開始使用行動應用程式]教學課程時，請在 Visual Studio 中開啟您建立的專案，然後在 **Google Android 模擬器**中執行您的應用程式，並驗證「未預期的連線錯誤」會在啟動應用程式之後顯示。
+現在，您可以驗證是否已停用後端的匿名存取。當您完成[開始使用 Mobile Apps] 教學課程時，請在 Visual Studio 中開啟您建立的專案，然後在 **Google Android 模擬器**中執行您的應用程式，並驗證「未預期的連線錯誤」會在啟動應用程式之後顯示。
 
 接下來，您要將應用程式更新為在要求行動應用程式後端的資源之前必須驗證使用者。
 
@@ -101,7 +103,7 @@
 * [Node.js Server SDK]
 
 <!-- URLs. -->
-[開始使用行動應用程式]: app-service-mobile-cordova-get-started.md
+[開始使用 Mobile Apps]: app-service-mobile-cordova-get-started.md
 [Content-Security-Policy 文件]: https://cordova.apache.org/docs/en/latest/guide/appdev/whitelist/index.html
 [推播通知]: app-service-mobile-cordova-get-started-push.md
 [驗證相關資訊]: app-service-mobile-auth.md
@@ -109,4 +111,4 @@
 [ASP.NET Server SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Node.js Server SDK]: app-service-mobile-node-backend-how-to-use-server-sdk.md
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0810_2016-->

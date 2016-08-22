@@ -3,7 +3,7 @@
    description="如何檢視和變更 Azure 虛擬機器的主機名稱、Web 和背景工作角色以進行名稱解析"
    services="virtual-network"
    documentationCenter="na"
-   authors="joaoma"
+   authors="jimdial"
    manager="carmonm"
    editor="tysonn" />
 <tags 
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="04/27/2016"
-   ms.author="joaoma" />
+   ms.author="jdial" />
 
 # 檢視與修改主機名稱
 
@@ -47,7 +47,7 @@
 
 從 REST 用戶端，請遵循下列指示：
 
-1. 確定您有連線到 Azure 入口網站的用戶端憑證若要取得用戶端憑證，請遵循[做法：下載與匯入發行設定與訂閱資訊中的步驟](https://msdn.microsoft.com/library/dn385850.aspx)。 
+1. 確定您有連線到 Azure 入口網站的用戶端憑證若要取得用戶端憑證，請遵循[做法：下載與匯入發行設定與訂閱資訊中的步驟](https://msdn.microsoft.com/library/dn385850.aspx)。
 
 1. 設定名稱為 x-ms-version，值為 2013-11-01 的標頭項目。
 
@@ -71,4 +71,4 @@
 
 [使用網路組態檔指定 DNS 設定](virtual-networks-specifying-a-dns-settings-in-a-virtual-network-configuration-file.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0810_2016-->

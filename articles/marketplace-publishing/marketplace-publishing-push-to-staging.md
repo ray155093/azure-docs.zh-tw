@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="Azure"
    ms.workload="na"
-   ms.date="08/01/2016"
+   ms.date="08/08/2016"
    ms.author="hascipio"/>
 
 # 使用行銷內容完成供應項目建立程序
@@ -123,7 +123,6 @@
 |---|---|---|---|
 | 虛擬機器映像 | 否 | 是 | 否|
 | 開發人員服務 | 是 | 是 | 是 |
-| 資料服務 | 是 | 否 | 否 |
 
 ### 2\.1.設定 VM 價格
 目前對於虛擬機器，我們提供下列 **3 種計費模式**：
@@ -171,7 +170,7 @@
 
     ![繪圖](media/marketplace-publishing-push-to-staging/img2.1.1_08.png)
 
-9.	手動設定其他區域的價格，或者您可以使用「自動定價」精靈，依據基本區域設定其他區域的價格。若要使用「自動定價」精靈，請按一下 [依據美國價格自動訂定其他市場價格] 按鈕。 視選取的區域而定，按鈕的標籤可能會不同。由於我們在建立這份文件時選取美國，因此以下螢幕擷取畫面中的按鈕標示為 [依據美國價格自動訂定其他市場價格]。
+9.	手動設定其他區域的價格，或者您可以使用「自動定價」精靈，依據基本區域設定其他區域的價格。若要使用「自動定價」精靈，請按一下 [依據美國價格自動訂定其他市場價格] 按鈕。 **注意：**視選取的區域而定，按鈕的標籤可能會不同。由於我們在建立這份文件時選取美國，因此以下螢幕擷取畫面中的按鈕標示為 [依據美國價格自動訂定其他市場價格]。
 
     ![繪圖](media/marketplace-publishing-push-to-staging/img2.1.1_09.png)
 
@@ -278,4 +277,4 @@
 [link-pubportal]: https://publish.windowsazure.com
 [link-push-to-production]: marketplace-publishing-push-to-production.md
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

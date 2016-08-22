@@ -18,7 +18,7 @@
 
 # 了解對應與企業整合套件
 
-## 概觀
+## Overview
 企業整合會使用對應，將 XML 資料從某種格式轉換成其他格式。
 
 ## 何謂對應？
@@ -26,6 +26,9 @@
 
 ## 為什麼要使用對應？
 讓我們假設您會定期收到客戶的 B2B 訂單或發票，而該客戶使用 YYYMMDD 格式的日期。不過，在您的組織中，您是以 MMDDYYY 格式儲存日期。您可以使用對應，先將 YYYMMDD 日期格式「轉換」為 MMDDYYY，然後再將訂單或發票儲存於客戶活動資料庫中。
+
+## 如何建立對應？
+Visual Studio 2015 的 [Enterprise 整合套件](./app-service-logic-enterprise-integration-overview.md "了解企業整合套件")可用來建立 Biztalk 整合專案。建立整合對應檔案可讓您以視覺化方式對應兩個 XML 結構描述檔案之間的項目。在建置此專案之後，XSLT 文件是輸出。
 
 ## 如何上傳對應？
 從 Azure 入口網站：
@@ -58,4 +61,4 @@
 - [深入了解合約](./app-service-logic-enterprise-integration-agreements.md "了解企業整合合約")
 - [深入了解轉換](./app-service-logic-enterprise-integration-transform.md "了解企業整合轉換")
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

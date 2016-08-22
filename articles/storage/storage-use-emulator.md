@@ -12,12 +12,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/28/2016" 
+	ms.date="08/03/2016" 
 	ms.author="tamram"/>
 
 # 使用 Azure 儲存體模擬器進行開發和測試
 
-## 概觀
+## Overview
 
 Microsoft Azure 儲存體模擬器提供了模擬 Azure Blob、佇列和資料表服務的本機環境，以供進行開發。您可以使用儲存體模擬器，針對儲存體服務在本機測試您的應用程式，而不需建立 Azure 訂用帳戶，也不會產生任何費用。如果您滿意應用程式在模擬器中的運作方式，就可以切換成使用雲端的 Azure 儲存體帳戶。
 
@@ -247,4 +247,4 @@ Microsoft Azure 儲存體模擬器提供了模擬 Azure Blob、佇列和資料�
 
 - 現在完全支援 2013-08-15 版的 Azure 儲存體服務。(先前只有儲存體模擬器 2.2.1 版預覽才支援此版本)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0810_2016-->

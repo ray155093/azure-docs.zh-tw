@@ -1,9 +1,9 @@
 <properties 
-	pageTitle="DocumentDB .NET SDK | Microsoft Azure" 
-	description="全面了解 .NET SDK，包括發行日期、停用日期及 DocumentDB .NET SDK 每個版本之間的變更。" 
+	pageTitle="DocumentDB .NET API 和 SDK | Microsoft Azure" 
+	description="全面了解 .NET API 和 SDK，包括發行日期、停用日期及 DocumentDB .NET SDK 每個版本之間的變更。" 
 	services="documentdb" 
 	documentationCenter=".net" 
-	authors="aliuy" 
+	authors="rnagpal" 
 	manager="jhubbard" 
 	editor="cgronlun"/>
 
@@ -13,24 +13,27 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="07/25/2016" 
+	ms.date="08/09/2016" 
 	ms.author="rnagpal"/>
 
-# DocumentDB SDK
+# DocumentDB API 和 SDK 
 
 > [AZURE.SELECTOR]
-- [.NET SDK](documentdb-sdk-dotnet.md)
-- [Node.js SDK](documentdb-sdk-node.md)
-- [Java SDK](documentdb-sdk-java.md)
-- [Python SDK](documentdb-sdk-python.md)
+- [.NET](documentdb-sdk-dotnet.md)
+- [Node.js](documentdb-sdk-node.md)
+- [Java](documentdb-sdk-java.md)
+- [Python](documentdb-sdk-python.md)
+- [REST](https://go.microsoft.com/fwlink/?LinkId=402413)
+- [SQL](https://msdn.microsoft.com/library/azure/dn782250.aspx)
 
-## DocumentDB .NET SDK
+## DocumentDB .NET API 和 SDK
 
 <table>
-<tr><td>**下載**</td><td>[NuGet](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/)</td></tr>
-<tr><td>**說明文件**</td><td>[.NET SDK 參考文件](https://msdn.microsoft.com/library/azure/dn948556.aspx)</td></tr>
-<tr><td>**範例**</td><td>[.NET 程式碼範例](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/code-samples)</td></tr>
+<tr><td>**SDK 下載**</td><td>[NuGet](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/)</td></tr>
+<tr><td>**API 文件**</td><td>[.NET API 參考文件](https://msdn.microsoft.com/library/azure/dn948556.aspx)</td></tr>
+<tr><td>**範例**</td><td>[.NET 程式碼範例](documentdb-dotnet-samples.md)</td></tr>
 <tr><td>**開始使用**</td><td>[開始使用 DocumentDB .NET SDK](documentdb-get-started.md)</td></tr>
+<tr><td>**Web 應用程式教學課程**</td><td>[使用 DocumentDB 開發 Web 應用程式](documentdb-dotnet-application.md)</td></tr>
 <tr><td>**目前支援的架構**</td><td>[Microsoft .NET Framework 4.5](https://www.microsoft.com/download/details.aspx?id=30653)</td></tr>
 </table></br>
 
@@ -121,9 +124,9 @@
   - LINQ 提供者支援 OrderBy() 或 OrderByDescending()
   - IndexingPolicy 支援 Order By
   
-		**NB: Possible breaking change** 
+		**NB: 可能中斷變更** 
   
-    	If you have existing code that provisions collections with a custom indexing policy, then your existing code will need to be updated to support the new IndexingPolicy class. If you have no custom indexing policy, then this change does not affect you.
+    	如果您有與自訂索引原則佈建集合的現有程式碼，您需要更新現有的程式碼才能支援新的 IndexingPolicy 類別。 如果您沒有自訂的索引原則，這個變更不會影響到您。
 
 ### <a name="1.1.0"/>[1\.1.0](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.1.0)
 - 支援使用新的 HashPartitionResolver 和 RangePartitionResolver 類別及 IPartitionResolver 來分割資料
@@ -156,8 +159,7 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 | 版本 | 發行日期 | 停用日期 
 | ---	  | ---	         | ---
 | [1\.9.2](#1.9.2) | 2016 年 7 月 23 日 |--- 
-| 1.9.1 | 已過時 |--- 
-| 1.9.0 | 已過時 |--- 
+| 1.9.1 | 已過時 |--- | 1.9.0 | 已過時 |--- 
 | [1\.8.0](#1.8.0) | 2016 年 6 月 14 日 |--- 
 | [1\.7.1](#1.7.1) | 2016 年 5 月 6 日 |--- 
 | [1\.7.0](#1.7.0) | 2016 年 4 月26 日 |--- 
@@ -175,7 +177,7 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 | [1\.0.0](#1.0.0) | 2015 年 4 月 8 日 |--- 
 | [0\.9.3-發行前版本](#0.9.x-preview) | 2015 年 3 月 12 日 | 2016 年 2 月 29 日 
 | [0\.9.2-發行前版本](#0.9.x-preview) | 2015 年 1 月 | 2016 年 2 月 29 日 
-| [0\.9.1-發行前版本](#0.9.x-preview) | 2014 年 10 月 13 日 | 2016 年 2 月 29 日 
+| [.9.1-發行前版本](#0.9.x-preview) | 2014 年 10 月 13 日 | 2016 年 2 月 29 日 
 | [0\.9.0-發行前版本](#0.9.x-preview) | 2014 年 8 月 21 日 | 2016 年 2 月 29 日
 
 ## 常見問題集
@@ -185,4 +187,4 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 
 若要深入了解 DocumentDB，請參閱 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 服務頁面。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016-->

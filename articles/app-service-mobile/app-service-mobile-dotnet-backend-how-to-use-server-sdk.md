@@ -1,6 +1,6 @@
 <properties
-	pageTitle="如何使用適用於行動應用程式的 .NET 後端伺服器 SDK | Azure App Service"
-	description="了解如何使用適用於 Azure App Service 行動應用程式的 .NET 後端伺服器 SDK。"
+	pageTitle="如何使用適用於 Mobile Apps 的 .NET 後端伺服器 SDK | Azure App Service"
+	description="了解如何使用適用於 Azure App Service Mobile Apps 的 .NET 後端伺服器 SDK。"
 	keywords="App Service, Azure App Service, 行動應用程式, 行動服務, 調整, 可調整, 應用程式部署, Azure 應用程式部署"
 	services="app-service\mobile"
 	documentationCenter=""
@@ -17,11 +17,11 @@
 	ms.date="08/02/2016"
 	ms.author="glenga"/>
 
-# 使用適用於 Azure 行動應用程式的 .NET 後端伺服器 SDK
+# 使用適用於 Azure Mobile Apps 的 .NET 後端伺服器 SDK
 
 [AZURE.INCLUDE [app-service-mobile-selector-server-sdk](../../includes/app-service-mobile-selector-server-sdk.md)]
 
-本主題說明如何在主要的 Azure App Service 行動應用程式案例中使用 .NET 後端伺服器 SDKAzure 行動應用程式 SDK 可協助您從 ASP.NET 應用程式使用行動用戶端。
+本主題說明如何在主要的 Azure App Service Mobile Apps 案例中使用 .NET 後端伺服器 SDKAzure Mobile Apps SDK 可協助您從 ASP.NET 應用程式使用行動用戶端。
 
 >[AZURE.TIP] [適用於 Azure Mobile Apps 的 .NET 伺服器 SDK](https://github.com/Azure/azure-mobile-apps-net-server) 是在 GitHub 上的開放原始碼。儲存機制包含整個伺服器 SDK 單元測試組件以及一些範例專案。
 
@@ -29,7 +29,7 @@
 
 伺服器 SDK 的參考文件位於此處：[Azure Mobile Apps .NET 參考資料](https://msdn.microsoft.com/library/azure/dn961176.aspx)。
 
-## <a name="create-app"></a>如何：為您的行動應用程式建立 .NET 後端
+## <a name="create-app"></a>作法：建立 .NET 行動應用程式後端
 
 如果您開始新的專案，您可以使用 [Azure 入口網站] 或 Visual Studio，建立 App Service 應用程式。本章節將協助您使用其中一個項目來建立新的行動應用程式後端，它會裝載簡單的待辦事項清單 API。您可以在本機執行此作業，或將專案發佈至雲端架構 App Service 行動應用程式。
 
@@ -37,11 +37,14 @@
 
 ### 使用 Azure 入口網站建立 .NET 後端
 
-您可以在 [Azure 入口網站]中直接建立新的行動應用程式。您可以遵循下列步驟，或者依照[建立行動應用程式](app-service-mobile-ios-get-started.md)教學課程，一起建立新的用戶端和伺服器。
+您可以在 [Azure 入口網站]中直接建立新的行動應用程式後端。
 
-[AZURE.INCLUDE [app-service-mobile-dotnet-backend-create-new-service](../../includes/app-service-mobile-dotnet-backend-create-new-service.md)]
+您可以遵循下列步驟，或者依照[建立行動應用程式](app-service-mobile-ios-get-started.md)教學課程，一起建立新的用戶端和伺服器。本教學課程包含下列指示的簡化版本，最適合用於概念驗證專案；本教學課程只能建立 Node.js 後端。
 
-回到 [開始] 刀鋒視窗，在 [建立資料表 API] 底下，選擇 [C#] 作為您的 [後端語言]。按一下 [下載]，將壓縮的專案檔案解壓縮至您的本機電腦，並在 Visual Studio 中開啟方案。
+[AZURE.INCLUDE [app-service-mobile-dotnet-backend-create-new-service-classic](../../includes/app-service-mobile-dotnet-backend-create-new-service-classic.md)]
+
+回到 [開始] 刀鋒視窗，在 [建立資料表 API] 底下，選擇 [C#] 作為您的 [後端語言]。
+按一下 [下載]，將壓縮的專案檔案解壓縮至您的本機電腦，並在 Visual Studio 中開啟方案。
 
 ### 使用 Visual Studio 2013 和 Visual Studio 2015 建立 .NET 後端
 
@@ -222,7 +225,7 @@ Mobile Apps 會使用 App Service 驗證和 ASP.NET 的功能，簡化為您的�
 
 + [做法：將驗證新增至伺服器專案](#add-auth)
 + [做法：針對應用程式使用自訂驗證](#custom-auth)
-+ [做法：擷取已驗證的使用者資訊](#user-info)
++ [做法：取出已驗證的使用者資訊](#user-info)
 + [做法︰限制授權使用者的資料存取](#authorize)
 
 ### <a name="add-auth"></a>做法：將驗證新增至伺服器專案
@@ -283,11 +286,11 @@ Mobile Apps 會使用 App Service 驗證和 ASP.NET 的功能，簡化為您的�
 			}
 		}
 
-`AppServiceLoginHandler.CreateToken()` 方法包含 _audience_ 和 _issuer_ 參數。這兩個參數通常會使用 HTTPS 配置設定為應用程式根目錄的 URL。同樣地，您應該將 _secretKey_ 設定為您應用程式的簽署金鑰值。這是機密值，永遠不應共用或包含於用戶端。您可以藉由參考 _WEBSITE\_AUTH\_SIGNING\_KEY_ 環境變數，在裝載於 App Service 時取得這個值。如果在本機偵錯內容中有需要，請依照[使用驗證進行本機偵錯](#local-debug)一節中的指示以擷取金鑰，並將它儲存為應用程式設定。
+`AppServiceLoginHandler.CreateToken()` 方法包含 _audience_ 和 _issuer_ 參數。這兩個參數通常會使用 HTTPS 配置設定為應用程式根目錄的 URL。同樣地，您應該將 _secretKey_ 設定為您應用程式的簽署金鑰值。這是機密值，永遠不應共用或包含於用戶端。您可以藉由參考 _WEBSITE\_AUTH\_SIGNING\_KEY_ 環境變數，在裝載於 App Service 時取得這個值。如果在本機偵錯內容中有需要，請依照[使用驗證進行本機偵錯](#local-debug)一節中的指示以取出金鑰，並將它儲存為應用程式設定。
 
 您也必須提供已發行權杖的存留期，以及您想要包含的任何宣告。您必須提供主體宣告，如範例程式碼所示。
 
-您也可以將用戶端程式碼簡化成使用 `loginAsync()` 方法 (命名方式可能因平台而異)，而不使用手動 HTTP POST。您也可以使用接受額外權杖參數 (與您要 POST 的判斷提示物件關聯) 的多載。此案例中的提供者應該為您選擇的自定名稱。接著，在伺服器上，您的登入動作應該作用於包含此自訂名稱的 _/.auth/login/{customProviderName}_ 路徑上。若要將控制器置於此路徑，請在套用 MobileAppConfiguration 之前新增指向 HttpConfiguration 的路由。
+您也可以將用戶端程式碼簡化成使用 `loginAsync()` 方法 (命名方式可能因平台而異)，而不使用手動 HTTP POST。您也可以使用接受額外權杖參數 (與您要 POST 的判斷提示物件關聯) 的多載。此案例中的提供者應該為您選擇的自定名稱。接著，在伺服器上，您的登入動作應該位在包含自訂名稱 _/.auth/login/{自訂提供者名稱}_ 的路徑上。若要將控制器置於此路徑，請在套用 MobileAppConfiguration 之前新增指向 HttpConfiguration 的路由。
 
 		config.Routes.MapHttpRoute("CustomAuth", ".auth/login/CustomAuth", new { controller = "CustomAuth" });
 
@@ -295,7 +298,7 @@ Mobile Apps 會使用 App Service 驗證和 ASP.NET 的功能，簡化為您的�
 
 >[AZURE.TIP] 使用 loginAsync() 方法以確保驗證權杖會附加至後續對服務的呼叫。
 
-###<a name="user-info"></a>做法：擷取已驗證的使用者資訊
+###<a name="user-info"></a>做法：取出已驗證的使用者資訊
 
 當 App Service 驗證使用者時，您可以存取指派的使用者識別碼及其他 .NET 後端程式碼中的資訊。這可用來在後端為指定的使用者進行授權決策，例如特定的使用者是否可以存取資料表資料列或其他資源。下列程式碼說明如何取得已登入使用者的使用者識別碼：
 
@@ -335,7 +338,7 @@ App Service 也可讓您向登入提供者要求特定宣告。這可讓您向�
 
 ### <a name="authorize"></a>做法︰限制授權使用者的資料存取
 
-在上一節中，我們已說明如何擷取已驗證使用者的使用者識別碼。您可以根據此值限制存取資料和其他資源。例如，將 userId 資料行新增到資料表，以及依使用者識別碼篩選使用者的查詢結果，是一種簡單方式，可將傳回的資料限制為只有授權的使用者。下列程式碼只有在目前使用者的識別碼符合 TodoItem 資料表上 UserId 資料行中的值時才會傳回資料：
+在上一節中，我們已說明如何取出已驗證使用者的使用者識別碼。您可以根據此值限制存取資料和其他資源。例如，將 userId 資料行新增到資料表，以及依使用者識別碼篩選使用者的查詢結果，是一種簡單方式，可將傳回的資料限制為只有授權的使用者。下列程式碼只有在目前使用者的識別碼符合 TodoItem 資料表上 UserId 資料行中的值時才會傳回資料：
 
     // Get the SID of the current user.
     var claimsPrincipal = this.User as ClaimsPrincipal;
@@ -479,4 +482,4 @@ Azure App Service 提供了數個適用於 ASP.NET 應用程式的偵錯和疑�
 [Microsoft.Azure.Mobile.Server.Notifications]: http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Notifications/
 [MapHttpAttributeRoutes]: https://msdn.microsoft.com/library/dn479134(v=vs.118).aspx
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016-->

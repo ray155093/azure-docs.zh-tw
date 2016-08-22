@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/17/2016"
+	ms.date="08/10/2016"
 	ms.author="nicking"/>
 # 使用 REST 來備份及還原 App Service 應用程式
 
@@ -23,17 +23,17 @@
 
 [App Service 應用程式](https://azure.microsoft.com/services/app-service/web/) 可以備份成 Azure 儲存體中的 blob。此備份中也可以包含應用程式的資料庫。如果不小心刪除應用程式，或需要將應用程式還原成先前的版本，則可以從任何先前的備份加以還原。您可以視需要隨時進行備份，或排定在間隔適當時間後進行備份。
 
-本文將說明如何透過 RESTful API 要求，來備份和還原應用程式。如果您想要透過 Azure 入口網站以圖形方式建立和管理 Web 應用程式的備份，請參閱[在 Azure App Service 中備份 Web 應用程式](web-sites-backup.md)
+本文說明如何透過 RESTful API 要求，來備份和還原應用程式。如果您想要透過 Azure 入口網站以圖形方式建立和管理 Web 應用程式的備份，請參閱[在 Azure App Service 中備份 Web 應用程式](web-sites-backup.md)
 
 <a name="gettingstarted"></a>
 ## 開始使用
-若要傳送 REST 要求，您必須知道 Web 應用程式的**名稱**、**資源群組**和**訂用帳戶識別碼**。如要尋找這些資訊，請在 [Azure 入口網站](https://portal.azure.com)的 [App Service] 刀鋒視窗中按一下您的 Web 應用程式。在本文的範例中，我們將會設定 **backuprestoreapiexamples.azurewebsites.net** 網站。它儲存在 Default-Web-WestUS 資源群組中，並在識別碼為 00001111-2222-3333-4444-555566667777 的訂用帳戶上執行。
+若要傳送 REST 要求，您必須知道應用程式的**名稱**、**資源群組**和**訂用帳戶識別碼**。如要尋找這些資訊，請在 [Azure 入口網站](https://portal.azure.com)的 [App Service] 刀鋒視窗中按一下您的應用程式。在本文的範例中，我們會設定 **backuprestoreapiexamples.azurewebsites.net** 網站。它儲存在 Default-Web-WestUS 資源群組中，並在識別碼為 00001111-2222-3333-4444-555566667777 的訂用帳戶上執行。
 
 ![範例網站資訊][SampleWebsiteInformation]
 
 <a name="backup-restore-rest-api"></a>
 ## 備份和還原 REST API
-現在我們要討論幾個範例，說明如何使用 REST API 來備份和還原應用程式。每個範例都包含 URL 和 HTTP 要求本文。範例 URL 中包含以大括號括住的預留位置，例如 {subscription-id}。請以對應的應用程式資訊來取代這些預留位置。以下有範例 URL 中會出現之預留位置的說明可供您參考。
+現在我們要討論幾個範例，說明如何使用 REST API 來備份和還原應用程式。每個範例都包含 URL 和 HTTP 要求本文。範例 URL 中包含以大括號括住的預留位置，例如 {subscription-id}。請以對應的應用程式資訊來取代預留位置。以下有範例 URL 中會出現之預留位置的說明可供您參考。
 
 * subscription-id – 包含應用程式的 Azure 訂用帳戶識別碼
 * resource-group-name – 包含應用程式的資源群組名稱
@@ -48,7 +48,7 @@
 
 使用範例網站後的 URL 看起來就像這樣：**https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backup/**
 
-您必須在要求本文中提供 JSON 物件，以指定要用來儲存備份的儲存體帳戶。JSON 物件必須有名為 **storageAccountUrl** 的屬性以保存 [SAS URL](../storage/storage-dotnet-shared-access-signature-part-1.md)，此 URL 會授與保有備份 blob 之 Azure 儲存體容器的寫入權限。如果您想要備份資料庫，則還必須提供包含所要備份之資料庫的名稱、類型和連接字串的清單。
+請在要求本文中提供 JSON 物件，以指定要用來儲存備份的儲存體帳戶。JSON 物件必須有名為 **storageAccountUrl** 的屬性以保存 [SAS URL](../storage/storage-dotnet-shared-access-signature-part-1.md)，此 URL 會授與保有備份 Blob 之 Azure 儲存體容器的寫入權限。如果您想要備份資料庫，則還必須提供包含所要備份之資料庫的名稱、類型和連接字串的清單。
 
 ```
 {
@@ -127,7 +127,7 @@
 }
 ```
 
-這個範例會將應用程式設定為每 7 天自動備份一次。**frequencyInterval** 和 **frequencyUnit** 參數會一起決定備份的執行頻率。**frequencyUnit** 的有效值為**小時**和**天**。例如，若要每 12 小時備份一次應用程式，請將 frequencyInterval 設為 12，並將 frequencyUnit 設為小時。
+此範例設定應用程式每隔七天自動備份。**frequencyInterval** 和 **frequencyUnit** 參數一起決定備份的執行頻率。**frequencyUnit** 的有效值為**小時**和**天**。例如，若要每 12 小時備份一次應用程式，請將 frequencyInterval 設為 12，並將 frequencyUnit 設為小時。
 
 系統會自動移除儲存體帳戶中的舊有備份。您可以藉由設定 **retentionPeriodInDays** 參數來控制舊有備份的保留期。如果您想要永遠儲存至少一個備份，不論它已存在多久，請將 **keepAtLeastOneBackup** 設為 true。
 
@@ -229,9 +229,9 @@ Azure App Service 會嘗試使用備份建立時所提供的 SAS URL，來刪除
 }
 ```
 
->[AZURE.NOTE] 為了確保安全，在傳送特定備份的 GET 要求時，並不會傳回與該備份相關聯的 SAS URL。如果您想要檢視與該備份相關聯的 SAS URL，請傳送 POST 要求給上述的同一個 URL，並只在要求本文中包含空的 JSON 物件。伺服器所傳回的回應中便會包含該備份的所有資訊，包括其 SAS URL。
+>[AZURE.NOTE] 為了確保安全，在傳送特定備份的 GET 要求時，並不會傳回與該備份相關聯的 SAS URL。如果您想要檢視與備份相關聯的 SAS URL，請傳送 POST 要求給上述的同一個 URL。在要求本文中包含空的 JSON 物件。伺服器所傳回的回應中便會包含該備份的所有資訊，包括其 SAS URL。
 
 <!-- IMAGES -->
 [SampleWebsiteInformation]: ./media/websites-csm-backup/01siteconfig.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0810_2016-->

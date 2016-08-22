@@ -40,7 +40,7 @@ App Service 可以備份下列資訊：
 
 * 若要使用「備份與還原」功能，App Service 方案必須屬於**標準**層或更高階層。如需有關調整 App Service 方案以使用更高階層的詳細資訊，請參閱[在 Azure 中調整應用程式規模](web-sites-scale.md)。請注意，**進階**層所允許的每日備份數量比**標準**層多。
 * 您需要與您即將備份之應用程式隸屬於相同訂用帳戶的 Azure 儲存體帳戶和容器。如需 Azure 儲存體帳戶的詳細資訊，請參閱本文結尾處的[連結](#moreaboutstorage)。
-* 您可以備份最多 10GB 的應用程式和資料庫內容。如果備份大小超過此限制，您會收到錯誤。
+* 備份上限是 10GB 的應用程式和資料庫內容。如果備份大小超過此限制，您會收到錯誤。
 
 <a name="manualbackup"></a>
 ## 建立手動備份
@@ -115,7 +115,7 @@ App Service 可以備份下列資訊：
 
 假設您有一個應用程式，其中包含過去幾年的記錄檔和靜態影像，且以後不再變更。您已完整備份應用程式，包括舊的影像。現在您想要每天備份應用程式，但不想付費儲存從未變更的記錄檔或靜態影像檔案。
 
-![Logs 資料夾][LogsFolder]
+![Logs 資料夾][LogsFolder] 
 ![Images 資料夾][ImagesFolder]
 	
 下列步驟顯示如何從備份中排除這些檔案。
@@ -177,4 +177,4 @@ App Service 可以備份下列資訊：
 [GhostUpgradeWarning]: ./media/web-sites-backup/13GhostUpgradeWarning.png
  
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0810_2016-->

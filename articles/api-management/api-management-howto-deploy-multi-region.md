@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/25/2016"
+	ms.date="08/09/2016"
 	ms.author="sdanie"/>
 
 # 如何將 Azure API 管理服務執行個體部署到多個 Azure 區域
@@ -75,4 +75,4 @@ API 管理支援多區域部署，可讓 API 發行者跨所需的任意數量 A
 [單位]: http://azure.microsoft.com/pricing/details/api-management/
 [進階]: http://azure.microsoft.com/pricing/details/api-management/
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016-->

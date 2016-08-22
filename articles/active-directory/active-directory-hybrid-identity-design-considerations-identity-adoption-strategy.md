@@ -1,6 +1,6 @@
 <properties
 	pageTitle="Azure Active Directory 混合式身分識別設計考量 - 定義混合式身分識別採用策略 | Microsoft Azure"
-	description="透過條件式存取控制，Azure Active Directory 會在驗證使用者時以及允許存取應用程式之前，檢查您挑選的特定條件。一旦符合這些條件，就會驗證使用者並允許存取應用程式。"
+	description="透過條件式存取控制，Azure Active Directory 會在驗證使用者時以及允許存取應用程式之前，檢查您挑選的特定條件。一旦符合這些條件，使用者就會通過驗證並獲允許存取應用程式。"
 	documentationCenter=""
 	services="active-directory"
 	authors="billmath"
@@ -13,7 +13,7 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="05/12/2016"
+	ms.date="08/08/2016"
 	ms.author="billmath"/>
 
 
@@ -37,7 +37,7 @@ Microsoft 有三個主要的整合案例，分別為雲端身分識別、同步�
 
 - **雲端身分識別**：這些是僅存在雲端的身分識別。就 Azure AD 來說，它們實際上就位於您的 Azure AD 目錄中。
 - **同步處理**：這些是存在於內部部署和雲端的身分識別。使用 Azure AD Connect 時，將會以現有的 Azure AD 帳戶建立或聯結這些使用者。在所謂的密碼雜湊中，使用者的密碼雜湊會從內部部署環境同步處理到雲端。使用同步處理時，必須注意如果在內部部署環境中停用使用者，可能需要經過 3 小時，Azure AD 中才會顯示該帳戶狀態。這是因為有同步處理時間間隔。
-- **同盟**：這些身分識別同時存在於內部部署和雲端。使用 Azure AD Connect 時，將會以現有的 Azure AD 帳戶建立或聯結這些使用者。  
+- **同盟**：這些身分識別同時存在於內部部署和雲端。使用 Azure AD Connect 時，將會以現有的 Azure AD 帳戶建立或聯結這些使用者。
  
 >[AZURE.NOTE]
 如需同步處理選項的詳細資訊，請參閱[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
@@ -153,8 +153,8 @@ Microsoft 有三個主要的整合案例，分別為雲端身分識別、同步�
 請注意，不支援下列各項，而且不應該選擇作為實作：
 
 - 不支援多個 Azure AD Connect 同步作業伺服器連接到相同的 Azure AD 目錄，即使它們已設定為同步處理一組互斥的物件也一樣
-- 它不支援同步處理相同使用者至多個 Azure AD 目錄。 
-- 也不支援進行組態變更，讓一個 Azure AD 中的使用者顯示為另一個 Azure AD 目錄中的連絡人。 
+- 它不支援同步處理相同使用者至多個 Azure AD 目錄。
+- 也不支援進行組態變更，讓一個 Azure AD 中的使用者顯示為另一個 Azure AD 目錄中的連絡人。
 - 也不支援將 Azure AD Connect 同步處理修改為連接到多個 Azure AD 目錄。
 - Azure AD 目錄在設計上是隔離的。它不支援將 Azure AD Connect 同步處理變更為從另一個 Azure AD 目錄讀取資料，以嘗試在目錄之間建置一般和統一的 GAL。也不支援使用 Azure AD Connect 同步處理將使用者匯出為另一個內部部署 AD的連絡人。
 
@@ -200,4 +200,4 @@ Microsoft 有三個主要的整合案例，分別為雲端身分識別、同步�
 ## 另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016-->

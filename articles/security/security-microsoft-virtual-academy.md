@@ -4,7 +4,7 @@
    services="security"
    documentationCenter="na"
    authors="TomShinder"
-   manager="StevenPo"
+   manager="MBaldwin"
    editor="TomSh"/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/23/2016"
+   ms.date="08/09/2016"
    ms.author="terrylan"/>
 
 # Microsoft Virtual Academy 中的 Azure 安全性課程
@@ -32,7 +32,7 @@ Microsoft Virtual Academy 提供免費線上訓練，協助開發人員、IT 和
 
 [保護雲端](https://mva.microsoft.com/zh-TW/training-courses/secure-the-cloud-14037?l=lQIkkst0B_5300115881)
 
-在本課程中，了解 Microsoft 如何協助您使用新的安全性控制來符合全球相容性需求 (例如 ISO 27001/27018、FedRAMP、PCI 和 HIPAA)，範圍從靜止資料加密、金鑰管理、虛擬機器保護、記錄和監視到反惡意程式碼服務、身分識別管理、存取控制項等等。
+在本課程中，了解 Microsoft 如何協助您以新的安全性控制符合全球相容性需求，例如 ISO 27001/27018、FedRAMP、PCI 和 HIPAA。這些控制的範圍包括待用資料加密、金鑰管理、VM 保護、記錄和監視、反惡意程式碼服務、身分識別管理、存取控制等等。
 
 [設計與實作雲端資料平台方案](https://mva.microsoft.com/zh-TW/training-courses/design-and-implement-cloud-data-platform-solutions-15711?l=jbCdW0j1B_3005244527)
 
@@ -40,26 +40,26 @@ Microsoft Virtual Academy 提供免費線上訓練，協助開發人員、IT 和
 
 [在雲端和行動世界中管理與保護身分識別](https://mva.microsoft.com/zh-TW/training-courses/manage-and-secure-identities-in-a-cloud-and-mobile-world-14013?l=GIJ2GcvrB_405192797)
 
-在本課程中，了解 Azure Active Directory 和 Microsoft 進階威脅分析如何協助您保護和管理公司中的使用者身分識別、在造成損害前找出安全性漏洞，並將存取所有公司資源的單一身分識別提供給使用者。探索技術，以用來探索 Shadow IT、管理應用程式存取，以及透過進階安全性報告、使用者行為分析、稽核和警示來監視可疑活動。
+在本課程中，了解 Azure Active Directory 和 Microsoft 進階威脅分析如何協助您保護和管理使用者身分識別、在造成損害前找出安全性漏洞，並將存取所有公司資源的單一身分識別提供給使用者。探索技術，以用來探索 Shadow IT、管理應用程式存取，以及透過進階安全性報告、使用者行為分析、稽核和警示來監視可疑活動。
 
 [雲端世界的安全性](https://mva.microsoft.com/zh-TW/training-courses/security-in-a-cloudenabled-world-12725?l=CfLHobAcB_3904300474)
 
-專家將逐步引導您進行 [Microsoft Cloud Security for Enterprise Architects](http://www.microsoft.com/download/48121) 海報中的客戶責任藍圖，並提供建議，來現代化安全性狀態的各個部分，包括控管、內含項目策略、安全性作業、高價值資產保護、資訊保護，以及使用者和裝置安全性，特別是保護系統管理控制。了解 Microsoft 網路安全性小組用來存取客戶雲端安全性以及建置其安全性藍圖的相同架構。
+專家將逐步引導您進行 [Microsoft Cloud Security for Enterprise Architects](http://www.microsoft.com/download/48121) 海報中的客戶責任藍圖。專家也會提供建議，來現代化安全性狀態的各個部分，包括控管、內含項目策略、安全性作業、高價值資產保護、資訊保護，以及使用者和裝置安全性，特別是保護系統管理控制。了解 Microsoft 網路安全性小組用來存取客戶雲端安全性以及建置其安全性藍圖的相同架構。
 
 [Microsoft Azure IaaS 深入探討](https://mva.microsoft.com/zh-TW/training-courses/microsoft-azure-iaas-deep-dive-14339?l=PtppYVQgB_8300115888)
 
-了解如何利用 Microsoft Azure 基礎結構功能。如果您是 IT 專業人員，則不需要具備先前的 Azure 經驗。本課程逐步解說如何建立和設定 Azure 虛擬機器、Azure 虛擬網路和跨單位連線，以在雲端上啟動和執行作業。這整個課程會包括安全性功能和考量。
+了解如何使用 Microsoft Azure 基礎結構功能。如果您是 IT 專業人員，則不需要具備先前的 Azure 經驗。本課程逐步解說如何建立和設定 Azure VM、Azure 虛擬網路和跨單位連線，以在雲端上啟動和執行作業。這整個課程會包括安全性功能和考量。
 
 [開始使用適用於 IT 專業人員的 Azure Security](https://mva.microsoft.com/training-courses/getting-started-with-azure-security-for-the-it-professional-11165?l=HfHzCXSAB_7404300474)
 
-在這個滿是示範的課程中，探索這些和其他熱門主題，因為有一組安全性專家以及 Azure 工程師帶您超越基礎認證並探索 Azure 的可能性。了解如何設計和使用各種技術，確保您擁有在雲端中順利啟動專案所需的安全性和架構。深入了解資料中心作業、虛擬機器 (VM) 組態、網路架構和儲存體基礎結構。
+在這個滿是示範的課程中，會有一組安全性專家以及 Azure 工程師帶您超越基礎認證並探索 Azure 的可能性。了解如何設計和使用各種技術，確保您擁有在雲端中順利啟動專案所需的安全性和架構。深入了解資料中心作業、VM 組態、網路架構和儲存體基礎結構。
 
 [深入了解 Azure Resource Manager 案例和模式](https://mva.microsoft.com/zh-TW/training-courses/deep-dive-into-azure-resource-manager-scenarios-and-patterns-13793?l=i1m06ZJYB_7001937557)
 
-找出如何使用 Azure Resource Manager (ARM) 作為工具，協助您管理這些資源群組。與一組國際專家一起探索 ARM，這些專家示範指令碼和工具，讓您可以在開發、測試或生產環境中輕鬆地啟動或關閉應用程式基礎結構的元素。探索如何使用角色型存取控制 (RBAC)，以使用 ARM 來實作安全性。
+與一組專家一起探索 Azure Resource Manager，這些專家示範指令碼和工具，讓您可以輕鬆地啟動或關閉應用程式基礎結構的元素。探索如何使用角色型存取控制 (RBAC)，以使用 Azure Resource Manager 來實作安全性。
 
 [Azure Rights Management Services 核心技能](https://mva.microsoft.com/zh-TW/training-courses/azure-rights-management-services-core-skills-10500?l=QLoxMwuCB_1805094681)
 
 找出資訊保護為什麼是貴組織絕對必要的項目，以及版權管理如何保護貴組織的智慧財產 (只要通過裝置和雲端)。向 Microsoft 專家取得實際操作經驗和技術實用知識。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016-->

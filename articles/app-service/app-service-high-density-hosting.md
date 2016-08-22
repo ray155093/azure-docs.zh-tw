@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="multiple" 
 	ms.topic="article" 
-	ms.date="05/17/2016" 
+	ms.date="08/07/2016" 
 	ms.author="byvinyal"/>
 
-#Azure App Service 上的高密度裝載#
+# Azure App Service 上的高密度裝載#
 
-##了解應用程式調整##
+## 了解應用程式調整##
 
 在使用 App Service 時，應用程式會經由 2 種概念與其所配置的容量分離︰
  
@@ -32,14 +32,14 @@
 
 不過，當多個應用程式共用 **App Service 方案**時，該 **App Service 方案**的每個執行個體上便會執行該應用程式的執行個體。
 
-##每一應用程式調整##
+## 每一應用程式調整##
 **每一應用程式調整**是可在 **App Service 方案**層級啟用，然後以每一應用程式為基礎來利用的功能。
 
 **每一應用程式調整**可讓您單獨調整應用程式，而不受用來裝載它的 **App Service 方案**所限制。如此一來，**App Service 方案**便可設定為提供 10 個執行個體，但應用程式可以設定為調整到只有其中 5 個。
 
 下面的 ARM 範本會建立相應放大為 10 個執行個體的 **App Service 方案**，以及設定為使用**每一應用程式調整**，但只調整為 5 個執行個體的應用程式。
 
-為了這樣做，App Service 方案會將每一網站調整屬性設定為 true (`"perSiteScaling": true`)，而且應用程式會將背景工作角色數目設定為使用 1 `"properties": { "numberOfWorkers": "1" }`
+為了這樣做，App Service 方案會將**每一網站調整**屬性設定為 true ( `"perSiteScaling": true`)，而且應用程式會將**背景工作角色數目**設定為使用 1 `"properties": { "numberOfWorkers": "1" }`
 
     {
         "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -87,7 +87,7 @@
     }
 
 
-##高密度裝載的建議組態##
+## 高密度裝載的建議組態
 
 **每一應用程式調整**是會同時在公用 Azure 區域以及 App Service 環境啟用的功能，但建議策略是使用 App Service 環境來利用其進階功能和較大的容量集區。
 
@@ -103,4 +103,4 @@
 
 1. 背景工作角色數目可以每個網站單獨設定，以視需要授與其他資源。例如，高使用率網站可以將「numberOfWorkers」設定為「3」，讓該應用程式擁有更多處理容量，而低使用率網站則可將「numberOfWorkers」設定為「1」。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016-->

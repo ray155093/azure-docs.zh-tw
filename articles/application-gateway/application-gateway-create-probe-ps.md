@@ -3,7 +3,7 @@
    description="了解如何在資源管理員中使用 PowerShell 建立應用程式閘道的自訂探查"
    services="application-gateway"
    documentationCenter="na"
-   authors="joaoma"
+   authors="georgewallace"
    manager="carmonm"
    editor=""
    tags="azure-resource-manager"
@@ -14,10 +14,17 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="06/07/2016"
-   ms.author="joaoma" />
+   ms.date="08/09/2016"
+   ms.author="gwallace" />
 
 # 使用 Azure 資源管理員的 PowerShell 建立 Azure 應用程式閘道的自訂探查
+
+> [AZURE.SELECTOR]
+- [Azure 入口網站](application-gateway-create-probe-portal.md)
+- [Azure Resource Manager PowerShell](application-gateway-create-probe-ps.md)
+- [Azure 傳統 PowerShell](application-gateway-create-probe-classic-ps.md)
+
+<BR>
 
 [AZURE.INCLUDE [azure-probe-intro-include](../../includes/application-gateway-create-probe-intro-include.md)]
 
@@ -40,7 +47,7 @@
 
 		get-AzureRmSubscription
 
-系統會提示使用您的認證進行驗證。<BR>
+系統會提示您使用您的認證進行驗證。<BR>
 
 ### 步驟 3
 
@@ -99,7 +106,7 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 
 ### 步驟 1
 
-建立名為 "gatewayIP01" 的應用程式閘道 IP 組態。當應用程式閘道啟動時，它會從設定的子網路取得 IP 位址，再將網路流量路由傳送到後端 IP 集區中的 IP 位址。請記住，每個執行個體需要一個 IP 位址。
+建立名為 "gatewayIP01" 的應用程式閘道 IP 組態。當「應用程式閘道」啟動時，它會從已設定的子網路取得 IP 位址，再將網路流量路由傳送到後端 IP 集區中的 IP 位址。請記住，每個執行個體需要一個 IP 位址。
 
 	$gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Subnet $subnet
 
@@ -107,7 +114,7 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 ### 步驟 2
 
 
-設定名為 "pool01" 的後端 IP 位址集區，其 IP 位址有 "134.170.185.46, 134.170.188.221,134.170.185.50"。這些 IP 位址將接收來自前端 IP 端點的網路流量。您要取代上述 IP 位址，加入您自己的應用程式 IP 位址端點。
+設定名為 "pool01" 的後端 IP 位址集區，其 IP 位址有 "134.170.185.46, 134.170.188.221,134.170.185.50"。這些 IP 位址會接收來自前端 IP 端點的網路流量。您需取代上述 IP 位址來新增自己的應用程式 IP 位址端點。
 
 	$pool = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 134.170.185.46, 134.170.188.221,134.170.185.50
 
@@ -121,8 +128,8 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 
 - **-Interval** - 以秒為單位設定探查間隔檢查。
 - **-Timeout** - 定義 HTTP 回應檢查的探查逾時。
-- **-Hostname 和 -path** - 應用程式閘道所叫用以判斷執行個體健全狀況的完整 URL 路徑。例如，若您擁有網站 http://contoso.com/，則可以為 "http://contoso.com/path/custompath.htm" 設定自訂探查，以便讓探查檢查有成功的 HTTP 回應。
-- **-UnhealthyThreshold** - 要將後端執行個體標記為*狀況不良*所需要的失敗 HTTP 回應數目。
+- **-Hostname 和 -path** -「應用程式閘道」所叫用以判斷執行個體健康狀態的完整 URL 路徑。例如，若您擁有網站 http://contoso.com/，則可以為 "http://contoso.com/path/custompath.htm" 設定自訂探查，以便讓探查檢查有成功的 HTTP 回應。
+- **-UnhealthyThreshold** - 要將後端執行個體標記為「狀況不良」所需的失敗 HTTP 回應次數。
 
 <BR>
 
@@ -131,7 +138,7 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 
 ### 步驟 4
 
-設定後端集區中流量的應用程式閘道設定 "poolsetting01"。此步驟中也有適用於應用程式閘道要求之後端集區回應的逾時組態。當後端回應觸及逾時限制時，應用程式閘道將會取消要求。這與僅適用於探查檢查之後端回應的探查逾時不同。
+設定後端集區中流量的應用程式閘道設定 "poolsetting01"。此步驟中也有適用於應用程式閘道要求之後端集區回應的逾時組態。當後端回應達到逾時限制時，「應用程式閘道」就會取消要求。這與僅適用於探查檢查之後端回應的探查逾時不同。
 
 	$poolSetting = New-AzureRmApplicationGatewayBackendHttpSettings -Name poolsetting01 -Port 80 -Protocol Http -CookieBasedAffinity Disabled -Probe $probe -RequestTimeout 80
 
@@ -182,7 +189,7 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 
 ### 步驟 1
 
-使用 **Get-AzureRmApplicationGateway** 將應用程式閘道資源載入至 PowerShell 變數。
+使用 **Get-AzureRmApplicationGateway** 將應用程式閘道資源載入 PowerShell 變數中。
 
 	$getgw =  Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg
 
@@ -197,7 +204,7 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 
 ### 步驟 3
 
-使用 **-Set-AzureRmApplicationGatewayBackendHttpSettings** 將探查加入至後端集區設定組態和逾時。
+使用 **-Set-AzureRmApplicationGatewayBackendHttpSettings** 將探查新增到後端集區設定組態和逾時中。
 
 
 	 $getgw = Set-AzureRmApplicationGatewayBackendHttpSettings -ApplicationGateway $getgw -Name $getgw.BackendHttpSettingsCollection.name -Port 80 -Protocol Http -CookieBasedAffinity Disabled -Probe $probe -RequestTimeout 120
@@ -214,20 +221,20 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 
 ### 步驟 1
 
-使用 **Get-AzureRmApplicationGateway** 將應用程式閘道資源載入至 PowerShell 變數。
+使用 **Get-AzureRmApplicationGateway** 將應用程式閘道資源載入 PowerShell 變數中。
 
 	$getgw =  Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg
 
 
 ### 步驟 2
 
-使用 **Remove-AzureRmApplicationGatewayProbeConfig** 將探查設定從應用程式閘道移除。
+使用 **Remove-AzureRmApplicationGatewayProbeConfig** 將探查設定從應用程式閘道中移除。
 
 	$getgw = Remove-AzureRmApplicationGatewayProbeConfig -ApplicationGateway $getgw -Name $getgw.Probes.name
 
 ### 步驟 3
 
-使用 **-Set-AzureRmApplicationGatewayBackendHttpSettings** 更新後端集區設定，將探查與逾時設定移除。
+使用 **-Set-AzureRmApplicationGatewayBackendHttpSettings** 來更新後端集區設定，以將探查與逾時設定移除。
 
 
 	 $getgw=Set-AzureRmApplicationGatewayBackendHttpSettings -ApplicationGateway $getgw -Name $getgw.BackendHttpSettingsCollection.name -Port 80 -Protocol http -CookieBasedAffinity Disabled
@@ -238,4 +245,4 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 
 	Set-AzureRmApplicationGateway -ApplicationGateway $getgw -verbose
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0810_2016-->

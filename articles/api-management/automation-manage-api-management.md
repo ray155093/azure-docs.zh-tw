@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/24/2016"
+	ms.date="08/09/2016"
 	ms.author="csand"/>
 
 
@@ -44,4 +44,4 @@ Azure 自動化提供高度可靠、高度可用的工作流程執行引擎，�
 
 * 請參閱 Azure 自動化[快速入門教學課程](../automation/automation-first-runbook-graphical.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016-->

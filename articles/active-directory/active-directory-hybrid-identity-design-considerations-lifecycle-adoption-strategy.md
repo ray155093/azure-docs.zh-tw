@@ -4,7 +4,7 @@
 	description="協助根據每個生命週期階段可用的選項，定義混合式身分識別管理工作。"
 	documentationCenter=""
 	services="active-directory"
-	authors="femila"
+	authors="billmath"
 	manager="stevenpo"
 	editor=""/>
 
@@ -14,8 +14,8 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity"
-	ms.date="12/07/2015"
-	ms.author="femila"/>
+	ms.date="08/08/2016"
+	ms.author="billmath"/>
 
 
 # 判斷混合式身分識別生命週期採用策略
@@ -95,4 +95,4 @@ Azure Active Directory 為數千個 SaaS 應用程式和內部部署 Web 應用�
 ## 另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0810_2016-->

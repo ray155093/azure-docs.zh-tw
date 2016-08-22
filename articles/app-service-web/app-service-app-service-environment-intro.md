@@ -18,8 +18,8 @@
 
 # App Service Environment 簡介
 
-## 概觀 ##
-App Service 環境是 Azure App Service 的[高階][PremiumTier]服務方案選項，可提供完全隔離的專用環境，以便安全地以高延展性執行 Azure App Service 應用程式，包括 [Web Apps][WebApps]、[行動應用程式][MobileApps]和 [API 應用程式][APIApps]。
+## Overview ##
+App Service 環境是 Azure App Service 的[高階][PremiumTier]服務方案選項，可提供完全隔離的專用環境，以便安全地以高延展性執行 Azure App Service 應用程式，包括 [Web 應用程式][WebApps]、[行動應用程式][MobileApps]和 [API 應用程式][APIApps]。
 
 適合應用程式工作負載的 App Service 環境需要：
 
@@ -108,4 +108,4 @@ App Service Environment 可以在 Azure Resource Manager 虛擬網路或者傳�
 
  
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0810_2016-->

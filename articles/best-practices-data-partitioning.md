@@ -21,7 +21,7 @@
 
 [AZURE.INCLUDE [pnp-header](../includes/guidance-pnp-header-include.md)]
 
-## 概觀
+## Overview
 
 在許多大型解決方案中，資料分成個別的分割區，可以個別管理和存取。您必須仔細選擇資料分割策略，才能最大化利益，同時將不良影響降至最低。資料分割有助於改善延展性、減少爭用，以及最佳化效能。資料分割的另一項優點是可提供一種機制，藉由使用模式來區分資料。例如，您可以將較舊且較不使用 (冷) 的資料封存至成本較低的資料儲存體。
 
@@ -567,4 +567,4 @@ _圖 10.Redis 儲存體中記錄客戶訂單及其詳細資料的建議結構_
 [何謂 Azure 搜尋服務？]: search/search-what-is-azure-search.md
 [什麼是 Azure SQL Database？]: sql-database/sql-database-technical-overview.md
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0810_2016-->
