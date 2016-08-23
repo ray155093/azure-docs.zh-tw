@@ -1,6 +1,6 @@
 <properties 
 	pageTitle="教學課程：使用 Azure PowerShell 建立具有複製活動的管線" 
-	description="在本教學課程中，您將使用 Azure PowerShell，建立具有複製活動的 Azure Data Factory 管線。" 
+	description="在本教學課程中，您會使用 Azure PowerShell，建立具有複製活動的 Azure Data Factory 管線。" 
 	services="data-factory" 
 	documentationCenter="" 
 	authors="spelluru" 
@@ -22,9 +22,10 @@
 - [使用 Data Factory 編輯器](data-factory-copy-activity-tutorial-using-azure-portal.md)
 - [使用 PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
 - [使用 Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
+- [使用 REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
 - [使用複製精靈](data-factory-copy-data-wizard-tutorial.md)
 
-[將資料從 Blob 儲存體複製到 SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) 教學課程會示範如何使用 [Azure 入口網站][azure-portal]建立和監視 Azure Data Factory。在本教學課程中，您將使用 Azure PowerShell Cmdlet 來建立和監視 Azure Data Factory。在本教學課程中，您於 Data Factory 中建立的管線會使用複製活動將資料從 Azure Blob 複製到 Azure SQL Database。
+[將資料從 Blob 儲存體複製到 SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) 教學課程會示範如何使用 [Azure 入口網站][azure-portal]建立和監視 Azure Data Factory。在本教學課程中，您會使用 Azure PowerShell Cmdlet 來建立和監視 Azure Data Factory。在本教學課程中，您於 Data Factory 中建立的管線會使用複製活動將資料從 Azure Blob 複製到 Azure SQL Database。
 
 複製活動會在 Azure Data Factory 中執行資料移動，而此活動是由全域可用的服務所提供，可以使用安全、可靠及可調整的方式，在各種不同的資料存放區之間複製資料。如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)文章。
 
@@ -39,33 +40,31 @@
 
 - **Azure PowerShell** (英文)。按照[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 一文中的指示操作，在您的電腦上安裝 Azure PowerShell。
 
-若您使用**版本 < 1.0** 的 Azure PowerShell，您必須使用[這裡][old-cmdlet-reference]所記載的 Cmdlet。您也必須在使用 Data Factory Cmdlet 之前，先執行下列命令：
-
-1. 開啟 Azure PowerShell 並執行下列命令。將 Azure PowerShell 維持在開啟狀態，直到本教學課程結束為止。如果您關閉並重新開啟，則需要再次執行這些命令。
-	1. 執行 **Add-AzureAccount**，並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
-	2. 執行 **Get-AzureSubscription** 以檢視此帳戶的所有訂用帳戶。
-	3. 執行 **Select-AzureSubscription** 以選取您想要使用的訂用帳戶。此訂用帳戶應該與您在 Azure 入口網站中使用的相同。
-4. 切換至 AzureResourceManager 模式，因為 Azure Data Factory Cmdlet 可在此模式中使用：**Switch-AzureMode AzureResourceManager**。
-  
-
 ##本教學課程內容
 下表列出您在本教學課程中將執行的步驟及說明。
 
 步驟 | 說明
 -----| -----------
-[建立 Azure Data Factory](#create-data-factory) | 在此步驟中，您將建立名為 **ADFTutorialDataFactoryPSH** 的 Azure Data Factory。 
-[建立連結服務](#create-linked-services) | 在此步驟中，您將建立兩個連結服務：**StorageLinkedService** 和 **AzureSqlLinkedService**。StorageLinkedService 會連結 Azure 儲存體，而 AzureSqlLinkedService 會將 Azure SQL Database 連結至 ADFTutorialDataFactoryPSH。
-[建立輸入和輸出資料集](#create-datasets) | 在此步驟中，您將定義兩個資料集 (**EmpTableFromBlob** 和 **EmpSQLTable**)，當您在下一個步驟中建立 ADFTutorialPipeline 時，可將這兩個資料集做為**複製活動**的輸入和輸出資料表。
-[建立及執行管線](#create-pipeline) | 在此步驟中，您將在 Data Factory **ADFTutorialDataFactoryPSH** 中建立名為 **ADFTutorialPipeline** 的管線。此管線的複製活動會將資料從 Azure Blob 複製到輸出 Azure 資料庫資料表。
-[監視資料集和管線](#monitor-pipeline) | 在此步驟中，您將使用 Azure PowerShell 來監視資料集和管線。
+[建立 Azure Data Factory](#create-data-factory) | 在此步驟中，您會建立名為 **ADFTutorialDataFactoryPSH** 的 Azure Data Factory。 
+[建立連結服務](#create-linked-services) | 在此步驟中，您會建立兩個連結服務：**StorageLinkedService** 和 **AzureSqlLinkedService**。StorageLinkedService 會連結 Azure 儲存體，而 AzureSqlLinkedService 會將 Azure SQL Database 連結至 ADFTutorialDataFactoryPSH。
+[建立輸入和輸出資料集](#create-datasets) | 在此步驟中，您會定義兩個資料集 (**EmpTableFromBlob** 和 **EmpSQLTable**)，當您在下一個步驟中建立 ADFTutorialPipeline 時，可將這兩個資料集做為**複製活動**的輸入和輸出資料表。
+[建立及執行管線](#create-pipeline) | 在此步驟中，您會在 Data Factory **ADFTutorialDataFactoryPSH** 中建立名為 **ADFTutorialPipeline** 的管線。此管線的**複製活動**會將資料從 Azure Blob 複製到輸出 Azure 資料庫資料表。
+[監視資料集和管線](#monitor-pipeline) | 在此步驟中，您會使用 Azure PowerShell 來監視資料集和管線。
 
 ## 建立 Data Factory
 在此步驟中，您會使用 Azure PowerShell 建立名為 **ADFTutorialDataFactoryPSH** 的 Azure Data Factory。
 
-1. 開啟 Azure PowerShell 並執行下列命令。將 Azure PowerShell 維持在開啟狀態，直到本教學課程結束為止。如果您關閉並重新開啟，則需要再次執行這些命令。
-	- 執行 **Login-AzureRmAccount**，並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
-	- 執行 **Get-AzureSubscription** 以檢視此帳戶的所有訂用帳戶。
-	- 執行 **Select-AzureSubscription <訂用帳戶名稱>** 以選取您想要使用的訂用帳戶。此訂用帳戶應該與您在 Azure 入口網站中使用的相同。
+1. 啟動 **PowerShell** 並執行下列命令。將 Azure PowerShell 維持在開啟狀態，直到本教學課程結束為止。如果您關閉並重新開啟，則需要再次執行這些命令。
+	1. 執行下列命令並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
+	
+			Login-AzureRmAccount   
+	2. 執行下列命令以檢視此帳戶的所有訂用帳戶。
+
+			Get-AzureRmSubscription 
+	3. 執行下列命令以選取您要使用的訂用帳戶。以您的 Azure 訂用帳戶名稱取代 **&lt;NameOfAzureSubscription**&gt;。
+
+			Get-AzureRmSubscription -SubscriptionName <NameOfAzureSubscription> | Set-AzureRmContext
+
 3. 執行以下命令，建立名為 **ADFTutorialResourceGroup** 的 Azure 資源群組。
    
 		New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
@@ -81,7 +80,7 @@
 - Azure Data Factory 的名稱在全域必須是唯一的。如果您收到錯誤：「Data Factory 名稱 “ADFTutorialDataFactoryPSH” 無法使用」，請變更名稱 (例如 yournameADFTutorialDataFactoryPSH)。執行本教學課程中的步驟時，請使用此名稱來取代 ADFTutorialFactoryPSH。請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md)主題，以了解 Data Factory 成品的命名規則。
 - 若要建立 Data Factory 執行個體，您必須是 Azure 訂用帳戶的參與者/系統管理員
 - Data Factory 的名稱未來可能會註冊為 DNS 名稱，因此會變成公開可見的名稱。
-- 如果您收到錯誤：**此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory**，請執行下列其中一項，然後嘗試再次發佈︰
+- 如果您收到錯誤：「此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory」，請執行下列其中一項，然後嘗試再次發佈︰
 
 	- 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者。
 		
@@ -95,7 +94,7 @@
 ## 建立連結服務
 連結服務會將資料存放區或計算服務連結至 Azure Data Factory。資料存放區可以是 Azure 儲存體、Azure SQL Database 或內部部署 SQL Server 資料庫，且內含 Data Factory 管線的輸入資料或儲存其輸出資料。計算服務是處理輸入資料並產生輸出資料的服務。
 
-在此步驟中，您將建立兩個連結服務：**StorageLinkedService** 和 **AzureSqlLinkedService**。StorageLinkedService 連結服務會連結 Azure 儲存體帳戶，而 AzureSqlLinkedService 會將 Azure SQL Database 連結至 Data Factory：**ADFTutorialDataFactoryPSH**。您稍後將在本教學課程中建立管線，以將資料從 StorageLinkedService 中的 Blob 容器複製到 AzureSqlLinkedService 中的 SQL 資料表。
+在此步驟中，您會建立兩個連結服務：**StorageLinkedService** 和 **AzureSqlLinkedService**。StorageLinkedService 連結服務會連結 Azure 儲存體帳戶，而 AzureSqlLinkedService 會將 Azure SQL Database 連結至 Data Factory：**ADFTutorialDataFactoryPSH**。您稍後會在本教學課程中建立管線，以將資料從 StorageLinkedService 中的 Blob 容器複製到 AzureSqlLinkedService 中的 SQL 資料表。
 
 ### 建立 Azure 儲存體帳戶的連結服務
 1.	在 **C:\\ADFGetStartedPSH** 中，使用以下內容建立名為 **StorageLinkedService.json** 的 JSON 檔案。建立 ADFGetStartedPSH 資料夾 (如果不存在)。
@@ -150,13 +149,13 @@
 	1. 按一下左邊的 [**瀏覽**] 中樞，然後按一下 [**SQL Server**]。
 	2. 選取您的伺服器，然後按一下 [SQL SERVER] 刀鋒視窗上的 [**設定**]。
 	3. 在 [**設定**] 刀鋒視窗中，按一下 [**防火牆**]。
-	4. 在 [防火牆設定] 刀鋒視窗中，按一下 [允許存取 Azure 服務] 的 [開啟]。
+	4. 在 [**防火牆設定**] 刀鋒視窗中，對 [**允許存取 Azure 服務**] 按一下 [**開啟**]。
 	5. 按一下左邊的 [作用中] 中樞，切換至原先的 [Data Factory] 刀鋒視窗。
 	
 
 ## 建立資料集
 
-在上一個步驟中，您已建立連結服務 **StorageLinkedService** 和 **AzureSqlLinkedService**，將 Azure 儲存體帳戶和 Azure SQL Database 連結至 Data Factory：**ADFTutorialDataFactoryPSH**。在此步驟中，您將建立資料集，這些資料集在下一個步驟所建立的管線中，會代表複製活動的輸入和輸出資料。
+在上一個步驟中，您已建立連結服務 **StorageLinkedService** 和 **AzureSqlLinkedService**，將 Azure 儲存體帳戶和 Azure SQL Database 連結至 Data Factory：**ADFTutorialDataFactoryPSH**。在此步驟中，您會建立資料集，而這些資料集在下一個步驟所建立的管線中代表複製活動的輸入和輸出資料。
 
 資料表是矩形的資料集，而且是目前唯一受支援的資料集類型。本教學課程中的輸入資料表是指 StorageLinkedService 所指向之 Azure 儲存體中的 Blob 容器，輸出資料表則是指 AzureSqlLinkedService 所指向之 Azure SQL Database 中的 SQL 資料表。
 
@@ -196,7 +195,7 @@
 	若您的電腦上已安裝 Visual Studio 2013：請在 Azure 入口網站中 ([http://portal.azure.com](http://portal.sazure.com))，依序按一下左側的 [瀏覽] 中樞、[SQL Server]，選取您的資料庫，然後按一下工具列上的 [在 Visual Studio 中開啟] 按鈕，以連接到您的 Azure SQL Server 並執行指令碼。如果不允許您的用戶端存取 Azure SQL Server，則必須將 Azure SQL Server 的防火牆設定成允許從您的電腦 (IP 位址) 存取。請參閱上文的步驟，為 Azure SQL Server 設定防火牆。
 		
 ### 建立輸入資料集 
-資料表是矩形的資料集，並具有的結構描述。在此步驟中，您將在 **StorageLinkedService** 連結服務所代表的 Azure 儲存體中，建立指向 Blob 容器的 **EmpBlobTable** 資料表。此 Blob 容器 (**adftutorial**) 包含的輸入資料位於 **emp.txt** 檔案中。
+資料表是矩形的資料集，並具有的結構描述。在此步驟中，您會在 **StorageLinkedService** 連結服務所代表的 Azure 儲存體中，建立指向 Blob 容器的 **EmpBlobTable** 資料表。此 Blob 容器 (**adftutorial**) 包含的輸入資料位於 **emp.txt** 檔案中。
 
 1.	在 **C:\\ADFGetStartedPSH** 資料夾中，使用下列內容建立名為 **EmpBlobTable.json** 的 JSON 檔案：
 
@@ -241,11 +240,11 @@
 	- 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (**columnDelimiter**)
 	- **availability** 設為**每小時** (**frequency** 設為**小時**且 **interval** 設為 **1**)，因此 Data Factory 服務每個小時皆會在您指定之 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。
 
-	如果您沒有指定**輸入****資料表**的 **fileName**，則輸入資料夾 (**folderPath**) 中的所有檔案/Blob 都會視為輸入。如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。
+	如果您沒有指定**輸入** **資料表**的 **fileName**，則輸入資料夾 (**folderPath**) 中的所有檔案/Blob 都會視為輸入。如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。
  
 	如果您未指定輸出資料表的 **fileName**，**folderPath** 中產生的檔案會依照下列格式命名：Data.<Guid>.txt (範例：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt.)。
 
-	若要根據 **SliceStart** 時間動態設定 **folderPath** 和 **fileName**，請使用 **partitionedBy** 屬性。在下列範例中，folderPath 使用 SliceStart (處理配量的開始時間) 中的年、月和日，fileName 使用 SliceStart 中的小時。例如，如果配量產生於 2014-10-20T08:00:00，folderName 設定為 wikidatagateway/wikisampledataout/2014/10/20，而 fileName 設定為 08.csv。
+	若要根據 **SliceStart** 時間動態設定 **folderPath** 和 **fileName**，請使用 **partitionedBy** 屬性。在下列範例中，folderPath 使用 SliceStart (所處理配量的開始時間) 中的年、月和日，fileName 使用 SliceStart 中的小時。例如，如果配量產生於 2014-10-20T08:00:00，folderName 設定為 wikidatagateway/wikisampledataout/2014/10/20，而 fileName 設定為 08.csv。
 
 			"folderPath": "wikidatagateway/wikisampledataout/{Year}/{Month}/{Day}",
 	        "fileName": "{Hour}.csv",
@@ -264,7 +263,7 @@
 		New-AzureRmDataFactoryDataset $df -File .\EmpBlobTable.json
 
 ### 建立輸出資料集
-在這部分的步驟中，您將在 **AzureSqlLinkedService** 連結服務所代表的 Azure SQL Database中，建立指向 SQL 資料表 (**emp**) 的輸出資料表 **EmpSQLTable**。管線會將輸入 Blob 中的資料複製到 **emp** 資料表。
+在這部分的步驟中，您會在 **AzureSqlLinkedService** 連結服務所代表的 Azure SQL Database中，建立指向 SQL 資料表 (**emp**) 的輸出資料表 **EmpSQLTable**。管線會將輸入 Blob 中的資料複製到 **emp** 資料表。
 
 1.	在 **C:\\ADFGetStartedPSH** 資料夾中，使用下列內容建立名為 **EmpSQLTable.json** 的 JSON 檔案。
 		
@@ -373,7 +372,7 @@
 **恭喜！** 您已成功建立 Azure Data Factory、連結服務、資料表和管線，以及排定的管線。
 
 ## 監視管線
-在此步驟中，您將使用 Azure PowerShell 來監視 Azure Data Factory 的運作情形。
+在此步驟中，您會使用 Azure PowerShell 來監視 Azure Data Factory 的運作情形。
 
 1.	執行 **Get-AzureRmDataFactory** 並指派輸出給變數 $df。
 
@@ -452,8 +451,8 @@
 | :---- | :---- |
 | [資料移動活動](data-factory-data-movement-activities.md) | 本文提供您在本教學課程中使用的複製活動詳細資訊。 |
 | [排程和執行](data-factory-scheduling-and-execution.md) | 本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
-| [管線](data-factory-create-pipelines.md) | 本文將協助您了解 Azure Data Factory 中的管線和活動，以及如何運用這些來為您的案例或業務建構端對端的資料導向工作流程。 |
-| [資料集](data-factory-create-datasets.md) | 他的文章會協助您了解 Azure Data Factory 中的資料集。
+| [管線](data-factory-create-pipelines.md) | 本文協助您了解 Azure Data Factory 中的管線和活動，以及如何運用這些來為您的案例或業務建構端對端的資料導向工作流程。 |
+| [資料集](data-factory-create-datasets.md) | 本文協助您了解 Azure Data Factory 中的資料集。
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
 
@@ -475,4 +474,4 @@
 [sql-management-studio]: ../sql-database/sql-database-manage-azure-ssms.md
  
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/18/2016"
+	ms.date="08/10/2016"
 	ms.author="jgao"/>
 
 
@@ -72,9 +72,9 @@ Blob 儲存體可使用於結構化和非結構化資料。Blob 儲存容器以�
 
 將資料儲存在 Azure Blob 儲存體而非 HDFS 有許多優點：
 
-* **資料重複使用和共用：** HDFS 中的資料位於運算叢集內。只有可存取計算叢集的應用程式，才能利用 HDFS API 來使用資料。可透過 HDFS API 或 [Blob 儲存體 REST API][blob-storage-restAPI] 來存取 Azure Blob 儲存體中的資料。因此，許多應用程式 (包括其他 HDInsight 叢集) 和工具都可用來產生和取用資料。
+* **資料重複使用和共用：** HDFS 中的資料位於計算叢集內。只有可存取計算叢集的應用程式，才能利用 HDFS API 來使用資料。可透過 HDFS API 或 [Blob 儲存體 REST API][blob-storage-restAPI] 來存取 Azure Blob 儲存體中的資料。因此，許多應用程式 (包括其他 HDInsight 叢集) 和工具都可用來產生和取用資料。
 * **資料封存：**將資料儲存在 Azure Blob 儲存體中，可安全地刪除用於計算的 HDInsight 叢集，而不會遺失使用者資料。
-* **資料儲存成本：**長期將資料儲存在 DFS 中的成本高於將資料儲存在 Azure Blob 儲存體中，因為運算叢集的成本高於 Azure Blob 儲存容器的成本。此外，因為不需要每次產生計算叢集時都重新載入資料，也能節省資料載入成本。
+* **資料儲存成本：**長期將資料儲存在 DFS 中的成本高於將資料儲存在 Azure Blob 儲存體中，因為計算叢集的成本高於 Azure Blob 儲存容器的成本。此外，因為不需要每次產生計算叢集時都重新載入資料，也能節省資料載入成本。
 * **彈性向外延展：**雖然HDFS 提供向外延展的檔案系統，但延展程度取決於您建立給叢集的節點數目。變更延展程度較為複雜，可改用 Azure Blob 儲存體自動提供的彈性延展功能。
 * **異地複寫：**Azure Blob 儲存體可以進行異地複寫。雖然這樣可支援地理位置復原和資料備援，但容錯移轉至異地複寫的位置會嚴重影響效能，且可能產生額外的成本。因此，只有在資料的價值大於額外成本時，才建議您明智地選擇地理區域複寫。
 
@@ -297,4 +297,4 @@ URI 配置提供未加密存取 (使用*wasb:* 首碼) 和 SSL 加密存取 (使
 [img-hdi-quick-create]: ./media/hdinsight-hadoop-use-blob-storage/HDI.QuickCreateCluster.png
 [img-hdi-custom-create-storage-account]: ./media/hdinsight-hadoop-use-blob-storage/HDI.CustomCreateStorageAccount.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

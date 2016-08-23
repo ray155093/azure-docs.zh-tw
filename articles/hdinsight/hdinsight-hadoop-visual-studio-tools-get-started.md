@@ -15,7 +15,7 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="big-data"
-	ms.date="05/25/2016"
+	ms.date="08/10/2016"
 	ms.author="jgao"/>
 
 # 開始使用適用於 HDInsight 的 Visual Studio Hadoop 工具來執行 Hive 查詢
@@ -64,8 +64,8 @@ HDInsight Tools for Visual Studio 和 Microsoft Hive ODBC Driver 已封裝在 Mi
 2.	從 [**檢視**] 功能表中，按一下 [**伺服器總管**] 以開啟 [伺服器總管] 視窗。
 3.	展開 [**Azure**]，然後展開 [**HDInsight**]。
 
-	>[AZURE.NOTE]請注意，[HDInsight 工作清單] 視窗此時應該會開啟。如果您沒有看到該視窗，請按一下 [檢視] 功能表的 [其他視窗]，然後按一下 [HDInsight 工作清單視窗]。  
-4.	輸入您的 Azure 訂用帳戶認證，然後按一下 [**登入**]。只有當您從未在此工作站上從 Visual Studio 連線到 Azure 訂用帳戶時，才需要這樣做。
+	>[AZURE.NOTE]請注意，[HDInsight 工作清單] 視窗此時應該會開啟。如果您沒有看到該視窗，請按一下 [檢視] 功能表的 [其他視窗]，然後按一下 [HDInsight 工作清單視窗]。
+4.	輸入您的 Azure 訂用帳戶認證，然後按一下 [登入]。只有當您從未在此工作站上從 Visual Studio 連線到 Azure 訂用帳戶時，才需要這樣做。
 5.	在 [伺服器總管] 中，您會看到現有 HDInsight 叢集的清單。如果您沒有任何叢集，可以使用 Azure 入口網站、Azure PowerShell 或 HDInsight SDK 來佈建一個。如需詳細資訊，請參閱[佈建 HDInsight 叢集][hdinsight-provision]。
 
 	![Hadoop 工具：HDInsight Tools for Visual Studio 伺服器總管叢集清單][5]
@@ -86,6 +86,11 @@ HDInsight Tools for Visual Studio 和 Microsoft Hive ODBC Driver 已封裝在 Mi
 從 [伺服器總管] 中，您可以看到預設的儲存體帳戶，以及任何連結的儲存體帳戶。如果您展開預設儲存體帳戶，您可以看到儲存體帳戶上的容器。預設儲存體帳戶和預設容器皆已標示。您也可以在任何容器上按一下滑鼠右鍵來檢視該容器。
 
 ![HDInsight Tools for Visual Studio 伺服器總管叢集清單][2]
+
+開啟容器之後，您可以使用下列按鈕來上傳、刪除及下載 Blob：
+
+![HDInsight Tools for Visual Studio 伺服器總管 Blob 作業](./media/hdinsight-hadoop-visual-studio-tools-get-started/hdinsight.visual.studio.tools.blob.operations.png)
+
 
 ## 執行 HIVE 查詢
 [Apache Hive][apache.hive] 是以 Hadoop 為基礎的資料倉儲基礎結構，用來提供資料摘要、查詢和分析。「適用於 Visual Studio 的 HDInsight 工具」支援從 Visual Studio 執行 Hive 查詢。如需 Hive 的詳細資訊，請參閱[在 HDInsight 上使用 Hive][hdinsight.hive]。
@@ -277,4 +282,4 @@ HDInsight Tools for Visual Studio 支援建立 Pig 指令碼並提交至 HDInsig
 
 [apache.hive]: http://hive.apache.org
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0817_2016-->

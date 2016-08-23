@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="curtand"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="04/26/2016"
+	ms.date="08/15/2016"
 	ms.author="curtand"/>
 
 # Azure 訂用帳戶如何與 Azure Active Directory 產生關聯
@@ -89,9 +89,9 @@ Azure AD 有一組不同的系統管理角色，可用來管理目錄和識別�
 
 ![][3]
 
-您會有相同名稱的使用者帳戶，一個在 Azure AD 中，另一個在消費者 Microsoft 帳戶系統中。您應該挑選您要使用且與 Azure 訂用帳戶相關聯的帳戶。如果您收到錯誤訊息指出此使用者的訂用帳戶不存在，您很有可能只是選錯選項。登出然後再試一次。如需有關可能阻止登入的錯誤詳細資訊，請參閱[疑難排解「我們找不到與您帳戶相關聯的任何訂用帳戶」錯誤](https://social.msdn.microsoft.com/Forums/zh-TW/f952f398-f700-41a1-8729-be49599dd7e2/troubleshooting-we-were-unable-to-find-any-subscriptions-associated-with-your-account-errors-in?forum=windowsazuremanagement)。
+您會有相同名稱的使用者帳戶，一個在 Azure AD 中，另一個在消費者 Microsoft 帳戶系統中。您應該挑選您要使用且與 Azure 訂用帳戶相關聯的帳戶。如果您收到錯誤訊息指出此使用者的訂用帳戶不存在，您很有可能只是選錯選項。登出然後再試一次。如需有關可能阻止登入的錯誤詳細資訊，請參閱[針對「我們找不到與您帳戶相關聯的任何訂用帳戶」錯誤進行疑難排解](https://social.msdn.microsoft.com/Forums/en-US/f952f398-f700-41a1-8729-be49599dd7e2/troubleshooting-we-were-unable-to-find-any-subscriptions-associated-with-your-account-errors-in?forum=windowsazuremanagement)。
 
-## 在 Azure 中管理 Office 365 訂用帳戶的目錄。
+## 在 Azure 中管理 Office 365 訂用帳戶的目錄
 
 假設您在註冊 Azure 之前已先註冊 Office 365。現在，您想要在 Azure 傳統入口網站中管理 Office 365 訂用帳戶的目錄。若要這樣做有兩種方式，視您是否已註冊 Azure 而定。
 
@@ -139,4 +139,4 @@ Azure AD 有一組不同的系統管理角色，可用來管理目錄和識別�
 [2]: ./media/active-directory-how-subscriptions-associated-directory/WAAD_OrgAccountSubscription.png
 [3]: ./media/active-directory-how-subscriptions-associated-directory/WAAD_SignInDisambiguation.PNG
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0817_2016-->

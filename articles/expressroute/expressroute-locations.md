@@ -79,10 +79,10 @@
 | **Interxion** | 支援 | 支援 | 阿姆斯特丹、倫敦、巴黎 |
 | **Jisc** | 敬請期待 | 敬請期待 | 倫敦+ | 
 | **[Level 3 Communications](http://your.level3.com/LP=882?WT.tsrc=02192014LP882AzureVanityAzureText)** | 支援 | 支援 | 阿姆斯特丹、芝加哥、達拉斯、拉斯維加斯+、倫敦、西雅圖、矽谷、華盛頓特區 |
-| **Megaport** | 支援 | 支援 | 達拉斯、香港、拉斯維加斯+、洛杉磯、墨爾本、紐約、西雅圖、新加坡、雪梨、華盛頓特區 |
+| **Megaport** | 支援 | 支援 | 達拉斯、香港、拉斯維加斯、洛杉磯、墨爾本、紐約、西雅圖、新加坡、雪梨、華盛頓特區 |
 | **MTN** | 支援 | 支援 | 倫敦 |
 | **NEXTDC** | 支援 | 支援 | 墨爾本、雪梨 |
-| **NTT Communications** | 支援 | 支援 | 倫敦、大阪、東京 |
+| **NTT Communications** | 支援 | 支援 | 倫敦、洛杉磯、大阪、東京 |
 | **[Orange](http://www.orange-business.com/en/products/business-vpn-galerie)** | 支援 | 支援 | 阿姆斯特丹、香港、倫敦、矽谷、新加坡、華盛頓特區 |
 | **PCCW Global Limited** | 支援 | 支援 | 香港 |
 | **[SingTel](http://info.singtel.com/about-us/news-releases/singtel-provide-secure-private-access-microsoft-azure-public-cloud)** | 支援 | 支援 | 新加坡 |
@@ -106,7 +106,7 @@
 |-----------------------|--------------------|----------------|---------------|
 | **[AT&T NetBond](https://www.synaptic.att.com/clouduser/html/productdetail/ATT_NetBond.htm)** | 支援 | 支援 | 芝加哥、華盛頓特區 |
 | **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** | 支援 | 支援 | 芝加哥、達拉斯+、紐約、華盛頓特區 |
-| **[Level 3 Communications](http://your.level3.com/LP=882?WT.tsrc=02192014LP882AzureVanityAzureText)** | 支援 | 敬請期待 | 芝加哥、紐約+、華盛頓特區 |
+| **[Level 3 Communications](http://your.level3.com/LP=882?WT.tsrc=02192014LP882AzureVanityAzureText)** | 支援 | 支援 | 芝加哥、紐約+、華盛頓特區 |
 | **[Verizon](http://news.verizonenterprise.com/2014/04/secure-cloud-interconnect-solutions-enterprise/)** | 支援 | 支援 | 芝加哥、達拉斯+、紐約、華盛頓特區 |
 
 #### 中國
@@ -171,4 +171,4 @@
 <!--Image References-->
 [0]: ./media/expressroute-locations/expressroute-locations-map.png "位置圖"
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

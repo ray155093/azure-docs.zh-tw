@@ -13,7 +13,7 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="big-compute"
-	ms.date="06/29/2016"
+	ms.date="08/12/2016"
 	ms.author="marsma"/>
 
 # 適用於開發人員的 Batch 功能概觀
@@ -145,7 +145,7 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台；Batch 集區提�
 
 > [AZURE.IMPORTANT] 所有的 Batch 帳戶都具有預設**配額**，以限制 Batch 帳戶中的**核心** (因而限制計算節點) 數目。您會在 [Azure Batch 服務的配額和限制](batch-quota-limit.md)中發現預設配額以及如何[增加配額](batch-quota-limit.md#increase-a-quota) (例如 Batch 帳戶中的核心數目上限) 的說明。如果您發現自問「為什麼我的集區不會觸達 X 個以上的節點？」，此核心配額可能是原因。
 
-## Job
+## 工作 (Job)
 
 作業是工作的集合。作業可管理其工作在集區中的計算節點上執行計算的方式。
 
@@ -432,6 +432,11 @@ Batch 能在背景處理使用 Azure 儲存體將應用程式封裝安全地儲�
 
 - 在[開始使用適用於 .NET 的 Azure Batch 程式庫](batch-dotnet-get-started.md)中逐步了解範例 Batch 應用程式。另外還有 [Python 版本](batch-python-tutorial.md)的教學課程，該教學課程會在 Linux 計算節點上執行工作負載。
 
+- 下載並建置 [Batch 總管][github_batchexplorer]範例專案，以便您在開發 Batch 解決方案時使用。使用 Batch 總管可執行下列和其他作業：
+  - 監視和管理 Batch 帳戶內的集區、作業和工作
+  - 從節點下載 `stdout.txt`、`stderr.txt` 和其他檔案
+  - 在節點上建立使用者，並下載遠端登入的 RDP 檔案
+
 - 了解如何[建立 Linux 計算節點的集區](batch-linux-nodes.md)。
 
 - 瀏覽 MSDN 上的 [ Azure Batch 論壇][batch_forum]。不論您是新手或是使用 Batch 的專家，論壇都是詢問問題的好地方。
@@ -444,7 +449,7 @@ Batch 能在背景處理使用 Azure 儲存體將應用程式封裝安全地儲�
 [msmpi]: https://msdn.microsoft.com/library/bb524831.aspx
 [github_samples]: https://github.com/Azure/azure-batch-samples
 [github_sample_taskdeps]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/TaskDependencies
-
+[github_batchexplorer]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/BatchExplorer
 [batch_net_api]: https://msdn.microsoft.com/library/azure/mt348682.aspx
 [net_cloudjob_jobmanagertask]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudjob.jobmanagertask.aspx
 [net_cloudjob_priority]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudjob.priority.aspx
@@ -487,4 +492,4 @@ Batch 能在背景處理使用 Azure 儲存體將應用程式封裝安全地儲�
 
 [vm_marketplace]: https://azure.microsoft.com/marketplace/virtual-machines/
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0817_2016-->

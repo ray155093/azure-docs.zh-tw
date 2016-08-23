@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="08/08/2016"
+   ms.date="08/16/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 # 從 Azure blob 儲存體將資料載入 Azure SQL 資料倉儲 (Azure Data Factory)
@@ -212,7 +212,7 @@ AzCopy /Source:<Sample Data Location>  /Dest:https://<storage account>.blob.core
 
 - [教學課程：開始使用 Azure Data Factory][] 這是使用 Azure Data Factory 處理資料的核心教學課程。在本教學課程中，您將建置第一個管線，在每個月使用 HDInsight 來轉換及分析 Web 記錄檔。請注意，本教學課程中沒有複製的活動。
 - [教學課程：將資料從 Azure 儲存體 Blob 複製到 Azure SQL Database][]。在本教學課程中，您將在 Azure Data Factory 中建立管線，將資料從 Azure 儲存體 Blob 複製到 Azure SQL Database。
-- [真實案例教學課程][]。這是使用 Azure Data Factory 的深入教學課程。
+
 
 <!--Image references-->
 
@@ -228,8 +228,7 @@ AzCopy /Source:<Sample Data Location>  /Dest:https://<storage account>.blob.core
 [Load sample data into SQL Data Warehouse]: sql-data-warehouse-load-sample-databases.md
 [Move data to and from Azure SQL Data Warehouse using Azure Data Factory]: ../data-factory/data-factory-azure-sql-data-warehouse-connector.md
 [PolyBase]: sql-data-warehouse-get-started-load-with-polybase.md
-[真實案例教學課程]: ../data-factory/data-factory-tutorial.md
-[教學課程：將資料從 Azure 儲存體 Blob 複製到 Azure SQL Database]: ../data-factory/data-factory-get-started
+[教學課程：將資料從 Azure 儲存體 Blob 複製到 Azure SQL Database]: ../data-factory/data-factory-copy-data-from-azure-blob-storage-to-sql-database.md
 [教學課程：開始使用 Azure Data Factory]: ../data-factory/data-factory-build-your-first-pipeline.md
 
 <!--MSDN references-->
@@ -239,4 +238,4 @@ AzCopy /Source:<Sample Data Location>  /Dest:https://<storage account>.blob.core
 [Azure 入口網站]: https://portal.azure.com
 [載入範例資料]: https://migrhoststorage.blob.core.windows.net/adfsample/FactInternetSales.csv
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0817_2016-->

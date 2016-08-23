@@ -13,13 +13,16 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="compute"
-   ms.date="08/02/2016"
+   ms.date="08/15/2016"
    ms.author="elizapo"/>
 
 # 商務用 OneDrive 和 Azure RemoteApp
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 Azure RemoteApp 不支援商務用 OneDrive 同步代理程式。
 
 您可以將商務用 OneDrive 納入集合中，以便搭配 Office 365 使用。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

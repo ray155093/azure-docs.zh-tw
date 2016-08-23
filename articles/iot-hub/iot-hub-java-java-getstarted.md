@@ -13,14 +13,14 @@
      ms.topic="hero-article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="06/23/2016"
+     ms.date="08/11/2016"
      ms.author="dobett"/>
 
 # 開始使用適用於 Java 的 Azure IoT 中樞
 
 [AZURE.INCLUDE [iot-hub-selector-get-started](../../includes/iot-hub-selector-get-started.md)]
 
-在本教學課程結尾處，您將會有三個 Java 主控台應用程式：
+在本教學課程結尾處，您會有三個 Java 主控台應用程式：
 
 * **create-device-identity**，這會建立裝置身分識別和相關聯的安全性金鑰，來連線您的模擬裝置。
 * **read-d2c-messages**，其中顯示模擬的裝置所傳送的遙測。
@@ -38,17 +38,17 @@
 
 [AZURE.INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
-最後，記下， [主要金鑰] 值，然後按一下 [IoT 中樞] 刀鋒視窗上的 [設定]，再按一下 [設定] 刀鋒視窗上的 [傳訊]。記下 [傳訊] 刀鋒視窗上的**事件中樞相容名稱**和**事件中樞相容端點**。在建立 **read-d2c-messages** 應用程式時需要用到這三個值。
+最後一個步驟，記下**主要金鑰**值，然後按一下 [傳訊]。記下 [傳訊] 刀鋒視窗上的**事件中樞相容名稱**和**事件中樞相容端點**。在建立 **read-d2c-messages** 應用程式時需要用到這三個值。
 
 ![][6]
 
-您現在已經建立 IoT 中樞，並擁有完成本教學課程其餘部分所需的 IoT 中樞主機名稱、IoT 中樞連接字串、IoT 中樞主要金鑰、事件中樞相容名稱和事件中樞相容端點。
+您現在已經建立 IoT 中樞，並擁有完成本教學課程所需的 IoT 中樞主機名稱、IoT 中樞連接字串、IoT 中樞主要金鑰、事件中樞相容名稱和事件中樞相容端點。
 
 ## 建立裝置識別
 
-在本節中，您將建立 Java 主控台應用程式，它會在 IoT 中樞的身分識別登錄中建立新的裝置身分識別。裝置無法連線到 IoT 中樞，除非它在裝置身分識別登錄中具有項目。如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]的**裝置識別登錄**一節。執行這個主控台應用程式時，它會產生唯一的裝置識別碼及金鑰，當裝置向 IoT 中樞傳送裝置對雲端訊息時，可以用來識別裝置本身。
+在本節中，您會建立 Java 主控台應用程式，它會在 IoT 中樞的身分識別登錄中建立新的裝置身分識別。裝置無法連線到 IoT 中樞，除非它在裝置身分識別登錄中具有項目。如需詳細資訊，請參閱 [IoT 中心開發人員指南][lnk-devguide-identity]的**裝置識別登錄**一節。執行這個主控台應用程式時，它會產生唯一的裝置識別碼及金鑰，當裝置向 IoT 中樞傳送裝置對雲端訊息時，可以用來識別裝置本身。
 
-1. 建立稱為 iot-java-get-started 的新的空資料夾。在 iot-java-get-started 資料夾中，於命令提示字元下使用下列命令建立稱為 **create-device-identity** 的新 Maven 專案。請注意，這是一個非常長的命令：
+1. 建立稱為 iot-java-get-started 的新的空資料夾。在 iot-java-get-started 資料夾的命令提示字元下，使用下列命令建立名為 **create-device-identity** 的新 Maven 專案。注意，這是一個單一且非常長的命令：
 
     ```
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=create-device-identity -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
@@ -95,7 +95,7 @@
     public static void main( String[] args ) throws IOException, URISyntaxException, Exception
     ```
     
-9. 新增下列程式碼做為 **main** 方法的主體。此程式碼會在 IoT 中樞身分識別登錄中建立稱為 javadevice 的裝置 (如果還沒有裝置)。然後，它會顯示稍後需要用到的裝置識別碼和金鑰：
+9. 新增下列程式碼做為 **main** 方法的主體。如果還沒有裝置，此程式碼會在 IoT 中樞身分識別登錄中建立名為 javadevice 的裝置。然後它會顯示稍後需要用到的裝置識別碼和金鑰：
 
     ```
     RegistryManager registryManager = RegistryManager.createFromConnectionString(connectionString);
@@ -116,13 +116,13 @@
 
 10. 儲存並關閉 App.java 檔案。
 
-11. 若要使用 Maven 建置 **create-device-identity** 應用程式，請在命令提示字元中於 create-device-identity 資料夾內執行下列命令：
+11. 若要使用 Maven 建置 **create-device-identity** 應用程式，請在命令提示字元中的 create-device-identity 資料夾內執行下列命令：
 
     ```
     mvn clean package -DskipTests
     ```
 
-12. 若要使用 Maven 執行 **create-device-identity** 應用程式，請在命令提示字元中於 create-device-identity 資料夾內執行下列命令：
+12. 若要使用 Maven 執行 **create-device-identity** 應用程式，請在命令提示字元中的 create-device-identity 資料夾內執行下列命令：
 
     ```
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
@@ -134,11 +134,11 @@
 
 ## 接收裝置到雲端的訊息
 
-在本節中，您將建立 Java 主控台應用程式，以讀取來自 IoT 中樞的裝置到雲端訊息。IoT 中樞會公開與[事件中樞][lnk-event-hubs-overview]相容的端點以讓您讀取裝置到雲端訊息。為了簡單起見，本教學課程會建立的基本讀取器不適合用於高輸送量部署。[處理裝置到雲端的訊息][lnk-process-d2c-tutorial]教學課程會說明如何大規模處理裝置到雲端的訊息。[開始使用事件中樞][lnk-eventhubs-tutorial]教學課程則會提供進一步資訊，說明如何處理來自事件中樞的訊息，而且此教學課程也適用於 IoT 中樞事件中樞相容端點。
+在本節中，您會建立 Java 主控台應用程式，以讀取來自 IoT 中樞的裝置到雲端訊息。IoT 中樞會公開與[事件中樞][lnk-event-hubs-overview]相容的端點，讓您讀取裝置到雲端訊息。為了簡單起見，本教學課程會建立的基本讀取器不適合用於高輸送量部署。[處理裝置到雲端的訊息][lnk-process-d2c-tutorial]教學課程會說明如何大規模處理裝置到雲端的訊息。[開始使用事件中樞][lnk-eventhubs-tutorial]教學課程則會提供進一步資訊，說明如何處理來自事件中樞的訊息，而且此教學課程也適用於 IoT 中樞事件中樞相容端點。
 
 > [AZURE.NOTE] 用於讀取裝置到雲端訊息的事件中樞相容端點一律會使用 AMQPS 通訊協定。
 
-1. 在「建立裝置識別」一節所建立的 iot-java-get-started 資料夾中，於命令提示字元下使用下列命令建立稱為 **read-d2c-messages** 的新 Maven 專案。請注意，這是一個非常長的命令：
+1. 在「建立裝置識別」一節所建立的 iot-java-get-started 資料夾中，於命令提示字元下使用下列命令建立名為 **read-d2c-messages** 的新 Maven 專案。注意，這是一個單一且非常長的命令：
 
     ```
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=read-d2c-messages -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
@@ -240,9 +240,9 @@
     }
     ```
 
-    > [AZURE.NOTE] 在建立開始執行後只會讀取傳送到 IoT 中樞之訊息的收件者時，這個方法會使用篩選器。這很適合測試環境，因為如此一來您就可以看到目前的訊息集，但在生產環境中，您的程式碼應該要確定它能處理所有訊息，如需詳細資訊，請參閱[如何處理 IoT 中樞裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程。
+    > [AZURE.NOTE] 在建立開始執行後只會讀取傳送到 IoT 中樞之訊息的收件者時，這個方法會使用篩選器。這很適合測試環境，因為如此一來您就可以看到目前的訊息集。在生產環境中，您的程式碼應該要確定它能處理所有訊息；如需詳細資訊，請參閱[如何處理 IoT 中樞裝置到雲端的訊息][lnk-process-d2c-tutorial]教學課程。
 
-9. 修改 **main** 方法的簽章以加入如下所示的例外狀況：
+9. 修改 **main** 方法的簽章，以加入如下所示的例外狀況：
 
     ```
     public static void main( String[] args ) throws IOException
@@ -271,7 +271,7 @@
 
 11. 儲存並關閉 App.java 檔案。
 
-12. 若要使用 Maven 建置 **read-d2c-messages** 應用程式，請在命令提示字元中於 read-d2c-messages 資料夾內執行下列命令：
+12. 若要使用 Maven 建置 **read-d2c-messages** 應用程式，請在命令提示字元中的 read-d2c-messages 資料夾內執行下列命令：
 
     ```
     mvn clean package -DskipTests
@@ -281,7 +281,7 @@
 
 在本節中，您會撰寫 Java 主控台應用程式，模擬裝置傳送裝置對雲端訊息至 IoT 中樞。
 
-1. 在＜建立裝置識別＞一節所建立的 iot-java-get-started 資料夾中，於命令提示字元下使用下列命令建立稱為 **simulated-device** 的新 Maven 專案。請注意，這是一個非常長的命令：
+1. 在「建立裝置識別」一節所建立的 iot-java-get-started 資料夾中，於命令提示字元下使用下列命令建立稱為 **simulated-device** 的新 Maven 專案。注意，這是一個單一且非常長的命令：
 
     ```
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=simulated-device -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
@@ -325,7 +325,7 @@
     import java.util.concurrent.ExecutorService;
     ```
 
-7. 將下列類別層級變數新增至 **App** 類別，將 **{youriothubname}** 取代為 IoT 中樞名稱，並將 **{yourdevicekey}** 取代為您在＜建立裝置識別＞一節中產生的裝置金鑰值：
+7. 將下列類別層級變數新增至 **App** 類別，將 **{youriothubname}** 取代為 IoT 中樞名稱，並將 **{yourdevicekey}** 取代為您在「建立裝置識別」一節中產生的裝置金鑰值：
 
     ```
     private static String connString = "HostName={youriothubname}.azure-devices.net;DeviceId=myFirstJavaDevice;SharedAccessKey={yourdevicekey}";
@@ -427,7 +427,7 @@
 
 12. 儲存並關閉 App.java 檔案。
 
-13. 若要使用 Maven 建置 **simulated-device** 應用程式，請在命令提示字元中於 simulated-device 資料夾內執行下列命令：
+13. 若要使用 Maven 建置 **simulated-device** 應用程式，請在命令提示字元中的 simulated-device 資料夾內執行下列命令：
 
     ```
     mvn clean package -DskipTests
@@ -495,4 +495,4 @@
 [lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
 [lnk-connect-device]: https://azure.microsoft.com/develop/iot/
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0817_2016-->

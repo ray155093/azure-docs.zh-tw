@@ -12,10 +12,13 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="hero-article"
-    ms.date="07/20/2016"
+    ms.date="08/15/2016"
     ms.author="elizapo" />
 
 # 在 Azure RemoteApp 中使用 Microsoft Outlook
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 Azure RemoteApp 支援 Microsoft Outlook O365。深入了解 [Office 在 Azure RemoteApp 中運作](remoteapp-officesubscription.md)的方式。在 Azure RemoteApp 中使用 Outlook 時，有幾個建議的設定。
 
@@ -31,4 +34,4 @@ Azure RemoteApp 支援 Microsoft Outlook O365。深入了解 [Office 在 Azure R
 
 Outlook 2016 有解決方案可以用快取模式解決這個問題，方法是為 Exchange 2016 上裝載 (或裝載在 Office 365) 上的信箱提供新的線上搜尋體驗。這會對本機快取 (OST) 使用服務搜尋結果。在某些案例中，Outlook 可能會改回使用本機搜尋索引子，但是大部分的搜尋會使用這項新的服務搜尋功能。如果郵件搜尋是非常重要的案例，則 Azure RemoteApp 的建議是使用 Outlook 2016。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

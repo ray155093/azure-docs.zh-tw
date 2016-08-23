@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/25/2016"
+	ms.date="08/16/2016"
 	ms.author="markvi"/>
 
 # 開始使用 Azure Active Directory Premium
@@ -23,10 +23,10 @@
 
 **Azure 或 Office 365** - 身為 Azure 或 Office 365 訂閱者，您可以線上購買 Active Directory Premium。如需詳細步驟，請參閱[如何購買 Azure Active Directory Premium - 現有客戶](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/How-to-Purchase-Azure-Active-Directory-Premium-Existing-Customer)或[如何購買 Azure Active Directory Premium - 新客戶](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/How-to-Purchase-Azure-Active-Directory-Premium-New-Customers)。
 
-**Enterprise Mobility + Security** - Enterprise Mobility + Security (先前的 Enterprise Mobility Suite) 是一個符合成本效益的方式，可供組織根據單一授權方案來搭配使用下列服務：Active Directory Premium、Azure Rights Management 和 Microsoft Intune。如需詳細資訊，請參閱 [Enterprise Mobility + Security](https://www.microsoft.com/zh-TW/server-cloud/enterprise-mobility/overview.aspx) 網站。若要取得 30 天的免費試用，請按一下[這裡](https://portal.office.com/Signup/Signup.aspx?OfferId=2E63A04D-BE0B-4A0F-A8CF-407C1C299221&dl=EMS&ali=1#0)。
+**Enterprise Mobility + Security** - Enterprise Mobility + Security (先前的 Enterprise Mobility Suite) 是一個符合成本效益的方式，可供組織根據單一授權方案來搭配使用下列服務：Active Directory Premium、Azure Rights Management 和 Microsoft Intune。如需詳細資訊，請參閱 [Enterprise Mobility + Security](https://www.microsoft.com/en-us/server-cloud/enterprise-mobility/overview.aspx) 網站。若要取得 30 天的免費試用，請按一下[這裡](https://portal.office.com/Signup/Signup.aspx?OfferId=2E63A04D-BE0B-4A0F-A8CF-407C1C299221&dl=EMS&ali=1#0)。
 
 
-**Microsoft 大量授權** - Azure Active Directory Premium 可透過 [Microsoft Enterprise 合約](https://www.microsoft.com/zh-TW/licensing/licensing-programs/enterprise.aspx) (250 個以上的授權) 或 [Open 大量授權](https://www.microsoft.com/zh-TW/licensing/licensing-programs/open-license.aspx) (5-250 個授權) 方案來取得。
+**Microsoft 大量授權** - Azure Active Directory Premium 可透過 [Microsoft Enterprise 合約](https://www.microsoft.com/en-us/licensing/licensing-programs/enterprise.aspx) (250 個以上的授權) 或 [Open 大量授權](https://www.microsoft.com/en-us/licensing/licensing-programs/open-license.aspx) (5-250 個授權) 方案來取得。
 
 
 本主題說明如何開始使用您透過大量授權方案購買的 Azure Active Directory Premium。如果您還不熟悉 Azure Active Directory 的不同版本，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
@@ -39,7 +39,7 @@ Azure Active Directory Premium 和 Basic 版本適用於使用全球 Azure Activ
 
 ## 步驟 1：註冊 Active Directory Premium
 
-若要註冊，請參閱[如何透過大量授權來購買](http://www.microsoft.com/zh-TW/licensing/how-to-buy/how-to-buy.aspx)。
+若要註冊，請參閱[如何透過大量授權來購買](http://www.microsoft.com/en-us/licensing/how-to-buy/how-to-buy.aspx)。
 
 
 
@@ -160,4 +160,4 @@ Microsoft 雲端服務的服務和功能可用性會依國家或地區而有所�
 [11]: ./media/active-directory-get-started-premium/Assignlicensespicker.png
 [12]: ./media/active-directory-get-started-premium/Usagelocation.png
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -14,7 +14,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/20/2016"
+   ms.date="08/16/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 # 使用 Transact-SQL (TSQL) 建立 SQL 資料倉儲資料庫
@@ -39,7 +39,7 @@
 
 ## 使用 Visual Studio 建立資料庫
 
-如果您不熟悉 Visual Studio，請參閱[使用 Visual Studio 連接到 SQL 資料倉儲][]一文。若要開始，請在 Visual Studio 中開啟 SQL Server 物件總管，並連接到將要裝載 SQL 資料倉儲資料庫的伺服器。連接後，您即可對 **master** 資料庫執行下列 SQL 命令來建立 SQL 資料倉儲。此命令會建立服務目標為 DW400 的資料庫 MySqlDwDb，並允許此資料庫成長至大小上限 10 TB。
+如果您不熟悉 Visual Studio，請參閱[查詢 Azure SQL 資料倉儲 (Visual Studio)][] 一文。若要開始，請在 Visual Studio 中開啟 SQL Server 物件總管，並連接到將要裝載 SQL 資料倉儲資料庫的伺服器。連接後，您即可對 **master** 資料庫執行下列 SQL 命令來建立 SQL 資料倉儲。此命令會建立服務目標為 DW400 的資料庫 MySqlDwDb，並允許此資料庫成長至大小上限 10 TB。
 
 ```sql
 CREATE DATABASE MySqlDwDb (EDITION='datawarehouse', SERVICE_OBJECTIVE = 'DW400', MAXSIZE= 10240 GB);
@@ -61,17 +61,17 @@ sqlcmd -S <Server Name>.database.windows.net -I -U <User> -P <Password> -Q "CREA
 
 <!--Article references-->
 [DWU]: ./sql-data-warehouse-overview-what-is.md#data-warehouse-units
-[how to create a SQL Data Warehouse from the Azure portal]: ./sql-data-warehouse-get-started-provision.md
-[使用 Visual Studio 連接到 SQL 資料倉儲]: ./sql-data-warehouse-get-started-connect.md
-[移轉]: ./sql-data-warehouse-overview-migrate.md
-[開發]: ./sql-data-warehouse-overview-develop.md
-[載入]: ./sql-data-warehouse-overview-load.md
-[載入範例資料]: ./sql-data-warehouse-get-started-load-sample-databases.md
+[how to create a SQL Data Warehouse from the Azure portal]: sql-data-warehouse-get-started-provision.md
+[查詢 Azure SQL 資料倉儲 (Visual Studio)]: sql-data-warehouse-query-visual-studio.md
+[移轉]: sql-data-warehouse-overview-migrate.md
+[開發]: sql-data-warehouse-overview-develop.md
+[載入]: sql-data-warehouse-overview-load.md
+[載入範例資料]: sql-data-warehouse-load-sample-databases.md
 [使用 Azure 入口網站建立 Azure SQL Database 邏輯伺服器]: ../sql-database/sql-database-get-started.md#create-an-azure-sql-database-logical-server
 [使用 PowerShell 建立 Azure SQL Database 邏輯伺服器]: ../sql-database/sql-database-get-started-powershell.md#database-setup-create-a-resource-group-server-and-firewall-rule
 [如何建立資源群組]: ../resource-group-template-deploy-portal.md#create-resource-group
-[Installing Visual Studio and SSDT]: ./sql-data-warehouse-install-visual-studio.md
-[sqlcmd]: ./sql-data-warehouse-get-started-connect-sqlcmd.md
+[Installing Visual Studio and SSDT]: sql-data-warehouse-install-visual-studio.md
+[sqlcmd]: sql-data-warehouse-get-started-connect-sqlcmd.md
 
 <!--MSDN references--> 
 [CREATE DATABASE]: https://msdn.microsoft.com/library/mt204021.aspx
@@ -83,4 +83,4 @@ sqlcmd -S <Server Name>.database.windows.net -I -U <User> -P <Password> -Q "CREA
 [Azure 免費試用]: https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F
 [MSDN Azure 點數]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->
