@@ -664,4 +664,4 @@ _圖 6.根據分析和儲存體需求分割資料_
 - [接收警示通知](./azure-portal/insights-receive-alert-notifications.md)和[追蹤服務健全狀況](./azure-portal/insights-service-health.md)
 - [Application Insights](./application-insights/app-insights-get-started.md)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

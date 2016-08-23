@@ -37,4 +37,4 @@
 
 您可以驗證閘道連線。請參閱[驗證閘道連線](vpn-gateway-verify-connection-resource-manager.md)。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

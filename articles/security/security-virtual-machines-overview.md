@@ -157,4 +157,4 @@ Azure 虛擬機器經過 FISMA、FedRAMP、HIPAA、PCI DSS Level 1 及其他重�
 - [Microsoft 信任中心：法規遵循](https://www.microsoft.com/TrustCenter/Compliance/default.aspx)
 - [受信任的雲端：Microsoft Azure 安全性、隱私權及法規遵循](http://download.microsoft.com/download/1/6/0/160216AA-8445-480B-B60F-5C8EC8067FCA/WindowsAzure-SecurityPrivacyCompliance.pdf)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

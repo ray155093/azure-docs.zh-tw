@@ -50,4 +50,4 @@ Azure Service Fabric 服務可能是具狀態或無狀態。本文章概述 Serv
 
 - [定義和管理狀態](service-fabric-concepts-state.md)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

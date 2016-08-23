@@ -17,4 +17,4 @@
 
 <sup>2</sup>這包括標準和進階儲存體帳戶。如果您需要超過 200 個儲存體帳戶，請透過 [Azure 支援](https://azure.microsoft.com/support/faq/)提出要求。Azure 儲存體團隊將會檢閱您的商務案例，而且可以核准多達 250 個儲存體帳戶。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

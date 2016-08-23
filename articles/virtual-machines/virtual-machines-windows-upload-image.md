@@ -252,4 +252,4 @@
 
 若要使用 Azure PowerShell 來管理新的虛擬機器，請參閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

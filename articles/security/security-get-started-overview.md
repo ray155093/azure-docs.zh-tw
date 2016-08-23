@@ -46,4 +46,4 @@ Azure 安全性資訊網站目前處理下列類別︰
 
 我們希望您的輸入！ 如果有您想要新增的類別，請讓我們知道！ 如果有您想要新增至現有類別的文章，也請讓我們知道！ 您可以使用下面的 [註解] 區段，或寫信給我們：[azsecinfosite@microsoft.com](mailto:azsecinfosite@microsoft.com)，我們會將您的建議加入我們的計畫中。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

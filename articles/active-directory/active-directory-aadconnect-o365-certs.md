@@ -164,4 +164,4 @@ https://(your_FS_name)/federationmetadata/2007-06/federationmetadata.xml
 
 如需詳細資訊，請參閱[修復信任](./active-directory-aadconnect-federation-management.md#repairing-the-trust)。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

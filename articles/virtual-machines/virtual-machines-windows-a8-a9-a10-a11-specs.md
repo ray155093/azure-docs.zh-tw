@@ -58,4 +58,4 @@ MPI | MS-MPI 2012 R2 或更新版本，或 Intel MPI Library 5 | MS-MPI 2012 R2 
 
 * 如需以 Azure Batch 使用 A8 和 A9 執行個體執行 MPI 應用程式的資訊，請參閱[在 Azure Batch 中使用多重執行個體工作來執行訊息傳遞介面 (MPI) 應用程式](../batch/batch-mpi.md)。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

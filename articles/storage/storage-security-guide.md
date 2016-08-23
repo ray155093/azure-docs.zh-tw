@@ -634,4 +634,4 @@ Azure 儲存體可讓您啟用 CORS – 跨原始來源資源共用。對於每�
 
 	本文討論如何在較舊的 Windows 電腦中使用 FIPS 模式。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

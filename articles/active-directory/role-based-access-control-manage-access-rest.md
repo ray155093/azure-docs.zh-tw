@@ -691,4 +691,4 @@ Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制�
 
 [AZURE.INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

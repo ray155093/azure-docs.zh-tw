@@ -345,4 +345,4 @@ $DAILYBACKUPSTATS | Out-GridView
 
 如果您偏好使用 PowerShell 來與您的 Azure 資源交流，請參閱保護 Windows Server 的 PowerShell 文章：[部署和管理 Windows Server 的備份](./backup-client-automation-classic.md)。另請參閱管理 DPM 備份的 PowerShell 文章：[部署及管理 DPM 的備份](./backup-dpm-automation-classic.md)。這兩篇文章都有適用於 Resource Manager 部署以及傳統部署的版本。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

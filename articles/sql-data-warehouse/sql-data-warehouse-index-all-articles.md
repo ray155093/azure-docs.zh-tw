@@ -192,4 +192,4 @@
 | 86 | service-capacity-limits | [SQL 資料倉儲容量限制](sql-data-warehouse-service-capacity-limits.md) | SQL 資料倉儲的連接、資料庫、資料表及查詢最大值。 |
 | 87 | troubleshoot | [針對 Azure SQL 資料倉儲問題進行疑難排解](sql-data-warehouse-troubleshoot.md) | 針對 Azure SQL 資料倉儲問題進行疑難排解。 |
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

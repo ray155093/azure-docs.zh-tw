@@ -32,4 +32,4 @@
 	
 	![移動資源刀鋒視窗的螢幕擷取畫面。](./media/virtual-machines-common-move-vm/move-rg-list.png)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

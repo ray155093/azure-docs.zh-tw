@@ -155,4 +155,4 @@ POST https://management.azure.com/{resourceID of your logic app}/triggers/myendp
 [2]: ./media/app-service-logic-http-endpoint/manualtrigger.png
 [3]: ./media/app-service-logic-http-endpoint/response.png
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

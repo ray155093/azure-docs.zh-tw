@@ -90,4 +90,4 @@ Azure Active Directory 使用者目前不會顯示在 SSDT 物件總管中。解
 [使用 Visual Studio 查詢]: ./sql-data-warehouse-query-visual-studio.md
 [What is Azure Active Directory]: ../active-directory/active-directory-whatis.md
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

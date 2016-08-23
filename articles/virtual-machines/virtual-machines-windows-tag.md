@@ -103,4 +103,4 @@
 [了解 Azure 帳單]: ../billing-understand-your-bill.md
 [深入了解 Microsoft Azure 資源耗用量]: ../billing-usage-rate-card-overview.md
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

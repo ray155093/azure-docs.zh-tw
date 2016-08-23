@@ -139,4 +139,4 @@ Azure AD B2C 的本機帳戶密碼原則是以 Azure AD 的原則為基礎。Azu
 
 您也可能想要檢閱目前的[服務限制和條件約束](active-directory-b2c-limitations.md)。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

@@ -264,4 +264,4 @@ Rest API 符合 HTTP 1.1 通訊協定規格。API 的一般 URI 結構顯示如�
 
 [Azure 資源管理員概觀](../resource-group-overview.md)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

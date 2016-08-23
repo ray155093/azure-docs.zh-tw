@@ -219,4 +219,4 @@ CNAME 記錄應該設定如下 (@ 通常代表根網域)︰
 <!-- Images -->
 [subdomain]: media/web-sites-custom-domain-name/azurewebsites-subdomain.png
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

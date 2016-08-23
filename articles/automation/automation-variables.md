@@ -188,4 +188,4 @@
 - 若要深入了解如何在圖形化編寫中將活動連接在一起，請參閱[圖形化編寫中的連結](automation-graphical-authoring-intro.md#links-and-workflow)
 - 若要開始使用圖形化 Runbook，請參閱[我的第一個圖形化 Runbook](automation-first-runbook-graphical.md)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

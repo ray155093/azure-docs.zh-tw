@@ -114,4 +114,4 @@ done
 
 * 若要開始在 Linux 上部署和使用 A8 和 A9 執行個體及 RDMA，請參閱[設定 Linux RDMA 叢集以執行 MPI 應用程式](virtual-machines-linux-classic-rdma-cluster.md)。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

@@ -227,4 +227,4 @@
 - [使用 PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
 - [使用資源管理員範本](data-factory-build-your-first-pipeline-using-arm.md)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

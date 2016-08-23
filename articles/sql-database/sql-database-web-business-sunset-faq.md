@@ -68,4 +68,4 @@ Microsoft 也會變更 Premium 資料庫的資料庫複製體驗。先前由於 
 
 [升級至 Azure SQL Database V12](sql-database-upgrade-server-portal.md)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

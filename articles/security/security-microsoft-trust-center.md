@@ -37,4 +37,4 @@ Azure.com 上的 Azure 安全性資訊網站可提供所需資訊，以供您規
 
 [Microsoft 信任中心](https://www.microsoft.com/trustcenter)具有了解我們對保護 Microsoft Cloud 所做的處理所需的資訊。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

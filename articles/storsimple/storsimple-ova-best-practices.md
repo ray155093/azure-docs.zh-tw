@@ -349,4 +349,4 @@ StorSimple Virtual Array 可以自動將資料從本機層提升到 Microsoft Az
 ## 另請參閱
 了解如何透過 StorSimple Manager 服務[管理 StorSimple Virtual Array](storsimple-ova-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

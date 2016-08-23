@@ -61,4 +61,4 @@ Visual Studio 2015 的 [Enterprise 整合套件](./app-service-logic-enterprise-
 - [深入了解合約](./app-service-logic-enterprise-integration-agreements.md "了解企業整合合約")
 - [深入了解轉換](./app-service-logic-enterprise-integration-transform.md "了解企業整合轉換")
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

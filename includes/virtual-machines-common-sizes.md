@@ -264,4 +264,4 @@ NC 執行個體是由 NVIDIA 的 Tesla K80 提供技術支援。使用者現在�
 - 了解 [Azure 訂用帳戶和服務限制、配額與限制](../articles/azure-subscription-service-limits.md)。
 - 深入了解適用於「高效能運算」(HPC) 這類工作負載的[關於 A8、A9、A10 和 A11 運算密集型執行個體](../articles/virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

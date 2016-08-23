@@ -213,4 +213,4 @@ Azure 本身會使用 Azure AD 來驗證其客戶、服務管理員和組織的�
 [2]: ./media/batch-management-dotnet/portal-02.png
 [3]: ./media/batch-management-dotnet/portal-03.png
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

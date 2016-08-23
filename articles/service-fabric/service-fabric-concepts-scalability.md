@@ -60,4 +60,4 @@ Service Fabric 支援將個別服務分割為多個小型的資料分割。[資�
 
 - [定義和管理狀態](service-fabric-concepts-state.md)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

@@ -79,4 +79,4 @@
 - [使用 Azure AD 管理應用程式的存取](active-directory-managing-access-to-apps.md)
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

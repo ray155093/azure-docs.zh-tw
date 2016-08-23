@@ -523,4 +523,4 @@ New-AzureRmResourceGroupDeployment `
 
 部署行動服務代理程式之後，您可以繼續對虛擬機器[啟用複寫](site-recovery-vmware-to-azure.md#step-6-replicate-applications)。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

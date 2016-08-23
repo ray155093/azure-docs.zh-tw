@@ -103,4 +103,4 @@
 - 了解如何[管理現有的 NSG](virtual-network-manage-nsg-arm-portal.md)
 - [啟用 NSG 的記錄](virtual-network-nsg-manage-log.md)。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

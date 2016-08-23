@@ -40,4 +40,4 @@
 
 - [分割 Service Fabric 服務](service-fabric-concepts-partitioning.md)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>
