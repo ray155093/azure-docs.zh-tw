@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="get-started-article"
-	ms.date="04/25/2016"
+	ms.date="08/17/2016"
 	ms.author="annemill"/>
 
 
@@ -43,7 +43,7 @@
 - Visual Studio 2013 Update 4 (或更新版本)。Microsoft 現在*免費*提供 Visual Studio Community。
  - [Visual Studio Community，下載](http://www.visualstudio.com/products/visual-studio-community-vs)
  - [免費 Visual Studio 的更多選項](http://www.visualstudio.com/products/free-developer-offers-vs.aspx)
- - 或是讓本主題中稍後的[步驟](#InstallVSForFree)描述 [Azure 入口網站](https://portal.azure.com/)如何引導您安裝 Visual Studio。
+ - 或是讓本主題中稍後的[步驟](#InstallVSForFree)說明 [Azure 入口網站](https://portal.azure.com/)如何引導您安裝 Visual Studio。
 
 
 <a name="InstallVSForFree" id="InstallVSForFree"></a>
@@ -64,7 +64,7 @@
 
 1. 透過 [Azure 入口網站](https://portal.azure.com/)登入，位於 http://portal.azure.com/。
 
-2. 按一下 [全部瀏覽] > [SQL Database]。刀鋒視窗會開啟該資料庫的搜尋。
+2. 按一下 *[全部瀏覽]** > **[SQL Database]**。刀鋒視窗會開啟該資料庫的搜尋。
 
 3. 在靠近頂端的篩選文字方塊中，開始輸入 **AdventureWorksLT** 資料庫的名稱。
 
@@ -82,7 +82,7 @@
 
 9. 安裝 Visual Studio 之後，於**在 Visual Studio 中開啟**刀鋒視窗上按一下 [在 Visual Studio 中開啟] 按鈕。Visual Studio 隨即開啟。
 
-10. 以其 [SQL Server 物件總管] 窗格的優點而言，Visual Studio 會要求您填寫對話方塊中的連接字串欄位。
+10. Visual Studio 會提示您填寫對話方塊中的連接字串欄位。
  - 選擇 [SQL Database 驗證]，而非 [Windows 驗證]。
  - 請記得要指定您的 **AdventureWorksLT** 資料庫 (對話方塊中的 [選項] > [連接屬性])。
 
@@ -121,4 +121,4 @@
 
 [20-OpenInVisualStudioButton]: ./media/sql-database-connect-query/connqry-free-vs-e.png
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0817_2016-->

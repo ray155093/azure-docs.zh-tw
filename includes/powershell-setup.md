@@ -7,7 +7,7 @@
    ms.tgt_pltfrm=""
    ms.workload="infrastructure"
    ms.date="05/12/2015"
-   ms.author="josephd" />
+   ms.author="rasquill" />
 
 ## 設定 PowerShell
 
@@ -71,11 +71,11 @@
 	CurrentStorageAccountName : 
 	TenantId                  : 32fa88b4-86f1-419f-93ab-2d7ce016dba7
 
-您可以在 Azure PowerShell 命令提示字元下執行這些命令，設定目前 Azure 訂用帳戶。以正確的名稱取代括號中的所有內容，包括 < and > 字元。
+您可以在 Azure PowerShell 命令提示字元下執行這些命令，設定目前 Azure 訂用帳戶。以正確的名稱取代括號中 (包括 < 和 > 字元) 的所有內容。
 
 	$subscr="<SubscriptionName from the display of Get-AzureSubscription>"
 	Select-AzureSubscription -SubscriptionName $subscr -Current	
 
 如需 Azure 訂用帳戶和帳戶的詳細資訊，請參閱[如何：連線至訂用帳戶](powershell-install-configure.md#Connect)。
 
-<!---HONumber=AcomDC_0128_2016-->
+<!---HONumber=AcomDC_0810_2016------>

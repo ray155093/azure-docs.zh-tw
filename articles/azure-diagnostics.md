@@ -1,5 +1,5 @@
 <properties
-	pageTitle="Azure 診斷的概觀"
+	pageTitle="Azure 診斷概觀 | Microsoft Azure"
 	description="使用 Azure 診斷來在雲端服務、虛擬機器及 Service Fabric 中進行偵錯、測量效能、監視、流量分析等。"
 	services="multiple"
 	documentationCenter=".net"
@@ -47,7 +47,7 @@ Azure 診斷延伸模組可以把這項資料傳送到 Azure 儲存體帳戶，�
 ## 後續步驟
 請選擇您嘗試要在哪個服務上收集診斷資料，並使用下列文件來開始。如需特定工作的參考，請使用一般的 Azure 診斷連結。
 
-## Web Apps
+## Web 應用程式
 請注意，Web Apps 不會使用 Azure 診斷。請尋找 [Web Apps](./app-service-web/web-sites-enable-diagnostic-log.md) 的對等資訊。
 
 ## 使用 Azure 診斷的雲端服務
@@ -81,4 +81,4 @@ Azure 診斷延伸模組可以把這項資料傳送到 Azure 儲存體帳戶，�
 - 了解如何[把 Azure 診斷資訊路由到 Application Insights](./azure-diagnostics-configure-applicationinsights.md)。
 - 如果您在開始診斷，或是在 Azure 儲存體資料表中尋找資料時遇到問題，請參閱 [Azure 診斷疑難排解](./azure-diagnostics-troubleshooting.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0810_2016------>

@@ -13,7 +13,7 @@
 	ms.topic="hero-article"
 	ms.tgt_pltfrm="cache-redis"
 	ms.workload="tbd"
-	ms.date="05/31/2016"
+	ms.date="08/16/2016"
 	ms.author="sdanie"/>
 
 # 如何搭配使用 Azure Redis 快取與 Node.js
@@ -36,7 +36,7 @@ Azure Redis 快取可讓您存取 Microsoft 所管理的專用安全 Redis 快�
 
     npm install redis
 
-本教學課程使用 [node\_redis](https://github.com/mranney/node_redis)，但是您可以使用列在 [http://redis.io/clients](http://redis.io/clients) 的任何 Node.js 用戶端。
+本教學課程使用 [node\_redis](https://github.com/mranney/node_redis)。如需使用其他 Node.js 用戶端的範例，請參閱列在 [Node.js Redis 用戶端](http://redis.io/clients#nodejs)之 Node.js 用戶端的個別文件。
 
 ## 在 Azure 上建立 Redis 快取
 
@@ -46,17 +46,21 @@ Azure Redis 快取可讓您存取 Microsoft 所管理的專用安全 Redis 快�
 
 [AZURE.INCLUDE [redis-cache-create](../../includes/redis-cache-access-keys.md)]
 
+## 使用 SSL 安全地連接到快取
 
-## 啟用非 SSL 端點
+[node\_redis](https://github.com/mranney/node_redis) 的最新組建提供了使用 SSL 連接到 Azure Redis 快取的支援。下列範例示範如何使用 6380 的 SSL 端點連接到 Azure Redis 快取。以您的快取名稱取代 `<name>`，並以先前[擷取主機名稱和存取金鑰](#retrieve-the-host-name-and-access-keys)一節中所述的主要或次要金鑰取代 `<key>`。
 
-有些 Redis 用戶端不支援 SSL，且預設會[停用新的 Azure Redis 快取執行個體的非 SSL 連接埠](cache-configure.md#access-ports)。在本文撰寫當下，[node\_redis](https://github.com/mranney/node_redis) 用戶端不支援 SSL。
-
-[AZURE.INCLUDE [redis-cache-create](../../includes/redis-cache-non-ssl-port.md)]
+	 var redis = require("redis");
+	
+	  // Add your cache name and access key.
+	var client = redis.createClient(6380,'<name>.redis.cache.windows.net', {auth_pass: '<key>', tls: {servername: '<name>.redis.cache.windows.net'}});
 
 
 ## 在快取中加入項目並擷取該項目
 
-	  var redis = require("redis");
+下列範例示範如何連接到 Azure Redis 快取執行個體，以及儲存和擷取快取中的項目。如需更多搭配使用 Redis 與 [node\_redis](https://github.com/mranney/node_redis) 用戶端的範例，請參閱 [http://redis.js.org/](http://redis.js.org/)。
+
+	 var redis = require("redis");
 	
 	  // Add your cache name and access key.
 	var client = redis.createClient(6380,'<name>.redis.cache.windows.net', {auth_pass: '<key>', tls: {servername: '<name>.redis.cache.windows.net'}});
@@ -69,7 +73,7 @@ Azure Redis 快取可讓您存取 Microsoft 所管理的專用安全 Redis 快�
 		    console.log(reply);
 		});
 
-Output:
+輸出：
 
 	OK
 	value
@@ -80,4 +84,4 @@ Output:
 - [啟用快取診斷](cache-how-to-monitor.md#enable-cache-diagnostics)，以[監視](cache-how-to-monitor.md)您快取的健全狀況。
 - 閱讀官方 [Redis 文件](http://redis.io/documentation)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0817_2016-->

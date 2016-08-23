@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/23/2016" 
+	ms.date="08/09/2016" 
 	ms.author="sdanie"/>
 
 # 如何針對 Azure Redis 快取進行疑難排解
@@ -47,7 +47,7 @@
 
 #### 測量 
 
-1.	監視電腦上的記憶體使用量，以確定它不會超過可用記憶體。 
+1.	監視電腦上的記憶體使用量，以確定它不會超過可用記憶體。
 2.	監視 `Page Faults/Sec` 效能計數器。即使在正常作業期間，大部分的系統還是會有一些分頁錯誤，因此請留意這個與逾時對應的分頁錯誤效能計數器尖峰。
 
 #### 解決方案
@@ -134,7 +134,7 @@
 
 #### 解決方案
 
-1.	Redis 最適合大量的較小值，而不是少數幾個較大值。比較好的解決方案是將資料分割成相關的較小值。請參閱 [Redis 的理想值大小範圍為何？100 KB 是否會太大？](https://groups.google.com/forum/#!searchin/redis-db/size/redis-db/n7aa2A4DZDs/3OeEPHSQBAAJ)文章，以取得為何建議使用較小值的詳細資料。
+1.	Redis 最適合大量的較小值，而不是少數幾個較大值。比較好的解決方案是將資料分割成相關的較小值。請參閱 [Redis 的理想值大小範圍為何？ 100 KB 是否會太大？](https://groups.google.com/forum/#!searchin/redis-db/size/redis-db/n7aa2A4DZDs/3OeEPHSQBAAJ)文章，以取得為何建議使用較小值的詳細資料。
 2.	增加 VM (適用於用戶端和 Redis 快取伺服器) 的大小，以取得更高的頻寬功能，減少較大回應的資料傳輸時間。請注意，只在伺服器或用戶端上取得更多頻寬可能並不夠。請測量頻寬使用量，並與您目前擁有的 VM 大小的功能做比較。
 3.	增加您使用的 `ConnectionMultiplexer` 物件數目，並透過不同的連線循環配置要求。
 
@@ -164,8 +164,8 @@
 
 伺服器端上的記憶體壓力會導致各種效能問題，而可能延遲處理要求。到達記憶體壓力時，系統通常必須將資料從實體記憶體分頁處理到磁碟上的虛擬記憶體。此「分頁錯誤」會使系統明顯變慢。此記憶體壓力有幾個可能的原因︰
 
-1.	您已在快取中填滿資料。 
-2.	Redis 遇到高度記憶體分散情形，儲存大型物件時最常造成此現象 (Redis 最適合小型物件，如需詳細資訊，請參閱 [Redis 的理想值大小範圍為何？100 KB 是否會太大？](https://groups.google.com/forum/#!searchin/redis-db/size/redis-db/n7aa2A4DZDs/3OeEPHSQBAAJ)文章)。 
+1.	您已在快取中填滿資料。
+2.	Redis 遇到高度記憶體分散情形，儲存大型物件時最常造成此現象 (Redis 最適合小型物件，如需詳細資訊，請參閱 [Redis 的理想值大小範圍為何？ 100 KB 是否會太大？](https://groups.google.com/forum/#!searchin/redis-db/size/redis-db/n7aa2A4DZDs/3OeEPHSQBAAJ)文章)。
 
 #### 測量
 
@@ -264,7 +264,7 @@ StackExchange.Redis 使用名為 `synctimeout` 的組態設定來進行預設值
 4. 如果伺服器或用戶端上有要求受到頻寬限制所侷限，則可能需要較長時間才能完成，因而會導致逾時。若要確認逾時是不是因為伺服器上的網路頻寬所導致，請參閱[超過伺服器端頻寬](#server-side-bandwidth-exceeded)。若要確認逾時是不是因為用戶端網路頻寬所導致，請參閱[超過用戶端頻寬](#client-side-bandwidth-exceeded)。
 
 6. 您是否在伺服器或用戶端上受到 CPU 限制？
-	-	確認您是否在用戶端上受到 CPU 限制，而可能造成要求未在 `synctimeout` 間隔內進行處理，進而導致逾時。改用較大的用戶端或分散負載有助於控制此問題。 
+	-	確認您是否在用戶端上受到 CPU 限制，而可能造成要求未在 `synctimeout` 間隔內進行處理，進而導致逾時。改用較大的用戶端或分散負載有助於控制此問題。
 	-	確認您是否在伺服器上受到 CPU 限制，方法是監視 `CPU` [快取效能度量](cache-how-to-monitor.md#available-metrics-and-reporting-intervals)。如果要求在 Redis 受到 CPU 限制時傳入，則可能會造成這些要求逾時。若要解決此問題，您可以將負載分散在高階快取的多個分區中，或升級至較大的大小或定價層。如需詳細資訊，請參閱[超過伺服器端頻寬](#server-side-bandwidth-exceeded)。
 
 7. 伺服器上是否有命令需要很長的處理時間？ Redis 伺服器上處理時間很長的長時間執行命令可能會導致逾時。長時間執行之命令的部分範例包括有大量金鑰的 `mget`、`keys *` 或編寫得不好的 lua 指令碼。您可以使用 redis-cli 用戶端連線到 Azure Redis 快取執行個體，或使用 [Redis 主控台](cache-configure.md#redis-console)並執行 [SlowLog](http://redis.io/commands/slowlog) 命令，以查看是否有要求花費的時間超出預期。Redis 伺服器和 StackExchange.Redis 最適合許多小型要求，而非少數幾個大型要求。將資料分割成較小的區塊可以改善這些問題。
@@ -280,18 +280,7 @@ StackExchange.Redis 使用名為 `synctimeout` 的組態設定來進行預設值
 11. 如果您使用 `RedisSessionStateprovider`，請確定您已正確設定重試逾時。`retrytimeoutInMilliseconds` 應該高於 `operationTimeoutinMilliseonds`，否則不會發生任何重試。在下列範例中，`retrytimeoutInMilliseconds` 已設定為 3000。如需詳細資訊，請參閱 [Azure Redis 快取的 ASP.NET 工作階段狀態供應器](cache-aspnet-session-state-provider.md)和[如何使用工作階段狀態供應器與輸出快取提供者的組態參數](https://github.com/Azure/aspnet-redis-providers/wiki/Configuration)。
 
 
-	<add
-	  name="AFRedisCacheSessionStateProvider"
-	  type="Microsoft.Web.Redis.RedisSessionStateProvider"
-	  host="enbwcache.redis.cache.windows.net"
-	  port="6380"
-	  accessKey="…"
-	  ssl="true"
-	  databaseId="0"
-	  applicationName="AFRedisCacheSessionState"
-	  connectionTimeoutInMilliseconds = "5000"
-	  operationTimeoutInMilliseconds = "1000"
-	  retryTimeoutInMilliseconds="3000" />
+	<add name="AFRedisCacheSessionStateProvider" type="Microsoft.Web.Redis.RedisSessionStateProvider" host="enbwcache.redis.cache.windows.net" port="6380" accessKey="…" ssl="true" databaseId="0" applicationName="AFRedisCacheSessionState" connectionTimeoutInMilliseconds = "5000" operationTimeoutInMilliseconds = "1000" retryTimeoutInMilliseconds="3000" />
 
 
 12. 請透過[監視](cache-how-to-monitor.md#available-metrics-and-reporting-intervals) `Used Memory RSS` 和 `Used Memory`，檢查 Azure Redis 快取伺服器上的記憶體使用量。如果已備有收回原則，Redis 就會在 `Used_Memory` 達到快取大小時開始收回金鑰。理想情況下，`Used Memory RSS` 應該只稍微高於 `Used memory`。差異很大表示記憶體分散 (內部或外部)。當 `Used Memory RSS` 小於 `Used Memory` 時，則表示作業系統已交換部分快取記憶體。如果發生這種情況，您應該就會遇到顯著的延遲。因為 Redis 無法控制其配置對應到記憶體分頁的方式，高 `Used Memory RSS` 通常是記憶體使用量突然增加的結果。當 Redis 釋放記憶體時，記憶體會回到配置器，但配置器不一定會重新提供記憶體給系統。`Used Memory` 值和作業系統報告的記憶體耗用量可能會有差異。原因可能是 Redis 已使用並釋放記憶體，但未交回給系統。若要降低記憶體問題，您可以執行下列步驟。
@@ -308,4 +297,4 @@ StackExchange.Redis 使用名為 `synctimeout` 的組態設定來進行預設值
 -	[如何執行 Redis 命令？](cache-faq.md#how-can-i-run-redis-commands)
 -	[如何監視 Azure Redis 快取](cache-how-to-monitor.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016------>

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/14/2016" 
+	ms.date="08/08/2016" 
 	ms.author="billmath"/>
 
 # Azure AD Connect Health︰版本發行歷程記錄
@@ -93,4 +93,4 @@ Azure Active Directory 團隊會定期以新的特性和功能更新 Azure AD Co
 ## 後續步驟
 深入了解[在雲端中監視內部部署身分識別基礎結構和同步處理服務](active-directory-aadconnect-health.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0810_2016------>

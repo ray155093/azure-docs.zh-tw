@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/25/2016" 
+	ms.date="08/09/2016" 
 	ms.author="sdanie"/>
 
 # 如何在 Azure API 管理中建立和使用群組來管理開發人員帳戶
@@ -111,4 +111,4 @@ API 管理具有下列不可變的系統群組。
 [開始使用 Azure API 管理]: api-management-get-started.md#create-service-instance
 [使用 Azure Active Directory 相關租用戶中的外部群組]: api-management-howto-aad.md#how-to-add-an-external-azure-active-directory-group
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016------>

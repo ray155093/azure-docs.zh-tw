@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/24/2016"
+	ms.date="08/09/2016"
 	ms.author="sdanie"/>
 
 # 如何使用 Azure Active Directory 與 API 管理保護 Web API 後端
@@ -416,4 +416,4 @@ API 是從 API 發佈者入口網站所設定，您可以透過 Azure 傳統入�
 [建立 API 管理服務執行個體]: api-management-get-started.md#create-service-instance
 [管理您的第一個 API]: api-management-get-started.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016------>

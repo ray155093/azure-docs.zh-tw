@@ -43,11 +43,11 @@ A10 和 A11 執行個體具有可連線至 Azure 服務和網際網路的單一 
 
 * **Azure 訂用帳戶** – 如果您想要部署的不只是少數的計算密集執行個體，請考慮隨用隨付訂用帳戶或其他購買選項。如果您使用 [Azure 免費帳戶](https://azure.microsoft.com/free/)，您只能使用有限數目的 Azure 計算核心。
 
-* **核心配額** – 您可能需要增加您 Azure 訂用帳戶的核心配額，預設配額是每個訂用帳戶 20 個核心 (如果您使用傳統部署模型)，或是每個區域 20 個核心 (如果您使用 Resource Manager 部署模型)。如要要求增加配額，請遵循 [Understanding Azure Limits and Increases (了解 Azure 的限制及增加)](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) 中所示的步驟來免費開啟支援票證。
+* **核心配額** – 您可能需要增加您 Azure 訂用帳戶的核心配額，預設配額是每個訂用帳戶 20 個核心 (如果您使用傳統部署模型)，或是每個區域 20 個核心 (如果您使用 Resource Manager 部署模型)。如要要求增加配額，請遵循 [Understanding Azure Limits and Increases (了解 Azure 的限制及增加)](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) 中所示的步驟來免費開啟支援票證。(預設限制會視您的訂用帳戶類別而有所不同。)
 
     >[AZURE.NOTE]如果您有大規模的容量需求，請連絡 Azure 支援。Azure 配額為信用額度，而不是容量保證。無論您的配額有多少，您只需支付您使用的核心。
 
-* **虛擬網路** – 使用計算密集型執行個體時，並不需要 Azure [虛擬網路](https://azure.microsoft.com/documentation/services/virtual-network/)。不過，您可能需要至少一個雲端型 Azure 虛擬網路來處理許多案例，或者如果您需要存取內部部署資源 (例如，應用程式授權伺服器)，則需要站對站連線。您必須建立新的虛擬網路，才能部署執行個體。不支援將 A8、A9、A10 或 A11 VM 新增至同質群組中的虛擬網路。
+* **虛擬網路** – 使用計算密集型執行個體時，並不需要 Azure [虛擬網路](https://azure.microsoft.com/documentation/services/virtual-network/)。不過，您可能需要至少一個雲端型 Azure 虛擬網路來處理許多案例，或者如果您需要存取內部部署資源 (例如，應用程式授權伺服器)，則需要站對站連線。如有需要，請建立新的虛擬網路來部署執行個體。不支援將 A8、A9、A10 或 A11 VM 新增至同質群組中的虛擬網路。
 
 * **雲端服務或可用性設定組** – 如要透過 RDMA 網路連線，A8 和 A9 大小 VM 必須部署在相同的雲端服務中 (如果您使用傳統部署模型)，或是相同的可用性設定組中 (如果您使用 Azure Resource Manager 部署模型)。
 
@@ -57,4 +57,4 @@ A10 和 A11 執行個體具有可連線至 Azure 服務和網際網路的單一 
 
 * **RDMA 網路位址空間** - Azure 中的 RDMA 網路會保留位址空間 172.16.0.0/16。如果您打算在 Azure 虛擬網路中的 A8 和 A9 執行個體上執行 MPI 應用程式，請確定虛擬網路位址空間不會與 RDMA 網路重疊。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0810_2016------>

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/24/2016" 
+	ms.date="08/09/2016" 
 	ms.author="sdanie"/>
 
 # 如何在 Azure API 管理中使用服務備份和還原實作災害復原
@@ -87,9 +87,9 @@
 
 使用剛才建立的 Azure Active Directory 應用程式的租用戶識別碼取代 `{tenant id}`。您可以按一下 [檢視端點] 來存取識別碼。
 
-![Endpoints][api-management-aad-default-directory]
+![端點][api-management-aad-default-directory]
 
-![Endpoints][api-management-endpoint]
+![端點][api-management-endpoint]
 
 使用您 Azure Active Directory 應用程式 [組態] 索引標籤中的 [用戶端識別碼]，和 [重新導向 URI] 的 URL，取代 `{application id}` 和 `{redirect uri}`。
 
@@ -130,12 +130,12 @@
 
 **注意**：
 
-- 於要求本文中指定的**容器** **必須存在**。
-* 備份進行時，請「避免嘗試任何服務管理作業」，如提升或降低 SKU、變更網域名稱等。 
-* 備份還原的**保證僅限建立後的 7 天內**。 
+- 於要求本文中指定的 **容器** **必須存在**。
+* 備份進行時，請「避免嘗試任何服務管理作業」，如提升或降低 SKU、變更網域名稱等。
+* 備份還原的**保證僅限建立後的 7 天內**。
 * 備份**不包括**用來建立分析報表的**流量資料**。請使用 [Azure API 管理 REST API][] 來定期擷取分析報告，以利妥善保存。
 * 執行服務備份的頻率會影響您的復原點目標。為了盡可能縮小，建議您實施定期備份，以及在針對 API 管理服務做出重要變更後執行隨選備份。
-* 在備份作業進行時針對服務組態 (如 API、原則、開發人員入口網站外觀) 所做的**變更** **可能不會納入備份中，因此可能會遺失**。
+* 在備份作業進行時針對服務組態 (如 API、原則、開發人員入口網站外觀) 所做的 **變更** **可能不會納入備份中，因此可能會遺失**。
 
 ## <a name="step2"> </a>還原 API 管理服務
 若要從先前建立的備份還原 API 管理服務，請發出以下 HTTP 要求：
@@ -164,12 +164,12 @@
 
 >[AZURE.IMPORTANT] 用於還原之目標服務的 **SKU**「必須符合」即將還原之已備份服務的階層。
 >
->在還原作業進行時針對服務組態 (如 API、原則、開發人員入口網站外觀) 所做的**變更** **可能會遭到覆寫**。
+>在還原作業進行時針對服務組態 (如 API、原則、開發人員入口網站外觀) 所做的**變更****可能會遭到覆寫**。
 
 ## 後續步驟
 請參閱下列 Microsoft 部落格中，兩個不同的備份/還原程序逐步解說。
 
--	[複寫 Azure API 管理帳戶 (英文)](https://www.returngis.net/en/2015/06/replicate-azure-api-management-accounts/) 
+-	[複寫 Azure API 管理帳戶 (英文)](https://www.returngis.net/en/2015/06/replicate-azure-api-management-accounts/)
 	-	感謝 Gisela 提供此文章。
 -	[Azure API 管理：備份和還原組態 (英文)](http://blogs.msdn.com/b/stuartleeks/archive/2015/04/29/azure-api-management-backing-up-and-restoring-configuration.aspx)
 	-	Stuart 詳細說明的方法與正式指南不同，但非常有意思。
@@ -191,4 +191,4 @@
 [api-management-endpoint]: ./media/api-management-howto-disaster-recovery-backup-restore/api-management-endpoint.png
  
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016------>

@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="07/05/2016"
+	ms.date="08/03/2016"
 	ms.author="robinsh"/>
 
 # 啟用 Azure 儲存體計量和檢視計量資料
 
 [AZURE.INCLUDE [storage-selector-portal-enable-and-view-metrics](../../includes/storage-selector-portal-enable-and-view-metrics.md)]
 
-## 概觀
+## Overview
 
 根據預設，儲存體服務未啟用 [儲存體度量]。您可以透過 [Azure 入口網站](https://portal.azure.com)或 Windows PowerShell 啟用監視功能，或透過儲存體用戶端程式庫以程式設計方式啟用。
 
@@ -213,4 +213,4 @@
 ## 後續步驟：
 [啟用儲存體記錄和存取記錄檔資料](https://msdn.microsoft.com/library/dn782840.aspx)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0810_2016------>

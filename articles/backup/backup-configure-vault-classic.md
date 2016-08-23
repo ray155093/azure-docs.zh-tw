@@ -3,8 +3,8 @@
 	description="藉由建立備份保存庫、下載認證、安裝備份代理程式，並完成檔案和資料夾的初始備份，來將 Windows Server 或用戶端備份到 Azure。"
 	services="backup"
 	documentationCenter=""
-	authors="Jim-Parker"
-	manager="jwhit"
+	authors="markgalioto"
+	manager="cfreeman"
 	editor=""
 	keywords="備份保存庫；備份 Windows Server；備份Windows；"/>
 
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/09/2016"
+	ms.date="08/08/2016"
 	ms.author="jimpark; trinadhk; markgal"/>
 
 
@@ -28,7 +28,7 @@
 
 ![[建立保存庫]](./media/backup-configure-vault-classic/initial-backup-process.png)
 
->[AZURE.IMPORTANT] Azure 建立和處理資源的部署模型有二種：資源管理員和傳統。本文涵蓋之內容包括使用傳統部署模型。Microsoft 建議讓大部分的新部署使用 Resource Manager 模式。
+>[AZURE.IMPORTANT] Azure 建立和處理資源的部署模型有二種：資源管理員和傳統。本文涵蓋之內容包括使用傳統部署模型。Microsoft 建議讓大部分的新部署使用資源管理員模式。
 
 ## 開始之前
 若要將伺服器或用戶端備份至 Azure，您需要 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶](https://azure.microsoft.com/free/)。
@@ -74,7 +74,7 @@
 
     c.選擇適當的儲存體備援選項。
 
-    如果您選取 [本地備援]，您必須按一下 [儲存]\(因為 [異地備援] 是預設選項)。
+    如果您選取 [本地備援]，您必須按一下 [儲存] (因為 [異地備援] 是預設選項)。
 
     d.在左側瀏覽窗格中，按一下 [復原服務] 來回到復原服務的資源清單。
 
@@ -110,7 +110,7 @@
 
     ![儲存代理程式](./media/backup-configure-vault-classic/agent.png)
 
-3. 在下載 MARSagentinstaller.exe 檔案之後，按一下 [執行]\(或從儲存的位置按兩下 **MARSAgentInstaller.exe**)。
+3. 在下載 MARSagentinstaller.exe 檔案之後，按一下 [執行] (或從儲存的位置按兩下 **MARSAgentInstaller.exe**)。
 
 4. 選擇代理程式所需的安裝資料夾和快取資料夾，然後按一下 [下一步]。您指定的快取位置必須至少包含等於備份資料大小 5% 的可用空間。
 
@@ -226,4 +226,4 @@
 - [使用 Microsoft Azure 備份伺服器備份工作負載](backup-azure-microsoft-azure-backup.md)
 - [使用 DPM 將工作負載備份到 Azure](backup-azure-dpm-introduction.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016------>

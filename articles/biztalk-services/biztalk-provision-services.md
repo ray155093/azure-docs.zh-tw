@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="05/16/2016"
+	ms.date="08/15/2016"
 	ms.author="mandia"/>
 
 
@@ -151,7 +151,7 @@
 
 存取控制服務身分識別是一組認證，可讓應用程式或用戶端直接使用 Azure AD 存取控制進行驗證，並接收權杖。
 
-> [AZURE.IMPORTANT] BizTalk 服務會使用**擁有者**做為預設服務身分識別，並使用**密碼**值。若您使用對稱金鑰值，而不是密碼值，可能會發生下列錯誤。<br/><br/> *無法利用指定的認證連線至存取控制管理服務帳戶*
+> [AZURE.IMPORTANT] BizTalk 服務會使用**擁有者**做為預設服務身分識別，並使用**密碼**值。若您使用對稱金鑰值，而不是密碼值，可能會發生下列錯誤。<br/><br/>無法利用指定的認證連線至存取控制管理服務帳戶
 
 [管理您的 ACS 命名空間](https://msdn.microsoft.com/library/azure/hh674478.aspx)列出一些指導方針和建議。
 
@@ -164,7 +164,7 @@
         <td><strong>您為何需要它</strong></td>
 </tr>
 <tr>
-<td>Azure 訂閱</td>
+<td>Azure 訂用帳戶</td>
 <td>訂用帳戶可判定誰能夠登入 Azure 入口網站。帳戶持有者可在 <a HREF="https://account.windowsazure.com/Subscriptions">Azure 訂用帳戶</a>中建立訂用帳戶。
 <br/><br/>
 Azure 帳戶可擁有多個訂用帳戶，只要使用者取得允許皆可管理這些帳戶。例如，您的 Azure 帳戶持有者建立一個名稱為 <em>BizTalkServiceSubscription</em> 的訂用帳戶，並給與您公司內的 BizTalk 系統管理員 (例如 ContosoBTSAdmins@live.com) 存取此訂閱的權限。在此案例中，BizTalk 系統管理員可以登入 Azure 入口網站，並對訂用帳戶中的所有代管服務 (包括 Azure BizTalk 服務) 具有完整系統管理員權限。BizTalk 系統管理員不是 Azure 帳戶持有者，因此無權存取任何任何計費資訊。
@@ -271,4 +271,4 @@ Azure 帳戶可擁有多個訂用帳戶，只要使用者取得允許皆可管�
 [ACSServiceIdentities]: ./media/biztalk-provision-services/WABS_ACSServiceIdentities.png
 [HybridConnectionTab]: ./media/biztalk-provision-services/WABS_HybridConnectionTab.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

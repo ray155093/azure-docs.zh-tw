@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management" 
-   ms.date="05/09/2016"
+   ms.date="08/08/2016"
    ms.author="sstein"/>
 
 # SQL Database 定價層建議
 
- 提供的各種定價層建議會針對最適合執行現有 Azure SQL Database 工作負載的服務層和效能等級提供建議。
+ 定價層建議會針對最適合執行現有 Azure SQL Database 工作負載的服務層和效能等級提供建議。
 
 > [AZURE.NOTE] 定價層建議僅適用於 Web 和 Business 資料庫，以及彈性資料庫集區，而且只有在 [Azure 入口網站](https://portal.azure.com/)中才可看到建議。
 
@@ -34,7 +34,7 @@
 
 
 
-## 概觀
+## Overview
 
 SQL Database 服務會評估 SQL Database 的歷程記錄資源使用狀況，藉此分析目前的效能和功能需求。此外，還會根據資料庫的大小決定至少可接受的服務層，並且啟用[商務持續性](sql-database-business-continuity.md)功能。
 
@@ -96,4 +96,4 @@ SQL Database 服務會評估 SQL Database 的歷程記錄資源使用狀況，�
 
  
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0810_2016------>

@@ -12,7 +12,7 @@
     ms.workload="search"
     ms.topic="get-started-article"
     ms.tgt_pltfrm="na"
-    ms.date="05/23/2016"
+    ms.date="08/15/2016"
     ms.author="brjohnst"/>
 
 # 使用 .NET SDK 查詢 Azure 搜尋服務索引
@@ -26,7 +26,7 @@
 
 在開始閱讀本逐步解說前，請先[建立好 Azure 搜尋服務索引](search-what-is-an-index.md)，並[在索引中填入資料](search-what-is-data-import.md)。
 
-請注意，本文中的所有範例程式碼均以 C# 撰寫。您可以在 [GitHub](http://aka.ms/search-dotnet-howto) 上找到完整的原始程式碼。
+請注意，本文中的所有範例程式碼都是以 C# 撰寫的。您可以在 [GitHub](http://aka.ms/search-dotnet-howto) 上找到完整的原始程式碼。
 
 ## I.識別 Azure 搜尋服務的查詢 API 金鑰
 現在您已建立 Azure 搜尋服務索引，便差不多可以使用 .NET SDK 發出查詢。首先，必須取得一個為您佈建的搜尋服務所產生的查詢 API 金鑰。.NET SDK 將會在每個要求上將此 API 金鑰傳送給您的服務。擁有有效的金鑰就能為每個要求在傳送要求之應用程式與處理要求之服務間建立信任。
@@ -162,4 +162,4 @@ ID: 2   Base rate: 79.99        Description: Cheapest hotel in town     Descript
 
 上方的範例程式碼使用主控台來輸出搜尋結果。您同樣需要在自己的應用程式中顯示搜尋結果。如需範例以了解如何在 ASP.NET MVC 架構的 Web 應用程式中轉譯搜尋結果，請參閱 [GitHub 上的此範例](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetSample)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0817_2016-->

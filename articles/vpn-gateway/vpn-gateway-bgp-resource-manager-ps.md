@@ -191,9 +191,9 @@ BGP 是常用於網際網路的標準路由通訊協定，可交換兩個或多�
 
 #### 2\.建立 TestVNet1 至 Site5 的連線
 
-在此步驟中，您將建立從 TestVNet1 至 Site5 的連線。您必須指定 "-EnableBGP True" 才能為此連線啟用 BGP。如先前所討論，相同的 Azure VPN 閘道可以同時有 BGP 和非 BGP 連線。除非已在連接屬性中啟用 BGP，否則即使已在兩個閘道上設定 BGP 參數，Azure 也不會為此連線啟用 BGP。
+在此步驟中，您將建立從 TestVNet1 至 Site5 的連線。您必須指定 "-EnableBGP $True" 才能為此連線啟用 BGP。如先前所討論，相同的 Azure VPN 閘道可以同時有 BGP 和非 BGP 連線。除非已在連接屬性中啟用 BGP，否則即使已在兩個閘道上設定 BGP 參數，Azure 也不會為此連線啟用 BGP。
 
-	New-AzureRmVirtualNetworkGatewayConnection -Name $Connection15 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -LocalNetworkGateway2 $lng5gw -Location $Location1 -ConnectionType IPsec -SharedKey 'AzureA1b2C3' -EnableBGP True
+	New-AzureRmVirtualNetworkGatewayConnection -Name $Connection15 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -LocalNetworkGateway2 $lng5gw -Location $Location1 -ConnectionType IPsec -SharedKey 'AzureA1b2C3' -EnableBGP $True
 
 
 下列範例列出您將會針對此練習中，在內部部署 VPN 裝置的 BGP 組態區段中輸入的參數︰
@@ -220,7 +220,7 @@ BGP 是常用於網際網路的標準路由通訊協定，可交換兩個或多�
 
 請務必確定新虛擬網路的 IP 位址空間 TestVNet2 不會與任何 VNet 範圍重疊。
 
-在此範例中，虛擬網路屬於相同的訂用帳戶。您可以設定不同訂用帳戶之間的 VNet 對 VNet 連線；若要深入了解詳細資訊，請參閱[設定 VNet 對 VNet 連線](./vpn-gateway-vnet-vnet-rm-ps.md)。請務必在建立連線時新增 "-EnableBgp True"，才能啟用 BGP。
+在此範例中，虛擬網路屬於相同的訂用帳戶。您可以設定不同訂用帳戶之間的 VNet 對 VNet 連線；若要深入了解詳細資訊，請參閱[設定 VNet 對 VNet 連線](./vpn-gateway-vnet-vnet-rm-ps.md)。請務必在建立連線時新增 "-EnableBgp $True"，才能啟用 BGP。
 
 #### 1\.宣告變數
 
@@ -284,9 +284,9 @@ BGP 是常用於網際網路的標準路由通訊協定，可交換兩個或多�
 
 在此步驟中，您將建立從 TestVNet1 到 TestVNet2 的連線，以及從 TestVNet2 到 TestVNet1 的連線。
 
-	New-AzureRmVirtualNetworkGatewayConnection -Name $Connection12 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -VirtualNetworkGateway2 $vnet2gw -Location $Location1 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3' -EnableBgp True
+	New-AzureRmVirtualNetworkGatewayConnection -Name $Connection12 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -VirtualNetworkGateway2 $vnet2gw -Location $Location1 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3' -EnableBgp $True
 
-	New-AzureRmVirtualNetworkGatewayConnection -Name $Connection21 -ResourceGroupName $RG2 -VirtualNetworkGateway1 $vnet2gw -VirtualNetworkGateway2 $vnet1gw -Location $Location2 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3' -EnableBgp True
+	New-AzureRmVirtualNetworkGatewayConnection -Name $Connection21 -ResourceGroupName $RG2 -VirtualNetworkGateway1 $vnet2gw -VirtualNetworkGateway2 $vnet1gw -Location $Location2 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3' -EnableBgp $True
 
 >[AZURE.IMPORTANT] 請務必對這兩個連線啟用 BGP。
 
@@ -300,4 +300,4 @@ BGP 是常用於網際網路的標準路由通訊協定，可交換兩個或多�
 
 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0810_2016------>

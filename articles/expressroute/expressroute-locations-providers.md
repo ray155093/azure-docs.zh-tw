@@ -68,8 +68,8 @@
 | **都柏林** | Colt |
 | **香港** | British Telecom、China Telecom Global、Equinix、Megaport、Orange、PCCW Global Limited、Tata Communications、Verizon |
 | **倫敦** | AT&T NetBond、British Telecom、Colt、Equinix、InterCloud、Internet Solutions - Cloud Connect、Interxion、Jisc+、Level 3 Communications、MTN、NTT Communications、Orange、Tata Communications、Telecity Group、Telenor、Verizon、Vodafone |
-| **拉斯維加斯** | Level 3 Communications+、Megaport+
-| **洛杉磯** | CoreSite、Equinix、Megaport、Zayo Group |
+| **拉斯維加斯** | Level 3 Communications+、Megaport
+| **洛杉磯** | CoreSite、Equinix、Megaport、NTT、Zayo Group |
 | **墨爾本** | Equinix、Megaport、NEXTDC、Telstra Corporation |
 | **紐約** | Equinix、Megaport、Zayo Group |
 | **蒙特婁** | Cologix+ |
@@ -156,4 +156,4 @@
 <!--Image References-->
 [0]: ./media/expressroute-locations/expressroute-locations-map.png "位置圖"
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

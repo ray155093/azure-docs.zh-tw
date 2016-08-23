@@ -3,7 +3,7 @@
 	description="在規劃混合式身分識別解決方案時，請識別您企業的資料保護需求，以及有哪些可用選項可充分因應這些需求。"
 	documentationCenter=""
 	services="active-directory"
-	authors="yuridio"
+	authors="billmath"
 	manager="stevenpo"
 	editor=""/>
 
@@ -13,8 +13,8 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="04/28/2016"
-	ms.author="yuridio"/>
+	ms.date="08/08/2016"
+	ms.author="billmath"/>
 
 #透過增強式身分識別解決方案規劃更高的資料安全性
 
@@ -69,7 +69,7 @@
 規定、法律和法規遵循需求會隨著您的公司所屬的產業而有所不同。受到嚴格規範的公司，必須處理與法規遵循有關的身分識別管理問題。諸如沙賓法案 (SOX)、健康保險流通與責任法案 (HIPAA)、美國金融服務法案 (GLBA) 和支付卡產業資料安全標準 (PCI DSS) 等法規，在身分識別和存取方面都有非常嚴格的規定。您的公司所將採用的混合式身分識別解決方案，必須具有核心功能可因應這些法規的一或多項需求。針對這個層面，請確實回答下列問題：
 
 - 混合式身分識別解決方案是否符合貴公司的法規需求？
-- 混合式身分識別解決方案是否有內建功能可讓您的公司符合法規需求？ 
+- 混合式身分識別解決方案是否有內建功能可讓您的公司符合法規需求？
  
 >[AZURE.NOTE]
 請確定會記下每個答案，並了解答案背後的原理。[定義資料保護策略](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md)將介紹可用選項，以及每個選項的優點/缺點。回答這些問題之後，您就能選取最適合業務需求的選項。
@@ -81,4 +81,4 @@
 ## 另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0810_2016------>

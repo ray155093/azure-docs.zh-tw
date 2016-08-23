@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/09/2016"
+   ms.date="08/16/2016"
    ms.author="cherylmc"/>
 
 # 使用 CLI 建立 Azure DNS 區域
@@ -46,7 +46,7 @@
 
 ### 2\.切換 CLI 模式
 
-Azure DNS 使用 Azure 資源管理員。請確定您已將 CLI 模式切換為使用 ARM 命令。
+Azure DNS 使用 Azure Resource Manager。請確定您已將 CLI 模式切換為使用 ARM 命令。
 
 	Azure config mode arm
 
@@ -109,10 +109,10 @@ Azure DNS CLI 透過使用選擇性的「-Tag」參數來支援所指定 DNS 區
 
 - 授權名稱伺服器 (NS) 記錄。這些顯示哪些名稱伺服器裝載該區域。Azure DNS 使用名稱伺服器集區，因此，不同的名稱伺服器可以指派至 Azure DNS 中的不同區域。如需詳細資訊，請參閱[將網域委派給 Azure DNS](dns-domain-delegation.md)。
 
-若要檢視這些記錄，請使用 `azure network dns-record-set show`。<BR> 「使用方式︰網路 dns 記錄集顯示」<resource-group> <dns-zone-name> <name> <type>
+若要檢視這些記錄，請使用 `azure network dns-record-set show`。<BR> 使用方式：network dns record-set show <resource-group> <dns-zone-name> <name> <type>
 
 
-在下列範例中，如果您使用資源群組「myresourcegroup」、記錄集名稱「"@"」(適用於根記錄) 和類型「SOA」執行命令，則會產生下列輸出：
+在下列範例中，如果您使用資源群組 myresourcegroup、記錄集名稱 "@" (適用於根記錄) 和類型 SOA 執行命令，則會產生下列輸出：
 
 
 	azure network dns record-set show myresourcegroup "contoso.com" "@" SOA
@@ -157,7 +157,7 @@ Azure DNS CLI 透過使用選擇性的「-Tag」參數來支援所指定 DNS 區
 
 如果您還沒有將網域委派給 Azure DNS 中的新區域，您必須將 DNS 查詢直接導向您的區域的其中一個名稱伺服器。如上面的 "azure network dns record-set show" 所列，NS 記錄提供您區域的名稱伺服器。請務必在下列命令中用正確的值取代您的區域。
 
-下列範例使用 DIG，使用為 DNS 區域指派的名稱伺服器來查詢網域 contoso.com。使用 DIG 的查詢必須指向我們將「@」<name server for the zone>和區域名稱用於的名稱伺服器。
+下列範例使用 DIG，使用為 DNS 區域指派的名稱伺服器來查詢網域 contoso.com。使用 DIG 的查詢必須指向我們將 @<區域的名稱伺服器> 和區域名稱用於的名稱伺服器。
 
 	 <<>> DiG 9.10.2-P2 <<>> @ns1-05.azure-dns.com contoso.com
 	(1 server found)
@@ -183,6 +183,6 @@ Azure DNS CLI 透過使用選擇性的「-Tag」參數來支援所指定 DNS 區
 
 ## 後續步驟
 
-在建立 DNS 區域之後，請建立[記錄集和記錄](dns-getstarted-create-recordset-cli.md)，以開始解析您的網際網路網域的名稱。
+建立 DNS 區域之後，請建立[記錄集和記錄](dns-getstarted-create-recordset-cli.md)，以開始解析您的網際網路網域名稱。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0817_2016-->

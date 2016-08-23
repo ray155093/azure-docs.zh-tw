@@ -3,7 +3,7 @@
    description="了解如何使用 Azure CLI 控制路由和使用虛擬應用裝置"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor=""
    tags="azure-resource-manager"
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/15/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 #在 Azure CLI 中建立使用者定義的路由 (UDR)
 
@@ -23,7 +23,7 @@
 
 [AZURE.INCLUDE [virtual-network-create-udr-intro-include.md](../../includes/virtual-network-create-udr-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]本文涵蓋之內容包括資源管理員部署模型。您也可以[在傳統部署模型中建立 UDR](virtual-network-create-udr-classic-cli.md)。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] 本文涵蓋之內容包括資源管理員部署模型。您也可以[在傳統部署模型中建立 UDR](virtual-network-create-udr-classic-cli.md)。
 
 [AZURE.INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
@@ -32,13 +32,13 @@
 [AZURE.INCLUDE [azure-cli-prerequisites-include.md](../../includes/azure-cli-prerequisites-include.md)]
 
 ## 建立前端子網路的 UDR
-若要根據上述案例建立前端子網路所需的路由表和路徑，請依照下列步驟執行。
+若要根據上述案例建立前端子網路所需的路由表和路由，請依照下列步驟執行。
 
 3. 執行 **`azure network route-table create`** 命令，建立前端子網路的路由表。
 
 		azure network route-table create -g TestRG -n UDR-FrontEnd -l uswest
 
-	Output:
+	輸出：
 
 		info:    Executing command network route-table create
 		info:    Looking up route table "UDR-FrontEnd"
@@ -61,7 +61,7 @@
 
 		azure network route-table route create -g TestRG -r UDR-FrontEnd -n RouteToBackEnd -a 192.168.2.0/24 -y VirtualAppliance -p 192.168.0.4
 
-	Output:
+	輸出：
 
 		info:    Executing command network route-table route create
 		info:    Looking up route "RouteToBackEnd" in route table "UDR-FrontEnd"
@@ -86,7 +86,7 @@
 
 		azure network vnet subnet set -g TestRG -e TestVNet -n FrontEnd -r UDR-FrontEnd
 
-	Output:
+	輸出：
 
 		info:    Executing command network vnet subnet set
 		info:    Looking up the subnet "FrontEnd"
@@ -135,7 +135,7 @@
 
 		azure network nic show -g TestRG -n NICFW1
 
-	Output:
+	輸出：
 		
 		info:    Executing command network nic show
 		info:    Looking up the network interface "NICFW1"
@@ -166,7 +166,7 @@
 
 		azure network nic set -g TestRG -n NICFW1 -f true
 
-	Output:
+	輸出：
 
 		info:    Executing command network nic set
 		info:    Looking up the network interface "NICFW1"
@@ -199,4 +199,4 @@
 
 	- **-f (或 --enable-ip-forwarding)**。*true* 或 *false*。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0810_2016------>

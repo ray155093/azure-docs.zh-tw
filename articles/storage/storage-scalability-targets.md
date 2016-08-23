@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="storage"
-   ms.date="07/18/2016"
+   ms.date="08/03/2016"
    ms.author="robinsh" />
 
 # Azure 儲存體延展性和效能目標
 
-## 概觀
+## Overview
 
 本主題描述 Microsoft Azure 儲存體的延展性和效能。如需其他 Azure 限制的摘要，請參閱 [Azure 訂用帳戶和服務限制、配額及條件約束](../azure-subscription-service-limits.md)。
 
@@ -83,4 +83,4 @@
 - [Microsoft Azure 儲存體效能與延展性檢查清單](storage-performance-checklist.md)
 - [Microsoft Azure 儲存體：具有高度一致性的高可用性雲端儲存體服務。](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0810_2016------>

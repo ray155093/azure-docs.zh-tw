@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-management"
-	ms.date="05/09/2016"
+	ms.date="08/08/2016"
 	ms.author="sstein"/>
 
 
@@ -25,7 +25,7 @@
 - [PowerShell](sql-database-upgrade-server-powershell.md)
 
 
-SQL Database V12 是最新的版本，因此建議升級至 SQL Database V12。SQL Database V12 具有[舊版所欠缺的許多優點](sql-database-v12-whats-new.md)，包括：
+SQL Database V12 是最新的版本，因此建議將現有的伺服器升級至 SQL Database V12。SQL Database V12 具有[舊版所欠缺的許多優點](sql-database-v12-whats-new.md)，包括：
 
 - 提升與 SQL Server 的相容性。
 - 提供改進的高階效能和新的效能等級。
@@ -53,10 +53,12 @@ SQL Database V12 是最新的版本，因此建議升級至 SQL Database V12。S
 
 ## 開始升級
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，瀏覽至您想要升級的伺服器，方法是選取 [瀏覽全部] > [SQL Server]，然後選取所需的伺服器。
-2. 選取 [**最新的 SQL Database 更新**]，然後選取 [**升級此伺服器**]。
+1. 在 [Azure 入口網站](https://portal.azure.com/)中，瀏覽至您想要升級的伺服器，方法是選取 [瀏覽] > [SQL Server]，然後選取您要升級的 v2.0 伺服器。
+2. 選取 [最新的 SQL Database 更新]，然後選取 [升級此伺服器]。
 
       ![升級伺服器][1]
+
+3. 將伺服器升級為最新的 SQL Database Update 是永久且無法回復的。若要確認升級，請輸入您的伺服器名稱並按一下 [確定]。
 
 ## 升級所有 Web 和商務資料庫
 
@@ -117,7 +119,7 @@ SQL Database V12 是最新的版本，因此建議升級至 SQL Database V12。S
 除了監視個別的資料庫之外，您也可以透過[使用 Azure 入口網站監視、管理和估算彈性資料庫集區大小](sql-database-elastic-pool-manage-portal.md)或藉由 [PowerShell](sql-database-elastic-pool-powershell.md#monitoring-elastic-databases-and-elastic-database-pools) 監視彈性資料庫集區。
 
 
-**資源耗用量資料：**Basic、Standard 及 Premium 資料庫的資源耗用量資料會透過使用者資料庫中的 [sys.dm\_ db\_ resource\_stats](http://msdn.microsoft.com/library/azure/dn800981.aspx) DMV 提供。此 DMV 以 15 秒的間隔提供幾乎即時的前一小時作業資源耗用量資訊。某一間隔的 DTU 百分比耗用量會以 CPU、IO 及記錄檔方面的最大百分比耗用量來計算。下列是計算前一小時之平均 DTU 百分比耗用量的查詢：
+**資源耗用量資料：**Basic、Standard 及 Premium 資料庫的資源耗用量資料會透過使用者資料庫中的 [sys.dm_ db_ resource\_stats](http://msdn.microsoft.com/library/azure/dn800981.aspx) DMV 提供。此 DMV 以 15 秒的間隔提供幾乎即時的前一小時作業資源耗用量資訊。某一間隔的 DTU 百分比耗用量會以 CPU、IO 及記錄檔方面的最大百分比耗用量來計算。下列是計算前一小時之平均 DTU 百分比耗用量的查詢：
 
     SELECT end_time
     	 , (SELECT Max(v)
@@ -167,4 +169,4 @@ SQL Database V12 是最新的版本，因此建議升級至 SQL Database V12。S
 [6]: ./media/sql-database-upgrade-server-portal/recommendations.png
 [7]: ./media/sql-database-upgrade-server-portal/new-elastic-pool.png
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0810_2016------>

@@ -29,13 +29,15 @@
 
 在本教學課程裡，您將學習如何使用 Azure 入口網站來：
 
-- 建立 SQL Database 邏輯伺服器以裝載 SQL Database
+- 建立 SQL Database 邏輯伺服器以裝載 SQL Database。
 - 建立一個 SQL Database，其中不含任何資料、包含範例資料，或包含來自 SQL Database 備份的資料。
 - 針對單一 IP 位址或某個 IP 位址範圍，建立伺服器層級防火牆規則。
 
 透過下列連結，使用 [C#](sql-database-get-started-csharp.md) 或 [PowerShell](sql-database-get-started-powershell.md) 來執行相同的工作。
 
 [AZURE.INCLUDE [登入](../../includes/azure-getting-started-portal-login.md)]
+
+<a name="create-logical-server-bk"></a>
 
 [AZURE.INCLUDE [建立 SQL Database 邏輯伺服器](../../includes/sql-database-create-new-server-portal.md)]
 
@@ -54,11 +56,11 @@
 
 - 如果您想要進一步了解如何將內部部署的 SQL Server 資料庫移動至 Azure，請參閱[將資料庫移轉至 Azure SQL Database](sql-database-cloud-migrate.md)。
 
-- 如果您想要使用 BCP 將某些資料從 CSV 檔案載入新資料表，請參閱[使用 BCP 將資料從 CSV 檔案載入 SQL 資料庫](sql-database-load-from-csv-with-bcp.md)。
+- 如果您想要使用 BCP 將某些資料從 CSV 檔案載入新資料表，請參閱[使用 BCP 將資料從 CSV 檔案載入 SQL Database](sql-database-load-from-csv-with-bcp.md)。
 
 
 ## 其他資源
 
 [什麼是 SQL Database？](sql-database-technical-overview.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

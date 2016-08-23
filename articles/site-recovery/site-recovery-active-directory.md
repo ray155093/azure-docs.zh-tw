@@ -105,7 +105,7 @@ Site Recovery 是一項 Azure 服務，藉由協調虛擬機器的複寫、容�
 	- 區域必須能夠進行安全和非安全更新。
 	- 網域控制站虛擬機器的解析程式應該指向 DNS 虛擬機器的 IP 位址。
 
-2. 在網域控制站虛擬機器目錄中執行下列命令：
+2. 在網域控制站虛擬機器中執行下列命令：
 
 	`nltest /dsregdns`
 
@@ -121,4 +121,4 @@ Site Recovery 是一項 Azure 服務，藉由協調虛擬機器的複寫、容�
 
 閱讀[我可以保護哪些工作負載?](../site-recovery/site-recovery-workload.md) 深入了解如何以 Azure Site Recovery 保護企業工作負載。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0810_2016------>

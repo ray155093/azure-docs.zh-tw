@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/12/2016" 
+	ms.date="08/04/2016" 
 	ms.author="billmath"/>
 
 # Azure Multi-Factor Authentication 中的報告
@@ -22,7 +22,7 @@ Azure Multi-Factor Authentication 提供數個供您和貴組織使用的報告�
 
 您可以透過 Azure 管理入口網站來存取報告。
 
-名稱| 說明
+Name| 說明
 :------------- | :------------- | 
 使用量 | 使用量報告顯示有關整體使用量、使用者摘要和使用者詳細資料等資訊。
 伺服器狀態|此報告會顯示與帳戶相關聯之 Multi-Factor Authentication Server 的狀態。
@@ -49,4 +49,4 @@ Azure Multi-Factor Authentication 提供數個供您和貴組織使用的報告�
 * [MSDN 上的 Azure Multi-Factor Authentication](https://msdn.microsoft.com/library/azure/dn249471.aspx)
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016------>

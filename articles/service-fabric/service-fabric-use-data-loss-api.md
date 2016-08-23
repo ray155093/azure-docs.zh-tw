@@ -48,7 +48,7 @@
 
 成功呼叫 Start API 之後，應該在迴圈中呼叫 GetProgress API，直到所傳回進度物件的 State 屬性為 Completed 為止。所有的 [FabricTransientException][fte] 和 OperationCanceledException 都應重試。當命令觸達終止狀態 (Completed、Faulted 或 Cancelled) 時，所傳回進度物件的 Result 屬性將具有額外的資訊。如果狀態為 Completed，Result.SelectedPartition.PartitionId 將包含所選取的分割識別碼。Result.Exception 會是 null。如果狀態為 Faulted，Result.Exception 將產生錯誤插入和分析服務無法執行該命令的理由。Result.SelectedPartition.PartitionId 將具有所選取的分割識別碼。在某些情況下，會因為命令執行的程度還不夠而無法選擇分割區。在此情況下，PartitionId 會是 0。如果狀態為 Cancelled，則 Result.Exception 會是 null。與 Faulted 情況類似，Result.SelectedPartition.PartitionId 將具有所選擇的分割識別碼，但是如果因為命令執行的程度還不夠而無法執行此動作，則為 0。另請參閱下面的範例。
 
-下列範例程式碼示範如何啟動然後檢查命令上重新啟動特定分割區的進度。
+下列範例程式碼示範如何啟動然後檢查命令上的進度以造成特定分割區遺失資料。
 
 ```csharp
     static async Task PerformDataLossSample()
@@ -222,14 +222,14 @@
 
 當命令已觸達終止狀態之後，它的中繼資料將會在錯誤插入和分析服務中保留一段時間，之後才會將它移除以節省空間。如果在移除命令之後使用該命令的 operationId 來呼叫 “GetProgress”，將會傳回 FabricException 且 ErrorCode 為 KeyNotFound。
 
-[dl]: https://msdn.microsoft.com/zh-TW/library/azure/mt693569.aspx
-[ql]: https://msdn.microsoft.com/zh-TW/library/azure/mt693558.aspx
-[rp]: https://msdn.microsoft.com/zh-TW/library/azure/mt645056.aspx
-[psdl]: https://msdn.microsoft.com/zh-TW/library/mt697573.aspx
-[psql]: https://msdn.microsoft.com/zh-TW/library/mt697557.aspx
-[psrp]: https://msdn.microsoft.com/zh-TW/library/mt697560.aspx
-[cancel]: https://msdn.microsoft.com/zh-TW/library/azure/mt668910.aspx
-[cancelps]: https://msdn.microsoft.com/zh-TW/library/mt697566.aspx
-[fte]: https://msdn.microsoft.com/zh-TW/library/azure/system.fabric.fabrictransientexception.aspx
+[dl]: https://msdn.microsoft.com/library/azure/mt693569.aspx
+[ql]: https://msdn.microsoft.com/library/azure/mt693558.aspx
+[rp]: https://msdn.microsoft.com/library/azure/mt645056.aspx
+[psdl]: https://msdn.microsoft.com/library/mt697573.aspx
+[psql]: https://msdn.microsoft.com/library/mt697557.aspx
+[psrp]: https://msdn.microsoft.com/library/mt697560.aspx
+[cancel]: https://msdn.microsoft.com/library/azure/mt668910.aspx
+[cancelps]: https://msdn.microsoft.com/library/mt697566.aspx
+[fte]: https://msdn.microsoft.com/library/azure/system.fabric.fabrictransientexception.aspx
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0810_2016------>

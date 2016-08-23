@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/02/2016"
+   ms.date="08/08/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 # 監視 Azure SQL 資料倉儲中的使用者查詢
@@ -39,13 +39,13 @@
 <!--Image references-->
 
 <!--Article references-->
-[尋找長時間執行的查詢]: ./sql-data-warehouse-manage-monitor.md
-[並行存取和工作負載管理]: ./sql-data-warehouse-develop-concurrency.md
-[管理概觀]: ./sql-data-warehouse-overview-manage.md
+[尋找長時間執行的查詢]: sql-data-warehouse-manage-monitor.md
+[並行存取和工作負載管理]: sql-data-warehouse-develop-concurrency.md
+[管理概觀]: sql-data-warehouse-overview-manage.md
 
 <!--MSDN references-->
 
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0810_2016------>

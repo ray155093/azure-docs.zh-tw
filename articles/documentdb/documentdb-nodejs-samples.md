@@ -3,7 +3,7 @@
 	description="在 Github 上尋找 DocumentDB 中的一般工作所適用的 NoSQL Node.js 範例，包括 NoSQL 資料庫中的 JSON 文件的 CRUD 作業。" 
 	keywords="node.js 範例"
 	services="documentdb" 
-	authors="aliuy" 
+	authors="AndrewHoh" 
 	manager="jhubbard" 
 	editor="monicar" 
 	documentationCenter="nodejs"/>
@@ -15,7 +15,7 @@
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="04/18/2016" 
-	ms.author="andrl"/>
+	ms.author="anhoh"/>
 
 
 # DocumentDB Node.js 範例
@@ -120,4 +120,4 @@
 
 如需在 DocumentDB 中分割資料的詳細資訊，請參閱 [DocumentDB 中的資料分割和級別資料](documentdb-partition-data.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0810_2016------>

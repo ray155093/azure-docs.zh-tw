@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/08/2016"
+	ms.date="08/03/2016"
 	ms.author="tamram"/>
 
 # 設定 Azure 儲存體連接字串
 
-## 概觀
+## Overview
 
 連接字串包含在執行階段從您的應用程式存取 Azure 儲存體帳戶中資料所需的驗證資訊。您可以設定連接字串，以進行下列動作：
 
@@ -163,4 +163,4 @@
 - [使用 Azure 儲存體模擬器進行開發和測試](storage-use-emulator.md)
 - [Azure 儲存體總管](storage-explorers.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0810_2016------>

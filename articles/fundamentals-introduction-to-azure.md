@@ -1,10 +1,10 @@
 <properties
-	pageTitle="簡介 Azure |Microsoft Azure"
+	pageTitle="Microsoft Azure 簡介|Microsoft Azure"
 	description="Microsoft Azure 的新手？ 取得此服務的基本概觀，其提供有關這些服務是如何實用的範例。"
 	services=" "
 	documentationCenter=".net"
-	authors="Rboucher"
-	manager="jwhit"
+	authors="rboucher"
+	manager=""
 	editor=""/>
 
 <tags
@@ -18,7 +18,7 @@
 
 # Microsoft Azure 簡介
 
-Microsoft Azure 是 Microsoft 的公用雲端應用程式平台。即使您對[雲端運算](https://azure.microsoft.com/overview/what-is-cloud-computing/)一無所知，本文旨在提供了解 Azure 基本概念的通用基礎。
+Microsoft Azure 是 Microsoft 的公用雲端應用程式平台。即使您對雲端運算一無所知，本文旨在提供了解 Azure 基本概念的通用基礎。
 
 **如何閱讀這篇文章**
 
@@ -55,7 +55,7 @@ Azure 有個稱為[管理入口網站](http://manage.windowsazure.com)的 Web �
 
 ![Azure 虛擬機器 ROBBCSIART\_TEST](./media/fundamentals-introduction-to-azure/mscsiart_VirtualMachinesIntroNew_12345.png) *圖：Azure 虛擬機器可讓您完全控制雲端中的虛擬機器執行個體。*
 
-不論從標準映像或從您提供的映像，視需要建立虛擬機器的功能都極為實用。這種方法 (通常稱為「基礎結構即服務」([IaaS](https://azure.microsoft.com/overview/what-is-iaas/))) 就是 Azure 虛擬機器所提供的方法。圖 2 顯示虛擬機器 (VM) 如何執行以及如何從 VHD 建立虛擬機器的組合。
+不論從標準映像或從您提供的映像，視需要建立虛擬機器的功能都極為實用。這種方法 (通常稱為「基礎結構即服務」(IaaS)) 就是 Azure 虛擬機器所提供的方法。圖 2 顯示虛擬機器 (VM) 如何執行以及如何從 VHD 建立虛擬機器的組合。
 
 若要建立 VM，請指定要使用的 VHD 及 VM 的大小。然後針對 VM 執行的時間付費即可。即使持續提供 VHD 會有基本儲存體費用，您僅需針對執行期間按分鐘數付費。Azure 提供了許多原廠 VHD (稱為「映像」)，其中包含可以開始使用的可開機作業系統。這些包括 Microsoft 和合作夥伴選項，例如 Windows Server 和 Linux、SQL Server、Oracle 等。您可以隨意建立 VHD 和映像，然後自行將他們上傳。您甚至可以上傳僅包含資料的 VHD，然後從執行中的 VM 存取這些資料。
 
@@ -68,7 +68,7 @@ Azure 有個稱為[管理入口網站](http://manage.windowsazure.com)的 Web �
 **虛擬機器案例**
 
 1.	**開發/測試** - 您可以將它們用於建立經濟實惠的開發和測試平台，並且在使用完畢時予以關閉。您也可以建立和執行採用您喜愛語言和程式庫的應用程式。這些應用程式可以使用 Azure 提供的任何資料管理選項，而您也可以選擇使用 SQL Server 或在一或多部虛擬機器中執行的其他 DBMS。
-2.	**將應用程式移到 Azure (提升與轉移)** - 「提升與轉移」意指移動應用程式就像是使用堆高機來移動大型物件一樣。將 VHD 從本機資料中心提升，然後轉移至 Azure 並在 Azure 中執行。您通常必須執行某些作業，才能將其他系統上的相依性移除。如果有太多的相依性，您可以改用選項 3。
+2.	**將應用程式移到 Azure (提升與轉移)** -「提升與轉移」意指移動應用程式就像是使用堆高機來移動大型物件一樣。將 VHD 從本機資料中心提升，然後轉移至 Azure 並在 Azure 中執行。您通常必須執行某些作業，才能將其他系統上的相依性移除。如果有太多的相依性，您可以改用選項 3。
 3.	**擴充您的資料中心** - 使用 Azure VM 作為內部部屬資料中心的擴充功能，用來執行 SharePoint 或其他應用程式。若要支援此功能，可以在 Azure VM 中執行 Active Directory，進而在雲端建立 Windows 網域。您可以使用 Azure 虛擬網路 (稍後會提到) 將本機網路和 Azure 中的網路連結在一起。
 
 
@@ -202,7 +202,7 @@ Azure 目前已在全球許多資料中心內運作。當您執行應用程式�
 ### 虛擬網路
 ![VirtualNetwork](./media/fundamentals-introduction-to-azure/VirtualNetworkIntroNew.png)
 
-*圖：虛擬網路提供在雲端的私人網路，如果您設定 VPN 連線或跨單位連線，則不同的服務之間可以彼此或與內部部署資源互通訊息。*
+*圖：虛擬網路提供在雲端的私人網路，如果您設定 VPN 跨單位連線，則不同的服務之間可以彼此或與內部部署資源互通訊息。*
 
 
 將公用雲端視為您自有資料中心的延伸模組，即可充分發揮其效用。
@@ -402,7 +402,7 @@ Azure Site Recovery (先前稱為 Hyper-V 復原管理員) 可透過在各個網
 
 它會持續監控您的服務健全狀況，並在主要資料中心發生站台服務中斷時，協助自動化循序復原服務。以組織的方式啟動虛擬機器，可協助快速還原服務，即使是複雜的多層次工作負載也不例外。
 
-Site Recovery 使用現有的技術，例如 Hyper-V 複本、System Center 和 SQL Server AlwaysOn。請查看 [Azure Site Recovery 概觀](site-recovery/site-recovery-overview.md)，以了解更多詳細資料。
+Site Recovery 使用現有的技術，例如 Hyper-V 複本、System Center 和 SQL Server Always On。請查看 [Azure Site Recovery 概觀](site-recovery/site-recovery-overview.md)，以了解更多詳細資料。
 
 ### Azure 備份
 ![Azure 備份](./media/fundamentals-introduction-to-azure/AzureBackupIntroNew.png)
@@ -430,7 +430,7 @@ Azure 備份會將資料從執行 Windows Server 的內部部署伺服器備份�
 
 佇列是一個簡單構想：一個應用程式可將訊息放入佇列中，而該訊息最終會由其他應用程式所讀取。如果您的應用程式只需要這項直接服務，Azure 佇列會是最佳選擇。
 
-由於 Azure 隨時間不斷調整的方式，Azure 儲存體佇列和服務匯流排提供了類似的佇列服務。使用這些服務之一的原因會在相當專門文章 [Azure 佇列和服務匯流排佇列 - 比較和對照](http://msdn.microsoft.com/library/azure/hh767287.aspx)中進行更詳細的介紹。在許多案例中，任一種都適用。
+由於 Azure 隨時間不斷調整的方式，Azure 儲存體佇列和服務匯流排提供了類似的佇列服務。使用這些服務之一的原因會在相當專門文章 [<LINK>](http://msdn.microsoft.com/library/azure/hh767287.aspx "Azure 佇列和服務匯流排佇列 - 異同比較") 中進行更詳細的介紹。在許多案例中，任一種都適用。
 
 **佇列案例**
 
@@ -468,7 +468,7 @@ Azure 備份會將資料從執行 Windows Server 的內部部署伺服器備份�
 
 **服務匯流排主題和訂用帳戶案例**
 
-任何時候您在設定時出現的許多訊息全都很重要，但各個下游系統僅需要接聽這些通訊的不同子集，則服務匯流排主題和訂閱是個不錯的選項。
+任何時候您在設定時出現的許多訊息都很重要，但各個下游系統僅需要接聽這些通訊的不同子集，因此服務匯流排主題和訂閱是個不錯的選項。
 
 
 ### BizTalk 服務
@@ -579,7 +579,7 @@ Azure 媒體服務可處理此問題。其提供一組雲端元件，讓人們�
 
 使用此平台的應用程式可以在 Azure 上或其他地方執行。例如，影片製作公司適用的桌面應用程式可讓其使用者將視訊上傳到媒體服務，然後再以各種方式進行處理。此外，在 Azure 上執行的雲端式內容管理服務可依賴媒體服務來處理和散佈視訊。無論在何處執行且無論執行什麼動作，每個應用程式都會選擇所需使用的元件，並透過符合 REST 原則的介面進行存取。
 
-若要散佈其製作的內容，應用程式可以使用 Azure CDN、其他 CDN，或僅將位元直接傳送給使用者。無論其送達的方式為何，各種用戶端系統 (包括 Windows、Macintosh、HTML 5、iOS、Android、Windows Phone、Flash 和 Silverlight) 均可取用以媒體服務建立的視訊。目標是能更輕鬆地建立現代媒體應用程式。
+若要散佈其製作的內容，應用程式可以使用 Azure CDN、其他 CDN，或僅將位元直接傳送給使用者。但是，無論其送達的方式為何，各種用戶端系統 (包括 Windows、Macintosh、HTML 5、iOS、Android、Windows Phone、Flash 和 Silverlight) 均可取用以媒體服務建立的視訊。目標是能更輕鬆地建立現代媒體應用程式。
 
 **參考**
 
@@ -596,7 +596,7 @@ Azure 媒體服務可處理此問題。其提供一組雲端元件，讓人們�
 
 **商務案例**
 
-SendGrid 是 Azure Store 中可讓您傳送電子郵件的應用程式。它提供了如可靠的傳遞和統計資料等其他功能。與其嘗試自行建置此類基礎結構，您可以購買此應用程式及相關服務。
+SendGrid 是 Azure Store 中可讓您傳送電子郵件的應用程式。它提供了如可靠的傳遞和統計資料等其他功能。與其嘗試自行建置此類基礎結構，建議您不如購買此應用程式及相關服務。
 
 
 ## 開始使用
@@ -606,4 +606,4 @@ SendGrid 是 Azure Store 中可讓您傳送電子郵件的應用程式。它提�
 
 [Azure Media Services Poster]: http://azure.microsoft.com/documentation/infographics/media-services/
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016------>

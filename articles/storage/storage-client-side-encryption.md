@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/09/2016"
+	ms.date="08/03/2016"
 	ms.author="robinsh"/>
 
 
@@ -21,7 +21,7 @@
 
 [AZURE.INCLUDE [storage-selector-client-side-encryption-include](../../includes/storage-selector-client-side-encryption-include.md)]
 
-## 概觀
+## Overview
 
 [適用於 .NET NuGet 封裝的 Azure 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage) 支援在上傳至 Azure 儲存體之前將用戶端應用程式內的資料加密，並在下載至用戶端時解密資料。程式庫也支援與 [Azure 金鑰保存庫](https://azure.microsoft.com/services/key-vault/)整合，以進行儲存體帳戶金鑰管理。
 
@@ -60,13 +60,13 @@
 
 ### Blob
 
-用戶端程式庫目前僅支援整個 Blob 的加密。尤其支援使用者使用 **UploadFrom*** 方法或 **OpenWrite** 方法時的加密。針對下載，則皆支援完整與範圍下載。
+用戶端程式庫目前僅支援整個 Blob 的加密。尤其支援使用者使用 **UploadFrom** 方法或 OpenWrite* 方法時的加密。針對下載，則皆支援完整與範圍下載。
 
 在加密期間，用戶端程式庫會產生 16 位元組的隨機初始化向量 (IV)，以及 32 位元組的隨機內容加密金鑰 (CEK)，並使用這項資訊執行 blob 資料的信封加密。然後，已包裝的 CEK 和一些其他加密中繼資料會儲存為 blob 中繼資料，並連同加密的 blob 一起儲存在服務上。
 
 > [AZURE.WARNING] 如果您要為 blob 編輯或上傳您自己的中繼資料，則必須確定保留此中繼資料。如果您上傳新的中繼資料，但缺少此中繼資料，包裝的 CEK、IV 和其他中繼資料將會遺失，而且永遠無法再擷取 blob 內容。
 
-下載已加密的 Blob 牽涉到使用 **DownloadTo***/**BlobReadStream** 便利方法擷取整個 Blob 的內容。包裝的 CEK 會解除包裝，並與 IV (在此情況下儲存為 blob 中繼資料) 一起用來傳回解密的資料給使用者。
+下載已加密的 Blob 牽涉到使用 **DownloadTo**/BlobReadStream* 便利方法擷取整個 Blob 的內容。包裝的 CEK 會解除包裝，並與 IV (在此情況下儲存為 blob 中繼資料) 一起用來傳回解密的資料給使用者。
 
 在加密的 Blob 中下載任意範圍 (**DownloadRange*** 方法)，包含調整使用者所提供的範圍，藉此取得少量額外的資料以便用來成功解密所要求的範圍。
 
@@ -93,7 +93,7 @@
 1. 使用者指定要加密的屬性。
 2. 用戶端程式庫會針對每個實體產生 16 位元組的隨機初始化向量 (IV) 以及 32 位元組的隨機內容加密金鑰 (CEK)，並在個別屬性上執行信封加密，使每個屬性衍生新的 IV，藉此進行加密。加密的屬性會儲存為二進位資料。
 3. 然後，已包裝的 CEK 和一些其他加密中繼資料會儲存成額外兩個保留的屬性。第一個保留的屬性 (\_ClientEncryptionMetadata1) 是字串屬性，保存 IV、版本和已包裝的金鑰的相關資訊。第二個保留的屬性 (\_ClientEncryptionMetadata2) 二進位屬性，其保留已加密之屬性的相關資訊。此第二個屬性 (\_ClientEncryptionMetadata2) 中的資訊已自行加密。
-4. 由於加密需要這些額外保留的屬性，使用者現在可能只有 250 個自訂屬性，而不是 252 個。實體的總大小必須小於 1MB。
+4. 由於加密需要這些額外保留的屬性，使用者現在可能只有 250 個自訂屬性，而不是 252 個。實體的總大小必須小於 1 MB。
 
 請注意，只有字串屬性可以加密。如果有其他類型的屬性需要加密，則必須轉換成字串。加密的字串儲存在服務上作為二進位屬性，且解密後會轉換回字串。
 
@@ -248,7 +248,7 @@ Azure 金鑰保存庫可協助保護雲端應用程式和服務所使用的密�
 
 - [教學課程：在 Microsoft Azure 儲存體中使用 Azure 金鑰保存庫加密和解密 Blob](storage-encrypt-decrypt-blobs-key-vault.md)
 - 下載[適用於 .NET NuGet 封裝的 Azure 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage)
-- 下載 Azure 金鑰保存庫 NuGet 的[核心](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Core/)、[用戶端](http://www.nuget.org/packages/Microsoft.Azure.KeyVault/)及[擴充功能](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Extensions/)封裝  
+- 下載 Azure 金鑰保存庫 NuGet 的 [Core](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Core/)、[Client](http://www.nuget.org/packages/Microsoft.Azure.KeyVault/) 和 [Extensions](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Extensions/) 封裝
 - 請瀏覽 [Azure 金鑰保存庫文件](../key-vault/key-vault-whatis.md)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0810_2016------>

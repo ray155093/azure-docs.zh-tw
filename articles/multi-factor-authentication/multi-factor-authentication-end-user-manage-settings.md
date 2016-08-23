@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/12/2016" 
+	ms.date="08/04/2016" 
 	ms.author="billmath"/>
 
 # 使用 Azure Multi-Factor Authentication 時碰到困難
@@ -47,7 +47,7 @@
  
 ![相互關連識別碼](./media/multi-factor-authentication-end-user-manage/correlation.png)
 
- - **使用者識別碼** – 看到錯誤之使用者的識別碼 (例如 user@contoso.com)?
+ - **使用者識別碼** – 看到錯誤的使用者其識別碼為何 (例如 user@contoso.com)？
  - **使用者的相關資訊** – 使用者已同盟、密碼雜湊同步處理、只在雲端嗎？ 使用者是否有 Azure AD Premium、Enterprise Mobility，或 Azure AD Basic 授權指派？ 使用者是否使用 Office 365？等等。
 
 包含這些資訊將有助於我們儘快為您解決問題。
@@ -101,7 +101,7 @@
 
 #### 在 Myapps 入口網站變更您的設定
 
-1. 登入 [https://myapps.microsoft.com](https://myapps.microsoft.com)	
+1. 登入 [https://myapps.microsoft.com](https://myapps.microsoft.com)
 2. 在頂端，選取 [設定檔]。
 3. 選取 [其他安全性驗證]。![Myapps](./media/multi-factor-authentication-end-user-manage/myapps1.png)
 4. 這會引導您至允許您變更設定的頁面。
@@ -145,7 +145,7 @@
 
 - 如果您已選取在行動電話收到來電，請確定您有適當的手機訊號強度。傳遞速度以及是否可傳遞，取決於地點與服務供應商。
 - 如果您選取要用簡訊將驗證碼傳送到行動電話上，請確定您的費率方案和裝置支援傳遞簡訊。傳遞速度以及是否可傳遞，取決於地點與服務供應商。另外，嘗試接收驗證碼時，請確定手機訊號強度能夠滿足需求。
-- 如果您選擇透過行動應用程式接收驗證碼，請確定您的手機訊號強度夠強。請注意，傳遞速度以及是否可傳遞，取決於地點與服務供應商。 
+- 如果您選擇透過行動應用程式接收驗證碼，請確定您的手機訊號強度夠強。請注意，傳遞速度以及是否可傳遞，取決於地點與服務供應商。
 
 如果您使用的是智慧型手機，建議您使用 [Azure Authenticator 應用程式](multi-factor-authentication-azure-authenticator.md)。
 
@@ -172,4 +172,4 @@
 
 最後，請務必在此頁面上留下一些詳細的意見反應，讓我們可以更新此頁面，並藉由提供更多的資訊，持續讓它更加完善。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016------>

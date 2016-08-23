@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/20/2016"
+   ms.date="08/16/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 # 使用 PowerShell 建立 SQL 資料倉儲
@@ -80,7 +80,7 @@ SQL 資料倉儲完成佈建之後，建議您試著[載入範例資料][]，或
 [移轉]: ./sql-data-warehouse-overview-migrate.md
 [開發]: ./sql-data-warehouse-overview-develop.md
 [載入]: ./sql-data-warehouse-load-with-bcp.md
-[載入範例資料]: ./sql-data-warehouse-get-started-load-sample-databases.md
+[載入範例資料]: ./sql-data-warehouse-load-sample-databases.md
 [PowerShell Cmdlet 和 REST API]: ./sql-data-warehouse-reference-powershell-cmdlets.md
 [firewall rules]: ../sql-database-configure-firewall-settings.md
 
@@ -101,4 +101,4 @@ SQL 資料倉儲完成佈建之後，建議您試著[載入範例資料][]，或
 [Azure 免費試用]: https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F
 [MSDN Azure 點數]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

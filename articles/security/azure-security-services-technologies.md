@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/23/2016"
+   ms.date="08/09/2016"
    ms.author="yurid"/>
 
 # Azure 安全性服務和技術
@@ -70,4 +70,4 @@
 - [Azure 流量管理員](../traffic-manager/traffic-manager-overview.md)
 - [Azure 應用程式 Proxy](../active-directory/active-directory-application-proxy-enable.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016------>

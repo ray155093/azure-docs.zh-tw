@@ -14,7 +14,7 @@
   ms.tgt_pltfrm="na"
   ms.devlang="node"
   ms.topic="hero-article"
-  ms.date="04/26/2016"
+  ms.date="08/11/2016"
   ms.author="anhoh"/>
 
 # NoSQL Node.js 教學課程：DocumentDB Node.js 主控台應用程式  
@@ -56,7 +56,7 @@
 
 [AZURE.INCLUDE [documentdb-create-dbaccount](../../includes/documentdb-create-dbaccount.md)]
 
-##<a id="SetupNode"></a> 步驟 2：設定您的 Node.js 應用程式
+## <a id="SetupNode"></a>步驟 2：設定您的 Node.js 應用程式
 
 1. 開啟您偏好的終端機。
 2. 找出您想儲存 Node.js 應用程式的資料夾或目錄位置。
@@ -72,7 +72,7 @@
 
 太棒了！ 現在已完成安裝程式，讓我們開始撰寫一些程式碼。
 
-##<a id="Config"></a> 步驟 3：設定您的應用程式組態
+## <a id="Config"></a>步驟 3：設定您的應用程式設定
 
 在您慣用的文字編輯器中開啟 ```config.js```。
 
@@ -598,7 +598,7 @@ DocumentDB 支援刪除 JSON 文件。
 
 恭喜！ 您已完成 Node.js 教學課程，和擁有您的第一個 DocumentDB 主控台應用程式！
 
-##<a id="GetSolution"></a> 取得完整的 Node.js 教學課程方案
+## <a id="GetSolution"></a>取得完整的 Node.js 教學課程方案
 若要建置包含本文中所有範例的 GetStarted 方案，您將需要下列項目：
 
 -   [DocumentDB 帳戶][documentdb-create-account]。
@@ -621,4 +621,4 @@ DocumentDB 支援刪除 JSON 文件。
 
 [keys]: media/documentdb-nodejs-get-started/node-js-tutorial-keys.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0817_2016-->

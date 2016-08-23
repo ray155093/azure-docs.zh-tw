@@ -1,6 +1,6 @@
 <properties
 	pageTitle="建置您的第一個 Data Factory (Visual Studio) |Microsoft Azure"
-	description="在本教學課程中，您將使用 Visual Studio，建立範例 Azure Data Factory 管線。"
+	description="在本教學課程中，您會使用 Visual Studio，建立範例 Azure Data Factory 管線。"
 	services="data-factory"
 	documentationCenter=""
 	authors="spelluru"
@@ -22,15 +22,16 @@
 - [使用 Data Factory 編輯器](data-factory-build-your-first-pipeline-using-editor.md)
 - [使用 PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
 - [使用 Visual Studio](data-factory-build-your-first-pipeline-using-vs.md)
-- [使用資源管理員範本](data-factory-build-your-first-pipeline-using-arm.md)
+- [使用 Resource Manager 範本](data-factory-build-your-first-pipeline-using-arm.md)
+- [使用 REST API](data-factory-build-your-first-pipeline-using-rest-api.md)
 
 
-在本文中，您將了解如何使用 Microsoft Visual Studio 來建立您的第一個 Azure Data Factory。
+在本文中，您會了解如何使用 Microsoft Visual Studio 來建立您的第一個 Azure Data Factory。
 
-## 先決條件
+## 必要條件
 
 1. 您**必須**詳讀[教學課程概觀](data-factory-build-your-first-pipeline.md)一文，並完成必要的步驟，再進一步繼續。
-2. 您必須是 **Azure 訂用帳戶的系統管理員**才能發佈 Data Factory 實體至 Azure Data Factory。這是目前的限制。這項需求變更時，我們會通知您。
+2. 您必須是 **Azure 訂用帳戶的系統管理員**才能發佈 Data Factory 實體至 Azure Data Factory。這是目前的限制。
 3. 您必須已在電腦上安裝下列項目：
 	- Visual Studio 2013 或 Visual Studio 2015
 	- 下載 Azure SDK for Visual Studio 2013 或 Visual Studio 2015。瀏覽至 [Azure 下載頁面](https://azure.microsoft.com/downloads/)，然後按一下 [.NET] 區段中的 [VS 2013] 或 [VS 2015]。
@@ -51,12 +52,12 @@
 ## 建立連結服務
 資料處理站可以有一或多個管線。其中的管線可以有一或多個活動。例如，「複製活動」會從來源複製資料到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼轉換輸入資料以產生輸出資料。您可在稍後發佈 Data Factory 解決方案時，指定 Data Factory 的名稱和設定。
 
-在此步驟中，您將您的 Azure 儲存體帳戶和隨選 Azure HDInsight 叢集連結到您的 Data Factory。Azure 儲存體帳戶會保留此範例中管線的輸入和輸出資料。HDInsight 連結服務會用來執行此範例中管線活動指定的 Hive 指令碼。您必須識別案例中使用的資料存放區/計算服務，並建立連結的服務將這些服務連結到 Data Factory。
+在此步驟中，您會將您的 Azure 儲存體帳戶和隨選 Azure HDInsight 叢集連結到您的 Data Factory。Azure 儲存體帳戶會保留此範例中管線的輸入和輸出資料。HDInsight 連結服務會用來執行此範例中管線活動指定的 Hive 指令碼。您必須識別案例中使用的資料存放區/計算服務，並建立連結的服務將這些服務連結到 Data Factory。
 
 #### 建立 Azure 儲存體連結服務
-在此步驟中，您將您的 Azure 儲存體帳戶連結到您的 Data Factory。在本教學課程中，您會使用相同的 Azure 儲存體帳戶來存放輸入/輸出資料及 HQL 指令碼檔案。
+在此步驟中，您會將您的 Azure 儲存體帳戶連結到您的 Data Factory。在本教學課程中，您會使用相同的 Azure 儲存體帳戶來存放輸入/輸出資料及 HQL 指令碼檔案。
 
-4. 以滑鼠右鍵按一下 [方案總管] 中的 [連結服務]，指向 [加入]，然後按一下 [新項目]。
+4. 以滑鼠右鍵按一下 [方案總管] 中的 [連結服務]，指向 [加入]，然後按一下 [新增項目]。
 5. 在 [加入新項目] 對話方塊中，從清單中選取 [Azure 儲存體連結服務]，然後按一下 [加入]。
 3. 使用 Azure 儲存體帳戶的名稱及其金鑰來取代 **accountname** 和 **accountkey**。若要了解如何取得儲存體存取金鑰，請參閱[檢視、複製和重新產生儲存體存取金鑰](../storage/storage-create-storage-account.md#view-copy-and-regenerate-storage-access-keys)
 
@@ -65,7 +66,7 @@
 4. 儲存 **AzureStorageLinkedService1.json** 檔案。
 
 #### 建立 Azure HDInsight 連結服務
-在此步驟中，您會將隨選 HDInsight 叢集與您的 Data Factory 連結。HDInsight 叢集會在執行階段自動建立，並在處理完成之後刪除，且會閒置一段時間。您可以使用自己的 HDInsight 叢集，不必使用隨選的 HDInsight 叢集。請參閱[計算連結服務](data-factory-compute-linked-services.md)以取得詳細資料。
+在此步驟中，您可將隨選 HDInsight 叢集連結至 Data Factory。HDInsight 叢集會在執行階段自動建立，並在處理完成之後刪除，且會閒置一段時間。您可以使用自己的 HDInsight 叢集，不必使用隨選的 HDInsight 叢集。請參閱[計算連結服務](data-factory-compute-linked-services.md)以取得詳細資料。
 
 1. 以滑鼠右鍵按一下 [方案總管] 中的 [連結服務]，指向 [加入]，然後按一下 [新項目]。
 2. 選取 [HDInsight 隨選連結服務]，然後按一下 [加入]。
@@ -89,15 +90,15 @@
 	屬性 | 說明
 	-------- | -----------
 	版本 | 指定所建立的 HDInsight 版本為 3.2。 
-	ClusterSize | 建立一個單一節點的 HDInsight 叢集。 
+	ClusterSize | 指定 HDInsight 叢集的大小。 
 	TimeToLive | 指定 HDInsight 叢集在被刪除之前的閒置時間。
-	linkedServiceName | 指定將用來儲存 HDInsight 產生之記錄檔的儲存體帳戶
+	linkedServiceName | 指定用來儲存 HDInsight 產生之記錄檔的儲存體帳戶
 
 	請注意：
 	
-	- Data Factory 會以上述 JSON 為您建立「以 Windows 為基礎的」HDInsight 叢集。您也可以讓它建立「以 Linux 為基礎的」HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
+	- Data Factory 會以上述 JSON 為您建立**以 Windows 為基礎的** HDInsight 叢集。您也可以讓它建立**以 Linux 為基礎的** HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
 	- 您可以使用**自己的 HDInsight 叢集**，不必使用隨選的 HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 連結服務](data-factory-compute-linked-services.md#azure-hdinsight-linked-service)。
-	- HDInsight 叢集會在您於 JSON 中指定的 Blob 儲存體 (**linkedServiceName**) 建立**預設容器**。HDInsight 不會在刪除叢集時刪除此容器。原先的設計就是如此。使用 HDInsight 隨選連結服務時，除非有現有的即時叢集 (**timeToLive**)，否則每當需要處理配量時，就會建立 HDInsight 叢集，並在處理完成時予以刪除。
+	- HDInsight 叢集會在您於 JSON 中指定的 Blob 儲存體 (**linkedServiceName**) 建立**預設容器**。HDInsight 不會在刪除叢集時刪除此容器。原先的設計就是如此。在使用 HDInsight 隨選連結服務時，除非有現有的即時叢集 (**timeToLive**)，否則每當需要處理配量時，就會建立 HDInsight 叢集，並在處理完成時予以刪除。
 	
 		隨著處理的配量越來越多，您會在 Azure Blob 儲存體中看到許多容器。如果在疑難排解作業時不需要這些容器，建議您加以刪除以降低儲存成本。這些容器的名稱遵循下列模式："adf**yourdatafactoryname**-**linkedservicename**-datetimestamp"。請使用 [Microsoft 儲存體總管](http://storageexplorer.com/)之類的工具刪除 Azure Blob 儲存體中的容器。
 
@@ -105,7 +106,7 @@
 4. 儲存 **HDInsightOnDemandLinkedService1.json** 檔案。
 
 ## 建立資料集
-在此步驟中，您將建立資料集來代表 Hive 處理的輸入和輸出資料。這些資料集是您稍早在本教學課程中建立的 **AzureStorageLinkedService1**。連結的服務會指向 Azure 儲存體帳戶，而資料集則會指定保留輸入和輸出資料儲存體中的容器、資料夾和檔案名稱。
+在此步驟中，您會建立資料集來代表 Hive 處理的輸入和輸出資料。這些資料集是您稍早在本教學課程中建立的 **AzureStorageLinkedService1**。連結的服務會指向 Azure 儲存體帳戶，而資料集則會指定保留輸入和輸出資料儲存體中的容器、資料夾和檔案名稱。
 
 #### 建立輸入資料集
 
@@ -145,7 +146,7 @@
 	| linkedServiceName | 表示您稍早建立的 AzureStorageLinkedService1。 |
 	| fileName | 這是選用屬性。如果您省略此屬性，會挑選位於 folderPath 的所有檔案。在這種情況下，只會處理 input.log。 |
 	| 類型 | 記錄檔為文字格式，因此我們會使用 TextFormat。 | 
-	| columnDelimiter | 記錄檔案中的資料行會以 , (逗號) 分隔 |
+	| columnDelimiter | 記錄檔案中的資料行會以逗號字元 (,) 分隔 |
 	| frequency/interval | 頻率設為「每月」且間隔為 1，表示每個月都會可取得輸入配量。 | 
 	| external | 如果輸入資料不是由 Data Factory 服務產生，此屬性會設為 true。 | 
 	  
@@ -154,13 +155,13 @@
 
  
 #### 建立輸出資料集
-現在，您將建立輸出資料集來代表 Azure Blob 儲存體中儲存的輸出資料。
+現在，您會建立輸出資料集來代表 Azure Blob 儲存體中儲存的輸出資料。
 
 1. 以滑鼠右鍵按一下 [方案總管] 中的 [資料表]，指向 [加入]，然後按一下 [新增項目]。
 2. 從清單中選取 [Azure Blob]，將檔案名稱變更為 **OutputDataset.json**，再按一下 [加入]。
 3. 使用下列文字取代編輯器中的 **JSON**：
 
-	在 JSON 程式碼片段中，建立名為 **AzureBlobOutput** 的資料集，並指定將由 Hive 指令碼產生的資料結構。此外，指定將結果儲存在名為 **adfgetstarted** 的 Blob 容器及名為 **partitioneddata** 的資料夾中。**availability** 區段指定每個月產生一次輸出資料集。
+	在 JSON 程式碼片段中，建立名為 **AzureBlobOutput** 的資料集，並指定由 Hive 指令碼產生的資料結構。此外，指定將結果儲存在名為 **adfgetstarted** 的 Blob 容器及名為 **partitioneddata** 的資料夾中。**availability** 區段指定每個月產生一次輸出資料集。
 	
 		{
 		  "name": "AzureBlobOutput",
@@ -187,7 +188,7 @@
 
 
 ### 建立管線
-在此步驟中，您將建立第一個具有 **HDInsightHive** 活動的管線。請注意，您每個月都可取得輸入配量資訊 (頻率：每月，間隔：1)，輸出配量則是每用產生，而活動的排程器屬性也設為每用 (如下所示)。輸出資料集設定及活動排程器必須相符。這時，輸出資料集會影響排程，因此即使活動並未產生任何輸出，您都必須建立輸出資料集。如果活動沒有任何輸入，您可以略過建立輸入資料集。本節結尾會說明下列 JSON 中使用的屬性。
+在此步驟中，您會建立第一個具有 **HDInsightHive** 活動的管線。請注意，您每個月都可取得輸入配量資訊 (頻率：每月，間隔：1)，輸出配量則是每用產生，而活動的排程器屬性也設為每用 (如下所示)。輸出資料集設定及活動排程器必須相符。目前，輸出資料集會影響排程，因此即使活動並未產生任何輸出，您都必須建立輸出資料集。如果活動沒有任何輸入，您可以略過建立輸入資料集。本節結尾會說明下列 JSON 中使用的屬性。
 
 1. 以滑鼠右鍵按一下 [方案總管] 中的 [管線]，指向 [加入]，然後按一下 [新項目]。
 2. 從清單中選取 [Hive 轉換管線]，然後按一下 [加入]。
@@ -244,7 +245,7 @@
 	
 	Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (透過 scriptLinkedService，名為 **AzureStorageLinkedService1**)，且位於 **adfgetstarted**容器的 **script** 資料夾中。
 
-	**defines** 區段可用來指定執行階段設定，該設定將傳遞到 Hive 指令碼做為 Hive 組態值 (例如 ${hiveconf:inputtable}、${hiveconf:partitionedtable})。
+	**defines** 區段可用來指定執行階段設定，該設定將傳遞到 Hive 指令碼做為 Hive 設定值 (例如 ${hiveconf:inputtable}、${hiveconf:partitionedtable})。
 
 	管線的 **start** 和 **end** 屬性會指定管線的作用中期間。
 
@@ -283,7 +284,7 @@
 
 請注意：
 
-- 如果您收到錯誤：「**此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory**」，請執行下列其中一項，然後嘗試再次發佈︰
+- 如果您收到錯誤：「此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory」，請執行下列其中一項，然後嘗試再次發佈︰
 
 	- 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者。
 		
@@ -320,7 +321,7 @@
 
 	![輸入配量處於就緒狀態](./media/data-factory-build-your-first-pipeline-using-vs/input-slice-ready.png)
 11. 按一下 **X** 關閉 **AzureBlobInput** 刀鋒視窗。
-12. 在 [圖表檢視] 中，按兩下 [AzureBlobOutput] 資料集。您會看到目前正在處理的配量。
+12. 在 [圖表檢視] 中，按兩下 **AzureBlobOutput** 資料集。您會看到目前正在處理的配量。
 
 	![Dataset](./media/data-factory-build-your-first-pipeline-using-vs/dataset-blade.png)
 9. 處理完成時，您會看到配量處於 [就緒] 狀態。
@@ -377,10 +378,10 @@
 藉由執行下列步驟來新增每個環境的組態檔：
 
 1. 在 Visual Studio 解決方案中以滑鼠右鍵按一下 Data Factory 專案，指向 [新增]，然後按一下 [新增項目]。
-2. 從左側的已安裝範本清單中選取 [組態]、選取 [組態檔]、輸入組態檔的 [名稱]，然後按一下 [新增]。
+2. 從左側的已安裝範本清單中選取 [設定]、選取 [設定檔]、輸入設定檔的 [名稱]，然後按一下 [新增]。
 
 	![新增組態檔](./media/data-factory-build-your-first-pipeline-using-vs/add-config-file.png)
-3. 以下列格式新增組態參數和其值：
+3. 以下列格式新增設定參數和其值：
 
 		{
 		    "$schema": "http://datafactories.schema.management.azure.com/vsschemas/V1/Microsoft.DataFactory.Config.json",
@@ -413,7 +414,7 @@
 			}
 		],
 	
-	您必須如下所示在組態檔中進行設定 (使用以零為起始的索引)：
+	您必須如下所示在設定檔中進行設定 (使用以零為起始的索引)：
 		
 		{
             "name": "$.properties.structure[0].name",
@@ -447,12 +448,12 @@
 若要使用組態檔在 Azure Data Factory 專案中發佈實體：
 
 1. 以滑鼠右鍵按一下 Data Factory 專案，然後按一下 [發佈] 以查看 [發佈項目] 對話方塊。
-2. 選取現有的 Data Factory，或指定值以在 [設定 Data Factory] 頁面上建立新的 Data Factory，然後按 [下一步]。
-3. 在 [發佈項目] 頁面：您會看到下拉式清單，其中具有 [選取部署組態] 欄位的可用組態。
+2. 選取現有的 Data Factory，或指定值以在 [設定 Data Factory] 頁面上建立 Data Factory，然後按 [下一步]。
+3. 在 [發佈項目] 頁面：您會看到下拉式清單，其中具有 [選取部署設定] 欄位的可用設定。
 
 	![選取組態檔](./media/data-factory-build-your-first-pipeline-using-vs/select-config-file.png)
 
-4. 選取您想要使用的**組態檔**，然後按 [下一步]。
+4. 選取您想要使用的**設定檔**，然後按 [下一步]。
 5. 確認您在 [摘要] 頁面上看到 JSON 檔案的名稱，然後按 [下一步]。
 6. 部署作業完成後按一下 [完成]。
 
@@ -470,15 +471,15 @@
 
 
 ## 後續步驟
-在本文中，您已經建立可在隨選 HDInsight 叢集上執行 Hive 指令碼，含有轉換活動 (HDInsight 活動) 的管線。若要了解如何使用「複製活動」從 Azure Blob 複製資料到 Azure SQL，請參閱[教學課程：從 Azure Blob 複製資料到 Azure SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
+在本文中，您已經建立可在隨選 HDInsight 叢集上執行 Hive 指令碼，含有轉換活動 (HDInsight 活動) 的管線。若要了解如何使用「複製活動」從 Azure Blob 將資料複製到 Azure SQL，請參閱[教學課程：從 Azure Blob 將資料複製到 Azure SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
   
 ## 另請參閱
 | 主題 | 說明 |
 | :---- | :---- |
 | [資料轉換活動](data-factory-data-transformation-activities.md) | 本文提供 Azure Data Factory 所支援的資料轉換活動清單 (例如您在本教學課程中使用的 HDInsight Hive 轉換)。 | 
 | [排程和執行](data-factory-scheduling-and-execution.md) | 本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
-| [管線](data-factory-create-pipelines.md) | 本文將協助您了解 Azure Data Factory 中的管線和活動，以及如何運用這些來為您的案例或業務建構端對端的資料導向工作流程。 |
-| [資料集](data-factory-create-datasets.md) | 他的文章會協助您了解 Azure Data Factory 中的資料集。
+| [管線](data-factory-create-pipelines.md) | 本文協助您了解 Azure Data Factory 中的管線和活動，以及如何使用這些來為您的案例或業務建構端對端的資料導向工作流程。 |
+| [資料集](data-factory-create-datasets.md) | 本文協助您了解 Azure Data Factory 中的資料集。
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

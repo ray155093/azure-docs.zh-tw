@@ -13,14 +13,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-linux"
    ms.workload="infrastructure-services"
-   ms.date="05/24/2016"
+   ms.date="08/08/2016"
    ms.author="iainfou"/>
 
 # 開啟連接埠與端點
-您在 Azure 中藉由建立網路篩選器來開啟連接埠或建立端點，讓流量流向子網路或虛擬機器 (VM) 網路介面上您選擇的連接埠。控制輸入和輸出流量的這些篩選器會放在網路安全性群組中，並附加至可接收流量的資源。讓我們使用連接埠 80 上的 Web 流量的常見範例。
+您在 Azure 中藉由建立網路篩選器來開啟連接埠或建立端點，讓流量流向子網路或虛擬機器 (VM) 網路介面上您選擇的連接埠。您可將控制輸入和輸出流量的這些篩選器放在可接收流量的資源所附加的網路安全性群組上。讓我們使用連接埠 80 上的 Web 流量的常見範例。
 
 ## 快速命令
-若要建立「網路安全性群組」和規則，您將需要讓 [Azure CLI](../xplat-cli-install.md) 處於資源管理員模式 (`azure config mode arm`)。
+若要建立「網路安全性群組」和規則，您需要讓 [Azure CLI](../xplat-cli-install.md) 處於 Resource Manager 模式 (`azure config mode arm`)。
 
 適當地輸入您自己的名稱和位置來建立「網路安全性群組」︰
 
@@ -28,7 +28,7 @@
 azure network nsg create --resource-group TestRG --name TestNSG --location westus
 ```
 
-新增規則以允許流向您 Web 伺服器的 HTTP 流量 (您可以針對自己的案例 (例如 SSH 存取或資料庫連接) 來調整此規則)︰
+新增規則以允許流向您 Web 伺服器的 HTTP 流量 (或針對自己的案例 (例如 SSH 存取或資料庫連接) 進行調整)︰
 
 ```
 azure network nsg rule create --protocol tcp --direction inbound --priority 1000 \
@@ -50,7 +50,7 @@ azure network vnet subnet set --resource-group TestRG --name TestSubnet --networ
 ## 網路安全性群組的詳細資訊
 這裡的快速命令可讓您使流向您 VM 的流量開始正常運作。「網路安全性群組」提供許多絕佳的功能和細微性來控制對您資源的存取。您可以深入了解[建立網路安全性群組和 ACL 規則](../virtual-network/virtual-networks-create-nsg-arm-cli.md)。
 
-您也可以在定義 Azure Resource Manager 範本的過程中一併定義「網路安全性群組」和 ACL 規則。深入了解[使用範本建立網路安全性群組](../virtual-network/virtual-networks-create-nsg-arm-template.md)。
+您可以在 Azure Resource Manager 範本中定義網路安全性群組和 ACL 規則。深入了解[使用範本建立網路安全性群組](../virtual-network/virtual-networks-create-nsg-arm-template.md)。
 
 如果您需要使用連接埠轉送，以將唯一的外部連接埠對應至您 VM 上的內部連接埠，您將需要使用負載平衡器和「網路位址轉譯」(NAT) 規則。例如，您可能會想要對外公開 TCP 連接埠 8080，然後讓流量導向到 VM 上的 TCP 連接埠 80。您可以深入了解[建立網際網路面向的負載平衡器](../load-balancer/load-balancer-get-started-internet-arm-cli.md)。
 
@@ -61,4 +61,4 @@ azure network vnet subnet set --resource-group TestRG --name TestSubnet --networ
 - [什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)
 - [負載平衡器的 Azure Resource Manager 概觀](../load-balancer2 /load-balancer-arm.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0810_2016------>

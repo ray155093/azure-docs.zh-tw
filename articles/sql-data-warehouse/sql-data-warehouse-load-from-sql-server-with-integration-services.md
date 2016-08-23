@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/08/2016"
+   ms.date="08/08/2016"
    ms.author="lodipalm;sonyama;barbkess"/>
 
 # 將資料從 SQL Server 載入 Azure SQL 資料倉儲 (SSIS)
@@ -61,14 +61,14 @@ SQL Server Integration Services (SSIS) 是彈性的工具組合，提供連接�
 ## 步驟 1：建立新的 Integration Services 專案
 
 1. 啟動 Visual Studio 2015。
-2. 從 [檔案] 功能表中，選取 [新增 | 專案]。
-3. 瀏覽至 [安裝 | 範本 | 商務智慧 | 整合服務] 專案類型。
+2. 在 [檔案] 功能表上，選取 [新增]| Project**.
+3. 導覽至 [已安裝]| Templates | Business Intelligence | Integration Services** project types.
 4. 選取 [整合服務專案]。提供 [名稱] 和 [位置] 的值，然後選取 [確定]。
 
 Visual Studio 隨即開啟，並建立新的整合服務 (SSIS) 專案。然後 Visual Studio 會在專案中開啟一個新的 SSIS 封裝 (Package.dtsx) 的設計工具。您會看到下列畫面區域：
 
 - 左側是 SSIS 元件的 [工具箱]。
-- 中間是設計介面，有多個索引標籤。您通常至少會使用 [控制流程] 和 \[資料流程] 索引標籤。
+- 中間是設計介面，有多個索引標籤。您通常至少會使用 [控制流程] 和 [資料流程] 索引標籤。
 - 右側是 [方案總管] 和 [屬性] 窗格。
 
     ![][01]
@@ -79,7 +79,7 @@ Visual Studio 隨即開啟，並建立新的整合服務 (SSIS) 專案。然後 
 
     ![][02]
 
-2. 按兩下 [資料流程工作] 以切換到 \[資料流程] 索引標籤。
+2. 按兩下 [資料流程工作] 以切換到 [資料流程] 索引標籤。
 3. 從 [工具箱] 中的 [其他來源] 清單中，將 ADO.NET 來源拖曳至設計介面。在來源配接器仍選取的狀態下，在 [屬性] 窗格中將其名稱變更為 [SQL Server 來源]。
 4. 從 [工具箱] 中的 [其他目的地] 清單中將 ADO.NET 目的地拖曳至 ADO.NET 來源下方的設計介面。在目的地配接器仍選取的狀態下，在 [屬性] 窗格中將其名稱變更為 [SQL DW 目的地]。
 
@@ -187,7 +187,7 @@ Visual Studio 隨即開啟，並建立新的整合服務 (SSIS) 專案。然後 
 ## 後續步驟
 
 - 深入了解 SSIS 資料流程。從這裡開始：[資料流程][]。
-- 了解如何在設計環境中進行封裝的偵錯和疑難排解。從這裡開始：[疑難排解封裝開發的工具][]。
+- 了解如何在設計環境中進行封裝的偵錯和疑難排解。從這裡開始：[封裝開發的工具進行疑難排解][]。
 - 了解如何將 SSIS 專案和封裝部署到 Integration Services 伺服器或其他儲存位置。從這裡開始：[部署專案和封裝][]。
 
 <!-- Image references -->
@@ -215,7 +215,7 @@ Visual Studio 隨即開啟，並建立新的整合服務 (SSIS) 專案。然後 
 [下載 SQL Server Data Tools (SSDT)]: https://msdn.microsoft.com/library/mt204009.aspx
 [CREATE TABLE (Azure SQL Data Warehouse, Parallel Data Warehouse) (建立資料表 (Azure SQL 資料倉儲，平行資料倉儲))]: https://msdn.microsoft.com/library/mt203953.aspx
 [資料流程]: https://msdn.microsoft.com/library/ms140080.aspx
-[疑難排解封裝開發的工具]: https://msdn.microsoft.com/library/ms137625.aspx
+[封裝開發的工具進行疑難排解]: https://msdn.microsoft.com/library/ms137625.aspx
 [部署專案和封裝]: https://msdn.microsoft.com/library/hh213290.aspx
 
 <!--Other Web references-->
@@ -224,4 +224,4 @@ Visual Studio 隨即開啟，並建立新的整合服務 (SSIS) 專案。然後 
 [Visual Studio Community]: https://www.visualstudio.com/zh-TW/products/visual-studio-community-vs.aspx
 [Adventure Works 2014 Sample Databases (Adventure Works 2014 範例資料庫)]: https://msftdbprodsamples.codeplex.com/releases/view/125550
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016------>

@@ -3,7 +3,7 @@
    description="了解靜態內部 IP (DIP) 以及如何管理"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor="tysonn" />
 <tags 
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/22/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # 如何設定靜態內部私人 IP
 在大部分情況下，您不需要針對虛擬機器指定靜態內部 IP 位址。虛擬網路中的 VM 會從您指定的範圍自動接收內部 IP 位址。但在某些情況下，針對特定 VM 指定靜態 IP 位址是合理的。例如，如果您的 VM 即將執行 DNS 或將成為網域控制站。
@@ -99,4 +99,4 @@
 [保留的 IP REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx)
  
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016------>

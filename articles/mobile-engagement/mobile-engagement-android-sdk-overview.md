@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="05/17/2016"
+	ms.date="08/10/2016"
 	ms.author="piyushjo;ricksal" />
 
 # Azure Mobile Engagement 的 Android SDK 整合
@@ -52,20 +52,10 @@
 
 ## 版本資訊
 
-### 4\.2.2 (2016/05/17)
+### 4\.2.3 (08/10/2016)
 
-- 穩定性改進。
-
-### 4\.2.1 (2016/05/10)
-
-- 安全性︰停用 Web 檢視本機檔案存取權限。
-- 安全性︰移除 `EngagementPreferenceActivity` 類別，其可擴充過時且不安全的 `PreferenceActivity` 類別。
-- 安全性︰現在會記載觸達活動以使用 `exported="false"`，此旗標也可用於先前的 SDK 版本。
-
-### 4\.2.0 (03/11/2016)
-
-- SDK 現在是在 MIT 中授權的。
-- 允許在 SDK 初始化階段指定自訂裝置識別碼。
+ - 不會再鎖定 WIFI。
+ - 修正在 init 之前呼叫 getDeviceId 時的死結問題 (4.2.0 中引進的錯誤)。
 
 如需所有版本，請參閱[完整版本資訊](mobile-engagement-android-release-notes.md)。
 
@@ -73,4 +63,4 @@
 
 如果您已經將較舊版的 SDK 整合到應用程式中，請參閱[升級程序](mobile-engagement-android-upgrade-procedure.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016------>

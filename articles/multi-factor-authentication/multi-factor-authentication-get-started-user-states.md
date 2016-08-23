@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/12/2016" 
+	ms.date="08/04/2016" 
 	ms.author="billmath"/>
 
 # Azure Multi-Factor Authentication 中的使用者狀態
 
 Azure Multi-Factor Authentication 中的使用者帳戶具有下列三種不同狀態：
 
-狀況 | 說明 |受影響的非瀏覽器應用程式| 注意事項 
+State | 說明 |受影響的非瀏覽器應用程式| 注意事項 
 :-------------: | :-------------: |:-------------: |:-------------: |
 已停用 | 未註冊 Multi-Factor Authentication 之新使用者的預設狀態。|否|使用者未使用 Multi-Factor Authentication。
 已啟用 |使用者已註冊 Multi-Factor Authentication。|無。它們會繼續運作，直到註冊程序完成為止。|使用者已啟用，但尚未完成註冊程序。系統會提示他們在下次登入時完成程序。
@@ -63,4 +63,4 @@ Azure Multi-Factor Authentication 中的使用者帳戶具有下列三種不同�
 8.  系統將提示您確認此動作。按一下 [是]。![停用使用者](./media/multi-factor-authentication-get-started-user-states/userstate3.png)
 9.  接著您應該會看到該作業已經成功。按一下 [關閉]。![停用使用者](./media/multi-factor-authentication-get-started-user-states/userstate4.png)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016------>

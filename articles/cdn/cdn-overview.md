@@ -64,7 +64,7 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 | [快速清除](cdn-purge-endpoint.md) | **&#x2713;** | **&#x2713;** | **&#x2713;** |
 | [資產預先載入](cdn-preload-endpoint.md) | | **&#x2713;** | **&#x2713;** |
 | [核心分析](cdn-analyze-usage-patterns.md) | | **&#x2713;** | **&#x2713;** |
-| [透過 REST API 管理](https://msdn.microsoft.com/library/mt634456.aspx) | **&#x2713;** | **&#x2713;** | **&#x2713;** |
+| 透過 [REST API](https://msdn.microsoft.com/library/mt634456.aspx)、[.NET](./cdn-app-dev-net.md)、[Node.js](./cdn-app-dev-node.md) 或 [PowerShell](./cdn-manage-powershell.md) 管理。 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
 | [可自訂的、規則式內容傳遞引擎](cdn-rules-engine.md) | | | **&#x2713;** |
 | [進階 HTTP 報告](cdn-advanced-http-reports.md) | | | **&#x2713;** |
 | [即時統計資料](cdn-real-time-stats.md) | | | **&#x2713;** |
@@ -75,7 +75,7 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 
 若要開始使用 CDN，請參閱[使用 Azure CDN](./cdn-create-new-endpoint.md)。
 
-現有的 CDN 客戶現在可以透過 [Microsoft Azure 入口網站](https://portal.azure.com)管理您的 CDN 端點。
+如果您是現有的 CDN 客戶，現在可以透過 [Microsoft Azure 入口網站](https://portal.azure.com)或 [PowerShell](cdn-manage-powershell.md) 管理您的 CDN 端點。
 
 若要查看作用中的 CDN，請參閱 [2016 組建會議的影片](https://azure.microsoft.com/documentation/videos/build-2016-leveraging-the-new-azure-cdn-apis-to-build-wicked-fast-applications/)。
 
@@ -83,4 +83,4 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 
 如需價格資訊，請參閱 [CDN 價格](https://azure.microsoft.com/pricing/details/cdn/)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -14,7 +14,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="05/31/2016"
+   ms.date="08/16/2016"
    ms.author="larryfr"/>
 
 
@@ -40,13 +40,13 @@ Apache Storm 是一個可處理資料串流的分散式、容錯、即時的運�
 
 ## 建立 Storm 叢集
 
-在本節中，您將使用 Azure ARM 範本建立 HDInsight 3.2 版叢集 (Storm 0.9.3 版)。如需不同 HDInsight 版本及其 SLA 的相關資訊，請參閱〈[HDInsight 元件版本設定](hdinsight-component-versioning.md)〉。如需其他叢集建立方法，請參閱[建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
+在本節中，您將使用 Azure Resource Manager 範本建立 HDInsight 3.2 版叢集 (Storm 0.9.3 版)。如需不同 HDInsight 版本及其 SLA 的相關資訊，請參閱〈[HDInsight 元件版本設定](hdinsight-component-versioning.md)〉。如需其他叢集建立方法，請參閱[建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
 
-1. 按一下以下影像，以在 Azure 入口網站中開啟 ARM 範本。         
+1. 按一下以下影像，在 Azure 入口網站中開啟範本。
 
     <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-storm-cluster-in-hdinsight.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
     
-    ARM 範本位於公用 Blob 容器中，*https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-storm-cluster-in-hdinsight.json*。
+    此範本位於公用 Blob 容器中，*https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-storm-cluster-in-hdinsight.json*。
    
 2. 從 [參數] 刀鋒視窗，輸入下列項目：
 
@@ -93,9 +93,9 @@ HDInsight 叢集已包含 [storm-starter](https://github.com/apache/storm/tree/m
 
 2. 使用下列命令以啟動範例拓撲：
 
-        storm jar /usr/hdp/current/storm-client/contrib/storm-starter/storm-starter-topologies-0.9.3.2.2.4.9-1.jar storm.starter.WordCountTopology wordcount
+        storm jar /usr/hdp/current/storm-client/contrib/storm-starter/storm-starter-topologies-0.10.0.2.4.2.4-5.jar storm.starter.WordCountTopology wordcount
 		
-	> [AZURE.NOTE] 因為 HDinsight 會隨著 Storm 的新版本而更新，所以檔案名稱的 `0.9.3.2.2.4.9-1` 部分可能會變更。
+	> [AZURE.NOTE] 因為 HDinsight 會隨著 Storm 的新版本而更新，所以檔案名稱的 `0.10.0.2.4.2.4-5` 部分可能會變更。
 
     這會在叢集上使用 'wordcount' 的易記名稱，啟動範例 WordCount 拓撲。命令會隨機產生句子，並計算句子中每個字詞的出現次數。
 
@@ -192,4 +192,4 @@ Storm UI 提供 Web 介面來處理執行中的拓撲，包含在您的 HDInsigh
 [hdinsight-provision]: hdinsight-provision-clusters.md
 [preview-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0817_2016-->

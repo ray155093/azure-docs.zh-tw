@@ -1,6 +1,6 @@
 <properties
-    pageTitle="使用 Azure Resource Manager 範本建立服務匯流排命名空間與事件中樞和取用者群組 | Microsoft Azure"
-    description="使用 Azure Resource Manager 範本建立服務匯流排命名空間與事件中樞和取用者群組"
+    pageTitle="使用 Azure Resource Manager 範本建立事件中樞命名空間與事件中樞和取用者群組 | Microsoft Azure"
+    description="使用 Azure Resource Manager 範本建立事件中樞命名空間與事件中樞和取用者群組"
     services="service-bus"
     documentationCenter=".net"
     authors="sethmanheim"
@@ -16,9 +16,9 @@
     ms.date="07/11/2016"
     ms.author="sethm;shvija"/>
 
-# 使用 Azure Resource Manager 範本建立服務匯流排命名空間與事件中樞和取用者群組
+# 使用 Azure Resource Manager 範本建立事件中樞命名空間與事件中樞和取用者群組
 
-本文說明如何使用 Azure Resource Manager 範本，建立服務匯流排命名空間與事件中樞和取用者群組。您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求
+本文說明如何使用 Azure Resource Manager 範本，建立事件中樞命名空間與事件中樞和取用者群組。您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求
 
 如需建立範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本][]。
 
@@ -35,7 +35,7 @@
 
 ## 您將部署什麼？
 
-使用此範本，您將部署具有事件中樞和取用者群組的服務匯流排命名空間。
+使用此範本，您將部署具有事件中樞和取用者群組的事件中樞命名空間。
 
 [事件中樞](../event-hubs/event-hubs-what-is-event-hubs.md)是事件處理服務，用於提供大規模進入 Azure 的事件和遙測入口，並具備低延遲和高可靠性等特性。
 
@@ -49,32 +49,32 @@
 
 範本會定義下列參數。
 
-### serviceBusNamespaceName
+### eventHubNamespaceName
 
-要建立的服務匯流排命名空間名稱。
+要建立的事件中樞命名空間名稱。
 
 ```
-"serviceBusNamespaceName": {
+"eventHubNamespaceName": {
 "type": "string"
 }
 ```
 
-### serviceBusEventHubName
+### eventHubName
 
-在服務匯流排命名空間中建立的事件中樞名稱。
+在事件中樞命名空間中建立的事件中樞名稱。
 
 ```
-"serviceBusEventHubName": {
+"eventHubName": {
 "type": "string"
 }
 ```
 
-### serviceBusConsumerGroupName
+### eventHubConsumerGroupName
 
 在服務匯流排命名空間中為事件中樞建立的取用者群組名稱。
 
 ```
-"serviceBusConsumerGroupName": {
+"eventHubConsumerGroupName": {
 "type": "string"
 }
 ```
@@ -97,8 +97,8 @@
 "resources": [
         {
             "apiVersion": "[variables('ehVersion')]",
-            "name": "[parameters('serviceBusNamespaceName')]",
-            "type": "Microsoft.ServiceBus/Namespaces",
+            "name": "[parameters('eventHubNamespaceName')]",
+            "type": "Microsoft.EventHub/Namespaces",
             "location": "[variables('location')]",
             "kind": "EventHub",
             "sku": {
@@ -108,21 +108,21 @@
             "resources": [
                 {
                     "apiVersion": "[variables('ehVersion')]",
-                    "name": "[parameters('serviceBusEventHubName')]",
+                    "name": "[parameters('eventHubName')]",
                     "type": "EventHubs",
                     "dependsOn": [
-                        "[concat('Microsoft.ServiceBus/namespaces/', parameters('serviceBusNamespaceName'))]"
+                        "[concat('Microsoft.EventHub/namespaces/', parameters('eventHubNamespaceName'))]"
                     ],
                     "properties": {
-                        "path": "[parameters('serviceBusEventHubName')]"
+                        "path": "[parameters('eventHubName')]"
                     },
                     "resources": [
                         {
                             "apiVersion": "[variables('ehVersion')]",
-                            "name": "[parameters('serviceBusConsumerGroupName')]",
+                            "name": "[parameters('eventHubConsumerGroupName')]",
                             "type": "ConsumerGroups",
                             "dependsOn": [
-                                "[parameters('serviceBusEventHubName')]"
+                                "[parameters('eventHubName')]"
                             ],
                             "properties": {
                             }
@@ -166,4 +166,4 @@ azure group deployment create <my-resource-group> <my-deployment-name> --templat
   [Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../xplat-cli-azure-resource-manager.md
   [Service Bus Event Hub and consumer group template (服務匯流排事件中樞和取用者群組範本)]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-eventhub-and-consumergroup/
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0810_2016------>

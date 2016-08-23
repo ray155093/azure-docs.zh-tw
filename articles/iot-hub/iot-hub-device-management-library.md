@@ -3,7 +3,7 @@
  description="Azure IoT 中樞裝置管理 (DM) 用戶端程式庫"
  services="iot-hub"
  documentationCenter=""
- authors="CarlosAlayo"
+ authors="juanjperez"
  manager="timlt"
  editor=""/>
 
@@ -14,11 +14,11 @@
  ms.tgt_pltfrm="na"
  ms.workload="na"
  ms.date="04/29/2016"
- ms.author="carlosa"/>
+ ms.author="juanpere"/>
 
 # Azure IoT 中樞裝置管理 (DM) 用戶端程式庫簡介
 
-## 概觀
+## Overview
 
 Azure IoT 中樞裝置管理用戶端程式庫可讓您使用 Azure IoT 中樞管理 IoT 裝置。「管理」包含重新啟動、恢復出廠預設值和更新韌體等動作。目前我們提供的是各平台通用的 C 程式庫，但我們很快就會增加對其他語言的支援。如 [Azure IoT 中樞裝置管理概觀][lnk-dm-overview]所述，IoT 中樞的裝置管理蘊含三個主要概念︰
 
@@ -200,7 +200,7 @@ LWM2M 資料模型引進了物件和資源的概念︰
 
 | 資源名稱 | 作業 | 類型 | 範圍與單位 | 說明 |
 |---------------|------------|--------|-----------------|-------------|
-| 名稱 | 讀取寫入 | String | | 可唯一識別要讀取或更新之裝置組態的名稱。 |
+| Name | 讀取寫入 | String | | 可唯一識別要讀取或更新之裝置組態的名稱。 |
 | 值 | 讀取寫入 | String | | 可唯一識別要讀取或更新的組態值。 |
 | 套用 | 執行 | | | 對裝置套用組態變更。 |
 
@@ -235,4 +235,4 @@ LWM2M 資料模型引進了物件和資源的概念︰
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0810_2016------>

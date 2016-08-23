@@ -3,7 +3,7 @@
    description="了解如何在 ARM 中使用 Azure CLI 建立和部署 NSG"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor="tysonn"
    tags="azure-resource-manager"
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/15/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # 如何在 Azure CLI 中建立 NSG
 
@@ -23,7 +23,7 @@
 
 [AZURE.INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]本文涵蓋之內容包括資源管理員部署模型。您也可以[在傳統部署模型中建立 NSG](virtual-networks-create-nsg-classic-cli.md)。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] 本文涵蓋之內容包括資源管理員部署模型。您也可以[在傳統部署模型中建立 NSG](virtual-networks-create-nsg-classic-cli.md)。
 
 [AZURE.INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
@@ -69,7 +69,7 @@
 		info:    network nsg create command OK
 
 	參數：
-	- **-g (或 --resource-group)**。將會在當中建立 NSG 之資源群組的名稱。在本文案例中為 *TestRG*。
+	- **-g (or --resource-group)**。將會在當中建立 NSG 之資源群組的名稱。在本文案例中為 *TestRG*。
 	- **-l (或 --location)**。將要建立新 NSG 的 Azure 區域。在本文案例中為 *westus*。
 	- **-n (或 --name)**。新 NSG 的名稱。在本文案例中為 *NSG-FrontEnd*。
 
@@ -110,7 +110,7 @@
 	- **-f (或 --source-address-prefix)**。CIDR 中的來源位址首碼或使用預設標記。
 	- **-o (或 --source-port-range)**。來源連接埠，或連接埠範圍。
 	- **-e (或 --destination-address-prefix)**。CIDR 中的目的地位址首碼或使用預設標記。
-	- **-u (或 --destination-port-range)**。目的地連接埠，或連接埠範圍。	
+	- **-u (或 --destination-port-range)**。目的地連接埠，或連接埠範圍。
 
 5. 執行 **azure network nsg rule create** 命令來建立允許從網際網路存取連接埠 80 (HTTP) 的規則。
 
@@ -269,4 +269,4 @@
 		data:    
 		info:    network vnet subnet set command OK
 
-<!------HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0810_2016------>

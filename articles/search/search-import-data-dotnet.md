@@ -14,7 +14,7 @@
     ms.workload="search"
     ms.topic="get-started-article"
     ms.tgt_pltfrm="na"
-    ms.date="05/23/2016"
+    ms.date="08/15/2016"
     ms.author="brjohnst"/>
 
 # 使用 .NET SDK 將資料上傳到 Azure 搜尋服務
@@ -205,4 +205,4 @@ public partial class Hotel
 ## 下一步
 在填入 Azure 搜尋服務索引後，您就可以開始發出查詢來搜尋文件。如需詳細資料，請參閱[查詢 Azure 搜尋服務索引](search-query-overview.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0817_2016-->

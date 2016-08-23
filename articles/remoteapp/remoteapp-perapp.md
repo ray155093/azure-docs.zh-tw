@@ -13,10 +13,13 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="compute"
-   ms.date="05/31/2016"
+   ms.date="08/15/2016"
    ms.author="piotrci"/>
 
 # 在 Azure RemoteApp 集合中發佈應用程式給個別使用者 (預覽)
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 本文說明如何在 Azure RemoteApp 集合中發佈應用程式給個別使用者。這是 Azure RemoteApp 的新功能，目前還是「私人預覽」狀態，僅提供給選出的早期採用者進行評估。
 
@@ -80,7 +83,7 @@ AclLevel 屬性的可能值如下：
 
 這會列出所有能看到應用程式的使用者。
 
-附註：執行 Get-AzureRemoteAppProgram -CollectionName 就能看到應用程式別名 (在上述語法中稱為 "app alias") <collectionName>。
+附註：執行 Get-AzureRemoteAppProgram -CollectionName <collectionName> 就能看到應用程式別名 (在上述語法中稱為 "app alias")。
 
 ## 如何指派應用程式給使用者
 
@@ -102,4 +105,4 @@ AclLevel 屬性的可能值如下：
 ## 還沒有機會試用預覽功能嗎？
 如果您還未參與使用預覽功能，請使用本[問卷](http://www.instant.ly/s/AY83p)來要求存取權。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0817_2016-->

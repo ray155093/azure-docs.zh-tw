@@ -12,7 +12,7 @@ ms.workload="tbd"
 ms.tgt_pltfrm="na" 
 ms.devlang="na" 
 ms.topic="article" 
-ms.date="05/17/2016" 
+ms.date="08/10/2016" 
 ms.author="adegeo"/>
 
 # 利用 XPath 公開角色組態設定以做為環境變數
@@ -189,4 +189,4 @@ ms.author="adegeo"/>
 
 為角色啟用[遠端桌面](cloud-services-role-enable-remote-desktop.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016------>

@@ -4,7 +4,7 @@
 	services="backup"
 	documentationCenter=""
 	authors="markgalioto"
-	manager="jwhit"
+	manager="cfreeman"
 	editor=""/>
 
 <tags
@@ -13,27 +13,26 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/09/2016"
+	ms.date="08/08/2016"
 	ms.author="markgal;trinadhk;jimpark" />
 
 
 # 使用 PowerShell 部署和管理 Azure VM 的備份
 
 > [AZURE.SELECTOR]
-- [ARM](backup-azure-vms-automation.md)
+- [資源管理員](backup-azure-vms-automation.md)
 - [傳統](backup-azure-vms-classic-automation.md)
 
-本文說明如何使用 Azure PowerShell 來備份和復原 Azure IaaS VM。
+本文說明如何使用 Azure PowerShell 來備份和復原 Azure VM。Azure 建立和處理資源的部署模型有二種：資源管理員和傳統。本文涵蓋之內容包括使用傳統部署模型。Microsoft 建議讓大部分的新部署使用資源管理員模式。
 
 ## 概念
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-include.md)]
 
-取得 Azure 備份文件中的 [Azure IaaS VM 備份簡介](backup-azure-vms-introduction.md)。
+本文章提供用來備份虛擬機器之 PowerShell Cmdlet 的特定資訊。如需有關保護 Azure VM 的基本資訊，請參閱[Plan your VM backup infrastructure in Azure (在 Azure 中規劃 VM 備份基礎結構)](backup-azure-vms-introduction.md)。
 
-> [AZURE.WARNING] 開始之前，請確定您已了解使用 Azure 備份需要的[必要條件](backup-azure-vms-prepare.md)的重點，以及目前的 VM 備份解決方案的[限制](backup-azure-vms-prepare.md#limitations)。
+> [AZURE.NOTE] 在您開始之前，請閱讀使用 Azure 備份所需的[必要條件](backup-azure-vms-prepare.md)，以及目前 VM 備份解決方案的[限制](backup-azure-vms-prepare.md#limitations)。
 
-若要有效地使用 PowerShell，就必須了解物件的階層及從何處開始。
+若要有效地使用 PowerShell，請花一點時間了解物件的階層以及從何處開始。
 
 ![物件階層](./media/backup-azure-vms-classic-automation/object-hierarchy.png)
 
@@ -185,7 +184,7 @@ PS C:\> Wait-AzureRmBackupJob -Job $joblist[0] -Timeout 43200
 
 ### 選取 VM
 
-若要取得可識別正確備份項目的 PowerShell 物件，您需要從保存庫中的「容器」開始，向下深入物件階層。若要選取代表 VM 的容器，請使用 **Get-AzureRmBackupContainer** Cmdlet，並透過管道將其傳送到 **Get-AzureRmBackupItem** Cmdlet。
+若要取得可識別正確備份項目的 PowerShell 物件，您需要從保存庫中的「容器」開始，向下深入物件階層。若要選取代表 VM 的容器，請使用 **Get-AzureRmBackupContainer** Cmdlet，並透過管道將它傳送到 **Get-AzureRmBackupItem** Cmdlet。
 
 ```
 PS C:\> $backupitem = Get-AzureRmBackupContainer -Vault $backupvault -Type AzureVM -name "testvm" | Get-AzureRmBackupItem
@@ -340,10 +339,10 @@ for( $i = 1; $i -le $numberofdays; $i++ )
 $DAILYBACKUPSTATS | Out-GridView
 ```
 
-如果想要將製作圖表的功能加入這個報表輸出，請在 TechNet 部落格上了解[使用 PowerShell 製作圖表](http://blogs.technet.com/b/richard_macdonald/archive/2009/04/28/3231887.aspx)
+如果想要將製作圖表的功能加入這個報表輸出，請參閱 TechNet 部落格文章 [Charting with PowerShell (使用 PowerShell 製作圖表)](http://blogs.technet.com/b/richard_macdonald/archive/2009/04/28/3231887.aspx) 以了解
 
 ## 後續步驟
 
-如果您偏好使用 PowerShell 來與您的 Azure 資源交流，請參閱保護 Windows Server 的 PowerShell 文章：[部署和管理 Windows Server 的備份](./backup-client-automation-classic.md)。另請參閱管理 DPM 備份的 PowerShell 文章：[部署和管理 DPM 的備份](./backup-dpm-automation-classic.md)。這兩篇文章都有適用於 Resource Manager 部署以及傳統部署的版本。
+如果您偏好使用 PowerShell 來與您的 Azure 資源交流，請參閱保護 Windows Server 的 PowerShell 文章：[部署和管理 Windows Server 的備份](./backup-client-automation-classic.md)。另請參閱管理 DPM 備份的 PowerShell 文章：[部署及管理 DPM 的備份](./backup-dpm-automation-classic.md)。這兩篇文章都有適用於 Resource Manager 部署以及傳統部署的版本。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0810_2016------>

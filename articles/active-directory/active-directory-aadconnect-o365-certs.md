@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/16/2016"
+	ms.date="08/08/2016"
 	ms.author="billmath"/>
 
 
 # 更新 Office 365 和 Azure Active Directory 的同盟憑證
 
-##概觀
+##Overview
 
 為了讓 Azure Active Directory (Azure AD) 與 Active Directory Federation Services (AD FS) 之間能夠成功地同盟，AD FS 用來向 Azure AD 簽署安全性權杖的憑證應該符合 Azure AD 中所設定的憑證。任何不相符都可能導致信任受損。Azure AD 會確保這項資訊在您部署 AD FS 和 Web 應用程式 Proxy (適用於外部網路存取) 時保持同步。
 
@@ -100,7 +100,8 @@ Azure AD 會嘗試監視同盟中繼資料，並依照此中繼資料的指示�
 
 **1.AD FS 屬性 AutoCertificateRollover 必須設定為 True。** 這表示 AD FS 會在舊憑證到期之前，自動產生新的權杖簽署和權杖解密憑證。
 
-**2.可公開取得 AD FS 同盟中繼資料。** 從公用網際網路 (離開公司網路) 的電腦瀏覽到下列 URL 檢查同盟中繼資料是否可公開存取：
+**2.可公開取得 AD FS 同盟中繼資料。** 
+從公用網際網路 (離開公司網路) 的電腦瀏覽到下列 URL 檢查同盟中繼資料是否可公開存取：
 
 
 https://(your_FS_name)/federationmetadata/2007-06/federationmetadata.xml
@@ -163,4 +164,4 @@ https://(your_FS_name)/federationmetadata/2007-06/federationmetadata.xml
 
 如需詳細資訊，請參閱[修復信任](./active-directory-aadconnect-federation-management.md#repairing-the-trust)。
 
-<!----HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016------>

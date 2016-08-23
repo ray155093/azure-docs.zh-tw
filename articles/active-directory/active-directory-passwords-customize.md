@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/12/2016"
+	ms.date="08/03/2016"
 	ms.author="asteen"/>
 
 # 自訂密碼管理以符合您的組織的需求
@@ -635,7 +635,7 @@
                 </p>
                 <ul>
                   <li class="unordered">
-												如果您啟用此設定，您必須選擇自訂 URL 或電子郵件地址，方法是立即篩選此設定下方的 [<strong>自訂電子郵件地址或 URL</strong>] 欄位。<br><br></li>
+												如果您啟用此設定，您必須選擇自訂 URL 或電子郵件地址，方法是填寫緊接在此設定下方的 [自訂電子郵件地址或 URL]<strong></strong> 欄位。<br><br></li>
                 </ul>
                 <p>
                   <strong>密碼重設入口網站：</strong>
@@ -851,7 +851,7 @@
                   <li class="unordered">
 												如果設定為是，則每當使用者或系統管理員重設自己的密碼時，他或她會收到通知，指出他或她的密碼已重設。<br><br></li>
                   <li class="unordered">
-												此通知是透過傳送至重設他或她的密碼之使用者的主要和備用 (或驗證) 電子郵件地址的電子郵件來傳送的。<br><br></li>
+												此通知會透過電子郵件傳送給重設其密碼之使用者的「使用者主體名稱」及備用 (或驗證) 電子郵件地址。<br><br></li>
                 </ul>
               </td>
             </tr>
@@ -875,4 +875,4 @@
 
 [001]: ./media/active-directory-passwords-customize/001.jpg "Image_001.jpg"
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016------>

@@ -3,7 +3,7 @@
    description="了解如何在資源管理員中使用 PowerShell 部署使用靜態公用 IP 的 VM"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor=""
    tags="azure-resource-manager"
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/15/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # 使用 PowerShell 部署使用靜態公用 IP 的 VM
 
@@ -23,7 +23,7 @@
 
 [AZURE.INCLUDE [virtual-network-deploy-static-pip-intro-include.md](../../includes/virtual-network-deploy-static-pip-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型。
 
 [AZURE.INCLUDE [virtual-network-deploy-static-pip-scenario-include.md](../../includes/virtual-network-deploy-static-pip-scenario-include.md)]
 
@@ -31,7 +31,7 @@
 
 ## 步驟 1：啟動指令碼
 
-[這裡](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/virtual-network-deploy-static-pip-arm-ps.ps1)可以下載所使用之完整的 PowerShell 指令碼。請遵循下列步驟來變更要在環境中工作的指令碼。
+[這裡](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/virtual-network-deploy-static-pip-arm-ps.ps1)可以下載所使用之完整的 PowerShell 指令碼。請遵循下列步驟來變更指令碼來讓指令碼在環境中運作。
 
 1. 根據要用於部署的值來變更下列變數的值。下列值對應本文件使用的案例。
 
@@ -216,4 +216,4 @@
 
    
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0810_2016------>

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/25/2016" 
+	ms.date="08/09/2016" 
 	ms.author="sdanie"/>
 
 # Azure API 管理原則參考文件
@@ -46,16 +46,16 @@
 -	[驗證原則][]
 	-	[使用基本驗證進行驗證][] - 使用基本驗證來驗證後端服務。
 	-	[使用用戶端憑證進行驗證][] - 使用用戶端憑證來驗證後端服務。
--	[快取原則][] 
+-	[快取原則][]
 	-	[從快取中取得][] - 執行快取查閱並傳回有效的快取回應 (如果有的話)。
 	-	[儲存至快取][] - 根據指定的快取控制組態來快取回應。
 	-	[從快取取得值](https://msdn.microsoft.com/library/azure/dn894086.aspx#GetFromCacheByKey) - 依金鑰擷取快取的項目。
 	-	[儲存快取中的值](https://msdn.microsoft.com/library/azure/dn894086.aspx#StoreToCacheByKey) -依金鑰儲存快取中的項目。
--	[跨網域原則][] 
+-	[跨網域原則][]
 	-	[允許跨網域呼叫][] - 將 API 設為可供 Adobe Flash 和 Microsoft Silverlight 瀏覽器型用戶端存取。
 	-	[CORS][] - 將跨原始來源資源分享 (CORS) 支援加入至操作或 API，以允許來自瀏覽器型用戶端的跨網域呼叫。
 	-	[JSONP][] - 將 JSON 與補充的 (JSONP) 支援加入至操作或 API，以允許來自 JavaScript 瀏覽器型用戶端的跨網域呼叫。
--	[轉換原則][] 
+-	[轉換原則][]
 	-	[將 JSON 轉換成 XML][] - 將要求或回應內文從 JSON 轉換成 XML。
 	-	[將 XML 轉換成 JSON][] - 將要求或回應內文從 XML 轉換成 JSON。
 	-	[在內文中尋找並取代字串][] - 尋找要求或回應子字串，並替換為其他子字串。
@@ -119,4 +119,4 @@
 
  
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016------>
