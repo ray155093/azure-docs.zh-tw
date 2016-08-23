@@ -44,4 +44,4 @@
 - [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
 - [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

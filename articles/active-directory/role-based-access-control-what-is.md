@@ -65,4 +65,4 @@ Azure RBAC 僅支援在 Azure 入口網站和 Azure Resource Manager API 中的 
 - 參閱 [RBAC 內建角色](role-based-access-built-in-roles.md)
 - 定義您自己的 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

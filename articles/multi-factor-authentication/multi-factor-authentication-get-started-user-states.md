@@ -63,4 +63,4 @@ State | 說明 |受影響的非瀏覽器應用程式| 注意事項
 8.  系統將提示您確認此動作。按一下 [是]。![停用使用者](./media/multi-factor-authentication-get-started-user-states/userstate3.png)
 9.  接著您應該會看到該作業已經成功。按一下 [關閉]。![停用使用者](./media/multi-factor-authentication-get-started-user-states/userstate4.png)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

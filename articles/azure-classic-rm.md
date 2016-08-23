@@ -67,4 +67,4 @@ Azure 有兩個入口網站︰
 - 深入了解[資源管理員](resource-group-overview.md)。
 - 了解如何[設計範本](best-practices-resource-manager-design-templates.md)。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

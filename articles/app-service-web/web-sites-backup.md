@@ -177,4 +177,4 @@ App Service 可以備份下列資訊：
 [GhostUpgradeWarning]: ./media/web-sites-backup/13GhostUpgradeWarning.png
  
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

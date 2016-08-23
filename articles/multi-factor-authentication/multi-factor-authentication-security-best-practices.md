@@ -121,4 +121,4 @@ Azure Multi-Factor Authentication Server 可以用於保護由 Azure AD 帳戶�
 - [Azure Multi-factor Authentication 的設定體驗](multi-factor-authentication-end-user-first-time.md)
 - [Azure Multi-Factor Authentication 常見問題集](multi-factor-authentication-faq.md)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

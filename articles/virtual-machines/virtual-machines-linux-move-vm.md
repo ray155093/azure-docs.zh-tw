@@ -59,4 +59,4 @@
 
 您可以在資源群組和訂用帳戶之間移動許多不同類型的資源。如需詳細資訊，請參閱[將資源移動到新的資源群組或訂用帳戶](../resource-group-move-resources.md)。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

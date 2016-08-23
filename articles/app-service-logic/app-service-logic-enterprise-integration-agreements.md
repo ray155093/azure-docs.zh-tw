@@ -65,4 +65,4 @@
 ## 後續步驟
 - [建立 AS2 合約](./app-service-logic-enterprise-integration-as2.md)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

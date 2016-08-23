@@ -136,4 +136,4 @@
 * [檢視事件和稽核記錄檔](insights-debugging-with-events.md)以了解在您服務內發生的所有內容。
 * 使用 Application Insights [監視任何網頁的可用性和回應性](../application-insights/app-insights-monitor-web-app-availability.md)，讓您可以找出您的頁面是否關閉。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

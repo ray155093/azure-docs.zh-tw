@@ -81,4 +81,4 @@ Azure 應用程式閘道會自動監視後端執行個體的健康狀況。如�
 
 若要了解如何使用 URL 型內容路由來建立應用程式閘道，請移至[使用 URL 型路由建立應用程式閘道](application-gateway-create-url-route-arm-ps.md)以取得詳細資訊。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

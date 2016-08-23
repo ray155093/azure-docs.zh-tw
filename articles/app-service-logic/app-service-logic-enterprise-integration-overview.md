@@ -61,4 +61,4 @@
 - [XML 訊息驗證](./app-service-logic-enterprise-integration-xml.md "了解如何使用 Logic Apps 驗證 XML 訊息")
 - [XML 轉換](./app-service-logic-enterprise-integration-transform.md "了解企業整合對應")
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

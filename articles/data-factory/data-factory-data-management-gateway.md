@@ -425,4 +425,4 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 ## 後續步驟
 - 如需閘道的詳細資訊，請參閱[資料管理閘道](data-factory-data-management-gateway.md)文章。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

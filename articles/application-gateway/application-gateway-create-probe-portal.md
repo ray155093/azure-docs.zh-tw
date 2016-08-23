@@ -92,4 +92,4 @@
 [4]: ./media/application-gateway-create-probe-portal/figure4.png
 [5]: ./media/application-gateway-create-probe-portal/figure5.png
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

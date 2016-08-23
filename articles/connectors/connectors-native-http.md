@@ -211,4 +211,4 @@ Azure App Service 的 Logic Apps 功能可讓您針對 HTTP 端點使用不同�
 
 立即試用平台和[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。您可以查看我們的 [API 清單](apis-list.md)，以探索 Logic Apps 中其他可用的連接器。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

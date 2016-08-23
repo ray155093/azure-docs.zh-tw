@@ -196,4 +196,4 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 ## 取得應用程式閘道
 	$getgw =  Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-RG
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

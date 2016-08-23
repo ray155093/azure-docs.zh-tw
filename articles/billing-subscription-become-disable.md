@@ -71,4 +71,4 @@
 
 如需詳細資訊，請參閱[如何針對 Azure 計費和訂用帳戶問題建立支援票證](billing-how-to-create-billing-support-ticket.md)。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

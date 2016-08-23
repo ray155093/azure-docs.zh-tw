@@ -303,4 +303,4 @@ AzureSearch\_SkipContent | "true" | 指示 blob 索引子僅編制索引中繼�
 
 如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

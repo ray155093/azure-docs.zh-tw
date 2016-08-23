@@ -81,4 +81,4 @@ HTTPS 接聽程式會根據其組態來尋找流量，並協助將流量路由�
 [3]: ./media/application-gateway-ssl-portal/figure3.png
 [4]: ./media/application-gateway-ssl-portal/figure4.png
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

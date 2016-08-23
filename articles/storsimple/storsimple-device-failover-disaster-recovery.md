@@ -184,4 +184,4 @@
 - 如需如何使用 StorSimple Manager 服務的相關資訊，請移至[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
  
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

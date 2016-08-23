@@ -182,4 +182,4 @@ Azure 會將角色的執行個體平均分散於一組升級網域，而升級�
 ## 後續步驟
 [如何管理雲端服務](cloud-services-how-to-manage.md) [如何監視雲端服務](cloud-services-how-to-monitor.md) [如何設定雲端服務](cloud-services-how-to-configure.md)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

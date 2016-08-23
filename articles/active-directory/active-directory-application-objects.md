@@ -66,4 +66,4 @@ Azure AD 應用程式是由其唯一一個應用程式物件所「定義」，�
 [AAD-Graph-Sp-Entity]: https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#serviceprincipal-entity
 [AZURE-Classic-Portal]: https://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

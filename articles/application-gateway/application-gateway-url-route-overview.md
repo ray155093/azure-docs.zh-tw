@@ -86,4 +86,4 @@ UrlPathMap 元素是用來指定與後端伺服器集區對應的路徑模式。
 
 了解 URL 型內容路由之後，請移至[使用 URL 型路由建立應用程式閘道](application-gateway-create-url-route-arm-ps.md)，利用 URL 路由規則來建立應用程式閘道。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

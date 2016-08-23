@@ -185,4 +185,4 @@ Azure | [Azure Blob](data-factory-azure-blob-connector.md) <br/> [Azure Data Lak
 - 若要了解將資料從內部部署資料存放區移動到雲端資料存放區的相關資訊，請參閱[將資料從內部部署資料存放區移動到雲端資料存放區](data-factory-move-data-between-onprem-and-cloud.md)。
  
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

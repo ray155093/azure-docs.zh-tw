@@ -121,4 +121,4 @@ Site Recovery 是一項 Azure 服務，藉由協調虛擬機器的複寫、容�
 
 閱讀[我可以保護哪些工作負載?](../site-recovery/site-recovery-workload.md) 深入了解如何以 Azure Site Recovery 保護企業工作負載。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

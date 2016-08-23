@@ -935,4 +935,4 @@ ISubscriber subscriber = redisHostConnection.GetSubscriber();
 - StackExchange.Redis 儲存機制上的 [Transactions in Redis (Redis 中的交易)](https://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Transactions.md) 頁面
 - Microsoft 網站上的[資料分割指南](http://msdn.microsoft.com/library/dn589795.aspx)。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

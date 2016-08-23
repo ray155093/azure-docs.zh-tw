@@ -347,4 +347,4 @@ Azure Data Factory 會使用內建的 ODBC 驅動程式來連線到 MongoDB 資�
 ## 後續步驟
 請參閱[在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文，以取得如何建立資料管線以將資料從內部部署資料存放區移動至 Azure 資料存放區的逐步指示。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

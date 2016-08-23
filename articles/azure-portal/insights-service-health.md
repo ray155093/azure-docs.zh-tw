@@ -52,4 +52,4 @@
 * [監視服務計量](insights-how-to-customize-monitoring.md)以確保您的服務可用且可回應。
 * 使用 Application Insights [監視任何網頁的可用性和回應性](../application-insights/app-insights-monitor-web-app-availability.md)，讓您可以找出您的頁面是否關閉。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

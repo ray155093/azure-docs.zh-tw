@@ -234,4 +234,4 @@ Azure Data Lake Analytics 會提供有關如何處理和分析記錄資料的範
 
 - [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

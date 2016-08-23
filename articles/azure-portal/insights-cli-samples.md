@@ -220,4 +220,4 @@ node bin\azure insights autoscale setting list montest2 -n setting2
 node bin\azure insights autoscale setting set montest2 -n setting2 --settingSpec
 ```
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

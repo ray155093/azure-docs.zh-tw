@@ -173,4 +173,4 @@ Windows 個人裝置如果在目錄中被 Microsoft Intune 或與 Azure AD 整�
 
 - [Azure Active Directory 條件式存取](active-directory-conditional-access.md)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

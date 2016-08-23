@@ -110,4 +110,4 @@ Service Fabric ALM 功能讓應用程式管理員/IT 操作員能夠使用簡單
 
 [Image1]: media/service-fabric-overview/Service-Fabric-Overview.png
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

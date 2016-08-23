@@ -224,4 +224,4 @@ Visual Studio 隨即開啟，並建立新的整合服務 (SSIS) 專案。然後 
 [Visual Studio Community]: https://www.visualstudio.com/zh-TW/products/visual-studio-community-vs.aspx
 [Adventure Works 2014 Sample Databases (Adventure Works 2014 範例資料庫)]: https://msftdbprodsamples.codeplex.com/releases/view/125550
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

@@ -136,4 +136,4 @@ Azure 資源可透過公用 IP 位址來與網際網路和 Azure 公眾對應服
 - [使用範本部署使用靜態公用 IP 的 VM](virtual-network-deploy-static-pip-arm-template.md)
 - 使用 Azure 入口網站[部署使用靜態私人 IP 位址的 VM](virtual-networks-static-private-ip-arm-pportal.md)
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>

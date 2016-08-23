@@ -123,4 +123,4 @@
 
 了解多站台裝載之後，請移至[使用多站台裝載建立應用程式閘道](application-gateway-create-multisite-azureresourcemanager-powershell.md)，以建立能夠支援多個 Web 應用程式的應用程式閘道。
 
-<!---HONumber=AcomDC_0810_2016---->
+<!---HONumber=AcomDC_0810_2016------>
