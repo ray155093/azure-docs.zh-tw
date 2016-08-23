@@ -13,19 +13,22 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="hero-article"
-    ms.date="05/31/2016"
+    ms.date="08/15/2016"
     ms.author="mbaldwin" />
 
 
 
 # 只需 3 分鐘或以下的時間便可在您的裝置上嘗試 Azure RemoteApp
 
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+
 想要在您的裝置上看到 Azure RemoteApp 嗎？ 只要您有 Microsoft 帳戶，您便有 10 分鐘的時間可以存取我們的示範部署。我們有 Office 和一些其他可用的應用程式。若要在 3 分鐘內測試與體驗 Azure RemoteApp 的使用者經驗，這會是一個很好的方法。
 
 有興趣嗎？
 
 1. 請移至 [http://remoteapp.azure.com](http://remoteapp.azure.com)。
-2. 按一下右上角的 [**安裝用戶端**]。  
+2. 按一下右上角的 [**安裝用戶端**]。
 3. 系統便會自動偵測您的裝置，並帶領您到裝置的用戶端。安裝用戶端。
 4. 返回 [http://remoteapp.azure.com](http://remoteapp.azure.com) 並使用您的 Microsoft 帳戶登入。
 
@@ -35,4 +38,4 @@
 
 >[AZURE.NOTE] 因為這是個可供示範使用的受控制環境，我們尚未提供從已發佈的示範應用程式的外部網際網路存取。因此，您無法存取如 OneDrive 的服務。此外，我們還將剪貼簿共用 (複製和貼上) 及 USB 和印表機重新導向停用。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -17,7 +17,13 @@
 
 # 處理 VM 備份期間加密的磁碟
 
-如果企業想要在 Azure 中加密其 VM 資料，可以使用 Bitlocker (Windows 電腦上) 或 dmcrypt (Linux 電腦上) 解決方案。這兩種解決方案都是磁碟區層級加密解決方案。本文詳細說明如何為這類 Azure VM 設定備份，以及加密的資料對於還原工作流程的影響。
+對於想要在 Azure 中加密其 VM 資料的企業，解決方案是在 Windows 上使用 [Azure 磁碟加密](../azure-security-disk-encryption.md)或 Bitlocker，而在 Linux 機器上使用 dmcrypt。
+
+> [AZURE.NOTE]  Azure 備份支援使用 Azure 磁碟加密 (ADE) 加密之 VM 的備份與還原。<br>
+1. 如果 VM 是使用 BEK 和 KEK 加密，這也支援使用 PowerShell。<br>
+2. 如果 VM 僅限使用 BEK 加密，則不支援備份與還原。<br> 請參閱 Azure 備份 [PowerShell 文件](backup-azure-vms-automation.md)來備份與還原使用 ADE 加密的 VM。
+
+這篇文章是有關使用 CloudLink 加密的 Azure VM。
 
 ## 備份的運作方式
 
@@ -36,7 +42,7 @@
 
 | 函數 | 使用的軟體 | 其他注意事項 |
 | -------- | ------------- | ------- |
-| 加密 | Bitlocker 或 dmcrypt | 由於相較於 Azure 備份，此加密會在「不同」層級中進行，因此可以使用任何加密軟體。也就是說，使用 Bitlocker 和 dmcrypt 的經驗只通過 CloudLink 的驗證。<br><br> 若要加密資料，需要有金鑰。您必須將金鑰存放在安全的位置，以確保資料的存取經過授權。 |
+| 加密 | Bitlocker 或 dmcrypt | 由於相較於 Azure 備份，此加密會在「不同」層級中進行，因此可以使用任何加密軟體。也就是說，使用 Bitlocker 和 dmcrypt 的經驗只經過 CloudLink 驗證。<br><br> 若要加密資料，需要有金鑰。您必須將金鑰存放在安全的位置，以確保資料的存取經過授權。 |
 | 金鑰管理 | CloudLink SecureVM | 金鑰是加密或解密資料的必要項目。如果沒有正確的金鑰，就無法擷取資料。這對下列作業「非常」重要：<br><li>金鑰變換<li>長期保留<br><br>例如，用來備份 7 年前資料的金鑰可能與今日所使用的金鑰不同。如果沒有 7 年前的金鑰，就無法使用從該時間還原的資料。|
 | 資料備份 | Azure 備份 | 使用 Azure 備份並搭配 [Azure 管理入口網站](http://manage.windowsazure.com)或 PowerShell 來備份您的 Azure IaaS VM |
 | 資料還原 | Azure 備份 | 使用 Azure 備份從復原點還原磁碟或整個 VM。資料不是由 Azure 備份當做還原作業的一部分來解密。|
@@ -71,4 +77,4 @@
 - [部署指南 - PDF](http://www.cloudlinktech.com/Azure/CL_SecureVM_4_0_DG_EMC_Azure_R2.pdf)
 - [部署及使用 SecureVM - 影片](https://www.youtube.com/watch?v=8AIRe92UDNg)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016------>

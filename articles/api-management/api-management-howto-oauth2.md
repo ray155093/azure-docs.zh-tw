@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/25/2016" 
+	ms.date="08/09/2016" 
 	ms.author="sdanie"/>
 
 # 如何在 Azure API 管理中使用 OAuth 2.0 授權開發人員帳戶
@@ -92,7 +92,7 @@
 
 ## <a name="step3"> </a>在開發人員入口網站中測試 OAuth 2.0 使用者授權
 
-設定好 OAuth 2.0 授權伺服器並將 API 設定為使用該伺服器後，您可以前往開發人員入口網站並呼叫 API 來進行測試。在右上角的功能表中按一下 [開發人員入口網站]。
+設定好 OAuth 2.0 授權伺服器並將 API 設定為使用該伺服器後，您可以前往開發人員入口網站並呼叫 API 來進行測試。按一下右上方功能表的 [開發人員入口網站]。
 
 ![開發人員入口網站][api-management-developer-portal-menu]
 
@@ -160,4 +160,4 @@
 [Test the OAuth 2.0 user authorization in the Developer Portal]: #step3
 [Next steps]: #next-steps
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016------>

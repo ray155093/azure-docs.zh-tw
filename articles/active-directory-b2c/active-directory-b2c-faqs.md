@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/22/2016"
+	ms.date="08/09/2016"
 	ms.author="swkrish"/>
 
 # Azure Active Directory B2C：常見問題集
@@ -58,15 +58,30 @@ Azure AD B2C 無法與 Microsoft Office 365 一起使用。一般而言，它不
 
 ### 我如何自訂 Azure AD B2C 傳送的驗證電子郵件 (內容和 [寄件者:] 欄位)？
 
-使用[公司商標功能](../active-directory/active-directory-add-company-branding.md)自訂驗證電子郵件的內容。您可以透過 [支援] 來變更 [寄件者:] 欄位。
+您可以使用[公司商標功能](../active-directory/active-directory-add-company-branding.md)自訂驗證電子郵件的內容。明確地說，您可以自訂電子郵件的下列兩個元素：
+
+- **橫幅標幟**：顯示在右下方。
+- **背景色彩**：顯示在頂端。
+
+	![自訂驗證電子郵件的螢幕擷取畫面](./media/active-directory-b2c-faqs/company-branded-verification-email.png)
+
+電子郵件簽章包含您第一次建立 B2C 租用戶時提供的 B2C 租用戶名稱。您可以使用這些指示變更名稱：
+
+- 以「訂用帳戶管理員」身分登入 [Azure 傳統入口網站](https://manage.windowsazure.com/)。
+- 瀏覽至您的 B2C 租用戶。
+- 按一下 [設定] 索引標籤。
+- 變更 [目錄屬性] 區段底下的 [名稱] 欄位。
+- 按一下頁面底部的 [儲存]。
+
+目前無法變更電子郵件中的 [從:] 欄位。如果您對此功能和完整自訂驗證電子郵件內文有興趣，請投票支持 [UserVoice](https://feedback.azure.com/forums/169401-azure-active-directory/suggestions/15334335-fully-customizable-verification-emails) 上建議的功能。
 
 ### 我如何將現有的使用者名稱、密碼和設定檔從資料庫移轉至 Azure AD B2C？
 
-您可以使用 Azure AD 圖形 API 來撰寫您的移轉工具。如需詳細資訊，請參閱[圖形 API 範例](active-directory-b2c-devquickstarts-graph-dotnet.md)。未來我們將提供各種現成的移轉選項和工具。
+您可以使用 Azure AD 圖形 API 來撰寫您的移轉工具。如需詳細資料，請參閱[圖形 API 範例](active-directory-b2c-devquickstarts-graph-dotnet.md)。未來我們將提供各種現成的移轉選項和工具。
 
 ### Azure AD B2C 中用於本機帳戶的密碼原則為何？
 
-Azure AD B2C 的本機帳戶密碼原則是以 Azure AD 的原則為基礎。Azure AD B2C 的註冊、註冊或登入和密碼重設原則會使用「強式」密碼強度，而且不會讓任何密碼到期。如需詳細資訊，請閱讀 [Azure AD 中的密碼原則](https://msdn.microsoft.com/library/azure/jj943764.aspx)。
+Azure AD B2C 的本機帳戶密碼原則是以 Azure AD 的原則為基礎。Azure AD B2C 的註冊、註冊或登入和密碼重設原則會使用「強式」密碼強度，而且不會讓任何密碼到期。如需更詳細的資料，請閱讀 [Azure AD 中的密碼原則](https://msdn.microsoft.com/library/azure/jj943764.aspx)。
 
 ### 我可以使用 Azure AD Connect，將儲存於內部部署 Active Directory 的取用者身分識別移轉至 Azure AD B2C 嗎？
 
@@ -78,11 +93,11 @@ Azure AD B2C 的本機帳戶密碼原則是以 Azure AD 的原則為基礎。Azu
 
 ### Azure AD B2C 可以搭配 SharePoint 內部部署的 2016 或更舊版本一起使用嗎？
 
-目前不支援。Azure AD B2C 不支援入口網站和電子商務應用程式建置在 SharePoint 內部部署需要的 SAML 1.1 權杖。請注意，Azure AD B2C 不適用於 SharePoint 外部夥伴共用的案例。請改參閱 [Azure AD B2B](http://blogs.technet.com/b/ad/archive/2015/09/15/learn-all-about-the-azure-ad-b2b-collaboration-preview.aspx)。
+目前不支援。Azure AD B2C 不支援入口網站和電子商務應用程式建置在 SharePoint 內部部署需要的 SAML 1.1 權杖。請注意，Azure AD B2C 不適用於 SharePoint 外部夥伴共用的案例。請改以參閱 [Azure AD B2B](http://blogs.technet.com/b/ad/archive/2015/09/15/learn-all-about-the-azure-ad-b2b-collaboration-preview.aspx)。
 
 ### 我應該使用 Azure AD B2C 或 B2B 來管理外部身分識別？
 
-閱讀這篇關於[外部身分識別](../active-directory/active-directory-b2b-compare-external-identities.md)的文章，以深入了解將適當的功能套用至外部身分識別的案例。
+請閱讀這篇關於[外部身分識別](../active-directory/active-directory-b2b-compare-external-identities.md)的文章，以深入了解將適當的功能套用至外部身分識別的案例。
 
 ### Azure AD B2C 提供哪些報告和稽核功能？ 它們與 Azure AD Premium 的功能相同嗎？
 
@@ -124,4 +139,4 @@ Azure AD B2C 的本機帳戶密碼原則是以 Azure AD 的原則為基礎。Azu
 
 您也可能想要檢閱目前的[服務限制和條件約束](active-directory-b2c-limitations.md)。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016------>

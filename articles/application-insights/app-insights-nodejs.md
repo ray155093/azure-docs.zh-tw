@@ -18,7 +18,7 @@
 
 # 新增 Application Insights SDK 以監視 Node.js 應用程式
 
-Application Insights 目前僅供預覽。
+*Application Insights 目前僅供預覽。*
 
 [Visual Studio Application Insights](app-insights-overview.md) 監視您的即時應用程式，協助您[偵測並診斷效能問題和例外狀況](app-insights-detect-triage-diagnose.md)，同時[探索應用程式的使用情況](app-insights-overview-usage.md)。這適用於裝載在專屬內部部署 IIS 伺服器或 Azure VM 上的應用程式，以及 Azure Web 應用程式。
 
@@ -54,7 +54,7 @@ SDK 可自動收集內送 HTTP 要求率和回應、效能計數器 (CPU、記�
 ## <a name="sdk"></a> 在應用程式中安裝 SDK
 
 ```
-npm install applicationinsights
+npm install applicationinsights --save
 ```
 
 ## 使用量
@@ -224,4 +224,4 @@ server.on("listening", () => {
 [qna]: app-insights-troubleshoot-faq.md
 [roles]: app-insights-resources-roles-access-control.md
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0817_2016-->

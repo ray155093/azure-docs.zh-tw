@@ -3,7 +3,7 @@
    description="了解如何啟用 NSG 的計數器、事件和作業記錄"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor="tysonn"
    tags="azure-resource-manager"
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="07/14/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 #網路安全性群組 (NSG) 的記錄檔分析
 
@@ -118,4 +118,4 @@ Azure [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.
 - [使用 Power BI 視覺化您的 Azure 稽核記錄檔](http://blogs.msdn.com/b/powerbi/archive/2015/09/30/monitor-azure-audit-logs-with-power-bi.aspx)部落格文章。
 - [在 Power BI 和其他工具中檢視和分析 Azure 稽核記錄](https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/)部落格文章。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0810_2016------>

@@ -3,7 +3,7 @@
    description="深入了解如何建立與設定具有多個 NIC 的 VM"
    services="virtual-network, virtual-machines"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor="tysonn"
    tags="azure-service-management,azure-resource-manager"
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/02/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # 建立具有多個 NIC 的 VM
 
@@ -25,7 +25,7 @@
 
 上圖顯示具有三個 NIC 的 VM，每個都連接到不同的子網路。
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型。
 
 - 只有「預設」NIC 上才支援網際網路對向的 VIP (傳統部署)。只有一個 VIP 可以連接到預設 NIC 的 IP。
 - 執行個體層級公用 IP (LPIP) 位址 (傳統部署) 目前不支援多個 NIC 的 VM。
@@ -118,9 +118,9 @@
 
 嘗試執行此範例的 PowerShell 命令之前，您需要具備下列必要條件。
 
-- Azure 訂閱。
+- Azure 訂用帳戶。
 - 已設定的虛擬網路。如需 VNet 的詳細資訊，請參閱[虛擬網路概觀](virtual-networks-overview.md)。
-- 已下載並安裝最新版的 Azure PowerShell。請參閱[如何安裝和設定 Azure PowerShell](../install-configure-powershell)。
+- 已下載並安裝最新版的 Azure PowerShell。請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
 若要建立有多個 NIC 的 VM，請依照下列步驟：
 
@@ -265,4 +265,4 @@
 - 部署[在資源管理員部署中的 2 層應用程式案例之多個 NIC VM](virtual-network-deploy-multinic-arm-template.md)。
 - 部署[在傳統部署中的 2 層應用程式案例之多個 NIC VM](virtual-network-deploy-multinic-classic-ps.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0810_2016------>

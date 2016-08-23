@@ -42,8 +42,10 @@
 
 在此範例中，我將示範如何使用 [當有新推文張貼時] 觸發程序來搜尋 #Seattle，而如果找到 #Seattle，使用推文中的文字更新 Dropbox 中的檔案。在企業範例中，您可以搜尋您的公司名稱，並以推文中的文字更新 SQL Database。
 
-1. 在 Logic Apps 設計工具的搜尋方塊中輸入 twitter，然後選取 [Twitter - 當有新推文張貼時] 觸發程序。![Twitter 觸發程序影像 1](./media/connectors-create-api-twitter/trigger-1.png)
-- 在 [搜尋文字] 控制項中輸入 #Seattle ![Twitter 觸發程序影像 2](./media/connectors-create-api-twitter/trigger-2.png)
+1. 在 Logic Apps 設計工具的搜尋方塊中輸入 twitter，然後選取 [Twitter - 當有新推文張貼時] 觸發程序。  
+![Twitter 觸發程序影像 1](./media/connectors-create-api-twitter/trigger-1.png)  
+- 在 [搜尋文字] 控制項中輸入 #Seattle  
+![Twitter 觸發程序影像 2](./media/connectors-create-api-twitter/trigger-2.png)  
 
 此時，邏輯應用程式已設有觸發程序，該觸發程序會開始執行工作流程中的其他觸發程序和動作。
 
@@ -52,14 +54,24 @@
 ## 新增條件
 因為我們只對於有 50 個以上跟隨者的使用者的推文有興趣，所以必須先將確認追隨者數目的條件新增至邏輯應用程式。
 
-1. 選取 [+ 新的步驟] 來新增您想要在新推文中找到 #Seattle 時採取的動作。![Twitter 動作影像 1](../../includes/media/connectors-create-api-twitter/action-1.png)
-- 選取 [新增條件] 連結。![Twitter 條件影像 1](../../includes/media/connectors-create-api-twitter/condition-1.png) 這會開啟可供您檢查條件的 [條件] 控制項，例如「等於」、「小於」、「大於」、「包含」等等。![Twitter 條件影像 2](../../includes/media/connectors-create-api-twitter/condition-2.png)
-- 選取 [選擇值] 控制項。在此控制項中，您可以從任何先前的動作或觸發程序選取一或多個屬性，做為其條件會評估為 true 或 false 的值。![Twitter 條件影像 3](../../includes/media/connectors-create-api-twitter/condition-3.png)
-- 選取 [...] 展開屬性清單，以便查看所有的可用屬性。![Twitter 條件影像 4](../../includes/media/connectors-create-api-twitter/condition-4.png)
-- 選取 [追隨者計數] 屬性。![Twitter 條件影像 5](../../includes/media/connectors-create-api-twitter/condition-5.png)
-- 請注意，[追隨者計數] 屬性現在位於值控制項。![Twitter 條件影像 6](../../includes/media/connectors-create-api-twitter/condition-6.png)
-- 從運算子清單選取 [大於]。![Twitter 條件影像 7](../../includes/media/connectors-create-api-twitter/condition-7.png)
-- 輸入 50 做為「大於」運算子的運算元。現已新增此條件。使用上方功能表上的 [儲存] 連結來儲存您的工作。![Twitter 條件影像 8](../../includes/media/connectors-create-api-twitter/condition-8.png)
+1. 選取 [+ 新的步驟] 來新增您想要在新推文中找到 #Seattle 時採取的動作。  
+![Twitter 動作影像 1](../../includes/media/connectors-create-api-twitter/action-1.png)  
+- 選取 [新增條件] 連結。  
+![Twitter 條件影像 1](../../includes/media/connectors-create-api-twitter/condition-1.png)  
+這會開啟可供您檢查條件的 [條件] 控制項，例如「等於」、「小於」、「大於」、「包含」等等。   
+![Twitter 條件影像 2](../../includes/media/connectors-create-api-twitter/condition-2.png)  
+- 選取 [選擇值] 控制項。在此控制項中，您可以從任何先前的動作或觸發程序選取一或多個屬性，做為其條件會評估為 true 或 false 的值。  
+![Twitter 條件影像 3](../../includes/media/connectors-create-api-twitter/condition-3.png)  
+- 選取 [...] 展開屬性清單，以便查看所有的可用屬性。  
+![Twitter 條件影像 4](../../includes/media/connectors-create-api-twitter/condition-4.png)  
+- 選取 [追隨者計數] 屬性。  
+![Twitter 條件影像 5](../../includes/media/connectors-create-api-twitter/condition-5.png)  
+- 請注意，[追隨者計數] 屬性現在位於值控制項。  
+![Twitter 條件影像 6](../../includes/media/connectors-create-api-twitter/condition-6.png)  
+- 從運算子清單選取 [大於]。  
+![Twitter 條件影像 7](../../includes/media/connectors-create-api-twitter/condition-7.png)  
+- 輸入 50 做為「大於」運算子的運算元。現已新增此條件。使用上方功能表上的 [儲存] 連結來儲存您的工作。  
+![Twitter 條件影像 8](../../includes/media/connectors-create-api-twitter/condition-8.png)  
 
 ## 使用 Twitter 動作
 
@@ -69,12 +81,16 @@
 
 在下一個步驟中，您將新增 Twitter 動作，該動作將使用有 50 個以上跟隨者的使用者所張貼的每則推文的某些屬性來張貼推文。
 
-1. 選取 [新增動作]。這會開啟搜尋控制項，您可以在其中搜尋其他動作和觸發程序。![Twitter 條件影像 9](../../includes/media/connectors-create-api-twitter/condition-9.png)
-- 在搜尋方塊中輸入 twitter，然後選取 [Twitter - 張貼推文] 動作。這會開啟 [張貼推文] 控制項，您將在其中輸入所張貼推文的所有詳細資料。![Twitter 動作影像 1-5](../../includes/media/connectors-create-api-twitter/action-1-5.png)
-- 選取 [推文文字] 控制項。前述動作和觸發程序的所有輸出現在可顯示在邏輯應用程式中。您可以選取上述任何輸出並使用它們做為新推文的部分推文文字。![Twitter 動作影像 2](../../includes/media/connectors-create-api-twitter/action-2.png)
+1. 選取 [新增動作]。這會開啟搜尋控制項，您可以在其中搜尋其他動作和觸發程序。  
+![Twitter 條件影像 9](../../includes/media/connectors-create-api-twitter/condition-9.png)  
+- 在搜尋方塊中輸入 twitter，然後選取 [Twitter - 張貼推文] 動作。這會開啟 [張貼推文] 控制項，您將在其中輸入所張貼推文的所有詳細資料。  
+![Twitter 動作影像 1-5](../../includes/media/connectors-create-api-twitter/action-1-5.png)  
+- 選取 [推文文字] 控制項。前述動作和觸發程序的所有輸出現在可顯示在邏輯應用程式中。您可以選取上述任何輸出並使用它們做為新推文的部分推文文字。  
+![Twitter 動作影像 2](../../includes/media/connectors-create-api-twitter/action-2.png)  
 - 選取 [使用者名稱]
 - 在推文文字控制項中輸入「說：」。在使用者名稱之後執行此動作。
-- 選取「推文文字」。![Twitter 動作影像 3](../../includes/media/connectors-create-api-twitter/action-3.png)
+- 選取「推文文字」。  
+![Twitter 動作影像 3](../../includes/media/connectors-create-api-twitter/action-3.png)  
 - 儲存您的工作並傳送具有 #Seattle 雜湊標籤的推文，以啟動您的工作流程。
 
 ## 技術詳細資料

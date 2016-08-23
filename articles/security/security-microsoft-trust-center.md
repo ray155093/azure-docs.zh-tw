@@ -4,7 +4,7 @@
    services="security"
    documentationCenter="na"
    authors="TomShinder"
-   manager="StevenPo"
+   manager="MBaldwin"
    editor="TomSh"/>
 
 <tags
@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/23/2016"
+   ms.date="08/09/2016"
    ms.author="terrylan"/>
 
 # Microsoft 信任中心
 
-Azure.com 上的 Azure 安全性資訊網站致力於提供您確認安全地規劃、設計、部署、設定和管理雲端方案所需資訊的同時，Microsoft 信任中心也提供確信您執行服務之 Azure 平台安全所需的資訊。
+Azure.com 上的 Azure 安全性資訊網站可提供所需資訊，以供您規劃、設計、部署、設定及安全地管理您的雲端解決方案。透過 Microsoft 信任中心，您也可以獲得所需資訊，以確信您的服務執行所在之 Azure 平台是安全的。
 
 我們知道您將應用程式和資料委託給 Azure 時，會有一些疑問。它在哪裡？ 誰可以進行存取？ Microsoft 會採取哪些措施來保護它？ 如何確認 Microsoft 確實做到它所說的？
 
@@ -37,4 +37,4 @@ Azure.com 上的 Azure 安全性資訊網站致力於提供您確認安全地規
 
 [Microsoft 信任中心](https://www.microsoft.com/trustcenter)具有了解我們對保護 Microsoft Cloud 所做的處理所需的資訊。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016------>

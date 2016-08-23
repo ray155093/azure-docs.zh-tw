@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"
+	ms.date="08/09/2016"
 	ms.author="juliako"/>
 
 
@@ -26,93 +26,475 @@
 
 > [AZURE.NOTE] 若要建立 Azure 媒體服務帳戶，您必須擁有 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資料，請參閱 <a href="http://www.windowsazure.com/pricing/free-trial/?WT.mc_id=A8A8397B5" target="_blank">Azure 免費試用</a>。
 
-##概觀 
+##Overview 
 
-此文章示範如何利用 PowerShell cmdlet 管理 Azure Media Services 帳戶。
+本文列出 Azure 媒體服務 (AMS) 在 Azure Resource Manager 架構中的 Azure PowerShell Cmdlet。Cmdlet 存在於 **Microsoft.Azure.Commands.Media** 命名空間。
 
->[AZURE.NOTE]
-若要完成此教學課程，您需要 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資料，請參閱 <a href="http://www.windowsazure.com/pricing/free-trial/?WT.mc_id=A8A8397B5" target="_blank">Azure 免費試用</a>。
+## 版本
 
-##安裝 Microsoft Azure PowerShell cmdlet
+**ApiVersion**："2015-10-01"
+               
 
-若要安裝最新的 Azure PowerShell Cmdlet，請參閱[如何安裝及設定 Azure PowerShell](../powershell-install-configure.md)
+## New-AzureRmMediaService
 
-##選取 Azure 訂用帳戶
+建立媒體服務。
 
-安裝和設定 PowerShell cmdlet 之後，請指定您想使用的訂用帳戶。
+### 語法
 
-若要取得可用的訂用帳戶清單，執行下列 cmdlet：
+參數集︰StorageAccountIdParamSet
 
-	PS C:\> Get-AzureSubscription
+	New-AzureRmMediaService [-ResourceGroupName] <string> [-AccountName] <string> [-Location] <string> [-StorageAccountId] <string> [-Tags <hashtable>]  [<CommonParameters>]
 
-然後，選取其中一個，方法如下：
+參數集︰StorageAccountsParamSet
 
-	PS C:\> Select-AzureSubscription "TestSubscription"
+	New-AzureRmMediaService [-ResourceGroupName] <string> [-AccountName] <string> [-Location] <string> [-StorageAccounts] <PSStorageAccount[]> [-Tags <hashtable>]  [<CommonParameters>]
 
- 
-##取得儲存體帳戶名稱
+### 參數
 
-Azure 媒體服務使用 Azure 儲存體來儲存媒體內容。建立新的媒體服務帳戶時，請將它與儲存體帳戶產生關聯。儲存體帳戶所屬的訂用帳戶必須與您計劃用於媒體服務帳戶的訂用帳戶相同。
+**-ResourceGroupName &lt;字串&gt;**
 
-在這個範例中，會使用現有的儲存體帳戶。[Get-AzureStorageAccount](https://msdn.microsoft.com/library/azure/dn495134.aspx) Cmdlet 會取得目前訂用帳戶中的儲存體帳戶。找出您想與媒體帳戶建立關聯的儲存體帳戶，然後取得其名稱 (StorageAccountName)。
+指定此媒體服務所屬資源群組的名稱。
 
-	StorageAccountDescription : 
-	AffinityGroup             :
-	Location                  : East US
-	GeoReplicationEnabled     : True
-	GeoPrimaryLocation        : East US
-	GeoSecondaryLocation      : West US
-	Label                     : storagetest001
-	StorageAccountStatus      : Created
-	StatusOfPrimary           : Available
-	StatusOfSecondary         : Available
-	Endpoints                 : {https://storagetest001.blob.core.windows.net/,
-	                            https://storagetest001.queue.core.windows.net/,
-	                            https://storagetest001.table.core.windows.net/}
-	AccountType               : Standard_GRS
-	StorageAccountName        : storatetest001
-	OperationDescription      : Get-AzureStorageAccount
-	OperationId               : e919dd56-7691-96db-8b3c-2ceee891ae5d
-	OperationStatus           : Succeeded
+別名 | 無
+---|---
+必要？ | true
+位置？ | 0
+預設值 |無
+接受管線輸入？ |true(ByPropertyName)
+接受萬用字元？ |false
 
-##建立新的媒體服務帳戶
+**-AccountName &lt;字串&gt;**
 
-若要建立新的 Azure 媒體服務帳戶，請使用 [New-AzureMediaServicesAccount](https://msdn.microsoft.com/library/azure/dn495286.aspx) Cmdlet，它可以提供媒體服務帳戶名稱、資料中心建立位置以及儲存體帳戶名稱。
+指定媒體服務的名稱。
 
+別名 |Name
+---|---
+必要？ |true
+位置？ |1
+預設值 |無
+接受管線輸入？ |false
+接受萬用字元？ |false
 
-	PS C:\> New-AzureMediaServicesAccount -Name "amstestaccount001" -StorageAccountName "storagetest001" -Location "East US"
+**-Location &lt;字串&gt;**
 
-##取得媒體服務帳戶
+指定媒體服務的資源位置。
 
-建立一個或多個媒體服務帳戶後，您可以使用 [Get-AzureMediaServicesAccount](https://msdn.microsoft.com/library/azure/dn495286.aspx) 來列出資訊。
+別名 |無
+---|---
+必要？ |true
+位置？ |2
+預設值 |無
+接受管線輸入？ |true(ByPropertyName)
+接受萬用字元？ |false
 
-	
-	PS C:\> Get-AzureMediaServicesAccount
-	
-	AccountId		Name				State
-	---------       ----       			 -----
-	xxxxxxxxxx      amstestaccount001   Active
+**-StorageAccountId &lt;字串&gt;**
 
-您可以提供 Name 參數，這樣就可以得到更詳細的資訊，其中包括帳戶金鑰。
+指定與媒體服務相關聯的主要儲存體帳戶。
 
-	PS C:\> Get-AzureMediaServicesAccount -Name amstestaccount001
+- 只支援新的儲存體帳戶 (使用 Resource Manager API 所建立)。
 
-##重新產生媒體服務存取金鑰
+- 儲存體帳戶必須存在，而且具有與媒體服務相同的位置。
 
-如果想要更新媒體服務主要或次要存取金鑰，請使用 [New-AzureMediaServicesKey](https://msdn.microsoft.com/library/azure/dn495215.aspx)。您需要提供帳戶名稱，然後指定您想要重新產生的金鑰 (主要或次要)。
+別名 |無
+---|---
+必要？ |true
+位置？ |3
+預設值 |無
+接受管線輸入？ |true(ByPropertyName)
+參數集名稱 |StorageAccountIdParamSet
+接受萬用字元？|false
 
-如果不希望 PowerShell 詢問確認問題，可以使用 -Force 參數。
+**-StorageAccounts &lt;PSStorageAccount[]&gt;**
 
-	PS C:\> New-AzureMediaServicesKey -Name "amstestaccount001" -KeyType "Primary" -Force
+指定與媒體服務相關聯的儲存體帳戶。
 
-##移除媒體服務帳戶
+- 只支援新的儲存體帳戶 (使用 Resource Manager API 所建立)。
 
-準備好刪除 Azure 媒體帳戶時，可以使用 [Remove-AzureMediaServicesAccount](https://msdn.microsoft.com/library/azure/dn495220.aspx)。
+- 儲存體帳戶必須存在，而且具有與媒體服務相同的位置。
 
-	PS C:\> Remove-AzureMediaServicesAccount -Name "amstestaccount001" -Force
+- 只可以指定一個主要儲存體帳戶。
 
+別名 |無
+---|---
+必要？ |true
+位置？ |3
+預設值 |無
+接受管線輸入？ |true(ByPropertyName)
+參數集名稱 |StorageAccountsParamSet
+接受萬用字元？ |false
 
-##媒體服務學習路徑
+**-Tags &lt;雜湊表&gt;**
+
+指定與媒體服務相關聯之標記的雜湊表。
+
+- 範例：@{"tag1"="value1";"tag2"=:value2"}
+
+別名 |無
+---|---
+必要？ |false
+位置？ |已命名
+預設值 |無
+接受管線輸入？ |false
+接受萬用字元？ |false
+
+**&lt;CommandParameters&gt;**
+
+這個 Cmdlet 支援一般參數：-Debug、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 和 -WarningVariable。
+
+### 輸入
+
+輸入類型是可以透過管線傳送至 Cmdlet 的物件類型。
+
+### 輸出
+
+輸出類型是 Cmdlet 所發出的物件類型。
+
+## Set-AzureRmMediaService
+
+更新媒體服務。
+
+### 語法
+
+	Set-AzureRmMediaService [-ResourceGroupName] <string> [-AccountName] <string> [-Tags <hashtable>] [-StorageAccounts <PSStorageAccount[]>]  [<CommonParameters>]
+
+### 參數
+
+**-ResourceGroupName &lt;字串&gt;**
+
+指定此媒體服務所屬資源群組的名稱。
+
+別名 |無
+---|---
+必要？ |true
+位置？ |0
+預設值 |無
+接受管線輸入？ |true(ByPropertyName)
+接受萬用字元？ |false
+
+**-AccountName &lt;字串&gt;**
+
+指定媒體服務的名稱。
+
+別名 |Name
+---|---
+必要？ |True
+位置？ |1
+預設值 |None
+接受管線輸入？ |true(ByPropertyName)
+接受萬用字元？ |False
+
+**-StorageAccounts &lt;PSStorageAccount[]&gt;**
+
+指定與媒體服務相關聯的儲存體帳戶。
+
+- 只支援新的儲存體帳戶 (使用 Resource Manager API 所建立)。
+
+- 儲存體帳戶必須存在，而且具有與媒體服務相同的位置。
+
+- 只可以指定一個主要儲存體帳戶。
+
+別名 |無
+---|---
+必要？ |false
+位置？ |已命名
+預設值 |無
+接受管線輸入？ |true(ByPropertyName)
+參數集名稱 |StorageAccountsParamSet
+接受萬用字元？ |false
+
+**-Tags &lt;雜湊表&gt;**
+
+指定與此媒體服務相關聯之標記的雜湊表。
+
+- 與媒體服務相關聯的標記會取代為客戶指定的值。
+
+別名 |無
+---|---
+必要？ |False
+位置？ |已命名
+預設值 |None
+接受管線輸入？ |true(ByPropertyName)
+接受萬用字元？ |false
+
+**&lt;CommandParameters&gt;**
+
+這個 Cmdlet 支援一般參數：-Debug、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 和 -WarningVariable。
+
+### 輸入
+
+輸入類型是可以透過管線傳送至 Cmdlet 的物件類型。
+
+### 輸出
+
+輸出類型是 Cmdlet 所發出的物件類型。
+
+## Remove-AzureRmMediaService
+
+移除媒體服務。
+
+### 語法
+
+	Remove-AzureRmMediaService [-ResourceGroupName] <string> [-AccountName] <string>  [<CommonParameters>]
+
+### 參數
+
+**-ResourceGroupName &lt;字串&gt;**
+
+指定此媒體服務所屬資源群組的名稱。
+
+別名 |無
+---|---
+必要？ |true
+位置？ |0
+預設值 |無
+接受管線輸入？ |true(ByPropertyName)
+接受萬用字元？ |false
+
+**-AccountName &lt;字串&gt;**
+
+指定媒體服務的名稱。
+
+別名 |無
+---|---
+必要？ |true
+位置？ |2
+預設值 |None
+接受管線輸入？ |true(ByPropertyName)
+接受萬用字元？ |False
+
+**&lt;CommandParameters&gt;**
+
+這個 Cmdlet 支援一般參數：-Debug、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 和 -WarningVariable。
+
+### 輸入
+
+輸入類型是可以透過管線傳送至 Cmdlet 的物件類型。
+
+### 輸出
+
+輸出類型是 Cmdlet 所發出的物件類型。
+
+## Get-AzureRmMediaService
+
+取得資源群組中的所有媒體服務或取得指定名稱的媒體服務。
+
+### 語法
+
+參數集：ResourceGroupParameterSet
+
+	Get-AzureRmMediaService [-ResourceGroupName] <string>  [<CommonParameters>]	
+
+參數集：AccountNameParameterSet
+
+	Get-AzureRmMediaService [-ResourceGroupName] <string> [-AccountName] <string>  [<CommonParameters>]
+
+### 參數
+
+**-ResourceGroupName &lt;字串&gt;**
+
+指定此媒體服務所屬資源群組的名稱。
+
+別名 |無
+---|---
+必要？ |true
+位置？ |0
+預設值 |無
+接受管線輸入？ |true(ByPropertyName)
+參數集名稱 |ResourceGroupParameterSet、AccountNameParameterSet
+接受萬用字元？false
+
+**-AccountName &lt;字串&gt;**
+
+指定媒體服務的名稱。
+
+別名 |無
+---|---
+必要？ |true
+位置？ |1
+預設值 |無
+接受管線輸入？ |true(ByPropertyName)
+參數集名稱 |AccountNameParameterSet
+接受萬用字元？ |false
+
+**&lt;CommandParameters&gt;**
+
+這個 Cmdlet 支援一般參數：-Debug、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 和 -WarningVariable。
+
+### 輸入
+
+輸入類型是可以透過管線傳送至 Cmdlet 的物件類型。
+
+### 輸出
+
+輸出類型是 Cmdlet 所發出的物件類型。
+
+## Get-AzureRmMediaServiceKeys
+
+取得媒體服務的金鑰。
+
+### 語法
+
+	Get-AzureRmMediaServiceKeys [-ResourceGroupName] <string> [-AccountName] <string>  [<CommonParameters>]
+
+### 參數
+
+**-ResourceGroupName &lt;字串&gt;**
+
+指定此媒體服務所屬資源群組的名稱。
+
+別名 |無
+---|---
+必要？ |true
+位置？ |0
+預設值 |無
+接受管線輸入？ |true(ByPropertyName)
+接受萬用字元？ |false
+
+**-AccountName &lt;字串&gt;**
+
+指定媒體服務的名稱。
+
+別名 |無
+---|---
+必要？ |true
+位置？ |1
+預設值 |無
+接受管線輸入？ |true(ByPropertyName)
+接受萬用字元？ |false
+
+**&lt;CommandParameters&gt;**
+
+這個 Cmdlet 支援一般參數：-Debug、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 和 -WarningVariable。
+
+### 輸入
+
+輸入類型是可以透過管線傳送至 Cmdlet 的物件類型。
+
+### 輸出
+
+輸出類型是 Cmdlet 所發出的物件類型。
+
+## Set-AzureRmMediaServiceKey
+
+重新產生媒體服務的主要或次要金鑰。
+
+### 語法
+
+	Set-AzureRmMediaServiceKey [-ResourceGroupName] <string> [-AccountName] <string> [-KeyType] <KeyType> {Primary | Secondary}  [<CommonParameters>]
+
+### 參數
+
+**-ResourceGroupName &lt;字串&gt;**
+
+指定此媒體服務所屬資源群組的名稱。
+
+別名 |無
+---|---
+必要？ |true
+位置？ |0
+預設值 |無
+接受管線輸入？ |true(ByPropertyName)
+接受萬用字元？ |false
+
+**-AccountName &lt;字串&gt;**
+
+指定媒體服務的名稱。
+
+別名 |無
+---|---
+必要？ |true
+位置？ |1
+預設值 |無
+接受管線輸入？ |true(ByPropertyName)
+接受萬用字元？ |false
+
+**-KeyType &lt;KeyType&gt;**
+
+指定媒體服務的金鑰類型。
+
+- 主要或次要
+
+別名 |無
+---|---
+必要？ |true
+位置？ |2
+預設值 |無
+接受管線輸入？ |false
+接受萬用字元？ |false
+
+**&lt;CommandParameters&gt;**
+
+這個 Cmdlet 支援一般參數：-Debug、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 和 -WarningVariable。
+
+### 輸入
+
+輸入類型是可以透過管線傳送至 Cmdlet 的物件類型。
+
+### 輸出
+
+輸出類型是 Cmdlet 所發出的物件類型。
+
+## Sync-AzureRmMediaServiceStorageKeys
+
+同步處理與媒體服務相關聯之儲存體帳戶的儲存體帳戶金鑰。
+
+### 語法
+
+	Sync-AzureRmMediaServiceStorageKeys [-ResourceGroupName] <string> [-MediaServiceAccountName] <string>    [-StorageAccountName] <string>  [<CommonParameters>]
+
+### 參數
+
+**-ResourceGroupName &lt;字串&gt;**
+
+指定此媒體服務所屬資源群組的名稱。
+
+別名 |無
+---|---
+必要？ |true
+位置？ |0
+預設值 |無
+接受管線輸入？ |true(ByPropertyName)
+接受萬用字元？ |false
+
+**-AccountName &lt;字串&gt;**
+
+指定媒體服務的名稱。
+
+別名 |無
+---|---
+必要？ |true
+位置？ |1
+預設值 |無
+接受管線輸入？ |true(ByPropertyName)
+接受萬用字元？ |false
+
+**-StorageAccountId &lt;字串&gt;**
+
+指定與媒體服務相關聯的儲存體帳戶。
+
+別名 |識別碼
+---|---
+必要？ |true
+位置？ |2
+預設值 |無
+接受管線輸入？ | true(ByPropertyName)
+接受萬用字元？ |false
+
+**&lt;CommandParameters&gt;**
+
+這個 Cmdlet 支援一般參數：-Debug、-ErrorAction、-ErrorVariable、-InformationAction、-InformationVariable、-OutVariable、-OutBuffer、-PipelineVariable、-Verbose、-WarningAction 和 -WarningVariable。
+
+### 輸入
+
+輸入類型是可以透過管線傳送至 Cmdlet 的物件類型。
+
+### 輸出
+
+輸出類型是 Cmdlet 所發出的物件類型。
+
+## 後續步驟 
+
+查看媒體服務學習途徑。
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
@@ -122,4 +504,4 @@ Azure 媒體服務使用 Azure 儲存體來儲存媒體內容。建立新的媒�
 
  
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0810_2016------>

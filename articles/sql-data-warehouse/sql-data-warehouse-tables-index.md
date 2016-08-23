@@ -260,7 +260,7 @@ ALTER INDEX ALL ON [dbo].[FactInternetSales] REBUILD Partition = 5 WITH (DATA_CO
 在 SQL 資料倉儲中重建索引是一項離線作業。如需重建索引的詳細資訊，請參閱[資料行存放區索引重組][]中的＜ALTER INDEX REBUILD＞一節和語法主題 [ALTER INDEX][]。
  
 ### 步驟 3︰確認已改善叢集資料行存放區區段品質
-請重新執行已識別區段品質不佳之資料表的查詢，並驗證區段品質是否已改善。如果區段品質並未改善，可能是您的資料表中的資料列過寬。請考慮在重建索引時使用較高的資源類別或 DWU。如果需要更多記憶體，
+請重新執行已識別區段品質不佳之資料表的查詢，並驗證區段品質是否已改善。如果區段品質並未改善，可能是您的資料表中的資料列過寬。請考慮在重建索引時使用較高的資源類別或 DWU。
 
  
 ## 使用 CTAS 和分割切換重建索引
@@ -342,4 +342,4 @@ ALTER TABLE [dbo].[FactInternetSales_20000101_20010101] SWITCH PARTITION 2 TO  [
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016------>

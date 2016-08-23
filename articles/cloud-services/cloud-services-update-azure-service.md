@@ -12,12 +12,12 @@ ms.workload="tbd"
 ms.tgt_pltfrm="na"
 ms.devlang="na"
 ms.topic="article"
-ms.date="05/05/2016"
+ms.date="08/10/2016"
 ms.author="adegeo"/>
 
 # 如何更新雲端服務
 
-## 概觀
+## Overview
 在 10,000 英呎處，更新雲端服務 (包括其角色和客體 OS) 是包含三個步驟的程序。首先，必須上傳新雲端服務或作業系統版本的二進位檔和組態檔案。接著，Azure 會根據新雲端服務版本的需求，保留雲端服務的計算和網路資源。最後，Azure 會執行輪流升級，以累加方式將租用戶更新為新版本或客體 OS，同時保留您的可用性。本文將討論最後一個步驟 (輪流升級) 的細節。
 
 ## 更新 Azure 服務
@@ -180,6 +180,6 @@ Azure 會將角色的執行個體平均分散於一組升級網域，而升級�
 > [AZURE.NOTE] 請注意，Azure 會控制執行個體配置於升級網域的方式。您無法指定哪些執行個體會配置給哪一個網域。
 
 ## 後續步驟
-[如何管理雲端服務](cloud-services-how-to-manage.md)<br> [如何監視雲端服務](cloud-services-how-to-monitor.md)<br> [如何設定雲端服務](cloud-services-how-to-configure.md)<br>
+[如何管理雲端服務](cloud-services-how-to-manage.md) [如何監視雲端服務](cloud-services-how-to-monitor.md) [如何設定雲端服務](cloud-services-how-to-configure.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0810_2016------>

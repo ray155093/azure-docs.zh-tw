@@ -13,11 +13,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/14/2016"
+	ms.date="08/10/2016"
 	ms.author="gokuma;bradsev" />
 
 # 佈建 Linux 資料科學虛擬機器 
-
 
 Linux 資料科學虛擬機器是預先安裝並設定常用於進行資料分析和機器學習之工具集合的 Azure 虛擬機器 (VM) 映像。包含的重要軟體元件如下︰
 
@@ -31,16 +30,16 @@ Linux 資料科學虛擬機器是預先安裝並設定常用於進行資料分�
     - [運算網路工具組 (CNTK)](https://github.com/Microsoft/CNTK)︰來自 Microsoft Research 的深層學習軟體
     - [Vowpal Wabbit](https://github.com/JohnLangford/vowpal_wabbit)︰快速的機器學習支援技術，例如線上、雜湊，allreduce、簡化、learning2search、主動和互動式學習。
     - [XGBoost](https://xgboost.readthedocs.org/en/latest/)︰提供快速且正確的推進式決策樹實作的工具
-    - [Rattle](http://rattle.togaware.com/) (R Analytical Tool To Learn Easily)︰此工具可讓您用 GUI 類型資料探索，非常簡單即可開始使用 R 架構進行資料分析與機器學習，以及自動產生 R 程式碼來建立模型。 
+    - [Rattle](http://rattle.togaware.com/) (R Analytical Tool To Learn Easily)︰此工具可讓您用 GUI 類型資料探索，非常簡單即可開始使用 R 架構進行資料分析與機器學習，以及自動產生 R 程式碼來建立模型。
 - Java、Python、node.js、Ruby、PHP 中的 Azure SDK
 - R 和 Python 語言的程式庫，可用於 Azure Machine Learning 和其他 Azure 服務
 - 開發工具和編輯器 (Eclipse、Emacs、gedit、vi)
 
 執行資料科學涉及反覆進行一連串的工作︰
 
-- 尋找、載入和前置處理資料 
-- 建置和測試模型 
-- 部署智慧型應用程式中使用的模型 
+- 尋找、載入和前置處理資料
+- 建置和測試模型
+- 部署智慧型應用程式中使用的模型
 
 對於資料科學家而言，使用各種工具來完成這些工作很常見。尋找適當版本的軟體然後下載、編譯並安裝這些版本是相當耗費時間的工作。
 
@@ -65,12 +64,13 @@ Linux 資料科學虛擬機器可以大幅減輕這樣的負擔。使用它可�
 2.	 按一下底部的 [建立] 按鈕以進入精靈。![configure-data-science-vm](./media/machine-learning-data-science-linux-dsvm-intro/configure-linux-data-science-virtual-machine.png)
 3.	 下列各節提供用來建立 Microsoft 資料科學虛擬機器的精靈中每個步驟 (共有 **5 個步驟**列舉在上圖的右邊) 的**輸入**。以下是設定每個步驟所需的輸入：
 
+
   **a.基本**：
 
    - **名稱**：您建立的資料科學伺服器名稱。
    - **使用者名稱**：第一個帳戶登入識別碼
    - **密碼**︰第一個帳戶密碼 (您可以使用 SSH 公開金鑰來代替密碼)
-   - **訂用帳戶**：如果您有多個訂用帳戶，請選取要在上面建立機器和開立帳單的訂用帳戶。注意︰您必須有此訂用帳戶的資源建立權限。 
+   - **訂用帳戶**：如果您有多個訂用帳戶，請選取要在上面建立機器和開立帳單的訂用帳戶。注意︰您必須有此訂用帳戶的資源建立權限。
    - **資源群組**：您可以建立新群組或使用現有的群組。
    - **位置**：選取最適合的資料中心。它通常是擁有您大部分的資料或者是最接近您的實際位置以取得最快速度的網路存取的資料中心
 
@@ -90,7 +90,7 @@ Linux 資料科學虛擬機器可以大幅減輕這樣的負擔。使用它可�
 
   **e.購買**：
 
-   - 按一下 [購買] 以開始佈建。會提供一個交易條款的連結。VM 除了計算您在 [大小] 步驟中所選擇的伺服器大小之外，不會收取任何其他費用。 
+   - 按一下 [購買] 以開始佈建。會提供一個交易條款的連結。VM 除了計算您在 [大小] 步驟中所選擇的伺服器大小之外，不會收取任何其他費用。
 
 
 佈建大約 10-20 分鐘。佈建的狀態會顯示在 Azure 入口網站。
@@ -106,40 +106,25 @@ Linux 資料科學虛擬機器可以大幅減輕這樣的負擔。使用它可�
 
 Linux VM 已經佈建了 X2Go 伺服器，並準備接受用戶端連接。若要連接到 Linux VM 圖形化桌面，您需要在用戶端上進行下列動作。
 
-1. 從[這裡](http://wiki.x2go.org/doku.php/doc:installation:x2goclient)下載並安裝您的用戶端平台適用的 X2Go 用戶端。    
-2. 執行 X2Go 用戶端，並選取 [新增工作階段]。它會開啟具有多個索引標籤的組態視窗。輸入下列組態參數︰ 
+1. 從[這裡](http://wiki.x2go.org/doku.php/doc:installation:x2goclient)下載並安裝您的用戶端平台適用的 X2Go 用戶端。
+2. 執行 X2Go 用戶端，並選取 [新增工作階段]。它會開啟具有多個索引標籤的組態視窗。輸入下列組態參數︰
     * **[工作階段] 索引標籤**：
         - **主機**︰Linux 資料科學 VM 的主機名稱或 IP 位址。
         - **登入**︰Linux VM 上的登入使用者名稱。
         - **SSH 連接埠**︰保留預設值 22。
         - **工作階段類型**︰將值變更為 XFCE。注意︰目前 Linux VM 僅支援 XFCE 桌面。
-    * **[媒體] 索引標籤**︰您可以關閉聲音支援和用戶端列印，如果不需要使用的話。 
-    * **共用資料夾**︰如果您想要用戶端機器的目錄掛接在 Linux VM 上，請在此索引標籤上加入要與 VM 分享的目錄。 
+    * **[媒體] 索引標籤**︰您可以關閉聲音支援和用戶端列印，如果不需要使用的話。
+    * **共用資料夾**︰如果您想要用戶端機器的目錄掛接在 Linux VM 上，請在此索引標籤上加入要與 VM 分享的目錄。
 
 一次使用 SSH 用戶端或 XFCE 圖形化桌面透過 X2Go 用戶端登入 VM，便可以開始使用 VM 上已安裝及設定的工具。在 XFCE 上，您可以看到許多工具的應用程式捷徑功能表和桌面圖示。
 
-## 如何在 Jupyter Notebook 伺服器上建立強式密碼 
-
-在資料科學虛擬機器上的命令提示字元中輸入下列命令，來建立您在該虛擬機器上安裝之 Jupyter Notebook 伺服器的專屬強式密碼。
-
-	python -c "import IPython;print(IPython.lib.passwd())"
-
-在看到提示時輸入強式密碼。
-
-您會在輸出中看到格式為 "sha1:xxxxxx" 的密碼雜湊。複製此密碼雜湊，並將 Notebook 設定檔 **/usr/local/jupyter/jupyter\_notebook\_config.py** 中的現有雜湊取代為參數名稱 ***c.NotebookApp.password***。您必須以**根使用者**的身分編輯此檔案。
-
-您只應取代引號內現有的雜湊值。必須保留參數值的引號與 ***sha1:*** 前置詞。
-
-最後，您必須停止並重新啟動已安裝在 /etc/init.d/jupyter 資料夾中的 Jupyter 服務。
-
->[AZURE.NOTE] 如果重新啟動 Jupyter 之後不接受您的新密碼，或是停止 Jupyter 時發生問題，請嘗試重新啟動虛擬機器。
 
 ## Linux 資料科學虛擬機器上所安裝的工具
 
 ### Microsoft R Open 
 R 是其中一種最受歡迎的資料分析和機器學習語言。如果您想要將 R 用於分析，VM 的數學核心程式庫 (MKL) 已具有 Microsoft R Open (MRO)。MKL 會將分析演算法中常見的數學運算作業最佳化。MRO 與 CRAN-R 100% 相容，CRAN 中發佈的任何 R 程式庫都可安裝在 MRO 上。您可以在其中一個預設編輯器中編輯您的 R 程式，例如 vi、Emacs 或 gedit。您也可以下載並使用其他整合式開發環境 (IDE)，例如 [RStudio](http://www.rstudio.com)。為了方便起見，我們在 **/dsvm/tools** 目錄中提供了簡單的指令碼 (installRStudio.sh)，它會安裝 RStudio。如果您使用 Emacs 編輯器，請注意，已預先安裝 Emacs 封裝 ESS (Emacs Speaks Statistics)，它可簡化在 Emacs 編輯器內的 R 檔案處理。
 
-若要啟動 R，您只需要在殼層中輸入 ***R***。這會帶您前往互動式環境。要開發 R 程式，您通常會使用編輯器，例如 Emacs 或 vi 或 gedit，然後在 R 內執行指令碼。如果您安裝 RStudio，您會有完整的圖形化 IDE 環境來開發您的 R 程式。
+若要啟動 R，您只需要在殼層中輸入「**R**」。這會帶您前往互動式環境。要開發 R 程式，您通常會使用編輯器，例如 Emacs 或 vi 或 gedit，然後在 R 內執行指令碼。如果您安裝 RStudio，您會有完整的圖形化 IDE 環境來開發您的 R 程式。
 
 另外也會有 R 指令碼，讓您安裝[前 20 名 R 封裝](http://www.kdnuggets.com/2015/06/top-20-r-packages.html)，如果您想要的話。只要您在 R 互動式介面，就可以執行這個指令碼，而在殼層中輸入 R (如上所述)，即可進入 R 互動式介面。
 
@@ -152,23 +137,30 @@ R 是其中一種最受歡迎的資料分析和機器學習語言。如果您想
 
 	source /anaconda/bin/activate root
 
-Python 2.7 安裝於 */anaconda/bin*。
+Python 2.7 安裝於「/anaconda/bin」。
 
 若要啟動 Python 3.5，請從殼層執行下列命令：
 
 	source /anaconda/bin/activate py35
 
 
-Python 3.5 安裝於 */anaconda/envs/py35/bin*
+Python 3.5 安裝於「/anaconda/envs/py35/bin」
 
-現在，若要叫用 Python 互動式工作階段，只需要在殼層中輸入 ***python***。如果您在圖形化介面，或已設定 X11 轉寄，則可以輸入 ***spyder*** 命令，以啟動 Python IDE。
+現在，若要叫用 Python 互動式工作階段，只需要在殼層中輸入「**python**」。如果您在圖形化介面，或已設定 X11 轉寄，則可以輸入「**spyder**」命令，以啟動 Python IDE。
 
-### Jupyter Notebook
-Jupyter Notebook 中也隨附 Anaconda 散佈，這是一個共用程式碼與分析的環境。Jupyter Notebook 伺服器已經預先設定 Python 2、Python 3 及 R 核心。有一個名為 Jupyter Notebook 的桌面圖示可以啟動瀏覽器來存取 Notebook 伺服器。如果您是透過 SSH 或 X2go 用戶端進入 VM，您也可以造訪 [https://localhost:9999/](https://localhost:9999/) 存取 Jupyter Notebook 伺服器。
+### Jupyter Notebook 
+
+Jupyter Notebook 中也隨附 Anaconda 散佈，這是一個共用程式碼與分析的環境。Jupyter Notebook 是透過 JupyterHub 來存取。您可以使用本機 Linux 使用者名稱和密碼來登入。
+
+Jupyter Notebook 伺服器已經預先設定 Python 2、Python 3 及 R 核心。有一個名為 Jupyter Notebook 的桌面圖示可以啟動瀏覽器來存取 Notebook 伺服器。如果您是透過 SSH 或 X2go 用戶端進入 VM，您也可以造訪 [https://localhost:8000/](https://localhost:8000/) 來存取 Jupyter Notebook 伺服器。
 
 >[AZURE.NOTE] 如果您收到任何憑證警告，請繼續。
 
-您可以從任何主機存取 Jupyter Notebook 伺服器。只要輸入"https://<VM DNS 名稱或 IP 位址>:9999/"。我們已封裝一些範例 Notebook - 一個使用 Python，另一個使用 R。當您使用先前建立的密碼向 Jupyter Notebook 驗證之後，您就可以在 Notebook 首頁看到範例的連結。您可以藉由選取 [新增]，然後選取語言核心，建立新的 Notebook。如果您沒有看到 [新增] 按鈕，請按一下左上角的 Jupyter 圖示，移至 Notebook 伺服器的首頁。
+您可以從任何主機存取 Jupyter Notebook 伺服器。只要輸入「https://<VM DNS name or IP Address>:8000/」。
+
+>[AZURE.NOTE] 在佈建 VM 時，防火牆預設會開啟連接埠 8000。
+
+我們已封裝一些範例 Notebook - 一個使用 Python，另一個使用 R。當您使用本機 Linux 使用者名稱和密碼向 Jupyter Notebook 驗證之後，您就可以在 Notebook 首頁看到範例的連結。您可以藉由選取 [新增]，然後選取語言核心，建立新的 Notebook。如果您沒有看到 [新增] 按鈕，請按一下左上角的 Jupyter 圖示，移至 Notebook 伺服器的首頁。
 
 
 ### IDE 和編輯器 
@@ -216,27 +208,24 @@ Microsoft SQL Server 的 ODBC 驅動程式封裝也隨附兩個命令列工具�
 
 Python 和 R 中有可用於存取資料庫的程式庫。
 
-- 在 R 中，**RODBC** 封裝或 **dplyr** 封裝可讓您查詢資料庫伺服器或在其上執行 SQL 陳述式。 
-- 在 Python 中，**pyodbc** 程式庫提供使用 ODBC 作為基礎層的資料庫存取。  
+- 在 R 中，**RODBC** 封裝或 **dplyr** 封裝可讓您查詢資料庫伺服器或在其上執行 SQL 陳述式。
+- 在 Python 中，**pyodbc** 程式庫提供使用 ODBC 作為基礎層的資料庫存取。
 
 存取 **Postgres**：
 
-- 從 Python︰使用 **psycopg2** 程式庫。 
+- 從 Python︰使用 **psycopg2** 程式庫。
 - 從 R︰使用封裝 **RPostgreSQL**。
 
 
 ### Azure 工具 
 VM 上安裝了下列 Azure 工具：
 
-- **Azure 命令列介面**：Azure 命令列介面 (CLI) 可讓您透過殼層命令來建立和管理 Azure 資源。若要叫用 Azure 工具，只要輸入 ***azure help***。如需詳細資訊，請參閱 [Azure CLI 文件頁面](../virtual-machines-command-line-tools.md)。
-- **Microsoft Azure 儲存體總管**：Microsoft Azure 儲存體總管是用來瀏覽您在 Azure 儲存體帳戶中所儲存物件的圖形化工具，也可以上傳/下載 Azure Blob 的資料。您可以從桌面捷徑圖示存取儲存體總管。從殼層命令提示字元叫用它則是輸入 ***StorageExplorer***。您需要從 X2go 用戶端登入，或是已設定 X11 轉寄。 
+- **Azure 命令列介面**：Azure 命令列介面 (CLI) 可讓您透過殼層命令來建立和管理 Azure 資源。若要叫用 Azure 工具，只要輸入「**azure help**」。如需詳細資訊，請參閱 [Azure CLI 文件頁面](../virtual-machines-command-line-tools.md)。
+- **Microsoft Azure 儲存體總管**：Microsoft Azure 儲存體總管是用來瀏覽您在 Azure 儲存體帳戶中所儲存物件的圖形化工具，也可以上傳/下載 Azure Blob 的資料。您可以從桌面捷徑圖示存取儲存體總管。從殼層命令提示字元叫用它則是輸入「**StorageExplorer**」。您需要從 X2go 用戶端登入，或是已設定 X11 轉寄。
 - **Azure 程式庫**：以下是已安裝且可供您使用的一些程式庫︰
-
-- **Python**：Python 中已安裝的 Azure 相關程式庫為 ***azure***、***azureml***、***pydocumentdb***、***pyodbc***。前三個程式庫可讓您存取 Azure 儲存體服務、Azure Machine Learning 和 Azure DocumentDB (Azure 上的 NoSQL 資料庫)。第四個程式庫 pyodbc (以及 Microsoft ODBC Driver for SQL Server)，可讓您從 Python 使用 ODBC 介面存取 Microsoft SQL Server、Azure SQL Database 和 Azure SQL 資料倉儲。請輸入 ***pip list*** 以查看所有列出的程式庫。請務必在 Python 2.7 和 3.5 的環境中執行此命令。
-
-- **R**：R 中已安裝的 Azure 相關程式庫為 ***AzureML*** 和 ***RODBC***。
-
-- **Java**︰Azure Java 程式庫清單位於 VM 上的 ***/dsvm/sdk/AzureSDKJava*** 目錄中。關鍵的程式庫為 Azure 儲存體和管理 API、DocumentDB 和 JDBC Driver for SQL Server。
+- **Python**：Python 中已安裝的 Azure 相關程式庫為「**azure**」、「**azureml**」、「**pydocumentdb**」、「**pyodbc**」。前三個程式庫可讓您存取 Azure 儲存體服務、Azure Machine Learning 和 Azure DocumentDB (Azure 上的 NoSQL 資料庫)。第四個程式庫 pyodbc (以及 Microsoft ODBC Driver for SQL Server)，可讓您從 Python 使用 ODBC 介面存取 Microsoft SQL Server、Azure SQL Database 和 Azure SQL 資料倉儲。請輸入「**pip list**」以查看所有列出的程式庫。請務必在 Python 2.7 和 3.5 的環境中執行此命令。
+- **R**：R 中已安裝的 Azure 相關程式庫為「**AzureML**」和「**RODBC**」。
+- **Java**︰Azure Java 程式庫清單位於 VM 上的「**/dsvm/sdk/AzureSDKJava**」目錄中。關鍵的程式庫為 Azure 儲存體和管理 API、DocumentDB 和 JDBC Driver for SQL Server。
 
 您可以從預先安裝的 Firefox 瀏覽器存取 [Azure 入口網站](https://portal.azure.com)。在 Azure 入口網站中，您可以建立、管理和監視 Azure 資源。
 
@@ -248,10 +237,10 @@ Azure Machine Learning (Azure ML) 是完全受管理的雲端服務，讓您能�
 
 您可以也在 VM 上，以 R 或 Python 建置模型，然後將它部署在 Azure ML 的生產環境中。我們已安裝 R 和 Python 的程式庫來啟用這項功能。
 
-- R 中的程式庫稱為 ***AzureML***。 
-- 在 Python 中，它稱為 ***azureml***。 
+- R 中的程式庫稱為「**AzureML**」。
+- 在 Python 中，它稱為「**azureml**」。
 
-如需如何將 R 和 Python 的模型部署到 Azure ML 的相關資訊，請參閱[您可以在 Data Science Virtual Machine 上做的十件事](machine-learning-data-science-vm-do-ten-things.md)中的*使用 R 或 Python 建置模型並且使用 Azure Machine Learning 實作*一節。
+如需如何將 R 和 Python 的模型部署到 Azure ML 的相關資訊，請參閱[您可以在 Data Science Virtual Machine 上做的十件事](machine-learning-data-science-vm-do-ten-things.md)中的＜使用 R 或 Python 建置模型並且使用 Azure Machine Learning 實作＞一節。
  
 >[AZURE.NOTE] 這些指示是針對資料科學 VM 的 Windows 版本所撰寫，但所提供關於將模型部署到 Azure ML 的資訊也適用於 Linux VM。
 
@@ -263,7 +252,7 @@ VM 隨附一些已預先編譯並預先安裝在本機上的 ML 工具/演算法
 * **Vowpal Wabbit** - 快速線上學習演算法
 * **xgboost** - 提供最佳化的推進式決策樹演算法的工具
 * **Python** - Anaconda Python 組合了如 ML 演算法和 Scikit-learn 的程式庫。您可以執行 pip install 安裝其他程式庫
-* **R** - 有豐富的 ML 函數程式庫可供 R 使用。一些預先安裝的程式庫有 lm、glm、randomForest、rpart。您可以安裝其他程式庫，執行： 
+* **R** - 有豐富的 ML 函式程式庫可供 R 使用。一些預先安裝的程式庫有 lm、glm、randomForest、rpart。您可以安裝其他程式庫，執行：
 
 		install.packages(<lib name>)
 
@@ -279,7 +268,7 @@ VM 隨附一些已預先編譯並預先安裝在本機上的 ML 工具/演算法
 	cd cntkdemo/Data
 	cntk configFile=../Config/Simple.cntk
 
-模型輸出位於 *~/cntkdemo/Output/Models*
+模型輸出位於「~/cntkdemo/Output/Models」
 
 如需 CNTK 的詳細資訊，請參閱 [github.com/Microsoft/CNTK](https://github.com/Microsoft/CNTK) 和 [CNTK wiki](https://github.com/Microsoft/CNTK/wiki)。
 
@@ -301,7 +290,7 @@ Vowpal Wabbit 是機器學習系統，它使用例如線上、雜湊、allreduce
 
 它提供了命令列，以及 R 程式庫。
 
-若要在 R 中使用此程式庫，您可以啟動互動式 R 工作階段 (只要在殼層中輸入 *R*) 並載入程式庫。
+若要在 R 中使用此程式庫，您可以啟動互動式 R 工作階段 (只要在殼層中輸入「R」) 並載入程式庫。
 
 以下是簡單的範例，您可以在 R 提示字元中執行︰
 
@@ -340,8 +329,8 @@ Rattle (R Analytical Tool To Learn Easily) 可讓您用 GUI 類型資料探索�
 2. 將會顯示對話方塊，詢問您是否要使用範例天氣資料集。按一下 [是] 載入範例
 3. 按一下 [模型] 索引標籤
 4. 按一下 [執行] 來建立決策樹
-5. 按一下 [繪圖] 顯示決策樹 
-6. 按一下 [樹系] 選項按鈕，然後按一下 [執行] 建置隨機樹系 
+5. 按一下 [繪圖] 顯示決策樹
+6. 按一下 [樹系] 選項按鈕，然後按一下 [執行] 建置隨機樹系
 7. 按一下 [評估] 索引標籤
 8. 按一下 [風險] 選項按鈕，然後按一下 [執行] 顯示兩個風險 (累積) 效能繪圖
 9. 按一下 [記錄] 索引標籤，顯示針對上述作業產生的 R 程式碼 (請注意︰Rattle 的目前版本中有錯誤 - 請在記錄檔文字的 'Export this log...' 文字前面插入 '#')。
@@ -353,8 +342,8 @@ Rattle (R Analytical Tool To Learn Easily) 可讓您用 GUI 類型資料探索�
 ## 後續步驟
 以下是繼續您的學習和探索的一些後續步驟。
 
-* 試試本文中所述的工具，在資料科學 VM 上探索各種資料科學工具。您也可以在虛擬機器內的殼層上執行 *dsvm-more-info*，以獲得關於 VM 上所安裝工具的基本簡介和詳細資訊的指標。  
+* 試試本文中所述的工具，在資料科學 VM 上探索各種資料科學工具。您也可以在虛擬機器內的殼層上執行「dsvm-more-info」，以獲得關於 VM 上所安裝工具的基本簡介和詳細資訊的指標。
 * 了解如何使用 [Team Data Science Process](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 以系統化方式建置端對端分析方案
-* 請造訪 [Cortana Analytics Gallery](http://gallery.cortanaanalytics.com) 以取得使用 Cortana Analytics Suite 的機器學習服務和資料分析範例。 
+* 請造訪 [Cortana Analytics Gallery](http://gallery.cortanaanalytics.com) 以取得使用 Cortana Analytics Suite 的機器學習服務和資料分析範例。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0810_2016------>

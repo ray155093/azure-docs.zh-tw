@@ -1,10 +1,10 @@
 
 <properties
-	pageTitle="Azure Active Directory 混合式身分識別設計考量 - 判斷事件回應需求|Microsoft Azure 需求"
+	pageTitle="Azure Active Directory 混合式身分識別設計考量 - 判斷事件回應需求|Microsoft Azure 需求 "
 	description="判斷混合式身分識別解決方案的監視和報告功能，讓 IT 可用來採取動作以識別和減緩潛在威脅。"
 	documentationCenter=""
 	services="active-directory"
-	authors="yuridio"
+	authors="billmath"
 	manager="stevenpo"
 	editor=""/>
 
@@ -14,8 +14,8 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="04/28/2016"
-	ms.author="yuridio"/>
+	ms.date="08/08/2016"
+	ms.author="billmath"/>
 
 # 判斷混合式身分識別解決方案的事件回應需求
 
@@ -52,7 +52,7 @@
 
 - 貴公司具備適當的原則，可視需要封鎖使用者存取網路嗎？
  - 如果是，目前的解決方案能夠與您即將採用的混合式身分識別管理系統整合嗎？
-- 貴公司是否需要針對隔離的使用者強制執行條件式存取？ 
+- 貴公司是否需要針對隔離的使用者強制執行條件式存取？
  
 >[AZURE.NOTE]
 請確定會記下每個答案，並了解答案背後的原理。[定義資料保護策略](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md)將介紹可用選項，以及每個選項的優點/缺點。回答這些問題之後，您就能選取最適合業務需求的選項。
@@ -63,4 +63,4 @@
 ## 另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0810_2016------>

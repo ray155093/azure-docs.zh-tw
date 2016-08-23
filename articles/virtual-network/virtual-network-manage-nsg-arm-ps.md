@@ -3,7 +3,7 @@
    description="了解如何在資源管理員中使用 PowerShell 管理現有的 NSG"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor=""
    tags="azure-resource-manager"
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/14/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # 使用 PowerShell 管理 NSG
 
@@ -23,7 +23,7 @@
 
 [AZURE.INCLUDE [virtual-network-manage-nsg-intro-include.md](../../includes/virtual-network-manage-nsg-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型。
 
 [AZURE.INCLUDE [virtual-network-manage-nsg-arm-scenario-include.md](../../includes/virtual-network-manage-nsg-arm-scenario-include.md)]
 
@@ -472,7 +472,7 @@
 您只能刪除與任何資源沒有關聯的 NSG。若要刪除 NSG，請依照下列步驟進行。
 
 1. 若要檢查與 NSG 相關聯的資源，請執行 `azure network nsg show`，如[檢視 NSG 關聯](#View-NSGs-associations)中所示。
-2. 如果 NSG 與任何 NIC 相關聯，為每個 NIC 執行 `azure network nic set`，如[中斷 NSG 與 NIC 的關聯](#Dissociate-an-NSG-from-a-NIC)中所示。 
+2. 如果 NSG 與任何 NIC 相關聯，為每個 NIC 執行 `azure network nic set`，如[中斷 NSG 與 NIC 的關聯](#Dissociate-an-NSG-from-a-NIC)中所示。
 3. 如果 NSG 與任何子網路相關聯，為每個子網路執行 `azure network vnet subnet set`，如[中斷 NSG 與子網路的關聯](#Dissociate-an-NSG-from-a-subnet)中所示。
 4. 若要刪除 NSG，請執行 `Remove-AzureRmNetworkSecurityGroup` Cmdlet，如下所示。
 
@@ -484,4 +484,4 @@
 
 - [啟用 NSG 的記錄](virtual-network-nsg-manage-log.md)。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0810_2016------>

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-multiple"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/14/2016"
+	ms.date="08/03/2016"
 	ms.author="guybo"/>
 
 # 使用虛擬機器擴展集垂直自動調整
@@ -37,21 +37,14 @@
 3. 將 Webhook 加入您的 Runbook 中。
 4. 使用 Webhook 通知將警示加入至您的 VM 擴展集。
 
-> [AZURE.NOTE] 垂直自動調整只能在特定範圍的 VM 大小內進行。您可以在以下大小配對之間選擇調整︰
+> [AZURE.NOTE] 垂直自動調整只能在特定範圍的 VM 大小內進行。先比較各種大小的規格，然後再決定從一種大小調整成另一種大小 (數字較大並不一定代表 VM 大小較大)。您可以在以下大小配對之間選擇調整︰
 
 >| 成對的調整 VM 大小 | |
 |---|---|
-| Basic\_A0 | Basic\_A4 |
-| Standard\_A0 | Standard\_A4 |
-| Standard\_A5 | Standard\_A7 |
-| Standard\_A8 | Standard\_A9 |
-| Standard\_A10 | Standard\_A11 |
-| 標準\_D1 | 標準\_D4 |
-| 標準\_D11 | 標準\_D14 |
-| Standard\_DS1 | Standard\_DS4 |
-| Standard\_DS11 | Standard\_DS14 |
-| Standard\_D1v2 | Standard\_D5v2 |
-| Standard\_D11v2 | Standard\_D14v2 |
+| Standard\_A0 | Standard\_A11 |
+| 標準\_D1 | 標準\_D14 |
+| Standard\_DS1 | Standard\_DS14 |
+| Standard\_D1v2 | Standard\_D15v2 |
 | Standard\_G1 | Standard\_G5 |
 | Standard\_GS1 | Standard\_GS5 |
 
@@ -120,11 +113,11 @@ Add-AzureRmMetricAlertRule  -Name  $alertName `
 * [Azure Insights PowerShell 快速入門範例](../azure-portal/insights-powershell-samples.md)
 * [Azure Insights 跨平台 CLI 快速入門範例](../azure-portal/insights-cli-samples.md)
 
-## 摘要
+## Summary
 
 這篇文章示範簡單的垂直調整範例。藉助這些建置組塊 (自動化帳戶、Runbook、Webhook、警示)，您可以連接各式各樣的事件與一組自訂的動作。
 
 [runbooks]: ./media/virtual-machine-scale-sets-vertical-scale-reprovision/runbooks.png
 [gallery]: ./media/virtual-machine-scale-sets-vertical-scale-reprovision/runbooks-gallery.png
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0810_2016------>

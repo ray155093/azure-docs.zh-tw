@@ -1,10 +1,10 @@
 <properties
    pageTitle="Azure 虛擬機器安全性概觀 | Microsoft Azure"
-   description="Azure 虛擬機器讓您能夠有彈性地進行虛擬化，而不需購買並維護執行虛擬機器的實體硬體。本文對可用於虛擬機器的 Azure 安全性功能提供核心的概觀。"
+   description=" Azure 虛擬機器讓您能夠有彈性地進行虛擬化，而不需購買並維護執行虛擬機器的實體硬體。本文對可用於虛擬機器的 Azure 安全性功能提供核心的概觀。"
    services="security"
    documentationCenter="na"
    authors="TerryLanfear"
-   manager="StevenPo"
+   manager="MBaldwin"
    editor="TomSh"/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/24/2016"
+   ms.date="08/09/2016"
    ms.author="terrylan"/>
 
 # Azure 虛擬機器安全性概觀
@@ -45,7 +45,7 @@ Azure 虛擬機器讓您能夠有彈性地進行虛擬化，而不需購買並�
 
 ## 反惡意程式碼
 
-運用 Azure，您可以使用來自各大安全性廠商 (例如 Microsoft、Symantec、Trend Micro、McAfee 和 Kaspersky) 的反惡意程式碼軟體，以保護您的虛擬機器抵禦惡意檔案、廣告軟體和其他威脅。請參閱以下的「深入了解」一節，尋找合作夥伴解決方案上的文章。
+運用 Azure，您可以使用來自安全性廠商 (例如 Microsoft、Symantec、Trend Micro、McAfee 和 Kaspersky) 的反惡意程式碼軟體，以保護您的虛擬機器抵禦惡意檔案、廣告軟體和其他威脅。請參閱以下的「深入了解」一節，尋找合作夥伴解決方案上的文章。
 
 適用於 Azure 雲端服務和虛擬機器的 Microsoft Antimalware 是即時保護功能，有助於識別和移除病毒、間諜軟體和其他惡意軟體。Microsoft Antimalware 會提供可設定的警示，在已知的惡意或垃圾軟體嘗試自行安裝或在您的 Azure 系統上執行時發出警示。
 
@@ -59,12 +59,12 @@ Microsoft Antimalware 是一個針對應用程式和租用戶環境所提供的�
 - 簽章更新 - 自動安裝最新的保護簽章 (病毒定義) 以確保依預定頻率維持最新的保護狀態。
 - Antimalware 引擎更新 – 自動更新 Microsoft Antimalware 引擎。
 - Antimalware 平台更新 – 自動更新 Microsoft Antimalware 平台。
-- 主動保護 - 將有關偵測到的威脅和可疑資源的遙測中繼資料報告至 Azure，以確保能針對不斷演變的威脅型態做出快速的回應，並可透過 Microsoft Active Protection System (MAPS) 啟用即時的同步簽章傳遞。
+- 主動保護 - 對 Azure 遙測中繼資料報告有關偵測到的威脅和可疑的資源以確保能快速回應，並可透過 Microsoft Active Protection System (MAPS) 啟用即時的同步簽章傳遞。
 - 範例報告 - 將範例提供並報告至 Microsoftt Antimalware 服務，以協助改善其服務並啟用疑難排解。
 - 排除項目 – 可讓應用程式和服務管理員設定特定的檔案、處理序及磁碟機，以因應效能及/或其他原因將其從保護和掃描中排除。
 - 事件收集 -記錄作業系統事件記錄檔中反惡意程式碼服務的健康狀況、可疑的活動及其所採取的補救動作，並將這些資料收集至客戶的 Azure 儲存體帳戶。
 
-深入了解︰若要深入了解保護您的虛擬機器的反惡意程式碼軟體，Microsoft Antimalware，以及其他主要安全性廠商的反惡意程式碼軟體，例如 Symantec 和 Trend Micro，請參閱︰
+深入了解︰若要深入了解反惡意程式碼軟體以保護虛擬機器，請參閱︰
 
 - [適用於 Azure 雲端服務和虛擬機器的 Microsoft Antimalware](../azure-security-antimalware.md)
 - [在 Azure 虛擬機器上部署反惡意程式碼解決方案](https://azure.microsoft.com/blog/deploying-antimalware-solutions-on-azure-virtual-machines/)
@@ -85,7 +85,7 @@ Microsoft Antimalware 是一個針對應用程式和租用戶環境所提供的�
 
 ## 虛擬機器磁碟加密
 
-Azure 磁碟加密是可讓您加密您的 Windows 和 Linux Azure 虛擬機器磁碟的新功能。Azure 磁碟加密利用 Windows 的業界標準 [BitLocker](https://technet.microsoft.com/library/cc732774.aspx) 功能和 Linux 的 [dm-crypt](https://en.wikipedia.org/wiki/Dm-crypt) 功能，為 OS 和資料磁碟提供磁碟區加密。
+Azure 磁碟加密是可讓您加密您的 Windows 和 Linux Azure 虛擬機器磁碟的新功能。Azure 磁碟加密使用 Windows 的業界標準 [BitLocker](https://technet.microsoft.com/library/cc732774.aspx) 功能和 Linux 的 [dm-crypt](https://en.wikipedia.org/wiki/Dm-crypt) 功能，為 OS 和資料磁碟提供磁碟區加密。
 
 此解決方案與 Azure 金鑰保存庫整合，可幫助您控制和管理您的金鑰保存庫訂用帳戶中的磁碟加密金鑰和密碼，同時確保虛擬機器磁碟中的所有資料會在您的 Azure 儲存體中輕鬆加密。
 
@@ -107,15 +107,15 @@ Azure 備份是可調式解決方案，可以不需成本地保護您的應用�
 
 ## Azure Site Recovery
 
-組織的 BCDR 策略的其中一個重要部分是，找出在計劃中和非計劃中的中斷發生時讓企業工作負載和應用程式保持啟動並執行的方法。Azure Site Recovery 可協助做到這點，因為它能協調工作負載和應用程式的複寫、容錯移轉及復原，因此能夠在主要位置發生故障時透過次要位置來提供工作負載和應用程式。
+組織的 BCDR 策略的其中一個重要部分是，找出在計劃中和非計劃中的中斷發生時讓企業工作負載和應用程式保持啟動並執行的方法。Azure Site Recovery 有助於協調工作負載和應用程式的複寫、容錯移轉及復原，因此能夠在主要位置發生故障時透過次要位置來提供工作負載和應用程式。
 
 網站復原：
 
 - **簡化 BCDR 策略** - Site Recovery 可讓您從單一位置輕鬆處理多個商務工作負載和應用程式的複寫、容錯移轉及復原。Site Recovery 會協調複寫和容錯移轉，但不會攔截應用程式資料或擁有任何相關資訊。
 - **提供彈性的複寫** - 使用 Site Recovery，您就可以複寫 Hyper-V 虛擬機器、VMware 虛擬機器和 Windows/Linux 實體伺服器上執行的工作負載。
 - **支援容錯移轉和復原** - Site Recovery 可提供測試用容錯移轉，既能支援災害復原演練，又不會影響生產環境。您也可以執行計劃性容錯移轉，因為是預期中的中斷，所以不會遺失任何資料；或是執行非計劃性容錯移轉，以在發生非未預期的災害時將資料損失減到最少 (取決於複寫頻率)。在容錯移轉之後，您可以容錯回復到主要站台。Site Recovery 提供了包含指令碼和 Azure 自動化作業手冊的復原計畫，以供您自訂多層式應用程式的容錯移轉和復原。
-- **消除次要資料中心** - 您可以複寫至次要內部部署站台或 Azure。使用 Azure 做為災害復原目的地可免除次要站台的維護成本與複雜度，而且複寫的資料會儲存在 Azure 儲存體，能夠具備其提供的所有恢復功能。
-- **與現有 BCDR 技術整合** - Site Recovery 能夠與其他應用程式的 BCDR 功能搭配使用。例如，您可以使用 Site Recovery 保護公司工作負載的 SQL Server 後端，包括原生支援 SQL Server AlwaysOn 以便管理可用性群組的容錯移轉。
+- **消除次要資料中心** - 您可以複寫至次要內部部署站台或 Azure。使用 Azure 做為災害復原目的地，可排除次要站台的維護成本和複雜度。複寫的資料會儲存在 Azure 儲存體。
+- **與現有 BCDR 技術整合** - Site Recovery 能夠與其他應用程式的 BCDR 功能搭配使用。例如，您可以使用 Site Recovery 來保護公司工作負載的 SQL Server 後端。這包括原生支援 SQL Server AlwaysOn 以管理可用性群組的容錯移轉。
 
 深入了解：
 
@@ -125,7 +125,7 @@ Azure 備份是可調式解決方案，可以不需成本地保護您的應用�
 
 ## 虛擬網路
 
-虛擬機器需要遠端連線。為了支援該需求，Azure 需要虛擬機器連接到 Azure 虛擬網路。Azure 虛擬網路是以實體 Azure 網路網狀架構為基礎所建置的邏輯建構。每個邏輯 Azure 虛擬網路都會與其他所有 Azure 虛擬網路隔離。這可協助確保其他 Microsoft Azure 客戶無法存取您部署中的網路流量。
+虛擬機器需要遠端連線。為了支援該需求，Azure 需要虛擬機器連接到 Azure 虛擬網路。Azure 虛擬網路是以實體 Azure 網路網狀架構為基礎所建置的邏輯建構。每個邏輯 Azure 虛擬網路都會與其他所有 Azure 虛擬網路隔離。此隔離可協助確保其他 Microsoft Azure 客戶無法存取您部署中的網路流量。
 
 深入了解：
 
@@ -150,11 +150,11 @@ Azure 資訊安全中心藉由下列方式來協助您最佳化和監視虛擬�
 
 ## 法規遵循
 
-Azure 虛擬機器經過 FISMA、FedRAMP、HIPAA、PCI DSS Level 1 及其他重要規範計劃認證—這讓您自己的 Azure 應用程式更容易符合規範要求，並讓您的企業解決廣泛的國內與國際法規要求。
+Azure 虛擬機器經過 FISMA、FedRAMP、HIPAA、PCI DSS Level 1 及其他重要規範計劃認證。此認證可讓您自己的 Azure 應用程式更容易符合規範要求，並讓您的企業解決廣泛的國內與國際法規要求。
 
 深入了解：
 
 - [Microsoft 信任中心：法規遵循](https://www.microsoft.com/TrustCenter/Compliance/default.aspx)
 - [受信任的雲端：Microsoft Azure 安全性、隱私權及法規遵循](http://download.microsoft.com/download/1/6/0/160216AA-8445-480B-B60F-5C8EC8067FCA/WindowsAzure-SecurityPrivacyCompliance.pdf)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0810_2016------>

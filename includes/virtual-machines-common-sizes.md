@@ -127,7 +127,7 @@
 |Standard\_D12\_v2 |4|28 GB|4|暫存 (SSD) = 200 GB |8|8x500| 高 |
 |Standard\_D13\_v2 |8|56 GB|8|暫存 (SSD) = 400 GB |16|16x500| 高 |
 |Standard\_D14\_v2 |16|112 GB|8|暫存 (SSD) = 800 GB |32|32x500| 極高 |
-|Standard\_D15\_v2 |20|140 GB|10|暫存 (SSD) =1 TB |40|40x500| 極高 |
+|Standard\_D15\_v2 |20|140 GB|8|暫存 (SSD) =1 TB |40|40x500| 極高 |
 
 
 ## DS 系列*
@@ -159,7 +159,7 @@
 |Standard\_DS12\_v2 |4|28|4|本機 SSD 磁碟 = 56 GB |8|144| 12,800 每秒 192 MB | 高 |
 |Standard\_DS13\_v2 |8|56|8|本機 SSD 磁碟 = 112 GB |16|288| 25,600 每秒 384 MB | 高 |
 |Standard\_DS14\_v2 |16|112|8|本機 SSD 磁碟 = 224 GB |32|576| 51,200 每秒 768 MB | 極高 |
-|Standard\_DS15\_v2 |20|140 GB|10|本機 SSD 磁碟 = 280 GB |40| 720|64,000 每秒 960 MB | 極高 |
+|Standard\_DS15\_v2 |20|140 GB|8|本機 SSD 磁碟 = 280 GB |40| 720|64,000 每秒 960 MB | 極高 |
 
 
 *磁碟大小會影響 DS 系列 VM 每秒 (IOPS) 輸入/輸出作業量最大值，和可以達到最大輸送量 (頻寬)。如需詳細資訊，請參閱[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../articles/storage/storage-premium-storage.md)。
@@ -219,7 +219,7 @@
 |Standard\_GS4|16|224|8|本機 SSD 磁碟 = 448 GB |32|2112| 40,000 每秒 1,000 MB | 極高 |
 |Standard\_GS5|32|448|8|本機 SSD 磁碟 = 896 GB |64|4224| 80,000 每秒 2,000 MB | 極高 |
 
-## N 系列
+## N 系列 (預覽)
 
 NC 和 NV 大小也稱為已啟用 GPU 功能的執行個體。這些是包含 NVIDIA GPU 卡並已針對不同情況和使用案例進行最佳化的特製化虛擬機器。NV 大小會針對遠端視覺效果、串流、遊戲、編碼及利用 OpenGL 和 DirectX 這類架構的 VDI 案例進行最佳化和設計。NC 大小則是針對運算密集型和網路密集型應用程式、演算法 (包括以 CUDA 和 OpenCL 為基礎的應用程式) 及模擬，有更深入的最佳化。
 
@@ -230,9 +230,9 @@ NV 執行個體是由 NVIDIA 的 Tesla M60 GPU 和 NVIDIA GRID 提供技術支�
 
 | 大小 | 核心 | GPU | 記憶體 | 磁碟 |
 |------|-------|----------------|--------|-------------|
-| NV6 | 6 | 1 x NVIDIA M60 | 56 GB | 380 GB SSD |
-| NV12 | 12 | 2 x NVIDIA M60 | 112 GB | 680 GB SSD |
-| NV24 | 24 | 4 x NVIDIA M60 | 224 GB | 1440 GB SSD | 
+| Standard\_NV6 | 6 | 1 x NVIDIA M60 | 56 GB | 380 GB SSD |
+| Standard\_NV12 | 12 | 2 x NVIDIA M60 | 112 GB | 680 GB SSD |
+| Standard\_NV24 | 24 | 4 x NVIDIA M60 | 224 GB | 1440 GB SSD | 
 
 
 
@@ -243,9 +243,9 @@ NC 執行個體是由 NVIDIA 的 Tesla K80 提供技術支援。使用者現在�
 
 | 大小 | 核心 | GPU | 記憶體 | 磁碟 |
 |------|-------|----------------|--------|-------------|
-| NC6 | 6 | 1 x NVIDIA K80 | 56 GB | 380 GB SSD |
-| NC12 | 12 | 2 x NVIDIA K80 | 112 GB | 680 GB SSD |
-| NC24 | 24 | 4 x NVIDIA K80 | 224 GB | 1440 GB SSD |
+| Standard\_NC6 | 6 | 1 x NVIDIA K80 | 56 GB | 380 GB SSD |
+| Standard\_NC12 | 12 | 2 x NVIDIA K80 | 112 GB | 680 GB SSD |
+| Standard\_NC24 | 24 | 4 x NVIDIA K80 | 224 GB | 1440 GB SSD |
 
 ## 注意︰使用 CLI 和 PowerShell 的標準 A0 - A4 
 
@@ -264,4 +264,4 @@ NC 執行個體是由 NVIDIA 的 Tesla K80 提供技術支援。使用者現在�
 - 了解 [Azure 訂用帳戶和服務限制、配額與限制](../articles/azure-subscription-service-limits.md)。
 - 深入了解適用於「高效能運算」(HPC) 這類工作負載的[關於 A8、A9、A10 和 A11 運算密集型執行個體](../articles/virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016------>

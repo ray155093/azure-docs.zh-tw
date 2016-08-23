@@ -13,13 +13,13 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/16/2016"
+   ms.date="08/10/2016"
    ms.author="cherylmc" />
 
 # 使用 Azure Resource Manager 部署模型設定強制通道
 
 > [AZURE.SELECTOR]
-- [PowerShell - 服務管理](vpn-gateway-about-forced-tunneling.md)
+- [PowerShell - 傳統](vpn-gateway-about-forced-tunneling.md)
 - [PowerShell - 資源管理員](vpn-gateway-forced-tunneling-rm.md)
 
 強制通道可讓您透過站對站 VPN 通道，重新導向或「強制」所有網際網路繫結流量傳回內部部署位置，以便進行檢查和稽核。這是多數企業 IT 原則的重要安全性需求。
@@ -34,7 +34,7 @@
 
 **強制通道的部署模型和工具**
 
-可以在這兩種部署模型中使用不同的工具，設定強制通道的連線。如需詳細資訊，請參閱以下的資料表。當此組態有新文章、新的部署模型和額外工具可以使用時，我們就會更新此資料表。當文章可用時，我們會直接從資料表連結至該文章。
+可以同時針對傳統部署模型和 Resource Manager 部署模型設定強制通道連線。如需詳細資訊，請參閱下列表格。當此組態有新文章、新的部署模型和額外工具可以使用時，我們就會更新此資料表。當文章可用時，我們會直接從資料表連結至該文章。
 
 [AZURE.INCLUDE [vpn-gateway-table-forced-tunneling](../../includes/vpn-gateway-table-forcedtunnel-include.md)]
 
@@ -48,7 +48,7 @@
 
 在上述範例中，前端子網路不會使用強制通道。前端子網路中的工作負載可以直接從網際網路繼續接受並回應客戶要求。中間層和後端的子網路會使用強制通道。任何從這兩個子網路到網際網路的輸出連接會強制或重新導向回 S2S VPN 通道的其中一個內部部署網站。
 
-這可讓您在 Azure 中限制並檢查來自虛擬機器或雲端服務的網際網路存取，同時繼續啟用您所需的多層式服務架構。如果虛擬網路中沒有任何網際網路對向工作負載，您也可以選擇將強制通道套用至整個虛擬網路。
+這可讓您在 Azure 中限制並檢查來自虛擬機器或雲端服務的網際網路存取，同時繼續啟用您所需的多層式服務架構。如果虛擬網路中沒有任何網際網路對向工作負載，您也可以將強制通道套用至整個虛擬網路。
 
 ## 需求和考量
 
@@ -60,19 +60,19 @@ Azure 中的強制通道會透過虛擬網路使用者定義的路由進行設�
 	
 	- **內部部署路由：**連接到 Azure VPN 閘道
 	
-	- **預設路由：**直接連接到網際網路。請注意，系統將會卸除尚未由前兩個路由涵蓋之私人 IP 位址目的地的封包。
+	- **預設路由：**直接連接到網際網路。系統將會卸除尚未由前兩個路由涵蓋之私人 IP 位址目的地的封包。
 
 -  此程序使用「使用者定義的路由 (UDR)」建立路由表以新增預設路由，然後將路由表關聯至 VNet 子網路，以便啟用這些子網路上的強制通道。
 
 - 強制通道必須與具有路由型 VPN 閘道的 VNet 相關聯。您需要在連接到虛擬網路的內部部署本機網站間設定「預設網站」。
 
-- 請注意，ExpressRoute 強制通道不會透過這項機制進行設定，相反地，將由透過 ExpressRoute BGP 對等互連工作階段的廣告預設路由進行啟用。請參閱《[ExpressRoute 文件](https://azure.microsoft.com/documentation/services/expressroute/)》以取得詳細資訊。
+- ExpressRoute 強制通道不會透過這項機制進行設定，相反地，將由透過 ExpressRoute BGP 對等互連工作階段的廣告預設路由進行啟用。請參閱《[ExpressRoute 文件](https://azure.microsoft.com/documentation/services/expressroute/)》以取得詳細資訊。
 
 ## 組態概觀
 
 下列程序可協助您建立資源群組和 VNet。然後您將建立 VPN 閘道，並設定強制通道。在這個程序中，"MultiTier-VNet" 虛擬網路具有 3 個子網路：「前端」、「中層」，和「後端」，包含 4 個跨單位連線：*DefaultSiteHQ*，以及 3 個「分支」。
 
-程序步驟會將 *DefaultSiteHQ* 設定為強制通道的預設網站連線，並設定「中層」和「後端」子網路以使用強制通道。
+程序步驟會將 DefaultSiteHQ 設定為強制通道的預設網站連線，並設定「中層」和「後端」子網路以使用強制通道。
 
 	
 ## 開始之前
@@ -132,14 +132,14 @@ Azure 中的強制通道會透過虛擬網路使用者定義的路由進行設�
 		Set-AzureRmVirtualNetworkSubnetConfig -Name "Backend" -VirtualNetwork $vnet -AddressPrefix "10.1.2.0/24" -RouteTable $rt
 		Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 
-8. 建立預設網站的閘道。此步驟需要一些時間才能完成，有時需要 20 分鐘或更久，因為您將建立及設定閘道。雖然在主控台中看起來只有幾個 Cmdlet，但有許多作業是在幕後執行的。請注意，GatewayDefaultSite 是讓強制路由組態得以運作的 Cmdlet 參數，因此請勿加以略過。此參數僅適用於 PowerShell 1.0 或更新版本。
+8. 建立預設網站的閘道。此步驟需要一些時間才能完成，有時需要 45 分鐘或更久，因為您將建立及設定閘道。<br> `-GatewayDefaultSite` 是可讓強制路由組態得以運作的 Cmdlet 參數，因此請務必正確地進行此設定。此參數僅適用於 PowerShell 1.0 或更新版本。
 
 		$pip = New-AzureRmPublicIpAddress -Name "GatewayIP" -ResourceGroupName "ForcedTunneling" -Location "North Europe" -AllocationMethod Dynamic
 		$gwsubnet = Get-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -VirtualNetwork $vnet
 		$ipconfig = New-AzureRmVirtualNetworkGatewayIpConfig -Name "gwIpConfig" -SubnetId $gwsubnet.Id -PublicIpAddressId $pip.Id
 		New-AzureRmVirtualNetworkGateway -Name "Gateway1" -ResourceGroupName "ForcedTunneling" -Location "North Europe" -IpConfigurations $ipconfig -GatewayType Vpn -VpnType RouteBased -GatewayDefaultSite $lng1 -EnableBgp $false
 
-9. 建立站對站 VPN 連線
+9. 建立站對站 VPN 連線。
 
 		$gateway = Get-AzureRmVirtualNetworkGateway -Name "Gateway1" -ResourceGroupName "ForcedTunneling"
 		$lng1 = Get-AzureRmLocalNetworkGateway -Name "DefaultSiteHQ" -ResourceGroupName "ForcedTunneling" 
@@ -155,4 +155,4 @@ Azure 中的強制通道會透過虛擬網路使用者定義的路由進行設�
 		Get-AzureRmVirtualNetworkGatewayConnection -Name "Connection1" -ResourceGroupName "ForcedTunneling"
 		
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016------>

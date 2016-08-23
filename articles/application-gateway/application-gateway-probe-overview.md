@@ -5,7 +5,7 @@
    description="了解 Azure 應用程式閘道的監視功能"
    services="application-gateway"
    documentationCenter="na"
-   authors="joaoma"
+   authors="georgewallace"
    manager="carmonm"
    editor=""
    tags="azure-resource-manager"
@@ -17,7 +17,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/03/2016"
-   ms.author="joaoma" />
+   ms.author="gwallace" />
 
 # 應用程式閘道健全狀況監視概觀
 
@@ -34,7 +34,7 @@ Azure 應用程式閘道預設會監視其後端集區中所有資源的健康�
 
 如果伺服器 A 的預設探查檢查失敗，應用程式閘道就會將其從後端集區中移除，網路流量也不會再流向此伺服器。預設探查仍會繼續每 30 秒檢查一次伺服器 A。當伺服器 A 成功回應預設健全狀態探查所提出的要求時，就會變為狀況良好並重新回到後端集區中，而流量也會開始再次流向該伺服器。
 
-預設探查只會查看 http://127.0.0.1:<port> 來判斷健全狀況狀態。如果您需要設定健全狀況探查，使其移至自訂 URL 或修改任何其他設定，則必須使用如下所述的自訂探查。
+預設探查只會查看 http://127.0.0.1:<連接埠> 來判斷健康狀態。如果您需要設定健全狀況探查，使其移至自訂 URL 或修改任何其他設定，則必須使用如下所述的自訂探查。
 
 ### 預設的健全狀況探查設定
 
@@ -55,9 +55,9 @@ Azure 應用程式閘道預設會監視其後端集區中所有資源的健康�
 
 |探查屬性| 說明|
 |---|---|
-| 名稱 | 探查的名稱。此名稱用來在後端 HTTP 設定中指出探查。 |
+| Name | 探查的名稱。此名稱用來在後端 HTTP 設定中指出探查。 |
 | 通訊協定 | 用來傳送探查的通訊協定。HTTP 是唯一有效的通訊協定。 |
-| 主機 | 用來傳送探查的主機名稱。 |
+| Host | 用來傳送探查的主機名稱。 |
 | Path | 探查的相對路徑。有效路徑的開頭為 '/'。探查會傳送到 <protocol>://<host>:<port><path> |
 | 間隔 | 探查間隔 (秒)。這是兩個連續探查之間的時間間隔。|
 | 逾時 | 探查逾時 (秒)。如果在這個逾時期間內未收到有效的回應，則會將探查標示為失敗。 |
@@ -65,6 +65,6 @@ Azure 應用程式閘道預設會監視其後端集區中所有資源的健康�
 
 ## 後續步驟
 
-在了解應用程式閘道的健全狀況監視之後，您可以為 Azure 資源管理員設定[自訂健全狀況探查](application-gateway-create-probe-ps.md)，或為 Azure 傳統部署模型設定[自訂健全狀況探查](application-gateway-create-probe-classic-ps.md)。
+在了解「應用程式閘道」的健全狀況監視之後，您可以為 Azure Resource Manager 設定[自訂健全狀況探查](application-gateway-create-probe-ps.md)，或為 Azure 傳統部署模型設定[自訂健全狀況探查](application-gateway-create-probe-classic-ps.md)。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0810_2016------>

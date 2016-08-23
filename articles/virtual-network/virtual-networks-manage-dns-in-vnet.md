@@ -3,7 +3,7 @@
    description="了解如何新增和移除虛擬網路 (VNet) 中的 DNS 伺服器"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor="tysonn" />
 <tags 
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/15/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # 管理虛擬網路 (VNet) 所使用的 DNS 伺服器
 
@@ -57,12 +57,4 @@
 
 1. 重新啟動位於虛擬網路的虛擬機器，以便取得新的 DNS 設定。
 
-## 後續步驟
-
-[如何管理虛擬網路 (VNet) 屬性](../virtual-networks-settings)
-
-[如何在虛擬網路中使用公用 IP 位址](../virtual-networks-public-ip-within-vnet)
-
-[如何刪除虛擬網路 (VNet)](../virtual-networks-delete-vnet)
-
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0810_2016------>

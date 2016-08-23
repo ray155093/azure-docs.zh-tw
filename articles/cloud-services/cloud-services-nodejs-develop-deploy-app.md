@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="nodejs"
 	ms.topic="hero-article"
-	ms.date="06/24/2016" 
+	ms.date="08/11/2016" 
 	ms.author="robmcm"/>
 
 # 建立 Node.js 應用程式並部署到 Azure 雲端服務
@@ -58,7 +58,7 @@
 
 	![New-AzureService helloworld 命令的結果][The result of the New-AzureService helloworld command]
 
-	**New-AzureServiceProject** Cmdlet 會產生可將 Node.js 應用程式發佈至雲端服務的基本結構。其中包含發佈到 Azure 所需的組態檔。該 Cmdlet 也會將您的工作目錄變更為服務的目錄。
+	**New-AzureServiceProject** Cmdlet 會產生可將 Node.js 應用程式發佈至雲端服務的基本結構。其中包含發佈到 Azure 所需的設定檔。該 Cmdlet 也會將您的工作目錄變更為服務的目錄。
 
 	Cmdlet 會建立下列檔案：
 
@@ -72,7 +72,7 @@
 
 	![Add-AzureNodeWebRole 命令的輸出][The output of the Add-AzureNodeWebRole command]
 
-	**Add-AzureNodeWebRole** Cmdlet 可建立基本的 Node.js 應用程式。也可修改 **.csfg** 和 **.csdef** 檔案以加入新角色的組態項目。
+	**Add-AzureNodeWebRole** Cmdlet 可建立基本的 Node.js 應用程式。也可修改 **.csfg** 和 **.csdef** 檔案以加入新角色的設定目。
 
 	> [AZURE.NOTE] 如果您未指定角色名稱，系統會使用預設名稱。您可以提供一個名稱做為第一個 Cmdlet 參數：`Add-AzureNodeWebRole MyRole`
 
@@ -180,7 +180,7 @@ Node.js app 是在 **server.js** 檔案中定義，該檔案位於 Web 角色 (�
 [Azure 網站、雲端服務與虛擬機器的比較]: ../app-service-web/choose-web-site-cloud-service-vm.md
 [使用輕量型 Web 應用程式]:../app-service-web/web-sites-nodejs-develop-deploy-mac.md
 [Azure Powershell]: ../powershell-install-configure.md
-[Azure SDK for .NET 2.7]: http://www.microsoft.com/zh-TW/download/details.aspx?id=48178
+[Azure SDK for .NET 2.7]: http://www.microsoft.com/en-us/download/details.aspx?id=48178
 [連線 PowerShell]: ../powershell-install-configure.md#how-to-connect-to-your-subscription
 [nodejs.org]: http://nodejs.org/
 [如何從 Azure 訂用帳戶刪除儲存體帳戶]: ../storage/how-to-manage-a-storage-account.md
@@ -198,4 +198,4 @@ Node.js app 是在 **server.js** 檔案中定義，該檔案位於 Web 角色 (�
 [The status of the Stop-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node48.png
 [The status of the Remove-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node49.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

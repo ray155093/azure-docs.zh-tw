@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/18/2016"
+	ms.date="08/15/2016"
 	ms.author="awills"/>
 
 # 適用於網頁的 Application Insights
@@ -20,16 +20,16 @@
 
 [AZURE.INCLUDE [app-insights-selector-get-started-dotnet](../../includes/app-insights-selector-get-started-dotnet.md)]
 
-了解您的網頁或應用程式的效能和使用量。將 Visual Studio Application Insights 新增至您的頁面指令碼，您會取得頁面載入的時間和 AJAX 呼叫、計數和瀏覽器例外狀況與 AJAX 失敗的詳細資料，以及使用者和工作階段的計數。這些項目可以依據頁面、用戶端作業系統和瀏覽器版本、地區位置和其他維度分割。您也可以對失敗計數或緩慢頁面載入設定警示。
+了解您的網頁或應用程式的效能和使用量。如果將 Visual Studio Application Insights 新增至頁面指令碼，您會取得頁面載入的時間和 AJAX 呼叫、計數和瀏覽器例外狀況與 AJAX 失敗的詳細資料，以及使用者和工作階段計數。這些項目可以依據頁面、用戶端作業系統和瀏覽器版本、地區位置和其他維度分割。您也可以對失敗計數或緩慢頁面載入設定警示。
 
 您可以在任何網頁中使用 Application Insights - 您剛剛加入 JavaScript 的簡短片段。如果您的 Web 服務是 [Java](app-insights-java-get-started.md) 或 [ASP.NET](app-insights-asp-net.md)，您可以整合來自您的伺服器和用戶端的遙測。
 
-您將需要 [Microsoft Azure](https://azure.com) 訂用帳戶。如果您的小組擁有組織訂用帳戶，請洽詢擁有者將您的 Microsoft 帳戶新增至其中。有免費定價層，因此開發和小規模的使用不需要任何成本。
+您需要 [Microsoft Azure](https://azure.com) 訂用帳戶。如果您的小組擁有組織訂用帳戶，請洽詢擁有者將您的 Microsoft 帳戶新增至其中。有免費定價層，因此開發和小規模的使用不需要任何成本。
 
 
 ## 為您的網頁設定 Application Insights
 
-您可能已經擁有它。如果您的應用程式是新的 ASP.NET 專案，而且您選擇在 Visual Studio 中的 [新增專案] 對話方塊加入 Application Insights，指令碼即已加入，您就已經完成所有設定。
+首先，您是否需要將 Application Insights 新增至您的網頁？ 您可能已經這麼做。如果您選擇在 Visual Studio 的 [新增專案] 對話方塊中加入 Application Insights，指令碼即已加入。在此情況下，您不需要執行任何動作。
 
 否則，您必須在網頁加入程式碼片段，如下所示。
 
@@ -71,7 +71,7 @@ Application Insights 資源是您的頁面的效能和使用量相關資料顯�
 
 ## 詳細組態
 
-您可以設定數種[參數](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config)，但是在大部分情況下，您應該不需要這麼做。例如，您可以停用或限制每個頁面檢視報告的 Ajax 呼叫的數目 (以減少流量)；或者您可以設定偵錯模式，讓遙測透過管線迅速移動而不需要批次處理。
+您可以設定數種[參數](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config)，但是在大部分情況下，您應該不需要這麼做。例如，您可以停用或限制每個頁面檢視報告的 Ajax 呼叫的數目 (以減少流量)。或者您可以設定偵錯模式，讓遙測透過管線迅速移動而不需要批次處理。
 
 若要設定這些參數，在程式碼片段中尋找這一行，並在後面加入多個以逗號分隔的項目：
 
@@ -118,9 +118,9 @@ Application Insights 資源是您的頁面的效能和使用量相關資料顯�
 ![在 portal.azure.com 中，開啟您的應用程式資源然後按一下 [設定]、[瀏覽器]。](./media/app-insights-javascript/03.png)
 
 
-*仍沒有資料？ 按一下頁面頂端的 [**重新整理**]。仍然沒有嗎？ 請參閱[疑難排解](app-insights-troubleshoot-faq.md)。*
+*仍沒有資料？ 按一下頁面頂端的 [重新整理]**。仍然沒有嗎？ 請參閱[疑難排解](app-insights-troubleshoot-faq.md)。*
 
-[瀏覽器] 刀鋒視窗是[計量瀏覽器刀鋒視窗](app-insights-metrics-explorer.md)，具有預設篩選器與圖表選項。如果您想要的話，可以編輯時間範圍、篩選器和圖表組態，並將結果儲存為我的最愛。按一下 [還原預設值] 以返回原始刀鋒視窗組態。
+[瀏覽器] 刀鋒視窗是[計量瀏覽器刀鋒視窗](app-insights-metrics-explorer.md)，具有預設篩選器與圖表選項。如果您想要的話，可以編輯時間範圍、篩選器和圖表設定，並將結果儲存為我的最愛。按一下 [還原預設值] 以返回原始刀鋒視窗設定。
 
 ## 頁面載入效能
 
@@ -130,7 +130,7 @@ Application Insights 資源是您的頁面的效能和使用量相關資料顯�
 
 ![](./media/app-insights-javascript/08-client-split.png)
 
-請注意，*網路連接*時間通常低於您所預期的時間，因為它是從瀏覽器到伺服器之所有要求的平均值。許多個別要求的連接時間為 0，因為已經有與伺服器的作用中連線。
+請注意，「網路連接」時間通常低於您所預期的時間，因為它是從瀏覽器到伺服器之所有要求的平均值。許多個別要求的連接時間為 0，因為已經有與伺服器的作用中連線。
 
 ### 載入緩慢？
 
@@ -175,7 +175,7 @@ Application Insights 資源是您的頁面的效能和使用量相關資料顯�
 按一下任何資料列以取得特定詳細資料。
 
 
-> [AZURE.NOTE] 如果您刪除刀鋒視窗上的 [瀏覽器] 篩選器，伺服器和 AJAX 相依項目將包含在這些圖表中。按一下 [還原預設值] 以重新設定篩選器。
+> [AZURE.NOTE] 如果您刪除刀鋒視窗上的 [瀏覽器] 篩選器，伺服器和 AJAX 相依項目會包含在這些圖表中。按一下 [還原預設值] 以重新設定篩選器。
 
 **若要深入失敗的 Ajax 呼叫**，請向下捲動至 [相依性失敗] 方格，然後按一下資料列以查看特定執行個體。
 
@@ -205,17 +205,17 @@ Ajax 呼叫包含從您的網頁指令碼所做的任何 HTTP 呼叫。如果您
 
 選取任一事件以查看詳細資料。在詳細資料頁面中，按一下 "..." 來查看更多詳細資料。
 
-> [AZURE.NOTE] 如果您使用[搜尋](app-insights-diagnostic-search.md)，請注意，您必須比對完整字詞："Abou" 和 "bout" 與 "About" 不相符，但是 "Abou* " 相符。此外，您不能將萬用字元當做搜尋詞彙的開頭。例如，搜尋 "*bou" 將無法與 "About" 相符。
+> [AZURE.NOTE] 如果您使用[搜尋](app-insights-diagnostic-search.md)，請注意，您必須比對完整字詞："Abou" 和 "bout" 與 "About" 不相符。
 
-> [深入了解診斷搜尋](app-insights-diagnostic-search.md)
+您也可以使用功能強大的[分析查詢語言](app-insights-analytics-tour.md)來搜尋頁面檢視。
 
 ### 頁面檢視屬性
 
-* **頁面檢視持續時間** 
+* **頁面檢視持續時間**
 
  * 根據預設，載入頁面所花費的時間，從用戶端要求到完整載入 (包括輔助檔案，但不包括非同步工作，例如 Ajax 呼叫)。
- * 如果您在[頁面組態](#detailed-configuration)中設定 `overridePageViewDuration`，則為用戶端要求到執行第一個 `trackPageView` 之間的間隔。如果您在指令碼的初始設定之後將 trackPageView 從一般位置移走，它會反映不同的值。
- * 如果設定了 `overridePageViewDuration`，且 `trackPageView()` 呼叫中有提供持續時間引數，則會改為使用引數值。 
+ * 如果您在[頁面設定](#detailed-configuration)中設定 `overridePageViewDuration`，則為用戶端要求到執行第一個 `trackPageView` 之間的間隔。如果您在指令碼的初始設定之後將 trackPageView 從一般位置移走，它會反映不同的值。
+ * 如果設定了 `overridePageViewDuration`，且 `trackPageView()` 呼叫中有提供持續時間引數，則會改為使用引數值。
 
 
 ## 自訂頁面計數
@@ -226,7 +226,7 @@ Ajax 呼叫包含從您的網頁指令碼所做的任何 HTTP 呼叫。如果您
 
     appInsights.trackPageView(myPageName);
 
-頁面名稱可能會含有與 URL 相同的字元，不過 "#" 或 "?" 之後的任何字元都將遭到忽略。
+頁面名稱可能會含有與 URL 相同的字元，不過 "#" 或 "?" 之後的任何字元都會遭到忽略。
 
 
 
@@ -249,4 +249,4 @@ Ajax 呼叫包含從您的網頁指令碼所做的任何 HTTP 呼叫。如果您
 * [自訂事件和計量](app-insights-api-custom-events-metrics.md)
 * [Build-measure-learn](app-insights-overview-usage.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0817_2016-->

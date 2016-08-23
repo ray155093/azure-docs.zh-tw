@@ -3,8 +3,8 @@
    description="了解如何部署虛擬設備和 UDR 以在 Azure 中建立多層式的應用程式環境"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
-   manager="christb"
+   authors="jimdial"
+   manager="carmonm"
    editor="tysonn" />
 <tags 
    ms.service="virtual-network"
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="05/05/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # 虛擬設備的案例
 
@@ -39,7 +39,7 @@
 您可以使用目前可用的不同功能，在 Azure 中部署上述環境，如下所示。
 
 - **虛擬網路 (VNet)**。Azure VNet 運作的方式與內部部署網路相似，可以切割成一或多個子網路提供流量隔離並區隔問題。
-- **虛擬設備**。Azure Marketplace 中有數家合作夥伴提供的虛擬設備，可用為上述三種防火牆。 
+- **虛擬設備**。Azure Marketplace 中有數家合作夥伴提供的虛擬設備，可用為上述三種防火牆。
 - **使用者定義路由 (UDR)**。路由表可以包含 Azure 網路用來控制 VNet 中封包流程的 UDR。這些路由表可以套用至子網路。Azure 其中一項最新功能是能夠將路由表套用至 GatewaySubnet，讓您能夠將從混合式連線進入 Azure VNet 的所有流量都轉送至虛擬設備。
 - **IP 轉送**。根據預設，只有封包目的地 IP 位址符合 NIC IP 位址時，Azure 網路引擎才會將封包轉送到虛擬網路介面卡 (NIC)。因此，如果 UDR 定義封包必須傳送到指定的虛擬設備，則 Azure 網路引擎就會卸除此封包。為確保將封包遞送到不是封包實際目的地的 VM (本例中為虛擬設備)，您需要為虛擬設備啟用 [IP 轉送]。
 - **網路安全性群組 (NSG)**。下列範例不會使用 NSG，但是您可以在此解決方案中使用子網路所套用的 NSG 和/或 NIC，以進一步篩選出入這些子網路和 NIC 的流量。
@@ -49,9 +49,9 @@
 
 此範例中，有一個訂用帳戶包含下列項目：
 
-- 2 個資源群組，不顯示在圖表中。 
+- 2 個資源群組，不顯示在圖表中。
 	- **ONPREMRG**。包含模擬內部部署網路所需要的所有資源。
-	- **AZURERG**。包含 Azure 虛擬網路環境所需要的所有資源。 
+	- **AZURERG**。包含 Azure 虛擬網路環境所需要的所有資源。
 - 名為 **onpremvnet** 的 VNet，用於模仿內部部署資料中心分段，如下所示。
 	- **onpremsn1**。子網路，內含執行 Ubuntu 以模擬內部部署伺服器的虛擬機器 (VM)。
 	- **onpremsn2**。子網路，內含執行 Ubuntu 以模擬系統管理員所用之內部部署電腦的 VM。
@@ -61,8 +61,8 @@
 	- **azsn2**。前端子網路，裝載的 VM 會作為從網際網路存取的 Web 伺服器執行。
 	- **azsn3**。後端子網路，裝載的 VM 所執行的後端應用程式伺服器會由前端 Web 伺服器存取。
 	- **azsn4**。專門提供所有防火牆虛擬設備管理存取的管理子網路。這個子網路只包含解決方案中所用之每個防火牆虛擬設備的 NIC。
-	- **GatewaySubnet**。ExpressRoute 和 VPN 閘道所需要的 Azure 混合式連線子網路，以提供 Azure Vnet 和其他網路間的連線。 
-- **azurevnet** 網路有 3 個防火牆虛擬裝置。 
+	- **GatewaySubnet**。ExpressRoute 和 VPN 閘道所需要的 Azure 混合式連線子網路，以提供 Azure Vnet 和其他網路間的連線。
+- **azurevnet** 網路有 3 個防火牆虛擬裝置。
 	- **AZF1**。在 Azure 中使用公用 IP 位址資源對公用網際網路公開的外部防火牆。您需確定具備來自 Marketplace 或直接來自設備廠商的佈建 3-NIC 的虛擬設備範本。
 	- **AZF2**。用以控制 **azsn2** 和 **azsn3** 間流量的內部防火牆。這也是 3-NIC 的虛擬設備。
 	- **AZF3**。內部部署資料中心系統管理員可存取的管理防火牆，且已連線到用來管理所有防火牆設備的管理子網路。您可以在 Marketplace 中找到 2-NIC 虛擬設備的範本，或直接向您的設備廠商要求一份。
@@ -115,7 +115,7 @@ UDR 和 IP 轉送兩種功能可以組合使用，以使用虛擬設備來控制
 
 此虛擬應用裝置 VM 必須能夠接收未定址到本身的連入流量。若要讓 VM 接收定址到其他目的地的流量，您必須針對 VM 啟用 IP 轉送。這是 Azure 設定，不是客體作業系統中的設定。虛擬設備仍然需要執行某些類型的應用程式，以處理連入流量並正確予以路由。
 
-如需深入了解 IP 轉送，請瀏覽[什麼是使用者定義路由和 IP 轉送？](./virtual-networks-udr-overview/#ip-forwarding)。
+如需深入了解 IP 轉送，請瀏覽[什麼是使用者定義路由和 IP 轉送？](./virtual-networks-udr-overview.md#ip-forwarding)。
 
 例如，假設 Azure 虛擬網路中有下列安裝程式︰
 
@@ -130,7 +130,7 @@ UDR 和 IP 轉送兩種功能可以組合使用，以使用虛擬設備來控制
 
 若使用 [IP 轉送]，Azure 虛擬網路邏輯會將封包轉送到 OPFW，而不會變更其原始的目的地位址。**OPFW** 必須處理封包，並決定如何加以處理。
 
-為使上述案例得以運作，您必須對用於路由的 **OPFW**、**AZF1**、**AZF2** 和 **AZF3** 的 NIC 啟用 [IP 轉送] \(所有 NIC，連結到管理子網路的 NIC 除外)。
+為使上述案例得以運作，您必須對用於路由的 **OPFW**、**AZF1**、**AZF2** 和 **AZF3** 的 NIC 啟用 [IP 轉送] (所有 NIC，連結到管理子網路的 NIC 除外)。
 
 ## 防火牆規則
 
@@ -178,4 +178,4 @@ AZF2 代表包含下列規則的 Azure 虛擬設備︰
 4.	佈建 **onpremvnet** 到 **azurevnet** 的通道。
 5.	佈建好所有資源之後，請登入 **onpremvm2** 並 ping 10.0.3.101 來測試 **onpremsn2** 和 **azsn3** 之間的連線。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016------>

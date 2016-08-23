@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/16/2016"
+	ms.date="08/04/2016"
 	ms.author="billmath"/>
 
 #Azure Multi-Factor Authentication 的作用
@@ -26,7 +26,7 @@
 
 Azure Multi-Factor Authentication 有助於保護對資料與應用程式的存取，同時可以滿足使用者對簡單登入程序的需求。它藉由要求第二種形式的驗證提供額外的安全性，並透過一系列簡單的驗證選項提供增強式驗證：
 
-- 撥打電話 
+- 撥打電話
 - 簡訊
 - 行動應用程式通知，讓使用者選擇偏好的方法
 - 行動應用程式驗證碼
@@ -66,17 +66,17 @@ Azure Multi-Factor Authentication | Azure Multi-Factor Authentication 提供最�
 以撥打電話做為第二個因素|* | * | *
 以 SMS 做為第二個因素|* | * | *
 用戶端應用程式密碼不支援 MFA|* | * | *
-系統管理員控制驗證方法| *| *| * 
-PIN 模式| | | * 
-詐騙警示| | | * 
-MFA 報告| | | * 
-一次性略過| | | * 
-通話的自訂問候語| | | * 
-自訂通話來電者 ID| | | * 
-事件確認| | | * 
-受信任的 IP| | | * 
-暫停對已記住的裝置進行 MFA (公開預覽)| | | * 
-MFA SDK| | | * 
+系統管理員控制驗證方法| *| *| *
+PIN 模式| | | *
+詐騙警示| | | *
+MFA 報告| | | *
+一次性略過| | | *
+通話的自訂問候語| | | *
+自訂通話來電者 ID| | | *
+事件確認| | | *
+信任的 IP| | | *
+暫停對已記住的裝置進行 MFA (公開預覽)| | | *
+MFA SDK| | | *
 對使用 MFA Server 的內部部署應用程式進行 MFA| | | *
 
 
@@ -102,4 +102,4 @@ MFA SDK| | | *
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016------>

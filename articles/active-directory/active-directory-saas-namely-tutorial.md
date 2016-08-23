@@ -13,28 +13,28 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/16/2016"
+	ms.date="08/05/2016"
 	ms.author="jeedes"/>
 
 
 # 教學課程：將 Azure Active Directory 與 Namely 整合
 
-本教學課程旨在說明如何整合 Namely 與 Azure Active Directory (Azure AD)。
+本教學課程旨在說明如何將 Namely 與 Azure Active Directory (Azure AD) 整合。
 
-Namely 與 Azure AD 整合提供下列優點：
+將 Namely 與 Azure AD 整合提供下列優點：
 
-- 您可以在 Azure AD 中控制可存取 Namely 的人員 
-- 您可以讓使用者使用其 Azure AD 帳戶自動登入 Namely (單一登入)
+- 您可以在 Azure AD 中控制可存取 Namely 的人員
+- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Namely (單一登入)
 - 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
 ## 必要條件 
 
-若要設定 Namely 與 Azure AD 的整合作業，需要下列項目：
+若要設定 Namely 與 Azure AD 整合，您需要下列項目：
 
 - Azure AD 訂用帳戶
-- 啟用 Namely 單一登入功能的訂用帳戶
+- 已啟用 Namely 單一登入功能的訂用帳戶
 
 
 > [AZURE.NOTE] 若要測試本教學課程中的步驟，我們不建議使用生產環境。
@@ -43,7 +43,7 @@ Namely 與 Azure AD 整合提供下列優點：
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 - 除非必要，否則您不應使用生產環境，。
-- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。 
+- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
  
 ## 案例描述
@@ -51,16 +51,16 @@ Namely 與 Azure AD 整合提供下列優點：
 
 本教學課程中說明的案例由二個主要建置組塊組成：
 
-1. 從資源庫加入 Namely 
+1. 從資源庫新增 Namely
 2. 設定並測試 Azure AD 單一登入
 
 
-## 從資源庫加入 Namely
-若要設定 Namely 與 Azure AD 的整合作業，您需要從資源庫將 Namely 新增到受管理的 SaaS 應用程式清單。
+## 從資源庫新增 Namely
+若要設定將 Namely 整合到 Azure AD 中，您需要從資源庫將 Namely 新增到受管理的 SaaS 應用程式清單。
 
 **若要從資源庫新增 Namely，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![Active Directory][1]
 
@@ -74,7 +74,7 @@ Namely 與 Azure AD 整合提供下列優點：
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![應用程式][4]
 
@@ -87,17 +87,17 @@ Namely 與 Azure AD 整合提供下列優點：
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-namely-tutorial/tutorial_namely_02.png)
 
 ##  設定並測試 Azure AD 單一登入
-本節目標是示範如何根據名為 「Britta Simon」的測試使用者，使用 Namely 設定及測試 Azure AD 單一登入功能。
+本節的目標是要說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Namely 搭配運作的 Azure AD 單一登入。
 
-若要讓單一登入作用，Azure AD 必須能知道 Namely 與 Azure AD 中互相對應的使用者。換句話說，必須建立 Azure AD 使用者和 Namely 中相關使用者之間的連結關聯性。
+若要讓單一登入能夠運作，Azure AD 必須能知道 Namely 與 Azure AD 中互相對應的使用者。換句話說，必須在 Azure AD 使用者與 Namely 中的相關使用者之間建立連結關聯性。
 
 建立此連結關聯性的方法，是將 Azure AD 中**使用者名稱**的值指派為 Namely 中 **Username** 的值。
  
-若要使用 Namely 設定及測試 Azure AD 單一登入功能，您需要完成下列建置組塊：
+若要設定及測試與 Namely 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
 
 1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
 2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
-4. **[建立 Namely 測試使用者](#creating-a-namely-test-user)** - 使 Namely 中，Britta Simon 的對應使用者能夠連結到代表她在 Azure AD 中的項目。
+4. **[建立 Namely 測試使用者](#creating-a-namely-test-user)** - 在 Namely 中建立 Britta Simon 的對應項目，且該項目與 Azure AD 中代表 Britta Simon 的項目連結。
 5. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
 5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
@@ -108,13 +108,13 @@ Namely 與 Azure AD 整合提供下列優點：
 
 
 
-**若要使用 Namely 設定 Azure AD 單一登入功能，請執行下列步驟：**
+**若要設定與 Namely 搭配運作的 Azure AD 單一登入，請執行下列步驟：**
 
-1. 在 Azure 傳統入口網站的 **Namely** 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1. 在 Azure 傳統入口網站的 [Namely] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
 	![設定單一登入][6]
 
-2. 在 [您希望使用者如何登入 Namely] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
+2. 在 [要如何讓使用者登入 Namely] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
  
 	![設定單一登入](./media/active-directory-saas-namely-tutorial/tutorial_namely_03.png)
 
@@ -122,12 +122,12 @@ Namely 與 Azure AD 整合提供下列優點：
 
 	![設定單一登入](./media/active-directory-saas-namely-tutorial/tutorial_namely_04.png)
 
-    a.在 [**登入 URL**] 文字方塊中，輸入使用者用來登入 Namely 應用程式的 URL (例如：**https://fabrikam.Namely.com/*)。
+    a.在 [登入 URL] 文字方塊中，輸入使用者用來登入 Namely 應用程式的 URL (例如：*https://fabrikam.Namely.com/*)。
 
     b.按 [下一步]。
  
  
-4. 在 [在 Namely 單一登入設定] 頁面上，執行下列步驟：
+4. 在 [設定在 Namely 單一登入] 頁面上，執行下列步驟：
 
 	![設定單一登入](./media/active-directory-saas-namely-tutorial/tutorial_namely_05.png)
 
@@ -158,14 +158,14 @@ Namely 與 Azure AD 整合提供下列優點：
 
     a.按一下 [啟用 SAML]。
 
-    b.在 Azure 傳統入口網站中的 [在 Namely 設定單一登入] 對話方塊頁面上，複製**單一登入服務 URL** 的值，然後貼到 [識別提供者 DDO URL] 文字方塊中。
+    b.在 Azure 傳統入口網站的 [設定在 Namely 單一登入] 對話方塊頁面上，複製 [單一登入服務 URL] 值，然後將它貼至 [識別提供者 DDO URL] 文字方塊中。
 
     c.在記事本中開啟下載的憑證，複製其內容，然後貼到 [**識別提供者憑證**] 文字方塊中。
 
     d.按一下 [儲存]。
 
 
-6. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按一下 [下一步]。
+6. 在 Azure 傳統入口網站中，選取單一登入設定確認，然後按 [下一步]。
 
 	![Azure AD 單一登入][10]
 
@@ -177,7 +177,7 @@ Namely 與 Azure AD 整合提供下列優點：
 
 
 ### 建立 Azure AD 測試使用者
-本節目標是在 Azure 傳統入口網站中建立名為 Britta Simon 的測試使用者。
+本節的目標是要在 Azure 傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
 
@@ -190,15 +190,15 @@ Namely 與 Azure AD 整合提供下列優點：
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-namely-tutorial/create_aaduser_03.png)
  
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-namely-tutorial/create_aaduser_04.png)
 
-5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行以下步驟：
+5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-namely-tutorial/create_aaduser_05.png)
 
@@ -208,7 +208,7 @@ Namely 與 Azure AD 整合提供下列優點：
 
     c.按 [下一步]。
 
-6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
+6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-namely-tutorial/create_aaduser_06.png)
  
@@ -236,7 +236,7 @@ Namely 與 Azure AD 整合提供下列優點：
  
 ### 建立 Namely 測試使用者
 
-本節目標是在 Namely 中建立名為 Britta Simon 的使用者。
+本節的目標是要在 Namely 中建立一個名為 Britta Simon 的使用者。
 
 **若要在 Namely 中建立名為 Britta Simon 的使用者，請執行下列步驟：**
 
@@ -270,11 +270,11 @@ Namely 與 Azure AD 整合提供下列優點：
 
 ### 指派 Azure AD 測試使用者
 
-本節目標是授與 Britta Simon Namely 的存取權，使她能夠使用 Azure 單一登入功能。
+本節的目標是要授權 Britta Simon 存取 Namely，讓她能夠使用 Azure 單一登入。
 
 ![指派使用者][200]
 
-**若要將 Britta Simon 指派到 Namely，請執行下列步驟：**
+**若要將 Britta Simon 指派給 Namely，請執行下列步驟：**
 
 1. 在 Azure 傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
@@ -298,7 +298,7 @@ Namely 與 Azure AD 整合提供下列優點：
 
 ### 測試單一登入
 
-本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。
+本節的目標是要使用「存取面板」來測試您的 Azure AD 單一登入組態。
 
 當您在存取面板中按一下 Namely 圖示時，應該會自動登入 Namely 應用程式。
 
@@ -327,4 +327,4 @@ Namely 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-namely-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-namely-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016------>

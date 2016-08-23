@@ -13,15 +13,17 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/23/2016"
+	ms.date="08/03/2016"
 	ms.author="tamram"/>
 
 
 # 針對 Blob 儲存體端點設定自訂網域名稱
 
-## 概觀
+## Overview
 
-您可以設定自訂網域名稱，以供存取 Azure 儲存體帳戶中的 Blob 資料。Blob 儲存體的預設端點是 https://<*mystorageaccount*>.blob.core.windows.net。如果您將自訂網域和子網域 (如 **www.contoso.com**) 對應至儲存體帳戶的 Blob 端點，使用者也能使用該網域存取儲存體帳戶中的 Blob 資料。
+您可以設定自訂網域名稱，以供存取 Azure 儲存體帳戶中的 Blob 資料。Blob 儲存體的預設端點是 `<storage-account-name>.blob.core.windows.net`。如果您將自訂網域和子網域 (如 **www.contoso.com**) 對應至儲存體帳戶的 Blob 端點，使用者也能使用該網域存取儲存體帳戶中的 Blob 資料。
+
+>[AZURE.IMPORTANT] Azure 儲存體尚未支援使用自訂網域的 HTTPS。我們知道客戶對此功能很感興趣，未來版本將會提供這項功能。
 
 將自訂網域指向儲存體帳戶之 Blob 端點的方法有兩種。最簡單的方法是建立 CNAME 記錄，以將自訂網域和子網域對應至 Blob 端點。CNAME 記錄是將來源網域對應至目的地網域的 DNS 功能。在這種情況下，來源網域是您的自訂網域和子網域 (請注意，子網域一律是必要的項目)。目的地網域是 Blob 服務端點。
 
@@ -31,9 +33,9 @@
 
 資源類型|URL 格式
 ---|---
-儲存體帳戶|**預設 URL：** http://mystorageaccount.blob.core.windows.net<p>**自訂網域 URL：**http://www.contoso.com</td>
-Blob|**預設 URL：** http://mystorageaccount.blob.core.windows.net/mycontainer/myblob<p>**自訂網域 URL：**http://www.contoso.com/mycontainer/myblob
-根容器|**預設 URL：** http://mystorageaccount.blob.core.windows.net/myblob或 http://mystorageaccount.blob.core.windows.net/$root/myblob<p>**自訂網域 URL：** 或http://www.contoso.com/myblobhttp://www.contoso.com/$root/myblob
+儲存體帳戶|**預設 URL：** http://mystorageaccount.blob.core.windows.net<p>**自訂網域 URL：** http://www.contoso.com</td>
+Blob|**預設 URL：** http://mystorageaccount.blob.core.windows.net/mycontainer/myblob<p>**自訂網域 URL：** http://www.contoso.com/mycontainer/myblob
+根容器|**預設 URL：** http://mystorageaccount.blob.core.windows.net/myblob或 http://mystorageaccount.blob.core.windows.net/$root/myblob<p>**自訂網域 URL：** http://www.contoso.com/myblob 或 http://www.contoso.com/$root/myblob
 
 ## 針對儲存體帳戶註冊自訂網域
 
@@ -113,11 +115,11 @@ asverify 子網域是 Azure 認可的特殊子網域。在自己的子網域前�
 
 若要將自訂網域取消註冊，請依照下列步驟︰
 
-1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。 
+1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 
 2. 在導覽窗格中，按一下 [儲存體]。
 
-3. 在「儲存體」頁面上，按一下儲存體帳戶名稱以顯示儀表板。
+3. 在 [儲存體] 頁面上，按一下儲存體帳戶名稱以顯示儀表板。
 
 5. 在功能區上，按一下 [管理網域]。
 
@@ -128,4 +130,4 @@ asverify 子網域是 Azure 認可的特殊子網域。在自己的子網域前�
 
 -   [如何將自訂網域對應至內容傳遞網路 (CDN) 端點](../cdn/cdn-map-content-to-custom-domain.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0810_2016------>

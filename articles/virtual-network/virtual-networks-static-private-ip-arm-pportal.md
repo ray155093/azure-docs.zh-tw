@@ -3,7 +3,7 @@
    description="了解私人 IP (DIP) 及如何在 ARM 模式中使用 Azure 入口網站管理它們"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor="tysonn"
    tags="azure-resource-manager"
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/04/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # 如何在 Azure 入口網站中設定靜態私人 IP 位址
 
@@ -23,7 +23,7 @@
 
 [AZURE.INCLUDE [virtual-networks-static-private-ip-intro-include](../../includes/virtual-networks-static-private-ip-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]本文涵蓋之內容包括資源管理員部署模型。您也可以[管理傳統部署模型中的靜態私人 IP 位址](virtual-networks-static-private-ip-classic-pportal.md)。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] 本文涵蓋之內容包括資源管理員部署模型。您也可以[管理傳統部署模型中的靜態私人 IP 位址](virtual-networks-static-private-ip-classic-pportal.md)。
 
 [AZURE.INCLUDE [virtual-networks-static-ip-scenario-include](../../includes/virtual-networks-static-ip-scenario-include.md)]
 
@@ -54,9 +54,9 @@
 
 6. 在 [設定] 刀鋒視窗中，確定下列屬性都已設定為下列的值，然後按一下 [確定]。
 
-	-**儲存體帳戶**: *vnetstorage*
-	- **網路**: *TestVNet*
-	- **子網路**: *前端*
+	-**儲存體帳戶**：vnetstorage
+	- **網路**：TestVNet
+	- **子網路**：FrontEnd
 
 	![選擇尺寸刀鋒視窗](./media/virtual-networks-static-ip-arm-pportal/figure05.png)
 
@@ -93,8 +93,8 @@
 
 ## 後續步驟
 
-- 深入了解[保留的公用 IP](../virtual-networks-reserved-public-ip) 位址。
-- 深入了解[執行個體層級公用 IP (ILPIP)](../virtual-networks-instance-level-public-ip) 位址。
+- 深入了解[保留的公用 IP](virtual-networks-reserved-public-ip.md) 位址。
+- 深入了解[執行個體層級公用 IP (ILPIP)](virtual-networks-instance-level-public-ip.md) 位址。
 - 請參閱[保留 IP REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx)。
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0810_2016------>

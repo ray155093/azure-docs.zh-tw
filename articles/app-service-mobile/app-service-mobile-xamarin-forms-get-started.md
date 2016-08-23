@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-xamarin"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="08/04/2016"
+	ms.date="08/11/2016"
 	ms.author="glenga"/>
 
 #建立 Xamarin.Forms 應用程式
@@ -180,4 +180,4 @@
 [Mobile app SDK]: http://go.microsoft.com/fwlink/?LinkId=257545
 [Azure 入口網站]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0817_2016-->

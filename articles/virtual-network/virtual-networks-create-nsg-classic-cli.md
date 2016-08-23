@@ -3,7 +3,7 @@
    description="了解如何傳統模式中使用 Azure CLI 建立及部署 NSG"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor="tysonn"
    tags="azure-service-management"
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/02/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # 如何在 Azure CLI 中建立 NSG (傳統)
 
@@ -23,7 +23,7 @@
 
 [AZURE.INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]本文涵蓋之內容包括傳統部署模型。您也可以[在資源管理員部署模型中建立 NSG](virtual-networks-create-nsg-arm-cli.md)。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] 本文涵蓋之內容包括傳統部署模型。您也可以[在資源管理員部署模型中建立 NSG](virtual-networks-create-nsg-arm-cli.md)。
 
 [AZURE.INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
@@ -109,7 +109,7 @@
 	- **-f (或 --source-address-prefix)**。CIDR 中的來源位址首碼或使用預設標記。
 	- **-o (或 --source-port-range)**。來源連接埠，或連接埠範圍。
 	- **-e (或 --destination-address-prefix)**。CIDR 中的目的地位址首碼或使用預設標記。
-	- **-u (或 --destination-port-range)**。目的地連接埠，或連接埠範圍。	
+	- **-u (或 --destination-port-range)**。目的地連接埠，或連接埠範圍。
 
 5. 執行 **`azure network nsg rule create`** 命令來建立允許從網際網路存取連接埠 80 (HTTP) 的規則。
 
@@ -134,7 +134,7 @@
 
 6. 執行 **`azure network nsg subnet add`** 命令來連結 NSG 與前端子網路。
 
-		azure network nsg subnet add -a NSG-FrontEnd --vnet-name TestVNet --subnet-name FrontEnd 
+		azure network nsg subnet add -a NSG-FrontEnd --vnet-name TestVNet --subnet-name FrontEnd
 
 	預期的輸出：
 
@@ -228,7 +228,7 @@
 
 6. 執行 **`azure network nsg subnet add`** 命令來連結 NSG 與後端子網路。
 
-		azure network nsg subnet add -a NSG-BackEnd --vnet-name TestVNet --subnet-name BackEnd 
+		azure network nsg subnet add -a NSG-BackEnd --vnet-name TestVNet --subnet-name BackEnd
 
 	預期的輸出：
 
@@ -239,4 +239,4 @@
 		info:    Creating a network security group "NSG-BackEndX"
 		info:    network nsg subnet add command OK
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0810_2016------>

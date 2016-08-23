@@ -3,7 +3,7 @@
    description="了解 ILPIP (PIP) 及管理它們的方法"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor="tysonn" />
 <tags 
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/10/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # 執行個體層級公用 IP 概觀
 執行個體層級公用 IP (ILPIP) 是您可以直接指派至 VM 或角色執行個體的 IP 位址，而不是指派至 VM 或角色執行個體所在的雲端服務。這不會取代指派給雲端服務的 VIP (虛擬 IP)。應該說是您可以用來直接連接到 VM 或角色執行個體的其他 IP 位址。
@@ -129,4 +129,4 @@
 - 深入了解[保留的 IP](virtual-networks-reserved-public-ip.md)。
  
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0810_2016------>

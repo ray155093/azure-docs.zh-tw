@@ -1,10 +1,10 @@
 <properties
    pageTitle="Azure 網路安全性概觀 | Microsoft Azure"
-   description="本文可讓您更容易了解 Microsoft Azure 必須在網路安全性區域中提供的資訊。我們提供核心網路安全性概念和需求的基本說明，以及 Azure 必須在所有這些區域中提供之資訊的相關資訊。"
+   description=" 本文可讓您更容易了解 Microsoft Azure 必須在網路安全性區域中提供的資訊。我們提供核心網路安全性概念和需求的基本說明，以及 Azure 必須在所有這些區域中提供之資訊的相關資訊。"
    services="security"
    documentationCenter="na"
    authors="TomShinder"
-   manager="StevenPo"
+   manager="MBaldwin"
    editor="TomSh"/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/19/2016"
+   ms.date="08/09/2016"
    ms.author="terrylan"/>
 
 # Azure 網路安全性概觀
@@ -105,7 +105,7 @@ Azure 網路支援下列安全遠端存取案例︰
 ### 將個別工作站連接到 Azure 虛擬網路
 您有時可能會想要讓個別開發人員或操作人員在 Azure 中管理虛擬機器和服務。例如，您需要存取 Azure 虛擬網路上的虛擬機器，而且您的安全性原則不允許 RDP 或 SSH 遠端存取個別虛擬機器。在此情況下，您可以使用點對站 VPN 連接。
 
-點對站 VPN 連接使用 [SSTP VPN](https://technet.microsoft.com/library/cc731352.aspx) 通訊協定，讓您可以設定使用者與 Azure 虛擬網路之間的私用和安全連接。　建立 VPN 連接之後，使用者就可以透過 VPN 連結 RDP 或 SSH 到 Azure 虛擬網路上的任何虛擬機器 (假設可以驗證和授權使用者)。
+點對站 VPN 連接使用 [SSTP VPN](https://technet.microsoft.com/library/cc731352.aspx) 通訊協定，讓您可以設定使用者與 Azure 虛擬網路之間的私用和安全連接。建立 VPN 連接之後，使用者就可以透過 VPN 連結 RDP 或 SSH 到 Azure 虛擬網路上的任何虛擬機器 (假設可以驗證和授權使用者)。
 
 深入了解：
 
@@ -265,4 +265,4 @@ Azure 資訊安全中心藉由下列方式來協助您最佳化和監視網路�
 
 - [Azure 資訊安全中心簡介](../security-center/security-center-intro.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016------>

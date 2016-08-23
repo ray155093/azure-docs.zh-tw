@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/23/2016"
+   ms.date="08/16/2016"
    ms.author="sonyama;barbkess"/>
 
 # 安裝適用於 SQL 資料倉儲的 Visual Studio 2015 和 SSDT
@@ -49,11 +49,11 @@
 <!--Image references-->
 
 <!--Articles-->
-[連接]: ./sql-data-warehouse-get-started-connect.md
+[連接]: ./sql-data-warehouse-query-visual-studio.md
 
 <!--Other-->
 [下載 Visual Studio 2015]: https://www.visualstudio.com/downloads/
 [安裝 Visual Studio]: https://msdn.microsoft.com/library/e2h7fzkw.aspx
 [SSDT 下載]: https://msdn.microsoft.com/library/mt204009.aspx
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

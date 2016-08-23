@@ -1,6 +1,6 @@
 <properties
 	pageTitle="使用 Azure Mobile Apps 新增推播通知至 Apache Cordova 應用程式| Azure App Service"
-	description="了解如何使用 Azure 行動應用程式將推播通知傳送至 Apache Cordova 應用程式。"
+	description="了解如何使用 Azure Mobile Apps 將推播通知傳送至 Apache Cordova 應用程式。"
 	services="app-service\mobile"
 	documentationCenter="javascript"
 	manager="ggailey777"
@@ -20,9 +20,9 @@
 
 [AZURE.INCLUDE [app-service-mobile-selector-get-started-push](../../includes/app-service-mobile-selector-get-started-push.md)]
 
-## 概觀
+## Overview
 
-在本教學課程中，您會將推播通知新增至 [Apache Cordova 快速入門]專案，以便在每次插入一筆記錄時傳送推播通知。本教學課程以 [Apache Cordova 快速入門]教學課程為基礎，您必須先完成該教學課程。如果您有 ASP.NET 後端，且不使用下載的快速入門伺服器專案，您必須將推播通知擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK]。
+在本教學課程中，您會將推播通知新增至 [Apache Cordova 快速入門]專案，以便在每次插入一筆記錄時傳送推播通知。本教學課程以 [Apache Cordova 快速入門]教學課程為基礎，您必須先完成該教學課程。如果您有 ASP.NET 後端，且不使用下載的快速入門伺服器專案，您必須將推播通知擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure Mobile Apps 的 .NET 後端伺服器 SDK]。
 
 ##<a name="prerequisites"></a>必要條件
 
@@ -43,6 +43,8 @@
 ##<a name="create-hub"></a>建立通知中樞
 
 [AZURE.INCLUDE [app-service-mobile-create-notification-hub](../../includes/app-service-mobile-create-notification-hub.md)]
+
+[觀看示範類似步驟的影片](https://channel9.msdn.com/series/Azure-connected-services-with-Cordova/Azure-connected-services-task-3-Create-azure-notification-hub)
 
 ##更新伺服器專案以傳送推播通知
 
@@ -124,7 +126,7 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
 		      ios: { alert: 'true', badge: 'true', sound: 'true' },
 		      wns: {}
 		  });
-		
+
 		// Handle the registration event.
 		pushRegistration.on('registration', function (data) {
 		  // Get the native platform of the device.
@@ -151,11 +153,11 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
 		      });
 		  }
 		});
-		
+
 		pushRegistration.on('notification', function (data, d2) {
 		  alert('Push Received: ' + data.message);
 		});
-		
+
 		pushRegistration.on('error', handleError);
 		}
 
@@ -170,6 +172,8 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
 因為我們一開始是以 Google Android 平台為目標，所以您必須啟用 Google 雲端通訊。同樣地，如果您以 Microsoft Windows 裝置為目標，您應該啟用 WNS 支援。
 
 [AZURE.INCLUDE [mobile-services-enable-google-cloud-messaging](../../includes/mobile-services-enable-google-cloud-messaging.md)]
+
+[觀看示範類似步驟的影片](https://channel9.msdn.com/series/Azure-connected-services-with-Cordova/Azure-connected-services-task-4-Set-up-gcm-for-push)
 
 ####<a name="configure-backend"></a>設定行動應用程式後端以使用 GCM 傳送推送要求
 
@@ -195,7 +199,7 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
 
 在您可以將應用程式部署到您的 Android 裝置之前，您需要啟用 USB 偵錯。在您的 Android 手機上執行下列步驟：
 
-1. 移至 [設定] > [About phone] \(有關手機)，然後點選 [組建編號]，直到啟用開發人員模式為止 (大約 7 次)。
+1. 移至 [設定] > [關於手機]，然後點選 [版本號碼]，直到啟用開發人員模式為止 (大約 7 次)。
 
 2. 回到 [設定] > [開發人員選項] 啟用 [USB 偵錯]，然後使用 USB 纜線將 Android 手機連接到開發電腦。
 
@@ -210,7 +214,7 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
     * Google Play 服務 (版本 27 或更高版本)
     * Google Repository (版本 22 或更高版本)
 
-2.  按一下 [Install Packages] \(安裝封裝)，並等候安裝完成。
+2.  按一下 [Install Packages] (安裝封裝)，並等候安裝完成。
 
 目前的必要程式庫會在 [phonegap-plugin-push Installation 文件]中列出。
 
@@ -228,7 +232,7 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
 
 	如果您想要使用更快速的 x86 模擬器，請[安裝 HAXM 驅動程式](https://taco.visualstudio.com/zh-TW/docs/run-app-apache/#HAXM)並設定模擬器使用它。
 
-	按一下 [應用程式] > [設定] > [加入帳戶]，將 Google 帳戶加入至 Android 裝置，然後依照提示將現有的 Google 加入至此裝置 (建議使用現有的帳戶，而非建立新帳戶)。
+	按一下 [應用程式] > [設定] > [加入帳戶]，將 Google 帳戶加入至 Android 裝置，然後依照提示將現有的 Google 帳戶加入至此裝置 (建議使用現有的帳戶，而非建立新帳戶)。
 
 	![](./media/app-service-mobile-cordova-get-started-push/add-google-account.png)
 
@@ -244,7 +248,7 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
 
 請先進行 [iOS 安裝指南](http://taco.visualstudio.com/zh-TW/docs/ios-guide/)中的步驟來安裝和執行 remotebuild 代理程式，才可以使用 Visual Studio 在 iOS 上執行 Cordova 應用程式。
 
-確定您可以建置適用於 iOS 的應用程式。必須執行安裝指南中的步驟才能從 Visual Studio 針對 iOS 建置。如果您沒有 Mac，您可以在 MacInCloud 之類的服務上使用 remotebuild 代理程式針對 iOS 建置。如需詳細資訊，請參閱[在雲端執行您的 iOS 應用程式](http://taco.visualstudio.com/zh-TW/docs/build_ios_cloud/)。
+確定您可以建置適用於 iOS 的應用程式。必須執行安裝指南中的步驟才能從 Visual Studio 針對 iOS 建置。如果您沒有 Mac，您可以在 MacInCloud 之類的服務上使用 remotebuild 代理程式針對 iOS 建置。如需詳細資訊，請參閱[在雲端中執行 iOS 應用程式](http://taco.visualstudio.com/zh-TW/docs/build_ios_cloud/)。
 
 ####尋找要做為應用程式識別碼的識別碼
 
@@ -259,6 +263,8 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
 ####在 Apple 的開發人員入口網站註冊應用程式以取得推播通知
 
 [AZURE.INCLUDE [通知中樞 Xamarin 啟用 Apple 推播通知](../../includes/notification-hubs-xamarin-enable-apple-push-notifications.md)]
+
+[觀看示範類似步驟的影片](https://channel9.msdn.com/series/Azure-connected-services-with-Cordova/Azure-connected-services-task-5-Set-up-apns-for-push)
 
 ####設定 Azure 來傳送推播通知
 
@@ -303,6 +309,8 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
 若要使用 Visual Studio 中的 [存放區] 選項，請從 [方案平台] 清單中選取 Windows 目標，例如 **Windows-x64** 或 **Windows-x86** (避免 **Windows-AnyCPU** 使用推播通知)。
 
 [AZURE.INCLUDE [app-service-mobile-register-wns](../../includes/app-service-mobile-register-wns.md)]
+
+[觀看示範類似步驟的影片](https://channel9.msdn.com/series/Azure-connected-services-with-Cordova/Azure-connected-services-task-6-Set-up-wns-for-push)
 
 ####設定 WNS 的通知中樞
 
@@ -363,7 +371,7 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
 [新增驗證]: app-service-mobile-cordova-get-started-users.md
 [Apache Cordova 快速入門]: app-service-mobile-cordova-get-started.md
 [驗證]: app-service-mobile-cordova-get-started-users.md
-[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
+[使用 Azure Mobile Apps 的 .NET 後端伺服器 SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Google 帳戶]: http://go.microsoft.com/fwlink/p/?LinkId=268302
 [Google Developer Console]: https://console.developers.google.com/home/dashboard
 [phonegap-plugin-push Installation 文件]: https://github.com/phonegap/phonegap-plugin-push/blob/master/docs/INSTALLATION.md
@@ -375,4 +383,4 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
 [ASP.NET Server SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Node.js Server SDK]: app-service-mobile-node-backend-how-to-use-server-sdk.md
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0810_2016------>

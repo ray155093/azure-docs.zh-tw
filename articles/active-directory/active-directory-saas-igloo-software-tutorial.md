@@ -4,14 +4,14 @@
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="05/16/2016" 
+    ms.date="08/05/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Igloo Software 整合
@@ -72,11 +72,11 @@
 
     ![設定單一登入](./media/active-directory-saas-igloo-software-tutorial/IC783964.png "設定單一登入")
 
-2.  在 [要如何讓使用者登入 Igloo Software] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按一下 [下一步]。
+2.  在 [要如何讓使用者登入 Igloo Software] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
     ![Microsoft Azure AD 單一登入](./media/active-directory-saas-igloo-software-tutorial/IC783965.png "Microsoft Azure AD 單一登入")
 
-3.  在 [設定應用程式 URL] 頁面的 [Igloo Software 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："**https://company.igloocommunities.com/?signin*"，然後按一下 [下一步]。
+3.  在 [設定應用程式 URL] 頁面的 [Igloo Software 登入 URL] 文字方塊中，以下列模式輸入您的 URL："*https://company.igloocommunities.com/?signin*"*，然後按 [下一步]*。
 
     ![設定應用程式 URL](./media/active-directory-saas-igloo-software-tutorial/IC773625.png "設定應用程式 URL")
 
@@ -96,7 +96,7 @@
 
 8.  在 [SAML 設定] 區段，按一下 [設定 SAML 驗證]。
 
-    ![SAML 設定](./media/active-directory-saas-igloo-software-tutorial/IC783969.png "SAML 設定")
+    ![SAML 設定](./media/active-directory-saas-igloo-software-tutorial/IC783969.png "SAML 組態")
 
 9.  在 [一般設定] 區段，執行下列步驟：
 
@@ -108,7 +108,7 @@
     4.  為 [登出回應與要求 HTTP 類型] 選取 [POST]。
     5.  從下載的憑證建立文字檔。
         
-		>[AZURE.TIP]如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
+		>[AZURE.TIP]如需詳細資料，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
 
     6.  從您文字檔版本的憑證中移除第一行和最後一行，複製剩下的憑證文字，然後貼到 [公開憑證] 文字方塊。
 
@@ -138,13 +138,13 @@
 沒有動作項目可讓您設定 Igloo Software 使用者佈建。當已指派的使用者透過存取面板嘗試登入 Igloo Software 時，Igloo Software 會檢查使用者是否存在。如果尚無可用的使用者帳戶，Igloo Software 會自動予以建立。
 ##指派使用者
   
-若要測試您的設定，您需要指派使用者，授予存取權給您想要允許其使用您的應用程式存取設定的 Azure AD 使用者。
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
 ###若要指派使用者給 Igloo Software，請執行下列步驟：
 
 1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  在 [Igloo Software] 應用程式整合頁面中，按一下 [指派使用者]。
+2.  在 [Igloo Software] 應用程式整合頁面上，按一下 [指派使用者]。
 
     ![指派使用者](./media/active-directory-saas-igloo-software-tutorial/IC783974.png "指派使用者")
 
@@ -152,6 +152,6 @@
 
     ![是](./media/active-directory-saas-igloo-software-tutorial/IC767830.png "是")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0810_2016------>

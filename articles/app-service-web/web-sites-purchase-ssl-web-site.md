@@ -20,8 +20,8 @@
 #購買並設定您的 Azure App Service 的 SSL 憑證
 
 > [AZURE.SELECTOR]
-- [購買 Web Apps 的 SSL 憑證](web-sites-purchase-ssl-web-site.md)
-- [為自訂網域啟用 SSL](web-sites-configure-ssl-certificate.md)
+- [在 Azure 中購買 SSL 憑證](web-sites-purchase-ssl-web-site.md)
+- [使用來自其他位置的 SSL 憑證](web-sites-configure-ssl-certificate.md)
 
 根據預設，**[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)** 已使用 *.azurewebsites.net 網域的萬用字元憑證來啟用您 Web 應用程式的 HTTPS。如果您不打算設定自訂網域，您可以直接利用預設的 HTTPS 憑證。但是，就像*[所有萬用字元網域](https://casecurity.org/2014/02/26/pros-and-cons-of-single-domain-multi-domain-and-wildcard-certificates)一樣，這並不如使用自訂網域搭配自己的憑證那麼安全。Azure App Service 現在提供購買及管理 SSL 憑證真正簡易的方法，就是從 Azure 入口網站，完全不用離開入口網站。本文說明如何使用 3 個簡單的步驟，來購買並設定 **[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)** 的 SSL 憑證。
 
@@ -206,6 +206,6 @@
 - [Azure 網站中解除鎖定的設定選項](http://azure.microsoft.com/blog/2014/01/28/more-to-explore-configuration-options-unlocked-in-windows-azure-web-sites/)
 - [Azure 管理入口網站](https://manage.windowsazure.com)
 
->[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；無需承諾。
+>[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0810_2016------>

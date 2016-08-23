@@ -3,7 +3,7 @@
    description="了解如何在資源管理員中使用 Azure CLI 部署多個 NIC VM"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor=""
    tags="azure-resource-manager"
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/02/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 #使用 Azure CLI 部署多個 NIC VM
 
@@ -51,7 +51,7 @@
 
 ### 步驟 1：啟動指令碼
 
-[這裡](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/arm/virtual-network-deploy-multinic-arm-cli.sh)可以下載所使用的完整 Bash 指令碼。請遵循下列步驟來變更要在環境中工作的指令碼。
+[這裡](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/arm/virtual-network-deploy-multinic-arm-cli.sh)可以下載所使用的完整 Bash 指令碼。請遵循下列步驟來變更指令碼來讓指令碼在環境中運作。
 
 1. 根據上述[必要條件](#Prerequisites)中已部署的現有資源群組來變更下列變數的值。
 
@@ -61,7 +61,7 @@
 		backendSubnetName="BackEnd"
 		remoteAccessNSGName="NSG-RemoteAccess"
 
-2. 根據要用於後端部署的值來變更下列變數的值。
+2. 根據後端部署要使用的值，變更下列變數值。
 
 		backendRGName="IaaSStory-Backend"
 		prmStorageAccountName="wtestvnetstorageprm"
@@ -330,4 +330,4 @@
 		info:    Updating VM "DB2"
 		info:    vm disk attach-new command OK
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0810_2016------>

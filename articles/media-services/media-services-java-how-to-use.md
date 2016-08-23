@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article"
-	ms.date="06/22/2016"   
+	ms.date="08/11/2016"   
 	ms.author="robmcm"/>
 
 #如何搭配使用媒體服務和 Java
@@ -22,7 +22,7 @@
 
 ##設定媒體服務的 Azure 帳戶
 
-若要設定媒體服務帳戶，請使用 Azure 傳統入口網站。請參閱主題＜[如何建立媒體服務帳戶](media-services-create-account.md)＞ (英文)。當您在 Azure 傳統入口網站中建立帳戶之後，就可開始設定您的電腦進行媒體服務開發。
+若要設定媒體服務帳戶，請使用 Azure 傳統入口網站。請參閱主題[如何建立媒體服務帳戶](media-services-create-account.md)。當您在 Azure 傳統入口網站中建立帳戶之後，就可開始設定您的電腦進行媒體服務開發。
 
 ##設定媒體服務開發
 
@@ -30,7 +30,7 @@
 
 ###必要條件
 
--   新的或現有 Azure 訂閱中的媒體服務帳戶。請參閱主題＜[如何建立媒體服務帳戶](media-services-create-account.md)＞ (英文)。
+-   新的或現有 Azure 訂閱中的媒體服務帳戶。請參閱主題[如何建立媒體服務帳戶](media-services-create-account.md)。
 -   Azure Libraries for Java，可從＜[Azure Java 開發人員中心][]＞(英文) 進行安裝。
 
 ##如何：搭配使用媒體服務和 Java
@@ -276,4 +276,4 @@
 
  
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -37,9 +37,11 @@ ms.author="deonhe"/>
 
 在此範例中，我們將使用 [當檔案建立時] 觸發程序。當此觸發程序發生時，我們會呼叫 [使用路徑來取得檔案內容] Dropbox 動作。
 
-1. 在 Logic Apps 設計工具的搜尋方塊中輸入 dropbox，然後選取 [Dropbox - 當檔案建立時] 觸發程序。![](../../includes/media/connectors-create-api-dropbox/using-dropbox-trigger.PNG)
+1. 在 Logic Apps 設計工具的搜尋方塊中輸入 dropbox，然後選取 [Dropbox - 當檔案建立時] 觸發程序。  
+ ![](../../includes/media/connectors-create-api-dropbox/using-dropbox-trigger.PNG)
   
-2. 選取您想要追蹤檔案建立所在的資料夾。選取 [...] \(以紅色方塊識別)，並瀏覽至您想要針對觸發程序的輸入而選取的資料夾。![](../../includes/media/connectors-create-api-dropbox/using-dropbox-trigger-2.PNG)
+2. 選取您想要追蹤檔案建立所在的資料夾。選取 [...] \(以紅色方塊識別)，並瀏覽至您想要針對觸發程序的輸入而選取的資料夾。  
+ ![](../../includes/media/connectors-create-api-dropbox/using-dropbox-trigger-2.PNG)
 
 ## 使用 Dropbox 動作
 
@@ -47,15 +49,21 @@ ms.author="deonhe"/>
 
 現在已新增觸發程序，請遵循下列步驟來新增將會取得新檔案內容的動作。
 
-1. 選取 [+ 新的步驟] 來新增您想要在新檔案建立時採取的動作。![](../../includes/media/connectors-create-api-dropbox/using-dropbox-action.PNG)
+1. 選取 [+ 新的步驟] 來新增您想要在新檔案建立時採取的動作。  
+ 
+ ![](../../includes/media/connectors-create-api-dropbox/using-dropbox-action.PNG)
 
-2. 選取 [新增動作]。這會開啟搜尋方塊，您可以在其中搜尋任何想要採取的動作。![](../../includes/media/connectors-create-api-dropbox/using-dropbox-action-2.PNG)
+2. 選取 [新增動作]。這會開啟搜尋方塊，您可以在其中搜尋任何想要採取的動作。  
+ ![](../../includes/media/connectors-create-api-dropbox/using-dropbox-action-2.PNG)
 
 3. 輸入 dropbox 以搜尋與 Dropbox 相關的動作。
 
-4. 選取 [Dropbox - 使用路徑來取得檔案內容]，做為在選取的 Dropbox 資料夾中建立新檔案時所要採取的動作。動作控制區塊便會開啟。如果您未曾授權邏輯應用程式存取您的 Dropbox 帳戶，系統會提示您這麼做。![](../../includes/media/connectors-create-api-dropbox/using-dropbox-action-3.PNG)
+4. 選取 [Dropbox - 使用路徑來取得檔案內容]，做為在選取的 Dropbox 資料夾中建立新檔案時所要採取的動作。動作控制區塊便會開啟。如果您未曾授權邏輯應用程式存取您的 Dropbox 帳戶，系統會提示您這麼做。  
 
-5. 選取 [...](位於 [檔案路徑] 控制項的右側)，並瀏覽至您想要使用的檔案路徑。或者，使用**檔案路徑**權杖來加速建立邏輯應用程式。![](../../includes/media/connectors-create-api-dropbox/using-dropbox-action-4.PNG)
+ ![](../../includes/media/connectors-create-api-dropbox/using-dropbox-action-3.PNG)  
+
+5. 選取 [...](位於 [檔案路徑] 控制項的右側)，並瀏覽至您想要使用的檔案路徑。或者，使用**檔案路徑**權杖來加速建立邏輯應用程式。  
+ ![](../../includes/media/connectors-create-api-dropbox/using-dropbox-action-4.PNG)  
 
 6. 儲存您的工作並在 Dropbox 中建立新檔案，以啟動您的工作流程。
 

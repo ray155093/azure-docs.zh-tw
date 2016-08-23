@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="05/16/2016"
+	ms.date="08/16/2016"
 	ms.author="anhoh"/>
 
 # NoSQL 教學課程：建置 DocumentDB C# 主控台應用程式
@@ -57,7 +57,7 @@
 
 [AZURE.INCLUDE [documentdb-create-dbaccount](../../includes/documentdb-create-dbaccount.md)]
 
-##<a id="SetupVS"></a> 步驟 2：設定您的 Visual Studio 方案
+## <a id="SetupVS"></a>步驟 2：設定您的 Visual Studio 方案
 
 1. 在電腦上開啟 **Visual Studio 2015**。
 2. 從 [檔案] 功能表中，選取 [新增]，然後選擇 [專案]。
@@ -69,7 +69,7 @@
 
 太棒了！ 現在已完成安裝程式，讓我們開始撰寫一些程式碼。您可以在 [GitHub](https://github.com/Azure-Samples/documentdb-dotnet-getting-started/blob/master/src/Program.cs) 找到本教學課程的完整程式碼專案。
 
-##<a id="Connect"></a> 步驟 3：連接到 DocumentDB 帳戶
+## <a id="Connect"></a>步驟 3：連接到 DocumentDB 帳戶
 
 首先，在 Program.cs 檔案中，將這些參考新增到 C# 應用程式的開頭：
 
@@ -96,9 +96,9 @@
 
 接下來，前往 [Azure 入口網站](https://portal.azure.com)擷取您的 URI 和主索引鍵。需要 DocumentDB URI 和主索引鍵，您的應用程式才能了解要在連接到哪裡，而 DocumentDB 才會信任您的應用程式連接。
 
-在 Azure 入口網站中，瀏覽至步驟 1 的 DocumentDB 帳戶。
+在 Azure 入口網站中，瀏覽至步驟 1 的 DocumentDB 帳戶，然後按一下 [金鑰]。
 
-按一下 [基本功能] 列中的 [索引鍵] 圖示。複製 URI 並以所複製的 URI 取代程式中的 *<您的端點 URI>*。複製主索引鍵並以所複製的索引鍵取代程式中的 *<您的金鑰>*。
+複製 URI 並以所複製的 URI 取代程式中的 <您的端點 URI>。複製主要金鑰並以所複製的金鑰取代程式中的 <您的金鑰>。
 
 ![NoSQL 教學課程用來建立 C# 主控台應用程式之 Azure 入口網站的螢幕擷取畫面。顯示 DocumentDB 帳戶，內含反白顯示的 [主動式] 集線器、[DocumentDB 帳戶] 刀鋒視窗上反白顯示的 [金鑰] 按鈕、[金鑰] 刀鋒視窗上反白顯示的 [URI]、[主要金鑰] 和 [次要金鑰] 值][keys]
 
@@ -187,7 +187,7 @@
 			}
 	}
 
-複製下列程式碼並貼到 **GetStartedDemo** 方法的用戶端建立之下。這會建立名為 *FamilyDB* 的資料庫。
+複製下列程式碼並貼到 **GetStartedDemo** 方法的用戶端建立之下。這會建立名為 FamilyDB 的資料庫。
 
 	private async Task GetStartedDemo()
 	{
@@ -200,7 +200,7 @@
 
 恭喜！ 您已成功建立 DocumentDB 資料庫。
 
-##<a id="CreateColl"></a>步驟 5：建立集合  
+## <a id="CreateColl"></a>步驟 5：建立集合  
 
 > [AZURE.WARNING] **CreateDocumentCollectionAsync** 會建立含有保留輸送量且具有價格含意的新集合。如需詳細資訊，請造訪[定價頁面](https://azure.microsoft.com/pricing/details/documentdb/)。
 
@@ -242,7 +242,7 @@
 		}
 	}
 
-複製下列程式碼並貼到 **GetStartedDemo** 方法的資料庫建立之下。這會建立名為 *FamilyCollection* 的文件集合。
+複製下列程式碼並貼到 **GetStartedDemo** 方法的資料庫建立之下。這會建立名為 FamilyCollection 的文件集合。
 
 		this.client = new DocumentClient(new Uri(EndpointUri), PrimaryKey);
 
@@ -255,7 +255,7 @@
 
 恭喜！ 您已成功建立 DocumentDB 文件集合。
 
-##<a id="CreateDoc"></a>步驟 6：建立 JSON 文件
+## <a id="CreateDoc"></a>步驟 6：建立 JSON 文件
 您可以使用 **DocumentClient** 類別的 [CreateDocumentAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentasync.aspx) 方法來建立[文件](documentdb-resources.md#documents)。文件會是使用者定義的 (任意) JSON 內容。現在可插入一或多份文件。如果您已經有想要儲存於資料庫中的資料，就可以使用 DocumentDB 的[資料移轉工具](documentdb-import-data.md)。
 
 首先，我們需要建立 **Family** 類別以代表此範例中儲存在 DocumentDB 內的物件。我們也會建立 **Family** 內使用的 **Parent**、**Child**、**Pet**、**Address** 子類別。請注意，文件必須將 **Id** 屬性序列化為 JSON 中的 **識別碼**。藉由在 **GetStartedDemo** 方法之後加入下列內部子類別來建立這些類別。
@@ -443,7 +443,7 @@ DocumentDB 支援對儲存於每個集合的 JSON 文件進行豐富[查詢](doc
 			// Now execute the same query via direct SQL
 			IQueryable<Family> familyQueryInSql = this.client.CreateDocumentQuery<Family>(
 					UriFactory.CreateDocumentCollectionUri(databaseName, collectionName),
-					"SELECT * FROM Family WHERE Family.lastName = 'Andersen'",
+					"SELECT * FROM Family WHERE Family.LastName = 'Andersen'",
 					queryOptions);
 
 			Console.WriteLine("Running direct SQL query...");
@@ -594,7 +594,7 @@ DocumentDB 支援刪除 JSON 文件。
 ##<a id="GetSolution"></a> 取得完整的 NoSQL 教學課程方案
 若要建置包含本文中所有範例的 GetStarted 方案，您將需要下列項目：
 
-- 使用中的 Azure 帳戶。如果您沒有帳戶，您可以註冊 [免費帳戶](https://azure.microsoft.com/free/)。
+- 使用中的 Azure 帳戶。如果您沒有帳戶，您可以註冊[免費帳戶](https://azure.microsoft.com/free/)。
 -   [DocumentDB 帳戶][documentdb-create-account]。
 -   您可以在 GitHub 上找到 [GetStarted](https://github.com/Azure-Samples/documentdb-dotnet-getting-started) 方案。
 
@@ -612,4 +612,4 @@ DocumentDB 支援刪除 JSON 文件。
 [documentdb-manage]: documentdb-manage.md
 [keys]: media/documentdb-get-started/nosql-tutorial-keys.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0817_2016-->

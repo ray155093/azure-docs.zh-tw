@@ -1,5 +1,5 @@
 <properties
- pageTitle="關於 A8 - A11 執行個體和 Linux | Microsoft Azure"
+ pageTitle="關於 A8、A9、A10、A11 VM 大小和 Linux | Microsoft Azure"
  description="取得針對 Linux VM 使用 Azure A8、A9、A10 和 A11 計算密集大小的背景資訊和考量。"
  services="virtual-machines-linux"
  documentationCenter=""
@@ -13,10 +13,10 @@ ms.service="virtual-machines-linux"
  ms.topic="article"
  ms.tgt_pltfrm="vm-linux"
  ms.workload="infrastructure-services"
- ms.date="05/09/2016"
+ ms.date="08/04/2016"
  ms.author="danlep"/>
 
-# 關於 A8、A9、A10 和 A11 計算密集執行個體 
+# 關於 A8、A9、A10 和 A11 密集運算執行個體 
 
 這裡提供使用 Azure A8、A9、A10 和 A11 執行個體 (也稱為「計算密集」執行個體) 的背景資訊和一些考量。本文著重於這些 Linux VM 執行個體的使用。本文也適用於 [Windows VM](virtual-machines-windows-a8-a9-a10-a11-specs.md)。
 
@@ -32,7 +32,7 @@ ms.service="virtual-machines-linux"
 
 * **MPI** - Intel MPI Library 5.x
 
-    >[AZURE.NOTE] 已在 Marketplace 中的 CentOS 型 HPC 映像上安裝 Intel MPI 5.1.3.181。若要使用 SLES 12 HPC VM 上的 Intel MPI，您必須個別安裝它。
+    >[AZURE.NOTE] 已在 Marketplace 中的 CentOS 型 HPC 映像上安裝 Intel MPI 5.1。若要使用 SLES 12 HPC VM 上的 Intel MPI，您必須個別安裝它。
 
 目前，Azure Linux RDMA 驅動程式只會在您從 Azure Marketplace 部署啟用 RDMA 的 SLES 12 HPC 和 CentOS HPC 映像時安裝。您無法在您部署的其他 Linux VM 上安裝驅動程式。
 
@@ -114,4 +114,4 @@ done
 
 * 若要開始在 Linux 上部署和使用 A8 和 A9 執行個體及 RDMA，請參閱[設定 Linux RDMA 叢集以執行 MPI 應用程式](virtual-machines-linux-classic-rdma-cluster.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0810_2016------>

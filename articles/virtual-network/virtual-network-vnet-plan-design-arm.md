@@ -3,7 +3,7 @@
    description="了解如何根據您的隔離、連線和位置需求，在 Azure 中規劃及設計虛擬網路。"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor="tysonn" />
 <tags
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/08/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # 規劃和設計 Azure 虛擬網路
 
@@ -23,14 +23,14 @@
 
 徹底了解 Azure 訂用帳戶、區域和網路資源是成功的關鍵。您可以使用以下的考量事項清單做為起點。一旦了解這些考量，您即可定義網路設計需求。
 
-### 注意事項
+### 考量
 
 在回答底下的規劃問題之前，請先考慮下列各項：
 
 - 您在 Azure 中建立的所有項目都是由一或多個資源所組成。虛擬機器 (VM) 是資源、VM 所用的網路介面卡 (NIC) 是資源、NIC 所用的公用 IP 位址是資源、NIC 所連接的 VNet 是資源。
-- 您可在 [Azure 區域](https://azure.microsoft.com/regions/#services)和訂用帳戶中建立資源。而資源只能連接到存在於相同區域和訂用帳戶中的 VNet。 
+- 您可在 [Azure 區域](https://azure.microsoft.com/regions/#services)和訂用帳戶中建立資源。而資源只能連接到存在於相同區域和訂用帳戶中的 VNet。
 - 您也可以使用 Azure [VPN 閘道](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md)讓 Vnet 彼此連接。您也可以用這種方式連接各區域和訂用帳戶的 Vnet。
-- 您可以使用 Azure 中提供的其中一個[連線選項](../vpn-gateway/vpn-gateway-cross-premises-options.md)將 VNet 連接到內部部署網路。 
+- 您可以使用 Azure 中提供的其中一個[連線選項](../vpn-gateway/vpn-gateway-cross-premises-options.md)將 VNet 連接到內部部署網路。
 - 不同的資源可以聚集在[資源群組](../resource-group-overview.md#resource-groups)中，更容易以單位形式管理資源。資源群組可以包含來自多個區域的資源，只要資源屬於相同的訂用帳戶即可。
 
 ### 定義需求
@@ -81,7 +81,7 @@ VNET 包含下列屬性：
 
 ### 限制
 
-請確定您在設計方案之前，已檢視所有[在 Azure 中與網路服務相關的限制](../azure-subscription-service-limits#networking-limits)。您可以開啟支援票證來提高部分限制。
+請確定您在設計方案之前，已檢視所有[在 Azure 中與網路服務相關的限制](../azure-subscription-service-limits.md#networking-limits)。您可以開啟支援票證來提高部分限制。
 
 ### 角色型存取控制 (RBAC)
 
@@ -100,8 +100,8 @@ VNET 包含下列屬性：
 您應該考慮在下列情況下建立多個 Vnet：
 
 - **需要放在不同 Azure 位置的 VM**。Azure 中的 Vnet 有區域性。不能跨區使用。因此，對於您要託管 VM 的每個 Azure 位置，至少需要有一個 VNet。
-- **工作負載必須彼此完全分隔**。您可以建立個別的 VNet (其甚至使用相同的 IP 位址空間)，以找出彼此不同的工作負載。 
-- **避免平台限制**。如[限制](#Limits)一節所示，單一 VNet 中不能有超過 2048 個 VM。 
+- **工作負載必須彼此完全分隔**。您可以建立個別的 VNet (其甚至使用相同的 IP 位址空間)，以找出彼此不同的工作負載。
+- **避免平台限制**。如[限制](#Limits)一節所示，單一 VNet 中不能有超過 2048 個 VM。
 
 請記住，您在上面看見的限制是依每個區域、每個訂用帳戶而定。這表示您可以使用多個訂用帳戶，以增加能夠在 Azure 中維護的資源限制。您可以使用站對站 VPN 或 ExpressRoute 電路來連接不同訂用帳戶中的 Vnet。
 
@@ -121,7 +121,7 @@ VNET 包含下列屬性：
 
 您應該考慮在下列情況下，在一個 VNet 中建立多個子網路：
 
-- **子網路中的所有 NIC 沒有足夠的私人 IP 位址**。如果您的子網路位址空間包含的 IP 位址不足以支援子網路中的 NIC 數目，則需要建立多個子網路。請記住，Azure 會在每個子網路中保留 5 個不能使用的私人 IP 位址：位址空間的第一個和最後一個位址 (用於子網路位址，以及多點傳送) 以及要內部使用的 3 個位址 (用於 DHCP 和 DNS)。 
+- **子網路中的所有 NIC 沒有足夠的私人 IP 位址**。如果您的子網路位址空間包含的 IP 位址不足以支援子網路中的 NIC 數目，則需要建立多個子網路。請記住，Azure 會在每個子網路中保留 5 個不能使用的私人 IP 位址：位址空間的第一個和最後一個位址 (用於子網路位址，以及多點傳送) 以及要內部使用的 3 個位址 (用於 DHCP 和 DNS)。
 - **安全性**。您可以使用子網路分隔有多層結構的工作負載 VM 群組，然後對這些子網路套用不同的[網路安全性群組 (NSG)](virtual-networks-nsg.md#subnets)。
 - **混合式連線**。您可以使用 VPN 閘道與 ExpressRoute 電路讓 VNet 彼此[連接](../vpn-gateway/vpn-gateway-cross-premises-options.md)，並連接至您的內部部署資料中心。VPN 閘道與 ExpressRoute 電路需要建立自己的子網路。
 - **虛擬應用裝置**。您可以在 Azure VNet 中使用虛擬應用裝置，例如防火牆、WAN 加速器或 VPN 閘道。當您這樣做時，需要[將傳送流量路由](virtual-networks-udr-overview.md)到這些應用裝置，並將它們隔離在自己的子網路中。
@@ -263,6 +263,6 @@ VNET 包含下列屬性：
 - 根據案例[部署虛擬網路](virtual-networks-create-vnet-arm-template-click.md)。
 - 了解如何使 IaaS VM [負載平衡](../load-balancer/load-balancer-overview.md)及[管理多個 Azure 區域的路由傳送](../traffic-manager/traffic-manager-overview.md)。
 - 深入了解[NSG，以及如何規劃和設計](virtual-networks-nsg.md) NSG 方案。
-- 深入了解您的[跨單位和 VNet 連線選項](../vpn-gateway/vpn-gateway-cross-premises-options.md)。  
+- 深入了解您的[跨單位和 VNet 連線選項](../vpn-gateway/vpn-gateway-cross-premises-options.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0810_2016------>

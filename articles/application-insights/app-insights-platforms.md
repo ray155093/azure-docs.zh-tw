@@ -12,12 +12,12 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="03/02/2016"
+	ms.date="08/15/2016"
 	ms.author="awills"/>
 
-# Application Insights：語言、平台和整合
+# 開發人員分析：語言、平台和整合
 
-這些都是我們聽說過的實作，包括一些協力廠商提供的實作。
+這些項目是我們曾聽過的 [Application Insights](app-insights-overview.md) 實作，包括一些協力廠商提供的實作。
 
 ## 語言
 
@@ -38,23 +38,22 @@
 + [ASP.NET](app-insights-asp-net.md)
 + [ASP.NET - 適用於即時應用程式](app-insights-monitor-performance-live-website-now.md)
 + [ASP.NET 5](app-insights-asp-net-five.md)
-+ [Android](https://github.com/Microsoft/ApplicationInsights-Android)
++ [Android](https://github.com/Microsoft/ApplicationInsights-Android) (HockeyApp)
 + [Azure Web Apps 和 VM](../azure-portal/insights-perf-analytics.md)
 + [Azure 雲端服務](app-insights-cloudservices.md)：同時包含 Web 與背景工作角色
 + [Microsoft Dynamics 的 CRM Online](app-insights-sample-mscrm.md)
 + [Docker](app-insights-docker.md)
 + [Glimpse](https://azure.microsoft.com/blog/glimpse-application-insights/)
-+ [iOS](https://github.com/Microsoft/ApplicationInsights-iOS)
++ [iOS](https://github.com/Microsoft/ApplicationInsights-iOS) (HockeyApp)
 + [J2EE](app-insights-java-get-started.md)
 + [J2EE - 適用於即時應用程式](app-insights-java-live.md)
 + [Node.JS](https://www.npmjs.com/package/applicationinsights)
 + [OSX](https://github.com/Microsoft/ApplicationInsights-OSX)
 + [Spring](http://joe.blog.freemansoft.com/2015/12/enabling-microsoft-application-insight.html)
 + [WCF](https://github.com/Microsoft/ApplicationInsights-SDK-Labs/blob/master/WCF/readme.md)
-+ [Windows 市集 C#|VB](app-insights-windows-get-started.md)
-+ [Windows 市集 C++](app-insights-windows-cpp.md)
++ [Windows 市集 C#|VB](app-insights-windows-get-started.md) (HockeyApp)
++ [Windows 市集 C++](app-insights-windows-cpp.md) (HockeyApp)
 + [Windows 桌面應用程式、服務和背景工作角色](app-insights-windows-desktop.md)
-+ [Xamarin](https://github.com/Microsoft/ApplicationInsights-Xamarin)
 + [任何其他項目](#projects)
 
 
@@ -71,7 +70,7 @@
 + [Concrete](https://github.com/fidmor89/appInsights-Concrete)
 + [Drupal](https://github.com/fidmor89/AppInsights-Drupal)
 + [Joomla](https://github.com/fidmor89/AppInsights-Joomla)
-+ [Orchard](https://orchardazureappinsights.codeplex.com) 
++ [Orchard](https://orchardazureappinsights.codeplex.com)
 + [SharePoint](app-insights-sharepoint.md)
 + [WordPress](https://wordpress.org/plugins/application-insights/)
 
@@ -85,4 +84,4 @@
 
 如果您的語言或平台中還沒有 SDK，您會想要建置一個嗎？ 查看 [GitHub 上之 Application Insights SDK 專案](https://github.com/Microsoft/AppInsights-Home)中列出的現有 SDK 程式碼。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0817_2016-->

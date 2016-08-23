@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="Java"
 	ms.topic="get-started-article"
-	ms.date="06/01/2016"
+	ms.date="08/11/2016"
 	ms.author="robmcm"/>
 
 # 在 Azure App Service 中建立 Java Web 應用程式
@@ -24,7 +24,7 @@
 
 > [AZURE.NOTE] 若要完成此教學課程，您需要 Microsoft Azure 帳戶。如果您沒有這類帳戶，可以[啟用自己的 Visual Studio 訂閱者權益]，或是[申請免費試用]。
 >
-> 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure App Service，請移至[試用 App Service]。您可以於該處，在 App Service 中立即建立短期的入門 Web 應用程式；不需信用卡，不需任何承諾。
+> 如果您想在註冊 Azure 帳戶之前先開始使用 Azure App Service，請前往[試用 App Service]。您可以於該處，在 App Service 中立即建立短期的入門 Web 應用程式；不需信用卡，不需任何承諾。
 
 ## Java 應用程式選項
 
@@ -44,7 +44,7 @@
 	
 	* Java 應用程式需要 App Service 未直接支援或資源庫不提供的 Tomcat 或 Jetty 版本。
 	* Java 應用程式會接受 HTTP 要求，但不會以 WAR 形式部署到預先存在的 Web 容器中。
-	* 您想要自行從頭設定 Web 容器。 
+	* 您想要自行從頭設定 Web 容器。
 	* 您想要使用 App Service 所不支援的 Java 版本並自行將它上傳。
 
 	對於這種案例來說，您可以使用 Azure 入口網站建立應用程式，然後以手動提供適當的執行階段檔案。在此情況下，會針對您的 App Service 方案的儲存空間配額計算檔案。如需詳細資訊，請參閱[將自訂 Java Web 應用程式上傳至 Azure]。
@@ -192,4 +192,4 @@
 [tomcat]: ./media/web-sites-java-get-started/tomcat.png
 [jetty]: ./media/web-sites-java-get-started/jetty.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0817_2016-->

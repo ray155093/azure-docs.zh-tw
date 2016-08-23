@@ -14,7 +14,7 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="07/26/2016"
+	ms.date="08/08/2016"
 	ms.author="markvi"/>
 
 
@@ -61,7 +61,7 @@ Azure Active Directory 中的條件式存取控制功能可提供一些簡單的
 
 - **封鎖**︰可依據使用者位置等條件套用存取權。例如，當使用者不是在受信任網路時封鎖存取權。
 
-- **註冊/相容的裝置**：在裝置層級，您可以設定一些原則來強制要求只有已註冊行動裝置管理 (MDM) 的相容裝置才能進行存取。您可以使用 Microsoft Intune 來驗證裝置已註冊且相容。接著，裝置層級的條件式存取即可確保只有符合 MDM 原則的裝置會獲允許存取。
+- **相容裝置**：在裝置層級，您可以設定一些原則，來強制要求只有已加入網域的電腦或已向「行動裝置管理」(MDM) 註冊且符合規範的行動裝置，才能進行存取。Microsoft Intune 可用來檢查裝置相容性並回報給 Azure Active Directory，以在進行應用程式存取時強制要求相容性。
  
 
 ## 應用程式
@@ -69,20 +69,49 @@ Azure Active Directory 中的條件式存取控制功能可提供一些簡單的
 - 可使用這些原則來設定的存取層級可以套用至雲端或內部部署環境中的應用程式和服務。原則會直接套用至網站或服務。然後，就會對瀏覽器存取以及存取服務的應用程式強制執行此原則。您可以在這裡找到可以套用原則的服務清單。
 
 
+## 裝置型條件式存取
+
+您也可以針對已向 Azure AD 註冊且符合特定條件的裝置，限制對應用程式的存取權。這可用來保護組織資源，讓有效使用者無法從下列裝置存取這些資源：
+
+- 不明/未受管理的裝置
+- 不符合貴組織所定義安全性原則的裝置。
+
+您可以根據下列需求來設定原則：
+
+- **已加入網域的裝置** - 您可以設定原則來限制只有已加入內部部署 Active Directory 網域並且也已向 Azure AD 註冊的裝置才能存取。此原則適用於屬於內部部署 Active Directory 網域且已向 Azure AD 註冊的 Windows 桌上型電腦、膝上型電腦或企業平板電腦。如需有關如何設定讓已加入網域的裝置自動向 Azure AD 註冊的詳細資訊，請參閱[如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊](active-directory-conditional-access-automatic-device-registration-setup.md)。
+
+- **相容裝置** - 您可以設定原則來限制只有在目錄中被管理系統標示為「相容」的裝置才能存取。此原則可確保只有符合安全性原則 (例如在裝置上強制執行檔案加密) 的裝置會獲允許存取。此原則可用來限制來自下列裝置的存取︰
+
+    - 由部署在混合式組態中的 System Center Configuration Manager 2016 所管理的「已加入網域的 Windows 裝置」。
+
+    - 由 Microsoft Intune 或支援的第三方「行動裝置管理」(MDM) 系統所管理的「Windows 10 行動工作或個人裝置」。
+
+    - 由 Microsoft Intune 所管理的「iOS 和 Android 裝置」。
+
+
+使用者如果存取受裝置型 CA 原則保護的應用程式，必須從符合此原則的裝置進行存取。如果是從不符合此原則的裝置進行存取，則會遭到拒絕。
+
+如需有關如何在 Azure AD 中設定裝置型 CA 原則的資訊，請參閱[如何設定裝置型條件式存取原則來控制對 Azure Active Directory 連線應用程式的存取](active-directory-conditional-access-policy-connected-applications.md)。
+
+## Azure Active Directory 條件式存取的文章索引
   
-## 條件式存取 - 內容對應  
 下列內容對應列出進一步了解在您目前的部署中啟用條件式存取所需參考的文件
 
 
 ### MFA 和位置原則
 
 - [根據群組、位置和 MFA 原則開始使用 Azure AD 連線應用程式的條件式存取](active-directory-conditional-access-azuread-connected-apps.md)
+
 - [支援何種應用程式](active-directory-conditional-access-supported-apps.md)
 
 
 ### 裝置原則
 
-[要求使用 Microsoft Intune 以協助保護資料](https://docs.microsoft.com/intune/deploy-use/use-remote-wipe-to-help-protect-data-using-microsoft-intune)
+- [如何設定裝置型條件式存取原則來控制對 Azure Active Directory 連線應用程式的存取](active-directory-conditional-access-policy-connected-applications.md)
+
+- [如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊](active-directory-conditional-access-automatic-device-registration-setup.md)
+
+- [要求使用 Microsoft Intune 以協助保護資料](https://docs.microsoft.com/intune/deploy-use/use-remote-wipe-to-help-protect-data-using-microsoft-intune)
 
 
 ### 根據登入風險保護資源
@@ -94,4 +123,4 @@ Azure Active Directory 中的條件式存取控制功能可提供一些簡單的
 - [條件式存取常見問題集](active-directory-conditional-faqs.md)
 - [技術參考](active-directory-conditional-access-technical-reference.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016------>

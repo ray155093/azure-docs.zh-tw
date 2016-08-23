@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="07/22/2016"
+   ms.date="08/05/2016"
    ms.author="seanmck"/>
 
 
@@ -167,9 +167,17 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 
 1. 在 ASP.NET 專案中，新增對含有 `ICounter` 介面之類別庫的參考。
 
-2. 將 Microsoft.ServiceFabric.Services 封裝新增至 ASP.NET 專案，就如同先前對類別庫專案所做的一樣。這會提供 `ServiceProxy` 類別。
+2. 從 [建置] 功能表中，開啟 [組態管理員]。您應該會看到如下的結果：
 
-3. 在 **Controllers** 資料夾中，開啟 `ValuesController` 類別。請注意，`Get` 方法目前只會傳回 "value1" 和 "value2" 的硬式編碼字串陣列，這符合我們稍早在瀏覽器中所見的內容。使用下列程式碼來取代此實作：
+    ![類別庫顯示為 AnyCPU 的組態管理員][vs-configuration-manager]
+
+    請注意，類別庫專案 **MyStatefulService.Interface** 是設定為針對 [任何 CPU] 來建置。若要正確使用 Service Fabric，它的目標必須明確鎖定 x64。按一下 [平台] 下拉式清單、選擇 [新增]，然後建立 x64 平台組態。
+
+    ![為類別庫建立新平台][vs-create-platform]
+
+3. 將 Microsoft.ServiceFabric.Services 封裝新增至 ASP.NET 專案，就如同先前對類別庫專案所做的一樣。這會提供 `ServiceProxy` 類別。
+
+4. 在 **Controllers** 資料夾中，開啟 `ValuesController` 類別。請注意，`Get` 方法目前只會傳回 "value1" 和 "value2" 的硬式編碼字串陣列，這符合我們稍早在瀏覽器中所見的內容。使用下列程式碼來取代此實作：
 
     ```c#
     using MyStatefulService.Interfaces;
@@ -198,7 +206,7 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 
     一旦擁有 Proxy，我們只需叫用 `GetCountAsync` 方法並傳回其結果。
 
-4. 再次按 F5 以執行修改過的應用程式。像之前一樣，Visual Studio 會自動啟動瀏覽器並瀏覽至 Web 專案的根目錄。新增 "api/values" 路徑，您應該會看到傳回的目前計數器值。
+5. 再次按 F5 以執行修改過的應用程式。像之前一樣，Visual Studio 會自動啟動瀏覽器並瀏覽至 Web 專案的根目錄。新增 "api/values" 路徑，您應該會看到傳回的目前計數器值。
 
     ![在瀏覽器中顯示的具狀態計數器值][browser-aspnet-counter-value]
 
@@ -240,9 +248,12 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 [vs-add-class-library-reference]: ./media/service-fabric-add-a-web-frontend/vs-add-class-library-reference.png
 [vs-services-nuget-package]: ./media/service-fabric-add-a-web-frontend/vs-services-nuget-package.png
 [browser-aspnet-counter-value]: ./media/service-fabric-add-a-web-frontend/browser-aspnet-counter-value.png
+[vs-configuration-manager]: ./media/service-fabric-add-a-web-frontend/vs-configuration-manager.png
+[vs-create-platform]: ./media/service-fabric-add-a-web-frontend/vs-create-platform.png
+
 
 <!-- external links -->
 [dotnetcore-install]: https://www.microsoft.com/net/core#windows
-[api-management-landing-page]: https://azure.microsoft.com/zh-TW/services/api-management/
+[api-management-landing-page]: https://azure.microsoft.com/services/api-management/
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016------>

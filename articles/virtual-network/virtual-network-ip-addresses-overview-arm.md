@@ -3,7 +3,7 @@
    description="了解 Azure 資源管理員中的公用和私人 IP 位址"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor="tysonn"
    tags="azure-resource-manager" />
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="04/27/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 # Azure 中的 IP 位址
 您可以將 IP 位址指派給 Azure 資源，來與其他 Azure 資源、內部部署網路和網際網路進行通訊。您可以在 Azure 中使用兩種類型的 IP 位址：
@@ -127,7 +127,7 @@ Azure 資源可透過公用 IP 位址來與網際網路和 Azure 公眾對應服
 
 加諸於 IP 位址上的限制，如在 Azure 中的完整[網路限制](azure-subscription-service-limits.md#networking-limits)所示。這些限制是針對每一區域和每一訂用帳戶。您可以[連絡支援人員](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)，以根據您的業務需求將預設上限調升到最高上限。
 
-## 定價
+## 價格
 
 在大多數情況下，公用 IP 位址是免費的。使用額外和 (或) 靜態公用 IP 位址則會有少許費用。請務必了解[公用 IP 的定價結構](https://azure.microsoft.com/pricing/details/ip-addresses/)。
 
@@ -136,4 +136,4 @@ Azure 資源可透過公用 IP 位址來與網際網路和 Azure 公眾對應服
 - [使用範本部署使用靜態公用 IP 的 VM](virtual-network-deploy-static-pip-arm-template.md)
 - 使用 Azure 入口網站[部署使用靜態私人 IP 位址的 VM](virtual-networks-static-private-ip-arm-pportal.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0810_2016------>

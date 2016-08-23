@@ -19,7 +19,7 @@
 # 企業整合套件概觀
 
 ## 何謂企業整合套件？
-企業整合套件是 Microsoft 的雲端解決方案，可順暢地啟用企業對企業 (B2B) 通訊。此套件會使用業界標準通訊協定，包括 [AS2](./app-service-logic-enterprise-integration-as2.md)、[X12](./app-service-logic-enterprise-integration-x12.md) 和 EDIFACT (即將推出)，在商業夥伴之間交換訊息。您可以選擇性地使用加密和數位簽章來保護訊息。
+企業整合套件是 Microsoft 的雲端解決方案，可順暢地啟用企業對企業 (B2B) 通訊。此套件會使用業界標準通訊協定，包括 [AS2](./app-service-logic-enterprise-integration-as2.md)、[X12](./app-service-logic-enterprise-integration-x12.md) 和 [EDIFACT](./app-service-logic-enterprise-integration-edifact.md)，在商業夥伴之間交換訊息。您可以選擇性地使用加密和數位簽章來保護訊息。
 
 此套件可讓使用不同通訊協定和格式的組織，透過將不同格式轉換為雙方組織系統都可解譯並採取動作的格式，以電子方式交換訊息。
 
@@ -61,4 +61,4 @@
 - [XML 訊息驗證](./app-service-logic-enterprise-integration-xml.md "了解如何使用 Logic Apps 驗證 XML 訊息")
 - [XML 轉換](./app-service-logic-enterprise-integration-transform.md "了解企業整合對應")
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016------>

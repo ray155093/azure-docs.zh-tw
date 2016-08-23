@@ -1,10 +1,10 @@
 <properties
    pageTitle="物聯網安全性概觀 | Microsoft Azure"
-   description="Azure 物聯網 (IoT) 服務提供廣泛的功能。本文章協助您了解如何在 Azure 中保護您的 IoT 解決方案。"
+   description=" Azure 物聯網 (IoT) 服務提供廣泛的功能。本文章協助您了解如何在 Azure 中保護您的 IoT 解決方案。"
    services="security"
    documentationCenter="na"
    authors="TomShinder"
-   manager="StevenPo"
+   manager="MBaldwin"
    editor="TomSh"/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/22/2016"
+   ms.date="08/09/2016"
    ms.author="terrylan"/>
 
 # 物聯網安全性概觀
@@ -68,4 +68,4 @@ IoT 使得全球企業面臨獨特的安全性、隱私權及相容性挑戰。�
 - [IoT 解決方案部署人員](../iot-suite/iot-security-best-practices.md#iot-solution-deployer)
 - [IoT 解決方案操作人員](../iot-suite/iot-security-best-practices.md#iot-solution-operator)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016------>

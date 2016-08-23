@@ -3,7 +3,7 @@
    description="了解如何在傳統部署模型中使用 PowerShell 來控制 VNet 中的路由"
    services="virtual-network"
    documentationCenter="na"
-   authors="telmosampaio"
+   authors="jimdial"
    manager="carmonm"
    editor=""
    tags="azure-service-management"
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/02/2016"
-   ms.author="telmos" />
+   ms.author="jdial" />
 
 #透過 PowerShell 控制路由和使用虛擬應用裝置 (傳統)
 
@@ -26,7 +26,6 @@
 [AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
 本文涵蓋之內容包括傳統部署模型。
-
 [AZURE.INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
 以下的 Azure PowerShell 命令範例假設您已根據上述案例建立簡單的環境。如果您想要執行如本文件中所示的命令，請建立[使用 PowerShell 建立 VNet (傳統)](virtual-networks-create-vnet-classic-netcfg-ps.md) 中所示的環境。
@@ -42,7 +41,7 @@
 			-Location uswest `
 			-Label "Route table for front end subnet"
 
-	Output:
+	輸出：
 
 		Name         Location   Label                          
 		----         --------   -----                          
@@ -55,7 +54,7 @@
 			-NextHopType VirtualAppliance `
 			-NextHopIpAddress 192.168.0.4
 
-	Output:
+	輸出：
 
 		Name     : UDR-FrontEnd
 		Location : West US
@@ -101,7 +100,7 @@
 		Get-AzureVM -Name FW1 -ServiceName TestRGFW `
 			| Get-AzureIPForwarding
 
-	Output:
+	輸出：
 
 		Disabled
 
@@ -110,4 +109,4 @@
 		Get-AzureVM -Name FW1 -ServiceName TestRGFW `
 			| Set-AzureIPForwarding -Enable
 
-<!----HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0810_2016------>

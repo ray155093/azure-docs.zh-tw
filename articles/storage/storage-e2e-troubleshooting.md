@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="05/09/2016"
+	ms.date="08/03/2016"
 	ms.author="robinsh"/>
 
 
@@ -20,7 +20,7 @@
 
 [AZURE.INCLUDE [storage-selector-portal-e2e-troubleshooting](../../includes/storage-selector-portal-e2e-troubleshooting.md)]
 
-## 概觀
+## Overview
 
 診斷與疑難排解是透過 Microsoft Azure 儲存體建置和支援用戶端應用程式的關鍵技術。由於 Azure 應用程式的分散式本質，診斷和疑難排解錯誤和效能問題可能會比在傳統環境中更為複雜。
 
@@ -145,14 +145,14 @@ Azure 儲存體作業可能會傳回大於 299 的 HTTP 狀態碼為其正常功
 
 1. 安裝 [Fiddler](http://www.telerik.com/download/fiddler)。
 2. 啟動 Fiddler。
-2. 選取 [工具] | [Fiddler 選項]。
+2. 選取 [工具]| Fiddler Options**.
 3. 在 [選項] 對話方塊中，確定 [擷取 HTTPS CONNECT] 和 [解密 HTTPS 流量] 都已選取，如下所示。
 
 ![設定 Fiddler 選項](./media/storage-e2e-troubleshooting/fiddler-options-1.png)
 
 在本教學課程中，先在 Message Analyzer 中收集並儲存網路追蹤，然後建立分析工作階段以分析追蹤和記錄檔。若要在 Message Analyzer 中收集網路追蹤：
 
-1. 在 Message Analyzer 中，選取 [檔案] | [快速追蹤] | [未加密的 HTTPS]。
+1. 在 Message Analyzer 中，選取 [檔案]| Quick Trace | Unencrypted HTTPS**.
 2. 追蹤會立即開始。選取 [停止] 以停止追蹤，我們即可將它設定為只追蹤儲存體流量。
 3. 選取 [編輯] 以編輯追蹤工作階段。
 4. 選取 [Microsoft-Pef-WebProxy] ETW 提供者右邊的 [設定] 連結。
@@ -201,7 +201,7 @@ Message Analyzer 包含 Azure 儲存體資產，可協助您分析伺服器、�
 
 1. 從 Microsoft 下載中心下載 [Message Analyzer](http://www.microsoft.com/download/details.aspx?id=44226)，並執行安裝程式。
 2. 啟動 Message Analyzer。
-3. 從 [工具] 功能表，選取 [資產管理員]。在 [資產管理員] 對話方塊中，選取 [下載]，然後篩選 **Azure 儲存體**。您會看到 Azure 儲存體資產，如下圖所示。
+3. 從 [工具] 功能表，選取 [資產管理員]。在 [資產管理員] 對話方塊中，選取 [下載]，然後依據 [Azure 儲存體] 篩選。您會看到 Azure 儲存體資產，如下圖所示。
 4. 按一下 [同步處理所有顯示的項目] 以安裝 Azure 儲存體資產。可用的資產包括：
 	- **Azure 儲存體色彩規則**：Azure 儲存體色彩規則可讓您定義特殊篩選條件，以使用色彩、文字和字型樣式來反白顯示在追蹤中包含特定資訊的訊息。
 	- **Azure 儲存體圖表**：Azure 儲存體圖表是圖形伺服器記錄資料的預先定義的圖表。請注意，若要在此時使用 Azure 儲存體圖表，您可能只要將伺服器記錄檔載入到 [分析方格]。
@@ -342,18 +342,18 @@ Message Analyzer 會找出並選取搜尋準則符合用戶端要求識別碼的
 | 佇列上未預期的訊息傳遞延遲 | AzureStorageClientDotNetV4.Description 包含「正在重試失敗的作業」。 | 用戶端 |
 | PercentThrottlingError 的 HTTP 增加 | HTTP.Response.StatusCode == 500 &#124;&#124; HTTP.Response.StatusCode == 503 | 網路 |
 | PercentTimeoutError 增加 | HTTP.Response.StatusCode == 500 | 網路 |
-| PercentTimeoutError 增加 (全部) |    *StatusCode == 500 | All | 
-| Increase in PercentNetworkError | AzureStorageClientDotNetV4.EventLogEntry.Level < 2 | Client | 
-| HTTP 403 (Forbidden) messages | HTTP.Response.StatusCode == 403 | Network | 
-| HTTP 404 (Not found) messages | HTTP.Response.StatusCode == 404 | Network | 
-| 404 (all) | *StatusCode == 404 | All | 
-| Shared Access Signature (SAS) authorization issue | AzureStorageLog.RequestStatus == "SASAuthorizationError" | Network | 
-| HTTP 409 (Conflict) messages | HTTP.Response.StatusCode == 409 | Network | 
-| 409 (all) | *StatusCode == 409 | All | 
-| Low PercentSuccess or analytics log entries have operations with transaction status of ClientOtherErrors | AzureStorageLog.RequestStatus == "ClientOtherError" | Server | 
-| Nagle Warning | ((AzureStorageLog.EndToEndLatencyMS - AzureStorageLog.ServerLatencyMS) > (AzureStorageLog.ServerLatencyMS * 1.5)) and (AzureStorageLog.RequestPacketSize <1460) and (AzureStorageLog.EndToEndLatencyMS - AzureStorageLog.ServerLatencyMS >= 200) | Server | 
-| Range of time in Server and Network logs | #Timestamp >= 2014-10-20T16:36:38 and #Timestamp <= 2014-10-20T16:36:39 | Server, Network | 
-| Range of time in Server logs | AzureStorageLog.Timestamp >= 2014-10-20T16:36:38 and AzureStorageLog.Timestamp <= 2014-10-20T16:36:39 | Server |
+| PercentTimeoutError 增加 (全部) | *StatusCode == 500 | 全部 |
+| PercentNetworkError 增加 | AzureStorageClientDotNetV4.EventLogEntry.Level < 2 | 用戶端 |
+| HTTP 403 (禁止) 訊息 | HTTP.Response.StatusCode == 403 | 網路 |
+| HTTP 404 (找不到) 訊息 | HTTP.Response.StatusCode == 404 | 網路 |
+| 404 (全部) | *StatusCode == 404 | 全部 |
+| 共用存取簽章 (SAS) 授權問題 | AzureStorageLog.RequestStatus == "SASAuthorizationError" | 網路 |
+| HTTP 409 (衝突) 訊息 | HTTP.Response.StatusCode == 409 | 網路 |
+| 409 (全部) | *StatusCode == 409 | 全部 |
+| 低 PercentSuccess，或是分析記錄項目內含具有 ClientOtherErrors 交易狀態的作業 | AzureStorageLog.RequestStatus == "ClientOtherError" | 伺服器 |
+| Nagle 警告 | ((AzureStorageLog.EndToEndLatencyMS - AzureStorageLog.ServerLatencyMS) > (AzureStorageLog.ServerLatencyMS * 1.5)) 和 (AzureStorageLog.RequestPacketSize <1460) 和 (AzureStorageLog.EndToEndLatencyMS - AzureStorageLog.ServerLatencyMS >= 200) | 伺服器 |
+| 伺服器和網路記錄檔中的時間範圍 | #Timestamp >= 2014-10-20T16:36:38 和 #Timestamp <= 2014-10-20T16:36:39 | 伺服器、網路 |
+| 伺服器記錄檔中的時間範圍 | AzureStorageLog.Timestamp >= 2014-10-20T16:36:38 和 AzureStorageLog.Timestamp <= 2014-10-20T16:36:39 | 伺服器 |
 
 
 ## 後續步驟
@@ -366,4 +366,4 @@ Message Analyzer 會找出並選取搜尋準則符合用戶端要求識別碼的
 - [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 - [Microsoft Message Analyzer 操作指南](http://technet.microsoft.com/library/jj649776.aspx)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0810_2016------>

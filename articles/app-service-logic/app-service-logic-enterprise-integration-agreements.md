@@ -19,7 +19,7 @@
 
 # 了解合約與企業整合套件
 
-## 概觀
+## Overview
 合約是企業對企業 (B2B) 通訊的基石，讓商務實體可使用業界標準通訊協定順暢地進行通訊。
 
 ## 什麼是合約？
@@ -30,7 +30,7 @@
 
 - [AS2](./app-service-logic-enterprise-integration-as2.md)
 - [X12](./app-service-logic-enterprise-integration-x12.md)
-- [EDIFACT](./app-service-logic-enterprise-integration-edifact.md) (敬請期待)
+- [EDIFACT](./app-service-logic-enterprise-integration-edifact.md)
 
 ## 為什麼要使用合約
 以下是一些使用合約的常見優點：
@@ -65,4 +65,4 @@
 ## 後續步驟
 - [建立 AS2 合約](./app-service-logic-enterprise-integration-as2.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0810_2016------>

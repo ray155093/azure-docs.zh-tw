@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/19/2016"
+	ms.date="08/08/2016"
 	ms.author="billmath"/>
 
 # 混合式身分識別所需的連接埠和通訊協定
@@ -84,4 +84,4 @@ Azure 服務匯流排|5671 (TCP/UDP)| 輸出
 ### 6b - 適用於 (AD FS/Sync) 和 Azure AD 之 Azure AD Connect Health 代理程式的端點
 如需端點的清單，請參閱 [Azure AD Connect Health 代理程式的＜需求＞一節](active-directory-aadconnect-health.md#requirements)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016------>

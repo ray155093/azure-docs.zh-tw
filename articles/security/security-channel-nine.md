@@ -4,7 +4,7 @@
    services="security"
    documentationCenter="na"
    authors="TomShinder"
-   manager="StevenPo"
+   manager="MBaldwin"
    editor="TomSh"/>
 
 <tags
@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/19/2016"
+   ms.date="08/09/2016"
    ms.author="terrylan"/>
 
 # Channel 9 上的 Azure 安全性影片
 
-[Channel 9](https://channel9.msdn.com/) 是一個社群。他們讓我們產品的工作人員到幕前，並將他們與使用我們產品的人員連繫。
+[Channel 9](https://channel9.msdn.com/) 是讓產品幕後功臣露面，並讓他們與客戶保持聯繫的社群。
 
 他們認為並且高興軟體有不錯的未來。Channel 9 是參與進行中交談的社群。
 
@@ -52,20 +52,28 @@ Jack Richins 教導 [Scott](https://channel9.msdn.com/Niners/Glucose) 如何輕�
 
 [如何在 DevTest 實驗室中設定安全性](https://channel9.msdn.com/Blogs/Windows-Azure/How-to-set-security-in-your-DevTest-Lab)
 
-身為您實驗室的擁有者，您可以透過兩個實驗室角色來保護實驗室存取︰擁有者和 DevTest 實驗室使用者。擁有者角色中的人員具有實驗室的完整存取權，而 DevTest 實驗室使用者角色中的人員則具有有限存取權。在本影片中，我們將示範如何將上述任一角色的人員新增至實驗室。
+身為您實驗室的擁有者，您可以透過兩個實驗室角色來保護實驗室存取︰擁有者和 DevTest 實驗室使用者。擁有者角色中的人員具有實驗室的完整存取權，而 DevTest 實驗室使用者角色中的人員則具有有限存取權。在本影片中，我們會示範如何將上述任一角色的人員新增至實驗室。
 
 [管理 Azure 應用程式的密碼](https://channel9.msdn.com/events/Build/2016/P456)
 
-您部署在 Azure 上的每個重大應用程式都具有重要密碼 - 連接字串、憑證、金鑰。管理這些項目的愚蠢錯誤會導致嚴重後果 - 遺漏、中斷、法規遵循違規。如多個最近的調查指出，愚蠢的錯誤會造成比敵人 4 倍以上的資料漏洞。在本課程中，我們將討論一些管理重要應用程式秘密的最佳作法。這些看起來可能就像一般常識，但許多開發人員都忽略它們。我們也會討論如何運用 Azure 金鑰保存庫來實作這些最佳作法。額外的好處在於，遵循這些作法也可協助您示範符合標準 (例如 SOC) 的法規遵循。本課程的前十分鐘是等級 100，而且適用於您在任何平台開發的任何雲端應用程式。其餘部分是等級 200-300，並著重於您在 Azure 平台上建置的應用程式。
+您部署在 Azure 上的每個重大應用程式都具有重要密碼 - 連接字串、憑證、金鑰。在管理這些密碼時若犯下愚蠢錯誤，將會導致嚴重後果 - 遺漏、中斷、法規遵循違規。如多個最近的調查指出，愚蠢的錯誤會造成敵人所致四倍以上的資料漏洞。在本課程中，我們會討論一些管理重要應用程式秘密的最佳作法。這些最佳作法看起來可能就像一般常識，但許多開發人員都忽略它們。我們也會討論如何使用 Azure 金鑰保存庫來實作這些最佳作法。額外的好處在於，遵循這些作法可協助您示範符合標準 (例如 SOC) 的法規遵循。本課程的前 10 分鐘是等級 100，而且適用於您在任何平台開發的任何雲端應用程式。其餘部分是等級 200-300，並著重於您在 Azure 平台上建置的應用程式。
 
 [使用網路安全性群組保護 Azure 虛擬網路 (Narayan Annamalai)](https://channel9.msdn.com/Shows/Azure-Friday/Sucruing-your-Azure-Virtual-Network-using-Network-ACLs-with-Narayan-Annamalai)
 
-資深專案經理 Narayan Annamalai 教導 Scott 如何在 Azure 虛擬網路內使用網路安全性群組。您可以透過子網路和網路來建立 Azure 內物件的控制存取權！ 您將了解如何控制存取權，以及如何使用 PowerShell 在 Azure 內建立群組。
+資深專案經理 Narayan Annamalai 教導 Scott 如何在 Azure 虛擬網路內使用網路安全性群組。您可以透過子網路和網路來建立 Azure 內物件的控制存取權！ 您會了解如何控制存取權，以及如何使用 PowerShell 在 Azure 內建立群組。
 
-[Azure AD Privileged Identity Management：安全性精靈、警示和檢閱](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Azure-AD-Privileged-Identity-Management-Security-Wizard-Alerts-Reviews) Azure Active Directory (AD) Privileged Identity Management 是一種進階功能，可讓您探索、限制和監視特權身分識別及其對資源的存取，但也會在需要時，及時依照需要執行系統管理存取權。了解︰管理 Office 365 工作負載特定系統管理角色的保護；設定特權角色啟用的 Azure Multi-Factor Authentication (MFA)；測量與改善您租用戶安全性情勢；監視和修正安全性調查結果；檢閱誰基於定期重新認證工作流程而需要保留特權角色。
+[Azure AD Privileged Identity Management：安全性精靈、警示、檢閱](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Azure-AD-Privileged-Identity-Management-Security-Wizard-Alerts-Reviews)
+
+Azure Active Directory (AD) Privileged Identity Management 是高階功能，可讓您探索、限制和監視特殊權限的身分識別和其對資源的存取。此功能也可在需要時強制執行隨選的即時管理存取。了解：
+
+- 管理 Office 365 工作負載特定系統管理角色的保護
+- 設定 Azure Multi-Factor Authentication (MFA) 以啟用特殊權限的角色
+- 測量和改善您的租用戶安全性狀態
+- 監視和修正安全性調查結果
+- 檢閱誰基於定期重新認證工作流程而需要保留特殊權限角色
 
 [Azure 金鑰保存庫 (Amit Bapat)](https://channel9.msdn.com/Shows/Azure-Friday/Azure-Key-Vault-with-Amit-Bapat)
 
 Amit Bapat 向 Scott 介紹 Azure 金鑰保存庫。有了 Azure 金鑰保存庫，您即可加密金鑰和小型密碼，例如存放在硬體安全性模組 (HSM) 中且使用金鑰的密碼。它是 Microsoft Azure 的雲端型、硬體型密碼管理！
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0810_2016------>

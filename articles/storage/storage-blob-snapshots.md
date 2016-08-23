@@ -13,22 +13,60 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/27/2016"
+	ms.date="08/03/2016"
 	ms.author="tamram"/>
 
 # 建立 Blob 快照集
 
-## 概觀
+## Overview
 
-快照集是在某個點時間取得的唯讀 Blob 版本。快照集對於備份 Blob 非常有用。建立快照集之後，您便可加以讀取、複製或刪除，但無法修改。
+快照集是在某個點時間取得的唯讀 Blob 版本。快照集對於備份 Blob 非常有用。建立快照集後，您便可加以讀取、複製或刪除，但無法加以修改。
 
-Blob 的快照集名稱與從中擷取該快照集的基底 Blob 名稱相同，其中並附加了 [日期時間] 值，以表示擷取快照當時的時間。例如，如果分頁 Blob URI 為 `http://storagesample.core.blob.windows.net/mydrives/myvhd`，則快照集 URI 將會類似 `http://storagesample.core.blob.windows.net/mydrives/myvhd?snapshot=2011-03-09T01:42:34.9360000Z`。Blob 的所有快照集會共用其 URI，而且只能透過附加的 [日期時間] 值進行區分。
+Blob 的快照集與其基底 Blob 相同，除了 Blob URI 附加了 [日期時間] 值以表示擷取快照當時的時間。例如，如果分頁 Blob URI 為 `http://storagesample.core.blob.windows.net/mydrives/myvhd`，則快照集 URI 類似於 `http://storagesample.core.blob.windows.net/mydrives/myvhd?snapshot=2011-03-09T01:42:34.9360000Z`。
 
-Blob 可包含任意數目的快照集。系統會保存快照集，直到您將它們明確刪除為止。請注意，快照集必須要有其來源 Blob 才能存在。您可以列舉與 Blob 相關聯的快照集，以追蹤目前的快照集。
+> [AZURE.NOTE] 所有快照集會共用基底 blob 的 URI。基底 blob 與快照集之間的唯一差別在於附加的 **DateTime** 值。
 
-當您建立 Blob 的快照集時，Blob 的系統屬性都會使用相同值複製到快照集中。
+Blob 可包含任意數目的快照集。系統會保存快照集，直到您將它們明確刪除為止。快照集必須有其基底 Blob 才能存在。您可以列舉與基底 Blob 相關聯的快照集，以追蹤目前的快照集。
+
+當您建立 Blob 的快照集時，Blob 的系統屬性都會使用相同值複製到快照集中。基底 blob 的中繼資料也會複製到快照集，除非您在建立快照集時為其指定個別的中繼資料。
 
 任何與基底 Blob 相關聯的租用不會影響快照集。您無法取得快照集上的租用。
+
+## 建立快照集
+
+下列程式碼範例顯示如何在 .NET 中建立快照集。此範例會在建立快照集時為其指定個別的中繼資料。
+
+    private static async Task CreateBlockBlobSnapshot(CloudBlobContainer container)
+    {
+        // Create a new block blob in the container.
+        CloudBlockBlob baseBlob = container.GetBlockBlobReference("sample-base-blob.txt");
+
+        // Add blob metadata.
+        baseBlob.Metadata.Add("ApproxBlobCreatedDate", DateTime.UtcNow.ToString());
+
+        try
+        {
+            // Upload the blob to create it, with its metadata.
+            await baseBlob.UploadTextAsync(string.Format("Base blob: {0}", baseBlob.Uri.ToString()));
+
+            // Sleep 5 seconds.
+            System.Threading.Thread.Sleep(5000);
+
+            // Create a snapshot of the base blob.
+            // Specify metadata at the time that the snapshot is created to specify unique metadata for the snapshot.
+            // If no metadata is specified when the snapshot is created, the base blob's metadata is copied to the snapshot.
+            Dictionary<string, string> metadata = new Dictionary<string, string>();
+            metadata.Add("ApproxSnapshotCreatedDate", DateTime.UtcNow.ToString());
+            await baseBlob.CreateSnapshotAsync(metadata, null, null, null);
+        }
+        catch (StorageException e)
+        {
+            Console.WriteLine(e.Message);
+            Console.ReadLine();
+            throw;
+        }
+    }
+ 
 
 ## 複製快照集
 
@@ -38,7 +76,7 @@ Blob 可包含任意數目的快照集。系統會保存快照集，直到您將
 
 - 您可以將快照集複製到不同名稱的目的地 Blob。所產生的目的地 Blob 會是一個可寫入的 Blob，而不是快照集。
 
-- 複製來源 Blob 時，不會將來源 Blob 的任何快照集複製到目的地。使用某個複本覆寫目的地 Blob 時，任何與目的地 Blob 覆寫期間相關聯的快照集都會讓名稱保持不變。
+- 複製來源 Blob 時，不會將來源 Blob 的任何快照集複製到目的地。使用某個複本覆寫目的地 Blob 時，與原始目的地 Blob 相關聯的所有快照集都會保持不變。
 
 - 當您建立區塊 Blob 的快照集時，該 Blob 的認可區塊清單也會複製到快照集。系統不會複製任何未認可的區塊。
 
@@ -48,22 +86,27 @@ Blob 可包含任意數目的快照集。系統會保存快照集，直到您將
 
 ## 刪除快照集
 
-除非快照集也會一併刪除，否則無法刪除具有這些快照集的 Blob。您可以個別刪除快照集，或告知儲存體服務在刪除來源 Blob 時刪除所有快照集。如果您嘗試刪除仍具有快照集的 Blob，您將會收到錯誤訊息。
+除非快照集也一併刪除，否則您無法刪除具有快照集的 Blob。您可以個別刪除快照集，或指定在刪除來源 Blob 時刪除所有的快照集。如果您嘗試刪除仍具有快照集的 Blob，則會發生錯誤。
+
+下列程式碼範例示範如何在 .NET 中刪除 blob 及其快照集，其中 `blockBlob` 是 **CloudBlockBlob** 類型的變數：
+
+	await blockBlob.DeleteIfExistsAsync(DeleteSnapshotsOption.IncludeSnapshots, null, null, null);
 
 ## 快照集與 Azure 進階儲存體
+
 搭配使用快照集與高階儲存體需遵循下列規則：
 
-- 進階儲存體帳戶中每個分頁 Blob 的快照集數目限制為 100 個。如果超出該限制，快照集 Blob 作業就會傳回錯誤碼 409 (**SnapshotCountExceeded**)。
+- 進階儲存體帳戶中每個分頁 Blob 的快照集數目上限為 100 個。如果超出該限制，快照集 Blob 作業就會傳回錯誤碼 409 (**SnapshotCountExceeded**)。
 
-- 進階儲存體帳戶中分頁 Blob 的快照集可以每十分鐘擷取一次。如果超出該頻率，快照集 Blob 作業就會傳回錯誤碼 409 (**SnaphotOperationRateExceeded**)。
+- 您可以每 10 分鐘擷取一次進階儲存體帳戶中分頁 Blob 的快照集。如果超出該頻率，快照集 Blob 作業就會傳回錯誤碼 409 (**SnaphotOperationRateExceeded**)。
 
-- 不支援透過 Get Blob 來讀取進階儲存體帳戶中分頁 Blob 的快照集。在進階儲存體帳戶的快照集上呼叫 Get Blob，會傳回錯誤碼 400 (**InvalidOperation**)。不過，支援針對快照集呼叫取得 Blob 屬性和取得 Blob 中繼資料。
+- 您無法呼叫「取得 Blob」來讀取進階儲存體帳戶中分頁 Blob 的快照集。在進階儲存體帳戶的快照集上呼叫 Get Blob，會傳回錯誤碼 400 (**InvalidOperation**)。不過，您可以對進階儲存體帳戶中的快照集呼叫「取得 Blob 屬性」和「取得 Blob 中繼資料」。
 
 - 若要讀取快照集，您可以使用複製 Blob 作業，將快照集複製到帳戶中的其他分頁 Blob。複製作業的目的地 Blob 不可以包含任何現有的快照集。如果目的地 Blob 具有快照集，則 Copy Blob 作業會傳回錯誤碼 409 (**SnapshotsPresent**)。
 
 ## 傳回快照集的絕對 URI
 
-這個 C# 程式碼範例會建立新的快照集，並寫出主要位置的絕對 URI。
+這個 C# 程式碼範例會建立快照集，並寫出主要位置的絕對 URI。
 
     //Create the blob service client object.
     const string ConnectionString = "DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key";
@@ -83,8 +126,6 @@ Blob 可包含任意數目的快照集。系統會保存快照集，直到您將
     CloudBlockBlob blobSnapshot = blob.CreateSnapshot();
     Console.WriteLine(blobSnapshot.SnapshotQualifiedStorageUri.PrimaryUri);
 
-
-
 ## 了解快照集產生費用的方式
 
 建立快照集 (即 Blob 的唯讀複本) 可能會為您的帳戶產生額外的資料儲存體費用。設計您的應用程式時，請務必留意產生這些費用的可能方式，以便將不必要的成本降至最低。
@@ -93,7 +134,7 @@ Blob 可包含任意數目的快照集。系統會保存快照集，直到您將
 
 下列清單包含建立快照集時要考量的重點。
 
-- 無論唯一的區塊或分頁是在 Blob 或快照集中，都會產生費用。在您更新快照集所依據的 Blob 之前，您的帳戶不會針對與該 Blob 相關聯的快照集產生額外費用。在您更新基底 Blob 之後，它就會與其快照集分離，而系統將針對每個 Blob 或快照集中唯一的區塊或分頁向您收費。
+- 無論唯一的區塊或分頁是在 Blob 或快照集中，您的儲存體帳戶都會產生費用。在您更新快照集所依據的 Blob 之前，您的帳戶不會針對與該 Blob 相關聯的快照集產生額外費用。在您更新基底 blob 之後，它會與其快照集分離。發生這種情況時，您需支付每個 blob 或快照集中唯一的區塊或頁面。
 
 - 當您取代區塊 Blob 內的某個區塊時，後續即會將該區塊視為唯一區塊進行收費。即使該區塊的區塊識別碼和資料與其在快照集中擁有的相同，也是如此。再次認可該區塊之後，它就會與其在任何快照集中的對應項目分離，而您將需支付其資料的費用。這同樣適用分頁 Blob 中以相同資料更新的頁面。
 
@@ -105,7 +146,7 @@ Blob 可包含任意數目的快照集。系統會保存快照集，直到您將
 
 > - 每當您更新 Blob 時，刪除並重新建立與該 Blob 相關聯的快照集，除非您的應用程式設計為需要維護快照集，否則即使您正以相同資料進行更新也一樣。藉由刪除並重新建立 Blob 的快照集，讓您可以確保該 Blob 和快照集不會分離開來。
 
-> - 如果您正在維護 Blob 的快照集，請避免呼叫 **UploadFile**、**UploadText**、**UploadStream** 或 **UploadByteArray** 來更新 Blob，因為這些方法會取代 Blob 中的所有區塊。請改用 **PutBlock** 和 **PutBlockList** 方法，更新區塊的最少可能數目。
+> - 如果您正在維護 Blob 的快照集，請避免呼叫 **UploadFile**、**UploadText**、**UploadStream** 或 **UploadByteArray** 來更新 Blob。這些方法會取代 Blob 中的所有區塊，所以您的基底 blob 和快照集會明顯分離。請改用 **PutBlock** 和 **PutBlockList** 方法，更新區塊的最少可能數目。
 
 
 ### 快照集計費案例
@@ -129,4 +170,8 @@ Blob 可包含任意數目的快照集。系統會保存快照集，直到您將
 
 ![Azure 儲存體資源](./media/storage-blob-snapshots/storage-blob-snapshots-billing-scenario-4.png)
 
-<!---HONumber=AcomDC_0601_2016-->
+## 後續步驟
+
+如需使用 Blob 儲存體的其他範例，請參閱 [Azure 程式碼範例](https://azure.microsoft.com/documentation/samples/?service=storage&term=blob)。您可以下載範例應用程式並加以執行，或瀏覽 GitHub 上的程式碼。
+
+<!---HONumber=AcomDC_0810_2016------>

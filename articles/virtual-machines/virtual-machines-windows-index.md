@@ -14,18 +14,18 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-windows"
    ms.workload="infrastructure-services"
-   ms.date="04/20/2016"
+   ms.date="08/05/2016"
    ms.author="danlep"/>
 
 # 傳統部署模型中的 Windows VM 的技術文章
 
 
-尋找在傳統部署模型中建立和管理以 Windows 為基礎的虛擬機器所需的所有說明文件。
+尋找在傳統部署模型中建立和管理以 Windows 為基礎的 Azure 虛擬機器所需的所有說明文件。
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 
-## 概觀
+## Overview
 
 [關於虛擬機器](virtual-machines-windows-about.md)
 
@@ -89,8 +89,6 @@
 ## 管理
 
 [使用 Azure PowerShell 管理您的虛擬機器](virtual-machines-windows-classic-manage-psh.md)
-
-[使用 Azure 命令列介面之 VM 工作的對等 Resource Manager 和服務管理命令](virtual-machines-windows-cli-manage.md)
 	
 [將傳統 VNET 連接至新的 VNET](../virtual-network/virtual-networks-arm-asm-s2s-howto.md)
 	
@@ -103,6 +101,8 @@
 [Azure 虛擬機器中的 SQL Server 自動備份](virtual-machines-windows-classic-sql-automated-backup.md)
 
 [Azure 虛擬機器中的 SQL Server 自動修補](virtual-machines-windows-classic-sql-automated-patching.md)
+
+[平台支援的從傳統移轉至 Azure Resource Manager](virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
 
 
 
@@ -170,6 +170,7 @@
 
 [Tomcat](virtual-machines-windows-classic-java-run-tomcat-app-server.md)
 
+
 ## 參考
 [服務管理模式中的 Azure CLI 命令](../virtual-machines-command-line-tools.md)
 
@@ -178,7 +179,6 @@
 [服務管理 .NET API](https://msdn.microsoft.com/library/azure/mt420161.aspx)
 
 [Azure 服務管理 PowerShell Cmdlet 參考文件](https://msdn.microsoft.com/library/azure/dn708504.aspx)
-
 
 ## 疑難排解
 
@@ -192,4 +192,4 @@
 
 [針對在 Azure 中重新啟動或調整現有 Windows 虛擬機器大小的傳統部署問題進行疑難排解](virtual-machines-windows-classic-restart-resize-error-troubleshooting.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0810_2016------>

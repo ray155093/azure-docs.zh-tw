@@ -41,7 +41,7 @@
 	- 請確定已設定 Azure 私用對等，且已開啟您的網路與 Microsoft 之間的 BGP 對等，讓您可以啟用端對端連線。
     - 您必須有已建立且完整佈建的虛擬網路和虛擬網路閘道。請遵循指示[設定 ExpressRoute 的虛擬網路](expressroute-howto-vnet-portal-classic.md)。
 
-您最多可以將 10 個虛擬網路連結至 ExpressRoute 電路。所有的 ExpressRoute 循環都必須位於同一個地理區域。如果您已啟用 ExpressRoute 高階附加元件，則可將更大量的虛擬網路連結到您的 ExpressRoute 循環。如需高階附加元件的詳細資訊，請參閱[常見問題集](expressroute-faqs.md)。
+您最多可以將 10 個虛擬網路連結至 ExpressRoute 電路。所有的虛擬網路都必須位於同一個地理區域。如果您已啟用 ExpressRoute 高階附加元件，則可將更大量的虛擬網路連結到您的 ExpressRoute 電路，或是連結其他地理區域的虛擬網路。如需高階附加元件的詳細資訊，請參閱[常見問題集](expressroute-faqs.md)。
 
 ## 將相同訂用帳戶中的虛擬網路連接到線路
 
@@ -157,4 +157,4 @@
 
 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0810_2016------>

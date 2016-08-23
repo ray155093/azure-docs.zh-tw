@@ -11,7 +11,7 @@
 <tags
   ms.service="iot-suite"
   ms.devlang="na"
-  ms.topic="get-started-article"
+  ms.topic="article"
   ms.tgt_pltfrm="na"
   ms.workload="na"
   ms.date="06/27/2016"
@@ -64,7 +64,7 @@
 
 ## 後續步驟
 
-您也可以瀏覽的一些其他功能和預先設定的 IoT 套件解決方案的功能︰
+您也可以瀏覽一些其他功能和預先設定的 IoT 套件解決方案的功能︰
 
 - [預先設定的預防性維護解決方案概觀][lnk-predictive-overview]
 - [從頭建立 IoT 安全性][lnk-security-groundup]
@@ -82,4 +82,4 @@
 [lnk-30daytrial]: https://azure.microsoft.com/free/
 [lnk-delete-aad-tennant]: http://blogs.msdn.com/b/ericgolpe/archive/2015/04/30/walkthrough-of-deleting-an-azure-ad-tenant.aspx
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0810_2016------>

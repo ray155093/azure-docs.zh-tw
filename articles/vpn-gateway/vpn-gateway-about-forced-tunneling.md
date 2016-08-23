@@ -13,13 +13,13 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/16/2016"
+   ms.date="08/10/2016"
    ms.author="cherylmc" />
 
 # 使用傳統部署模型設定強制通道
 
 > [AZURE.SELECTOR]
-- [PowerShell - 服務管理](vpn-gateway-about-forced-tunneling.md)
+- [PowerShell - 傳統](vpn-gateway-about-forced-tunneling.md)
 - [PowerShell - 資源管理員](vpn-gateway-forced-tunneling-rm.md)
 
 強制通道可讓您透過站對站 VPN 通道，重新導向或「強制」所有網際網路繫結流量傳回內部部署位置，以便進行檢查和稽核。這是多數企業 IT 原則的重要安全性需求。
@@ -34,7 +34,7 @@
 
 **強制通道的部署模型和工具**
 
-可以在這兩種部署模型中使用不同的工具，設定強制通道的連線。如需詳細資訊，請參閱以下的資料表。當此組態有新文章、新的部署模型和額外工具可以使用時，我們就會更新此資料表。當文章可用時，我們會直接從資料表連結至該文章。
+可以同時針對傳統部署模型和 Resource Manager 部署模型設定強制通道連線。如需詳細資訊，請參閱下列表格。當此組態有新文章、新的部署模型和額外工具可以使用時，我們就會更新此資料表。當文章可用時，我們會直接從資料表連結至該文章。
 
 [AZURE.INCLUDE [vpn-gateway-forcedtunnel](../../includes/vpn-gateway-table-forcedtunnel-include.md)]
 
@@ -50,7 +50,7 @@ Azure 中的強制通道會透過虛擬網路使用者定義路由 (UDR) 進行�
 	
 	- **內部部署路由：**連接到 Azure VPN 閘道
 	
-	- **預設路由：**直接連接到網際網路。請注意，系統將會卸除尚未由前兩個路由涵蓋之私人 IP 位址目的地的封包。
+	- **預設路由：**直接連接到網際網路。系統將會卸除尚未由前兩個路由涵蓋之私人 IP 位址目的地的封包。
 
 
 -  隨著使用者定義路由的發行，您可以建立路由表以新增預設路由，然後建立路由表與 VNet 子網路的關聯，以便啟用這些子網路上的強制通道。
@@ -65,9 +65,9 @@ Azure 中的強制通道會透過虛擬網路使用者定義路由 (UDR) 進行�
 
 ## 組態概觀
 
-在下列範例中，前端子網路不會使用強制通道。前端子網路中的工作負載可以直接從網際網路繼續接受並回應客戶要求。中間層和後端的子網路會使用強制通道。任何從這兩個子網路到網際網路的輸出連接會強制或重新導向回 S2S VPN 通道的其中一個內部部署網站。
+在上述範例中，前端子網路不會使用強制通道。前端子網路中的工作負載可以直接從網際網路繼續接受並回應客戶要求。中間層和後端的子網路會使用強制通道。任何從這兩個子網路到網際網路的輸出連接會強制或重新導向回 S2S VPN 通道的其中一個內部部署網站。
 
-這可讓您在 Azure 中限制並檢查來自虛擬機器或雲端服務的網際網路存取，同時繼續啟用您所需的多層式服務架構。如果虛擬網路中沒有任何網際網路對向工作負載，您也可以選擇將強制通道套用至整個虛擬網路。
+這可讓您在 Azure 中限制並檢查來自虛擬機器或雲端服務的網際網路存取，同時繼續啟用您所需的多層式服務架構。如果虛擬網路中沒有任何網際網路對向工作負載，您也可以將強制通道套用至整個虛擬網路。
 
 
 ![強制通道](./media/vpn-gateway-about-forced-tunneling/forced-tunnel.png)
@@ -78,7 +78,7 @@ Azure 中的強制通道會透過虛擬網路使用者定義路由 (UDR) 進行�
 
 在開始設定之前，請確認您具備下列項目。
 
-- Azure 訂閱。如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或註冊[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
+- Azure 訂用帳戶。如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或註冊[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 
 - 已設定的虛擬網路。
 
@@ -87,7 +87,7 @@ Azure 中的強制通道會透過虛擬網路使用者定義路由 (UDR) 進行�
 
 ## 設定強制通道
 
-下方程序將協助您指定虛擬網路的強制通道。組態步驟對應至下方的虛擬網路網路組態檔 (netcfg) 範例。
+下列程序將協助您指定虛擬網路的強制通道。設定步驟會對應至 Vnet 網路組態檔。
 
 
 
@@ -127,9 +127,9 @@ Azure 中的強制通道會透過虛擬網路使用者定義路由 (UDR) 進行�
       </VirtualNetworkSite>
 	</VirtualNetworkSite>
 
-在此範例中，"MultiTier-VNet" 虛擬網路具有 3 個子網路：「前端」、「中層」，和「後端」子網路，包含 4 個跨單位連線：*DefaultSiteHQ*，以及 3 個「分支」。
+在此範例中，"MultiTier-VNet" 虛擬網路具有 3 個子網路：「前端」、「中層」，和「後端」子網路，包含 4 個跨單位連線：DefaultSiteHQ，以及 3 個「分支」。
 
-程序步驟會將 *DefaultSiteHQ* 設定為強制通道的預設網站連線，並設定「中層」和「後端」子網路以使用強制通道。
+這些步驟會將 DefaultSiteHQ 設定為強制通道的預設網站連線，並設定「中層」和「後端」子網路以使用強制通道。
 
 
 1. 建立路由表。使用下列 Cmdlet 來建立路由表。
@@ -138,13 +138,13 @@ Azure 中的強制通道會透過虛擬網路使用者定義路由 (UDR) 進行�
 
 2. 將預設路由加入至路由表。
 
-	下方 Cmdlet 範例會將預設路由加入至步驟 1 中所建立的路由表。請注意，唯一支援的路由是到「VPNGateway」Nexthop 的「0.0.0.0/0」目的地前置詞。
+	下列範例會將預設路由加入至步驟 1 中所建立的路由表。請注意，唯一支援的路由是到 "VPNGateway" Nexthop 的 "0.0.0.0/0" 目的地前置詞。
  
 		Set-AzureRoute –RouteTable "MyRouteTable" –RouteName "DefaultRoute" –AddressPrefix "0.0.0.0/0" –NextHopType VPNGateway
 
 3. 將路由表關聯至子網路。
 
-	建立路由表並加入路由之後，使用下方 Cmdlet 將路由表加入或關聯至 VNet 子網路。下方範例會將路由表「MyRouteTable」加入至 VNet 多層式 VNet 中的中層和後端子網路。
+	建立路由表並加入路由之後，使用下列範例將路由表加入或關聯至 VNet 子網路。此範例會將路由表 "MyRouteTable" 加入至 VNet 多層式 VNet 中的中層和後端子網路。
 
 		Set-AzureSubnetRouteTable -VirtualNetworkName "MultiTier-VNet" -SubnetName "Midtier" -RouteTableName "MyRouteTable"
 
@@ -183,4 +183,4 @@ Azure 中的強制通道會透過虛擬網路使用者定義路由 (UDR) 進行�
 
 	Remove-AzureVnetGatewayDefaultSite -VNetName <virtualNetworkName>
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0810_2016------>

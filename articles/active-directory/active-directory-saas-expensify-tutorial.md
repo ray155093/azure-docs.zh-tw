@@ -13,15 +13,15 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/17/2016"
+	ms.date="08/04/2016"
 	ms.author="jeedes"/>
 
 
 # 教學課程：Azure Active Directory 與 Expensify 整合
 
-在本教學課程中，您會了解如何整合 Expensify 與 Azure Active Directory (Azure AD)。
+在本教學課程中，您會了解如何將 Expensify 與 Azure Active Directory (Azure AD) 整合。
 
-Expensify 與 Azure AD 整合提供下列優點：
+將 Expensify 與 Azure AD 整合提供下列優點：
 
 - 您可以在 Azure AD 中控制可存取 Expensify 的人員
 - 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Expensify (單一登入)
@@ -58,7 +58,7 @@ Expensify 與 Azure AD 整合提供下列優點：
 
 **若要從資源庫新增 Expensify，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![Active Directory][1]
 
@@ -80,26 +80,26 @@ Expensify 與 Azure AD 整合提供下列優點：
  
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-expensify-tutorial/tutorial_expensify_01.png)
 
-7. 在結果窗格中，選取 [Expensify]，然後按一下 [完成] 以加入應用程式。
+7. 在結果窗格中，選取 [Expensify]，然後按一下 [完成] 以新增應用程式。
 
 
 
 ##  設定並測試 Azure AD 單一登入
 在本節中，您會以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Expensify 搭配運作的 Azure AD 單一登入。
 
-若要讓單一登入運作，Azure AD 必須知道 Expensify 與 Azure AD 中互相對應的使用者。換句話說，必須在 Azure AD 使用者與 Expensify 中的相關使用者之間建立連結關聯性。建立此連結關聯性的方法是將 Azure AD 中 [使用者名稱]的值指定為 Expensify 中 [使用者名稱] 的值。
+若要讓單一登入能夠運作，Azure AD 必須知道 Expensify 與 Azure AD 中互相對應的使用者。換句話說，必須在 Azure AD 使用者與 Expensify 中的相關使用者之間建立連結關聯性。建立此連結關聯性的方法是將 Azure AD 中 [使用者名稱]的值指定為 Expensify 中 [使用者名稱] 的值。
 
 若要設定及測試與 Expensify 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
 
 1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
 2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
-4. **[建立 Expensify 測試使用者](#creating-an-expensify-test-user)** - 在 Expensify 中建立一個與 Azure AD 中代表 Britta Simon 的項目連結的 Britta Simon 對應項目。
+4. **[建立 Expensify 測試使用者](#creating-an-expensify-test-user)** - 在 Expensify 中建立 Britta Simon 的對應項目，且該項目與 Azure AD 中代表 Britta Simon 的項目連結。
 5. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
 5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
 ### 設定 Azure AD 單一登入
 
-在本節中，您會在傳統入口網站中啟用 Azure AD 單一登入，並在您的 Expensify 中設定單一登入。
+在本節中，您會在傳統入口網站中啟用 Azure AD 單一登入，然後在您的 Expensify 中設定單一登入。
 
 
 **若要設定與 Expensify 搭配運作的 Azure AD 單一登入，請執行下列步驟：**
@@ -112,15 +112,15 @@ Expensify 與 Azure AD 整合提供下列優點：
 
 	![設定單一登入](./media/active-directory-saas-expensify-tutorial/tutorial_expensify_03.png)
 
-3. 在 [設定 App 設定] 對話方塊頁面執行下列步驟：
+3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟：
 
 	![設定單一登入](./media/active-directory-saas-expensify-tutorial/tutorial_expensify_04.png)
 
 
-    a.在 [登入 URL] 文字方塊中，輸入使用者用來登入您 Expensify 應用程式的 URL (請以下列模式輸入：**“https://www.expensify.com/authentication/saml/login”**。
+    a.在 [登入 URL] 文字方塊中，以下列模式輸入使用者用來登入 Expensify 應用程式的 URL：**“https://www.expensify.com/authentication/saml/login”**。
 
 
-4. 於 [設定在 Expensify 單一登入] 頁面上，執行下列步驟：
+4. 在 [設定在 Expensify 單一登入] 頁面上，執行下列步驟：
 
 	![設定單一登入](./media/active-directory-saas-expensify-tutorial/tutorial_expensify_05.png)
 
@@ -146,7 +146,7 @@ Expensify 與 Azure AD 整合提供下列優點：
 	f.從 Azure AD 開啟下載的同盟中繼資料，複製其內容並貼到 [識別提供者中繼資料] 文字方塊中。
 
   
-6. 在傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步]。
+6. 在傳統入口網站中，選取單一登入設定確認，然後按 [下一步]。
 
 	![Azure AD 單一登入][10]
 
@@ -170,11 +170,11 @@ Expensify 與 Azure AD 整合提供下列優點：
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-expensify-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-expensify-tutorial/create_aaduser_04.png)
 
@@ -218,9 +218,7 @@ Expensify 與 Azure AD 整合提供下列優點：
 
 ### 建立 Expensify 測試使用者
 
-在本節中，您會在 Expensify 中建立名為 Britta Simon 的使用者。Expensify 支援預設啟用的 Just-In-Time 佈建。
-
-在這一節沒有您需要進行的動作項目。存取 Expensify 時，如果使用者還不存在，就會建立新使用者。[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)。
+在本節中，您會在 Expensify 中建立名為 Britta Simon 的使用者。請與 Expensify 支援小組合作以在 Expensify 平台中新增使用者。
 
 > [AZURE.NOTE] 如果您需要手動建立使用者，您需要連絡 Expensify 支援小組。
 
@@ -231,7 +229,7 @@ Expensify 與 Azure AD 整合提供下列優點：
 
 ![指派使用者][200]
 
-**若要將 Britta Simon 指派到 Expensify，請執行下列步驟：**
+**若要將 Britta Simon 指派給 Expensify，請執行下列步驟：**
 
 1. 在傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
@@ -247,7 +245,7 @@ Expensify 與 Azure AD 整合提供下列優點：
 
 1. 在 [使用者] 清單中，選取 [Britta Simon]。
 
-2. 在底部的工具列中，按一下 [指派]。
+2. 在底部工具列中，按一下 [指派]。
 
 	![指派使用者][205]
 
@@ -283,4 +281,4 @@ Expensify 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-expensify-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-expensify-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0810_2016------>

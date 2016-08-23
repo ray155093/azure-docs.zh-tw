@@ -20,7 +20,7 @@
 
 # 部署 Azure 容器服務叢集
 
-Azure 容器服務支援快速部署常用的開放原始碼容器叢集和協調流程解決方案。透過 Azure 容器服務，您可以使用 Azure Resource Manager 範本或 Azure 入口網站來部署 DC/OS 和 Docker Swarm 叢集。您會使用 Azure 虛擬機器擴展集來部署這些叢集；這些叢集會利用 Azure 網路功能與儲存體供應項目。若要存取 Azure 容器服務，您需要有 Azure 訂用帳戶。如果您沒有帳戶，您可以註冊[免費試用](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=AA4C1C935)。
+Azure 容器服務支援快速部署常用的開放原始碼容器叢集和協調流程解決方案。透過 Azure 容器服務，您可以使用 Azure Resource Manager 範本或 Azure 入口網站來部署 DC/OS 和 Docker Swarm 叢集。您會使用 Azure 虛擬機器擴展集來部署這些叢集，而這些叢集會利用 Azure 網路功能與儲存體供應項目。若要存取 Azure 容器服務，您需要有 Azure 訂用帳戶。如果您沒有帳戶，您可以註冊[免費試用](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=AA4C1C935)。
 
 本文件會逐步引導您使用 [Azure 入口網站](#creating-a-service-using-the-azure-portal)、[Azure 命令列介面 (CLI)](#creating-a-service-using-the-azure-cli) 和 [Azure PowerShell 模組](#creating-a-service-using-powershell)來部署 Azure 容器服務叢集。
 
@@ -40,7 +40,7 @@ Azure 容器服務支援快速部署常用的開放原始碼容器叢集和協�
 - **訂用帳戶**：選取 Azure 訂用帳戶。
 - **資源群組**：選取現有資源群組或建立新的群組。
 - **位置**：選取 Azure 容器服務部署的 Azure 區域。
-- **SSH 公開金鑰**：新增將用於對 Azure 容器服務的虛擬機器進行驗證的公開金鑰。請務必不要讓此金鑰包含分行符號，並且務必讓它包含 'ssh-rsa' 前置詞和 'username@domain' 後置詞。看起來應該類似於下列：**ssh-rsa AAAAB3Nz...<...>...UcyupgH azureuser@linuxvm**。如需建立安全殼層 (SSH) 金鑰的指引，請參閱 [Linux](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-ssh-from-linux/) 和 [Windows](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-ssh-from-windows/) 文件。
+- **SSH 公開金鑰**：新增將用於對 Azure 容器服務的虛擬機器進行驗證的公開金鑰。請務必不要讓此金鑰包含分行符號，並且務必讓它包含 'ssh-rsa' 前置詞和 'username@domain' 後置詞。看起來應該類似於下列：**ssh-rsa AAAAB3Nz...<...>...UcyupgH azureuser@linuxvm**。如需建立安全殼層 (SSH) 金鑰的指引，請參閱 [Linux](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-ssh-from-linux/) 和 [Windows](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-ssh-from-windows/) 文章。
 
 準備好繼續時請按一下 [確定]。
 
@@ -82,7 +82,7 @@ Azure 容器服務支援快速部署常用的開放原始碼容器叢集和協�
 
 ## 使用 Azure CLI 建立服務
 
-若要使用命令列建立 Azure 容器服務的執行個體，您需要有 Azure 訂用帳戶。如果您沒有帳戶，您可以註冊[免費試用](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=AA4C1C935)。您也必須安裝並設定 Azure CLI。
+若要使用命令列建立 Azure 容器服務的執行個體，您需要有 Azure 訂用帳戶。如果您沒有帳戶，您可以註冊[免費試用](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=AA4C1C935)。您也必須[安裝](../xplat-cli-install.md)並[設定](../xplat-cli-connect.md) Azure CLI。
 
 若要部署 DC/OS 或 Docker Swarm 叢集，請從 GitHub 選取下列其中一個範本。請注意，除了預設的 Orchestrator 選項有所不同外，下列兩個範本完全相同。
 
@@ -195,4 +195,4 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName RESOURCE_GROUP_NAME-Templa
 - [使用 Azure 容器服務和 DC/OS](container-service-mesos-marathon-rest.md)
 - [使用 Azure 容器服務和 Docker Swarm](container-service-docker-swarm.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0817_2016-->

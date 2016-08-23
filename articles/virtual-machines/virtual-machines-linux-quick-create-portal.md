@@ -21,6 +21,8 @@
 
 # 使用入口網站在 Azure 上建立 Linux VM
 
+> [AZURE.NOTE] 若能耽擱您一些時間，請透過回答這個針對您經驗的[簡短問卷](https://aka.ms/linuxdocsurvey)，來協助我們改善 Azure Linux VM 文件。每個答案都有助於我們協助您完成工作。
+
 本文將說明如何使用 [Azure 入口網站](https://portal.azure.com/)快速建立 Linux 虛擬機器。僅有的需求是 [Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)和 [SSH 公開和私密金鑰檔案](virtual-machines-linux-mac-create-ssh-keys.md)。
 
 > [AZURE.NOTE] 如果您選擇使用密碼來保護 VM 的存取，則密碼必須大於 12 個字元，並且有至少一個大寫字元、至少一個小寫字元、至少一個特殊字元和至少一個數字。
@@ -41,7 +43,7 @@
     - SSH 公開金鑰做為字串 (根據預設，來自您的 `~/.ssh/` 目錄)
     - 資源群組名稱 (以建立新的部署群組)，或選取現有的群組
 
-    以及按一下 [確定] 繼續執行並選擇 VM 大小，看起來應該如下所示︰
+    並按一下 [確定] 以繼續，然後選擇 VM 大小；您應該會看到如下的內容：
 
     ![screen3](../media/virtual-machines-linux-quick-create-portal/screen3.png)
 
@@ -57,7 +59,7 @@
 
     ![screen6](../media/virtual-machines-linux-quick-create-portal/screen6.png)
 
-7. 開啟入口網站儀表板並 [網路介面] 中選擇您的 NIC
+7. 開啟入口網站儀表板並在 [網路介面] 中選擇您的 NIC
 
     ![screen7](../media/virtual-machines-linux-quick-create-portal/screen7.png)
 
@@ -81,4 +83,4 @@ ssh -i ~/.ssh/azure_id_rsa ubuntu@13.91.99.206
 
 這些文章可幫您開始建置 Azure 基礎結構，以及多種專屬和開放原始碼基礎結構部署、組態和協調流程工具。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0817_2016-->

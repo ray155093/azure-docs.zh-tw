@@ -5,10 +5,15 @@
 
 若要授權邏輯應用程式連線到您的 Twitter 帳戶，其步驟如下：
 
-1. 若要建立與 Twitter 的連線，請在邏輯應用程式設計工具中，從下拉式清單中選取 [顯示 Microsoft Managed API]，然後在搜尋方塊中輸入 *Twitter*。請選取您想要使用的觸發程序或動作：![Twitter 連線圖像 0](./media/connectors-create-api-twitter/twitter-0.png)
-2. 如果您之前尚未建立任何 Twitter 連線，系統會提示您提供 Twitter 認證。這些認證將用來授權邏輯應用程式連線及存取您 Twitter 帳戶的資料：![Twitter 連線圖像 1](./media/connectors-create-api-twitter/twitter-1.png)
-3. 提供您的 Twitter 使用者名稱和密碼來授權邏輯應用程式：![Twitter 連線圖像 2](./media/connectors-create-api-twitter/twitter-2.png)
-4. 確認您的授權：![Twitter 連線圖像 3](./media/connectors-create-api-twitter/twitter-3.png)
-6. 請注意，連線已經建立，您現在可以繼續進行邏輯應用程式中的其他步驟：![Twitter 連線圖像 4](./media/connectors-create-api-twitter/twitter-4.png)
+1. 若要建立與 Twitter 的連線，請在邏輯應用程式設計工具中，從下拉式清單中選取 [顯示 Microsoft Managed API]，然後在搜尋方塊中輸入 *Twitter*。請選取您想要使用的觸發程序或動作：  
+  ![Twitter 連線圖像 0](./media/connectors-create-api-twitter/twitter-0.png)
+2. 如果您之前尚未建立任何 Twitter 連線，系統會提示您提供 Twitter 認證。這些認證將用來授權邏輯應用程式連線及存取您 Twitter 帳戶的資料：  
+  ![Twitter 連線圖像 1](./media/connectors-create-api-twitter/twitter-1.png)  
+3. 提供您的 Twitter 使用者名稱和密碼來授權邏輯應用程式：  
+  ![Twitter 連線圖像 2](./media/connectors-create-api-twitter/twitter-2.png)  
+4. 確認您的授權：  
+  ![Twitter 連線圖像 3](./media/connectors-create-api-twitter/twitter-3.png)  
+6. 請注意，連線已經建立，您現在可以繼續進行邏輯應用程式中的其他步驟：  
+  ![Twitter 連線圖像 4](./media/connectors-create-api-twitter/twitter-4.png)
 
 <!---HONumber=AcomDC_0727_2016-->
