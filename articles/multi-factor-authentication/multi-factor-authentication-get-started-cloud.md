@@ -4,7 +4,7 @@
 	services="multi-factor-authentication" 
 	documentationCenter="" 
 	authors="billmath" 
-	manager="stevenpo" 
+	manager="femila" 
 	editor="curtand"/>
 
 <tags 
@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="08/04/2016" 
+	ms.date="08/15/2016" 
 	ms.author="billmath"/>
 
 # 開始在雲端中使用 Azure Multi-Factor Authentication
 在下列文章中，您將學習如何在雲端中開始使用 Azure Multi-Factor Authentication。
 
-> [AZURE.NOTE]  以下文件提供有關如何使用 **Azure 傳統入口網站**啟用使用者的詳細資訊。如果您要尋找有關如何設定適用於 O365 使用者的 Azure Multi-Factor Authentication 的詳細資訊，請參閱[設定適用於 Office 365 的 Multi-Factor Authentication](https://support.office.com/article/Set-up-multi-factor-authentication-for-Office-365-users-8f0454b2-f51a-4d9c-bcde-2c48e41621c6?ui=zh-TW&rs=zh-TW&ad=US)。
+> [AZURE.NOTE]  以下文件提供有關如何使用 **Azure 傳統入口網站**啟用使用者的詳細資訊。如果您要尋找有關如何設定適用於 O365 使用者的 Azure Multi-Factor Authentication 的詳細資訊，請參閱[設定適用於 Office 365 的 Multi-Factor Authentication](https://support.office.com/article/Set-up-multi-factor-authentication-for-Office-365-users-8f0454b2-f51a-4d9c-bcde-2c48e41621c6?ui=en-US&rs=en-US&ad=US)。
 
 ![雲端中的 MFA](./media/multi-factor-authentication-get-started-cloud/mfa_in_cloud.png)
 
@@ -90,4 +90,4 @@
 ## 後續步驟
 現在您已在雲端中設定 Multi-Factor Authentication，接下來您可以設定及安裝您的部署。請參閱 [設定 Azure Multi-Factor Authentication]。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -13,11 +13,11 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="06/09/2016"
+   ms.date="06/10/2016"
    ms.author="ryanwi"/>
 
 # 在您的本機叢集上開始部署和升級應用程式
-Azure Service Fabric SDK 包含完整的本機開發環境，可讓您快速地在本機叢集上開始部署和管理應用程式。在本文中，您將從 Windows PowerShell 建立本機叢集、將現有的應用程式部署至該叢集，然後將該應用程式升級為新版本。
+Azure Service Fabric SDK 包含完整的本機開發環境，可讓您快速地在本機叢集上開始部署和管理應用程式。在本文中，您會從 Windows PowerShell 建立本機叢集、將現有的應用程式部署至該叢集，然後將應用程式升級為新版本。
 
 > [AZURE.NOTE] 本文假設您已經[設定開發環境](service-fabric-get-started.md)。
 
@@ -26,7 +26,7 @@ Service Fabric 叢集代表一組您可以部署應用程式的硬體資源。�
 
 請務必了解 Service Fabric 本機叢集不是模擬器。它會執行在多部電腦的叢集上找到的相同平台程式碼。唯一的差別在於它會在一部電腦上執行通常分散於五部電腦的平台程序。
 
-SDK 提供兩種方式來設定本機叢集：Windows PowerShell 指令碼和 [本機叢集管理員] 系統匣應用程式。在本教學課程中，我們將使用 PowerShell 指令碼。
+SDK 提供兩種方式來設定本機叢集：Windows PowerShell 指令碼和 [本機叢集管理員] 系統匣應用程式。在本教學課程中，我們會使用 PowerShell 指令碼。
 
 > [AZURE.NOTE] 如果您已藉由從 Visual Studio 部署應用程式來建立本機叢集，您可以略過本節。
 
@@ -39,7 +39,7 @@ SDK 提供兩種方式來設定本機叢集：Windows PowerShell 指令碼和 [�
 	& "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\ClusterSetup\DevClusterSetup.ps1"
 	```
 
-    叢集設定將需要一些時間。完成設定後，您應該會看到類似下列的輸出：
+    叢集設定需要一些時間。設定完成後，您應該會看到輸出類似於：
 
     ![叢集設定輸出][cluster-setup-success]
 
@@ -59,14 +59,14 @@ Service Fabric SDK 包含一組豐富的架構以及用來建立應用程式的�
     Import-Module "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\Tools\PSModule\ServiceFabricSDK\ServiceFabricSDK.psm1"
     ```
 
-3. 建立目錄以儲存您將下載和部署的應用程式，例如 C:\\ServiceFabric。
+3. 建立目錄以儲存您下載和部署的應用程式，例如 C:\\ServiceFabric。
 
     ```powershell
     mkdir c:\ServiceFabric\
     cd c:\ServiceFabric\
     ```
 
-4. [將 WordCount 應用程式下載](http://aka.ms/servicefabric-wordcountapp)至您建立的位置。注意︰Microsoft Edge 瀏覽器會使用 .zip 副檔名來儲存檔案。您必須將副檔名變更為 .sfpkg。
+4. [將 WordCount 應用程式下載](http://aka.ms/servicefabric-wordcountapp)至您建立的位置。注意︰Microsoft Edge 瀏覽器會使用 .zip 副檔名來儲存檔案。請將副檔名變更為 .sfpkg。
 
 5. 連接到本機叢集：
 
@@ -74,7 +74,7 @@ Service Fabric SDK 包含一組豐富的架構以及用來建立應用程式的�
     Connect-ServiceFabricCluster localhost:19000
     ```
 
-6. 叫用 SDK 的部署命令來建立新的應用程式，並提供應用程式封裝的名稱和路徑。
+6. 使用 SDK 的部署命令來建立新的應用程式，並提供應用程式封裝的名稱和路徑。
 
     ```powershell  
   Publish-NewServiceFabricApplication -ApplicationPackagePath c:\ServiceFabric\WordCountV1.sfpkg -ApplicationName "fabric:/WordCount"
@@ -84,7 +84,7 @@ Service Fabric SDK 包含一組豐富的架構以及用來建立應用程式的�
 
     ![將應用程式部署至本機叢集][deploy-app-to-local-cluster]
 
-7. 若要查看動作中的應用程式，請啟動瀏覽器並瀏覽至 [http://localhost:8081/wordcount/index.html](http://localhost:8081/wordcount/index.html)。您應該會看到如下的結果：
+7. 若要查看動作中的應用程式，請啟動瀏覽器並瀏覽至 [http://localhost:8081/wordcount/index.html](http://localhost:8081/wordcount/index.html)。您應該會看到：
 
     ![部署應用程式 UI][deployed-app-ui]
 
@@ -113,7 +113,7 @@ Service Fabric SDK 包含一組豐富的架構以及用來建立應用程式的�
 
     ![在 PowerShell 中列出應用程式的服務][ps-getsfsvc]
 
-    請注意，此應用程式是由兩個服務所組成：Web 前端服務以及可管理文字的具狀態服務。
+    此應用程式是由兩個服務所組成：Web 前端服務以及可管理文字的具狀態服務。
 
 3. 最後，看看 WordCountService 的資料分割清單：
 
@@ -123,7 +123,7 @@ Service Fabric SDK 包含一組豐富的架構以及用來建立應用程式的�
 
     ![在 PowerShell 中檢視服務資料分割][ps-getsfpartitions]
 
-    您剛使用的命令集 (例如所有的 Service Fabric PowerShell 命令) 適用於任何您可能連接的叢集 (本機或遠端)。
+    您所使用的命令集 (例如所有的 Service Fabric PowerShell 命令) 適用於任何您可能連接的叢集 (本機或遠端)。
 
     若要以更具視覺效果的方式來與叢集互動，您可以在瀏覽器中瀏覽至 [http://localhost:19080/Explorer](http://localhost:19080/Explorer)，以使用 Web 型 Service Fabric 總管工具。
 
@@ -144,7 +144,7 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
     Publish-UpgradedServiceFabricApplication -ApplicationPackagePath C:\ServiceFabric\WordCountV2.sfpkg -ApplicationName "fabric:/WordCount" -UpgradeParameters @{"FailureAction"="Rollback"; "UpgradeReplicaSetCheckTimeout"=1; "Monitored"=$true; "Force"=$true}
     ```
 
-    開始升級時，您應會在 PowerShell 中看到如下所示的輸出。
+    開始升級時，您應該會在 PowerShell 中看到如下所示的輸出。
 
     ![在 PowerShell 中的升級進度][ps-appupgradeprogress]
 
@@ -154,7 +154,7 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
 
     透過每個網域繼續升級時，系統會執行健康狀態檢查，以確保應用程式運作正常。
 
-4. 如果您對 fabric:/WordCount 應用程式包含的服務集合重新執行先前的查詢，您會注意到，雖然 WordCountService 的版本已變更，但 WordCountWebService 的版本維持不變：
+4. 如果您對 fabric:/WordCount 應用程式中的服務集合重新執行先前的查詢，請注意，雖然 WordCountService 的版本已變更，但 WordCountWebService 的版本維持不變：
 
     ```powershell
     Get-ServiceFabricService -ApplicationName 'fabric:/WordCount'
@@ -170,19 +170,19 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
 
 ## 清除
 
-在我們做結論之前，請務必記得本機叢集非常真實。應用程式會繼續在背景中執行，直到您將它們移除。視應用程式的本質而定，執行中應用程式可能會佔用您電腦上的大量資源。您有數個選項可管理此項目：
+在我們做結論之前，請務必記得本機叢集是真實的。應用程式會繼續在背景中執行，直到您將它們移除。視應用程式的本質而定，執行中應用程式可能會佔用您電腦上的大量資源。您有數個選項可管理應用程式和叢集：
 
-1. 若要移除個別應用程式和其所有資料，請執行下列命令︰
+1. 若要移除個別應用程式及其所有資料，請執行下列命令︰
 
     ```powershell
     Unpublish-ServiceFabricApplication -ApplicationName "fabric:/WordCount"
     ```
 
-    或者，請使用 Service Fabric Explorer 中的 [刪除應用程式] 動作，搭配左窗格中應用程式清單檢視的 [動作] 功能表或內容功能表。
+    或者，從 Service Fabric Explorer 中的 [動作] 功能表或左窗格中應用程式清單檢視的內容功能表來刪除應用程式。
 
     ![在 Service Fabric 總管中刪除應用程式][sfe-delete-application]
 
-2. 在叢集中刪除應用程式之後，您接著可以取消註冊 WordCount 應用程式類型的 1.0.0 和 2.0.0 版。這會從叢集的映像存放區中移除應用程式封裝，包括程式碼和組態。
+2. 在叢集中刪除應用程式之後，您可以將 WordCount 應用程式類型的 1.0.0 和 2.0.0 版取消註冊。刪除作業會從叢集的映像存放區中移除應用程式封裝，包括程式碼和設定。
 
     ```powershell
     Remove-ServiceFabricApplicationType -ApplicationTypeName WordCount -ApplicationTypeVersion 2.0.0
@@ -193,12 +193,12 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
 
 3. 若要關閉叢集，但保留應用程式資料及追蹤，請按一下系統匣應用程式中的 [停止本機叢集]。
 
-4. 若要完全刪除叢集，請按一下系統匣應用程式中的 [移除本機叢集]。請注意，此選項會導致下次您在 Visual Studio 中按 F5 鍵時發生其他緩慢部署。只有在您有時候不打算使用本機叢集或您需要回收資源時，才能使用此選項。
+4. 若要完全刪除叢集，請按一下系統匣應用程式中的 [移除本機叢集]。請注意，此選項會導致下次您在 Visual Studio 中按 F5 鍵時發生其他緩慢部署。只有在您計劃一陣子不使用本機叢集或者需要回收資源時，才將本機叢集移除。
 
 ## 後續步驟
 - 您現在已部署並升級某些預先建置的應用程式，您可以[嘗試在 Visual Studio 中建立自己的應用程式](service-fabric-create-your-first-application-in-visual-studio.md)。
 - 本文中在本機叢集上執行的所有動作也可以在 [Azure 叢集](service-fabric-cluster-creation-via-portal.md)上執行。
-- 本文中執行的升級非常基本。若要深入了解 Service Fabric 升級的功用和彈性，請參閱[升級文件](service-fabric-application-upgrade.md)。
+- 本文中執行的是基本升級。若要深入了解 Service Fabric 升級的功用和彈性，請參閱[升級文件](service-fabric-application-upgrade.md)。
 
 <!-- Images -->
 
@@ -218,4 +218,4 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
 [sfx-service-overview]: ./media/service-fabric-get-started-with-a-local-cluster/sfx-service-overview.png
 [sfe-delete-application]: ./media/service-fabric-get-started-with-a-local-cluster/sfe-delete-application.png
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0817_2016-->

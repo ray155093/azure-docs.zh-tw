@@ -13,10 +13,13 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="compute"
-   ms.date="06/27/2016"
+   ms.date="08/15/2016"
    ms.author="elizapo"/>
 
 # SQL Azure 搭配 Azure RemoteApp
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 當客戶選擇透過 Azure RemoteApp 在雲端託管其 Windows 應用程式時，他們通常也想將其資料 (例如 SQL Server) 移轉至雲端，以便進行整體雲端部署。如此一來，任何使用 Azure RemoteApp 的裝置即可隨時存取整個雲端託管解決方案。以下是連結和參考以及可協助您進行此程序的相關指引。
 
@@ -50,4 +53,4 @@
 - 在 Azure RemoteApp 中裝載的用戶端應用程式承受壓力。選取不同的計費方案 (例如 Premium 計費) 會改善效能。另一個訣竅是監視您的應用程式正在使用的資源：在作用中工作階段期間，執行將啟動 SAS 畫面的 ctrl-alt-end 按鍵序列，選取 [工作管理員] 並觀察您的應用程式的資源使用率。
 - SQL Server 承受壓力或未最佳化。遵循 SQL 疑難排解指引。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

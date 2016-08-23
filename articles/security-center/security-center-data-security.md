@@ -13,15 +13,13 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/23/2016"
+   ms.date="08/08/2016"
    ms.author="yurid"/>
 
 # Azure 資訊安全中心資料安全性
 為了協助客戶防範、偵測和回應威脅，Azure 資訊安全中心會收集和處理 Azure 資源的相關資料，包括組態資訊、中繼資料、事件記錄檔、損毀傾印檔等等。我們會強烈承諾，以保護此資料的隱私權和安全性。Microsoft 從撰寫程式碼到運作服務均遵守嚴格的規範與安全性指導方針。
 
 本文說明如何在 Azure 資訊安全中心管理和保護資料。
-
-> [AZURE.NOTE] 本文中的資訊適用於 Azure 資訊安全中心的預覽版本。
 
 ## 資料來源
 Azure 資訊安全中心會分析下列來源的資料︰
@@ -38,13 +36,13 @@ Azure 資訊安全中心會分析下列來源的資料︰
 
 **資料存取**︰為了提供安全性建議及調查潛在的安全性威脅，Microsoft 人員可以存取 Azure 服務所收集或分析的資訊，包括損毀傾印檔案。損毀傾印檔案和程序建立事件可能無意中包含客戶資料或您的虛擬機器中的個人資料。我們會遵守 [Microsoft Online Services Terms](http://www.microsoftvolumelicensing.com/DocumentSearch.aspx?Mode=3&DocumentTypeId=31) 和[隱私權聲明](https://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx)，其中陳述 Microsoft 不會使用客戶資料或從中衍生資訊作為任何廣告或類似的商業用途。我們會視需要只使用客戶資料為您提供 Azure 服務，包括與提供這些服務相容的用途。您可保有客戶資料的所有權限。
 
-**資料使用**：Microsoft 使用可見於多個租用戶的模式和威脅智慧來加強我們的防護和偵測功能；我們會根據[隱私權聲明](https://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx)中所述的隱私權承諾來這麼做。
+**資料使用**：Microsoft 使用可見於多個租用戶的模式和威脅智慧來加強我們的防護和偵測功能；我們會根據[隱私權聲明](https://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx)中所述的隱私權承諾進行。
 
-**資料位置**︰針對執行虛擬機器的每個地區指定儲存體帳戶。這可讓您將資料儲存在與從中收集資料的虛擬機器相同的區域中。此資料 (包括損毀傾印檔案) 將會持續儲存在儲存體帳戶中。服務也會在 Azure 資訊安全中心的儲存體中儲存有關安全性警示 (包括來自整合式合作夥伴解決方案的警示)、建議和安全性健康狀態的資訊 (目前位於美國)。
+**資料位置**︰針對執行虛擬機器的每個區域指定儲存體帳戶。這可讓您將資料儲存在與從中收集資料的虛擬機器相同的區域中。此資料 (包括損毀傾印檔案) 將會持續儲存在儲存體帳戶中。服務也會在 Azure 資訊安全中心的儲存體中儲存有關安全性警示 (包括來自整合式合作夥伴解決方案的警示)、建議和安全性健康狀態的資訊 (目前位於美國)。
 
 ## 從虛擬機器管理資料收集
 
-當您選擇啟用 Azure 資訊安全中心時，已針對每個訂用帳戶開啟資料收集。您可以在 Azure 資訊安全中心儀表板的 [安全性原則] 區段中關閉資料收集。開啟資料收集後，Azure 資訊安全中心會在所有現有支援的虛擬機器和任何新建立的虛擬機器上佈建 Azure 監視代理程式。「Azure 安全性監視」擴充功能會掃描各種安全性相關組態，並將其轉換成 [Windows 事件追蹤](https://msdn.microsoft.com/library/windows/desktop/bb968803.aspx) (ETW) 的追蹤事件。此外，作業系統會在執行機器的過程中引發事件記錄檔事件。這類資料的範例包括︰作業系統類型和版本、作業系統記錄檔 (Windows 事件記錄檔)、執行中程序、電腦名稱、IP 位址、已登入的使用者和租用戶識別碼。「Azure 監視代理程式」會讀取事件記錄項目和 ETW 追蹤，並將它們複製到您的儲存體帳戶進行分析。
+當您選擇啟用 Azure 資訊安全中心時，已針對每個訂用帳戶開啟資料收集。您可以在 Azure 資訊安全中心儀表板的 [安全性原則] 區段中關閉資料收集。開啟資料收集後，Azure 資訊安全中心會在所有現有支援的虛擬機器和任何新建立的虛擬機器上佈建 Azure 監視代理程式。「Azure 安全性監視」擴充功能會掃描各種安全性相關設定，並將其轉換成 [Windows 事件追蹤](https://msdn.microsoft.com/library/windows/desktop/bb968803.aspx) (ETW) 的追蹤事件。此外，作業系統會在執行機器的過程中引發事件記錄檔事件。這類資料的範例包括︰作業系統類型和版本、作業系統記錄檔 (Windows 事件記錄檔)、執行中程序、電腦名稱、IP 位址、已登入的使用者和租用戶識別碼。「Azure 監視代理程式」會讀取事件記錄項目和 ETW 追蹤，並將它們複製到您的儲存體帳戶進行分析。
 
 針對每個有虛擬機器在其中執行的區域指定儲存體帳戶，以便儲存從該相同區域中的虛擬機器收集到的資料。這可讓您針對隱私權和資料主權的考量，輕鬆將資料保留在相同的地理區域。您可以在 Azure 資訊安全中心儀表板的 [安全性原則] 區段中，設定每個區域的儲存體帳戶。
 
@@ -58,10 +56,10 @@ Azure 監視代理程式也會將損毀傾印檔案複製到儲存體帳戶。Az
 在本文件中，您已了解如何在 Azure 資訊安全中心管理和保護資料。若要深入了解 Azure 資訊安全中心，請參閱：
 
 - [Azure 資訊安全中心規劃和操作指南](security-center-planning-and-operations-guide.md) — 了解如何規劃及了解採用 Azure 資訊安全中心的設計考量。
-- [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) — 了解如何監視 Azure 資源的健全狀況。
-- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) — 了解如何管理與回應安全性警示。
+- [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) — 了解如何監視 Azure 資源的健全狀況
+- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) — 了解如何管理與回應安全性警示
 - [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) — 了解如何監視合作夥伴解決方案的健全狀況。
-- [Azure 資訊安全中心常見問題集](security-center-faq.md) — 尋找有關使用服務的常見問題。
-- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) — 尋找有關 Azure 安全性與相容性的部落格文章。
+- [Azure 資訊安全中心常見問題集](security-center-faq.md) — 尋找有關使用服務的常見問題
+- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) — 尋找有關 Azure 安全性與相容性的部落格文章
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

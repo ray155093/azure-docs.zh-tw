@@ -1,6 +1,6 @@
 <properties
 	pageTitle="教學課程 - 開始使用 Azure Batch .NET 程式庫 | Microsoft Azure"
-	description="了解 Azure Batch 的基本概念，以及利用簡單的案例了解如何開發 Batch 服務"
+	description="了解 Azure Batch 的基本概念，以及利用範例案例了解如何開發 Batch 服務。"
 	services="batch"
 	documentationCenter=".net"
 	authors="mmacy"
@@ -13,7 +13,7 @@
 	ms.topic="hero-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="big-compute"
-	ms.date="06/16/2016"
+	ms.date="08/15/2016"
 	ms.author="marsma"/>
 
 # 開始使用適用於 .NET 的 Azure Batch 程式庫
@@ -26,7 +26,7 @@
 
 ![Batch 方案工作流程 (基本)][11]<br/>
 
-## 先決條件
+## 必要條件
 
 本文假設您已具備 C# 和 Visual Studio 的使用知識。而且假設您可以滿足針對 Azure Batch 和儲存體服務所指定的帳戶建立需求。
 
@@ -47,6 +47,10 @@
 [DotNetTutorial][github_dotnettutorial] 範例是在 GitHub 上 [azure-batch-samples][github_samples] 儲存機制中找到的許多程式碼範例之一。按一下儲存機制首頁上的 [下載 ZIP] 按鈕，或按一下 [azure-batch-samples-master.zip][github_samples_zip] 直接下載連結，即可下載此範例。將 ZIP 檔案的內容解壓縮後，您會在下列資料夾中找到方案：
 
 `\azure-batch-samples\CSharp\ArticleProjects\DotNetTutorial`
+
+### Azure Batch 總管 (選用)
+
+[Azure Batch Explorer][github_batchexplorer] 是 GitHub 上 [azure-batch-samples][github_samples] 儲存機制隨附的免費公用程式。雖然不一定要完成此教學課程，但是在您開發和偵錯 Batch 解決方案時卻很實用。
 
 ## DotNetTutorial 範例專案概觀
 
@@ -111,7 +115,7 @@ Batch 包含與 Azure 儲存體進行互動的內建支援。儲存體帳戶內�
 
 為了與儲存體帳戶進行互動並建立容器，我們使用 [Azure Storage Client Library for .NET][net_api_storage]。我們使用 [CloudStorageAccount][net_cloudstorageaccount] 建立帳戶的參考，並從中建立 [CloudBlobClient][net_cloudblobclient]：
 
-```
+```csharp
 // Construct the Storage account connection string
 string storageConnectionString = String.Format(
     "DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1}",
@@ -119,15 +123,17 @@ string storageConnectionString = String.Format(
     StorageAccountKey);
 
 // Retrieve the storage account
-CloudStorageAccount storageAccount = CloudStorageAccount.Parse(storageConnectionString);
+CloudStorageAccount storageAccount =
+    CloudStorageAccount.Parse(storageConnectionString);
 
-// Create the blob client, for use in obtaining references to blob storage containers
+// Create the blob client, for use in obtaining references to
+// blob storage containers
 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 ```
 
 我們在整個應用程式中使用 `blobClient` 參考，並將它當作參數傳遞給數個方法。此範例是在緊接上述的程式碼區塊中，我們會在其中呼叫 `CreateContainerIfNotExistAsync` 以實際建立容器。
 
-```
+```csharp
 // Use the blob client to create the containers in Azure Storage if they don't
 // yet exist
 const string appContainerName    = "application";
@@ -138,12 +144,13 @@ await CreateContainerIfNotExistAsync(blobClient, inputContainerName);
 await CreateContainerIfNotExistAsync(blobClient, outputContainerName);
 ```
 
-```
+```csharp
 private static async Task CreateContainerIfNotExistAsync(
     CloudBlobClient blobClient,
     string containerName)
 {
-		CloudBlobContainer container = blobClient.GetContainerReference(containerName);
+		CloudBlobContainer container =
+            blobClient.GetContainerReference(containerName);
 
 		if (await container.CreateIfNotExistsAsync())
 		{
@@ -240,7 +247,7 @@ private static async Task<ResourceFile> UploadFileToContainerAsync(
 
 ### ResourceFiles
 
-[ResourceFile][net_resourcefile] 提供 Batch 中的工作，以及 Azure 儲存體中將在工作執行前下載到計算節點之檔案的 URL。[ResourceFile.BlobSource][net_resourcefile_blobsource] 屬性會指定 Azure 儲存體中現有檔案的完整 URL。此 URL 也可能包含可供安全存取檔案的共用存取簽章 (SAS)。Batch .NET 中的大部分工作類型都包含 ResourceFiles 屬性，包括：
+[ResourceFile][net_resourcefile] 提供 Batch 中的工作，以及 Azure 儲存體中會在工作執行前下載到計算節點之檔案的 URL。[ResourceFile.BlobSource][net_resourcefile_blobsource] 屬性會指定 Azure 儲存體中現有檔案的完整 URL。此 URL 也可能包含可供安全存取檔案的共用存取簽章 (SAS)。Batch .NET 中的大部分工作類型都包含 ResourceFiles 屬性，包括：
 
 - [CloudTask][net_task]
 - [StartTask][net_pool_starttask]
@@ -263,9 +270,11 @@ DotNetTutorial 範例應用程式不會使用 JobPreparationTask 或 JobReleaseT
 
 ![建立 Batch 集區][3] <br/>
 
+Batch **集區** 是 Batch 執行作業工作所在的計算節點 (虛擬機器) 集合。
+
 將應用程式和資料檔案上傳至儲存體帳戶之後，DotNetTutorial 會使用 Batch .NET 程式庫開始與 Batch 服務互動。若要這樣做，會先建立 [BatchClient][net_batchclient]：
 
-```
+```csharp
 BatchSharedKeyCredentials cred = new BatchSharedKeyCredentials(
     BatchAccountUrl,
     BatchAccountName,
@@ -278,7 +287,7 @@ using (BatchClient batchClient = BatchClient.Open(cred))
 
 接著，呼叫 `CreatePoolAsync` 以在 Batch 帳戶中建立計算節點集區。`CreatePoolAsync` 會使用 [BatchClient.PoolOperations.CreatePool][net_pool_create] 方法在 Batch 服務中實際建立此集區。
 
-```
+```csharp
 private static async Task CreatePoolAsync(
     BatchClient batchClient,
     string poolId,
@@ -319,11 +328,11 @@ private static async Task CreatePoolAsync(
 }
 ```
 
-利用 [CreatePool][net_pool_create] 建立集區時，您會指定一些參數，例如計算節點數目、[節點大小](../cloud-services/cloud-services-sizes-specs.md)以及節點的作業系統。在 DotNetTutorial 中，我們使用 [CloudServiceConfiguration][net_cloudserviceconfiguration] 以從[雲端服務](../cloud-services/cloud-services-guestos-update-matrix.md)指定 Windows Server 2012 R2。不過，若改為指定 [VirtualMachineConfiguration][net_virtualmachineconfiguration]，您可以建立透過 Marketplace 映像 (包括 Windows 和 Linux 映像) 所建立之集區的節點；如需詳細資訊，請參閱[在 Azure Batch 集區中佈建 Linux 計算節點](batch-linux-nodes.md)。
+利用 [CreatePool][net_pool_create] 建立集區時，您會指定數個參數，例如計算節點數目、[節點大小](../cloud-services/cloud-services-sizes-specs.md)以及節點的作業系統。在 DotNetTutorial 中，我們使用 [CloudServiceConfiguration][net_cloudserviceconfiguration] 以從[雲端服務](../cloud-services/cloud-services-guestos-update-matrix.md)指定 Windows Server 2012 R2。不過，若改為指定 [VirtualMachineConfiguration][net_virtualmachineconfiguration]，您可以建立透過 Marketplace 映像 (包括 Windows 和 Linux 映像) 所建立之集區的節點；如需詳細資訊，請參閱[在 Azure Batch 集區中佈建 Linux 計算節點](batch-linux-nodes.md)。
 
 > [AZURE.IMPORTANT] 您需對 Batch 中的計算資源付費。若要將成本降到最低，您可以在執行範例前，將 `targetDedicated` 降為 1。
 
-透過這些實體節點屬性，您也可以指定集區的 [StartTask][net_pool_starttask]。StartTask 將在每個節點加入集區以及每次重新啟動節點時，於該節點上執行。StartTask 特別適合用於在工作執行前，在計算節點上安裝應用程式。例如，如果您的工作使用 Python 指令碼來處理資料，您可以使用 StartTask 在計算節點上安裝 Python。
+透過這些實體節點屬性，您也可以指定集區的 [StartTask][net_pool_starttask]。StartTask 會在每個節點加入集區以及每次重新啟動節點時，於該節點上執行。StartTask 特別適合用於在工作執行前，在計算節點上安裝應用程式。例如，如果您的工作使用 Python 指令碼來處理資料，您可以使用 StartTask 在計算節點上安裝 Python。
 
 在此範例應用程式中，StartTask 會將它從儲存體下載的檔案 (使用 [StartTask][net_starttask].[ResourceFiles][net_starttask_resourcefiles] 屬性所指定)，從 StartTask 工作目錄複製到在節點上執行的「所有」工作可以存取的共用目錄。基本上，這會在節點加入集區時複製 `TaskApplication.exe` 和其相依性到每個節點上的共用目錄，以便在節點上執行的任何工作都能存取它。
 
@@ -337,11 +346,13 @@ private static async Task CreatePoolAsync(
 
 ![建立 Batch 作業][4]<br/>
 
-Batch 作業基本上是與計算節點集區相關聯的工作集合。您不僅可用來組織及追蹤相關工作負載中的工作，也可以強加特定條件約束 — 例如作業 (並延伸至其工作) 的最大執行階段，以及相對於 Batch 帳戶中其他作業的作業優先順序。不過，在此範例中，作業只與在步驟 3 建立的集區相關聯。不會設定任何其他屬性。
+Batch **作業**是與計算節點集區相關聯的工作集合。作業中的工作會在相關聯集區的計算節點上執行。
+
+您不僅可使用作業來組織及追蹤相關工作負載中的工作，也可以強加特定條件約束，例如作業 (並延伸至其工作) 的最大執行階段，以及相對於 Batch 帳戶中其他作業的作業優先順序。不過，在此範例中，作業只與在步驟 3 建立的集區相關聯。不會設定任何其他屬性。
 
 所有 Batch 作業都會與特定集區相關聯。此關聯表示將會在哪些節點上執行作業的工作。您可使用 [CloudJob.PoolInformation][net_job_poolinfo] 屬性來指定此關聯，如下列程式碼片段所示。
 
-```
+```csharp
 private static async Task CreateJobAsync(
     BatchClient batchClient,
     string jobId,
@@ -363,9 +374,11 @@ private static async Task CreateJobAsync(
 
 ![將工作加入至作業][5]<br/> (1) 工作已加入至作業，(2) 工作已排定在節點上執行，以及 (3) 工作會下載要處理的資料檔案
 
-若要實際進行工作，必須將工作加入至作業。每個 [CloudTask][net_task] 都是使用命令列屬性以及工作在其命令列自動執行前下載至節點的 [ResourceFiles][net_task_resourcefiles] \(如同集區的 StartTask) 進行設定。在 DotNetTutorial 範例專案中，每個工作只會處理一個檔案。因此其 ResourceFiles 集合只包含單一元素。
+Batch **工作**是在計算節點上執行的個別工作單位。工作有一個命令列，可執行您在該命令列中指定的指令碼或可執行檔。
 
-```
+若要實際進行工作，必須將工作加入至作業。每個 [CloudTask][net_task] 都是使用命令列屬性以及工作在其命令列自動執行前下載至節點的 [ResourceFiles][net_task_resourcefiles] (如同集區的 StartTask) 進行設定。在 DotNetTutorial 範例專案中，每個工作只會處理一個檔案。因此其 ResourceFiles 集合只包含單一元素。
+
+```csharp
 private static async Task<List<CloudTask>> AddTasksAsync(
     BatchClient batchClient,
     string jobId,
@@ -408,11 +421,11 @@ private static async Task<List<CloudTask>> AddTasksAsync(
 
 1. **第一個引數**是要處理之檔案的路徑。這是節點上現有檔案的本機路徑。第一次在上述 `UploadFileToContainerAsync` 中建立 ResourceFile 物件時，檔案名稱會用於此屬性 (做為 ResourceFile 建構函式的參數)。這表示可以在與 TaskApplication.exe 相同的目錄中找到檔案。
 
-2. **第二個引數**指定最前面 N 個單字應該寫入輸出檔案。在此範例中，此為硬式編碼，所以前 3 個單字將會寫入輸出檔案。
+2. **第二個引數**指定最前面 N 個單字應該寫入輸出檔案。在此範例中，此為硬式編碼，所以前 3 個單字會寫入輸出檔案。
 
 3. **第三個引數**是共用存取簽章 (SAS)，可提供 Azure 儲存體中**輸出**容器的寫入存取權。當 TaskApplication.exe 將輸出檔上傳至 Azure 儲存體時，會使用此共用存取簽章 URL。您可以在 TaskApplication 專案的 `Program.cs` 檔案的 `UploadFileToContainer` 方法中找到其程式碼：
 
-```
+```csharp
 // NOTE: From project TaskApplication Program.cs
 
 private static void UploadFileToContainer(string filePath, string containerSas)
@@ -463,7 +476,7 @@ DotNetTutorial 的 `Program.cs` 中的 `MonitorTasks` 方法內，有三個 Batc
 
 DotNetTutorial 的 `Program.cs` 中的 `MonitorTasks` 方法如下所示：
 
-```
+```csharp
 private static async Task<bool> MonitorTasks(
     BatchClient batchClient,
     string jobId,
@@ -474,75 +487,72 @@ private static async Task<bool> MonitorTasks(
     const string failureMessage = "One or more tasks failed to reach the Completed state within the timeout period.";
 
     // Obtain the collection of tasks currently managed by the job. Note that we use
-    // a detail level to specify that only the "id" property of each task should be
+    // a detail level to  specify that only the "id" property of each task should be
     // populated. Using a detail level for all list operations helps to lower
     // response time from the Batch service.
     ODATADetailLevel detail = new ODATADetailLevel(selectClause: "id");
     List<CloudTask> tasks =
         await batchClient.JobOperations.ListTasks(JobId, detail).ToListAsync();
 
-    Console.WriteLine("Awaiting task completion, timeout in {0}...", timeout.ToString());
+    Console.WriteLine("Awaiting task completion, timeout in {0}...",
+        timeout.ToString());
 
     // We use a TaskStateMonitor to monitor the state of our tasks. In this case, we
     // will wait for all tasks to reach the Completed state.
-    TaskStateMonitor taskStateMonitor = batchClient.Utilities.CreateTaskStateMonitor();
-    bool timedOut = await taskStateMonitor.WaitAllAsync(
-        tasks,
-        TaskState.Completed,
-        timeout);
+    TaskStateMonitor taskStateMonitor
+        = batchClient.Utilities.CreateTaskStateMonitor();
 
-    if (timedOut)
+    try
     {
-        allTasksSuccessful = false;
-
-        await batchClient.JobOperations.TerminateJobAsync(jobId, failureMessage);
-
-        Console.WriteLine(failureMessage);
+        await taskStateMonitor.WhenAll(tasks, TaskState.Completed, timeout);
     }
-    else
+    catch (TimeoutException)
     {
-        await batchClient.JobOperations.TerminateJobAsync(jobId, successMessage);
+        await batchClient.JobOperations.TerminateJobAsync(jobId, failureMessage);
+        Console.WriteLine(failureMessage);
+        return false;
+    }
 
-        // All tasks have reached the "Completed" state. However, this does not
-        // guarantee that all tasks were completed successfully. Here we further
-        // check each task's ExecutionInfo property to ensure that it did not
-        // encounter a scheduling error or return a non-zero exit code.
+    await batchClient.JobOperations.TerminateJobAsync(jobId, successMessage);
 
-        // Update the detail level to populate only the task id and executionInfo
-        // properties. We refresh the tasks below, and need only this information
-        // for each task.
-        detail.SelectClause = "id, executionInfo";
+    // All tasks have reached the "Completed" state, however, this does not
+    // guarantee all tasks completed successfully. Here we further check each task's
+    // ExecutionInfo property to ensure that it did not encounter a scheduling error
+    // or return a non-zero exit code.
 
-        foreach (CloudTask task in tasks)
+    // Update the detail level to populate only the task id and executionInfo
+    // properties. We refresh the tasks below, and need only this information for
+    // each task.
+    detail.SelectClause = "id, executionInfo";
+
+    foreach (CloudTask task in tasks)
+    {
+        // Populate the task's properties with the latest info from the
+        // Batch service
+        await task.RefreshAsync(detail);
+
+        if (task.ExecutionInformation.SchedulingError != null)
         {
-            // Populate the task's properties with the latest info from the Batch service
-            await task.RefreshAsync(detail);
+            // A scheduling error indicates a problem starting the task on the node.
+            // It is important to note that the task's state can be "Completed," yet
+            // still have encountered a scheduling error.
 
-            if (task.ExecutionInformation.SchedulingError != null)
-            {
-                // A scheduling error indicates a problem starting the task on the
-                // node. It is important to note that the task's state can be
-                // "Completed," yet the task still might have encountered a
-                // scheduling error.
+            allTasksSuccessful = false;
 
-                allTasksSuccessful = false;
+            Console.WriteLine("WARNING: Task [{0}] encountered a scheduling error: {1}",
+                task.Id,
+                task.ExecutionInformation.SchedulingError.Message);
+        }
+        else if (task.ExecutionInformation.ExitCode != 0)
+        {
+            // A non-zero exit code may indicate that the application executed by
+            // the task encountered an error during execution. As not every
+            // application returns non-zero on failure by default (e.g. robocopy),
+            // your implementation of error checking may differ from this example.
 
-                Console.WriteLine(
-                    "WARNING: Task [{0}] encountered a scheduling error: {1}",
-                    task.Id,
-                    task.ExecutionInformation.SchedulingError.Message);
-            }
-            else if (task.ExecutionInformation.ExitCode != 0)
-            {
-                // A non-zero exit code may indicate that the application executed by
-                // the task encountered an error during execution. As not every
-                // application returns non-zero on failure by default (e.g. robocopy),
-                // your implementation of error checking may differ from this example.
+            allTasksSuccessful = false;
 
-                allTasksSuccessful = false;
-
-                Console.WriteLine("WARNING: Task [{0}] returned a non-zero exit code - this may indicate task execution or completion failure.", task.Id);
-            }
+            Console.WriteLine("WARNING: Task [{0}] returned a non-zero exit code - this may indicate task execution or completion failure.", task.Id);
         }
     }
 
@@ -561,7 +571,7 @@ private static async Task<bool> MonitorTasks(
 
 現已完成作業，可以從 Azure 儲存體下載工作的輸出。在 DotNetTutorial 的 `Program.cs` 中呼叫 `DownloadBlobsFromContainerAsync` 即可完成此操作：
 
-```
+```csharp
 private static async Task DownloadBlobsFromContainerAsync(
     CloudBlobClient blobClient,
     string containerName,
@@ -595,7 +605,7 @@ private static async Task DownloadBlobsFromContainerAsync(
 
 因為您需對位於 Azure 儲存體中的資料付費，所以建議您移除您的 Batch 作業不再需要的所有 Blob。在 DotNetTutorial 的 `Program.cs` 中，呼叫協助程式方法 `DeleteContainerAsync` 三次即可辦到：
 
-```
+```csharp
 // Clean up Storage resources
 await DeleteContainerAsync(blobClient, appContainerName);
 await DeleteContainerAsync(blobClient, inputContainerName);
@@ -604,7 +614,7 @@ await DeleteContainerAsync(blobClient, outputContainerName);
 
 此方法本身只會取得容器的參考，然後呼叫 [CloudBlobContainer.DeleteIfExistsAsync][net_container_delete]：
 
-```
+```csharp
 private static async Task DeleteContainerAsync(
     CloudBlobClient blobClient,
     string containerName)
@@ -629,7 +639,7 @@ private static async Task DeleteContainerAsync(
 
 BatchClient 的 [JobOperations][net_joboperations] 和 [PoolOperations][net_pooloperations] 兩者都有對應的刪除方法 (在使用者確認刪除時呼叫)：
 
-```
+```csharp
 // Clean up the resources we've created in the Batch account if the user so chooses
 Console.WriteLine();
 Console.WriteLine("Delete job? [yes] no");
@@ -653,7 +663,7 @@ if (response != "n" && response != "no")
 
 當您執行範例應用程式時，主控台輸出大致如下。在執行期間，啟動集區的計算節點時，您將在 `Awaiting task completion, timeout in 00:30:00...` 遇到暫停。在執行期間和之後，使用 [Azure 入口網站][azure_portal]來監視集區、計算節點、作業和工作。使用 [Azure 入口網站][azure_portal]或 [Azure 儲存體總管][storage_explorers]來檢視應用程式所建立的儲存體資源 (容器和 Blob)。
 
-以預設組態執行應用程式時，一般的執行時間**大約 5 分鐘**。
+以預設設定執行應用程式時，一般的執行時間**大約 5 分鐘**。
 
 ```
 Sample start: 1/8/2016 09:42:58 AM
@@ -700,6 +710,7 @@ Sample complete, hit ENTER to exit...
 [azure_free_account]: https://azure.microsoft.com/free/
 [azure_portal]: https://portal.azure.com
 [batch_learning_path]: https://azure.microsoft.com/documentation/learning-paths/batch/
+[github_batchexplorer]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/BatchExplorer
 [github_dotnettutorial]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/DotNetTutorial
 [github_samples]: https://github.com/Azure/azure-batch-samples
 [github_samples_common]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/Common
@@ -754,4 +765,4 @@ Sample complete, hit ENTER to exit...
 [10]: ./media/batch-dotnet-get-started/credentials_storage_sm.png "入口網站中的儲存體認證"
 [11]: ./media/batch-dotnet-get-started/batch_workflow_minimal_sm.png "Batch 方案工作流程 (最小圖表)"
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0817_2016-->

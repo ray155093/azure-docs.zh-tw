@@ -1,7 +1,7 @@
 <properties
 	pageTitle="開始使用儲存體 Explorer (預覽) | Microsoft Azure"
 	description="使用儲存體總管管理 Azure 儲存體資源 (預覽)"
-	services="visual-studio-online"
+	services="storage"
 	documentationCenter="na"
 	authors="TomArcher"
 	manager="douge"
@@ -13,14 +13,14 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="na"
-	ms.date="07/30/2016"
+	ms.date="08/17/2016"
 	ms.author="tarcher" />
 
 # 開始使用儲存體 Explorer (預覽)
 
-## 概觀 
+## Overview 
 
-Microsoft Azure 儲存體 Explorer (預覽) 是一個獨立應用程式，可讓您在 Windows、OSX 和 Linux 上輕鬆使用 Azure 儲存體資料。在本文中，您將學習連接及管理 Azure 儲存體帳戶的各種方式。
+Microsoft Azure 儲存體總管 (預覽) 是一個獨立應用程式，可讓您在 Windows、OS X 和 Linux 上輕鬆使用 Azure 儲存體資料。在本文中，您將學習連接及管理 Azure 儲存體帳戶的各種方式。
 
 ![Microsoft Azure 儲存體 Explorer (預覽)][15]
 
@@ -130,7 +130,7 @@ Microsoft Azure 儲存體 Explorer (預覽) 是一個獨立應用程式，可讓
 
 ## 使用 SAS 附加儲存體帳戶
 
-[SAS (共用存取簽章)](storage/storage-dotnet-shared-access-signature-part-1.md) 讓 Azure 共用存取簽章的系統管理員能夠暫時授與儲存體帳戶的存取權，而不需提供其 Azure 訂用帳戶認證。
+[SAS (共用存取簽章)](storage/storage-dotnet-shared-access-signature-part-1.md) 讓 Azure 訂用帳戶的系統管理員能夠暫時授與儲存體帳戶的存取權，而不需提供其 Azure 訂用帳戶認證。
 
 為了說明這點，我們假設 UserA 是 Azure 訂用帳戶的系統管理員，而且 UserA 想要允許 UserB 在有限的時間內使用特定權限存取儲存體帳戶：
 
@@ -168,7 +168,7 @@ Microsoft Azure 儲存體 Explorer (預覽) 是一個獨立應用程式，可讓
 
 ## 使用 SAS 附加服務
 
-[使用 SAS 附加儲存體帳戶](#attach-storage-account-using-sas) 一節說明 Azure 訂用帳戶系統管理員如何藉由產生 (及共用) 儲存體帳戶的 SAS 來授與儲存體帳戶的暫存存取權。同樣地，可以針對儲存體帳戶內的特定服務 (Blob 容器、佇列或資料表) 產生 SAS。
+[使用 SAS 附加儲存體帳戶](#attach-storage-account-using-sas)一節說明 Azure 訂用帳戶系統管理員如何藉由產生 (及共用) 儲存體帳戶的 SAS 來授與儲存體帳戶的暫存存取權。同樣地，可以針對儲存體帳戶內的特定服務 (Blob 容器、佇列或資料表) 產生 SAS。
 
 ### 針對您要共用的服務產生 SAS
 
@@ -229,4 +229,4 @@ Microsoft Azure 儲存體 Explorer (預覽) 是一個獨立應用程式，可讓
 [23]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/connect-to-azure-storage-icon.png
 [24]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/connect-to-azure-storage-next.png
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

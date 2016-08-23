@@ -24,7 +24,7 @@
 
 ## 什麼是安全性事件？
 
-在資訊安全中心內，安全性事件是符合[狙殺鍊](https://blogs.technet.microsoft.com/office365security/addressing-your-cxos-top-five-cloud-security-concerns/)模式之資源的所有警示彙總。事件會出現在 [[安全性警示](security-center-managing-and-responding-alerts.md)] 圖格和刀鋒視窗中。事件會顯示相關警示的清單，以讓您取得所引發的每個警示的詳細資訊。
+在資訊安全中心內，安全性事件是符合[攻擊鏈](https://blogs.technet.microsoft.com/office365security/addressing-your-cxos-top-five-cloud-security-concerns/)模式之資源的所有警示彙總。事件會出現在 [[安全性警示](security-center-managing-and-responding-alerts.md)] 圖格和刀鋒視窗中。事件會顯示相關警示的清單，以讓您取得所引發的每個警示的詳細資訊。
 
 ## 管理安全性事件
 
@@ -34,7 +34,7 @@
 
     ![資訊安全中心的 [安全性警示] 圖格](./media/security-center-incident/security-center-incident-fig1.png)
 
-2.  按一下此圖格來加以展開，如果偵測到安全性事件，它便會出現在安全性警示圖形底下，如此圖所示。
+2.  按一下此圖格來加以展開，如果偵測到安全性事件，它便會出現在安全性警示圖形下方，如下所示：
 
     ![安全性事件](./media/security-center-incident/security-center-incident-fig2.png)
 
@@ -42,7 +42,7 @@
 
 	![安全性事件](./media/security-center-incident/security-center-incident-fig3.png)
 
-4. 	在 [偵測到安全性事件] 刀鋒視窗中，您會看到此安全性事件的詳細資訊，其中包含事件的完整描述、嚴重性 (在本例中是 [高])、事件的目前狀態 (在本例中仍為 [作用中])、受到攻擊的資源 (在本例中是 [VM1])、修復步驟，而最底下則是此事件所包含的警示。如果您想要取得每個警示的詳細資訊，只要按一下警示便會開啟另一個刀鋒視窗，如下所示。
+4. 	在 [事件] 刀鋒視窗中，您會看到此安全性事件的詳細資訊，其中包含事件的完整描述、嚴重性 (在本例中是 [高])、目前狀態 (在本例中仍為 [作用中]，這代表使用者尚未執行動作來「關閉」此安全性事件 - 在 [安全性警示] 刀鋒視窗中的事件上按一下右鍵即可完成)、受到攻擊的資源 (在本例中是 [VM1])、事件的修復步驟，而最下方的窗格則是此事件所包含的警示。如果您想要取得每個警示的詳細資訊，只要按一下警示便會開啟另一個刀鋒視窗，如下所示：
 
 	![安全性事件](./media/security-center-incident/security-center-incident-fig4.png)
 
@@ -63,4 +63,4 @@
 - [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 尋找有關 Azure 安全性與相容性的部落格文章。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="nodejs"
 	ms.topic="hero-article"
-	ms.date="06/24/2016"
+	ms.date="08/11/2016"
 	ms.author="robmcm"/>
 
 # 在 Azure App Service 中建立 Node.js Web 應用程式
@@ -40,7 +40,7 @@
 如需教學課程，以及具有更複雜的 Node.js 應用程式的範例程式碼，或如需有關如何在 Azure 中使用 Node.js 的其他主題，請參閱 [Node.js 開發人員中心](/develop/nodejs/)。
 
 > [AZURE.NOTE]
-若要完成此教學課程，您需要 Microsoft Azure 帳戶。如果您沒有這類帳戶，可以[啟用自己的 Visual Studio 訂閱者權益](/zh-TW/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)，或是[申請免費試用](/zh-TW/pricing/free-trial/?WT.mc_id=A261C142F)。
+若要完成此教學課程，您需要 Microsoft Azure 帳戶。如果您沒有這類帳戶，可以[啟用自己的 Visual Studio 訂閱者權益](/en-us/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)，或是[申請免費試用](/en-us/pricing/free-trial/?WT.mc_id=A261C142F)。
 >
 > 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)。您可以於該處，在 App Service 中立即建立短期的入門 Web app - 不需信用卡，不需任何承諾。
 
@@ -183,7 +183,7 @@
 
 ## 將變更發行至您的應用程式
 
-1. 在文字編輯器中開啟 **server.js** 檔案，然後將「Hello World\\n」變更為「Hello Azure\\n」。 
+1. 在文字編輯器中開啟 **server.js** 檔案，然後將「Hello World\\n」變更為「Hello Azure\\n」。
 
 2. 儲存檔案。
 
@@ -225,4 +225,4 @@ Node.js 提供您豐富的模組生態系統，可供您的應用程式使用。
 [deployment-credentials]: ./media/web-sites-nodejs-develop-deploy-mac/deployment-credentials.png
 [git-url]: ./media/web-sites-nodejs-develop-deploy-mac/git-url.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0817_2016-->

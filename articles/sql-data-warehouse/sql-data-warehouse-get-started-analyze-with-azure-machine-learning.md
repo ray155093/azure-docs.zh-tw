@@ -22,7 +22,7 @@
 - [Power BI](sql-data-warehouse-get-started-visualize-with-power-bi.md)
 - [Azure Machine Learning](sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md)
 - [Visual Studio](sql-data-warehouse-query-visual-studio.md)
-- [sqlcmd](sql-data-warehouse-get-started-connect-sqlcmd.md) 
+- [sqlcmd](sql-data-warehouse-get-started-connect-sqlcmd.md)
 
 本教學課程會使用 Azure Machine Learning，根據 Azure 資料倉儲中儲存的資料建置預測性機器學習模型。具體來說，這會為 Adventure Work 建置鎖定目標的行銷活動，預測客戶是否可能購買自行車。
 
@@ -132,7 +132,7 @@ FROM [dbo].[vTargetMail]
 <!--Article references-->
 [Azure Machine Learning studio]: https://studio.azureml.net/
 [Azure 上的機器學習服務簡介]: https://azure.microsoft.com/documentation/articles/machine-learning-what-is-machine-learning/
-[手動載入範例資料]: sql-data-warehouse-get-started-load-sample-databases.md
+[手動載入範例資料]: sql-data-warehouse-load-sample-databases.md
 [建立 SQL 資料倉儲]: sql-data-warehouse-get-started-provision.md
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0817_2016-->

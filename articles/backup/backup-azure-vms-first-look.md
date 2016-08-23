@@ -76,8 +76,7 @@
 
     ![備份保存庫的清單](./media/backup-azure-vms-first-look/active-vault-demo.png)
 
-9. 在 [快速啟動] 頁面上，按一下 [設定] 以開啟儲存體複寫選項。
-    ![備份保存庫的清單](./media/backup-azure-vms-first-look/configure-storage.png)
+9. 在 [快速啟動] 頁面上，按一下 [設定] 以開啟儲存體複寫選項。![備份保存庫的清單](./media/backup-azure-vms-first-look/configure-storage.png)
 
 10. 在 [儲存體複寫] 選項上，選擇保存庫的複寫選項。
 
@@ -92,8 +91,7 @@
 
 1. 登入 [Azure 傳統入口網站](http://manage.windowsazure.com/)
 
-2. 在 Azure 傳統入口網站中，按一下 [復原服務] 以開啟復原服務保存庫清單。
-    ![選取工作負載](./media/backup-azure-vms-first-look/recovery-services-icon.png)
+2. 在 Azure 傳統入口網站中，按一下 [復原服務] 以開啟復原服務保存庫清單。![選取工作負載](./media/backup-azure-vms-first-look/recovery-services-icon.png)
 
 3. 在保存庫清單中，選取要備份 VM 的保存庫。
 
@@ -107,8 +105,7 @@
 
     ![選取工作負載](./media/backup-azure-vms/discovery-select-workload.png)
 
-6. 按一下頁面底部的 [**探索**]。
-    ![探索按鈕](./media/backup-azure-vms/discover-button-only.png)
+6. 按一下頁面底部的 [**探索**]。![探索按鈕](./media/backup-azure-vms/discover-button-only.png)
 
     在列表顯示虛擬機器時，探索程序可能需花費幾分鐘的時間。畫面底部會有通知讓您知道程序正在執行中。
 
@@ -140,7 +137,7 @@
 
 ## 步驟 3 - 在虛擬機器中安裝 VM 代理程式
 
-Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能才能運作。如果 VM 是建立自 Azure 資源庫，則 VM 代理程式已存在於 VM 上。您可以跳到[保護您的 VM](backup-azure-vms-first-look.md#step-4---protect-azure-virtual-machines)。
+Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能才能運作。如果 VM 是建立自 Azure 資源庫，則 VM 代理程式已存在於 VM 上。您可以跳到[保護您的 VM](backup-azure-vms-first-look.md#step-4-protect-azure-virtual-machines)。
 
 如果您的 VM 是從內部部署資料中心進行移轉，VM 可能還未安裝 VM 代理程式。您必須先在虛擬機器上安裝 VM 代理程式，再繼續進行保護 VM。如需安裝 VM 代理程式的詳細步驟，請參閱[《備份 VM》文章的＜VM 代理程式＞一節](backup-azure-vms-prepare.md#vm-agent)。
 
@@ -153,8 +150,7 @@ Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能�
 
     ![在入口網站中選取工作負載](./media/backup-azure-vms/select-workload.png)
 
-3. 按一下頁面底部的 [保護]。
-    ![按一下 [保護]](./media/backup-azure-vms-first-look/protect-icon.png)
+3. 按一下頁面底部的 [保護]。![按一下 [保護]](./media/backup-azure-vms-first-look/protect-icon.png)
 
     [保護項目精靈] 隨即出現，並「只」列出已註冊但未受保護的虛擬機器。
 
@@ -192,8 +188,7 @@ Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能�
 
 若要立即啟動初始備份︰
 
-1. 在 [受保護的項目] 頁面上，按一下頁面底部的 [立即備份]。
-    ![[立即備份] 圖示](./media/backup-azure-vms-first-look/backup-now-icon.png)
+1. 在 [受保護的項目] 頁面上，按一下頁面底部的 [立即備份]。![[立即備份] 圖示](./media/backup-azure-vms-first-look/backup-now-icon.png)
 
     Azure 備份服務會初始備份作業建立備份工作。
 
@@ -218,4 +213,4 @@ Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能�
 ## 有疑問嗎？
 如果您有問題，或希望我們加入任何功能，請[傳送意見反應給我們](http://aka.ms/azurebackup_feedback)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

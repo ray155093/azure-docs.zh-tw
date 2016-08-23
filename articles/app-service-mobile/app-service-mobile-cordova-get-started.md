@@ -15,7 +15,7 @@
     ms.tgt_pltfrm="mobile-html"
     ms.devlang="javascript"
     ms.topic="hero-article"
-    ms.date="05/02/2016"
+    ms.date="08/11/2016"
     ms.author="glenga"/>
 
 #建立 Apache Cordova 應用程式
@@ -75,7 +75,7 @@
 <!-- URLs -->
 [Azure portal]: https://portal.azure.com/
 [Visual Studio Community 2015]: http://www.visualstudio.com/
-[Visual Studio Tools for Apache Cordova]: https://www.visualstudio.com/zh-TW/features/cordova-vs.aspx
+[Visual Studio Tools for Apache Cordova]: https://www.visualstudio.com/en-us/features/cordova-vs.aspx
 [新增驗證]: app-service-mobile-cordova-get-started-users.md
 [新增推播通知]: app-service-mobile-cordova-get-started-push.md
 [驗證]: app-service-mobile-auth.md
@@ -84,4 +84,4 @@
 [ASP.NET Server SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Node.js Server SDK]: app-service-mobile-node-backend-how-to-use-server-sdk.md
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0817_2016-->

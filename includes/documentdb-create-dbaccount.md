@@ -12,12 +12,13 @@
 
 	- 在 [訂用帳戶] 中，選取您要用於 DocumentDB 帳戶的 Azure 訂用帳戶。如果您的帳戶只有一個訂用帳戶，預設會選取該帳戶。
 
-	- 在 [資源群組] 中，選取或建立 DocumentDB 帳戶的資源群組。根據預設，將會選擇 Azure 訂用帳戶之下現有的資源群組。不過，您可以選擇建立新的資源群組，以便在其中加入您的 DocumentDB 帳戶。如需詳細資訊，請參閱[使用 Azure 入口網站管理 Azure 資源](resource-group-portal.md)。
+	- 在 [資源群組] 中，選取或建立 DocumentDB 帳戶的資源群組。依預設會建立新的資源群組。如需詳細資訊，請參閱[使用 Azure 入口網站管理 Azure 資源](../articles/azure-portal/resource-group-portal.md)。
 
 	- 使用 [位置] 指定將代管您的 DocumentDB 帳戶的地理位置。
+	
+    - 若想要方便存取您未來建立的帳戶和資源，請勾選 [釘選到儀表板]。
 
-4.	設定新的 DocumentDB 帳戶選項之後，按一下 [建立]。建立 DocumentDB 帳戶可能需要數分鐘。若要檢查狀態，您可以監視「開始面板」上的進度。  
-	![「開始面板」上 [建立] 圖格的螢幕擷取畫面 - 線上資料庫建立者](./media/documentdb-create-dbaccount/create-nosql-db-databases-json-tutorial-3.png)
+4.	設定新的 DocumentDB 帳戶選項之後，按一下 [建立]。若要檢查部署的狀態，您可以監視「開始面板」上的進度。![「開始面板」上 [建立] 圖格的螢幕擷取畫面 - 線上資料庫建立者](./media/documentdb-create-dbaccount/create-nosql-db-databases-json-tutorial-3.png)
 
 	或者，您也可以從 [通知] 中樞監視進度。
 
@@ -25,7 +26,7 @@
 
 	![通知中樞的螢幕擷取畫面，顯示已成功建立 DocumentDB 帳戶並部署到資源群組 - 線上資料庫建立者通知](./media/documentdb-create-dbaccount/create-nosql-db-databases-json-tutorial-5.png)
 
-5.	建立 DocumentDB 帳戶之後，即可在線上入口網站中使用預設設定。請注意，DocumentDB 帳戶的預設一致性會設定為 [工作階段]。您可以藉由按一下頂端命令列上的 [設定] 圖示，然後按一下 [所有設定] 刀鋒視窗上之 [功能] 底下的 [預設一致性] 項目，調整預設一致性設定。
+5.	建立 DocumentDB 帳戶之後，即可在線上入口網站中使用預設設定。請注意，DocumentDB 帳戶的預設一致性會設定為 [工作階段]。您可以藉由按一下功能表中的 [預設一致性]，調整預設一致性設定。若要深入了解 DocumentDB 所提供的一致性層級，請參閱 [DocumentDB 中的一致性層級](../articles/azure-portal/resource-group-portal.md)
 
     ![[資源群組] 刀鋒視窗的螢幕擷取畫面 - 開始進行應用程式開發](./media/documentdb-create-dbaccount/create-nosql-db-databases-json-tutorial-6.png)
 
@@ -35,4 +36,4 @@
 [Next steps]: #NextSteps
 [documentdb-manage]: ../articles/documentdb/documentdb-manage.md
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0817_2016-->

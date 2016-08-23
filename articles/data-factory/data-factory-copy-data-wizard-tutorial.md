@@ -1,6 +1,6 @@
 <properties 
 	pageTitle="教學課程：使用複製精靈建立管線" 
-	description="在本教學課程中，您將使用 Data Factory 所支援的複製精靈，建立具有複製活動的 Azure Data Factory 管線。" 
+	description="在本教學課程中，您會使用 Data Factory 所支援的複製精靈，建立具有複製活動的 Azure Data Factory 管線。" 
 	services="data-factory" 
 	documentationCenter="" 
 	authors="spelluru" 
@@ -22,9 +22,10 @@
 - [使用 Data Factory 編輯器](data-factory-copy-activity-tutorial-using-azure-portal.md)
 - [使用 PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
 - [使用 Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
+- [使用 REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
 - [使用複製精靈](data-factory-copy-data-wizard-tutorial.md)
 
-在本教學課程中，您將使用 Data Factory 複製精靈在 Data Factory 中建立具有複製活動的管線。首先，您會使用 Azure 入口網站建立 Data Factory，然後使用複製精靈建立 Data Factory 連結服務、資料集和具有複製活動的管線，將資料從 Azure Blob 儲存體複製到 Azure SQL Database。
+在本教學課程中，您會使用 Data Factory 複製精靈在 Data Factory 中建立具有複製活動的管線。首先，您會使用 Azure 入口網站建立 Data Factory，然後使用複製精靈建立 Data Factory 連結服務、資料集和具有複製活動的管線，將資料從 Azure Blob 儲存體複製到 Azure SQL Database。
 
 > [AZURE.IMPORTANT] 請檢閱[教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)文章，並在執行本教學課程之前完成必要的步驟。
 
@@ -36,12 +37,12 @@
 	![新增->DataFactory](./media/data-factory-copy-data-wizard-tutorial/new-data-factory-menu.png)
 
 6. 在 [新增 Data Factory] 刀鋒視窗中：
-	1. 輸入 **ADFTutorialDataFactory** 做為**名稱**。
+	1. 輸入 **ADFTutorialDataFactory** 做為名稱。
 	
   		![新增 Data Factory 刀鋒視窗](./media/data-factory-copy-data-wizard-tutorial/getstarted-new-data-factory.png)
 	2. 按一下 [資源群組名稱]，然後執行下列動作：
 		1. 按一下 [建立新的資源群組]。
-		2. 在 [建立資源群組] 刀鋒視窗中，輸入 **ADFTutorialResourceGroup** 做為資源群組的**名稱**，然後按一下 [確定]。
+		2. 在 [建立資源群組] 刀鋒視窗中，輸入 **ADFTutorialResourceGroup** 做為資源群組的名稱，然後按一下 [確定]。
 
 			![建立資源群組](./media/data-factory-copy-data-wizard-tutorial/create-new-resource-group.png)
 
@@ -49,7 +50,7 @@
 7. 在 [新增 Data Factory] 刀鋒視窗中，請留意是否已選取 [新增至開始面板]。
 8. 按一下 [新增 Data Factory] 刀鋒視窗中的 [建立]。
 
-	Azure Data Factory 的名稱在全域必須是唯一的。如果您收到錯誤：**Data Factory 名稱 “ADFTutorialDataFactory” 無法使用**，請變更 Data Factory 名稱 (例如 yournameADFTutorialDataFactory)，然後試著重新建立。請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md)主題，以了解 Data Factory 成品的命名規則。
+	Azure Data Factory 的名稱在全域必須是唯一的。如果您收到錯誤：「Data Factory 名稱 “ADFTutorialDataFactory” 無法使用」，請變更 Data Factory 名稱 (例如 yournameADFTutorialDataFactory)，然後試著重新建立。請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md)主題，以了解 Data Factory 成品的命名規則。
 	 
 	![Data Factory 名稱無法使用](./media/data-factory-copy-data-wizard-tutorial/getstarted-data-factory-not-available.png)
 	
@@ -115,8 +116,8 @@
 | :---- | :---- |
 | [資料移動活動](data-factory-data-movement-activities.md) | 本文提供您在本教學課程中使用的複製活動詳細資訊。 |
 | [排程和執行](data-factory-scheduling-and-execution.md) | 本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
-| [管線](data-factory-create-pipelines.md) | 本文將協助您了解 Azure Data Factory 中的管線和活動，以及如何運用這些來為您的案例或業務建構端對端的資料導向工作流程。 |
-| [資料集](data-factory-create-datasets.md) | 他的文章會協助您了解 Azure Data Factory 中的資料集。
+| [管線](data-factory-create-pipelines.md) | 本文協助您了解 Azure Data Factory 中的管線和活動，以及如何運用這些來為您的案例或業務建構端對端的資料導向工作流程。 |
+| [資料集](data-factory-create-datasets.md) | 本文協助您了解 Azure Data Factory 中的資料集。
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -13,7 +13,7 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="big-compute"
-	ms.date="06/29/2016"
+	ms.date="08/12/2016"
 	ms.author="marsma"/>
 
 # 適用於開發人員的 Batch 功能概觀
@@ -102,7 +102,7 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台；Batch 集區提�
 	**雲端服務組態**只提供 Windows 計算節點。雲端服務組態集區可用的作業系統列於 [Azure 客體 OS 版次與 SDK 相容性矩陣](../cloud-services/cloud-services-guestos-update-matrix.md)。建立包含雲端服務節點的集區時，您只需指定節點大小及其「作業系統系列」。建立 Windows 計算節點集區時，最常使用的是雲端服務。
 
     - 「OS 系列」也會決定哪些版本的.NET 會與作業系統一起安裝。
-	- 如同雲端服務內的背景工作角色，您可以指定 [OS 版本] \(如需背景工作角色的詳細資訊，請參閱[雲端服務概觀](../cloud-services/cloud-services-choose-me.md)中的[我想了解雲端服務](../cloud-services/cloud-services-choose-me.md#tell-me-about-cloud-services)一節)。
+	- 如同雲端服務內的背景工作角色，您可以指定 [OS 版本] (如需背景工作角色的詳細資訊，請參閱[雲端服務概觀](../cloud-services/cloud-services-choose-me.md)中的[我想了解雲端服務](../cloud-services/cloud-services-choose-me.md#tell-me-about-cloud-services)一節)。
     - 如同背景工作角色，建議為 [OS 版本]指定 `*`，以便自動升級節點，而且不需為了因應新發行的版本而執行工作。選取特定 OS 版本的主要使用案例是為了確保應用程式相容性，以允許在更新版本之前執行回溯相容性測試。通過驗證之後，即可更新集區的 [OS 版本] 並安裝新的 OS 映像，如此將會中斷任何執行中的工作並重新排入佇列。
 
 - **節點的大小**
@@ -145,7 +145,7 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台；Batch 集區提�
 
 > [AZURE.IMPORTANT] 所有的 Batch 帳戶都具有預設**配額**，以限制 Batch 帳戶中的**核心** (因而限制計算節點) 數目。您會在 [Azure Batch 服務的配額和限制](batch-quota-limit.md)中發現預設配額以及如何[增加配額](batch-quota-limit.md#increase-a-quota) (例如 Batch 帳戶中的核心數目上限) 的說明。如果您發現自問「為什麼我的集區不會觸達 X 個以上的節點？」，此核心配額可能是原因。
 
-## Job
+## 工作 (Job)
 
 作業是工作的集合。作業可管理其工作在集區中的計算節點上執行計算的方式。
 
@@ -345,7 +345,7 @@ Batch 能在背景處理使用 Azure 儲存體將應用程式封裝安全地儲�
 
 - **資源度量**是以 CPU 使用量、頻寬使用量、記憶體使用量和節點的數目為基礎。
 
-- **工作度量**是以工作狀態為基礎，例如 [作用中] \(已排入佇列)、[執行中] 或 [已完成]。
+- **工作度量**是以工作狀態為基礎，例如 [作用中] (已排入佇列)、[執行中] 或 [已完成]。
 
 當自動調整減少集區中的計算節點數目時，您必須考量如何處理在減少作業時正在執行的工作。為了配合這一點，Batch 會提供您可以納入公式中的「節點解除配置選項」。例如，您可以指定執行中的工作立即停止，立即停止而後重新排入佇列以便在另一個節點上執行，或允許先完成再從集區中移除節點。
 
@@ -432,6 +432,11 @@ Batch 能在背景處理使用 Azure 儲存體將應用程式封裝安全地儲�
 
 - 在[開始使用適用於 .NET 的 Azure Batch 程式庫](batch-dotnet-get-started.md)中逐步了解範例 Batch 應用程式。另外還有 [Python 版本](batch-python-tutorial.md)的教學課程，該教學課程會在 Linux 計算節點上執行工作負載。
 
+- 下載並建置 [Batch 總管][github_batchexplorer]範例專案，以便您在開發 Batch 解決方案時使用。使用 Batch 總管可執行下列和其他作業：
+  - 監視和管理 Batch 帳戶內的集區、作業和工作
+  - 從節點下載 `stdout.txt`、`stderr.txt` 和其他檔案
+  - 在節點上建立使用者，並下載遠端登入的 RDP 檔案
+
 - 了解如何[建立 Linux 計算節點的集區](batch-linux-nodes.md)。
 
 - 瀏覽 MSDN 上的 [ Azure Batch 論壇][batch_forum]。不論您是新手或是使用 Batch 的專家，論壇都是詢問問題的好地方。
@@ -444,7 +449,7 @@ Batch 能在背景處理使用 Azure 儲存體將應用程式封裝安全地儲�
 [msmpi]: https://msdn.microsoft.com/library/bb524831.aspx
 [github_samples]: https://github.com/Azure/azure-batch-samples
 [github_sample_taskdeps]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/TaskDependencies
-
+[github_batchexplorer]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/BatchExplorer
 [batch_net_api]: https://msdn.microsoft.com/library/azure/mt348682.aspx
 [net_cloudjob_jobmanagertask]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudjob.jobmanagertask.aspx
 [net_cloudjob_priority]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudjob.priority.aspx
@@ -487,4 +492,4 @@ Batch 能在背景處理使用 Azure 儲存體將應用程式封裝安全地儲�
 
 [vm_marketplace]: https://azure.microsoft.com/marketplace/virtual-machines/
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0817_2016-->

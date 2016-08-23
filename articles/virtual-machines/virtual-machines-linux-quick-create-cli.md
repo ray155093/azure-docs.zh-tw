@@ -19,6 +19,8 @@
 
 # 使用 CLI 在 Azure 上建立 Linux VM
 
+> [AZURE.NOTE] 若能耽擱您一些時間，請透過回答這個針對您經驗的[簡短問卷](https://aka.ms/linuxdocsurvey)，來協助我們改善 Azure Linux VM 文件。每個答案都有助於我們協助您完成工作。
+
 本文示範如何使用 Azure CLI 的 `azure vm quick-create` 命令，在 Azure 上快速部署 Linux 虛擬機器。`quick-create` 命令會部署周圍具有基本基礎結構的 VM，可讓您非常快速地建立原型或測試概念 (您可以將它視為達到 Linux bash 殼層的最快速方式)。本文需要 Azure 帳戶 ([取得免費試用](https://azure.microsoft.com/pricing/free-trial/))，及已登入 (`azure login`) 和處於資源管理員模式的 [Azure CLI](../xplat-cli-install.md) (`azure config mode arm`)。您也可以使用 [Azure 入口網站](virtual-machines-linux-quick-create-portal.md)快速部署 Linux VM。
 
 ## 快速命令摘要
@@ -171,4 +173,4 @@ Warning: Permanently added 'rhel-westu-1630678171-pip.westus.cloudapp.azure.com,
 
 這些文章可幫您開始建置 Azure 基礎結構，以及多種專屬和開放原始碼基礎結構部署、組態和協調流程工具。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0817_2016-->

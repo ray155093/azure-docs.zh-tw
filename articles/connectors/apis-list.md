@@ -51,15 +51,15 @@
 
 <!-- TODO: Add Functions, App Service, and Nested Workflow Icons -->
 ### 連接器可以是觸發程序
-多個連接器提供觸發程序，可在發生特定事件時通知您的應用程式。例如，FTP 連接器具有 OnUpdatedFile 觸發程序。您可以建置邏輯應用程式、PowerApp 或流程來接聽此觸發程序，並且在每次引發觸發程序時採取動作。
+多個連接器提供觸發程序，可在發生特定事件時通知您的 app。例如，FTP 連接器具有 OnUpdatedFile 觸發程序。您可以建置邏輯應用程式、PowerApp 或流程來接聽此觸發程序，並且在每次引發觸發程序時採取動作。
 
 觸發程序可分為兩種：
 
-* 輪詢觸發程序：這些觸發程序會以指定的頻率輪詢您的服務，以檢查是否有新資料。有新資料可用時，應用程式的新執行個體會以該資料做為輸入來執行。為了防止重複取用相同的資料，觸發程序可能會清除已讀取並傳遞至您應用程式的資料。
-* 推送觸發程序：這些觸發程序會接聽端點上的資料，或接聽發生的事件。然後，觸發應用程式的新執行個體。Twitter 連接器是其中一個範例。
+* 輪詢觸發程序：這些觸發程序會以指定的頻率輪詢您的服務，以檢查是否有新資料。有新資料可用時，app 的新執行個體會以該資料做為輸入來執行。為了防止重複取用相同的資料，觸發程序可能會清除已讀取並傳遞至您 app 的資料。
+* 推送觸發程序：這些觸發程序會接聽端點上的資料，或接聽發生的事件。然後，觸發 app 的新執行個體。Twitter 連接器是其中一個範例。
 
 ### 連接器可以是動作
-連接器也可做為應用程式內的動作。動作很適合用來查閱可在執行應用程式時使用的資料。例如，在處理訂單時，您可能需要查閱 SQL 資料庫中的客戶資料。或者，您可能需要寫入、更新或刪除目的地資料表中的資料。您可以使用連接器所提供的動作來這樣做。動作會對應至 Swagger 中繼資料中定義的作業。
+連接器也可做為 app 內的動作。動作很適合用來查閱可在執行 app 時使用的資料。例如，在處理訂單時，您可能需要查閱 SQL 資料庫中的客戶資料。或者，您可能需要寫入、更新或刪除目的地資料表中的資料。您可以使用連接器所提供的動作來這樣做。動作會對應至 Swagger 中繼資料中定義的作業。
 
 ## 後續步驟
 
@@ -102,8 +102,8 @@
 [as2doc]: ../app-service-logic/app-service-logic-enterprise-integration-as2.md "深入了解企業整合 AS2。"
 [x12doc]: ../app-service-logic/app-service-logic-enterprise-integration-x12.md "深入了解企業整合 X12"
 [flatfiledoc]: ../app-service-logic/app-service-logic-enterprise-integration-flatfile.md "深入了解企業整合一般檔案。"
-[flatfiledecodedoc]: ../app-service-logic/app-service-logic-enterprise-integration-flatfile.md/#how-to-create-the-flat-file-decoding-connector "深入了解企業整合一般檔案。"
-[xmlvalidatedoc]: ../app-service-logic/app-service-logic-enterprise-integration-xml.md "深入了解企業整合 XML 驗證。"
+[flatfiledecodedoc]: ../app-service-logic/app-service-logic-enterprise-integration-flatfile.md "深入了解企業整合一般檔案。"
+[xmlvalidatedoc]: ../app-service-logic/app-service-logic-enterprise-integration-xml-validation.md "深入了解企業整合 XML 驗證。"
 [xmltransformdoc]: ../app-service-logic/app-service-logic-enterprise-integration-transform.md "深入了解企業整合轉換。"
 [httpdoc]: ./connectors-native-http.md "HTTP 連接器以進行 HTTP 呼叫。"
 [http~requestdoc]: ./connectors-native-reqres.md "要求和回應動作。"
@@ -183,4 +183,4 @@
 [xmlvalidateicon]: ./media/apis-list/xmlvalidation.png
 [xmltransformicon]: ./media/apis-list/xsltransform.png
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

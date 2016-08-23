@@ -1,10 +1,10 @@
 <properties
 	pageTitle="Azure Active Directory 常見問題集 | Microsoft Azure"
-	description="Azure Active Directory 常見問題集可提供有關存取 Azure 和 Azure Active Directory、密碼管理和應用程式存取之問題的解答。"
+	description="Azure Active Directory 常見問題集可針對 Azure 及 Azure Active Directory 的存取、密碼管理和應用程式存取權等相關問題提供解答。"
 	services="active-directory"
 	documentationCenter=""
 	authors="markusvi"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/20/2016"
+	ms.date="08/16/2016"
 	ms.author="markusvi"/>
 
 # Azure Active Directory 常見問題集
@@ -28,7 +28,7 @@ Azure Active Directory 是全方位的身分識別即服務 (IDaaS) 解決方案
 ## 存取 Azure 和 Azure Active Directory
 
 
-**問︰當我嘗試在 Azure 傳統入口網站中存取 Azure AD，為何會收到「找不到訂用帳戶」(https://manage.windowsazure.com)?**
+**問︰當我嘗試在 Azure 傳統入口網站中存取 Azure AD，為何會收到「找不到訂用帳戶」(https://manage.windowsazure.com)？**
 
 **答：**若要存取 Azure 傳統入口網站，每位使用者都必須擁有 Azure 訂用帳戶的權限。如果您有付費的 Office 365 或 Azure AD，請瀏覽至 [http://aka.ms/accessAAD](http://aka.ms/accessAAD) 以進行一次性啟用步驟，否則您必須啟用完整的 [Azure 試用版](https://azure.microsoft.com/pricing/free-trial/)或付費訂用帳戶。
 
@@ -36,7 +36,7 @@ Azure Active Directory 是全方位的身分識別即服務 (IDaaS) 解決方案
 
 - [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](active-directory-how-subscriptions-associated-directory.md)
 
-- [在 Azure 中管理 Office 365 訂用帳戶的目錄。](active-directory-manage-o365-subscription.md)
+- [在 Azure 中管理 Office 365 訂用帳戶的目錄](active-directory-manage-o365-subscription.md)
 
 ---
 
@@ -139,7 +139,7 @@ Azure Active Directory 是全方位的身分識別即服務 (IDaaS) 解決方案
 如需詳細資訊，請參閱：
 
 - [設定對不在 Azure Active Directory 應用程式庫中的應用程式的單一登入](active-directory-saas-custom-apps.md)
-- [使用 SCIM 以啟用從 Azure Active Directory 到應用程式的使用者和群組自動佈建](active-directory-scim-provisioning.md) 
+- [使用 SCIM 以啟用從 Azure Active Directory 到應用程式的使用者和群組自動佈建](active-directory-scim-provisioning.md)
 
 
 ---
@@ -178,7 +178,7 @@ Azure Active Directory 是全方位的身分識別即服務 (IDaaS) 解決方案
 
 **問︰是否可以新增在內部部署中執行的應用程式？**
 
-**答：**Azure AD 應用程式 Proxy 可讓您簡單又安全地存取您選擇的內部部署 Web 應用程式。您可以利用存取 Azure Active Directory 中的 SaaS 應用程式時的相同方式，來存取這些應用程式。並不需要 VPN 或變更網路基礎結構。
+**答：**Azure AD 應用程式 Proxy 可讓您簡單又安全地存取您選擇的內部部署 Web 應用程式。正如同存取 Azure Active Directory 中的 SaaS 應用程式一般，相同的方式也可以用來存取這些應用程式。並不需要 VPN 或變更網路基礎結構。
 
 如需詳細資訊，請參閱[如何為內部部署應用程式提供安全的遠端存取](active-directory-application-proxy-get-started.md)。
 
@@ -202,4 +202,4 @@ Azure Active Directory 是全方位的身分識別即服務 (IDaaS) 解決方案
 
 ---
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0817_2016-->

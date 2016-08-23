@@ -124,8 +124,8 @@ Microsoft 會以適當的 BGP 社群值標記透過公用對等互連和 Microso
 | | 美國東部 | 12076:51004 |
 | | 美國東部 2 | 12076:51005 |
 | | 美國西部 | 12076:51006 |
-| | 美國西部 2 | 12076:51022 |
-| | 美國中西部 | 12076:51023 |
+| | 美國西部 2 | 12076:51026 |
+| | 美國中西部 | 12076:51027 |
 | | 美國中北部 | 12076:51007 |
 | | 美國中南部 | 12076:51008 |
 | | 美國中部 | 12076:51009 |
@@ -175,4 +175,4 @@ Microsoft 會以適當的 BGP 社群值標記透過公用對等互連和 Microso
 	- [設定傳統部署模型的路由](expressroute-howto-routing-classic.md)或[設定 Resource Manager 部署模型的路由](expressroute-howto-routing-arm.md)
 	- [將傳統 VNet 連結至 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)或[將 Resource Manager VNet 連結至 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0817_2016-->

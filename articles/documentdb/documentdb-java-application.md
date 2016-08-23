@@ -14,7 +14,7 @@
 	ms.topic="hero-article"
 	ms.tgt_pltfrm="NA"
 	ms.workload="data-services"
-	ms.date="03/10/2016"
+	ms.date="08/11/2016"
 	ms.author="anhoh"/>
 
 # 使用 DocumentDB 來建置 Java Web 應用程式
@@ -25,7 +25,7 @@
 - [Java](documentdb-java-application.md)
 - [Python](documentdb-python-application.md)
 
-本 Java Web 應用程式教學課程示範如何使用 [Microsoft Azure DocumentDB](https://portal.azure.com/#gallery/Microsoft.DocumentDB) 服務，從 Azure 網站上託管的 Java 應用程式儲存和存取資料。在本教學課程中，您將了解：
+本 Java Web 應用程式教學課程示範如何使用 [Microsoft Azure DocumentDB](https://portal.azure.com/#gallery/Microsoft.DocumentDB) 服務，從 Azure 網站上託管的 Java 應用程式儲存和存取資料。在本主題中，您將了解：
 
 - 如何在 Eclipse 中建置基本的 JSP 應用程式。
 - 如何透過 [DocumentDB Java SDK](https://github.com/Azure/azure-documentdb-java) 使用 Azure DocumentDB 服務。
@@ -784,4 +784,4 @@
 
 [1]: media/documentdb-java-application/keys.png
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -20,7 +20,7 @@
 
 [AZURE.INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
-##概觀
+##Overview
 
 本教學課程將說明如何使用 Azure 通知中樞將推播通知傳送至 Windows 通用平台 (UWP) 應用程式。
 
@@ -35,7 +35,7 @@
 
 
 
-##先決條件
+##必要條件
 
 本教學課程需要下列各項：
 
@@ -43,7 +43,7 @@
 
 + [已安裝通用 Windows 應用程式開發工具](https://msdn.microsoft.com/windows/uwp/get-started/get-set-up)
 
-+ 作用中的 Azure 帳戶 <br/> 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdocumentation%2Farticles%2Fnotification-hubs-windows-store-dotnet-get-started%2F)。
++ 作用中的 Azure 帳戶 <br/> 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-windows-store-dotnet-get-started%2F)。
 
 + 有效的 Windows 市集帳戶
 
@@ -102,7 +102,7 @@
 
 [AZURE.INCLUDE [notification-hubs-portal-create-new-hub](../../includes/notification-hubs-portal-create-new-hub.md)]
 
-<ol start="7">
+<ol start="6">
 <li><p>選取 [通知服務]<b></b> 選項和 [Windows (WNS)]<b></b> 選項。然後在 [安全性金鑰]<b></b> 欄位中輸入<b>應用程式密碼</b>。輸入您在上一節中從 WNS 取得的 [封裝 SID]<b></b> 值，然後按一下 [儲存]<b></b>。</p>
 </li>
 </ol>
@@ -244,7 +244,7 @@
 
 	您將會在所有註冊裝置上收到快顯通知。按一下或點選快顯橫幅即會載入應用程式。
 
-您可以在 MSDN 上的[快顯目錄] \(英文)、[磚目錄] \(英文) 和[徽章概觀]主題中找到所有支援的裝載。
+您可以在 MSDN 上的[快顯目錄]、[圖格目錄]和[徽章概觀]主題中找到所有支援的承載。
 
 ##後續步驟
 
@@ -271,7 +271,7 @@
 [使用通知中心傳送即時新聞]: notification-hubs-windows-store-dotnet-send-breaking-news.md
 
 [快顯目錄]: http://msdn.microsoft.com/library/windows/apps/hh761494.aspx
-[磚目錄]: http://msdn.microsoft.com/library/windows/apps/hh761491.aspx
+[圖格目錄]: http://msdn.microsoft.com/library/windows/apps/hh761491.aspx
 [徽章概觀]: http://msdn.microsoft.com/library/windows/apps/hh779719.aspx
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

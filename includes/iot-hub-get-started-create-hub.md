@@ -21,7 +21,7 @@
 
     ![新增 IoT 中樞狀態][3]
 
-5. 成功建立 IoT 中樞時，請按一下入口網站中您的 IoT 中樞的新圖格，以開啟新 IoT 中樞的刀鋒視窗。請記下 [主機名稱]，然後按一下 [金鑰] 圖示。
+5. 成功建立 IoT 中樞時，請按一下入口網站中您的 IoT 中樞的新圖格，以開啟新 IoT 中樞的刀鋒視窗。請記下**主機名稱**，然後按一下 [共用存取原則]。
 
     ![新增 IoT 中樞刀鋒視窗][4]
 
@@ -43,4 +43,4 @@
 [lnk-pricing]: https://azure.microsoft.com/pricing/details/iot-hub/
 [lnk-access-control]: ../articles/iot-hub/iot-hub-devguide.md#accesscontrol
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0817_2016-->

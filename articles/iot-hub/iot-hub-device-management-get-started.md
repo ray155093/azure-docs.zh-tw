@@ -13,7 +13,7 @@
  ms.topic="get-started-article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="04/29/2016"
+ ms.date="08/11/2016"
  ms.author="juanpere"/>
 
 # 利用 C# 開始使用 Azure IoT 中樞裝置管理 (預覽)
@@ -23,7 +23,7 @@
 ## 簡介
 若要開始使用 Azure IoT 中樞裝置管理，您必須建立 Azure IoT 中樞、在 IoT 中樞佈建裝置、啟動多個模擬的裝置，並在裝置管理範例 UI 中檢視這些裝置。本教學課程將逐步引導您完成下列步驟。
 
-> [AZURE.NOTE]  即使您有現有的 IoT 中樞，還是需要建立新的 IoT 中樞，才能啟用裝置管理功能，因為現有的 IoT 中樞尚未有裝置管理功能。裝置管理公開上市後，所有現有的 IoT 中樞都會升級以取得裝置管理功能。
+> [AZURE.NOTE]  即使您有現有的 IoT 中樞，還是必須建立新的 IoT 中樞，才能啟用裝置管理功能，因為現有的 IoT 中樞尚未擁有這些功能。裝置管理公開上市後，所有現有的 IoT 中樞都會升級以取得裝置管理功能。
 
 ## 必要條件
 
@@ -60,27 +60,27 @@
   -   勾選 [啟用裝置管理] 方塊。
   -   在 [位置] 中，選取要裝載您的 IoT 中樞的位置。在公開預覽期間，IoT 中樞裝置管理功能僅適用於美國東部、北歐和東亞。未來它可在所有區域使用。
 
-    > [AZURE.NOTE]  如果您未勾選 [啟用裝置管理] 方塊，則範例無法運作。
+    > [AZURE.NOTE]  如果您未勾選 [啟用裝置管理] 方塊，則範例無法運作。<br/>藉由勾選 [啟用裝置管理]，您會建立只在美國東部、北歐和東亞支援的預覽 IoT 中樞，其並不適用於實際執行案例。您無法將裝置移轉入或移轉出啟用裝置管理的中樞。
 
-4.  選擇好 IoT 中樞組態選項時，按一下 [建立]。Azure 可能需要幾分鐘的時間來建立您的 IoT 中樞。若要檢查狀態，您可以在 [開始面板] 或 [通知] 面板中監視進度。
+4.  選擇 IoT 中樞設定選項之後，按一下 [建立]。Azure 可能需要幾分鐘的時間來建立您的 IoT 中樞。若要檢查狀態，您可以在「開始面板」 或 [通知] 面板中監視進度。
 
 	![][img-monitor]
 
-5.  成功建立 IoT 中樞時，請開啟新 IoT 中樞的刀鋒視窗，記下 [主機名稱]，然後按一下 [金鑰] 圖示。
+5.  成功建立 IoT 中樞後，請開啟新 IoT 中樞的刀鋒視窗，記下**主機名稱**，然後按一下 [共用存取原則]。
 
 	![][img-keys]
 
-6.  按一下 [iothubowner] 原則，然後複製並記下 **iothubowner** 刀鋒視窗中的連接字串。將連接字串複製到您可稍後存取的位置，因為您需要它才能完成本教學課程的其餘部分。
+6.  按一下 [iothubowner] 原則，然後複製並記下 **iothubowner** 刀鋒視窗中的連接字串。將連接字串複製到可稍後存取的位置，因為您需要此資訊才能完成本教學課程的其餘部分。
 
  	> [AZURE.NOTE] 在生產案例中，請務必避免使用 **iothubowner** 認證。
 
 	![][img-connection]
 
-您現在已建立啟用裝置管理的 IoT 中樞。您需要有連接字串，才能繼續完成本教學課程的其餘部分。
+您現在已建立啟用裝置管理的 IoT 中樞。您需要連接字串才能繼續完成本教學課程的其餘部分。
 
 ## 在 IoT 中樞建立範例和佈建裝置
 
-在本節中，您將執行一個指令碼來建立模擬裝置和範例，以及在 IoT 中樞的裝置登錄中佈建一組新的裝置識別。裝置無法連線到 IoT 中樞，除非它在裝置登錄中具有項目。
+在本節中，您會執行一個指令碼來建立模擬裝置和範例，並在 IoT 中樞的裝置登錄中佈建一組新的裝置識別。裝置無法連線到 IoT 中樞，除非它在裝置登錄中具有項目。
 
 若要在 IoT 中樞建立範例和佈建裝置，請遵循下列步驟：
 
@@ -100,7 +100,7 @@
 
 此指令碼會執行下列動作︰
 
-1.  執行 **cmake** 來為模擬裝置建立 Visual Studio 2015 解決方案。此專案檔案為 **azure-iot-sdks\\csharp\\service\\samples\\cmake\\iotdm\_client\\samples\\iotdm\_simple\_sample\\iotdm\_simple\_sample.vcxproj**。注意，原始程式檔位於資料夾 **azure-iot-sdks\\c\\iotdm\_client\\samples\\iotdm\_simple\_sample** 中。
+1.  執行 **cmake** 來為模擬裝置建立 Visual Studio 2015 解決方案。此專案檔案為 **azure-iot-sdks\\csharp\\service\\samples\\cmake\\iotdm\_client\\samples\\iotdm\_simple\_sample\\iotdm\_simple\_sample.vcxproj**。注意，原始程式檔位於資料夾 ***azure-iot-sdks\\c\\iotdm\_client\\samples\\iotdm\_simple\_sample** 中。
 
 2.  建立模擬的裝置專案 **iotdm\_simple\_sample.vcxproj**。
 
@@ -122,9 +122,9 @@
 
 **iotdm\_simple\_sample** 範例應用程式是使用適用於 C 的 Azure IoT 中樞裝置管理用戶端程式庫來建置，該程式庫可讓您建立可由 Azure IoT 中樞管理的 IoT 裝置。裝置製造商可以使用此程式庫來報告裝置屬性，並實作裝置作業所需的執行動作。此程式庫是當作開放原始碼 Azure IoT 中樞 SDK 的一部分傳送的元件。
 
-當您執行 **simulate.bat** 時，您會在輸出視窗中看到資料流。此輸出會顯示傳入和傳出流量，以及應用程式特定回呼函數中的 **printf** 陳述式。這可讓您查看傳入和傳出流量，以及範例應用程式如何處理已解碼的封包。當裝置連接到 IoT 中樞時，服務會自動開始觀察裝置上的資源。然後，IoT 中樞 DM 用戶端程式庫會叫用裝置回呼，以便從裝置擷取最新的值。
+當您執行 **simulate.bat** 時，您會在輸出視窗中看到資料流。此輸出會顯示傳入和傳出流量，以及應用程式特定回呼函式中的 **printf** 陳述式。此輸出可讓您查看傳入和傳出流量，以及範例應用程式如何處理已解碼的封包。當裝置連接到 IoT 中樞時，服務會自動開始觀察裝置上的資源。然後，IoT 中樞 DM 用戶端程式庫會叫用裝置回呼，以便從裝置擷取最新的值。
 
-以下是 **iotdm\_simple\_sample** 範例應用程式的輸出。在最上方，您會看成功的 **REGISTERED** 訊息，顯示識別碼為 **Device11-7ce4a850** 的裝置已連接到 IoT 中樞。
+以下是 **iotdm\_simple\_sample** 範例應用程式的輸出。您會在最上方看到成功的 **REGISTERED** 訊息，顯示識別碼為 **Device11-7ce4a850** 的裝置已連接到 IoT 中樞。
 
 > [AZURE.NOTE]  若要有較為精簡的輸出，請建立並執行零售組態。
 
@@ -197,4 +197,4 @@
 [lnk-sample-ui]: iot-hub-device-management-ui-sample.md
 [lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0817_2016-->
