@@ -126,7 +126,8 @@
 
 ##<a id="integrate-push"></a>啟用推播通知與 App 內傳訊
 
-Mobile Engagement 可讓您透過推播通知和應用程式內傳訊，於活動進行時與使用者互動和觸達。此模組在 Mobile Engagement 入口網站中稱為觸達 (REACH)。以下各節將設定您的用程式來接收它們。
+Mobile Engagement 可讓您透過推播通知和應用程式內傳訊，於活動進行時與使用者互動和觸達。此模組在 Mobile Engagement 入口網站中稱為觸達 (REACH)。
+以下各節將設定您的用程式來接收它們。
 
 ###啟用您的應用程式接收 WNS 推播通知
 
@@ -173,7 +174,9 @@ Mobile Engagement 可讓您透過推播通知和應用程式內傳訊，於活�
 
 	![][6]
 
-8. 最後確定您的 Visual Studio 應用程式與在應用程式市集中建立的此應用程式相關聯。按一下 Visual Studio 中的 [建立應用程式與市集關聯]。![][7]
+8. 最後確定您的 Visual Studio 應用程式與在應用程式市集中建立的此應用程式相關聯。按一下 Visual Studio 中的 [建立應用程式與市集關聯]。
+
+	![][7]
 
 ##<a id="send"></a>傳送通知至應用程式
 

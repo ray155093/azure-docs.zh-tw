@@ -121,11 +121,11 @@
 
 	![Web 行動 Jetty][webmobilejetty]
 
-6. 在第一個 [Apache Tomcat] 或 [Jetty] 刀鋒視窗中，按一下 [建立]。
+6. 在第一個 [Apache Tomcat] 或 \[Jetty] 刀鋒視窗中，按一下 [建立]。
 
 	![Jetty 入口網站刀鋒視窗][jettyblade]
 
-7. 在下一個 [Apache Tomcat] 或 [Jetty] 刀鋒視窗中，於 [Web 應用程式] 方塊中輸入 Web 應用程式的名稱。
+7. 在下一個 [Apache Tomcat] 或 \[Jetty] 刀鋒視窗中，於 [Web 應用程式] 方塊中輸入 Web 應用程式的名稱。
 
 	此名稱在 azurewebsites.net 網域中必須是唯一的，因為 Web 應用程式的 URL 將是 {name}.azurewebsites.net。如果您輸入的名稱不是唯一的，紅色驚嘆號會出現在文字方塊中。
 

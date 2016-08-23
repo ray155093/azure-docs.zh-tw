@@ -283,7 +283,8 @@ def vote():
 		<div class="col-sm-5">{{choice}}</div>
 	        <div class="col-sm-5">
 	        	<div class="progress">
-	        		<div class="progress-bar" role="progressbar" aria-valuenow="{{vote_object.choices[choice]}}" aria-valuemin="0" aria-valuemax="{{vote_object.total_votes}}" style="width: {{(vote_object.choices[choice]/vote_object.total_votes)*100}}%;">
+	        		<div class="progress-bar" role="progressbar" aria-valuenow="{{vote_object.choices[choice]}}" aria-valuemin="0"
+				aria-valuemax="{{vote_object.total_votes}}" style="width: {{(vote_object.choices[choice]/vote_object.total_votes)*100}}%;">
 	                    		{{vote_object.choices[choice]}}
 				</div>
 			</div>
