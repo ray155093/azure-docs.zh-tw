@@ -157,31 +157,31 @@ _IF_ _條件_ _THEN_ _動作_
 
 ##建立規則
 規則是條件和動作陳述式的集合。如果條件評估為 true，則會執行動作。在 [建立規則] 分頁中，提供唯一的規則名稱 (適用於該原則) 和說明 (選擇性)。
-[條件] \(IF) 方塊可用來建立複雜的條件陳述式。以下是支援的關鍵字：
-1. 	And – 條件運算子
-2. 	Or – 條件運算子
-3. 	does\_not\_exist
-4. 	exists
-5. 	false
-6. 	is\_equal\_to
-7. 	is\_greater\_than
-8. 	is\_greater\_than\_equal\_to
-9. 	is\_in
-10. is\_less\_than
-11. is\_less\_than\_equal\_to
-12. is\_not\_in
-13. is\_not\_equal\_to
-14. mod
-15. true
+[條件] \(IF) 方塊可用來建立複雜的條件陳述式。以下是支援的關鍵字：  
+1. 	And – 條件運算子  
+2. 	Or – 條件運算子  
+3. 	does\_not\_exist  
+4. 	exists  
+5. 	false  
+6. 	is\_equal\_to  
+7. 	is\_greater\_than  
+8. 	is\_greater\_than\_equal\_to  
+9. 	is\_in  
+10. is\_less\_than  
+11. is\_less\_than\_equal\_to  
+12. is\_not\_in  
+13. is\_not\_equal\_to  
+14. mod  
+15. true  
 
-Action(Then) 方塊可以包含多個陳述式 (每行一個)，用來建立要執行的動作。以下是支援的關鍵字：
-1.	equals
-2.	false
-3.	true
-4.	halt
-5.	mod
-6.	null
-7.	update
+Action(Then) 方塊可以包含多個陳述式 (每行一個)，用來建立要執行的動作。以下是支援的關鍵字：  
+1.	equals  
+2.	false  
+3.	true  
+4.	halt  
+5.	mod  
+6.	null  
+7.	update  
 
 條件和動作方塊提供 Intellisense 協助您快速撰寫規則。按 ctrl + 空格或直接輸入，即可加以觸發。輸入的字元若符合關鍵字，將會自動進行篩選並顯示。Intellisense 視窗會顯示所有的關鍵字和詞彙定義。
 ![替代文字][9]
