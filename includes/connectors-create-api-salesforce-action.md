@@ -19,7 +19,7 @@
 - 選取 [...] 以展開可用來做為動作輸入的語彙基元清單。  
 ![Salesforce 動作圖像 3](./media/connectors-create-api-salesforce/action-3.png)  
 - 選取 [潛在客戶識別碼] 控制項。  
-- ![Salesforce 動作圖像 4](./media/connectors-create-api-salesforce/action-4.png)  
+![Salesforce 動作圖像 4](./media/connectors-create-api-salesforce/action-4.png)  
 - 請注意，[潛在客戶識別碼] 語彙基元現在位於 [物件識別碼] 控制項中，這表示「取得物件」動作會搜尋識別碼與觸發此邏輯應用程式之潛在客戶的識別碼相等的潛在客戶。    
 ![Salesforce 動作圖像 5](./media/connectors-create-api-salesforce/action-5.png)  
 - 儲存您的工作。就這麼簡單，您已將「取得物件」動作新增到邏輯應用程式中。您的「取得物件」控制項看起來應該會像這樣︰  
