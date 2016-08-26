@@ -506,7 +506,7 @@ Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.
 
 您也可以從命令列安裝：
 
-UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝目錄>] [/CSIP <用於註冊的 CS IP 位址>] [/PassphraseFilePath <複雜密碼檔案路徑>] [/LogFilePath <記錄檔路徑>]
+UnifiedAgent.exe [/Role <Agent/MasterTarget>] [/InstallLocation <Installation Directory>] [/CSIP <IP address of CS to be registered with>] [/PassphraseFilePath <Passphrase file path>] [/LogFilePath <Log File Path>]
 
 其中：
 
