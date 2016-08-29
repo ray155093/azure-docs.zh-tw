@@ -24,7 +24,8 @@
 
 Azure 目前有兩種管理模型：傳統和 Resource Manager (RM)。如果您已使用 Azure 一段時間，則可能具有傳統 VNet 上執行的 Azure VM 和執行個體角色。較新的 VM 和角色執行個體可能會在 Resource Manager 中建立的 VNet 中執行。本文將逐步引導您將傳統 Vnet 連接到 Resource Manager Vnet，以允許位於不同部署模型中的資源透過閘道連線彼此通訊。
 
-您可以在不同訂用帳戶、不同區域和不同部署模型中的 VNet 之間建立連線。只要設定的閘道是動態或路由式，您也可以連接已連線到內部部署網路的 Vnet。如需 VNet 對 VNet 連線的詳細資訊，請參閱本文結尾處的 [VNet 對 VNet 常見問題集](#faq)。[AZURE.INCLUDE [vpn-gateway-vnetpeeringlink](../../includes/vpn-gateway-vnetpeeringlink-include.md)]
+您可以在不同訂用帳戶、不同區域和不同部署模型中的 VNet 之間建立連線。只要設定的閘道是動態或路由式，您也可以連接已連線到內部部署網路的 Vnet。如需 VNet 對 VNet 連線的詳細資訊，請參閱本文結尾處的 [VNet 對 VNet 常見問題集](#faq)。
+[AZURE.INCLUDE [vpn-gateway-vnetpeeringlink](../../includes/vpn-gateway-vnetpeeringlink-include.md)]
 
 ## 開始之前
 
