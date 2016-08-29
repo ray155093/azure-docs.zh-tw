@@ -12,14 +12,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="04/19/2016"
+   ms.date="08/17/2016"
    ms.author="alkohli" />
 
 # 使用 StorSimple Manager 服務來複製磁碟區
 
 [AZURE.INCLUDE [storsimple-version-selector-clone-volume](../../includes/storsimple-version-selector-clone-volume.md)]
 
-## 概觀
+## Overview
 
 StorSimple Manager 服務 [備份類別目錄] 頁面會顯示在進行手動或自動備份時所建立的所有備份組。您可以使用此頁面來列出備份原則或磁碟區的所有備份、選取或刪除備份，或是使用備份來還原或複製磁碟區。
 
@@ -96,4 +96,4 @@ StorSimple Manager 服務 [備份類別目錄] 頁面會顯示在進行手動或
 
  
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0817_2016-->

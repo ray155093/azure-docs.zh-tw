@@ -3,7 +3,7 @@
    description="建立分區對應管理員來轉換分區化資料庫，以使用彈性資料庫工具"
    services="sql-database"
    documentationCenter=""
-   authors="SilviaDoomra"
+   authors="ddove"
    manager="jhubbard"
    editor=""/>
 
@@ -14,18 +14,18 @@
    ms.tgt_pltfrm="NA"
    ms.workload="data-management"
    ms.date="04/26/2016"
-   ms.author="SilviaDoomra"/>
+   ms.author="ddove"/>
 
 # 將現有的資料庫移轉到相應放大的資料庫
 
 使用 Azure SQL Database 資料庫工具 (例如 [彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md))，輕鬆地管理現有相應放大的分區化資料庫。您必須先轉換現有的資料庫，才能使用[分區對應管理員](sql-database-elastic-scale-shard-map-management.md)。
 
-## 概觀
+## Overview
 若要移轉現有的分區化資料庫︰
 
 1. 準備[分區對應管理員資料庫](sql-database-elastic-scale-shard-map-management.md)。
 2. 建立分區對應。
-3. 準備個別分區。  
+3. 準備個別分區。
 2. 將對應新增至分區對應。
 
 您可以使用 [.NET Framework 用戶端程式庫](http://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)或在 [Azure SQL DB - 彈性資料庫工具指令碼](https://gallery.technet.microsoft.com/scriptcenter/Azure-SQL-DB-Elastic-731883db)中找到的 PowerShell 指令碼，來實作這些技巧。以下範例會使用 PowerShell 指令碼。
@@ -62,7 +62,7 @@
 
 您必須選取要建立的分區對應類型。請依據資料庫結構進行選擇︰
 
-1. 每個資料庫有一個租用戶 (相關詞彙，請參閱[詞彙](sql-database-elastic-scale-glossary.md))。 
+1. 每個資料庫有一個租用戶 (相關詞彙，請參閱[詞彙](sql-database-elastic-scale-glossary.md))。
 2. 每個資料庫有多個租用戶 (兩種類型)︰
 	3. 清單對應
 	4. 範圍對應
@@ -187,4 +187,4 @@
 [3]: ./media/sql-database-elastic-convert-to-use-elastic-tools/multipleonsingledb.png
  
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -207,7 +207,7 @@
 
 ### 在您的 IoT 中樞上設定兩個範例裝置
 
-- [建立 IoT 中樞][lnk-create-hub] (於 Azure 訂用帳戶中) 時，您將需要中樞名稱才能完成此逐步解說。如果您還沒有 Azure 訂用帳戶，則可以取得[免費帳戶][lnk-free-trial]。
+- 於 Azure 訂用帳戶中[建立 IoT 中樞][lnk-create-hub]時，您將需要中樞名稱才能完成此逐步解說。如果您還沒有 Azure 訂用帳戶，可以取得[免費帳戶][lnk-free-trial]。
 - 在您的 IoT 中樞新增一個名為 **SensorTag\_01** 的裝置，並記下其識別碼和裝置金鑰。您可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具，將這個裝置新增到您在上一個步驟中建立的 IoT 中樞，並擷取其金鑰。當您設定閘道時，您會將此裝置對應到 SensorTag 裝置。
 
 ### 在 Edison 裝置上建置閘道 SDK
@@ -368,7 +368,7 @@ BLE 裝置的範例組態會假設 Texas Instruments SensorTag 裝置。任何�
 
 ## 傳送雲端到裝置訊息
 
-BLE 模組也支援從 Azure IoT 中樞傳送指示給裝置。您可以使用 [Azure IoT 中樞裝置總管](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md) 或 [IoT 中樞總管] https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer)，來傳送 BLE 閘道模組傳遞給 BLE 裝置的 JSON 訊息。例如，如果您正在使用 Texas Instruments SensorTag 裝置，則可從 IoT 中樞將下列 JSON 訊息傳送到裝置。
+BLE 模組也支援從 Azure IoT 中樞傳送指示給裝置。您可以使用 [Azure IoT 中樞裝置總管](https://github.com/Azure/azure-iot-sdks/blob/master/tools/DeviceExplorer/doc/how_to_use_device_explorer.md) 或 [IoT 中樞總管](https://github.com/Azure/azure-iot-sdks/tree/master/tools/iothub-explorer)來傳送 BLE 閘道模組傳遞給 BLE 裝置的 JSON 訊息。例如，如果您正在使用 Texas Instruments SensorTag 裝置，則可從 IoT 中樞將下列 JSON 訊息傳送到裝置。
 
 - 重設所有的 LED 與警報器 (關閉)
 
@@ -458,4 +458,4 @@ BLE 模組也支援從 Azure IoT 中樞傳送指示給裝置。您可以使用 [
 [lnk-dmui]: iot-hub-device-management-ui-sample.md
 [lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/17/2016"
+   ms.date="08/16/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 #將範例資料載入 SQL 資料倉儲
@@ -45,7 +45,7 @@
 
 ##查詢範例資料
 
-一旦已經將某些範例資料載入您的 SQL 資料倉儲中，就可以快速地執行幾個查詢。若要執行查詢，請使用 Visual Studio 和 SSDT 連接 Azure SQL DW 中新建立的 Adventure Works 資料庫，如[連接][]文件中所描述。
+一旦已經將某些範例資料載入您的 SQL 資料倉儲中，就可以快速地執行幾個查詢。若要執行查詢，請使用 Visual Studio 和 SSDT 連接 Azure SQL DW 中新建立的 Adventure Works 資料庫，如[使用 Visual Studio 查詢][]文件中所述。
 
 可取得員工之所有資訊的簡單 select 陳述式範例：
 
@@ -80,15 +80,15 @@ SQL 資料倉儲幾乎支援所有 SQL Server 支援的 T-SQL 建構。所有的
 <!--Image references-->
 
 <!--Article references-->
-[移轉]: ./sql-data-warehouse-overview-migrate.md
-[開發]: ./sql-data-warehouse-overview-develop.md
-[載入]: ./sql-data-warehouse-overview-load.md
-[連接]: ./sql-data-warehouse-get-started-connect.md
-[程式碼移轉]: ./sql-data-warehouse-migrate-code.md
-[安裝 bcp]: ./sql-data-warehouse-load-with-bcp.md
-[安裝 sqlcmd]: ./sql-data-warehouse-get-started-connect-sqlcmd.md
+[移轉]: sql-data-warehouse-overview-migrate.md
+[開發]: sql-data-warehouse-overview-develop.md
+[載入]: sql-data-warehouse-overview-load.md
+[使用 Visual Studio 查詢]: sql-data-warehouse-query-visual-studio.md
+[程式碼移轉]: sql-data-warehouse-migrate-code.md
+[安裝 bcp]: sql-data-warehouse-load-with-bcp.md
+[安裝 sqlcmd]: sql-data-warehouse-get-started-connect-sqlcmd.md
 
 <!--Other Web references-->
 [適用於 SQL 資料倉儲的 Adventure Works 範例指令碼]: https://migrhoststorage.blob.core.windows.net/sqldwsample/AdventureWorksSQLDW2012.zip
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0817_2016-->

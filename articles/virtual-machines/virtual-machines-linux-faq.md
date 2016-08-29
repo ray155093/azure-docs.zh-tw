@@ -14,13 +14,13 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/16/2016"
+	ms.date="08/16/2016"
 	ms.author="cynthn"/>
 
 # Linux 虛擬機器的常見問題 
 
 
-本文可解決在 Azure 中使用資源管理員部署模型建立之 Linux 虛擬機器的一些使用者常見問題。如需本主題的 Windows 版本，請參閱 [Windows 虛擬機器相關的常見問題](virtual-machines-windows-faq.md)
+本文可解決在 Azure 中使用 Resource Manager 部署模型建立之 Linux 虛擬機器的一些常見問題。如需本主題的 Windows 版本，請參閱 [Windows 虛擬機器的常見問題](virtual-machines-windows-faq.md)
 
 ## 我可以在 Azure VM 上執行什麼？
 
@@ -44,7 +44,7 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 ## 我可以使用暫存磁碟 (/dev/sdb1) 儲存資料嗎？
 
-您不應使用暫存磁碟 (/dev/sdb1) 儲存資料。它僅用於暫時存放，您會有遺失資料且無法復原的風險。
+請勿使用暫存磁碟 (/dev/sdb1) 來儲存資料。它僅用於暫時存放，您會有遺失資料且無法復原的風險。
 
 ## 我是否可以複製或再製現有的 Azure VM？
 
@@ -52,10 +52,10 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 ## 為什麼我透過 Azure Resource Manager 沒看到加拿大中部和加拿大東部區域？
 
-針對現有 Azure 訂用帳戶所建立的虛擬機器，不會自動登錄加拿大中部和加拿大東部這兩個新的區域。當虛擬機器透過 Azure 入口網站使用 Azure Resource Manager 部署到任何其他區域時，就會自動完成註冊。將虛擬機器部署到任何其他 Azure 區域之後，新的區域即可供後續的虛擬機器使用。
+針對現有 Azure 訂用帳戶所建立的虛擬機器，不會自動註冊加拿大中部和加拿大東部這兩個新的區域。當虛擬機器透過 Azure 入口網站使用 Azure Resource Manager 部署到任何其他區域時，就會自動完成註冊。將虛擬機器部署到任何其他 Azure 區域之後，新的區域即可供後續的虛擬機器使用。
 
 ## 我可以在建立 VM 之後將 NIC 新增至此 VM 嗎？
 
-否。目前只能在建立時這樣做。
+否。新增 NIC 只能在建立期間完成。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

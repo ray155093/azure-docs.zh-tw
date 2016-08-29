@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/18/2016"
+	ms.date="08/10/2016"
 	ms.author="jgao"/>
 
 
@@ -70,7 +70,7 @@ Azure CLI 是可讓您管理 Azure 服務的跨平台工具。使用以下步驟
 
 		azure login
 
-	出現提示時，請輸入訂用帳戶的使用者名稱和密碼。
+	出現提示時，輸入訂用帳戶的使用者名稱和密碼。
 
 3. 輸入以下命令可列出訂用帳戶的儲存體帳戶：
 
@@ -175,12 +175,16 @@ Hadoop 命令列僅適用於當資料已存在於叢集前端節點時，將資�
 
 | 用戶端 | Linux | OS X | Windows |
 | ------ |:-----:|:----:|:-------:|
+| [Microsoft Visual Studio Tools for HDInsight](hdinsight-hadoop-visual-studio-tools-get-started.md#navigate-the-linked-resources) | ✔ | ✔ | ✔ |
 | [Azure 儲存體總管](http://storageexplorer.com/) | ✔ | ✔ | ✔ |
 | [Cloud Storage Studio 2](http://www.cerebrata.com/Products/CloudStorageStudio/) | | | ✔ |
 | [CloudXplorer](http://clumsyleaf.com/products/cloudxplorer) | | | ✔ |
 | [Azure Explorer](http://www.cloudberrylab.com/free-microsoft-azure-explorer.aspx) | | | ✔ |
-| [Zudio](https://zudio.co/) | ✔ | ✔ | ✔ |
 | [Cyberduck](https://cyberduck.io/) | | ✔ | ✔ |
+
+###Visual Studio Tools for HDInsight
+
+如需詳細資訊，請參閱[瀏覽連結的資源](hdinsight-hadoop-visual-studio-tools-get-started.md#navigate-the-linked-resources)。
 
 ###<a id="storageexplorer"></a>Azure 儲存體總管
 
@@ -188,7 +192,7 @@ Hadoop 命令列僅適用於當資料已存在於叢集前端節點時，將資�
 
 使用此工具之前，必須先知道您的 Azure 儲存體帳戶名稱和帳戶金鑰。如需關於取得此資訊的指示，請參閱[建立、管理或刪除儲存體帳戶][azure-create-storage-account]的＜如何：檢視、複製及重新產生儲存體存取金鑰＞一節。
 
-1. 執行 Azure 儲存體總管。如果這是您第一次執行 [儲存體總管]，將會提示您輸入 [儲存體帳戶名稱]__\_ 和 [儲存體帳戶金鑰]____。如果您之前曾執行過，請使用 [新增]__\_\_ 按鈕加入新的儲存體帳戶名稱和金鑰。
+1. 執行 Azure 儲存體總管。如果這是您第一次執行 [儲存體總管]，將會提示您輸入 [儲存體帳戶名稱]__\_ 和 __[儲存體帳戶金鑰]__。如果您之前曾執行過，請使用 [新增]__\_\_ 按鈕加入新的儲存體帳戶名稱和金鑰。
 
     輸入 HDinsight 叢集所使用儲存體帳戶的名稱和金鑰，然後選取 [儲存並開啟]。
 
@@ -282,4 +286,4 @@ Azure Blob 儲存體也可以使用 Azure SDK，透過下列程式設計語言�
 [image-ase-addaccount]: ./media/hdinsight-upload-data/HDI.ASEAddAccount.png
 [image-ase-blob]: ./media/hdinsight-upload-data/HDI.ASEBlob.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -35,7 +35,7 @@ Azure Docker VM 擴充功能會在您的 Linux 虛擬機器中安裝並設定 Do
 
 ## 使用 Docker VM 擴充功能部署範本︰
 
-讓我們使用現有的快速啟動範本來示範如何部署已安裝「Docker VM 擴充功能」的 Ubuntu VM。您可以在這裡檢視範本︰[使用 Docker 簡易部署 Ubuntu VM](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)
+讓我們使用現有的快速啟動範本來示範如何部署已安裝「Docker VM 擴充功能」的 Ubuntu VM。您可以在這裡檢視範本︰[使用 Docker 簡易部署 Ubuntu VM](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)。您還需要處於 Resource Manager 模式的[最新 Azure CLI](../xplat-cli-install.md) (`azure config mode arm`)。
 
 使用 Azure CLI 部署範本，並指定新資源群組 (即範例中的 `myDockerResourceGroup`) 的名稱和範本 URI：
 
@@ -138,4 +138,4 @@ b6ed109fb743        nginx               "nginx -g 'daemon off"   About a minute 
 3. [在 Azure 虛擬機器上開始使用 Docker 和 Compose 定義並執行多容器應用程式](virtual-machines-linux-docker-compose-quickstart.md)。
 3. [部署 Azure 容器服務叢集](../container-service/container-service-deployment.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

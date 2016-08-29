@@ -12,10 +12,13 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="05/12/2016"
+    ms.date="08/15/2016"
     ms.author="elizapo" />
 
 # 如何針對 Azure RemoteApp 規劃您的虛擬網路
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 本文件說明如何針對 Azure RemoteApp 設定 Azure 虛擬網路 (VNET) 和子網路。如果您不熟悉 Azure 虛擬網路，這可協助您將網路基礎結構虛擬化至雲端，以及利用 Azure 和內部部署資源建立混合式解決方案。您可以在[此處](../virtual-network/virtual-networks-overview.md)閱讀相關資訊。
 
@@ -55,4 +58,4 @@
 
 現在所有新的 Azure RemoteApp 集合都支援[強制通道](../vpn-gateway/vpn-gateway-about-forced-tunneling.md)。我們目前不支援現有集合的移轉，而支援強制通道。您必須使用您要連結至 Azure RemoteApp 的 VNET 來刪除所有現有的集合，並建立新的集合以在集合上啟用強制通道。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

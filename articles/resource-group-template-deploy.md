@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/11/2016"
+   ms.date="08/15/2016"
    ms.author="tomfitz"/>
 
 # 使用 Resource Manager 範本與 Azure PowerShell 來部署資源
@@ -66,7 +66,7 @@
 
         Set-AzureRmContext -SubscriptionID <YourSubscriptionId>
 
-3. 一般而言，在部署新範本的時候，您會希望建立新的資源群組以包含該資源。如果您想要部署到現有的資源群組，則您可以略過此步驟並直接使用該資源群組。
+3. 一般而言，在部署新範本時，您會希望建立新的資源群組以包含該資源。如果您想要部署到現有的資源群組，則您可以略過此步驟並直接使用該資源群組。
 
      若要建立新的資源群組，請提供資源群組的名稱和位置。
 
@@ -88,7 +88,7 @@
 
         Test-AzureRmResourceGroupDeployment -ResourceGroupName ExampleResourceGroup -TemplateFile <PathToTemplate>
 
-5. 若要建立資源群組的新部署，請執行 **New-AzureRmResourceGroupDeployment** 命令，並提供必要的參數。參數會包含您部署的名稱、資源群組的名稱、您建立之範本的路徑或 URL，以及您的案例所需的任何其他參數。如未指定 **Mode** 參數，即會使用預設值 **Incremental**。若要執行完整部署，將 **Mode** 設為 **Complete**。使用完整模式時請務必謹慎，因為您可能會不小心刪除不在範本中的資源。
+5. 若要將資源部署至資源群組，請執行 **New-AzureRmResourceGroupDeployment** 命令，並提供必要的參數。參數會包含您部署的名稱、資源群組的名稱、您建立之範本的路徑或 URL，以及您案例所需的任何其他參數。如未指定 **Mode** 參數，即會使用預設值 **Incremental**。若要執行完整部署，將 **Mode** 設為 **Complete**。使用完整模式時請務必謹慎，因為您可能會不小心刪除不在範本中的資源。
 
      若要部署本機範本，請使用 **TemplateFile** 參數︰
 
@@ -117,6 +117,8 @@
 
             New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup -TemplateUri <LinkToTemplate> -TemplateParameterUri <LinkToParameterFile>
 
+        當使用外部參數檔案時，您無法傳遞內嵌或本機檔案的其他值。如需詳細資訊，請參閱[參數優先順序](#parameter-precendence)。
+
      部署資源之後，您會看到部署的摘要。
 
         DeploymentName    : ExampleDeployment
@@ -126,7 +128,7 @@
         Mode              : Incremental
         ...
 
-     如果範本中有一個參數的名稱符合範本部署命令的其中一個參數 (例如範本包含名為 **ResourceGroupName** 的參數，而且與 [New-AzureRmResourceGroupDeployment](https://msdn.microsoft.com/library/azure/mt679003.aspx) Cmdlet 中的 **ResourceGroupName** 參數相同)，將會提示您在後置詞為 **FromTemplate** 的參數中提供一個值 (例如 **ResourceGroupNameFromTemplate**)。一般而言，在為參數命名時，請勿使用與部署作業所用參數相同的名稱，以避免發生這種混淆的情形。
+     如果您範本所含的參數名稱與 PowerShell 命令中的其中一個參數一樣，系統會提示您為結尾標記為 **FromTemplate** 的該參數提供值。例如，範本中名為 **ResourceGroupName** 的參數與 [New-AzureRmResourceGroupDeployment](https://msdn.microsoft.com/library/azure/mt679003.aspx) Cmdlet 中的 **ResourceGroupName** 參數發生衝突。系統會提示您為 **ResourceGroupNameFromTemplate** 提供值。一般而言，在為參數命名時，請勿使用與部署作業所用參數相同的名稱，以避免發生這種混淆的情形。
 
 6. 如果您想要記錄部署的其他相關資訊，以助於針對任何部署錯誤進行疑難排解，請使用 **DeploymentDebugLogLevel** 參數。您可以指定在記錄部署作業時，一併記錄要求內容及/或回應內容。
 
@@ -144,11 +146,11 @@
 
 下列步驟設定範本的儲存體帳戶：
 
-1. 建立新的資源群組。
+1. 建立資源群組。
 
         New-AzureRmResourceGroup -Name ManageGroup -Location "West US"
 
-2. 建立新的儲存體帳戶。儲存體帳戶的名稱在整個 Azure 中必須是唯一的，因此請為帳戶提供您自己的名稱。
+2. 建立儲存體帳戶。儲存體帳戶的名稱在整個 Azure 中必須是唯一的，因此請為帳戶提供您自己的名稱。
 
         New-AzureRmStorageAccount -ResourceGroupName ManageGroup -Name storagecontosotemplates -Type Standard_LRS -Location "West US"
 
@@ -156,7 +158,7 @@
 
         Set-AzureRmCurrentStorageAccount -ResourceGroupName ManageGroup -Name storagecontosotemplates
 
-4. 建立新的容器。權限設為 **Off** 表示容器僅限擁有者存取。
+4. 建立容器。權限設為 [關閉] 表示容器僅限擁有者存取。
 
         New-AzureStorageContainer -Name templates -Permission Off
         
@@ -184,10 +186,17 @@
 
 [AZURE.INCLUDE [resource-manager-parameter-file](../includes/resource-manager-parameter-file.md)]
 
-## 後續步驟
-- 如需透過 .NET 用戶端程式庫部署資源的範例，請參閱[使用 .NET 程式庫與範本部署資源](virtual-machines/virtual-machines-windows-csharp-template.md)。
-- 若要在範本中定義參數，請參閱[編寫範本](resource-group-authoring-templates.md#parameters)。
-- 如需將您的方案部署到不同環境的指引，請參閱 [Microsoft Azure 中的開發和測試環境](solution-dev-test-environments.md)。
-- 如需有關使用 KeyVault 參考來傳遞安全值的詳細資料，請參閱[在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)。
+## 參數優先順序
 
-<!---HONumber=AcomDC_0720_2016-->
+您可以在相同的部署作業中使用內嵌參數和本機參數檔案。例如，您可以在部署期間指定本機參數檔案中的某些值，並新增其他內嵌值。如果您同時為本機檔案中和內嵌的參數提供值，內嵌值的優先順序較高。
+
+不過，您無法搭配使用內嵌參數與外部參數檔案。當您指定 **TemplateParameterUri** 參數中的參數檔案時，所有內嵌參數都會被忽略。您必須提供外部檔案中的所有參數值。如果您的範本包含不能包含在參數檔案中的機密值，將該值新增至金鑰保存庫並在外部參數檔案中參考金鑰保存庫，或以動態方式提供所有內嵌參數值。
+
+如需有關使用 KeyVault 參考來傳遞安全值的詳細資料，請參閱[在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)。
+
+## 後續步驟
+- 如需透過 .NET 用戶端程式庫部署資源的範例，請參閱[使用 .NET 程式庫和範本部署資源](virtual-machines/virtual-machines-windows-csharp-template.md)。
+- 若要在範本中定義參數，請參閱[編寫範本](resource-group-authoring-templates.md#parameters)。
+- 如需如何將解決方案部署到不同環境的指南，請參閱[Microsoft Azure 中開發和測試環境](solution-dev-test-environments.md)。
+
+<!---HONumber=AcomDC_0817_2016-->

@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="05/08/2016"
+   ms.date="08/15/2016"
    ms.author="tarcher" />
 
 # 設定具名的驗證認證
@@ -71,4 +71,4 @@ Visual Studio 會使用您的訂用帳戶識別碼連同憑證資料做為認證
 
     1. 貼上您剛才建立的 .cer 檔案的完整路徑，然後輸入您指定的密碼。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0817_2016-->

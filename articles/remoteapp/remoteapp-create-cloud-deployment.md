@@ -13,10 +13,13 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/13/2016" 
+	ms.date="08/15/2016" 
 	ms.author="elizapo"/>
 
 # 如何建立 Azure RemoteApp 的雲端收藏
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 [Azure RemoteApp 收藏](remoteapp-collections.md)分成兩種：
 
@@ -37,7 +40,7 @@
 
 - [註冊](https://azure.microsoft.com/services/remoteapp/) Azure RemoteApp。
 - 收集您想授與存取權之使用者的相關資訊。這可以是使用者 Microsoft 帳戶資訊或 Active Directory 工作帳戶資訊。
-- 此程序假設您將使用您的訂用帳戶隨附的範本映像之一，或是您已上傳所要使用的範本映像。如果您需要上傳不同的範本映像，您可以從 [範本映像] 頁面執行此作業。只要按一下 [上傳範本映像]，然後遵循精靈中的步驟即可。
+- 此程序假設您將使用您的訂閱隨附的範本映像之一，或是您已上傳所要使用的範本映像。如果您需要上傳不同的範本映像，您可以從 [範本映像] 頁面執行此作業。只要按一下 [上傳範本映像]，然後遵循精靈中的步驟即可。
 - 想要使用 Office 365 ProPlus 的映像嗎？ 請在[這裡](remoteapp-officesubscription.md)查看資訊。
 - 想提供自訂應用程式或 LOB 程式？ 請建立新的[映像](remoteapp-imageoptions.md)，並在您的雲端部署中加以使用。
 - 了解您是否需要連接到 VNET。如果您選擇連接到 VNET，請確定它是否符合[調整大小的指導方針](remoteapp-vnetsizing.md)，以及它是否[可以連接到 RemoteApp](remoteapp-vnet.md)。如需詳細資訊，請參閱 [VNET 規劃文章](remoteapp-planvnet.md)。
@@ -109,4 +112,4 @@ Azure RemoteApp 應用程式就是您提供給使用者的應用程式或程式�
 ### 幫我們來協助您 
 您知道除了評比這篇文章以及在下面留言以外，您可以變更文件本身嗎？ 有所遺漏？ 有所錯誤？ 我是否撰寫了令人混淆的內容？ 向上捲動並按一下 [在 GitHub 上編輯] 以進行變更 - 系統會顯示這些變更以供我們檢閱，而我們簽核後，您就會在這裡看到您所進行的變更和改良。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

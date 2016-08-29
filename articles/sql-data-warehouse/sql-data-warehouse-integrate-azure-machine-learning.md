@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="08/08/2016"
+   ms.date="08/16/2016"
    ms.author="kevin;barbkess;sonyama"/>
 
 # 搭配使用 Azure 機器學習服務與 SQL 資料倉儲
@@ -120,8 +120,6 @@ FROM dbo.DimProduct;
 
 ## 後續步驟
 
-如需整合概觀，請參閱 [SQL 資料倉儲整合概觀][]。
-
 如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][]。
 
 <!--Image references-->
@@ -137,7 +135,6 @@ FROM dbo.DimProduct;
 <!--Article references-->
 
 [SQL 資料倉儲開發概觀]: ./sql-data-warehouse-overview-develop.md
-[SQL 資料倉儲整合概觀]: ./sql-data-warehouse-overview-integration.md
 [建立實驗教學課程]: https://azure.microsoft.com/documentation/articles/machine-learning-create-experiment/
 [Azure 上的機器學習服務簡介]: https://azure.microsoft.com/documentation/articles/machine-learning-what-is-machine-learning/
 [Azure Machine Learning Studio]: https://studio.azureml.net/Home
@@ -149,4 +146,4 @@ FROM dbo.DimProduct;
 
 [Azure Machine Learning documentation]: http://azure.microsoft.com/documentation/services/machine-learning/
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

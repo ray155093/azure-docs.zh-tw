@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/14/2016"
+   ms.date="08/16/2016"
    ms.author="yurid"/>
 
 # 安全性架構概觀
@@ -26,4 +26,4 @@
 - [Microsoft Azure 上的應用程式架構](security-application-architecture-on-azure.md)
 - [Azure 安全性最佳作法與模式](security-best-practices-and-patterns.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0817_2016-->

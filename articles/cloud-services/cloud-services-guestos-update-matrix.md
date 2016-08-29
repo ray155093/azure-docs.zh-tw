@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="tbd" 
    ms.date="07/13/2016"
-   ms.author="yuemlu"/>
+   ms.author="raiye"/>
 
 # Azure 客體 OS 版次與 SDK 相容性矩陣
 提供適用於雲端服務的最新 Azure 客體作業系統版次的最新資訊。此資訊協助您在客體 OS停用之前規劃升級路徑。如果您設定角色來使用「自動化」客體 OS 更新，如 [Azure 客體 OS 更新設定][]所述，則不一定要閱讀此頁面。
@@ -28,6 +28,9 @@
 不確定客體 OS 為何或客體 OS 版次如何工作？ 請閱讀[本節內容](#how-it-works)。
 
 ## 新聞更新
+###### **2016 年 8 月 9 日**
+8 月客體 OS 於 2016 年 8 月 9 日首度發行，並計畫於 2016 年 9 月 8 日發行。
+
 ###### **2016 年 7 月 13 日**
 7 月的客體 OS 發行期間從 2016 年 7 月 13 日開始，預計於 2016 日 8 月 12 日正式發行。
 
@@ -63,9 +66,10 @@
 
 | 組態字串 | 發行日期 | 停用日期 | 到期日期 |
 | ------------------------------ | --------------- | ------------- | ---- |
-| WA-GUEST-OS-4.34\_201607-01 | 2016 年 8 月 12 日* | Post 4.36 | TBD |
+| WA-GUEST-OS-4.35\_201608-01 | 2016 年 9 月 8 日* | Post 4.37 | TBD |
+| WA-GUEST-OS-4.34\_201607-01 | 2016 年 8 月 8 日 | Post 4.36 | TBD |
 | WA-GUEST-OS-4.33\_201606-01 | 2016 年 7 月 13 日 | Post 4.35 | TBD |
-| WA-GUEST-OS-4.32\_201605-01 | 2016 年 6 月 10 日 | Post 4.34 | TBD |
+| WA-GUEST-OS-4.32\_201605-01 | 2016 年 6 月 10 日 | 2016 年 9 月 8 日 | TBD |
 | WA-GUEST-OS-4.31\_201604-01 | 2016 年 5 月 2 日 | 2016 年 8 月 13 日 | TBD |
 | WA-GUEST-OS-4.30\_201603-01 | 2016 年 4 月 7 日 | 2016 年 7 月 10 日 | TBD |
 | WA-GUEST-OS-4.29\_201602-02 | 2016 年 3 月 12 日 | 2016 年 6 月 2 日 | TBD |
@@ -91,9 +95,10 @@
 
 | 組態字串 | 發行日期 | 停用日期 | 到期日期 |
 | ------------------------------ | -------------- | ------------- | --- |
-| WA-GUEST-OS-3.41\_201607-01 | 2016 年 8 月 12 日* | Post 3.43 | TBD |
+| WA-GUEST-OS-3.42\_201608-01 | 2016 年 9 月 8 日* | Post 3.44 | TBD |
+| WA-GUEST-OS-3.41\_201607-01 | 2016 年 8 月 8 日 | Post 3.43 | TBD |
 | WA-GUEST-OS-3.40\_201606-01 | 2016 年 7 月 13 日 | Post 3.42 | TBD |
-| WA-GUEST-OS-3.39\_201605-01 | 2016 年 6 月 10 日 | Post 3.41 | TBD |
+| WA-GUEST-OS-3.39\_201605-01 | 2016 年 6 月 10 日 | 2016 年 9 月 8 日 | TBD |
 | WA-GUEST-OS-3.38\_201604-01 | 2016 年 5 月 2 日 | 2016 年 8 月 13 日 | TBD |
 | WA-GUEST-OS-3.37\_201603-01 | 2016 年 4 月 7 日 | 2016 年 7 月 10 日 | TBD |
 | WA-GUEST-OS-3.36\_201602-02 | 2016 年 3 月 12 日 | 2016 年 6 月 2 日 | TBD |
@@ -120,9 +125,10 @@
 
 | 組態字串 | 發行日期 | 停用日期 | 到期日期 |
 | ------------------------------ | ------------- | ------------  | --- |
-| WA-GUEST-OS-2.53\_201607-01 | 2016 年 8 月 12 日* | Post 2.55 | TBD |
+| WA-GUEST-OS-2.54\_201608-01 | 2016 年 9 月 8 日* | Post 2.56 | TBD |
+| WA-GUEST-OS-2.53\_201607-01 | 2016 年 8 月 8 日 | Post 2.55 | TBD |
 | WA-GUEST-OS-2.52\_201606-01 | 2016 年 7 月 13 日 | Post 2.54 | TBD |
-| WA-GUEST-OS-2.51\_201605-01 | 2016 年 6 月 10 日 | Post 2.53 | TBD |
+| WA-GUEST-OS-2.51\_201605-01 | 2016 年 6 月 10 日 | 2016 年 9 月 8 日 | TBD |
 | WA-GUEST-OS-2.50\_201604-01 | 2016 年 5 月 2 日 | 2016 年 8 月 13 日 | TBD |
 | WA-GUEST-OS-2.49\_201603-01 | 2016 年 4 月 7 日 | 2016 年 7 月 10 日 | TBD |
 | WA-GUEST-OS-2.48\_201602-02 | 2016 年 3 月 12 日 | 2016 年 6 月 2 日 | TBD |
@@ -193,7 +199,7 @@ Microsoft Azure 正持續發行更新。客體作業系統只是這過程中的�
 ## 客體作業系統可支援性和淘汰原則
 [這裡][retirepolicy]說明客體作業系統可支援性和淘汰原則。
 
-[Install .NET on a Cloud Service Role]: https://azure.microsoft.com/zh-TW/documentation/articles/cloud-services-dotnet-install-dotnet/?WT.mc_id=azurebg_email_Trans_963_RevisedNET_Update
+[Install .NET on a Cloud Service Role]: https://azure.microsoft.com/documentation/articles/cloud-services-dotnet-install-dotnet/?WT.mc_id=azurebg_email_Trans_963_RevisedNET_Update
 [Azure 客體 OS 更新設定]: cloud-services-how-to-configure.md
 [rss]: http://sxp.microsoft.com/feeds/3.0/msdntn/WindowsAzureOSUpdates
 [ssl3 announcement]: http://azure.microsoft.com/blog/2014/12/09/azure-security-ssl-3-0-update/
@@ -214,4 +220,4 @@ Microsoft Azure 正持續發行更新。客體作業系統只是這過程中的�
 [fam1retire]: cloud-services-guestos-family1-retirement.md
  
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0817_2016-->

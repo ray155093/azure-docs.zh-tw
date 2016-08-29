@@ -14,14 +14,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="billing"
-   ms.date="02/19/2016"
+   ms.date="08/16/2016"
    ms.author="mobandyo;bryanla"/>
 
-# Microsoft Azure 使用情況和 RateCard API 可讓 Cloudyn 提供 ITFM 給客戶 
+# Microsoft Azure 使用情況和 RateCard API 可讓 Cloudyn 提供 ITFM 給客戶
 
 Cloudyn (Microsoft 開發夥伴和雲端管理功能的領導提供者) 是為一項新 Microsoft Azure 資源使用情況與 RateCard API 的私人預覽所選取。使用情況 API 可為訂用帳戶提供預估的 Azure 耗用量資料。RateCard API 提供非企業合約 (EA) 客戶所有 Azure 服務的完整定價資訊。當這些 API 整合在一起時，會提供完整的資訊基礎給 IT 財務管理 (ITFM) 工具的輸入，例如 Cloudyn 所提供的工具。
 
-## 簡介 
+## 簡介
 
 使用情況 API 的資料和 RateCard API 的資料之間所謂的「乘法」(使用情況 [單位] 價格 [$unit] = 詳細使用情況和成本) 會建立最細微、精確且可靠的計費資訊，可供目前的 Azure 使用。
 
@@ -38,7 +38,7 @@ RateCard API 需要數個輸入參數 -- 例如區域資訊、貨幣及區域設
 
 除了 Azure 效能 API 之外，Cloudyn 還使用了使用情況和 RateCard API，建立其他層的視覺化、分析、警示、報告、成本管理和可行的建議，提供可靠的企業雲端 ITFM 工具給 Azure 客戶。
 
-## Cloudyn ITFM 使用由使用情況和 RateCard API 整合啟用的案例 
+## Cloudyn ITFM 使用由使用情況和 RateCard API 整合啟用的案例
 一般 Cloudyn ITFM 所使用的案例都由使用情況和 RateCard API 啟用，包括：
 
 + **成本分析** - 可讓雲端成本細分成任何原生識別維度 (提供者、服務、帳戶、區域等)。藉由提供每個帳戶最細微的使用情況和成本資料分解，然後由 Cloudyn 將其分組和篩選，並以圖型或表格的形式呈現給使用者，Azure 使用情況和 RateCard API 可讓這個工作變簡單。
@@ -63,10 +63,10 @@ RateCard API 需要數個輸入參數 -- 例如區域資訊、貨幣及區域設
 
 ![類別管理員][7]
 
-## 影片 
+## 影片
 
 以下短片顯示 Azure 客戶如何使用 Azure 和 Azure 計費 API 的 Cloudyn，從 Azure 耗用量資料取得見解。
- 
+
 > [AZURE.VIDEO cloudyn-provides-cloud-itfm-tools-via-microsoft-azure-apis]
 
 
@@ -91,4 +91,4 @@ RateCard API 需要數個輸入參數 -- 例如區域資訊、貨幣及區域設
 [6]: ./media/billing-usage-rate-card-partner-solution-cloudyn/Cloudyn-Performance-Reports.png
 [7]: ./media/billing-usage-rate-card-partner-solution-cloudyn/Cloudyn-Category-Manager.png
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

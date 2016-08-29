@@ -46,7 +46,7 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJhdWQiOiIyZDRkMTFhMi1mODE0LTQ2YTctODkwYS0y
 
 #### id\_tokens 中的宣告
 
-| JWT 宣告 | 名稱 | 說明 |
+| JWT 宣告 | Name | 說明 |
 |-----------|------|-------------|
 | `appid`| 應用程式識別碼 | 識別使用權杖來存取資源的應用程式。應用程式代表本身或使用者行事。應用程式識別碼通常代表應用程式物件，但也可以代表 Azure AD 中的服務主體物件。<br><br> **範例 JWT 值**：<br> `"appid":"15CB020F-3984-482A-864D-1D92265E8268"` |
 | `aud`| 對象 | 權杖的預定接收者。接收權杖的應用程式必須確認對象值正確無誤，並拒絕任何適用於不同對象的權杖。<br><br> **範例 SAML 值**：<br> `<AudienceRestriction>`<br>`<Audience>`<br>`https://contoso.com`<br>`</Audience>`<br>`</AudienceRestriction>` <br><br> **範例 JWT 值**：<br> `"aud":"https://contoso.com"` |
@@ -109,6 +109,20 @@ Id\_Token 會使用業界標準非對稱式加密演算法 (例如 RSA 256) 進�
 `alg` 宣告表示用來簽署權杖的演算法，而 `x5t` 宣告則表示用來簽署權杖的特定公開金鑰。
 
 在任何指定的時間點，Azure AD 可能會使用一組特定公開-私密金鑰組的其中一個金鑰組來簽署 id\_token。Azure AD 會定期替換一組可能的金鑰，所以應將您的應用程式撰寫成自動處理這些金鑰變更。檢查 Azure AD 所用公開金鑰的更新的合理頻率為每 24 小時。
+
+您可以使用位於下列位置的 OpenID Connect 中繼資料文件來取得驗證簽章所需的簽署金鑰資料：
+
+```
+https://login.microsoftonline.com/common/.well-known/openid-configuration
+```
+
+> [AZURE.TIP] 在瀏覽器中嘗試此 URL！
+
+此中繼資料文件是 JSON 物件，內含幾項實用的資訊，例如執行 OpenID Connect 驗證所需的各種端點的位置。
+
+此外，還包含 `jwks_uri`，其提供用來簽署權杖的公用金鑰組的位置。位於 `jwks_uri` 的 JSON 文件包含在該特定時間點使用的所有公開金鑰資訊。您的應用程式可以使用 JWT 標頭中的 `kid` 宣告選取本文件中已用來簽署特定權杖的公開金鑰。接著可以使用正確的公開金鑰和指定的演算法來執行簽章驗證。
+
+執行簽章驗證已超出本文件的範圍 - 有許多開放原始碼程式庫可協助您這麼做 (如有必要)。
 
 #### 驗證宣告
 
@@ -275,4 +289,4 @@ Id\_Token 會使用業界標準非對稱式加密演算法 (例如 RSA 256) 進�
      acr: "1"
     }.
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

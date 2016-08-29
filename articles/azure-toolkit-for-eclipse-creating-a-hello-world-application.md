@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="multiple"
     ms.devlang="Java"
     ms.topic="article"
-    ms.date="06/24/2016" 
+    ms.date="08/11/2016" 
     ms.author="robmcm"/>
 
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh690944.aspx -->
@@ -31,7 +31,7 @@
 * Java Developer Kit (JDK) 1.7 版或更新版本。
 * Eclipse IDE for Java EE Developers (Indigo 或更新版本)。這可透過 <http://www.eclipse.org/downloads/> 下載。
 * Java 型 Web 伺服器或應用程式伺服器的散發套件，例如 Apache Tomcat、GlassFish、JBoss Application Server、Jetty 或 IBM® WebSphere® Application Server Liberty Core。
-* Azure 訂用帳戶，可從 <http://azure.microsoft.com/pricing/purchase-options/> 取得。
+* Azure 訂閱，可從 <http://azure.microsoft.com/pricing/purchase-options/> 取得。
 * 適用於 Eclipse 的 Azure 工具組。如需詳細資訊，請參閱[安裝適用於 Eclipse 的 Azure 工具組][]。
 
 ## 建立 Hello World 應用程式 ##
@@ -76,7 +76,7 @@
 1. 在 [發佈至 Azure] 對話方塊中：
     1. 如果 [訂用帳戶] 清單中還沒有可供選取的訂用帳戶，請遵循下列步驟來匯入您的訂用帳戶資訊：
         1. 按一下 [從 PUBLISH-SETTINGS 檔案匯入]。
-        1. 在 [匯入訂用帳戶資訊] 對話方塊中，按一下 [下載 PUBLISH-SETTINGS 檔案]。如果您尚未登入 Azure 帳戶，系統會提示您登入。系統接著會提示您儲存 Azure 發佈設定檔。請將其儲存至本機電腦。
+        1. 在 [匯入訂用帳戶資訊] 對話方塊中，按一下 [下載發行設定檔]。如果您尚未登入 Azure 帳戶，系統會提示您登入。系統接著會提示您儲存 Azure 發佈設定檔。請將其儲存至本機電腦。
         1. 同樣在 [匯入訂用帳戶資訊] 對話方塊中，按一下 [瀏覽] 按鈕，選取您在上一個步驟中儲存的本機發佈設定檔，然後按一下 [開啟]。您的畫面看起來應該像下面這樣：
 
 			![][ic644267]
@@ -198,4 +198,4 @@
 [ic789598]: ./media/azure-toolkit-for-eclipse-creating-a-hello-world-application/ic789598.png
 [publishDropdownButton]: ./media/azure-toolkit-for-eclipse-creating-a-hello-world-application/publishDropdownButton.png
 
-<!-----HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

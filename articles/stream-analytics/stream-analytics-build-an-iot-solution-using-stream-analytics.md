@@ -1,7 +1,7 @@
 <properties 
 	pageTitle="利用串流分析來建置 IOT 解決方案 | Microsoft Azure" 
 	description="串流分析的開始使用教學課程, 收費站案例的 iot 解決方案"
-	keywords=""
+	keywords="iot 解決方案, 視窗函數"
 	documentationCenter=""
 	services="stream-analytics"
 	authors="jeffstokes72" 
@@ -15,7 +15,7 @@
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
 	ms.workload="data-services" 
-	ms.date="07/27/2016" 
+	ms.date="08/11/2016" 
 	ms.author="jeffstok"
 />
 
@@ -33,16 +33,16 @@
 -   有自信地使用 Azure 串流分析來為客戶開發串流解決方案。
 -   利用監視和記錄的經驗來排解問題。
 
-## 先決條件
+## 必要條件
 
 您必須滿足下列的先決條件，才能順利地完成本教學課程。
 
 -   最新的 [Azure PowerShell](../powershell-install-configure.md)
 -   Visual Studio 2015 或，或是免費的 [Visual Studio Community](https://www.visualstudio.com/products/visual-studio-community-vs.aspx)
--   [Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/)
+-   [Azure 訂閱](https://azure.microsoft.com/pricing/free-trial/)
 -   電腦的系統管理員權限
 -   從 Microsoft 下載中心下載 [TollApp.zip](http://download.microsoft.com/download/D/4/A/D4A3C379-65E8-494F-A8C5-79303FD43B0A/TollApp.zip)。
--   選擇性：[GitHub](https://github.com/streamanalytics/samples/tree/master/TollApp) 中 TollApp 事件產生器的原始程式碼
+-   選擇性：[GitHub](https://aka.ms/azure-stream-analytics-toll-source) 中 TollApp 事件產生器的原始程式碼
 
 ## 案例簡介：收費站，你好！
 
@@ -58,9 +58,9 @@
 ### 入口資料流
 
 入口資料流包含車輛進入收費站的相關資訊。
-  
-  
-| TollID | EntryTime | LicensePlate | State | Make | Model | VehicleType | VehicleWeight | Toll | Tag |
+
+
+| TollID | EntryTime | LicensePlate | State | Make | 模型 | VehicleType | VehicleWeight | Toll | Tag |
 |---------|-------------------------|--------------|-------|--------|---------|--------------|----------------|------|-----------|
 | 1 | 2014-09-10 12:01:00.000 | JNB 7001 | NY | Honda | CRV | 1 | 0 | 7 | |
 | 1 | 2014-09-10 12:02:00.000 | YXZ 1001 | NY | Toyota | Camry | 1 | 0 | 4 | 123456789 |
@@ -68,18 +68,18 @@
 | 2 | 2014-09-10 12:03:00.000 | XYZ 1003 | CT | Toyota | Corolla | 1 | 0 | 4 | |
 | 1 | 2014-09-10 12:03:00.000 | BNJ 1007 | NY | Honda | CRV | 1 | 0 | 5 | 789123456 |
 | 2 | 2014-09-10 12:05:00.000 | CDE 1007 | NJ | Toyota | 4x4 | 1 | 0 | 6 | 321987654 |
-  
+
 
 以下是每個資料欄的簡短說明：
-  
-  
+
+
 | TollID | 用來識別收費站的收費亭唯一識別碼 |
 |--------------|----------------------------------------------------------------|
 | EntryTime | 車輛進入收費亭的日期及時間 (國際標準時間) |
 | LicensePlate | 車輛的牌照號碼 |
 | State | 美國的某個洲 |
 | Make | 車輛的製造商 |
-| Model | 車輛的型號 |
+| 模型 | 車輛的型號 |
 | VehicleType | 1 代表客車，2 代表商用車 |
 | WeightType | 車輛的重量，單位為噸；0 代表客車 |
 | Toll | 通行費，單位為美元 |
@@ -89,8 +89,8 @@
 ### 出口資料流
 
 出口資料流包含車輛離開收費站的相關資訊。
-  
-  
+
+
 | **TollId** | **ExitTime** | **LicensePlate** |
 |------------|------------------------------|------------------|
 | 1 | 2014-09-10T12:03:00.0000000Z | JNB 7001 |
@@ -101,8 +101,8 @@
 | 2 | 2014-09-10T12:07:00.0000000Z | CDE 1007 |
 
 以下是每個資料欄的簡短說明：
-  
-  
+
+
 | 資料欄 | 說明 |
 |--------------|-----------------------------------------------------------------|
 | TollID | 用來識別收費站的收費亭唯一識別碼 |
@@ -112,20 +112,20 @@
 ### 商用車的登記資料
 
 我們將使用商用車登記資料庫的靜態快照。
-  
-  
-| LicensePlate | RegistrationId | Expired |
+
+
+| LicensePlate | RegistrationId | 已過期 |
 |--------------|----------------|---------|
 | SVT 6023 | 285429838 | 1 |
 | XLZ 3463 | 362715656 | 0 |
 | BAC 1005 | 876133137 | 1 |
 | RIV 8632 | 992711956 | 0 |
 | SNY 7188 | 592133890 | 0 |
-| ELH 9896 | 678427724 | 1 |                      
+| ELH 9896 | 678427724 | 1 |
 
 以下是每個資料欄的簡短說明：
-  
-  
+
+
 | 資料欄 | 說明 |
 |--------------|-----------------------------------------------------------------|
 | LicensePlate | 車輛的牌照號碼 |
@@ -246,22 +246,22 @@ Windows 會自動封鎖從網際網路下載的 ps1、dll 和 exe 檔案，因�
 6) 選擇 [TollDataDB] 來做為資料庫
 
 ![](media/stream-analytics-build-an-iot-solution-using-stream-analytics/image17.jpg)
-    
+
 7) 按一下 [確定]。
 
 8) 開啟 [伺服器總管]
 
 ![](media/stream-analytics-build-an-iot-solution-using-stream-analytics/image18.png)
-  
+
 9) 在 TollDataDB 資料庫中看到 4 個已建立的資料表。
-  
+
 ![](media/stream-analytics-build-an-iot-solution-using-stream-analytics/image19.jpg)
-  
+
 ## 事件產生器：TollApp 範例專案
 
 PowerShell 指令碼會自動利用 TollApp 範例應用程式來開始傳送事件，因此您不需要執行任何額外的步驟。
 
-然而，如果您對實作的細節有興趣，可以在 GitHub 的 [samples/TollApp](https://github.com/streamanalytics/samples/tree/master/TollApp) 之下找到 TollApp 應用程式的原始程式碼。
+然而，如果您對實作的細節有興趣，可以在 GitHub 的 [samples/TollApp](https://aka.ms/azure-stream-analytics-toll-source) 之下找到 TollApp 應用程式的原始程式碼
 
 ![](media/stream-analytics-build-an-iot-solution-using-stream-analytics/image20.png)
 
@@ -376,9 +376,7 @@ PowerShell 指令碼會自動利用 TollApp 範例應用程式來開始傳送事
 
 我們來看看能回答這個問題的 Azure 串流分析查詢：
 
-    SELECT TollId, System.Timestamp AS WindowEnd, COUNT(*) AS Count
-    FROM EntryStream TIMESTAMP BY EntryTime
-    GROUP BY TUMBLINGWINDOW(minute, 3), TollId
+SELECT TollId, System.Timestamp AS WindowEnd, COUNT(*) AS Count FROM EntryStream TIMESTAMP BY EntryTime GROUP BY TUMBLINGWINDOW(minute, 3), TollId
 
 如上所示，Azure 串流分析使用類似 SQL 的查詢語言，再加上幾個其他的擴充功能，來啟用查詢在時間方面的指定功能。
 
@@ -418,11 +416,7 @@ PowerShell 指令碼會自動利用 TollApp 範例應用程式來開始傳送事
 
 因此我們必須聯結包含 EntryTime 的串流與包含 ExitTime 的串流。我們將會聯結 TollId 和 LicencePlate 資料欄的串流。JOIN 運算子需要指定時間性的彈性時間，來說明已聯結事件之間可接受的時間差。我們將使用 DATEDIFF 函式來指定事件之間的時間差不能超過 15 分鐘。我們也會將 DATEDIFF 函式套用到 Exit 及 Entry 時間，以便計算車輛經過收費亭的實際時間。請注意在 JOIN 條件相較之下，當 DATEDIFF 用在 SELECT 陳述式中時，DATEDIFF 使用方式的差異。
 
-    SELECT EntryStream.TollId, EntryStream.EntryTime, ExitStream.ExitTime, EntryStream.LicensePlate, DATEDIFF (minute , EntryStream.EntryTime, ExitStream.ExitTime) AS DurationInMinutes
-    FROM EntryStream TIMESTAMP BY EntryTime
-    JOIN ExitStream TIMESTAMP BY ExitTime
-    ON (EntryStream.TollId= ExitStream.TollId AND EntryStream.LicensePlate = ExitStream.LicensePlate)
-    AND DATEDIFF (minute, EntryStream, ExitStream ) BETWEEN 0 AND 15
+SELECT EntryStream.TollId, EntryStream.EntryTime, ExitStream.ExitTime, EntryStream.LicensePlate, DATEDIFF (minute , EntryStream.EntryTime, ExitStream.ExitTime) AS DurationInMinutes FROM EntryStream TIMESTAMP BY EntryTime JOIN ExitStream TIMESTAMP BY ExitTime ON (EntryStream.TollId= ExitStream.TollId AND EntryStream.LicensePlate = ExitStream.LicensePlate) AND DATEDIFF (minute, EntryStream, ExitStream ) BETWEEN 0 AND 15
 
 如要測試此查詢，請更新您工作中 [查詢] 索引標籤上的查詢：
 
@@ -442,11 +436,7 @@ Azure 串流分析可使用靜態的資料快照，來與時間資料流聯結�
 
 如果商用車已經向收費公司登記，就直接通過收費亭，不用停車接受檢查。我們將使用商用車登記查詢資料表，來辨識所有車輛登記已過期的商用車。
 
-    SELECT EntryStream.EntryTime, EntryStream.LicensePlate, EntryStream.TollId, Registration.RegistrationId
-    FROM EntryStream TIMESTAMP BY EntryTime
-    JOIN Registration
-    ON EntryStream.LicensePlate = Registration.LicensePlate
-    WHERE Registration.Expired = '1'
+SELECT EntryStream.EntryTime, EntryStream.LicensePlate, EntryStream.TollId, Registration.RegistrationId FROM EntryStream TIMESTAMP BY EntryTime JOIN Registration ON EntryStream.LicensePlate = Registration.LicensePlate WHERE Registration.Expired = '1'
 
 請注意，如要測試利用參考資料的查詢，就必須定義參考資料的輸入來源，而我們已經在步驟 5 完成這項作業。
 
@@ -485,9 +475,7 @@ Azure 串流分析可使用靜態的資料快照，來與時間資料流聯結�
 
 我們將 Azure 串流分析設計成能進行彈性調整，且能夠處理大量資料。Azure 串流分析查詢可以使用 **PARTITION BY** 子句，來告訴系統此步驟將會相應放大。PartitionId 是系統新增的特殊資料欄，且它與輸入 (事件中樞) 的分割識別碼相符。
 
-    SELECT TollId, System.Timestamp AS WindowEnd, COUNT(*)AS Count
-    FROM EntryStream TIMESTAMP BY EntryTime PARTITION BY PartitionId
-    GROUP BY TUMBLINGWINDOW(minute,3), TollId, PartitionId    
+SELECT TollId, System.Timestamp AS WindowEnd, COUNT(*)AS Count FROM EntryStream TIMESTAMP BY EntryTime PARTITION BY PartitionId GROUP BY TUMBLINGWINDOW(minute,3), TollId, PartitionId
 
 請停止目前的工作，然後更新 [查詢] 索引標籤中的查詢，再開啟 [調整] 索引標籤。
 
@@ -501,7 +489,7 @@ Azure 串流分析可使用靜態的資料快照，來與時間資料流聯結�
 
 現在，如果您啟動工作，Azure 串流分析將能夠把工作分散到更多的計算資源上，並達到更高的輸送量。請注意，TollApp 應用程式也會同時傳送已依照 TollId 來分割的事件。
 
-## 監控
+## 監視
 
 [監視] 索引標籤包含執行中工作的統計資料。
 
@@ -535,4 +523,4 @@ Setup.ps1 指令碼會建立 2 個 Azure 事件中樞，以及 Azure SQL 資料�
 
 ![](media/stream-analytics-build-an-iot-solution-using-stream-analytics/image57.png)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

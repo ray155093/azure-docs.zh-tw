@@ -12,11 +12,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/31/2016"
+   ms.date="08/17/2016"
    ms.author="magoedte;bwren" />
 
 # Azure 自動化中的子 Runbook
-
 
 Azure 自動化中的最佳作法是撰寫可重複使用、模組化的 Runbook，並包含可供其他 Runbook 使用的不同功能。父 Runbook 通常會呼叫一或多個子 Runbook 來執行必要的功能。有兩種方式可以呼叫子 Runbook，而且各有您應該了解的明顯差異，如此您才能判斷在不同的情況下哪一種最適用。
 
@@ -82,11 +81,11 @@ Azure 自動化中的最佳作法是撰寫可重複使用、模組化的 Runbook
 
 | | 內嵌| Cmdlet|
 |:---|:---|:---|
-|Job|與父代在相同的工作中執行的子 Runbook。|會為子 Runbook 建立個別的工作。|
+|工作 (Job)|與父代在相同的工作中執行的子 Runbook。|會為子 Runbook 建立個別的工作。|
 |執行|父 Runbook 會等待子 Runbook 完成後再繼續執行。|父 Runbook 會在子 Runbook 啟動後立刻繼續執行，或父 Runbook 會等候子作業完成。|
 |輸出|父 Runbook 可以直接從子 Runbook 取得輸出。|父 Runbook 必須擷取子 Runbook 作業的輸出，或父 Runbook 可以直接從子 Runbook 取得輸出。|
 |參數|子 Runbook 參數的值是個別指定，而且可以使用任何資料類型。|子 Runbook 參數的值必須結合成單一雜湊表，且只能包含簡單、陣列，以及運用 JSON 序列化的物件資料類型。|
-|自動化帳戶|父 Runbook 只能使用相同自動化帳戶中的子 Runbook。|父 Runbook 可以使用來自相同 Azure 訂閱帳戶，甚至是不同訂閱帳戶 (如果您已連接) 之任何自動化帳戶的子 Runbook。|
+|自動化帳戶|父 Runbook 只能使用相同自動化帳戶中的子 Runbook。|父 Runbook 可以使用來自相同 Azure 訂用帳戶，甚至是不同訂用帳戶 (如果您已連接) 之任何自動化帳戶的子 Runbook。|
 |發佈|發佈父 Runbook 之前必須先發佈子 Runbook。|啟動父 Runbook 之前必須先發佈子 Runbook。|
 
 ## 後續步驟
@@ -94,4 +93,4 @@ Azure 自動化中的最佳作法是撰寫可重複使用、模組化的 Runbook
 - [在 Azure 自動化中啟動 Runbook](automation-starting-a-runbook.md)
 - [Azure 自動化中的 Runbook 輸出與訊息](automation-runbook-output-and-messages.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0817_2016-->

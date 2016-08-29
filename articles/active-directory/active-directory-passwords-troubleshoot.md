@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/12/2016"
+	ms.date="08/12/2016"
 	ms.author="asteen"/>
 
 # 如何疑難排解密碼管理
@@ -456,7 +456,21 @@
               <p>在 ADSync 服務重新啟動期間若已設定回寫，將會啟動 WCF 端點。不過，如果端點啟動失敗，我們只會記錄事件 6800，並讓同步處理服務啟動。出現此事件表示密碼回寫端點並未啟動。此事件 (6800) 的事件記錄檔詳細資料以及 PasswordResetService 元件所產生的事件記錄檔項目會指出為何無法啟動端點。如果密碼回寫仍然無法運作，請檢閱這些事件記錄檔錯誤，並嘗試重新啟動 Azure AD Connect。如果此問題持續發生，請嘗試先停用再重新啟用密碼回寫。</p>
             </td>
           </tr>
-          <tr>
+					<tr>
+            <td>
+              <p>當使用者嘗試在已啟用密碼回寫時重設密碼或解除鎖定帳戶，作業會失敗。此外，在解除鎖定作業發生之後，您會在 Azure AD Connect 事件記錄檔中看到事件，其中包含：「Synchronization Engine returned an error hr=800700CE, message=The filename or extension is too long」。
+							</p>
+            </td>
+            <td>
+              <p>如果您從舊版 Azure AD Connect 或 DirSync 升級，就可能發生此事件。升級至較舊版本的 Azure AD Connect 會為 Azure AD 管理代理程式帳戶設定 254 個字元的密碼 (較新版本則會設定長度為 127 個字元的密碼)。這類長密碼適用於 AD Connector 匯入和匯出作業，但解除鎖定作業則不支援。
+							</p>
+            </td>
+            <td>
+              <p>[尋找 Azure AD Connect 的 Active Directory 帳戶](active-directory-aadconnect-accounts-permissions.md#active-directory-account)，並重設密碼以包含不超過 127 個字元。然後從 [開始] 功能表開啟 [同步處理服務]。瀏覽至 [連接器]，然後尋找 [Active Directory 連接器]。選取它，然後按一下 [屬性]。瀏覽至頁面 [認證]，然後輸入新密碼。選取 [確定] 以關閉頁面。
+							</p>
+            </td>
+          </tr>
+					<tr>
             <td>
               <p>在 Azure AD Connect 安裝期間設定回寫時發生錯誤。</p>
             </td>
@@ -1467,8 +1481,7 @@
 如果停用再重新啟用密碼回寫功能無法解決您的問題，建議您接下來試著重新安裝 Azure AD Connect。
 
 ### 安裝最新版的 Azure AD Connect
-重新安裝 Azure AD Connect 封裝將可解決任何可能會影響您能否連線到雲端服務或能否管理本機 AD 環境中密碼的設定問題。
-建議您只在嘗試過上述前兩個步驟後，才執行此步驟。
+重新安裝 Azure AD Connect 封裝將可解決任何可能會影響您能否連線到雲端服務或能否管理本機 AD 環境中密碼的設定問題。建議您只在嘗試過上述前兩個步驟後，才執行此步驟。
 
  1.	在[這裡](active-directory-aadconnect.md#install-azure-ad-connect)下載最新版的 Azure AD Connect。
  2.	由於您已安裝 Azure AD Connect，您只需要執行就地升級，即可將 Azure AD Connect 安裝更新為最新版。
@@ -1504,4 +1517,4 @@
 [003]: ./media/active-directory-passwords-troubleshoot/003.jpg "Image_003.jpg"
 [004]: ./media/active-directory-passwords-troubleshoot/004.jpg "Image_004.jpg"
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0817_2016-->

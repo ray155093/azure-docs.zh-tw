@@ -1,271 +1,278 @@
 <properties
-pageTitle="在 PowerApps Enterprise 中新增 Dynamics CRM Online 連接器，或是新增到您的 Logic Apps | Microsoft Azure"
-description="搭配 REST API 參數來使用 CRM Online 連接器的概觀"
-services=""    
-documentationCenter=""     
-authors="msftman"    
-manager="erikre"    
-editor="" tags="connectors" />
+	pageTitle="將 Dynamics CRM Online 連接器新增到 Logic Apps | Microsoft Azure"
+	description="使用 Azure App Service 建立邏輯應用程式。Dynamics CRM Online 連接提供者提供 API，以便使用 Dynamics CRM Online 上的實體。"
+	services="logic-apps"    
+	documentationCenter=""     
+	authors="MandiOhlinger"    
+	manager="erikre"    
+	editor="" 
+	tags="connectors" />
 
 <tags
-ms.service="multiple"
+ms.service="logic-apps"
 ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="integration"
-ms.date="05/18/2016"
-ms.author="deonhe"/>
+ms.date="08/15/2016"
+ms.author="mandia"/>
 
-# 開始使用 CRM 連接器
-連線到 Dynamics CRM Online 來建立新的記錄、更新項目等等。您可以從下列應用程式使用 CRM 連接器︰
+# 開始使用 Dynamics CRM Online 連接器
+連線到 Dynamics CRM Online 來建立新的記錄、更新項目等等。您可以利用 CRM Online 來：
 
-- 邏輯應用程式
-- PowerApps
-
-> [AZURE.SELECTOR]
-- [邏輯應用程式](../articles/connectors/connectors-create-api-crmonline.md)
-- [PowerApps Enterprise](../articles/power-apps/powerapps-create-api-crmonline.md)
-
-您可以利用 CRM Online 來：
-
-- 根據您從 CRM Online 所取得的資料，來建置您的商務流程。 
+- 根據您從 CRM Online 所取得的資料，來建置您的商務流程。
 - 使用會刪除檔案、取得實體等等的動作。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，當 CRM 中有項目更新時，您可以利用 Office 365 來傳送電子郵件。
 
+本主題說明如何在邏輯應用程式中使用 Dynamics CRM Online 連接器，並且也列出觸發程序和動作。
 
-如需如何在 PowerApps Enterprise 中新增連接器的資訊，請移至[在 PowerApps 中註冊連接器](../power-apps/powerapps-register-from-available-apis.md)。
+>[AZURE.NOTE] 這個版本的文章適用於 Logic Apps 公開上市版本 (GA)。
 
-如果要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+若要深入瞭解 Logic Apps，請參閱[什麼是邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)以及[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-## 觸發程序及動作
-CRM 連接器包含下列動作，但不包含觸發程序。
+## 連接至 Dynamics CRM Online
 
-| 觸發程序 | 動作|
-| --- | --- |
-|None| <ul><li>建立新的記錄</li><li>取得記錄</li><li>刪除記錄</li><li>取得記錄</li><li>取得實體</li><li>更新項目</li></ul>
+您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。連線可讓邏輯應用程式與另一個服務連線。例如，若要連線到 Dynamics，您必須先有 Dynamics CRM Online「連線」。若要建立連線，請輸入平常用來存取所要連線之服務的認證。因此，在 Dynamics 中，請輸入 Dynamics CRM Online 帳戶的認證以建立連線。
 
-所有連接器都支援 JSON 和 XML 格式的資料。
 
-## 建立至 CRM Online 的連線
+### 建立連線
 
-當您將這個連接器新增到邏輯應用程式時，您必須登入 Dynamics CRM Online。請依照下列步驟在線上登入 CRM，並在邏輯應用程式中完成連線設定：
+>[AZURE.INCLUDE [建立 Dynamics CRM Online 連接提供者之連線的步驟](../../includes/connectors-create-api-crmonline.md)]
 
-1. 在您的邏輯應用程式中選取 [加入動作]：![線上設定 CRM][13]
-4. 在搜尋方塊中輸入 CRM，並等候搜尋傳回所有名稱中有 CRM 的項目。
-5. 選取 [Dynamics CRM Online - 建立新的記錄]。
-6. 選取 [登入 Dynamics CRM Online]：![線上設定 CRM][14]
-7. 提供您的 CRM Online 認證來登入以授權應用程式：![線上設定 CRM][15]  
-8. 請在登入後返回邏輯應用程式，新增其他所需的觸發與動作以完成動作。
-9. 選取上方功能表列的 [儲存]，即可儲存您的工作。
+## 使用觸發程序
 
-當您建立連線之後，請輸入 CRM Online 的屬性，例如資料表或資料集。本主題的 REST API 參考會說明這些屬性。
+觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。觸發程序會以您想要的間隔和頻率「輪詢」服務。[深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
 
->[AZURE.TIP] 您可以在其他的邏輯應用程式中使用這個連線。
+1. 在邏輯應用程式中，輸入 "dynamics" 以取得觸發程序的清單︰
 
-## Swagger REST API 參考
-適用的版本：1.0。
+	![](./media/connectors-create-api-crmonline/dynamics-triggers.png)
 
-### 建立新的記錄 
-在實體中建立新的記錄。```POST: /datasets/{dataset}/tables/{table}/items```
+2. 選取 [Dynamics CRM Online - 建立記錄時]。如果連線已存在，則選取下拉式清單中的組織和實體。
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|CRM 組織 contoso.crm 用的唯一名稱|
-|資料表|字串|yes|路徑|無|實體的名稱|
-|item| |yes|body|無|要建立的記錄|
+	![](./media/connectors-create-api-crmonline/select-organization.png)
 
-#### Response
+	如果系統提示您登入，則輸入登入詳細資料來建立連線。本主題中的[建立連線](connectors-create-api-crmonline.md#create-the-connection)一節會列出步驟。
+
+	> [AZURE.NOTE] 在此範例中，邏輯應用程式會在建立記錄時執行。若要查看此觸發程序的結果，請新增另一個動作，以傳送電子郵件給您。例如，新增 Office 365「傳送電子郵件」動作，以在加入新記錄時傳送電子郵件給您。
+
+3. 選取 [編輯] 按鈕，然後設定 [頻率] 和 [間隔] 值。例如，如果您希望觸發程序每隔 15 分鐘輪詢一次，則將 [頻率] 設定為 [分鐘] 並將 [**間隔]** 設定為 [15]。
+
+	![](./media/connectors-create-api-crmonline/edit-properties.png)
+
+4. **儲存**您的變更 (工具列的左上角)。邏輯應用程式將會儲存，而且可能會自動啟用。
+
+
+## 使用動作
+
+動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
+
+1. 選取加號。您會看到幾個選擇︰[新增動作]、[新增條件] 或其中一個 [其他] 選項。
+
+	![](./media/connectors-create-api-crmonline/add-action.png)
+
+2. 選擇 [新增動作]。
+
+3. 在文字方塊中，輸入 “dynamics” 以取得所有可用動作的清單。
+
+	![](./media/connectors-create-api-crmonline/dynamics-actions.png)
+
+4. 在本例中，選擇 [Dynamics CRM Online - 更新記錄]。如果連線已存在，則選擇 [組織名稱]、[實體名字] 和其他屬性︰
+
+	![](./media/connectors-create-api-crmonline/sample-action.png)
+
+	如果系統提示您輸入連線資訊，請輸入詳細資料以建立連線。本主題的[建立連線](connectors-create-api-crmonline.md#create-the-connection)一節會說明這些屬性。
+
+	> [AZURE.NOTE] 在此範例中，我們會更新 CRM Online 中的現有記錄。您可以使用另一個觸發程序的輸出來更新記錄。例如，新增 SharePoint「當現有項目遭到修改時」觸發程序。然後新增 CRM Online「更新資料錄」動作，以使用 SharePoint 欄位來更新 CRM Online 中的現有記錄。
+
+5. **儲存**您的變更 (工具列的左上角)。邏輯應用程式將會儲存，而且可能會自動啟用。
+
+
+## 技術詳細資料
+
+## 觸發程序
+
+|觸發程序 | 說明|
+|--- | ---|
+|[當檔案建立時](connectors-create-api-crmonline.md#when-a-record-is-created)|當 CRM 中有物件建立時，就會觸發某個流程。|
+|[當記錄更新時](connectors-create-api-crmonline.md#when-a-record-is-updated)|當 CRM 中有物件遭到修改時，就會觸發某個流程。|
+|[當記錄刪除時](connectors-create-api-crmonline.md#when-a-record-is-deleted)|當 CRM 中有物件刪除時，就會觸發某個流程。|
+
+
+## 動作
+
+|動作|說明|
+|--- | ---|
+|[列出記錄](connectors-create-api-crmonline.md#list-records)|這項作業會取得實體的記錄。|
+|[建立新的記錄](connectors-create-api-crmonline.md#create-a-new-record)|這項作業會建立實體的新記錄。|
+|[取得記錄](connectors-create-api-crmonline.md#get-record)|這項作業會取得實體的指定記錄。|
+|[刪除記錄](connectors-create-api-crmonline.md#delete-a-record)|這項作業會從實體集合中刪除記錄。|
+|[更新記錄](connectors-create-api-crmonline.md#update-a-record)|這項作業會更新實體的現有記錄。|
+
+### 觸發程序和動作詳細資料
+
+在本節中，請查看每個觸發程序和動作的特定詳細資料，包括任何必要或選擇性的輸入屬性，以及任何與連接器相關聯的對應輸出。
+
+#### 當檔案建立時
+當 CRM 中有物件建立時，就會觸發某個流程。
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|組織名稱|CRM 組織的名稱 (例如 Contoso)|
+|資料表 *|實體名稱|實體的名稱|
+|$skip|略過計數|要略過的項目數目 (預設值 = 0)|
+|$top|最大取得計數|要取得的項目數目上限 (預設值 = 256)|
+|$filter|篩選查詢|用來限制傳回項目的 ODATA 篩選查詢|
+|$orderby|排序依據|用來指定項目順序的 ODATA orderBy 查詢|
+
+星號 (*) 代表必要屬性。
+
+##### 輸出詳細資料
+ItemsList
+
+| 屬性名稱 | 資料類型 |
+|---|---|
+|value|array|
+
+
+#### 當記錄更新時
+當 CRM 中有物件遭到修改時，就會觸發某個流程。
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|組織名稱|CRM 組織的名稱 (例如 Contoso)|
+|資料表 *|實體名稱|實體的名稱|
+|$skip|略過計數|要略過的項目數目 (預設值 = 0)|
+|$top|最大取得計數|要取得的項目數目上限 (預設值 = 256)|
+|$filter|篩選查詢|用來限制傳回項目的 ODATA 篩選查詢|
+|$orderby|排序依據|用來指定項目順序的 ODATA orderBy 查詢|
+
+星號 (*) 代表必要屬性。
+
+##### 輸出詳細資料
+ItemsList
+
+| 屬性名稱 | 資料類型 |
+|---|---|
+|value|array|
+
+
+#### 當記錄刪除時
+當 CRM 中有物件刪除時，就會觸發某個流程。
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|組織名稱|CRM 組織的名稱 (例如 Contoso)|
+|資料表 *|實體名稱|實體的名稱|
+|$skip|略過計數|要略過的項目數目 (預設值 = 0)|
+|$top|最大取得計數|要取得的項目數目上限 (預設值 = 256)|
+|$filter|篩選查詢|用來限制傳回項目的 ODATA 篩選查詢|
+|$orderby|排序依據|用來指定項目順序的 ODATA orderBy 查詢|
+
+星號 (*) 代表必要屬性。
+
+##### 輸出詳細資料
+ItemsList
+
+| 屬性名稱 | 資料類型 |
+|---|---|
+|value|array|
+
+
+#### 列出記錄
+這項作業會取得實體的記錄。
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|組織名稱|CRM 組織的名稱 (例如 Contoso)|
+|資料表 *|實體名稱|實體的名稱|
+|$skip|略過計數|要略過的項目數目 (預設值 = 0)|
+|$top|最大取得計數|要取得的項目數目上限 (預設值 = 256)|
+|$filter|篩選查詢|用來限制傳回項目的 ODATA 篩選查詢|
+|$orderby|排序依據|用來指定項目順序的 ODATA orderBy 查詢|
+
+星號 (*) 代表必要屬性。
+
+##### 輸出詳細資料
+ItemsList
+
+| 屬性名稱 | 資料類型 |
+|---|---|
+|value|array|
+
+
+#### 建立新的記錄
+這項作業會建立實體的新記錄。
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|組織名稱|CRM 組織的名稱 (例如 Contoso)|
+|資料表 *|實體名稱|實體的名稱|
+
+星號 (*) 代表必要屬性。
+
+##### 輸出詳細資料
+無。
+
+
+#### 取得記錄
+這項作業會取得實體的指定記錄。
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|組織名稱|CRM 組織的名稱 (例如 Contoso)|
+|資料表 *|實體名稱|實體的名稱|
+|識別碼*|項目識別碼|指定記錄的識別碼|
+
+星號 (*) 代表必要屬性。
+
+##### 輸出詳細資料
+無。
+
+
+#### 刪除記錄
+這項作業會從實體集合中刪除記錄。
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|組織名稱|CRM 組織的名稱 (例如 Contoso)|
+|資料表 *|實體名稱|實體的名稱|
+|識別碼*|項目識別碼|指定記錄的識別碼|
+
+星號 (*) 代表必要屬性。
+
+
+#### 更新記錄
+這項作業會更新實體的現有記錄。
+
+|屬性名稱| 顯示名稱|說明|
+| ---|---|---|
+|資料集*|組織名稱|CRM 組織的名稱 (例如 Contoso)|
+|資料表 *|實體名稱|實體的名稱|
+|識別碼*|記錄識別碼|指定記錄的識別碼|
+
+星號 (*) 代表必要屬性。
+
+##### 輸出詳細資料
+無。
+
+
+## HTTP 回應
+
+動作和觸發程序可以傳回一或多個下列的 HTTP 狀態碼︰
+
 |名稱|說明|
 |---|---|
 |200|OK|
+|202|已接受|
+|400|不正確的要求|
+|401|未經授權|
+|403|禁止|
+|404|找不到|
+|500|內部伺服器錯誤。發生未知錯誤。|
 |預設值|作業失敗。|
-
-
-### 取得記錄 
- 取得某個實體的記錄。```GET: /datasets/{dataset}/tables/{table}/items```
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|CRM 組織 contoso.crm 用的唯一名稱|
-|資料表|字串|yes|路徑|無|實體的名稱|
-|$skip|integer|no|query|無|要略過的項目數目。預設值為 0。|
-|$top|integer|no|query|無|要擷取的項目數目上限。預設值為 100。|
-|$filter|字串|no|query|無|用來限制項目數目的 ODATA filter 查詢。|
-|$orderby|字串|no|query|無|用來指定項目順序的 ODATA orderBy 查詢。|
-
-#### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-
-
-
-
-### 傳回資料集 
- 傳回資料集。```GET: /datasets```
-
-這個呼叫沒有參數。
-
-#### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-
-
-
-### 取得資料表項目 
-用來取得 CRM 實體的特定記錄。```GET: /datasets/{dataset}/tables/{table}/items/{id}```
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|CRM 組織 contoso.crm 用的唯一名稱|
-|資料表|字串|yes|路徑|無|實體的名稱|
-|id|字串|yes|路徑|無|記錄的識別碼|
-
-#### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-
-### 刪除清單中的項目 
-刪除清單中的項目。```DELETE: /datasets/{dataset}/tables/{table}/items/{id}```
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|CRM 組織 contoso.crm 用的唯一名稱|
-|資料表|字串|yes|路徑|無|實體的名稱|
-|id|字串|yes|路徑|無|記錄的識別碼|
-
-#### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-
-
-
-### 修補現有的資料表項目 
-用來部分更新 CRM 實體的現有記錄。```PATCH: /datasets/{dataset}/tables/{table}/items/{id}```
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|CRM 組織 contoso.crm 用的唯一名稱|
-|資料表|字串|yes|路徑|無|實體的名稱|
-|id|字串|yes|路徑|無|記錄的識別碼|
-|item| |yes|body|無|要更新的記錄|
-
-#### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-
-### 取得實體 
-用來取得 CRM 執行個體中的實體清單。```GET: /datasets/{dataset}/tables```
-
-| 名稱| 資料類型|必要|位於|預設值|說明|
-| ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|CRM 組織 contoso.crm 用的唯一名稱|
-
-#### Response
-|名稱|說明|
-|---|---|
-|200|OK|
-|預設值|作業失敗。|
-
-
-## 物件定義
-
-#### DataSetsMetadata
-
-|屬性名稱 | 資料類型 | 必要|
-|---|---|---|
-|表格式|未定義|no|
-|blob|未定義|no|
-
-#### TabularDataSetsMetadata
-
-|屬性名稱 | 資料類型 |必要|
-|---|---|---|
-|來源|字串|no|
-|displayName|字串|no|
-|urlEncoding|字串|no|
-|tableDisplayName|字串|no|
-|tablePluralName|字串|no|
-
-#### BlobDataSetsMetadata
-
-|屬性名稱 | 資料類型 |必要|
-|---|---|---|
-|來源|字串|no|
-|displayName|字串|no|
-|urlEncoding|字串|no|
-
-
-#### TableMetadata
-
-|屬性名稱 | 資料類型 |必要|
-|---|---|---|
-|名稱|字串|no|
-|title|字串|no|
-|x-ms-permission|字串|no|
-|結構描述|未定義|no|
-
-#### DataSetsList
-
-|屬性名稱 | 資料類型 |必要|
-|---|---|---|
-|value|array|no|
-
-#### DataSet
-
-|屬性名稱 | 資料類型 |必要|
-|---|---|---|
-|名稱|字串|no|
-|DisplayName|字串|no|
-
-
-#### 資料表
-
-|屬性名稱 | 資料類型 |必要|
-|---|---|---|
-|名稱|字串|no|
-|DisplayName|字串|no|
-
-#### 項目
-
-|屬性名稱 | 資料類型 |必要|
-|---|---|---|
-|ItemInternalId|字串|no|
-
-#### ItemsList
-
-|屬性名稱 | 資料類型 |必要|
-|---|---|---|
-|value|array|no|
-
-
-#### TablesList
-
-|屬性名稱 | 資料類型 |必要|
-|---|---|---|
-|value|array|no|
 
 
 ## 後續步驟
 
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
 
-返回 [API 清單](apis-list.md)。
-
-
-[9]: ./media/connectors-create-api-crmonline/aad-tenant-applications-add-appinfo.png
-[10]: ./media/connectors-create-api-crmonline/aad-tenant-applications-add-app-properties.png
-[12]: ./media/connectors-create-api-crmonline/contoso-aad-app-configure.png
-[13]: ./media/connectors-create-api-crmonline/crmconfig1.png
-[14]: ./media/connectors-create-api-crmonline/crmconfig2.png
-[15]: ./media/connectors-create-api-crmonline/crmconfig3.png
-
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0817_2016-->

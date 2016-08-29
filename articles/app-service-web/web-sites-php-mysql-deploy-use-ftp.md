@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="PHP" 
 	ms.topic="article" 
-	ms.date="06/24/2016" 
+	ms.date="08/11/2016" 
 	ms.author="robmcm"/>
 
 
@@ -64,7 +64,7 @@
 
 7. 若要啟用 FTP 發行，您必須提供使用者名稱與密碼。儲存認證，並記下您建立的使用者名稱和密碼。
 
-	![Create publishing credentials][portal-ftp-username-password]
+	![建立發佈認證][portal-ftp-username-password]
 
 ##在本機建置及測試您的應用程式
 
@@ -244,7 +244,7 @@
 
 ##發佈您的應用程式
 
-當您在本機完成應用程式測試之後，可以使用 FTP 將其發行至您的 Web 應用程式。不過，您必須先更新應用程式中的資料庫連接資訊。使用您稍早取得的資料庫連接資訊 (在＜取得 MySQL 和 FTP 連線資訊＞一節中），將 `createdatabase.php` 和 `index.php` **兩者**檔案中的下列資訊都更新為適當的值：
+當您在本機完成應用程式測試之後，可以使用 FTP 將其發行至您的 Web 應用程式。不過，首先您需要更新應用程式中的資料庫連線資訊。使用您稍早取得的資料庫連接資訊 (在＜取得 MySQL 和 FTP 連線資訊＞一節中），將 `createdatabase.php` 和 `index.php` **兩者**檔案中的下列資訊都更新為適當的值：
 
 	// DB connection info
 	$host = "value of Data Source";
@@ -295,4 +295,4 @@
 [download-publish-profile]: ./media/web-sites-php-mysql-deploy-use-ftp/download_publish_profile_3.png
  
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

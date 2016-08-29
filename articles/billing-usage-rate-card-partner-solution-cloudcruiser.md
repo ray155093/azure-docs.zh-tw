@@ -15,7 +15,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="billing"
-   ms.date="02/19/2016"
+   ms.date="08/16/2016"
    ms.author="mobandyo;sirishap;bryanla"/>
 
 # Cloud Cruiser 和 Microsoft Azure 計費 API 整合
@@ -54,7 +54,7 @@ Cloud Cruiser 可以用不同的方式運用 RateCard API 資訊。在這篇文�
 
 Cloud Cruiser 活頁簿提供自動化的方式收集和處理來自 RateCard API 的資訊。ETL (擷取-轉換-載入) 活頁簿可讓您設定資料的集合、轉換和發佈至 Cloud Cruiser 資料庫。
 
-每個活頁簿可以有一個或多個集合。這可讓您將來自不同資源的資訊相互關聯，以補充或強化使用狀況資料。在下方的兩個螢幕擷取畫面中，顯示在現有活頁簿中建立新的*集合*，並將資訊從 RateCard API 匯入到*集合*：
+每個活頁簿可以有一個或多個集合。這可讓您將來自不同資源的資訊相互關聯，以補充或強化使用狀況資料。下面的兩個螢幕擷取畫面顯示如何在現有活頁簿中建立新的*集合*，並將資訊從 RateCard API 匯入到*集合*：
 
 ![圖 1 - 建立新的集合][1]
 
@@ -237,4 +237,4 @@ Cloud Cruiser 活頁簿提供自動化的方式收集和處理來自 Usage API �
 [13]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/4_NewTagField.png "圖 13 - 建立新的標記資訊欄位"
 [14]: ./media/billing-usage-rate-card-partner-solution-cloudcruiser/5_PopulateAccountStructure.png "圖 14 - 利用來自查閱的資訊填入帳戶結構中"
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

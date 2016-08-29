@@ -13,15 +13,15 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="ruby"
 	ms.topic="article"
-    ms.date="06/24/2016"
+    ms.date="08/11/2016"
 	ms.author="robmcm"/>
 
 
 # 如何使用 Ruby 的 Blob 儲存體
 
-[AZURE.INCLUDE [storage-selector-blob-include](../../includes/storage-selector-blob-include.md)]
+[AZURE.INCLUDE [storage-selector-blob-include](../../includes/storage-selector-blob-include.md)] <br/> [AZURE.INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-blobs.md)]
 
-## 概觀
+## Overview
 
 Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/blob 的服務。Blob 儲存體可以儲存任何類型的文字或二進位資料，例如文件、媒體檔案或應用程式安裝程式。Blob 儲存體也稱為物件儲存體。
 
@@ -33,7 +33,7 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 
 ## 建立 Ruby 應用程式
 
-建立 Ruby 應用程式。如需指示，請參閱 [Azure VM 上的 Ruby on Rails Web 應用程式](../virtual-machines/virtual-machines-linux-classic-ruby-rails-web-app.md)。
+建立 Ruby 應用程式。如需指示，請參閱 [Azure VM 上的 Ruby on Rails Web 應用程式](../virtual-machines/virtual-machines-linux-classic-ruby-rails-web-app.md)
 
 ## 設定您的應用程式以存取儲存體
 
@@ -69,7 +69,7 @@ azure 模組會讀取環境變數 **AZURE\_STORAGE\_ACCOUNT** 及 **AZURE\_STORA
 
 若要從 Azure 入口網站的傳統儲存體帳戶取得這些值：
 
-1. 登入[傳統 Azure 入口網站](https://manage.windowsazure.com)。
+1. 登入傳統 [Azure 入口網站](https://manage.windowsazure.com)。
 2. 瀏覽到您要使用的儲存體帳戶。
 3. 按一下導覽窗格底部的 [管理存取金鑰]。
 4. 在快顯對話方塊中，您將會看到儲存體帳戶名稱、主要存取金鑰和次要存取金鑰。如需存取金鑰，您可以使用主要存取金鑰或次要存取金鑰。
@@ -157,4 +157,4 @@ azure 模組會讀取環境變數 **AZURE\_STORAGE\_ACCOUNT** 及 **AZURE\_STORA
 - GitHub 上的 [Azure SDK for Ruby](https://github.com/WindowsAzure/azure-sdk-for-ruby) 存放庫
 - [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

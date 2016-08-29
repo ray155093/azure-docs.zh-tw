@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="08/08/2016"
+   ms.date="08/16/2016"
    ms.author="sonyama;barbkess;mausher"/>
 
 # 適用於 SQL 資料倉儲的 PowerShell Cmdlet 和 REST API
@@ -93,7 +93,7 @@ $resultDatabase = $database | Resume-AzureRmSqlDatabase
 <!--Article references-->
 [如何安裝和設定 Azure PowerShell]: ./powershell-install-configure.md
 [使用 PowerShell 建立 SQL 資料倉儲]: ./sql-data-warehouse-get-started-provision-powershell.md
-[資料庫還原]: ./sql-data-warehouse-manage-database-restore-powershell.md
+[資料庫還原]: ./sql-data-warehouse-restore-database-powershell.md
 [使用 REST 管理延展性]: ./sql-data-warehouse-manage-compute-rest-api.md
 
 <!--MSDN references-->
@@ -114,4 +114,4 @@ $resultDatabase = $database | Resume-AzureRmSqlDatabase
 <!--Other Web references-->
 [Microsoft Web Platform Installer]: https://aka.ms/webpi-azps
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

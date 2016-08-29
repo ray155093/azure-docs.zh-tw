@@ -13,25 +13,28 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="05/12/2016"
+	ms.date="08/10/2016"
 	ms.author="piyushjo;ricksal" />
 
-# Android 上使用 Engagement 的報告選項
+# Android 上使用 Engagement 的進階報告
 
 > [AZURE.SELECTOR]
+- [Universal Windows](mobile-engagement-windows-store-integrate-engagement.md)
+- [Windows Phone Silverlight](mobile-engagement-windows-phone-integrate-engagement.md)
+- [iOS](mobile-engagement-ios-integrate-engagement.md)
 - [Android](mobile-engagement-android-advanced-reporting.md)
 
-本主題說明 Android 應用程式中的其他報告案例。這些選項可供您選擇套用至[快速入門](mobile-engagement-android-get-started.md)教學課程中建立的應用程式。
+本主題說明 Android 應用程式中的其他報告案例。您可以將這些選項套用至[快速入門](mobile-engagement-android-get-started.md)教學課程中建立的應用程式。
 
 ## 必要條件
 
 [AZURE.INCLUDE [必要條件](../../includes/mobile-engagement-android-prereqs.md)]
 
-您完成的教學課程相當直接明瞭，但您還有許多選項可選擇。
+您完成的教學課程相當直接明瞭，但您還有一些進階選項可選擇。
 
 ## 修改 `Activity` 類別
 
-在 [快速入門教學課程](mobile-engagement-android-get-started.md)中，您只需要讓 `*Activity` 子類別繼承對應的 `Engagement*Activity` 類別 (例如，假設您的舊版活動延伸 `ListActivity`，則可以讓它延伸 `EngagementListActivity`)。
+在[快速入門教學課程](mobile-engagement-android-get-started.md)中，您只需要讓 `*Activity` 子類別繼承對應的 `Engagement*Activity` 類別即可。例如，如果您的舊版活動延伸 `ListActivity`，可以將它延伸 `EngagementListActivity`。
 
 > [AZURE.IMPORTANT] 使用 `EngagementListActivity` 或 `EngagementExpandableListActivity` 時，務必先呼叫 `requestWindowFeature(...);` 再呼叫 `super.onCreate(...);`，否則會發生當機。
 
@@ -41,7 +44,7 @@
 
 如果您無法或不想多載 `Activity` 類別，可以改為直接呼叫 `EngagementAgent` 的方式來開始和結束您的活動。
 
-> [AZURE.IMPORTANT] Android SDK 絕不會呼叫 `endActivity()` 方法，即使在關閉應用程式後也不會呼叫 (在 Android 上，應用程式其實永遠不會關閉)。因此，「強烈」建議在您「所有」活動的 `onResume` 回呼中呼叫 `startActivity()` 方法，以及在您「所有」活動的 `onPause()` 回呼中呼叫 `endActivity()` 方法。這是確保不會遺漏工作階段的唯一方法。如果遺漏了工作階段，Engagement 服務將永遠不會從 Engagement 後端中斷連線 (因為只要工作階段處於暫止狀態，服務就會保持連線)。
+> [AZURE.IMPORTANT] Android SDK 絕不會呼叫 `endActivity()` 方法，即使在關閉應用程式後也不會呼叫 (在 Android 上，應用程式永遠不會關閉)。因此，「強烈」建議在您「所有」活動的 `onResume` 回呼中呼叫 `startActivity()` 方法，以及在您「所有」活動的 `onPause()` 回呼中呼叫 `endActivity()` 方法。這是確保不會遺漏工作階段的唯一方法。如果遺漏了工作階段，Engagement 服務永遠不會從 Engagement 後端中斷連線 (因為只要工作階段處於暫止狀態，服務就會保持連線)。
 
 下列是一個範例：
 
@@ -63,11 +66,11 @@
 	  }
 	}
 
-這個範例非常類似於 `EngagementActivity` 類別及其變體，原始程式碼位於 `src` 資料夾中。
+這個範例類似於 `EngagementActivity` 類別及其變體，原始程式碼位於 `src` 資料夾中。
 
 ## 使用 Application.onCreate()
 
-您放置在 `Application.onCreate()` 和其他應用程式回呼中的程式碼，將針對您所有應用程式的處理程序而執行，包括 Engagement 服務。可能會產生不必要的副作用，例如 Engagement 處理程序中有不必要的記憶體配置和執行緒，或重複的廣播接收器或服務。
+您放置在 `Application.onCreate()` 和其他應用程式回呼中的程式碼，會針對您所有應用程式的處理程序而執行，包括 Engagement 服務。可能會產生不必要的副作用，例如 Engagement 處理程序中有不必要的記憶體配置和執行緒，或重複的廣播接收器或服務。
 
 如果覆寫 `Application.onCreate()`，建議在 `Application.onCreate()` 函式的開頭加入下列程式碼片段：
 
@@ -98,4 +101,4 @@
 	<methods>;
  	}
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

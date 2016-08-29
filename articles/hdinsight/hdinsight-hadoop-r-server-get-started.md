@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-services"
-   ms.date="07/19/2016"
+   ms.date="08/17/2016"
    ms.author="jeffstok"
 />
 
@@ -374,21 +374,22 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R
 
 3. 在 [提交指令碼動作] 刀鋒視窗中，提供下列資訊。
 
-    * __名稱__︰用來識別此指令碼的易記名稱
-    * __Bash 指令碼 URI__：http://mrsactionscripts.blob.core.windows.net/rpackages-v01/InstallRPackages.sh
-    * __前端__︰這應該是__未核取__狀態
-    * __背景工作角色__︰這應該是__核取__狀態
-    * __Zookeeper__︰這應該是__未核取__狀態
-    * __參數__︰要安裝的 R 套件。例如，`bitops stringr arules`
-    * __保存此指令碼...__︰這應該是__核取__狀態
+* __名稱__︰用來識別此指令碼的易記名稱
+* __Bash 指令碼 URI__：`http://mrsactionscripts.blob.core.windows.net/rpackages-v01/InstallRPackages.sh`
+* __前端__︰這應該是__未核取__狀態
+* __背景工作角色__︰這應該是__核取__狀態
+* __Zookeeper__︰這應該是__未核取__狀態
+* __參數__︰要安裝的 R 套件。例如，`bitops stringr arules`
     
-    > [AZURE.IMPORTANT] 如果您安裝的 R 封裝需要加入系統程式庫，則必須下載此處所使用的基底指令碼，並加入安裝系統程式庫的步驟。接下來，您必須將修改過的指令碼上傳至 Azure 儲存體中的公用 Blob 容器，並使用修改過的指令碼來安裝封裝。
-    >
-    >如需開發指令碼動作的詳細資訊，請參閱[指令碼動作開發](hdinsight-hadoop-script-actions-linux.md)。
+    > [AZURE.NOTE] 根據預設，會從與安裝之 R 伺服器同版本的 Microsoft MRAN 儲存機制的快照安裝所有的 R 封裝。如果您想要安裝更新版的封裝，會有些不相容的風險，不過仍可以辦到，只要指定 `useCRAN` 做為封裝清單的第一個項目，例如 `useCRAN bitops, stringr, arules`。
+    
+* __保存此指令碼...__︰這應該是__核取__狀態
+    
+    > [AZURE.IMPORTANT] 有些 R 封裝會需要額外的 Linux 系統程式庫。為了方便起見，我們已預先安裝前 100 個最受歡迎的 R 封裝所需的相依性。然而，如果您安裝的 R 封裝需要的程式庫不在這之中，則必須下載此處所使用的基底指令碼，並加入安裝系統程式庫的步驟。接下來，您必須將修改過的指令碼上傳至 Azure 儲存體中的公用 Blob 容器，並使用修改過的指令碼來安裝封裝。如需開發指令碼動作的詳細資訊，請參閱[指令碼動作開發](hdinsight-hadoop-script-actions-linux.md)。
     
     ![新增指令碼動作](./media/hdinsight-getting-started-with-r/scriptaction.png)
 
-4. 按一下 [建立]，執行指令碼。指令碼完成之後，即可在所有的背景工作節點上使用 R 封裝。
+4. 按一下 [建立] 執行指令碼。指令碼完成之後，即可在所有的背景工作節點上使用 R 封裝。
     
 ## 後續步驟
 
@@ -411,4 +412,4 @@ HDInsight 的進階層供應項目包括隨附於 HDInsight (預覽) 叢集的 R
 
 如需使用 Azure Resource Manager 範本的一般資訊，請參閱[使用 Azure Resource Manager 範本在 HDInsight 中建立 Linux 型 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

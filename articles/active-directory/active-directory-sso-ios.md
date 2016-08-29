@@ -33,6 +33,7 @@ Microsoft 身分識別平台以及我們的 Microsoft 身分識別 SDK 會為您
 * Azure Active Directory
 * Azure Active Directory B2C
 * Azure Active Directory B2B
+* Azure Active Directory 條件式存取
 
 
 請注意，下列文件假設您已了解如何[在 Azure Active directory 的舊版入口網站中佈建應用程式](active-directory-how-to-integrate.md)，並且已整合應用程式和 [Microsoft Identity iOS SDK](https://github.com/AzureAD/azure-activedirectory-library-for-objc)。
@@ -59,7 +60,7 @@ Microsoft 提供應用程式給每個行動平台，可跨不同廠商的應用�
 這些登入具備下列優點︰
 
 -  使用者體驗完全存在於應用程式內部。
--  認證可以跨由相同憑證登入的應用程式共用，提供單一登入體驗給您的應用程式套件。 
+-  認證可以跨由相同憑證登入的應用程式共用，提供單一登入體驗給您的應用程式套件。
 -  在登入前後，會提供登入體驗的控制項給應用程式。
 
 這些登入具備下列缺點︰
@@ -154,7 +155,7 @@ Microsoft 提供應用程式給每個行動平台，可跨不同廠商的應用�
 
 若要跨您擁有的應用程式啟用 SSO，您需要執行下列動作︰
 
-1. 請確定您所有的應用程式使用相同的用戶端識別碼或應用程式識別碼。 
+1. 請確定您所有的應用程式使用相同的用戶端識別碼或應用程式識別碼。
 * 請確定您所有的應用程式共用來自 Apple 的相同簽署憑證，以便您可以共用金鑰鏈
 * 要求每個應用程式的相同金鑰鏈權利。
 * 告知 Microsoft Identity SDK 您想要我們使用的共用金鑰鏈。
@@ -289,16 +290,16 @@ Microsoft 身分識別平台會使用 URL 叫用訊息代理程式，然後將�
 
 例如︰x-msauth-mytestiosapp://com.myapp.mytestapp
 
-此重新導向 URI 必須在使用 [Azure 傳統入口網站](https://manage.windowsazure.com/)的應用程式註冊中指定。如需 Azure AD 應用程式註冊的詳細資訊，請參閱[整合 Azure Active Directory](active-directory-how-to-integrate.md)。
+此重新導向 URI 必須在使用 [Azure 傳統入口網站](https://manage.windowsazure.com/)的應用程式註冊中指定。如需 Azure AD 應用程式註冊的詳細資訊，請參閱[與 Azure Active Directory 整合](active-directory-how-to-integrate.md)。
 
 
 ##### 步驟 3a︰在應用程式與開發人員入口網站中新增重新導向 URI 以支援以憑證為基礎的驗證
 
-若要支援以憑證為基礎的驗證，必須在您的應用程式與 [Azure 傳統入口網站](https://manage.windowsazure.com/)中註冊第二個 "msauth"，才能在應用程式中新增該支援。。
+若要支援以憑證為基礎的驗證，必須在您的應用程式與 [Azure 傳統入口網站](https://manage.windowsazure.com/)中註冊第二個 "msauth"，才能在應用程式中新增該支援。
 
 `msauth://code/<broker-redirect-uri-in-url-encoded-form>`
 
-例如：**msauth://code/x-msauth-mytestiosapp%3A%2F%2Fcom.myapp.mytestapp*
+例如：*msauth://code/x-msauth-mytestiosapp%3A%2F%2Fcom.myapp.mytestapp*
 
 
 #### 步驟 4：iOS9︰將組態參數新增至您的應用程式
@@ -311,4 +312,4 @@ ADAL 會使用 –canOpenURL: 檢查裝置上是否已安裝訊息代理程式�
 
 現在 Microsoft Identity SDK 會自動跨應用程式共用認證，並在訊息代理程式出現在其裝置上時叫用它。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0817_2016-->

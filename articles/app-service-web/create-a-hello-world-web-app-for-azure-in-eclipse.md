@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="Java" 
 	ms.topic="article" 
-	ms.date="06/24/2016" 
+	ms.date="08/11/2016" 
 	ms.author="robmcm"/>
 
 # 在 Eclipse 中建立 Azure Hello World Web 應用程式
@@ -29,7 +29,7 @@
 * Java Developer Kit (JDK) 1.7 版或更新版本。
 * Eclipse IDE for Java EE Developers (Indigo 或更新版本)。這可透過 <http://www.eclipse.org/downloads/> 下載。
 * Java 型 Web 伺服器或應用程式伺服器的散發套件，例如 Apache Tomcat 或 Jetty。
-* Azure 訂用帳戶，可從 <https://azure.microsoft.com/zh-TW/free/> 或 <http://azure.microsoft.com/pricing/purchase-options/> 取得。
+* Azure 訂用帳戶，可從 <https://azure.microsoft.com/free/> 或 <http://azure.microsoft.com/pricing/purchase-options/> 取得。
 * 適用於 Eclipse 的 Azure 工具組。如需詳細資訊，請參閱[安裝 Azure Toolkit for Eclipse]。
 
 ## 建立 Hello World 應用程式
@@ -75,7 +75,7 @@
     ![][04]
    
     注意︰如果您有多個 Azure 帳戶，登入程序期間的某些提示即使內容相同也可能會出現多次。發生此情況時，請遵循登入指示繼續。
-1. 在您成功登入 Azure 帳戶後，[Manage Subscriptions] \(管理訂用帳戶) 對話方塊將會顯示與您的認證相關聯的訂用帳戶清單。如果列出多個訂用帳戶，而您只想使用其中幾個帳戶，您可以選擇取消選取要使用的訂用帳戶。當您選取訂用帳戶之後，按一下 [Close] \(關閉)。
+1. 在您成功登入 Azure 帳戶後，[管理訂用帳戶] 對話方塊將會顯示與您的認證相關聯的訂用帳戶清單。如果列出多個訂用帳戶，而您只想使用其中幾個帳戶，您可以選擇取消選取要使用的訂用帳戶。當您選取訂用帳戶之後，按一下 [關閉]。
 
     ![][05]
    
@@ -226,4 +226,4 @@
 [13]: ./media/create-a-hello-world-web-app-for-azure-in-eclipse/13-Azure-Explorer-Web-App.png
 [14]: ./media/create-a-hello-world-web-app-for-azure-in-eclipse/publishDropdownButton.png
 
-<!----HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

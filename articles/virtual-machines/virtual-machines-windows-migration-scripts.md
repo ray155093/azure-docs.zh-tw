@@ -3,7 +3,7 @@
 	description="本文說明如何利用 PowerShell 指令碼複製單一傳統虛擬機器至 Azure Resource Manager"
 	services="virtual-machines-windows"
 	documentationCenter=""
-	authors="singhkay"
+	authors="singhkays"
 	manager="drewm"
 	editor=""
 	tags="azure-resource-manager"/>
@@ -59,7 +59,7 @@ Add-AzureAccount
 Login-AzureRmAccount
 ```
 
->[AZURE.IMPORTANT]確定已選取預設訂用帳戶，傳統部署模型請使用 `Select-AzureSubscription` ，Azure Resource Manager 請使用 AzureRmContext
+>[AZURE.IMPORTANT]確定已選取預設訂用帳戶，傳統部署模型請使用 `Select-AzureSubscription`，Azure Resource Manager 請使用 AzureRmContext
 
 ## 使用指令碼
 
@@ -112,7 +112,7 @@ Cmdlet 會用於複製傳統 VM 的整個程序驟，並產生資源做為自訂
 4.  `<ServiceName>-<VMName>-setextensions<optional timestamp>.json`︰要執行的一組 PowerShell Cmdlet，用來設定虛擬機器代理程式擴充功能
 4.  `<ServiceName>-<VMName>-copydisks<optional timestamp>.json`︰要執行的一組 PowerShell Cmdlet，用來複製磁碟 blob (若有指定 CopyDisks 選項)
 
-如果有設定 -Deploy 旗標，產生檔案之後，Cmdlet 會部署 <ServiceName>-<VMName>-setup.json 範本，複製來源虛擬機器磁碟 blob (如果 DiskAction 參數設定為CopyDisks)，然後再使用 <ServiceName>-<VMName>--parameters.jso 檔案的參數部署 <ServiceName>-<VMName>-deploy.json 範本。虛擬機器部署完成之後，如果有命令式指令碼 (用於虛擬機器代理程式擴充功能) 或複製磁碟的指令碼，它們會執行。
+如果設定了 -Deploy 旗標，則 Cmdlet 會在產生檔案之後部署 <ServiceName>-<VMName>-setup.json 範本、複製來源虛擬機器磁碟 Blob (如果將 DiskAction 參數設定為 CopyDisks)，然後針對參數使用 <ServiceName>-<VMName>-parameters.json 檔案來部署 <ServiceName>-<VMName>-deploy.json 範本。虛擬機器部署完成之後，如果有命令式指令碼 (用於虛擬機器代理程式擴充功能) 或複製磁碟的指令碼，它們會執行。
 
 ### 網路詳細資料
 Cmdlet 的用意不是要將傳統網路設定複製至 Resource Manager。它利用網路設備的方式用來複製虛擬機器本身最方便。以下是不同情況下發生的事︰
@@ -120,7 +120,7 @@ Cmdlet 的用意不是要將傳統網路設定複製至 Resource Manager。它�
 1.  目標資源群組上沒有虛擬網路
     - 來源虛擬機器不在子網路上︰建立位址為 10.0.0.0/16 的預設虛擬網路以及位址空間為 10.0.0.0/22 的子網路。
     - 來源虛擬機器位於子網路︰會探索到虛擬機器所在之虛擬網路、虛擬網路的規格、複製過去的子網路
-2.  目標資源群組有名為 `<VM virtual network>arm` 的虛擬網路 (會附加 'arm' 字串)
+2.  目標資源群組具有名為 `<VM virtual network>arm` 的虛擬網路 (會附加 'arm' 字串)
     - 如果虛擬網路的子網路具有相同名稱和位址空間，請使用它。
     - 如果找不到適當的子網路，在現有子網路外找到具有 22 位元遮罩的位址區塊，則使用它。
 
@@ -150,7 +150,7 @@ Cmdlet 的用意不是要將傳統網路設定複製至 Resource Manager。它�
 
 **下列不在複製指令碼支援的範圍中**
 
- 1. 停止執行中的虛擬機器 
+ 1. 停止執行中的虛擬機器
  2. 變更您的資料/磁碟
  3. 複製執行中的 VM
  4. 在複雜的案例中自動複製多個 VM
@@ -160,7 +160,7 @@ Cmdlet 的用意不是要將傳統網路設定複製至 Resource Manager。它�
  
 ## 測試的組態
 
-_Add-AzureSMVmToRM_ Cmdlet 使用下列測試案例進行驗證︰
+_Add-AzureSMVmToRM_ Cmdlet 使用下列測試案例進行驗證：
 
 | # | 說明 |
 |:---|:---|
@@ -185,4 +185,4 @@ _Add-AzureSMVmToRM_ Cmdlet 使用下列測試案例進行驗證︰
 ## 注意事項
 1. 如果逐一複製多個 VM，且每個複製之間有短時間間隔，因為 DNS 快取重新整理時間的緣故，公用 IP 位址可能會有 DNS 名稱衝突。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0817_2016-->

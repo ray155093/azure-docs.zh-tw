@@ -336,7 +336,7 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 
 2. 在 [方案總管] 中，於 [ProcessD2CInteractiveMessages] 專案上按一下滑鼠右鍵，然後按一下 [管理 NuGet 封裝]。此時會顯示 [NuGet 封裝管理員] 視窗。
 
-3. 搜尋 **WindowsAzure.Service Bus**，按一下 [安裝]，然後接受使用規定。這會下載及安裝 [Azure 服務匯流排](https://www.nuget.org/packages/WindowsAzure.ServiceBus)，並加入對它的參考和其所有相依性。
+3. 搜尋 **WindowsAzure.ServiceBus**，按一下 [安裝]，然後接受使用規定。這會下載及安裝 [Azure 服務匯流排](https://www.nuget.org/packages/WindowsAzure.ServiceBus)，並加入對它的參考和其所有相依性。
 
 4. 在 **Program.cs** 檔案的最上方，新增下列 **using** 陳述式：
 
@@ -447,4 +447,4 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 [lnk-c2d]: iot-hub-csharp-csharp-process-d2c.md
 [lnk-suite]: https://azure.microsoft.com/documentation/suites/iot-suite/
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0817_2016-->

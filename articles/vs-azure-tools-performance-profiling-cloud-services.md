@@ -12,13 +12,13 @@
    ms.topic="article"
    ms.tgt_pltfrm="multiple"
    ms.workload="na"
-   ms.date="04/18/2016"
+   ms.date="08/15/2016"
    ms.author="tarcher" />
 
 
 # 測試雲端服務的效能 
 
-##概觀
+##Overview
 
 您可以利用下列方式測試雲端服務的效能：
 
@@ -68,7 +68,7 @@
 
 - 在模擬或實際負載下測試雲端服務的效能。
 
-- 使用收集分析資料的檢測方法，如本主題稍後所述。
+- 使用收集分析資料的檢測方法，如稍後所述。
 
 - 在服務執行的生產環境的相同環境中測試服務的效能。
 
@@ -136,7 +136,7 @@
 
 1. 若要檢視執行個體的分析報告，請選擇服務中的角色、開啟特定執行個體的捷徑功能表，然後選擇 [檢視分析報告]。
 
-    現在便會從 Azure 下載 .vsp 檔案的報告，而下載狀態會出現在 Azure 活動記錄檔中。下載完成時，分析報告會顯示在 Visual Studio 編輯器的索引標籤中，名為 <Role name>\_<Instance Number>\_<identifier>.vsp。報告的摘要資料隨即出現。
+    現在便會從 Azure 下載 .vsp 檔案的報告，而下載狀態會出現在 Azure 活動記錄檔中。下載完成時，分析報告會顯示在 Visual Studio 編輯器的索引標籤中，名為 <Role name>_<Instance Number>_<identifier>.vsp.報告的摘要資料隨即出現。
 
 1. 若要顯示報告的不同檢視，在 [目前檢視] 清單中，選擇您要的檢視類型。如需詳細資訊，請參閱[分析工具報告檢視](https://msdn.microsoft.com/library/azure/bb385755.aspx)。
 
@@ -146,4 +146,4 @@
 
 [從 Visual Studio 發佈至 Azure 雲端服務](https://msdn.microsoft.com/library/azure/ee460772.aspx)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0817_2016-->

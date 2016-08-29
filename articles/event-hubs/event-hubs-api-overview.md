@@ -12,7 +12,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="na"
-    ms.date="07/11/2016"
+    ms.date="08/16/2016"
     ms.author="sethm" />
 
 # 事件中樞 API 概觀
@@ -23,7 +23,7 @@
 
 ## 管理 API
 
-若要執行下列管理作業，您必須擁有服務匯流排命名空間的**管理**權限：
+若要執行下列管理作業，您必須擁有事件中樞命名空間的**管理**權限：
 
 ### 建立
 
@@ -189,4 +189,4 @@ public class SimpleEventProcessor : IEventProcessor
 - [服務匯流排和事件中樞 .NET API 參考](https://msdn.microsoft.com/library/azure/mt419900.aspx)
 - [事件處理器主機 API 參考](https://msdn.microsoft.com/library/azure/mt445521.aspx)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -11,3 +11,5 @@
 按一下 [設定] 或 [所有設定] 以檢視並設定您的快取。
 
 ![Redis 快取所有設定](media/redis-cache-browse/redis-cache-blade.png)
+
+<!---HONumber=AcomDC_0817_2016-->

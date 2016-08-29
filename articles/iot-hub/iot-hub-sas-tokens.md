@@ -78,6 +78,25 @@ IoT 中樞使用安全性權杖來驗證裝置和服務，以避免透過線路�
         // console.log("signature:" + token);
         return token;
     };
+ 
+ 為了進行比較，對等的 Python 程式碼是︰
+ 
+    from base64 import b64encode, b64decode
+    from hashlib import sha256
+    from hmac import HMAC
+    from urllib import urlencode
+    
+    def generate_sas_token(uri, key, policy_name='device', expiry=3600):
+        ttl = time() + expiry
+        sign_key = "%s\n%d" % (uri, int(ttl))
+        signature = b64encode(HMAC(b64decode(key), sign_key, sha256).digest())
+     
+        return 'SharedAccessSignature ' + urlencode({
+            'sr' :  uri,
+            'sig': signature,
+            'se' : str(int(ttl)),
+            'skn': policy_name
+        })
 
 > [AZURE.NOTE] 由於權杖的時效性會在 IoT 中樞機器上驗證，因此請務必將產生權杖之機器上的時鐘飄移降低最低。
 
@@ -85,7 +104,7 @@ IoT 中樞使用安全性權杖來驗證裝置和服務，以避免透過線路�
 
 利用安全性權杖取得「IoT 中樞」之 **DeviceConnect** 權限的方法有兩種：使用裝置身分識別金鑰，或使用共用存取原則金鑰。
 
-此外，請注意，所有可從裝置存取的功能都會因為前置詞為 `/devices/{deviceId}` 之端點的設計而公開。
+此外，請務必注意所有可從裝置存取的功能，在設計上會於前置詞為 `/devices/{deviceId}` 的端點公開。
 
 > [AZURE.IMPORTANT] IoT 中樞驗證特定裝置的唯一方法是使用裝置身分識別對稱金鑰。在使用共用存取原則來存取裝置功能的案例中，方案必須將發出安全性權杖之元件視為信任的子元件。
 
@@ -131,7 +150,7 @@ IoT 中樞使用安全性權杖來驗證裝置和服務，以避免透過線路�
 
 由於共用存取原則可能可以授與以任何裝置身分連線的存取權限，因此在建立安全性權杖時，請務必使用正確的資源 URI。這點對權杖服務來說特別重要，因為它們必須使用資源 URI 來設定權杖的範圍，以便納入特定裝置。這點與通訊協定閘道的關聯性比較薄弱，因為它們已經在為所有裝置調節流量。
 
-舉例來說，權杖服務如果使用稱為 **device** 的預先建立共用存取原則，將會使用下列參數來建立權杖︰
+舉例來說，權杖服務如果使用名為 **device** 的預先建立共用存取原則，將會使用下列參數來建立權杖︰
 
 * 資源 URI：`{IoT hub name}.azure-devices.net/devices/{device id}`、
 * 簽署金鑰︰`device` 原則的其中一個金鑰、
@@ -165,7 +184,7 @@ IoT 中樞使用安全性權杖來驗證裝置和服務，以避免透過線路�
 | `{iot hub host name}/servicebound/feedback` | 接收雲端到裝置之訊息的意見反應。 |
 | `{iot hub host name}/devicebound` | 傳送雲端到裝置的訊息。 |
 
-舉例來說，服務如果使用稱為 **registryRead** 的預先建立共用存取原則，將會使用下列參數來建立權杖︰
+舉例來說，服務如果使用名為 **registryRead** 的預先建立共用存取原則，將會使用下列參數來建立權杖︰
 
 * 資源 URI：`{IoT hub name}.azure-devices.net/devices`、
 * 簽署金鑰︰`registryRead` 原則的其中一個金鑰、
@@ -194,7 +213,7 @@ IoT 中樞使用安全性權杖來驗證裝置和服務，以避免透過線路�
 
 ## 註冊裝置的 X.509 用戶端憑證
 
-[適用於 C# 的 Azure IoT 服務 SDK][lnk-service-sdk] \(版本 1.0.8+) 支援註冊使用 X.509 用戶端憑證來進行驗證的裝置。其他 API (例如匯入/匯出裝置) 也支援 X.509 用戶端憑證。
+[適用於 C# 的 Azure IoT 服務 SDK][lnk-service-sdk] (版本 1.0.8+) 支援註冊使用 X.509 用戶端憑證來進行驗證的裝置。其他 API (例如匯入/匯出裝置) 也支援 X.509 用戶端憑證。
 
 ### C# 支援
 
@@ -221,7 +240,7 @@ await registryManager.AddDeviceAsync(device);
 
 ## 在執行階段作業期間使用 X.509 用戶端憑證
 
-[適用於 .NET 的 Azure IoT 裝置 SDK][lnk-client-sdk] \(版本 1.0.11+) 支援使用 X.509 用戶端憑證。
+[適用於 .NET 的 Azure IoT 裝置 SDK][lnk-client-sdk] (版本 1.0.11+) 支援使用 X.509 用戶端憑證。
 
 ### C# 支援
 
@@ -246,4 +265,4 @@ var deviceClient = DeviceClient.Create("<IotHub DNS HostName>", authMethod);
 [lnk-service-sdk]: https://github.com/Azure/azure-iot-sdks/tree/master/csharp/service
 [lnk-client-sdk]: https://github.com/Azure/azure-iot-sdks/tree/master/csharp/device
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0817_2016-->

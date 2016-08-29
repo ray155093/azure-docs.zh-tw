@@ -12,12 +12,15 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="06/12/2016" 
+    ms.date="08/15/2016" 
     ms.author="elizapo" />
 
 
 
 #為 Azure RemoteApp 進行疑難排解 - 應用程式啟動和連線失敗 
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 Azure RemoteApp 中裝載的應用程式可能因幾個不同原因而無法啟動。此文章說明使用者嘗試啟動應用程式時可能會收到的各種原因和錯誤訊息。文章中也會討論連線失敗。(但此文章不會說明登入 Azure RemoteApp 用戶端時出現的問題。)
 
@@ -51,4 +54,4 @@ Azure RemoteApp 中裝載的應用程式可能因幾個不同原因而無法啟�
 
 ![一般 Azure RemoteApp 訊息](./media/remoteapp-apptrouble/ra-apptrouble4.png)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="nodejs" 
 	ms.topic="article" 
-	ms.date="06/24/2016" 
+	ms.date="08/11/2016" 
 	ms.author="robmcm"/>
 
 # 在 Azure 雲端服務上使用 Socket.IO 建立 Node.js 交談應用程式
@@ -101,7 +101,7 @@ Socket.IO 提供 node.js 伺服器和用戶端之間的即時通訊。本教學�
 
         PS C:\node\chatapp\WorkerRole1> npm install
 
-    這樣會安裝 package.json 檔案中列出的模組。命令完成之後，您應該會看到類似這樣的輸出：
+    這將會安裝 package.json 檔案中列出的模組。命令完成之後，您應該會看到類似這樣的輸出：
 
     ![The output of the npm install command][The-output-of-the-npm-install-command]
 
@@ -131,11 +131,11 @@ Socket.IO 提供 node.js 伺服器和用戶端之間的即時通訊。本教學�
 
 	> [AZURE.IMPORTANT] 務必使用唯一的名稱，否則發行程序會失敗。部署完成之後，瀏覽器會開啟並瀏覽至已部署的服務。
 	> 
-	> 如果出現錯誤指出匯入的發行設定檔中沒有您所提供的訂閱名稱，則在部署至 Azure 之前，您必須下載並匯入訂閱的發行設定檔。請參閱＜**建立 Node.js 應用程式並部署至 Azure 雲端服務**＞的＜[將應用程式部署至 Azure](https://azure.microsoft.com/develop/nodejs/tutorials/getting-started/)＞一節 (英文)
+	> 如果出現錯誤指出匯入的發行設定檔中沒有您所提供的訂用帳戶名稱，則在部署至 Azure 之前，您必須下載並匯入訂用帳戶的發行設定檔。請參閱＜**建立 Node.js 應用程式並部署至 Azure 雲端服務**＞的＜[將應用程式部署至 Azure](https://azure.microsoft.com/develop/nodejs/tutorials/getting-started/)＞一節 (英文)
 
     ![A browser window displaying the service hosted on Azure][completed-app]
 
-	> [AZURE.NOTE] 如果出現錯誤指出匯入的發行設定檔中沒有您所提供的訂閱名稱，則在部署至 Azure 之前，您必須下載並匯入訂閱的發行設定檔。請參閱＜**建立 Node.js 應用程式並部署至 Azure 雲端服務**＞的＜[將應用程式部署至 Azure](https://azure.microsoft.com/develop/nodejs/tutorials/getting-started/)＞一節 (英文)
+	> [AZURE.NOTE] 如果出現錯誤指出匯入的發行設定檔中沒有您所提供的訂用帳戶名稱，則在部署至 Azure 之前，您必須下載並匯入訂用帳戶的發行設定檔。請參閱＜**建立 Node.js 應用程式並部署至 Azure 雲端服務**＞的＜[將應用程式部署至 Azure](https://azure.microsoft.com/develop/nodejs/tutorials/getting-started/)＞一節 (英文)
 
 應用程式現在已在 Azure 上執行，且可以使用 Socket.IO 在不同用戶端之間轉送聊天訊息。
 
@@ -170,4 +170,4 @@ Socket.IO 提供 node.js 伺服器和用戶端之間的即時通訊。本教學�
   
  
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="storage-backup-recovery"
-   ms.date="07/01/2016"
+   ms.date="08/16/2016"
    ms.author="markgal; jimpark; trinadhk"/>
 
 # 處理 VM 備份期間加密的磁碟
 
-對於想要在 Azure 中加密其 VM 資料的企業，解決方案是在 Windows 上使用 [Azure 磁碟加密](../azure-security-disk-encryption.md)或 Bitlocker，而在 Linux 機器上使用 dmcrypt。
+對於想要在 Azure 中加密其 VM 資料的企業，解決方案是在 Windows 上使用 [Azure 磁碟加密](../security/azure-security-disk-encryption.md)或 Bitlocker，而在 Linux 機器上使用 dmcrypt。
 
 > [AZURE.NOTE]  Azure 備份支援使用 Azure 磁碟加密 (ADE) 加密之 VM 的備份與還原。<br>
 1. 如果 VM 是使用 BEK 和 KEK 加密，這也支援使用 PowerShell。<br>
@@ -77,4 +77,4 @@
 - [部署指南 - PDF](http://www.cloudlinktech.com/Azure/CL_SecureVM_4_0_DG_EMC_Azure_R2.pdf)
 - [部署及使用 SecureVM - 影片](https://www.youtube.com/watch?v=8AIRe92UDNg)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

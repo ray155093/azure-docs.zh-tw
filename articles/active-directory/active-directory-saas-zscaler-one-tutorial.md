@@ -4,14 +4,14 @@
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="05/25/2016" 
+    ms.date="08/16/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Zscaler One 整合
@@ -19,7 +19,7 @@
 本教學課程的目的是要示範 Azure 與 ZScaler One 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
 -   有效的 Azure 訂閱
--   啟用 ZScaler One 單一登入的訂用帳戶  
+-   啟用 ZScaler One 單一登入的訂用帳戶
 
 完成本教學課程之後，您指派給 ZScaler One 的 Azure AD 使用者就能夠從您的 ZScaler One 公司網站 (服務提供者起始登入)，或使用[存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
 
@@ -29,7 +29,7 @@
 2.  設定單一登入
 3.  進行 Proxy 設定
 4.  設定使用者佈建
-5.  指派使用者  
+5.  指派使用者
 
 ![案例](./media/active-directory-saas-zscaler-one-tutorial/IC800214.png "案例")
 
@@ -39,7 +39,7 @@
 
 ###若要啟用 ZScaler One 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。  
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![Active Directory](./media/active-directory-saas-zscaler-one-tutorial/IC700993.png "Active Directory")
 
@@ -53,13 +53,13 @@
 
 	![新增應用程式](./media/active-directory-saas-zscaler-one-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![從組件庫新增應用程式](./media/active-directory-saas-zscaler-one-tutorial/IC749322.png "從組件庫新增應用程式")
 
 6.  在**搜尋方塊**中，輸入 **ZScaler One**。
 
-	![應用程式庫](./media/active-directory-saas-zscaler-one-tutorial/IC800215.png "應用程式資源庫")
+	![應用程式庫](./media/active-directory-saas-zscaler-one-tutorial/IC800215.png "應用程式庫")
 
 7.  在結果窗格中，選取 ZScaler One，然後按一下 [完成] 以新增應用程式。
 
@@ -103,24 +103,24 @@
 
 	![驗證](./media/active-directory-saas-zscaler-one-tutorial/IC800208.png "驗證")
 
-	1.  選取 [使用 SAML 單一登入進行驗證]。  
-	2.  按一下 [設定 SAML 單一登入參數]。  
+	1.  選取 [使用 SAML 單一登入進行驗證]。
+	2.  按一下 [設定 SAML 單一登入參數]。
 
 9.  在 [設定 SAML 單一登入參數] 對話方塊頁面上，執行下列步驟，然後按一下 [完成]：
 
 	![單一登入](./media/active-directory-saas-zscaler-one-tutorial/IC800209.png "單一登入")
 
-	1.  在 Azure 傳統入口網站的 [設定在 ZScaler One 單一登入] 對話方塊頁面上，複製 [驗證要求 URL] 值，接著將它貼入 [傳送使用者以供驗證的 SAML 入口網站 URL] 文字方塊中。  
-	2.  在 [包含登入名稱的屬性] 文字方塊中，輸入 NameID。  
-	3.  若要上傳您下載的憑證，請按一下 Zscaler pem。  
-	4.  選取 [啟用 SAML 自動佈建]。  
+	1.  在 Azure 傳統入口網站的 [設定在 ZScaler One 單一登入] 對話方塊頁面上，複製 [驗證要求 URL] 值，接著將它貼入 [傳送使用者以供驗證的 SAML 入口網站 URL] 文字方塊中。
+	2.  在 [包含登入名稱的屬性] 文字方塊中，輸入 NameID。
+	3.  若要上傳您下載的憑證，請按一下 Zscaler pem。
+	4.  選取 [啟用 SAML 自動佈建]。
 
 10. 在 [設定使用者驗證] 對話方塊頁面上執行下列步驟：
 
 	![系統管理](./media/active-directory-saas-zscaler-one-tutorial/IC800210.png "系統管理")
 
-	1.  按一下 [儲存]。  
-	2.  按一下 [立即啟用]。  
+	1.  按一下 [儲存]。
+	2.  按一下 [立即啟用]。
 
 11. 在 Azure 傳統入口網站的 [設定在 ZScaler One 單一登入] 對話方塊上，選取單一登入組態確認，然後按一下 [完成]。
 
@@ -130,7 +130,7 @@
 
 ###在 Internet Explorer 中進行 Proxy 設定
 
-1.  啟動 **Internet Explorer**。  
+1.  啟動 **Internet Explorer**。
 
 2.  從 [工具] 功能表選取 [網際網路選項] 可開啟 [網際網路選項] 對話方塊。
 
@@ -146,11 +146,11 @@
 
 	![Proxy 伺服器](./media/active-directory-saas-zscaler-one-tutorial/IC769494.png "Proxy 伺服器")
 
-	1.  選取 [在您的區域網路使用 Proxy 伺服器]。  
-	2.  在 [位址] 文字方塊中輸入 **gateway.zscalerone.net**。  
-	3.  在 [連接埠] 文字方塊中輸入 **80**。  
-	4.  選取 [近端網址不使用 Proxy 伺服器]。  
-	5.  按一下 [確定] 關閉 [區域網路 (LAN) 設定] 對話方塊。  
+	1.  選取 [在您的區域網路使用 Proxy 伺服器]。
+	2.  在 [位址] 文字方塊中輸入 **gateway.zscalerone.net**。
+	3.  在 [連接埠] 文字方塊中輸入 **80**。
+	4.  選取 [近端網址不使用 Proxy 伺服器]。
+	5.  按一下 [確定] 關閉 [區域網路 (LAN) 設定] 對話方塊。
 
 6.  按一下 [確定] 關閉 [網際網路選項] 對話方塊。
 
@@ -160,7 +160,7 @@
 
 ###若要設定使用者佈建，請執行下列步驟：
 
-1.  登入 **Zscaler One** 租用戶。  
+1.  登入 **Zscaler One** 租用戶。
 
 2.  按一下 [系統管理]。
 
@@ -168,28 +168,28 @@
 
 3.  按一下 [使用者管理]。
 
-	![新增](./media/active-directory-saas-zscaler-one-tutorial/IC781037.png "新增")
+	![加](./media/active-directory-saas-zscaler-one-tutorial/IC781037.png "加")
 
 4.  在 [使用者] 索引標籤中，按一下 [新增]。
 
-	![新增](./media/active-directory-saas-zscaler-one-tutorial/IC781037.png "新增")
+	![加](./media/active-directory-saas-zscaler-one-tutorial/IC781037.png "新增")
 
 5.  在 [新增使用者] 區段中，執行下列步驟：
 
 	![新增使用者](./media/active-directory-saas-zscaler-one-tutorial/IC781038.png "新增使用者")
 
-	1.  輸入 [使用者識別碼]、[使用者顯示名稱]、[密碼]、[確認密碼]，然後選取您要佈建之有效 AAD 帳戶的 [群組] 和 [部門]。  
-	2.  按一下 [儲存]。  
+	1.  輸入 [使用者識別碼]、[使用者顯示名稱]、[密碼]、[確認密碼]，然後選取您要佈建之有效 AAD 帳戶的 [群組] 和 [部門]。
+	2.  按一下 [儲存]。
 
 >[AZURE.NOTE]您可以使用任何其他的 ZScaler One 使用者帳戶建立工具或 ZScaler One 提供的 API 來佈建 AAD 使用者帳戶。
 
 ##指派使用者
 
-若要測試您的組態，您需要指派使用者，授予存取權給您想要允許其使用您的應用程式存取設定的 Azure AD 使用者。
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
 ###若要指派使用者給 ZScaler One，請執行下列步驟：
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。  
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
 2.  在 ZScaler One 應用程式整合頁面中，按一下 [指派使用者]。
 
@@ -201,4 +201,4 @@
 
 如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0817_2016-->

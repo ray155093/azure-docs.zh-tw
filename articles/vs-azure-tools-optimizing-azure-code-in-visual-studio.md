@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="04/19/2016"
+   ms.date="08/15/2016"
    ms.author="tarcher" />
 
 # 最佳化您的 Azure 程式碼
@@ -273,7 +273,7 @@ AP2004
 
 ### 原因
 
-分割服務匯流排佇列和主題可增加效能輸送量和服務可用性，因為分割後的佇列或主題的整體輸送量不會再受限於單一訊息代理人或訊息存放區的效能。此外，即使訊息存放區暫時中斷也不會讓分割後的佇列或主題無法使用。如需詳細資訊，請參閱[分割訊息實體](https://msdn.microsoft.com/library/azure/dn520246.aspx)。
+分割服務匯流排佇列和主題可增加效能輸送量和服務可用性，因為分割後的佇列或主題的整體輸送量不會再受限於單一訊息代理程式或訊息存放區的效能。此外，即使訊息存放區暫時中斷也不會讓分割後的佇列或主題無法使用。如需詳細資訊，請參閱[分割訊息實體](https://msdn.microsoft.com/library/azure/dn520246.aspx)。
 
 ### 方案
 
@@ -532,4 +532,4 @@ public class BlogsController : Controller
 
 若要深入了解如何最佳化和疑難排解 Azure 應用程式，請參閱[使用 Visual Studio 疑難排解 Azure App Service 中的 Web 應用程式](./app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md)。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0817_2016-->

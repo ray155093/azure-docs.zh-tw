@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="03/30/2016"
+   ms.date="08/17/2016"
    ms.author="alkohli" />
 
 # 為 StorSimple 裝置設定 Web Proxy
 
-## 概觀
+## Overview
 
 本教學課程描述如何使用 Windows PowerShell for StorSimple 來設定和檢視 StorSimple 裝置的 Web Proxy 設定。Web Proxy 設定供 StorSimple 裝置與雲端通訊時使用。Web Proxy 伺服器用來多增加一層安全性、篩選內容、快取以緩解頻寬需求，甚至是協助分析。
 
@@ -57,7 +57,7 @@ Web Proxy 設定完成之後，您可以在 Microsoft Azure StorSimple Manager �
 
     `Invoke-HcsSetupWizard`
 
-2. 如果這是第一次使用安裝精靈來註冊裝置，您必須設定所有必要的網路設定，最後才會進入 Web Proxy 設定。如果已經註冊您的裝置，您可以接受所有已設定的網路設定，直到進入 Web Proxy 設定。在安裝精靈中，提示您設定 Web Proxy 設定時，請輸入 [**是**]。
+2. 如果這是第一次使用安裝精靈來註冊裝置，您必須設定所有必要的網路設定，最後才會進入 Web Proxy 設定。如果您尚未註冊您的裝置，您可以接受所有已設定的網路設定，直到您到達 Web Proxy 組態。在安裝精靈中，當系統提示您設定 Web Proxy 組態時，請輸入**是**。
 
 3. 在 [**Web Proxy URL**] 中，指定 Web Proxy 伺服器的 IP 位址或完整網域名稱 (FQDN)，以及裝置與雲端通訊時使用的 TCP 連接埠號碼。請使用下列格式：
 
@@ -137,12 +137,12 @@ Web Proxy 設定已透過 Windows PowerShell 介面設定，無法從傳統入�
 |3\.|0x80070057 - 無效的參數|針對 Proxy 設定提供的其中一個參數無效。|提供的 URI 不是正確格式。使用下列格式：`http://<IP address or FQDN of the web proxy server>:<TCP port number>`|
 |4\.|0x800706ba - RPC 伺服器無法使用|根本原因是下列其中之一：</br></br>叢集尚未啟動。</br></br>資料路徑服務未執行。</br></br>命令是從被動控制器執行，無法與主動控制器通訊。|請連線 Microsoft 支援服務，以確保叢集已啟動且資料路徑服務正在執行。</br></br>從主動控制器執行命令。如果您想要從被動控制器執行命令，就必須確保被動控制器能與主動控制器通訊。如果此連線已中斷，您必須連絡 Microsoft 支援服務。|
 |5\.|0x800706be - RPC 呼叫失敗|叢集已關閉。|連絡 Microsoft 支援服務以確定叢集已啟動。|
-|6\.|0x8007138f - 找不到叢集資源|找不到平台服務叢集資源。若未正確安裝，即會發生此情況。|您可能需要在裝置上執行原廠重設。您可能需要建立平台資源。請連絡 Microsoft 支援服務來請示後續步驟。|
+|6\.|0x8007138f - 找不到叢集資源|找不到平台服務叢集資源。若未正確安裝，即會發生此情況。|您可能需要在您的裝置上執行原廠重設。您可能需要建立平台資源。請連絡 Microsoft 支援服務來請示後續步驟。|
 |7\.|0x8007138c - 叢集資源不在線上|平台或資料路徑叢集資源不在線上。|請連絡 Microsoft 支援服務，以確定資料路徑和平台服務資源都在線上。|
 
 > [AZURE.NOTE] 
 > 
-> -  上述的錯誤訊息清單不完整。 
+> -  上述的錯誤訊息清單不完整。
 > - Web Proxy 設定相關的錯誤不會顯示在 StorSimple Manager 服務的 Azure 傳統入口網站中。完成設定之後，如果 Web Proxy 有問題，傳統入口網站中的裝置狀態會變更為 [離線]。|
 
 ## 後續步驟
@@ -151,4 +151,4 @@ Web Proxy 設定已透過 Windows PowerShell 介面設定，無法從傳統入�
 
 - 若要了解如何使用 StorSimple Manager，請移至[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0817_2016-->

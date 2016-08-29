@@ -14,7 +14,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
 	ms.workload="data-services"
-	ms.date="04/28/2016"
+	ms.date="08/09/2016"
 	ms.author="brohrer;garye" />
 
 # 如何選擇 Microsoft Azure Machine Learning 的演算法
@@ -77,11 +77,11 @@
 
 ![非線性類別界限][1]
 
-***非線性類別界限****：依賴線性分類演算法會造成低精確度的結果*
+***非線性類別界限*** *：依賴線性分類演算法會造成低精確度的結果*
 
 ![具有非線性趨勢的資料][2]
 
-***具有非線性趨勢的資料****：使用線性迴歸方法會產生較大且不必要的誤差*
+***具有非線性趨勢的資料*** *：使用線性迴歸方法會產生較大且不必要的誤差*
 
 儘管有風險，線性演算法對於首次攻擊而言仍是一種非常熱門的方式。這種演算法定型起來通常又快又簡單。
 
@@ -237,4 +237,4 @@ Azure 機器學習中也可存取 [Vowpal Wabbit](https://msdn.microsoft.com/lib
 [9]: ./media/machine-learning-algorithm-choice/image9.png
 [10]: ./media/machine-learning-algorithm-choice/image10.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0817_2016-->

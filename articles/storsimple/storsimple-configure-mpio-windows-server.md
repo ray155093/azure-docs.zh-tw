@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/27/2016"
+   ms.date="08/17/2016"
    ms.author="alkohli" />
 
 # 為 StorSimple 裝置設定多重路徑 I/O
@@ -101,7 +101,7 @@ MPIO 是 Windows 伺服器預設不會安裝的選擇性功能。您應該透過
 
 9. 按一下 [內容]。在 [內容] 對話方塊中，按一下 [新增工作階段]。
 10. 在 [連線到目標] 對話方塊中，選取 [啟用多重路徑] 核取方塊。按一下 [進階]。
-11. 在 [進階設定] 對話方塊中：										
+11. 在 [進階設定] 對話方塊中：
 	-  在 [本機介面卡] 下拉式清單中，選取 [Microsoft iSCSI 啟動器]。
 	-  在 [啟動器 IP] 下拉式清單中，選取對應到主機的 IP 位址。在此情況下，您是將裝置上的兩個網路介面連線到主機上的單一網路介面。因此，這個介面會和第一個工作階段提供的相同。
 	-  在 [目標入口 IP] 下拉式清單中，為裝置上啟用的第二個資料介面選取 IP 位址。
@@ -173,4 +173,4 @@ MPIO 是 Windows 伺服器預設不會安裝的選擇性功能。您應該透過
 深入了解[使用 StorSimple Manager 服務修改 StorSimple 裝置設定](storsimple-modify-device-config.md)。
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0817_2016-->

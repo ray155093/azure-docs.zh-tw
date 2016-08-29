@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/08/2016"
+   ms.date="08/15/2016"
    ms.author="tarcher" />
 
 # 發佈 Azure 應用程式精靈
 
-## 概觀
+## Overview
 
 在 Visual Studio 中開發 web 應用程式之後，您可以使用**發佈 Azure 應用程式**精靈，更輕鬆地將應用程式發佈至 Azure 雲端服務。第一節說明您在使用精靈前必須完成的步驟，其他節說明精靈的功能。
 
@@ -39,11 +39,11 @@
 
 1. 當您準備好發佈應用程式時，開啟 Azure 雲端服務專案的捷徑功能表，然後選擇 [發佈]。下列步驟會顯示發佈 Azure 應用程式精靈。
 
-## 選擇您的訂用帳戶。
+## 選擇您的訂用帳戶
 
 ### 選擇訂用帳戶
 
-1. 第一次使用精靈之前，您必須登入。選擇**登入**連結。出現提示時登入 Azure 入口網站，並提供您的 Azure 使用者名稱和密碼。 
+1. 第一次使用精靈之前，您必須登入。選擇**登入**連結。出現提示時登入 Azure 入口網站，並提供您的 Azure 使用者名稱和密碼。
 
     ![這是其中一個發佈精靈畫面](./media/vs-azure-tools-publish-azure-application-wizard/IC799159.png)
 
@@ -57,7 +57,7 @@
 
     >[AZURE.NOTE] A subscription file can contain more than one subscription.
 
-1. 選擇 [下一步] 按鈕以繼續。 
+1. 選擇 [下一步] 按鈕以繼續。
 
     如果您的訂用帳戶中沒有任何雲端服務，您需要在 Azure 中建立雲端服務以裝載您的專案。[建立雲端服務和儲存體帳戶] 對話方塊會隨即出現。
 
@@ -139,4 +139,4 @@
 
 [測試雲端服務的效能](https://msdn.microsoft.com/library/azure/hh369930.aspx)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0817_2016-->

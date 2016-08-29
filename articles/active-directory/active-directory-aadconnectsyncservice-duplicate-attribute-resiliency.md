@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/26/2016"
+	ms.date="08/16/2016"
 	ms.author="markusvi"/>
 
 
@@ -31,7 +31,7 @@
 如果嘗試佈建的新物件具有違反此唯一性條件約束的 UPN 或 ProxyAddress 值，則 Azure Active Directory 不會建立該物件。同樣地，如果以非唯一的 UPN 或 ProxyAddress 更新物件，則更新會失敗。同步用戶端會在每個匯出週期重試佈建嘗試或更新，在衝突解決前會繼續失敗。每次嘗試時都會產生錯誤報告電子郵件，並由同步用戶端記錄一個錯誤。
 
 ## 重複屬性恢復功能的行為
-Azure Active Directory 並不是完全無法佈建或更新具有重複屬性的物件，而是會「隔離」違反唯一性條件約束的重複屬性。如果佈建時需要此屬性 (例如 UserPrincipalName)，則服務會指派預留位置值。這些暫存值的格式為 “***<OriginalPrefix>+<4DigitNumber>@<InitialTenantDomain>.onmicrosoft.com***”。如果不需要此屬性 (例如 **ProxyAddress**)，則 Azure Active Directory 只會隔離衝突屬性並繼續建立或更新物件。
+Azure Active Directory 並不是完全無法佈建或更新具有重複屬性的物件，而是會「隔離」違反唯一性條件約束的重複屬性。如果佈建時需要此屬性 (例如 UserPrincipalName)，則服務會指派預留位置值。這些暫存值的格式為 “**<OriginalPrefix>+<4DigitNumber>@<InitialTenantDomain>.onmicrosoft.com**”。如果不需要此屬性 (例如 **ProxyAddress**)，則 Azure Active Directory 只會隔離衝突屬性並繼續建立或更新物件。
 
 隔離屬性時，衝突相關資訊會以舊版行為中使用的相同錯誤報告電子郵件傳送。不過，此資訊只會出現在錯誤報告中一次，發生隔離時，將不會繼續記錄在未來的電子郵件中。此外，此物件已成功匯出，所以同步用戶端不會記錄錯誤，而且不會在後續的同步週期中重試建立 / 更新作業。
 
@@ -112,7 +112,7 @@ Azure Active Directory 並不是完全無法佈建或更新具有重複屬性的
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict -SortField UserPrincipalName -SortDirection Ascending`
 
 #### 以有限的數量或全部
-1. **MaxResults<Int>** 可用於將查詢限制為特定數目的值。
+1. **MaxResults <Int>** 可用於將查詢限制為特定數目的值。
 
 2. **All** 可用於確保在有大量錯誤的情況下擷取所有的結果。
 
@@ -139,13 +139,13 @@ ProxyAddress 衝突的電子郵件通知範例如下所示︰![作用中使用�
 下列文章概述各種疑難排解和解決策略︰[重複或無效的屬性會防止在 Office 365 中進行目錄同步作業](https://support.microsoft.com/kb/2647098)。
 
 ## 已知問題
-沒有任何已知問題會導致資料遺失或服務降級。其中有幾個是美觀的問題，其他問題會導致擲回標準「*恢復前*」重複屬性錯誤，而不是隔離衝突屬性，而別的問題會導致特定錯誤需要額外的手動修復。
+沒有任何已知問題會導致資料遺失或服務降級。其中有幾個是美觀的問題，其他問題會導致擲回標準「恢復前」重複屬性錯誤，而不是隔離衝突屬性，而別的問題會導致特定錯誤需要額外的手動修復。
 
 **核心行為︰**
 
 1. 具有特定屬性組態的使用者會繼續接收匯出錯誤，而非隔離屬性。例如：
 
-    a.新使用者會建立於 AD 中，其 UPN 為 **Joe@contoso.com** 而 ProxyAddress 為 **smtp:Joe@contoso.com**。
+    a.新使用者會建立於 AD 中，其 UPN 為 **Joe@contoso.com** 而 ProxyAddress 為 **smtp:Joe@contoso.com**
 
     b.此物件的屬性與現有群組發生衝突，其中 ProxyAddress 為 **SMTP:Joe@contoso.com**。
 
@@ -153,7 +153,7 @@ ProxyAddress 衝突的電子郵件通知範例如下所示︰![作用中使用�
 
 2. 尋找已解決重複屬性衝突的計時器工作只會比較 UPN 衝突與其他 UPN 衝突。這會造成下列案例的步驟 4 所示的問題︰
 
-    a. ****UserA@contoso.com** 有非唯一的 UPN，因為另一個物件的 ProxyAddress 也有該值。
+    a. **UserA@contoso.com** 有非唯一的 UPN，因為另一個物件的 ProxyAddress 也有該值。
 
     b.UserA 會取得暫存 **MOERA UPN** (**UserA1234@contoso.onmicrosoft.com**)，而真正的 UPN 值會遭到隔離 (如預期一般)。
 
@@ -163,7 +163,7 @@ ProxyAddress 衝突的電子郵件通知範例如下所示︰![作用中使用�
 
 3. 如果在內部部署上建立兩個具有相同 SMTP 位址的群組，則會在第一次嘗試時佈建失敗並發生標準的重複 **ProxyAddress** 錯誤。不過，重複值會在下一個同步處理週期時被適當隔離。
 
-**PowerShell cmdlets**：
+**PowerShell Cmdlet**：
 
 1. 不會對 User 物件類別顯示 **ImmutableId** / **LastDirSyncTime**。
 
@@ -197,4 +197,4 @@ ProxyAddress 衝突的電子郵件通知範例如下所示︰![作用中使用�
 
 - [找出在 Office 365 中的目錄同步處理錯誤](https://support.office.com/zh-TW/article/Identify-directory-synchronization-errors-in-Office-365-b4fc07a5-97ea-4ca6-9692-108acab74067)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0817_2016-->

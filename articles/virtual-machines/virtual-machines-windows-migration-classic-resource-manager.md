@@ -82,10 +82,10 @@
 ---------- | ------------
 計算 | 未關聯的虛擬機器磁碟。
 計算 | 虛擬機器映像。
-網路 | 未關聯的保留 IP (如果未連接至 VM)。支援已連接至 VM 的保留 IP。
-網路 | 未關聯的網路安全性群組 (如果未連接至虛擬網路或網路介面)。支援虛擬網路所參考的 NSG。
 網路 | 端點 ACL。
-網路 | 虛擬網路閘道 (網站間、Azure ExpressRoute、點對站)。
+網路 | 虛擬網路閘道 (網站對網站、Azure ExpressRoute、應用程式閘道、點對站)。
+網路 | 使用 VNet 對等互連的虛擬網路。(將 VNet 移轉至 ARM，接著對等互連) 深入了解 [VNet 對等互連](../virtual-network/virtual-network-peering-overview.md)。
+網路 | 流量管理員設定檔。
 
 ### 不支援的組態
 
@@ -197,7 +197,7 @@ Microsoft Dynamics 週期服務 | 包含「Dynamics 週期服務」所管理之�
 
 **如果我必須使用 Resource Manager 下的 IaaS，是否必須購買另一條 ExpressRoute 線路？**
 
-否。我們最近已讓 [ExpressRoute 線路跨傳統和 Resource Manager 並存](../expressroute/expressroute-howto-coexist-resource-manager.md)。如果您已有 ExpressRoute 線路，就不需要購買新線路。
+否。我們最近已讓 [ExpressRoute 循環跨傳統和 Resource Manager 並存](../expressroute/expressroute-howto-coexist-resource-manager.md)。如果您已有 ExpressRoute 線路，就不需要購買新線路。
 
 **如果我已為傳統 IaaS 資源設定角色型存取控制原則，該怎麼辦？**
 
@@ -223,7 +223,7 @@ Microsoft Dynamics 週期服務 | 包含「Dynamics 週期服務」所管理之�
 
 您在傳統部署模型中明確提供名稱的所有資源，在移轉期間都會獲得保留。在某些情況下，則會建立新的資源。例如︰會為每個 VM 建立一個網路介面。此時此刻，我們不支援控制移轉期間所建立的新資源名稱。請在 [Azure 意見反應論壇](http://feedback.azure.com)上針對這項功能進行投票。
 
-**我收到訊息*「VM 回報的整體代理程式狀態為「未就緒」。因此，無法移轉 VM。請確認 VM 代理程式回報的整體代理程式狀態為「就緒」」*，或*「VM 包含未從 VM 回報狀態的擴充功能。因此，無法移轉此 VM。」***
+**我收到訊息「VM 將整體代理程式狀態回報為『未就緒』。*因此，無法移轉 VM。*請確認 VM 代理程式將整體代理程式狀態回報為『就緒』」，或「VM 含 VM 未回報其狀態的擴充。*因此，無法移轉此 VM。」***
 
 當 VM 無法連出到網際網路時，就會收到此訊息。VM 代理程式會使用連出連線來連接到 Azure 儲存體帳戶，來每隔 5 分鐘更新一次代理程式狀態。
 
@@ -235,4 +235,4 @@ Microsoft Dynamics 週期服務 | 包含「Dynamics 週期服務」所管理之�
 - [使用 CLI 將 IaaS 資源從傳統移轉至 Azure Resource Manager](virtual-machines-linux-cli-migration-classic-resource-manager.md)
 - [使用社群 PowerShell 指令碼將傳統虛擬機器複製到 Azure Resource Manager](virtual-machines-windows-migration-scripts.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0817_2016-->

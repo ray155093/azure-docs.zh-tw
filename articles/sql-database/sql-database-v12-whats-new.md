@@ -14,14 +14,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/19/2016"
+	ms.date="08/15/2016"
 	ms.author="genemi"/>
 
 
 # SQL Database V12 新功能
 
 
-本主題說明許多 Azure SQL Database V12 版本優於 V11 版本的新優點
+本主題說明許多 Azure SQL Database V12 版本優於 V11 版本的新優點。
 
 
 我們持續新增 V12 的功能。因此我們鼓勵您造訪我們的 Azure 服務更新網頁，並使用它的篩選條件：
@@ -61,7 +61,7 @@ SQL Database V12 的一個主要目標是提高與 Microsoft SQL Server 2014 的
 
 > [AZURE.IMPORTANT] 從 **2016 年 6 月**起，Azure SQL Database V12 中*新*建立的資料庫至少都有 130 以上的相容性層級，符合 Microsoft SQL Server 2016 GA。
 > 
-> 當然，喜歡的話，您還是可以使用 `ALTER DATABASE YourDatabase SET COMPATIBILITY_LEVEL = 120`。
+> 如果您喜歡，可以使用 `ALTER DATABASE YourDatabase SET COMPATIBILITY_LEVEL = 120`。
 > 
 > 2016 年 6 月之前建立的資料庫，不會隨這項預設值變更而改變相容性層級。資料庫就算從 V11 升級至 V12 也不會變更層級。
 
@@ -99,7 +99,7 @@ SQL Database V12 的一個主要目標是提高與 Microsoft SQL Server 2014 的
 ## 更有效地支援雲端 SaaS 廠商
 
 
-我們只在 V12 中發佈新的 Standard 效能層級 S3 與[彈性資料庫集區](sql-database-elastic-pool.md)公用預覽這是專為雲端 SaaS 廠商所設計的解決方案。使用彈性資料庫集區，您可以：
+我們只在 V12 中發佈新的 Standard 效能層級 S3 與[彈性資料庫集區](sql-database-elastic-pool.md)公用預覽彈性資料庫集區是為雲端 SaaS 廠商所設計的解決方案。使用彈性資料庫集區，您可以：
 
 
 - 在資料庫之間共用 DTU，以降低大量資料庫的成本。
@@ -125,7 +125,7 @@ SQL Database V12 的一個主要目標是提高與 Microsoft SQL Server 2014 的
 ## 當需要復原時提升業務持續性
 
 
-V12 提供大幅改進的復原點目標 (RPO) 與預估復原時間 (ERT)：
+V12 提供改進的復原點目標 (RPO) 與預估復原時間 (ERT)：
 
 
 | 業務續航力功能 | 較早版本 | V12 |
@@ -143,7 +143,7 @@ V12 提供大幅改進的復原點目標 (RPO) 與預估復原時間 (ERT)：
 客戶有許多很好的理由應該立即從 V11 升級到 Azure SQL Database V12：
 
 
-- SQL Database V12 新增了許多 V11 沒有的新功能。
+- SQL Database V12 新增了許多 V11 功能中沒有的新功能。
 - 我們持續新增 V12 的功能，但是 V11 不會新增功能。
 - 大部分的新功能在發佈給 Microsoft SQL Server 之前，都已在 SQL Database V12 上發佈。
 
@@ -183,4 +183,4 @@ V12 資料庫只能裝載在 V12 邏輯伺服器上。而 V12 只可以裝載 V1
 
 [Microsoft Azure 預覽專用的使用補充條款](https://azure.microsoft.com/support/legal/preview-supplemental-terms/)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0817_2016-->

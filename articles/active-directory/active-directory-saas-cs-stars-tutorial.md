@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/26/2016"
+	ms.date="08/16/2016"
 	ms.author="jeedes"/>
 
 
@@ -21,7 +21,7 @@
 
 本教學課程旨在說明如何整合 CS Stars 與 Azure Active Directory (Azure AD)。CS Stars 與 Azure AD 整合提供下列優點：
 
-- 您可以在 Azure AD 中控制可存取 CS Stars 的人員 
+- 您可以在 Azure AD 中控制可存取 CS Stars 的人員
 - 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 CS Stars (單一登入)
 - 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
@@ -41,13 +41,13 @@
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 - 除非必要，否則您不應使用生產環境，。
-- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。 
+- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
  
 ## 案例描述
 此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。本教學課程中說明的案例由三個主要建置組塊組成：
 
-1. 從資源庫新增 CS Stars 
+1. 從資源庫新增 CS Stars
 2. 設定並測試 Azure AD 單一登入
 
 
@@ -56,7 +56,7 @@
 
 **若要從資源庫新增 Azure AD，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![Active Directory][1]
 
@@ -111,7 +111,7 @@
 
 	![Azure AD 單一登入][7]
 
-3. 在 [設定 App 設定] 對話方塊頁面執行下列步驟：
+3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟：
 
 	![設定 App 設定][8]
  
@@ -140,7 +140,7 @@
 
 
 ### 建立 Azure AD 測試使用者
-本節目標是在 Azure 傳統入口網站中建立名為 Britta Simon 的測試使用者。
+本節的目標是要在 Azure 傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
 
@@ -152,11 +152,11 @@
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service/create_aaduser_03.png)
  
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service/create_aaduser_04.png)
 
@@ -170,7 +170,7 @@
 
 	c.按 [下一步]。
 
-6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
+6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service/create_aaduser_06.png)
 
@@ -237,7 +237,7 @@
 
 ### 測試單一登入
 
-本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。當您在存取面板中按一下 [CS Stars] 磚時，應該會自動登入您的 CS Stars 應用程式。
+本節的目標是要使用「存取面板」來測試您的 Azure AD 單一登入組態。當您在存取面板中按一下 [CS Stars] 磚時，應該會自動登入您的 CS Stars 應用程式。
 
 
 ## 其他資源
@@ -268,4 +268,4 @@
 
 [400]: ./media/active-directory-saas-cs-stars-tutorial/tutorial_csstars_403.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0817_2016-->

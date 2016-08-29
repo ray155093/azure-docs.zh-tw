@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/08/2016"
+   ms.date="08/11/2016"
    ms.author="tomfitz"/>
 
 # 透過 Azure Resource Manager 使用連結的範本
 
-您可以從某個「Azure 資源管理員」範本連結到另一個範本，這樣可讓您將部署分解成一組具有目標與特定目的的範本。就像將應用程式分解數個程式碼類別，分解有利於測試、重複使用和可讀性。
+您可以從某個 Azure Resource Manager 範本連結到另一個範本，這樣可讓您將部署分解成一組具有目標與特定目的的範本。就像將應用程式分解為數個程式碼類別，分解有利於測試、重複使用和可讀性。
 
 您可以從主要範本傳遞參數到連結的範本，且那些參數可以直接對應到由發出呼叫之範本所公開的參數或變數。連結的範本也可以將輸出變數傳遞回來源範本，讓範本之間可進行雙向資料交換。
 
@@ -44,14 +44,14 @@
       } 
     ] 
 
-資源管理員服務必須能夠存取連結的範本，這表示您無法將本機檔案，或是將只能在本機網路上取得的檔案，指定為連結的範本。您可以只提供 URI 值，其中包含 **http** 或 **https**。有一個選擇是將連結的範本放在儲存體帳戶中，並將 URI 用於該項目，如底下所示。
+Azure Resource Manager 服務必須能夠存取連結的範本。您無法為連結的範本指定本機檔案或只可在本機網路存取的檔案。您可以只提供 URI 值，其中包含 **http** 或 **https**。有一個選項是將連結的範本放在儲存體帳戶中，並將 URI 用於該項目，如下列範例所示。
 
     "templateLink": {
         "uri": "http://mystorageaccount.blob.core.windows.net/templates/template.json",
         "contentVersion": "1.0.0.0",
     }
 
-雖然連結的範本必須可從外部存取，但它不必供大眾存取。您可以將您的範本新增到私人儲存體帳戶 (只有儲存體帳戶擁有者可以存取該帳戶)，然後建立共用存取簽章 (SAS) Token 來允許在部署期間存取。您會將該 SAS Token 加入連結範本的 URI。如需在儲存體帳戶中設定範本並產生 SAS Token 的步驟，請參閱[使用 Resource Manager 範本與 Azure PowerShell 部署資源](resource-group-template-deploy.md)或 [Deploy resources with Resource Manager templates and Azure CLI (使用 Resource Manager 範本和 Azure CLI 部署資源)](resource-group-template-deploy-cli.md)。
+雖然連結的範本必須可從外部存取，但它不必供大眾存取。您可以將您的範本新增至只有儲存體帳戶擁有者可以存取的私人儲存體帳戶。接著，在部署期間建立共用存取簽章 (SAS) Token 來啟用存取權。您會將該 SAS Token 加入連結範本的 URI。如需在儲存體帳戶中設定範本並產生 SAS Token 的步驟，請參閱[使用 Resource Manager 範本與 Azure PowerShell 部署資源](resource-group-template-deploy.md)或 [Deploy resources with Resource Manager templates and Azure CLI (使用 Resource Manager 範本和 Azure CLI 部署資源)](resource-group-template-deploy-cli.md)。
 
 以下範例顯示連結到其他範本的父範本。巢狀範本是透過以參數傳遞的 SAS Token 來存取。
 
@@ -98,7 +98,7 @@
       } 
     ] 
 
-連結參數檔案的 URI 值不能是本機檔案，而且必須包含 **http** 或 **https**。當然，參數檔案也可以限制為透過 SAS Token 存取。
+連結參數檔案的 URI 值不能是本機檔案，而且必須包含 **http** 或 **https**。當然，也可以將參數檔案限制為透過 SAS Token 存取。
 
 ## 使用變數來連結範本
 
@@ -129,6 +129,107 @@
 
     "variables": {
         "sharedTemplateUrl": "[uri(deployment().properties.templateLink.uri, 'shared-resources.json')]"
+    }
+
+## 有條件地連結至範本
+
+您可以連結至不同的範本，方法是以建構連結範本的 URI 所用的變數值來傳遞。這個方法在部署期間需要指定要使用的連結範本時很好用。例如，您可以為現有儲存體帳戶指定一個要使用的範本，並為新的儲存體帳戶指定另一個要使用的範本。
+
+下列範例顯示的是儲存體帳戶名稱的參數以及用來指定儲存體帳戶是新的或現有的參數。
+
+    "parameters": {
+        "storageAccountName": {
+            "type": "String"
+        },
+        "newOrExisting": {
+            "type": "String",
+            "allowedValues": [
+                "new",
+                "existing"
+            ]
+        }
+    },
+
+為範本 URI 建立變數，其中包含新的或現有的參數值。
+
+    "variables": {
+        "templatelink": "[concat('https://raw.githubusercontent.com/exampleuser/templates/master/',parameters('newOrExisting'),'StorageAccount.json')]"
+    },
+
+將該變數值提供給部署資源。
+
+    "resources": [
+        {
+            "apiVersion": "2015-01-01",
+            "name": "nestedTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "[variables('templatelink')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "StorageAccountName": {
+                        "value": "[parameters('storageAccountName')]"
+                    }
+                }
+            }
+        }
+    ],
+
+URI 會決定範本命名為 **existingStorageAccount.json** 或 **newStorageAccount.json**。為那些 URI 建立範本。
+
+下列範例顯示的是 **existingStorageAccount.json** 範本。
+
+    {
+      "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "storageAccountName": {
+          "type": "String"
+        }
+      },
+      "variables": {},
+      "resources": [],
+      "outputs": {
+        "storageAccountInfo": {
+          "value": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName')),providers('Microsoft.Storage', 'storageAccounts').apiVersions[0])]",
+          "type" : "object"
+        }
+      }
+    }
+
+下一個範例顯示的是 **newStorageAccount.json** 範本。請注意，就像現有儲存體帳戶範本所示，儲存體帳戶物件會傳回輸出中。主範本搭配任一巢狀範本都能運作。
+
+    {
+      "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "storageAccountName": {
+          "type": "string"
+        }
+      },
+      "resources": [
+        {
+          "type": "Microsoft.Storage/storageAccounts",
+          "name": "[parameters('StorageAccountName')]",
+          "apiVersion": "2016-01-01",
+          "location": "[resourceGroup().location]",
+          "sku": {
+            "name": "Standard_LRS"
+          },
+          "kind": "Storage",
+          "properties": {
+          }
+        }
+      ],
+      "outputs": {
+        "storageAccountInfo": {
+          "value": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('StorageAccountName')),providers('Microsoft.Storage', 'storageAccounts').apiVersions[0])]",
+          "type" : "object"
+        }
+      }
     }
 
 ## 完整範例
@@ -199,4 +300,4 @@
 - 若要了解如何定義您資源的部署順序，請參閱[定義 Azure Resource Manager 範本中的相依性](resource-group-define-dependencies.md)
 - 若要了解如何定義一個資源，但建立它的多個執行個體，請參閱[在 Azure Resource Manager 中建立資源的多個執行個體](resource-group-create-multiple.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0817_2016-->

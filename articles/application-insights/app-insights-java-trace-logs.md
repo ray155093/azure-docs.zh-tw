@@ -87,9 +87,9 @@
 
 記錄器 | 下載 | 程式庫
 ----|----|----
-Logback|[具有 Logback 附加器的 SDK](https://azuredownloads.blob.core.windows.net/applicationinsights/logbackAppender.zip)|applicationinsights-logging-logback
-Log4J v2.0|[具有 Log4J v2 附加器的 SDK](https://azuredownloads.blob.core.windows.net/applicationinsights/log4j2Appender.zip)|applicationinsights-logging-log4j2 
-Log4j v1.2|[具有 Log4J v1.2 附加器的 SDK](https://azuredownloads.blob.core.windows.net/applicationinsights/log4j1_2Appender.zip)|applicationinsights-logging-log4j1\_2 
+Logback|[具有 Logback 附加器的 SDK](https://aka.ms/xt62a4)|applicationinsights-logging-logback
+Log4J v2.0|[具有 Log4J v2 附加器的 SDK](https://aka.ms/qypznq)|applicationinsights-logging-log4j2 
+Log4j v1.2|[具有 Log4J v1.2 附加器的 SDK](https://aka.ms/ky9cbo)|applicationinsights-logging-log4j1\_2 
 
 
 
@@ -151,4 +151,4 @@ Application Insights 附加器可由任何設定的記錄器參考，而不一�
 
  
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/08/2016"
+   ms.date="08/15/2016"
    ms.author="tarcher" />
 
 # Azure 的命令列建置
 
-## 概觀
+## Overview
 
 您可以藉由在命令提示字元中執行 MSBuild 來建立 Azure 部署的封裝。除了自動化部份的組建程序，您還可以設定及定義進行偵錯、預備及實際執行的組建。
 
@@ -58,8 +58,8 @@
 
 如果您想要為儲存的封裝和組態檔使用替代目錄，請使用 `/p:PublishDir=Directory` 選項來設定路徑 (包括結尾的反斜線分隔符號)。
 
-## Deployment
+## 部署
 
 建立封裝之後，您可以將它部署至 Azure。如需示範該程序的教學課程，請參閱 Azure 網站。如需如何自動化該程序的相關資訊，請參閱 [Azure 中雲端服務的連續傳遞](./cloud-services/cloud-services-dotnet-continuous-delivery.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0817_2016-->

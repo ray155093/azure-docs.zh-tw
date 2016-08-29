@@ -33,7 +33,8 @@ Data Dactory 目前只支援將資料從 Cassandra 資料庫移動到[支援的�
 ## 複製資料精靈
 若要建立管線以將資料從 Cassandra 資料庫複製到任何支援的接收資料存放區，最簡單的方式是使用複製資料精靈。如需使用複製資料精靈建立管線的快速逐步解說，請參閱[教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md)。
 
-以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)或 [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。
+以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)或 [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。這些範例示範如何將資料從 Cassandra 資料庫複製到 Azure Blob 儲存體。不過，您可以在 Azure Data Factory 中使用複製活動，將資料複製到[這裡](data-factory-data-movement-activities.md#supported-data-stores)所說的任何接收器。
+
 
 ## 範例︰將資料從 Cassandra 複製到 Blob
 範例會每隔一小時就把 Cassandra 資料庫的資料複製到 Azure Blob。範例後面的各節會說明這些範例中使用的 JSON 屬性。您可以使用 Azure Data Factory 中的複製活動，把資料直接複製到[資料移動活動](data-factory-data-movement-activities.md#supported-data-stores)一文中所述的任何接收器。
@@ -208,7 +209,7 @@ Data Dactory 目前只支援將資料從 Cassandra 資料庫移動到[支援的�
 
 
 ## CassandraSource 類型屬性
-如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。名稱、描述、輸入和輸出資料表、各種原則等屬性都適用於所有活動類型。
+如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。名稱、描述、輸入和輸出資料表、各種原則等屬性都適用於所有活動類型。
 
 另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同，而在複製活動的案例中，可用的屬性會根據來源與接收的類型而有所不同。
 
@@ -250,7 +251,7 @@ VARINT | 十進位
 Azure Data Factory 會使用內建的 ODBC 驅動程式來連線到 Cassandra 資料庫並從中複製資料。對於對應、集和清單在內的集合類型，此驅動程式會將資料重新標準化為對應的虛擬資料表。具體來說，如果資料表包含任何集合資料行，則此驅動程式會產生下列虛擬資料表︰
 
 -	**基底資料表**，其中包含與實際資料表相同的資料 (集合資料行除外)。基底資料表使用與它所代表的實際資料表相同的名稱。
--	每個集合資料行的**虛擬資料表**，以展開巢狀資料。代表集合的虛擬資料表會使用實際資料表名稱、分隔字元「vt」和資料行名稱來命名。
+-	每個集合資料行的**虛擬資料表**，以展開巢狀資料。代表集合的虛擬資料表會使用實際資料表名稱、分隔字元 “vt” 和資料行名稱來命名。
 
 虛擬資料表會參考實際資料表中的資料，讓驅動程式得以存取反正規化的資料。如需詳細資訊，請參閱下方的＜範例＞一節。您可以藉由查詢和聯結虛擬資料表來存取 Cassandra 集合的內容。
 
@@ -312,4 +313,4 @@ pk\_int | StringSet\_value
 ## 效能和微調  
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->
