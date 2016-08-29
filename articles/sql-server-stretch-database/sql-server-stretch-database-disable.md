@@ -20,9 +20,9 @@
 
 若要停用資料表的 Stretch Database，請在 SQL Server Management Studio 中為資料表選取 [Stretch]。然後選取下列其中一個選項。
 
--   **停用| Bring data back from Azure**. Copy the remote data for the table from Azure back to SQL Server, then disable Stretch Database for the table. This operation incurs data transfer costs, and it can't be canceled.
+-   **停用| Bring data back from Azure**. 從 Azure 將資料表的遠端資料複製到 SQL Server，然後停用該資料表的 Stretch Database。 這項操作會產生資料傳輸成本，且無法取消。
 
--   **停用| Leave data in Azure**. Disable Stretch Database for the table.  Abandon the remote data for the table in Azure.
+-   **停用| Leave data in Azure**. 停用資料表的 Stretch Database。  放棄 Azure 中的資料表遠端資料。
 
 您也可以使用 Transact-SQL 以停用資料表或資料庫的 Stretch Database。
 
@@ -40,13 +40,13 @@
 
 2.  以滑鼠右鍵按一下並選取 [Stretch]，然後選取下列其中一個選項。
 
-    -   **停用| Bring data back from Azure**. Copy the remote data for the table from Azure back to SQL Server, then disable Stretch Database for the table. This command can't be canceled.
+    -   **停用| Bring data back from Azure**. 從 Azure 將資料表的遠端資料複製到 SQL Server，然後停用該資料表的 Stretch Database。 這個命令無法取消。
 
-        >   [AZURE.NOTE] Copying the remote data for the table from Azure back to SQL Server incurs data transfer costs. For more info, see [Data Transfers Pricing Details](https://azure.microsoft.com/pricing/details/data-transfers/).
+        >   [AZURE.NOTE] 將資料表的遠端資料從 Azure 複製回 SQL Server 會產生資料傳輸成本。 如需詳細資訊，請參閱[資料傳輸價格詳細資料](https://azure.microsoft.com/pricing/details/data-transfers/)。
 
-        After all the remote data has been copied from Azure back to SQL Server, Stretch is disabled for the table.
+        當所有遠端資料都從 Azure 複製到 SQL Server 之後，資料表的 Stretch 功能將會停用。
 
-    -   **停用| Leave data in Azure**. Disable Stretch Database for the table.  Abandon the remote data for the table in Azure.
+    -   **停用| Leave data in Azure**. 停用資料表的 Stretch Database。  放棄 Azure 中的資料表遠端資料。
 
     >   [AZURE.NOTE] 停用資料表的 Stretch Database 不會刪除遠端資料或遠端資料表。如果您想要刪除遠端資料表，您必須使用 Azure 管理入口網站加以卸除。遠端資料表會繼續產生 Azure 成本，直到您刪除它為止。如需詳細資訊，請參閱 [SQL Server Stretch Database 價格](https://azure.microsoft.com/pricing/details/sql-server-stretch-database/)。
 
