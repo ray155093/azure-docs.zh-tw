@@ -63,7 +63,7 @@ CREATE USER ApplicationUser FOR LOGIN ApplicationLogin;
 
 ```
 
-如需有關驗證 SQL Database 的詳細資訊，請參閱[管理 Azure SQL Database 中的資料庫和登入][]。如需有關將 Azure AD 預覽用於「SQL 資料倉儲」的更多詳細資料，請參閱[使用 Azure Active Directory 驗證連線到 SQL 資料倉儲][]。
+如需有關驗證 SQL Database 的詳細資訊，請參閱[管理 Azure SQL Database 中的資料庫和登入][]。如需更多將 Azure AD 預覽用於 SQL 資料倉儲的詳細資料，請參閱[使用 Azure Active Directory 驗證連線到 SQL 資料倉儲][]。
 
 
 ## Authorization
@@ -103,15 +103,15 @@ ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 稽核和追蹤資料庫事件可協助您遵循法規，並找出可疑的活動。SQL 資料倉儲稽核可讓您將資料庫中的事件記錄到 Azure 儲存體帳戶中的稽核記錄。SQL 資料倉儲稽核也整合了 Microsoft Power BI，具備向下鑽研報表和分析的功能。如需詳細資訊，請參閱[開始使用 Azure Database 稽核][]。
 
 ## 後續步驟
-如需使用不同通訊協定連接到您的 SQL 資料倉儲的詳細資料和範例，請參閱[連接到 SQL 資料倉儲][]。
+如需使用不同通訊協定連接到 SQL 資料倉儲的詳細資料和範例，請參閱[連接到 SQL 資料倉儲][]。
 
 <!--Image references-->
 
 <!--Article references-->
-[連接到 SQL 資料倉儲]: ./sql-data-warehouse-develop-connections.md
-[開始使用 Azure Database 稽核]: ./sql-data-warehouse-overview-auditing.md
+[連接到 SQL 資料倉儲]: ./sql-data-warehouse-connect-overview.md
+[開始使用 Azure Database 稽核]: ./sql-data-warehouse-auditing-overview.md
 [開始使用透明資料加密 (TDE)]: ./sql-data-warehouse-encryption-tde.md
-[使用 Azure Active Directory 驗證連線到 SQL 資料倉儲]: ./sql-data-warehouse-get-started-connect-aad-authentication.md
+[使用 Azure Active Directory 驗證連線到 SQL 資料倉儲]: ./sql-data-warehouse-authentication.md
 
 <!--MSDN references-->
 [Azure SQL Database 防火牆]: https://msdn.microsoft.com/library/ee621782.aspx
@@ -127,4 +127,4 @@ ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 <!--Other Web references-->
 [Azure 入口網站中的角色型存取控制]: https://azure.microsoft.com/documentation/articles/role-based-access-control-configure
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

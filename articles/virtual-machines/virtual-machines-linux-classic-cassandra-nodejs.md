@@ -14,14 +14,14 @@
 	ms.tgt_pltfrm="vm-linux" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/24/2016" 
+	ms.date="08/11/2016" 
 	ms.author="hanuk;robmcm"/>
 
 # 在 Azure 上執行 Cassandra 搭配 Linux 並透過 Node.js 進行存取 
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](https://azure.microsoft.com/documentation/templates/datastax-on-ubuntu/)。
 
-## 概觀
+## Overview
 Microsoft Azure 是一個開放雲端平台，可執行 Microsoft 和非 Microsoft 軟體，包括作業系統、應用程式伺服器、傳訊中介軟體，以及來自商業和開放原始碼模型的 SQL 和 NoSQL 資料庫。如果要在包括 Azure 在內的公用雲端上建立具有恢復功能的服務，應用程式伺服器和儲存層都必須要有仔細的規劃和審慎的架構。Cassandra 的分散式儲存架構天生就有助於建置可針對叢集失敗容錯的高可用性系統。Cassandra 是一種雲端等級的 NoSQL 資料庫，由 Apache Software Foundation 維護 (網址 cassandra.apache.org)；Cassandra 以 Java 撰寫，因此可以在 Windows 與 Linux 平台上執行。
 
 本文的重點將說明如何利用 Microsoft Azure 虛擬機器和虛擬網路，在 Ubuntu 上部署 Cassandra 做為單一和多重資料中心叢集。用於實際執行環境最佳化工作負載的叢集部署超出本文的範圍，因為它需要多磁碟節點設定、適當的環狀拓撲設計及資料模型來支援所需的複寫、資料一致性、輸送量和高可用性需求。
@@ -151,7 +151,7 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
 
 <table>
 <tr><th>欄位名稱             </th><th> 欄位值	                   </th><th> 備註                                 </th></tr>
-<tr><td> [雲端服務]	</td><td> 建立新的雲端服務	</td><td>雲端服務是一個運算如虛擬機器等資源的容器</td></tr>
+<tr><td> 雲端服務	</td><td> 建立新的雲端服務	</td><td>雲端服務是一個運算如虛擬機器等資源的容器</td></tr>
 <tr><td> 雲端服務 DNS 名稱	</td><td>ubuntu-template.cloudapp.net	</td><td>提供一個機器中立的負載平衡器名稱</td></tr>
 <tr><td> [區域/同質群組/虛擬網路] </td><td>	美國西部	</td><td> 選取您 Web 應用程式存取 Cassandra 叢集時的來源地區</td></tr>
 <tr><td>儲存體帳戶 </td><td>	使用預設值	</td><td>使用預設的儲存體帳戶或在特定區域中預先建立的儲存體帳戶</td></tr>
@@ -294,7 +294,7 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
 確定已反白顯示虛擬機器，然後按一下底部命令列中的 [關機] 連結。
 
 #####3：擷取映像
-確定已反白顯示虛擬機器，然後按一下底部命令列中的 [擷取] 連結。在下一個畫面中，指定 [映像名稱] \(例如 hk-cas-2-08-ub-14-04-2014071)、適當的 [映像描述]，然後按一下「確認」記號以完成擷取程序。
+確定已反白顯示虛擬機器，然後按一下底部命令列中的 [擷取] 連結。在下一個畫面中，指定 [映像名稱] (例如 hk-cas-2-08-ub-14-04-2014071)、適當的 [映像描述]，然後按一下「確認」記號以完成擷取程序。
 
 這需要幾秒鐘的時間，然後您應該就可以在映像庫的 [我的映像] 區段中找到映像。成功擷取映像之後，來源 VM 就會自動刪除。
 
@@ -303,7 +303,7 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
 
 <table>
 <tr><th>VM 屬性名稱</th><th>值</th><th>備註</th></tr>
-<tr><td>名稱</td><td>vnet-cass-west-us</td><td></td></tr>	
+<tr><td>Name</td><td>vnet-cass-west-us</td><td></td></tr>	
 <tr><td>區域</td><td>美國西部</td><td></td></tr>	
 <tr><td>DNS 伺服器	</td><td>None</td><td>請忽略此項，因為我們不使用 DNS 伺服器</td></tr>
 <tr><td>設定點對站 VPN</td><td>None</td><td> 略過此項</td></tr>
@@ -424,7 +424,7 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
 您應該會看到類似下面 8 節點叢集的畫面：
 
 <table>
-<tr><th>Status</th></th>位址	</th><th>負載	</th><th>權杖	</th><th>擁有 </th><th>主機識別碼	</th><th>機架</th></tr>
+<tr><th>狀態</th></th>位址	</th><th>載入	</th><th>權杖	</th><th>擁有 </th><th>主機識別碼	</th><th>機架</th></tr>
 <tr><th>UN	</td><td>10.1.2.4 	</td><td>87.81 KB	</td><td>256	</td><td>38.0%	</td><td>Guid (已移除)</td><td>rack1</td></tr>
 <tr><th>UN	</td><td>10.1.2.5 	</td><td>41.08 KB	</td><td>256	</td><td>68.9%	</td><td>Guid (已移除)</td><td>rack1</td></tr>
 <tr><th>UN	</td><td>10.1.2.6 	</td><td>55.29 KB	</td><td>256	</td><td>68.8%	</td><td>Guid (已移除)</td><td>rack2</td></tr>
@@ -481,7 +481,7 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
 
 新增下列子網路：
 <table>
-<tr><th>名稱    </th><th>起始 IP	</th><th>CIDR	</th><th>備註</th></tr>
+<tr><th>Name    </th><th>起始 IP	</th><th>CIDR	</th><th>備註</th></tr>
 <tr><td>Web	</td><td>10.2.1.0	</td><td>/24 (251)	</td><td>Web 伺服陣列的子網路</td></tr>
 <tr><td>data	</td><td>10.2.2.0	</td><td>/24 (251)	</td><td>資料庫節點的子網路</td></tr>
 </table>
@@ -705,4 +705,4 @@ Microsoft Azure 是一個富彈性的平台，可以執行 Microsoft 與開放�
 - [http://www.datastax.com](http://www.datastax.com)
 - [http://www.nodejs.org](http://www.nodejs.org)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

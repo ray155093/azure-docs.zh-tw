@@ -12,12 +12,15 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="06/13/2016" 
+    ms.date="08/15/2016" 
     ms.author="elizapo" />
 
 
 
 # 如何在 Azure RemoteApp 中重新導向 QuickBooks？
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 裝置重新導向可讓使用者在 Azure RemoteApp 中透過應用程式使用連接到電腦或平板電腦的 USB 裝置。例如，如果您透過 Azure RemoteApp 共用 Skype，您的使用者必須能夠使用其裝置相機。
 
@@ -77,4 +80,4 @@
 ### 幫我們來協助您 
 您知道除了評比這篇文章以及在下面留言以外，您可以變更文件本身嗎？ 有所遺漏？ 有所錯誤？ 我是否撰寫了令人混淆的內容？ 向上捲動並按一下 [在 GitHub 上編輯] 以進行變更 - 系統會顯示這些變更以供我們檢閱，而我們簽核後，您就會在這裡看到您所進行的變更和改良。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/30/2016"
+   ms.date="08/16/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 # SQL 資料倉儲的設計決策和程式碼撰寫技術
@@ -52,7 +52,7 @@
 
 <!--Article references-->
 [並行]: ./sql-data-warehouse-develop-concurrency.md
-[連接]: ./sql-data-warehouse-develop-connections.md
+[連接]: ./sql-data-warehouse-connect-overview.md
 [CTAS]: ./sql-data-warehouse-develop-ctas.md
 [動態 SQL]: ./sql-data-warehouse-develop-dynamic-sql.md
 [依據選項分組]: ./sql-data-warehouse-develop-group-by-options.md
@@ -75,4 +75,4 @@
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0817_2016-->

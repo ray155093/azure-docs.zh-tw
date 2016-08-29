@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/09/2016"
+   ms.date="08/16/2016"
    ms.author="cherylmc"/>
 
 # 在 Azure 入口網站中建立 DNS 區域
@@ -78,7 +78,7 @@
 
 您可以從 Azure 入口網站檢視記錄
 
-1. 在 [DNS 區域] 刀鋒視窗上，按一下 [所有設定] 以開啟 DNS 區域的 [設定] 刀鋒視窗。 
+1. 在 [DNS 區域] 刀鋒視窗上，按一下 [所有設定] 以開啟 DNS 區域的 [設定] 刀鋒視窗。
 
 	![區域](./media/dns-getstarted-create-dnszone-portal/viewzonens500.png)
 
@@ -126,4 +126,4 @@
 
 建立 DNS 區域之後，請建立[記錄集和記錄](dns-getstarted-create-recordset-portal.md)，以開始解析您的網際網路網域名稱。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

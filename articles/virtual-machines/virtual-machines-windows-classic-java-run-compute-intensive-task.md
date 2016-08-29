@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="06/24/2016"
+	ms.date="08/11/2016"
 	ms.author="robmcm"/>
 
 # 如何在虛擬機器上以 Java 執行大量運算工作
@@ -36,7 +36,7 @@ Azure 可讓您利用虛擬機器處理大量運算工作。例如，虛擬機�
 * 如何執行 Java 應用程式。
 * 如何停止 Java 應用程式。
 
-本教學課程將使用旅行業務員問題 (Traveling Salesman Problem) 來進行大量運算工作。以下是執行大量運算工作的 Java 應用程式範例。
+本教學課程將使用 Traveling Salesman Problem 進行需密集運算的工作。以下是執行大量運算工作的 Java 應用程式範例。
 
 ![Traveling Salesman Problem solver][solver_output]
 
@@ -95,7 +95,7 @@ Azure 可讓您利用虛擬機器處理大量運算工作。例如，虛擬機�
 
 ## 取得命名空間的預設管理認證
 
-若要在新的命名空間上執行管理作業 (例如建立佇列)，您必須取得命名空間的管理認證。
+若要在新的命名空間上執行管理作業，例如建立佇列，您必須取得命名空間的管理認證。
 
 1.  在左方瀏覽窗格中，按一下 [服務匯流排] 節點，以顯示可用的命名空間清單。![Available Namespaces screenshot][avail_namespaces]
 2.  從顯示的清單中，選取您剛建立的命名空間。![Namespace List screenshot][namespace_list]
@@ -482,7 +482,7 @@ Azure 可讓您利用虛擬機器處理大量運算工作。例如，虛擬機�
 
         java -jar TSPSolver.jar 8
 
- 如果您沒有指定數目，它將會針對 10 個城市執行。當求解器找到目前最短的路徑時，將會把這些路徑加入佇列中。
+ 如果您沒有指定數目，它將會針對 10 個城市執行。當 solver 找到目前最短路由時，便會將這些路由新增至佇列。
 
 > [AZURE.NOTE]
 您指定的數目越大，求解器就會花越長的時間執行。例如，針對 14 個城市執行可能需花數分鐘，而針對 15 個城市執行可能需花數小時。增加至 16 個或更多城市可能需花數天執行 (最終可能達數周、數月及數年)。這是因為隨著城市數目增加，求解器所評估的排列數目也隨之激增的緣故。
@@ -521,4 +521,4 @@ Azure 可讓您利用虛擬機器處理大量運算工作。例如，虛擬機�
 [default_key]: ./media/virtual-machines-windows-classic-java-run-compute-intensive-task/SvcBusQueues_07_DefaultKey.jpg
 [add_ca_cert]: ../java-add-certificate-ca-store.md
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

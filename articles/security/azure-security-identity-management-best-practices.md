@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/26/2016"
+   ms.date="08/16/2016"
    ms.author="yurid"/>
 
 # Azure 身分識別管理和存取控制安全性最佳作法
@@ -134,4 +134,4 @@
 
 未主動監視其身分識別系統的組織有洩漏使用者認證的風險。若不知道有使用這些認證進行的可疑活動，組織將無法減輕這類型的威脅。您可以閱讀 [Azure Active Directory 身分識別保護](../active-directory/active-directory-identityprotection.md)，進一步了解 Azure 身分識別保護。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0817_2016-->

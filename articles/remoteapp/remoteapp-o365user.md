@@ -13,13 +13,17 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="05/13/2016" 
+    ms.date="08/15/2016" 
     ms.author="elizapo" />
 
 
 
 # 如何搭配 Office 365 使用者帳戶使用 Azure RemoteApp
-如果您有 Office 365 訂用帳戶，就會擁有 Azure Active Directory，其會儲存您用來存取 Office 365 服務的使用者名稱和密碼。例如，當您的使用者啟用 Office 365 ProPlus 時，它們會針對 Azure AD 進行驗證以檢查授權。大部分的客戶會想要使用與 Azure RemoteApp 相同的目錄。
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+
+如果您有 Office 365 訂閱，就會擁有 Azure Active Directory，其會儲存您用來存取 Office 365 服務的使用者名稱和密碼。例如，當您的使用者啟用 Office 365 ProPlus 時，它們會針對 Azure AD 進行驗證以檢查授權。大部分的客戶會想要使用與 Azure RemoteApp 相同的目錄。
 
 如果您正在部署 Azure RemoteApp，您最有可能會使用與不同 Azure AD 相關聯的 Azure 訂用帳戶。若要使用 Office 365 目錄，您必須將 Azure 訂用帳戶移至該目錄。
 
@@ -40,9 +44,9 @@
 - 步驟 1：如果您已在此訂用帳戶中部署 Azure RemoteApp (ARA)，在嘗試執行任何動作之前，請先確定您會從任何 ARA 集合中移除所有的 Azure AD 使用者帳戶。或者，您可以考慮刪除任何現有的集合。
 - 步驟 2：這是一個重要的步驟。您必須使用 Microsoft 帳戶 (例如 @outlook.com) 做為訂用帳戶上的服務管理員。這是因為我們不能將任何來自現有 Azure AD 的使用者帳戶附加到訂用帳戶，如果這樣做，就無法將它移至不同的 Azure AD。
 - 步驟 4：加入現有的目錄時，系統將要求您使用該目錄的系統管理員帳戶登入。請務必使用階段 1 的系統管理員帳戶。
-- 步驟 5：將訂用帳戶的上層目錄變更為 Office 365 目錄。最後的結果應該會在 [設定]-> 您的訂用帳戶列出 Office 365 目錄的 [訂用帳戶] 下方。![變更訂用帳戶的上層目錄](./media/remoteapp-o365user/settings.png)
+- 步驟 5：將訂用帳戶的上層目錄變更為 Office 365 目錄。最後的結果應該會在 [設定] -> 您的訂用帳戶列出 Office 365 目錄的 [訂用帳戶] 下方。![變更訂用帳戶的上層目錄](./media/remoteapp-o365user/settings.png)
  
 
-此時您的 Azure RemoteApp 訂用帳戶會與您的 Office 365 Azure AD 產生相關；您可以搭配 Azure RemoteApp 使用現有的 Office 365 使用者帳戶！
+此時您的 Azure RemoteApp 訂用帳戶會與您的 Office 365 Azure AD 產生關聯；您可以搭配 Azure RemoteApp 使用現有的 Office 365 使用者帳戶！
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

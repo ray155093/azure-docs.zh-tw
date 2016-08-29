@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/03/2016"
+   ms.date="08/15/2016"
    ms.author="kipandya"/>
    
    
@@ -26,7 +26,7 @@ Azure DocumentDB 的設計目的是符合 IoT 應用程式的需求，這類應�
   
 ## 設定多個區域帳戶
 
-透過 Azure 入口網站，不到 1 分鐘就能將您的 DocumentDB 帳戶範圍設定為涵蓋全球。您只需在數個支援且定義完善的一致性層級之間選取正確的一致性層級，並將任意數目的 Azure 區域關聯至您的資料庫帳戶。DocumentDB 一致性層級可讓您在特定的一致性保證與效能之間做出明確的取捨。
+透過 [Azure 入口網站](documentdb-portal-global-replication.md)，不到 1 分鐘就能將您的 DocumentDB 帳戶範圍設定為涵蓋全球。您只需在數個支援且定義完善的一致性層級之間選取正確的一致性層級，並將任意數目的 Azure 區域關聯至您的資料庫帳戶。DocumentDB 一致性層級可讓您在特定的一致性保證與效能之間做出明確的取捨。
 
 ![DocumentDB 提供多個定義完善 (寬鬆) 的一致性模型，讓您可從中選擇][1]
 
@@ -37,7 +37,7 @@ DocumentDB 提供多個定義完善 (寬鬆) 的一致性模型，讓您可從�
 
 ## 使用多個區域容錯移轉 
 
-Azure DocumentDB 能夠透明地在多個 Azure 區域之間為資料庫帳戶進行容錯移轉 – 新的[多首頁 API][developingwithmultipleregions] 能保證您的應用程式可以繼續使用邏輯端點，並可透過容錯移轉使其不會中斷。容錯移轉是由您所控制，在發生任何範圍的可能失敗狀況時提供彈性來重新隸屬您的資料庫帳戶，包括應用程式、基礎結構、服務或區域性失敗 (實際或模擬)。如果發生 DocumentDB 區域性失敗，服務將會透明地為您的資料庫帳戶進行容錯移轉，而您的應用程式可繼續存取資料，而不會遺失可用性。儘管 DocumentDB 提供 [99\.99% 的可用性 SLA][sla]，您還是可以測試應用程式的端對端可用性屬性，方法是[藉由程式][arm]以及透過 Azure 入口網站來模擬區域性失敗。
+Azure DocumentDB 能夠透明地在多個 Azure 區域之間為資料庫帳戶進行容錯移轉 – 新的[多首頁 API][developingwithmultipleregions] 能保證您的應用程式可以繼續使用邏輯端點，並可透過容錯移轉使其不會中斷。容錯移轉是由您所控制，在發生任何範圍的可能失敗狀況時提供彈性來重新隸屬您的資料庫帳戶，包括應用程式、基礎結構、服務或區域性失敗 (實際或模擬)。如果發生 DocumentDB 區域性失敗，服務將會透明地為您的資料庫帳戶進行容錯移轉，而您的應用程式可繼續存取資料，而不會遺失可用性。儘管 DocumentDB 提供 [99\.99% 的可用性 SLA][sla]，您還是可以測試應用程式的端對端可用性屬性，透過[程式設計][arm]或透過 Azure 入口網站兩種方法來模擬區域性失敗。
 
 
 ## 設定涵蓋全球的範圍
@@ -54,7 +54,7 @@ DocumentDB 在 P99 上保證 < 10 毫秒的讀取延遲和 < 15 毫秒的寫入�
 
 ## 啟用全球發佈 
 
-您可以決定要透過將一或多個 Azure 區域關聯至 DocumentDB 資料庫帳戶，在本機或全球發佈您的資料。您可以隨時新增或移除資料庫帳戶的區域。
+您可以決定要透過將一或多個 Azure 區域關聯至 DocumentDB 資料庫帳戶，在本機或全球發佈您的資料。您可以隨時新增或移除資料庫帳戶的區域。若要使用入口網站進行全球發佈，請參閱[如何使用 Azure 入口網站執行 DocumentDB 全球資料庫複寫](documentdb-portal-global-replication.md)。若要以程式設計方式執行全球發佈，請參閱[使用多個區域 DocumentDB 帳戶進行開發](documentdb-developing-with-multiple-regions.md)。
 
 ## 後續步驟
 
@@ -70,21 +70,20 @@ DocumentDB 在 P99 上保證 < 10 毫秒的讀取延遲和 < 15 毫秒的寫入�
 [2]: ./media/documentdb-distribute-data-globally/collection-regions.png
 
 <!--Reference style links - using these makes the source content way more readable than using inline links-->
-[pcolls]: https://azure.microsoft.com/documentation/articles/documentdb-partition-data/
-[consistency]: https://azure.microsoft.com/documentation/articles/documentdb-consistency-levels/
+[pcolls]: documentdb-partition-data.md
+[consistency]: documentdb-consistency-levels.md
 [consistencytradeooffs]: ./documentdb-consistency-levels/#consistency-levels-and-tradeoffs
-[developingwithmultipleregions]: https://azure.microsoft.com/documentation/articles/documentdb-developing-with-multiple-regions/
-[createaccount]: https://azure.microsoft.com/documentation/articles/documentdb-create-account/
-[manageaccount]: https://azure.microsoft.com/documentation/articles/documentdb-manage-account/
-[manageaccount-consistency]: https://azure.microsoft.com/documentation/articles/documentdb-manage-account/#consistency
-[manageaccount-addregion]: https://azure.microsoft.com/documentation/articles/documentdb-manage-account/#addregion
-[throughputandstorage]: https://azure.microsoft.com/documentation/articles/documentdb-manage/
-[arm]: https://azure.microsoft.com/documentation/articles/documentdb-automation-resource-manager-cli/
+[developingwithmultipleregions]: documentdb-developing-with-multiple-regions.md
+[createaccount]: documentdb-create-account.md
+[manageaccount]: documentdb-manage-account.md
+[manageaccount-consistency]: documentdb-manage-account.md#consistency
+[throughputandstorage]: documentdb-manage.md
+[arm]: documentdb-automation-resource-manager-cli.md
 [regions]: https://azure.microsoft.com/regions/
-[serviceregions]: https://azure.microsoft.com/regions/#services
+[serviceregions]: https://azure.microsoft.com/zh-TW/regions/#services
 [pricing]: https://azure.microsoft.com/pricing/details/documentdb/
 [sla]: https://azure.microsoft.com/support/legal/sla/documentdb/
 [vldb]: http://www.vldb.org/pvldb/vol8/p1668-shukla.pdf
-[sqlqueries]: https://azure.microsoft.com/documentation/articles/documentdb-sql-query/
+[sqlqueries]: documentdb-sql-query.md
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

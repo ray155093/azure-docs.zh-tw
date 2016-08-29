@@ -13,20 +13,20 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/05/2016"
+	ms.date="08/12/2016"
 	ms.author="asteen"/>
 
 # 如何更新自己的密碼
 如果您不確定如何管理您的工作或學校帳戶密碼，來這裡就對了。 請閱讀下列內容，了解如何執行常見步驟，例如變更密碼、重設密碼或註冊密碼重設。
 
-* [**如何註冊密碼重設**](#how-to-register-for-password-reset)
+* [**別失去存取帳戶的能力！**](#how-to-register-for-password-reset)
 * [**如何從 Office 365 變更您的密碼**](#how-to-change-your-password-from-o365)
 * [**如何從存取面板變更您的密碼**](#how-to-change-your-password-from-the-access-panel)
 * [**如何重設密碼**](#how-to-reset-your-password)
 * [**如何解除鎖定您的帳戶**](#how-to-unlock-your-account)
 * [**常見問題及其解決方案**](#common-problems-and-their-solutions)
 
-## 如何註冊密碼重設
+## 別失去存取帳戶的能力！
 
 > [AZURE.IMPORTANT]
 **為什麼會看到此內容？** 如果您是透過連結來到此頁面，則看見此內容的原因可能是因為系統管理員要求您註冊密碼重設以取得您應用程式的存取權。系統可能會要求您提供電話或電子郵件資訊，或是設定安全性問題。別擔心，我們不會利用這項資訊來對您廣發垃圾郵件，這麼做只是為了讓您的帳戶更安全。此處所提供的步驟應該可幫助您達到您的目標。
@@ -261,4 +261,4 @@
 [014]: ./media/active-directory-passwords-update-your-own-password/014.jpg "Image_014.jpg"
 [015]: ./media/active-directory-passwords-update-your-own-password/015.jpg "Image_015.jpg"
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

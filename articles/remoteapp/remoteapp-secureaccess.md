@@ -13,10 +13,13 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="06/27/2016" 
+    ms.date="08/15/2016" 
     ms.author="elizapo" />
 
 # 保護 Azure RemoteApp 的存取，且後續將會推出更多功能
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 本文將概述系統管理員要如何設定安全存取通道，讓這條通道起自使用者、經過 Azure RemoteApp，並終止於 SQL 資料庫或另一個應用程式的後端等安全資源。其目標是要確定只有符合所需條件的授權使用者可以存取遠端應用程式，而且只能從受控制的 Azure RemoteApp 環境存取安全的後端，而無法從其他位置進行存取。
 
@@ -108,6 +111,6 @@ Azure RemoteApp 支援兩種集合部署類型，您可以在其中提供您自�
 在使用 Azure RemoteApp 時，您必須先設定 VNet，然後在集合的建立程序期間使用。
 
 ## 完整解決方案
-下圖顯示完整的解決方案，我們在其中建置了起自使用者、經過 Azure RemoteApp (ARA)，並於最後進入後端資源的安全存取通道。![保護 Azure RemoteApp](./media/remoteapp-secureaccess/ra-secureoverview.png)在階段 1 中，我們已選取使用者，並建立了控制 ARA 存取方式的存取規則。在下面的範例中，我們只允許從公司網路進行工作的使用者進行存取。不符合此規定的使用者將完全無法存取 ARA 環境。在「階段 2」中，我們公開了後端資源，但只能透過我們所控制的 VNet/VPN 組態來存取。Azure RemoteApp 已放置於相同的 VNet。最終結果是只能透過 ARA 環境存取資源。
+下圖顯示完整的解決方案，我們在其中建置了起自使用者、經過 Azure RemoteApp (ARA)，並於最後進入後端資源的安全存取通道。![保護 Azure RemoteApp](./media/remoteapp-secureaccess/ra-secureoverview.png) 在階段 1 中，我們已選取使用者，並建立了控制 ARA 存取方式的存取規則。在下面的範例中，我們只允許從公司網路進行工作的使用者進行存取。不符合此規定的使用者將完全無法存取 ARA 環境。在「階段 2」中，我們公開了後端資源，但只能透過我們所控制的 VNet/VPN 組態來存取。Azure RemoteApp 已放置於相同的 VNet。最終結果是只能透過 ARA 環境存取資源。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

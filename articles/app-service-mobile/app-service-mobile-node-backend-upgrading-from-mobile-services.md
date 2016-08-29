@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile"
 	ms.devlang="node"
 	ms.topic="article"
-	ms.date="05/05/2016"
+	ms.date="08/11/2016"
 	ms.author="adrianha"/>
 
 # 將您現有的 Node.js Azure 行動服務升級為 App Service
@@ -191,4 +191,4 @@ Azure Mobile Apps 可讓您在服務內設定 Azure Active Directory、Facebook�
 [ExpressJS Middleware]: http://expressjs.com/guide/using-middleware.html
 [Winston]: https://github.com/winstonjs/winston
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

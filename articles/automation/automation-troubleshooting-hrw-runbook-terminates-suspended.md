@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/18/2016"
+   ms.date="08/17/2016"
    ms.author="magoedte" />
 
 # Hybrid Runbook Worker：Runbook 作業在暫止狀態下終止
@@ -33,7 +33,7 @@ Runbook 執行失敗且傳回的錯誤是「作業動作 'Activate' 無法執行
 這個錯誤的可能原因有幾個，包括︰
 
   1. Hybrid Worker 位於 Proxy 或防火牆後方
-  2. Hybrid Worker 執行所在的電腦未滿足最低硬體[需求](automation-hybrid-runbook-worker.md#hybrid-runbook-worker-requirements) 
+  2. Hybrid Worker 執行所在的電腦未滿足最低硬體[需求](automation-hybrid-runbook-worker.md#hybrid-runbook-worker-requirements)
   3. Runbook 無法使用本機資源驗證
 
 
@@ -57,9 +57,9 @@ Hybrid Runbook Worker 執行所在的電腦位於防火牆或 Proxy 伺服器後
 
 ### 方案
 
-查閱 **Microsoft-SMA** 事件記錄檔，找出描述為「Win32 處理序結束，代碼為 [4294967295]」的對應事件。此錯誤的原因是您尚未在 Runbook 中設定驗證，或尚未指定混合式背景工作角色群組的執行身分認證。請檢閱 [Runbook 權限](automation-hybrid-runbook-worker#runbook-permissions)，確認 Runbook 的驗證設定正確無誤。
+查閱 **Microsoft-SMA** 事件記錄檔，找出描述為「Win32 處理序結束，代碼為 [4294967295]」的對應事件。此錯誤的原因是您尚未在 Runbook 中設定驗證，或尚未指定混合式背景工作角色群組的執行身分認證。請檢閱 [Runbook 權限](automation-hybrid-runbook-worker.md#runbook-permissions)，確認 Runbook 的驗證設定正確無誤。
 
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD" 
-   ms.date="03/24/2016"
+   ms.date="08/17/2016"
    ms.author="alkohli"/>
 
 # 使用 StorSimple Manager 服務變更 StorSimple 密碼
 
-## 概觀 
+## Overview 
 
 Azure 傳統入口網站 [設定]頁面包含所有裝置參數，可讓您重新設定 StorSimple Manager 服務所管理的 StorSimple 裝置。本教學課程說明如何使用 [設定] 頁面，變更您的裝置系統管理員或 StorSimple Snapshot Manager 密碼。
 
@@ -69,4 +69,4 @@ StorSimple Snapshot Manager 密碼現在應該已更新。
 
 - 深入了解[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="05/18/2016"
+   ms.date="08/10/2016"
    ms.author="jgao"/>
 
 # 使用 Azure Data Factory 在 HDInsight 中建立以 Linux 為基礎的隨選 Handooop 叢集
@@ -97,7 +97,7 @@ Data Factory 管線中定義的 Hive 活動會呼叫預先定義的 HiveQL 指�
     azure storage blob copy start "https://hditutorialdata.blob.core.windows.net/adfhiveactivity/inputdata/input.log" --dest-account-name "<Azure Storage Account Name>" --dest-account-key "<Azure Storage Account Key>" --dest-container "adfgetstarted" 
     azure storage blob copy start "https://hditutorialdata.blob.core.windows.net/adfhiveactivity/script/partitionweblogs.hql" --dest-account-name "<Azure Storage Account Name>" --dest-account-key "<Azure Storage Account Key>" --dest-container "adfgetstarted" 
 
-容器名稱為 adfgetstarted。請讓它保持原狀。否則，您必須更新 ARM 範本。
+容器名稱為 adfgetstarted。請讓它保持原狀。否則，您必須更新 Resource Managertemplate。
 
 如需有關此 CLI 指定碼的說明，請參閱[使用 Azure CLI 搭配 Azure 儲存體](../storage/storage-azure-cli.md)。
 
@@ -189,9 +189,9 @@ Data Factory 管線中定義的 Hive 活動會呼叫預先定義的 HiveQL 指�
  
 ## 建立 Data Factory
 
-備妥儲存體帳戶、輸入資料和 HiveQL 指令碼，您就準備好建立 Azure Data Factory。有數種方法可建立 Data Factory。在本教學課程中，您將使用 Azure 入口網站呼叫自訂 ARM 範本。您也可以從 [Azure CLI](../resource-group-template-deploy.md#deploy-with-azure-cli-for-mac-linux-and-windows) 和 [Azure PowerShell](../resource-group-template-deploy.md#deploy-with-powershell) 呼叫 ARM 範本。如需其他 Data Factory 建立方法，請參閱[教學課程︰建立您的第一個 Data Factory](../data-factory/data-factory-build-your-first-pipeline.md)。
+備妥儲存體帳戶、輸入資料和 HiveQL 指令碼，您就準備好建立 Azure Data Factory。有數種方法可建立 Data Factory。在本教學課程中，您將使用 Azure 入口網站呼叫 Resource Managertemplate。您也可以從 [Azure CLI](../resource-group-template-deploy.md#deploy-with-azure-cli-for-mac-linux-and-windows) 和 [Azure PowerShell](../resource-group-template-deploy.md#deploy-with-powershell) 呼叫 Resource Manager 範本。如需其他 Data Factory 建立方法，請參閱[教學課程︰建立您的第一個 Data Factory](../data-factory/data-factory-build-your-first-pipeline.md)。
 
-最上層的 ARM 範本包含︰
+最上層的 Resource Managertemplate 包含︰
 
     {
         "contentVersion": "1.0.0.0",
@@ -320,9 +320,9 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
     
 **建立 Data Factory**
 
-1. 按一下以下影像，在 Azure 入口網站中登入 Azure 並開啟 ARM 範本。此範本位於 https://hditutorialdata.blob.core.windows.net/adfhiveactivity/data-factory-hdinsight-on-demand.json。
+1. 按一下以下影像，在 Azure 入口網站中登入 Azure 並開啟 Resource Managertemplate。此範本位於 https://hditutorialdata.blob.core.windows.net/adfhiveactivity/data-factory-hdinsight-on-demand.json。
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fadfhiveactivity%2Fdata-factory-hdinsight-on-demand.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fadfhiveactivity%2Fdata-factory-hdinsight-on-demand.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/zh-TW/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
 2. 為您在上一節中建立的帳戶輸入 [DATAFACTORYNAME]、[STORAGEACCOUNTNAME] 和 [STORAGEACCOUNTKEY]，然後按一下 [確定]。[Data Factory 名稱] 必須是全域唯一的。
 3. 在 [資源群組] 中，選取您在上一節中使用的相同資源群組。
@@ -334,7 +334,7 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
 
     ![Azure Data Factory HDInsight 隨選 Hive 活動管線圖](./media/hdinsight-hadoop-create-linux-clusters-adf/hdinsight-adf-pipeline-diagram.png)
     
-    名稱已定義於 ARM 範本中。
+    資源會在 Resource Managertemplate 中定義。
 9. 按兩下 [AzureBlobOutput]。
 10. 在 [最近更新的配量] 上，您應該會看到一個配量。如果狀態為 [進行中]，請等到其變更為 [就緒]。
 
@@ -345,7 +345,7 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
     - adfhdinsight-hive-on-demand-hdinsightondemandlinked-xxxxxxxxxxxxx︰這是 HDInsight 叢集的預設容器。預設容器名稱的模式如下："adf>yourdatafactoryname>-linkedservicename-datetimestamp"。
     - adfjobs︰這是 ADF 作業記錄檔的容器。
     
-    如同您在 ARM 範本中所設定，Data Factory 輸出會儲存在 afgetstarted 中。
+    如同您在 Resource Managertemplate 中所設定，Data Factory 輸出會儲存在 afgetstarted 中。
 2. 按一下 [adfgetstarted]。
 3. 按兩下 [partitioneddata]。您會看到 year=2014 資料夾，因為所有 Web 記錄檔的日期皆為 2014 年。
 
@@ -365,14 +365,14 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 按一下左側面板上的 [資源群組]。
-3. 按兩下您在 CLI 或 PowerShell 指令碼中建立的資源群組名稱。如果列出太多的資源群組，請使用篩選器。這會在新的刀鋒視窗中開啟資源群組。
+3. 按兩下您在 CLI 或 PowerShell 指令碼中建立的資源群組名稱。如果列出太多的資源群組，請使用篩選器。會在新的刀鋒視窗中開啟資源群組。
 4. 除非您與其他專案共用資源群組，否則 [資源] 圖格應列出預設儲存體帳戶和 Data Factory。
 5. 按一下刀鋒視窗最上方的 [刪除]。這麼做，您也會刪除儲存體帳戶和此儲存體帳戶中儲存的資料。
 6. 輸入資源群組名稱，然後按一下 [刪除]。
 
 如果您不想在刪除資源群組時刪除儲存體帳戶，您可以考慮以下區隔商務資料與預設儲存體帳戶的架構設計。在此情況下，您會有一個資源群組用於包含商務資料的儲存體帳戶，而另一個資源群組則用於預設儲存體帳戶和 Data Factory。當您刪除第二個資源群組時，並不會影響商務資料儲存體帳戶。若要這樣做：
 
-- 將下列程式碼以及 ARM 範本中的 Microsoft.DataFactory/datafactories 資源加入至最上層資源群組。這會建立新的儲存體帳戶：
+- 將下列程式碼以及 Resource Managertemplate 中的 Microsoft.DataFactory/datafactories 資源加入最上層資源群組。這會建立新的儲存體帳戶：
 
         {
             "name": "[parameters('defaultStorageAccountName')]",
@@ -438,4 +438,4 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
 - [HDInsight 文件](https://azure.microsoft.com/documentation/services/hdinsight/)
 - [Data Factory 文件](https://azure.microsoft.com/documentation/services/data-factory/)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

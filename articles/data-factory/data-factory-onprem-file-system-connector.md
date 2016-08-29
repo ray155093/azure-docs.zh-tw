@@ -34,6 +34,12 @@
 - 在您的 Linux 伺服器上安裝 [Samba](https://www.samba.org/)。
 - 在 Windows 伺服器上安裝和設定資料管理閘道器。不支援在 Linux 伺服器上安裝閘道器。
  
+## 複製資料精靈
+要建立將資料複製到內部部署檔案系統，或複製內部部署檔案系統資料的管線，最簡單的方法是使用複製資料精靈。如需使用複製資料精靈建立管線的快速逐步解說，請參閱[教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md)。
+
+以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)或 [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。它們會示範如何將資料複製到內部部署檔案系統和 Azure Blob 儲存體，以及複製其中的資料。不過，您可以在 Azure Data Factory 中使用複製活動，從任何來源**直接**將資料複製到[這裡](data-factory-data-movement-activities.md#supported-data-stores)所說的任何接收器。
+
+
 ## 範例：將資料從內部部署檔案系統複製到 Azure Blob
 
 此範例示範如何將資料從內部部署檔案系統複製到 Azure Blob 儲存體。不過，您可以在 Azure Data Factory 中使用複製活動，**直接**將資料複製到[這裡](data-factory-data-movement-activities.md#supported-data-stores)所說的任何接收器。
@@ -496,7 +502,7 @@ fileName | 如果您想要資料表參考資料夾中的特定檔案，請指定
 partitionedBy | partitionedBy 可以用來指定時間序列資料的動態 folderPath 和 filename。例如，folderPath 可針對每小時的資料進行參數化。 | 否
 格式 | 支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat** 及 **OrcFormat**。您必須將格式下的 **type** 屬性設定為這些值其中之一。如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat) 及[指定 OrcFormat](#specifying-orcformat) 各節。如果您想要在以檔案為基礎的存放區之間依原樣複製檔案 (二進位複本)，您可以在輸入和輸出資料集定義中略過格式區段。 | 否
 fileFilter | 指定要用來在 folderPath (而不是所有檔案) 中選取檔案子集的篩選器。<br/><br/>允許的值為：(多個字元) 和 ? (單一字元)。<br/><br/>範例 1："fileFilter": ".log"<br/>範例 2："fileFilter": 2014-1-?.txt"<br/><br/>**注意**：fileFilter 適用於輸入 FileShare 資料集 | 否
-| compression | 指定此資料的壓縮類型和層級。支援的類型為：**GZip**、**Deflate** 和 **BZip2**，而支援的層級為：**最佳**和**最快**。請注意，**AvroFormat** 或 **OrcFormat** 格式的資料，目前不支援壓縮設定。如需詳細資訊，請參閱[壓縮支援](#compression-support)一節。 | 否 |
+| compression | 指定此資料的壓縮類型和層級。支援的類型為：**GZip**、**Deflate** 及 **BZip2**，而支援的層級為：**最佳**和**最快**。請注意，**AvroFormat** 或 **OrcFormat** 格式的資料，目前不支援壓縮設定。如需詳細資訊，請參閱[壓縮支援](#compression-support)一節。 | 否 |
 
 > [AZURE.NOTE] 無法同時使用檔名和 fileFilter。
 
@@ -574,4 +580,4 @@ false | mergeFiles | 對於有下列結構的來源資料夾 Folder1：<br/><br/
 
  
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

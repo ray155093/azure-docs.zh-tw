@@ -12,7 +12,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="na"
-    ms.date="05/03/2016"
+    ms.date="08/16/2016"
     ms.author="sethm;clemensv" />
 
 # 事件中樞驗證和安全性模型概觀
@@ -37,7 +37,7 @@
 
 ### 建立 SAS 金鑰
 
-在建立命名空間時，服務匯流排會產生名為 **RootManageSharedAccessKey** 的 256 位元 SAS 金鑰。這個金鑰能授與命名空間的傳送、聆聽及管理權限。您可以建立額外的金鑰。建議您產生授與特定事件中樞之傳送權限的金鑰。針對本主題的其他內容，我們假設您將此金鑰命名為 `EventHubSendKey`。
+建立事件中樞命名空間時，Azure 事件中樞會產生名為 **RootManageSharedAccessKey** 的 256 位元 SAS 金鑰。這個金鑰能授與命名空間的傳送、聆聽及管理權限。您可以建立額外的金鑰。建議您產生授與特定事件中樞之傳送權限的金鑰。在本主題的其他部分，我們假設您將此金鑰命名為 `EventHubSendKey`。
 
 以下範例會在建立事件中樞時建立僅限傳送的金鑰：
 
@@ -105,7 +105,7 @@ SharedAccessSignature sr=contoso&sig=nPzdNN%2Gli0ifrfJwaK4mkK0RqAB%2byJUlt%2bGFm
 
 ACS 支援以多種方法來建立服務身分識別、信賴憑證者及規則，不過最簡單的方法是使用 [SBAZTool](http://code.msdn.microsoft.com/Authorization-SBAzTool-6fd76d93)。例如：
 
-1. 建立 **EventHubSender** 的服務身分識別。這會傳回所建立之服務身分識別的名稱和它的金鑰：
+1. 建立 **EventHubSender** 的服務身分識別。這個作業會傳回所建立之服務身分識別的名稱和它的金鑰：
 
 	```
 	sbaztool.exe exe -n <namespace> -k <key>  makeid eventhubsender
@@ -154,4 +154,4 @@ ACS 支援以多種方法來建立服務身分識別、信賴憑證者及規則�
 [佇列訊息解決方案]: ../service-bus/service-bus-dotnet-multi-tier-app-using-service-bus-queues.md
  
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0817_2016-->

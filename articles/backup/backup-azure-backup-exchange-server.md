@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/19/2016"
+	ms.date="08/15/2016"
 	ms.author="anuragm;jimpark;delhan;trinadhk;markgal"/>
 
 
@@ -25,7 +25,7 @@
 
 >[AZURE.NOTE] 對於本文中的範例，會安裝 Azure 備份代理程式的 2.0.8719.0 版，而更新彙總套件 6 會安裝於 System Center 2012 R2 DPM。
 
-## 先決條件
+## 必要條件
 繼續之前，請確定符合使用 Microsoft Azure 備份保護工作負載的所有[必要條件](backup-azure-dpm-introduction.md#prerequisites)。這些先決條件包含下列各項：
 
 - 已在 Azure 網站上建立備份保存庫。
@@ -132,4 +132,4 @@
 
 - [Azure 備份常見問題集](backup-azure-backup-faq.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

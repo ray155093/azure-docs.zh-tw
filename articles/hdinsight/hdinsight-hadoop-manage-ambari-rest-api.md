@@ -23,8 +23,6 @@
 
 Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢集的管理和監視。以 Linux 為基礎的 HDInsight 叢集上有 Ambari，用來監視叢集並進行組態變更。在這份文件中，您將透過執行一般工作，例如尋找叢集節點的完整格式的網域名稱或尋找叢集所使用的預設儲存體帳戶，學習使用 Ambari REST API 的基本概念。
 
-> [AZURE.NOTE] 本文的資訊僅適用於以 Linux 為基礎的 HDInsight 叢集。針對 Windows 型 HDInsight 叢集，只能透過 Ambari REST API 取得一部分的監視功能。請參閱[在 HDInsight 使用 Ambari API 監視以 Windows 為基礎的 Hadoop](hdinsight-monitor-use-ambari-api.md)。
-
 ##必要條件
 
 * [cURL](http://curl.haxx.se/)：cURL 是跨平台公用程式，可以用來從命令列使用 REST API。在本文件中，它用來與 Ambari REST API 進行通訊。
@@ -164,7 +162,7 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
 
     您需要從此清單中複製元件的名稱 (例如，__spark\_thrift\_sparkconf__ 和 __tag__ 值。
     
-2. 使用下列命令以擷取元件和標記的組態。將 __spark-thrift-sparkconf__ 和 __INITIAL__ 取代為您想要擷取其組態的元件和標記。
+2. 使用下列命令以擷取元件和標記的組態。將 __spark-thrift-sparkconf__ 和 __INITIAL__ 取代為您想要擷取其組態的元件和標籤。
 
         curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/configurations?type=spark-thrift-sparkconf&tag=INITIAL" | jq --arg newtag $(echo version$(date +%s%N)) '.items[] | del(.href, .version, .Config) | .tag |= $newtag | {"Clusters": {"desired_config": .}}' > newconfig.json
     
@@ -255,4 +253,4 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
 
 > [AZURE.NOTE] 某些 Ambari 功能已停用，因為這些功能是由 HDInsight 雲端服務所管理；例如，在叢集中新增或移除主機，或新增服務。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

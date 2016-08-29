@@ -13,16 +13,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration"
-   ms.date="08/01/2016"
+   ms.date="08/11/2016"
    ms.author="jehollan"/>
 
 # Logic Apps 範例和常見案例
 
 本文件詳述常見案例和範例，協助您了解可使用邏輯應用程式將商務程序自動化的一些方法。
 
-## 觸發程序及動作
+## 自訂觸發程序和動作
 
-有幾種方法可從另一個應用程式觸發邏輯應用程式。以下是其中幾個方法：
+有幾種方法可從另一個應用程式觸發邏輯應用程式。以下是一些常見範例︰
 
 - [建立自訂觸發程序或動作](app-service-logic-create-api-app.md)
 - [長時間執行的動作](app-service-logic-create-api-app.md)
@@ -33,9 +33,11 @@
 ### 案例
 
 - [要求同步回應](app-service-logic-http-endpoint.md)
+- [使用 SMS 的要求回應](https://channel9.msdn.com/Blogs/Windows-Azure/Azure-Logic-Apps-Walkthrough-Webhook-Functions-and-an-SMS-Bot)
 
 ## 錯誤處理和記錄
 
+- [例外狀況和錯誤處理](app-service-logic-exception-handling.md)
 - [設定 Azure 警示和診斷](app-service-logic-monitor-your-logic-apps.md)
 
 ### 案例
@@ -77,4 +79,4 @@ Logic Apps [工作流程定義語言](http://aka.ms/logicappsdocs)包含許多�
 
 我們將持續在本文件中加入範例和案例。請使用下列意見段落，讓我們知道您想要在這裡看到的範例或案例。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

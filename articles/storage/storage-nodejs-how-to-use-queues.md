@@ -13,15 +13,15 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="nodejs"
 	ms.topic="article"
-	ms.date="06/24/2016"
+	ms.date="08/11/2016"
 	ms.author="robmcm"/>
 
 
 # 如何使用 Node.js 的佇列儲存體
 
-[AZURE.INCLUDE [storage-selector-queue-include](../../includes/storage-selector-queue-include.md)]
+[AZURE.INCLUDE [storage-selector-queue-include](../../includes/storage-selector-queue-include.md)] <br/> [AZURE.INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-queues.md)]
 
-## 概觀
+## Overview
 
 本指南示範如何使用 Microsoft Azure 佇列服務執行常見案例。這些範例使用 Node.js API 撰寫。所涵蓋的案例包括「插入」、「查看」、「取得」和「刪除」佇列訊息，以及「建立和刪除佇列」。
 
@@ -31,7 +31,7 @@
 
 ## 建立 Node.js 應用程式
 
-建立空白的 Node.js 應用程式。如需建立 Node.js 應用程式的相關指示，請參閱[在 Azure App Service 中建立 Node.js Web 應用程式]、使用 Windows PowerShell [建立 Node.js 應用程式並部署至 Azure 雲端服務]，或[使用 Web Matrix 建立 Node.js Web 應用程式並部署至 Azure]。
+建立空白的 Node.js 應用程式。如需建立 Node.js 應用程式的相關指示，請參閱[在 Azure App Service 中建立 Node.js Web 應用程式]、[使用 Windows PowerShell 建立 Node.js 應用程式並部署至 Azure 雲端服務]，或[使用 Web Matrix 建立 Node.js Web 應用程式並部署至 Azure]。
 
 ## 設定您的應用程式以存取儲存體
 
@@ -39,7 +39,7 @@
 
 ### 使用 Node Package Manager (NPM) 取得封裝
 
-1.  使用命令列介面，例如 **PowerShell** (Windows)、[終端機] \(Mac) 或 **Bash** (Unix)，瀏覽到您建立範例應用程式的資料夾。
+1.  使用命令列介面，例如 **PowerShell** (Windows)、[終端機] (Mac) 或 **Bash** (Unix)，瀏覽到您建立範例應用程式的資料夾。
 
 2.  在命令視窗中輸入 **npm install azure-storage**。此命令的輸出類似下列範例。
 
@@ -86,7 +86,7 @@ Azure 模組會讀取環境變數 AZURE\_STORAGE\_ACCOUNT 及 AZURE\_STORAGE\_AC
 
 ### 篩選器
 
-可以將選用性的篩選操作套用到使用 **QueueService** 執行的操作。篩選作業可包含記錄、自動重試等。篩選器是使用簽章實作方法的物件：
+可以將選用性的篩選操作套用到使用 **QueueService** 執行的操作。篩選作業可以包含記錄、自動重試等。篩選器是使用簽章實作方法的物件：
 
 	function handle (requestOptions, next)
 
@@ -321,8 +321,8 @@ ACL 是使用存取原則陣列來實作，每個原則有相關聯的識別碼�
 
 
 
-  [建立 Node.js 應用程式並部署至 Azure 雲端服務]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
+  [使用 Windows PowerShell 建立 Node.js 應用程式並部署至 Azure 雲端服務]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
   [Azure 儲存體團隊部落格]: http://blogs.msdn.com/b/windowsazurestorage/
   [使用 Web Matrix 建立 Node.js Web 應用程式並部署至 Azure]: ../app-service-web/web-sites-nodejs-use-webmatrix.md
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="jeevansd"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/17/2016"
+	ms.date="08/12/2016"
 	ms.author="jeedes"/>
 
 
@@ -56,7 +56,7 @@
 
 **若要從資源庫新增 Small Improvements，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![Active Directory][1]
 
@@ -70,7 +70,7 @@
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![應用程式][4]
 
@@ -111,7 +111,7 @@
 
 	![設定單一登入](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_03.png)
 
-3. 在 [設定 App 設定] 對話方塊頁面執行下列步驟：
+3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟：
 
 	![設定單一登入](./media/active-directory-saas-smallimprovements-tutorial/tutorial_smallimprovements_04.png)
 
@@ -156,7 +156,7 @@
 	e.按一下 [儲存]。
 
 
-6. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按一下 [下一步]。
+6. 在 Azure 傳統入口網站中，選取單一登入設定確認，然後按 [下一步]。
 
 	![Azure AD 單一登入][10]
 
@@ -168,7 +168,7 @@
 
 
 ### 建立 Azure AD 測試使用者
-本節目標是在 Azure 傳統入口網站中建立名為 Britta Simon 的測試使用者。
+本節的目標是要在 Azure 傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
 
@@ -180,15 +180,15 @@
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-smallimprovements-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-smallimprovements-tutorial/create_aaduser_04.png)
 
-5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行以下步驟：
+5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-smallimprovements-tutorial/create_aaduser_05.png)
 
@@ -278,7 +278,7 @@
 
 ### 測試單一登入
 
-本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。當您在存取面板中按一下 [Small Improvements] 磚時，應該會自動登入 Small Improvements 應用程式。
+本節的目標是要使用「存取面板」來測試您的 Azure AD 單一登入組態。當您在存取面板中按一下 [Small Improvements] 磚時，應該會自動登入 Small Improvements 應用程式。
 
 
 ## 其他資源
@@ -305,4 +305,4 @@
 [204]: ./media/active-directory-saas-smallimprovements-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-smallimprovements-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

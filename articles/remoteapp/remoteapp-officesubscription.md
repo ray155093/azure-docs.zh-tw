@@ -1,6 +1,6 @@
 
 <properties 
-    pageTitle="如何搭配 Azure RemoteApp 使用 Office 365 訂用帳戶 | Microsoft Azure"
+    pageTitle="如何搭配 Azure RemoteApp 使用 Office 365 訂閱 | Microsoft Azure"
 	description="了解如何使用 Azure RemoteApp 中的 Office 365 訂閱共用 Office 應用程式。"
 	services="remoteapp"
 	documentationCenter="" 
@@ -13,12 +13,15 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="06/13/2016" 
+    ms.date="08/15/2016" 
     ms.author="elizapo" />
 
 
 
 # 如何搭配 Azure RemoteApp 使用 Office 365 訂閱
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 您知道可以使用 Azure RemoteApp 中的現有 Office 365 訂閱來共用雲端中的 Office 應用程式嗎？ 請繼續閱讀以了解 Office 365 + Azure RemoteApp 選項的相關資訊，其中包含可協助您充分運用 Office 365 訂閱的相關文章連結。
 
@@ -73,7 +76,7 @@ RemoteApp 訂用帳戶中的 Office 365 ProPlus 映像包含 Visio Pro 和 Proje
 
 ### 使用 Azure 資源庫映像
 
-將 Office 365 ProPlus 部署至集合最簡單的方法，是[從其中一個 Azure 資源庫映像啟動](remoteapp-image-on-azurevm.md)，該映像包含在 Azure RemoteApp 訂用帳戶中。請務必選擇 **Windows Server 遠端桌面工作階段主機與預先安裝的 Office 365 ProPlus** 映像。接著，在該映像中安裝想要的任何其他應用程式，便可開始使用。
+將 Office 365 ProPlus 部署至集合最簡單的方法，是從[其中一個 Azure 資源庫映像啟動](remoteapp-image-on-azurevm.md)，該映像包含在 Azure RemoteApp 訂用帳戶中。請務必選擇 **Windows Server 遠端桌面工作階段主機與預先安裝的 Office 365 ProPlus** 映像。接著，在該映像中安裝想要的任何其他應用程式，便可開始使用。
 
 ### 使用自訂映像
 
@@ -97,7 +100,7 @@ RemoteApp 訂用帳戶中的 Office 365 ProPlus 映像包含 Visio Pro 和 Proje
 
 須更新集合中的映像有許多原因。以下列出幾個原因：
 
-- 取得最新的 Windows 更新 
+- 取得最新的 Windows 更新
 - 取得最新的 Office 365 ProPlus 應用程式更新
 - 更新您的自訂應用程式
 - 變更映像本身的其他組態設定
@@ -123,4 +126,4 @@ RemoteApp 訂用帳戶中的 Office 365 ProPlus 映像包含 Visio Pro 和 Proje
 - [使用 Office 部署工具部署及更新 Office 365 ProPlus](https://channel9.msdn.com/Events/Ignite/2015/BRK3168) (影片)
 - [設定 Office 365 ProPlus 的更新設定](https://technet.microsoft.com/library/dn761708.aspx)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0817_2016-->

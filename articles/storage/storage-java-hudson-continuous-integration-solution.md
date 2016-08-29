@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="06/24/2016" 
+	ms.date="08/11/2016" 
 	ms.author="robmcm"/>
 
 # 使用 Azure 儲存體與 Hudson 連續整合解決方案
 
-## 概觀
+## Overview
 
 下列資訊說明如何使用 Blob 儲存體，做為 Hudson 連續整合 (CI) 解決方案所建立的組建構件儲存機制，或做為在組建程序中要使用之可下載檔案的來源。您會發現這很實用的其中一種情況就是，當您在敏捷式開發環境中編寫程式碼 (使用 Java 或其他語言) 時，組建是根據連續整合來執行，而您需要一個存放庫來存放組建成品，以便能夠將這些成品分享給其他組織成員或客戶，或是維護封存等等。另一種情況是當組建工作本身需要其他檔案時，例如，要隨組建輸入一起下載的相依性項目。
 
@@ -122,7 +122,7 @@ Hudson 提供軟體專案的連續整合，方法是允許開發人員輕易整�
     在您為 [Execute Windows batch command] 輸入指令碼的 [命令] 區段下方是個連結，可連結到 Hudson 認可的環境變數。按一下該連結即可了解各環境變數名稱和描述。請注意，含有特殊字元的環境變數 (例如 **BUILD\_URL** 環境變數) 不能當做容器名稱或共同虛擬路徑。
 
 8. 在此範例中，請按一下 [Make new container public by default]。(如果您想要使用私用容器，則需要建立共用存取簽章來允許存取。這已超出本文的範圍。您可以參閱[共用存取簽章：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)，以進一步了解共用存取簽章。
-9. [選擇性] 如果您要在上傳組建成品之前清除容器的內容，請按一下 [Clean container before uploading] \(若不想清除容器的內容，請維持不核取)。
+9. [選擇性] 如果您要在上傳組建成品之前清除容器的內容，請按一下 [Clean container before uploading] (若不想清除容器的內容，請維持不核取)。
 10. 在 [List of Artifacts to upload]，輸入 *text/*.txt*。
 11. 在 [Common virtual path for uploaded artifacts]，輸入 **${BUILD\_ID}/${BUILD\_NUMBER}**。
 12. 按一下 [Save] 儲存您的設定。
@@ -182,4 +182,4 @@ Hudson 提供軟體專案的連續整合，方法是允許開發人員輕易整�
 
 如需詳細資訊，另請參閱 [Java 開發人員中心](https://azure.microsoft.com/develop/java/)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

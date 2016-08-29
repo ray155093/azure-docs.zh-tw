@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="08/04/2016"
+   ms.date="08/15/2016"
    ms.author="rickbyh;barbkess;sonyama"/>
 
 # 適用於 Azure SQL 資料倉儲的驗證
@@ -24,7 +24,7 @@
 - [驗證](sql-data-warehouse-authentication.md)
 - [驅動程式](sql-data-warehouse-connection-strings.md)
 
-若要連線到 SQL 資料倉儲，您必須傳入安全性認證進行驗證用途。建立連線時，您也會看到特定連線設定都設定為建立查詢工作階段的一部分。
+若要連線到 SQL 資料倉儲，您必須傳入安全性認證進行驗證用途。建立連線時，會設定特定的連線設定，以做為建立查詢工作階段的一部分。
 
 如需安全性以及如何啟用您資料倉儲連線的詳細資訊，請參閱[保護 SQL 資料倉儲中的資料庫][]。
 
@@ -39,10 +39,10 @@
 
 根據預設，您的連線會連線至主要資料庫，而非您的使用者資料庫。若要連線到您的使用者資料庫，您可以選擇執行下列兩個動作之一：
 
-1. 使用伺服器註冊 SSDT、SSMS 或應用程式連接字串中的 SQL Server 物件總管時，請指定預設資料庫。例如，藉由包含 ODBC 連線的 InitialCatalog 參數。
-2. 在 SSDT 中建立工作階段之前先反白顯示使用者資料庫。
+- 使用伺服器註冊 SSDT、SSMS 或應用程式連接字串中的 SQL Server 物件總管時，請指定預設資料庫。例如，藉由包含 ODBC 連線的 InitialCatalog 參數。
+- 在 SSDT 中建立工作階段之前先反白顯示使用者資料庫。
 
-> [AZURE.NOTE] 如需連線到 SQL 資料倉儲與 SSDT 的指引，請回頭參閱[使用 Visual Studio 查詢][]文章。
+> [AZURE.NOTE] 如需使用 SSDT 連線到 SQL 資料倉儲的指引，請參閱[使用 Visual Studio 查詢][]文章。
 
 也請務必注意，變更連線的資料庫時，Transact-SQL 陳述式 **USE <您的資料庫>** 不受支援
 
@@ -62,6 +62,7 @@
 - 它可以藉由啟用整合式 Windows 驗證和 Azure Active Directory 支援的其他形式驗證來避免儲存密碼。
 - Azure Active Directory 驗證會使用自主資料庫使用者，在資料庫層級驗證身分。
 - Azure Active Directory 針對連線到 SQL 資料倉儲的應用程式支援權杖型驗證。
+- 設定 Azure Active Directory 驗證時，SQL Server Management Studio 會透過 Active Directory 通用驗證支援 Multi-Factor Authentication。如需 Multi-Factor Authentication 的說明，請參閱[適用於 Azure AD MFA 與 SQL Database 和 SQL 資料倉儲的 SSMS 支援](../sql-database/sql-database-ssms-mfa-authentication.md)。
 
 
 ### 組態步驟
@@ -90,4 +91,4 @@ Azure Active Directory 使用者目前不會顯示在 SSDT 物件總管中。解
 [使用 Visual Studio 查詢]: ./sql-data-warehouse-query-visual-studio.md
 [What is Azure Active Directory]: ../active-directory/active-directory-whatis.md
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

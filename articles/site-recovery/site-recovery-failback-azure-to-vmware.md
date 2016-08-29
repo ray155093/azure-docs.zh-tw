@@ -28,7 +28,7 @@
 
 
 
-## 概觀
+## Overview
 
 下圖說明此案例的容錯回復架構。
 
@@ -38,7 +38,7 @@
 
 當處理序伺服器在 Azure 上，而且您有 VPN 或 ExpressRoute 連接，請使用此架構。
 
-![VPN 的架構圖](./media/site-recovery-failback-azure-to-vmware-classic/architecture2.PNG)
+![VPN 的架構圖](./media/site-recovery-failback-azure-to-vmware-classic/architecture2.png)
 
 若要查看完整的連接埠清單及容錯回復架構圖，請參閱下圖
 
@@ -58,8 +58,8 @@
 
 - 如果您容錯移轉實體伺服器，則一律會容錯回復至新的 VMware VM。
 	- 在容錯回復實體機器之前，請注意：
-	- 當從 Azure 容錯移轉回復至 VMware 時，受保護的實體機器會回復成虛擬機器。
-	- 請確認連同您需要容錯回復的必要 ESX/ESXi 主機，您探索至少一部主要目標伺服器。
+		- 當從 Azure 容錯移轉回復至 VMware 時，受保護的實體機器會回復成虛擬機器。
+		- 請確認您連同需要容錯回復的必要 ESX/ESXi 主機，有探索至少一部主要目標伺服器。
 - 如果您要容錯回復到原始 VM，則必須符合下列條件：
 	- 如果 VM 是由 vCenter 伺服器管理，主要目標的 ESX 主機應該可以存取 VM 資料存放區。
 	- 如果 VM 位於 ESX 主機上，但不受 vCenter 管理，則 VM 的硬碟必須位於可由主要目標主機存取的資料存放區內。
@@ -69,7 +69,7 @@
 - 當您容錯回復至替代位置時，資料將會復原到內部部署主要目標伺服器所使用的相同資料存放區和相同 ESX 主機上。
 
 
-## 先決條件
+## 必要條件
 
 - 您需要擁有 VMware 環境才能容錯回復 VMware VM 和實體伺服器。不支援容錯回復至實體伺服器。
 - 若要容錯回復，您應該在最初設定保護時就已建立 Azure 網路。要進行容錯回復，就需要有從 Azure 網路 (Azure VM 所在網路) 連往內部部署網站的 VPN 或 ExpressRoute 連線。
@@ -96,11 +96,11 @@
 
 如果您已經將您的機器做為傳統資源保護 (也就是在 Azure 中復原的 VM 是傳統的 VM)，那麼您需要 Azure 中的傳統處理序伺服器。如果您已經將機器復原為資源管理員部署類型，則您需要資源管理員部署類型的處理序伺服器。類型是由您在其中部署處理序伺服器的 Azure 虛擬網路所選取。
 
-1.  在 [適用於 VMware 與實體機器] 標題下的 [保存庫] > [設定] > [管理站台復原基礎結構] > [組態伺服器] 中，選取組態伺服器。按一下 [開啟] + [處理序伺服器]
+1.  在 [保存庫] > [設定] > [站台復原基礎結構] (位於 [管理] 標題下方) > [組態伺服器] (位於 [適用於 VMware 與實體機器] 標題下方) 中，選取組態伺服器。按一下於下列範例螢幕擷取畫面中以黃色醒目提示的 [+ 處理序伺服器]。
 
-	![](./media/site-recovery-failback-azure-to-vmware-new/add-processserver.PNG)
+	![](./media/site-recovery-failback-azure-to-vmware-classic/add-processserver.png)
 
-2. 選擇將處理序伺服器部署為「在 Azure 中部署容錯回復處理序伺服器」
+2. 選擇將處理序伺服器部署為「在 Azure 中部署容錯回復處理序伺服器」。
 
 3. 選取您已在其中復原機器的訂用帳戶。
 
@@ -108,11 +108,11 @@
 
 5. 如果您已選取 [傳統部署] 網路 - 系統會要求您透過 Azure 資源庫建立新的 VM，並在其中安裝處理序伺服器。
 
-	![](./media/site-recovery-failback-azure-to-vmware-new/add-classic.PNG)
+	![](./media/site-recovery-failback-azure-to-vmware-classic/add-classic.png)
 	
 	1. 映像的名稱是 Microsoft Azure Site Recovery Process Server V2。請確定您選取 [傳統] 做為部署模型。
 	
-		![](./media/site-recovery-failback-azure-to-vmware-new/templateName.PNG)
+		![](./media/site-recovery-failback-azure-to-vmware-classic/templatename.png)
 	
 	2. 根據[這裡提供](./site-recovery-vmware-to-azure-classicz.md#step-5-install-the-management-server)的各步驟安裝處理序伺服器
 	
@@ -128,7 +128,7 @@
 	
 	5. 選擇特定子網路和網路介面來連接至處理序伺服器。注意 - 您必須建立您自己的[網路介面](../virtual-network/virtual-networks-multiple-nics.md) (NIC)，並在部署時選取它。
 	
-		![](./media/site-recovery-failback-azure-to-vmware-new/PSinputsadd.PNG)
+		![](./media/site-recovery-failback-azure-to-vmware-classic/psinputsadd.png)
 	
 	6. 按一下 [確定]。這樣會觸發利用處理序伺服器安裝程式建立資源管理員部署類型虛擬機器的工作。您必須在 VM 內部執行安裝程式，將伺服器註冊到組態伺服器。您可以依照[這些步驟](./site-recovery-vmware-to-azure-classic.md#step-5-install-the-management-server)進行。
 
@@ -137,7 +137,7 @@
 7. 在結束時，處理序伺服器應該會列在 [組態伺服器] 頁面 [處理序伺服器] 索引標籤中的相關聯伺服器區段底下。![](./media/site-recovery-failback-azure-to-vmware-new/pslistingincs.png)
 
 		
-	>[AZURE.NOTE] 該伺服器不會顯示在 [VM 屬性] 底下。只會顯示在其已註冊所在之管理伺服器的 [伺服器] 索引標籤底下。處理序伺服器大約需要 10-15 分鐘才會出現。
+	>[AZURE.NOTE] 該伺服器不會顯示在 [VM 屬性] 下。該伺服器只會顯示在它已註冊之管理伺服器的 [伺服器] 索引標籤底下。處理序伺服器大約需要 10-15 分鐘才會出現。
 
 
 ## 在內部部署環境中設定主要目標伺服器
@@ -155,27 +155,27 @@
 
 #### 安裝 CentOS 6.6
 
-1.	在管理伺服器 VM 上安裝 CentOS 6.6 最小作業系統。在 DVD 光碟機中放入 ISO，並啟動系統。略過媒體測試，選取美式英文語言，選取 [基本存放裝置]，確認硬碟機上沒有重要資料，然後按一下 [是] 以捨棄其中的所有資料。輸入管理伺服器的主機名稱，然後選取伺服器的網路介面卡。在 [編輯系統] 對話方塊中，選取 [自動連線]，並新增靜態 IP 位址、網路和 DNS 設定。指定時區，以及用來存取管理伺服器的根密碼。
-2.	當系統要求您指定安裝類型時，請選取 [建立自訂配置] 作為磁碟分割。按一下 [下一步] 之後，選取 [免費] 並按一下 [建立]。以 **FS 類型：****ext4** 建立 **/**、**/var/crash** 和 **/home** 磁碟分割。將交換磁碟分割建立為 **FS 類型：swap**。
-3.	如果找到現存裝置，將會出現警告訊息。按一下 [格式化] 以磁碟分割設定格式化該磁碟機。按一下 [將變更寫入磁碟] 以套用磁碟分割的變更。
+1.	在管理伺服器 VM 上安裝 CentOS 6.6 最小作業系統。在 DVD 光碟機中放入 ISO，並啟動系統。略過媒體測試、於語言選取美式英文、選取 [基本存放裝置]、確認硬碟機上沒有重要資料，然後按一下 [是] 以捨棄其中的所有資料。輸入管理伺服器的主機名稱，然後選取伺服器的網路介面卡。在 [編輯系統] 對話方塊中，選取 [自動連線]，然後新增靜態 IP 位址、網路和 DNS 設定。指定時區，以及用來存取管理伺服器的根密碼。
+2.	當系統要求您指定安裝類型時，請選取 [建立自訂配置] 做為磁碟分割。按一下 [下一步] 之後，請選取 [免費] 並按一下 [建立]。使用 [FS 類型：ext4] 來建立 **/**、**/var/crash** 和 **/home** 磁碟分割。將交換磁碟分割建立為 [FS 類型：swap]。
+3.	如果找到現存裝置，將會出現警告訊息。按一下 [格式化] 以使用磁碟分割設定將該磁碟機格式化。按一下 [將變更寫入磁碟] 以套用磁碟分割變更。
 4.	選取 [安裝開機載入器] > [下一步] 以在根磁碟分割上安裝開機載入器。
 5.	安裝完成時，按一下 [重新開機]。
 
 
 #### 擷取 SCSI 識別碼
 
-1. 在安裝後擷取 VM 中每個 SCSI 硬碟的 SCSI 識別碼。若要執行此作業，請將管理伺服器 VM 關機，然後在 VMware 的 VM 屬性中以滑鼠右鍵按一下 VM 項目 > [編輯設定] > [選項]。
+1. 在安裝後，擷取 VM 中每個 SCSI 硬碟的 SCSI 識別碼。若要執行此作業，請將管理伺服器 VM 關機，然後在 VMware 的 VM 屬性中以滑鼠右鍵按一下 VM 項目 > [編輯設定] > [選項]。
 2. 選取 [進階] > [一般項目]，然後按一下 [組態參數]。機器在執行時會停用此選項。若要啟用，則必須將機器關閉。
-3. 如果 **disk.EnableUUID** 資料列存在，請確定此值設定為 [True] (有區分大小寫)。如果已如此設定，則可加以取消，然後在機器開機之後，於客體作業系統內部測試 SCSI 命令。
-4.	如果此資料列不存在，請按一下 [加入資料列]，並以 [True] 值來加入它。請勿使用雙引號。
+3. 如果 **disk.EnableUUID** 資料列存在，請確定其值已設定為 [True] (有區分大小寫)。如果已如此設定，則可加以取消，然後在機器開機之後，於客體作業系統內部測試 SCSI 命令。
+4. 如果該資料列不存在，請按一下 [加入資料列]，並以 [True] 值新增它。請勿使用雙引號。
 
 #### 安裝其他封裝
 
 您必須另外下載並安裝一些封裝。
 
 1.	確定主要目標伺服器已連線到網際網路。
-2.	執行下列命令以從 CentOS 儲存機制下載和安裝 15 個套件：**# yum install –y xfsprogs perl lsscsi rsync wget kexec-tools**。
-3.	如果所要保護之來源機器的根目錄或開機裝置是執行 Linux wit Reiser 或 XFS 檔案系統，則應該下載並安裝下列額外封裝：
+2.	執行下列命令以從 CentOS 儲存機制下載並安裝 15 個套件：**# yum install –y xfsprogs perl lsscsi rsync wget kexec-tools**。
+3.	如果所要保護之來源機器的根目錄或開機裝置是執行搭配 Reiser 的 Linux，或是 XFS 檔案系統，則應該下載並安裝下列額外封裝：
 
 	- # cd /usr/local
 	- # wget [http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/kmod-reiserfs-0.0-1.el6.elrepo.x86_64.rpm](http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/kmod-reiserfs-0.0-1.el6.elrepo.x86_64.rpm)
@@ -188,8 +188,8 @@
 
 完成後續安裝步驟並已安裝封裝之後，請執行下列動作以套用自訂變更：
 
-1.	將 RHEL 6-64 整合代理程式二進位檔複製到 VM。執行這個命令來解壓縮二進位檔：**tar -zxvf <檔案名稱>**
-2.	執行此命令，以授與權限：**# chmod 755 ./ApplyCustomChanges.sh**
+1.	將 RHEL 6-64 整合代理程式二進位檔複製到 VM。執行此命令來將二進位檔解壓縮：**tar –zxvf <檔案名稱>**
+2.	執行此命令來授與權限：**# chmod 755 ./ApplyCustomChanges.sh**
 3.	執行指令碼：**# ./ApplyCustomChanges.sh**。指令碼只應執行一次。在指令碼順利執行後，請重新啟動伺服器。
 
 
@@ -205,9 +205,9 @@
 
 6.  容錯回復原則將會自動選取。
 
-7.	在您按一下 [確定] 以開始重新保護之後，就會開始執行將 VM 從 Azure 複寫到內部部署網站的作業。您可以在 [工作] 索引標籤上追蹤進度。
+7.	在您按一下 [確定] 以開始重新保護之後，就會開始執行將 VM 從 Azure 複寫到內部部署網站的作業。您可以在 [作業] 索引標籤上追蹤進度。
 
-如果您想要復原到替代位置，請選取為主要目標伺服器所設定的保留磁碟機和資料存放區。當您容錯回復到內部部署網站時，容錯回復保護計畫中的 VMware VM 會使用與主要目標伺服器相同的資料存放區。如果您想要將複本 Azure VM 復原到相同的內部部署 VM，則內部部署 VM 必須已位於與主要目標伺服器相同的資料存放區內。如果內部部署環境中沒有任何 VM，則會在重新保護期間建立一個新的 VM。![](./media/site-recovery-failback-azure-to-vmware-new/reprotectinputs.png)
+如果您想要復原到替代位置，請選取為主要目標伺服器所設定的保留磁碟機和資料存放區。當您容錯回復到內部部署網站時，容錯回復保護計畫中的 VMware VM 會使用與主要目標伺服器相同的資料存放區。如果您想要將複本 Azure VM 復原到相同的內部部署 VM，則內部部署 VM 必須已位於與主要目標伺服器相同的資料存放區內。如果內部部署環境中沒有任何 VM，則會在重新保護期間建立一個新的 VM。 ![](./media/site-recovery-failback-azure-to-vmware-new/reprotectinputs.png)
 
 
 
@@ -219,8 +219,8 @@
 
 重新保護 VM 後，您可以起始從 Azure 至內部部署的容錯移轉。
 
-1.	在 [複製的項目] 頁面中，選取包含以滑鼠右鍵按一下 [非計劃性容錯移轉] 的虛擬機器。
-2.	在 [確認容錯移轉] 中，確認容錯移轉方向 (從 Azure) 並選取您想要用來進行容錯移轉的復原點 (最近的復原點或最近的應用程式一致復原點)。應用程式一致復原點會在最近的復原點之後，因此將造成部分資料遺失。
+1.	在 [複製的項目] 頁面中，請選取虛擬機器，並以滑鼠右鍵按一下以選取 [非計劃性容錯移轉]。
+2.	在 [確認容錯移轉] 中，確認容錯移轉方向 (以 Azure 為來源)，並選取您想要用來進行容錯移轉的復原點 (最近的復原點或最近的應用程式一致復原點)。應用程式一致復原點會在最近的復原點之後，因此將造成部分資料遺失。
 3.	在容錯移轉期間，Site Recovery 會關閉 Azure VM。在確認容錯回復已如預期完成後，您可以確認 Azure VM 是否已如預期般關閉。
 
 ### 重新保護內部部署網站
@@ -252,4 +252,4 @@
 - ExpressRoute 應該設定在來源機器所要容錯移轉到的 Azure 虛擬網路上，以及容錯移轉發生時 Azure VM 所位於的 Azure 虛擬網路上。
 - 資料會複寫至公用端點上的 Azure 儲存體帳戶。您應該在 ExpressRoute 中設定與目標資料中心的公用對等互連，這樣一來，Site Recovery 複寫才能使用 ExpressRoute。
 
-<!----HONumber=AcomDC_0713_2016----->
+<!---HONumber=AcomDC_0817_2016-->

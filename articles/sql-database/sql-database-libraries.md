@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/03/2016"
+	ms.date="08/17/2016"
 	ms.author="pehteh"/>
 
 # SQL Database 和 SQL Server 的連線庫
 
-本主題列出當連接到 Azure SQL Database 或 Microsoft SQL Server 時，用戶端程式可使用之每個程式庫/驅動程式。
+本主題列出用戶端程式在連線到 Azure SQL Database 或 Microsoft SQL Server 時可使用的每個程式庫/驅動程式。
 
 
 | 語言 | 平台 | 其他資源 | 下載 |
@@ -30,4 +30,4 @@
 | Python | Windows、Linux、Mac | [使用 Python 連接到 SQL Database](sql-database-develop-python-simple.md) | [安裝](https://msdn.microsoft.com/library/mt694094.aspx) |
 | Ruby | Windows、Linux、Mac | [使用 Ruby 連接到 SQL Database](sql-database-develop-ruby-simple.md) | [安裝](https://msdn.microsoft.com/library/mt711041.aspx) |
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

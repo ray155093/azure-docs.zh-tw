@@ -29,7 +29,7 @@ Azure Data Factory 目前只支援將資料從 Salesforce 移動到 [支援的�
 ## 複製資料精靈
 若要建立管線以將資料從 Salesforce 複製到任何支援的接收資料存放區，最簡單的方式是使用複製資料精靈。如需使用複製資料精靈建立管線的快速逐步解說，請參閱[教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md)。
 
-以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。
+以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。這些範例示範如何將資料從 Salesforce 複製到 Azure Blob 儲存體。不過，您可以在 Azure Data Factory 中使用複製活動，將資料複製到[這裡](data-factory-data-movement-activities.md#supported-data-stores)所說的任何接收器。
 
 ## 範例：從 Salesforce 複製資料到 Azure Blob
 此範例會每隔一小時就把 Salesforce 的資料複製到 Azure Blob。範例後面的各節會說明這些範例中使用的 JSON 屬性。您可以使用 Azure Data Factory 中的複製活動，把資料直接複製到[資料移動活動](data-factory-data-movement-activities.md#supported-data-stores)一文中所述的任何接收器。
@@ -217,7 +217,7 @@ Azure Data Factory 目前只支援將資料從 Salesforce 移動到 [支援的�
 | -------- | ----------- | -------------- | -------- |
 | query | 使用自訂查詢來讀取資料。 | SQL-92 查詢或 [Salesforce 物件查詢語言 (SOQL) ](https://developer.salesforce.com/docs/atlas.zh-TW.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm) 查詢。例如：select * from MyTable\_\_c。 | 否 (如果已指定 **dataset** 的 **tableName**) |
 
-> [AZURE.IMPORTANT] 任何自訂物件都需要 API 名稱的「\_\_c」部分。<br> 當您指定的查詢在 DateTime 資料行上包含 **where** 子句，請使用 SOQL。例如：$$Text.Format('SELECT Id, Name, BillingCity FROM Account WHERE LastModifiedDate >= {0:yyyy-MM-ddTHH:mm:ssZ} AND LastModifiedDate < {1:yyyy-MM-ddTHH:mm:ssZ}', WindowStart, WindowEnd) 或 SQL 查詢，例如 $$Text.Format('SELECT * FROM Account WHERE LastModifiedDate >= {{ts'{0:yyyy-MM-dd HH:mm:ss}'}} AND LastModifiedDate < {{ts'{1:yyyy-MM-dd HH:mm:ss}'}}', WindowStart, WindowEnd)。
+> [AZURE.IMPORTANT] 任何自訂物件都需要 API 名稱的 "\_\_c" 部分。<br> 當您指定的查詢在 DateTime 資料行上包含 **where** 子句，請使用 SOQL。例如：$$Text.Format('SELECT Id, Name, BillingCity FROM Account WHERE LastModifiedDate >= {0:yyyy-MM-ddTHH:mm:ssZ} AND LastModifiedDate < {1:yyyy-MM-ddTHH:mm:ssZ}', WindowStart, WindowEnd) 或 SQL 查詢，例如 $$Text.Format('SELECT * FROM Account WHERE LastModifiedDate >= {{ts'{0:yyyy-MM-dd HH:mm:ss}'}} AND LastModifiedDate < {{ts'{1:yyyy-MM-dd HH:mm:ss}'}}', WindowStart, WindowEnd)。
 
 ![Data Factory - Salesforce 連線 - API 名稱](media/data-factory-salesforce-connector/data-factory-salesforce-api-name-2.png)
 
@@ -261,4 +261,4 @@ URL | String
 ## 效能和微調  
 若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

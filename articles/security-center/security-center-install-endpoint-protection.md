@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/29/2016"
+   ms.date="08/16/2016"
    ms.author="terrylan"/>
 
 # 在 Azure 資訊安全中心安裝端點保護
@@ -32,7 +32,7 @@
 
 4. 將會顯示反惡意程式碼解決方案的其他相關資訊。選取 [建立]。![建立反惡意程式碼解決方案][4]
 
-5. 在 [加入擴充功能] 刀鋒視窗上輸入必要的組態設定，然後選取 [確定]。若要深入了解組態設定，請參閱[預設和自訂的反惡意程式碼組態](../azure-security-antimalware.md#default-and-custom-antimalware-configuration)。
+5. 在 [加入擴充功能] 刀鋒視窗上輸入必要的組態設定，然後選取 [確定]。若要深入了解組態設定，請參閱[預設和自訂的反惡意程式碼組態](../security/azure-security-antimalware.md#default-and-custom-antimalware-configuration)。
 
 [Microsoft Antimalware](../azure-security-antimalware.md) 現在已在選取的 VM 上使用。
 
@@ -58,4 +58,4 @@
 [3]: ./media/security-center-install-endpoint-protection/select-endpoint-protection.png
 [4]: ./media/security-center-install-endpoint-protection/create-antimalware-solution.png
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

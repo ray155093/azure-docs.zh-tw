@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services" 
-   ms.date="05/09/2016"
+   ms.date="08/16/2016"
    ms.author="cherylmc"/>
 
 # 如何管理使用 PowerShell 的 DNS 區域
@@ -94,4 +94,4 @@
 
 建立 DNS 區域之後，請建立[記錄集和記錄](dns-getstarted-create-recordset.md)，以開始解析您的網際網路網域名稱。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

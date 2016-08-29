@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="04/18/2016"
+   ms.date="08/15/2016"
    ms.author="tarcher" />
 
 # 搭配使用遠端桌面與 Azure 角色
@@ -75,4 +75,4 @@
 
 1. 輸入您先前建立的使用者名稱和密碼。您現在已登入遠端工作階段。
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0817_2016-->

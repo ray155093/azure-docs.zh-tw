@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/15/2016"
+	ms.date="08/11/2016"
 	ms.author="mimig"/>
 
 # DocumentDB 中的一致性層級
@@ -87,15 +87,12 @@ Azure DocumentDB 是考量到全球發佈的全新設計。它的設計目的是
 
 2. 在 [DocumentDB 帳戶] 刀鋒視窗中，選取要修改的資料庫帳戶。
 
-3. 在 [帳戶] 刀鋒視窗中，如果 [所有設定] 刀鋒視窗尚未開啟，按一下最上方命令列中 [設定] 圖示。
+3. 在帳戶刀鋒視窗中，按一下 [預設一致性]。
 
-4. 在 [所有設定] 刀鋒視窗中，按一下 [功能] 下的 [預設一致性] 項目。
+
+4. 在 [預設一致性] 刀鋒視窗中，選取新的一致性層級，然後按一下 [確定]。
 
 	![此螢幕擷取畫面反白顯示 [設定] 圖示和 [預設一致性] 項目](./media/documentdb-consistency-levels/database-consistency-level-1.png)
-
-5. 在 [預設一致性] 刀鋒視窗中，選取新的一致性層級，然後按一下 [確定]。
-
-	![此螢幕擷取畫面反白顯示 [一致性] 層次和 [確定] 按鈕](./media/documentdb-consistency-levels/database-consistency-level-2.png)
 
 ## 查詢的一致性層級
 
@@ -112,7 +109,7 @@ Azure DocumentDB 是考量到全球發佈的全新設計。它的設計目的是
 
 如果您想要詳細了解一致性層級和取捨，我們建議下列資源：
 
--	Doug Terry。透過棒球 (影片) 來解說複寫的資料一致性。[https://www.youtube.com/watch?v=gluIh8zd26I](https://www.youtube.com/watch?v=gluIh8zd26I)
+-	Doug Terry。透過棒球來解說複寫的資料一致性 (影片)。[https://www.youtube.com/watch?v=gluIh8zd26I](https://www.youtube.com/watch?v=gluIh8zd26I)
 -	Doug Terry。透過棒球來解說複寫的資料一致性。[http://research.microsoft.com/pubs/157411/ConsistencyAndBaseballReport.pdf](http://research.microsoft.com/pubs/157411/ConsistencyAndBaseballReport.pdf)
 -	Doug Terry。弱式一致複寫資料的工作階段保證。[http://dl.acm.org/citation.cfm?id=383631](http://dl.acm.org/citation.cfm?id=383631)
 -	Daniel Abadi。現代分散式資料庫系統設計的一致性取捨：CAP 是整個過程中的唯一解決方案」。[http://computer.org/csdl/mags/co/2012/02/mco2012020037-abs.html](http://computer.org/csdl/mags/co/2012/02/mco2012020037-abs.html)
@@ -122,4 +119,4 @@ Azure DocumentDB 是考量到全球發佈的全新設計。它的設計目的是
 
 [1]: ./media/documentdb-consistency-levels/consistency-tradeoffs.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

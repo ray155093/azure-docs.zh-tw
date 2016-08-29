@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="vs-getting-started" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/01/2016" 
+	ms.date="08/15/2016" 
 	ms.author="tarcher"/>
 
 # 驗證偵測期間發生錯誤
@@ -49,9 +49,9 @@
 
 最後，精靈會嘗試偵測舊版 Visual Studio 所設定的驗證碼版本。如果收到此錯誤，表示您的專案包含不相容的驗證類型。精靈會從舊版 Visual Studio 中偵測下列驗證類型：
 
-* Windows 驗證 
-* 個別使用者帳戶 
-* 組織帳戶 
+* Windows 驗證
+* 個別使用者帳戶
+* 組織帳戶
  
 
 為偵測 MVC 專案中的「Windows 驗證」，精靈會在您的 **web.config** 檔案中尋找 `authentication` 元素。
@@ -96,4 +96,4 @@
 
 如需詳細資訊，請參閱 [Azure AD 的驗證案例](active-directory-authentication-scenarios.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0817_2016-->

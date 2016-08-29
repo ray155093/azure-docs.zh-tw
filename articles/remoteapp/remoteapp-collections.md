@@ -12,12 +12,15 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="07/20/2016" 
+    ms.date="08/15/2016" 
     ms.author="elizapo" />
 
 
 
 # Azure RemoteApp 需要何種集合？
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 Azure RemoteApp 可讓您在任何裝置上與使用者共用應用程式和資源。做法是建立來保存應用程式和資源的集合，然後與使用者共用那些集合。有兩個不同的集合選項，各有不同的網路和驗證選項 - 哪一種最適合您？
 
@@ -43,7 +46,7 @@ Azure RemoteApp 可讓您在任何裝置上與使用者共用應用程式和資�
 那麼，要怎麼建立？
 
 - 僅限雲端使用嗎？ 使用入口網站中的 [快速建立] 選項建立。
-- 雲端 + VNET？ 使用 [使用 VPN 建立] 選項建立，但「不要」選擇加入網域。
+- 雲端 + VNET？ 使用 [使用 VNET 建立] 選項建立，但「不要」選擇加入網域。
 
 ## 混合式集合
 - 提供內部部署網路 + Azure VNET 的完整存取權限。
@@ -91,4 +94,4 @@ AD Connect 有兩種案例 - 使用密碼同步化或使用 AD 同盟。請參�
 
 [建立雲端集合](remoteapp-create-cloud-deployment.md)或[建立混合式集合](remoteapp-create-hybrid-deployment.md) -立即建立。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

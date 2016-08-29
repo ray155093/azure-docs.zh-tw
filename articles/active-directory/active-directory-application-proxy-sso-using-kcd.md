@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/19/2016"
+	ms.date="08/10/2016"
 	ms.author="kgremban"/>
 
 
@@ -23,7 +23,7 @@
 
 1. 使用者登入雲端
 2. 所有安全性驗證都在雲端完成 (預先驗證)
-3. 當要求傳送到內部部署應用程式時，應用程式 Proxy 連接器會模擬使用者，讓後端應用程式認為這是來自已加入網域之裝置的一般使用者。
+3. 當要求傳送至內部部署應用程式時，應用程式 Proxy 連接器會模擬使用者。後端應用程式會將此視為來自已加入網域之裝置的一般使用者。
 
 ![存取的圖表，從使用者經過應用程式 Proxy 到公司網路](./media/active-directory-application-proxy-sso-using-kcd/app_proxy_sso_diff_id_diagram.png)
 
@@ -57,7 +57,7 @@ Azure AD 應用程式 Proxy 可協助您為使用者提供單一登入 (SSO) 體
 
 - 您的所有應用程式都有「服務主體名稱」。
 
-- 執行「連接器」的伺服器與執行應用程式的伺服器，皆已加入網域且屬於相同的網域。如需有關加入網域的詳細資訊，請參閱[將電腦加入網域](https://technet.microsoft.com/library/dd807102.aspx)。
+- 執行「連接器」的伺服器與執行應用程式的伺服器，皆已加入網域且屬於相同網域或信任網域。如需有關加入網域的詳細資訊，請參閱[將電腦加入網域](https://technet.microsoft.com/library/dd807102.aspx)。
 
 - 執行「連接器」的伺服器有權限讀取使用者的 TokenGroupsGlobalAndUniversal。這是預設設定，可能受環境強化安全性所影響。請參閱 [KB2009157](https://support.microsoft.com/zh-TW/kb/2009157) 以取得更多相關說明。
 
@@ -169,4 +169,4 @@ Azure AD 應用程式 Proxy 的 Kerberos 委派流程會在 Azure AD 在雲端�
 [1]: ./media/active-directory-application-proxy-sso-using-kcd/AuthDiagram.png
 [2]: ./media/active-directory-application-proxy-sso-using-kcd/Properties.jpg
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

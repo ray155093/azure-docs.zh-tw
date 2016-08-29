@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="08/10/2016"
+   ms.date="08/11/2016"
    ms.author="larryfr"/>
 
 # 存取 Azure Data Lake Analytics 的診斷記錄
@@ -32,7 +32,7 @@
 - **啟用您的 Azure 訂用帳戶**以使用 Data Lake Analytics 公開預覽版。請參閱[指示](data-lake-analytics-get-started-portal.md#signup)。
 - **Azure Data Lake Analytics 帳戶**。遵循[使用 Azure 入口網站開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md) 的指示。
 
-## 啟用 Data Lake Analytics 帳戶的診斷記錄
+## 啟用記錄
 
 1. 登入新的 [Azure 入口網站](https://portal.azure.com)。
 
@@ -52,7 +52,7 @@
 
 一旦您啟用了診斷設定，即可在 [診斷記錄] 索引標籤中查看記錄。
 
-## 檢視 Data Lake Analytics 帳戶的診斷記錄
+## 檢視記錄檔
 
 檢視 Data Lake Analytics 帳戶的記錄資料有兩種方式。
 
@@ -108,7 +108,7 @@
     
         https://adllogs.blob.core.windows.net/insights-logs-requests/resourceId=/SUBSCRIPTIONS/<sub-id>/RESOURCEGROUPS/myresourcegroup/PROVIDERS/MICROSOFT.DATALAKEANALYTICS/ACCOUNTS/mydatalakeanalytics/y=2016/m=07/d=18/h=14/m=00/PT1H.json
 
-## 了解記錄資料的結構
+## 記錄檔結構
 
 稽核和要求記錄採用 JSON 格式。在本節中，我們要探討要求和稽核記錄的 JSON 結構。
 
@@ -225,13 +225,13 @@
 
 > [AZURE.NOTE] __SubmitTime__、__StartTime__、__EndTime__ 和__平行處理原則__會提供作業的相關資訊，並且只會在作業啟動或完成時才包含值。例如，__SubmitTime__ 會在 __operationName__ 指出 __JobSubmitted__ 之後包含值。
 
-## 處理記錄資料的範例
+## 處理記錄資料
 
 Azure Data Lake Analytics 會提供有關如何處理和分析記錄資料的範例。您可以在 [https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample](https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample) 找到範例。
 
 
-## 另請參閱
+## 後續步驟
 
 - [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

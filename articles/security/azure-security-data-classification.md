@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/09/2016"
+   ms.date="08/16/2016"
    ms.author="yurid"/>
 
 # Azure 的資料分類
@@ -239,4 +239,4 @@ DLP 技術可以透過關鍵字比對、字典比對、規則運算式評估和�
 - [Azure 安全性小組部落格](http://blogs.msdn.com/b/azuresecurity/)
 - [Microsoft 安全性回應中心](https://technet.microsoft.com/library/dn440717.aspx)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

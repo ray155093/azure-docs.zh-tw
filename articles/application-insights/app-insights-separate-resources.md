@@ -37,7 +37,7 @@
  - 區隔低容量遙測與高容量遙測，讓一個串流上的節流、配額和取樣不會影響另一個。
  - 區隔警示、匯出和工作項目組態。
  - 分散[限制](app-insights-pricing.md#limits-summary)，例如遙測配額、節流和 Web 測試計數。
- - 開發和測試中的程式碼應該傳送至與生產戳記不同的 iKey。  
+ - 開發和測試中的程式碼應該傳送至與生產戳記不同的 iKey。
 
 許多 Application Insights 入口網站體驗在設計時，都會將這些指導方針納入考量。例如，伺服器會檢視伺服器執行個體上的區段，並假設一個邏輯元件的相關遙測可能來自數個伺服器執行個體。
 
@@ -45,7 +45,7 @@
 
 若您將來自多個元件的遙測傳送給單一 iKey：
 
-* 對所有遙測新增屬性可讓您區隔和篩選元件的身份識別。這會在伺服器角色執行個體上自動發生，但在其他案例中，您可以使用[遙測初始設定式](app-insights-api-filtering-sampling.md#add-properties)來新增屬性。
+* 對所有遙測新增屬性可讓您區隔和篩選元件的身份識別。角色識別碼會自動從伺服器角色執行個體新增至遙測，但在其他案例中，您可以使用[遙測初始設定式](app-insights-api-filtering-sampling.md#add-properties)來新增屬性。
 * 同時更新不同元件中的 Application Insights SDK。一個 iKey 的遙測應該源自相同版本的 SDK。
 
 ## 個別 iKey
@@ -53,7 +53,7 @@
 若您有不同應用程式元件的多個 iKey：
 
 * 建立[儀表板](app-insights-dashboards.md)，以檢視由不同應用程式元件結合而成的邏輯應用程式中的重要遙測。儀表板可以共用，因此一個邏輯系統檢視可供不同團隊使用。
-* 在團隊層級組織[資源群組](app-insights-resources-roles-access-control.md)。存取權限是由資源群組指派，且這些權限包含用來設定警示的權限。 
+* 在團隊層級組織[資源群組](app-insights-resources-roles-access-control.md)。存取權限是由資源群組指派，且這些權限包含用來設定警示的權限。
 * 使用 [Azure Resource Manager 範本和 Powershell](app-insights-powershell.md) 來協助管理構件，例如警示規則和 Web 測試。
 
 
@@ -107,8 +107,8 @@ Razor 中的 JavaScript
 * **應用程式類型**會影響您在 [概觀] 刀鋒視窗中看到的內容，以及[計量瀏覽器](app-insights-metrics-explorer.md)中提供的屬性。如果沒有看到您的應用程式類型，請針對網頁選擇其中一個 Web 類型。
 * **資源群組**可讓您輕鬆管理屬性，例如[存取控制](app-insights-resources-roles-access-control.md)。您可以對開發、測試和生產環境使用不同的資源群組。
 * **訂用帳戶**是您在 Azure 中的付款帳戶。
-* **位置**是我們保留您資料的地方。目前無法變更位置。 
-* **新增至儀表板**可在 Azure 首頁上放置資源的快速存取圖格。 
+* **位置**是我們保留您資料的地方。目前無法變更位置。
+* **新增至儀表板**可在 Azure 首頁上放置資源的快速存取圖格。
 
 建立資源需要幾秒鐘。完成時，您會看到警示。
 
@@ -124,6 +124,7 @@ Razor 中的 JavaScript
 您將需要您的應用程式會將資料傳送至其中的所有資源的檢測金鑰。
 
 
+
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

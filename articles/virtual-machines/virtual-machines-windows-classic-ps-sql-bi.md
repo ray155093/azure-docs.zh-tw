@@ -1,6 +1,6 @@
 <properties
 	pageTitle="SQL Server Business Intelligence |Microsoft Azure"
-	description="本主題使用隨傳統部署模型建立的資源，並描述 Azure 虛擬機器 (VM) 上執行的 SQL Server 提供的 Business Intelligence (BI) 功能。"
+	description="本主題使用以傳統部署模型建立的資源，並描述 Azure 虛擬機器 (VM) 上執行的 SQL Server 提供的商業智慧 (BI) 功能。"
 	services="virtual-machines-windows"
 	documentationCenter="na"
 	authors="guyinacube"
@@ -20,7 +20,7 @@
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
-Microsoft Azure 虛擬機器資源庫含有包含 SQL Server 安裝的映像。資源庫映像中支援的 SQL Server 版本與您可以在內部部署電腦與虛擬機器中安裝的安裝檔案相同。本主題摘要說明映像上安裝的 SQL Server 商業智慧 (BI) 功能和佈建虛擬機器後所需的組態步驟。本主題也描述 BI 功能支援的部署拓撲和最佳作法。
+Microsoft Azure 虛擬機器資源庫含有包含 SQL Server 安裝的映像。資源庫映像中支援的 SQL Server 版本與您可以在內部部署電腦與虛擬機器中安裝的安裝檔案相同。本主題摘要說明映像上安裝的 SQL Server 商業智慧 (BI) 功能，以及佈建虛擬機器後所需的組態步驟。本主題也描述 BI 功能支援的部署拓撲和最佳做法。
 
 ## 授權考量
 
@@ -82,7 +82,7 @@ Microsoft Azure 虛擬機器資源庫涵蓋數個包含 Microsoft SQL Server 的
 |**Reporting Services 原生模式**|是|已安裝但需要組態，包括報表管理員 URL。請參閱[設定 Reporting Services](#configure-reporting-services) 一節。|
 |**Reporting Services SharePoint 模式**|否|Microsoft Azure 虛擬機器資源庫映像庫不包含 SharePoint 或 SharePoint 安裝檔案。<sup>1</sup>|
 |**Analysis Services 多維度和資料採礦 (OLAP)**|是|已安裝並設定為預設的 Analysis Services 執行個體|
-|**Analysis Services 表格式**|否|SQL Server 2012、2014 和 2016 映像中支援，但預設不會安裝。安裝另一個執行個體的 Analysis Services。請參閱本主題中的＜安裝其他 SQL Server 服務和功能＞。|
+|**Analysis Services 表格式**|否|SQL Server 2012、2014 和 2016 映像中支援，但預設不會安裝。安裝另一個執行個體的 Analysis Services。請參閱本主題中的＜安裝其他 SQL Server 服務和功能＞一節。|
 |**適用於 SharePoint 的 Analysis Services Power Pivot **|否|Microsoft Azure 虛擬機器資源庫映像庫不包含 SharePoint 或 SharePoint 安裝檔案。<sup>1</sup>|
 
 <sup>1</sup> 如需有關 SharePoint 和 Azure 虛擬機器的詳細資訊，請參閱[適用於 SharePoint 2013 的 Microsoft Azure 架構](https://technet.microsoft.com/library/dn635309.aspx)和 [Microsoft Azure 虛擬機器上的 SharePoint 部署](https://www.microsoft.com/download/details.aspx?id=34598)。
@@ -243,7 +243,7 @@ SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式�
 
 **入口網站 URL 或 2012 和 2014 版的報表管理員 URL：**
 
-1. 在左窗格中，按一下 [Web Portal URL] \(入口網站 URL) 或 2012 和 2014 版的 [報表管理員 URL]。
+1. 在左窗格中，按一下 [Web Portal URL] (入口網站 URL) 或 2012 和 2014 版的 [報表管理員 URL]。
 
 1. 按一下 [Apply (套用)]。
 
@@ -319,7 +319,7 @@ SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式�
 
 >[AZURE.NOTE] 第一次執行 SQL Server 安裝程式時，可能會下載更多安裝檔，且需要將虛擬機器重新開機和重新啟動 SQL Server 安裝程式。
 >
->如果您需要重複自訂從 Microsoft Azure 虛擬機器選取的映像，請考慮建立您自己的 SQL Server 映像。Analysis Services SysPrep 功能是隨著 SQL Server 2012 SP1 CU2 啟用。如需詳細資訊，請參閱[使用 SysPrep 安裝 SQL Server 的考量](https://msdn.microsoft.com/library/ee210754.aspx)。
+>如果您需要重複自訂從 Microsoft Azure 虛擬機器選取的映像，請考慮建立您自己的 SQL Server 映像。Analysis Services SysPrep 功能是隨著 SQL Server 2012 SP1 CU2 啟用。如需詳細資訊，請參閱[使用 SysPrep 安裝 SQL Server 的考量](https://msdn.microsoft.com/library/ee210754.aspx)和 [Sysprep Support for Server Roles (伺服器角色的 Sysprep 支援)](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)。
 
 ### 安裝 Analysis Services 表格式模式
 
@@ -436,4 +436,4 @@ Analysis Services 的**預設執行個體**會接聽 TCP 連接埠 **2383**。�
 
 - [使用 PowerShell 管理 Azure SQL Database](http://blogs.msdn.com/b/windowsazure/archive/2013/02/07/windows-azure-sql-database-management-with-powershell.aspx)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

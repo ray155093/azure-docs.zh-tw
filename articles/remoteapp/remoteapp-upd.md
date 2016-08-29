@@ -13,10 +13,13 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="06/30/2016" 
+    ms.date="08/15/2016" 
     ms.author="elizapo" />
 
 # Azure RemoteApp 如何儲存使用者資料和設定？
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 Azure RemoteApp 跨越裝置和工作階段儲存使用者身分識別和自訂。此使用者資料會依每個使用者和每個集合磁碟 (也稱為使用者設定檔磁碟 (UPD)) 儲存。不論使用者登入的位置為何，此磁碟都會追蹤使用者並確保使用者擁有一致的經驗。
 
@@ -31,7 +34,7 @@ Azure RemoteApp 跨越裝置和工作階段儲存使用者身分識別和自訂�
 
 ## 系統管理員如何取得資料？
 
-如果您需要存取您其中一個使用者的資料 (為了災害復原或如果使用者離開公司)，請連絡 [Azure RemoteApp](mailto:remoteappforum@microsoft.com) 並提供集合和使用者身分識別的訂用帳戶資訊。Azure RemoteApp 小組會為您提供 VHD 的 URL。請下載該 VHD，並擷取您需要的任何文件或檔案。請注意，VHD 為 50 GB，因此下載需要一些時間。
+如果您需要存取您其中一個使用者的資料 (為了災害復原或如果使用者離開公司)，請連絡 Azure 支援服務並提供集合和使用者身分識別的訂用帳戶資訊。Azure RemoteApp 小組會為您提供 VHD 的 URL。請下載該 VHD，並擷取您需要的任何文件或檔案。請注意，VHD 為 50 GB，因此下載需要一些時間。
 
 
 ## 已備份資料嗎？
@@ -155,4 +158,4 @@ Azure RemoteApp 會儲存工作階段間的 Outlook 狀態 (信箱、PST)。若�
 
 這可讓您略過 New-PSDrive Cmdlet 中的 -Credential 參數。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0817_2016-->

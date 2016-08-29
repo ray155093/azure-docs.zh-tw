@@ -12,12 +12,15 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="06/12/2016" 
+    ms.date="08/15/2016" 
     ms.author="elizapo" />
 
 
 
 # 在 Azure RemoteApp 使用 App-V 應用程式
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 您可以需要加入網域的 Azure RemoteApp 混合式集合中，使用 App-V 應用程式。
 
@@ -31,9 +34,9 @@
 | | 裝載 | 最快；應用程式已存在於 VM 上 | 膨脹 - 佔據映像空間 (127 GB 限制) |
 | 應用程式位置儲存體 | 共用的內容 | 在 Azure RemoteApp 執行個體的記憶體中執行的應用程式 | 會耗用記憶體和與應用程式所在的串流 (檔案) 伺服器的良好連線 |
 | | 磁碟 (快取) | 快速執行。應用程式不相依於內容來源的可用性 | 膨脹 - 佔據映像空間 (127 GB 限制) |
-| 目標 | 使用者 | 需要完整獨立的 App-V 基礎結構 | |
+| 目標 | User | 需要完整獨立的 App-V 基礎結構 | |
 | | 全域 (電腦) | 預先發佈或使用發佈伺服器做為目標 | 如果您想要更新應用程式 (大) 則需要更新您的 Azure 映像。會佔用映像的一些空間。 |
 
  您建立自訂映像和混合式集合之後，發佈您的應用程式、指派使用者並享受裝載於傳遞至任何位置任何裝置的 Azure RemoteApp 中的現有 App-V 應用程式。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

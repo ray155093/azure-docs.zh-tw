@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="06/01/2016"
+   ms.date="08/17/2016"
    ms.author="jeffstok"/>
 
 
@@ -63,9 +63,10 @@ HDInsight 叢集的預設儲存體為 Blob 儲存體，其中含有對應至 Blo
 
 ### 在 Azure Machine Learning 中評分
 
-若要使用 Azure Machine Learning Web 服務來評分，請使用[開放原始碼 Azure Machine Learning R 封裝](http://www.inside-r.org/blogs/2015/11/18/enhancements-azureml-package-connect-r-azureml-studio)來[將您的模型發佈為 Azure Web 服務](http://www.r-bloggers.com/deploying-a-car-price-model-using-r-and-azureml/)。接下來，使用 Machine Learning 中的功能建立 Web 服務的使用者介面，然後呼叫評分所需的 Web 服務。
+若要使用 Azure Machine Learning Web 服務來評分，請使用 Azure Machine Learning R 封裝開放原始碼 (稱為 [AzureML](https://cran.r-project.org/web/packages/AzureML/vignettes/getting_started.html)) 來將您的模型發佈為 Azure Web 服務。為了方便起見，此封裝是預先安裝在邊緣節點。接下來，使用 Machine Learning 中的功能建立 Web 服務的使用者介面，然後呼叫評分所需的 Web 服務。
 
-如果您選擇這個選項，就必須將所有 ScaleR 模型物件轉換成對等的開放原始碼模型物件，才可搭配 Web 服務使用。這可以透過使用 ScaleR 強制型轉函數來完成，例如 `as.randomForest()`，其適用於集成模型。
+如果您選擇這個選項，就必須將所有 ScaleR 模型物件轉換成對等的開放原始碼模型物件，才可搭配 Web 服務使用。這可以透過使用 ScaleR 強制型轉函數來完成，例如，適用於集成模型的 `as.randomForest()`。
+
 
 ### 內部部署評分
 
@@ -123,4 +124,4 @@ HDInsight Premium 叢集的 Linux 邊緣節點，是 R 型分析的登陸區域�
 
 - [適用於 HDInsight Premium R 伺服器的 Azure 儲存體選項](hdinsight-hadoop-r-server-storage.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0817_2016-->

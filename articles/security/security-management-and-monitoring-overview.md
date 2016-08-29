@@ -1,6 +1,6 @@
 <properties
    pageTitle="Azure 安全性管理和監視概觀 | Microsoft Azure"
-   description="Azure 提供安全性機制，來協助管理與監視 Azure 雲端服務和虛擬機器。本文概述這些核心安全性功能和服務。"
+   description=" Azure 提供安全性機制，來協助管理與監視 Azure 雲端服務和虛擬機器。本文概述這些核心安全性功能和服務。"
    services="security"
    documentationCenter="na"
    authors="TerryLanfear"
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/26/2016"
+   ms.date="08/16/2016"
    ms.author="terrylan"/>
 
 # Azure 安全性管理和監視概觀
@@ -63,7 +63,7 @@ Azure 也支援 Symantec End Point Protection (SEP)。透過入口網站整合�
 深入了解：
 
 - [在 Azure 虛擬機器上部署反惡意程式碼解決方案](https://azure.microsoft.com/blog/deploying-antimalware-solutions-on-azure-virtual-machines/)
-- [適用於 Azure 雲端服務和虛擬機器的 Microsoft Antimalware](../azure-security-antimalware.md)
+- [適用於 Azure 雲端服務和虛擬機器的 Microsoft Antimalware](../security/azure-security-antimalware.md)
 - [如何在 Windows VM 上安裝和設定 Trend Micro Deep Security as a Service](../virtual-machines/virtual-machines-windows-classic-install-trend.md)
 - [如何在 Windows VM 上安裝和設定 Symantec Endpoint Protection](../virtual-machines/virtual-machines-windows-classic-install-symantec.md)
 - [保護 Azure 虛擬機器的新反惡意程式碼選項 - McAfee Endpoint Protection](https://azure.microsoft.com/blog/new-antimalware-options-for-protecting-azure-virtual-machines/)
@@ -134,4 +134,4 @@ Azure 資訊安全中心可協助您預防、偵測和回應威脅，並加強�
 <!--Image references-->
 [1]: ./media/security-management-and-monitoring-overview/shared-responsibility.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0817_2016-->

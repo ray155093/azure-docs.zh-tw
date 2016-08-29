@@ -29,6 +29,8 @@
 
 - 您需要安裝 Azure PowerShell 1.0.x 版。如果您尚未安裝 PowerShell，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 以了解安裝步驟。
 
+- 請確定 Sysprep 支援電腦上執行的伺服器角色。如需詳細資訊，請參閱 [Sysprep Support for Server Roles (伺服器角色的 Sysprep 支援)](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)
+
 ## 準備來源 VM 
 
 本節說明如何將您的 Windows 虛擬機器一般化，以便當作映像使用。
@@ -93,7 +95,7 @@
 
 1. 使用這個命令，將虛擬機器映像複製到目的地儲存體容器中。此映像會建立在與原始虛擬機器相同的儲存體帳戶中。`-Path` 變數會在本機儲存 JSON 範本的複本。`-DestinationContainerName` 變數是要用以保存映像的容器名稱。如果此容器不存在，則會為您建立。
 
-		Save-AzureRmVMImage -ResourceGroupName YourResourceGroup -VMName YourWindowsVM -DestinationContainerName YourImagesContainer -VHDNamePrefix YourTemplatePrefix -Path Yourlocalfilepath\Filename.json
+		Save-AzureRmVMImage -ResourceGroupName YourResourceGroup -Name YourWindowsVM -DestinationContainerName YourImagesContainer -VHDNamePrefix YourTemplatePrefix -Path Yourlocalfilepath\Filename.json
 
 	您可以從 JSON 檔案範本取得映像的 URL。請依序前往 [資源] > [storageProfile] > [osDisk] > [映像] > [uri] 區段，取得您映像的完整路徑。映像的 URL 如下所示：`https://<storageAccountName>.blob.core.windows.net/system/Microsoft.Compute/Images/<imagesContainer>/<templatePrefix-osDisk>.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.vhd`
 	
@@ -208,4 +210,4 @@
 
 若要使用 Azure PowerShell 管理新的虛擬機器，請參閱[使用 Azure Resource Manager 與 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

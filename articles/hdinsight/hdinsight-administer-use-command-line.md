@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/24/2016"
+	ms.date="08/10/2016"
 	ms.author="jgao"/>
 
 # 使用 Azure CLI 管理 HDInsight 中的 Hadoop 叢集
@@ -62,7 +62,7 @@
 
 ##刪除叢集
 
-使用下列命令刪除叢集：
+使用下列命令來刪除叢集：
 
 	azure hdinsight cluster delete <Cluster Name>
 
@@ -113,4 +113,4 @@
 [image-cli-clustercreation-config]: ./media/hdinsight-administer-use-command-line/HDI.CLIClusterCreationConfig.png
 [image-cli-clusterlisting]: ./media/hdinsight-administer-use-command-line/HDI.CLIListClusters.png "列出和顯示叢集"
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0817_2016-->

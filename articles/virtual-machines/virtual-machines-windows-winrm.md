@@ -3,7 +3,7 @@
 	description="如何設定 WinRM 存取來搭配使用 Azure Resource Manager 虛擬機器"
 	services="virtual-machines-windows"
 	documentationCenter=""
-	authors="rothja"
+	authors="singhkays"
 	manager="drewm"
 	editor=""
 	tags="azure-resource-manager"/>
@@ -165,4 +165,4 @@ Microsoft.Compute 資源提供者在佈建 VM 時，需要金鑰保存庫內密�
 
     Enter-PSSession -ConnectionUri https://<public-ip-dns-of-the-vm>:5986 -Credential $cred -SessionOption (New-PSSessionOption -SkipCACheck -SkipCNCheck -SkipRevocationCheck) -Authentication Negotiate
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

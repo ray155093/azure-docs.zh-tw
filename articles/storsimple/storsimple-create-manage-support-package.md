@@ -12,13 +12,13 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/09/2016"
+   ms.date="08/17/2016"
    ms.author="alkohli" />
 
 
 # 建立及管理 StorSimple 支援封裝
 
-## 概觀
+## Overview
 
 StorSimple 支援封裝是一種簡便的機制，可收集所有相關的記錄以協助 Microsoft 支援服務針對任何 StorSimple 裝置問題進行疑難排解。收集的記錄都會經過加密並壓縮。
 
@@ -190,4 +190,4 @@ StorSimple 支援封裝是一種簡便的機制，可收集所有相關的記錄
 
 - 了解如何[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0817_2016-->

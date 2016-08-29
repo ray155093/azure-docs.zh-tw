@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="06/24/2016"
+	ms.date="08/11/2016"
 	ms.author="robmcm"/>
 
 # 如何使用 Java 的佇列儲存體
 
-[AZURE.INCLUDE [storage-selector-queue-include](../../includes/storage-selector-queue-include.md)]
+[AZURE.INCLUDE [storage-selector-queue-include](../../includes/storage-selector-queue-include.md)] <br/> [AZURE.INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-queues.md)]
 
-## 概觀
+## Overview
 
 本指南將示範如何使用 Azure 佇列儲存服務執行一般案例。相關範例是以 Java 撰寫並使用 [Azure Storage SDK for Java][]。所涵蓋的案例包括「插入」、「查看」、「取得」和「刪除」佇列訊息，以及「建立」和「刪除」佇列。如需佇列的詳細資訊，請參閱[後續步驟](#Next-Steps)一節。
 
@@ -32,7 +32,7 @@
 
 ## 建立 Java 應用程式
 
-在本指南中，您將使用儲存體功能，這些功能可執行於本機的 Java 應用程式內，也可執行於在 Azure 中之 Web 角色或背景工作角色內執行的程式碼中。
+在本指南中，您將使用的儲存功能可在 Java 應用程式中進行本機呼叫，或在 Azure Web 角色或背景工作角色中執行的程式碼中呼叫。
 
 若要這樣做，您需要安裝 Java Development Kit (JDK)，並在 Azure 訂用帳戶中建立 Azure 儲存體帳戶。完成此動作之後，您需要驗證開發系統符合 GitHub 上的 [Azure Storage SDK for Java][] 儲存機制中所列出的最低需求和相依性。如果系統符合這些需求，則您可以依照指示，從該儲存機制中下載 Azure Storage Libraries for Java 並安裝在系統上。完成這些工作之後，您就能夠利用本文中的範例來建立 Java 應用程式。
 
@@ -231,7 +231,7 @@ Azure 儲存體用戶端會使用儲存體連接字串來儲存存取資料管�
 
 ## 作法：取得佇列長度
 
-您可以取得佇列中的估計訊息數目。**downloadAttributes** 方法會向佇列服務要求數個目前值，包括計算佇列中的訊息數。由於佇列服務在回應您的要求之後可以新增或移除訊息，此計數僅為近似值。**getApproximateMessageCount** 方法會傳回呼叫 **downloadAttributes** 所擷取的最後一個值，而無需呼叫佇列服務。
+您可以取得佇列中的估計訊息數目。**downloadAttributes** 方法會向佇列服務要求數個目前值，包括計算佇列中的訊息數。此計數只是一個約略值，因為在佇列服務回應您的要求之後，仍有新增或移除訊息的可能。**getApproximateMessageCount** 方法會傳回呼叫 **downloadAttributes** 所擷取的最後一個值，而無需呼叫佇列服務。
 
     try
     {
@@ -391,4 +391,4 @@ Azure 儲存體用戶端會使用儲存體連接字串來儲存存取資料管�
 [Azure 儲存體服務 REST API]: https://msdn.microsoft.com/library/azure/dd179355.aspx
 [Azure 儲存體團隊部落格]: http://blogs.msdn.com/b/windowsazurestorage/
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

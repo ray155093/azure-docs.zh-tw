@@ -15,10 +15,10 @@
    ms.date="03/22/2016"
    ms.author="jdial" />
 
-# 如何設定靜態內部私人 IP
-在大部分情況下，您不需要針對虛擬機器指定靜態內部 IP 位址。虛擬網路中的 VM 會從您指定的範圍自動接收內部 IP 位址。但在某些情況下，針對特定 VM 指定靜態 IP 位址是合理的。例如，如果您的 VM 即將執行 DNS 或將成為網域控制站。
+# 如何使用 PowerShell 設定靜態內部私人 IP 位址 (傳統)
+在大部分情況下，您不需要針對虛擬機器指定靜態內部 IP 位址。虛擬網路中的 VM 會從您指定的範圍自動接收內部 IP 位址。但在某些情況下，針對特定 VM 指定靜態 IP 位址是合理的。例如，如果您的 VM 即將執行 DNS 或將成為網域控制站。靜態內部 IP 位址會伴隨 VM 而存在，甚至是透過停止/取消佈建狀態。
 
->[AZURE.NOTE] 靜態內部 IP 位址會伴隨 VM 而存在，甚至是透過停止/取消佈建狀態。
+> [AZURE.IMPORTANT] Azure 建立和處理資源的部署模型有二種：[資源管理員和傳統](../resource-manager-deployment-model.md)。本文涵蓋之內容包括使用傳統部署模型。Microsoft 建議讓大部分的新部署使用 [Resource Manager 部署模型](virtual-networks-static-private-ip-arm-ps.md)。
 
 ## 如何驗證特定 IP 位址是否可用
 若要驗證 IP 位址 *10.0.0.7* 在稱為 *TestVnet* 的 VNet 中是否可用，請執行下列 PowerShell 命令，並驗證 *IsAvailable* 的值：
@@ -99,4 +99,4 @@
 [保留的 IP REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx)
  
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

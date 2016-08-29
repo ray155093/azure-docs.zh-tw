@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services" 
-   ms.date="05/09/2016"
+   ms.date="08/16/2016"
    ms.author="cherylmc"/>
 
 # 如何使用 CLI 管理 DNS 區域
@@ -67,4 +67,4 @@ Azure DNS 是僅能以 Azure 資源管理員運作的服務。它沒有 ASM API�
 ## 後續步驟
 建立 DNS 區域之後，請建立[記錄集和記錄](dns-getstarted-create-recordset-cli.md)，以開始解析您的網際網路網域名稱。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

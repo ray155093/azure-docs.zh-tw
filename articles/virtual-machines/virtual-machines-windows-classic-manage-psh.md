@@ -3,7 +3,7 @@
    description="了解可用來自動執行管理虛擬機器工作的命令。"
    services="virtual-machines-windows"
    documentationCenter="windows"
-   authors="singhkay"
+   authors="singhkays"
    manager="timlt"
    editor=""
    tags="azure-service-management"/>
@@ -88,11 +88,11 @@
 
 ## 建立以 Windows 為基礎的 VM
 
-若要在 Azure 中建立以 Windows 為基礎的新虛擬機器，請依照[使用 Azure PowerShell 建立和預先設定建立以 Windows 為基礎的虛擬機器](virtual-machines-windows-classic-create-powershell.md)中的指示執行。本主題會逐步教您建立 Azure PowerShell 命令集，然後利用這些命令建立可預先設定的以 Windows 為基礎的 VM：
+若要在 Azure 中建立以 Windows 為基礎的新虛擬機器，請依照[使用 Azure PowerShell 建立和預先設定建立以 Windows 為基礎的虛擬機器](virtual-machines-windows-classic-create-powershell.md)中的指示執行。本主題會逐步引導您建立 Azure PowerShell 命令集，以建立可預先設定的 Windows 型 VM：
 
 - 具有 Active Directory 網域成員資格。
 - 具有額外的磁碟。
 - 成為現有負載平衡集的成員。
 - 具有靜態 IP 位址。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-linux"
    ms.workload="na"
-   ms.date="05/08/2016"
+   ms.date="08/15/2016"
    ms.author="tarcher" />
 
 # 在 Visual Studio 中建立和管理 Linux 虛擬機器
@@ -21,4 +21,4 @@
 
 [AZURE.INCLUDE [virtual-machines-common-classic-manage-visual-studio](../../includes/virtual-machines-common-classic-manage-visual-studio.md)]
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0817_2016-->

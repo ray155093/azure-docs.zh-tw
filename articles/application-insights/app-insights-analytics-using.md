@@ -12,23 +12,25 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/15/2016" 
+	ms.date="07/26/2016" 
 	ms.author="danha"/>
 
 
 # 使用 Application Insights 中的分析
 
 
-[分析](app-insights-analytics.md) 是 [Application Insights](app-insights-overview.md) 的強大搜尋功能。這些頁面說明 Analytics 查詢語言。
+[分析](app-insights-analytics.md)是 [Application Insights](app-insights-overview.md) 的強大搜尋功能。這些頁面說明 Analytics 查詢語言。
 
 * **[觀看簡介影片](https://applicationanalytics-media.azureedge.net/home_page_video.mp4)**。
 * **[在我們的模擬資料上測試分析](https://analytics.applicationinsights.io/demo)**，如果您的應用程式還未傳送資料至 Application Insights。
 
 ## 開啟分析
 
-在 Application Insights 中，從您的應用程式的首頁資源，按一下 [分析]。![開啟 portal.azure.com，開啟您的 Application Insights 資源，然後按一下 [分析]。](./media/app-insights-analytics-using/001.png)
+在 Application Insights 中，從您的應用程式的首頁資源，按一下 [分析]。
 
-內嵌教學課程將提供您一些可執行作業的概念。
+![開啟 portal.azure.com，開啟您的 Application Insights 資源，然後按一下 [分析]。](./media/app-insights-analytics-using/001.png)
+
+內嵌教學課程會提供您一些可執行作業的概念。
 
 [這裡有更廣泛的教學課程](app-insights-analytics-tour.md)。
 
@@ -36,7 +38,7 @@
 
 ### 撰寫查詢
 
-![](./media/app-insights-analytics-using/150.png)
+![結構描述顯示](./media/app-insights-analytics-using/150.png)
 
 以任何列在左側的資料表名稱 (或 [range](app-insights-analytics-reference.md#range-operator) 或 [union](app-insights-analytics-reference.md#union-operator) 運算子) 開頭。使用 `|` 建立[運算子](app-insights-analytics-reference.md#queries-and-operators)的直立線符號。IntelliSense 會對您提示運算子和某些您可以使用的運算式元素。
 
@@ -115,13 +117,44 @@
 
 選取您想要的圖表類型︰
 
-![](./media/app-insights-analytics-using/230.png)
+![選取圖表類型](./media/app-insights-analytics-using/230.png)
 
 如果您有數個正確類型的資料行，您可以選擇 x 和 y 軸，以及一個資料行的維度來據以分割結果。
 
 根據預設，結果一開始會顯示為資料表，而您會手動選取圖表。但您可以在查詢結尾使用 [Render 指示詞](app-insights-analytics-reference.md#render-directive)以選取圖表。
 
-您可以將圖表釘選至您的其中一個[共用儀表板](app-insights-dashboards.md) - 只要按一下 [釘選]。(僅適用於付費定價層的應用程式)。
+## 釘選到儀表板
+
+您可以將圖表釘選至您的其中一個[共用儀表板](app-insights-dashboards.md) - 只要按一下 [釘選]。(您可能需要[升級應用程式的資費套餐](app-insights-pricing.md)才能開啟此功能。)
+
+![按一下 [釘選]](./media/app-insights-analytics-using/pin-01.png)
+
+這表示，當您組建出儀表板來協助您監控 Web 服務的效能或使用量時，您可以在其中加入相當複雜的分析以及其他度量。
+
+#### 儀表板重新整理
+
+釘選到儀表板的圖表大約每半小時就會藉由自動重新執行查詢來加以重新整理。
+
+#### 自動簡化
+
+在某些情況下，當您將圖表釘選到儀表板時，圖表會套用某些簡化效果。
+
+當您釘選顯示了許多不連續長條的圖表 (通常是長條圖) 時，所佔比例較少的長條會自動分組到單一的「其他」長條。例如，下列查詢︰
+
+    requests | summarize count_search = count() by client_CountryOrRegion
+
+在分析中看起來像這樣︰
+
+
+![具有長尾的圖表](./media/app-insights-analytics-using/pin-07.png)
+
+但是，當您將它釘選到儀表板時，它看起來像這樣︰
+
+
+![具有有限長條的圖表](./media/app-insights-analytics-using/pin-08.png)
+
+
+
 
 ## 匯出至 Excel
 
@@ -150,4 +183,4 @@
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

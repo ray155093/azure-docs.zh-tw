@@ -13,12 +13,15 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="07/26/2016"
+    ms.date="08/15/2016"
     ms.author="elizapo" />
 
 
 
 # 如何將資料轉入或轉出 Azure RemoteApp
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 您可以使用許多不同的工具和方法，將[使用者資料](remoteapp-upd.md)傳入和傳出 Azure RemoteApp。以下是幾個方法︰
 
@@ -55,4 +58,4 @@
 
 如果您已啟用[磁碟重新導向](remoteapp-redirection.md)，您已為您的使用者建立對應磁碟機。在此情況下，他們可以在已重新導向的磁碟機上壓縮他們的檔案，然後儲存到他們的本機電腦上。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

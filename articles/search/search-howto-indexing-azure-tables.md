@@ -12,18 +12,18 @@ ms.service="search"
 ms.devlang="rest-api"
 ms.workload="search" ms.topic="article"  
 ms.tgt_pltfrm="na"
-ms.date="05/28/2016"
+ms.date="08/16/2016"
 ms.author="eugenesh" />
 
 # 使用 Azure 搜尋服務對 Azure 表格儲存體編制索引
 
 本文章說明如何使用 Azure 搜尋服務來對儲存於 Azure 表格儲存體中的資料編制索引。新的 Azure 搜尋服務資料表索引子可以讓此程序快速且順暢。
 
-> [AZURE.IMPORTANT] 這項功能目前為預覽狀態。僅適用於使用 **2015-02-28-Preview** 版本的 REST API。請記住，預覽 API 是針對測試與評估，不應該用於生產環境。
+> [AZURE.IMPORTANT] 這項功能目前為預覽狀態。僅適用於使用 **2015-02-28-Preview** 版本的 REST API 和 .NET SDK 的版本 2.0 預覽本。請記住，預覽 API 是針對測試與評估，不應該用於生產環境。
 
 ## 設定 Azure 資料表編制索引
 
-若要設定 Azure 資料表索引子，您可以使用 Azure 搜尋服務 REST API 來建立和管理**索引子**及**資料來源**，如[索引子的作業](https://msdn.microsoft.com/library/azure/dn946891.aspx)中所述。在未來，對資料表編製索引的支援將會新增至 Azure 搜尋服務 .NET SDK 和 Azure 入口網站。
+若要設定 Azure 資料表索引子，您可以使用 Azure 搜尋服務 REST API 來建立和管理**索引子**及**資料來源**，如[索引子的作業](https://msdn.microsoft.com/library/azure/dn946891.aspx)中所述。您也可以使用 .NET SDK 的[版本 2.0 預覽版](https://msdn.microsoft.com/library/mt761536%28v=azure.103%29.aspx)。在未來，對資料表索引的支援將會新增至 Azure 入口網站。
 
 資料來源能指定哪項資料要編製索引、存取資料需要哪些認證，以及哪些政策能讓 Azure 搜尋服務有效識別資料變更 (新增、修改或刪除的資料列)。
 
@@ -36,7 +36,7 @@ ms.author="eugenesh" />
 	- 傳遞您的儲存體帳戶連接字串做為 `credentials.connectionString` 參數
 	- 使用 `container.name` 參數指定資料表名稱
 	- (選擇性) 使用 `container.query` 參數指定查詢。可能的話，在 PartitionKey 上使用篩選器以獲得最佳效能；任何其他的查詢將會造成執行完整資料表掃描，這可能會產生大型資料表而導致效能不佳。
-2. 使用與您想要編製索引的資料表中的資料行對應的結構描述，建立搜尋索引。 
+2. 使用與您想要編製索引的資料表中的資料行對應的結構描述，建立搜尋索引。
 3. 將資料來源連接到搜尋索引來建立索引子。
 
 ### 建立資料來源
@@ -68,7 +68,7 @@ ms.author="eugenesh" />
   		]
 	}
 
-如需建立索引 API 的詳細資訊，請參閱[建立索引](https://msdn.microsoft.com/library/dn798941.aspx)。
+如需建立索引 API 的詳細資訊，請參閱[建立索引 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/dn798941.aspx)。
 
 ### 建立索引子 
 
@@ -99,7 +99,7 @@ ms.author="eugenesh" />
 
 由於資料表資料列有複合索引鍵，Azure 搜尋服務會產生名為 `Key` 的綜合欄位，該欄位為資料分割索引鍵與資料列索引鍵值的串連。例如，如果資料列的 PartitionKey 為 `PK1` 且 RowKey 是 `RK1`，則 `Key` 欄位的值是 `PK1RK1`。
 
-> [AZURE.NOTE] `Key` 值可能包含在文件索引鍵中無效的字元，例如連字號。您可以使用`base64Encode` [欄位對應函數](search-indexer-field-mappings.md#base64EncodeFunction)來處理無效字元。如果您這樣做，請記得在 API 呼叫 (例如查閱) 中傳遞文件索引鍵時，也使用 URL 安全 Base64 編碼。
+> [AZURE.NOTE] `Key` 值可能包含在文件索引鍵中無效的字元，例如連字號。您可以使用`base64Encode` [欄位對應函式](search-indexer-field-mappings.md#base64EncodeFunction)來處理無效字元。如果您這樣做，請記得在 API 呼叫 (例如查閱) 中傳遞文件索引鍵時，也使用 URL 安全 Base64 編碼。
 
 ## 增量編製索引和刪除偵測
  
@@ -124,4 +124,4 @@ ms.author="eugenesh" />
 
 如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0817_2016-->

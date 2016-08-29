@@ -2,6 +2,7 @@
 	pageTitle="Azure Government 開發人員指南" 
 	description="這為 Azure Government 的開發應用程式提供功能和指引的比較" 
 	services="" 
+	cloud="gov"
 	documentationCenter="" 
 	authors="Joharve2" 
 	manager="Chrisnie" 
@@ -92,8 +93,8 @@ Azure Government 目前在在「美國政府愛荷華州」(US GOV IOWA) 及「�
 一般|*.windows.net|*.usgovcloudapi.net
 核心|*.core.windows.net|*.core.usgovcloudapi.net
 計算|*.cloudapp.net|*.usgovcloudapp.net
-Blob 儲存體|*.blob.core.windows.net| *.blob.core.usgovcloudapi.net
-Queue Storage|*.queue.core.windows.net|*.queue.core.usgovcloudapi.net
+Blob 儲存體|*.blob.core.windows.net|	*.blob.core.usgovcloudapi.net
+佇列儲存體|*.queue.core.windows.net|*.queue.core.usgovcloudapi.net
 資料表儲存體|*.table.core.windows.net|*.table.core.usgovcloudapi.net
 服務管理|management.core.windows.net|management.core.usgovcloudapi.net
 SQL Database|*.database.windows.net|*.database.usgovcloudapi.net
@@ -129,4 +130,4 @@ ARM 負載平衡端點|https://management.windows.net|https://management.usgovcl
 [Link 2 to another azure.microsoft.com documentation topic]: web-sites-custom-domain-name.md
 [Link 3 to another azure.microsoft.com documentation topic]: storage-whatis-account.md
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0817_2016-->

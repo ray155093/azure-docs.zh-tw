@@ -13,12 +13,27 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="tbd" 
-   ms.date="07/19/2016"
-   ms.author="yuemlu"/>
+   ms.date="08/17/2016"
+   ms.author="raiye"/>
 
 # Azure 客體作業系統 
 
 下表為適用於 Azure 客體作業系統的 Microsoft Security Response Center (MSRC) 更新。請搜尋本文章以判斷特定更新是否適用於您使用的客體作業系統。推出這些更新的特定[系列][family-explain]皆會包含這些更新。
+
+## 8 月客體作業系統 
+
+| 公告識別碼 | 上層知識庫文章 | 弱點說明 | 客體作業系統 | 首次引進日期 |
+| ----------- | ------------------- | --------------------------------------------------------------------------- | ---------------- | --------------------- |
+| MS16-095 | [3177356] | Internet Explorer 的累積安全性更新 | 4\.35、3.42、2.54 | 2016 年 8 月 9 日 |
+| MS16-097 | [3177393] | Microsoft 圖形元件的安全性更新 | 4\.35、3.42、2.54 | 2016 年 8 月 9 日 |
+| MS16-098 | [3178466] | Windows 核心模式驅動程式的安全性更新 | 4\.35、3.42、2.54 | 2016 年 8 月 9 日 |
+| MS16-100 | [3179577] | 安全開機的安全性更新 | 4\.35、3.42 | 2016 年 8 月 9 日 |
+| MS16-101 | [3178465] | Windows 驗證方法的安全性更新 | 4\.35、3.42、2.54 | 2016 年 8 月 9 日 |
+| MS16-102 | [3182248] | Microsoft Windows PDF 程式庫的安全性更新 | 4\.35、3.42 | 2016 年 8 月 9 日 |
+| 重新發行 - MS16-077 | [3165191] | Web Proxy Autodiscovery (WPAD) 的安全性更新 | 4\.35、3.42、2.54 | 2016 年 8 月 9 日 |
+| | [3172605] | 適用於 Windows 7 SP1 和 Windows Server 2008 R2 SP1 的 2016 年 7 月更新彙總套件 | 2\.54 | 2016 年 8 月 9 日 |
+| | [3172615] | 適用於 Windows Server 2012 的 2016 年 7 月更新彙總套件 | 3\.42 | 2016 年 8 月 9 日 |
+| | [3172614] | 適用於 Windows RT 8.1、Windows 8.1 和 Windows Server 2012 R2 的 2016 年 7 月更新彙總套件 | 4\.35 | 2016 年 8 月 9 日 |
 
 ## 7 月客體作業系統 
 
@@ -335,6 +350,17 @@
 | N/A | [2896881][2896881] | 在 Windows 中於登入程序期間使用 AddPrinterConnection VBScript 命令對應使用者印表機時，登入時間過長 | 4\.15、3.22,、2.34 | 2015 年 1 月 13 日 |
 
 
+[3177356]: http://support.microsoft.com/kb/3177356
+[3177393]: http://support.microsoft.com/kb/3177393
+[3178466]: http://support.microsoft.com/kb/3178466
+[3179577]: http://support.microsoft.com/kb/3179577
+[3178465]: http://support.microsoft.com/kb/3178465
+[3182248]: http://support.microsoft.com/kb/3182248
+[3165191]: http://support.microsoft.com/kb/3165191
+[3172605]: http://support.microsoft.com/kb/3172605
+[3172614]: http://support.microsoft.com/kb/3172614
+[3172615]: http://support.microsoft.com/kb/3172615
+
 [3169991]: http://support.microsoft.com/kb/3169991
 [3170005]: http://support.microsoft.com/kb/3170005
 [3170050]: http://support.microsoft.com/kb/3170050
@@ -576,4 +602,4 @@
 [family-explain]: cloud-services-guestos-update-matrix.md#guest-os-family-version-and-release-explanation
  
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0817_2016-->

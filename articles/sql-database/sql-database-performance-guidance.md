@@ -19,7 +19,7 @@
 
 # 單一資料庫的 Azure SQL Database 效能指引
 
-## 概觀
+## Overview
 
 Microsoft Azure SQL Database 有三個[服務層](sql-database-service-tiers.md)，基本、標準和高階。這些服務層全都會嚴密區隔提供給您的 Azure SQL Database 的資源，並保證可預測的效能。為您的資料庫保證的輸送量會從基本層、標準層、高階層一路提高。
 
@@ -231,7 +231,7 @@ Azure SQL Database 會在每個伺服器 **master** 資料庫的 **sys.resource\
 
 下列範例示範不同方式，以供您使用 **sys.resource\_stats** 目錄檢視來了解 SQL Database 資源使用量。
 
->[AZURE.NOTE] 目前的 V12 資料庫中已變更 **sys.resource\_stats** 的某些資料行，因此下列範例中的範例查詢可能會產生錯誤。本主題日後更新時將會提供可解決此問題的新版查詢。
+>[AZURE.NOTE] 目前的 V12 資料庫中已變更 **sys.resource\_stats** 的某些資料行，因此下列範例中的範例查詢可能會產生錯誤。本主題將於日後更新時提供可解決此問題的新版查詢。
 
 1. 例如，若要查看 "userdb1" 資料庫在過去一週的資源使用量，您可以執行下列查詢。
 
@@ -507,4 +507,4 @@ SQL Server 使用者通常會在單一資料庫內結合許多功能。例如，
 
 Azure SQL Database 中的服務層可讓您提升您在雲端建置的應用程式類型。與努力的應用程式微調結合，您可以讓您的應用程式功能強大且可預測效能。本文概述最佳化資料庫的資源耗用量的建議技術，可完全符合其中一個效能等級。微調是雲端模型中持續的活動，而服務層與其效能等級可讓系統管理員將 Microsoft Azure 平台上的效能最大化同時將成本降到最低。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

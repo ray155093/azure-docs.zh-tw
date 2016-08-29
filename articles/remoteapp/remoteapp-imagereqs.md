@@ -13,15 +13,19 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="06/13/2016"
+    ms.date="08/15/2016"
     ms.author="elizapo" />
 
 
 
 # Azure RemoteApp 映像的需求
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+
 Azure RemoteApp 會使用 Windows Server 2012 R2 映像來主控您要與使用者共用的所有程式。若要建立自訂映像，您可以從現有的映像建立，或[建立新映像](remoteapp-create-custom-image.md)。
 
-> [AZURE.TIP] 是否知道 Azure RemoteApp 訂用帳戶可讓您存取 Azure VM 資源庫中可用來建立專屬範本映像的 Windows Server 2012 R2 映像？ [立即使用](remoteapp-image-on-azurevm.md)。
+> [AZURE.TIP] 您是否知道 Azure RemoteApp 訂用帳戶可讓您存取 Azure VM 資源庫中可用來建立專屬範本映像的 Windows Server 2012 R2 映像？ [立即使用](remoteapp-image-on-azurevm.md)。
 
 
 可上傳用於 Azure RemoteApp 的映像有下列需求：
@@ -44,4 +48,4 @@ Azure RemoteApp 會使用 Windows Server 2012 R2 映像來主控您要與使用�
 
 如需建立 Azure RemoteApp 映像的詳細資訊，請參閱[建立 Azure RemoteApp 映像](remoteapp-imageoptions.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0817_2016-->

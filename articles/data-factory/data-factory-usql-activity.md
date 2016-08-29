@@ -52,7 +52,7 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
 類型 | type 屬性應設為：**AzureDataLakeAnalytics**。 | 是
 accountName | Azure 資料湖分析帳戶名稱。 | 是
 dataLakeAnalyticsUri | Azure 資料湖分析 URI。 | 否 
-authorization | 按一下 Data Factory 編輯器中的 [授權] 按鈕並完成 OAuth 登入後，即會自動擷取授權碼。 | 是 
+授權 | 按一下 Data Factory 編輯器中的 [授權] 按鈕並完成 OAuth 登入後，即會自動擷取授權碼。 | 是 
 subscriptionId | Azure 訂用帳戶識別碼 | 否 (如果未指定，便會使用 Data Factory 的訂用帳戶)。 
 resourceGroupName | Azure 資源群組名稱 | 否 (若未指定，便會使用 Data Factory 的資源群組)。
 sessionId | OAuth 授權工作階段的工作階段識別碼。每個工作階段識別碼都是唯一的，只能使用一次。這是在 Data Factory 編輯器中自動產生。 | 是
@@ -165,9 +165,9 @@ degreeOfParallelism | 同時用來執行工作的節點數目上限。 | 否
 
 指令碼定義請參閱 [SearchLogProcessing.txt 指令碼定義](#script-definition)。
 
-### 建立輸入和輸出資料集
+## 建立輸入和輸出資料集
 
-#### 輸入資料集
+### 輸入資料集
 在此範例中，輸入的資料是位於 Azure 資料湖存放區 (datalake/input 資料夾中的 SearchLog.tsv 檔案)。
 
 	{
@@ -191,7 +191,7 @@ degreeOfParallelism | 同時用來執行工作的節點數目上限。 | 否
     	}
 	}	
 
-#### 輸出資料集
+### 輸出資料集
 在此範例中，U-SQL 指令碼所產生的輸出資料會儲存在 Azure 資料湖存放區 (datalake/output 資料夾)。
 
 	{
@@ -209,7 +209,7 @@ degreeOfParallelism | 同時用來執行工作的節點數目上限。 | 否
 	    }
 	}
 
-#### 範例 Azure 資料湖存放區連結服務
+### Data Lake Store 連結服務範例
 以下是上述輸入/輸出資料集所使用的範例 Azure 資料湖存放區連結服務的定義。
 
 	{
@@ -226,7 +226,7 @@ degreeOfParallelism | 同時用來執行工作的節點數目上限。 | 否
 
 請參閱[移動 Azure 資料湖存放區的資料](data-factory-azure-datalake-connector.md)以取得上述的 Azure 資料湖存放區連結服務中的 JSON 屬性和資料集 JSON 片段的說明。
 
-### 指令碼定義
+## U-SQL 指令碼範例 
 
 	@searchlog =
 	    EXTRACT UserId          int,
@@ -257,4 +257,21 @@ ADF 會使用 ‘parameters’ 區段動態傳遞上述 U-SQL 指令碼中 @in �
 
 您可以指定其他屬性 (即 degreeOfParallelism、priority 等)，以及 Azure 資料湖分析服務上執行之作業的管線定義中的屬性。
 
-<!---HONumber=AcomDC_0629_2016-->
+## 動態參數
+在上述的管線定義範例中，輸入和輸出參數都會被指派硬式編碼值。
+
+    "parameters": {
+        "in": "/datalake/input/SearchLog.tsv",
+        "out": "/datalake/output/Result.tsv"
+    }
+
+您可改為使用動態參數。例如：
+
+    "parameters": {
+        "in": "$$Text.Format('/datalake/input/{0:yyyy-MM-dd HH:mm:ss}.tsv', SliceStart)",
+        "out": "$$Text.Format('/datalake/output/{0:yyyy-MM-dd HH:mm:ss}.tsv', SliceStart)"
+    }
+
+在此情況下，輸入檔案仍然從 /datalake/input 資料夾挑選且輸出檔案會產生於 /datalake/output 資料夾中，但檔名是動態的並以配量開始時間為基礎。
+
+<!---HONumber=AcomDC_0817_2016-->

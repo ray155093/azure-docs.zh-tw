@@ -13,10 +13,13 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="06/27/2016" 
+    ms.date="08/15/2016" 
     ms.author="elizapo" />
 
 # Estimate Azure RemoteApp network bandwidth usage (評估 Azure RemoteApp 網路頻寬使用量) 
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 Azure RemoteApp 使用遠端桌面通訊協定 (RDP)，在 Azure 雲端中執行的應用程式與您的使用者之間進行通訊。本文提供一些基本指導方針，可用來評估該網路使用量，也可能評估每位 Azure RemoteApp 使用者的網路頻寬使用量。
 
@@ -39,4 +42,4 @@ Azure RemoteApp 使用遠端桌面通訊協定 (RDP)，在 Azure 雲端中執行
 
 我們也不會討論一位使用者對相同網路內的其他使用者的影響。例如，在 100 MB/s 網路上使用 4K 視訊的一位使用者可能會大幅地影響該相同網路內嘗試執行相同工作的其他使用者。不幸的是，越來越難判斷並行使用的影響，以提供有關系統整體效能的通用或全方位建議。我們只能說基礎通訊協定技術會善用可用的網路頻寬，但有其限制。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

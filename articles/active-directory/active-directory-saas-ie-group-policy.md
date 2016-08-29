@@ -4,7 +4,7 @@
     services="active-directory"
     documentationCenter=""
     authors="MarkusVi"
-    manager="stevenpo"
+    manager="femila"
     editor=""/>
 <tags
     ms.service="active-directory"
@@ -12,8 +12,8 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity"
-    ms.date="05/19/2016"
-    ms.author="markvi;liviodlc"/>
+    ms.date="08/16/2016"
+    ms.author="markvi"/>
 
 #如何使用群組原則部署 Internet Explorer 的存取面板延伸模組
 
@@ -181,4 +181,4 @@
 - [搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)
 - [疑難排解 Internet explorer 的存取面板擴充功能](active-directory-saas-ie-troubleshooting.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0817_2016-->

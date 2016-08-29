@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/01/2016"
+	ms.date="08/16/2016"
 	ms.author="jeedes"/>
 
 
@@ -93,16 +93,16 @@
 
 3. 在 [設定應用程式設定] 頁面上，執行下列步驟：
 
-	![設定單一登入][9]
+	![設定單一登入][61]
 
-	a.在 [登入 URL] 文字方塊中，使用以下模式輸入 DocuSign 租用戶的 URL︰若為生產環境，URL 模式會是 **"https://account.docusign.com/organizations/<ORGANIZATIONID>/saml2/login/sp/<IDPID>"** 若為示範環境，URL 模式將會是 **"https://account-d.docusign.com/organizations/<ORGANIZATIONID>/saml2/login/sp/<IDPID>"**
+	a.在 [登入 URL] 文字方塊中，輸入 `https://account.docusign.com/*`。
 
-	b.在 [識別碼] 文字方塊中，使用以下模式輸入 DocuSign 簽發者的 URL︰若為生產環境，URL 模式會是 **"https://account.docusign.com/organizations/<ORGANIZATIONID>/saml2"** 若為示範環境，此 URL 模式將會是 **"https://account-d.docusign.com/organizations/<ORGANIZATIONID>/saml2"**
-
+	b.在 [識別碼] 文字方塊中，輸入 `https://account.docusign.com/*`。
+   
 	c.按 [下一步]。
 
 
-    > [AZURE.TIP] 如果您不知道您的租用戶的應用程式 URL 為何，請嘗試透過 [SSOSetup@Docusign.com](emailTo:SSOSetup@Docusign.com) 連絡 DocuSign，為您的租用戶取得 SP 起始的 SSO URL。
+    > [AZURE.TIP] [登入 URL] 和 [識別碼] 值只是預留位置。本主題稍後會提供如何擷取環境的實際值的指示。
  
 
 4. 在 [設定在 DocuSign 單一登入] 頁面上，按一下 [下載憑證]，然後在本機電腦上儲存憑證檔案。
@@ -113,71 +113,81 @@
 5. 在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 **DocuSign 系統管理入口網站**。
 
 
-6. 在左側導覽功能表中按一下 [網域]
+6. 在左側導覽功能表中按一下 [網域]。
 
 	![設定單一登入][51]
 
-7. 在右窗格上，現在按一下 [宣告網域] 按鈕。
+7. 在右窗格中，按一下 [宣告網域]。
 
 	![設定單一登入][52]
 
-8. 在快顯視窗中，輸入您的公司網域名稱，然後按一下宣告。確定您已驗證網域，而且它顯示狀態為作用中。
+8. 在 [宣告網域] 對話方塊，於 [網域名稱] 文字方塊內輸入您的公司網域，然後按一下 [宣告]。確定您已驗證網域，而且狀態為作用中。
 
 	![設定單一登入][53]
 
-9. 在左側導覽功能表中按一下 [識別提供者]
+9. 在左側的功能表中，按一下 [識別提供者]
 
 	![設定單一登入][54]
 
-10. 在右窗格中按一下 [新增識別提供者] 按鈕。這會開啟 [SSO 設定] 頁面。
+10. 在右窗格中，按一下 [新增識別提供者]。
 	
 	![設定單一登入][55]
 
-11. 在 [識別提供者設定] 頁面中執行下列動作。
-
-	a.為您的組態提供唯一名稱。請務必不要在文字之間使用空格。
-
-	b.在 [識別提供者簽發者] 文字方塊中，放入得自 Azure AD 應用程式組態精靈的 [簽發者 URL] 值。
-
-	c.在 [識別提供者登入 URL] 文字方塊中，放入得自 Azure AD 應用程式組態精靈的 [遠端登入 URL] 值。
-
-	d.在 [識別提供者登出 URL] 文字方塊中，放入得自 Azure AD 應用程式組態精靈的 [遠端登出 URL] 值。
-
-	e.核取 [簽署驗證要求] 核取方塊。
-
-	f.確定 [驗證要求傳送方式:] 選項設定為 [POST]
-
-	g.確定 [登出要求傳送方式:] 選項設定為 [POST]
+11. 在 [識別提供者設定] 頁面上執行下列步驟：
 
 	![設定單一登入][56]
 
-12. 在 [自訂屬性對應] 區段中，選擇您想要與 Azure AD 宣告對應的欄位。例如，我們使用了將值對應為 http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress** 的 **emailaddress** 宣告。這是 Azure AD 針對電子郵件宣告所提供的預設宣告名稱。
 
-	> [AZURE.NOTE] 請使用適當的使用者識別碼，將使用者從 Azure AD 對應到 DocuSign 使用者對應。選取適當的欄位，並根據組織的設定輸入適當的值。
+	a.在 [名稱] 文字方塊中，輸入組態的唯一名稱。請勿使用空格。
+
+	b.在 Azure 傳統入口網站中，複製 [簽發者 URL]，然後貼到 [識別提供者簽發者] 文字方塊中。
+
+	c.在 Azure 傳統入口網站中，複製 [遠端登入 URL]，然後貼到 [識別提供者登入 URL] 文字方塊中。
+
+	d.在 Azure 傳統入口網站中，複製 [遠端登出 URL]，然後貼到 [識別提供者登出 URL] 文字方塊中。
+
+	e.選取 [登入驗證要求]。
+
+	f.選取 [POST] 做為 [驗證要求傳送方式]。
+
+	g.選取 [POST] 做為 [登出要求傳送方式]。
+
+
+12. 在 [自訂屬性對應] 區段中，選擇您想要與 Azure AD 宣告對應的欄位。在此範例中，會使用 http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress** 的值對應 **emailaddress** 宣告。這是 Azure AD 針對電子郵件宣告所提供的預設宣告名稱。
+
+	> [AZURE.NOTE] 請使用適當的**使用者識別碼**，將使用者從 Azure AD 對應到 DocuSign 使用者對應。選取適當的欄位，並根據組織的設定輸入適當的值。
 
 	![設定單一登入][57]
 
-13. 在 [識別提供者憑證] 區段上，按一下 [新增憑證] 按鈕，然後上傳您從 Azure AD 應用程式組態精靈下載的憑證。
+13. 在 [識別提供者憑證] 區段中按一下 [新增憑證]，然後上傳您已從 Azure AD 傳統入口網站下載的憑證。
 
 	![設定單一登入][58]
 
-14. 現在按一下 [儲存] 按鈕以儲存所有設定。
+14. 按一下 [儲存]。
 
-15. 在 [識別提供者] 區段上，按一下 [動作] 按鈕，然後按一下 [端點]
+15. 在 [識別提供者] 區段中，按一下 [動作]，然後按一下 [端點]。
 
 	![設定單一登入][59]
 
-16. 在 [檢視 SAML 2.0 端點] 區段中，執行下列步驟。
 
-	a.複製 [服務提供者簽發者 URL]，並將它放在 Azure AD 組態精靈的 [識別碼] 文字方塊中。
 
-	b.複製 [服務提供者登入 URL]，並將它放在 Azure AD 組態精靈的 [登入 URL] 文字方塊中。
+10. 在 Azure 傳統入口網站上，回到 [設定應用程式設定] 頁面。
+
+16. 在 **DocuSign 系統管理入口網站**的 [檢視 SAML 2.0 端點] 區段中，執行下列步驟：
 
 	![設定單一登入][60]
 
+	a.複製 [服務提供者簽發者 URL]，然後將它貼入 Azure 傳統入口網站上的 [識別碼] 文字方塊。
+
+	b.複製 [服務提供者登入 URL]，然後將它貼入 Azure 傳統入口網站上的 [登入 URL] 文字方塊。
+
 	c.按一下 [關閉]
 
-15. 在 Azure 傳統入口網站上，選取**單一登入組態確認**，然後按 [下一步]。
+
+10. 在 Azure 傳統入口網站上按 [下一步]。
+
+
+15. 在 Azure 傳統入口網站上，選取 [單一登入設定確認]，然後按 [下一步]。
 
 	![[應用程式]][14]
 
@@ -287,5 +297,6 @@
 [58]: ./media/active-directory-saas-docusign-tutorial/tutorial_docusign_26.png
 [59]: ./media/active-directory-saas-docusign-tutorial/tutorial_docusign_27.png
 [60]: ./media/active-directory-saas-docusign-tutorial/tutorial_docusign_28.png
+[61]: ./media/active-directory-saas-docusign-tutorial/tutorial_docusign_29.png
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

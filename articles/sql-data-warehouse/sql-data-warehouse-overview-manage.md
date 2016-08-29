@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/13/2016"
+   ms.date="08/16/2016"
    ms.author="barbkess;sonyama;"/>
 
 # 管理 Azure SQL 資料倉儲中的資料庫
@@ -46,7 +46,7 @@ Visual Studio 中的 [SQL Server Data Tools][] (SSDT)，可讓您連接、管理
 
 SSDT 包含的 SQL Server 物件總管，可讓您針對 SQL 資料倉儲資料庫視覺化、連接和執行指令碼。若要快速連線至 SQL 資料倉儲，只需在 Azure 傳統入口網站檢視資料庫的詳細資料時，按一下命令列中的 [在 Visual Studio 中開啟] 按鈕即可。
 
-若要在 Visual Studio 中開始使用 SSDT，請參閱[使用 Visual Studio 連接到 Azure SQL 資料倉儲][]。
+若要在 Visual Studio 中開始使用 SSDT，請參閱[使用 Visual Studio 查詢 Azure SQL 資料倉儲][]。
 
 ### 命令列工具
 命令列工具非常適合自動化您的工作負載。PowerShell 和 sqlcmd 是自動化程序的兩個好方法。因為您可為必要的工作編寫指令碼並自動執行這類工作，所以我們建議使用這些工具來管理大量的邏輯伺服器，以及在生產環境中部署資源變更。
@@ -81,7 +81,7 @@ DMV 是管理 SQL 資料倉儲的要素。入口網站上幾乎所有的資訊�
 
 若要找出長時間執行的查詢，請參閱[使用 DMV 監視工作負載][]。
 
-## Security
+## 安全性
 
 若要維護安全系統，您必須提高警覺，並且防範任何類型的未經授權存取。安全性系統必須確定防火牆規則作用中，只有獲得授權的 IP 位址可以連接。它需要使用者認證的適當驗證。使用者已連接到資料庫之後，使用者應該只有執行最少動作的權限。若要保護資料，您可以使用加密。稽核和追蹤也同樣重要，這樣您就可以在有任何可疑的活動時追溯事件。
 
@@ -100,7 +100,7 @@ DMV 是管理 SQL 資料倉儲的要素。入口網站上幾乎所有的資訊�
 [建立 SQL 資料倉儲 (Azure 入口網站)]: sql-data-warehouse-get-started-provision.md
 [建立資料庫 (PowerShell)]: sql-data-warehouse-get-started-provision-powershell
 [connection]: sql-data-warehouse-develop-connections.md
-[使用 Visual Studio 連接到 Azure SQL 資料倉儲]: sql-data-warehouse-get-started-connect.md
+[使用 Visual Studio 查詢 Azure SQL 資料倉儲]: sql-data-warehouse-query-visual-studio.md
 [使用 sqlcmd 連接和查詢]: sql-data-warehouse-get-started-connect-sqlcmd.md
 [開發概觀]: sql-data-warehouse-overview-develop.md
 [使用 DMV 監視工作負載]: sql-data-warehouse-manage-monitor.md
@@ -118,4 +118,4 @@ DMV 是管理 SQL 資料倉儲的要素。入口網站上幾乎所有的資訊�
 <!--Other web references-->
 [Azure 入口網站]: http://portal.azure.com/
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0817_2016-->

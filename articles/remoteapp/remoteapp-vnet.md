@@ -13,12 +13,15 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="06/12/2016"
+    ms.date="08/15/2016"
     ms.author="elizapo" />
 
 
 
 # 驗證要搭配 Azure RemoteApp 使用的 Azure VNET
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 在搭配 Azure RemoteApp 使用 Azure VNET 之前，您可能想要驗證 VNET。這有助於避免發生連線問題。
 
@@ -37,4 +40,4 @@
 - [建立混合式收藏](remoteapp-create-hybrid-deployment.md)
 - [將 Azure RemoteApp 收藏部署到 Azure 虛擬網路 (支援 ExpressRoute)](http://blogs.msdn.com/b/rds/archive/2015/04/23/deploy-azure-remoteapp-collection-to-your-azure-virtual-network-with-support-for-expressroute.aspx)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/25/2016" 
+	ms.date="08/17/2016"
 	ms.author="annemill"/>
 
 
@@ -37,13 +37,13 @@
 3. SQL Database 會將其回應傳回給中介軟體，中介軟體將回應轉送給 ADO.NET 連接埠 1433。
 
 
-**術語：**我們使用 *proxy 路由*來說明 ADO.NET 與 SQL Database 互動的上述順序。如果沒有牽涉到中介軟體，我們會說使用的是*直接路由*。
+**術語：**我們使用 *proxy 路由*來說明 ADO.NET 與 SQL Database 互動的上述順序。如果沒有牽涉到中介軟體，我們會說使用的是「直接路由」。
 
 
 ## SQL Database V12：內部與外部
 
 
-對於連線到 V12，我們必須詢問您的用戶端程式是在 Azure 雲端界限*外部*或*內部*執行。這些小節將討論兩種常見案例。
+對於連線到 V12，我們必須詢問您的用戶端程式是在 Azure 雲端界限「外部」或「內部」執行。這些小節將討論兩種常見案例。
 
 
 #### *外部：*在桌上型電腦上執行的用戶端
@@ -120,4 +120,4 @@ SQL Database V11 和 V12 之間的用戶端連線差異是本主題中的重點�
 
 - [如何：在 SQL Database 上進行防火牆設定](sql-database-configure-firewall-settings.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0817_2016-->

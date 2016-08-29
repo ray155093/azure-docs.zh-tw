@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="08/09/2016" 
+	ms.date="08/15/2016" 
 	ms.author="rnagpal"/>
 
 # DocumentDB API 和 SDK 
@@ -39,8 +39,13 @@
 
 ## 版本資訊
 
-### <a name="1.9.2"/>[1\.9.2](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.9.2)
+### <a name="1.9.3"/>[1\.9.3](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.9.3)
 > [AZURE.IMPORTANT] 查詢分割集合時，您可能會收到 System.NotSupportedException。若要避免這個錯誤，請在 [建置] 索引標籤上取消選取專案屬性視窗中的 [建議使用 32 位元] 選項。
+
+  - 已修正造成長時間執行的查詢失敗，並伴隨「授權權杖目前無效」錯誤的問題。
+  - 已修正會從跨資料分割的排名/排序依據查詢中移除原始 SqlParameterCollection 的問題。
+
+### <a name="1.9.2"/>[1\.9.2](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.9.2)
 
   - 已新增分割集合的平行查詢支援。
   - 已新增分割集合的跨資料分割 ORDER BY 和 TOP 查詢支援。
@@ -124,9 +129,9 @@
   - LINQ 提供者支援 OrderBy() 或 OrderByDescending()
   - IndexingPolicy 支援 Order By
   
-		**NB: 可能中斷變更** 
+		**NB: Possible breaking change** 
   
-    	如果您有與自訂索引原則佈建集合的現有程式碼，您需要更新現有的程式碼才能支援新的 IndexingPolicy 類別。 如果您沒有自訂的索引原則，這個變更不會影響到您。
+    	If you have existing code that provisions collections with a custom indexing policy, then your existing code will need to be updated to support the new IndexingPolicy class. If you have no custom indexing policy, then this change does not affect you.
 
 ### <a name="1.1.0"/>[1\.1.0](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.1.0)
 - 支援使用新的 HashPartitionResolver 和 RangePartitionResolver 類別及 IPartitionResolver 來分割資料
@@ -158,27 +163,7 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
  
 | 版本 | 發行日期 | 停用日期 
 | ---	  | ---	         | ---
-| [1\.9.2](#1.9.2) | 2016 年 7 月 23 日 |--- 
-| 1.9.1 | 已過時 |--- | 1.9.0 | 已過時 |--- 
-| [1\.8.0](#1.8.0) | 2016 年 6 月 14 日 |--- 
-| [1\.7.1](#1.7.1) | 2016 年 5 月 6 日 |--- 
-| [1\.7.0](#1.7.0) | 2016 年 4 月26 日 |--- 
-| [1\.6.3](#1.6.3) | 2016 年 4 月 8 日 |--- 
-| [1\.6.2](#1.6.2) | 2016 年 3 月 29 日 |--- 
-| [1\.5.3](#1.5.3) | 2016 年 2 月 19 日 |--- 
-| [1\.5.2](#1.5.2) | 2015 年 12 月 14 日 |--- 
-| [1\.5.1](#1.5.1) | 2015 年 11 月 23 日 |--- 
-| [1\.5.0](#1.5.0) | 2015 年 10 月 5 日 |--- 
-| [1\.4.1](#1.4.1) | 2015 年 8 月 25 日 |--- 
-| [1\.4.0](#1.4.0) | 2015 年 8 月 13 日 |--- 
-| [1\.3.0](#1.3.0) | 2015 年 8 月 5 日 |--- 
-| [1\.2.0](#1.2.0) | 2015 年 7 月 6 日 |--- 
-| [1\.1.0](#1.1.0) | 2015 年 4 月 30 日 |--- 
-| [1\.0.0](#1.0.0) | 2015 年 4 月 8 日 |--- 
-| [0\.9.3-發行前版本](#0.9.x-preview) | 2015 年 3 月 12 日 | 2016 年 2 月 29 日 
-| [0\.9.2-發行前版本](#0.9.x-preview) | 2015 年 1 月 | 2016 年 2 月 29 日 
-| [.9.1-發行前版本](#0.9.x-preview) | 2014 年 10 月 13 日 | 2016 年 2 月 29 日 
-| [0\.9.0-發行前版本](#0.9.x-preview) | 2014 年 8 月 21 日 | 2016 年 2 月 29 日
+| [1\.9.3](#1.9.3) | 2016 年 8 月 15 日 |--- | [1\.9.2](#1.9.2) | 2016 年 7 月 23 日 |--- | 1.9.1 | 已過時 |--- | 1.9.0 | 已過時 |--- | [1\.8.0](#1.8.0) | 2016 年 6 月 14 日 |--- | [1\.7.1](#1.7.1) | 2016 年 5 月 6 日 |--- | [1\.7.0](#1.7.0) | 2016 年 4 月 26 日 |--- | [1\.6.3](#1.6.3) | 2016 年 4 月 28 日 |--- | [1\.6.2](#1.6.2) | 2016 年 3 月 29 日 |--- | [1\.5.3](#1.5.3) | 2016 年 2 月 19 日 |--- | [1\.5.2](#1.5.2) | 2015 年 12 月 14 日 |--- | [1\.5.1](#1.5.1) | 2015 年 11 月 23 日 |--- | [1\.5.0](#1.5.0) | 2015 年 10 月 5 日 |--- | [1\.4.1](#1.4.1) | 2015 年 8 月 25 日 |--- | [1\.4.0](#1.4.0) | 2015 年 8 月 13 日 |--- | [1\.3.0](#1.3.0) | 2015 年 8 月 5 日 |--- | [1\.2.0](#1.2.0) | 2015 年 7 月 6 日 |--- | [1\.1.0](#1.1.0) | 2015 年 4 月 30 日 |--- | [1\.0.0](#1.0.0) | 2015 年 4 月 8 日 |--- | [0\.9.3 發行前版本](#0.9.x-preview) | 2015 年 3 月 12 日 | 2016 年 2 月 29 日 | [0\.9.2 發行前版本](#0.9.x-preview) | 2015 年 1 月 | 2016 年 2 月 29 日 | [.9.1 發行前版本](#0.9.x-preview) | 2014 年 10 月 13 日 | 2016 年 2 月 29 日 | [0\.9.0 發行前版本](#0.9.x-preview) | 2014 年 8 月 21 日 | 2016 年 2 月 29 日
 
 ## 常見問題集
 [AZURE.INCLUDE [documentdb-sdk-faq](../../includes/documentdb-sdk-faq.md)]
@@ -187,4 +172,4 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 
 若要深入了解 DocumentDB，請參閱 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 服務頁面。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

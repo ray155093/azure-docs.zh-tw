@@ -1,6 +1,6 @@
 <properties
 	pageTitle="使用 Ambari API 監視 HDInsight 上的 Hadoop 叢集 | Microsoft Azure"
-	description="使用 Apache Ambari API 來佈建、管理和監視 Hadoop 叢集。直覺式操作工具和 API 可消除 Hadoop 的複雜性。"
+	description="使用 Apache Ambari API 來建立、管理和監視 Hadoop 叢集。直覺式操作工具和 API 可消除 Hadoop 的複雜性。"
 	services="hdinsight"
 	documentationCenter=""
 	tags="azure-portal"
@@ -14,12 +14,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/18/2016"
+	ms.date="08/10/2016"
 	ms.author="jgao"/>
 
 # 使用 Ambari API 監視 HDInsight 上的 Hadoop 叢集
 
-了解如何使用 Ambari API 監視 HDInsight 叢集 3.1 及 2.1 版。
+了解如何使用 Ambari API 監視 HDInsight 叢集。
 
 > [AZURE.NOTE] 本文中的資訊主要適用於 Windows 架構的 HDInsight 叢集，該叢集提供 Ambari REST API 的唯讀版本。對於 Linux 架構的叢集，請參閱[使用 Ambari 管理 Hadoop 叢集](hdinsight-hadoop-manage-ambari.md)。
 
@@ -27,9 +27,7 @@
 
 [Apache Ambari][ambari-home] 可用來佈建、管理及監視 Apache Hadoop 叢集。其中包含一組直接易懂的操作員工具和健全的 API 集，可消除 Hadoop 的複雜性，並簡化叢集作業。如需關於 API 的詳細資訊，請參閱 [Ambari API 參考資料][ambari-api-reference]。
 
-
 HDInsight 目前僅支援 Ambari 監視功能。HDInsight 3.0 及 2.1 版叢集可支援 Ambari API 1.0。本文涵蓋於 HDInsight 3.1 和 2.1 版叢集上存取 Ambari API。兩者的主要差別在於某些元件已隨著新功能引進而變更 (例如工作歷程伺服器)。
-
 
 **必要條件**
 
@@ -48,7 +46,7 @@ HDInsight 目前僅支援 Ambari 監視功能。HDInsight 3.0 及 2.1 版叢集�
     叢集屬性|Azure PowerShell 變數名稱|值|說明
     ---|---|---|---
     HDInsight 叢集名稱|$clusterName||您的 HDInsight 叢集名稱。
-    叢集使用者名稱|$clusterUsername||佈建時指定的叢集使用者名稱。
+    叢集使用者名稱|$clusterUsername||建立叢集時指定的叢集使用者名稱。
     叢集密碼|$clusterPassword||叢集使用者密碼。
 
     >[AZURE.NOTE] 將值填入資料表。這將有助於本教學課程的執行。
@@ -174,4 +172,4 @@ HDInsight 目前僅支援 Ambari 監視功能。HDInsight 3.0 及 2.1 版叢集�
 
 [img-jobtracker-output]: ./media/hdinsight-monitor-use-ambari-api/hdi.ambari.monitor.jobtracker.output.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->
