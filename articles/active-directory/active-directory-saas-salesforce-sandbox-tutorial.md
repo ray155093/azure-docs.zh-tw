@@ -19,7 +19,9 @@
 #教學課程：Azure Active Directory 與 Salesforce 沙箱整合
 >[AZURE.TIP]如需意見反應，請按一下[這裡](http://go.microsoft.com/fwlink/?LinkId=521878)。
   
-本教學課程的目的是要示範 Azure 與 Salesforce 沙箱的整合。沙箱讓您能夠針對不同用途 (例如開發、測試和訓練) 在個別環境中建立貴組織的多個複本，而不會危害 Salesforce 生產環境組織中的資料和應用程式。如需詳細資訊，請參閱[沙箱概觀](https://help.salesforce.com/HTViewHelpDoc?id=create_test_instance.htm&language=en_US)
+本教學課程的目的是要示範 Azure 與 Salesforce 沙箱的整合。  
+沙箱讓您能夠針對不同用途 (例如開發、測試和訓練) 在個別環境中建立貴組織的多個複本，而不會危害 Salesforce 生產環境組織中的資料和應用程式。  
+如需詳細資訊，請參閱[沙箱概觀](https://help.salesforce.com/HTViewHelpDoc?id=create_test_instance.htm&language=en_US)
   
 本教學課程中說明的案例假設您已經具有下列項目：
 

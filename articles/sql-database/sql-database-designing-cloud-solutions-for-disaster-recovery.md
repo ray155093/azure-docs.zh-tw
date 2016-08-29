@@ -36,7 +36,7 @@
 
 在此情況下，當所有應用程式元件都受影響，而需要當成一個單位進行容錯移轉時，應用程式部署拓撲最適合用來處理區域性災害。在地理備援方面，會將應用程式邏輯和資料庫複寫到另一個區域，但在正常情況下不會使用它們來處理應用程式工作負載。次要地區中的應用程式應該設定為使用次要資料庫的 SQL 連接字串。流量管理員設為使用[容錯移轉路由方法](../traffic-manager/traffic-manager-configure-failover-routing-method.md)。
 
-> [AZURE.NOTE] [Azure traffic manager]這整篇文章使用 (../traffic-manager/traffic-manager-overview.md) 僅供說明用途。您可以使用任何支援容錯移轉路由方法的負載平衡方案。
+> [AZURE.NOTE] 這整篇文章使用 [Azure traffic manager](../traffic-manager/traffic-manager-overview.md) 僅供說明用途。您可以使用任何支援容錯移轉路由方法的負載平衡方案。    
 
 除了主要應用程式執行個體，您還應該考慮部署小型[背景工作角色應用程式](cloud-services-choose-me.md#tellmecs)，以定期發出 T-SQL 唯讀 (RO) 命令來監視主要資料庫。您可以利用它來自動觸發容錯移轉、在應用程式的系統管理員主控台產生警示，或兩種功能都執行。為了確保區域性運作中斷不會影響監視，您應該將監視應用程式執行個體部署至每個區域，並將每個執行個體連線到主要區域中的主要資料庫以及當地區域中的次要資料庫。
 

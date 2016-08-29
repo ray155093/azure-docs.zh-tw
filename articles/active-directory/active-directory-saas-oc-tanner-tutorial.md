@@ -110,7 +110,7 @@
 
 	![設定單一登入][6]
 
-2. 在 ** [您希望使用者如何登入 O.C.Tanner - AppreciateHub]** 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
+2. 在 **[您希望使用者如何登入 O.C.Tanner - AppreciateHub]** 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
 
 	![Azure AD 單一登入][7]
 

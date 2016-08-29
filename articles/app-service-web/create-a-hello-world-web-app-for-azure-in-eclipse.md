@@ -29,14 +29,14 @@
 * Java Developer Kit (JDK) 1.7 版或更新版本。
 * Eclipse IDE for Java EE Developers (Indigo 或更新版本)。這可透過 <http://www.eclipse.org/downloads/> 下載。
 * Java 型 Web 伺服器或應用程式伺服器的散發套件，例如 Apache Tomcat 或 Jetty。
-* Azure 訂用帳戶，可從 <https://azure.microsoft.com/zh-TW/free/> 或 <http://azure.microsoft.com/pricing/purchase-options/> 取得。
+* Azure 訂用帳戶，可從 <https://azure.microsoft.com/free/> 或 <http://azure.microsoft.com/pricing/purchase-options/> 取得。
 * 適用於 Eclipse 的 Azure 工具組。如需詳細資訊，請參閱[安裝 Azure Toolkit for Eclipse]。
 
 ## 建立 Hello World 應用程式
 
 首先，我們將從建立 Java 專案開始。
 
-1. 啟動 Eclipse，於功能表上依序按一下 [檔案]、[新增] 及 [動態 Web 專案] (如果在按一下 [File] (檔案)、[New] (新增) 後沒有看到 [Dynamic Web Project] (動態 Web 專案) 列為可用的專案，請執行下列動作：依序按一下 [File] (檔案)、[New] (新增)、[Project...] (專案)，展開 [Web]，按一下 [Dynamic Web Project] (動態 Web 專案)，然後按一下 [Next] (下一步)。)
+1. 啟動 Eclipse，於功能表上依序按一下 [檔案]、[新增] 及 [動態 Web 專案] \(如果在按一下 [File] \(檔案)、[New] \(新增) 後沒有看到 [Dynamic Web Project] \(動態 Web 專案) 列為可用的專案，請執行下列動作：依序按一下 [File] \(檔案)、[New] \(新增)、[Project...] \(專案)，展開 [Web]，按一下 [Dynamic Web Project] \(動態 Web 專案)，然後按一下 [Next] \(下一步)。)
 
 1. 基於本教學課程的目的，將專案命名為 **MyHelloWorld** 您的畫面將出現，如下所示：
 
@@ -137,7 +137,7 @@
 
         * 在 [執行個體大小] 下拉式功能表中，為方案選取適當的執行個體大小。針對測試用途，您可以選擇 [小型]。
 
-    1. 一旦您完成所有上述步驟之後，[New Web App Container] (新增 Web 應用程式容器) 對話方塊看起來應該如下圖所示：
+    1. 一旦您完成所有上述步驟之後，[New Web App Container] \(新增 Web 應用程式容器) 對話方塊看起來應該如下圖所示：
 
         ![][10]
 

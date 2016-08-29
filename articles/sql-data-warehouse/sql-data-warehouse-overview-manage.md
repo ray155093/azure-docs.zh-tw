@@ -42,7 +42,7 @@ SQL 資料倉儲會自動化管理您的資料庫的各個層面。例如，若�
 若要開始使用 Azure 入口網站，請參閱[建立 SQL 資料倉儲 (Azure 入口網站)][]。
 
 ### Visual Studio 中的 SQL Server Data Tools
-Visual Studio 中的 [SQL Server Data Tools][] (SSDT)，可讓您連接、管理和開發資料庫。如果您是熟悉 Visual Studio 或其他整合式開發環境 (IDE) 的應用程式開發人員，請嘗試使用 Visual Studio 中的 SSDT。
+Visual Studio 中的 [SQL Server Data Tools][] \(SSDT)，可讓您連接、管理和開發資料庫。如果您是熟悉 Visual Studio 或其他整合式開發環境 (IDE) 的應用程式開發人員，請嘗試使用 Visual Studio 中的 SSDT。
 
 SSDT 包含的 SQL Server 物件總管，可讓您針對 SQL 資料倉儲資料庫視覺化、連接和執行指令碼。若要快速連線至 SQL 資料倉儲，只需在 Azure 傳統入口網站檢視資料庫的詳細資料時，按一下命令列中的 [在 Visual Studio 中開啟] 按鈕即可。
 

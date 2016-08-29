@@ -70,7 +70,7 @@ Azure IoT 中樞是一項多租用戶服務，可將其功能公開給各種動�
 
     ![裝置到雲端設定][img-eventhubcompatible]
 
-> [AZURE.NOTE] 如果 SDK 需要**主機名稱**或**命名空間**，請從 [事件中樞相容端點] 中移除配置。例如，如果您的事件中樞相容端點為 **sb://iothub-ns-myiothub-1234.servicebus.windows.net/****，主機名稱會是 **iothub-ns-myiothub-1234.servicebus.windows.net**，而命名空間會是 **iothub-ns-myiothub-1234****。
+> [AZURE.NOTE] 如果 SDK 需要 **主機名稱** 或 **命名空間** ，請從 [事件中樞相容端點] 中移除配置。例如，如果您的事件中樞相容端點為 **sb://iothub-ns-myiothub-1234.servicebus.windows.net/** ，主機名稱會是 **iothub-ns-myiothub-1234.servicebus.windows.net** ，而命名空間會是 **iothub-ns-myiothub-1234**。
 
 然後，您可以使用具有 **ServiceConnect** 權限的任何共用存取安全性原則，連接至指定的事件中樞。
 

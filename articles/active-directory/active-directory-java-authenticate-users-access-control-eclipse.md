@@ -142,7 +142,7 @@ Azure 即會建立並啟動命名空間。等到新命名空間的狀態變成 [
 3.  在 [Add Token-Signing Certificate or Key] 頁面上：
     1. 在 [Used for] 區段中，按一下 [Relying Party Application]，然後選取 [Azure Web App] (先前設為信賴憑證者應用程式的名稱)。
     2. 在 [類型] 區段中，選取 [X.509 憑證]。
-    3. 在 [憑證] 區段中，按一下瀏覽按鈕，並導覽至您要使用的 X.509 憑證檔案。這將為 .PFX 檔案。選取檔案、按一下 [開啟]，然後在 [密碼] 文字方塊中輸入憑證密碼。請注意，基於測試目的，您可能使用自我簽署憑證。如果要建立自我簽署憑證，請使用 [**ACS 篩選器程式庫**] 對話方塊 (稍後將說明) 中的 [**新增**] 按鈕，或 **encutil.exe ** 公用程式 (來自 Azure Starter Kit for Java 的[專案網站][] (英文))。
+    3. 在 [憑證] 區段中，按一下瀏覽按鈕，並導覽至您要使用的 X.509 憑證檔案。這將為 .PFX 檔案。選取檔案、按一下 [開啟]，然後在 [密碼] 文字方塊中輸入憑證密碼。請注意，基於測試目的，您可能使用自我簽署憑證。如果要建立自我簽署憑證，請使用 [**ACS 篩選器程式庫**] 對話方塊 (稍後將說明) 中的 [**新增**] 按鈕，或 **encutil.exe** 公用程式 (來自 Azure Starter Kit for Java 的[專案網站][] \(英文))。
     4. 確定已核取 [Make Primary]。您的 [**新增權杖簽署憑證或金鑰**] 頁面應該看起來如下。![Add token-signing certificate][add_token_signing_cert]
     5. 按一下 [儲存] 以儲存您的設定，並關閉 [Add Token-Signing Certificate or Key] 頁面。
 
@@ -152,7 +152,7 @@ Azure 即會建立並啟動命名空間。等到新命名空間的狀態變成 [
 
 您可以找到將 Java Web 應用程式 (RP 應用程式) 設定成在 ASC 管理入口網站的應用程式整合頁面上使用 ACS 所需的所有資訊和程式碼。設定 Java Web 應用程式進行結盟驗證時，您將需要此資訊。
 
-1.  在 ACS 管理入口網站上，按一下 [Application integration]。
+1.  在 ACS 管理入口網站上，按一下 [Application integration]。  
 2.  在 [Application integration] 頁面中，按一下 [Login Pages]。
 3.  在 [Login Page Integration] 頁面中，按一下 [Azure Web App]。
 
@@ -249,7 +249,7 @@ Azure 即會建立並啟動命名空間。等到新命名空間的狀態變成 [
 
 ## <a name="next_steps"></a>接續步驟
 
-若要檢查 ACS 傳回給應用程式的安全性聲明標記語言 (SAML)，請參閱[如何檢視 Azure 存取控制服務傳回的 SAML][]。若要進一步探索 ACS 功能及試試其他更精緻的案例，請參閱[存取控制服務 2.0][] (英文)。
+若要檢查 ACS 傳回給應用程式的安全性聲明標記語言 (SAML)，請參閱[如何檢視 Azure 存取控制服務傳回的 SAML][]。若要進一步探索 ACS 功能及試試其他更精緻的案例，請參閱[存取控制服務 2.0][] \(英文)。
 
 同時，此範例也使用了 [Embed the certificate in the WAR file] 選項。此選項可讓您輕易部署憑證。如果您想要改為讓簽署憑證與 WAR 檔案維持分開狀態，則可以使用下列技術：
 

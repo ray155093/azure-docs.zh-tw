@@ -1494,7 +1494,9 @@
 如果這麼做無法解決您的問題，建議您閱讀[疑難排解密碼回寫](#troubleshoot-password-writeback)和 [Azure AD 密碼管理常見問題集](active-directory-passwords-faq.md)，看看其中是否有討論到您的問題。
 
 
-<br/> <br/> <br/>
+<br/> 
+<br/> 
+<br/>
 
 ## 密碼重設文件的連結
 以下是所有 Azure AD 密碼重設文件頁面的連結：
