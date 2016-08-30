@@ -1,52 +1,42 @@
-1. 登入 Azure 傳統入口網站。
+1. 登入 [Azure 入口網站][]。
 
-2. 在入口網站的左方瀏覽窗格中，按一下 [服務匯流排]。
+2. 在入口網站的左方瀏覽窗格中，依序按一下 [新增]、[企業整合] 及 [服務匯流排]。
 
-3. 在入口網站的下方窗格中，按一下 [建立]。
+4. 在 [建立命名空間] 對話方塊中，輸入命名空間名稱。系統會立即檢查此名稱是否可用。
 
-    ![選取建立][select-create]
-   
-4. 在 [Add a new namespace] 對話方塊中，輸入命名空間名稱。系統會立即檢查此名稱是否可用。
+5. 確定命名空間名稱可用之後，請選擇定價層 (基本、標準或進階)。
 
-    ![命名空間名稱][namespace-name]
-  
-5. 確定命名空間名稱可用之後，選擇要裝載命名空間的國家或區域。
+7. 在 [訂用帳戶] 欄位中，選擇要在其中建立命名空間的 Azure 訂用帳戶。
 
-6. 讓對話方塊中的其他欄位保留其預設值 ([傳訊] 和 [標準層])，然後按一下 [確定] 核取記號。此時系統會建立並啟用命名空間。系統為帳戶提供資源時，您可能需要等幾分鐘。
+9. 在 [資源群組] 欄位中，選擇將存留命名空間的現有資源群組或建立新的資源群組。
+
+8. 在 [位置] 中，選擇應裝載您的命名空間的國家或區域。
+
+	![建立命名空間][create-namespace]
+
+6. 按一下 [**建立**] 按鈕。此時系統會建立並啟用命名空間。系統為帳戶提供資源時，您可能需要等幾分鐘。
  
-    ![已成功建立][created-successfully]
+### 取得管理認證
 
-###取得認證
-1. 在左方瀏覽窗格中，按一下 [服務匯流排] 節點，以顯示可用的命名空間清單：
+1. 在命名空間清單中，按一下新建立的命名空間名稱。
  
-    ![選取服務匯流排][select-service-bus]
-  
-2. 從顯示的清單中，選取您剛建立的命名空間：
- 
-    ![選取命名空間][select-namespace]
- 
-3. 按一下 [連線資訊]。
+3. 在 [服務匯流排命名空間] 刀鋒視窗中，按一下 [共用存取原則]。
 
-    ![連線資訊][connection-information]
-  
-4. 在 [**存取連線資訊**] 窗格中，尋找包含 SAS 金鑰和金鑰名稱的連接字串。
+4. 在 [共用存取原則] 刀鋒視窗中，按一下 **RootManageSharedAccessKey**。
 
-    ![存取連線資訊][access-connection-information]
-  
-5. 記下金鑰，或將它複製到剪貼簿。
+	![connection-info][connection-info]
+
+5. 在 [原則︰RootManageSharedAccessKey] 刀鋒視窗中，按一下 [連接字串 – 主索引鍵] 旁邊的複製按鈕，將連接字串複製到剪貼簿以供稍後使用。
+
+	![connection-string][connection-string]
 
 <!--Image references-->
 
-[select-create]: ./media/service-bus-create-namespace-portal/select-create.png
-[namespace-name]: ./media/service-bus-create-namespace-portal/namespace-name.png
-[created-successfully]: ./media/service-bus-create-namespace-portal/created-successfully.png
-[select-service-bus]: ./media/service-bus-create-namespace-portal/select-service-bus.png
-[select-namespace]: ./media/service-bus-create-namespace-portal/select-namespace.png
-[connection-information]: ./media/service-bus-create-namespace-portal/connection-information.png
-[access-connection-information]: ./media/service-bus-create-namespace-portal/access-connection-information.png
-
+[create-namespace]: ./media/service-bus-create-namespace-portal/create-namespace.png
+[connection-info]: ./media/service-bus-create-namespace-portal/connection-info.png
+[connection-string]: ./media/service-bus-create-namespace-portal/connection-string.png
 
 <!--Reference style links - using these makes the source content way more readable than using inline links-->
-[classic-portal]: https://manage.windowsazure.com
+[Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0824_2016-->

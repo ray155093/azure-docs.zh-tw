@@ -13,7 +13,7 @@
     ms.topic="get-started-article"
     ms.tgt_pltfrm="dotnet"
     ms.workload="na"
-    ms.date="06/07/2016"
+    ms.date="08/23/2016"
     ms.author="jotaub;sethm"/>
 
 # 開始使用服務匯流排佇列
@@ -36,7 +36,7 @@
 
 1. [Visual Studio 2013 或 Visual Studio 2015](http://www.visualstudio.com)。本教學課程中的範例使用 Visual Studio 2015。
 
-2. Azure 訂閱。
+2. Azure 訂用帳戶。
 
 [AZURE.INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
@@ -111,9 +111,9 @@
     }
     ```
   
-3. 執行程式，並檢查 Azure 傳統入口網站。請注意，**佇列長度**值現在應該是 1。
+3. 執行程式，並檢查 Azure 入口網站。在命名空間 [概觀] 刀鋒視窗中按一下您的佇列名稱。請注意，[使用中訊息計數] 值現在應該是 1。
     
-      ![佇列長度][queue-length-send]
+      ![訊息計數][queue-message]
     
 ## 4\.從佇列接收訊息
 
@@ -173,7 +173,7 @@
   
 4. 執行程式，並檢查入口網站。請注意，**佇列長度**值現在應該是 0。
 
-    ![佇列長度][queue-length-receive]
+    ![佇列長度][queue-message-receive]
   
 恭喜！ 您現已建立佇列、傳送訊息和接收訊息。
 
@@ -184,12 +184,12 @@
 <!--Image references-->
 
 [nuget-pkg]: ./media/service-bus-dotnet-get-started-with-queues/nuget-package.png
-[queue-length-send]: ./media/service-bus-dotnet-get-started-with-queues/queue-length-send.png
-[queue-length-receive]: ./media/service-bus-dotnet-get-started-with-queues/queue-length-receive.png
+[queue-message]: ./media/service-bus-dotnet-get-started-with-queues/queue-message.png
+[queue-message-receive]: ./media/service-bus-dotnet-get-started-with-queues/queue-message-receive.png
 
 
 <!--Reference style links - using these makes the source content way more readable than using inline links-->
 
 [github-samples]: https://github.com/Azure-Samples/azure-servicebus-messaging-samples
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0824_2016-->

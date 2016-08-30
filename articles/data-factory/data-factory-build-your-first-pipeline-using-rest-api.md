@@ -52,6 +52,7 @@
 在 curl.exe 所在的資料夾中建立下列 JSON 檔案。
 
 ### datafactory.json 
+> [AZURE.IMPORTANT] 名稱必須是全域唯一的，所以建議您使用 ADFCopyTutorialDF 做為前置詞/後置詞，使其成為唯一的名稱。
 
 	{  
 	    "name": "FirstDataFactoryREST",  
@@ -98,11 +99,11 @@
 
 請注意：
 
-- Data Factory 會以上述 JSON 為您建立**以 Windows 為基礎的** HDInsight 叢集。您也可以讓它建立**以 Linux 為基礎的** HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
+- Data Factory 會以上述 JSON 為您建立「以 Windows 為基礎的」HDInsight 叢集。您也可以讓它建立**以 Linux 為基礎的** HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
 - 您可以使用**自己的 HDInsight 叢集**，不必使用隨選的 HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 連結服務](data-factory-compute-linked-services.md#azure-hdinsight-linked-service)。
 - HDInsight 叢集會在您於 JSON 中指定的 Blob 儲存體 (**linkedServiceName**) 建立**預設容器**。HDInsight 不會在刪除叢集時刪除此容器。這是設計的行為。在使用 HDInsight 隨選連結服務時，除非有現有的即時叢集 (**timeToLive**)，否則每當需要處理配量時，就會建立 HDInsight 叢集，並在處理完成時予以刪除。
 
-	隨著處理的配量越來越多，您會在 Azure Blob 儲存體中看到許多容器。如果在疑難排解作業時不需要這些容器，建議您加以刪除以降低儲存成本。這些容器的名稱遵循下列模式："adf**yourdatafactoryname**-**linkedservicename**-datetimestamp"。請使用 [Microsoft 儲存體總管](http://storageexplorer.com/)之類的工具刪除 Azure Blob 儲存體中的容器。
+	隨著處理的配量越來越多，您會在 Azure Blob 儲存體中看到許多容器。如果在疑難排解作業時不需要這些容器，建議您加以刪除以降低儲存成本。這些容器的名稱遵循下列模式："adf**yourdatafactoryname**-**linkedservicename**-datetimestamp"。請使用 [Microsoft 儲存體總管](http://storageexplorer.com/)之類的工具，來刪除 Azure Blob 儲存體中的容器。
 
 如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
 
@@ -253,6 +254,8 @@ Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (�
 
 1. 將命令指派給名為 **cmd** 的變數。
 
+	確認您在此指定的名稱 (ADFCopyTutorialDF) 符合在 **datafactory.json** 指定的名稱。
+
 		$cmd = {.\curl.exe -X PUT -H "Authorization: Bearer $accessToken" -H "Content-Type: application/json" --data “@datafactory.json” https://management.azure.com/subscriptions/$subscription_id/resourcegroups/$rg/providers/Microsoft.DataFactory/datafactories/FirstDataFactoryREST?api-version=2015-10-01};
 2. 使用 **Invoke-Command** 執行命令。
 
@@ -263,7 +266,10 @@ Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (�
 
 請注意：
  
-- Azure Data Factory 的名稱在全域必須是唯一的。如果您在結果中看到錯誤：「Data Factory 名稱 “FirstDataFactoryREST” 無法使用」，請變更 JSON 檔案和上述命令中的名稱 (例如 yournameFirstDataFactoryREST)。執行本教學課程中的步驟時，請使用此名稱來取代 **FirstDataFactoryREST**。請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md)主題，以了解 Data Factory 成品的命名規則。
+- Azure Data Factory 的名稱在全域必須是唯一的。如果您在結果中看到錯誤︰「Data factory 名稱 “FirstDataFactoryREST” 無法使用」，請執行下列動作︰
+	1. 在 **datafactory.json** 檔案中變更名稱 (例如，yournameFirstDataFactoryREST)。請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md)主題，以了解 Data Factory 成品的命名規則。
+	2. 在指派 **$cmd** 變數值的第一個命令中，以新的名稱取代 FirstDataFactoryREST 並執行命令。
+	3. 執行下面兩個命令來叫用 REST API，以建立 Data Factory 和列印作業的結果。
 - 若要建立 Data Factory 執行個體，您必須是 Azure 訂用帳戶的參與者/系統管理員
 - Data Factory 的名稱未來可能會註冊為 DNS 名稱，因此會變成公開可見的名稱。
 - 如果您收到錯誤：「此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory」，請執行下列其中一項，然後嘗試再次發佈︰
@@ -399,4 +405,4 @@ Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (�
 | [使用 Azure 入口網站刀鋒視窗監視及管理管線](data-factory-monitor-manage-pipelines.md) | 本文描述如何使用 Azure 入口網站刀鋒視窗來監視、管理和偵錯您的管線。 |
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

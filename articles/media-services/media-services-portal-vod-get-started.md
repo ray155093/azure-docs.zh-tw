@@ -13,11 +13,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="06/22/2016"
+	ms.date="08/18/2016"
 	ms.author="juliako"/>
 
 
 # 使用 Azure 入口網站傳遞點播內容入門
+
+[AZURE.INCLUDE [media-services-selector-get-started](../../includes/media-services-selector-get-started.md)]
 
 本教學課程會逐步引導您使用 Azure 入口網站實作含 Azure 媒體服務 (AMS) 應用程式的基本點播視訊 (VoD) 內容傳遞服務。
 
@@ -37,7 +39,7 @@ Azure 入口網站中的 Azure 媒體服務目前為預覽狀態。
 
 ## 建立 Azure 媒體服務帳戶
 
-本節中的步驟示範如何建立新的 AMS 帳戶。
+本節中的步驟示範如何建立 AMS 帳戶。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 按一下 [+新增] > [媒體 + CDN] > [媒體服務]。
@@ -52,7 +54,7 @@ Azure 入口網站中的 Azure 媒體服務目前為預覽狀態。
 	2. 在訂用帳戶中，從您可存取的不同 Azure 訂用帳戶中進行選取。
 	
 	2. 在 [資源群組] 中，選取新的或現有資源。資源群組是共用相同生命週期、權限及原則的資源集合。在[按此](resource-group-overview.md#resource-groups)深入了解。
-	3. 在 [位置] 中，選取將用來儲存您媒體服務帳戶之媒體和中繼資料記錄的地理區域。此區域將用於處理和串流媒體。只有可用的媒體服務區域才會出現在下拉式清單方塊中。
+	3. 在 [位置] 中，選取用來儲存您媒體服務帳戶之媒體和中繼資料記錄的地理區域。此區域用於處理和串流媒體。只有可用的媒體服務區域才會出現在下拉式清單方塊中。
 	
 	3. 在 [儲存體帳戶] 中，選取儲存體帳戶以從媒體服務帳戶提供媒體內容的 Blob 儲存體。您可以選取與媒體服務帳戶相同地理區域中的現有儲存體帳戶，也可以建立新的儲存體帳戶。新的儲存體帳戶會建立於相同的區域中。儲存體帳戶名稱的規則會與媒體服務帳戶相同。
 
@@ -79,13 +81,13 @@ Azure 入口網站中的 Azure 媒體服務目前為預覽狀態。
 2. 在 [設定] 視窗中，選取 [金鑰]。
 
 	[管理金鑰] 視窗會顯示帳戶名稱以及主要和次要金鑰。
-3. 按 [複製] 按鈕以複製這些值。
+3. 按複製按鈕以複製這些值。
 	
 	![媒體服務金鑰](./media/media-services-portal-vod-get-started/media-services-keys.png)
 
 ## 設定串流端點
 
-使用 Azure 媒體服務時，其中一個最常見案例是透過自適性串流提供影片給您的用戶端。使用自適性串流，用戶端可以在視訊顯示時，根據目前網路頻寬、CPU 使用率以及其他因素，切換成較高或較低的位元速率串流。媒體服務支援下列自適性串流技術：HTTP 即時串流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access 授權)。
+使用 Azure 媒體服務時，其中一個最常見案例是透過自適性串流提供影片給您的用戶端。使用自適性串流，用戶端可以在視訊顯示時，根據目前網路頻寬、CPU 使用率以及其他因素，切換成較高或較低的位元速率串流。媒體服務支援下列調適性位元速率串流技術：HTTP 即時串流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access 授權)。
 
 媒體服務提供動態封裝，這讓您以媒體服務即時支援的串流格式 (MPEG DASH、HLS、Smooth Streaming、HDS) 提供自適性 MP4 編碼內容，而不必儲存這些串流格式個別的預先封裝版本。
 
@@ -131,12 +133,11 @@ Azure 入口網站中的 Azure 媒體服務目前為預覽狀態。
 
 	開始上傳，您可以在檔名底下看到進度。
 
-上傳完成後，您將會看到新資產列在 [資產] 清單中。
-
+上傳完成後，您會看到新資產列在 [資產] 清單中。
 
 ## 為資產編碼
 
-使用 Azure 媒體服務時，其中一個最常見案例是提供自適性串流給您的用戶端。媒體服務支援下列自適性串流技術：HTTP 即時串流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access 授權)。若要針對自適性串流準備您的視訊，您必須將來源視訊編碼為多位元速率檔案。您應該使用 [媒體編碼器標準] 編碼器來為您的視訊編碼。
+使用 Azure 媒體服務時，其中一個最常見案例是提供自適性串流給您的用戶端。媒體服務支援下列調適性位元速率串流技術：HTTP 即時串流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access 授權)。若要針對自適性串流準備您的視訊，您必須將來源視訊編碼為多位元速率檔案。您應該使用 [媒體編碼器標準] 編碼器來為您的視訊編碼。
 
 媒體服務也提供動態封裝，這讓您以下列串流格式 (MPEG DASH、HLS、Smooth Streaming 或 HDS) 提供多位元速率 MP4，而不必重新封裝成這些串流格式。使用動態封裝，您只需要以單一儲存格式儲存及播放檔案，媒體服務會根據來自用戶端的要求建置及傳遞適當的回應。
 
@@ -161,13 +162,13 @@ Azure 入口網站中的 Azure 媒體服務目前為預覽狀態。
 
 ### 監視編碼作業進度
 
-若要監視編碼作業的進度，請按一下 [設定] \(位於頁面頂端)，然後選取 [作業]。
+若要監視編碼作業的進度，請按一下 [設定] (位於頁面頂端)，然後選取 [作業]。
 
 ![作業](./media/media-services-portal-vod-get-started/media-services-jobs.png)
 
 ## 發佈內容
 
-如要想提供 URL 給使用者，讓使用者可以利用這個 URL 來傳送或下載內容，請您先建立定位器來發佈您的資產。定位器可以存取資產中所含的檔案。媒體服務支援兩種類型的定位器：
+如要想提供 URL 給使用者，讓使用者可以利用這個 URL 來傳送或下載內容，請您先建立定位器來發佈您的資產。定位器提供對於資產中包含之檔案的存取。媒體服務支援兩種類型的定位器：
 
 - 串流 (OnDemandOrigin) 定位器，用來自適性串流 (例如，串流處理 MPEG DASH、HLS 或 Smooth Streaming)。若要建立串流定位器，您的資產必須包含 .ism 檔案。
 - 漸進式 (SAS) 定位器，用於透過漸進式下載傳遞視訊。
@@ -181,7 +182,7 @@ Azure 入口網站中的 Azure 媒體服務目前為預覽狀態。
 
 	{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=m3u8-aapl)
 
-若要建立 MPEG DASH 資料流 URL，請在 URL 加上 (format=mpd-time-csf)。
+若要建置 MPEG DASH 串流 URL，請將 (格式=mpd-time-csf) 附加至 URL。
 
 	{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=mpd-time-csf)
 
@@ -192,7 +193,7 @@ SAS URL 具有下列格式。
 
 >[AZURE.NOTE] 如果您在 2015 年 3 月前使用入口網站來建立定位器，則建立的定位器 2 年後便告失效。
 
-若要更新定位器的到期日，請使用 [REST](http://msdn.microsoft.com/library/azure/hh974308.aspx#update_a_locator) 或 [.NET](http://go.microsoft.com/fwlink/?LinkID=533259) API。請注意，當您更新 SAS 定位器的到期日，URL 也會隨之變更。
+若要更新定位器的到期日，請使用 [REST](http://msdn.microsoft.com/library/azure/hh974308.aspx#update_a_locator) 或 [.NET](http://go.microsoft.com/fwlink/?LinkID=533259) API。當您更新 SAS 定位器的到期日，URL 也會隨之變更。
 
 ### 使用入口網站發佈資產
 
@@ -219,7 +220,7 @@ Azure 入口網站提供內容播放程式，您可用來測試您的視訊。
 適用一些考量事項：
 
 - 確定已發佈視訊。
-- 此「媒體播放器」* 會從預設串流端點播放。如果您想要從非預設串流端點播放，請按一下以複製 URL 並使用其他播放器。例如，[Azure 媒體服務播放器](http://amsplayer.azurewebsites.net/azuremediaplayer.html)。
+- 此**媒體播放器**會從預設串流端點播放。如果您想要從非預設串流端點播放，請按一下以複製 URL 並使用其他播放器。例如，[Azure 媒體服務播放器](http://amsplayer.azurewebsites.net/azuremediaplayer.html)。
 
 ##後續步驟：媒體服務學習路徑
 
@@ -229,4 +230,4 @@ Azure 入口網站提供內容播放程式，您可用來測試您的視訊。
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0824_2016-->

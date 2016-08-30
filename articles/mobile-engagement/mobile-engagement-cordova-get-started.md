@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-phonegap"
 	ms.devlang="js"
 	ms.topic="hero-article" 
-	ms.date="04/04/2016"
+	ms.date="08/19/2016"
 	ms.author="piyushjo" />
 
 # 開始使用 Azure Mobile Engagement for Cordova/Phonegap
@@ -24,7 +24,7 @@
 
 在本教學課程中，我們將會使用 Mac 建立空白的 Cordova 應用程式，然後整合 Mobile Engagement SDK。它會收集基本分析資料，並針對 iOS 使用 Apple Push Notification System (APNS)、針對 Android 使用 Google Cloud Messaging (GCM) 接收推播通知。我們會將它部署到 iOS 或 Android 裝置以進行測試。
 
-> [AZURE.NOTE] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-cordova-get-started)。
+> [AZURE.NOTE] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdocumentation%2Farticles%2Fmobile-engagement-cordova-get-started)。
 
 本教學課程需要下列各項：
 
@@ -48,7 +48,7 @@
 
 ###建立新的 Cordova 專案
 
-1. 啟動 Mac 電腦上的 *Terminal* 視窗，並輸入下列內容，其將會從預設範本中建立新的 Cordova 專案。請確定您最後用來部署您的 iOS 應用程式的發行設定檔是使用 'com.mycompany.myapp' 做為應用程式識別碼。 
+1. 啟動 Mac 電腦上的 *Terminal* 視窗，並輸入下列內容，其將會從預設範本中建立新的 Cordova 專案。請確定您最後用來部署您的 iOS 應用程式的發行設定檔是使用 'com.mycompany.myapp' 做為應用程式識別碼。
 
 		$ cordova create azme-cordova com.mycompany.myapp
 		$ cd azme-cordova
@@ -122,7 +122,7 @@
 
 ##<a id="integrate-push"></a>啟用推播通知與應用程式內傳訊
 
-Mobile Engagement 可讓您使用「推播通知」和「應用程式內傳訊」，於活動進行時與使用者互動。此模組在 Mobile Engagement 入口網站中稱為 REACH。以下各節將設定您的用程式來接收它們。
+Mobile Engagement 可讓您使用「推播通知」和「應用程式內傳訊」，於活動進行時與使用者互動。此模組在 Mobile Engagement 入口網站中稱為觸達 (REACH)。以下各節將設定您的應用程式來接收它們。
 
 ###設定 Mobile Engagement 的推播認證
 
@@ -167,7 +167,7 @@ Mobile Engagement 可讓您使用「推播通知」和「應用程式內傳訊�
 
 **[iOS]**
 
-1. 我們將使用 XCode 在裝置上建置及部署應用程式，以測試推播通知，因為 iOS 只允許推播通知到實際裝置。移至您建立 Cordova 專案的位置，然後瀏覽至 **...\\platforms\\ios** 位置。在 XCode 中開啟原生 .xcodeproj 檔案。 
+1. 我們將使用 XCode 在裝置上建置及部署應用程式，以測試推播通知，因為 iOS 只允許推播通知到實際裝置。移至您建立 Cordova 專案的位置，然後瀏覽至 **...\\platforms\\ios** 位置。在 XCode 中開啟原生 .xcodeproj 檔案。
 	
 2. 建置 Cordova 應用程式並部署至 iOS 裝置，方法是使用具有佈建設定檔的帳戶，該設定檔包含憑證 (您剛剛上傳至 Mobile Engagement 入口網站) 和應用程式識別碼 (符合您在建立 Cordova 應用程式時提供的識別碼)。您可以在 XCode 的 **Resources*-info.plist** 檔案中檢查「套件組合識別碼」來進行配對。
 
@@ -191,20 +191,20 @@ Mobile Engagement 可讓您使用「推播通知」和「應用程式內傳訊�
 
 3. 提供輸入來建立您的行銷活動 **[Android]**
 	
-	- 為您的行銷活動提供**名稱**。 
+	- 為您的行銷活動提供**名稱**。
 	- 針對 [傳遞類型] 選取 [系統通知] - [簡易]
 	- 針對 [傳遞時間] 選取 [任何時間]
 	- 提供通知的**標題**，這將是推播中的第一行。
-	- 提供通知的**訊息**，這將做為訊息內文。 
+	- 提供通知的**訊息**，這將做為訊息內文。
 
 	![][11]
 
 4. 提供輸入來建立您的行銷活動 **[iOS]**
 
-	- 為您的行銷活動提供**名稱**。 
+	- 為您的行銷活動提供**名稱**。
 	- 針對 [傳遞時間] 選取 [僅限應用程式外]
 	- 提供通知的**標題**，這將是推播中的第一行。
-	- 提供通知的**訊息**，這將做為訊息內文。 
+	- 提供通知的**訊息**，這將做為訊息內文。
  
 	![][12]
 
@@ -212,7 +212,7 @@ Mobile Engagement 可讓您使用「推播通知」和「應用程式內傳訊�
 
 	![][8]
 
-6. [選用] 您也可以提供動作 URL。請確定它會使用在設定外掛程式的 **AZME\_REDIRECT\_URL** 變數 (例如 **myapp://test*) 時提供的 URL 配置。
+6. [選用] 您也可以提供動作 URL。請確定它會使用在設定外掛程式的 **AZME\_REDIRECT\_URL** 變數 (例如 *myapp://test*) 時提供的 URL 配置。
 
 7. 您已完成能做的最基本活動設定。現在再次向下捲動，並按一下 [建立] 按鈕來儲存行銷活動。
 
@@ -237,4 +237,4 @@ Mobile Engagement 可讓您使用「推播通知」和「應用程式內傳訊�
 [11]: ./media/mobile-engagement-cordova-get-started/campaign-first-params-android.png
 [12]: ./media/mobile-engagement-cordova-get-started/campaign-first-params-ios.png
 
-<!---HONumber=AcomDC_0406_2016---->
+<!---HONumber=AcomDC_0824_2016-->

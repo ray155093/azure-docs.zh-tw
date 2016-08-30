@@ -14,14 +14,14 @@
 	 ms.tgt_pltfrm="na"
 	 ms.devlang="na"
 	 ms.topic="get-started-article"
-	 ms.date="07/01/2016"
+	 ms.date="08/21/2016"
 	 ms.author="trinadhk; giridham; arunak; markgal; jimpark;"/>
 
 # Azure 備份服務常見問題集
 
 > [AZURE.SELECTOR]
 - [傳統模式的備份常見問題集](backup-azure-backup-faq.md)
-- [ARM 模式的備份常見問題集](backup-azure-backup-ibiza-faq.md)
+- [Resource Manager 模式的備份常見問題集](backup-azure-backup-ibiza-faq.md)
 
 這篇文章是關於 Azure 備份服務的常見問題 (和個別答案) 清單。我們的社群會快速回覆，如果是經常詢問的問題，我們會將它加入至這份文件。問題的答案通常會提供參考或支援資訊。您可以在本文件或相關文件的 Disqus 一節中詢問有關 Azure 備份的問題。您也可以在[論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazureonlinebackup)中張貼有關 Azure 備份服務的問題。
 
@@ -182,7 +182,9 @@
 
 **Q3.什麼是用來加密備份資料之加密金鑰的最小長度？** <br/> A3.加密金鑰應該至少包含 16 個字元。
 
-**Q4.如果我錯置加密金鑰，則會發生什麼情況？ 我可以復原資料 (或者) Microsoft 可以復原資料嗎？** <br/> A4.用來加密備份資料的金鑰僅存在於客戶組織內部。Microsoft 不會維護 Azure 中的複本，且無法存取金鑰。若客戶錯置金鑰，則 Microsoft 無法復原備份資料。 
+**Q4.如果我錯置加密金鑰，則會發生什麼情況？ 我可以復原資料 (或者) Microsoft 可以復原資料嗎？** <br/> A4.用來加密備份資料的金鑰僅存在於客戶組織內部。Microsoft 不會維護 Azure 中的複本，且無法存取金鑰。若客戶錯置金鑰，則 Microsoft 無法復原備份資料。
+
+**Q5.Azure VM 的備份資料是否已加密？** <br/> A5.Azure 備份依賴 Azure VM 的加密設定來進行備份加密。如果使用 Azure 磁碟加密來加密您的 VM，Azure 備份會使用該加密來保護您的資料。 
 
 ## 備份快取
 
@@ -197,8 +199,8 @@
 
 |登錄路徑 | 登錄金鑰 | 值 |
 | ------ | ------- | ------|
-| `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Config` | ScratchLocation | 「新的快取資料夾位置」 |
-| `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Config\CloudBackupProvider` | ScratchLocation | 「新的快取資料夾位置」 |
+| `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Config` | ScratchLocation | *「新的快取資料夾位置」* |
+| `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Config\CloudBackupProvider` | ScratchLocation | *「新的快取資料夾位置」* |
 
 - 在提高權限的命令提示字元中執行下列命令以重新啟動備份引擎：
 
@@ -221,4 +223,4 @@
 
 快取資料夾和中繼資料 VHD 都不建議有上述屬性，以便 Azure 備份代理程式能如預期般運作。
 
-<!----HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0824_2016-->

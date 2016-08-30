@@ -1,5 +1,5 @@
 <properties
-	pageTitle="使用者在存取 Azure AD 裝置型條件式存取受保護應用程式時的補救方式 | Microsoft Azure"
+	pageTitle="疑難排解︰您無法從這裡完成 | Microsoft Azure"
 	description="本主題可協助您找出是否有可供依循的補救步驟來取得您要存取之應用程式的存取權。"
 	services="active-directory"
 	keywords="裝置型條件式存取、裝置註冊、啟用裝置註冊、裝置註冊和 MDM"
@@ -14,11 +14,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="08/15/2016"
+	ms.date="08/23/2016"
 	ms.author="markvi"/>
 
 
-# 使用者在存取 Azure AD 裝置型條件式存取受保護應用程式時的補救方式
+# 疑難排解︰您無法從這裡完成
 
 您會在存取應用程式 (例如 Office 365 SharePoint Online) 時遭到拒絕存取。現在，該怎麼辦？
 
@@ -172,4 +172,4 @@
 
 [Azure Active Directory 條件式存取](active-directory-conditional-access.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

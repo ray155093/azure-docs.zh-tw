@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="05/03/2016" 
+	ms.date="08/23/2016" 
 	ms.author="rachelap"/>
 
 # API Apps 概觀
@@ -61,6 +61,6 @@ API 管理和 API 應用程式的某些功能具有類似的功能。例如，�
 * [Node.js](app-service-api-nodejs-api-app.md)
 * [Java](app-service-api-java-api-app.md)
 
-若要詢問有關 API Apps 的問題，請在 [API Apps 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureAPIApps)中發問。
+若要詢問有關 API Apps 的問題，請在 [API Apps 論壇](https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=AzureAPIApps)中發問。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0824_2016-->

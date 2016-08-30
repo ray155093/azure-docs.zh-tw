@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/09/2016"
+	ms.date="08/17/2016"
 	ms.author="sstein;carlrab" />
 
 # 使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢
@@ -25,26 +25,23 @@
 - [SSMS](sql-database-connect-query-ssms.md)
 - [Excel](sql-database-connect-excel.md)
 
-本文說明如何使用最新版的 SQL Server Management Studio (SSMS) 連接到 Azure SQL Database，然後使用 Transact-SQL (T-SQL) 陳述式執行簡單查詢。
-
-[AZURE.INCLUDE [Sign in](../../includes/azure-getting-started-portal-login.md)]
+本文示範如何使用 SQL Server Management Studio (SSMS) 連接到 Azure SQL Database。成功連線之後，我們會執行簡單的 Transact-SQL (T-SQL) 查詢，以便驗證與資料庫的通訊。
 
 [AZURE.INCLUDE [SSMS 安裝](../../includes/sql-server-management-studio-install.md)]
 
 [AZURE.INCLUDE [SSMS 連線](../../includes/sql-database-sql-server-management-studio-connect-server-principal.md)]
 
-如需防火牆規則的詳細資訊，請參閱[如何：進行防火牆設定 (Azure SQL Database)](sql-database-configure-firewall-settings.md)。
 
 ## 執行範例查詢
 
-連接到邏輯伺服器後，即可連接到資料庫並執行範例查詢。
+連接到伺服器後，即可連接到資料庫並執行範例查詢。如果您不熟悉撰寫查詢，請參閱[撰寫 Transact-SQL 陳述式](https://msdn.microsoft.com/library/ms365303.aspx)。
 
-1. 在 [物件總管] 中，瀏覽至伺服器上您有權限的資料庫，例如 **AdventureWorks** 範例資料庫。
-2. 在資料庫上按一下滑鼠右鍵，然後選取 [新增查詢]。
+1. 在 [物件總管] 中，瀏覽至伺服器上的資料庫，例如 **AdventureWorks** 範例資料庫。
+2. 在資料庫上按一下滑鼠右鍵，然後選取 [新增查詢]：
 
 	![新增查詢。連接到 SQL Database 伺服器：SQL Server Management Studio](./media/sql-database-connect-query-ssms/4-run-query.png)
 
-3. 在查詢視窗中，複製並貼上下列程式碼。
+3. 在查詢視窗中，複製並貼上下列內容：
 
 		SELECT
 		CustomerId
@@ -54,7 +51,7 @@
 		,CompanyName
 		FROM SalesLT.Customer;
 
-4. 按一下 [執行] 按鈕。下列螢幕擷取畫面顯示成功的查詢。
+4. 按一下 [執行] 按鈕：
 
 	![成功。連接到 SQL Database 伺服器：SQL Server Management Studio](./media/sql-database-connect-query-ssms/5-success.png)
 
@@ -66,4 +63,6 @@
 
 若要開始建立資料庫使用者和資料庫系統管理員，請參閱[開始使用 Azure SQL Database 安全性](sql-database-get-started-security.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+如需有關 SSMS 的詳細資訊，請參閱[使用 SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx)。
+
+<!---HONumber=AcomDC_0824_2016-->

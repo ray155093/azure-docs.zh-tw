@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="08/15/2016"
+	ms.date="08/22/2016"
 	ms.author="marsma"/>
 
 # Azure Batch 的基本概念
@@ -125,7 +125,7 @@ Batch 也可以執行平行計算 (最後加上歸納步驟)，以及執行其�
 
 既然您已大致了解 Batch 服務，現在可以更深入探索服務，了解如何使用它來處理計算密集平行工作負載。
 
-- 閱讀[適用於開發人員的 Batch 功能概觀](batch-api-basics.md)，深入了解 Batch 提供來處理工作負載的 API 功能。任何準備使用 Batch 的人一定要閱讀這篇文章。
+- 請參閱[適用於開發人員的 Batch 功能概觀](batch-api-basics.md)，這是任何準備使用 Batch 的人員不可或缺的資訊。本文包含 Batch 服務資源 (例如集區、節點、作業和工作) 的詳細資訊，以及在建置 Batch 應用程式時可使用的許多 API 功能。
 
 - [開始使用適用於 .NET 的 Azure Batch 程式庫](batch-dotnet-get-started.md)，了解如何使用 C# 和 Batch .NET 程式庫，透過一般的批次工作流程來執行簡單的工作負載。本文應該是您學習如何使用 Batch 服務的第一站。另外還有 [Python 版本](batch-python-tutorial.md)的教學課程。
 
@@ -160,4 +160,4 @@ Batch 也可以執行平行計算 (最後加上歸納步驟)，以及執行其�
 [1]: ./media/batch-technical-overview/tech_overview_01.png
 [2]: ./media/batch-technical-overview/tech_overview_02.png
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

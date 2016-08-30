@@ -3,7 +3,7 @@
    description="本文將協助您將公司網域名稱指向流量管理員網域名稱。"
    services="traffic-manager"
    documentationCenter=""
-   authors="joaoma"
+   authors="sdwheeler"
    manager="carmonm"
    editor="tysonn" />
 <tags
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/17/2016"
-   ms.author="joaoma" />
+   ms.author="sewhee" />
 
 # 將公司網際網路網域指向 Azure 流量管理員網域
 
@@ -35,4 +35,4 @@
 
 [流量管理員 - 停用或啟用端點](disable-or-enable-an-endpoint.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0824_2016-->

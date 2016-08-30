@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-phone"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="05/03/2016"
+	ms.date="08/19/2016"
 	ms.author="piyushjo" />
 
 # 開始使用適用於 Windows Phone Silverlight 應用程式的 Azure Mobile Engagement
@@ -104,7 +104,7 @@
 	
 3. 在您的 `MainPage.xml` 檔案中：
 
-	a.新增至命名空間宣告：
+	a.新增命名空間宣告：
 
 	   	 xmlns:engagement="clr-namespace:Microsoft.Azure.Engagement;assembly=Microsoft.Azure.Engagement.EngagementAgent.WP"
 
@@ -166,4 +166,4 @@ Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊�
 [5]: ./media/mobile-engagement-windows-phone-get-started/reach-capabilities.png
 [6]: ./media/mobile-engagement-windows-phone-get-started/push-screenshot.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0824_2016-->
