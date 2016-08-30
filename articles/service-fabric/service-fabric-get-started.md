@@ -34,10 +34,9 @@
 
 Web Platform Installer 針對 Service Fabric 開發提供三個組態︰
 
-- [安裝適用於 Visual Studio 2015 Update 2 的 Service Fabric 執行階段、SDK 和工具][full-bundle-vs2015]
+- [安裝適用於 Visual Studio 2015 Update 2 或更新版本的 Service Fabric 執行階段、SDK 和工具][full-bundle-vs2015]
 - [安裝適用於 Visual Studio "15" Preview 的 Service Fabric 執行階段、SDK 和工具][full-bundle-dev15]
 - [僅安裝 Service Fabric 執行階段和 SDK (不安裝 Visual Studio 工具)][core-sdk]
-
 
 ## 啟用 PowerShell 指令碼執行
 
@@ -64,4 +63,4 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -Scope CurrentUser
 [core-sdk]: http://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=ServiceFabricSDK_2_1 "Core SDK WebPI 連結"
 [powershell5-download]: https://www.microsoft.com/zh-TW/download/details.aspx?id=50395
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0824_2016-->

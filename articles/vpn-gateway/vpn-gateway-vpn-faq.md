@@ -32,27 +32,25 @@
 
 支援下列跨單位連線：
 
-- [站台對站台](vpn-gateway-site-to-site-create.md) – 透過 IPsec (IKE v1 和 IKE v2) 的 VPN 連線。此類型的連線需要 VPN 裝置或 RRAS。
+- [網站間](vpn-gateway-site-to-site-create.md) – 透過 IPsec (IKE v1 和 IKE v2) 的 VPN 連線。此類型的連線需要 VPN 裝置或 RRAS。
 
 - [點對站台](vpn-gateway-point-to-site-create.md) – 透過 SSTP (安全通訊端通道通訊協定) 的 VPN 連線。此連線不需要 VPN 裝置。
 
-- [VNet 對 VNet](virtual-networks-configure-vnet-to-vnet-connection.md) - 此類型的連線與站台對站台組態相同。VNet 對 VNet 是透過 IPsec (IKE v1 和 IKE v2) 的 VPN 連線，並不需要 VPN 裝置。
+- [VNet 對 VNet](virtual-networks-configure-vnet-to-vnet-connection.md) - 此類型的連線與網站間組態相同。VNet 對 VNet 是透過 IPsec (IKE v1 和 IKE v2) 的 VPN 連線，並不需要 VPN 裝置。
 
-- [多網站](vpn-gateway-multi-site.md) - 這是站台對站台組態的變體，可讓您將多個內部部署網站連接到虛擬網路。
+- [多網站](vpn-gateway-multi-site.md) - 這是網站間組態的變體，可讓您將多個內部部署網站連接到虛擬網路。
 
 - [ExpressRoute](../expressroute/expressroute-introduction.md) - ExpressRoute 是從 WAN 到 Azure 的直接連線，不透過公用網際網路。如需詳細資訊，請參閱＜[ExpressRoute 技術概觀](../expressroute/expressroute-introduction.md)＞和＜[ExpressRoute 常見問題集](../expressroute/expressroute-faqs.md)＞。
 
-如需跨單位連線的詳細資訊，請參閱[關於虛擬網路的安全跨單位連線](vpn-gateway-cross-premises-options.md)。
+如需連線詳細資訊，請參閱 [VPN 閘道連線圖](vpn-gateway-topology.md)。
 
-### 站台對站台連線和點對站台之間的差異為何？
+### 網站間連線和點對站台之間的差異為何？
 
-站台對站台連線可讓您在任何位於您內部部署的電腦之間連接到虛擬網路內的任何虛擬機器或角色執行個體，視您選擇如何設定路由而定。對於永遠可用的跨單位連線而言，這是不錯的選項，而且非常適合於混合式組態。這種類型的連線依賴 IPsec VPN 應用裝置 (硬體或軟體應用裝置)，而此應用裝置必須部署在網路的邊緣。若要建立此類型的連線，您必須擁有必要的 VPN 硬體以及對外公開的 IPv4 位址。
+**網站間**連線可讓您在任何位於您內部部署的電腦之間連接到虛擬網路內的任何虛擬機器或角色執行個體，視您選擇如何設定路由而定。對於永遠可用的跨單位連線而言，這是不錯的選項，而且非常適合於混合式組態。這種類型的連線依賴 IPsec VPN 應用裝置 (硬體或軟體應用裝置)，而此應用裝置必須部署在網路的邊緣。若要建立此類型的連線，您必須擁有必要的 VPN 硬體以及對外公開的 IPv4 位址。
 
-點對站台連線可讓您從任何地方的單一電腦連線到位於虛擬網路的任何項目。並會使用 Windows 內建的 VPN 用戶端。做為點對站台組態的一部分，您會安裝憑證和 VPN 用戶端組態封裝，其中包含可讓您的電腦連接到虛擬網路內任何虛擬機器或角色執行個體的設定。當您想要連接到不在內部部署的虛擬網路時，這樣做很有用。當您無權存取 VPN 硬體或對外公開的 IPv4 位址時也是不錯的選項，因為這兩者都是站台對站台連線的必要項目。
+點對站台連線可讓您從任何地方的單一電腦連線到位於虛擬網路的任何項目。並會使用 Windows 內建的 VPN 用戶端。做為點對站台組態的一部分，您會安裝憑證和 VPN 用戶端組態封裝，其中包含可讓您的電腦連接到虛擬網路內任何虛擬機器或角色執行個體的設定。當您想要連接到不在內部部署的虛擬網路時，這樣做很有用。當您無權存取 VPN 硬體或對外公開的 IPv4 位址時也是不錯的選項，因為這兩者都是網站間連線的必要項目。
 
-您可以將虛擬網路設定為同時使用站台對站台和點對站台，前提是您使用路由式 VPN 類型來為閘道建立站台對站台連線。路由式 VPN 類型在傳統部署模型中稱為「動態閘道」。
-
-如需詳細資訊，請參閱[關於虛擬網路的安全跨單位連線](vpn-gateway-cross-premises-options.md)。
+您可以將虛擬網路設定為同時使用網站間和點對站台，前提是您使用路由式 VPN 類型來為閘道建立網站間連線。路由式 VPN 類型在傳統部署模型中稱為「動態閘道」。
 
 ### 什麼是 ExpressRoute？
 
@@ -62,11 +60,11 @@ ExpressRoute 可讓您在 Microsoft 資料中心和內部部署或共置環境�
 
 如需詳細資訊，請參閱〈[ExpressRoute 常見問題集](../expressroute/expressroute-faqs.md)〉。
 
-## 站台對站台連線和 VPN 裝置
+## 網站間連線和 VPN 裝置
 
 ### 選取 VPN 裝置時應該考慮什麼？
 
-我們已與裝置廠商合作驗證一組標準站台對站台 VPN 裝置。可在[這裡](vpn-gateway-about-vpn-devices.md)找到已知的相容 VPN 裝置、其對應組態指示或範例和裝置規格的清單。裝置系列中列為已知相容裝置的所有裝置應該使用虛擬網路。為了協助設定 VPN 裝置，請參閱裝置組態範例或對應到適當裝置系列的連結。
+我們已與裝置廠商合作驗證一組標準網站間 VPN 裝置。可在[這裡](vpn-gateway-about-vpn-devices.md)找到已知的相容 VPN 裝置、其對應組態指示或範例和裝置規格的清單。裝置系列中列為已知相容裝置的所有裝置應該使用虛擬網路。為了協助設定 VPN 裝置，請參閱裝置組態範例或對應到適當裝置系列的連結。
 
 ### 如果我有不在已知相容裝置清單的 VPN 裝置，該怎麼辦？
 
@@ -78,7 +76,7 @@ ExpressRoute 可讓您在 Microsoft 資料中心和內部部署或共置環境�
 
 ### 可以使用軟體 VPN 連接到 Azure 嗎？
 
-我們支援 Windows Server 2012 路由及遠端存取 (RRAS) 伺服器進行站台對站台跨單位設定。
+我們支援 Windows Server 2012 路由及遠端存取 (RRAS) 伺服器進行網站間跨單位設定。
 
 其他軟體 VPN 解決方案只要符合業界標準 IPsec 實作，應該就能使用我們的閘道。如需設定和支援指示，請連絡軟體供應商。
 
@@ -126,7 +124,7 @@ ExpressRoute 可讓您在 Microsoft 資料中心和內部部署或共置環境�
 
 點對站台 VPN 目前不支援自動重新連接和 DDNS。
 
-### 對於相同的虛擬網路，站台對站台和點對站台組態是否可以同時存在？
+### 對於相同的虛擬網路，網站間和點對站台組態是否可以同時存在？
 
 是。如果閘道是路由式 VPN 類型，這兩個解決方案都可正常運作。如果是傳統部署模型，則需要動態閘道。靜態路由 VPN 閘道或使用 -VpnType PolicyBased 的閘道不支援點對站。
 
@@ -134,7 +132,7 @@ ExpressRoute 可讓您在 Microsoft 資料中心和內部部署或共置環境�
 
 是，可以的。但是虛擬網路不能有重疊的 IP 前置詞，而且點對站台位址空間在虛擬網路之間不得重疊。
 
-### 透過站台對站台或點對站台連線可以獲得多少輸送量？
+### 透過網站間或點對站台連線可以獲得多少輸送量？
 
 很難維護 VPN 通道的確切輸送量。IPsec 和 SSTP 為加密嚴謹的 VPN 通訊協定。輸送量也會受限於內部部署與網際網路之間的延遲和頻寬。
 
@@ -233,7 +231,7 @@ VPN 閘道基本上是一個多重主目錄的裝置，擁有一個使用客戶�
 
 否。重疊的位址空間會造成 Netcfg 檔上傳或「正在建立的虛擬網路」失敗。
 
-### 比起單一虛擬網路，是否可以使用更多的站台對站台 VPN，取得更多的頻寬？
+### 比起單一虛擬網路，是否可以使用更多的網站間 VPN，取得更多的頻寬？
 
 否，所有 VPN 通道 (包括點對站 VPN) 都共用相同的 Azure VPN 閘道與可用的頻寬。
 
@@ -252,7 +250,7 @@ VPN 閘道基本上是一個多重主目錄的裝置，擁有一個使用客戶�
 
 ### 是否可以將使用 IPsec VPN 的虛擬網路連接到我的 ExpressRoute 電路？
 
-是，支援此做法。如需詳細資訊，請參閱[設定並存的 ExpressRoute 和站對站 VPN 連線](../expressroute/expressroute-howto-coexist-classic.md)。
+是，支援此做法。如需詳細資訊，請參閱[設定並存的 ExpressRoute 和網站間 VPN 連線](../expressroute/expressroute-howto-coexist-classic.md)。
 
 ## BGP
 
@@ -283,4 +281,4 @@ VPN 閘道基本上是一個多重主目錄的裝置，擁有一個使用客戶�
 
  
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="教學課程：使用 Visual Studio 建立具有複製活動的管線" 
+	pageTitle="教學課程：使用 Visual Studio 建立具有複製活動的管線 | Microsoft Azure" 
 	description="在本教學課程中，您會使用 Visual Studio，建立具有複製活動的 Azure Data Factory 管線。" 
 	services="data-factory" 
 	documentationCenter="" 
@@ -23,19 +23,22 @@
 - [使用 PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
 - [使用 Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
 - [使用 REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
+- [使用 .NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
 - [使用複製精靈](data-factory-copy-data-wizard-tutorial.md)
 
 在本教學課程中，您會使用 Visual Studio 2013 執行下列作業：
 
 1. 建立兩個連結的服務：**AzureStorageLinkedService1** 和 **AzureSqlinkedService1**。AzureStorageLinkedService1 連結 Azure 儲存體，而 AzureSqlLinkedService1 連結 Azure SQL 資料庫至 Data Factory：**ADFTutorialDataFactoryVS**。管線的輸入資料位於 Azure Blob 儲存體的 Blob 容器中，輸出資料則儲存在 Azure SQL Database 的資料表中。因此，您可以將這兩個資料存放區以連結服務的形式新增至 Data Factory。
-2. 建立兩個 Data Factory 資料表：**EmpTableFromBlob** 和 **EmpSQLTable**，它們分別代表儲存在資料存放區的輸入/輸出資料。您會針對 EmpTableFromBlob，指定所含 Blob 具有來源資料的 Blob 容器，而針對 EmpSQLTable 指定可儲存輸出資料的 SQL 資料表。您也會指定其他屬性 (例如資料結構、資料可用性等)。
-3. 在 ADFTutorialDataFactoryVS 中建立名為 **ADFTutorialPipeline** 的管線。管線有一個**複製活動**，會將輸入資料從 Azure Blob 複製到輸出 Azure SQL 資料表。複製活動會在 Azure Data Factory 中執行資料移動，而此活動是由全域可用的服務所提供，可以使用安全、可靠及可調整的方式，在各種不同的資料存放區之間複製資料。如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)文章。
+2. 建立兩個 Data Factory 資料表：**EmpTableFromBlob** 和 **EmpSQLTable**，它們分別代表儲存在資料存放區的輸入/輸出資料。您會針對 EmpTableFromBlob，指定所含 Blob 具有來源資料的 Blob 容器。針對 EmpSQLTable，您會指定可儲存輸出資料的 SQL 資料表。您也會指定其他屬性，例如結構、可用性等。
+3. 在 ADFTutorialDataFactoryVS 中建立名為 **ADFTutorialPipeline** 的管線。管線有一個**複製活動**，會將輸入資料從 Azure Blob 複製到輸出 Azure SQL 資料表。複製活動會在 Azure Data Factory 中執行資料移動。此活動是由全域可用的服務所提供，可以使用安全、可靠及可調整的方式，在各種不同的資料存放區之間複製資料。如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)文章。
 4. 建立 Data Factory，以及部署連結的服務、資料表和管線。
 
 ## 必要條件
 
-1. 您**必須**詳讀[教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)一文，並完成必要的步驟，再進一步繼續。
-2. 您必須是 **Azure 訂用帳戶的系統管理員**才能發佈 Data Factory 實體至 Azure Data Factory。這是目前的限制。
+1. 詳閱[教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)一文。
+	
+	> [AZURE.IMPORTANT] 先完成必要條件，再進一步繼續進行。
+2. 您必須是 **Azure 訂用帳戶的系統管理員**才能發佈 Data Factory 實體至 Azure Data Factory。
 3. 您必須已在電腦上安裝下列項目：
 	- Visual Studio 2013 或 Visual Studio 2015
 	- 下載 Azure SDK for Visual Studio 2013 或 Visual Studio 2015。瀏覽至 [Azure 下載頁面](https://azure.microsoft.com/downloads/)，然後按一下 [.NET] 區段中的 [VS 2013] 或 [VS 2015]。
@@ -54,7 +57,7 @@
 	![Solution Explorer](./media/data-factory-copy-activity-tutorial-using-visual-studio/solution-explorer.png)
 
 ## 建立連結服務
-連結服務會將資料存放區或計算服務連結至 Azure Data Factory。資料存放區可以是 Azure 儲存體、Azure SQL Database 或在內部部署 SQL Server 資料庫。
+連結服務會將資料存放區或計算服務連結至 Azure Data Factory。資料存放區可以是 Azure 儲存體、Azure SQL Database 或內部部署 SQL Server 資料庫。
 
 在此步驟中，您會建立兩個連結服務：**AzureStorageLinkedService1** 和 **AzureSqlLinkedService1**。AzureStorageLinkedService1 連結服務會連結 Azure 儲存體帳戶，而 AzureSqlLinkedService 會將 Azure SQL 資料庫連結至 Data Factory：**ADFTutorialDataFactory**。
 
@@ -80,7 +83,7 @@
 
 
 ## 建立資料集
-在上一個步驟中，您已建立連結服務 **AzureStorageLinkedService1** 和 **AzureSqlLinkedService1**，將 Azure 儲存體帳戶和 Azure SQL 資料庫連結至 Data Factory：**ADFTutorialDataFactory**。在此步驟中，您會定義兩個 Data Factory 資料表：**EmpTableFromBlob** 和 **EmpSQLTable**，他們分別代表 AzureStorageLinkedService1 和 AzureSqlLinkedService1 所參考資料存放區中儲存的輸入/輸出資料。您會針對 EmpTableFromBlob，指定所含 Blob 具有來源資料的 Blob 容器，而針對 EmpSQLTable 指定可儲存輸出資料的 SQL 資料表。
+在上一個步驟中，您已建立連結服務 **AzureStorageLinkedService1** 和 **AzureSqlLinkedService1**，將 Azure 儲存體帳戶和 Azure SQL 資料庫連結至 Data Factory：**ADFTutorialDataFactory**。在此步驟中，您會定義兩個 Data Factory 資料表：**EmpTableFromBlob** 和 **EmpSQLTable**，他們分別代表 AzureStorageLinkedService1 和 AzureSqlLinkedService1 所參考資料存放區中儲存的輸入/輸出資料。您會針對 EmpTableFromBlob，指定所含 Blob 具有來源資料的 Blob 容器。針對 EmpSQLTable，您會指定可儲存輸出資料的 SQL 資料表。
 
 ### 建立輸入資料集
 
@@ -235,7 +238,7 @@
 		您可以執行下列命令來確認已註冊 Data Factory 提供者。
 	
 			Get-AzureRmResourceProvider
-	- 使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)並瀏覽至 [Data Factory] 刀鋒視窗 (或) 在 Azure 入口網站中建立 Data Factory。這會自動為您註冊提供者。
+	- 使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)並瀏覽至 [Data Factory] 刀鋒視窗 (或) 在 Azure 入口網站中建立 Data Factory。此動作會自動為您註冊提供者。
 - 	Data Factory 的名稱未來可能會註冊為 DNS 名稱，因此會變成公開可見的名稱。
 - 	若要建立 Data Factory 執行個體，您必須是 Azure 訂用帳戶的參與者/系統管理員
 
@@ -270,8 +273,8 @@
 | :---- | :---- |
 | [資料移動活動](data-factory-data-movement-activities.md) | 本文提供您在本教學課程中使用的複製活動詳細資訊。 |
 | [排程和執行](data-factory-scheduling-and-execution.md) | 本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
-| [管線](data-factory-create-pipelines.md) | 本文協助您了解 Azure Data Factory 中的管線和活動，以及如何運用這些來為您的案例或業務建構端對端的資料導向工作流程。 |
+| [管線](data-factory-create-pipelines.md) | 本文協助您了解 Azure Data Factory 中的管線和活動。 |
 | [資料集](data-factory-create-datasets.md) | 本文協助您了解 Azure Data Factory 中的資料集。
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -14,7 +14,7 @@
 	ms.topic="hero-article"
 	ms.tgt_pltfrm="NA"
 	ms.workload="data-services"
-	ms.date="08/11/2016"
+	ms.date="08/18/2016"
 	ms.author="anhoh"/>
 
 # 使用 DocumentDB 來建置 Java Web 應用程式
@@ -216,13 +216,9 @@
 		                    DocumentCollection collectionDefinition = new DocumentCollection();
 		                    collectionDefinition.setId(COLLECTION_ID);
 
-		                    // Configure the new collection performance tier to S1.
-		                    RequestOptions requestOptions = new RequestOptions();
-		                    requestOptions.setOfferType("S1");
-
 		                    collectionCache = documentClient.createCollection(
 		                            getTodoDatabase().getSelfLink(),
-		                            collectionDefinition, requestOptions).getResource();
+		                            collectionDefinition, null).getResource();
 		                } catch (DocumentClientException e) {
 		                    // TODO: Something has gone terribly wrong - the app wasn't
 		                    // able to query or create the collection.
@@ -757,7 +753,7 @@
 
 ##<a id="GetProject"></a>從 GitHub 取得的專案
 
-本教學課程中的所有範例都包含在 GitHub 上的[待辦事項](https://github.com/Azure-Samples/documentdb-java-todo-app)專案中。若要將 todo 專案匯入 Eclipse，請確認您擁有 [必要條件](#Prerequisites) 區段中所列出的軟體和資源，然後執行下列動作：
+本教學課程中的所有範例都包含在 GitHub 上的[待辦事項](https://github.com/Azure-Samples/documentdb-java-todo-app)專案中。若要將 todo 專案匯入 Eclipse，請確認您擁有 [必要條件][](#Prerequisites) 區段中所列出的軟體和資源，然後執行下列動作：
 
 1. 安裝 [專案 Lombok](http://projectlombok.org/)。Lombok 可用來在專案中產生建構函式、getter、setter。下載 lombok.jar 檔案之後，請連按兩下進行安裝，或從命令列進行安裝。
 2. 如果 Eclipse 為開啟狀態，請將它關閉並重新啟動以載入 Lombok。
@@ -784,4 +780,4 @@
 
 [1]: media/documentdb-java-application/keys.png
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

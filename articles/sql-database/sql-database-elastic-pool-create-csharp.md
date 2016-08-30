@@ -13,7 +13,7 @@
     ms.topic="get-started-article"
     ms.tgt_pltfrm="csharp"
     ms.workload="data-management"
-    ms.date="07/22/2016"
+    ms.date="08/18/2016"
     ms.author="sstein"/>
 
 # 使用 C&#x23; 建立新的彈性資料庫集區
@@ -24,17 +24,17 @@
 - [C#](sql-database-elastic-pool-create-csharp.md)
 
 
-了解如何使用 C#; 建立[彈性資料庫集區](sql-database-elastic-pool.md)。
+了解如何使用 C# 建立[彈性資料庫集區](sql-database-elastic-pool.md)。
 
 如需常見的錯誤碼，請參閱 [SQL Database 用戶端應用程式的 SQL 錯誤碼：資料庫連線錯誤和其他問題](sql-database-develop-error-messages.md)。
 
-下列範例使用 [SQL Database Library for .NET](https://msdn.microsoft.com/library/azure/mt349017.aspx)，因此您需要在繼續前安裝此程式庫 (如果尚未安裝的話)。您可以在 Visual Studio 的[封裝管理器主控台](http://docs.nuget.org/Consume/Package-Manager-Console) ([工具] > [NuGet 封裝管理員] > [封裝管理器主控台]) 中執行下列命令，以安裝此程式庫：
+這些範例使用 [SQL Database Library for .NET](https://msdn.microsoft.com/library/azure/mt349017.aspx)，所以尚未安裝的話，請在繼續前安裝此程式庫。您可以在 Visual Studio 的[封裝管理器主控台](http://docs.nuget.org/Consume/Package-Manager-Console) ([工具] > [NuGet 封裝管理員] > [封裝管理器主控台]) 中執行下列命令，以安裝此程式庫：
 
     Install-Package Microsoft.Azure.Management.Sql –Pre
 
-## 建立新的集區
+## 建立集區
 
-使用來自 [Azure Active Directory](sql-database-client-id-keys.md) 的值建立 [SqlManagementClient](https://msdn.microsoft.com/library/microsoft.azure.management.sql.sqlmanagementclient) 執行個體。建立 [ElasticPoolCreateOrUpdateParameters](https://msdn.microsoft.com/library/microsoft.azure.management.sql.models.elasticpoolcreateorupdateparameters) 執行個體，然後呼叫 [CreateOrUpdate](https://msdn.microsoft.com/library/microsoft.azure.management.sql.databaseoperationsextensions.createorupdate) 方法。每個集區的 eDTU 值、最小和最大 Dtu 會受限於服務層值 (基本、標準或進階)。請參閱[彈性集區和彈性資料庫的 eDTU 和儲存體限制](sql-database-elastic-pool.md#eDTU-and-storage-limits-for-elastic-pools-and-elastic-databases)。
+使用來自 [Azure Active Directory](sql-database-client-id-keys.md) 的值建立 [SqlManagementClient](https://msdn.microsoft.com/library/microsoft.azure.management.sql.sqlmanagementclient) 執行個體。建立 [ElasticPoolCreateOrUpdateParameters](https://msdn.microsoft.com/library/microsoft.azure.management.sql.models.elasticpoolcreateorupdateparameters) 執行個體，然後呼叫 [CreateOrUpdate](https://msdn.microsoft.com/library/microsoft.azure.management.sql.databaseoperationsextensions.createorupdate) 方法。每個集區的 eDTU 值、最小和最大 DTU 會受限於服務層值 (基本、標準或進階)。請參閱[彈性集區和彈性資料庫的 eDTU 和儲存體限制](sql-database-elastic-pool.md#eDTU-and-storage-limits-for-elastic-pools-and-elastic-databases)。
 
 
     ElasticPoolCreateOrUpdateParameters newPoolParameters = new ElasticPoolCreateOrUpdateParameters()
@@ -52,7 +52,7 @@
     // Create the pool
     var newPoolResponse = sqlClient.ElasticPools.CreateOrUpdate("resourcegroup-name", "server-name", "ElasticPool1", newPoolParameters);
 
-## 在集區中建立新的資料庫
+## 在集區中建立資料庫
 
 建立 [DataBaseCreateorUpdateProperties](https://msdn.microsoft.com/library/microsoft.azure.management.sql.models.databasecreateorupdateproperties) 執行個體，並設定新資料庫的屬性。然後使用資源群組、伺服器名稱和新的資料庫名稱，呼叫 CreateOrUpdate 方法。
 
@@ -76,20 +76,20 @@
 
 ## 範例：使用 C&#x23; 建立集區
 
-這個範例會建立新的 Azure 資源群組、新的 Azure SQL Server 執行個體和新的彈性集區。
+這個範例會建立 Azure 資源群組、Azure SQL Server 和彈性集區。
  
 
 需要下列程式庫才能執行這個範例。您可以在 Visual Studio 的[封裝管理員主控台](http://docs.nuget.org/Consume/Package-Manager-Console) ([工具] > [NuGet 封裝管理員] > [封裝管理員主控台]) 中執行下列命令以進行安裝
 
     Install-Package Microsoft.Azure.Management.Sql –Pre
-    Install-Package Microsoft.Azure.Management.ResourceManager –Pre -Version 1.1.1-preview
+    Install-Package Microsoft.Azure.Management.ResourceManager –Pre
     Install-Package Microsoft.Azure.Common.Authentication –Pre
 
-建立主控台應用程式並使用下列程式碼取代 Program.cs 的內容。若要取得必要的用戶端識別碼和相關值，請參閱[註冊應用程式並取得必要的用戶端值來將應用程式連線到 SQL Database](sql-database-client-id-keys.md)。使用 [Get-AzureRmSubscription](https://msdn.microsoft.com/library/mt619284.aspx) Cmdlet 來擷取 subscriptionId 的值。
+建立主控台應用程式並使用下列程式碼取代 Program.cs 的內容。若要取得必要的用戶端識別碼和相關值，請利用下列文章建立原生應用程式：[註冊應用程式並取得必要的用戶端值來將應用程式連接到 SQL Database](sql-database-client-id-keys.md)。
 
     using Microsoft.Azure;
-    using Microsoft.Azure.Management.Resources;
-    using Microsoft.Azure.Management.Resources.Models;
+    using Microsoft.Azure.Management.ResourceManager;
+    using Microsoft.Azure.Management.ResourceManager.Models;
     using Microsoft.Azure.Management.Sql;
     using Microsoft.Azure.Management.Sql.Models;
     using Microsoft.IdentityModel.Clients.ActiveDirectory;
@@ -249,4 +249,4 @@
 - [SQL Database](https://azure.microsoft.com/documentation/services/sql-database/)
 - [Azure 資源管理 API](https://msdn.microsoft.com/library/azure/dn948464.aspx)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0824_2016-->

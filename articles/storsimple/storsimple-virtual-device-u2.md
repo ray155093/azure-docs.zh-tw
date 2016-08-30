@@ -12,13 +12,13 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/29/2016"
+   ms.date="08/17/2016"
    ms.author="alkohli" />
 
 # 部署和管理 Azure 中的 StorSimple 虛擬裝置
 
 
-##概觀
+##Overview
 StorSimple 8000 系列虛擬裝置是 Microsoft Azure StorSimple 解決方案提供的另一項功能。StorSimple 虛擬裝置會在 Microsoft Azure 虛擬網路中的虛擬機器上執行，而您可以使用它來備份和複製主機上的資料。本教學課程說明如何在 Azure 中部署和管理虛擬裝置，適用於所有執行軟體版本 Update 2 和更低版本的虛擬裝置。
 
 
@@ -60,7 +60,7 @@ StorSimple 虛擬裝置可以在兩種模型中使用，標準 8010 (前身為 1
 | 12 | 東亞* |
 | 13 | 美國中南部* |
 
-**進階儲存體最近在這些地區啟動。
+*進階儲存體最近在這些地區啟動。
 
 本文說明在 Azure 中部署 StorSimple 虛擬裝置的逐步程序。閱讀本文之後，您將能夠：
 
@@ -100,8 +100,8 @@ StorSimple 虛擬裝置是軟體形式的 StorSimple，在 Microsoft Azure 虛�
 
 - 針對虛擬裝置，[在 Azure 中設定虛擬網路](../virtual-network/virtual-networks-create-vnet-classic-portal.md)。如果使用進階儲存體，您必須在支援進階儲存體的 Azure 區域中建立虛擬網路。如需詳細資訊，請參閱[目前支援 8020 的區域](#supported-regions-for-8020)。
 - 建議您使用 Azure 提供的預設 DNS 伺服器，而非指定您自己的 DNS 伺服器名稱。如果您的 DNS 伺服器名稱無效，或者如果 DNS 伺服器無法正確解析 IP 位址，則建立虛擬裝置將會失敗。
-- 點對站及站對站都是選用的，但並非必要。如有需要，您可以針對更進階的案例設定這些選項。 
-- 您可以將 [Azure 虛擬機器](../virtual-machines/virtual-machines-linux-about.md) (主機伺服器) 建立在可使用由虛擬裝置公開之磁碟區的虛擬網路中。這些伺服器必須符合下列需求： 							
+- 點對站及站對站都是選用的，但並非必要。如有需要，您可以針對更進階的案例設定這些選項。
+- 您可以將 [Azure 虛擬機器](../virtual-machines/virtual-machines-linux-about.md) (主機伺服器) 建立在可使用由虛擬裝置公開之磁碟區的虛擬網路中。這些伺服器必須符合下列需求：
 	- 是已安裝 iSCSI 啟動器軟體的 Windows 或 Linux VM。
 	- 正在虛擬裝置所在的相同虛擬網路中執行。
 	- 能夠透過虛擬裝置的內部 IP 位址連接到虛擬裝置的 iSCSI 目標。
@@ -280,4 +280,4 @@ StorSimple Snapshot Manager 軟體位於您的 Windows 主機上，而且可讓�
  
 - 了解如何[從備份組還原 StorSimple 磁碟區](storsimple-restore-from-backup-set.md)。
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0824_2016-->

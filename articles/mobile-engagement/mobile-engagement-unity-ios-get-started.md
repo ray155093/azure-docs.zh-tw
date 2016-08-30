@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-unity-ios"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="03/25/2016"
+	ms.date="08/19/2016"
 	ms.author="piyushjo" />
 
 # 開始使用適用於 Unity iOS 部署的 Azure Mobile Engagement
@@ -38,7 +38,7 @@
 
 ###匯入 Unity 封裝
 
-1. 下載 [Mobile Engagement Unity 封裝](https://aka.ms/azmeunitysdk)並將它儲存到本機電腦。 
+1. 下載 [Mobile Engagement Unity 封裝](https://aka.ms/azmeunitysdk)並將它儲存到本機電腦。
 
 2. 移至 [資產] -> [匯入封裝] -> [自訂封裝]，然後選取您在上一個步驟中下載的封裝。
 
@@ -54,7 +54,7 @@
 
 ###更新 EngagementConfiguration
 
-1. 從 SDK 資料夾開啟 **EngagementConfiguration** 指令碼，並利用您先前從 Azure 入口網站取得的連接字串更新 **IOS\_CONNECTION\_STRING**。  
+1. 從 SDK 資料夾開啟 **EngagementConfiguration** 指令碼，並利用您先前從 Azure 入口網站取得的連接字串更新 **IOS\_CONNECTION\_STRING**。
 
 	![][73]
 
@@ -62,7 +62,7 @@
 
 ###設定應用程式以便進行基本追蹤
 
-1. 開啟已附加至播放程式物件的 **PlayerController** 指令碼進行編輯。 
+1. 開啟已附加至播放程式物件的 **PlayerController** 指令碼進行編輯。
 
 2. 加入下列 using 陳述式：
 
@@ -75,7 +75,7 @@
 
 ###部署並執行應用程式
 
-1. 將 iOS 裝置連接到您的電腦。 
+1. 將 iOS 裝置連接到您的電腦。
 
 2. 開啟 [檔案] -> [組建設定]
 
@@ -131,4 +131,4 @@ Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊�
 [74]: ./media/mobile-engagement-unity-ios-get-started/74.png
 [75]: ./media/mobile-engagement-unity-ios-get-started/75.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0824_2016-->

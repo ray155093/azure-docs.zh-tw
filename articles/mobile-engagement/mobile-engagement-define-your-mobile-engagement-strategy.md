@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="03/01/2016"
+	ms.date="08/19/2016"
 	ms.author="piyushjo" />
 
 # 定義 Mobile Engagement 策略
@@ -102,7 +102,7 @@
 
 所有這類型的資料可以利用參數來增加 (Mobile Engagement 中的「extra-information」)，讓您可以從應用程式收集動態資料。這很重要，因為可以進行精細的客群區隔。例如，行銷人員可以根據使用者取用的內容類型來區隔使用者。內容類型會是活動或事件的動態資訊。
 
-*App-information* 是可讓您即時確認應用程式或使用者狀態的資料。這也有助於分類對象族群，並快速鎖定目標。例如，此項目可以利用 true/false 狀態，讓您知道使用者是否登入，或其訂閱是否到期。
+*App-information* 是可讓您即時確認應用程式或使用者狀態的資料。這也有助於分類對象族群，並快速鎖定目標。例如，此項目可以利用 true/false 狀態，讓您知道使用者是否登入，或其訂用帳戶是否到期。
 
 #### 標記的範例
 
@@ -114,7 +114,7 @@
 	![][1]
 
 *使用案例：宣告性資料*
-1.	區隔警示新聞：收集宣告性資料，根據對象的喜好設定來區隔對象。它允許傳送特定對象真正有興趣的特定主題推送通知。
+1.	區隔警示新聞：收集宣告性資料，根據對象的喜好設定來區隔對象。它允許傳送特定對象真正有興趣的特定主題推播通知。
 2.	根據登入狀態區隔對象。收集資料，以了解使用者是否連線，或是否建立帳戶。協助鎖定尚未登入的使用者，並傳送推播通知以吸引使用者進行轉換。![][2]
 
 ### 後續步驟
@@ -122,8 +122,8 @@
 - 請瀏覽 [Mobile Engagement 概念]，進一步了解 Mobile Engagement 基本概念。
 - 請瀏覽[建立 Mobile Engagement 應用程式](mobile-engagement-create.md)以在 Azure 中建立新的 Mobile Engagement 應用程式集合，以及透過 Mobile Engagement 入口網站來開始管理您的應用程式。
 - 請瀏覽[最佳作法](mobile-engagement-getting-started-best-practices.md)以取得詳細資料。
-- 請瀏覽[遊戲應用程式案例](mobile-engagement-gaming-scenario.md)來了解如何使用範例遊戲應用程式實作 Mobile Engagement。 
-- 請瀏覽[媒體應用程式案例](mobile-engagement-media-scenario.md)來了解如何使用範例媒體應用程式實作 Mobile Engagement。 
+- 請瀏覽[遊戲應用程式案例](mobile-engagement-gaming-scenario.md)來了解如何使用範例遊戲應用程式實作 Mobile Engagement。
+- 請瀏覽[媒體應用程式案例](mobile-engagement-media-scenario.md)來了解如何使用範例媒體應用程式實作 Mobile Engagement。
 - 請瀏覽[教學課程] (英文)，進一步了解實作。
 
 <!-- Images. -->
@@ -134,4 +134,4 @@
 [Mobile Engagement 概念]: http://azure.microsoft.com/documentation/articles/mobile-engagement-concepts/
 [教學課程]: http://azure.microsoft.com/documentation/articles/mobile-engagement-ios-get-started/
 
-<!---HONumber=AcomDC_0302_2016-->
+<!---HONumber=AcomDC_0824_2016-->

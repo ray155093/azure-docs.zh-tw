@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="教學課程：使用 Data Factory 編輯器建立具有複製活動的管線" 
+	pageTitle="教學課程：使用 Data Factory 編輯器建立具有複製活動的管線 | Microsoft Azure" 
 	description="在本教學課程中，您會使用 Azure 入口網站中的 Data Factory 編輯器，建立具有複製活動的 Azure Data Factory 管線。" 
 	services="data-factory" 
 	documentationCenter="" 
@@ -23,6 +23,7 @@
 - [使用 PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
 - [使用 Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
 - [使用 REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
+- [使用 .NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
 - [使用複製精靈](data-factory-copy-data-wizard-tutorial.md)
 
 
@@ -32,8 +33,8 @@
 -----| -----------
 [建立 Azure Data Factory](#create-data-factory) | 在此步驟中，您會建立名為 **ADFTutorialDataFactory** 的 Azure Data Factory。  
 [建立連結服務](#create-linked-services) | 在此步驟中，您將建立兩個連結服務：**AzureStorageLinkedService** 和 **AzureSqlLinkedService**。AzureStorageLinkedService 會連結 Azure 儲存體，而 AzureSqlLinkedService 會將 Azure SQL Database 連結至 ADFTutorialDataFactory。管線的輸入資料位於 Azure Blob 儲存體的 Blob 容器中，輸出資料則儲存在 Azure SQL Database 的資料表中。因此，您可以將這兩個資料存放區以連結服務的形式新增至 Data Factory。      
-[建立輸入和輸出資料集](#create-datasets) | 在上一個步驟中，您所建立的連結服務參照含有輸入/輸出資料的資料存放區。在此步驟中，您會定義兩個 Data Factory 資料表：**EmpTableFromBlob** 和 **EmpSQLTable**，它們分別代表儲存在資料存放區的輸入/輸出資料。您會針對 EmpTableFromBlob，指定所含 Blob 具有來源資料的 Blob 容器，而針對 EmpSQLTable 指定可儲存輸出資料的 SQL 資料表。您也會指定其他屬性 (例如資料結構、資料可用性等)。 
-[建立管線](#create-pipeline) | 在此步驟中，您會在 ADFTutorialDataFactory 中建立名為 **ADFTutorialPipeline** 的管線。管線有一個**複製活動**，會將輸入資料從 Azure Blob 複製到輸出 Azure SQL 資料表。複製活動會在 Azure Data Factory 中執行資料移動，而此活動是由全域可用的服務所提供，可以使用安全、可靠及可調整的方式，在各種不同的資料存放區之間複製資料。如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)文章。 
+[建立輸入和輸出資料集](#create-datasets) | 在上一個步驟中，您所建立的連結服務參照含有輸入/輸出資料的資料存放區。在此步驟中，您會定義兩個 Data Factory 資料表：**EmpTableFromBlob** 和 **EmpSQLTable**，它們分別代表儲存在資料存放區的輸入/輸出資料。您會針對 EmpTableFromBlob，指定所含 Blob 具有來源資料的 Blob 容器，而針對 EmpSQLTable 指定可儲存輸出資料的 SQL 資料表。您也會指定其他屬性，例如結構、可用性等。 
+[建立管線](#create-pipeline) | 在此步驟中，您會在 ADFTutorialDataFactory 中建立名為 **ADFTutorialPipeline** 的管線。管線有一個**複製活動**，會將輸入資料從 Azure Blob 複製到輸出 Azure SQL 資料表。複製活動會在 Azure Data Factory 中執行資料移動。此活動是由全域可用的服務所提供，可以使用安全、可靠及可調整的方式，在各種不同的資料存放區之間複製資料。如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)文章。 
 [監視管線](#monitor-pipeline) | 在此步驟中，您會使用 Azure 入口網站來監視輸入和輸出資料表的配量。
 
 > [AZURE.IMPORTANT] 
@@ -60,7 +61,9 @@
 7. 在 [新增 Data Factory] 刀鋒視窗中，請留意是否已選取 [新增至開始面板]。
 8. 按一下 [新增 Data Factory] 刀鋒視窗中的 [建立]。
 
-	Azure Data Factory 的名稱在全域必須是唯一的。如果您收到錯誤：「Data Factory 名稱 “ADFTutorialDataFactory” 無法使用」，請變更 Data Factory 名稱 (例如 yournameADFTutorialDataFactory)，然後試著重新建立。請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md)主題，以了解 Data Factory 成品的命名規則。
+	Azure Data Factory 的名稱在全域必須是唯一的。如果您收到錯誤，請變更 Data Factory 名稱 (例如 yournameADFTutorialDataFactory)，然後試著重新建立。請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md)主題，以了解 Data Factory 成品的命名規則。
+	
+		Data factory name “ADFTutorialDataFactory” is not available  
 	 
 	![Data Factory 名稱無法使用][image-data-factory-name-not-available]
 	
@@ -74,7 +77,7 @@
     ![Data Factory 首頁][image-data-factory-get-stated-factory-home-page]
 
 ## 建立連結服務
-連結服務會將資料存放區或計算服務連結至 Azure Data Factory。資料存放區可以是 Azure 儲存體、Azure SQL Database 或在內部部署 SQL Server 資料庫。
+連結服務會將資料存放區或計算服務連結至 Azure Data Factory。資料存放區可以是 Azure 儲存體、Azure SQL Database 或內部部署 SQL Server 資料庫。
 
 在此步驟中，您將建立兩個連結服務：**AzureStorageLinkedService** 和 **AzureSqlLinkedService**。AzureStorageLinkedService 連結服務會連結 Azure 儲存體帳戶，AzureSqlLinkedService 則會將 Azure SQL Database 連結至 **ADFTutorialDataFactory**。您稍後會在本教學課程中建立管線，以將資料從 AzureStorageLinkedService 中的 Blob 容器複製到 AzureSqlLinkedService 中的 SQL 資料表。
 
@@ -155,10 +158,10 @@
 	- **folderPath** 設為 **adftutorial** 容器。您也可以指定資料夾內的 Blob 的名稱。由於您未指定 Blob 的名稱，容器中所有 Blob 的資料都會被視為輸入資料。
 	- 格式 **type** 設為 **TextFormat**
 	- 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (**columnDelimiter**)
-	- **availability** 設為**每小時** (**frequency** 設為**小時**且 **interval** 設為 **1**)，因此 Data Factory 服務每個小時皆會在您指定之 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。
+	- **availability** 設定為**每小時** (**frequency** 設定為**小時**，**interval** 設定為 **1**)。因此，Data Factory 會每小時都在您指定之 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。
 	
 
-	如果您沒有指定**輸入** **資料表**的 **fileName**，則輸入資料夾 (**folderPath**) 中的所有檔案/Blob 都會視為輸入。如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。
+	如果您沒有指定**輸入****資料表**的 **fileName**，則輸入資料夾 (**folderPath**) 中的所有檔案/Blob 都會視為輸入。如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。
  
 	如果您未指定輸出資料表的 **fileName**，**folderPath** 中產生的檔案會依照下列格式命名：Data.&lt;Guid&gt;.txt (範例：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt)。
 
@@ -179,7 +182,7 @@
 2. 按一下工具列上的 [部署]，建立和部署 **EmpTableFromBlob** 資料表。確認您在編輯器的標題列看到 [已成功建立資料表] 訊息。
 
 ### 建立輸出資料集
-在這部分的步驟中，您會在 **AzureSqlLinkedService** 連結服務所代表的 Azure SQL Database 中，建立指向 SQL 資料表的 **EmpSQLTable** 輸出資料表。
+在此步驟的這個部分中，您會建立名為 **EmpSQLTable** 的輸出資料集。此資料集指向 Azure SQL Database 中 **AzureSqlLinkedService** 所代表的 SQL 資料表。
 
 1. 在 Data Factory 的 [編輯器] 中，按一下工具列上的 [新增資料集] 按鈕，然後按下拉式功能表中的 [Azure SQL 資料表]。
 2. 將右窗格中的 JSON 替換為以下 JSON 片段：
@@ -215,7 +218,7 @@
 	* 資料集 **type** 設為 **AzureSQLTable**。
 	* **linkedServiceName** 設為 **AzureSqlLinkedService** (您已在步驟 2 中建立此連結服務)。
 	* **tablename** 設為 **emp**。
-	* 資料庫的 emp 資料表中有三個資料行 (**ID**、**FirstName** 和 **LastName**)，但 ID 是身分識別資料行，所以您在此處只需要指定 **FirstName** 和 **LastName**。
+	* 資料庫的 emp 資料表中有三個資料行 – **ID**、**FirstName** 和 **LastName**。ID 是識別資料行，所以您只需在此指定 **FirstName** 和 **LastName**。
 	* **availability** 設定為**每小時**，且 (**frequency** 設定為**小時**，**interval** 設定為 **1**)。Data Factory 服務會每隔一小時在 Azure SQL Database 的 **emp** 資料表中產生輸出資料配量。
 
 
@@ -305,7 +308,7 @@
 	![圖表檢視][image-data-factory-get-started-diagram-blade]
 
 	您可以將管線和資料表放大、縮小、放大到 100%、縮放至適當比例和自動定位，以及顯示歷程資訊 (反白顯示所選取項目的上游和下游項目)。您可以按兩下物件 (輸入/輸出資料表或管線) 查看其屬性。
-3. 在圖表檢視中，於 **ADFTutorialPipeline** 上按一下滑鼠右鍵，然後按一下 [開啟管線]。您應該會看到管線中的活動，以及活動的輸入和輸出資料集。在本教學課程中，管線中只能有一個活動 (複製活動) 將 EmpTableBlob 做為輸入資料集，並將 EmpSQLTable 做為輸出資料集。
+3. 在圖表檢視中的 **ADFTutorialPipeline** 上按一下滑鼠右鍵，然後按一下 [開啟管線]。您應該會看到管線中的活動，以及活動的輸入和輸出資料集。在本教學課程中，管線中只能有一個活動 (複製活動) 將 EmpTableBlob 做為輸入資料集，並將 EmpSQLTable 做為輸出資料集。
 
 	![開啟管線](./media/data-factory-copy-activity-tutorial-using-azure-portal/DiagramView-OpenPipeline.png)
 
@@ -317,37 +320,29 @@
 
 1. 如果尚未開啟 [Azure 入口網站 (預覽)][azure-portal]，請瀏覽至該網站。
 2. 如果 **ADFTutorialDataFactory** 的刀鋒視窗未開啟，請按一下 [開始面板] 上的 [ADFTutorialDataFactory] 予以開啟。
-3. 您應該會看到您在此分頁上建立之資料表和管線的
-4. 計數和名稱。
+3. 您應該會看到您在此分頁上建立之資料表和管線的計數和名稱。
 
 	![含名稱的首頁][image-data-factory-get-started-home-page-pipeline-tables]
 
 4. 現在，按一下 [資料集] 磚。
-5. 在 [資料集] 刀鋒視窗中，按一下 [EmpTableFromBlob]。這是 **ADFTutorialPipeline** 的輸入資料表。
+5. 在 [資料集] 刀鋒視窗中，按一下 [EmpTableFromBlob]。此資料集是 **ADFTutorialPipeline** 的輸入資料集。
 
 	![已選取 EmpTableFromBlob 的資料集][image-data-factory-get-started-datasets-emptable-selected]
 5. 請注意，截至目前為止的資料配量都已產生，並已「就緒」，因為 **emp.txt** 檔案一直都存在於 Blob 容器中：**adftutorial\\input**。確認下方的 [最近失敗的配量] 區段中沒有任何配量。
 
 	[最近更新的配量] 和 [最近失敗的配量] 清單都依照 [上次更新時間] 排序。在下列情況中，配量的更新時間會變更。
     
-
-	-  您以手動方式更新配量的狀態，例如，使用 **Set-AzureRmDataFactorySliceStatus** (或) 在配量的 [配量] 刀鋒視窗上按一下 [執行]。
-	-  配量因為執行而變更狀態 (例如，開始執行、執行結束但失敗、執行結束且成功等)。
- 
 	按一下清單的標題或 **...** (省略符號)，查看更長的配量清單。按一下工具列上的 [篩選] 以篩選配量。
 	
 	若要改成依配量開始/結束時間來檢視資料配量，請按一下 [資料配量 (依配量時間)] 磚。
 
 	![資料配量 (依配量時間)][DataSlicesBySliceTime]
 
-6. 現在，在 [資料集] 刀鋒視窗中，按一下 [EmpSQLTable]。這是 **ADFTutorialPipeline** 的輸出資料表。
+6. 現在，在 [資料集] 刀鋒視窗中，按一下 [EmpSQLTable]。此資料集是 **ADFTutorialPipeline** 的輸出資料集。
 
 	![資料集刀鋒視窗][image-data-factory-get-started-datasets-blade]
 
-
-
-	 
-6. 您應該會看到 **EmpSQLTable** 刀鋒視窗，如下所示：
+6. 您應會看到如下圖所示的 **EmpSQLTable** 刀鋒視窗：
 
 	![資料表刀鋒視窗][image-data-factory-get-started-table-blade]
  
@@ -390,7 +385,7 @@
 | :---- | :---- |
 | [資料移動活動](data-factory-data-movement-activities.md) | 本文提供您在本教學課程中使用的複製活動詳細資訊。 |
 | [排程和執行](data-factory-scheduling-and-execution.md) | 本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
-| [管線](data-factory-create-pipelines.md) | 本文協助您了解 Azure Data Factory 中的管線和活動，以及如何運用這些來為您的案例或業務建構端對端的資料導向工作流程。 |
+| [管線](data-factory-create-pipelines.md) | 本文協助您了解 Azure Data Factory 中的管線和活動。 |
 | [資料集](data-factory-create-datasets.md) | 本文協助您了解 Azure Data Factory 中的資料集。
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
@@ -466,4 +461,4 @@
 [image-data-factory-name-not-available]: ./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-data-factory-not-available.png
  
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

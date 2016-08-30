@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="如何搭配使用 Azure 媒體服務和 Java" 
+	pageTitle="使用 Java 傳遞點播內容入門 | Microsoft Azure" 
 	description="說明如何使用 Azure 媒體服務執行一般工作，包括資源的編碼、加密和串流。" 
 	services="media-services" 
 	documentationCenter="java" 
@@ -13,10 +13,10 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article"
-	ms.date="08/11/2016"   
+	ms.date="08/17/2016"   
 	ms.author="robmcm"/>
 
-#如何搭配使用媒體服務和 Java
+# 使用 Java 傳遞點播內容入門
 
 [AZURE.INCLUDE [media-services-selector-get-started](../../includes/media-services-selector-get-started.md)]
 
@@ -35,11 +35,11 @@
 
 ##如何：搭配使用媒體服務和 Java
 
-下列程式碼將示範如何建立資產、上傳媒體檔案到資產、使用工作 (Task) 執行工作 (Job) 來轉換此資產，以及建立定位器，藉此串流您的影片。
+下列程式碼將示範如何建立資產、上傳媒體檔案到資產、使用工作 (Task) 執行作業 (Job) 來轉換此資產，以及建立定位器以便串流您的影片。
 
 使用此程式碼前，您必須先設定媒體服務帳戶。如需設定帳戶的相關資訊，請參閱[如何建立媒體服務帳戶](media-services-create-account.md) (英文)。
 
-請將 `clientId` 和 `clientSecret` 變數換成您的值。此程式碼還需要用到儲存在本機的檔案。您必須提供您自己的檔案以供使用。
+請將 'clientId' 和 'clientSecret' 變數換成您的值。此程式碼還需要用到儲存在本機的檔案。您必須提供您自己的檔案以供使用。
 	
 	import java.io.*;
 	import java.security.NoSuchAlgorithmException;
@@ -266,7 +266,7 @@
 
 ##其他資源
 
-如需媒體服務 Javadoc 文件，請參閱 [Azure Libraries for Java 文件][] \(英文)。
+如需媒體服務 Javadoc 文件，請參閱 [Azure Libraries for Java 文件][] (英文)。
 
 <!-- URLs. -->
 
@@ -276,4 +276,4 @@
 
  
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

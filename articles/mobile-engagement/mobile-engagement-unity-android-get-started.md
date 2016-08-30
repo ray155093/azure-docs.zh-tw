@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-unity-android"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="03/25/2016"
+	ms.date="08/19/2016"
 	ms.author="piyushjo" />
 
 # 開始使用適用於 Unity Android 部署的 Azure Mobile Engagement
@@ -38,7 +38,7 @@
 
 ###匯入 Unity 封裝
 
-1. 下載 [Mobile Engagement Unity 封裝](https://aka.ms/azmeunitysdk)並將它儲存到本機電腦。 
+1. 下載 [Mobile Engagement Unity 封裝](https://aka.ms/azmeunitysdk)並將它儲存到本機電腦。
 
 2. 移至 [資產] -> [匯入封裝] -> [自訂封裝]，然後選取您在上一個步驟中下載的封裝。
 
@@ -54,7 +54,7 @@
 
 ###更新 EngagementConfiguration
 
-1. 從 SDK 資料夾開啟 **EngagementConfiguration** 指令碼，並利用您先前從 Azure 入口網站取得的連接字串更新 **ANDROID\_CONNECTION\_STRING**。  
+1. 從 SDK 資料夾開啟 **EngagementConfiguration** 指令碼，並利用您先前從 Azure 入口網站取得的連接字串更新 **ANDROID\_CONNECTION\_STRING**。
 
 	![][73]
 
@@ -68,7 +68,7 @@
 
 ###設定應用程式以便進行基本追蹤
 
-1. 開啟已附加至播放程式物件的 **PlayerController** 指令碼進行編輯。 
+1. 開啟已附加至播放程式物件的 **PlayerController** 指令碼進行編輯。
 
 2. 加入下列 using 陳述式：
 
@@ -82,7 +82,7 @@
 ###部署並執行應用程式
 確定您的電腦上已安裝 Android SDK，然後再嘗試將此 Unity 應用程式部署到裝置。
 
-1. 將 Android 裝置連接到您的電腦。 
+1. 將 Android 裝置連接到您的電腦。
 
 2. 開啟 [檔案] -> [組建設定]
 
@@ -116,7 +116,7 @@
 
 ###更新 EngagementConfiguration
 
-1. 從 SDK 資料夾開啟 **EngagementConfiguration** 指令碼，並以您先前從 Google Cloud Developer 入口網站取得的 **Google Project Number** 更新 **ANDROID\_GOOGLE\_NUMBER**。這是一個字串值，請務必將它括在雙引號中。 
+1. 從 SDK 資料夾開啟 **EngagementConfiguration** 指令碼，並以您先前從 Google Cloud Developer 入口網站取得的 **Google Project Number** 更新 **ANDROID\_GOOGLE\_NUMBER**。這是一個字串值，請務必將它括在雙引號中。
 
 	![][75]
 
@@ -128,7 +128,7 @@
 
 ###設定應用程式以接收通知
 
-1. 開啟已附加至播放程式物件的 **PlayerController** 指令碼進行編輯。 
+1. 開啟已附加至播放程式物件的 **PlayerController** 指令碼進行編輯。
 
 2. 將下行新增至 `Start()` 方法
 
@@ -151,4 +151,4 @@
 [53]: ./media/mobile-engagement-unity-android-get-started/53.png
 [54]: ./media/mobile-engagement-unity-android-get-started/54.png
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0824_2016-->
