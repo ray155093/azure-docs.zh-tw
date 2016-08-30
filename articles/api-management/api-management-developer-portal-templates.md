@@ -141,7 +141,7 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 
 ![發佈範本][api-management-publish-templates]
 
-請按一下 [Publish customizations] (發佈自訂) 確認。
+請按一下 [Publish customizations]\(發佈自訂) 確認。
 
 ![確認發佈][api-management-publish-customizations]
 
@@ -171,7 +171,7 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 
 ![Confirm][api-management-reset-template-confirm]
 
-若要還原所有範本的預設版本，請按一下範本清單的 [Restore default templates] (還原預設範本)。
+若要還原所有範本的預設版本，請按一下範本清單的 [Restore default templates]\(還原預設範本)。
 
 ![還原範本][api-management-restore-templates]
 

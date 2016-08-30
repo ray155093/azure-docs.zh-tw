@@ -214,7 +214,7 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
     * Google Play 服務 (版本 27 或更高版本)
     * Google Repository (版本 22 或更高版本)
 
-2.  按一下 [Install Packages] (安裝封裝)，並等候安裝完成。
+2.  按一下 [Install Packages]\(安裝封裝)，並等候安裝完成。
 
 目前的必要程式庫會在 [phonegap-plugin-push Installation 文件]中列出。
 

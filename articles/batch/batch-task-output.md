@@ -201,9 +201,9 @@ Azure 入口網站會顯示使用 [Azure Batch 檔案慣例讀我檔案][github_
 
 1. 在 **Visual Studio 2015** 中開啟專案。
 2. 將您 Batch 和儲存體的「帳戶認證」新增到 Microsoft.Azure.Batch.Samples.Common 專案中的 **AccountSettings.settings**。
-3. [建置] (但不要執行) 該解決方案。如果出現提示，請還原任何 NuGet 封裝。
+3. [建置]\(但不要執行) 該解決方案。如果出現提示，請還原任何 NuGet 封裝。
 4. 使用 Azure 入口網站來為 **PersistOutputsTask** 上傳[應用程式封裝](batch-application-packages.md)。將 `PersistOutputsTask.exe` 及其相依性組件包含在 .zip 封裝中，將應用程式識別碼和應用程式封裝版本分別設為 "PersistOutputsTask" 和 "1.0"。
-5. [啟動] (執行) **PersistOutputs** 專案。
+5. [啟動]\(執行) **PersistOutputs** 專案。
 
 ## 後續步驟
 
