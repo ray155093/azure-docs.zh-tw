@@ -101,4 +101,4 @@ Azure AD 應用程式 Proxy 可藉由發佈要透過網際網路存取的內部�
 
 如需最新消息，請查閱[應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!----HONumber=AcomDC_0727_2016-->

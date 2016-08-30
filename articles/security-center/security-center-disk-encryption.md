@@ -172,4 +172,4 @@ Set-AzureRmVMDiskEncryptionExtension -ResourceGroupName $resourceGroupName -VMNa
 - [Azure 安全性中心常見問題集](security-center-faq.md) - 尋找使用服務的常見問題
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) – 尋找有關 Azure 安全性與相容性的部落格文章
 
-<!---HONumber=AcomDC_0601_2016-->
+<!----HONumber=AcomDC_0601_2016-->
