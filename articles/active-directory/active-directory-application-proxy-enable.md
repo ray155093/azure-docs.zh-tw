@@ -90,4 +90,4 @@
 
 如果您有位於不同網路或不同位置上的應用程式，您可以使用連接器群組將不同的連接器組織成邏輯單元。深入了解[使用應用程式 Proxy 連接器](active-directory-application-proxy-connectors.md)。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!----HONumber=AcomDC_0727_2016-->

@@ -230,4 +230,4 @@ Azure 入口網站提供內容播放程式，您可用來測試您的視訊。
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0824_2016-->
+<!----HONumber=AcomDC_0824_2016-->
