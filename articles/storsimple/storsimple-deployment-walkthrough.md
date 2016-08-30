@@ -146,7 +146,7 @@
 | | | |
 | **NTP** | 我們會在 NTP 伺服器輸入時觸發時間同步處理。請在您輸入 `time.windows.com` 或公用時間伺服器時檢查 UDP 連接埠 123 是否開啟)。 | [下載並使用此指令碼](https://gallery.technet.microsoft.com/scriptcenter/Get-Network-NTP-Time-with-07b216ca)。 |
 | | | |
-| **Proxy (選用)** | 這是有效的 Proxy URI 和連接埠嗎？ </br> 驗證模式是否正確？ | <code>wget http://bing.com | % {$\_.StatusCode}</code></br> 此命令應該在設定 Web Proxy 後立即執行。如果傳回狀態碼 200，則表示連接成功。 |
+| **Proxy (選用)** | 這是有效的 Proxy URI 和連接埠嗎？ </br> 驗證模式是否正確？ | <code>wget http://bing.com &#124; % {$\_.StatusCode}</code></br> 此命令應該在設定 Web Proxy 後立即執行。如果傳回狀態碼 200，則表示連接成功。 |
 | | 流量是否可透過 Proxy 路由？ | 在裝置上設定 Proxy 之後，請執行 DNS 驗證、NTP 檢查 或 HTTP 檢查。這會清楚的反映流量是否在 Proxy 或其他地方遭到封鎖。 |
 | | | |
 | **註冊** | 檢查輸出 TCP 連接埠 443、80、9354 是否開啟。 | `Test-NetConnection -Port   443 -InformationLevel Detailed`</br>[Test-NetConnection Cmdlet 的詳細資訊](https://technet.microsoft.com/library/dn372891.aspx) |
