@@ -91,7 +91,7 @@
 
 若要讓單一登入能夠運作，Azure AD 必須知道 Hosted Graphite 與 Azure AD 中互相對應的使用者。換句話說，必須在 Azure AD 使用者與 Hosted Graphite 中的相關使用者之間建立連結關聯性。
 
-建立此連結關聯性的方法是指派 Azure AD 中 [使用者名稱] 的值做為 Hosted Graphite 中 [Username] (使用者名稱) 的值。
+建立此連結關聯性的方法是指派 Azure AD 中 [使用者名稱] 的值做為 Hosted Graphite 中 [Username]\(使用者名稱) 的值。
 
 若要設定及測試與 Hosted Graphite 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
 
@@ -153,7 +153,7 @@
 
 	![在應用程式端設定單一登入](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_001.png)
 
-9. 從 Azure AD 將 [簽發者 URL] 和 [SAML SSO URL] 複製到 Hosted Graphite 中的 [Entity or Issuer ID] (實體或簽發者識別碼) 和 [SSO Login URL] (SSO 登入 URL)。
+9. 從 Azure AD 將 [簽發者 URL] 和 [SAML SSO URL] 複製到 Hosted Graphite 中的 [Entity or Issuer ID]\(實體或簽發者識別碼) 和 [SSO Login URL]\(SSO 登入 URL)。
 
 	![在應用程式端設定單一登入](./media/active-directory-saas-hostedgraphite-tutorial/tutorial_hostedgraphite_002.png)
 

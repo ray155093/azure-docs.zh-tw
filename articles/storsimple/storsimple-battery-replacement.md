@@ -12,18 +12,18 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="03/23/2016"
+   ms.date="08/17/2016"
    ms.author="alkohli" />
 
 # 更換 StorSimple 裝置上的備份電池模組
 
-## 概觀
+## Overview
 
 Microsoft Azure StorSimple 裝置上的主要機箱電源和冷卻模組 (PCM) 具有額外的電池組。這個電池組會提供電源，以便如果主要機箱失去 AC 電源，StorSimple 裝置可以儲存資料。這個電池組稱為*備份電池模組*。備份電池模組僅針對 StorSimple 裝置中的主要機箱而存在 (EBOD 機箱未包含備份電池模組) 。
 
 本教學課程說明如何：
 
-- 取下備份電池模組 
+- 取下備份電池模組
 - 安裝新的備份電池模組
 - 維護備份電池模組
 
@@ -115,4 +115,4 @@ StorSimple 裝置的備份電池模組是現場可置換裝置。在 PCM 中安�
 
 深入了解 [StorSimple 硬體元件更換](storsimple-hardware-component-replacement.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0817_2016-->

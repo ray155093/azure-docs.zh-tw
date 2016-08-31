@@ -39,43 +39,11 @@
 
 建立服務命名空間：
 
-1.  登入 [Azure 傳統入口網站][]。
-
-2.  在入口網站的左方瀏覽窗格中，按一下 [服務匯流排]。
-
-3.  在入口網站的下方窗格中，按一下 [建立]。
-
-	![](./media/service-bus-dotnet-how-to-use-relay/sb-queues-13.png)
-
-4.  在 [加入新的命名空間] 對話方塊中，輸入命名空間名稱。系統會立即檢查此名稱是否可用。
-
-	![](./media/service-bus-dotnet-how-to-use-relay/sb-queues-04.png)
-
-5.  確定命名空間名稱可用之後，請選擇要代管命名空間的國家或區域 (必須使用您要部署計算資源的相同國家/區域)。
-
-	> [AZURE.IMPORTANT] 請挑選您想要選擇來部署應用程式的*相同區域*。這樣可以獲得最佳效能。
-
-6.	讓對話方塊中的其他欄位保留其預設值 ([傳訊] 和 [標準層])，然後按一下核取記號。此時系統會建立並啟用命名空間。系統為帳戶提供資源時，您可能需要等幾分鐘。
-
-	![](./media/service-bus-dotnet-how-to-use-relay/getting-started-multi-tier-27.png)
-
-	您建立的命名空間就會出現在入口網站中，稍待片刻就會生效。等到狀態變成 [作用中] 之後再繼續。
-
-## 取得命名空間的預設管理認證
-
-若要在新的命名空間上執行管理作業 (例如建立轉送連線)，您必須為命名空間設定共用存取簽章 (SAS) 授權規則。如需 SAS 的詳細資訊，請參閱[使用服務匯流排的共用存取簽章驗證][]。
-
-1.  在左方瀏覽窗格中，按一下 [服務匯流排] 節點，以顯示可用的命名空間清單。![](./media/service-bus-dotnet-how-to-use-relay/sb-queues-13.png)
-
-2.  按兩下您剛從顯示的清單中建立的命名空間名稱。![](./media/service-bus-dotnet-how-to-use-relay/sb-queues-09.png)
-
-3.  按一下頁面頂端的 [設定] 索引標籤。
-
-4.  佈建完服務匯流排命名空間後，預設會建立一個 **KeyName** 設為 **RootManageSharedAccessKey** 的 **SharedAccessAuthorizationRule**。此頁面會顯示該金鑰以及預設規則的主要和次要金鑰。
+[AZURE.INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
 ## 取得服務匯流排 NuGet 封裝
 
-[服務匯流排 NuGet 封裝](https://www.nuget.org/packages/WindowsAzure.ServiceBus)為取得服務匯流排 API，並設定具有所有服務匯流排相依性的應用程式的最容易方式。若要在應用程式中安裝 NuGet 封裝，請執行下列動作：
+[服務匯流排 NuGet 套件](https://www.nuget.org/packages/WindowsAzure.ServiceBus)為取得服務匯流排 API，並設定具有所有服務匯流排相依性的應用程式的最容易方式。若要在應用程式中安裝 NuGet 封裝，請執行下列動作：
 
 1.  在 [方案總管] 中，以滑鼠右鍵按一下 [喜好設定]，然後按一下 [Manage NuGet Packages]。
 2.  搜尋「服務匯流排」並選取 [Microsoft Azure 服務匯流排] 項目。按一下 [安裝] 完成安裝作業，然後關閉下列對話方塊。
@@ -267,9 +235,8 @@ using (var ch = cf.CreateChannel())
 - [Azure 服務匯流排架構概觀](service-bus-fundamentals-hybrid-solutions.md)
 - 從 [Azure 範例][]下載服務匯流排範例，或參閱[服務匯流排範例概觀][]。
 
-  [Azure 傳統入口網站]: http://manage.windowsazure.com
-  [使用服務匯流排的共用存取簽章驗證]: service-bus-shared-access-signature-authentication.md
+  [Shared Access Signature Authentication with Service Bus]: service-bus-shared-access-signature-authentication.md
   [Azure 範例]: https://code.msdn.microsoft.com/site/search?query=service%20bus&f%5B0%5D.Value=service%20bus&f%5B0%5D.Type=SearchText&ac=2
   [服務匯流排範例概觀]: service-bus-samples.md
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0824_2016-->

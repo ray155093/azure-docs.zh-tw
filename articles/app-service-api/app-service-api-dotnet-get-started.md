@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="dotnet"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="05/27/2016"
+	ms.date="08/19/2016"
 	ms.author="rachelap"/>
 
 # 在 Azure App Service 中開始使用 API Apps、ASP.NET 和 Swagger
@@ -491,4 +491,4 @@ ToDoListAPI 專案已有產生的用戶端程式碼，但在下列步驟中，�
 
 [Azure API 應用程式] 專案範本等同於選擇 [空白] ASP.NET 4.5.2 範本、按一下核取方塊以加入 Web API 支援，然後安裝 Swashbuckle NuGet 封裝。此外，範本會加入為了避免建立重複的 Swagger 作業識別碼而設計的某些 Swashbuckle 組態程式碼。在建立 API 應用程式專案之後，您可以使用在本教學課程中看到的相同方式，將它部署到 API 應用程式。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

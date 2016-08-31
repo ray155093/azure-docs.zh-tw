@@ -1,6 +1,6 @@
 <properties 
    pageTitle="重設 VPN 閘道 | Microsoft Azure"
-   description="了解 Azure 虛擬網路的 VPN 閘道。"
+   description="了解 Azure 虛擬網路的 VPN 閘道連線。"
    services="vpn-gateway"
    documentationCenter="na"
    authors="cherylmc"
@@ -13,122 +13,117 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="07/20/2016"
+   ms.date="08/22/2016"
    ms.author="cherylmc" />
 
 # 關於 VPN 閘道
 
-VPN 閘道是用來在虛擬網路和內部部署位置之間傳送網路流量之設定的集合。本文各節將討論與 VPN 閘道相關的設定。VPN 閘道可用於網站間、點對站和 ExpressRoute 連線。VPN 閘道也可用來傳送 Azure 內多個虛擬網路之間的流量 (VNet 對 VNet)。
 
-您可以將 VPN 閘道加入至虛擬網路以建立連線。每個虛擬網路只能有一個 VPN 閘道，而且每個連線都有特定的組態設定步驟。如需連線圖，請參閱 [VPN 閘道連線拓撲](vpn-gateway-topology.md)。
+VPN 閘道是用來在虛擬網路和內部部署位置之間傳送網路流量之設定的集合。VPN 閘道可用於網站間、點對站和 ExpressRoute 連線。VPN 閘道也可用來傳送 Azure 內多個虛擬網路之間的流量 (VNet 對 VNet)。
 
-## <a name="gwsku"></a>閘道 SKU
+每個虛擬網路只能有一個虛擬網路閘道。若要建立連線，您可將虛擬網路閘道新增至 VNet，並進行額外的 VPN 閘道設定。在某些情況下，您建立的連線是 VPN 連線。在其他情況下，您的組態不需要 VPN。不論您的連線是否需要 VPN，設定集合都稱為「 VPN 閘道」。
 
-在建立 VPN 閘道時，您必須指定想要使用的閘道 SKU。閘道 SKU 適用於 ExpressRoute 和 VPN 閘道類型。閘道 SKU 之間的定價並不相同。如需定價資訊，請參閱＜[VPN 閘道定價](https://azure.microsoft.com/pricing/details/vpn-gateway/)＞。如需 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 技術概觀](../expressroute/expressroute-introduction.md)。
+當您設定 VPN 閘道時，您使用的指示取決於用來建立虛擬網路的部署模型。例如，如果您使用傳統部署模型建立 VNet，您會使用傳統部署模型的指導方針和指示來建立和進行 VPN 閘道設定。如需詳細資訊，請參閱[了解 Resource Manager 和傳統部署模型](../resource-manager-deployment-model.md)。
 
-有 3 種 VPN 閘道 SKU：
+下列各節包含的資料表會列出下列組態資訊︰
 
-- 基本
-- 標準
-- HighPerformance
-
-下列範例會將 `-GatewaySku` 指定為「標準」。
-
-	New-AzureRmVirtualNetworkGateway -Name vnetgw1 -ResourceGroupName testrg -Location 'West US' -IpConfigurations $gwipconfig -GatewaySku Standard -GatewayType Vpn -VpnType RouteBased
-
-###  <a name="aggthroughput"></a>依 SKU 和閘道類型列出的估計彙總輸送量
+- 可用的部署模型
+- 可用的設定工具
+- 直接帶您前往某篇文章的連結 (如果可用)
 
 
-下方資料表顯示閘道類型，以及估計的彙總輸送量。此資料表適用於資源管理員與傳統部署模型。
+使用圖形和描述來協助選取符合您需求的組態拓撲。這些圖表顯示主要基準拓撲，但您也可以使用這些圖表做為指導方針來建置更複雜的組態。每個組態都會依賴您所選取的 VPN 閘道設定。
 
-[AZURE.INCLUDE [vpn-gateway-table-gwtype-aggthroughput](../../includes/vpn-gateway-table-gwtype-aggtput-include.md)]
-
-## <a name="gwtype"></a>閘道類型
-
-閘道類型會指定閘道本身如何連接以及為何它是 Resource Manager 部署模型的必要組態設定。請勿將閘道類型與 VPN 類型混為一談，後者所指定的是 VPN 的路由類型。`-GatewayType` 的可用值為：
-
-- Vpn
-- ExpressRoute
+因為 VPN 閘道是設定集合，您可以使用一個工具設定部份設定，然後切換到另一個工具。目前，您無法在 Azure 入口網站中設定每一項 VPN 閘道設定。文章中各組態的指示會指定是否需要特定工具。如果您使用傳統部署模型，您此時可以在傳統入口網站中作業或使用 PowerShell。如需可用的個別設定的詳細資訊，請參閱[關於 VPN 閘道設定](vpn-gateway-about-vpn-gateway-settings.md)。
 
 
-此 Resource Manager 部署模型範例將 -GatewayType 指定為 [Vpn]。在建立閘道時，您必須確定用於組態的閘道類型是正確的。
+## 網站間和多站台
 
-	New-AzureRmVirtualNetworkGateway -Name vnetgw1 -ResourceGroupName testrg -Location 'West US' -IpConfigurations $gwipconfig -GatewayType Vpn -VpnType RouteBased
+### 網站間
 
-## <a name="connectiontype"></a>連線類型
+網站間 (S2S) 連線是透過 IPsec/IKE (IKEv1 或 IKEv2) VPN 通道建立的連線。此類型的連線需要位於內部部署的 VPN 裝置，其具有指派的公用 IP 位址且不是位於 NAT 後方。S2S 連線可以用於跨單位與混合式組態。
 
-每個組態皆需要特定的連線類型。`-ConnectionType` 的可用 Resource Manager PowerShell 值為：
-
-- IPsec
-- Vnet2Vnet
-- ExpressRoute
-- VPNClient
-
-在下列範例中，我們會建立站對站連線，其需要 "IPsec" 連線類型。
-
-	New-AzureRmVirtualNetworkGatewayConnection -Name localtovon -ResourceGroupName testrg -Location 'West US' -VirtualNetworkGateway1 $gateway1 -LocalNetworkGateway2 $local -ConnectionType IPsec -RoutingWeight 10 -SharedKey 'abc123'
-
-## <a name="vpntype"></a>VPN 類型
-
-每個組態皆需要特定 VPN 類型才能運作。如果您要結合兩個組態，例如建立連往相同 VNet 的站對站連線和點對站連線，您必須使用同時符合這兩個連線需求的 VPN 類型。
-
-在點對站和站對站並存連線的情況下，使用 Azure Resource Manager 部署模型時必須使用路由式 VPN 類型，若使用傳統部署模式則必須使用動態閘道。
-
-在建立組態時，您會選取連線所需的 VPN 類型。
-
-有兩種 VPN 類型：
-
-[AZURE.INCLUDE [vpn-gateway-vpntype](../../includes/vpn-gateway-vpntype-include.md)]
-
-此 Resource Manager 部署模型範例將 `-VpnType` 指定為 [RouteBased]。在建立閘道時，您必須確定用於組態的 -VpnType 是正確的。
-
-	New-AzureRmVirtualNetworkGateway -Name vnetgw1 -ResourceGroupName testrg -Location 'West US' -IpConfigurations $gwipconfig -GatewayType Vpn -VpnType RouteBased
-
-##  <a name="requirements"></a>閘道需求
-
-[AZURE.INCLUDE [vpn-gateway-table-requirements](../../includes/vpn-gateway-table-requirements-include.md)]
+![S2S 連線](./media/vpn-gateway-about-vpngateways/demos2s.png "站對站")
 
 
-## <a name="gwsub"></a>閘道器子網路
+### 多網站
 
-若要設定 VPN 閘道，您必須先為 VNet 建立閘道子網路。此閘道子網路必須命名為「GatewaySubnet」才能正常運作。此名稱可讓 Azure 知道這個子網路應用於閘道。<BR>如果您使用傳統入口網站，閘道子網路會在入口網站介面中自動命名為「閘道」。這專用於在傳統入口網站中檢視閘道子網路。在此情況下，子網路在 Azure 中實際建立為「GatewaySubnet」，並可在 Azure 入口網站與 PowerShell 中以此方式檢視。
+您可以設定及設定您的 VNet 與多個內部部署網路之間的 VPN 連線。處理多重連線時，您必須使用路由式 VPN 類型 (適用於傳統 VNet 的動態閘道)。因為 VNet 只能有一個虛擬網路閘道，而透過該閘道的所有連線會共用可用的頻寬。這種組態通常稱為「多站台」連線。
+ 
 
-閘道子網路的最小大小完全取決於您想要建立的組態。雖然某些組態的閘道子網路最小可以建立為 /29，但建議您建立 /28 或更大 (/28、/27、/26 等) 的閘道子網路。
+![多站台連線](./media/vpn-gateway-about-vpngateways/demomulti.png "多站台")
 
-建立較大的閘道可防止違反閘道大小限制。例如，如果您建立閘道子網路大小為 /29 的閘道，而且想要設定站對站/ExpressRoute 並存組態，則必須刪除閘道、刪除閘道子網路、將閘道子網路建立為 /28 或更大，然後重新建立閘道。
+### 部署模型和方法
 
-藉由從一開始就建立較大的閘道子網路，就能在稍後對網路環境新增組態功能時節省時間。
+[AZURE.INCLUDE [vpn-gateway-table-site-to-site](../../includes/vpn-gateway-table-site-to-site-include.md)]
 
-下列範例顯示命名為 GatewaySubnet 的閘道子網路。您可以看到 CIDR 標記法指定 /27，這可提供足夠的 IP 位址供大多數現有組態使用。
+## VNet 對 VNet
 
-	Add-AzureRmVirtualNetworkSubnetConfig -Name 'GatewaySubnet' -AddressPrefix 10.0.3.0/27
+將虛擬網路連接至另一個虛擬網路 (VNet 對 VNet)，類似於將 VNet 連接至內部部署網站位置。這兩種連線類型都使用 Azure VPN 閘道提供使用 IPsec/IKE 的安全通道。您甚至可以將多網站組態與 VNet 對 VNet 通訊結合。這可讓您建立結合了跨單位連線與內部虛擬網路連線的網路拓撲。
 
->[AZURE.IMPORTANT] 請確定 GatewaySubnet 未套用網路安全性群組 (NSG)，因為這可能導致連線失敗。
+您所連接的 VNet 可以：
+
+- 在相同或不同的區域中
+- 在相同或不同的訂用帳戶中
+- 在相同或不同的部署模型中
 
 
 
-## <a name="lng"></a>區域網路閘道
-
-區域網路閘道通常是指您的內部部署位置。在傳統部署模型中，區域網路閘道被稱為本機站台。您會指定區域網路閘道的名稱 (即內部部署 VPN 裝置的公用 IP 位址)，並指定位於內部部署位置的位址首碼。Azure 會查看網路流量的目的地位址首碼、查閱您為區域網路閘道指定的組態，並據以路由傳送封包。您可以視需要修改這些位址首碼。
+![VNet 對 VNet 連線](./media/vpn-gateway-about-vpngateways/demov2v.png "VNet 對 VNet")
 
 
-### 修改位址首碼 - Resource Manager
 
-修改位址首碼的程序會因為是否已建立 VPN 閘道而有所不同。請參閱下列文章章節：[修改區域網路閘道的位址首碼](vpn-gateway-create-site-to-site-rm-powershell.md#modify)。
+### 部署模型之間的連線
 
-在下列範例中，您可以看到將會指定名為 MyOnPremiseWest 的區域網路閘道，而且此閘道會包含兩個 IP 位址首碼。
+Azure 目前有兩種部署模型：傳統和 Resource Manager。如果您已使用 Azure 一段時間，則可能具有傳統 VNet 上執行的 Azure VM 和執行個體角色。較新的 VM 和角色執行個體可能會在 Resource Manager 中建立的 VNet 中執行。您可以建立 Vnet 間的連線，讓其中一個 VNet 中的資源直接與另一個 VNet 中的資源通訊。
 
-	New-AzureRmLocalNetworkGateway -Name MyOnPremisesWest -ResourceGroupName testrg -Location 'West US' -GatewayIpAddress '23.99.221.164' -AddressPrefix @('10.0.0.0/24','20.0.0.0/24')	
+### VNet 對等互連
 
-### 修改位址首碼 - 傳統部署
+只要您的虛擬網路組態符合特定需求，您就能夠使用 VNet 對等互連來建立您的連線。VNet 對等互連不會使用虛擬網路閘道。[VNET 對等互連](../virtual-network/virtual-network-peering-overview.md)目前處於預覽狀態。
 
-如果您需要在使用傳統部署模型時修改本機站台，您可以使用傳統入口網站中的 [區域網路] 組態頁面，或直接修改網路組態檔 NETCFG.XML。
 
+### 部署模型和方法
+
+[AZURE.INCLUDE [vpn-gateway-table-vnet-to-vnet](../../includes/vpn-gateway-table-vnet-to-vnet-include.md)]
+
+
+## 點對站
+
+點對站 (P2S) 組態可讓您建立從個別的用戶端電腦到您的虛擬網路的安全連線。P2S 是透過 SSTP (安全通訊端通道通訊協定) 的 VPN 連線。P2S 連線不需要 VPN 裝置或公眾對應 IP 位址即可運作。您可從用戶端電腦啟動 VPN 連線，以建立 VPN 連線。當您想要從遠端位置 (例如從住家或會議) 連接到您的 VNet 時，或您只有幾個需要連線至 VNet 的用戶端時，這是很實用的解決方案。
+
+
+![點對站連線](./media/vpn-gateway-about-vpngateways/demop2s.png "點對站")
+
+### 部署模型和方法
+
+[AZURE.INCLUDE [vpn-gateway-table-point-to-site](../../includes/vpn-gateway-table-point-to-site-include.md)]
+
+
+## ExpressRoute
+
+[AZURE.INCLUDE [expressroute-intro](../../includes/expressroute-intro-include.md)]
+
+如需 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 技術概觀](../expressroute/expressroute-introduction.md)。
+
+
+## 站對站及 ExpressRoute 並存連線
+
+ExpressRoute 是從 WAN (不透過公用網際網路) 至 Microsoft 服務 (包括 Azure) 的專用連線。站對站 VPN 流量會以加密方式透過公用網際網路進行傳輸。能夠對相同的虛擬網路設定網站間 VPN 和 ExpressRoute 連線有諸多好處。您可以將網站間 VPN 設定為 ExpressRoute 的安全容錯移轉路徑，或使用網站間 VPN 來連線至不在您網路中但透過 ExpressRoute 連接的網站。
+
+
+![並存連線](./media/vpn-gateway-about-vpngateways/demoer.png "expressroute-site2site")
+
+
+### 部署模型和方法
+
+[AZURE.INCLUDE [vpn-gateway-table-coexist](../../includes/vpn-gateway-table-coexist-include.md)]
 
 
 ## 後續步驟
 
-請參閱 [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md)以了解詳細資訊後，再繼續進行組態的規劃和設計。
+如需有關 VPN 閘道的詳細資訊，請參閱 [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md)。
+
+將內部部署位置連接到 VNet。請參閱[建立網站間連線](vpn-gateway-howto-site-to-site-resource-manager-portal.md)。
 
 
 
@@ -136,4 +131,4 @@ VPN 閘道是用來在虛擬網路和內部部署位置之間傳送網路流量�
 
  
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/30/2016"
+   ms.date="08/16/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 
@@ -232,7 +232,7 @@ GO
 
 ### 4\.2.將資料載入新資料表
 
-若要從 Azure Blob 儲存體載入資料，並將它儲存在您資料庫內的資料表中，請使用 [CREATE TABLE AS SELECT][] \(CTAS) T-SQL 陳述式。以 CTAS 載入將能利用您剛剛建立的強型別外部資料表。若要將資料載入新的資料表中，請針對每個資料表使用一個 [CTAS][] 陳述式。
+若要從 Azure Blob 儲存體載入資料，並將它儲存在資料庫內的資料表中，請使用 [CREATE TABLE AS SELECT (Transact-SQL)][] 陳述式。以 CTAS 載入將能利用您剛剛建立的強型別外部資料表。針對每個資料表，請使用一個 [CTAS][] 陳述式。
 
 CTAS 建立新的資料表，並將選取陳述式的結果填入該資料表。CTAS 定義新資料表，以使它擁有和選取陳述式之結果相同的資料行和資料類型。如果您選取外部資料表上的所有資料行，則新資料表將會是外部資料表中資料行和資料類型的複本。
 
@@ -351,17 +351,18 @@ GROUP BY p.[BrandName]
 <!--Image references-->
 
 <!--Article references-->
-[建立 SQL 資料倉儲]: ./sql-data-warehouse-get-started-provision.md
-[Load data into SQL Data Warehouse]: ./sql-data-warehouse-overview-load.md
-[SQL 資料倉儲開發概觀]: ./sql-data-warehouse-overview-develop.md
-[管理資料行存放區索引]: ./sql-data-warehouse-tables-index.md
-[統計資料]: ./sql-data-warehouse-tables-statistics.md
-[CTAS]: ./sql-data-warehouse-develop-ctas.md
-[label]: ./sql-data-warehouse-develop-label.md
+[建立 SQL 資料倉儲]: sql-data-warehouse-get-started-provision.md
+[Load data into SQL Data Warehouse]: sql-data-warehouse-overview-load.md
+[SQL 資料倉儲開發概觀]: sql-data-warehouse-overview-develop.md
+[管理資料行存放區索引]: sql-data-warehouse-tables-index.md
+[統計資料]: sql-data-warehouse-tables-statistics.md
+[CTAS]: sql-data-warehouse-develop-ctas.md
+[label]: sql-data-warehouse-develop-label.md
 
 <!--MSDN references-->
 [CREATE EXTERNAL DATA SOURCE]: https://msdn.microsoft.com/zh-TW/library/dn935022.aspx
 [CREATE EXTERNAL FILE FORMAT]: https://msdn.microsoft.com/zh-TW/library/dn935026.aspx
+[CREATE TABLE AS SELECT (Transact-SQL)]: https://msdn.microsoft.com/library/mt204041.aspx
 [sys.dm_pdw_exec_requests]: https://msdn.microsoft.com/library/mt203887.aspx
 [REBUILD]: https://msdn.microsoft.com/library/ms188388.aspx
 
@@ -369,4 +370,4 @@ GROUP BY p.[BrandName]
 [Microsoft Download Center]: http://www.microsoft.com/download/details.aspx?id=36433
 [載入完整 Contoso 零售資料倉儲]: https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/contoso-data-warehouse/readme.md
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0817_2016-->

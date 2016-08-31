@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/09/2016"
+   ms.date="08/16/2016"
    ms.author="terrylan"/>
 
 # Azure 虛擬機器安全性概觀
@@ -66,7 +66,7 @@ Microsoft Antimalware 是一個針對應用程式和租用戶環境所提供的�
 
 深入了解︰若要深入了解反惡意程式碼軟體以保護虛擬機器，請參閱︰
 
-- [適用於 Azure 雲端服務和虛擬機器的 Microsoft Antimalware](../azure-security-antimalware.md)
+- [適用於 Azure 雲端服務和虛擬機器的 Microsoft Antimalware](../security/azure-security-antimalware.md)
 - [在 Azure 虛擬機器上部署反惡意程式碼解決方案](https://azure.microsoft.com/blog/deploying-antimalware-solutions-on-azure-virtual-machines/)
 - [如何在 Windows VM 上安裝和設定 Trend Micro Deep Security as a Service](../virtual-machines/virtual-machines-windows-classic-install-trend.md)
 - [如何在 Windows VM 上安裝和設定 Symantec Endpoint Protection](../virtual-machines/virtual-machines-windows-classic-install-symantec.md)
@@ -157,4 +157,4 @@ Azure 虛擬機器經過 FISMA、FedRAMP、HIPAA、PCI DSS Level 1 及其他重�
 - [Microsoft 信任中心：法規遵循](https://www.microsoft.com/TrustCenter/Compliance/default.aspx)
 - [受信任的雲端：Microsoft Azure 安全性、隱私權及法規遵循](http://download.microsoft.com/download/1/6/0/160216AA-8445-480B-B60F-5C8EC8067FCA/WindowsAzure-SecurityPrivacyCompliance.pdf)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

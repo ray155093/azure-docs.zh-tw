@@ -4,8 +4,8 @@
 	services="azure-resource-manager"
 	documentationCenter=""
 	authors="tfitzmac"
-	manager="wpickett"
-	editor=""/>
+	manager="timlt"
+	editor="tysonn"/>
 
 <tags
 	ms.service="azure-resource-manager"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="AzurePortal"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/10/2016"
+	ms.date="08/16/2016"
 	ms.author="tomfitz"/>
 
 
@@ -88,104 +88,7 @@
 
 ## PowerShell
 
-標記是直接存在於資源和資源群組中。若要查看現有標記，只要使用 **Get-AzureRmResource** 或 **Get-AzureRmResourceGroup** 取得資源或資源群組即可。我們從資源群組開始。
-
-    Get-AzureRmResourceGroup -Name tag-demo-group
-
-此 Cmdlet 會傳回資源群組上的幾個位元的中繼資料，包括已套用哪些標記 (若有的話)。
-
-    ResourceGroupName : tag-demo-group
-    Location          : westus
-    ProvisioningState : Succeeded
-    Tags              :
-                    Name         Value
-                    ===========  ==========
-                    Dept         Finance
-                    Environment  Production
-
-當取得資源的中繼資料時，這些標記不會直接顯示。
-
-    Get-AzureRmResource -ResourceName tfsqlserver -ResourceGroupName tag-demo-group
-
-您會在結果中看到標記只會顯示為雜湊表物件。
-
-    Name              : tfsqlserver
-    ResourceId        : /subscriptions/{guid}/resourceGroups/tag-demo-group/providers/Microsoft.Sql/servers/tfsqlserver
-    ResourceName      : tfsqlserver
-    ResourceType      : Microsoft.Sql/servers
-    Kind              : v12.0
-    ResourceGroupName : tag-demo-group
-    Location          : westus
-    SubscriptionId    : {guid}
-    Tags              : {System.Collections.Hashtable}
-
-您可以藉由擷取 **Tags** 屬性來檢視實際標記。
-
-    (Get-AzureRmResource -ResourceName tfsqlserver -ResourceGroupName tag-demo-group).Tags | %{ $_.Name + ": " + $_.Value }
-   
-這會傳回格式化的結果︰
-    
-    Dept: Finance
-    Environment: Production
-
-您通常會想要擷取具有特定標記和值的所有資源或資源群組，而不是檢視特定資源群組或資源的標記。若要取得含有特定標記的資源群組，請使用 **Find-AzureRmResourceGroup** Cmdlet 與 **-Tag** 參數搭配。
-
-    Find-AzureRmResourceGroup -Tag @{ Name="Dept"; Value="Finance" } | %{ $_.Name }
-    
-這會傳回具有該標記值的資源群組名稱。
-   
-    tag-demo-group
-    web-demo-group
-
-若要取得具有特定標記和值的所有資源，請使用 **Find-AzureRmResource** Cmdlet。
-
-    Find-AzureRmResource -TagName Dept -TagValue Finance | %{ $_.ResourceName }
-    
-這會傳回具有該標記值的資源名稱。
-    
-    tfsqlserver
-    tfsqldatabase
-
-若要將標記加入至沒有現有標記的資源群組，只需使用 **Set-AzureRmResourceGroup** 命令，並指定標記物件。
-
-    Set-AzureRmResourceGroup -Name test-group -Tag @( @{ Name="Dept"; Value="IT" }, @{ Name="Environment"; Value="Test"} )
-
-這會傳回資源群組稱與其新的標記值。
-
-    ResourceGroupName : test-group
-    Location          : southcentralus
-    ProvisioningState : Succeeded
-    Tags              :
-                    Name          Value
-                    =======       =====
-                    Dept          IT
-                    Environment   Test
-                    
-您可以藉由使用 **Set-AzureRmResource** 命令，將標記加入至沒有現有標記的資源
-
-    Set-AzureRmResource -Tag @( @{ Name="Dept"; Value="IT" }, @{ Name="Environment"; Value="Test"} ) -ResourceId /subscriptions/{guid}/resourceGroups/test-group/providers/Microsoft.Web/sites/examplemobileapp
-
-標記會以整體方式更新。若要將一個標記加入有其他標記的資源，請使用包含您所有欲保留標記的陣列。首先，請選取現有標記，將一個標記加入該標記集，然後重新套用所有標記。
-
-    $tags = (Get-AzureRmResourceGroup -Name tag-demo).Tags
-    $tags += @{Name="status";Value="approved"}
-    Set-AzureRmResourceGroup -Name test-group -Tag $tags
-
-若要移除一個或多個標記，只需儲存不含您要移除之標記的陣列。
-
-對於資源也是同樣程序，但您要使用 **Get-AzureRmResource** 和 **Set-AzureRmResource** Cmdlet。
-
-若要使用 PowerShell 取得訂用帳戶內所有標記的清單，請使用 **Get-AzureRmTag** Cmdlet。
-
-    Get-AzureRmTag
-    Name                      Count
-    ----                      ------
-    env                       8
-    project                   1
-
-您可能會看到開頭為 "hidden-" 和 "link:" 的標記。這些是內部標記，應該略過並避免變更。
-
-使用 **New-AzureRmTag** Cmdlet 將新的標記加入分類法。這些標記會加入到自動完成中，即使它們尚未套用至任何資源或資源群組也一樣。若要移除標記名稱/值，請先從任何可能用到這個標記的資源中移除標記，再使用 **Remove-AzureRmTag** Cmdlet 從分類法中移除它。
+[AZURE.INCLUDE [resource-manager-tag-resources](../includes/resource-manager-tag-resources-powershell.md)]
 
 ## Azure CLI
 
@@ -281,4 +184,4 @@
 - 如需部署資源時使用 Azure CLI 的簡介，請參閱[使用適用於 Mac、Linux 和 Windows 的 Azure CLI 搭配 Azure 資源管理](./xplat-cli-azure-resource-manager.md)。
 - 如需使用入口網站的簡介，請參閱[使用 Azure 入口網站來管理您的 Azure 資源](./azure-portal/resource-group-portal.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

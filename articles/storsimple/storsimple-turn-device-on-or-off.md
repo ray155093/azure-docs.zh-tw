@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="04/21/2016"
+   ms.date="08/17/2016"
    ms.author="alkohli" />
 
 # 開啟或關閉您的 StorSimple 裝置 
 
-## 概觀
+## Overview
 
 正常系統作業並不需要關閉 Microsoft Azure StorSimple 裝置。不過，您可能需要開啟新的裝置，或有裝置必須關閉。一般而言，在您需要更換故障的硬體、實際移動單元，或將裝置報廢的情況下才需要關機。本教學課程將說明在不同案例中開啟和關閉 StorSimple 裝置的必要程序。
 
@@ -241,4 +241,4 @@ StorSimple 8600 型同時具有主要機箱和 EBOD 機箱。這需要使用纜�
 
 如果您在開啟或關閉 StorSimple 裝置時發生問題，請[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -13,7 +13,7 @@
    ms.workload="search"
    ms.topic="article"
    ms.tgt_pltfrm="na"
-   ms.date="05/23/2016"
+   ms.date="08/16/2016"
    ms.author="brjohnst"/>
 
 # Azure 搜尋服務中的 API 版本
@@ -31,6 +31,7 @@ Azure 搜尋服務會定期推出功能更新。有時候 (但並不一定) 這�
 介面|最新主要版本|狀態
 ----------|-------------------------|------
 [.NET SDK](https://msdn.microsoft.com/library/azure/dn951165.aspx)|1\.1|正式推出，2016 年 2 月發行
+[.NET SDK 預覽版](https://msdn.microsoft.com/library/mt761536%28v=azure.103%29.aspx)|2\.0 預覽版|預覽版，2016 年 8 月發行
 [服務 REST API](https://msdn.microsoft.com/library/azure/dn798935.aspx)|2015-02-28|正式推出
 [服務 REST API (預覽)](search-api-2015-02-28-preview.md)|2015-02-28-Preview|預覽
 [管理 REST API](https://msdn.microsoft.com/library/azure/dn832684.aspx)|2015-08-19|正式推出
@@ -54,12 +55,12 @@ Azure 搜尋服務會定期推出功能更新。有時候 (但並不一定) 這�
 .NET SDK 版本|REST API 版本|特性|預計到達時間
 ----------------|----------------|--------|---
 1\.1|2015-02-28|Lucene 查詢語法|2016 年 2 月
-2\.x-preview|2015-02-28-Preview|自訂分析器、Azure Blob 索引子、欄位對應，ETag|將會在 2016 年第一季開始推出功能
-2\.x|新的 GA API 版本|與 2.x-preview 相同|緊接於 2.x-preview 完成後
+2\.0 預覽版|2015-02-28-Preview|自訂分析器、Azure Blob 和資料表索引子、欄位對應，ETag|2016 年 8 月
+2\.x|新的 GA API 版本|與 2.0 預覽版相同|2016 年 Q4 上半季
 
 ##關於預覽與正式推出版本
 
-Azure 搜尋服務一律會先透過 REST API 預先推出實驗性功能，然後再透過 .NET SDK 的發行前版本推出。如需預覽功能的清單，請參閱 [Azure 搜尋服務的新功能](search-latest-updates.md)。
+Azure 搜尋服務一律會先透過 REST API 預先推出實驗性功能，然後再透過 .NET SDK 的發行前版本推出。
 
 預覽功能不保證會移轉到 GA 版本。相對於 GA 版本中的功能被視為穩定功能，且除了小型的回溯相容性修正與增強之外不太會變更，預覽功能是供用於測試和實驗，以期收集功能設計與實作的意見反應。
 
@@ -69,4 +70,4 @@ Azure 搜尋服務一律會先透過 REST API 預先推出實驗性功能，然�
 
 正式推出意指 Azure 搜尋服務已受到服務等級協定 (SLA) 約束。SLA 可以在 [Azure 搜尋服務等級協定](https://azure.microsoft.com/support/legal/sla/search/v1_0/)中找到。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0817_2016-->

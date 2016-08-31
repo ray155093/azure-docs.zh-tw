@@ -5,7 +5,7 @@
 	keywords="azure active directory identity protection, cloud app discovery, 管理應用程式, 安全性, 風險, 風險層級, 弱點, 安全性原則"
 	documentationCenter=""
 	authors="markusvi"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/17/2016"
+	ms.date="08/16/2016"
 	ms.author="markvi"/>
 
 # 使用 Azure AD Identity Protection 時的登入體驗
@@ -59,7 +59,7 @@
 
 系統管理員可以：
 
-- 設定一個原則，要求使用者設定其帳戶進行其他安全性驗證。 
+- 設定一個原則，要求使用者設定其帳戶進行其他安全性驗證。
 - 允許最多略過 Multi-Factor Authentication 註冊 30 天 (如果他們想給予使用者註冊前的寬限期)。
 
 **Multi-Factor Authentication 註冊具有三個步驟：**
@@ -120,7 +120,7 @@
 
 <br> ![補救](./media/active-directory-identityprotection-flows/101.png "補救") <br>
 
-2.	使用者必須解決安全性挑戰以證明其身分識別。如果使用者已註冊 Multi-Factor Authentication，他們可以從損害中自行復原。他們必須回傳送至其電話號碼的安全碼。 
+2.	使用者必須解決安全性挑戰以證明其身分識別。如果使用者已註冊 Multi-Factor Authentication，他們可以從損害中自行復原。他們必須回傳送至其電話號碼的安全碼。
 
 <br> ![補救](./media/active-directory-identityprotection-flows/110.png "補救") <br>
 
@@ -156,6 +156,6 @@
 
 ## 另請參閱
 
-- [Azure Active Directory Identity Protection](active-directory-identityprotection.md) 
+- [Azure Active Directory Identity Protection](active-directory-identityprotection.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

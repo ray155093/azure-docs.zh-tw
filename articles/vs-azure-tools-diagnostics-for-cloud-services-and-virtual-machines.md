@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="05/08/2016"
+   ms.date="08/15/2016"
    ms.author="tarcher" />
 
 # 為 Azure 雲端服務和虛擬機器設定診斷功能
@@ -91,13 +91,13 @@
 
     ![指定要使用的儲存體帳戶](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796661.png)
 
-1. 在 [Create Storage Connection String] 對話方塊中，指定要使用 Azure 儲存體模擬器、Azure 訂用帳戶或手動輸入的認證來連接。
+1. 在 [建立儲存體連接字串] 對話方塊中，指定要使用 Azure 儲存體模擬器、Azure 訂用帳戶或手動輸入的認證來連接。
 
     ![儲存體帳戶對話方塊](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796662.png)
 
   - 如果您選擇「Microsoft Azure 儲存體模擬器」選項，連接字串會設為 UseDevelopmentStorage = true。
 
-  - 如果您選擇「您的訂用帳戶」選項，您可以選擇您想要使用的 Azure 訂用帳戶和帳戶名稱。您可以選擇 [管理帳戶] 按鈕以管理您的 Azure 訂用帳戶。
+  - 如果選擇的是「您的訂用帳戶」選項，您可以選擇要使用的 Azure 訂用帳戶和帳戶名稱。您可以選擇 [管理帳戶] 按鈕以管理您的 Azure 訂用帳戶。
 
   - 如果您選擇「手動輸入的認證」選項，您會收到提示以輸入您想要使用之 Azure 帳戶的名稱和金鑰。
 
@@ -109,7 +109,7 @@
 
 1. [以 MB 為單位的磁碟配額] 方塊可指定您想要在儲存體帳戶中配置診斷資料的空間大小。您可以任意變更預設值。
 
-1. 在您想要收集之診斷資料的每個索引標籤上，選取其 [啟用 <記錄檔類型> 的傳輸] 核取方塊。例如，如果您想要收集應用程式記錄檔，請選取 [應用程式記錄檔] 索引標籤上的 [啟用應用程式記錄檔的傳輸] 核取方塊。此外，請指定每個診斷資料類型所需的其他資訊。請參閱本主題稍後的**設定診斷資料來源**一節，以取得每個索引標籤上的組態資訊。
+1. 在您想要收集之診斷資料的每個索引標籤上，選取其 [啟用 <記錄檔類型> 的傳輸] 核取方塊。例如，如果您想要收集應用程式記錄檔，請選取 [應用程式記錄檔] 索引標籤上的 [啟用應用程式記錄檔的傳輸] 核取方塊。此外，請指定每個診斷資料類型所需的其他資訊。請參閱本主題稍後的 **設定診斷資料來源**一節，以了解每個索引標籤上的組態資訊。
 
 1. 啟用所有您想要的診斷資料收集之後，請選擇 [確定] 按鈕。
 
@@ -151,7 +151,7 @@
 
 1. 在您想要收集之診斷資料的每個索引標籤上，選取其 [啟用 <記錄檔類型> 的傳輸] 核取方塊。
 
-    例如，如果您想要收集應用程式記錄檔，請選取 [應用程式記錄檔] 索引標籤上的 [啟用應用程式記錄檔的傳輸] 核取方塊。此外，請指定每個診斷資料類型所需的其他資訊。請參閱本主題稍後的**設定診斷資料來源**一節，以取得每個索引標籤上的組態資訊。
+    例如，如果您想要收集應用程式記錄檔，請選取 [應用程式記錄檔] 索引標籤上的 [啟用應用程式記錄檔的傳輸] 核取方塊。此外，請指定每個診斷資料類型所需的其他資訊。請參閱本主題稍後的**設定診斷資料來源**一節，以了解每個索引標籤上的組態資訊。
 
 1. 啟用所有您想要的診斷資料收集之後，請選擇 [確定] 按鈕。
 
@@ -215,13 +215,13 @@
 
 ### ETW 記錄檔
 
-如果您使用 [Windows 事件追蹤](https://msdn.microsoft.com/library/windows/desktop/bb968803(v=vs.85).aspx) (ETW) 而且想要擷取 ETW 記錄檔，請選取 [啟用 ETW 記錄檔的傳輸] 核取方塊。您可以在記錄檔傳輸至儲存體帳戶時，藉由變更**傳輸期間 (分鐘)** 值來增加或減少分鐘數。
+如果您使用 [Windows 事件追蹤] (https://msdn.microsoft.com/library/windows/desktop/bb968803(v=vs.85).aspx) (ETW) 而且想要擷取 ETW 記錄檔，請選取 [啟用 ETW 記錄檔的傳輸] 核取方塊。您可以在記錄檔傳輸至儲存體帳戶時，藉由變更**傳輸期間 (分鐘)** 值來增加或減少分鐘數。
 
 從事件來源和您指定的事件資訊清單擷取事件。若要指定事件來源，請在 [事件來源] 區段中輸入名稱，然後選擇 [新增事件來源] 按鈕。同樣地，您可以指定 [事件資訊清單] 區段中的事件資訊清單，然後選擇 [新增事件資訊清單] 按鈕。
 
   ![ETW 記錄檔](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC766025.png)
 
-  ASP.NET 中透過 [System.Diagnostics.aspx](https://msdn.microsoft.com/library/system.diagnostics(v=vs.110)) 命名空間中的類別支援 ETW 架構。Microsoft.WindowsAzure.Diagnostics 命名空間 (繼承自標準 [System.Diagnostics.aspx](https://msdn.microsoft.com/library/system.diagnostics(v=vs.110)) 類別並將其延伸 會啟用 [System.Diagnostics.aspx](https://msdn.microsoft.com/library/system.diagnostics(v=vs.110)) 做為 Azure 環境中的記錄架構。如需詳細資訊，請參閱[在 Microsoft Azure 中控制記錄和追蹤](https://msdn.microsoft.com/magazine/ff714589.aspx)和[在 Azure 雲端服務和虛擬機器中啟用診斷](./cloud-services/cloud-services-dotnet-diagnostics.md)。
+  ASP.NET 中透過 [System.Diagnostics.aspx] (https://msdn.microsoft.com/library/system.diagnostics(v=vs.110) 命名空間中的類別支援 ETW 架構。Microsoft.WindowsAzure.Diagnostics 命名空間 (繼承自標準 [System.Diagnostics.aspx] (https://msdn.microsoft.com/library/system.diagnostics(v=vs.110) 類別並將其延伸) 會啟用 [System.Diagnostics.aspx] (https://msdn.microsoft.com/library/system.diagnostics(v=vs.110) 做為 Azure 環境中的記錄架構。如需詳細資訊，請參閱[在 Microsoft Azure 中控制記錄和追蹤](https://msdn.microsoft.com/magazine/ff714589.aspx)和[在 Azure 雲端服務和虛擬機器中啟用診斷](./cloud-services/cloud-services-dotnet-diagnostics.md)。
 
 ### 損毀傾印
 
@@ -357,4 +357,4 @@ RoleEntryPoint 的方法是在 WAIISHost.exe 的內容中呼叫，而不是 IIS�
 
 若要深入了解 Azure 中的診斷記錄，請參閱[在 Azure 雲端服務和虛擬機器中啟用診斷](./cloud-services/cloud-services-dotnet-diagnostics.md)和[在 Azure App Service 中啟用 web 應用程式的診斷記錄](./app-service-web/web-sites-enable-diagnostic-log.md)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

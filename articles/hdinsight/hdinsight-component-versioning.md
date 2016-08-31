@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/25/2016"
+	ms.date="08/10/2016"
 	ms.author="jgao"/>
 
 
@@ -87,15 +87,15 @@ Apache Spark|1\.6.0 (僅限 Linux)|1\.5.2 (僅限 Linux/實驗性組建)|1\.3.1 
 * 依預設，系統會為 HDInsight 2.1 和更新版本部署搭配兩個前端節點的高可用性叢集。HDInsight 1.6 叢集並不適用。
 * 在特定版本的支援到期後，您可能無法透過 Azure 入口網站取得。下表指出可在 Azure 傳統入口網站上取得的版本。您可透過 Windows PowerShell [New-AzureRmHDInsightCluster](https://msdn.microsoft.com/library/mt619331.aspx) 命令中的 `Version` 參數和 .NET SDK 持續取得叢集版本，直到其淘汰日期為止。
 
-HDInsight 版本|HDP 版本|高可用性|發行日期|可在 Azure 入口網站上取得|支援到期日|淘汰日期
----|---|---|---|---|---|---
-HDI 3.4|HDP 2.4|是|03/29/2016|是||
-HDI 3.3|HDP 2.3|是|12/02/2015|是||
-HDI 3.2|HDP 2.2|是|2015/2/18|是||
-HDI 3.1|HDP 2.1|是|2014/6/24|是||
-HDI 3.0|HDP 2.0|是|02/11/2014|是|09/17/2014|06/30/2015
-HDI 2.1|HDP 1.3|是|10/28/2013|是|05/12/2014|05/31/2015
-HDI 1.6|HDP 1.1|否|10/28/2013|是|04/26/2014|05/31/2015
+HDInsight 版本|HDP 版本|VM OS|高可用性|發行日期|可在 Azure 入口網站上取得|支援到期日|淘汰日期
+---|---|---|---|---|---|---|---
+HDI 3.4|HDP 2.4|Ubuntu 14.0.4 LTS|是|03/29/2016|是||
+HDI 3.3|HDP 2.3|Ubuntu 14.0.4 LTS 或 Windows Server 2012R2|是|12/02/2015|是||
+HDI 3.2|HDP 2.2|Ubuntu 12.04 LTS 或 Windows Server 2012R2|是|2015/2/18|是||
+HDI 3.1|HDP 2.1|Windows Server 2012R2|是|2014/6/24|是||
+HDI 3.0|HDP 2.0|Windows Server 2012R2|是|02/11/2014|是|09/17/2014|06/30/2015
+HDI 2.1|HDP 1.3|Windows Server 2012R2|是|10/28/2013|是|05/12/2014|05/31/2015
+HDI 1.6|HDP 1.1||否|10/28/2013|是|04/26/2014|05/31/2015
 
 **非預設叢集的部署**
 
@@ -112,7 +112,7 @@ SLA 是根據「支援期間」來定義。「支援期間」是指 Microsoft �
 
 ## 與 HDInsight 版本相關聯的 Hortonworks 版本資訊##
 
-* HDInsight 叢集 3.4 版採用以 [Hortonworks Data Platform 2.4](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.4.0/bk_HDP_RelNotes/content/ch_relnotes_v240.html) 為基礎的 Hadoop 散發。
+* HDInsight 叢集 3.4 版採用以 [Hortonworks Data Platform 2.4](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.4.0/bk_HDP_RelNotes/content/ch_relnotes_v240.html) 為基礎的 Hadoop 散發套件。
 
 
 
@@ -156,4 +156,4 @@ SLA 是根據「支援期間」來定義。「支援期間」是指 Microsoft �
 
 [zookeeper]: http://zookeeper.apache.org/
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

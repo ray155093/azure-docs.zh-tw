@@ -68,6 +68,7 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 | [可自訂的、規則式內容傳遞引擎](cdn-rules-engine.md) | | | **&#x2713;** |
 | [進階 HTTP 報告](cdn-advanced-http-reports.md) | | | **&#x2713;** |
 | [即時統計資料](cdn-real-time-stats.md) | | | **&#x2713;** |
+| [即時警示](cdn-real-time-alerts.md) | | | **&#x2713;** |
 
 >[AZURE.TIP] 您是否有想要在 Azure CDN 中看到的功能？ [請不吝提供意見](https://feedback.azure.com/forums/169397-cdn)！
 
@@ -83,4 +84,4 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 
 如需價格資訊，請參閱 [CDN 價格](https://azure.microsoft.com/pricing/details/cdn/)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -103,7 +103,7 @@ Azure HDInsight 提供兩種類型的巨量資料雲端提供項目：標準和[
 
 HDInsight 叢集可以建立在下列兩個作業系統的其中之一上：
 
-- Linux 上的 HDInsight (適用於 Linux 的 Ubuntu 12.04 LTS)。HDInsight 提供在 Azure 上設定 Linux 叢集的選項。如果您熟悉 Linux 或 Unix、要從現有的 Linux Hadoop 方案進行移轉，或想輕鬆整合針對 Linux 所建置的 Hadoop 生態系統元件，請設定 Linux 叢集。如需詳細資訊，請參閱[開始在 Linux 上的 HDInsight 中使用 Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md)。
+- Linux 上的 HDInsight。HDInsight 提供在 Azure 上設定 Linux 叢集的選項。如果您熟悉 Linux 或 Unix、要從現有的 Linux Hadoop 方案進行移轉，或想輕鬆整合針對 Linux 所建置的 Hadoop 生態系統元件，請設定 Linux 叢集。如需詳細資訊，請參閱[開始在 Linux 上的 HDInsight 中使用 Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md)。
 - Windows 上的 HDInsight (Windows Server 2012 R2 Datacenter)。
 
 ### HDInsight 版本###
@@ -271,7 +271,7 @@ HBase 叢集類型無法使用中繼存放區組態。
 
 若要保留叢集存留期間內的變更，您可以在建立過程中使用 HDInsight 叢集自訂，或在 Linux 型叢集中使用 Ambari。如需詳細資訊，請參閱[使用 Bootstrap 自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-bootstrap.md)。
 
->[AZURE.NOTE] Windows 型叢集無法保留重新製作映像所造成的變更。如需詳細資訊，請參閱[角色執行個體由於作業系統升級而重新啟動](http://blogs.msdn.com/b/kwill/archive/2012/09/19/role-instance-restarts-due-to-os-upgrades.aspx) (英文)。若要在叢集存留期間保留變更，您必須在建立程序期間使用 HDInsight 叢集自訂。
+>[AZURE.NOTE] Windows 型叢集無法保留重新安裝映像所造成的變更。如需詳細資訊，請參閱[角色執行個體由於作業系統升級而重新啟動](http://blogs.msdn.com/b/kwill/archive/2012/09/19/role-instance-restarts-due-to-os-upgrades.aspx) (英文)。若要在叢集存留期間保留變更，您必須在建立程序期間使用 HDInsight 叢集自訂。
 
 ## 使用指令碼動作來自訂叢集
 
@@ -297,4 +297,4 @@ HBase 叢集類型無法使用中繼存放區組態。
 | [.NET SDK](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md) | &nbsp; | &nbsp; | &nbsp; | ✔ | ✔ | ✔ |
 | [Azure Resource Manager 範本](hdinsight-hadoop-create-linux-clusters-arm-templates.md) | &nbsp; | ✔ | &nbsp; | &nbsp; | ✔ | ✔ |
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

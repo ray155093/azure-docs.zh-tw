@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="05/08/2016"
+   ms.date="08/15/2016"
    ms.author="tarcher" />
 
 # 準備從 Visual Studio 發佈或部署 Azure 應用程式
 
-## 概觀
+## Overview
 
 在您可以發佈雲端服務專案之前，您必須設定下列服務：
 
@@ -75,7 +75,7 @@
     ![建立新的 Azure 儲存體帳戶](./media/vs-azure-tools-cloud-service-publish-set-up-required-services-in-visual-studio/IC744166.png)
 
 1. 在 [建立儲存體帳戶] 對話方塊中選取或輸入新儲存體帳戶的下列資訊。
-    - 您要加入儲存體帳戶的 Azure 訂用帳戶。
+    - 您要新增至儲存體帳戶的 Azure 訂用帳戶。
     - 您想要用於新儲存體帳戶的名稱。
     - 區域或同質群組 (例如美國西部或東亞)。
     - 您要用於儲存體帳戶的複寫類型，例如異地備援。
@@ -153,4 +153,4 @@
 
 若要深入了解如何將應用程式從 Visual Studio 發佈至 Azure，請參閱[使用 Azure Tools 發佈雲端服務](vs-azure-tools-publishing-a-cloud-service.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0817_2016-->

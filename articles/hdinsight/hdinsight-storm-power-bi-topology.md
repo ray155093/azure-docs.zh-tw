@@ -14,7 +14,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="na"
  ms.workload="big-data"
- ms.date="05/27/2016"
+ ms.date="08/16/2016"
  ms.author="larryfr"/>
 
 # 使用 Power BI 視覺化 Apache Storm 拓撲的資料
@@ -25,7 +25,7 @@ Power BI 可讓您以視覺化的方式將資料顯示為報告。針對 Storm o
 
 ## 必要條件
 
-- Azure 訂閱。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+- Azure 訂用帳戶。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 
 * 具備 [Power BI](https://powerbi.com) 存取權的 Azure Active Directory 使用者
 
@@ -146,7 +146,7 @@ Power BI 可讓您以視覺化的方式將資料顯示為報告。針對 Storm o
 
 2. 選取 [刪除] 按鈕以停止拓撲。
 
-    ![拓撲摘要上的 [刪除] 按鈕](./media/hdinsight-storm-power-bi-topology/killtopology.png)
+    ![拓撲摘要上的刪除按鈕](./media/hdinsight-storm-power-bi-topology/killtopology.png)
 
 ## 刪除叢集
 
@@ -158,4 +158,4 @@ Power BI 可讓您以視覺化的方式將資料顯示為報告。針對 Storm o
 
 * [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0817_2016-->

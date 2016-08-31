@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/08/2016"
+   ms.date="08/10/2016"
    ms.author="chackdan"/>
 
 # Service Fabric 叢集安全性案例
@@ -33,7 +33,7 @@ Service Fabric 叢集是您所擁有的資源。為了防止未經授權的資�
 ### 節點對節點憑證安全性
 Service Fabric 會使用您建立叢集時在節點類型組態中指定的 X.509 伺服器憑證。本文結尾處會提供這些憑證是什麼，以及要如何取得或建立的快速概觀。
 
-憑證安全性是在建立叢集時設定，透過 Azure 入口網站、Azure Resource Manager 範本或獨立 JSON 範本。您可以指定用於憑證變換的主要憑證和選用的次要憑證。您指定的主要和次要憑證，應該不同於您為[用戶端對節點安全性](#client-to-node-security)指定的系統管理用戶端憑證和唯讀用戶端憑證。
+憑證安全性是在建立叢集時設定，透過 Azure 入口網站、Azure Resource Manager 範本或獨立 JSON 範本。您可以指定用於憑證變換的主要憑證和選用次要憑證。您指定的主要和次要憑證，應該不同於您為[用戶端對節點安全性](#client-to-node-security)指定的系統管理用戶端憑證和唯讀用戶端憑證。
 
 對於 Azure，若要了解如何在叢集中設定憑證安全性，請參閱[使用憑證保護 Azure 上的 Service Fabric 叢集](service-fabric-secure-azure-cluster-with-certs.md)或[使用 Azure Resource Manager 範本來設定叢集](service-fabric-cluster-creation-via-arm.md)。
 
@@ -52,9 +52,9 @@ Service Fabric 會使用您建立叢集時在節點類型組態中指定的 X.50
 ### 用戶端對節點憑證安全性
  用戶端對節點憑證安全性是在建立叢集 (透過 Azure 入口網站、Resource Manager 範本或 JSON 範本) 時，藉由指定系統管理用戶端憑證和 (或) 使用者用戶端憑證來設定的。您指定的系統管理用戶端憑證和使用者用戶端憑證，應該不同於您為[節點對節點安全性](#node-to-node-security)指定的主要和次要憑證。
 
-用戶端如果是使用系統管理憑證來連接到叢集，就會擁有管理功能的完整存取權。用戶端如果是使用唯讀使用者用戶端憑證來連接到叢集，則只會擁有管理功能的唯讀存取權。換句話說，這些憑證是用於如下所述的角色型存取控制 (RBAC)。
+用戶端如果是使用系統管理憑證來連接到叢集，就會擁有管理功能的完整存取權。用戶端如果是使用唯讀使用者用戶端憑證來連接到叢集，則只會擁有管理功能的唯讀存取權。換句話說，這些憑證是用於下文所述的角色型存取控制 (RBAC)。
 
-對於 Azure，若要了解如何在叢集中設定憑證安全性，請參閱[使用憑證保護 Azure 上的 Service Fabric 叢集](service-fabric-secure-azure-cluster-with-certs.md)或[使用 Azure Resource Manager 範本來設定叢集](service-fabric-cluster-creation-via-arm.md)。
+若要了解如何在叢集中設定憑證安全性，請參閱[使用憑證保護 Azure 上的 Service Fabric 叢集](service-fabric-secure-azure-cluster-with-certs.md)或[使用 Azure Resource Manager 範本來設定叢集](service-fabric-cluster-creation-via-arm.md)。
 
 對於獨立 Windows Server，請參閱[使用 X.509 憑證保護 Windows 上的獨立叢集](service-fabric-windows-cluster-x509-security.md)
 
@@ -64,7 +64,7 @@ Service Fabric 會使用您建立叢集時在節點類型組態中指定的 X.50
 ## 安全性建議
 對於 Azure 叢集，建議您針對節點對節點安全性使用 AAD 安全性來驗證用戶端和憑證。
 
-對於獨立 Windows Server 叢集，如果您有 Windows Server 2012 R2 和 Active Directory，建議您使用 Windows 安全性與群組管理帳戶 (gMA)。否則仍然使用 Windows 安全性與 Windows 帳戶。
+對於獨立 Windows Server 叢集，如果您有 Windows Server 2012 R2 和 Active Directory，建議您使用 Windows 安全性與群組管理帳戶 (GMA)。否則仍然使用 Windows 安全性與 Windows 帳戶。
 
 ## 角色型存取控制 (RBAC)
 存取控制可讓叢集系統管理員針對不同的使用者群組限制特定叢集作業的存取權，讓叢集更加安全。針對連接到叢集的用戶端，支援兩種不同的存取控制類型：系統管理員角色和使用者角色。
@@ -103,9 +103,15 @@ X509 數位憑證通常用來驗證用戶端與伺服器，以及加密及數位
 
 
 ## 後續步驟
+
+設定安全叢集：
+
+- [使用憑證保護 Azure 上的 Service Fabric 叢集](service-fabric-secure-azure-cluster-with-certs.md)
+
 在您設定好叢集之後，可以了解叢集升級：
 
 - [Service Fabric 叢集升級程序與期望](service-fabric-cluster-upgrade.md)
+- [Rolling over or adding new Certificates (變換或加入新憑證)](service-fabric-cluster-security-update-certs-azure.md)
 
 深入了解應用程式安全性：
 
@@ -117,4 +123,4 @@ X509 數位憑證通常用來驗證用戶端與伺服器，以及加密及數位
 [Node-to-Node]: ./media/service-fabric-cluster-security/node-to-node.png
 [Client-to-Node]: ./media/service-fabric-cluster-security/client-to-node.png
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0817_2016-->

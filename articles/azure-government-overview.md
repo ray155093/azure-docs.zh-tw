@@ -1,7 +1,8 @@
 <properties 
    pageTitle="Azure Government 概觀 | Microsoft Azure" 
    description="本文提供 Azure Government 雲端功能，以及支援聯邦政府、州政府與當地政府組織及其合作夥伴之適用法務遵循，值得信賴的設計與安全性概觀。" 
-   services="Azure-Government" 
+   services="Azure-Government"
+   cloud="gov" 
    documentationCenter="" 
    authors="joharve2" 
    manager="chrisnie" 
@@ -117,4 +118,4 @@ Azure Government 也讓組織維持其現有的技術投資，並實現雲端服
 [Link 2 to another azure.microsoft.com documentation topic]: app-service-web/web-sites-custom-domain-name.md
 [Link 3 to another azure.microsoft.com documentation topic]: storage-whatis-account.md
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

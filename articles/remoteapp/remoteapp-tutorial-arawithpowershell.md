@@ -13,12 +13,15 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="compute"
-   ms.date="06/27/2016"
+   ms.date="08/15/2016"
    ms.author="elizapo"/>
 
 
 
 # 將 Windows PowerShell Cmdlet 搭配 Azure RemoteApp 使用
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
  您可以使用 Azure RemoteApp PowerShell Cmdlet 管理和維護您的集合。首先，請使用下列資訊。
 
@@ -111,4 +114,4 @@ Other RemoteApp cmdlets:
 - Get-AzureRemoteAppOperationResult
  
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

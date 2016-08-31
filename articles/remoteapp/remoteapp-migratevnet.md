@@ -12,12 +12,15 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="06/27/2016"
+    ms.date="08/15/2016"
     ms.author="elizapo" />
 
 
 
 # 如何將混合式集合從 RemoteApp VNET 移轉至 Azure VNET
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 好消息！ 我們已讓您將混合式 RemoteApp 集合直接部署到現有 Azure 虛擬網路 (VNET)，而未建立 RemoteApp 特定 VNET。這可讓您利用最新的 VNET 功能 (如 ExpressRoute)，並將部署至該 VNET 之其他 Azure 服務和虛擬機器的直接網路存取權提供給混合式集合 (這與 VNET 對 VNET 組態相較之下，可讓您擁有更佳的效能和更簡單的設定)。
 
@@ -49,4 +52,4 @@
 
 如果您有任何疑問或需要特殊協助，請將電子郵件寄到 [remoteappforum@microsoft.com](mailto:remoteappforum@microsoft.com?subject=Azure%20RemoteApp%20VNET%20migration%20help)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -14,7 +14,7 @@
   ms.topic="article"
   ms.tgt_pltfrm="na"
   ms.workload="na"
-  ms.date="05/16/2016"
+  ms.date="08/10/2016"
   ms.author="araguila"/>
   
 # azureiotsuite.com 網站的權限
@@ -154,4 +154,4 @@ Azure 管理員角色可控制將 Azure 訂用帳戶對應至 AD 租用戶的能
 [lnk-help-support]: https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade
 [lnk-customize]: iot-suite-guidance-on-customizing-preconfigured-solutions.md
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

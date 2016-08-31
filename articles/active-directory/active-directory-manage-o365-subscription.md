@@ -13,10 +13,10 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="06/03/2016"
+   ms.date="08/23/2016"
    ms.author="curtand"/>
 
-# 在 Azure 中管理 Office 365 訂用帳戶的目錄。
+# 在 Azure 中管理 Office 365 訂用帳戶的目錄
 
 本文說明如何使用 Azure 傳統入口網站，管理針對 Office 365 訂用帳戶建立的目錄。您必須是服務管理員或 Azure 訂用帳戶的共同管理員，才能登入 Azure 傳統入口網站。如果您尚未擁有 Azure 訂用帳戶，您可以立即註冊 [免費 30 天試用版](https://azure.microsoft.com/trial/get-started-active-directory/)，並使用此連結在 5 分鐘內部署第一個雲端解決方案。請確認使用您用來登入 Office 365 的工作或學校帳戶來註冊。
 
@@ -24,7 +24,7 @@
 
 如果您已經擁有 Azure 訂用帳戶，則管理其他目錄的程序也很簡單。在此範例中，Michael Smith 可能擁有適用於 Contoso.com 的 Office 365 訂用帳戶。他也擁有使用其 Microsoft 帳戶 msmith@hotmail.com 所註冊的 Azure 訂用帳戶。在此情況下，他要管理兩個目錄。
 
- 訂閱 | Office 365 | Azure
+ 訂用帳戶 | Office 365 | Azure
   -------------- | ------------- | -------------------------------
  顯示名稱 | Contoso | 預設 Azure Active Directory (Azure AD) 目錄
  網域名稱 | contoso.com | msmithhotmail.onmicrosoft.com
@@ -56,9 +56,9 @@
 
 1.	使用 Azure 訂用帳戶的服務管理員帳戶登入 [Azure 傳統入口網站](https://manage.windowsazure.com) (在此範例中為 msmith@hotmail.com)。
 2.	將訂用帳戶移轉至 Contoso 目錄：按一下 [設定] > [訂用帳戶] > 選取訂用帳戶 > [編輯目錄] > 選取 [Contoso (Contoso.com)]。在移轉過程中，如果有工作或學校帳戶是訂用帳戶的共同管理員，則會移除這類帳戶。
-3.	新增 Jane Doe 做為訂用帳戶的共同管理員：按一下 [設定] > [系統管理員] > 選取訂用帳戶 > [新增] > 輸入 **JohnDoe@Contoso.com**。
+3.	新增 Jane Doe 做為訂用帳戶的共同管理員：按一下 [設定] > [系統管理員] > 選取訂用帳戶 > [新增] > 輸入 **JohnDoe@Contoso.com** 。
 
 ## 後續步驟
 如需訂用帳戶與目錄間的關聯性詳細資訊，請參閱[如何將訂用帳戶如何關聯至目錄](active-directory-how-subscriptions-associated-directory.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

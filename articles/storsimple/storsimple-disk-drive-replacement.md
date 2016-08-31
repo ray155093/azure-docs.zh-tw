@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="03/28/2016"
+   ms.date="08/17/2016"
    ms.author="alkohli" />
 
 # 更換 StorSimple 裝置上的磁碟機
 
-## 概觀
+## Overview
 
 本教學課程說明如何取下和更換 Microsoft Azure StorSimple 裝置上無法運作或故障的硬碟。若要取下磁碟機，您必須：
 
@@ -35,7 +35,7 @@
 
 #### 若要解除鎖定防拆鎖
 
-1. 小心地將鎖鑰匙 (Microsoft 提供的「防拆」T10 螺絲起子) 插入把手中的孔中，並插入其插座中。 
+1. 小心地將鎖鑰匙 (Microsoft 提供的「防拆」T10 螺絲起子) 插入把手中的孔中，並插入其插座中。
 
     >[AZURE.NOTE] 如果防拆鎖已啟動，則可在孔中看到紅色指示器。
 
@@ -124,4 +124,4 @@
 
 深入了解 [StorSimple 硬體元件更換](storsimple-hardware-component-replacement.md)。
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0817_2016-->

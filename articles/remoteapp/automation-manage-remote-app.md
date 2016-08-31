@@ -13,10 +13,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/29/2016"
+	ms.date="08/15/2016"
 	ms.author="magoedte;csand"/>
 
 #使用 Azure 自動化管理 Azure RemoteApp
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 本指南將為您介紹 Azure 自動化服務，以及如何使用它來簡化 Azure RemoteApp 的管理。
 
@@ -40,4 +43,4 @@ Azure RemoteApp 可透過 [Azure PowerShell](https://msdn.microsoft.com/library/
 
 * 請參閱 Azure 自動化[入門指南](../automation/automation-first-runbook-graphical.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

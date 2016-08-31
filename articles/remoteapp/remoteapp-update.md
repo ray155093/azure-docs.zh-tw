@@ -13,10 +13,13 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="compute"
-   ms.date="06/05/2016"
+   ms.date="08/15/2016"
    ms.author="elizapo"/>
 
 # 更新 Azure RemoteApp 中的收藏
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 無可避免地，總會有一次，您需要更新 Azure RemoteApp 收藏中的應用程式或映像。如果您是使用 Azure RemoteApp 訂用帳戶隨附的其中一個映像，則在雲端或混合式收藏中，任何和所有的更新都是由 Azure RemoteApp 本身處理，因此您可以放手不管。
 
@@ -34,4 +37,4 @@
 
 1. 按一下核取記號以啟動更新。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

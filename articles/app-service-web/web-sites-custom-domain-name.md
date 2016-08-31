@@ -197,7 +197,7 @@ CNAME 記錄應該設定如下 (@ 通常代表根網域)︰
 
 6.  按一下 [儲存]。
 
-7.  Azure 完成設定新的自訂網域名稱後，請在瀏覽器中瀏覽至您的自訂網域名稱。您現在應會看到您的應用程式執行中以及您的自訂
+7.  Azure 完成設定新的自訂網域名稱後，請在瀏覽器中瀏覽至您的自訂網域名稱。瀏覽器應會開啟 Azure 應用程式，這表示您的自訂網域名稱已正確設定。
 
 <a name="verify"></a>
 ## 確認 DNS 傳播
@@ -219,4 +219,4 @@ CNAME 記錄應該設定如下 (@ 通常代表根網域)︰
 <!-- Images -->
 [subdomain]: media/web-sites-custom-domain-name/azurewebsites-subdomain.png
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

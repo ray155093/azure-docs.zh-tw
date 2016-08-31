@@ -51,7 +51,7 @@
 
 	您可以將 HDInsight 叢集佈建在下列兩個作業系統上：
 	- **Windows 上的 HDInsight (Windows Server 2012 R2 Datacenter)**：
-	- **Linux 上的 HDInsight (Ubuntu 12.04 LTS for Linux)**：HDInsight 提供在 Azure 上設定 Linux 叢集的選項。如果您熟悉 Linux 或 Unix、要從現有的 Linux Hadoop 方案進行移轉，或想輕鬆整合針對 Linux 所建置的 Hadoop 生態系統元件，請設定 Linux 叢集。如需詳細資訊，請參閱[開始在 Linux 上的 HDInsight 中使用 Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md)。
+	- **Linux 上的 HDInsight**：HDInsight 提供在 Azure 上設定 Linux 叢集的選項。如果您熟悉 Linux 或 Unix、要從現有的 Linux Hadoop 方案進行移轉，或想輕鬆整合針對 Linux 所建置的 Hadoop 生態系統元件，請設定 Linux 叢集。如需詳細資訊，請參閱[開始在 Linux 上的 HDInsight 中使用 Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md)。
 
 
 - **HDInsight 版本**
@@ -169,7 +169,7 @@
 - hive-site.xml
 - oozie-site.xml
 
-叢集無法保留重新製作映像所造成的變更。如需詳細資訊，請參閱[角色執行個體由於作業系統升級而重新啟動](http://blogs.msdn.com/b/kwill/archive/2012/09/19/role-instance-restarts-due-to-os-upgrades.aspx) (英文)。若要在叢集存留期間保留變更，您可以在佈建程序期間使用 HDInsight 叢集自訂。
+叢集無法保留重新安裝映像所造成的變更。如需詳細資訊，請參閱[角色執行個體由於作業系統升級而重新啟動](http://blogs.msdn.com/b/kwill/archive/2012/09/19/role-instance-restarts-due-to-os-upgrades.aspx) (英文)。若要在叢集存留期間保留變更，您可以在佈建程序期間使用 HDInsight 叢集自訂。
 
 以下是自訂 Hive 組態的 Azure PowerShell 指令碼範例：
 
@@ -316,7 +316,7 @@ HDInsight 會使用 Azure Blob 儲存容器作為預設檔案系統。必須要�
 
 	Add-AzureAccount
 
-系統會提示您輸入 Azure 帳戶認證。
+系統會提示您輸入 Azure 帳號認證。
 
 **建立 Azure 儲存體帳戶**
 
@@ -459,7 +459,7 @@ HDInsight 會使用 Azure Blob 儲存容器作為預設檔案系統。必須要�
 執行下列程序來設定您的 Linux 電腦使用 Azure 命令列工具 (Azure CLI)：
 
 - 使用 Node.js 套件管理員 (NPM) 安裝 Azure CLI
-- 連線到您的 Azure 訂用帳戶
+- 連線到 Azure 訂閱
 
 **使用 NPM 安裝 Azure CLI**
 
@@ -480,7 +480,7 @@ HDInsight 會使用 Azure Blob 儲存容器作為預設檔案系統。必須要�
 
 **連線到您的 Azure 訂用帳戶**
 
-使用 Azure CLI 之前，您必須先設定工作站與 Azure 之間的連線。Azure CLI 會使用您的 Azure 訂閱資訊來連線至您的帳戶。這項資訊可從 Azure 的發佈設定檔案取得。接著可以匯入發佈設定檔成為 Azure CLI 後續作業所用的永久本機組態設定。您只需匯入一次發佈設定。
+使用 Azure CLI 之前，您必須先設定工作站與 Azure 之間的連線。Azure CLI 會使用您的 Azure 訂用帳戶資訊來連線至您的帳戶。這項資訊可從 Azure 的發佈設定檔案取得。接著可以匯入發佈設定檔成為 Azure CLI 後續作業所用的永久本機組態設定。您只需匯入一次發佈設定。
 
 > [AZURE.NOTE] 發佈設定檔案包含敏感資訊。Microsoft 建議您刪除此檔案，或另採相關步驟加密包含此檔案的使用者資料夾。在 Windows 中，修改資料夾屬性或使用 BitLocker Drive Encryption。
 
@@ -514,7 +514,7 @@ Azure CLI 可使用 NPM 或 Windows Installer 進行安裝。Microsoft 建議您
 
 1.	瀏覽至 **www.nodejs.org**。
 2.	按一下 [安裝]，並依照指示使用預設設定。
-3.	從您的工作站開啟 [命令提示字元]\ (或是 *Azure 命令提示字元*或 *VS2012 開發人員命令提示字元*)。
+3.	從您的工作站開啟 [命令提示字元] (或是 *Azure 命令提示字元*或 *VS2012 開發人員命令提示字元*)。
 4.	在命令提示字元視窗中執行下列命令：
 
 		npm install -g https://github.com/azure/azure-xplat-cli/archive/hdinsight-February-18-2015.tar.gz
@@ -539,13 +539,13 @@ Azure CLI 可使用 NPM 或 Windows Installer 進行安裝。Microsoft 建議您
 
 **下載及匯入發佈設定**
 
-使用 Azure CLI 之前，您必須先設定工作站與 Azure 之間的連線。Azure CLI 會使用您的 Azure 訂閱資訊來連線至您的帳戶。這項資訊可從 Azure 的發佈設定檔案取得。接著可以匯入發佈設定檔成為 Azure CLI 後續作業所用的永久本機組態設定。您只需匯入一次發佈設定。
+使用 Azure CLI 之前，您必須先設定工作站與 Azure 之間的連線。Azure CLI 會使用您的 Azure 訂用帳戶資訊來連線至您的帳戶。這項資訊可從 Azure 的發佈設定檔案取得。接著可以匯入發佈設定檔成為 Azure CLI 後續作業所用的永久本機組態設定。您只需匯入一次發佈設定。
 
 > [AZURE.NOTE] 發佈設定檔案包含敏感資訊。Microsoft 建議您刪除此檔案，或另採相關步驟加密包含此檔案的使用者資料夾。在 Windows 中，修改資料夾屬性或使用 BitLocker。
 
 
 1.	開啟 [命令提示字元]。
-2.	執行下列命令來下載發佈設定檔案：
+2.	執行下列命令以下載發佈設定檔案：
 
 		azure account download
 
@@ -651,7 +651,7 @@ HDInsight 叢集同時要求儲存體帳戶內含有容器。如果您所提供�
 
 **刪除叢集**
 
-- 使用下列命令刪除叢集：
+- 使用下列命令來刪除叢集：
 
 		azure hdinsight cluster delete <ClusterName>
 
@@ -815,4 +815,4 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
 [hdinsight-sdk-documentation]: http://msdn.microsoft.com/library/dn479185.aspx
 [azure-management-portal]: https://manage.windowsazure.com
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

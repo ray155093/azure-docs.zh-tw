@@ -64,7 +64,7 @@ POST 作業對於所有以計量為基礎的警示將會包含下列 JSON 承載
             "resourceType": "microsoft.foo/sites",
             "resourceId": "/subscriptions/s1/resourceGroups/useast/providers/microsoft.foo/sites/mysite1",
             "resourceRegion": "centralus",
-            "portalLink": “https://portal.azure.com/#resource/subscriptions/s1/resourceGroups/useast/providers/microsoft.foo/sites/mysite1”                                
+            "portalLink": "https://portal.azure.com/#resource/subscriptions/s1/resourceGroups/useast/providers/microsoft.foo/sites/mysite1"
 },
 "properties": {
               "key1": "value1",
@@ -72,8 +72,6 @@ POST 作業對於所有以計量為基礎的警示將會包含下列 JSON 承載
               }
 }
 ```
-
->[AZURE.NOTE] 我們下次更新時，將增加事件 (“conditionType” : “Event”) 警示的支援
 
 
 | 欄位 | 是否為強制？ | 是否有固定的值？ | 注意事項 |
@@ -123,4 +121,4 @@ POST 作業對於所有以計量為基礎的警示將會包含下列 JSON 承載
 
 [使用邏輯應用程式傳送訊息至 Azure 佇列](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

@@ -3,7 +3,7 @@
    description="了解如何使用 Resource Manager 中的 Azure 入口網站建立虛擬網路。"
    services="virtual-network"
    documentationCenter=""
-   authors="narayanannamalai"
+   authors="NarayanAnnamalai"
    manager="jefco"
    editor=""
    tags="azure-resource-manager"/>
@@ -201,4 +201,4 @@
 
 2. 一旦在 VNET 對等互連中移除一個連結，對等連結狀態將會改為已中斷連線。在此狀態下，您無法重新建立連結直到對等連結狀態變更為初始化為止。建議您兩個連結都移除後，再重新建立 VNET 對等互連。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0824_2016-->

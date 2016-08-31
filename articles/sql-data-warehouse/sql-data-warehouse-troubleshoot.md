@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/18/2016"
+   ms.date="08/16/2016"
    ms.author="sonyama;barbkess"/>
 
 # 針對 Azure SQL 資料倉儲問題進行疑難排解
@@ -98,7 +98,7 @@
 [了解如何監視查詢]: ./sql-data-warehouse-manage-monitor.md
 [佈建指示]: ./sql-data-warehouse-get-started-provision.md
 [設定用戶端 IP 的伺服器防火牆存取]: ./sql-data-warehouse-get-started-provision.md#create-a-new-azure-sql-server-level-firewall
-[Visual Studio 2013 或 2015]: ./sql-data-warehouse-get-started-connect.md
+[Visual Studio 2013 或 2015]: ./sql-data-warehouse-query-visual-studio.md
 [SQL 資料倉儲最佳作法]: ./sql-data-warehouse-best-practices.md
 [資料表大小]: ./sql-data-warehouse-tables-overview.md#table-size-queries
 [不支援的資料表功能]: ./sql-data-warehouse-tables-overview.md#unsupported-table-features
@@ -130,9 +130,9 @@
 [部落格]: https://azure.microsoft.com/blog/tag/azure-sql-data-warehouse/
 [CAT 小組部落格]: https://blogs.msdn.microsoft.com/sqlcat/tag/sql-dw/
 [功能要求]: https://feedback.azure.com/forums/307516-sql-data-warehouse
-[MSDN 論壇]: https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=AzureSQLDataWarehouse
+[MSDN 論壇]: https://social.msdn.microsoft.com/Forums/home?forum=AzureSQLDataWarehouse
 [Stack Overflow 論壇]: http://stackoverflow.com/questions/tagged/azure-sqldw
 [Twitter]: https://twitter.com/hashtag/SQLDW
 [影片]: https://azure.microsoft.com/documentation/videos/index/?services=sql-data-warehouse
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -1,14 +1,14 @@
 <properties
     pageTitle="使用 Azure Resource Manager 範本建立事件中樞命名空間與事件中樞和取用者群組 | Microsoft Azure"
     description="使用 Azure Resource Manager 範本建立事件中樞命名空間與事件中樞和取用者群組"
-    services="service-bus"
+    services="event-hubs"
     documentationCenter=".net"
     authors="sethmanheim"
     manager="timlt"
     editor=""/>
 
 <tags
-    ms.service="service-bus"
+    ms.service="event-hubs"
     ms.devlang="tbd"
     ms.topic="article"
     ms.tgt_pltfrm="dotnet"
@@ -166,4 +166,4 @@ azure group deployment create <my-resource-group> <my-deployment-name> --templat
   [Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../xplat-cli-azure-resource-manager.md
   [Service Bus Event Hub and consumer group template (服務匯流排事件中樞和取用者群組範本)]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-eventhub-and-consumergroup/
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

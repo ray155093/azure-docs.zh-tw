@@ -25,6 +25,7 @@
 |Import | DirectQuery
 |---|---
 |資料表、資料行*和資料*匯入或複製到報表的資料集中。若要查看基礎資料發生的變更，您必須重新整理或再次匯入完整的目前資料集。|只有*資料表和資料行*匯入或複製到報表的資料集中。一律檢視最新的資料。
+有了 Power BI Embedded，您就可以使用 DirectQuery 搭配雲端資料來源，但目前無法使用內部部署資料來源。
 
 ## 使用 DirectQuery 的優點
 
@@ -46,10 +47,10 @@
 <a name="measures"/>
 ## DirectQuery 和量值
 
-為確保傳送至基礎資料來源的查詢都有可接受的效能，所以將限制加諸於量值之上。當使用 **Power BI Desktop** 時，進階使用者可以選擇 [檔案] > [選項和設定] > [選項]，選擇略過這項限制。在 [選項] 對話方塊中選擇 [DirectQuery]，並選取選項 [允許在 DirectQuery 模式中量值不受限制]。選取該選項後，即可使用對量值有效的任何 DAX 運算式。不過，使用者必須知道，當資料匯入時，某些執行得很好的運算式在 **DirectQuery** 模式中可能會造成後端來源的查詢非常慢。
+為確保傳送至基礎資料來源的查詢都有可接受的效能，所以將限制加諸於量值之上。使用 **Power BI Desktop** 時，進階使用者可以選擇 [檔案] > [選項和設定] > [選項]，選擇略過這項限制。在 [選項] 對話方塊中選擇 [DirectQuery]，並選取選項 [允許在 DirectQuery 模式中量值不受限制]。選取該選項後，即可使用對量值有效的任何 DAX 運算式。不過，使用者必須知道，當資料匯入時，某些執行得很好的運算式在 **DirectQuery** 模式中可能會造成後端來源的查詢非常慢。
 
 ## 另請參閱
 - [開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)
 - [Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0817_2016-->

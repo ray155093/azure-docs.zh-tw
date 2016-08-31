@@ -18,7 +18,7 @@
 
 # 透過執行 Stretch Database Advisor 為資料庫和資料表識別 Stretch Database
 
-若要識別可做為 Stretch Database 候選對象的資料庫和資料表，請下載 SQL Server 2016 Upgrade Advisor 並執行 Stretch Database Advisor。Stretch Database Advisor 也能識別封鎖問題。
+若要識別可做為 Stretch Database 候選對象的資料庫和資料表，請下載 SQL Server 2016 Upgrade Advisor，並執行 Stretch Database Advisor。Stretch Database Advisor 也能找出阻礙問題。
 
 ## 下載並安裝 Upgrade Advisor
 從[這裡](http://go.microsoft.com/fwlink/?LinkID=613421)下載並安裝 Upgrade Advisor。此工具並不包含 SQL Server 安裝媒體。
@@ -64,4 +64,6 @@
 
 [為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+[所有 Azure SQL Server Stretch Database 服務的主題](sql-server-stretch-database-index-all-articles.md)
+
+<!---HONumber=AcomDC_0817_2016-->

@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="06/01/2016"
+   ms.date="08/15/2016"
    ms.author="tarcher" />
 
 # 如何管理服務組態和設定檔
 
-## 概觀
+## Overview
 
 當您發佈雲端服務時，Visual Studio 會將組態資訊儲存在兩種組態檔中：服務組態和設定檔。服務組態 (.cscfg 檔) 可儲存 Azure 雲端服務的部署環境設定。Azure 會在管理雲端服務時使用這些組態檔。另一方面，設定檔 (.azurePubxml 檔案) 可儲存雲端服務的發佈設定。這些設定是您使用發佈精靈時所選內容的記錄，可由 Visual Studio 在本機使用。本主題說明如何使用這兩種類型的組態檔。
 
@@ -131,4 +131,4 @@
 
 若要了解如何從 Visual Studio 設定 Azure 專案的其他部分，請參閱[設定 Azure 專案](http://go.microsoft.com/fwlink/p/?LinkID=623075)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0817_2016-->

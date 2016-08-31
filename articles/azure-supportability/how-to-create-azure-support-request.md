@@ -6,14 +6,14 @@
 	 authors="ganganarayanan"
 	 manager="scotthit"
 	 editor=""/>
-	 
+
 <tags
 	 ms.service="azure-supportability"
 	 ms.workload="na"
 	 ms.tgt_pltfrm="na"
 	 ms.devlang="na"
 	 ms.topic="article"
-	 ms.date="03/24/2016"
+	 ms.date="07/25/2016"
 	 ms.author="gangan"/>
 
 # 如何建立 Azure 支援要求
@@ -85,4 +85,4 @@ Azure 客戶可以在 Azure 入口網站 ([https://portal.azure.com](https://por
 ## 詳細資訊
 [Azure 支援常見問題集](https://azure.microsoft.com/support/faq)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0817_2016-->

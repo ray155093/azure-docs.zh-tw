@@ -40,12 +40,12 @@
 在您的 Unix 伺服器機器上：
 
 1. 安裝 [collectd](http://collectd.org/) 5.4.0 版或更新版本。
-2. 下載 [Application Insights collectd 寫入器外掛程式](https://azuredownloads.blob.core.windows.net/applicationinsights/sdk.html)。記下版本號碼。
+2. 下載 [Application Insights collectd 寫入器外掛程式](https://aka.ms/aijavasdk)。記下版本號碼。
 3. 將外掛程式 JAR 複製到 `/usr/share/collectd/java`。
 3. 編輯 `/etc/collectd/collectd.conf`：
  * 確定 [Java 外掛程式](https://collectd.org/wiki/index.php/Plugin:Java)已啟用。
  * 更新 java.class.path 的 JVMArg 以包括下列 JAR。更新版本號碼以符合您所下載的版本：
-  * `/usr/share/collectd/java/applicationinsights-collectd-0.9.4.jar`
+  * `/usr/share/collectd/java/applicationinsights-collectd-1.0.5.jar`
  * 使用來自您的資源的檢測金鑰，加入此程式碼片段：
 
 ```
@@ -71,7 +71,7 @@
     # Configure Java Plugin
     <Plugin "java">
       JVMArg "-verbose:jni"
-      JVMArg "-Djava.class.path=/usr/share/collectd/java/applicationinsights-collectd-0.9.4.jar:/usr/share/collectd/java/collectd-api.jar"
+      JVMArg "-Djava.class.path=/usr/share/collectd/java/applicationinsights-collectd-1.0.5.jar:/usr/share/collectd/java/collectd-api.jar"
 
       # Enabling Application Insights plugin
       LoadPlugin "com.microsoft.applicationinsights.collectd.ApplicationInsightsWriter"
@@ -105,7 +105,7 @@
 
 若要排除特定外掛程式或資料來源的資料：
 
-* 編輯組態檔。 
+* 編輯組態檔。
 * 在 `<Plugin ApplicationInsightsWriter>` 中，加入指示詞行，如下所示：
 
 指示詞 | 效果
@@ -143,4 +143,4 @@
 
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0817_2016-->

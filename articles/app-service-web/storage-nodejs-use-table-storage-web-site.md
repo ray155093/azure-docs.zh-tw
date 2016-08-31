@@ -14,12 +14,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="nodejs"
 	ms.topic="article"
-	ms.date="06/24/2016"
+	ms.date="08/11/2016"
 	ms.author="robmcm"/>
 
 # 使用 Azure 表格服務的 Node.js Web 應用程式
 
-## 概觀
+## Overview
 
 本教學課程說明如何使用 Azure 資料管理所提供的表格服務，儲存及存取 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) Web Apps 代管的 [node] 應用程式資料。本教學課程假設您先前有過一些使用節點及 [Git] 的經驗。
 
@@ -72,7 +72,7 @@
 
 ### 安裝 Express 及產生樣板
 
-1. 從命令列中，建立名為 **tasklist** 的新目錄，並切換至該目錄。
+1. 從命令列中，建立名為 **tasklist** 的新目錄，並切換至該目錄。  
 
 2. 輸入下列命令以安裝 Express 模組。
 
@@ -464,7 +464,7 @@
 
 	類似下列的範例網頁隨即顯示。
 
-	![顯示空白工作清單的網頁][node-table-finished]
+	![A webpage displaying an empty tasklist][node-table-finished]
 
 4. 若要建立新的待辦事項，請輸入名稱和類別目錄，然後按一下 [新增項目]。
 
@@ -476,7 +476,7 @@
 
 ## 將應用程式部署至 Azure
 
-本節的步驟使用 Azure 命令列工具在 App Service 中建立新的 Web 應用程式，然後使用 Git 部署應用程式。若要執行這些步驟，必須有 Azure 訂閱。
+本節的步驟使用 Azure 命令列工具在 App Service 中建立新的 Web 應用程式，然後使用 Git 部署應用程式。若要執行這些步驟，必須有 Azure 定用帳戶。
 
 > [AZURE.NOTE] 您也可以使用 [Azure 入口網站](https://portal.azure.com/)執行這些步驟。請參閱[在 Azure App Service 中建置和部署 Node.js Web 應用程式]。
 >
@@ -535,7 +535,7 @@
 		info:   Executing `git remote add azure https://username@tabletasklist.azurewebsites.net/TableTasklist.git`
 		info:   site create command OK
 
-	> [AZURE.NOTE] 如果這是您的訂用帳戶的第一個 App Service Web 應用程式，系統將指示您使用 Azure 入口網站來建立 Web 應用程式。如需詳細資訊，請參閱[在 Azure App Service 中建置和部署 Node.js Web 應用程式]。
+	> [AZURE.NOTE] 如果這是您訂用帳戶的第一個 App Service Web 應用程式，系統將指示您使用 Azure 入口網站來建立 Web 應用程式。如需詳細資訊，請參閱[在 Azure App Service 中建置和部署 Node.js Web 應用程式]。
 
 ### 設定環境變數
 
@@ -635,4 +635,4 @@
 [app-settings-save]: ./media/storage-nodejs-use-table-storage-web-site/savebutton.png
 [app-settings]: ./media/storage-nodejs-use-table-storage-web-site/storage-tasks-appsettings.png
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

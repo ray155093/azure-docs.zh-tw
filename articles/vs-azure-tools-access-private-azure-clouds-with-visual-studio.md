@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="05/08/2016"
+   ms.date="08/15/2016"
    ms.author="tarcher" />
 
 # 使用 Visual Studio 存取 Azure 私人雲端
 
-##概觀
+##Overview
 
 根據預設，Visual Studio 支援 Azure 公用雲端 REST 端點。不過，如果您打算搭配使用 Visual Studio 與 Azure 私人雲端，這可能會是個問題。您可以使用憑證來設定 Visual Studio 存取 Azure 私人雲端 REST 端點。您可以透過 Azure 發佈設定檔取得這些憑證。
 
@@ -43,4 +43,4 @@
 
 [如何：下載和匯入發佈設定和訂用帳戶資訊](https://msdn.microsoft.com/library/dn385850(v=nav.70).aspx)
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0817_2016-->

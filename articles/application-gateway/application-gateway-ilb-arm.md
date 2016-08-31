@@ -12,7 +12,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/05/2016"
+   ms.date="08/19/2016"
    ms.author="gwallace"/>
 
 
@@ -24,28 +24,28 @@
 
 可以使用網際網路對向的 VIP 或不會對網際網路公開的內部端點 (也稱為內部負載平衡器 (ILB) 端點) 來設定 Azure 應用程式閘道。使用 ILB 設定閘道適合不會對網際網路公開的內部企業營運應用程式。對於位在不會對網際網路公開的安全性界限中的多層式應用程式內的服務/階層也十分實用，但仍需要循環配置資源負載散發、工作階段綁定或安全通訊端層 (SSL) 終止。
 
-本文將逐步引導您完成使用 ILB 設定應用程式閘道。
+本文會逐步引導您完成使用 ILB 設定應用程式閘道。
 
 ## 開始之前
 
 1. 使用 Web Platform Installer 安裝最新版的 Azure PowerShell Cmdlet。您可以從[下載頁面](https://azure.microsoft.com/downloads/)的 **Windows PowerShell** 區段下載並安裝最新版本。
-2. 您將建立應用程式閘道的虛擬網路和子網路。請確定沒有虛擬機器或是雲端部署正在使用子網路。應用程式閘道必須單獨在虛擬網路子網路中。
-3. 您要設定為使用應用程式閘道的伺服器必須存在，或是在虛擬網路中建立其端點，或是已指派公用 IP/VIP。
+2. 您會建立應用程式閘道的虛擬網路和子網路。請確定沒有虛擬機器或是雲端部署正在使用子網路。應用程式閘道必須單獨在虛擬網路子網路中。
+3. 您要設定來使用應用程式閘道的伺服器必須存在，或是在虛擬網路中建立其端點，或是已指派公用 IP/VIP。
 
 ## 建立應用程式閘道需要什麼？
 
 
 - **後端伺服器集區：**後端伺服器的 IP 位址清單。列出的 IP 位址應屬於虛擬網路，但在應用程式閘道的不同子網路中，或應該是公用 IP/VIP。
 - **後端伺服器集區設定：**每個集區都包括一些設定，例如連接埠、通訊協定和以 Cookie 為基礎的同質性。這些設定會繫結至集區，並套用至集區內所有伺服器。
-- **前端連接埠：**此連接埠是在應用程式閘道上開啟的公用連接埠。流量會達到此連接埠，然後重新導向至其中一個後端伺服器。
+- **前端連接埠：**此連接埠是在應用程式閘道上開啟的公用連接埠。流量會到達此連接埠，然後重新導向至其中一個後端伺服器。
 - **接聽程式：**接聽程式具有前端連接埠、通訊協定 (Http 或 Https，都區分大小寫) 和 SSL 憑證名稱 (如果已設定 SSL 卸載)。
-- **規則：**規則會繫結接聽程式和後端伺服器集區，並定義流量達到特定接聽程式時應該導向至哪個後端伺服器集區。目前只支援 *基本* 規則。 *基本* 規則是循環配置資源的負載分配。
+- **規則：**規則會繫結接聽程式和後端伺服器集區，並定義當流量到達特定接聽程式時，應該導向到哪個後端伺服器集區。目前只支援*基本*規則。*基本*規則是循環配置資源的負載分配。
 
 
 
-## 建立新的應用程式閘道
+## 建立應用程式閘道
 
-使用「Azure 傳統」和「Azure 資源管理員」的差別，在於您建立應用程式閘道和需設定項目的順序。使用資源管理員，組成應用程式閘道的所有項目都將個別設定，然後放在一起建立應用程式閘道資源。
+使用「Azure 傳統」和「Azure Resource Manager」的差別，在於您建立應用程式閘道和需設定項目的順序。透過 Resource Manager，組成應用程式閘道的所有項目會個別進行設定，然後一併建立應用程式閘道資源。
 
 
 以下是建立應用程式閘道所需的步驟：
@@ -58,26 +58,26 @@
 
 ## 建立資源管理員的資源群組
 
-請確定您切換 PowerShell 模式以使用 Azure 資源管理員 Cmdlet。如需詳細資訊，請參閱[搭配使用 Windows PowerShell 與資源管理員](../powershell-azure-resource-manager.md)。
+請確定您切換 PowerShell 模式以使用 Azure 資源管理員 Cmdlet。如需詳細資訊，可在[搭配使用 Windows PowerShell 與資源管理員](../powershell-azure-resource-manager.md)取得。
 
 ### 步驟 1
 
-		Login-AzureRmAccount
+	Login-AzureRmAccount
 
 ### 步驟 2
 
 檢查帳戶的訂用帳戶。
 
-		get-AzureRmSubscription
+	Get-AzureRmSubscription
 
-系統會提示使用您的認證進行驗證。<BR>
+系統會提示您使用您的認證進行驗證。<BR>
 
 ### 步驟 3
 
 選擇其中一個要使用的 Azure 訂用帳戶。<BR>
 
 
-		Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
+	Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
 
 
 ### 步驟 4
@@ -108,7 +108,7 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 
 ### 步驟 3
 
-	$subnet=$vnet.subnets[0]
+	$subnet = $vnet.subnets[0]
 
 這會將子網路物件指派給下一個步驟的變數 $subnet。
 
@@ -125,7 +125,7 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 
 	$pool = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 134.170.185.46, 134.170.188.221,134.170.185.50
 
-這會設定名為 "pool01" 的後端 IP 位址集區，其 IP 位址有 "134.170.185.46, 134.170.188.221,134.170.185.50"。這些 IP 位址將接收來自前端 IP 端點的網路流量。您要取代上述 IP 位址，加入您自己的應用程式 IP 位址端點。
+這會設定名為 "pool01" 的後端 IP 位址集區，其 IP 位址有 "134.170.185.46, 134.170.188.221,134.170.185.50"。這些 IP 位址會接收來自前端 IP 端點的網路流量。您需取代上述 IP 位址來新增自己的應用程式 IP 位址端點。
 
 ### 步驟 3
 
@@ -237,4 +237,4 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 - [Azure 負載平衡器](https://azure.microsoft.com/documentation/services/load-balancer/)
 - [Azure 流量管理員](https://azure.microsoft.com/documentation/services/traffic-manager/)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -13,12 +13,15 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="05/16/2016"
+    ms.date="08/15/2016"
     ms.author="elizapo" />
 
 
 
 # 建立 Azure RemoteApp 混合式集合疑難排解
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 「混合式收藏」裝載於 Azure 雲端中，並在其中儲存資料，但也會讓使用者存取儲存在您區域網路上的資料和資源。使用者可以使用與 Azure Active Directory 同步處理或同盟的公司認證進行登入，以存取應用程式。您可以部署使用現有 Azure 虛擬網路的混合式集合，或者可以建立新的虛擬網路。建議您建立或使用虛擬網路子網路，而其預期 Azure RemoteApp 未來成長的 CIDR 範圍夠大。
 
@@ -67,4 +70,4 @@
 
 建立或新增的網域名稱必須是內部網域名稱 (非 Azure AD 網域名稱)，而且必須是可解析的 DNS 格式 (contoso.local)。例如，您有 Active Directory 內部名稱 (contoso.local) 和 Active Directory UPN (contoso.com) - 您必須在建立集合時使用內部名稱。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

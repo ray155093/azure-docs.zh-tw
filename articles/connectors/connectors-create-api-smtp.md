@@ -37,13 +37,17 @@ ms.author="deonhe"/>
 
 在此範例中，由於 SMTP 沒有觸發程序，因此我們將使用 **Salesforce - 當物件建立時**觸發程序。當 Salesforce 中有新的物件建立時，觸發程序就會啟動。在範例中，我們會設定使其每次在 Salesforce 中建立新的潛在客戶時，系統會透過 SMTP 連接器傳送電子郵件，並附帶已建立新的潛在客戶通知。
 
-1. 在邏輯應用程式設計工具的搜尋方塊中輸入 salesforce，然後選取 **Salesforce - 當建立物件時**觸發程序。![](../../includes/media/connectors-create-api-salesforce/trigger-1.png)
+1. 在邏輯應用程式設計工具的搜尋方塊中輸入 salesforce，然後選取 **Salesforce - 當建立物件時**觸發程序。  
+ ![](../../includes/media/connectors-create-api-salesforce/trigger-1.png)  
 
-2. **當建立物件時**控制項隨即顯示。![](../../includes/media/connectors-create-api-salesforce/trigger-2.png)
+2. **當建立物件時**控制項隨即顯示。  
+ ![](../../includes/media/connectors-create-api-salesforce/trigger-2.png)  
 
-3. 選取 [物件類型] 然後從清單的物件中選取 [潛在客戶]。在此步驟中表示您正在建立觸發程序，而此觸發程序會在每次 Salesforce 中有新的潛在客戶建立時，通知您的邏輯應用程式。![](../../includes/media/connectors-create-api-salesforce/trigger3.png)
+3. 選取 [物件類型] 然後從清單的物件中選取 [潛在客戶]。在此步驟中表示您正在建立觸發程序，而此觸發程序會在每次 Salesforce 中有新的潛在客戶建立時，通知您的邏輯應用程式。  
+ ![](../../includes/media/connectors-create-api-salesforce/trigger3.png)  
 
-4. 觸發程序已建立。![](../../includes/media/connectors-create-api-salesforce/trigger-4.png)
+4. 觸發程序已建立。  
+ ![](../../includes/media/connectors-create-api-salesforce/trigger-4.png)  
 
 ## 使用 SMTP 動作
 
@@ -51,15 +55,19 @@ ms.author="deonhe"/>
 
 現在已新增觸發程序之後，請遵循下列步驟新增 Salesforce 中有新的潛在客戶建立時會發生的 SMTP 動作。
 
-1. 選取 [+ 新的步驟] 來新增您想要在新的潛在客戶建立時採取的動作。![](../../includes/media/connectors-create-api-salesforce/trigger4.png)
+1. 選取 [+ 新的步驟] 來新增您想要在新的潛在客戶建立時採取的動作。  
+ ![](../../includes/media/connectors-create-api-salesforce/trigger4.png)  
 
-2. 選取 [新增動作]。這會開啟搜尋方塊，您可以在其中搜尋任何想要採取的動作。![](../../includes/media/connectors-create-api-smtp/using-smtp-action-2.png)
+2. 選取 [新增動作]。這會開啟搜尋方塊，您可以在其中搜尋任何想要採取的動作。  
+ ![](../../includes/media/connectors-create-api-smtp/using-smtp-action-2.png)  
 
 3. 輸入 smtp 以搜尋與 SMTP 相關的動作。
 
-4. 選取 [SMTP-傳送電子郵件]，作為新的潛在客戶建立時要採取的動作。動作控制區塊便會開啟。如果您先前未曾在設計工具區塊中建立 SMTP 連線，您必須這麼做。![](../../includes/media/connectors-create-api-smtp/smtp-2.png)
+4. 選取 [SMTP-傳送電子郵件]，作為新的潛在客戶建立時要採取的動作。動作控制區塊便會開啟。如果您先前未曾在設計工具區塊中建立 SMTP 連線，您必須這麼做。  
+ ![](../../includes/media/connectors-create-api-smtp/smtp-2.png)  
 
-5. 在 **SMTP - 傳送電子郵件**區塊中輸入您想要的電子郵件資訊。![](../../includes/media/connectors-create-api-smtp/using-smtp-action-4.PNG)
+5. 在 **SMTP - 傳送電子郵件**區塊中輸入您想要的電子郵件資訊。  
+ ![](../../includes/media/connectors-create-api-smtp/using-smtp-action-4.PNG)  
 
 6. 儲存您的工作以啟動工作流程。
 
@@ -126,4 +134,4 @@ SMTP 具有下列動作︰
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!----HONumber=AcomDC_0803_2016-->

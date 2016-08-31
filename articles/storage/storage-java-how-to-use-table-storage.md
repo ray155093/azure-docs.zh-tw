@@ -13,15 +13,15 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="06/24/2016"
+	ms.date="08/11/2016"
 	ms.author="robmcm"/>
 
 
 # 如何使用 Java 的資料表儲存體
 
-[AZURE.INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
+[AZURE.INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)] <br/> [AZURE.INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-tables.md)]
 
-## 概觀
+## Overview
 
 本指南將示範如何使用 Azure 資料表儲存體服務執行一般案例。相關範例是以 Java 撰寫並使用 [Azure Storage SDK for Java][]。所涵蓋的案例包括「建立」、「列出」和「刪除」資料表，以及在資料表中「插入」、「查詢」、「修改」和「刪除」實體。如需資料表的詳細資訊，請參閱[後續步驟](#Next-Steps)一節。
 
@@ -33,7 +33,7 @@
 
 ## 建立 Java 應用程式
 
-在本指南中，您將使用儲存體功能，這些功能可執行於本機的 Java 應用程式內，也可執行於在 Azure 中之 Web 角色或背景工作角色內執行的程式碼中。
+在本指南中，您將使用的儲存功能可在 Java 應用程式中進行本機呼叫，或在 Azure Web 角色或背景工作角色中執行的程式碼中呼叫。
 
 若要這樣做，您需要安裝 Java Development Kit (JDK)，並在 Azure 訂用帳戶中建立 Azure 儲存體帳戶。完成此動作之後，您需要驗證開發系統符合 GitHub 上的 [Azure Storage SDK for Java][] 儲存機制中所列出的最低需求和相依性。如果系統符合這些需求，則您可以依照指示，從該儲存機制中下載 Azure Storage Libraries for Java 並安裝在系統上。完成這些工作之後，您就能夠利用本文中的範例來建立 Java 應用程式。
 
@@ -454,7 +454,7 @@ Azure 儲存體用戶端會使用儲存體連接字串來儲存存取資料管�
 
 ## 作法：插入或取代實體
 
-您經常會想要新增實體至資料表，但不知道它是否已在資料表中。插入或取代實體允許您透過單一要求，如果實體不存在便插入它，若是存在則取代現有實體。以先前的範例為基礎，下列程式碼會插入或取代 "Walter Harp" 的實體。建立新實體之後，此程式碼會呼叫 **TableOperation.insertOrReplace** 方法。此程式碼接著會以資料表以及插入或取代資料表操作當作參數，在 **CloudTable** 物件上呼叫 **execute**。若只要更新實體的某一部分，可以改用 **TableOperation.insertOrMerge** 方法。請注意，插入或取代並不支援在本機儲存體模擬器上進行，因此此程式碼唯有在使用資料表服務上的帳戶時才會執行。您可以這個 [Azure 資料表：插入和查詢投影簡介][]中進一步了解插入或取代和插入或合併。
+您經常會想要新增實體至資料表，但不知道它是否已在資料表中。插入或取代實體允許您透過單一要求，如果實體不存在便插入它，若是存在則取代現有實體。以先前的範例為基礎，下列程式碼會插入或取代 "Walter Harp" 的實體。建立新實體之後，此程式碼會呼叫 **TableOperation.insertOrReplace** 方法。此程式碼接著會以資料表以及插入或取代資料表操作當作參數，在 **CloudTable** 物件上呼叫 **execute**。若只要更新實體的某一部分，可以改用 **TableOperation.insertOrMerge** 方法。請注意，插入或取代並不支援在本機儲存體模擬器上進行，因此此程式碼唯有在使用資料表服務上的帳戶時才會執行。您可以在這個 [Azure 資料表：插入和查詢投影簡介][]中進一步了解插入或取代和插入或合併。
 
     try
     {
@@ -563,4 +563,4 @@ Azure 儲存體用戶端會使用儲存體連接字串來儲存存取資料管�
 [Azure 儲存體團隊部落格]: http://blogs.msdn.com/b/windowsazurestorage/
 [Azure 資料表：插入和查詢投影簡介]: http://blogs.msdn.com/b/windowsazurestorage/archive/2011/09/15/windows-azure-tables-introducing-upsert-and-query-projection.aspx
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

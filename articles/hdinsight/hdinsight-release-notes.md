@@ -14,11 +14,16 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/03/2016"
+	ms.date="08/17/2016"
 	ms.author="nitinme"/>
 
 
 # Azure HDInsight 上 Hadoop 元件的版本資訊
+
+## HDInsight 的 R 伺服器 2016/8/17 版本的相關資訊
+
+• R 伺服器 8.0.5 – 主要為修正程式的版本。詳細資訊請參閱 [R 伺服器版本資訊](https://msdn.microsoft.com/microsoft-r/notes/r-server-notes)。 • 邊緣節點上的 AzureML 套件 – [此 R 封裝](https://cran.r-project.org/web/packages/AzureML/vignettes/getting_started.html)使 R 模型可以做為 Azure ML Web 服務被發佈和取用。詳細資訊請參閱我們的 [HDInsight 上的 R 伺服器概觀](hdinsight-hadoop-r-server-overview.md)文章中的[作業化模型](hdinsight-hadoop-r-server-overview.md#operationalize-a-model)小節。 • [前 100 名最熱門 R 封裝](https://github.com/metacran/cranlogs)的 Linux 相依性 – 現在會預先安裝這些 Linux 封裝相依性。 • 將 R 封裝加入資料節點時使用 CRAN 儲存機制的選項。詳細資訊請參閱我們的[開始使用 HDInsight 上的 R 伺服器](hdinsight-hadoop-r-server-get-started.md)文章中的[安裝 R 封裝](hdinsight-hadoop-r-server-get-started.md#install-r-packages) 小節。 • 改善叢集建立時 R 伺服器佈建的可靠性。
+
 
 ## HDInsight 2016/08/01 版本的相關資訊
 
@@ -1679,4 +1684,4 @@ SQL Server 的 Java 資料庫連接 (JDBC) 驅動程式僅供 HDInsight 內部�
 [hdinsight-r-scripts]: ../hdinsight-hadoop-r-scripts/
  
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

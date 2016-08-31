@@ -24,17 +24,18 @@
 - [使用 Visual Studio](data-factory-build-your-first-pipeline-using-vs.md)
 - [使用 PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
 - [使用資源管理員範本](data-factory-build-your-first-pipeline-using-arm.md)
+- [使用 REST API](data-factory-build-your-first-pipeline-using-rest-api.md)
 
-在本教學課程中，您將會在 Azure HDInsight (Hadoop) 叢集上執行 Hive 指令碼，以建立您的第一個 Azure Data Factory 與用來處理資料的資料管線。
+在本教學課程中，您會在 Azure HDInsight (Hadoop) 叢集上執行 Hive 指令碼，以建立您的第一個 Azure Data Factory 與用來處理資料的資料管線。
 
-本文提供教學課程的**概觀**和符合教學課程**先決條件**的逐步指示。完成先決條件步驟之後，您將使用下列其中一項來進行教學課程︰Azure 入口網站中的 Data Factory Editor、Visual Studio、Azure PowerShell 和 ARM 範本。
+本文提供教學課程的**概觀**和符合教學課程**先決條件**的逐步指示。完成先決條件步驟之後，您會使用下列其中一項來進行教學課程︰Azure 入口網站中的 Data Factory Editor、Visual Studio、Azure PowerShell 和 Azure Resource Manager 範本。
 
 請注意，本文不提供 Azure Data Factory 的概念性概觀。如需有關服務的概念性概觀，請參閱 [Azure Data Factory 簡介](data-factory-introduction.md)。
 
 ## 本教學課程涵蓋哪些內容？	
-**Azure Data Factory** 可讓您以資料驅動型工作流程 (也稱為資料管線) 的方式，撰寫資料**移動**和資料**處理**工作。您將學習如何使用資料處理 (或資料轉換) 工作建置您的第一個資料管線，這項工作會使用 Azure HDInsight 叢集來轉換和分析 Web 記錄，並排程每月執行管線。
+**Azure Data Factory** 可讓您以資料驅動型工作流程 (也稱為資料管線) 的方式，撰寫資料**移動**和資料**處理**工作。您會學習如何使用資料處理 (或資料轉換) 工作建置您的第一個資料管線，這項工作會使用 Azure HDInsight 叢集來轉換和分析 Web 記錄，並排程每月執行管線。
 
-在本教學課程中，您將執行下列步驟：
+在本教學課程中，您會執行下列步驟：
 
 1.	建立 **Data Factory**。Data Factory 可以包含一或多個資料管線，可移動和處理資料。
 2.	建立**連結的服務**。您會建立一個連結的服務，以將資料存放區或計算服務連結到 Data Factory。像是 Azure 儲存體的資料存放區會保留管線中的活動輸入/輸出資料。計算服務 (例如 Azure HDInsight 處理/轉換資料)。
@@ -66,12 +67,12 @@
 
 1.	**Azure 訂用帳戶** - 如果您沒有 Azure 訂用帳戶，只需要幾分鐘就可以建立免費試用帳戶。請參閱[免費試用](https://azure.microsoft.com/pricing/free-trial/)一文了解如何取得免費試用帳戶。
 
-2.	**Azure 儲存體** – 在本教學課程中，您將使用 Azure 儲存體帳戶來儲存資料。如果您沒有 Azure 儲存體帳戶，請參閱[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)一文。建立儲存體帳戶之後，您必須取得用來存取儲存體的帳戶金鑰。請參閱[檢視、複製和重新產生儲存體存取金鑰](../storage/storage-create-storage-account.md#view-and-copy-storage-access-keys)。
+2.	**Azure 儲存體** – 在本教學課程中，您會使用 Azure 儲存體帳戶來儲存資料。如果您沒有 Azure 儲存體帳戶，請參閱[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)一文。建立儲存體帳戶之後，您必須取得用來存取儲存體的帳戶金鑰。請參閱[檢視、複製和重新產生儲存體存取金鑰](../storage/storage-create-storage-account.md#view-and-copy-storage-access-keys)。
 
 ## 將教學課程使用的檔案上傳到 Azure 儲存體
 開始教學課程之前，您必須準備內含教學課程所需檔案的 Azure 儲存體。
 
-您將在本節進行下列工作：
+您會在本節中執行下列作業：
 
 2. 將 Hive 查詢檔案 (HQL) 上傳到 adfgetstarted 容器中的 [指令碼] 資料夾。
 3. 將輸入檔案上傳到 adfgetstarted 容器中的 [inputdata] 資料夾。
@@ -227,4 +228,4 @@
 - [使用 PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
 - [使用資源管理員範本](data-factory-build-your-first-pipeline-using-arm.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

@@ -77,6 +77,10 @@
 
 請注意，圖表會分組為圖格︰一個圖格中可包含多個圖表。您將整個圖格釘選至儀表板。
 
+### 分析圖表
+
+您也可以[釘選分析](app-insights-analytics-using.md#pin-to-dashboard)圖表到[共用](#share-dashboards-with-your-team)儀表板。這可讓您新增任意查詢以及標準度量的圖表。
+
 ## 調整儀表板上的圖格
 
 圖格在儀表板上之後，您就可以進行調整。
@@ -110,7 +114,6 @@
 ## 與小組共用儀表板
 
 建立儀表板之後，您可以與其他使用者共用它。
-
 
 ![在儀表板標題中按一下 [共用]](./media/app-insights-dashboards/41.png)
 
@@ -152,4 +155,4 @@
 |[診斷搜尋](app-insights-diagnostic-search.md)<br/>尋找和檢查事件、相關的事件，並建立 Bug |![搜尋範例](./media/app-insights-dashboards/61.png)
 |[分析](app-insights-analytics.md)<br/>功能強大的查詢語言| ![搜尋範例](./media/app-insights-dashboards/63.png)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

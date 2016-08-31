@@ -42,7 +42,7 @@ SDK 會自動將所有寫入傳送至目前的寫入區域。
 
 目前的寫入和讀取端點分別適用於 DocumentClient.WriteEndpoint 和 DocumentClient.ReadEndpoint。
 
-> [AZURE.NOTE] 不應將端點的 URI 視為長時間執行的常數。服務可能會隨時更新這些項目。SDK 將會自動處理此變更。
+> [AZURE.NOTE] 不應將端點的 URI 視為長時間執行的常數。服務可能會隨時更新這些項目。SDK 會自動處理此變更。
 
     // Getting endpoints from application settings or other configuration location
     Uri accountEndPoint = new Uri(Properties.Settings.Default.GlobalDatabaseUri);
@@ -128,7 +128,7 @@ SDK 會自動將所有寫入傳送至目前的寫入區域。
 
 
 -	所有的 PUT、POST 和 DELETE 要求都必須移至指定的寫入 URI
--	所有的 GET 和其他唯讀要求 (例如︰查詢) 可能會移至用戶端選擇的任何端點
+-	所有的 GET 和其他唯讀要求 (例如查詢) 可能會移至用戶端選擇的任何端點
 
 將要求寫入至唯讀區域將會失敗，並產生 HTTP 錯誤碼 403 (「禁止」)。
 
@@ -141,8 +141,8 @@ SDK 會自動將所有寫入傳送至目前的寫入區域。
 - [Distribute data globally with DocumentDB (使用 DocumentDB 全球發佈資料)](documentdb-distribute-data-globally.md)
 - [一致性層級](documentdb-consistency-levels.md)
 - [輸送量與多個區域的運作方式](documentdb-manage.md#how-throughput-works-with-multiple-regions)
-- [使用 Azure 入口網站新增區域](documentdb-manage-account.md#addregion)
+- [使用 Azure 入口網站新增區域](documentdb-portal-global-replication.md)
 
 [regions]: https://azure.microsoft.com/regions/
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

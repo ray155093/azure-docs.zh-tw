@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-html"
 	ms.devlang="javascript"
 	ms.topic="article"
-	ms.date="05/02/2016"
+	ms.date="08/11/2016"
 	ms.author="glenga"/>
 
 # 新增推播通知至您的 Apache Cordova 應用程式
@@ -214,7 +214,7 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
     * Google Play 服務 (版本 27 或更高版本)
     * Google Repository (版本 22 或更高版本)
 
-2.  按一下 [Install Packages] (安裝封裝)，並等候安裝完成。
+2.  按一下 [Install Packages]\(安裝封裝)，並等候安裝完成。
 
 目前的必要程式庫會在 [phonegap-plugin-push Installation 文件]中列出。
 
@@ -383,4 +383,4 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
 [ASP.NET Server SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Node.js Server SDK]: app-service-mobile-node-backend-how-to-use-server-sdk.md
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

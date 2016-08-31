@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-services"
-	ms.date="07/27/2016"
+	ms.date="08/11/2016"
 	ms.author="jeffstok" />
 
 
@@ -34,10 +34,10 @@
 
 物聯網 (IoT) 會產生大量遙測或感應器資料 – 而且客戶想要彙總這些資料或即時針對異常發出警示。
 
-## 先決條件
+## 必要條件
 
 - 從 Microsoft 下載中心下載 [TelcoGenerator.zip](http://download.microsoft.com/download/8/B/D/8BD50991-8D54-4F59-AB83-3354B69C8A7E/TelcoGenerator.zip)。
-- 選擇性：[GitHub](https://github.com/Azure/azure-stream-analytics/tree/master/DataGenerators/TelcoGenerator) 中事件產生器的原始程式碼
+- 選擇性：[GitHub](https://aka.ms/azure-stream-analytics-telcogenerator) 中事件產生器的原始程式碼
 
 ## 建立 Azure 事件中樞輸入與用戶群組
 
@@ -45,7 +45,7 @@
 
 建立事件中樞：
 
-1.	在 [Azure 入門網站][](https://manage.windowsazure.com/) 中，按一下 [新增] > [應用程式服務] > [服務匯流排] > [事件中樞] > [快速建立]。提供名稱、區域及新的或現有命名空間，以建立新的事件中樞。
+1.	在 [Azure 入門網站](https://manage.windowsazure.com/) 中，按一下 [新增] > [應用程式服務] > [服務匯流排] > [事件中樞] > [快速建立]。提供名稱、區域及新的或現有命名空間，以建立新的事件中樞。
 2.	每個串流分析工作都應該從單一事件中樞取用者群組讀取資料，這才是最佳作法。我們會帶您逐步進行下方建立取用者群組的程序，您可以[深入了解取用者群組](https://msdn.microsoft.com/library/azure/dn836025.aspx)。若要建立取用者群組，請瀏覽至剛剛建立的事件中樞，然後依序按一下 [取用者群組] 索引標籤、頁面最下方的 [建立]，然後提供取用者群組的名稱。
 3.	為了授權存取事件中樞，我們需要建立一個共用存取原則。按一下事件中樞的 [設定] 索引標籤。
 4.	在 [共用存取原則] 下方，建立一個擁有[管理]權限的新原則。
@@ -103,7 +103,7 @@
 
 3.	按一下左窗格中的 [Stream Analytics]，以列出 Stream Analytics 工作。
 
-	![Stream Analytics 服務圖示](./media/stream-analytics-real-time-fraud-detection/stream-analytics-service-icon.png)
+	![串流分析服務圖示](./media/stream-analytics-real-time-fraud-detection/stream-analytics-service-icon.png)
 
 4.	新工作會以 [已建立] 的狀態列出。請注意，頁面底部的 [啟動] 按鈕會停用。您必須先設定工作輸入、輸出、查詢等項目，才能啟動工作。
 
@@ -155,7 +155,7 @@
 	> 請確定輸入來源的名稱符合您先前指定的輸入名稱。
 
 3.	在查詢編輯器中按一下 [測試]。
-4.	提供一個測試檔案，您使用先前步驟建立的檔案或 [telco.json](https://github.com/Azure/azure-stream-analytics/blob/master/Sample%20Data/telco.json) 均可。
+4.	提供一個測試檔案，您使用先前步驟建立的檔案或 [telco.json](https://github.com/Azure/azure-stream-analytics/blob/master/Samples/SampleDataFiles/Telco.json) 均可。
 5.	按一下核取按鈕，然後參閱查詢定義下方顯示的結果。
 
 	![查詢定義結果](./media/stream-analytics-real-time-fraud-detection/stream-analytics-sim-fraud-output.png)
@@ -227,7 +227,7 @@
 3.	在第三頁上輸入或選取下列值：
 
 	* **輸出別名**：為這個工作輸出設定一個容易記的名稱。
-	* **訂用帳戶**：如果建立的 Blob 儲存體與「串流分析」工作屬於相同的訂用帳戶，請選取 [從目前的訂用帳戶使用儲存體帳戶]。如果儲存體屬於不同的訂閱，請選取 [從另一個訂用帳戶使用儲存體帳戶]，然後手動輸入 [儲存體帳戶]」[儲存體帳戶金鑰、[容器] 等資訊。
+	* **訂用帳戶**：如果建立的 Blob 儲存體與「串流分析」工作屬於相同的訂用帳戶，請選取 [從目前的訂用帳戶使用儲存體帳戶]。如果儲存體屬於不同的訂閱，請選取 [從另一個訂用帳戶使用儲存體帳戶]，然後手動輸入 [儲存體帳戶]、[儲存體帳戶金鑰]、[容器] 等資訊。
 	* **儲存體帳戶名稱**：選取儲存體帳戶的名稱。
 	* **容器**：選取容器的名稱。
 	* **檔案名稱前置詞**：輸入當您填寫 Blob 輸出時所使用的檔案前置詞。
@@ -249,7 +249,7 @@
 
 ## 檢視詐騙偵測輸出
 
-使用 [Azure 儲存體總管](https://azurestorageexplorer.codeplex.com/)或 [Azure 總管](http://www.cerebrata.com/products/azure-explorer/introduction)此類的工具，以即時檢視正在寫入至您輸出中的詐騙事件。
+使用 [Azure 儲存體總管](http://storageexplorer.com/)或 [Azure 總管](http://www.cerebrata.com/products/azure-explorer/introduction)此類的工具，以即時檢視正在寫入至您輸出中的詐騙事件。
 
 ![詐騙偵測：即時檢視的詐騙事件](./media/stream-analytics-real-time-fraud-detection/stream-ananlytics-view-real-time-fraudent-events.png)
 
@@ -264,4 +264,4 @@
 - [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 - [Azure Stream Analytics 管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -22,17 +22,17 @@
 本文說明如何上傳您自己的一般化 VM 映像做為虛擬硬碟 (VHD)，以便使用它來建立虛擬機器。如需 Microsoft Azure 中磁碟和 VHD 的詳細資訊，請參閱[關於虛擬機器的磁碟和 VHD](virtual-machines-linux-about-disks-vhds.md)。
 
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)].您也可以使用 Resource Manager 模型來[擷取](virtual-machines-windows-capture-image.md)和[上傳](virtual-machines-windows-upload-image.md)虛擬機器。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]。您也可以使用 Resource Manager 模型來[擷取](virtual-machines-windows-capture-image.md)和[上傳](virtual-machines-windows-upload-image.md)虛擬機器。
 
 ## 必要條件
 
 本文假設您具有：
 
-1. **Azure 訂用帳戶** - 如果您沒有帳戶，您可以[免費申請 Azure 帳戶](/pricing/free-trial/?WT.mc_id=A261C142F)。
+- **Azure 訂用帳戶** - 如果您沒有帳戶，您可以[免費申請 Azure 帳戶](/pricing/free-trial/?WT.mc_id=A261C142F)。
 
-2. **[Microsoft Azure PowerShell](../powershell-install-configure.md)** - 您已安裝 Microsoft Azure PowerShell 模組，並設定成使用您的訂用帳戶。
+- **[Microsoft Azure PowerShell](../powershell-install-configure.md)** - 您已安裝 Microsoft Azure PowerShell 模組，並設定成使用您的訂用帳戶。
 
-3. **.VHD 檔案** - 儲存在 .vhd 檔案中並連接至虛擬機器的受支援 Windows 作業系統。
+- **.VHD 檔案** - 儲存在 .vhd 檔案中並連接至虛擬機器的受支援 Windows 作業系統。您也應該檢查，以查看 sysprep 是否支援在 VHD 上執行的伺服器角色。如需詳細資訊，請參閱 [Sysprep Support for Server Roles (伺服器角色的 Sysprep 支援)](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)。
 
 > [AZURE.IMPORTANT] Microsoft Azure 不支援 VHDX 格式。您可以使用 Hyper-V 管理員或 [Convert-VHD Cmdlet](http://technet.microsoft.com/library/hh848454.aspx)，將磁碟轉換為 VHD 格式。如需詳細資料，請參閱[部落格文章](http://blogs.msdn.com/b/virtual_pc_guy/archive/2012/10/03/using-powershell-to-convert-a-vhd-to-a-vhdx.aspx)。
 
@@ -86,7 +86,7 @@
 
 ## 步驟 3：上傳 .vhd 檔案
 
-請使用 [Add-AzureVhd](http://msdn.microsoft.com/library/dn495173.aspx) 來上傳 VHD。
+使用 [Add-AzureVhd](http://msdn.microsoft.com/library/dn495173.aspx) 來上傳 VHD。
 
 從您在上一個步驟中使用的 Azure PowerShell 視窗中，輸入下列命令並以您自己的資訊取代 &lsaquo; 括號 &rsaquo; 中的變數。
 
@@ -95,13 +95,13 @@
 
 ## 步驟 4：將映像新增到您的自訂映像清單
 
-請使用 [Add-AzureVMImage])(https://msdn.microsoft.com/library/mt589167.aspx) Cmdlet 將映像新增到您的自訂映像清單。
+使用 [Add-AzureVMImage])(https://msdn.microsoft.com/library/mt589167.aspx) Cmdlet，將映像新增到您的自訂映像清單。
 
 		Add-AzureVMImage -ImageName <ImageName> -MediaLocation "https://<StorageAccountName>.blob.core.windows.net/<ContainerName>/<vhdName>.vhd" -OS "Windows"
 
 
 ## 後續步驟
 
-您現在可以使用您上傳的映像來[建立自訂的 VM](virtual-machines-windows-classic-createportal.md)。
+您現在可以使用上傳的映像來[建立自訂的 VM](virtual-machines-windows-classic-createportal.md)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

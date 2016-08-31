@@ -26,8 +26,12 @@
 - [一般檔案編碼與一般檔案解碼](./app-service-logic-enterprise-integration-flatfile.md "了解一般檔案編碼/解碼") - 一般檔案編碼/解碼可讓您將一般檔案編碼或解碼。
 - [XPath](https://msdn.microsoft.com/library/mt643789.aspx) - 可讓您擴充訊息，並從訊息擷取特定的屬性。擷取的屬性可用來將訊息傳送至目的地或中繼端點。
 
+## 親身體驗
+
+何不嘗試看看。按一下[這裡](https://github.com/Azure/azure-quickstart-templates/tree/master/201-logic-app-veter-pipeline)，使用 Logic Apps 的 XML 功能部署您自己的全功能邏輯應用程式
+
 ## 詳細資訊
 
 [深入了解企業整合套件](./app-service-logic-enterprise-integration-overview.md "了解企業整合套件")
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

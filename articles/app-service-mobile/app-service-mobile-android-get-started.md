@@ -13,14 +13,14 @@
     ms.tgt_pltfrm="mobile-android"
     ms.devlang="java"
     ms.topic="hero-article"
-    ms.date="07/21/2016"
+    ms.date="08/17/2016"
     ms.author="ricksal"/>
 
 #建立 Android 應用程式
 
 [AZURE.INCLUDE [app-service-mobile-selector-get-started](../../includes/app-service-mobile-selector-get-started.md)]
 
-## 概觀
+## Overview
 
 本教學課程將示範如何使用 Azure 行動應用程式後端，將雲端式後端服務加入 Android 行動應用程式。您將建立新的行動應用程式後端，以及可在 Azure 中儲存應用程式資料的簡易_待辦事項清單_ Android 應用程式。
 
@@ -32,7 +32,6 @@
 
 * [Android Developer Tools](https://developer.android.com/sdk/index.html)，其中包括 Android Studio 整合式開發環境，以及最新的 Android 平台。
 * Azure Mobile Android SDK，會自動受到參考，包含在您下載的快速入門專案中。
-* 具有 [Visual Studio Community 2013] 或較新版本的電腦 &mdash; Node.js 後端則不需要
 * 有效的 [Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 
 ## 建立新的 Azure 行動應用程式後端
@@ -54,4 +53,4 @@
 [Azure portal]: https://portal.azure.com/
 [Visual Studio Community 2013]: https://go.microsoft.com/fwLink/p/?LinkID=534203
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0824_2016-->

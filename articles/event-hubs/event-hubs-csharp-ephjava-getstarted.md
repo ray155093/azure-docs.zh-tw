@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="hero-article"
 	ms.date="06/16/2016"
-	ms.author="jtaubensee"/>
+	ms.author="jotaub"/>
 
 # 開始使用事件中心
 
@@ -26,7 +26,7 @@
 
 本教學課程示範如何使用 Azure 傳統入口網站來建立事件中樞。另外也會示範如何使用以 C# 撰寫的主控台應用程式將訊息收集到「事件中樞」，以及如何使用 [Java 事件處理器主機] 程式庫平行擷取訊息。
 
-若要完成本教學課程，您需要下列項目：
+若要完成此教學課程，您需要下列項目：
 
 + [Microsoft Visual Studio](http://visualstudio.com)
 
@@ -71,4 +71,4 @@
 [佇列訊息解決方案]: ../service-bus/service-bus-dotnet-multi-tier-app-using-service-bus-queues.md
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0824_2016-->

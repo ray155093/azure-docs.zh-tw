@@ -13,12 +13,15 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="06/13/2016"
+    ms.date="08/15/2016"
     ms.author="elizapo" />
 
 
 
 # Azure RemoteApp 用戶端的最佳作法
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 下列資訊可幫助您使用 Azure RemoteApp 用戶端：
 
@@ -26,4 +29,4 @@
 
 - 如果您有段時間都沒有活動，RemoteApp 就會自動將您登出。為了防止資料遺失，建議您完成使用服務時，就將您的應用程式關閉。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0817_2016-->

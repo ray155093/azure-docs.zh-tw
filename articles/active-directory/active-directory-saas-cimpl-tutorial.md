@@ -85,7 +85,7 @@
 ##  設定並測試 Azure AD 單一登入
 本節的目標是要說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Cimpl 搭配運作的 Azure AD 單一登入。
 
-若要讓單一登入能夠運作，Azure AD 必須知道 Cimpl 與 Azure AD 中互相對應的使用者。換句話說，必須在 Azure AD 使用者與 Cimpl 中的相關使用者之間建立連結關聯性。建立此連結關聯性的方法是指派 Azure AD 中 [使用者名稱] 的值做為 Cimpl 中 [Username] (使用者名稱) 的值。
+若要讓單一登入能夠運作，Azure AD 必須知道 Cimpl 與 Azure AD 中互相對應的使用者。換句話說，必須在 Azure AD 使用者與 Cimpl 中的相關使用者之間建立連結關聯性。建立此連結關聯性的方法是指派 Azure AD 中 [使用者名稱] 的值做為 Cimpl 中 [Username]\(使用者名稱) 的值。
 
 若要設定及測試與 Cimpl 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
 

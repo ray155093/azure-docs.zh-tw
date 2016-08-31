@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="06/01/2016"
+   ms.date="08/15/2016"
    ms.author="tarcher" />
 
 # 使用 Azure Tools 發佈雲端服務
@@ -103,7 +103,7 @@
 
 1. 若要使用 Web Deploy，請對 Visual Studio 中您想要發佈的任何 Web 角色，變更其專案的程式碼，然後在方案中的這個專案節點上按一下滑鼠右鍵，並指向 [發佈]。[發佈 Web] 對話方塊隨即出現。
 
-1. (選用) 如果您已新增受信任的 SSL 憑證以用於 IIS 的遠端連線，您可以清除 [允許未受信任的憑證] 核取方塊。如需如何新增憑證以讓 Web Deploy 安全無虞的相關資訊，請參閱本主題後面的＜讓 Web Deploy 安全無虞＞一節。
+1. (選用) 如果您已新增受信任的 SSL 憑證以用於 IIS 的遠端連線，您可以清除 [允許未受信任的憑證] 核取方塊。如需如何新增憑證以安全執行 Web Deploy，請參閱本主題稍後的＜讓 Web Deploy 安全無虞＞一節。
 
 1. 若要使用 Web Deploy，發佈機制會需要您首先發佈封裝時針對遠端桌面連線所設定的使用者名稱和密碼。
 
@@ -173,4 +173,4 @@
 
 若要深入了解如何從 Visual Studio 發佈至 Azure，請參閱[發佈 Azure 應用程式精靈](vs-azure-tools-publish-azure-application-wizard.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0817_2016-->

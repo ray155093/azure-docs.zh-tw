@@ -1,58 +1,57 @@
-<properties 
-    pageTitle="Logic Apps 中的記錄和錯誤處理 | Microsoft Azure" 
-    description="檢視 Logic Apps 之進階錯誤處理和記錄的現實生活使用案例" 
+<properties
+    pageTitle="Logic Apps 中的記錄和錯誤處理 | Microsoft Azure"
+    description="檢視 Logic Apps 之進階錯誤處理和記錄的現實生活使用案例"
     keywords=""
-    services="logic-apps" 
-    authors="hedidin" 
-    manager="" 
-    editor="" 
+    services="logic-apps"
+    authors="hedidin"
+    manager=""
+    editor=""
     documentationCenter=""/>
-    
-<tags 
-    ms.service="logic-apps" 
-    ms.workload="na" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="07/29/2016" 
+
+<tags
+    ms.service="logic-apps"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="07/29/2016"
     ms.author="b-hoedid"/>
-    
-# Logic Apps 中的記錄和錯誤處理 
 
-本文會深入探討如何擴充邏輯應用程式以提升對於例外狀況處理的支援。文中的內容取材自現實生活的使用案例，而這也是我們對於「**Logic Apps 是否支援例外狀況和錯誤處理？**」此一問題的回答。
+# Logic Apps 中的記錄和錯誤處理
 
->[AZURE.NOTE] 目前的 Logic Apps 版本會提供標準的動作回應範本。這包括內部驗證和 API 應用程式所傳回的錯誤回應。
+本文說明如何擴充邏輯應用程式以提升對於例外狀況處理的支援。文中的內容取材自現實生活的使用案例，而這也是我們對於「Logic Apps 是否支援例外狀況和錯誤處理？」此一問題的回答。
+
+>[AZURE.NOTE] Microsoft Azure App Service 目前的 Logic Apps 功能版本提供標準的動作回應範本。這包括內部驗證和 API 應用程式所傳回的錯誤回應。
 
 ## 使用案例和情節的概觀
 
-下列案例是這篇文章的使用案例。
+下列案例是這篇文章的使用案例。知名的醫療保健組織找到了我們，他們想要開發 Azure 解決方案，以使用 Microsoft Dynamics CRM Online 建立病患入口網站。他們需要在 Dynamics CRM Online 病患入口網站和 Salesforce 之間傳送預約記錄。因此要求我們對所有病患記錄使用 [HL7 FHIR](http://www.hl7.org/implement/standards/fhir/) 標準。
 
-> 知名的醫療保健組織找到了我們，他們想要建立 Azure 解決方案，以建立使用 Dynamics CRM Online (CRMOL) 的病患入口網站。他們目前使用 Salesforce，因此我們需要在 CRMOL 病患入口網站和 Salesforce 之間傳送預約記錄。客戶要求我們對所有病患記錄使用 [HL7 FHIR](http://www.hl7.org/implement/standards/fhir/) 標準。
+此專案有兩大需求︰
 
-> 我們需要囊括在內的兩大需求為︰
-> -  記錄下從 CRMOL 入口網站所送出的記錄
-> -  客戶需要有辦法檢視工作流程中所發生的任何錯誤。
+ -  用來記錄從 Dynamics CRM Online 入口網站傳送過來之記錄的方法
+ -  用來檢視工作流程中所發生之任何錯誤的方法
 
 
 ## 問題解決方式
 
->[AZURE.TIP] 您可以在[整合使用者群組](http://www.integrationusergroup.com/do-logic-apps-support-error-handling/ "Integration User Group")觀賞高階影片
+>[AZURE.TIP] 您可以在[整合使用者群組](http://www.integrationusergroup.com/do-logic-apps-support-error-handling/ "Integration User Group")觀賞此專案的高階影片。
 
-我們決定使用 **[Azure DocumentDB](https://azure.microsoft.com/services/documentdb/ "Azure DocumentDB")** 做為記錄檔和錯誤記錄的儲存機制。(DocumentDB 會將記錄當做文件)。Logic Apps 具有適用於所有回應的標準範本，因此我們不需要建立自訂結構描述。我們可以建立 API 應用程式來插入及查詢錯誤和記錄檔記錄。我們也可以為 API 應用程式中的每個項目定義結構描述。
+我們選擇以 [Azure DocumentDB](https://azure.microsoft.com/services/documentdb/ "Azure DocumentDB") 做為記錄檔和錯誤記錄的儲存機制 (DocumentDB 會將記錄當做文件)。Logic Apps 具有適用於所有回應的標準範本，因此我們不需要建立自訂結構描述。我們可以建立 API 應用程式來**插入**及**查詢**錯誤和記錄檔記錄。我們也可以為 API 應用程式中的每個項目定義結構描述。
 
-我們有要在特定日期之後清除記錄的其他需求。DocumentDB 具有[存留時間](https://azure.microsoft.com/blog/documentdb-now-supports-time-to-live-ttl/ "存留時間") (ttl) 屬性，這可讓我們設定每一筆記錄或整個集合的**存留時間**值。因此，我們不需要手動在 DocumentDB 中刪除記錄。
+另一個需求是要在特定日期之後清除記錄。DocumentDB 具有稱為[存留時間](https://azure.microsoft.com/blog/documentdb-now-supports-time-to-live-ttl/ "存留時間") (TTL) 的屬性，這可讓我們設定每一筆記錄或每一個集合的**存留時間**值。因此，我們不需要手動在 DocumentDB 中刪除記錄。
 
-### 我們的方法
+### 建立邏輯應用程式
 
-第一個步驟是建立我們的邏輯應用程式，並在設計工具中予以載入。在此範例中，我們會使用父子 Logic Apps。假設我們已建立父項。因此，我們將要建立一個子邏輯應用程式。
+第一個步驟是建立邏輯應用程式，並在設計工具中予以載入。在此範例中，我們會使用父子邏輯應用程式。假設我們已建立父項，而且將要建立一個子邏輯應用程式。
 
-我們將會記錄來自 CRMOL 的記錄，所以讓我們從最上層開始。我們需要使用要求觸發程序，因為父邏輯應用程式將會觸發這個子項。
+我們將會記錄來自 Dynamics CRM Online 的記錄，所以讓我們從最上層開始。我們需要使用要求觸發程序，因為父邏輯應用程式將會觸發這個子項。
 
-> [AZURE.IMPORTANT] 為了完成本教學課程，您必須建立 DocumentDB 資料庫和兩個集合 (記錄和錯誤)
+> [AZURE.IMPORTANT] 為了完成本教學課程，您必須建立 DocumentDB 資料庫和兩個集合 (記錄和錯誤)。
 
-### 邏輯應用程式觸發程序 
+### 邏輯應用程式觸發程序
 
-**我們將會使用如下所示的要求觸發程序**
+我們將會使用如下列範例所示的要求觸發程序。
 
 ```` json
 "triggers": {
@@ -90,12 +89,12 @@
 ````
 
 
-### 步驟 
+### 步驟
 
-讓我們從記錄來開始。我們必須記錄來自 CRMOL 入口網站的病患記錄來源 (要求)。
+我們必須記錄來自 Dynamics CRM Online 入口網站的病患記錄來源 (要求)。
 
-1. 首先我們必須從 CRMOL **取得新的約會記錄**。來自 CRM 的觸發程序會提供我們 **CRM PatentId**、**記錄類型**、**新的或更新的記錄** (新增或更新布林值) 和 **SalesforceId**。SalesforceId 可以是 null，因為它只會用於更新。我們會使用 CRM PatientID 和記錄類型來取得 CRM 記錄。
-1. 接下來，我們必須新增 DocumentDB API 應用程式 **InsertLogEntry** 作業，如下圖所示︰
+1. 我們必須從 Dynamics CRM Online 取得新的預約記錄。來自 CRM 的觸發程序會提供我們 **CRM PatentId**、**記錄類型**、**新的或更新的記錄** (新增或更新布林值) 和 **SalesforceId**。**SalesforceId** 可以是 null，因為它只會用於更新。我們會使用 CRM **PatientID** 和**記錄類型**來取得 CRM 記錄。
+1. 接下來，我們必須新增 DocumentDB API 應用程式 **InsertLogEntry** 作業，如下圖所示。
 
 
 #### 插入記錄檔項目設計工具檢視
@@ -105,20 +104,20 @@
 #### 插入錯誤項目設計工具檢視
 ![插入記錄檔項目](./media/app-service-logic-scenario-error-and-exception-handling/insertlogentry.png)
 
-#### 條件 - 檢查建立記錄失敗 
+#### 檢查建立記錄失敗
 
 ![條件](./media/app-service-logic-scenario-error-and-exception-handling/condition.png)
 
 
-## 邏輯應用程式原始程式碼 
+## 邏輯應用程式原始程式碼
 
->[AZURE.NOTE]  以下僅是範例。由於此教學課程本質上是以目前在生產環境中的實際實作為基礎，**來源節點**的值可能不會顯示與安排預約相關的屬性。
+>[AZURE.NOTE]  以下僅是範例。由於此教學課程是以目前在生產環境中的實作為基礎，**來源節點**的值可能不會顯示與安排預約相關的屬性。
 
 ### 記錄
-下列邏輯應用程式的程式碼範例示範如何處理記錄
+下列邏輯應用程式的程式碼範例示範如何處理記錄。
 
-#### 插入記錄檔項目
-這是用來插入記錄檔項目的邏輯應用程式原始程式碼
+#### 記錄檔項目
+這是用來插入記錄檔項目的邏輯應用程式原始程式碼。
 
 ``` json
 "InsertLogEntry": {
@@ -146,7 +145,7 @@
 
 #### 記錄檔要求
 
-這是張貼至 API 應用程式的記錄檔要求訊息
+這是張貼至 API 應用程式的記錄檔要求訊息。
 
 ``` json
     {
@@ -160,13 +159,13 @@
 	    "source": "{"Pragma":"no-cache","x-ms-request-id":"e750c9a9-bd48-44c4-bbba-1688b6f8a132","OData-Version":"4.0","Cache-Control":"no-cache","Date":"Fri, 10 Jun 2016 22:31:56 GMT","Set-Cookie":"ARRAffinity=785f4334b5e64d2db0b84edcc1b84f1bf37319679aefce206b51510e56fd9770;Path=/;Domain=127.0.0.1","Server":"Microsoft-IIS/8.0,Microsoft-HTTPAPI/2.0","X-AspNet-Version":"4.0.30319","X-Powered-By":"ASP.NET","Content-Length":"1935","Content-Type":"application/json; odata.metadata=minimal; odata.streaming=true","Expires":"-1"}"
     	}
     }
-    
+
 ```
 
 
 #### 記錄檔回應
 
-這是來自 API 應用程式的記錄檔回應訊息
+這是來自 API 應用程式的記錄檔回應訊息。
 
 ``` json
 {
@@ -197,20 +196,19 @@
 	    "expired": false
     }
 }
-    
+
 ```
 
-現在讓我們看看錯誤處理步驟︰
+現在讓我們看看錯誤處理步驟。
 
-----------    
-    
+
 ### 錯誤處理
 
-下列邏輯應用程式的程式碼範例示範如何實作錯誤處理。
+下列 Logic Apps 的程式碼範例示範如何實作錯誤處理。
 
 #### 建立錯誤記錄
 
-這是用來建立錯誤記錄的邏輯應用程式原始程式碼。
+這是用來建立錯誤記錄的 Logic Apps 原始程式碼。
 
 ``` json
 "actions": {
@@ -237,7 +235,7 @@
         "method": "post",
         "uri": "https://.../api/CrMtoSfError"
         },
-        "runAfter": 
+        "runAfter":
         {
             "Create_NewPatientRecord": ["Failed" ]
         }
@@ -245,10 +243,10 @@
 }  	       
 ```
 
-#### 將錯誤插入至 DocumentDB - 要求
+#### 將錯誤插入至 DocumentDB--要求
 
 ``` json
-  
+
 {
     "uri": "https://.../api/CrMtoSfError",
     "method": "post",
@@ -268,7 +266,7 @@
 }
 ```
 
-#### 將錯誤插入至 DocumentDB - 回應
+#### 將錯誤插入至 DocumentDB--回應
 
 
 ``` json
@@ -334,7 +332,7 @@
         "errors": []
     }
 }
-    
+
 ```
 
 ### 將回應傳回父邏輯應用程式
@@ -345,7 +343,7 @@
 
 ``` json
 "SuccessResponse": {
-    "runAfter": 
+    "runAfter":
         {
             "UpdateNew_CRMPatientResponse": ["Succeeded"]
         },
@@ -383,56 +381,56 @@
     },
     "type": "Response"
 }
-  
+
 ```
 
-----------
-  
+
 ## DocumentDB 儲存機制和入口網站
 
-我們的解決方案使用 [DocumentDB](https://azure.microsoft.com/services/documentdb) 加入了額外功能
+我們的解決方案使用 [DocumentDB](https://azure.microsoft.com/services/documentdb) 加入了額外功能。
 
 ### 錯誤管理入口網站
 
 若要檢視錯誤，您可以建立 MVC Web 應用程式，以顯示來自 DocumentDB 的錯誤記錄。目前的版本中包含了**清單**、**詳細資料**、**編輯**和**刪除**作業。
 
-> [AZURE.NOTE] 編輯作業︰DocumentDB 會執行整個文件的取代工作。清單和詳細資料檢視所顯示的記錄僅是範例，而非實際的病患預約記錄。
-        
-以下是使用上述方法的 MVC 應用程式詳細資料範例。
+> [AZURE.NOTE] 編輯作業︰DocumentDB 會執行整個文件的取代工作。**清單**和**詳細資料**檢視所顯示的記錄僅是範例，而非實際的病患預約記錄。
+
+以下是使用先前所述方法所建立之 MVC 應用程式詳細資料的範例。
 
 #### 錯誤管理清單
 
 ![錯誤清單](./media/app-service-logic-scenario-error-and-exception-handling/errorlist.png)
-        
+
 #### 錯誤管理詳細資料檢視
 
 ![錯誤詳細資料](./media/app-service-logic-scenario-error-and-exception-handling/errordetails.png)
 
 ### 記錄檔管理入口網站
 
-為了檢視記錄檔，我們還建立了 MVC Web 應用程式。以下是使用上述方法的 MVC 應用程式詳細資料範例。
+為了檢視記錄檔，我們還建立了 MVC Web 應用程式。以下是使用先前所述方法所建立之 MVC 應用程式詳細資料的範例。
 
 #### 範例記錄檔詳細資料檢視
 
 ![記錄檔詳細資料檢視](./media/app-service-logic-scenario-error-and-exception-handling/samplelogdetail.png)
-    
+
 ### API 應用程式詳細資料
 
 #### Logic Apps 例外狀況管理 API
 
 我們的開放原始碼 Logic Apps 例外狀況管理 API 應用程式提供了下列功能。
 
-有兩個控制器
-- ErrorController 會在 DocumentDB 集合中插入錯誤記錄 (文件)
-- LogController 會在 DocumentDB 集合中插入記錄檔記錄 (文件)
+有兩個控制器：
+
+- **ErrorController** 會在 DocumentDB 集合中插入錯誤記錄 (文件)。
+- **LogController** 會在 DocumentDB 集合中插入記錄檔記錄 (文件)。
 
 > [AZURE.TIP] 這兩個控制器都使用 `async Task<dynamic>` 作業。這可讓作業在執行階段解析，讓我們可以在作業的主體中建立 DocumentDB 結構描述。
 
 DocumentDB 中的每個文件都必須具有唯一識別碼。我們將會使用 `PatientId`，並加入轉換為 Unix 時間戳記值 (雙精確度) 的時間戳記。我們會將此值截斷以移除小數值。
 
-您可以 [在此處從 GitHub] (https://github.com/HEDIDIN/LogicAppsExceptionManagementApi/blob/master/Logic App Exception Management API/Controllers/ErrorController.cs) 檢視錯誤控制器 API 的原始程式碼
+您可以 [從 GitHub] (https://github.com/HEDIDIN/LogicAppsExceptionManagementApi/blob/master/Logic App Exception Management API/Controllers/ErrorController.cs) 檢視錯誤控制器 API 的原始程式碼。
 
-我們使用下列語法從邏輯應用程式呼叫 API︰
+我們使用下列語法從邏輯應用程式呼叫 API。
 
 ``` json
  "actions": {
@@ -465,21 +463,21 @@ DocumentDB 中的每個文件都必須具有唯一識別碼。我們將會使用
  }
 ```
 
-上述程式碼範例的運算式會檢查「Create\_NewPatientRecord」狀態是否為 **Failed**
+上述程式碼範例的運算式會檢查「Create\_NewPatientRecord」狀態是否為 **Failed**。
 
-## 摘要 
+## 摘要
 
 - 您可以在邏輯應用程式中輕鬆地實作記錄和錯誤處理。
-- 您可以利用 DocumentDB 做為記錄檔和錯誤記錄 (文件) 的儲存機制
+- 您可以使用 DocumentDB 做為記錄檔和錯誤記錄 (文件) 的儲存機制。
 - 您可以使用 MVC 建立入口網站，以顯示記錄檔和錯誤記錄。
 
 ### 原始程式碼
-邏輯應用程式例外狀況管理 API 應用程式的原始程式碼可在此 [GitHub 儲存機制](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi "邏輯應用程式例外狀況管理 API")取得。
+Logic Apps 例外狀況管理 API 應用程式的原始程式碼可在此 [GitHub 儲存機制](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi "邏輯應用程式例外狀況管理 API")取得。
 
 
-## 後續步驟 
+## 後續步驟
 - [檢視其他 Logic Apps 範例和案例](app-service-logic-examples-and-scenarios.md)
 - [了解 Logic Apps 監視工具](app-service-logic-monitor-your-logic-apps.md)
 - [建立邏輯應用程式的自動部署範本](app-service-logic-create-deploy-template.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

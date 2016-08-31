@@ -13,12 +13,15 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="06/13/2016"
+    ms.date="08/15/2016"
     ms.author="elizapo" />
 
 
 
 # 保護 Azure RemoteApp 中的應用程式和資源
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 Azure RemoteApp 可讓使用者存取集中管理的 Windows 應用程式，這樣可讓您控制使用者可以或不可以執行的動作。當使用者從未受管理的裝置連接 (例如其個人 Macbook)，而且您想要控制使用者存取權或體驗時，這特別有用。
 
@@ -46,4 +49,4 @@ Azure RemoteApp 可讓使用者存取集中管理的 Windows 應用程式，這�
 - [Windows Server 2012 R2 原則](https://technet.microsoft.com/library/hh831791.aspx)。
 - [Office 2013 原則](https://technet.microsoft.com/library/cc178969.aspx) (包括[如何自訂 Office 工具列](https://technet.microsoft.com/library/cc179143.aspx))。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0817_2016-->

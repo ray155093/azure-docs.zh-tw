@@ -14,12 +14,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="07/15/2016"
+	ms.date="08/23/2016"
 	ms.author="deonhe"/>
 
 # 連接器清單
 
-選取圖示，以了解如何快速地利用這些連接器，來建置可呼叫這些服務的工作流程。
+選取連接器，以了解如何快速建置工作流程。
 
 ## 標準連接器
 
@@ -46,8 +46,9 @@
  
 |EIP 連接器 ||||
 |-----------|-----------|-----------|-----------|
-|[![API 圖示][as2icon]<br/>**AS2</br>編碼/解碼**][as2doc]|[![API 圖示][x12icon]<br/>**X12</br>編碼/解碼**][x12Doc]|[![API 圖示][xmlvalidateicon]<br/>**XML <br/>驗證**][xmlvalidatedoc]|[![API 圖示][xmltransformicon]<br/>**XML<br/> 轉換**][xmltransformdoc]|
-|[![API 圖示][flatfileicon]<br/>**一般檔案</br>編碼**][flatfiledoc]|[![API 圖示][flatfiledecodeicon]<br/>**一般檔案</br>解碼**][flatfiledecodedoc]|||
+|[![API 圖示][xmlvalidateicon]<br/>**XML <br/>驗證**][xmlvalidatedoc]|[![API 圖示][xmltransformicon]<br/>**XML<br/> 轉換**][xmltransformdoc]|[![API 圖示][flatfileicon]<br/>**一般檔案</br>編碼**][flatfiledoc]|[![API 圖示][flatfiledecodeicon]<br/>**一般檔案</br>解碼**][flatfiledecodedoc]|
+|[![API 圖示][as2icon]<br/>**AS2</br>解碼**][as2decode]|[![API 圖示][as2icon]<br/>**AS2</br>編碼**][as2encode]|[![API 圖示][x12icon]<br/>**X12</br>解碼**][x12decode]|[![API 圖示][x12icon]<br/>**X12</br>編碼**][x12encode]|
+|[![API 圖示][x12icon]<br/>**EDIFACT</br>解碼**][EDIFACTdecode]|[![API 圖示][x12icon]<br/>**EDIFACT</br>編碼**][EDIFACTencode]||||
 
 <!-- TODO: Add Functions, App Service, and Nested Workflow Icons -->
 ### 連接器可以是觸發程序
@@ -56,7 +57,7 @@
 觸發程序可分為兩種：
 
 * 輪詢觸發程序：這些觸發程序會以指定的頻率輪詢您的服務，以檢查是否有新資料。有新資料可用時，app 的新執行個體會以該資料做為輸入來執行。為了防止重複取用相同的資料，觸發程序可能會清除已讀取並傳遞至您 app 的資料。
-* 推送觸發程序：這些觸發程序會接聽端點上的資料，或接聽發生的事件。然後，觸發 app 的新執行個體。Twitter 連接器是其中一個範例。
+* 推送觸發程序：這些觸發程序會接聽端點上的資料或發生的事件，然後觸發您的應用程式的新執行個體。Twitter 連接器是其中一個範例。
 
 ### 連接器可以是動作
 連接器也可做為 app 內的動作。動作很適合用來查閱可在執行 app 時使用的資料。例如，在處理訂單時，您可能需要查閱 SQL 資料庫中的客戶資料。或者，您可能需要寫入、更新或刪除目的地資料表中的資料。您可以使用連接器所提供的動作來這樣做。動作會對應至 Swagger 中繼資料中定義的作業。
@@ -105,6 +106,12 @@
 [flatfiledecodedoc]: ../app-service-logic/app-service-logic-enterprise-integration-flatfile.md "深入了解企業整合一般檔案。"
 [xmlvalidatedoc]: ../app-service-logic/app-service-logic-enterprise-integration-xml-validation.md "深入了解企業整合 XML 驗證。"
 [xmltransformdoc]: ../app-service-logic/app-service-logic-enterprise-integration-transform.md "深入了解企業整合轉換。"
+[as2decode]: ..//app-service-logic/app-service-logic-enterprise-integration-as2-decode.md "深入了解企業整合 AS2 解碼"
+[as2encode]: ..//app-service-logic/app-service-logic-enterprise-integration-as2-encode.md "深入了解企業整合 AS2 編碼"
+[X12decode]: ..//app-service-logic/app-service-logic-enterprise-integration-X12-decode.md "深入了解企業整合 X12 解碼"
+[X12encode]: ..//app-service-logic/app-service-logic-enterprise-integration-X12-encode.md "深入了解企業整合 X12 編碼"
+[EDIFACTdecode]: ..//app-service-logic/app-service-logic-enterprise-integration-EDIFACT-decode.md "深入了解企業整合 EDIFACT 解碼"
+[EDIFACTencode]: ..//app-service-logic/app-service-logic-enterprise-integration-EDIFACT-encode.md "深入了解企業整合 EDIFACT 編碼"
 [httpdoc]: ./connectors-native-http.md "HTTP 連接器以進行 HTTP 呼叫。"
 [http~requestdoc]: ./connectors-native-reqres.md "要求和回應動作。"
 [http~responsedoc]: ./connectors-native-reqres.md "要求和回應動作。"
@@ -183,4 +190,4 @@
 [xmlvalidateicon]: ./media/apis-list/xmlvalidation.png
 [xmltransformicon]: ./media/apis-list/xsltransform.png
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

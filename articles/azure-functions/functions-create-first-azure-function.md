@@ -7,7 +7,7 @@
    manager="erikre"
    editor=""
    tags=""
-   />
+/>
 
 <tags
    ms.service="functions"
@@ -15,12 +15,12 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="multiple"
    ms.workload="na"
-   ms.date="05/05/2016"
+   ms.date="08/22/2016"
    ms.author="glenga"/>
 
-# 建立您的第一個 Azure 函式
+#建立您的第一個 Azure 函式
 
-##概觀
+##Overview
 Azure Functions 是事件取向的隨選計算體驗並擴充了現有的 Azure 應用程式平台，使其可實作其他 Azure 服務、SaaS 產品和內部部署系統內事件所觸發的程式碼。透過 Azure Functions，您的應用程式會根據需求調整，而您只需要支付所用資源的費用。Azure Functions 可您建立以各種程式設計語言實作的已排程或觸發的程式碼單位。若要深入了解 Azure Functions，請參閱 [Azure Functions 概觀](functions-overview.md)。
 
 本主題說明如何在 Azure Functions 入口網站中使用 Azure Functions 快速入門，建立由 HTTP 觸發程序叫用的簡單 "hello world" Node.js 函式。您也可以觀賞短片，了解如何在入口網站中執行這些步驟。
@@ -59,9 +59,9 @@ Azure Functions 是事件取向的隨選計算體驗並擴充了現有的 Azure 
 
 + [Azure Functions 開發人員參考](functions-reference.md) 可供程式設計人員撰寫函式程式碼及定義觸發程序和繫結時參考。
 + [測試 Azure Functions](functions-test-a-function.md) 說明可用於測試函式的各種工具和技巧。
-+ [如何調整 Azure 函數](functions-scale.md) 討論 Azure Functions 可用的服務方案，包括動態服務方案，以及如何選擇正確的方案。 
-+ [什麼是 Azure 應用程式服務？](../app-service/app-service-value-prop-what-is.md) Azure Functions 會利用 Azure App Service 平台執行核心功能，例如部署、環境變數和診斷。 
++ [如何調整 Azure 函數](functions-scale.md) 討論 Azure Functions 可用的服務方案，包括動態服務方案，以及如何選擇正確的方案。
++ [什麼是 Azure 應用程式服務？](../app-service/app-service-value-prop-what-is.md) Azure Functions 會利用 Azure App Service 平台執行核心功能，例如部署、環境變數和診斷。
 
 [AZURE.INCLUDE [開始使用注意事項](../../includes/functions-get-help.md)]
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0824_2016-->

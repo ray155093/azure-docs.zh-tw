@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="PHP"
 	ms.topic="article"
-	ms.date="06/01/2016"
+	ms.date="08/11/2016"
 	ms.author="robmcm"/>
 
 # 如何使用 PHP 的佇列儲存體
 
-[AZURE.INCLUDE [storage-selector-queue-include](../../includes/storage-selector-queue-include.md)]
+[AZURE.INCLUDE [storage-selector-queue-include](../../includes/storage-selector-queue-include.md)] <br/> [AZURE.INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-queues.md)]
 
-## 概觀
+## Overview
 
 本指南將示範如何使用 Azure 佇列儲存體服務執行一般案例。這些範例均是以 Windows SDK for PHP 中的類別撰寫。所涵蓋的案例包括插入、查看、取得和刪除佇列訊息，以及建立和刪除佇列。
 
@@ -45,7 +45,7 @@
 1. 使用 [require\_once] 陳述式來參考自動換片器檔案。
 2. 參考任何您可能使用的類別。
 
-下列範例顯示如何納入自動換片器檔案及參考 **ServicesBuilder** 類別。
+下列範例顯示如何納入自動載入器檔案及參考 **ServicesBuilder** 類別。
 
 > [AZURE.NOTE]
 此範例 (和本文中的其他範例) 假設您已透過編輯器安裝 PHP Client Libraries for Azure。如果您是以手動方式安裝程式庫，則必須參考 `WindowsAzure.php` 自動載入器檔案。
@@ -384,4 +384,4 @@
 [require\_once]: http://www.php.net/manual/en/function.require-once.php
 [Azure Portal]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0817_2016-->

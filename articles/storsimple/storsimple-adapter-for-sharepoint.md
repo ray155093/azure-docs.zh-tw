@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="05/16/2016"
+   ms.date="07/11/2016"
    ms.author="v-sharos" />
 
 # 安裝和設定 StorSimple Adapter for SharePoint
 
-## 概觀
+## Overview
 
 StorSimple Adapter for SharePoint 是可讓您提供 Microsoft Azure StorSimple 彈性儲存和資料保護給 SharePoint 伺服器陣列的元件。您可以使用配接器將二進位大型物件 (BLOB) 內容從 SQL Server 內容資料庫移至 Microsoft Azure StorSimple 混合雲端儲存體裝置。
 
@@ -39,7 +39,7 @@ RBS 要求您必須使用 RBS 提供者，例如 StorSimple Adapter for SharePoi
 
 RBS 的 Microsoft Azure StorSimple 實作提供下列優點：
 
-- 將 BLOB 內容移至另一個伺服器可以減輕 SQL Server 上的查詢負荷，改善 SQL Server 的回應能力。 
+- 將 BLOB 內容移至另一個伺服器可以減輕 SQL Server 上的查詢負荷，改善 SQL Server 的回應能力。
 
 - Azure StorSimple 使用重複資料刪除和壓縮來減少資料大小。
 
@@ -59,7 +59,7 @@ RBS 的 Microsoft Azure StorSimple 實作提供下列優點：
 
 設定 RBS 之前，請檢閱下列事項：
 
-- 請確定內容的大小總計 (內容資料庫大小，加上任何相關聯的外部化 BLOB 大小) 不超過 SharePoint 所支援的 RBS 大小限制。這項限制為 200 GB。 
+- 請確定內容的大小總計 (內容資料庫大小，加上任何相關聯的外部化 BLOB 大小) 不超過 SharePoint 所支援的 RBS 大小限制。這項限制為 200 GB。
 
     **測量內容資料庫和 BLOB 大小**
 
@@ -85,7 +85,7 @@ RBS 的 Microsoft Azure StorSimple 實作提供下列優點：
 
     使用傳統的 SQL Server 移轉最佳作法，將內容資料庫移至 StorSimple 裝置。只有在資料庫的所有 BLOB 內容，都透過 RBS 移至檔案共用之後，才移動資料庫。如果您選擇將內容資料庫移至 StorSimple 裝置，我們建議您在裝置上將內容資料庫儲存體設定為主要磁碟區。
 
-- 在 Microsoft Azure StorSimple 中，無法保證儲存在 StorSimple 裝置本機的內容不會移至 Microsoft Azure 雲端儲存體。若要確保內容資料庫保留在 StorSimple 裝置上，而不會移至 Microsoft Azure (這會延長 SharePoint 交易回應時間)，務必了解及管理 StorSimple 裝置上的其他工作負載。如果 StorSimple 裝置已裝載 SharePoint 內容資料庫工作負載和 SharePoint 檔案共用工作負載，建議您不要設定 StorSimple 裝置來裝載資料寫入率較高的工作負載。
+- 在 Microsoft Azure StorSimple 中，如果使用分層磁碟區，則無法保證儲存在 StorSimple 裝置本機的內容不會移至 Microsoft Azure 雲端儲存體。因此，建議您搭配 SharePoint RBS 使用 StorSimple 本機固定磁碟區。這可確保所有 BLOB 內容保留在本機 StorSimple 裝置上，而不會移至 Microsoft Azure。
 
 - 如果您不在 StorSimple 裝置上儲存的內容資料庫，請使用支援 RBS 的傳統 SQL Server 高可用性最佳作法。SQL Server 叢集支援 RBS，而 SQL Server 鏡像不支援 RBS。
 
@@ -103,7 +103,7 @@ RBS 的 Microsoft Azure StorSimple 實作提供下列優點：
 
 StorSimple Adapter for SharePoint 適用於下列的硬體和軟體：
 
-- 支援的作業系統 – Windows Server 2008 R2 SP1、Windows Server 2012 或 Windows Server 2012 R2 
+- 支援的作業系統 – Windows Server 2008 R2 SP1、Windows Server 2012 或 Windows Server 2012 R2
 
 - 支援的 SharePoint 版本 – SharePoint Server 2010 或 SharePoint Server 2013
 
@@ -141,7 +141,7 @@ StorSimple 裝置是一種區塊裝置，因此需要可裝載資料的檔案伺
 
 請確定您的 SharePoint 伺服器陣列已正確設定，如下：
 
-- 確認您的 SharePoint 伺服器陣列處於良好狀態，並檢查下列項目: 
+- 確認您的 SharePoint 伺服器陣列處於良好狀態，並檢查下列項目:
 
 - 所有在伺服陣列中註冊的 SharePoint WFE 和應用程式伺服器正在執行，而且可以從您將安裝 StorSimple Adapter for SharePoint 伺服器進行 Ping。
 
@@ -308,4 +308,4 @@ StorSimple 裝置是一種區塊裝置，因此需要可裝載資料的檔案伺
 [5]: https://technet.microsoft.com/library/ff628583(v=office.15).aspx
 [8]: https://technet.microsoft.com/zh-TW/library/ff943565.aspx
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

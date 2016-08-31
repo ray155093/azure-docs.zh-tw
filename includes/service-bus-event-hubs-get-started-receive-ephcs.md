@@ -26,7 +26,7 @@
 
     ![][13]
 
-	這會下載、安裝並加入 [Azure 服務匯流排事件中樞 - EventProcessorHost NuGet 封裝](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost)的參考與其所有相依性。
+	Visual Studio 會下載、安裝並加入 [Azure 服務匯流排事件中樞 - EventProcessorHost NuGet 封裝](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost)的參考與其所有相依性。
 
 7. 在 [**接收者**] 專案上按一下滑鼠右鍵，按一下 [**新增**]，然後按一下 [**類別**]。將新類別命名為 **SimpleEventProcessor**，然後按一下 [新增] 以建立該類別。
 
@@ -115,13 +115,13 @@
     }
 	```
 
-> [AZURE.NOTE] 本教學課程使用單一 [EventProcessorHost][] 執行個體。若要增加輸送量，建議您執行多個 [EventProcessorHost][] 執行個體 (如[擴充事件處理][]範例所示)。在這些情況下，各種執行個體會自動彼此協調以對已接收的事件進行負載平衡。如果您想要多個接收者都處理*所有*事件，則必須使用 **ConsumerGroup** 概念。收到來自不同電腦的事件時，根據在其中執行 [EventProcessorHost][] 執行個體的電腦 (或角色) 來指定名稱可能十分有用。如需這些主題的詳細資訊，請參閱[事件中樞概觀][]和[事件中樞程式設計指南][]主題。
+> [AZURE.NOTE] 本教學課程使用單一 [EventProcessorHost][] 執行個體。若要增加輸送量，建議您執行多個 [EventProcessorHost][] 執行個體 (如[擴充事件處理][]範例所示)。在這些情況下，各種執行個體會自動彼此協調，以對已接收的事件進行負載平衡。如果您想要多個接收者都處理*所有*事件，則必須使用 **ConsumerGroup** 概念。收到來自不同電腦的事件時，根據在其中執行 [EventProcessorHost][] 執行個體的電腦 (或角色) 來指定名稱可能十分有用。如需這些主題的詳細資訊，請參閱[事件中樞概觀][]和[事件中樞程式設計指南][]主題。
 
 <!-- Links -->
 [事件中樞概觀]: event-hubs-overview.md
 [事件中樞程式設計指南]: event-hubs-programming-guide.md
 [擴充事件處理]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-45f43fc3
-[Azure 儲存體帳戶]: ../storage/storage-create-storage-account.md
+[Azure 儲存體帳戶]: ../storage/storage-create-storage-account-classic-portal.md
 [EventProcessorHost]: http://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventprocessorhost(v=azure.95).aspx
 [Azure 傳統入口網站]: http://manage.windowsazure.com
 
@@ -133,3 +133,4 @@
 [14]: ./media/service-bus-event-hubs-getstarted/create-receiver-csharp1.png
 [15]: ./media/service-bus-event-hubs-getstarted/create-receiver-csharp2.png
 
+<!---HONumber=AcomDC_0824_2016-->

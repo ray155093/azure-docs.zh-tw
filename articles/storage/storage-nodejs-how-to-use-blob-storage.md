@@ -13,16 +13,16 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="nodejs"
 	ms.topic="article"
-    ms.date="06/24/2016"
+    ms.date="08/11/2016"
 	ms.author="micurd"/>
 
 
 
 # 如何使用 Node.js 的 Blob 儲存體
 
-[AZURE.INCLUDE [storage-selector-blob-include](../../includes/storage-selector-blob-include.md)]
+[AZURE.INCLUDE [storage-selector-blob-include](../../includes/storage-selector-blob-include.md)] <br/> [AZURE.INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-blobs.md)]
 
-## 概觀
+## Overview
 
 本文章示範如何使用 Blob 儲存體執行一般案例。這些範例透過 Node.js API 撰寫。涵蓋的案例包括如何上傳、列出、下載及刪除 blob。
 
@@ -32,7 +32,7 @@
 
 ## 建立 Node.js 應用程式
 
-如需如何建立 Node.js 應用程式的相關指示，請參閱[在 Azure App Service 中建立 Node.js Web 應用程式]、[建立 Node.js 應用程式並部署至 Azure 雲端服務] - 使用 Windows PowerShell，或[使用 Web Matrix 建立 Node.js Web 應用程式並部署至 Azure]。
+如需如何建立 Node.js 應用程式的相關指示，請參閱[在 Azure App Service 中建立 Node.js Web 應用程式]、[使用 Windows PowerShell 建立 Node.js 應用程式並部署至 Azure 雲端服務]，或[使用 Web Matrix 建立 Node.js Web 應用程式並部署至 Azure]。
 
 ## 設定您的應用程式以存取儲存體
 
@@ -40,7 +40,7 @@
 
 ### 使用 Node Package Manager (NPM) 取得封裝
 
-1.  使用命令列介面，例如 **PowerShell** (Windows)、[終端機] \(Mac) 或 **Bash** (Unix)，瀏覽到您建立範例應用程式的資料夾。
+1.  使用命令列介面，例如 **PowerShell** (Windows)、[終端機] (Mac) 或 **Bash** (Unix)，瀏覽到您建立範例應用程式的資料夾。
 
 2.  在命令視窗中輸入 **npm install azure-storage**。此命令的輸出類似下列程式碼範例。
 
@@ -119,7 +119,7 @@ Azure 模組會讀取環境變數 `AZURE_STORAGE_ACCOUNT` 及 `AZURE_STORAGE_ACC
 
 ### 篩選器
 
-您可以將選用的篩選作業套用到使用 **BlobService** 執行的作業。篩選作業可包括記錄、自動重試等等。篩選器是使用簽章實作方法的物件：
+您可以將選用的篩選作業套用到使用 **BlobService** 執行的作業。篩選作業可以包含記錄、自動重試等。篩選器是使用簽章實作方法的物件：
 
 	function handle (requestOptions, next)
 
@@ -411,8 +411,8 @@ ACL 是使用存取原則陣列來實作，每個原則有相關聯的識別碼�
 [使用 Web Matrix 建立 Node.js Web 應用程式並部署至 Azure]: ../app-service-web/web-sites-nodejs-use-webmatrix.md
 [Using the REST API]: http://msdn.microsoft.com/library/azure/hh264518.aspx
 [Azure Portal]: https://portal.azure.com
-[建立 Node.js 應用程式並部署至 Azure 雲端服務]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
+[使用 Windows PowerShell 建立 Node.js 應用程式並部署至 Azure 雲端服務]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
 [Azure 儲存體團隊部落格]: http://blogs.msdn.com/b/windowsazurestorage/
 [Azure Storage SDK for Node API 參考]: http://dl.windowsazure.com/nodestoragedocs/index.html
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

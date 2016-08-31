@@ -13,12 +13,16 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="06/13/2016"
+    ms.date="08/15/2016"
     ms.author="elizapo" />
 
 
 
 # 應用程式需求
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+
 Azure RemoteApp 支援來自 Windows Server 2012 R2 映像的資料流 32 位元或 64 位元 Windows 架構應用程式。大部分現有 32 位元或 64 位元 Windows 架構應用程式都是「依現狀」在 Azure RemoteApp (遠端桌面服務或舊稱的「終端機服務」) 環境中執行。不過，執行和良好執行是有差別的，有些應用程式運作正常且完善執行，有些則不是。下列資訊提供在遠端桌面服務環境中開發應用程式，及測試以確保相容性的指引。
 
 提示：我們正在為您建立一些實用的應用程式範例。您會看到討論如何在 RemoteApp 內使用 Microsoft Access、QuickBooks 和 APP-V 的新主題。
@@ -28,7 +32,7 @@ Azure RemoteApp 支援來自 Windows Server 2012 R2 映像的資料流 32 位元
 
 1.	符合所有 [Windows 傳統型應用程式認證需求](https://msdn.microsoft.com/library/windows/desktop/hh749939.aspx)，並遵循[遠端桌面服務程式設計指導方針](https://msdn.microsoft.com/library/aa383490.aspx)的應用程式，皆與 RemoteApp 完全相容。
 2.	應用程式應該永遠不要在可能遺失的映像或 RemoteApp 執行個體中本機儲存資料。建立 RemoteApp 集合之後，會複製執行個體，且不會呈現狀態並只包含應用程式。將資料儲存在外部來源，或使用者的設定檔內。
-3.	自訂映像不應該包含可能會遺失的資料。  
+3.	自訂映像不應該包含可能會遺失的資料。
 
 ## 測試應用程式
 使用下列步驟來測試應用程式：
@@ -55,4 +59,4 @@ Azure RemoteApp 支援來自 Windows Server 2012 R2 映像的資料流 32 位元
 - 您應該針對多使用者、多處理器環境微調和平衡應用程式[執行緒使用量](https://msdn.microsoft.com/library/aa383520.aspx)。
 - 若要最佳化效能，讓應用程式[偵測](https://msdn.microsoft.com/library/aa380798.aspx)它們是否正在用戶端工作階段中執行是個好方法。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0817_2016-->
