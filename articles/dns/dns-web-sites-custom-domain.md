@@ -1,5 +1,5 @@
 <properties 
-   pageTitle="建立 Web 應用程式的自訂 DNS 記錄 | Microsoft Azure" 
+   pageTitle="建立 Web 應用程式的自訂 DNS 記錄 | Microsoft Azure " 
    description="如何使用 Azure DNS 來建立 Web 應用程式的自訂網域 DNS 記錄。" 
    services="dns" 
    documentationCenter="na" 
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services" 
-   ms.date="05/11/2016"
+   ms.date="08/16/2016"
    ms.author="cherylmc"/>
 
 # 在自訂網域中建立 Web 應用程式的 DNS 記錄
@@ -31,8 +31,8 @@
 
 開始之前，您必須先在 Azure DNS 中建立 DNS 區域，並將註冊機構中的區域委派給 Azure DNS。
  
-1. 若要建立 DNS 區域，請依照[建立 DNS 區域](dns-getstarted-create-dnszone.md)的步驟進行。 
-2. 若要將 DNS 委派給 Azure DNS，請依照 [DNS 網域委派](dns-domain-delegation.md)中的步驟進行。 
+1. 若要建立 DNS 區域，請依照[建立 DNS 區域](dns-getstarted-create-dnszone.md)的步驟進行。
+2. 若要將 DNS 委派給 Azure DNS，請依照 [DNS 網域委派](dns-domain-delegation.md)中的步驟進行。
 
 建立區域並委派給 Azure DNS 之後，便可以為您的自訂網域建立記錄。
 
@@ -179,4 +179,4 @@ A 記錄可用來將名稱對應到其 IP 位址。在下列範例中，我們�
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -12,10 +12,13 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="06/27/2016" 
+    ms.date="08/15/2016" 
     ms.author="elizapo" />
 
 # Azure RemoteApp - how do network bandwidth and quality of experience work together? (Azure RemoteApp - 如何兼顧網路頻寬和體驗品質？)
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 當您查看 Azure RemoteApp 所需的[整體網路頻寬](remoteapp-bandwidth.md)時，請記住下列因素；這些是影響整體使用者體驗之動態系統的所有部分。
 
@@ -26,13 +29,13 @@
 
 當您評估網路頻寬需求時，請務必考慮將所有這些因素當成一個系統來運作。
 
-現在，請回到[主要網路頻寬一文](remoteapp-bandwidth.md)，或繼續測試您的[網路頻寬](remoteapp-bandwidthtests.md)。
+現在，請回到[主要網路頻寬](remoteapp-bandwidth.md)一文，或繼續測試您的[網路頻寬](remoteapp-bandwidthtests.md)。
 
 ## 詳細資訊
 - [Estimate Azure RemoteApp network bandwidth usage (評估 Azure RemoteApp 網路頻寬使用量)](remoteapp-bandwidth.md)
 
-- [Azure RemoteApp - testing your network bandwidth usage with some common scenarios](remoteapp-bandwidthtests.md) (Azure RemoteApp - 利用一些常見案例測試您的網路頻寬使用量)
+- [Azure RemoteApp - testing your network bandwidth usage with some common scenarios (Azure RemoteApp - 利用一些常見案例測試您的網路頻寬使用量)](remoteapp-bandwidthtests.md)
 
-- [Azure RemoteApp network bandwidth - general guidelines (if you can't test your own)](remoteapp-bandwidthguidelines.md) (Azure RemoteApp 網路頻寬 - 一般指導方針 (如果您無法自行測試))
+- [Azure RemoteApp network bandwidth - general guidelines (if you can't test your own) (Azure RemoteApp 網路頻寬 - 一般指導方針 (如果您無法自行測試))](remoteapp-bandwidthguidelines.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

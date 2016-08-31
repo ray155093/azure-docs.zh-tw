@@ -97,6 +97,9 @@ Azure | [Azure Blob](data-factory-azure-blob-connector.md) <br/> [Azure Data Lak
 巴西南部 | 巴西南部
 澳洲東部 | 澳洲東部
 澳大利亞東南部 | 澳大利亞東南部
+印度中部 | 印度中部
+印度南部 | 印度中部
+印度西部 | 印度中部
 
 
 > [AZURE.NOTE] 如果目的地資料存放區的區域不在上述清單中，複製活動將會失敗而不是前往替代區域。
@@ -185,4 +188,4 @@ Azure | [Azure Blob](data-factory-azure-blob-connector.md) <br/> [Azure Data Lak
 - 若要了解將資料從內部部署資料存放區移動到雲端資料存放區的相關資訊，請參閱[將資料從內部部署資料存放區移動到雲端資料存放區](data-factory-move-data-between-onprem-and-cloud.md)。
  
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

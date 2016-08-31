@@ -14,7 +14,7 @@
 	ms.workload="search" 
 	ms.topic="article" 
 	ms.tgt_pltfrm="powershell" 
-	ms.date="05/23/2016" 
+	ms.date="08/15/2016" 
 	ms.author="seasa"/>
 
 # 使用 PowerShell 管理 Azure 搜尋服務
@@ -38,7 +38,7 @@
 
 或者，您可以[非互動的方式使用服務主體登入](../resource-group-authenticate-service-principal.md)。
 
-如果您有多個 Azure 訂用帳戶，請設定 Azure 訂用帳戶。如果想查看目前的訂閱帳戶清單，請執行這個命令。
+如果您有多個 Azure 訂用帳戶，您必須設定 Azure 訂用帳戶。如果想查看目前的訂閱帳戶清單，請執行這個命令。
 
 	Get-AzureRmSubscription | sort SubscriptionName | Select SubscriptionName
 
@@ -139,4 +139,4 @@
 
 - [分析 Azure 搜尋服務的流量](search-traffic-analytics.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services" 
-   ms.date="05/10/2016"
+   ms.date="08/16/2016"
    ms.author="cherylmc"/>
 
 
@@ -25,7 +25,7 @@
 
 若要使用 DNS 用戶端，您必須安裝 **Azure DNS 管理程式庫** NuGet 封裝，並將 DNS 管理命名空間加入您的專案。
  
-1. 在 **Visual Studio** 中，開啟專案或新專案。 
+1. 在 **Visual Studio** 中，開啟專案或新專案。
 
 2. 移至 [工具] **>** [NuGet 封裝管理員] **>** [封裝管理員主控台]。
 
@@ -113,4 +113,4 @@ DNS 記錄是以記錄集形式管理。記錄集是指一個區域內有相同�
 
 [Visual Studio SDK 範例專案](http://download.microsoft.com/download/2/A/C/2AC64449-1747-49E9-B875-C71827890126/AzureDnsSDKExample_2015_05_05.zip)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

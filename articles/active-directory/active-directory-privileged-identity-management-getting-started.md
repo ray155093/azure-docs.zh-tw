@@ -52,4 +52,4 @@ Azure Active Directory (AD) Privileged Identity Management 可讓您管理、控
 
 [1]: ./media/active-directory-privileged-identity-management-configure/PIM_EnablePim.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!----HONumber=AcomDC_0706_2016-->

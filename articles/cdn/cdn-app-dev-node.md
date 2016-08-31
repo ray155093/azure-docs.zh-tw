@@ -22,7 +22,7 @@
 - [.NET](cdn-app-dev-net.md)
 - [Node.js](cdn-app-dev-node.md)
 
-您可以使用 [Azure CDN SDK for Node.js](https://www.npmjs.com/package/azure-arm-cdn)，自動建立和管理 CDN 設定檔與端點。本教學課程將逐步建立簡單的 Node.js 主控台應用程式，示範數個可用的作業。本教學課程的目的不是詳細說明 Azure CDN SDK for Node.js 的所有層面。
+您可以使用 [Azure CDN SDK for Node.js](https://www.npmjs.com/package/azure-arm-cdn)，自動建立和管理 CDN 設定檔與端點。本教學課程會逐步建立簡單的 Node.js 主控台應用程式，示範數個可用的作業。本教學課程的目的不是詳細說明 Azure CDN SDK for Node.js 的所有層面。
 
 若要完成本教學課程，您應該已安裝和設定 [Node.js](http://www.nodejs.org) **4.x.x** 或更新版本。您可以使用任何想要的文字編輯器，來建立 Node.js 應用程式。為了撰寫本教學課程，我使用了 [Visual Studio 程式碼](https://code.visualstudio.com)。
 
@@ -38,7 +38,7 @@
 	
 	npm init
 	
-然後您會看到一系列用來初始化專案的問題。本教學課程將使用 app.js 做為**進入點**。您可以在下列範例中看到我的其他選擇。
+然後您會看到一系列用來初始化專案的問題。本教學課程使用 app.js 做為**進入點**。您可以在下列範例中看到我的其他選擇。
 
 ![NPM init 輸出](./media/cdn-app-dev-node/cdn-npm-init.png)
 
@@ -47,7 +47,7 @@
 	npm install --save ms-rest-azure
 	npm install --save azure-arm-cdn
 
-封裝完成安裝後，package.json 檔案看起來應該類似下列內容 (版本號碼可能不同)：
+封裝完成安裝後，package.json 檔案看起來應該類似此範例 (版本號碼可能不同)：
 
 ``` json
 {
@@ -103,7 +103,7 @@
 	
 	如果您使用個別使用者驗證，這兩行看起來會稍有不同。
 
-	>[AZURE.IMPORTANT] 如果您選擇使用個別使用者驗證，而不是服務主體，只需使用這個程式碼範例。請務必謹慎地保護您的個別使用者認證，並且不要告訴他人。
+	>[AZURE.IMPORTANT] 如果您選擇使用個別使用者驗證，而不是服務主體，只需使用這個程式碼範例。請謹慎地保護您的個別使用者認證，並且不要告訴他人。
 
 	``` javascript
 	var credentials = new msRestAzure.UserTokenCredentials(clientId, 
@@ -117,7 +117,7 @@
 4.  我們的 Node.js 主控台應用程式將會採用一些命令列參數。讓我們驗證看看是否已至少傳遞一個參數。
 
 	```javascript
-	//Collect command line parameters
+	//Collect command-line parameters
 	var parms = process.argv.slice(2);
 
 	//Do we have parameters?
@@ -213,7 +213,7 @@
 
 ## 列出 CDN 設定檔和端點
 
-讓我們從列出現有設定檔和端點的程式碼來開始。我會以預期的語法提供程式碼註解，因此我們會知道每個參數的放置位置。
+讓我們從列出現有設定檔和端點的程式碼來開始。我的程式碼註解會提供預期的語法，因此我們會知道每個參數的去處。
 
 ```javascript
 // list profiles
@@ -367,4 +367,6 @@ function cdnDelete() {
 
 若要尋找其他關於 Azure SDK for Node.js 的文件，請檢視[完整參考資料](http://azure.github.io/azure-sdk-for-node/)。
 
-<!---HONumber=AcomDC_0803_2016-->
+使用 [PowerShell](./cdn-manage-powershell.md) 管理 CDN 資源。
+
+<!---HONumber=AcomDC_0817_2016-->

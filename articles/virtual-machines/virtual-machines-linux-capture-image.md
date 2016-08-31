@@ -20,13 +20,13 @@
 
 # 如何擷取 Linux 虛擬機器作為資源管理員範本使用
 
-使用「Azure 命令列介面」(CLI) 來擷取執行 Linux 的 Azure 虛擬機器並將它一般化，以便使用它做為 Azure Resource Manager 範本來建立其他虛擬機器。此範本會指定 OS 磁碟和連結虛擬機器的資料磁碟。但不包含建立 Azure 資源管理員 VM 所需的虛擬網路資源，因此在大部分的情況下，您必須先個別設定這些資源，再建立另一部使用此範本的虛擬機器。
+使用 Azure 命令列介面 (CLI)，來擷取執行 Linux 的 Azure 虛擬機器並進行一般化。接著，您可以使用它做為 Azure Resource Manager 範本來建立其他虛擬機器。此範本會指定 OS 磁碟和連結虛擬機器的資料磁碟。它不包含您建立 Azure Resource Manager VM 所需的虛擬網路資源。因此，您通常需要先個別設定這些資源，才能建立另一個使用範本的虛擬機器。
 
 >[AZURE.TIP]如果您想要建立自訂 Linux VM 映像並將它上傳到 Azure 以便從該映像建立 VM，請參閱[上傳自訂磁碟映像並從這個映像建立 VM](virtual-machines-linux-upload-vhd.md)。
 
 ## 開始之前
 
-這些步驟假設您已在 Azure 資源管理員部署模型中建立 Azure 虛擬機器，並設定好作業系統，包括連接任何資料磁碟以及進行其他自訂作業 (如安裝應用程式)。有數種方式可以執行這項作業 (包括透過 Azure CLI)。如果您尚未這麼做，請參閱在 Azure 資源管理員模式中使用 Azure CLI 的相關指示：
+這些步驟假設您已在 Resource Manager 部署模型中建立 Azure VM，且已設定好作業系統，包括連接資料磁碟，以及進行其他自訂作業 (例如安裝應用程式)。有數種方式可以設定 VM (包括透過 Azure CLI)。如果您尚未這麼做，請參閱在 Azure 資源管理員模式中使用 Azure CLI 的相關指示：
 
 - [使用 CLI 在 Azure 上建立 Linux VM](virtual-machines-linux-quick-create-cli.md)
 
@@ -43,7 +43,7 @@
 
 1. 當您準備好擷取 VM 時，請使用 SSH 用戶端進行連接。
 
-2. 在 SSH 視窗中，輸入下列命令。請注意，不同版本的 **waagent** 公用程式可能會有稍微不同的輸出：
+2. 在 SSH 視窗中，輸入下列命令。不同版本的 **waagent** 公用程式可能會有稍微不同的輸出：
 
 	`sudo waagent -deprovision+user`
 
@@ -56,7 +56,7 @@
 	- 將主機名稱重設為 localhost.localdomain
 	- 刪除最後佈建的使用者帳戶 (取自於 /var/lib/waagent) 和相關聯的資料。
 
-	>[AZURE.NOTE] 解除佈建會刪除檔案與資料來試圖將映像一般化。只在您想要擷取作為映像的 VM 上執行這個命令。這不能保證映像檔中的所有機密資訊都會清除完畢或適合轉散發給第三方。
+	>[AZURE.NOTE] 解除佈建會刪除檔案與資料來將映像一般化。只在您想要擷取作為映像的 VM 上執行這個命令。這不能保證映像檔中的所有機密資訊都會清除完畢或適合轉散發給第三方。
 
 3. 輸入 **y** 繼續。您可以加入 **-force** 參數，便不用進行此確認步驟。
 
@@ -76,7 +76,7 @@
 
 8. 使用下列命令將 VM 一般化：
 
-	`azure vm generalize –g <your-resource-group-name> -n <your-virtual-machine-name>`
+	`azure vm generalize -g <your-resource-group-name> -n <your-virtual-machine-name>`
 
 9. 現在使用下列命令來擷取映像和本機檔案範本：
 
@@ -87,7 +87,7 @@
 >[AZURE.TIP] 若要尋找映像的位置，請開啟 JSON 檔案範本。在 **storageProfile** 中，尋找位於 **system** 容器的**映像**的 **uri**。例如，OS 磁碟映像的 uri 類似於 `https://xxxxxxxxxxxxxx.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/<your-vhd-name-prefix>-osDisk.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.vhd`。
 
 ## 從擷取的映像部署新的 VM
-現在使用具有範本的映像來建立新的 Linux VM。下列步驟示範如何使用您利用 `azure vm capture` 命令建立的 Azure CLI 和 JSON 檔案範本，在新的虛擬網路中建立 VM。
+現在使用具有範本的映像來建立 Linux VM。下列步驟示範如何使用您利用 `azure vm capture` 命令建立的 Azure CLI 和 JSON 檔案範本，在新的虛擬網路中建立 VM。
 
 ### 建立網路資源
 
@@ -107,7 +107,7 @@
 
 	azure network nic show <your-new-resource-group-name> <your-nic-name>
 
-輸出中的**識別碼**就像下列的字串。
+輸出中的**識別碼**就像下列字串。
 
 	/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/<your-new-resource-group-name>/providers/Microsoft.Network/networkInterfaces/<your-nic-name>
 
@@ -172,20 +172,20 @@
 
 * 確保您的 VM 映像位於將裝載 VM 之 VHD 的相同儲存體帳戶。
 * 複製範本 JSON 檔案，並針對各 VM 的 VHD 輸入唯一的 **uri** 值。
-* 在相同或不同的虛擬網路中建立新的 NIC
+* 在相同或不同的虛擬網路中建立 NIC
 * 使用修改過的範本 JSON 檔案，在您設定虛擬網路的資源群組中建立部署
 
-如果您要在從映像建立 VM 時自動設定網路，請使用來自 GitHub 的 [101-vm-from-user-image template](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-from-user-image)。此範本會從自訂映像和必要的虛擬網路、公用 IP 位址和 NIC 資源建立 VM。如需在 Azure 入口網站中使用範本的逐步解說，請參閱[如何從使用 ARM 範本的自訂映像建立虛擬機器](http://codeisahighway.com/how-to-create-a-virtual-machine-from-a-custom-image-using-an-arm-template/)。
+如果您要在從映像建立 VM 時自動設定網路，請使用來自 GitHub 的 [101-vm-from-user-image template](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-from-user-image)。此範本會從自訂映像和必要的虛擬網路、公用 IP 位址和 NIC 資源建立 VM。如需在 Azure 入口網站中使用範本的逐步解說，請參閱[如何從使用 Resource Manager 範本的自訂映像建立虛擬機器](http://codeisahighway.com/how-to-create-a-virtual-machine-from-a-custom-image-using-an-arm-template/)。
 
 ## 使用 azure vm create 命令
 
-您通常會想要使用資源管理員範本從映像建立 VM。不過，您可以使用 **azure vm create** 命令搭配 **-Q** (**--image-urn**) 參數，以「命令方式」建立 VM。您也將傳遞 **-d** (**--os-disk-vhd**) 參數來指定新 VM 的 OS .vhd 檔案位置。這必須位於儲存映像 VHD 檔案之儲存體帳戶的 vhds 容器中。此命令會自動將新 VM 的 VHD 複製到 vhds 容器。
+您通常會想要使用資源管理員範本從映像建立 VM。不過，您可以使用 **azure vm create** 命令搭配 **-Q** (**--image-urn**) 參數，以「命令方式」建立 VM。如果您使用此方法，您也要傳遞 **-d** (**--os-disk-vhd**) 參數來指定新 VM 的 OS .vhd 檔案位置。這必須位於儲存映像 VHD 檔案之儲存體帳戶的 vhds 容器中。此命令會自動將新 VM 的 VHD 複製到 vhds 容器。
 
 對映像執行 **azure vm create** 之前，請執行下列動作：
 
-1.	建立新的資源群組，或識別現有的資源群組以供部署。
+1.	建立資源群組，或識別現有的資源群組以供部署。
 
-2.	為新的 VM 建立公用 IP 位址資源和 NIC 資源。如需使用 CLI 建立虛擬網路、公用 IP 位址和 NIC 的步驟，請參閱本文前面的內容 (**azure vm create** 也可以建立新的 NIC，但您需要傳遞虛擬網路和子網路的其他參數)。
+2.	為新的 VM 建立公用 IP 位址資源和 NIC 資源。如需使用 CLI 建立虛擬網路、公用 IP 位址和 NIC 的步驟，請參閱本文前面的內容 (**azure vm create** 也可以建立 NIC，但您需要傳遞虛擬網路和子網路的其他參數)。
 
 
 然後，將 URI 傳遞給新 OS VHD 檔案和現有映像，以執行與下面類似的命令。
@@ -198,4 +198,4 @@
 
 若要使用 CIL 管理 VM，請參閱[使用 Azure 資源管理員範本和 Azure CLI 部署和管理虛擬機器](virtual-machines-linux-cli-deploy-templates.md)中的工作。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/06/2016"
+   ms.date="08/16/2016"
    ms.author="cherylmc"/>
 
 # 使用 CLI 管理 DNS 記錄集和記錄集
@@ -178,4 +178,4 @@ Azure DNS 是僅能以 Azure 資源管理員運作的服務。它沒有 Azure �
 
 如果您想要使用反向 DNS 記錄，請參閱[如何使用 Azure CLI 管理服務的反向 DNS 記錄](dns-reverse-dns-record-operations-cli.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0817_2016-->

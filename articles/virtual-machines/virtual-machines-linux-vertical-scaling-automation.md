@@ -3,7 +3,7 @@
 	description="如何垂直調整 Linux 虛擬機器大小以回應 Azure 自動化的監視警示"
 	services="virtual-machines-linux"
 	documentationCenter=""
-	authors="singhkay"
+	authors="singhkays"
 	manager="drewm"
 	editor=""
 	tags="azure-resource-manager"/>
@@ -57,7 +57,7 @@
 
 ## 將 Azure 自動化垂直調整大小 Runbook 匯入訂用帳戶
 
-Azure 自動化 Runbook 資源庫中已發佈的垂直調整虛擬機器大小所需之 Runbook。您必須將其匯入 Azure 訂用帳戶。您可以閱讀下列文章，了解如何匯入 Runbook。
+Azure 自動化 Runbook 資源庫中已發佈的垂直調整虛擬機器大小所需之 Runbook。您必須將其匯入您的訂用帳戶。您可以閱讀下列文章，了解如何匯入 Runbook。
 
 * [Azure 自動化的 Runbook 和模組資源庫](../automation/automation-runbook-gallery.md)
 
@@ -88,4 +88,4 @@ Azure 自動化 Runbook 資源庫中已發佈的垂直調整虛擬機器大小�
 
 ![將警示加入虛擬機器 2 中](./media/virtual-machines-vertical-scaling-automation/add-alert-webhook-2.png)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0817_2016-->

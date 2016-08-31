@@ -1,52 +1,50 @@
-# Advanced Autoscale configuration using Resource Manager templates for VM Scale Sets
+# 針對 VM 擴展集使用 Resource Manager 範本進行進階自動調整設定
 
-You can scale out and in Virtual Machine Scale Sets based on performance metric thresholds, by a recurring schedule, or by a particular date. You can also configure email and webhook notifications for scale actions. This walkthrough shows an example of configuring all the above using a Resource Manager template on a VM Scale Set.
+您可以根據效能標準臨界值、循環排程或特定日期，針對虛擬機器擴展集進行相應放大和縮小。您也可以針對調整動作設定電子郵件和 webhook 通知。本逐步解說會示範在 VM 擴展集上使用 Resource Manager 範本設定上述項目的範例。
 
->[AZURE.NOTE] While this walkthrough explains the steps for VM Scale Sets, you can apply the same for autoscaling Cloud Services and Web Apps.
-For a simple scale in/out setting on a VM Scale Set based on a simple performance metric such as CPU, refer to the [Linux](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-linux-autoscale.md) and [Windows](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-windows-autoscale.md) documents
-
+>[AZURE.NOTE] 雖然本逐步解說是解釋 VM 擴展集的步驟，您也可以將它套用到自動調整的雲端服務和 Web Apps 上。如需在 VM 擴展集上根據簡單的效能標準 (例如 CPU) 取得簡單的相應縮小/放大設定，請參閱 [Linux](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-linux-autoscale.md) 和 [Windows](../articles/virtual-machine-scale-sets/virtual-machine-scale-sets-windows-autoscale.md) 文件
 
 
-## Walkthrough
-In this walkthrough, we use [Azure Resource Explorer](https://resources.azure.com/) to configure and update the autoscale setting for a scale set. Azure Resource Explorer is an easy way to manage Azure resources via Resource Manager templates. If you are new to Azure Resource Explorer tool, read [this introduction](https://azure.microsoft.com/blog/azure-resource-explorer-a-new-tool-to-discover-the-azure-api/).
 
-1. Deploy a new scale set with a basic autoscale setting. This article uses the one from the Azure QuickStart Gallery, which has a Windows scale set with a basic autoscale template. Linux scale sets work the same way.
+## 逐步介紹
+在本逐步解說中，我們會使用 [Azure Resource Explorer (Azure 資源總管)](https://resources.azure.com/) 來設定並更新擴展集的自動調整設定。Azure 資源總管是透過 Resource Manager 範本輕鬆管理 Azure 資源的方式。如果您還不熟悉 Azure 資源總管、工具，請參閱[本簡介](https://azure.microsoft.com/blog/azure-resource-explorer-a-new-tool-to-discover-the-azure-api/)。
 
-2. After the scale set is created, navigate to the scale set resource from Azure Resource Explorer. You see the following under Microsoft.Insights node.
+1. 使用基本自動調整設定部署新的擴展集。這篇文章會使用 Azure 快速入門資源庫中擁有基本自動調整範本的 Windows 擴展集設定。Linux 擴展集的使用方式相同。
+
+2. 建立擴展集之後，請透過 Azure 資源總管瀏覽到擴展集資源。您會在 Microsoft.Insights 節點下看見下列內容。
 
 	![Azure Explorer](./media/insights-advanced-autoscale-vmss/azure_explorer_navigate.png)
 
-	The template execution has created a default autoscale setting with the name **'autoscalewad'**. On the right-hand side, you can view the full definition of this autoscale setting. In this case, the default autoscale setting comes with a CPU% based scale-out and scale-in rule.
+	範本的執行已建立了具有名稱為 **'autoscalewad'** 的預設自動調整設定。您可以在右手邊檢視此自動調整設定的完整定義。在此情況下，預設自動調整設定具有以 CPU% 為基礎的相應放大和相應縮小規則。
 
-3. You can now add more profiles and rules based on the schedule or specific requirements. We create an autoscale setting with three profiles. To understand profiles and rules in autoscale, review [Autoscale Best Practices](../articles/azure-portal/insights-autoscale-best-practices.md). 
+3. 您現在可以根據排程或特定需求新增更多設定檔和規則。我們會建立具有三個設定檔的自動調整設定。若要了解自動調整中的設定檔和規則，請檢閱[自動調整最佳做法](../articles/azure-portal/insights-autoscale-best-practices.md)。
 
-    | Profiles & Rules | Description |
+    | 設定檔與規則 | 說明 |
 	|---------|-------------------------------------|
-	| **Profile** | **Performance/metric based**    |
-	| Rule    | Service Bus Queue Message Count > x |
-	| Rule    | Service Bus Queue Message Count < y |
-	| Rule    | CPU%,< n                            |
-	| Rule    | CPU% < p                            |
-	| **Profile** | **Weekday morning hours (no rules)**    |
-	| **Profile** | **Product Launch day (no rules)**       |
+	| **設定檔** | **以效能/計量為基礎** |
+	| 規則 | 服務匯流排佇列訊息計數 > x |
+	| 規則 | 服務匯流排佇列訊息計數 < y |
+	| 規則 | CPU% < n |
+	| 規則 | CPU% < p |
+	| **設定檔** | **工作日早上時間 (無規則)** |
+	| **設定檔** | **產品發行日 (無規則)** |
 
-4. Here is a hypothetical scaling scenario that we use for this walkthrough.
-	- _**Load based** - I'd like to scale out or in based on the load on my application hosted on my scale set._
-	- _**Message Queue size** - I use a Service Bus Queue for the incoming messages to my application. I use the queue's message count and CPU% and configure a default profile to trigger a scale action if either of message count or CPU hits the threshold._
-	- _**Time of week and day** - I want a weekly recurring 'time of the day' based profile called 'Weekday Morning Hours'. Based on historical data, I know it is better to have certain number of VM instances to handle my application's load during this time._
-	- _**Special Dates** - I added a 'Product Launch Day' profile. I plan ahead for specific dates so my application is ready to handle the load due marketing announcements and when we put a new product in the application._
-	- _The last two profiles can also have other performance metric based rules within them. In this case, I decided not to have one and instead to rely on the default performance metric based rules. Rules are optional for the recurring and date-based profiles._
+4. 以下是我們用於此逐步解說的虛構調整案例。
+	- **以負載為基礎** - 我想要根據裝載在擴展集上應用程式的負載進行相應放大或縮小。
+	- **訊息佇列大小** - 我針對應用程式的傳入訊息使用服務匯流排佇列。我使用佇列的訊息計數和 CPU% 來設定預設設定檔，以在訊息計數或 CPU 達到臨界值時觸發調整動作。
+	- **每週和每日時間** - 我想要一個以每週週期性的「每日時間」為基礎，稱為「工作日早上時間」的設定檔。根據歷史資料，我明白這段期間應該要有特定數量的 VM 執行個體來處理應用程式的負載。
+	- **特殊日期** - 我已新增「產品發行日」設定檔。我會預先針對特定日期作出計畫，好讓應用程式可以準備好處理因應行銷公告，或是當我們將新產品置入應用程式時所導致的負載。
+	- _最後兩個設定檔也可以具有以其他效能標準為基礎的規則。在此案例中，我決定不那麼做，而是依賴以預設效能標準為基礎的規則。針對週期性和日期式設定檔的規則為選擇性。_
 
-	Autoscale engine's prioritization of the profiles and rules is also captured in the [autoscaling best practices](../articles/azure-portal/insights-autoscale-best-practices.md) article.
-	For a list of common metrics for autoscale, refer [Common metrics for Autoscale](../articles/azure-portal/insights-autoscale-common-metrics.md)
+	自動調整引擎針對設定檔和規則的優先順序，也已在[自動調整最佳做法](../articles/azure-portal/insights-autoscale-best-practices.md)一文中說明。如需自動調整的常見計量清單，請參閱[自動調整的常用計量](../articles/azure-portal/insights-autoscale-common-metrics.md)
 
-5. Make sure you are on the **Read/Write** mode in Resource Explorer
+5. 請確定您已處於資源總管的 [讀寫] 模式
 
-	![Autoscalewad, default autoscale setting](./media/insights-advanced-autoscale-vmss/autoscalewad.png)
+	![Autoscalewad, default autoscale setting, 自動調整, 預設自動調整設定](./media/insights-advanced-autoscale-vmss/autoscalewad.png)
 
-6. Click Edit. **Replace** the 'profiles' element in autoscale setting with the following:
+6. 按一下 [編輯]。將自動調整設定中的 'profiles' 元素以下列內容「取代」：
 
-	![profiles](./media/insights-advanced-autoscale-vmss/profiles.png)
+	![設定檔](./media/insights-advanced-autoscale-vmss/profiles.png)
 
 	```
 	{
@@ -178,19 +176,19 @@ In this walkthrough, we use [Azure Resource Explorer](https://resources.azure.co
 	        }
 	      }
 	```
-	For supported fields and their values, see [Autoscale REST API documentation](https://msdn.microsoft.com/en-us/library/azure/dn931928.aspx).
+	如需支援的欄位和其值，請參閱[自動調整 REST API 文件](https://msdn.microsoft.com/zh-TW/library/azure/dn931928.aspx)。
 
-	Now your autoscale setting contains the three profiles explained previously.
+	現在，您的自動調整設定已包含前面所述的三個設定檔。
 
-7. 	Finally let's look at the Autoscale **notification** section. Autoscale notifications allow you to do three things when a scale-out or in action is successfully triggered.
+7. 	我們最後來查看一下自動調整的「通知」區段。自動調整通知能讓您在相應放大或縮小動作成功觸發時執行三件事。
 
-	1. Notify the admin and co-admins of your subscription
+	1. 通知系統管理員和共同管理員有關您訂用帳戶的狀況
 
-	2. Email a set of users
+	2. 傳送電子郵件給一組使用者
 
-	3. Trigger a webhook call. When fired, this webhook sends metadata about the autoscaling condition and the scale set resource. To learn more about the payload of autoscale webhook, see [Configure Webhook & Email Notifications for Autoscale](../articles/azure-portal/insights-autoscale-to-webhook-email.md).
+	3. 觸發 webhook 呼叫。引發時，此 webhook 會傳送有關自動調整狀態和擴展集資源的中繼資料。若要深入了解自動調整 webhook 的承載，請參閱[針對自動調整設定 Webhook 與電子郵件通知](../articles/azure-portal/insights-autoscale-to-webhook-email.md)。
 
-	Add the following to the Autoscale setting replacing your **notification** element whose value is null
+	新增下列內容到自動調整設定，並取代其值為 null 的 **notification** 元素
 
 	```
 	"notifications": [
@@ -218,20 +216,22 @@ In this walkthrough, we use [Azure Resource Explorer](https://resources.azure.co
 
 	```
 
-	Hit **Put** button in Resource Explorer to update the autoscale setting.
+	按一下資源總管中的 [放置] 按鈕以更新自動調整設定。
 
-You have updated an autoscale setting on a VM Scale set to include multiple scale profiles and scale notifications.
+您已將 VM 擴展集上的自動調整設定更新為包含多個調整設定檔和調整通知。
 
-## Next Steps
+## 後續步驟
 
-Use these links to learn more about autoscaling.
+請使用下列連結來深入了解自動調整。
 
-[Common Metrics for Autoscale](../articles/azure-portal/insights-autoscale-common-metrics.md)
+[自動調整的常用計量](../articles/azure-portal/insights-autoscale-common-metrics.md)
 
-[Best Practices for Azure Autoscale](../articles/azure-portal/insights-autoscale-best-practices.md)
+[Azure 自動調整的最佳作法](../articles/azure-portal/insights-autoscale-best-practices.md)
 
-[Manage Autoscale using PowerShell](../articles/azure-portal/insights-powershell-samples.md#create-and-manage-autoscale-settings)
+[使用 PowerShell 管理自動調整](../articles/azure-portal/insights-powershell-samples.md#create-and-manage-autoscale-settings)
 
-[Manage Autoscale using CLI](../articles/azure-portal/insights-cli-samples.md#autoscale)
+[使用 CLI 管理自動調整](../articles/azure-portal/insights-cli-samples.md#autoscale)
 
-[Configure Webhook & Email Notifications for Autoscale](../articles/azure-portal/insights-autoscale-to-webhook-email.md)
+[針對自動調整設定 Webhook 與電子郵件通知](../articles/azure-portal/insights-autoscale-to-webhook-email.md)
+
+<!---HONumber=AcomDC_0817_2016-->

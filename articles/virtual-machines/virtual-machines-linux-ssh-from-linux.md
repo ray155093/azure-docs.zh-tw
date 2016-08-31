@@ -23,9 +23,14 @@
 - [Windows](virtual-machines-linux-ssh-from-windows.md)
 - [Linux/Mac](virtual-machines-linux-ssh-from-linux.md)
 
+
 本主題描述如何在 Linux 和 Mac 上使用 **ssh-keygen** 和 **openssl**，以建立和使用 **ssh-rsa** 格式和 **.pem** 格式檔案來保護與 Linux 型 Azure VM 的安全通訊。建議您建立新的部署時，使用 Resource Manager 部署模型建立以 Linux 為基礎的 Azure 虛擬機器，並採用 *ssh-rsa* 類型的公用金鑰檔案或字串 (取決於部署用戶端)。[Azure 入口網站](https://portal.azure.com)目前只接受 **ssh-rsa** 格式的字串，無論是傳統部署或 Resource Manager 部署。
 
-> [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]若要建立這些類型的檔案，用於Windows 電腦與 Azure 中的 Linux VM 進行安全通訊 ，請參閱[在 Windows 上使用 SSH 金鑰](virtual-machines-linux-ssh-from-windows.md)。
+
+> [AZURE.NOTE] 若能耽擱您一些時間，請透過回答這個針對您經驗的[簡短問卷](https://aka.ms/linuxdocsurvey)，來協助我們改善 Azure Linux VM 文件。每個答案都有助於我們協助您完成工作。
+
+
+> [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)] 若要建立這些類型的檔案，用於Windows 電腦與 Azure 中的 Linux VM 進行安全通訊 ，請參閱[在 Windows 上使用 SSH 金鑰](virtual-machines-linux-ssh-from-windows.md)。
 
 ## 您需要哪些檔案？
 
@@ -33,8 +38,8 @@ Azure 的基本 SSH 安裝程式包含 2048 位元的 **ssh-rsa** 公用和私�
 
 以下是部署案例，以及您在每個案例中使用的檔案類型：
 
-1. 任何使用 [Azure 入口網站](https://portal.azure.com)的部署都需要 **ssh-rsa** 金鑰，無論部署模型為何。
-2. 需要 .pem 檔案才能使用[傳統入口網站](https://manage.windowsazure.com)來建立 VM。使用 [Azure CLI](../xplat-cli-install.md) 的傳統部署也支援 .pem 檔案。 
+1. 無論部署模型為何，任何使用 [Azure 入口網站](https://portal.azure.com)的部署都需要 **ssh-rsa** 金鑰。
+2. 需要 .pem 檔案才能使用[傳統入口網站](https://manage.windowsazure.com)來建立 VM。使用 [Azure CLI](../xplat-cli-install.md) 的傳統部署也支援 .pem 檔案。
 
 ## 建立金鑰與 SSH 搭配使用
 
@@ -42,7 +47,7 @@ Azure 的基本 SSH 安裝程式包含 2048 位元的 **ssh-rsa** 公用和私�
 
 如果您需要建立檔案：
 
-1. 請確定您的 **ssh-keygen** 和 **openssl** 實作是最新版。這會因平台而異。 
+1. 請確定您的 **ssh-keygen** 和 **openssl** 實作是最新版。這會因平台而異。
 
 	- 若是 Mac，請務必瀏覽 [Apple 產品安全性網站](https://support.apple.com/HT201222)，必要時選擇適當的更新。
 	- 若是 Ubuntu、Debian、Mint 等 Debian 型的 Linux 散發套件：
@@ -69,11 +74,11 @@ Azure 的基本 SSH 安裝程式包含 2048 位元的 **ssh-rsa** 公用和私�
 
 	如果您想要從不同的私密金鑰檔案建立.pem 檔案，請修改 `-key` 引數。
 
-> [AZURE.NOTE] 如果您打算管理使用傳統部署模型部署的服務，您可能也想要建立 **.cer** 格式檔案以上傳至入口網站 - 雖然這不牽涉到 **ssh** 或連接到 Linux VM，這是本文的主題。若要 在 Linux 或 Mac 上將 .pem 檔轉換為 DER 編碼的 X509憑證檔，輸入：<br /> openssl x509 -outform der -in myCert.pem -out myCert.cer
+> [AZURE.NOTE] 如果您打算管理使用傳統部署模型部署的服務，您可能也想要建立 **.cer** 格式檔案以上傳至入口網站 - 雖然這不牽涉到 **ssh** 或連接到 Linux VM，這是本文的主題。若要在 Linux 或 Mac 上將 .pem 檔轉換為 DER 編碼的 X509 憑證檔，請輸入：<br /> openssl x509 -outform der -in myCert.pem -out myCert.cer
 
 ## 使用您有的 SSH 金鑰
 
-您可以在所有新工作使用 ssh rsa (`.pub`) 金鑰，尤其是 Resource Manager 部署模型和預覽入口網站；如果您需要使用傳統入口網站，您可能需要從您的金鑰建立 `.pem` 檔案。
+您可以在所有新工作使用 ssh rsa (`.pub`) 金鑰，尤其是資源管理員部署模型和預覽入口網站；如果您需要使用傳統入口網站，您可能需要從您的金鑰建立 `.pem` 檔案。
 
 ## 建立 VM 與您的公開金鑰檔案
 
@@ -94,7 +99,7 @@ Azure 的基本 SSH 安裝程式包含 2048 位元的 **ssh-rsa** 公用和私�
 	-ssh-publickey-file ~/.ssh/id_rsa.pub \
 	testrg testvm westeurope linux
 
-下一個範例示範如何使用 **ssh-rsa** 格式與 Resource Manager 範本和 Azure CLI，建立受到使用者名稱和 `~/.ssh/id_rsa.pub` 內容字串保護的 Ubuntu VM。(本範例縮短公開金鑰字串以利閱讀。)
+下一個範例示範如何使用 **ssh-rsa** 格式與資源管理員範本和 Azure CLI，建立受到使用者名稱和 `~/.ssh/id_rsa.pub` 內容字串保護的 Ubuntu VM。(本範例縮短公開金鑰字串以利閱讀。)
 
 	azure group deployment create \
 	--resource-group test-sshtemplate \
@@ -251,7 +256,7 @@ Resource Manager 部署的典型用法看起來如下 (如果您只是指定子�
 
 ### 範例：使用 .pem 金鑰和傳統部署之 SSH 工作階段的輸出
 
-如果您使用從您的 `~/.ssh/id_rsa` 檔案建立之 .pem 檔案建立虛擬機器，可以直接 ssh 到該 VM。請注意，當您這樣做，憑證交握會使用您在 `~/.ssh/id_rsa` 的私密金鑰。(VM 建立程序會從 .pem 計算公開金鑰，並將 ssh-rsa 形式的公開金鑰放在 `~/.ssh/authorized_users` 中。) 連線可能看起來像以下範例：
+如果您使用從您的 `~/.ssh/id_rsa` 檔案建立之 .pem 檔案建立虛擬機器，可以直接 ssh 到該 VM。請注意，當您這樣做，憑證交握會使用您在 `~/.ssh/id_rsa` 的私密金鑰。(VM 建立程序會從 .pem 計算公開金鑰，並將 ssh-rsa 形式的公開金鑰放在 `~/.ssh/authorized_users` 中)。 連線可能看起來像以下範例：
 
 	ssh ops@testpemasm.cloudapp.net -p 22
 	The authenticity of host 'testpemasm.cloudapp.net (40.83.178.221)' can't be established.
@@ -293,4 +298,4 @@ Resource Manager 部署的典型用法看起來如下 (如果您只是指定子�
  
 既然您已連接到您的 VM，請務必先更新您所選的散發套件，再繼續使用它。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0817_2016-->

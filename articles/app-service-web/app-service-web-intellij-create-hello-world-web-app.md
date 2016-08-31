@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="Java" 
 	ms.topic="article" 
-	ms.date="06/24/2016" 
+	ms.date="08/11/2016" 
 	ms.author="asirveda;robmcm"/>
 
 # 在 IntelliJ 中建立 Azure 的 Hello World Web 應用程式
@@ -100,7 +100,7 @@
 
         目前，您可以從 Tomcat 8、Tomcat 7 或 Jetty 9 選擇。 所選軟體最新發行的版本由 Azure 提供，會在最新發行的 JDK 8 (由 Oracle 建立並由 Azure 提供) 中運作。
 
-  1. 在 [Subscription] \(訂用帳戶) 下拉式選單中，選取您希望此部署使用的訂用帳戶。
+  1. 在 [訂用帳戶] 下拉式選單中，選取您希望此部署使用的訂用帳戶。
 
   1. 在 [Resource Group] \(資源群組) 下拉式功能表中，選取您要與 Web 應用程式相關聯的資源群組。
 
@@ -270,4 +270,4 @@
 [17]: ./media/app-service-web-intellij-create-hello-world-web-app/17-Browse-Web-App.png
 [18]: ./media/app-service-web-intellij-create-hello-world-web-app/18-Stop-Web-App.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0817_2016-->

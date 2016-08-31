@@ -13,17 +13,20 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/12/2016"
+	ms.date="08/15/2016"
 	ms.author="elizapo"/>
 
 # 如何建立 Azure RemoteApp 的混合式收藏
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 Azure RemoteApp 收藏分成兩種：
 
 - 雲端：完全位於 Azure 中。您可以選擇在雲端儲存所有資料 (也就是僅限雲端的集合) 或將您的集合連線到 VNET，並於該處儲存資料。
 - 混合式：包含可內部存取的虛擬網路，這需要使用 Azure AD 和內部部署的 Active Directory 環境。
 
-不知道您需要什麼嗎? 請查看 [Azure RemoteApp 需要何種集合？](remoteapp-collections.md)
+不知道您需要什麼嗎? 請查看 [Azure RemoteApp 需要何種集合](remoteapp-collections.md)。
 
 本教學課程將逐步引導您完成建立混合式收藏的程序。有八個步驟：
 
@@ -149,4 +152,4 @@ Azure RemoteApp 應用程式就是您提供給使用者的應用程式或程式�
 ### 幫我們來協助您
 您知道除了評比這篇文章以及在下面留言以外，您可以變更文件本身嗎？ 有所遺漏？ 有所錯誤？ 我是否撰寫了令人混淆的內容？ 向上捲動並按一下 [在 GitHub 上編輯] 以進行變更 - 系統會顯示這些變更以供我們檢閱，而我們簽核後，您就會在這裡看到您所進行的變更和改良。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

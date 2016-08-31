@@ -14,19 +14,19 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/16/2016"
+	ms.date="08/16/2016"
 	ms.author="cynthn"/>
 
 # Windows 虛擬機器的常見問題 
 
 
-本文可解決在 Azure 中使用 Resource Manager 部署模型建立之 Windows 虛擬機器的一些使用者常見問題。如需本主題的 Linux 版本，請參閱 [Linux 虛擬機器的常見問題](virtual-machines-linux-faq.md)。
+本文可解決在 Azure 中使用 Resource Manager 部署模型建立之 Windows 虛擬機器的一些常見問題。如需本主題的 Linux 版本，請參閱 [Linux 虛擬機器的常見問題](virtual-machines-linux-faq.md)
 
 ## 我可以在 Azure VM 上執行什麼？
 
 所有的訂閱者都可以在 Azure 虛擬機器上執行伺服器軟體。如需在 Azure 中執行 Microsoft 伺服器軟體的支援原則資訊，請參閱 [Microsoft Azure 虛擬機器的 Microsoft 伺服器軟體支援](https://support.microsoft.com/kb/2721672)。
 
-針對 Windows 用戶端映像，特定版本的 Windows 7 和 Windows 8.1 可供 MSDN Azure 權益訂閱者和 MSDN 開發與測試隨用隨付訂閱者 (針對開發與測試工作) 使用。如需詳細資訊 (包括指示和限制)，請參閱 [MSDN 訂閱者的 Windows 用戶端映像](http://azure.microsoft.com/blog/2014/05/29/windows-client-images-on-azure/)。
+特定版本的 Windows 7 和 Windows 8.1 可供 MSDN Azure 權益訂閱者和 MSDN 開發與測試隨用隨付訂閱者 (針對開發與測試工作) 使用。如需詳細資訊 (包括指示和限制)，請參閱 [MSDN 訂閱者的 Windows 用戶端映像](http://azure.microsoft.com/blog/2014/05/29/windows-client-images-on-azure/)。
 
 
 ## 我可以使用多少的儲存體搭配虛擬機器？
@@ -38,7 +38,7 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 ## 如何存取我的虛擬機器？
 
-您必須使用遠端桌面連線 (RDP) 為 Windows VM 建立遠端連線。如需指示，請參閱[如何連接和登入執行 Windows 的 Azure 虛擬機器](virtual-machines-windows-connect-logon.md)。最多支援 2 個並行連線，除非伺服器設定為遠端桌面服務工作階段主機。
+您必須使用遠端桌面連線 (RDP) 為 Windows VM 建立遠端連線。如需指示，請參閱[如何連接和登入執行 Windows 的 Azure 虛擬機器](virtual-machines-windows-connect-logon.md)。除非將伺服器設定為遠端桌面服務工作階段主機，否則最多支援兩個並行連線。
 
 
 如果您在使用「遠端桌面」時遇到問題，請參閱[疑難排解以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線](virtual-machines-windows-troubleshoot-rdp-connection.md)。
@@ -53,7 +53,7 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 ## 如何變更暫存磁碟的磁碟機代號？
 
-在 Windows 虛擬機器上，您可以透過移動分頁檔並重新指派磁碟機代號來變更磁碟機代號，但您必須確定以特定的順序執行這些步驟。如需相關指示，請參閱[變更 Windows 暫存磁碟的磁碟機代號](virtual-machines-windows-classic-change-drive-letter.md)。
+您可以透過移動分頁檔並重新指派磁碟機代號來變更磁碟機代號，但必須確定會以特定的順序執行這些步驟。如需相關指示，請參閱[變更 Windows 暫存磁碟的磁碟機代號](virtual-machines-windows-classic-change-drive-letter.md)。
 
 ## 我是否可以將現有的 VM 新增到可用性設定組？
 
@@ -73,7 +73,7 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 ## 為什麼我在 Azure Resource Manager 中沒看到加拿大中部和加拿大東部區域？
 
-針對現有 Azure 訂用帳戶所建立的虛擬機器，不會自動登錄加拿大中部和加拿大東部這兩個新的區域。當虛擬機器透過 Azure 入口網站使用 Azure Resource Manager 部署到任何其他區域時，就會自動完成註冊。將虛擬機器部署到任何其他 Azure 區域之後，新的區域即可供後續的虛擬機器使用。
+針對現有 Azure 訂用帳戶所建立的虛擬機器，不會自動註冊加拿大中部和加拿大東部這兩個新的區域。當虛擬機器透過 Azure 入口網站使用 Azure Resource Manager 部署到任何其他區域時，就會自動完成註冊。將虛擬機器部署到任何其他 Azure 區域之後，新的區域即可供後續的虛擬機器使用。
 
 ## Azure 是否支援 Linux VM？
 
@@ -81,6 +81,6 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 ## 我可以在建立 VM 之後將 NIC 新增至此 VM 嗎？
 
-否。目前只能在建立時這樣做。
+否。新增 NIC 只能在建立期間完成。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0817_2016-->

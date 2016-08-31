@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/11/2016"
+   ms.date="08/16/2016"
    ms.author="cherylmc"/>
 
 # 使用 Azure CLI 匯入及匯出 DNS 區域檔案
@@ -107,7 +107,7 @@ Azure DNS 支援使用 Azure 命令列介面 (CLI) 匯入和匯出區域檔案�
 
 		azure config mode arm
 
-4. 使用 Azure DNS 服務之前，您必須註冊您的訂用帳戶才能使用 Microsoft.Network 資源提供者 (每個訂用帳戶只需執行一次此作業)。
+4. 使用 Azure DNS 服務之前，您必須註冊您的訂用帳戶才能使用 Microsoft.Network 資源提供者(每個訂用帳戶只需執行一次此作業)。
 
 		azure provider register Microsoft.Network
 
@@ -193,4 +193,4 @@ Azure DNS 支援使用 Azure 命令列介面 (CLI) 匯入和匯出區域檔案�
 
 		azure network dns zone export myresourcegroup contoso.com contoso.com.txt
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

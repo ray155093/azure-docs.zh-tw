@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/16/2016" 
+	ms.date="08/15/2016" 
 	ms.author="mandia"/>
 
 
@@ -65,7 +65,7 @@ Azure BizTalk 服務包含備份與還原功能。本主題說明如何使用 Az
 #### <a name="backupschedule"></a>排定備份
 
 1. 在 Azure 傳統入口網站上，選取 [BizTalk 服務]，選取您要排定備份的 BizTalk 服務名稱，然後選取 [設定] 索引標籤。
-2. 將 [**備份狀態**] 設為 [**自動**]。 
+2. 將 [**備份狀態**] 設為 [**自動**]。
 3. 選取要儲存備份的 [儲存體帳戶]，輸入建立備份的 [頻率] 以及備份的保留時間 ([保留天數])：
 
 	![][AutomaticBU]
@@ -235,4 +235,4 @@ BizTalk 服務永遠還原成**暫止**狀態。在此狀態下，您可以在�
 [RestoreBizTalkService]: ./media/biztalk-backup-restore/RestoreBizTalkServiceWindow.png
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

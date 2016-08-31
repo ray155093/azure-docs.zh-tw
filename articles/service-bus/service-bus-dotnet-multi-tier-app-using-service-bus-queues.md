@@ -43,7 +43,7 @@
 
 在 Web 層與中間層之間使用代理的通訊，可使這兩個元件彼此脫鉤。相較於直接傳訊 (亦即，TCP 或 HTTP)，Web 層不會直接連線至中間層，而是透過訊息的形式，將工作單位推播至服務匯流排，而後者會可靠地保管工作單位，直到中間層準備好取用並處理這些工作單位為止。
 
-服務匯流排提供兩個實體來支援代理的傳訊，也就是：佇列和主題。使用佇列時，每個傳送至佇列的訊息都是由單一接收者取用。主題可支援發佈/訂用帳戶模式，亦即每個發佈的訊息會提供給在主題註冊的訂用帳戶。每個訂用帳戶在邏輯上會維護自己的訊息佇列。訂用帳戶也可以設定成使用篩選規則，以將傳遞至訂用帳戶佇列的訊息限制為符合篩選條件的訊息。下列範例使用服務匯流排佇列。
+服務匯流排提供兩個實體來支援代理的傳訊，也就是：佇列和主題。使用佇列時，每個傳送至佇列的訊息都是由單一接收者取用。主題可支援發佈/訂用帳戶模式，亦即每個發佈的訊息會提供給在主題註冊的訂用帳戶。每個訂閱在邏輯上會維護自己的訊息佇列。訂用帳戶也可以設定成使用篩選規則，以將傳遞至訂用帳戶佇列的訊息限制為符合篩選條件的訊息。下列範例使用服務匯流排佇列。
 
 ![][1]
 
@@ -73,45 +73,11 @@
 
 6.  完成安裝後，您將具有開始進行開發所需的一切。SDK 包含可讓您在 Visual Studio 輕易開發 Azure 應用程式的工具。如果您未安裝 Visual Studio，則 SDK 也會安裝免費的 Visual Studio Express。
 
-## 建立服務匯流排命名空間
+## 建立命名空間
 
-下一步是建立服務命名空間，並取得共用存取簽章 (SAS) 金鑰。命名空間會為每個透過服務匯流排公開的應用程式提供應用程式界限。建立服務命名空間時，系統會產生 SAS 金鑰。命名空間與 SAS 金鑰的結合提供一個認證，供服務匯流排驗證對應用程式的存取權。
+下一步是建立服務命名空間，並取得共用存取簽章 (SAS) 金鑰。命名空間會為每個透過服務匯流排公開的應用程式提供應用程式界限。建立命名空間時，系統會產生 SAS 金鑰。命名空間與 SAS 金鑰的結合提供一個認證，供服務匯流排驗證對應用程式的存取權。
 
-### 使用 Azure 傳統入口網站設定命名空間：
-
-1.  登入 [Azure 傳統入口網站][]。
-
-2.  在入口網站的左方瀏覽窗格中，按一下 [服務匯流排]。
-
-3.  在入口網站的下方窗格中，按一下 [建立]。
-
-    ![][6]
-
-4.  在 [加入新的命名空間] 頁面中，輸入命名空間名稱。系統會立即檢查此名稱是否可用。
-
-    ![][7]
-
-5.  確定命名空間名稱可用之後，請選擇要代管命名空間的國家或區域 (必須使用您要部署計算資源的相同國家/區域)。另外，請確定您在命名空間的 [**類型**] 欄位中選取 [**傳訊**]，並在 [**傳訊層**] 欄位中選取 [**標準**]。
-
-    > [AZURE.IMPORTANT] 請挑選您想選擇用來部署應用程式的**相同區域**。這樣可以獲得最佳效能。
-
-6.  按一下 [確定] 核取記號。此時系統會建立並啟用服務命名空間。系統為帳戶提供資源時，您可能需要等幾分鐘。
-
-7.  在主視窗中，按一下服務命名空間的名稱。
-
-8. 按一下 [連線資訊]。
-
-9.  在 [**存取連線資訊**] 窗格中，尋找包含 SAS 金鑰和金鑰名稱的連接字串。
-
-    ![][35]
-
-10.  記下這些認證，或將它們複製到剪貼簿。
-
-11. 在相同的入口網站頁面中，按一下頁面頂端的 [設定] 索引標籤。
-
-12. 請將 **RootManageSharedAccessKey** 原則的主索引鍵複製到剪貼簿，或將它貼到 [記事本] 中。您稍後會在本教學課程中使用此值。
-
-	![][36]
+[AZURE.INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
 ## 建立 Web 角色
 
@@ -245,7 +211,7 @@
 
 7.  按一下 [新增]。
 
-8.  現在，變更您的應用程式的顯示名稱。在 [方案總管] 中，按兩下 **Views\\Shared\\_Layout.cshtml** 檔案以在 Visual Studio 編輯器中加以開啟。
+8.  現在，變更應用程式的顯示名稱。在 [**方案總管**] 中，按兩下 **Views\\Shared\\_Layout.cshtml** 檔案以在 Visual Studio 編輯器中開啟。
 
 9.  將所有出現的 **My ASP.NET Application** 取代為 **LITWARE'S Products**。
 
@@ -271,7 +237,7 @@
 
 2.  將類別命名為 **QueueConnector.cs**。按一下 [加入] 以建立類別。
 
-3.  現在，加入可封裝連線資訊、並初始化與服務匯流排佇列連線的程式碼。以下列程式碼取代 QueueConnector.cs 的整個內容，並將值輸入 `your Service Bus namespace` (命名空間名稱) 和 `yourKey`，後者是先前在＜建立服務匯流排命名空間＞一節的步驟 12 中，取自 [Azure 傳統入口網站][]的**主要金鑰**。
+3.  現在，加入可封裝連線資訊、並初始化與服務匯流排佇列連線的程式碼。在 QueueConnector.cs 中，加入下列程式碼，並在 [命名空間] \(您的服務命名空間) 和 [yourKey] \(也就是您稍早從) [Azure 傳統入口網站][]中取得的 SAS 金鑰) 中輸入值。
 
 	```
 	using System;
@@ -448,13 +414,13 @@
 
 若要深入了解服務匯流排，請參閱下列資源：
 
-* [Azure 服務匯流排][sbmsdn]  
-* [服務匯流排服務頁面][sbwacom]  
-* [如何使用服務匯流排佇列][sbwacomqhowto]  
+* [Azure 服務匯流排][sbmsdn]
+* [服務匯流排服務頁面][sbwacom]
+* [如何使用服務匯流排佇列][sbwacomqhowto]
 
 若要深入了解多層式案例，請參閱︰
 
-* [使用儲存體資料表、佇列與 Blob 的 .NET 多層式應用程式][mutitierstorage]  
+* [使用儲存體資料表、佇列與 Blob 的 .NET 多層式應用程式][mutitierstorage]
 
   [0]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-01.png
   [1]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-100.png
@@ -472,9 +438,6 @@
 
   [EventHubClient]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventhubclient.aspx
 
-  [Azure 傳統入口網站]: http://manage.windowsazure.com
-  [6]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/sb-queues-03.png
-  [7]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/sb-queues-04.png
   [9]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-10.png
   [10]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-11.png
   [11]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-02.png
@@ -492,8 +455,6 @@
   [25]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/SBWorkerRoleProperties.png
   [26]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/SBNewWorkerRole.png
   [28]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-40.png
-  [35]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/multi-web-45.png
-  [36]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/service-bus-policies.png
 
   [sbmsdn]: http://msdn.microsoft.com/library/azure/ee732537.aspx
   [sbwacom]: /documentation/services/service-bus/
@@ -501,4 +462,4 @@
   [mutitierstorage]: https://code.msdn.microsoft.com/Windows-Azure-Multi-Tier-eadceb36
   
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0824_2016-->

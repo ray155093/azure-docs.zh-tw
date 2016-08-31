@@ -12,16 +12,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="05/08/2016"
+   ms.date="08/15/2016"
    ms.author="tarcher" />
 
 # 使用雲端總管管理 Azure 資源
 
-##概觀
+##Overview
 
 [雲端總管] 是為了讓您更輕鬆快速地在 Visual Studio IDE 內瀏覽和管理 Azure 資源。比方說，它可讓您在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)或瀏覽器中開啟 Web 應用程式，或將偵錯工具附加給它，或者，您可以檢視 blob 容器的屬性並在 [Blob 容器編輯器] 中開啟它。
 
-[雲端總管] 以 Azure Resource Manager 堆疊為基礎，就像 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。它了解 Azure 資源群組等資源及邏輯應用程式和 API 應用程式等 Azure 服務，且支援[角色型存取控制](../role-based-access-control-configure/) (RBAC)。若要查看已加入或變更的 Azure 資源，請選擇 [雲端總管] 工具列的 [重新整理] 按鈕。
+[雲端總管] 以 Azure Resource Manager 堆疊為基礎，就像 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。它了解 Azure 資源群組等資源及邏輯應用程式和 API 應用程式等 Azure 服務，且支援[角色型存取控制](./active-directory/role-based-access-control-configure.md) (RBAC)。若要查看已加入或變更的 Azure 資源，請選擇 [雲端總管] 工具列的 [重新整理] 按鈕。
 
 [雲端總管] 安裝為 Visual Studio Tools for Azure SDK 2.7 的一部分。
 
@@ -36,7 +36,7 @@
 
 ## 管理 Azure 帳戶和訂用帳戶
 
-若要在 [雲端總管] 中查看您的 Azure 資源，您需要登入具有一或多個作用中訂用帳戶的 Azure 帳戶。如果您有一個以上的 Azure 帳戶，您可以將它們加入 [雲端總管] 中，然後選擇您想要包含在 [雲端總管] 資源檢視中的訂用帳戶。
+若要在 [雲端總管] 中查看您的 Azure 資源，您需要登入具有一或多個作用中訂用帳戶的 Azure 帳戶。如果您有一個以上的 Azure 帳戶，您可以將它們新增至 [雲端總管] 中，然後選擇您想要包含在 [雲端總管] 資源檢視中的訂用帳戶。
 
 如果您未曾使用過 Azure，或尚未將必要的帳戶加入至 Visual Studio，將會提示您這樣做。
 
@@ -52,7 +52,7 @@
 
 1. 選取您想要瀏覽之訂用帳戶的核取方塊，然後選擇 [套用] 按鈕。
 
-    選取的訂用帳戶的 Azure 資源會出現在 [雲端總管] 中。
+    所選訂用帳戶的 Azure 資源會出現在 [雲端總管] 中。
 
 ## 移除 Azure 帳戶
 
@@ -95,4 +95,4 @@
 
 當您在 [搜尋] 方塊中輸入字元時，只有符合這些字元的資源才會出現在資源樹狀目錄中。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0817_2016-->

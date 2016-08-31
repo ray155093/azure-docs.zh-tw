@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/23/2016"
+	ms.date="08/16/2016"
 	ms.author="garye;bradsev;ahgyger"/>
 
 
 # 建立和共用 Azure Machine Learning 工作區
 
-此功能表會連結至說明如何設定 Cortana 分析程序 (CAP) 所用的各種資料科學環境的主題。
+此功能表會連結至說明如何設定 Cortana Analytics 程序 (CAP) 所用的各種資料科學環境主題。
 
 [AZURE.INCLUDE [data-science-environment-setup](../../includes/cap-setup-environments.md)]
 
@@ -72,7 +72,7 @@
 
 ## <a name="subscriptionvsworkspace"></a>Azure 訂用帳戶管理員與工作區擁有者的權限
 
-以下是釐清 Azure 訂用帳戶管理員和工作區擁有者之間差異的資料表。
+下表釐清 Azure 訂用帳戶管理員和工作區擁有者之間差異。
 
 | 動作 | Azure 訂用帳戶管理員 | 工作區擁有者 |
 | --------------			|:------------------------:| :----------------:|
@@ -105,4 +105,4 @@
 [Machine Learning Studio]: https://studio.azureml.net/
 [Microsoft Azure 傳統入口網站]: https://manage.windowsazure.com/
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0817_2016-->

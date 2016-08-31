@@ -70,4 +70,4 @@ Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權�
 - 請參閱 [RBAC 內建角色](role-based-access-built-in-roles.md)
 - 為自己定義 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!----HONumber=AcomDC_0727_2016-->

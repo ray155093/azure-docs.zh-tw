@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 Azure Resource Manager 和 Azure 入口網站建立具有站對站 VPN 連線的虛擬網路 | Microsoft Azure"
-   description="本文會帶領您建立使用資源管理員模型的 VNet 並使用 S2S VPN 閘道連線將其連接到您的本機內部部署網路。"
+   pageTitle="使用 Azure Resource Manager 和 Azure 入口網站建立具有網站間 VPN 連線的虛擬網路 | Microsoft Azure"
+   description="如何使用 Resource Manager 模型建立 VNet 並使用 S2S VPN 閘道連線將它連接到您的本機內部部署網路。"
    services="vpn-gateway"
    documentationCenter="na"
    authors="cherylmc"
@@ -14,10 +14,10 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/13/2016"
+   ms.date="08/22/2016"
    ms.author="cherylmc"/>
 
-# 使用 Azure 入口網站和 Azure Resource Manager 建立具有站對站 VPN 連線的 VNet
+# 使用 Azure 入口網站和 Azure Resource Manager 建立具有網站間 VPN 連線的 VNet
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
@@ -25,33 +25,29 @@
 - [PowerShell - 資源管理員](vpn-gateway-create-site-to-site-rm-powershell.md)
 
 
-本文將逐步引導您使用 Azure Resource Manager 部署模型和 Azure 入口網站，建立虛擬網路以及內部部署網路的站對站 VPN 連線。在下列步驟中，您將建立 VNet、新增閘道子網路、閘道、本機站台及連線。此外，您也需要設定 VPN 裝置。
+本文逐步引導您使用 Azure Resource Manager 部署模型和 Azure 入口網站，建立虛擬網路以及內部部署網路的網站間 VPN 連線。
+
+![圖表](./media/vpn-gateway-howto-site-to-site-resource-manager-portal/s2srmportal.png)
 
 
 
-**關於 Azure 部署模型**
+### 網站間連線的部署模型和工具
 
 [AZURE.INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
-## 連接圖表
-
-![網站間](./media/vpn-gateway-howto-site-to-site-resource-manager-portal/site2site.png)
-
-**站對站連線的部署模型和工具**
-
 [AZURE.INCLUDE [vpn-gateway-table-site-to-site-table](../../includes/vpn-gateway-table-site-to-site-include.md)]
 
-如果您想要將 VNet 連接在一起，但不要建立對內部部署位置的連線，請參閱[設定 VNet 對 VNet 連線](vpn-gateway-vnet-vnet-rm-ps.md)。如果您要尋找不同類型的連線組態，請參閱 [VPN 閘道連線拓撲](vpn-gateway-topology.md)一文。
+如果您想要將 VNet 連接在一起，但不要建立對內部部署位置的連線，請參閱[設定 VNet 對 VNet 連線](vpn-gateway-vnet-vnet-rm-ps.md)。
 
 ## 開始之前
 
 在開始設定之前，請確認您具備下列項目：
 
-- 相容的 VPN 裝置以及能夠進行設定的人員。請參閱[關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)。如果不熟悉設定 VPN 裝置，或不熟悉位於內部部署網路組態的 IP 位址範圍，則您將需要與能夠提供那些詳細資料的人協調。
+- 相容的 VPN 裝置以及能夠進行設定的人員。請參閱[關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)。如果不熟悉設定 VPN 裝置，或不熟悉位於內部部署網路組態的 IP 位址範圍，則您需要與能夠提供那些詳細資料的人協調。
 
 - 您的 VPN 裝置對外開放的公用 IP 位址。此 IP 位址不能位於 NAT 後方。
 	
-- Azure 訂閱。如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](http://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或註冊[免費帳戶](http://azure.microsoft.com/pricing/free-trial/)。
+- Azure 訂用帳戶。如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](http://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或註冊[免費帳戶](http://azure.microsoft.com/pricing/free-trial/)。
 
 ### <a name="values"></a>此練習的範例組態值
 
@@ -60,7 +56,7 @@
 
 - VNet 名稱︰TestVNet1
 - 位址空間︰10.11.0.0/16 和 10.12.0.0/16
-- 子網路： 
+- 子網路：
 	- FrontEnd：10.11.0.0/24
 	- BackEnd：10.12.0.0/24
 	- GatewaySubnet：10.12.255.0/27
@@ -70,7 +66,7 @@
 - 閘道名稱：VNet1GW
 - 公用 IP: VNet1GWIP
 - VPN 類型︰路由式
-- 連線類型︰站對站 (IPsec)
+- 連線類型︰網站間 (IPsec)
 - 閘道類型：VPN
 - 區域網路閘道名稱：Site2
 - 連線名稱：VNet1toSite2
@@ -79,7 +75,7 @@
 
 ## 1\.建立虛擬網路 
 
-如果您已建立虛擬網路，請確認設定是否與您的 VPN 閘道設計相容，應特別注意任何可能會與其他網路重疊的子網路。如果有重疊的子網路，您的連線便會無法正常運作。如果您已驗證您的 VNet 已設定為正確的設定，即可開始執行[指定 DNS 伺服器](#dns)一節中的步驟。
+如果您已經有 VNet，請驗證設定是否與您的 VPN 閘道設計相容。請特別注意任何可能與其他網路重疊的子網路。如果有重疊的子網路，您的連線便無法正常運作。如果您的 VNet 已設定為正確的設定，即可開始執行[指定 DNS 伺服器](#dns)一節中的步驟。
 
 ### 建立虛擬網路
 
@@ -101,9 +97,9 @@
 
 ## 4\.建立閘道子網路
 
-將虛擬網路連接到閘道之前，您必須先建立虛擬網路要連接的閘道子網路。您建立的閘道子網路必須命名為 *GatewaySubnet* 才能正常運作。
+將虛擬網路連接到閘道之前，您必須先建立虛擬網路要連接的閘道子網路。您建立的閘道子網路必須命名為 GatewaySubnet，否則無法正常運作。
 
-某些設定的閘道子網路首碼需要是 /28 或更大的子網路，才能容納集區中所需的 IP 位址個數。這表示閘道子網路首碼必須是 /28、/27、/26 等。您可以在此建立較大的子網路，以便容納未來可能的設定新增。
+某些設定的閘道子網路首碼需要是 /28 或更大的子網路，才能容納集區中所需的 IP 位址個數。這表示閘道子網路首碼必須是 /28、/27、/26 等。您可以在此建立較大的子網路，以容納未來可能的設定新增。
 
 如果您在練習中建立此設定，請在建立閘道子網路時參考這些[值](#values)。
 
@@ -123,9 +119,9 @@
 
 ## 6\.建立區域網路閘道
 
-區域網路閘道會參考您的內部部署位置。您將會賦予區域網路閘道一個可讓 Azure 參考它的名稱。
+區域網路閘道會參考您的內部部署位置。賦予區域網路閘道一個可供 Azure 參考它的名稱。
 
-如果您在練習中建立此組態，請在新增本機站台時參考這些[值](#values)。
+如果您在練習中建立此設定，請在新增本機站台時參考這些[值](#values)。
 
 ### 建立區域網路閘道
 
@@ -135,9 +131,9 @@
 
 [AZURE.INCLUDE [vpn-gateway-configure-vpn-device-rm](../../includes/vpn-gateway-configure-vpn-device-rm-include.md)]
 
-## 8\.建立站對站 VPN 連線
+## 8\.建立網站間 VPN 連線
 
-接下來，在虛擬網路閘道與 VPN 裝置之間建立站對站 VPN 連線。請務必將值取代為您自己的值。共用的金鑰必須符合您用於 VPN 裝置設定的值。
+在虛擬網路閘道與 VPN 裝置之間建立網站間 VPN 連線。請務必將值取代為您自己的值。共用的金鑰必須符合您用於 VPN 裝置設定的值。
 
 開始這一節之前，請確認虛擬網路閘道與區域網路閘道已完成建立。如果您在練習中建立此組態，請在建立連線時參考這些[值](#values)。
 
@@ -156,6 +152,6 @@
 
 - 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。如需詳細資訊，請參閱虛擬機器[學習路徑](https://azure.microsoft.com/documentation/learning-paths/virtual-machines)。
 
-- 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md) 和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
+- 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md)和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0824_2016-->

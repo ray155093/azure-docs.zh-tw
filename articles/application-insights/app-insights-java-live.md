@@ -17,7 +17,7 @@
  
 # 適用於使用中 Java Web 應用程式的 Application Insights
 
-*Application Insights 目前僅供預覽。*
+Application Insights 目前僅供預覽。
 
 如果您有 Web 應用程式已在 J2EE 伺服器上執行，您可以使用 [Appliction Insights](app-insights-overview.md) 開始監視它，不需要變更程式碼或重新編譯您的專案。使用此選項可以取得傳送至您伺服器的 HTTP 要求、未處理的例外狀況和效能計數器的相關資訊。
 
@@ -40,7 +40,7 @@
 
 ## 2\.下載 SDK
 
-1. 下載 [Application Insights SDK for Java](https://azuredownloads.blob.core.windows.net/applicationinsights/sdk.html)。 
+1. 下載 [Application Insights SDK for Java](https://aka.ms/aijavasdk)。
 2. 在您的伺服器上，將 SDK 內容解壓縮到載入您專案二進位檔的目錄。如果您使用 Tomcat，這通常會在 `webapps<your_app_name>\WEB-INF\lib` 下
 
 
@@ -139,4 +139,4 @@
 
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0817_2016-->

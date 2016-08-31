@@ -12,7 +12,7 @@ ms.service="search"
 ms.devlang="rest-api"
 ms.workload="search" ms.topic="article"  
 ms.tgt_pltfrm="na"
-ms.date="08/08/2016"
+ms.date="08/16/2016"
 ms.author="eugenesh" />
 
 # 使用 Azure 搜尋服務在 Azure Blob 儲存體中對文件編制索引
@@ -37,7 +37,7 @@ blob 索引子可以從下列文件格式擷取文字：
 
 ## 設定 blob 編製索引
 
-若要設定 Azure Blob 儲存體索引子，您可以使用 Azure 搜尋服務 REST API 以建立和管理**索引子**及**資料來源**，如[本文](https://msdn.microsoft.com/library/azure/dn946891.aspx)中所述。在未來，對 blob 索引的支援將會新增至 Azure 搜尋服務 .NET SDK 和 Azure 入口網站。
+若要設定 Azure Blob 儲存體索引子，您可以使用 Azure 搜尋服務 REST API 以建立和管理**索引子**及**資料來源**，如[本文](https://msdn.microsoft.com/library/azure/dn946891.aspx)中所述。您也可以使用 .NET SDK 的[版本 2.0 預覽版](https://msdn.microsoft.com/library/mt761536%28v=azure.103%29.aspx)。在未來，對 blob 索引的支援將會新增至 Azure 入口網站。
 
 若要設定索引子，請執行下列三個步驟︰建立資料來源、建立索引、設定索引子。
 
@@ -303,4 +303,4 @@ AzureSearch\_SkipContent | "true" | 指示 blob 索引子僅編制索引中繼�
 
 如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

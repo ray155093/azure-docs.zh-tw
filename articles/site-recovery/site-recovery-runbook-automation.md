@@ -308,4 +308,4 @@ CloudServiceName | 在其下建立虛擬機器的 Azure 雲端服務名稱。
 
 [Azure 自動化範例指令碼](http://gallery.technet.microsoft.com/scriptcenter/site/search?f[0].Type=User&f[0].Value=SC%20Automation%20Product%20Team&f[0].Text=SC%20Automation%20Product%20Team "Azure 自動化範例指令碼")
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0817_2016-->

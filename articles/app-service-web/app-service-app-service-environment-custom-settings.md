@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/01/2016"
+	ms.date="08/17/2016"
 	ms.author="stefsch"/>
 
 # App Service 環境的自訂組態設定
 
-## 概觀 ##
+## Overview ##
 因為 App Service 環境對單一客戶是隔離的，所以有某些專門套用到 App Service 環境的組態設定。本文記錄各種可供 App Service 環境使用的特定自訂。
 
 您可以使用新 **clusterSettings** 屬性的陣列儲存 App Service 環境自訂。這個屬性是在 *hostingEnvironments* Azure Resource Manager 實體的「屬性」字典中找到的。
@@ -85,7 +85,7 @@
             }
         ],
 
-> [AZURE.WARNING]  如果對安全通道無法了解的加密套件設定了不正確的值，對您的伺服器的所有 TLS 通訊可能會停止運作。在這種情況下，您必須從 **clusterSettings** 移除 *FrontEndSSLCipherSuiteOrder* 項目，並提交更新的 ARM 範本以還原回預設的加密套件設定。請謹慎使用這項功能。
+> [AZURE.WARNING]  如果對安全通道無法了解的加密套件設定了不正確的值，對您的伺服器的所有 TLS 通訊可能會停止運作。在這種情況下，您必須從 **clusterSettings** 移除「FrontEndSSLCipherSuiteOrder」項目，並提交更新的 Resource Manager 範本以還原回預設的加密套件設定。請謹慎使用這項功能。
 
 ## 開始使用
 Azure 快速入門 Resource Manager 範本網站包含具有[建立 App Service 環境](https://azure.microsoft.com/documentation/templates/201-web-app-ase-create/)基本定義的範本。
@@ -95,4 +95,4 @@ Azure 快速入門 Resource Manager 範本網站包含具有[建立 App Service 
 
 <!-- IMAGES -->
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0817_2016-->

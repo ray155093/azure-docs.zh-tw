@@ -32,6 +32,7 @@ Azure 會將映像儲存在 [我的映像] 之下。這個位置與您已上傳�
 
 - [從映像建立虛擬機器](virtual-machines-windows-classic-createportal.md)
 - [如何將資料磁碟連結至虛擬機器](virtual-machines-windows-classic-attach-disk.md)
+- 請確定 Sysprep 支援伺服器角色。如需詳細資訊，請參閱 [Sysprep Support for Server Roles (伺服器角色的 Sysprep 支援)](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)。
 
 > [AZURE.WARNING] 此程序會在擷取原始虛擬機器後將其刪除。
 
@@ -70,7 +71,7 @@ Azure 會將映像儲存在 [我的映像] 之下。這個位置與您已上傳�
 
 11.	將 Windows Server 映像新增到自訂映像組合之前，必須先如前述步驗所指示，執行 Sysprep 將它一般化。按一下 [**我已經在虛擬機器上執行 Sysprep**] 來表示您已這麼做。
 
-12.	按一下打勾記號以擷取映像。新映像現在會出現在 [映像] 下。
+12.	按一下打勾記號以擷取映像。新映像現在提供於 [映像] 底下。
 
  	![Image capture successful](./media/virtual-machines-windows-classic-capture-image/VMCapturedImageAvailable.png)
 
@@ -90,4 +91,4 @@ Azure 會將映像儲存在 [我的映像] 之下。這個位置與您已上傳�
 [Image capture successful]: ./media/virtual-machines-capture-image-windows-server/CaptureSuccess.png
 [Use the captured image]: ./media/virtual-machines-capture-image-windows-server/MyImagesWindows.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

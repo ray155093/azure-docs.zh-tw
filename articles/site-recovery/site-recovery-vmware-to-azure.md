@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/09/2016"
+	ms.date="08/12/2016"
 	ms.author="raynew"/>
 
 # 使用 Azure 入口網站的 Azure Site Recovery 將 VMware 虛擬機器和實體機器複寫至 Azure
@@ -52,6 +52,19 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 - 您可以輕鬆執行從內部部署基礎結構容錯移轉至 Azure，以及從 Azure 容錯回復 (還原) 至內部部署網站中的 VMware VM 伺服器。
 - 您可以啟用多部 VM 並建立複寫群組，以便分層跨越多部機器的應用程式工作負載會同時複寫。在容錯移轉時，複寫群組中的所有機器都有損毀一致且應用程式一致的復原點。針對容錯移轉，您可以在復原方案中收集多部機器，以便與階層式應用程式工作負載一起容錯移轉。
 
+## 支援的作業系統
+
+### Windows (僅 64 位元)
+- Windows Server 2008 R2 SP1+
+- Windows Server 2012
+- Windows Server 2012 R2
+
+### Linux (僅 64 位元)
+- Red Hat Enterprise Linux 6.7、7.1、7.2
+- CentOS 6.5、6.6、6.7、7.0、7.1、7.2
+- Oracle Enterprise Linux 6.4、6.5，執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3)
+- SUSE Linux Enterprise Server 11 SP3
+
 ## 案例架構
 
 案例元件如下：
@@ -77,7 +90,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 **必要條件** | **詳細資料**
 --- | ---
-**Azure 帳戶**| 您將需要 [Microsoft Azure](http://azure.microsoft.com/) 帳戶。您可以從[免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。[深入了解](https://azure.microsoft.com/pricing/details/site-recovery/) Site Recovery 定價。
+**Azure 帳戶**| 您將需要 [Microsoft Azure](http://azure.microsoft.com/) 帳戶。您可以從[免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。[深入了解](https://azure.microsoft.com/pricing/details/site-recovery/) Site Recovery 價格。
 **Azure 儲存體** | 複寫的資料會儲存在 Azure 儲存體，而在容錯移轉時會建立 Azure VM。<br/><br/>若要儲存資料，您需要在與復原服務保存庫相同的區域中有標準或進階儲存體帳戶。<br/><br/>您可以使用 LRS 或 GRS 儲存體帳戶。我們建議使用 GRS，以便在發生區域性停電或無法復原主要區域時，能夠恢復資料。[深入了解](../storage/storage-redundancy.md)。<br/><br/> [進階儲存體](../storage/storage-premium-storage.md)通常用於需要持續高 IO 效能和低度延遲的虛擬機器來裝載 IO 密集型工作負載。<br/><br/> 如果您想要使用進階儲存體帳戶來儲存複寫的資料，則也需要標準儲存體帳戶來儲存複寫記錄檔，而這類記錄檔會擷取內部部署資料的進行中變更。<br/><br/> 請注意，在 Azure 入口網站中建立的儲存體帳戶不能跨越資源群組移動。目前在印度中部與印度南部也不支援對進階儲存體帳戶提供保護。<br/><br/> [深入了解](../storage/storage-introduction.md) Azure 儲存體。
 **Azure 網路** | 容錯移轉發生時，您需要 Azure VM 會連接的 Azure 虛擬網路。Azure 虛擬網路必須位於與復原服務保存庫相同的區域中。
 **從 Azure 容錯回復** | 您將需要設定暫存處理序伺服器作為 Azure VM。您可以在準備好要容錯回復時建立，並在容錯回復完成之後刪除它。<br/><br/> 若要容錯回復，您將需要有從 Azure 網路到內部部署網站的 VPN 連線 (或 Azure ExpressRoute)。
@@ -95,8 +108,8 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 **必要條件** | **詳細資料**
 --- | ---
-**vSphere**| 您需要一或多個 VMware vSphere Hypervisor。<br/><br/>Hypervisor 應該執行帶有最新更新項目的 6.0、5.5 或 5.1 版 vSphere。<br/><br/>建議您讓 vSphere 主機和 vCenter 伺服器位於與處理序伺服器相同的網路 (除非您已設定專用的處理序伺服器，否則這會是組態伺服器所在的網路)。
-**vCenter** | 建議您部署 VMware vCenter 伺服器來管理您的 vSphere 主機。它應該執行帶有最新更新項目的 6.0 或 5.5 版 vCenter。<br/><br/>請注意，Site Recovery 不支援新的 vCenter 和 vSphere 6.0 功能，例如跨 vCenter vMotion、虛擬磁碟區和儲存體 DRS。Site Recovery 支援僅限於 5.5 版中可用的功能。
+**vSphere**| 您需要一或多個 VMware vSphere Hypervisor。<br/><br/>Hypervisor 應該執行具有最新更新項目的 6.0、5.5 或 5.1 版 vSphere。<br/><br/>建議您讓 vSphere 主機和 vCenter 伺服器位於與處理序伺服器相同的網路 (除非您已設定專用的處理序伺服器，否則這會是組態伺服器所在的網路)。
+**vCenter** | 建議您部署 VMware vCenter 伺服器來管理您的 vSphere 主機。它應該執行具有最新更新項目的 6.0 或 5.5 版 vCenter。<br/><br/>請注意，Site Recovery 不支援新的 vCenter 和 vSphere 6.0 功能，例如跨 vCenter vMotion、虛擬磁碟區和儲存體 DRS。Site Recovery 支援僅限於 5.5 版中可用的功能。
 
 
 ## 受保護的機器必要條件
@@ -105,14 +118,14 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 --- | ---
 **內部部署 VMware VM** | 您想要保護的 VMware VM 應該安裝並執行 VMware 工具。<br/><br/> 您想要保護的機器應該要符合建立 Azure VM 的 [Azure 必要條件](site-recovery-best-practices.md#azure-virtual-machine-requirements)。<br/><br/>受保護機器上的個別磁碟容量不應超過 1023 GB。VM 可以有多達 64 個磁碟 (因此多達 64 TB)。<br/><br/>不支援共用磁碟客體叢集。<br/><br/>不支援「整合可延伸韌體介面」(UEFI)/「可延伸韌體介面」(EFI) 開機。<br/><br/>機器名稱應包含 1 到 63 個字元 (字母、數字和連字號)。名稱必須以字母或數字開頭，並以字母或數字結尾。為機器啟用複寫之後，您就可以修改 Azure 名稱。<br/><br/>如果來源 VM 有 NIC 小組，在容錯移轉至 Azure 之後，它會轉換成單一 NIC。<br/><br/>如果受保護的 VM 具有 iSCSI 磁碟，則當 VM 容錯移轉至 Azure 時，Site Recovery 會將受保護的 VM iSCSI 磁碟轉換成 VHD 檔案。如果 Azure VM 可以觸及 iSCSI 目標，則它會連接到 iSCSI 目標，並且基本上查看兩個磁碟 – Azure VM 上的 VHD 磁碟和來源 iSCSI 磁碟。在此情況下，您必須將出現在 Azure VM 的 iSCSI 目標中斷連線。
 **Windows 機器 (實體或 VMware)** | 機器應該執行受支援的 64 位元作業系統：Windows Server 2012 R2、Windows Server 2012 或 Windows Server 2008 R2 (至少為 SP1)。<br/><br/> 作業系統應該安裝在 C:\\ 磁碟機上。OS 磁碟應該是 Windows 基本磁碟而非動態磁碟。資料磁碟可以是動態磁碟。<br/><br/>Site Recovery 支援具有 RDM 磁碟的 VM。在容錯回復期間，如果原始來源 VM 和 RDM 磁碟可用，則 Site Recovery 會重複使用 RDM 磁碟。如果它們都無法使用，在容錯回復期間，Site Recovery 會為每個磁碟建立新的 VMDK 檔案。
-**Linux 機器** | 您將需要受支援的 64 位元作業系統：Red Hat Enterprise Linux 6.7；Centos 6.5、6.6、6.7；執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3) 的 Oracle Enterprise Linux 6.4、6.5；SUSE Linux Enterprise Server 11 SP3。<br/><br/>受保護機器上的 /etc/hosts 檔案應該包含將本機主機名稱對應至與所有網路介面卡關聯之 IP 位址的項目。<br/><br/>如果您想要在容錯移轉之後，使用「安全殼層」用戶端 (SSH) 來連線到執行 Linux 的 Azure 虛擬機器，請確定在受保護電腦上的「安全殼層」服務已設定為在系統開機時自動啟動，而且防火牆規則允許對其進行 SSH 連線。<br/><br/>主機名稱、掛接點、裝置名稱及 Linux 系統路徑和檔案名稱 (例如 /etc/、/usr) 應該僅使用英文。<br/><br/>只能針對具有下列儲存體的 Linux 機器啟用保護：檔案系統 (EXT3、ETX4、ReiserFS、XFS)；多重路徑軟體裝置對應工具 (multipath)；磁碟區管理員：(LVM2)。不支援使用 HP CCISS 控制站儲存體的實體伺服器。只有在 SUSE Linux Enterprise Server 11 SP3 上才支援 ReiserFS 檔案系統。<br/><br/>Site Recovery 支援具有 RDM 磁碟的 VM。在 Linux 的容錯回復期間，Site Recovery 不會重複使用 RDM 磁碟。取而代之的是，它會為每個對應的 RDM 磁碟建立新的 VMDK 檔案。<br/><br/>請確定您在 VMware 的 VM 組態參數中設定了 disk.enableUUID=true 設定。如果不存在，請建立該項目。這樣才能提供一致的 UUID 給 VMDK，使其可正確掛接。加入這項設定也可確保在容錯回復期間只將差異變更傳輸回到內部部署，而不是傳輸完整的複寫。
+**Linux 機器** | 您將需要受支援的 64 位元作業系統：Red Hat Enterprise Linux 6.7、7.1、7.2；Centos 6.5、6.6、6.7、7.0、7.1、7.2；執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3) 的 Oracle Enterprise Linux 6.4、6.5；SUSE Linux Enterprise Server 11 SP3。<br/><br/>受保護機器上的 /etc/hosts 檔案應該包含將本機主機名稱對應至與所有網路介面卡關聯之 IP 位址的項目。<br/><br/>如果您想要在容錯移轉之後，使用「安全殼層」用戶端 (SSH) 來連線到執行 Linux 的 Azure 虛擬機器，請確定在受保護電腦上的「安全殼層」服務已設定為在系統開機時自動啟動，而且防火牆規則允許對其進行 SSH 連線。<br/><br/>主機名稱、掛接點、裝置名稱及 Linux 系統路徑和檔案名稱 (例如 /etc/、/usr) 應該僅使用英文。<br/><br/>只能針對具有下列儲存體的 Linux 機器啟用保護：檔案系統 (EXT3、ETX4、ReiserFS、XFS)；多重路徑軟體裝置對應工具 (multipath)；磁碟區管理員：(LVM2)。不支援使用 HP CCISS 控制站儲存體的實體伺服器。只有在 SUSE Linux Enterprise Server 11 SP3 上才支援 ReiserFS 檔案系統。<br/><br/>Site Recovery 支援具有 RDM 磁碟的 VM。在 Linux 的容錯回復期間，Site Recovery 不會重複使用 RDM 磁碟。取而代之的是，它會為每個對應的 RDM 磁碟建立新的 VMDK 檔案。<br/><br/>請確定您在 VMware 的 VM 組態參數中設定了 disk.enableUUID=true 設定。如果不存在，請建立該項目。這樣才能提供一致的 UUID 給 VMDK，使其可正確掛接。加入這項設定也可確保在容錯回復期間只將差異變更傳輸回到內部部署，而不是傳輸完整的複寫。
 **行動服務** | **Windows**︰若要將行動服務自動推送到執行 Windows 的 VM，您將需要提供系統管理員帳戶 (Windows 機器上的本機系統管理員)，如此處理序伺服器才能執行推送安裝。<br/><br/> **Linux**︰若要將行動服務自動推送到執行 Linux 的 VM，您將需要建立一個可供處理序伺服器用來執行推送安裝的帳戶。<br/><br/> 依預設會複寫機器上的所有磁碟。若要[將磁碟從複寫範圍中排除](#exclude-disks-from-replication)，必須先在機器上手動安裝行動服務，然後才啟用複寫。
 
 ## 準備部署
 
 若要準備進行部署，您必須︰
 
-1. [設定 Azure 網路](#set-up-an-azure-network)，這是 Azure VM 於容錯移轉後啟動時將所在的網路。此外，針對容錯回復，您需要設定從 Azure 網路到內部部署網站的 VPN 連線 (或 Azure ExpressRoute)。
+1. [設定 Azure 網路](#set-up-an-azure-network)，Azure VM 會在容錯移轉之後建立時位於此網路中。此外，針對容錯回復，您需要設定從 Azure 網路到內部部署網站的 VPN 連線 (或 Azure ExpressRoute)。
 2. 針對複寫的資料[設定 Azure 儲存體帳戶](#set-up-an-azure-storage-account)。
 3. 在 vCenter 伺服器或 vSphere 主機上[準備帳戶](#prepare-an-account-for-automatic-discovery)，以便 Site Recovery 可以自動偵測新增的 VMware VM。
 4. [準備組態伺服器](#prepare-the-configuration-server)以確保它可以存取所需的 URL，並安裝 vSphere PowerCLI 6.0。
@@ -393,7 +406,7 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 
 **元件** | **詳細資料**
 --- | --- | ---
-**複寫** | **每日變更率上限**—受保護的機器只能使用一部處理序伺服器，而且單一處理序伺服器可處理的每日變更率最多為 2 TB。因此 2 TB 是針對受保護機器支援的每日資料變更率上限。<br/><br/> **最大輸送量**—複寫的機器可以屬於 Azure 中的一個儲存體帳戶。標準儲存體帳戶每秒可處理最多 20000 個要求，建議您將來源機器的 IOPS 數保持為 20000。例如，如果您有一部具備 5 個磁碟的來源機器，並且在來源上的每個磁碟會產生 120 個 IOP (8K 大小)，則它會在 Azure 每個磁碟 IOPS 限制 500 之內。儲存體帳戶所需的數目 = 來源 IOP 總計/20000。
+**複寫** | **每日變更率上限** - 受保護的機器只能使用一部處理序伺服器，而且單一處理序伺服器可處理的每日變更率最多為 2 TB。因此 2 TB 是針對受保護機器支援的每日資料變更率上限。<br/><br/> **最大輸送量** - 複寫的機器可以屬於 Azure 中的一個儲存體帳戶。標準儲存體帳戶每秒可處理最多 20000 個要求，建議您將來源機器的 IOPS 數保持為 20000。例如，如果您有一部具備 5 個磁碟的來源機器，並且在來源上的每個磁碟會產生 120 個 IOP (8K 大小)，則它會在 Azure 每個磁碟 IOPS 限制 500 之內。儲存體帳戶所需的數目 = 來源 IOP 總計/20000。
 **設定伺服器** | 組態伺服器應該要能夠處理在受保護機器上執行之所有工作負載的每日變更率容量，因此需要足夠頻寬以持續地將資料複寫到 Azure 儲存體。<br/><br/> 我們建議的最佳做法是組態伺服器與您想要保護的機器位於相同網路與 LAN 區段上。它可以位於不同的網路，但是您想要保護的機器應該具有 L3 網路可見性。<br/><br/> 下表摘要說明組態伺服器的大小建議。
 **處理序伺服器** | 組態伺服器上會安裝第一部處理序伺服器。您可以部署額外的處理序伺服器來調整您的環境。注意：<br/><br/>處理序伺服器會從受保護的機器接收複寫資料，然後以快取、壓縮及加密將資料最佳化之後，才傳送給 Azure。處理序伺服器機器應該要有足夠的資源來執行這些工作。<br/><br/> 處理序伺服器使用磁碟快取。我們建議每個快取磁碟有 600 GB 以上的空間，以處理發生網路瓶頸或中斷時儲存的資料變更。
 
@@ -523,9 +536,9 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 6.	在 sshd\_config 檔案中啟用 SFTP 子系統與密碼驗證，如下所示：
 
 	- 以 root 的身分登入。
-	- 在 /etc/ssh/sshd\_config 檔案中，尋找以 **PasswordAuthentication** 開頭的行。
+	- 在 /etc/ssh/sshd\_config 檔案中，尋找以 **PasswordAuthentication** 為開頭的行。
 	- 取消該行的註解並將值從 **no** 變更為 **yes**。
-	- 尋找以 **Subsystem** 開頭的行並取消其註解。
+	- 尋找以 **Subsystem** 為開頭的行並取消其註解。
 
 		![Linux](./media/site-recovery-vmware-to-azure/mobility2.png)
 
@@ -743,7 +756,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 3. 在 [測試容錯移轉] 中，選取 Azure VM 在容錯移轉之後要連接的 Azure 網路。
 4. 按一下 [確定] 即可開始容錯移轉。您可以按一下 VM 以開啟其屬性，或在保存庫名稱 > [設定] > [作業] > [Site Recovery 作業] 中的 [測試容錯移轉] 作業上按一下，來追蹤進度。
-5. 當容錯移轉達到**完成測試**狀態時，請執行下列作業：
+5. 當容錯移轉到達 [完成測試] 狀態時，請執行下列作業：
 
 	1. 在 Azure 入口網站中檢視複本虛擬機器。確認虛擬機器成功啟動。
 	2. 如果您設定從內部部署網路存取虛擬機器，您可以初始化虛擬機器的「遠端桌面」連線。
@@ -806,7 +819,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 	![更新處理序伺服器](./media/site-recovery-vmware-to-azure/migrate-ps2.png)
 
-2. 在目前使用中的處理序伺服器上按一下滑鼠右鍵，然後按一下 [切換]。
+2. 以滑鼠右鍵按一下目前使用中的處理序伺服器，然後按一下 [切換]。
 
 	![更新處理序伺服器](./media/site-recovery-vmware-to-azure/migrate-ps3.png)
 
@@ -838,4 +851,4 @@ The information in Section B is regarding Third Party Code components that are b
 
 The complete file may be found on the [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428).Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

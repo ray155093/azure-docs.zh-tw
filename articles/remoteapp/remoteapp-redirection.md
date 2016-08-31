@@ -12,10 +12,13 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="05/13/2016"
+    ms.date="08/15/2016"
     ms.author="elizapo" />
 
 # 在 Azure RemoteApp 中使用重新導向
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 裝置重新導向可讓您的使用者使用與其本機電腦、手機或平板電腦連接的裝置，來與遠端應用程式互動。l比方說，如果您透過 Azure RemoteApp 提供 Skype，您的使用者就必須在電腦安裝相機才能使用 Skype。印表機、麥克風、監視器以及各種不同以 USB 連接的周邊裝置也是如此。
 
@@ -40,7 +43,7 @@ RemoteApp 會利用遠端桌面通訊協定 (RDP) 與 RemoteFX 來提供重新�
 - USB 重新導向：您可以在遠端工作階段期間使用與本機電腦連接的 USB 裝置。
 
 ## 在 RemoteApp 中變更重新導向設定
-您可以使用 Microsoft Azure PowerShell 搭配 SDK，變更集合的裝置重新導向設定。在您安裝新的 PowerShell 與 SDK 之後，請先依照[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)中所述進行設定以管理您的訂閱。
+您可以使用 Microsoft Azure PowerShell 搭配 SDK，變更集合的裝置重新導向設定。在您安裝新的 PowerShell 與 SDK 之後，請先依照[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 中所述進行設定以管理您的訂閱。
 
 接著使用和下面類似的命令來設定自訂 RDP 屬性：
 
@@ -102,6 +105,6 @@ RemoteApp 會利用遠端桌面通訊協定 (RDP) 與 RemoteFX 來提供重新�
 5. 開啟 [電腦設定]\\[原則]\\[系統管理範本]\\[Windows 元件]\\[遠端桌面服務]\\[遠端桌面連線用戶端]\\[RemoteFX USB 裝置重新導向]。
 6. 按兩下 [允許 RDP 重新導向這部電腦中其他支援的 RemoteFX USB 裝置]。
 7. 選取 [已啟用]，然後在 [RemoteFX USB 重新導向存取權限] 中選取系統管理員與使用者。
-8. 按一下 [確定]。  
+8. 按一下 [確定]。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

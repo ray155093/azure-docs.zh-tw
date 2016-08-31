@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="vs-getting-started" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/01/2016" 
+	ms.date="08/15/2016" 
 	ms.author="tarcher"/>
 
 # 開始使用 Azure Active Directory 和 Visual Studio 已連接服務 (MVC 專案)
@@ -28,7 +28,7 @@
  
 ##加入 SignIn / SignOut 控制項 
 
-若要將 SignIn/SignOut 控制項加入至檢視，您可以使用 **\_LoginPartial.cshtml** 部分檢視將此功能加入至您的其中一個檢視。以下是加入至標準 **\_Layout.cshtml** 檢視的功能範例(請注意 div 中具有類別 navbar-collapse 的最後一個元素)：
+若要將 SignIn/SignOut 控制項新增至檢視，您可以使用 **\_LoginPartial.cshtml** 部分檢視將此功能新增至您的其中一個檢視。以下是新增至標準 **\_Layout.cshtml** 檢視的功能範例。(請注意 div 中具有類別 navbar-collapse 的最後一個元素)：
 
 <pre>
     &lt;!DOCTYPE html> 
@@ -77,4 +77,4 @@
 
 [深入了解 Azure Active Directory](https://azure.microsoft.com/services/active-directory/)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0817_2016-->

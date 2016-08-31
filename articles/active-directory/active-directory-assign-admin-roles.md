@@ -38,9 +38,9 @@
 
 - **使用者管理員**：重設密碼、監控服務健全狀況，以及管理使用者帳戶、使用者群組和服務要求。部分限制適用於使用者管理管理員的權限。例如，他們無法刪除全域管理員，或建立其他管理員。此外，他們無法重設計費、全域和服務管理員的密碼。
 
-- **安全性讀取者**︰能夠以唯讀方式存取「身分識別防護中心」、Privileged Identity Management、「監視 Office 365 服務健康狀況」及「Office 365 防護中心」的一些安全性功能。
+- **安全性讀取者**︰能夠以唯讀方式存取「身分識別防護中心」、Privileged Identity Management、「監視 Office 365 服務健康狀況」及「Office 365 安全性與法規遵循中心」的一些安全性功能。
 
-- **安全性系統管理員**︰具備「安全性讀取者」角色的所有唯讀權限，再加上下列相同服務的一些額外系統管理權限︰「身分識別防護中心」、Privileged Identity Management、「監視 Office 365 服務健康狀況」及「Office 365 防護中心」。
+- **安全性系統管理員**︰具備**安全性讀取者**角色的所有唯讀權限，再加上下列相同服務的一些額外系統管理權限︰「身分識別防護中心」、Privileged Identity Management、「監視 Office 365 服務健康狀況」及「Office 365 安全性與法規遵循中心」。
 
 ## 系統管理員權限
 
@@ -80,7 +80,7 @@
 ------------- | -------------
 身分識別防護中心 | 讀取安全性功能的所有安全性報告和設定資訊<ul><li>反垃圾郵件<li>加密<li>資料外洩防護<li>反惡意程式碼<li>進階威脅防護<li>防網路釣魚<li>郵件流程規則
 Privileged Identity Management | <p>以唯讀方式存取 Azure AD PIM 中所顯示的一切資訊︰Azure AD 角色指派的原則和報告、安全性檢閱，以及在未來還可透過讀取來存取 Azure AD 角色指派以外案例的原則資料和報告。<p>**無法**註冊 Azure AD PIM 或對它進行任何變更。擔任此角色的人員可以在 PIM 的入口網站中，或是透過 PowerShell，為其他角色 (例如「全域管理員」或「特殊權限角色管理員」) 的候選人啟用角色。
-<p>監視 Office 365 服務健全狀況</p><p>Office 365 防護中心</p> | <ul><li>讀取及管理警示<li>讀取安全性原則<li>讀取威脅情報、執行 Cloud App Discovery，以及在搜尋和調查時執行隔離<li>讀取所有報告
+<p>監視 Office 365 服務健全狀況</p><p>Office 365 安全性與法規遵循中心</p> | <ul><li>讀取及管理警示<li>讀取安全性原則<li>讀取威脅情報、執行 Cloud App Discovery，以及在搜尋和調查時執行隔離<li>讀取所有報告
 
 ### 安全性系統管理員
 
@@ -88,7 +88,7 @@ Privileged Identity Management | <p>以唯讀方式存取 Azure AD PIM 中所顯
 ------------- | -------------
 身分識別防護中心 | <ul><li>「安全性讀取者」角色的所有權限。<li>此外，還能夠執行除了重設密碼以外的所有 IPC 作業。
 Privileged Identity Management | <ul><li>「安全性讀取者」角色的所有權限。<li>**無法**管理 Azure AD 角色成員資格或設定。
-<p>監視 Office 365 服務健全狀況</p><p>Office 365 防護 | <ul><li>「安全性讀取者」角色的所有權限。<li>可以設定「進階威脅防護」功能 (惡意程式碼和病毒保護、惡意 URL 組態、URL 追蹤等) 中的所有設定。
+<p>監視 Office 365 服務健全狀況</p><p>Office 365 安全性與法規遵循中心 | <ul><li>「安全性讀取者」角色的所有權限。<li>可以設定「進階威脅防護」功能 (惡意程式碼和病毒保護、惡意 URL 組態、URL 追蹤等) 中的所有設定。
 
 ## 全域管理員角色的詳細資料
 
@@ -100,7 +100,7 @@ Privileged Identity Management | <ul><li>「安全性讀取者」角色的所有
 
 2. 在 [**使用者**] 頁面上，按一下您想要編輯之使用者的顯示名稱。
 
-3. 在 [組織角色] 清單中，選取您想要指派給這位使用者的系統管理員角色，或選取 [使用者] \(如果您想要移除現有系統管理員角色)。
+3. 在 [組織角色] 清單中，選取您想要指派給這位使用者的系統管理員角色，或選取 [使用者] (如果您想要移除現有系統管理員角色)。
 
 4. 在 [**替代電子郵件地址**] 方塊中，輸入電子郵件地址。此電子郵件地址用於重要通知 (包括密碼自行重設)，因此，不論使用者是否可以存取 Azure，使用者都必須可以存取電子郵件帳戶。
 
@@ -112,7 +112,7 @@ Privileged Identity Management | <ul><li>「安全性讀取者」角色的所有
 
 ## 後續步驟
 
-- 若要深入了解如何變更 Azure 訂用帳戶的管理員，請參閱[如何新增或變更 Azure 管理員角色](../billing-add-change-azure-subscription-administrator.md)
+- 若要深入了解如何變更 Azure 訂用帳戶的系統管理員，請參閱[如何新增或變更 Azure 系統管理員角色](../billing-add-change-azure-subscription-administrator.md)
 
 - 若要深入了解如何在 Microsoft Azure 中控制資源存取，請參閱[了解 Azure 中的資源存取](active-directory-understanding-resource-access.md)
 
@@ -124,4 +124,4 @@ Privileged Identity Management | <ul><li>「安全性讀取者」角色的所有
 
 - [管理群組](active-directory-manage-groups.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0817_2016-->

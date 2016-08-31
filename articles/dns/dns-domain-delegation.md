@@ -47,6 +47,10 @@ Azure DNS 可讓您裝載 DNS 區域，並在 Azure 中管理網域的 DNS 記�
 - _授權_ DNS 伺服器裝載 DNS 區域。它只會回答這些區域中的 DNS 記錄查詢。
 - _遞迴_ DNS 伺服器不裝載 DNS 區域。它會呼叫授權 DNS 伺服器來收集所需的資料，以回答所有 DNS 查詢。
 
+>[AZURE.NOTE] Azure DNS 提供具權威性的 DNS 服務。它不提供遞迴 DNS 服務。
+
+> Azure 中的雲端服務和 VM 會自動設定為使用在 Azure 的基礎結構中個別提供的遞迴 DNS 服務。如需如何變更這些 DNS 設定的詳細資訊，請參閱 [Azure 中的名稱解析](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server)。
+
 電腦或行動裝置中的 DNS 用戶端，通常會呼叫遞迴 DNS 伺服器，以執行用戶端應用程式需要的任何 DNS 查詢。
 
 當遞迴 DNS 伺服器收到 DNS 記錄的查詢時，例如 'www.contoso.com'，就必須先找到裝載 'contoso.com' 網域的區域的名稱伺服器。在作法上，它會從根名稱伺服器開始，尋找裝載 'com' 區域的名稱伺服器。然後，查詢 'com' 名稱伺服器，尋找裝載 'contoso.com' 區域的名稱伺服器。最後，就能夠向這些名稱伺服器查詢 'www.contoso.com'。
@@ -116,7 +120,7 @@ Azure DNS 會自動在包含指派的名稱伺服器的區域中，建立權威 
 
 每個註冊機構都有自己的 DNS 管理工具，可變更網域的名稱伺服器記錄。在註冊機構的 DNS 管理頁面中，請編輯 NS 記錄，並將 NS 記錄取代為 Azure DNS 建立的記錄。
 
-委派網域給 Azure DNS 時，您必須使用 Azure DNS 提供的名稱伺服器名稱。不論您的網域名稱為何，您應該一律使用全部 4 個名稱伺服器名稱。網域委派不需要名稱伺服器名稱，即可使用相同的最上層網域做為您的網域。
+委派網域給 Azure DNS 時，您必須使用 Azure DNS 提供的名稱伺服器名稱。不論您的網域名稱為何，您應一律將名稱伺服器的 4 個名稱全部用上。網域委派不需要名稱伺服器名稱，即可使用相同的最上層網域做為您的網域。
 
 您不應該使用「黏附記錄」指向 Azure DNS 名稱伺服器 IP 位址，因為這些 IP 位址日後可能變更。Azure DNS 目前不支援使用您區域中名稱伺服器名稱的委派 (有時稱為「虛名名稱伺服器」)。
 
@@ -201,4 +205,4 @@ Azure DNS 會自動在包含指派的名稱伺服器的區域中，建立權威 
 
 [管理 DNS 記錄](dns-operations-recordsets.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0824_2016-->

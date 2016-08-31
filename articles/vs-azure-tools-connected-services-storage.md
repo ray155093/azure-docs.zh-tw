@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/01/2016"
+   ms.date="08/15/2016"
    ms.author="tarcher" />
 
 # 使用 Visual Studio 的已連接服務加入 Azure 儲存體
 
-## 概觀
+## Overview
 
 透過 Visual Studio 2015，您可以使用 [加入已連接服務] 對話方塊，將任何 C# 雲端服務、.NET 後端行動服務、ASP.NET 網站或服務、ASP.NET 5 服務或 Azure WebJob 服務連接至 Azure 儲存體。已連接服務功能會加入所有必要的參考和連接程式碼，並且適當地修改組態檔。對話方塊也會帶您前往說明後續步驟的文件，以啟動 Blob 儲存體、佇列和資料表。
 
@@ -94,4 +94,4 @@
 
      - [azure.microsoft.com 上的儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0817_2016-->

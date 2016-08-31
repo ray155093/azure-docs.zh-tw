@@ -114,7 +114,7 @@ Tableau Online 與 Azure AD 整合提供下列優點：
  	
 	![設定單一登入](./media/active-directory-saas-tableauonline-tutorial/tutorial_tableauonline_06.png)
 
-4. 在 [設定 App 設定] 對話方塊頁面執行下列步驟：
+4. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟：
 
 	![設定單一登入](./media/active-directory-saas-tableauonline-tutorial/tutorial_tableauonline_07.png)
 
@@ -173,11 +173,11 @@ Tableau Online 與 Azure AD 整合提供下列優點：
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
 	
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-tableauonline-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-tableauonline-tutorial/create_aaduser_04.png)
 
@@ -191,7 +191,7 @@ Tableau Online 與 Azure AD 整合提供下列優點：
 
     c.按 [下一步]。
 
-6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
+6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-tableauonline-tutorial/create_aaduser_06.png)
 
@@ -241,8 +241,7 @@ Tableau Online 與 Azure AD 整合提供下列優點：
 
 **如要將 Britta Simon 指派給 Tableau Online，請執行下列步驟：**
 
-1. 在傳統入口網站中，若要開啟應用程式檢視，請在
-2. 目錄檢視中，按一下頂端功能表中的 [應用程式]。
+1. 在傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
 	![指派使用者][201]
 
@@ -295,4 +294,4 @@ Tableau Online 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-tableauonline-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-tableauonline-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0817_2016-->

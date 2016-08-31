@@ -56,8 +56,8 @@
 
 Description:
 
-- 如果不存在，它會在 CN=Device Registration Configuration,CN=Services,CN=Configuration,[forest-dn] 下方建立並設定新的容器和物件。
-- 如果不存在，它會在 CN=RegisteredDevices,[domain-dn] 下方建立並設定新的容器和物件。將會在此容器中建立裝置物件。
+- 如果尚未存在，請在 CN=Device Registration Configuration,CN=Services,CN=Configuration,[forest-dn] 下方建立並設定新的容器和物件。
+- 如果尚未存在，請在 CN=RegisteredDevices,[domain-dn] 下方建立並設定新的容器和物件。將會在此容器中建立裝置物件。
 - 請在 Azure AD Connector 帳戶上設定必要的權限，以便管理 Active Directory 上的裝置。
 - 即使 Azure AD Connect 安裝在多個樹系上，也只需要在一個樹系上執行。
 
@@ -130,4 +130,4 @@ Description:
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -134,6 +134,32 @@
 
 現已安裝代理程式，且已向保存庫註冊您的電腦。您已準備好可以設定及排程備份。
 
+### 確認安裝
+
+若要確認已正確安裝和註冊代理程式，您可以檢查在管理入口網站的 [生產伺服器] 區段中所備份的項目。作法：
+
+1. 使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com/)。
+
+2. 在 [中樞] 功能表上按一下 [瀏覽]，然後在資源清單中輸入**復原服務**。當您開始輸入時，清單將會根據您輸入的文字進行篩選。按一下 [復原服務保存庫]。
+
+    ![建立復原服務保存庫的步驟 1](./media/backup-configure-vault/browse-to-rs-vaults.png) <br/>
+
+    隨即會顯示 [復原服務保存庫] 清單。
+
+2. 選取所建立之保存庫的名稱。
+
+    [復原服務保存庫儀表板] 刀鋒視窗隨即開啟。
+
+    ![復原服務保存庫儀表板](./media/backup-configure-vault/rs-vault-dashboard.png) <br/>
+
+3. 按一下頁面頂端的 [設定] 按鈕。
+
+4. 按一下 [備份基礎結構] > [生產伺服器]。
+
+    ![生產伺服器](./media/backup-configure-vault/production-server-verification.png)
+
+如果您在清單中看到您的伺服器，就能確認代理程式已正確安裝和註冊。
+
 ## 步驟 4︰完成初始備份
 
 初始備份包括兩項重要工作：
@@ -226,4 +252,4 @@
 - 現在您已備份好檔案和資料夾，接下來您可以[管理您的保存庫和伺服器](backup-azure-manage-windows-server.md)。
 - 如果您需要還原備份，請使用本文來[還原檔案到 Windows 電腦](backup-azure-restore-windows-server.md)。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

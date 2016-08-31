@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/29/2016"
+	ms.date="08/15/2016"
 	ms.author="deonhe"/>
 
 # Azure BizTalk 服務的版本資訊
@@ -38,12 +38,12 @@ Microsoft Azure BizTalk 服務的版本資訊包含此版本已知的問題。
 * 用於建立合約範本的選項已終止。  
 * 對於傳送端合約，您現在可以為每個結構描述指定不同的分隔符號集。此設定是在傳送端合約的通訊協定設定下指定。如需詳細資訊，請參閱[在 Azure BizTalk 服務中建立 X12 合約](https://msdn.microsoft.com/library/azure/hh689847.aspx)和[在 Azure BizTalk 服務中建立 EDIFACT合約](https://msdn.microsoft.com/library/azure/dn606267.aspx)。兩個新的實體也為了相同目的而新增至 TPM OM API。請參閱 [X12DelimiterOverrides](https://msdn.microsoft.com/library/azure/dn798749.aspx) 和 [EDIFACTDelimiterOverride](https://msdn.microsoft.com/library/azure/dn798748.aspx)。  
 * 現在支援標準 XSD 建構，包括衍生類型。請參閱[在您的對應中使用標準 XSD 建構](https://msdn.microsoft.com/library/azure/dn793987.aspx)和[在對應案例和範例中使用衍生類型](https://msdn.microsoft.com/library/azure/dn793997.aspx)。  
-* AS2 支援用於訊息簽署的新 MIC 演算法，以及新的加密演算法。請參閱[在 Azure BizTalk 服務中建立 AS2合約](https://msdn.microsoft.com/library/azure/hh689890.aspx)。
+* AS2 支援用於訊息簽署的新 MIC 演算法，以及新的加密演算法。請參閱[在 Azure BizTalk 服務中建立 AS2合約](https://msdn.microsoft.com/library/azure/hh689890.aspx)。  
 ## 已知問題
 
 ### BizTalk 服務入口網站更新之後的連線能力問題
 
-  當升級 BizTalk 服務來導入服務的變更時，如果 BizTalk 服務入口網站中已開啟，BizTalk 服務入口網站的連線能力可能會發生問題。
+  當升級 BizTalk 服務來導入服務的變更時，如果 BizTalk 服務入口網站中已開啟，BizTalk 服務入口網站的連線能力可能會發生問題。  
   解決方法是重新啟動瀏覽器、刪除瀏覽器快取，或在私用模式下啟動入口網站。
 
 ### 如果您在 BizTalk 服務專案中按一下錯誤或警告，Visual Studio IDE 找不到構件
@@ -51,11 +51,11 @@ Microsoft Azure BizTalk 服務的版本資訊包含此版本已知的問題。
 
 ### 自訂繫結專案參考
 假設 Visual Studio 方案中的 BizTalk 服務專案有下列情形：
-* 在相同的 Visual Studio 方案中，有一個 BizTalk 服務專案和一個自訂繫結專案。BizTalk 服務專案參考此自訂繫結專案檔。
+* 在相同的 Visual Studio 方案中，有一個 BizTalk 服務專案和一個自訂繫結專案。BizTalk 服務專案參考此自訂繫結專案檔。 
 * BizTalk 服務專案參考自訂繫結/行為 DLL。
 
-您在 Visual Studio 中成功「建置」方案。然後，您「重建」或「清除」方案。之後，當您再次重建或清除時，就發生下列錯誤：
-無法將檔案 <Path to DLL> 複製到 "bin\\Debug\\FileName.dll"。由於已有另一個處理序正在使用該檔案，所以無法存取該檔案。
+您在 Visual Studio 中成功「建置」方案。然後，您「重建」或「清除」方案。之後，當您再次重建或清除時，就發生下列錯誤：  
+無法將檔案 <DLL 路徑> 複製到 "bin\\Debug\\FileName.dll"。由於已有另一個處理序正在使用該檔案，所以無法存取該檔案。
 
 #### 因應措施
 * 如果已安裝 [Visual Studio 2012 Update 3](https://www.microsoft.com/download/details.aspx?id=39305)，您有下列兩個選項：
@@ -77,7 +77,7 @@ Microsoft Azure BizTalk 服務的版本資訊包含此版本已知的問題。
 如果有超出 IEA 區段的空格，解譯器會將此情形視為目前交換結束，並查看下一組空白字元當做下一個訊息。因為這不是有效的交換，您可能會發現一個成功的訊息傳送至路由目的地，還有一個空的訊息傳送至暫停端點。
 ### 在 BizTalk 服務入口網站中追蹤  
 擷取的追蹤事件以 EDI 訊息處理和任何相互關聯為範圍。如果訊息在通訊協定階段之外失敗，追蹤會顯示為成功。在此情況下，請參閱 [追蹤] 的 [詳細資料] 資料行下的 [記錄] 區段，取得錯誤詳細資料。
-X12 接收和傳送設定 ([在 Azure BizTalk 服務中建立 X12 合約](https://msdn.microsoft.com/library/azure/hh689847.aspx)) 提供通訊協定階段的相關資訊。
+X12 接收和傳送設定 ([在 Azure BizTalk 服務中建立 X12 合約](https://msdn.microsoft.com/library/azure/hh689847.aspx)) 提供通訊協定階段的相關資訊。  
 
 ### 更新合約  
 BizTalk 服務入口網站可讓您在設定合約時修改身分識別的辨識符號。這會導致屬性不一致。比方說，合約使用 ZZ:1234567，而辨識符號為 ZZ:7654321。在 BizTalk 服務入口網站設定檔設定中，您將 ZZ:1234567 變更為 01:ChangedValue。您開啟合約，顯示的是 01:ChangedValue 而非 ZZ:1234567。
@@ -89,7 +89,7 @@ BizTalk 服務入口網站可讓您在設定合約時修改身分識別的辨識
 ### 資源：記住路徑  
 新增**資源**時，對話視窗可能不記得先前用來新增資源的路徑。若要記住先前用過的路徑，請嘗試在 Internet Explorer 中將 BizTalk 服務入口網站新增至 [信任的網站]。
 ### 如果您重新命名橋接器的實體名稱，然後關閉專案而不儲存變更，則重新開啟實體會導致錯誤
-依序假設有下列情況：
+依序假設有下列情況：  
 * 將橋接器 (例如 XML 單向橋接器) 新增至 BizTalk 服務專案  
 
 * 指定 [實體名稱] 屬性的值來重新命名橋接器。這會以您指定的名稱來重新命名相關聯的 .bridgeconfig 檔案。
@@ -97,9 +97,9 @@ BizTalk 服務入口網站可讓您在設定合約時修改身分識別的辨識
 * 關閉 .bcs 檔案 (藉由關閉 Visual Studio 中的索引標籤)，而不儲存變更。
 
 * 從 [方案總管] 再次開啟 .bcs 檔案。  
-您會注意到相關聯的 .bridgeconfig 檔案具有您指定的新名稱，而在設計介面上的實體名稱還是舊名稱。如果您嘗試按兩下橋接器元件，以開啟橋接器組態，您會看到下列錯誤：
-  「<old name>實體的相關聯檔案 <old name>.bridgeconfig 不存在」。
-  為了避免發生這種情況，在 BizTalk 服務專案中重新命名實體之後，請記得儲存變更。
+您會注意到相關聯的 .bridgeconfig 檔案具有您指定的新名稱，而在設計介面上的實體名稱還是舊名稱。如果您嘗試按兩下橋接器元件，以開啟橋接器組態，您會看到下列錯誤：  
+「<舊名稱> 實體的相關聯檔案 <舊名稱>.bridgeconfig 不存在」。  
+為了避免發生這種情況，在 BizTalk 服務專案中重新命名實體之後，請記得儲存變更。
 ### 即使已經從 Visual Studio 專案中排除構件，BizTalk 服務專案仍會成功建置
 假設您將構件 (例如，XSD 檔案) 新增至 BizTalk 服務專案，在橋接器組態中加入此構件 (例如，將它指定為要求訊息類型)，然後從 Visual Studio 專案中排除它。在這種情況下，只要已刪除的構件仍留在它加入 Visual Studio 專案時的相同磁碟位置中，則建置專案不會發生任何錯誤。
 ### 設定橋接器時，BizTalk 服務專案不會檢查結構描述是否可用
@@ -120,7 +120,7 @@ BizTalk Adapter Service 功能內的 BizTalk Adapter Pack 配接器可以在配�
 > [AZURE.IMPORTANT] 建議使用 GACUtil.exe 將檔案安裝至全域組件快取。GACUtil.exe 說明如何使用這項工具和 Visual Studio 命令列選項。
 
 ### 重新啟動 BizTalk Adapter Service 網站
-安裝 **BizTalk Adapter Service 執行階段*** 會在 IIS 中建立 **BizTalk Adapter Service** 網站，其中會包含 **BAService** 應用程式。**BAService** 應用程式在內部使用轉送繫結，將內部部署服務端點的範圍延伸至雲端。對於內部部署裝載的服務，只有當內部部署服務啟動時，對應的轉送端點才會註冊在服務匯流排上。
+安裝 **BizTalk Adapter Service 執行階段**會在 IIS 中建立 BizTalk Adapter Service 網站，其中會包含 BAService* 應用程式。BAService** 應用程式在內部使用轉送繫結，將內部部署服務端點的範圍延伸至雲端。對於內部部署裝載的服務，只有當內部部署服務啟動時，對應的轉送端點才會註冊在服務匯流排上。
 
 如果您停止並啟動應用程式，自動啟動應用程式的設定不會有作用。所以當 **BAService** 停止時，您永遠必須重新啟動 **BizTalk Adapter Service** 網站。請勿啟動或停止 **BAService** 應用程式。
 ### LOB 元件的位址和實體名稱中不應該使用特殊字元
@@ -130,7 +130,7 @@ BizTalk Adapter Service 功能內的 BizTalk Adapter Pack 配接器可以在配�
 ### 測試對應屬性未顯示
 **測試對應**屬性未顯示在 Visual Studio 中。如果 [屬性] 視窗和 [方案總管] 視窗未同時停駐，就可能發生這種情形。若要解決此問題，請停駐 [屬性] 和 [方案總管] 視窗。
 ### 日期時間重新格式化下拉式清單變成灰色
-當日期時間重新格式化對應作業加入至設計介面並設定時，[格式] 下拉式清單可能會變成灰色。如果電腦顯示器設定為 [中 – 125%] 或 [大 – 150%]，就可能發生這種情形。若要解決此問題，請使用下列步驟將顯示器設定為 [小 – 100% (預設)]：
+當日期時間重新格式化對應作業加入至設計介面並設定時，[格式] 下拉式清單可能會變成灰色。如果電腦顯示器設定為 [中 – 125%] 或 [大 – 150%]，就可能發生這種情形。若要解決此問題，請使用下列步驟將顯示器設定為 [小 – 100% (預設)]：  
 1. 開啟 [控制台]，按一下 [外觀及個人化]。
 2. 按一下 [顯示]。
 3. 按一下 [小 – 100% (預設)]，再按一下 [套用]。
@@ -153,7 +153,7 @@ BizTalk Adapter Service 功能內的 BizTalk Adapter Pack 配接器可以在配�
 
 **因應措施**：在 BizTalk 服務專案中更新憑證，並重新部署專案。
 
-**案例 2：使用名稱型行為來識別憑證，以保護從橋接器到服務端點的訊息傳輸**
+**案例 2：使用名稱型行為來識別憑證，以保護從橋接器到服務端點的訊息傳輸** 
 
 假設您在 BizTalk 服務專案中使用名稱型行為來識別憑證。您在 BizTalk 服務入口網站中更新憑證，但未相應地更新 BizTalk 服務專案。在這種情況下，橋接器可能會繼續處理訊息，因為較舊的憑證資料可能仍在通道快取中。隨後，訊息處理就失敗。
 
@@ -177,7 +177,7 @@ BizTalk Adapter Service 功能內的 BizTalk Adapter Pack 配接器可以在配�
 ### 升級：升級 BizTalk 服務 SDK 之後，工具箱顯示舊的橋接器圖示
 升級舊版的 BizTalk 服務 SDK (以舊的圖示代表橋接器) 之後，工具箱會繼續顯示橋接器的舊圖示。不過，如果您將橋接器加入至 BizTalk 服務專案設計工具介面，介面會顯示新的圖示。
 
-**因應措施**。您可以刪除 <system drive>:\\Users<user>\\AppData\\Local\\Microsoft\\VisualStudio\\11.0 下的 .tbd 檔案來解決這個問題。
+**因應措施**。您可以刪除 <系統磁碟機>:\\Users<user>\\AppData\\Local\\Microsoft\\VisualStudio\\11.0 下的 .tbd 檔案來解決這個問題。
 
 ### 升級：BizTalk 入口網站從預覽版更新至 GA 時可能會顯示錯誤，指出 EDI 功能無法使用
 如果您在 BizTalk 服務從預覽版升級至 GA 時登入 BizTalk 服務入口網站，您在入口網站上可能會看到下列錯誤：
@@ -195,4 +195,4 @@ BizTalk Adapter Service 功能內的 BizTalk Adapter Pack 配接器可以在配�
 
 [BizTalk 服務](https://msdn.microsoft.com/library/azure/hh689864.aspx)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0817_2016-->

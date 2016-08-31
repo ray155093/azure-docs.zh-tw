@@ -47,10 +47,10 @@ SanSan 與 Azure AD 整合提供下列優點：
 
 
 ## 案例描述
-在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。本教學課程中說明的案例由二個主要建置組塊組成：
+在本教學課程中，您會在測試環境中測試 Microsoft Azure AD 單一登入。本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫新增 SanSan
-2. 設定並測試 Azure AD 單一登入
+2. 設定並測試 Microsoft Azure AD 單一登入
 
 
 ## 從資源庫新增 SanSan
@@ -72,7 +72,7 @@ SanSan 與 Azure AD 整合提供下列優點：
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![應用程式][4]
 
@@ -84,36 +84,36 @@ SanSan 與 Azure AD 整合提供下列優點：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-sansan-tutorial/tutorial_sansan_06.png)
 
-##  設定並測試 Azure AD 單一登入
-在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 SanSan 設定及測試 Azure AD 單一登入。
+##  設定並測試 Microsoft Azure AD 單一登入
+在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 SanSan 設定及測試 Microsoft Azure AD 單一登入。
 
 若要讓單一登入運作，Azure AD 必須知道 SanSan 與 Azure AD 中互相對應的使用者。換句話說，必須建立 Azure AD 使用者和 SanSan 中相關使用者之間的連結關聯性。建立此連結關聯性的方法，就是將 Azure AD 中 [使用者名稱] 的值，指派為 SanSan 中 [使用者名稱] 的值。
 
-若要設定及測試對 SanSan 的 Azure AD 單一登入，您需要完成下列建置組塊：
+若要設定及測試對 SanSan 的 Microsoft Azure AD 單一登入，您需要完成下列建置組塊：
 
-1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
-2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
+1. **[設定 Microsoft Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓使用者能夠使用此功能。
+2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Microsoft Azure AD 單一登入。
 4. **[建立 SanSan 測試使用者](#creating-an-sansan-test-user)** - 在 SanSan 中建立一個 Britta Simon 對應項目，其要與 Azure AD 中代表她的項目連結。
-5. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
+5. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Microsoft Azure AD 單一登入。
 5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### 設定 Azure AD 單一登入
+### 設定 Microsoft Azure AD 單一登入
 
-在本節中，您會在傳統入口網站中啟用 Azure AD 單一登入，並在您的 SanSan 應用程式中設定單一登入。
+在本節中，您會在傳統入口網站中啟用 Microsoft Azure AD 單一登入，並在您的 SanSan 應用程式中設定單一登入。
 
 
-**若要使用 SanSan 設定 Azure AD 單一登入功能，請執行下列步驟：**
+**若要使用 SanSan 設定 Microsoft Azure AD 單一登入功能，請執行下列步驟：**
 
 
 1. 在 Azure 傳統入口網站的 [SanSan] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
 	![設定單一登入](./media/active-directory-saas-sansan-tutorial/tutorial_general_05.png)
 
-2. 在 [您希望使用者如何登入 SanSan] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
+2. 在 [要如何讓使用者登入 SanSan] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
  	
 	![設定單一登入](./media/active-directory-saas-sansan-tutorial/tutorial_sansan_03.png)
 
-3. 在 [設定 App 設定] 對話方塊頁面執行下列步驟：
+3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟：
 
 	![設定單一登入](./media/active-directory-saas-sansan-tutorial/tutorial_sansan_04.png)
 
@@ -183,11 +183,11 @@ SanSan 與 Azure AD 整合提供下列優點：
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請在頂端的功能表中，按一下 [使用者]。
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
 	
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-sansan-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列上的 [加入使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-sansan-tutorial/create_aaduser_04.png)
 
@@ -201,7 +201,7 @@ SanSan 與 Azure AD 整合提供下列優點：
 
     c.按 [下一步]。
 
-6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
+6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-sansan-tutorial/create_aaduser_06.png)
 
@@ -266,7 +266,7 @@ SanSan 與 Azure AD 整合提供下列優點：
 
 ### 測試單一登入
 
-在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。當您在存取面板中按一下 [SanSan] 圖格時，應該會自動登入您的 SanSan 應用程式。
+在本節中，您會使用存取面板來測試您的 Microsoft Azure AD 單一登入設定。當您在存取面板中按一下 [SanSan] 圖格時，應該會自動登入您的 SanSan 應用程式。
 
 
 ## 其他資源
@@ -294,4 +294,4 @@ SanSan 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-sansan-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-sansan-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

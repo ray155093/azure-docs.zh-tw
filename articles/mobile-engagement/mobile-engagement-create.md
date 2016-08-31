@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-store"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="02/17/2016"  
+	ms.date="08/19/2016"  
 	ms.author="piyushjo"/>
 
 
@@ -48,4 +48,4 @@
 
 [開始使用 Azure Mobile Engagement](mobile-engagement-windows-store-dotnet-get-started.md) (您可以在頁面頂端選取其他行動平台)。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!---HONumber=AcomDC_0824_2016-->

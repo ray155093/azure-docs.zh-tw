@@ -13,16 +13,15 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="nodejs"
 	ms.topic="article"
-	ms.date="06/24/2016"
+	ms.date="08/11/2016"
 	ms.author="micurd"/>
 
 
 # 如何使用 Node.js 的 Azure 資料表儲存體
 
-[AZURE.INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
+[AZURE.INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)] <br/> [AZURE.INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-tables.md)]
 
-
-## 概觀
+## Overview
 
 本主題示範如何使用 Node.js 應用程式中的 Azure 表格服務執行一般案例。
 
@@ -424,7 +423,7 @@ ACL 是使用存取原則陣列來實作，每個原則有相關聯的識別碼�
 
 ## 後續步驟
 
-如需詳細資訊，請參閱下列資源：
+如需詳細資訊，請參閱下列資源。
 
 -   [Azure 儲存體團隊部落格][]。
 -   GitHub 上的 [Azure Storage SDK for Node][] 儲存機制。
@@ -442,4 +441,4 @@ ACL 是使用存取原則陣列來實作，每個原則有相關聯的識別碼�
   [使用 Azure 表格服務的 Node.js Web 應用程式]: ../storage-nodejs-use-table-storage-web-site.md
   [Create and deploy a Node.js application to an Azure website]: ../web-sites-nodejs-develop-deploy-mac.md
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

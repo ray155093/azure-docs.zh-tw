@@ -13,12 +13,15 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="06/27/2016"
+    ms.date="08/15/2016"
     ms.author="elizapo" />
 
 
 
 # 變更 Azure RemoteApp 中 Azure Active Directory 租用戶
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 Azure RemoteApp 使用 Azure Active Directory (Azure AD) 以允許使用者存取權。您在 Azure RemoteApp 中只能使用與 Azure 訂閱相關聯的 Azure AD 租用戶。您可以在入口網站的 [設定] 頁面上檢視相關聯的訂閱。查看 [訂閱] 索引標籤上的 [目錄] 資料行。
 
@@ -40,11 +43,11 @@ Azure RemoteApp 使用 Azure Active Directory (Azure AD) 以允許使用者存�
 4. 依序按一下 [新增] -> [應用程式服務] -> [Active Directory] -> [目錄] -> [自訂建立]。
 5. 在 [目錄] 下方，選取 [使用現有的目錄]。我們現在必須讓您登出入口網站，請選取 [我已經準備好要登出了]。
 6. 以要新增的目錄之全域管理員身分再次登入入口網站。(如果您還不是全域管理員，您將會經歷一回的登入然後登出。)
-7. 如果您想要查看訂用帳戶現有的 AD 租用戶，系統會要求您登入。按一下 [繼續]，然後按一下 [立即登出]。
+7. 系統會在您登入時詢問您是否要使用訂用帳戶現有的 AD 租用戶。按一下 [繼續]，然後按一下 [立即登出]。
 5. 重新登入，然後返回 [設定] -> [訂用帳戶]。選取您的訂用帳戶，然後按一下 [編輯目錄]。選取您想要使用的 Azure AD 租用戶。
 
 
 
 您現在可以使用新的 Azure AD 租用戶來控制 Azure 訂用帳戶的存取權，以及在 Azure RemoteApp 中設定使用者存取權。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -1,7 +1,7 @@
 <properties
 	pageTitle="疑難排解遠端桌面連線到 Azure VM | Microsoft Azure"
-	description="在 Windows VM 上疑難排解遠端桌面連線錯誤。取得快速因應步驟、錯誤訊息的說明和詳細的網路疑難排解。"
-	keywords="遠端桌面錯誤、遠端桌面連線錯誤、無法連接到 VM、遠端桌面疑難排解、無法連接到 Azure VM、無法 RDP 到 Azure VM"
+	description="如果您無法存取您的 Azure VM，請取得快速的 RDP 疑難排解步驟、依錯誤訊息取得說明，以及詳細的網路疑難排解步驟。"
+	keywords="遠端桌面錯誤、遠端桌面連線錯誤、無法連接到 VM、遠端桌面疑難排解"
 	services="virtual-machines-windows"
 	documentationCenter=""
 	authors="iainfoulds"
@@ -20,7 +20,7 @@
 
 # 疑難排解執行 Windows 之 Azure 虛擬機器的遠端桌面連線
 
-有各式各樣的原因可能導致以 Windows 為基礎之 Azure 虛擬機器 (VM) 的「遠端桌面通訊協定」(RDP) 連線失敗。問題可能與 VM 上的遠端桌面服務、網路連線或主機電腦上的遠端桌面用戶端有關。本文將引導您完成一些可解決 RDP 連線問題的最常見方法。如果這裡沒有列出您的問題，或您仍然無法透過 RDP 連接到您的 VM，也可以閱讀[更詳細的 RDP 疑難排解概念和步驟](virtual-machines-windows-detailed-troubleshoot-rdp.md)。
+有各式各樣的原因可能導致 Windows 型 Azure 虛擬機器 (VM) 的遠端桌面通訊協定 (RDP) 連線失敗，讓您無法存取您的 VM。問題可能與 VM 上的遠端桌面服務、網路連線或主機電腦上的遠端桌面用戶端有關。本文將引導您完成一些可解決 RDP 連線問題的最常見方法。如果這裡沒有列出您的問題，或您仍然無法透過 RDP 連接到您的 VM，也可以閱讀[更詳細的 RDP 疑難排解概念和步驟](virtual-machines-windows-detailed-troubleshoot-rdp.md)。
 
 如果您在本文中有任何需要協助的地方，您可以連絡 [MSDN Azure 和 Stack Overflow 論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專家。或者，您可以提出 Azure 支援事件。請移至 [Azure 支援網站](https://azure.microsoft.com/support/options/)，然後選取 [取得支援]。
 
@@ -34,10 +34,10 @@
 3. 重新部署 VM
 4. 檢查網路安全性群組 / 雲端服務端點規則
 5. 檢閱 Azure 入口網站或 Azure PowerShell 中的 VM 主控台記錄檔
-6. 檢查 Azure 入口網站中的 VM 資源健全狀況
+6. 檢查 Azure 入口網站中的 VM 資源健康狀態
 7. 重設您的 VM 密碼
 
-如果您需要更詳細的步驟，請繼續閱讀，即可找到 Resource Manager 和傳統部署模型的說明。
+如果您需要 Resource Manager 和傳統部署模型的更詳細步驟與說明，請繼續閱讀。
 
 
 <a id="fix-common-remote-desktop-errors"></a>
@@ -45,7 +45,7 @@
 
 在每個疑難排解步驟完成之後，請嘗試重新連接到 VM。
 
-> [AZURE.TIP] 如果入口網站中的 [連接] 按鈕呈現灰色，而且您未透過 [Express Route](../expressroute/expressroute-introduction.md) 或 [網站間 VPN](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) 連接來連接到 Azure，您就必須先建立 VM 並為其指派公用 IP 位址，才能使用 RDP。您可以深入了解 [Azure 中的公用 IP 位址](../virtual-network/virtual-network-ip-addresses-overview-arm.md)。
+> [AZURE.TIP] 如果入口網站中的 [連接] 按鈕呈現灰色，而且您未透過 [Express Route](../expressroute/expressroute-introduction.md) 或 [網站間 VPN](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) 連線來連接 Azure，您就必須先建立 VM 並為其指派公用 IP 位址，才能使用 RDP。您可以深入了解 [Azure 中的公用 IP 位址](../virtual-network/virtual-network-ip-addresses-overview-arm.md)。
 
 1. 使用 Powershell 重設遠端存取。
 	- 如果您尚未這樣做，請參閱[安裝並設定最新的 Azure PowerShell](../powershell-install-configure.md)。
@@ -75,7 +75,7 @@
 	
 4. 確認您的[網路安全性群組規則](../virtual-network/virtual-networks-nsg.md)允許 RDP 流量 (TCP 連接埠 3389)。
 
-5. 檢閱您的 VM 主控台記錄檔或螢幕擷取畫面，以便修正開機問題。選取 [瀏覽] > [虛擬機器] >「您的 Windows 虛擬機器」 > [支援 + 疑難排解] > [開機診斷]。
+5. 檢閱 VM 的主控台記錄檔或螢幕擷取畫面，以修正開機問題。選取 [瀏覽] > [虛擬機器] >「您的 Windows 虛擬機器」 > [支援 + 疑難排解] > [開機診斷]。
 
 6. [重設您的 VM 密碼](virtual-machines-windows-reset-rdp.md)。
 
@@ -96,7 +96,7 @@
 	
 4. 確認您的[雲端服務端點允許 RDP 流量](../cloud-services/cloud-services-role-enable-remote-desktop.md)。
 
-5. 檢閱您的 VM 主控台記錄檔或螢幕擷取畫面，以便修正開機問題。選取 [瀏覽] > [虛擬機器 (傳統)] >「您的 VM」> [設定] > [開機診斷]。
+5. 檢閱您的 VM 主控台記錄檔或螢幕擷取畫面以修正開機問題。選取 [瀏覽] > [虛擬機器 (傳統)] >「您的 VM」> [設定] > [開機診斷]。
 
 6. 檢查 VM 的「資源健康狀態」是否有任何平台問題。選取 [瀏覽] > [虛擬機器 (傳統)] >「您的 VM」> [設定] > [檢查健全狀況]。
 
@@ -191,7 +191,7 @@
 
 每部 Windows 電腦都有遠端桌面使用者本機群組，其中包含能夠遠端登入的帳戶和群組。本機系統管理員群組成員也有權限，即使這些帳戶未列在遠端桌面使用者本機群組中。對於加入網域的機器，本機系統管理員群組也包含此網域的網域系統管理員。
 
-請確保您用於連接的帳戶具有遠端桌面登入權限。因應措施是使用網域或本機系統管理員帳戶透過遠端桌面進行連接。然後使用 Microsoft Management Console 嵌入式管理單元 ([系統工具] > [本機使用者和群組] > [群組] > [遠端桌面使用者])，將所需帳戶新增至「遠端桌面」使用者本機群組。
+請確保您用於連接的帳戶具有遠端桌面登入權限。因應措施是使用網域或本機系統管理員帳戶透過遠端桌面進行連接。若要將所需帳戶新增至「遠端桌面」使用者本機群組，請使用 Microsoft Management Console 嵌入式管理單元 ([系統工具] > [本機使用者和群組] > [群組] > [遠端桌面使用者])。
 
 ## 為一般的遠端桌面錯誤進行疑難排解
 
@@ -210,4 +210,4 @@
 
 [疑難排解存取在 Azure 虛擬機器上執行的應用程式](virtual-machines-linux-troubleshoot-app-connection.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

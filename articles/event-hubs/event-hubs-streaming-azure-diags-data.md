@@ -57,7 +57,7 @@ Azure 診斷中的事件中樞接收在雲端服務、VM、虛擬機器擴展集
 </SinksConfig>
 ```
 
-在此範例中，事件中樞 URL 設定為事件中樞的完整命名空間：服務匯流排命名空間 + “/” + 事件中樞名稱。
+在此範例中，事件中樞 URL 設定為事件中樞的完整命名空間：事件中樞命名空間 + “/” + 事件中樞名稱。
 
 事件中樞 URL 會在 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)中的 [事件中樞] 儀表板上顯示。
 
@@ -74,7 +74,7 @@ Azure 診斷中的事件中樞接收在雲端服務、VM、虛擬機器擴展集
 </PrivateConfig>
 ```
 
-`SharedAccessKeyName` 值必須符合共用存取簽章 (SAS) 金鑰，以及**服務匯流排/事件中樞**命名空間中已定義的原則。在 [Azure 入口網站](https://manage.windowsazure.com)中瀏覽至 [事件中樞] 儀表板，按一下 [設定] 索引標籤，然後設定具有「傳送」權限的具名原則 (如 "SendRule")。**StorageAccount** 也已經在 **PrivateConfig** 中宣告。如果這裡的值可以運作，就不需要變更。在此範例中，我們保留空白的值，這代表下游資產將會設定值。例如，*ServiceConfiguration.Cloud.cscfg* 環境組態檔會設定適合環境的名稱和金鑰。
+`SharedAccessKeyName` 值必須符合共用存取簽章 (SAS) 金鑰，以及**事件中樞**命名空間中已定義的原則。在 [Azure 入口網站](https://manage.windowsazure.com)中瀏覽至 [事件中樞] 儀表板，按一下 [設定] 索引標籤，然後設定具有「傳送」權限的具名原則 (如 "SendRule")。**StorageAccount** 也已經在 **PrivateConfig** 中宣告。如果這裡的值可以運作，就不需要變更。在此範例中，我們保留空白的值，這代表下游資產將會設定值。例如，*ServiceConfiguration.Cloud.cscfg* 環境組態檔會設定適合環境的名稱和金鑰。
 
 > [AZURE.WARNING] 事件中樞 SAS 金鑰會以純文字儲存在 *.wadcfgx* 檔案中。有時候，系統會將該金鑰簽入原始程式碼控制，或做為組建伺服器中的資產提供，因此您應該適當地保護它。建議您在這裡使用具有「僅限傳送」權限的 SAS 金鑰，讓惡意使用者只能寫入事件中樞，而無法接聽或加以管理。
 
@@ -319,4 +319,4 @@ namespace EventHubListener
 <!-- Images. -->
 [0]: ./media/event-hubs-streaming-azure-diags-data/dashboard.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0817_2016-->

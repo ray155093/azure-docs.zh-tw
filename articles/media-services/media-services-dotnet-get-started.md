@@ -1,5 +1,5 @@
 <properties
-	pageTitle="使用 .NET SDK 傳遞點播內容入門"
+	pageTitle="使用 .NET 傳遞點播內容入門 | Azure"
 	description="本教學課程會逐步完成使用 .NET 實作含 Azure 媒體服務的點播內容傳遞應用程式。"
 	services="media-services"
 	documentationCenter=""
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
- 	ms.date="07/18/2016"
+ 	ms.date="08/17/2016"
 	ms.author="juliako"/>
 
 
@@ -26,7 +26,7 @@
 >[AZURE.NOTE]
 若要完成此教學課程，您需要 Azure 帳戶。如需詳細資訊，請參閱 [Azure 免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)。
  
-##概觀 
+##Overview 
 
 本教學課程會逐步完成使用 Azure Media Services (AMS) SDK for .NET 實作點播視訊 (VoD) 內容傳遞應用程式。
 
@@ -42,15 +42,15 @@
 3.  建立和設定 Visual Studio 專案。
 5.  連線到媒體服務帳戶。
 6.  建立新資產並上傳視訊檔案。
-7.  將來源檔案編碼為一組調適性位元速率 MP4 檔案。
+7.  將來源檔案編碼為一組自適性 MP4 檔案。
 8.  發佈資產並取得串流和漸進式下載 URL。
 9.  播放您的內容以進行測試。
 
-## 先決條件
+## 必要條件
 
 需要有下列項目，才能完成教學課程。
 
-- 若要完成此教學課程，您需要 Azure 帳戶。 
+- 若要完成此教學課程，您需要 Azure 帳戶。
 	
 	如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)。您將獲得能用來試用 Azure 付費服務的額度。即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務和功能，例如 Azure App Service 中的 Web Apps 功能。
 - 作業系統：Windows 8 或更新版本、Windows 2008 R2、Windows 7。
@@ -90,9 +90,9 @@
 
 ##使用入口網站設定串流端點
 
-使用 Azure 媒體服務時，其中一個最常見案例是提供調適性位元速率串流給您的用戶端。使用調適性位元速率串流，用戶端可以在視訊顯示時，根據目前網路頻寬、CPU 使用率以及其他因素，切換成較高或較低的位元速率串流。媒體服務支援下列調適性位元速率串流技術：HTTP 即時串流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access 授權)。
+使用 Azure 媒體服務時，其中一個最常見案例是提供調適性位元速率串流給您的用戶端。使用自適性串流，用戶端可以在視訊顯示時，根據目前網路頻寬、CPU 使用率以及其他因素，切換成較高或較低的位元速率串流。媒體服務支援下列調適性位元速率串流技術：HTTP 即時串流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access 授權)。
 
-媒體服務提供動態封裝，這讓您以媒體服務支援的串流格式 (MPEG DASH, 、HLS、Smooth Streaming、HDS) 提供調適性位元速率 MP4 或 Smooth Streaming 編碼內容，而不必重新封裝成這些串流格式。
+媒體服務提供動態封裝，這讓您以媒體服務支援的串流格式 (MPEG DASH、HLS、Smooth Streaming、HDS) 提供調適性位元速率 MP4 或 Smooth Streaming 編碼內容，而不必重新封裝成這些串流格式。
 
 若要利用動態封裝，您需要執行下列動作：
 
@@ -101,7 +101,7 @@
 
 使用動態封裝，您只需要以單一儲存格式儲存及播放檔案，媒體服務會根據來自用戶端的要求建置及傳遞適當的回應。
 
-若要變更串流保留單元的數目，請執行下列動作：
+若要變更串流保留單元數目，請執行下列動作：
 
 1. 在[入口網站](https://manage.windowsazure.com/)中，按一下 [媒體服務]。接著，按一下媒體服務的名稱。
 
@@ -117,7 +117,7 @@
 
 >[AZURE.NOTE] 目前，如果串流單元從任何正值到無，可能會停用串流長達一小時。
 >
-> 計算成本時會使用 24 小時內指定的最大單元數。如需價格詳細資料的相關資訊，請參閱[媒體服務價格詳細資料](http://go.microsoft.com/fwlink/?LinkId=275107)。
+> 計算成本時會使用 24 小時內指定的最大單位數。如需價格詳細資料的相關資訊，請參閱[媒體服務價格詳細資料](http://go.microsoft.com/fwlink/?LinkId=275107)。
 
 
 
@@ -253,7 +253,7 @@
 
 若要利用動態封裝，您需要執行下列動作：
 
-- 將您的夾層 (來源) 檔編碼或轉換為一組調適性位元速率 MP4 檔案或調適性位元速率 Smooth Streaming 檔案。  
+- 將您的夾層 (來源) 檔編碼或轉換為一組調適性位元速率 MP4 檔案或調適性位元速率 Smooth Streaming 檔案。
 - 為您計畫從該處傳遞內容的串流端點至少取得一個串流單元。
 
 下列程式碼顯示如何提交編碼工作。此工作包含一項作業，指定使用**媒體編碼器標準**，將夾層檔轉碼為一組調適性位元速率 MP4。此程式碼會提交工作，並等到工作完成。
@@ -298,7 +298,7 @@
 
 ##發佈資產並取得串流和漸進式下載 URL。
 
-若要串流處理或下載資產，您必須先建立定位器來「發佈」它。定位器可以存取資產中所含的檔案。媒體服務支援兩種類型的定位器：OnDemandOrigin 定位器，用於串流媒體 (例如，MPEG DASH、HLS 或 Smooth Streaming) 和存取簽章 (SAS) 定位器，用來下載媒體檔案。
+若要串流處理或下載資產，您必須先建立定位器來「發佈」它。定位器提供對於資產中包含之檔案的存取。媒體服務支援兩種類型的定位器：OnDemandOrigin 定位器，用於串流媒體 (例如，MPEG DASH、HLS 或 Smooth Streaming) 和存取簽章 (SAS) 定位器，用來下載媒體檔案。
 
 建立定位器之後，您便可以建立用來串流或下載檔案的 URL。
 
@@ -453,4 +453,4 @@ MPEG DASH
   [Web Platform Installer]: http://go.microsoft.com/fwlink/?linkid=255386
   [Portal]: http://manage.windowsazure.com/
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

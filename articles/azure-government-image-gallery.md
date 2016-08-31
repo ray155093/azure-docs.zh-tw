@@ -2,6 +2,7 @@
    pageTitle="Azure Government 映像庫 | Microsoft Azure"
    description="這篇文章提供 Azure Government 映像庫與其包含之映像的概觀"
    services="Azure-Government"
+   cloud="gov"
    documentationCenter=""
    authors="joharve2"
    manager="chrisnie"
@@ -26,7 +27,7 @@
 
 ## Azure Government 映像清單
 
-發行者|映像名稱|說明|作業系統|磁碟大小
+發佈者|映像名稱|說明|作業系統|磁碟大小
 ---|---|---|---|---
 Barracuda Networks, Inc.|Barracuda NextGen Firewall F-Series 6.2.1-057|注意：此應用裝置是透過用戶端應用程式所管理，且需要轉送 TCP/807 以執行這項操作。請參閱部署的讀我檔案 https://techlib.barracuda.com/NG61/DeployAzure...|Linux|80 GB
 Barracuda Networks, Inc.|Barracuda Web Application Firewall 8.0.1.008-20160405|注意：此應用裝置是透過 Web UI 所管理，且需要轉送 TCP/8000 以執行這項操作。請參閱部署的讀我檔案 https://techlib.barracuda.com/WAF/Azure 以取得詳細資料。Barracuda Web...|Linux|50 GB
@@ -141,4 +142,4 @@ Visual Studio|Visual Studio Enterprise 2015 Update 2 with Azure SDK 2.9 on Windo
 [Link 2 to another azure.microsoft.com documentation topic]: app-service-web/web-sites-custom-domain-name.md
 [Link 3 to another azure.microsoft.com documentation topic]: storage-whatis-account.md
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

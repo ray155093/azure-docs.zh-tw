@@ -4,14 +4,14 @@
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
-    manager="stevenpo"/>
+    manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="05/25/2016" 
+    ms.date="08/16/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Zscaler 整合
@@ -51,13 +51,13 @@
 
     ![新增應用程式](./media/active-directory-saas-zscaler-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
     ![從組件庫新增應用程式](./media/active-directory-saas-zscaler-tutorial/IC749322.png "從組件庫新增應用程式")
 
 6.  在**搜尋方塊**中，輸入 **Zscaler**。
 
-    ![應用程式庫](./media/active-directory-saas-zscaler-tutorial/IC769227.png "應用程式資源庫")
+    ![應用程式庫](./media/active-directory-saas-zscaler-tutorial/IC769227.png "應用程式庫")
 
 7.  在結果窗格中，選取 Zscaler，然後按一下 [完成] 以新增應用程式。
 
@@ -173,7 +173,7 @@
 
 4.  在 [使用者] 索引標籤中，按一下 [新增]。
 
-    ![新增](./media/active-directory-saas-zscaler-tutorial/IC781037.png "新增")
+    ![加](./media/active-directory-saas-zscaler-tutorial/IC781037.png "新增")
 
 5.  在 [新增使用者] 區段中，執行下列步驟：
 
@@ -186,7 +186,7 @@
 
 ##指派使用者
   
-若要測試您的組態，您需要指派使用者，授予存取權給您想要允許其使用您的應用程式存取設定的 Azure AD 使用者。
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
 ###若要指派使用者給 Zscaler，請執行下列步驟：
 
@@ -202,4 +202,4 @@
   
 如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0817_2016-->

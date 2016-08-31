@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/06/2016"
+   ms.date="08/16/2016"
    ms.author="cherylmc"/>
 
 # 使用 PowerShell 管理 DNS 記錄集和記錄集
@@ -151,7 +151,7 @@
 
 ## 從現有的記錄集移除記錄
 
-您可以使用 `Remove-AzureRmDnsRecordConfig` 來移除記錄集中的記錄。請注意，要移除的記錄必須完全符合現有的資料錄，包括所有參數。必須使用 `Set-AzureRmDnsRecordSet` 認可變更。
+您可以使用 `Remove-AzureRmDnsRecordConfig` 來移除記錄集中的記錄。要移除的記錄必須完全符合現有的資料錄，包括所有參數。必須使用 `Set-AzureRmDnsRecordSet` 認可變更。
 
 移除記錄集的最後一筆記錄不會刪除記錄集。如需詳細資訊，請參閱下方的[刪除記錄集](#delete-a-record-set)。
 
@@ -237,4 +237,4 @@
 
 如需反向 DNS 記錄的詳細資訊，請參閱[如何使用 PowerShell 管理服務的反向 DNS 記錄](dns-reverse-dns-record-operations-ps.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0817_2016-->

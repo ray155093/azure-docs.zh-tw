@@ -5,7 +5,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="curtand"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/14/2016"
+	ms.date="08/15/2016"
 	ms.author="curtand"/>
 
 
@@ -72,7 +72,7 @@ Azure 傳統入口網站可讓您建立進階規則，以對 Azure Active Direct
 |-----------------------|-------------------|-----------------------------|
 | 錯誤：不支援屬性。 | (user.invalidProperty -eq "Value") | (user.department -eq "value")<br/> 屬性應該符合[支援的屬性清單](#supported-properties)中的一個屬性。 |
 | 錯誤：屬性不支援運算子。 | (user.accountEnabled -contains true) | (user.accountEnabled -eq true)<br/> 屬性屬於布林類型。使用上述清單中的布林型別支援的運算子 (-eq 或-ne)。 |
-| 錯誤：查詢編譯錯誤。 | (user.department -eq "Sales") -and (user.department -eq "Marketing")(user.userPrincipalName -match "@domain.ext") | (user.department -eq "Sales") -and (user.department -eq "Marketing")<br/>邏輯運算子應該符合上述支援的屬性清單中的一個屬性。(user.userPrincipalName -match ".@domain.ext")or(user.userPrincipalName -match "@domain.ext$") 規則運算式中發生錯誤。 |
+| 錯誤：查詢編譯錯誤。 | (user.department -eq "Sales") -and (user.department -eq "Marketing")(user.userPrincipalName -match "*@domain.ext") | (user.department -eq "Sales") -and (user.department -eq "Marketing")<br/>邏輯運算子應該符合上述支援的屬性清單中的一個屬性。(user.userPrincipalName -match ".*@domain.ext")or(user.userPrincipalName -match "@domain.ext$") 規則運算式中發生錯誤。 |
 | 錯誤：二進位運算式不是正確的格式。 | (user.department –eq “Sales”) (user.department -eq "Sales")(user.department-eq"Sales") | (user.accountEnabled -eq true) -and (user.userPrincipalName -contains "alias@domain")<br/>查詢有多個錯誤。括號不在正確的位置。 |
 | 錯誤：設定動態成員資格時發生未知的錯誤。 | (user.accountEnabled -eq "True" AND user.userPrincipalName -contains "alias@domain") | (user.accountEnabled -eq true) -and (user.userPrincipalName -contains "alias@domain")<br/>查詢有多個錯誤。括號不在正確的位置。 |
 
@@ -168,7 +168,7 @@ Azure 傳統入口網站可讓您建立進階規則，以對 Azure Active Direct
 
 (user.extensionAttribute15 -eq "Marketing")
 
-自訂屬性會從內部部署 Windows Server AD 或從連接的 SaaS 應用程式進行同步處理，並採用 "user.extension\_[GUID]\_\_[Attribute]" 格式，其中 [GUID] 是 AAD 中的唯一識別碼 (適用於在 AAD 中建立屬性的應用程式)，而 [Attribute] 是其建立的屬性名稱。以下是使用自訂屬性的規則範例：
+自訂屬性會從內部部署 Windows Server AD 或從連接的 SaaS 應用程式進行同步處理，並採用 "user.extension[GUID]\_[Attribute]" 格式，其中 [GUID] 是 AAD 中的唯一識別碼 (適用於在 AAD 中建立屬性的應用程式)，而 [Attribute] 是其建立的屬性名稱。以下是使用自訂屬性的規則範例：
 
 user.extension\_c272a57b722d4eb29bfe327874ae79cb\_\_OfficeNumber
 
@@ -187,13 +187,30 @@ user.extension\_c272a57b722d4eb29bfe327874ae79cb\_\_OfficeNumber
 
 4. 使用下列語法輸入規則：
 
-	Direct Reports for “{obectID\_of\_manager} 的 Direct Reports“。以下是 Direct Reports 的有效規則範例：
+	Direct Reports for {obectID\_of\_manager} 的 Direct Reports。以下是 Direct Reports 的有效規則範例：
 
 					Direct Reports for "62e19b97-8b3d-4d4a-a106-4ce66896a863”
 
 	其中 “62e19b97-8b3d-4d4a-a106-4ce66896a863” 為管理員的 objectID。您可以在 Azure AD 中，身為管理員之使用者的使用者頁面的 [設定檔] 索引標籤上找到物件識別碼。
 
 3. 儲存這項規則時，符合規則的所有使用者都會加入成為群組的成員。一開始填入群組可能需要幾分鐘的時間。
+
+
+## 使用屬性來建立裝置物件的規則
+
+您也可以建立規則以在群組中選取成員資格的裝置物件。可以使用下列裝置屬性︰
+
+| 屬性 | 允許的值 | 使用量 |
+|----------------------|---------------------------------|------------------------------------------------------|
+| displayName | 任何字串值 | (device.displayName -eq "Rob Iphone”) |
+| deviceOSType | 任何字串值 | (device.deviceOSType -eq "IOS") |
+| deviceOSVersion | 任何字串值 | (device.OSVersion -eq "9.1") |
+| isDirSynced | true false null | (device.isDirSynced -eq "true") |
+| isManaged | true false null | (device.isManaged -eq "false") |
+| isCompliant | true false null | (device.isCompliant -eq "true") |
+
+> [AZURE.NOTE]
+無法在 Azure 傳統入口網站中使用 [簡單規則] 下拉式清單建立這些裝置規則。
 
 
 ## 其他資訊
@@ -209,4 +226,4 @@ user.extension\_c272a57b722d4eb29bfe327874ae79cb\_\_OfficeNumber
 
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0817_2016-->

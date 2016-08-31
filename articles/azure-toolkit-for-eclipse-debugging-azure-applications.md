@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="multiple"
     ms.devlang="Java"
     ms.topic="article"
-    ms.date="06/24/2016" 
+    ms.date="08/11/2016" 
     ms.author="robmcm"/>
 
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh690949.aspx -->
@@ -94,9 +94,7 @@
 1. 按一下 [確定] 關閉 [WorkerRole1 偵錯內容] 對話方塊。
 1. 在 index.jsp 中設定中斷點：
     1. 在 Eclipse 的專案總管中，依序展開 [MyHelloWorld]、[WebContent]，然後按兩下 [index.jsp]。
-    1. 在 index.jsp 中，以滑鼠右鍵按一下 Java 程式碼左側的藍色列，按一下 [切換中斷點]，如下所示：
-
-    ![][ic551537]
+    1. 在 index.jsp 中，以滑鼠右鍵按一下 Java 程式碼左側的藍色列，按一下 [切換中斷點]，如下所示：![][ic551537]
 
        如果您在 Java 程式碼左邊的藍色列內看到一個中斷點圖示，表示已設定中斷點。
 1. 按一下 Azure 工具列上的 [在 Azure 模擬器中執行] 按鈕，以在計算模擬器中啟動應用程式。
@@ -135,4 +133,4 @@
 [ic719504]: ./media/azure-toolkit-for-eclipse-debugging-azure-applications/ic719504.png
 [ic551537]: ./media/azure-toolkit-for-eclipse-debugging-azure-applications/ic551537.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

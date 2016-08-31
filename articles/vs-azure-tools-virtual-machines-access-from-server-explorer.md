@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="05/08/2016"
+   ms.date="08/15/2016"
    ms.author="tarcher" />
 
 # 從伺服器總管存取 Azure 虛擬機器
@@ -35,8 +35,8 @@
   	|Environment|若是虛擬機器，這個屬性的值一定是 [生產]。|
   	|名稱|虛擬機器的名稱。|
   	|大小|虛擬機器的大小，此值會反映可用的記憶體和磁碟空間數量。如需詳細資訊，請參閱如何：設定虛擬機器大小。|
-  	|Status|值包括 [啟動中]、[已啟動]、[停止中]、[已停止] 和 [正在擷取狀態]。如果出現 [正在擷取狀態]，則目前狀態是未知的。這個屬性的值不同於 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)上所使用的值。|
-  	|SubscriptionID|Azure 帳戶的訂用帳戶識別碼您可以透過檢視訂用帳戶的屬性，在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)上顯示這項資訊。|
+  	|狀態|值包括 [啟動中]、[已啟動]、[停止中]、[已停止] 和 [正在擷取狀態]。如果出現 [正在擷取狀態]，則目前狀態是未知的。這個屬性的值不同於 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)上所使用的值。|
+  	|SubscriptionID|Azure 帳戶的訂用帳戶識別碼。您可以透過檢視訂用帳戶的屬性，在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)上顯示這項資訊。|
 
 1. 選擇端點節點，然後檢視 [屬性] 視窗。
 
@@ -53,4 +53,4 @@
 
 若要深入了解 Visual Studio 中的 Azure 角色使用方式，請參閱[搭配使用遠端桌面與 Azure 角色](vs-azure-tools-remote-desktop-roles.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="identity"
-   ms.date="08/09/2016"
+   ms.date="08/11/2016"
    ms.author="femila"/>
 
 # Azure AD B2B 共同作業預覽：簡單安全的合作夥伴雲端整合
@@ -23,8 +23,7 @@
 
 - **簡單**：每個合作夥伴使用者使用現有的 Azure AD 帳戶或是在接受邀請時輕鬆建立的帳戶。您可以透過 [應用程式存取面板] 為這位使用者提供直接存取您所選擇的一或多個企業應用程式的存取權。
 
-- **安全**：您的系統管理員透過 Azure AD 目錄控制對您公司應用程式的所有存取。當共同作業終止時，您可以將合作夥伴使用者
-- 從您的 Azure AD 中移除，這會立即撤銷他們對您應用程式的存取權。此外，當合作夥伴使用者離開合作夥伴的組織時，存取權會自動消失。
+- **安全**：您的系統管理員透過 Azure AD 目錄控制對您公司應用程式的所有存取。當共同作業終止時，可以從您的 Azure AD 中移除合作夥伴使用者，並立即撤銷他們對您的應用程式的存取權。此外，當合作夥伴使用者離開合作夥伴的組織時，存取權會自動消失。
 
 - **順暢**：合作夥伴公司**不需要有 Azure AD** 也能存取您的公司應用程式。 Azure AD B2B 共同作業提供簡單的使用者註冊體驗，讓這些合作夥伴立即存取您的應用程式。
 
@@ -43,4 +42,4 @@
 - [目前的預覽版本限制](active-directory-b2b-current-preview-limitations.md)
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

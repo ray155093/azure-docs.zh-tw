@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na"
 	ms.workload="big-data"
 	ms.date="05/18/2016"
-	ms.author="rashimg;cgronlun"/>
+	ms.author="rashimg;jgao"/>
 
 # 在 Azure HDInsight 的 Hadoop 中使用 Hive 記憶體設定修正記憶體不足 (OOM) 錯誤
 
@@ -122,4 +122,4 @@
 
 遇到 OOM 錯誤不一定表示容器大小太小。相反地，您應該設定記憶體設定，如此一來即可增加堆積大小，至少是容器記憶體大小的 80%。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0817_2016-->

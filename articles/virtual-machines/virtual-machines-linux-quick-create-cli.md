@@ -13,15 +13,15 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="vm-linux"
    ms.workload="infrastructure"
-   ms.date="05/03/2016"
+   ms.date="08/18/2016"
    ms.author="v-livech"/>
 
 
 # 使用 CLI 在 Azure 上建立 Linux VM
 
-> [AZURE.NOTE] 若能耽擱您一些時間，請透過回答這個針對您經驗的[簡短問卷](https://aka.ms/linuxdocsurvey)，來協助我們改善 Azure Linux VM 文件。每個答案都有助於我們協助您完成工作。
+> [AZURE.NOTE] 若能耽擱您一些時間，請透過回答這個針對您經驗的[簡短問卷](https://aka.ms/linuxdocsurvey)，協助我們改善 Azure Linux VM 文件。每個答案都有助於我們協助您完成工作。
 
-本文示範如何使用 Azure CLI 的 `azure vm quick-create` 命令，在 Azure 上快速部署 Linux 虛擬機器。`quick-create` 命令會部署周圍具有基本基礎結構的 VM，可讓您非常快速地建立原型或測試概念 (您可以將它視為達到 Linux bash 殼層的最快速方式)。本文需要 Azure 帳戶 ([取得免費試用](https://azure.microsoft.com/pricing/free-trial/))，及已登入 (`azure login`) 和處於資源管理員模式的 [Azure CLI](../xplat-cli-install.md) (`azure config mode arm`)。您也可以使用 [Azure 入口網站](virtual-machines-linux-quick-create-portal.md)快速部署 Linux VM。
+本文示範如何使用 Azure CLI 的 `azure vm quick-create` 命令，在 Azure 上快速部署 Linux 虛擬機器。`quick-create` 命令會部署周圍具有基本基礎結構的 VM，可讓您快速地建立原型或測試概念。本文需要 Azure 帳戶 ([取得免費試用](https://azure.microsoft.com/pricing/free-trial/))，及已登入 (`azure login`) 和處於 Resource Manager 模式的 [Azure CLI](../xplat-cli-install.md) (`azure config mode arm`)。您也可以使用 [Azure 入口網站](virtual-machines-linux-quick-create-portal.md)快速部署 Linux VM。
 
 ## 快速命令摘要
 
@@ -33,7 +33,7 @@ azure vm quick-create -M ~/.ssh/azure_id_rsa.pub -Q CoreOS
 
 ## 部署 Linux VM
 
-使用與上方相同的命令，下列會顯示每個提示以及您應該會看到的輸出，但使用 RHEL 別名來建立 RedHat Enteprise Linux 7.2 VM。
+我們現在即將逐步執行命令，並說明使用 RedHat Enterprise Linux 7.2 的每個步驟。
 
 ## 使用 ImageURN 別名
 
@@ -46,14 +46,13 @@ Azure CLI `quick-create` 命令有對應至最常見 OS 散發套件的別名。
 | Debian | credativ | Debian | 8 | 最新 |
 | openSUSE | SUSE | openSUSE | 13\.2 | 最新 |
 | RHEL | Redhat | RHEL | 7\.2 | 最新 |
-| SLES | SLES | SLES | 12-SP1 | 最新 |
 | UbuntuLTS | Canonical | UbuntuServer | 14\.04.4-LTS | 最新 |
 
 
 
-針對 **ImageURN** 選項 (`-Q`)，我們將使用 `RHEL` 來部署 RedHat Enterprise Linux 7.2 VM。(這 7 個別名代表 Azure 上可用 OS 的一小部分；藉由[搜尋映像](virtual-machines-linux-cli-ps-findimage.md)在 Marketplace 中尋找更多映像，您也可以[上傳自己的自訂映像](virtual-machines-linux-create-upload-generic.md))。
+針對 **ImageURN** 選項 (`-Q`)，我們使用 `RHEL` 來部署 RedHat Enterprise Linux 7.2 VM。這些 `quick-create` 別名代表 Azure 上可用 OS 的一小部分。[搜尋映像](virtual-machines-linux-cli-ps-findimage.md)以在 Marketplace 中尋找更多映像，或者可以[上傳您自己的自訂映像](virtual-machines-linux-create-upload-generic.md)。
 
-在下列命令逐步解說中，請以您自己環境的值取代提示，我們使用「範例」值。
+在下列命令逐步解說中，請以您自己環境的值取代提示。
 
 遵循提示並輸入自己的名稱
 
@@ -147,7 +146,7 @@ data:      Diagnostics Instance View:
 info:    vm quick-create command OK
 ```
 
-您現在可以在預設 SSH 連接埠 22 和上面輸出中所列的完整網域名稱 (FQDN) 上，使用 SSH 登入您的 VM。(您也可以使用所列的 IP 位址)。
+透過 SSH 連到連接埠 22 上的 VM 和輸出中所列的公用 IP 位址。(您也可以使用所列的 FQDN)。
 
 ```bash
 ssh ops@rhel-westu-1630678171-pip.westus.cloudapp.azure.com
@@ -171,6 +170,4 @@ Warning: Permanently added 'rhel-westu-1630678171-pip.westus.cloudapp.azure.com,
 - [直接使用 Azure CLI 命令來建立您自己的 Linux VM 自訂環境](virtual-machines-linux-create-cli-complete.md)。
 - [使用範本在 Azure 上建立受 SSH 保護的 Linux VM](virtual-machines-linux-create-ssh-secured-vm-from-template.md)
 
-這些文章可幫您開始建置 Azure 基礎結構，以及多種專屬和開放原始碼基礎結構部署、組態和協調流程工具。
-
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

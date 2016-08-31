@@ -67,43 +67,7 @@
 
 若要開始在 Azure 中使用服務匯流排功能，首先必須建立服務命名空間。命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。
 
-1.  登入 [Azure 傳統入口網站][]。
-
-2.  在入口網站的左方瀏覽窗格中，按一下 [服務匯流排]。
-
-3.  在入口網站的下方窗格中，按一下 [建立]。
-
-    ![][5]
-
-4.  在 [加入新的命名空間] 對話方塊中，輸入命名空間名稱。系統會立即檢查此名稱是否可用。![][6]
-
-5.  確定命名空間名稱可用之後，請選擇要代管命名空間的國家或區域 (必須使用您要部署計算資源的相同國家/區域)。
-
-    > [AZURE.IMPORTANT] 請挑選您想要選擇來部署應用程式的*相同區域*。這樣可以獲得最佳效能。
-
-6.	讓對話方塊中的其他欄位保留其預設值，然後按一下 [確定] 核取記號。系統會建立並啟用命名空間。系統為帳戶提供資源時，您可能需要等幾分鐘。
-
-您所建立的命名空間會出現在入口網站中，不過啟動可能需要花一些時間。等到狀態變成 [作用中] 之後再繼續。
-
-## 取得命名空間的預設管理認證
-
-為了在新的命名空間上執行管理作業，例如建立訊息實體，您必須取得命名空間的認證。
-
-1.  在主視窗中，按一下您在上一個步驟中建立的命名空間。
-
-2.  按一下頁面底部的 [連接資訊]。
-
-3.  在 [**存取連線資訊**] 窗格中，尋找包含 SAS 金鑰和金鑰名稱的連接字串。
-
-	![][45]
-
-4.  複製連接字串，並將它複製到別處，以供本教學課程後續使用。
-
-5. 在相同的入口網站頁面中，按一下頁面頂端的 [設定] 索引標籤。
-
-6. 請將 **RootManageSharedAccessKey** 原則的主索引鍵複製到剪貼簿，或將它貼到 [記事本] 中。您稍後會在本教學課程中使用此值。
-
-	![][46]
+[AZURE.INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
 ## 建立內部部署伺服器
 
@@ -123,7 +87,7 @@
 
 4.  按一下 [確定] 以建立 **ProductsServer** 專案。
 
-7.  如果已安裝 Visual Studio 的 NuGet 封裝管理員，請跳至下一個步驟。否則，請造訪 [NuGet][] (英文)，然後按一下 [[安裝 NuGet]](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) (英文)。按照提示安裝 NuGet 封裝管理員，然後重新啟動 Visual Studio。
+7.  如果已安裝 Visual Studio 的 NuGet 封裝管理員，請跳至下一個步驟。否則，請造訪 [NuGet][] \(英文)，然後按一下 [[安裝 NuGet]](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) (英文)。按照提示安裝 NuGet 封裝管理員，然後重新啟動 Visual Studio。
 
 7.  在 [方案總管] 中，以滑鼠右鍵按一下 **ProductsServer** 專案，然後按一下 [管理 NuGet 封裝]。
 
@@ -252,7 +216,7 @@
       </behaviors>
     </system.serviceModel>
     ```
-14. 仍是在 App.config 中，請以您先前從入口網站取得的連接字串取代 **&lt;appSettings&gt;** 元素中的連接字串值。 
+14. 仍是在 App.config 中，請以您先前從入口網站取得的連接字串取代 **&lt;appSettings&gt;** 元素中的連接字串值。
 
 	```
 	<appSettings>
@@ -288,7 +252,7 @@
 
 	![][18]
 
-6. 	在 [新建 ASP.NET 專案] 對話方塊中的 [Microsoft Azure] 區段，確定已選取 [雲端中的主機] 並已選取下拉式清單中的 [App Service]。
+6. 	在 [新建 ASP.NET 專案] 核取方塊中的 [Microsoft Azure] 區段，確認已選取 [在雲端託管]，並在下拉式清單中選取 [App Service]。
 
 	![][19]
 
@@ -513,7 +477,7 @@
 
 ## 執行應用程式
 
-2.  按 F5 以建置並執行應用程式。內部部署伺服器 (**ProductsServer** 主控台應用程式) 應該會第一個啟動，然後 **ProductsPortal** 應用程式應該會在瀏覽器視窗中啟動，如下面的螢幕擷取畫面所示。再次注意，產品庫存清單會列出從產品服務內部部署系統擷取的資料，並在 Web 應用程式中顯示該資訊。檢查 URL，確定 **ProductsPortal** 正在雲端中以 Azure Web 應用程式的形式執行。 
+2.  按 F5 以建置並執行應用程式。內部部署伺服器 (**ProductsServer** 主控台應用程式) 應該會第一個啟動，然後 **ProductsPortal** 應用程式應該會在瀏覽器視窗中啟動，如下面的螢幕擷取畫面所示。再次注意，產品庫存清單會列出從產品服務內部部署系統擷取的資料，並在 Web 應用程式中顯示該資訊。檢查 URL，確定 **ProductsPortal** 正在雲端中以 Azure Web 應用程式的形式執行。
 
     ![][1]
 
@@ -529,8 +493,8 @@
 
 若要深入了解服務匯流排，請參閱下列資源：
 
-* [Azure 服務匯流排][sbwacom]  
-* [如何使用服務匯流排佇列][sbwacomqhowto]  
+* [Azure 服務匯流排][sbwacom]
+* [如何使用服務匯流排佇列][sbwacomqhowto]
 
 
   [0]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/hybrid.png
@@ -538,11 +502,6 @@
   [取得工具和 SDK]: http://go.microsoft.com/fwlink/?LinkId=271920
   [NuGet]: http://nuget.org
   
-  [Azure 傳統入口網站]: http://manage.windowsazure.com
-  [5]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/sb-queues-03.png
-  [6]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/sb-queues-04.png
-
-
   [11]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/hy-con-1.png
   [13]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/getting-started-multi-tier-13.png
   [15]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/hy-web-2.png
@@ -564,10 +523,9 @@
   [38]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/hy-service2.png
   [41]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/getting-started-multi-tier-40.png
   [43]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/getting-started-hybrid-43.png
-  [45]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/hy-web-45.png
-  [46]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/service-bus-policies.png
+
 
   [sbwacom]: /documentation/services/service-bus/
   [sbwacomqhowto]: service-bus-dotnet-get-started-with-queues.md
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0824_2016-->

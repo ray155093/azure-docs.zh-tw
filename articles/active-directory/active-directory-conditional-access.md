@@ -14,7 +14,7 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="08/08/2016"
+	ms.date="08/17/2016"
 	ms.author="markvi"/>
 
 
@@ -105,11 +105,13 @@ Azure Active Directory 中的條件式存取控制功能可提供一些簡單的
 - [支援何種應用程式](active-directory-conditional-access-supported-apps.md)
 
 
-### 裝置原則
+### 裝置型條件式存取
 
 - [如何設定裝置型條件式存取原則來控制對 Azure Active Directory 連線應用程式的存取](active-directory-conditional-access-policy-connected-applications.md)
 
 - [如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊](active-directory-conditional-access-automatic-device-registration-setup.md)
+
+- [使用者在存取 Azure AD 裝置型條件式存取受保護應用程式時的補救方式](active-directory-conditional-access-device-remediation.md)
 
 - [要求使用 Microsoft Intune 以協助保護資料](https://docs.microsoft.com/intune/deploy-use/use-remote-wipe-to-help-protect-data-using-microsoft-intune)
 
@@ -123,4 +125,4 @@ Azure Active Directory 中的條件式存取控制功能可提供一些簡單的
 - [條件式存取常見問題集](active-directory-conditional-faqs.md)
 - [技術參考](active-directory-conditional-access-technical-reference.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

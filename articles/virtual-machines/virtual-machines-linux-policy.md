@@ -3,7 +3,7 @@
 	description="如何將原則套用至 Azure Resource Manager Linux 虛擬機器"
 	services="virtual-machines-linux"
 	documentationCenter=""
-	authors="singhkay"
+	authors="singhkays"
 	manager="drewm"
 	editor=""
 	tags="azure-resource-manager"/>
@@ -102,8 +102,8 @@
 
 ## 套用原則
 
-建立原則之後，您需要為定義的範圍加以套用。範圍可以是訂用帳戶、資源群組甚至資源。如需套用原則的詳細資訊，請參閱下文︰
+建立原則之後，您需要為定義的範圍加以套用。範圍可以是訂用帳戶、資源群組，甚至是資源。如需套用原則的詳細資訊，請參閱下文︰
 
 * [建立原則](../resource-manager-policy.md#applying-a-policy)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -13,7 +13,7 @@
   ms.topic="article"
   ms.tgt_pltfrm="na"
   ms.workload="data-services"
-  ms.date="07/06/2016"
+  ms.date="08/17/2016"
   ms.author="andrl"/>
 
 # 社群入口網站
@@ -120,7 +120,9 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 
 | 活動名稱 | 主講人 | 位置 | 日期 | Hashtag |
 | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | -------------------- | ------------------------ | ------- |
+| [Capital City .NET Users Group](https://www.meetup.com/tally-dot-net/events/233070827/) | Santosh Hari | 佛羅里達州 Tallahassee | 2016 年 9 月 1 日 | n/a |
 | [Ignite 2016](https://myignite.microsoft.com/sessions?q=documentdb) | Andrew Liu 和 Tara Jana | 喬治亞州亞特蘭大 | 2016 年 9 月 26-30 日 | [#MSIgnite](https://twitter.com/MS_Ignite) |
+| [Strata + Hadoop World](http://conferences.oreilly.com/strata/hadoop-big-data-ny/?cmp=kn-data-confreg-home-stny16_bing_branded) | TBD | 美國紐約 | 2016 年 9 月 26-29 日 | [#StrataConf](https://twitter.com/strataconf) |
 
 
 您在演講或舉辦活動嗎？ [請告訴我們](mailto:askdocdb@microsoft.com)該如何協助您！
@@ -161,7 +163,7 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 | [@Scale Seattle](http://www.atscaleconference.com/) | Dharma Shukla | 美國華盛頓州西雅圖 | 2015 年 6 月 17 日 | [使用 Azure DocumentDB 編製與結構描述無關的索引](https://www.youtube.com/watch?v=VJQ_5qFFVP4) |
 | [Tech Refresh 2015](https://channel9.msdn.com/Events/DXPortugal/Tech-Refresh-2015) | Bruno Lopes | 葡萄牙里斯本 | 2015 年 6 月 15 日 | [DocumentDB 101](https://channel9.msdn.com/Events/DXPortugal/Tech-Refresh-2015/DPDEV01) |
 | [SQL Saturday #417 - Sri Lanka 2015](http://www.sqlsaturday.com/417/Sessions/Details.aspx?sid=21415) | Mihail Mateev | 斯里蘭卡可倫坡 | 2015 年 6 月 6 日 | n/a |
-| [Meetup:Seattle Scalability Meetup](http://www.meetup.com/Seattle-Scalability-Meetup/events/204010442/) | Dharma Shukla | 美國華盛頓州西雅圖 | 2015 年 5 月 27 日 | n/a |
+| [Meetup: Seattle Scalability Meetup](http://www.meetup.com/Seattle-Scalability-Meetup/events/204010442/) | Dharma Shukla | 美國華盛頓州西雅圖 | 2015 年 5 月 27 日 | n/a |
 | [SQL Saturday #377 - Kiev 2015](http://www.sqlsaturday.com/377/Sessions/Details.aspx?sid=20322) | Mihail Mateev | 烏克蘭基輔 | 2015 年 5 月 23 日 | n/a |
 | [Database Month](http://www.databasemonth.com/database/azure-documentdb) | Dharma Shukla | 美國紐約 | 2015 年 5 月 19 日 | [Azure DocumentDB︰大規模可調整、多租用戶文件資料庫服務](https://www.youtube.com/watch?v=iZsqBc3Dkbk) |
 | [Meetup: London SQL Server User Group](http://www.meetup.com/London-SQL-Server-User-Group/events/221525058/) | Allan Mitchell | 倫敦英國 | 2015 年 5 月 19 日 | n/a |
@@ -229,7 +231,7 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 
 ![小組](./media/documentdb-community/documentdb-team.png)
 
-您需要技術協助嗎？ 有任何疑問嗎？ 想知道 NoSQL 是否適合您嗎？ 您可以[安排直接與 DocumentDB 工程小組進行 1 對 1 交談](http://www.askdocdb.com/)。您也可以傳送[電子郵件](mailto:askdocdb@microsoft.com)給我們，或在 [@DocumentDB](https://twitter.com/DocumentDB) 推文給我們。
+您需要技術協助嗎？ 有任何疑問嗎？ 想知道 NoSQL 是否適合您嗎？ 您可以[安排直接與 DocumentDB 工程小組進行 1 對 1 交談](http://www.askdocdb.com/)。您也可以傳送[電子郵件](mailto:askdocdb@microsoft.com)給我們或在 [@DocumentDB](https://twitter.com/DocumentDB) 推文給我們。
 
 ## 開放原始碼專案
 
@@ -266,4 +268,4 @@ DocumentDB 精靈是社群領導者，他們是在協助其他人充分利用他
 
 想要成為 DocumentDB 精靈？ 由於是否能成為 DocumentDB 精靈並沒有任何評斷基準，因此我們會針對部分條件來評估，包括被提名人在線上論壇 (例如 StackOverflow 和 MSDN；Wiki 和線上內容；會議和使用者群組；播客；網站；部落格和社群媒體；以及文章與書籍) 中提供之貢獻所產生的影響。如果您想提名自己或其他人，請[傳送電子郵件給我們](mailto:askdocdb@microsoft.com)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -1,5 +1,5 @@
 <properties
-	pageTitle="我的 WebApi 專案 (Visual Studio Azure Active Directory 已連接服務) 發生了什麼事 | Microsoft Azure"
+	pageTitle="我的 WebApi 專案 (Visual Studio Azure Active Directory 已連接服務) 發生了什麼事 | Microsoft Azure "
 	description="說明當您使用 Visual Studio 連線至 Azure AD 時，您的 MVC 專案 WebApi 會發生什麼事"
   services="active-directory"
 	documentationCenter=""
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="vs-what-happened"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/01/2016"
+	ms.date="08/15/2016"
 	ms.author="tarcher"/>
 
 # 我的 WebApi 專案發生什麼狀況 (Visual Studio Azure Active Directory 已連接服務)
@@ -70,7 +70,7 @@
 
 ###已建立 Azure AD 應用程式
 
-已在您於精靈中選取的目錄中建立 Azure AD 應用程式。
+在您於精靈中選取的目錄中建立 Azure AD 應用程式。
 
 [深入了解 Azure Active Directory](https://azure.microsoft.com/services/active-directory/)
 
@@ -117,4 +117,4 @@ Azure Active Directory 應用程式已更新為包含*讀取目錄資料* 權限
 
 [深入了解 Azure Active Directory](https://azure.microsoft.com/services/active-directory/)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0817_2016-->

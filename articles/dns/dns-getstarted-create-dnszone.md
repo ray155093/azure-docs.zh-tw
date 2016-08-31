@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/09/2016"
+   ms.date="08/16/2016"
    ms.author="cherylmc"/>
 
 # 使用 PowerShell 建立 DNS 區域
@@ -39,14 +39,14 @@ Azure DNS 使用 Etag 以安全地處理相同資源的並行變更。每個 DNS
 
 在 Azure DNS REST API 層級上是使用 HTTP 標頭指定 Etag。下表提供它們的行為：
 
-|標頭|行為|
+|頁首|行為|
 |------|--------|
 |None|PUT 一定成功 (沒有 Etag 檢查)|
 |If-match <etag>|唯有當資源存在且 Etag 符合時，PUT 才會成功|
 |If-match * | 唯有當資源存在時，PUT 才會成功|
 |If-none-match * |	唯有當資源不存在時，PUT 才會成功|
 
-### <a name="tags"></a>標籤
+### <a name="tags"></a>標記
 
 標記與 Etag 不同。標記是名稱-值組的清單，由 Azure Resource Manager 在計費或分群用途上用來標示資源。如需標記的詳細資訊，請參閱[使用標記來組織您的 Azure 資源](../resource-group-using-tags.md)。
 
@@ -63,7 +63,7 @@ Azure DNS PowerShell 在區域與記錄集上支援使用選項 `-Tag` 參數來
 
 ## 步驟 1 - 登入
 
-開啟 PowerShell 主控台並連接到您的帳戶。如需詳細資訊，請參閱[搭配使用 Windows PowerShell 與資源管理員](../powershell-azure-resource-manager.md)。
+開啟 PowerShell 主控台並連接到您的帳戶。如需詳細資訊，請參閱[搭配使用 Windows PowerShell 與 Resource Manager](../powershell-azure-resource-manager.md)。
 
 使用下列範例來協助您連接：
 
@@ -101,13 +101,13 @@ Azure DNS 服務由 Microsoft.Network 資源提供者管理。您的 Azure 訂�
 
 ### 建立 DNS 區域
 
-下列範例會在稱為 *MyResourceGroup* 的資源群組中建立稱為 *contoso.com* 的 DNS 區域。使用範例來建立 DNS 區域，並將值替換為您自己的值。
+下列範例會在稱為 MyResourceGroup 的資源群組中建立稱為 contoso.com 的 DNS 區域。使用範例來建立 DNS 區域，並將值替換為您自己的值。
 
 	New-AzureRmDnsZone -Name contoso.com -ResourceGroupName MyAzureResourceGroup
 
 ### 使用標籤建立 DNS 區域
 
-下列範例示範如何使用兩個標籤 *project = demo* 和 *env = test* 建立 DNS 區域。使用範例來建立 DNS 區域，並將值替換為您自己的值。
+下列範例示範如何使用兩個標籤 project = demo 和 env = test 建立 DNS 區域。使用範例來建立 DNS 區域，並將值替換為您自己的值。
 
 	New-AzureRmDnsZone -Name contoso.com -ResourceGroupName MyAzureResourceGroup -Tag @( @{ Name="project"; Value="demo" }, @{ Name="env"; Value="test" } )
 
@@ -174,4 +174,4 @@ Azure DNS 服務由 Microsoft.Network 資源提供者管理。您的 Azure 訂�
 
 建立 DNS 區域之後，請建立[記錄集和記錄](dns-getstarted-create-recordset.md)，以開始解析您的網際網路網域名稱。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0817_2016-->

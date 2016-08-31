@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="04/19/2016"
+   ms.date="08/17/2016"
    ms.author="alkohli" />
 
 # 適用於 StorSimple 裝置的技術規格和相容性
 
-## 概觀
+## Overview
 
 Microsoft Azure StorSimple 裝置的硬體元件會遵循本文中概述的技術規格與法規標準。技術規格描述電源與冷卻模組 (PCM)、磁碟機、儲存體容量及機箱。相容性資訊則涵蓋國際標準、安全性和排放量，以及連接纜線等資訊。
 
@@ -77,7 +77,7 @@ StorSimple 裝置混合搭載 8100 及 8600 的硬碟與固態磁碟機。8100 �
 | 解決方案的最大容量 (含雲端) | 200 TB | 500 TB |
 
 
-<sup>* </sup>- 可用的容量總計包括可供資料、中繼資料及緩衝區使用的容量。
+<sup>* </sup>- *可用的容量總計包括可供資料、中繼資料及緩衝區使用的容量。*
 
 ## 機箱尺寸和重量規格  
 
@@ -135,16 +135,16 @@ StorSimple 裝置混合搭載 8100 及 8600 的硬碟與固態磁碟機。8100 �
 ## 國際標準相容性
 您的 Microsoft Azure StorSimple 裝置符合下列國際標準：
 
-- CE - EN 60950 - 1  
-- IEC 60950 - 1 的 CB 報告  
-- UL 60950 - 1 的 UL 和 cUL  
+- CE - EN 60950 - 1
+- IEC 60950 - 1 的 CB 報告
+- UL 60950 - 1 的 UL 和 cUL
 
 ## 安全法規遵循  
 
 您的 Microsoft Azure StorSimple 裝置符合下列安全分級：
 
-- 系統產品類型核可：UL、cUL、CE  
-- 安全法規遵循：UL 60950、IEC 60950、EN 60950  
+- 系統產品類型核可：UL、cUL、CE
+- 安全法規遵循：UL 60950、IEC 60950、EN 60950
 
 ## EMC 法規遵循 
 
@@ -154,8 +154,8 @@ StorSimple 裝置混合搭載 8100 及 8600 的硬碟與固態磁碟機。8100 �
 
 此裝置符合傳導和輻射放射性層級的 EMC 標準。
 
-- 傳導放射性限制層級：CFR 47 Part 15B Class A EN55022 Class A CISPR Class A  
-- 輻射放射性限制層級：CFR 47 Part 15B Class A EN55022 Class A CISPR Class A   
+- 傳導放射性限制層級：CFR 47 Part 15B Class A EN55022 Class A CISPR Class A
+- 輻射放射性限制層級：CFR 47 Part 15B Class A EN55022 Class A CISPR Class A
 
 ### 諧波和變動  
 
@@ -191,4 +191,4 @@ StorSimple 裝置混合搭載 8100 及 8600 的硬碟與固態磁碟機。8100 �
 
 您現在已可在您的資料中心內部署 StorSimple 裝置。如需詳細資訊，請參閱[部署您的內部部署裝置](storsimple-deployment-walkthrough-u2.md)。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0817_2016-->

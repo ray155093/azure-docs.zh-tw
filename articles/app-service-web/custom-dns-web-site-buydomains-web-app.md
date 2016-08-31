@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/24/2016"
+	ms.date="08/11/2016"
 	ms.author="robmcm"/>
 
 # 在 Azure App Service 中購買並設定自訂網域名稱
@@ -37,7 +37,7 @@
 [AZURE.INCLUDE [introfooter](../../includes/custom-dns-web-site-intro-notes.md)]
 
 
-## 概觀
+## Overview
 
 > [AZURE.NOTE] 請不要嘗試使用沒有與作用中信用卡相關聯的訂用帳戶購買網域。這可能會導致您的訂用帳戶被停用。
 
@@ -116,4 +116,4 @@
 - 您可能已經在某個時間點刪除了自訂網域。請查看稽核記錄，方法是前往您應用程式的主刀鋒視窗，然後按一下 [設定] > [稽核記錄]。
 - 您正在查看的 [自訂網域及 SSL] 刀鋒視窗，可能屬於不同 Azure 訂用帳戶所建立的應用程式。請切換到不同訂用帳戶的另一個應用程式，並查看該應用程式的 [自訂網域及 SSL] 刀鋒視窗。在入口網站中，除了應用程式之外，您無法查看或管理不同的 Azure 訂用帳戶所建立的自訂網域。不過，如果您在網域的 [管理網域] 刀鋒視窗中按一下 [進階管理]，您會被重新導向到網域提供者的網站，讓您能夠在那裡為不同 Azure 訂用帳戶所建立的應用程式[手動設定您的自訂網域，就跟設定所有外部自訂網域一樣](web-sites-custom-domain-name.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

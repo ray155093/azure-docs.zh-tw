@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="教學課程：使用 REST API 建立具有複製活動的管線" 
+	pageTitle="教學課程：使用 REST API 建立具有複製活動的管線 | Microsoft Azure" 
 	description="在本教學課程中，您會使用 REST API，建立具有複製活動的 Azure Data Factory 管線。" 
 	services="data-factory" 
 	documentationCenter="" 
@@ -23,11 +23,12 @@
 - [使用 PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
 - [使用 Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
 - [使用 REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
+- [使用 .NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
 - [使用複製精靈](data-factory-copy-data-wizard-tutorial.md)
 
 本教學課程示範如何使用 REST API 建立和監視 Azure Data Factory。Data Factory 中的管線會使用複製活動將資料從 Azure Blob 複製到 Azure SQL Database。
 
-複製活動會在 Azure Data Factory 中執行資料移動，而此活動是由全域可用的服務所提供，可以使用安全、可靠及可調整的方式，在各種不同的資料存放區之間複製資料。如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)文章。
+複製活動會在 Azure Data Factory 中執行資料移動。此活動是由全域可用的服務所提供，可以使用安全、可靠及可調整的方式，在各種不同的資料存放區之間複製資料。如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)文章。
 
 > [AZURE.NOTE] 
 這篇文章並未涵蓋所有的 Data Factory REST API。如需 Data Factory Cmdlet 的完整文件，請參閱 [Data Factory REST API 參考](https://msdn.microsoft.com/library/azure/dn906738.aspx)。
@@ -142,7 +143,7 @@ JSON 定義會定義名為 **AzureBlobInput** 的資料集，以表示管線中�
 - **folderPath** 設為 **adftutorial** 容器，而 **fileName** 設為 **emp.txt**。
 - 格式 **type** 設為 **TextFormat**
 - 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (**columnDelimiter**)
-- **availability** 設為**每小時** (frequency 設為小時且 interval 設為 1)，因此 Data Factory 服務每個小時皆會在您指定之 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。
+- **availability** 設定為**每小時** (frequency 設定為小時，interval 設定為 1)。因此，Data Factory 會每小時都在指定之 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。
 
 如果您未指定輸入資料集的 **fileName**，則輸入資料夾 (**folderPath**) 中的所有檔案/Blob 都會被視為輸入。如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。
 
@@ -196,7 +197,7 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 - 資料集 **type** 設為 **AzureSQLTable**。
 - **linkedServiceName** 設為 **AzureSqlLinkedService**。
 - **tablename** 設為 **emp**。
-- 資料庫的 emp 資料表中有三個資料行 (**ID**、**FirstName** 和 **LastName**)，但 ID 是身分識別資料行，所以您在此處只需要指定 **FirstName** 和 **LastName**。
+- 資料庫的 emp 資料表中有三個資料行 – **ID**、**FirstName** 和 **LastName**。ID 是識別資料行，所以您只需在此指定 **FirstName** 和 **LastName**。
 - **availability** 設定為**每小時**，且 (**frequency** 設定為**小時**，**interval** 設定為 **1**)。Data Factory 服務會每隔一小時在 Azure SQL Database 的 **emp** 資料表中產生輸出資料配量。
 
 ### pipeline.json
@@ -238,8 +239,8 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 	        }
 	      }
 	    ],
-	    "start": "2016-07-12T00:00:00Z",
-	    "end": "2016-07-13T00:00:00Z"
+	    "start": "2016-08-12T00:00:00Z",
+	    "end": "2016-08-13T00:00:00Z"
 	  }
 	}
 
@@ -256,7 +257,7 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 
 如果您未指定 **end** 屬性的值，則會以「**start + 48 小時**」計算。若要無限期地執行管線，請指定 **9999-09-09** 做為 **end** 屬性的值。
 
-在上述範例中，由於每小時即產生一個資料配量，共會有 24 個資料配量。
+在此範例中，由於每小時即產生一個資料配量，共會有 24 個資料配量。
 	
 > [AZURE.NOTE] 如需上述範例中使用的 JSON 屬性的詳細資訊，請參閱[管線的剖析](data-factory-create-pipelines.md#anatomy-of-a-pipeline)。
 
@@ -285,7 +286,7 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 
 ## 建立 Data Factory
 
-在此步驟中，您會建立名為 **ADFCopyTutorialDF** 的 Azure Data Factory。資料處理站可以有一或多個管線。其中的管線可以有一或多個活動。例如，「複製活動」會從來源複製資料到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼轉換輸入資料以產生輸出資料。執行以下命令以建立 Data Factory：
+在此步驟中，您會建立名為 **ADFCopyTutorialDF** 的 Azure Data Factory。資料處理站可以有一或多個管線。其中的管線可以有一或多個活動。例如，「複製活動」會從來源複製資料到目的地資料存放區。HDInsight Hive 活動則是執行 Hive 指令碼轉換輸入資料以產生輸出資料。執行以下命令以建立 Data Factory：
 
 1. 將命令指派給名為 **cmd** 的變數。
 
@@ -320,7 +321,7 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 			Get-AzureRmResourceProvider
 	- 使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)並瀏覽至 [Data Factory] 刀鋒視窗 (或) 在 Azure 入口網站中建立 Data Factory。此動作會自動為您註冊提供者。
 
-建立管線之前，您必須先建立一些 Data Factory 項目。首先，您要建立連結服務，以便將來源和目的地資料存放區連結到您的資料存放區；並定義輸入和輸出資料集，表示資料位於連結的資料存放區中，再建立具有使用這些資料集的活動之管線。
+建立管線之前，您必須先建立一些 Data Factory 項目。您會先建立連結服務，將來源和目的地資料存放區連結至您的資料存放區。然後，定義輸入和輸出資料集，以表示連結資料存放區中的資料。最後，建立會使用這些資料集之活動的管線。
 
 ## 建立連結服務
 連結服務會將資料存放區或計算服務連結至 Azure Data Factory。資料存放區可以是 Azure 儲存體、Azure SQL Database 或內部部署 SQL Server 資料庫，且內含 Data Factory 管線的輸入資料或儲存其輸出資料。計算服務是處理輸入資料並產生輸出資料的服務。
@@ -357,7 +358,7 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 
 在上一個步驟中，您已建立連結服務 **AzureStorageLinkedService** 和 **AzureSqlLinkedService**，將 Azure 儲存體帳戶和 Azure SQL Database 連結至 Data Factory：**ADFCopyTutorialDF**。在此步驟中，您會建立資料集，而這些資料集在下一個步驟所建立的管線中代表複製活動的輸入和輸出資料。
 
-本教學課程中的輸入資料集是指 AzureStorageLinkedService 所指向之 Azure 儲存體中的 Blob 容器，而輸出資料集則是指 AzureSqlLinkedService 所指向之 Azure SQL Database 中的 SQL 資料表。
+本教學課程中的輸入資料集是指 Azure 儲存體中 AzureStorageLinkedService 所指向的 Blob 容器。輸出資料集則是指 Azure SQL Database 中 AzureSqlLinkedService 所指向的 SQL 資料表。
 
 ### 準備教學課程所需的 Azure Blob 儲存體和 Azure SQL 資料庫
 執行下列步驟來準備本教學課程中的 Azure Blob 儲存體和 Azure SQL Database。
@@ -390,7 +391,7 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 
 	如果您的電腦上已安裝 SQL Server 2014：請遵循[步驟 2：使用 SQL Server Management Studio 連接到管理 Azure SQL Database 的 SQL Database][sql-management-studio] 文章中的指示，連接到您的 Azure SQL Server，並執行 SQL 指令碼。
 
-	若您的電腦上已安裝 Visual Studio 2013：請在 Azure 入口網站中 ([http://portal.azure.com](http://portal.sazure.com))，依序按一下左側的 [瀏覽] 中樞、[SQL Server]，選取您的資料庫，然後按一下工具列上的 [在 Visual Studio 中開啟] 按鈕，以連接到您的 Azure SQL Server 並執行指令碼。如果不允許您的用戶端存取 Azure SQL Server，則必須將 Azure SQL Server 的防火牆設定成允許從您的電腦 (IP 位址) 存取。請參閱上文的步驟，為 Azure SQL Server 設定防火牆。
+	如果不允許您的用戶端存取 Azure SQL Server，則必須將 Azure SQL Server 的防火牆設定成允許從您的電腦 (IP 位址) 存取。請參閱[本文](../sql-database/sql-database-configure-firewall-settings.md)的步驟，為 Azure SQL Server 設定防火牆。
 		
 ### 建立輸入資料集 
 在此步驟中，您將在 **AzureStorageLinkedService** 連結服務所代表的 Azure 儲存體中，建立指向 Blob 容器的 **AzureBlobInput** 資料集。此 Blob 容器 (**adftutorial**) 包含的輸入資料位於 **emp.txt** 檔案中。
@@ -406,7 +407,7 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 		$results
 
 ### 建立輸出資料集
-在這部分的步驟中，您會在 **AzureSqlLinkedService** 連結服務所代表的 Azure SQL Database中，建立指向 SQL 資料表 (**emp**) 的輸出資料表 **AzureSqlOutput**。管線會將輸入 Blob 中的資料複製到 **emp** 資料表。
+在此步驟中，您會建立名為 **AzureSqlOutput** 的輸出資料表。此資料集指向 Azure SQL Database 中 **AzureSqlLinkedService** 所代表的 SQL 資料表 (**emp**)。管線會將輸入 Blob 中的資料複製到 **emp** 資料表。
 
 1. 將命令指派給名為 **cmd** 的變數。
  
@@ -492,4 +493,4 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 [sql-management-studio]: ../sql-database/sql-database-manage-azure-ssms.md
  
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

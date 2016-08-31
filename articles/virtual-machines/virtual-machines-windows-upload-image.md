@@ -33,6 +33,8 @@
 
 - **執行 Windows 的虛擬機器** - 有許多工具可讓您在內部部署建立虛擬機器。如需範例，請參閱[安裝 Hyper-V 角色及設定虛擬機器](http://technet.microsoft.com/library/hh846766.aspx)。如需有關 Azure 上支援哪些 Windows 作業系統的資訊，請參閱 [Microsoft Azure 虛擬機器的 Microsoft 伺服器軟體支援](https://support.microsoft.com/kb/2721672)。
 
+- 請確定 VM 上執行的伺服器角色支援 Sysprep。如需詳細資訊，請參閱 [Sysprep Support for Server Roles (伺服器角色的 Sysprep 支援)](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)。
+
 
 ## 確定 VM 的檔案格式正確
 
@@ -40,11 +42,11 @@
 
 - 如果您的 Windows VM 映像是 VHDX 格式，請使用下列做法將它轉換成 VHD︰
 
-	- Hyper-V︰開啟 Hyper-V，在左側選取您的本機電腦。然後在上方的功能表中，按一下 [動作] > [編輯磁碟...]。按 [下一步] 並輸入這些選項來瀏覽畫面：[VHDX 檔案的路徑] > [轉換] > [VHD] > [固定大小] > [新的 VHD 檔案的路徑]。按一下 [完成] 以關閉。
+	- Hyper-V︰開啟 Hyper-V，在左側選取您的本機電腦。然後在上方功能表中，按一下 [動作] > [編輯磁碟...]。按 [下一步] 並輸入這些選項來瀏覽畫面：[VHDX 檔案的路徑] > [轉換] > [VHD] > [固定大小] > [新的 VHD 檔案路徑]。按一下 [完成] 以關閉。
 
-	- [Convert-VHD PowerShell Cmdlet](http://technet.microsoft.com/library/hh848454.aspx)︰如需詳細資訊，請閱讀部落格文章[將 Hyper-V .vhdx式轉換為 .vhd 檔案格](https://blogs.technet.microsoft.com/cbernier/2013/08/29/converting-hyper-v-vhdx-to-vhd-file-formats-for-use-in-windows-azure/)。
+	- [Convert-VHD PowerShell Cmdlet](http://technet.microsoft.com/library/hh848454.aspx)︰如需詳細資訊，請閱讀部落格文章[將 Hyper-V .vhdx 轉換為 .vhd 檔案格式](https://blogs.technet.microsoft.com/cbernier/2013/08/29/converting-hyper-v-vhdx-to-vhd-file-formats-for-use-in-windows-azure/)。
 
-- 如果您的 Windows VM 映像是 [VMDK 檔案格式](https://en.wikipedia.org/wiki/VMDK)，使用 [Microsoft Virtual Machine Converter](https://www.microsoft.com/download/details.aspx?id=42497) 將它轉換為 VHD。如需詳細資訊，請閱讀部落格：[如何將 VMWare VMDK 轉換為 Hyper-V VHD](http://blogs.msdn.com/b/timomta/archive/2015/06/11/how-to-convert-a-vmware-vmdk-to-hyper-v-vhd.aspx)。
+- 如果您的 Windows VM 映像是 [VMDK 檔案格式](https://en.wikipedia.org/wiki/VMDK)，使用 [Microsoft Virtual Machine Converter](https://www.microsoft.com/download/details.aspx?id=42497) 將它轉換為 VHD。如需詳細資訊，請閱讀部落格：[How to Convert a VMware VMDK to Hyper-V VHD (如何將 VMWare VMDK 轉換為 Hyper-V VHD)](http://blogs.msdn.com/b/timomta/archive/2015/06/11/how-to-convert-a-vmware-vmdk-to-hyper-v-vhd.aspx)。
 
 
 ## 準備將 VHD 上傳
@@ -57,7 +59,7 @@
 
 3. 在 [系統準備工具] 對話方塊中，執行下列動作：
 
-	1. 在 [系統清理動作] 中選取 [進入系統全新體驗 (OOBE)]，並確認 [一般化] 已勾選。
+	1. 在 [系統清理動作] 中，選取 [進入系統全新體驗 (OOBE)]，並確認已勾選 [一般化] 核取方塊。
 
 	2. 在 [關機選項]中選取 [關機]。
 
@@ -97,7 +99,7 @@
 
 如果您想要建立儲存體帳戶，請依照下列步驟操作：
 
-1. 請確定您有此儲存體帳戶的資源群組。使用下列命令找出您的訂用帳戶中的所有資源群組：
+1. 請確定您有此儲存體帳戶的資源群組。使用下列命令，找出您訂用帳戶中的所有資源群組：
 
 		Get-AzureRmResourceGroup
 
@@ -105,7 +107,7 @@
 
 		New-AzureRmResourceGroup -Name <resourceGroupName> -Location <location>
 
-3. 使用 [New-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607148.aspx) Cmdlet 在此資源群組中建立儲存體帳戶：
+3. 使用 [New-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607148.aspx) Cmdlet，在此資源群組中建立儲存體帳戶：
 
 		New-AzureRmStorageAccount -ResourceGroupName <resourceGroupName> -Name <storageAccountName> -Location "<location>" -SkuName "<skuName>" -Kind "Storage"
 			
@@ -121,7 +123,7 @@
 
 ## 將 VM 映像上傳至儲存體帳戶
 
-使用 [Add-AzureRmVhd](https://msdn.microsoft.com/library/mt603554.aspx) Cmdlet 將映像上傳到您儲存體帳戶中的容器：
+使用 [Add-AzureRmVhd](https://msdn.microsoft.com/library/mt603554.aspx) Cmdlet，將映像上傳到儲存體帳戶中的容器：
 
 		$rgName = "<resourceGroupName>"
 		$urlOfUploadedImageVhd = "<storageAccount>/<blobContainer>/<targetVHDName>.vhd"
@@ -252,4 +254,4 @@
 
 若要使用 Azure PowerShell 來管理新的虛擬機器，請參閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

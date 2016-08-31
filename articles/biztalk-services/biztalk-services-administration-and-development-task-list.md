@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/29/2016"
+	ms.date="08/15/2016"
 	ms.author="deonhe"/>
 
 # BizTalk 服務的管理與開發工作清單  
@@ -23,7 +23,7 @@
 
 |步驟|負責人|工作|相關連結|
 |----|----|----|----|
-1\.|系統管理員|建立使用 Microsoft 帳戶或「組織」帳戶的「Microsoft Azure 訂用帳戶」|[Azure 傳統入口網站](http://go.microsoft.com/fwlink/p/?LinkID=213885)|
+1\.|系統管理員|使用 Microsoft 帳戶或組織帳戶建立 Microsoft Azure 訂用帳戶|[Azure 傳統入口網站](http://go.microsoft.com/fwlink/p/?LinkID=213885)|
 |2\.|系統管理員|建立或佈建「BizTalk 服務」。|[使用 Azure 傳統入口網站建立「BizTalk 服務」](http://go.microsoft.com/fwlink/p/?LinkID=302280)|
 |3\.|系統管理員|註冊您或貴公司的「BizTalk 服務」部署|[在 BizTalk 服務入口網站註冊和更新 BizTalk 服務部署](https://msdn.microsoft.com/library/azure/hh689837.aspx)|
 |4\.|系統管理員|適用於應用程式採用「BizTalk 配接器服務」連線至內部部署的「企業營運」(LOB) 系統，或是使用「佇列」或「主題目的地」。建立 Azure 服務匯流排命名空間。向開發人員提供此命名空間、「服務匯流排簽發者名稱」和「服務匯流排簽發者金鑰」值。|[作法：建立或修改服務匯流排服務命名空間](../service-bus/service-bus-dotnet-get-started-with-queues.md)與[取得簽發者名稱和簽發者金鑰值](biztalk-issuer-name-issuer-key.md)|
@@ -45,4 +45,4 @@
 ## 其他資源  
 [新增來源、目的地和橋接器傳訊端點](https://msdn.microsoft.com/library/azure/hh689877.aspx) [學習和建立訊息對應與轉換](https://msdn.microsoft.com/library/azure/hh689905.aspx) [使用 BizTalk 配接器服務 (BAS)](https://msdn.microsoft.com/library/azure/hh689889.aspx) [Azure BizTalk 服務](http://go.microsoft.com/fwlink/p/?LinkID=303664)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0817_2016-->

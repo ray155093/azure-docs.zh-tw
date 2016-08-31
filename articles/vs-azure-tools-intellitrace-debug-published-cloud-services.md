@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="multiple"
    ms.workload="na"
-   ms.date="04/18/2016"
+   ms.date="08/15/2016"
    ms.author="tarcher" />
 
 # 使用 IntelliTrace 和 Visual Studio 偵錯發佈的雲端服務
 
-##概觀
+##Overview
 
 有了 IntelliTrace，您可以於角色執行個體在 Azure 中執行時，記錄其廣泛的偵錯資訊。如果您需要找出問題的原因，您可以從 Visual Studio 使用 IntelliTrace 記錄檔來瀏覽程式碼，如同它是在 Azure 中執行。實際上，Azure 應用程式在 Azure 中以雲端服務形式執行時，IntelliTrace 會記錄主要執行程式碼和環境資料，並且可讓您從 Visual Studio 重新播放記錄的資料。或者，您可以使用遠端偵錯以直接附加到在 Azure 中執行的雲端服務。請參閱[偵錯雲端服務](http://go.microsoft.com/fwlink/p/?LinkId=623041)。
 
@@ -67,4 +67,4 @@ IntelliTrace 記錄檔是循環記錄檔，大小上限是在 IntelliTrace 設�
 
 [偵錯雲端服務](https://msdn.microsoft.com/library/ee405479.aspx)
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -203,19 +203,19 @@
 
 在部署上述管線時 Azure Blob 將會填入，如下所示：
 
-1.	使用資料歸檔 mypath/2015/1/1/8/Data.<Guid>.txt 
+1.	使用資料歸檔 mypath/2015/1/1/8/Data.<Guid>.txt
 
 		10002345,334,2,2015-01-01 08:24:00.3130000
 		10002345,347,15,2015-01-01 08:24:00.6570000
 		10991568,2,7,2015-01-01 08:56:34.5300000
 
-	**附註:**<Guid> 會取代實際的 GUID。範例檔案名稱：Data.bcde1348-7620-4f93-bb89-0eed3455890b.txt
+	**附註：**<Guid> 會取代實際的 GUID。範例檔案名稱：Data.bcde1348-7620-4f93-bb89-0eed3455890b.txt
 2.	使用資料歸檔 mypath/2015/1/1/9/Data.<Guid>.txt：
 
 		10002345,334,1,2015-01-01 09:13:00.3900000
 		24379245,569,23,2015-01-01 09:25:00.3130000
 		16777799,21,115,2015-01-01 09:47:34.3130000
-3.	不使用資料歸檔 mypath/2015/1/1/10/Data.<Guid>.txt。
+3.	使用資料歸檔 mypath/2015/1/1/10/Data.<Guid>.txt。
 
 
 ## 資料配量、管線和並行配量執行的使用中週期
@@ -252,8 +252,8 @@ Data Factory 監視和管理工具可讓您深入診斷記錄以了解失敗的�
 
 例如，請考慮下列情況：
  
-1.	管線 P1 具有需要外部輸入資料集 D1 的活動 A1，並且會產生「輸出」資料集 **D2**。
-2.	管線 P2 具有需要來自資料集 **D2** 之「輸入」的活動 A2，並且會產生輸出資料集 D3。
+1.	管線 P1 具有需要外部輸入資料集 D1 的活動 A1，並且會產生**輸出**資料集 **D2**。
+2.	管線 P2 具有需要來自資料集 **D2** 之**輸入**的活動 A2，並且會產生輸出資料集 D3。
  
 在此案例中，活動 A1 會在外部資料提供使用時執行，且達到排程的可用性頻率。活動 A2 會在 D2 的排定的分割可供使用時執行，且達到排程的可用性頻率。如果資料集 D2 中的其中一個分割發生錯誤，則不會針對該分割執行 A2，直到該分割可供使用為止。
 
@@ -282,8 +282,8 @@ CopyActivity2：輸入：Dataset3、Dataset2 輸出：Dataset4
 
 指定多個輸入時，只有第一個輸入資料集會用來複製資料，但是其他資料集會用來做為相依性。CopyActivity2 只會符合下列條件時開始執行︰
 
-- CopyActivity1 已順利完成且 Dataset2 可供使用。將資料複製到 Dataset4 時，將不會使用此資料集。它只會用來做為 CopyActivity2 的排程相依性。   
-- Dataset3 可供使用。此資料集代表已複製到目的地的資料。  
+- CopyActivity1 已順利完成且 Dataset2 可供使用。將資料複製到 Dataset4 時，將不會使用此資料集。它只會用來做為 CopyActivity2 的排程相依性。
+- Dataset3 可供使用。此資料集代表已複製到目的地的資料。
 
 
 
@@ -382,7 +382,7 @@ Hive 指令碼會收到適當的日期時間資訊，做為運用 **WindowStart*
 		                "scriptPath": "adftutorial\\hivequery.hql",
 		                "scriptLinkedService": "StorageLinkedService",
 		                "defines": {
-		                    "Year": "$$Text.Format('{0:yyyy}',WindowsStart)",
+		                    "Year": "$$Text.Format('{0:yyyy}',WindowStart)",
 		                    "Month": "$$Text.Format('{0:%M}',WindowStart)",
 		                    "Day": "$$Text.Format('{0:%d}',WindowStart)"
 		                }
@@ -534,7 +534,7 @@ Hive 活動接受 2 個輸入，並且每日產生輸出配量。您可以針對
 	          "scriptPath": "adftutorial\\hivequery.hql",
 	          "scriptLinkedService": "StorageLinkedService",
 	          "defines": {
-	            "Year": "$$Text.Format('{0:yyyy}',WindowsStart)",
+	            "Year": "$$Text.Format('{0:yyyy}',WindowStart)",
 	            "Month": "$$Text.Format('{0:%M}',WindowStart)",
 	            "Day": "$$Text.Format('{0:%d}',WindowStart)"
 	          }
@@ -664,10 +664,10 @@ Data Factory 中資料配量的各種狀態涵蓋於[監視和管理管線](data
 
 請注意：
  
-- 您不需要指定管線的「開始」和「結束」時間。 
-- 您目前需要指定輸入和輸出資料集的可用性 (頻率和間隔)，即使 Data Factory 未使用這些值也是一樣。  
-- 圖表檢視不會顯示一次性管線。原先的設計就是如此。 
-- 一次性管線無法更新。您可以複製一次性管線、將其重新命名、更新屬性，以及加以部署來建立另一個管線。 
+- 您不需要指定管線的**開始**和**結束**時間。
+- 您目前需要指定輸入和輸出資料集的可用性 (頻率和間隔)，即使 Data Factory 未使用這些值也是一樣。
+- 圖表檢視不會顯示一次性管線。原先的設計就是如此。
+- 一次性管線無法更新。您可以複製一次性管線、將其重新命名、更新屬性，以及加以部署來建立另一個管線。
 
   
 
@@ -702,4 +702,4 @@ Data Factory 中資料配量的各種狀態涵蓋於[監視和管理管線](data
 
   
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -12,10 +12,13 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="06/27/2016" 
+    ms.date="08/15/2016" 
     ms.author="elizapo" />
     
 # Azure RemoteApp - 利用一些常見案例測試您的網路頻寬使用量
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 如同我們在 [Estimate Azure RemoteApp network bandwidth usage (估計 Azure RemoteApp 網路頻寬使用量)](remoteapp-bandwidth.md) 中所討論，找出 Azure RemoteApp 對您的網路會產生何種影響的最佳方式是執行一些使用量測試。在設定時段期間執行這些測試，以及測量每個案例所需的頻寬。如果您有能力，您也可以測量網路封包遺失和網路抖動，以了解將在您的特定環境中建立的網路模式。
 
@@ -97,4 +100,4 @@
 
 - [Azure RemoteApp network bandwidth - general guidelines (if you can't test your own) (Azure RemoteApp 網路頻寬 - 一般指引 (如果您無法自行測試))](remoteapp-bandwidthguidelines.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

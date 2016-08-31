@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="PHP"
 	ms.topic="article"
-	ms.date="06/24/2016"
+	ms.date="08/11/2016"
 	ms.author="robmcm"/>
 
 # 在 Azure 應用程式服務中建立 PHP-MySQL Web 應用程式並使用 Git 部署
@@ -72,7 +72,7 @@
 
 9. 若要啟用 Git 發佈，您必須提供使用者名稱和密碼。請寫下您建立的使用者名稱與密碼(如果您之前設定過 Git 儲存機制，系統將會略過此步驟。)
 
-	![Create publishing credentials][credentials]
+	![建立發佈認證][credentials]
 
 
 ## 取得遠端 MySQL 連線資訊
@@ -255,7 +255,7 @@
 
 	![Azure PHP web site][running-app]
 
->[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
+>[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；無需承諾。
 
 <a name="composer"></a>
 ## 利用編輯器延伸模組啟用編輯器自動化功能
@@ -319,4 +319,4 @@
 [composer-extension-view]: ./media/web-sites-php-mysql-deploy-use-git/composer-extension-view.png
 [composer-extension-success]: ./media/web-sites-php-mysql-deploy-use-git/composer-extension-success.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

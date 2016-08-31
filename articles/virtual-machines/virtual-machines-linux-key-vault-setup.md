@@ -3,7 +3,7 @@
 	description="如何設定要與 Azure Resource Manager 虛擬機器搭配使用的金鑰保存庫。"
 	services="virtual-machines-linux"
 	documentationCenter=""
-	authors="rothja"
+	authors="singhkays"
 	manager="drewm"
 	editor=""
 	tags="azure-resource-manager"/>
@@ -19,7 +19,7 @@
 
 # 為 Azure Resource Manager 中的虛擬機器設定金鑰保存庫
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型
 
 在 Azure Resource Manager 堆疊中，密碼/憑證會被塑造成「金鑰保存庫資源提供者」所提供的資源。若要深入了解「Azure 金鑰保存庫」，請參閱[什麼是 Azure 金鑰保存庫？](../key-vault/key-vault-whatis.md)
 
@@ -49,4 +49,4 @@
 
 如需使用範本建立金鑰保存庫時可以設定的其他選項，請參閱 [Create a Key Vault (建立金鑰保存庫)](https://azure.microsoft.com/documentation/templates/101-key-vault-create/)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0817_2016-->

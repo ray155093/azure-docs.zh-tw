@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="PHP"
 	ms.topic="article"
-	ms.date="06/24/2016"
+	ms.date="08/11/2016"
 	ms.author="robmcm"/>
 
 #如何建立 PHP Web 和背景工作角色
 
-## 概觀
+## Overview
 
 本指南將說明如何在 Windows 開發環境中建立 PHP Web 或背景工作角色、從「內建」的可用版本中選擇特定版本的 PHP、變更 PHP 組態、啟用擴充功能，最終部署至 Azure。此外也會說明如何設定 Web 或背景工作角色，以使用您所提供的 PHP 執行階段 (具有自訂組態和擴充功能)。
 
@@ -211,4 +211,4 @@ Azure 模擬器所提供的本機環境，可讓您在 Azure 應用程式部署�
 [sqlsrv drivers]: http://php.net/sqlsrv
 []: http://go.microsoft.com/fwlink/?LinkID=239648
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

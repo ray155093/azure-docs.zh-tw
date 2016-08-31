@@ -13,11 +13,14 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="06/27/2016"
+    ms.date="08/15/2016"
     ms.author="elizapo" />
 
 
 # 機密資料絕不要儲存在自訂映像上
+
+> [AZURE.IMPORTANT]
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
 當您將自己的應用程式裝載在 Azure RemoteApp 中時，第一個步驟就是建立自訂映像。我們會使用這個自訂映像建立 VM 執行個體，向您的使用者提供應用程式。自訂映像應該只包含應用程式，絕對不要包含可能遺失的機密資料，例如 SQL 資料庫、人事檔案，或像是 QuickBooks 公司檔案的特殊資料檔案。所有的機密資料都應位於 Azure RemoteApp 外部的檔案伺服器上，可以是另一個 Azure VM，或在 SQL Azure 中。映像應該只裝載連接到資料來源及顯示資料的應用程式。如需詳細資訊，請參閱 [Azure RemoteApp 映像需求](remoteapp-imagereqs.md)。
 
@@ -42,4 +45,4 @@
 - 機密資料應該一律放在雲端的個別檔案伺服器、個別 Azure VM 上，一律是在 Azure RemoteApp 中裝載應用程式的 VM 執行個體外部。
 - 使用者資料儲存和保存在使用者設定檔磁碟 (UPD)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0817_2016-->

@@ -4,7 +4,7 @@
    description="了解 Azure 中的 VNet 對等互連。"
    services="virtual-network"
    documentationCenter="na"
-   authors="narayanannamalai"
+   authors="NarayanAnnamalai"
    manager="jefco"
    editor="tysonn" />
 <tags
@@ -88,4 +88,4 @@ VNet 對等互連在審查期間不需支付費用。發行後，我們會針對
 - 了解 [NSG](virtual-networks-nsg.md)。
 - 了解[使用者定義的路由和 IP 轉送](virtual-networks-udr-overview.md)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0824_2016-->

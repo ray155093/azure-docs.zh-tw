@@ -23,9 +23,10 @@
 - [使用 Data Factory 編輯器](data-factory-copy-activity-tutorial-using-azure-portal.md)
 - [使用 PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
 - [使用 Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
+- [使用 REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
 - [使用複製精靈](data-factory-copy-data-wizard-tutorial.md)
 
-在本教學課程中，您將建立 Data Factory 與管線，以將資料從 Blob 儲存體複製到 SQL Database。
+在本教學課程中，您會建立 Data Factory 與管線，以將資料從 Blob 儲存體複製到 SQL Database。
 
 複製活動會在 Azure Data Factory 中執行資料移動，而此活動是由全域可用的服務所提供，可以使用安全、可靠及可調整的方式，在各種不同的資料存放區之間複製資料。如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)文章。
 
@@ -35,9 +36,9 @@
 開始進行本教學課程之前，您必須具備下列條件：
 
 - **Azure 訂用帳戶**。如果您沒有訂用帳戶，則只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資料，請參閱[免費試用][azure-free-trial]一文。
-- **Azure 儲存體帳戶**。在本教學課程中，您將使用 Blob 儲存體做為**來源**資料存放區。如果您沒有 Azure 儲存體帳戶，請參閱[建立儲存體帳戶][data-factory-create-storage]一文以取得建立步驟。
-- **Azure SQL Database**。在本教學課程中，您將使用 Azure SQL Database 做為**目的地**資料存放區。如果您沒有可在教學課程中使用的 Azure SQL Database，請參閱[如何建立和設定 Azure SQL Database][data-factory-create-sql-database]建立一個。
-- **SQL Server 2012/2014 或 Visual Studio 2013**。您將使用 SQL Server Management Studio 或 Visual Studio，建立範例資料庫以及檢視資料庫中的結果資料。
+- **Azure 儲存體帳戶**。在本教學課程中，您會使用 Blob 儲存體做為**來源**資料存放區。如果您沒有 Azure 儲存體帳戶，請參閱[建立儲存體帳戶][data-factory-create-storage]一文以取得建立步驟。
+- **Azure SQL Database**。在本教學課程中，您會使用 Azure SQL Database 做為**目的地**資料存放區。如果您沒有可在教學課程中使用的 Azure SQL Database，請參閱[如何建立和設定 Azure SQL Database][data-factory-create-sql-database]建立一個。
+- **SQL Server 2012/2014 或 Visual Studio 2013**。您會使用 SQL Server Management Studio 或 Visual Studio，建立範例資料庫以及檢視資料庫中的結果資料。
 
 ## 收集 Blob 儲存體帳戶名稱和金鑰 
 您需要有 Azure 儲存體帳戶的帳戶名稱和帳戶金鑰，才能進行這個教學課程。請依照下面的指示，記下 Azure 儲存體帳戶的**帳戶名稱**和**帳戶金鑰**：
@@ -116,4 +117,4 @@
 [data-factory-create-storage]: http://azure.microsoft.com/documentation/articles/storage-create-storage-account/#create-a-storage-account
 [data-factory-create-sql-database]: ../sql-database/sql-database-get-started.md
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0817_2016-->

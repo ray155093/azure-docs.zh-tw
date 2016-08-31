@@ -73,7 +73,7 @@ DC/OS 叢集會使用一組私人和公用代理程式來進行部署。若要�
 
 ![Marathon 主頁面 UI--容器部署狀態](media/dcos/dcos7.png)
 
-當您切換回 DC/OS Web UI (http://localhost/))，您將會看到 DC/OS 叢集上正在執行一項工作 (在此案例中是 Docker 格式化容器)。
+當您切換回 DC/OS Web UI (http://localhost/)，您將會看到 DC/OS 叢集上正在執行一項工作 (在此案例中是 Docker 格式化容器)。
 
 ![DC/OS Web UI--在叢集上執行的工作](media/dcos/dcos8.png)
 
@@ -97,4 +97,8 @@ DC/OS 叢集會使用一組私人和公用代理程式來進行部署。若要�
 
 - [使用 DC/OS 和 Marathon API](container-service-mesos-marathon-rest.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+透過 Mesos 在 Azure Container Service 上深入探索
+
+> [AZURE.VIDEO] azurecon-2015-deep-dive-on-the-azure-container-service-with-mesos]
+
+<!---HONumber=AcomDC_0824_2016-->

@@ -58,7 +58,7 @@ Microsoft 巨量資料方案會將 Microsoft 商業智慧 (BI) 元件與 Azure H
     屬性|說明
     ---|---
     資料來源名稱|為資料來源指定名稱
-    主機|輸入 <HDInsight 叢集名稱>.azurehdinsight.net。例如，myHDICluster.azurehdinsight.net
+    Host|輸入 &lt;HDInsightClusterName>.azurehdinsight.net。例如，myHDICluster.azurehdinsight.net
     連接埠|使用 <strong>443</strong>。(此連接埠已從 563 變更為 443。)
     資料庫|使用<strong>預設值</strong>
     Hive 伺服器類型|選取 [Hive Server 2]<strong></strong>
@@ -131,4 +131,4 @@ Microsoft 巨量資料方案會將 Microsoft 商業智慧 (BI) 元件與 Azure H
 [img-hdi-simbahiveodbc-excel-connectionproperties]: ./media/hdinsight-connect-excel-hive-ODBC-driver/HDI.SimbaHiveODBC.Excel.ConnectionProperties1.png
 [img-hdi-simbahiveodbc.excel.dataconnection]: ./media/hdinsight-connect-excel-hive-ODBC-driver/HDI.SimbaHiveOdbc.Excel.DataConnection1.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0817_2016-->

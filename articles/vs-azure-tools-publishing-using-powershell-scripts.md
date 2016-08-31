@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="05/08/2016"
+   ms.date="08/15/2016"
    ms.author="tarcher" />
 
 # 使用 Windows PowerShell 指令碼來發行至開發和測試環境
@@ -161,7 +161,7 @@ JSON 檔案建立在 [組態] 資料夾，其包含的組態資料可確切指�
 
 ![建立 Web Deploy 封裝](./media/vs-azure-tools-publishing-using-powershell-scripts/IC767885.png)
 
-如需詳細資訊，請參閱[如何：在 Visual Studio 中建立 Web 部署封裝](https://msdn.microsoft.com/library/dd465323.aspx)。您也可以自動建立 Web Deploy 封裝，如本主題後面的＜自訂和擴充發佈指令碼＞一節所述。
+如需詳細資訊，請參閱[如何：在 Visual Studio 中建立 Web 部署封裝](https://msdn.microsoft.com/library/dd465323.aspx)。您也可以自動建立 Web Deploy 封裝，如本主題稍後的＜自訂和擴充發佈指令碼＞一節所述。
 
 1. 在 [方案總管] 中，開啟指令碼的內容功能表，然後選擇 [以 PowerShell ISE 開啟]。
 
@@ -181,7 +181,7 @@ JSON 檔案建立在 [組態] 資料夾，其包含的組態資料可確切指�
 
 `Publish-WebApplication.ps1 -Verbose –Configuration C:\Path\WebProject-WAWS-dev.json`
 
-1. 如下列其中一個範例所示使用 **Publish-WebApplication.ps1** 命令叫用指令碼並發佈 Web 應用程式。如果您需要覆寫任何其他引數的預設設定，如訂用帳戶名稱、發佈封裝名稱、虛擬機器認證或資料庫伺服器認證，您可以指定這些參數。使用 **–Verbose** 選項可檢視發佈程序進度的詳細資訊。
+1. 如下列其中一個範例所示使用 **Publish-WebApplication.ps1** 命令叫用指令碼並發佈 Web 應用程式。如果您需要覆寫任何其他引數的預設設定，例如訂用帳戶名稱、發佈封裝名稱、虛擬機器認證或資料庫伺服器認證，可以指定這些參數。使用 **–Verbose** 選項可檢視發佈程序進度的詳細資訊。
 
 ```
 Publish-WebApplication.ps1 –Configuration C:\Path\WebProject-WAWS-dev-json `
@@ -322,7 +322,7 @@ $WebDeployPackage = New-WebDeployPackage
 |Find-AzureVM|取得指定的 Azure 虛擬機器。|
 |Format-DevTestMessageWithTime|在訊息前面加上日期和時間。此函式是專為寫入 Error 和 Verbose 串流的訊息所設計。|
 |Get-AzureSQLDatabaseConnectionString|組合連接字串來連線到 Azure SQL Database。|
-|Get-AzureVMStorage|傳回指定的位置或同質群組中具有 "devtest*" (不區分大小寫) 名稱模式的第一個儲存體帳戶的名稱。如果 "devtest*" 儲存體帳戶不符合位置或同質群組，此函式會忽略它。您必須指定位置或同質群組。|
+|Get-AzureVMStorage|傳回指定位置或同質群組中具有 "devtest*" (不區分大小寫) 名稱模式的第一個儲存體帳戶的名稱。如果 "devtest*" 儲存體帳戶不符合位置或同質群組，此函式會忽略它。您必須指定位置或同質群組。|
 |Get-MSDeployCmd|傳回執行 MsDeploy.exe 工具的命令。|
 |New-AzureVMEnvironment|在訂用帳戶中尋找或建立符合 JSON 組態檔中的值的虛擬機器。|
 |Publish-WebPackage|使用 MsDeploy.exe 和 Web 發佈封裝 .Zip 檔案將資源部署至網站。此函式不會產生任何輸出。如果呼叫 MSDeploy.exe 失敗，此函式會擲回例外狀況。若要取得更詳細的輸出，請使用 **-Verbose** 選項。|
@@ -351,4 +351,4 @@ $WebDeployPackage = New-WebDeployPackage
 
 請參閱[使用 Windows PowerShell 撰寫指令碼](https://technet.microsoft.com/library/bb978526.aspx)來深入了解 PowerShell 指令碼，並參閱[指令碼中心](https://azure.microsoft.com/documentation/scripts/)內的其他 Azure PowerShell 指令碼。
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0817_2016-->
