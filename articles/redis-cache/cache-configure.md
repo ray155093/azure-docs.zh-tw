@@ -380,7 +380,7 @@ Redis Keyspace 通知是在 [進階設定] 刀鋒視窗上進行設定。Keyspac
 
 ## Redis 主控台
 
-您可以使用 [Redis 主控台] (可供標準與進階快取使用) 安全地發出命令給您的 Azure Redis 快取執行個體。
+您可以使用 [Redis 主控台] \(可供標準與進階快取使用) 安全地發出命令給您的 Azure Redis 快取執行個體。
 
 >[AZURE.IMPORTANT] Redis 主控台無法使用 VNET、叢集和 0 以外的資料庫。
 >

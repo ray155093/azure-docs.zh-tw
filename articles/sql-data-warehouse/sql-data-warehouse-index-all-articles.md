@@ -29,7 +29,7 @@
 
 | &nbsp; | 文章 | 更新的文字、程式碼片段 |
 | --: | :-- | :-- |
-| 1 | [SQL 資料倉儲中的並行存取和工作負載管理](sql-data-warehouse-develop-concurrency.md) | **接受並行存取限制的查詢** - 大多數查詢都受到資源類別控管。這些查詢必須同時符合並行查詢和並行存取插槽臨界值。一般使用者無法選擇從並行存取插槽模型中排除查詢。重申一下，下列陳述式確實「接受」資源類別：/ INSERT-SELECT / UPDATE / DELETE / SELECT (查詢使用者資料表時) / ALTER INDEX REBUILD / ALTER INDEX REORGANIZE / ALTER TABLE REBUILD / CREATE INDEX / CREATE CLUSTERED COLUMNSTORE INDEX / CREATE TABLE AS SELECT (CTAS) / 資料載入 / 由「資料移動服務」(DMS) 執行的資料移動作業 ** 並行存取限制的查詢例外** |
+| 1 | [SQL 資料倉儲中的並行存取和工作負載管理](sql-data-warehouse-develop-concurrency.md) | **接受並行存取限制的查詢** - 大多數查詢都受到資源類別控管。這些查詢必須同時符合並行查詢和並行存取插槽臨界值。一般使用者無法選擇從並行存取插槽模型中排除查詢。重申一下，下列陳述式確實「接受」資源類別：/ INSERT-SELECT / UPDATE / DELETE / SELECT (查詢使用者資料表時) / ALTER INDEX REBUILD / ALTER INDEX REORGANIZE / ALTER TABLE REBUILD / CREATE INDEX / CREATE CLUSTERED COLUMNSTORE INDEX / CREATE TABLE AS SELECT (CTAS) / 資料載入 / 由「資料移動服務」(DMS) 執行的資料移動作業 **並行存取限制的查詢例外** |
 | 2 | [移轉至進階儲存體詳細資料](sql-data-warehouse-migrate-to-premium-storage.md) | 除了變更為進階儲存體，我們也會增加資料倉儲基礎架構中的資料庫 blob 檔案數目。如果您遇到任何效能問題，建議您使用下列指令碼重建叢集資料行存放區索引。這會強制將某些現有的資料移至其他 blob。如果您不採取任何動作，隨著您將更多的資料載入資料倉儲資料表中，資料會在一段時間後自然重新分配。**必要條件：**1.「資料倉儲」應以 1,000 個 DWU 或更多數量來執行 (請參閱調整計算能力) 2.執行指令碼的使用者應具有 mediumrc 角色或更高權限 1.若要將使用者新增到此角色中，請執行下列命令：1. ````EXEC sp_addrolemember 'xlargerc', 'MyUser'```` ````sql /------------------------------------------------------------------------------ /- 步驟 1：建立「資料表」來控制「索引重建」 /- 以 mediumrc 或更高權限的使用者身分執行 /------------------------------------------------------------ |
 
 

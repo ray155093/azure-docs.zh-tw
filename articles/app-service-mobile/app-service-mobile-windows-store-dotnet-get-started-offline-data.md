@@ -20,7 +20,7 @@
 
 [AZURE.INCLUDE [app-service-mobile-selector-offline](../../includes/app-service-mobile-selector-offline.md)]
 
-## Overview
+## 概觀
 
 本教學課程說明如何使用 Azure 行動應用程式後端在通用 Windows 平台 (UWP) 應用程式中新增離線支援。離線同步處理可讓使用者與行動應用程式進行互動 - 檢視、新增或修改資料 - 即使沒有網路連線也可行。變更會儲存在本機資料庫中︰裝置上線後，這些變更就會與遠端後端進行同步處理。
 
@@ -162,11 +162,14 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 
 為了支援行動服務的離線功能，我們使用了 [IMobileServiceSyncTable] 介面，並初始化本機 SQLite 資料庫的 [MobileServiceClient.SyncContext][synccontext]。離線時，Mobile Apps 的一般 CRUD 作業運作方式，就如同應用程式仍處於連線狀態，而作業會對本機存放區執行。下列方法可用來同步處理本機存放區與伺服器︰
 
-*  **[PushAsync]** 因為這個方法是 [IMobileServicesSyncContext] 的成員，因此所有資料表的變更都會套用至後端。只有具有本機變更的記錄會傳送到伺服器。
+*  **[PushAsync]**  
+因為這個方法是 [IMobileServicesSyncContext] 的成員，因此所有資料表的變更都會套用至後端。只有具有本機變更的記錄會傳送到伺服器。
 
-* **[PullAsync]** 提取會從 [IMobileServiceSyncTable] 開始。當資料表中有追蹤的變更時，便會執行隱含推送，以確定本機存放區中的所有資料表和關聯性都維持一致。pushOtherTables 參數會控制是否在隱含推送中推送內容中的其他資料表。query 參數會採用 [IMobileServiceTableQuery&lt;U&gt;][IMobileServiceTableQuery] 或 OData 查詢字串來篩選傳回的資料。queryId 參數可用來定義增量同步處理。如需詳細資訊，請參閱 [Azure Mobile Apps 中的離線資料同步處理](app-service-mobile-offline-data-sync.md#how-sync-works)。
+* **[PullAsync]**   
+提取會從 [IMobileServiceSyncTable] 開始。當資料表中有追蹤的變更時，便會執行隱含推送，以確定本機存放區中的所有資料表和關聯性都維持一致。pushOtherTables 參數會控制是否在隱含推送中推送內容中的其他資料表。query 參數會採用 [IMobileServiceTableQuery&lt;U&gt;][IMobileServiceTableQuery] 或 OData 查詢字串來篩選傳回的資料。queryId 參數可用來定義增量同步處理。如需詳細資訊，請參閱 [Azure Mobile Apps 中的離線資料同步處理](app-service-mobile-offline-data-sync.md#how-sync-works)。
 
-* **[PurgeAsync]** 您的應用程式應定期呼叫這個方法，以清除本機存放區中的過時資料。當您需要清除任何尚未同步處理的變更時，請使用 force 參數。
+* **[PurgeAsync]**  
+您的應用程式應定期呼叫這個方法，以清除本機存放區中的過時資料。當您需要清除任何尚未同步處理的變更時，請使用 force 參數。
 
 如需這些概念的詳細資訊，請參閱 [Azure Mobile Apps 中的離線資料同步處理](app-service-mobile-offline-data-sync.md#how-sync-works)。
 
@@ -175,7 +178,7 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 下列主題提供其他關於 Mobile Apps 離線同步處理功能的背景資訊︰
 
 * [Azure 行動應用程式中的離線資料同步處理]
-* [雲端報導︰Azure 行動服務中的離線同步處理] (注意︰此影片是針對行動服務，但離線同步處理的運作方式類似在 Azure Mobile Apps 中的方式)
+* [雲端報導︰Azure 行動服務中的離線同步處理] \(注意︰此影片是針對行動服務，但離線同步處理的運作方式類似在 Azure Mobile Apps 中的方式)
 * [Azure Friday：Azure 行動服務中離線啟用的應用程式]
 
 <!-- Anchors. -->

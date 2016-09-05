@@ -54,24 +54,24 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 |\\Processor(\_Total)\\% 處理器時間 |百分比|
 |\\Processor(\_Total)\\% Privileged Time |百分比|
 |\\Processor(\_Total)\\% User Time |百分比|
-|\\Processor Information(\_Total)\\Processor Frequency |Count|
-|\\System\\Processes|	Count|
-|\\Process(\_Total)\\Thread Count|	Count|
-|\\Process(\_Total)\\Handle Count |Count|
+|\\Processor Information(\_Total)\\Processor Frequency | Count|
+|\\System\\Processes| Count|
+|\\Process(\_Total)\\Thread Count| Count|
+|\\Process(\_Total)\\Handle Count | Count|
 |\\Memory\\% Committed Bytes In Use |百分比|
-|\\Memory\\Available Bytes|	位元組|
+|\\Memory\\Available Bytes| 位元組|
 |\\Memory\\Committed Bytes |位元組|
-|\\Memory\\Commit Limit|	位元組|
-|\\Memory\\Pool Paged Bytes|	位元組|
+|\\Memory\\Commit Limit| 位元組|
+|\\Memory\\Pool Paged Bytes| 位元組|
 |\\Memory\\Pool Nonpaged Bytes|	位元組|
-|\\PhysicalDisk(\_Total)\\% Disk Time|	百分比|
-|\\PhysicalDisk(\_Total)\\% Disk Read Time|	百分比|
-|\\PhysicalDisk(\_Total)\\% Disk Write Time|	百分比|
+|\\PhysicalDisk(\_Total)\\% Disk Time| 百分比|
+|\\PhysicalDisk(\_Total)\\% Disk Read Time| 百分比|
+|\\PhysicalDisk(\_Total)\\% Disk Write Time| 百分比|
 |\\PhysicalDisk(\_Total)\\每秒的磁碟傳輸數 |每秒計數|
 |\\PhysicalDisk(\_Total)\\Disk Reads/sec |每秒計數|
 |\\PhysicalDisk(\_Total)\\Disk Writes/sec |每秒計數|
 |\\PhysicalDisk(\_Total)\\Disk Bytes/sec |每秒位元組|
-|\\PhysicalDisk(\_Total)\\Disk Read Bytes/sec|	每秒位元組|
+|\\PhysicalDisk(\_Total)\\Disk Read Bytes/sec| 每秒位元組|
 |\\PhysicalDisk(\_Total)\\Disk Write Bytes/sec |每秒位元組|
 |\\PhysicalDisk(\_Total)\\Avg.磁碟佇列長度|	Count|
 |\\PhysicalDisk(\_Total)\\Avg.磁碟讀取佇列長度|	Count|

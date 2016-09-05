@@ -44,9 +44,9 @@ ms.service="virtual-machines-windows"
 
 1. 如果您想要以個別的網域控制站 VM 在 Azure 中建立新的 Active Directory 樹系，其中一個選項是使用 [Resource Manager 範本](https://azure.microsoft.com/documentation/templates/active-directory-new-domain-ha-2-dc/)。若要進行簡單的概念驗證部署，則可以略過此步驟，而將前端節點 VM 本身設定為網域控制站。本文稍後將說明此選項。
     
-2. 在 Azure Marketplace 的 [[HPC Pack 2012 R2 on Windows Server 2012 R2](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2onwindowsserver2012r2/)] (Windows Server 2012 R2 上的 HPC Pack 2012 R2) 頁面上，按一下 [建立虛擬機器]。
+2. 在 Azure Marketplace 的 [[HPC Pack 2012 R2 on Windows Server 2012 R2](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2onwindowsserver2012r2/)] \(Windows Server 2012 R2 上的 HPC Pack 2012 R2) 頁面上，按一下 [建立虛擬機器]。
 
-3. 在入口網站中，於 [HPC Pack 2012 R2 on Windows Server 2012 R2] (Windows Server 2012 R2 上的 HPC Pack 2012 R2) 頁面上，選取 [Resource Manager] 部署模型，然後按一下 [建立]。
+3. 在入口網站中，於 [HPC Pack 2012 R2 on Windows Server 2012 R2] \(Windows Server 2012 R2 上的 HPC Pack 2012 R2) 頁面上，選取 [Resource Manager] 部署模型，然後按一下 [建立]。
 
     ![HPC Pack 映像][marketplace]
 

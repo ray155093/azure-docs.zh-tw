@@ -35,7 +35,7 @@ ms.service="virtual-machines-linux"
 
 * **Azure CLI 指令碼** - 如本文稍後所示，請使用 [Azure 命令列介面](../xplat-cli-install.md) (CLI) 來處理 A8 或 A9 大小之 Linux VM 叢集的部署指令碼。「服務管理」模式下的 CLI 會以傳統部署模型循序建立叢集節點，因此如果部署許多計算節點，可能需要花費數分鐘的時間。在傳統部署模型中，A8 或 A9 VM 必須部署在相同的雲端服務中，才能透過 RDMA 網路連接。
 
-* **Azure Resource Manager 範本** - 使用 Resource Manager 部署模型，在利用 RDMA 網路來執行 MPI 工作負載的計算叢集中，部署多個 A8 和 A9 Linux VM。您可以[建立自己的範本](../resource-group-authoring-templates.md)，或檢查 [Azure 快速入門範本][](https://azure.microsoft.com/documentation/templates/)，取得由 Microsoft 或社群貢獻的範本以部署想要的方案。Resource Manager 範本可提供一個既快速又可靠的方式來部署 Linux 叢集。在 Resource Manager 部署模型中，A8 或 A9 VM 必須部署在相同的可用性設定組中，才能透過 RDMA 網路連接。
+* **Azure Resource Manager 範本** - 使用 Resource Manager 部署模型，在利用 RDMA 網路來執行 MPI 工作負載的計算叢集中，部署多個 A8 和 A9 Linux VM。您可以[建立自己的範本](../resource-group-authoring-templates.md)，或檢查 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)，取得由 Microsoft 或社群貢獻的範本以部署想要的方案。Resource Manager 範本可提供一個既快速又可靠的方式來部署 Linux 叢集。在 Resource Manager 部署模型中，A8 或 A9 VM 必須部署在相同的可用性設定組中，才能透過 RDMA 網路連接。
 
 ## 傳統模型中的範例部署
 

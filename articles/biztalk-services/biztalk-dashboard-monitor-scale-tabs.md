@@ -34,14 +34,14 @@
         <td><strong>取得工具</strong></td>
         <td>下載 BizTalk 服務 SDK，將 Visual Studio 專案範本安裝到內部部署開發電腦上。這些範本會建立 <strong>BizTalk 服務</strong> (橋接)，以及可部署至 BizTalk 服務的 <strong>BizTalk 服務成品</strong> (轉換) Visual Studio 專案。
         <br/><br/>
-		＜<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=302335">如何開始使用 Azure BizTalk 服務 SDK</a>＞和＜<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=241589">安裝 Azure BizTalk 服務 SDK</a>＞列出開始進行的步驟。
+		<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=302335">如何開始使用 Azure BizTalk 服務 SDK</a>＞和＜<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=241589">安裝 Azure BizTalk 服務 SDK</a>列出開始進行的步驟。
         </td>
     </tr>
     <tr>
         <td><strong>建立夥伴協議</strong></td>
         <td>開啟裝載於 Azure 的 Azure BizTalk 服務入口網站，以加入夥伴並建立 X12、AS2 和 EDIFACT EDI 協議。
         <br/><br/>
-        ＜<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=303653">在 BizTalk 服務入口網站上設定 EDI 訊息的元件</a>＞列出開始進行的步驟。
+        <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=303653">在 BizTalk 服務入口網站上設定 EDI 訊息的元件</a>列出開始進行的步驟。
         </td>
     </tr>
 
@@ -233,14 +233,17 @@
 
 ##### 在圖表中移除或顯示度量：
 1. 選取 [**監視**] 索引標籤。
-2. 選取工作列中的 [加入度量]：![選取 [新增度量]][AddMetrics]
+2. 選取工作列中的 [加入度量]：  
+![選取 [新增度量]][AddMetrics]
 3. 勾選您要顯示的效能度量。
 4. 選取勾選記號以回到 [**監視**] 索引標籤。
 5. 選取度量旁邊的圓圈，將該度量的值顯示在圖表中。
 
-	例如，[CPU 使用率] 度量呈現灰色，其輸出不會出現在圖表中：![CPU 使用量度量呈現灰色][GrayedMetric]
+	例如，[CPU 使用率] 度量呈現灰色，其輸出不會出現在圖表中：  
+	![CPU 使用量度量呈現灰色][GrayedMetric]
 
-	選取灰色的圓圈以啟用 [CPU 使用率] 度量，將其輸出顯示在圖表中：![CPU 使用量度量已啟用][EnabledMetric]
+	選取灰色的圓圈以啟用 [CPU 使用率] 度量，將其輸出顯示在圖表中：  
+![CPU 使用量度量已啟用][EnabledMetric]
 
 6. 若要從顯示圖表和清單中移除度量，請選取工作列中的 [**移除度量**]。若要將度量加回到清單中，請選取工作列的 [加入度量]，勾選度量，然後選取勾選記號以回到 [監視] 索引標籤。選取灰色圓圈以啟用度量。
 
@@ -342,15 +345,15 @@
 ## 下一步
 現在，您已熟悉不同的索引標籤，您可以繼續深入了解 Azure BizTalk 服務的功能：
 
-- [BizTalk 服務：節流](biztalk-throttling-thresholds.md)
-- [BizTalk 服務：簽發者名稱和簽發者金鑰](biztalk-issuer-name-issuer-key.md)
+- [BizTalk 服務：節流](biztalk-throttling-thresholds.md)  
+- [BizTalk 服務：簽發者名稱和簽發者金鑰](biztalk-issuer-name-issuer-key.md)  
 - [BizTalk 服務：備份與還原](biztalk-backup-restore.md)
 
 ## 另請參閱
-- [混合式連線](integration-hybrid-connection-overview.md)
-- [BizTalk 服務：開發人員、基本、標準和高級版本圖表](biztalk-editions-feature-chart.md)
-- [BizTalk 服務：使用 Azure 傳統入口網站進行佈建](biztalk-provision-services.md)
-- [BizTalk 服務：BizTalk 服務狀態圖](biztalk-service-state-chart.md)
+- [混合式連線](integration-hybrid-connection-overview.md)  
+- [BizTalk 服務：開發人員、基本、標準和高級版本圖表](biztalk-editions-feature-chart.md)  
+- [BizTalk 服務：使用 Azure 傳統入口網站進行佈建](biztalk-provision-services.md)  
+- [BizTalk 服務：BizTalk 服務狀態圖](biztalk-service-state-chart.md)  
 - [如何開始使用 Azure BizTalk 服務 SDK](http://go.microsoft.com/fwlink/p/?LinkID=302335)
 
 [QuickStart]: ./media/biztalk-dashboard-monitor-scale-tabs/QuickStartIcon.png

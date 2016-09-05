@@ -196,7 +196,7 @@ Azure 應用程式閘道可以設定為在閘道終止安全通訊端層 (SSL) �
 設定閘道之後，請使用 **Start-AzureApplicationGateway** Cmdlet 來啟動閘道。成功啟動閘道之後，會開始應用程式閘道計費。
 
 
-**注意：****Start-AzureApplicationGateway** Cmdlet 最多可能需要 15-20 分鐘才能完成。
+**注意：** **Start-AzureApplicationGateway** Cmdlet 最多可能需要 15-20 分鐘才能完成。
 
 
 	PS C:\> Start-AzureApplicationGateway AppGwTest

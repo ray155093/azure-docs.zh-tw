@@ -46,7 +46,7 @@ POST https://service.azurewebsites.net/tables/TodoItem?ZUMO-API-VERSION=2.0.0
 
 ## 所有版本的相容性摘要
 
-下圖顯示所有的用戶端和伺服器類型之間的相容性。後端會根據所使用的伺服器 SDK 被分類為行動**服務**或 Mobile **Apps**。
+下圖顯示所有的用戶端和伺服器類型之間的相容性。後端會根據所使用的伺服器 SDK 被分類為行動**服務** 或 Mobile **Apps**。
 
 | | **行動服務** Node.js 或 .NET | **Mobile Apps** Node.js 或 .NET |
 | ----------                | -----------------------             |   ----------------              |
@@ -79,7 +79,7 @@ POST https://service.azurewebsites.net/tables/TodoItem?ZUMO-API-VERSION=2.0.0
 
 | 伺服器平台 | 版本 | 接受的版本標頭 |
 | ---------------- | ------------------------------------------------------------                                                   | ----------------------- |
-| .NET | [WindowsAzure.MobileServices.Backend.* 版本 1.0.x](https://www.nuget.org/packages/WindowsAzure.MobileServices.Backend/) | **無版本標頭 ** |
+| .NET | [WindowsAzure.MobileServices.Backend.* 版本 1.0.x](https://www.nuget.org/packages/WindowsAzure.MobileServices.Backend/) | **無版本標頭** |
 | Node.js | (敬請期待) | **無版本標頭** |
 
 <!-- TODO: add Node npm version -->

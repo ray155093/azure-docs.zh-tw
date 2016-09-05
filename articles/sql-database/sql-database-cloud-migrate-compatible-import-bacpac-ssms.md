@@ -42,7 +42,7 @@
 
 	 > [AZURE.IMPORTANT] 從 Azure Blob 儲存體匯入 BACPAC 時，請使用標準儲存體。不支援從進階儲存體匯入 BACPAC。
 
-4.	為 Azure SQL DB 上的資料庫提供 [新資料庫名稱]、設定 [Microsoft Azure SQL Database 的版本] (服務層)、[資料庫大小上限] 及 [服務目標] (效能等級)。
+4.	為 Azure SQL DB 上的資料庫提供 [新資料庫名稱]、設定 [Microsoft Azure SQL Database 的版本] \(服務層)、[資料庫大小上限] 及 [服務目標] \(效能等級)。
 
     ![資料庫設定](./media/sql-database-cloud-migrate/MigrateUsingBACPAC05.png)
 

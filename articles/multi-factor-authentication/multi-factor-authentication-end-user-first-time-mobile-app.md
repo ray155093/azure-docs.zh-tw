@@ -20,7 +20,7 @@
 
 如果您要使用 Microsoft 驗證器應用程式做為主要連絡方式，您可以使用這份文件。它會引導您設定 Multi-Factor Authentication，以利用行動應用程式做為主要連絡方式。
 
-Microsoft 驗證器應用程式適用於 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)、[Android](http://go.microsoft.com/fwlink/?Linkid=825072) 和 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)。
+Microsoft 驗證器應用程式適用於 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)、\[Android](http://go.microsoft.com/fwlink/?Linkid=825072) 和 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)。
 
 ## 使用行動應用程式做為連絡方式
 

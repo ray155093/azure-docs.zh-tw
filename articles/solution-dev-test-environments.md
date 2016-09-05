@@ -43,7 +43,7 @@ Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源�
 
 1. 您可以在 [Azure 快速入門範本](https://github.com/Azure/azure-quickstart-templates/) GitHub 儲存機制中瀏覽現有的的範本。在清單中，您會看到 "[201-web-app-sql-database](https://github.com/Azure/azure-quickstart-templates/tree/master/201-web-app-sql-database)" 資料夾。由於許多自訂應用程式包含 web 應用程式和 SQL 資料庫，此範本可做為這篇文章其餘部分的範例，協助您了解如何使用範本。完整說明此範本建立與設定的所有內容已超出本文的範圍，但是如果您打算使用它來建立組織中的實際環境，您會想要藉由閱讀[佈建 Web 應用程式與 SQL Database](app-service-web/app-service-web-arm-with-sql-database-provision.md) 一文來完全了解它。注意︰此文章是針對 2015 年 12 月版本的 [201-web-app-sql-database](https://github.com/Azure/azure-quickstart-templates/tree/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database) 範本。下面連結指向會用於該版本範本的範本和參數檔案。
 2. 按一下 201-web-app-sql-database 資料夾中的 [azuredeploy.json](https://github.com/Azure/azure-quickstart-templates/tree/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.json) 檔案以檢視其中的內容。這是 Azure 資源管理員範本檔案。
-3. 在檢視模式中，按一下 [原始][](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.json) 按鈕。
+3. 在檢視模式中，按一下 [原始](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.json) 按鈕。
 4. 利用您的滑鼠選取此檔案的內容，並將它以 "TestApp1-Template.json" 的檔案名稱儲存到您的電腦。
 5. 檢查範本的內容，並注意下列項目：
  - **資源**區段：此區段會定義由此範本建立的 Azure 資源類型。在其他資源類型中，此範本會建立 [Azure Web 應用程式](app-service-web/app-service-web-overview.md)和 [Azure SQL Database](sql-database/sql-database-technical-overview.md) 資源。如果您偏好在虛擬機器中執行並管理網頁和 SQL 伺服器，可以使用 "[iis-2vm-sql-1vm](https://github.com/Azure/azure-quickstart-templates/tree/master/iis-2vm-sql-1vm)" 或 "[lamp-app](https://github.com/Azure/azure-quickstart-templates/tree/master/lamp-app)" 範本；但本文中的說明是依 [201-web-app-sql-database](https://github.com/Azure/azure-quickstart-templates/tree/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database) 範本為主。
@@ -56,7 +56,7 @@ Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源�
 雖然您可能會想在每個環境中建立「相同」的 Azure 資源，但您也可能會想要在每個環境中的資源有「不同」的組態。這是參數檔案的由來。完成以下步驟，在每個環境中建立包含唯一值的參數檔案。
 
 1. 檢視 201-web-app-sql-database 資料夾中的 [azuredeploy.parameters.json](https://github.com/Azure/azure-quickstart-templates/tree/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.parameters.json) 檔案內容。這是您在之前章節中所儲存之範本檔案的參數檔案。
-2. 在檢視模式中，按一下 [原始][](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.parameters.json) 按鈕。
+2. 在檢視模式中，按一下 [原始](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/3f24f7b7e1e377538d1d548eaa6eab2851a21810/201-web-app-sql-database/azuredeploy.parameters.json) 按鈕。
 3. 用滑鼠選取此檔案的全部內容，並將它以下列名稱分別儲存至電腦上的三個檔案：
  - TestApp1-Parameters-Development.json
  - TestApp1-Parameters-Test.json
@@ -191,7 +191,7 @@ Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源�
 
 1. 使用 [Azure AD](./active-directory/active-directory-how-subscriptions-associated-directory.md) (也稱為工作或學校) 帳戶登入 [Azure 入口網站](https://portal.azure.com)。按一下 [新建]--> [管理] --> [資源群組]，並在 [資源群組名稱] 方塊中輸入 "TestApp1-Development"、選取您的訂用帳戶再選取 [資源群組位置] 方塊中的 [美國中部] ，如下圖所示。![入口網站](./media/solution-dev-test-environments/rgcreate.png)
 2. 按一下 [建立] 按鈕以建立資源群組。
-3. 按一下 [瀏覽] 並向下捲動清單到 [資源群組]，接著按一下 [資源群組]，如下所示。![入口網站](./media/solution-dev-test-environments/rgbrowse.png)
+3. 按一下 [瀏覽] 並向下捲動清單到 [資源群組]，接著按一下 [資源群組]，如下所示。![入口網站](./media/solution-dev-test-environments/rgbrowse.png) 
 4. 按一下 [資源群組] 之後，您會看到 [資源群組] 刀鋒視窗以及新的資源群組。![入口網站](./media/solution-dev-test-environments/rgview.png)
 5. 用您之前建立 TestApp1-Development 資源群組相同的方式，建立 TestApp1-Test 和 TestApp1-Pre-Production 資源群組。
 
@@ -296,14 +296,17 @@ Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源�
 ## 維護環境
 在整個開發過程中，不同環境中的 Azure 資源組態可能會出現有意或無意的不一致變更。這會在應用程式開發週期中造成不必要的疑難排解和問題解決。
 
-1. 開啟 [Azure 入口網站](https://portal.azure.com)以變更環境。
-2. 以您用來完成上述步驟所使用的相同帳戶登入。
-3. 如下圖所示，按一下 [瀏覽] --> [資源群組] (您可能需要向下捲動才會看到資源群組)。![入口網站](./media/solution-dev-test-environments/rgbrowse.png)
-4. 按一下上圖中的 [資源群組] 之後，您會看到 [資源群組] 刀鋒視窗以及您在上一個步驟中建立的三個資源群組，如上圖所示。按一下 [TestApp1-Development 資源群組] 之後，您會看到刀鋒視窗，列出範本在您於上一個步驟完成的 TestApp1-Development 資源群組部署中所建立的資源。按一下 [TestApp1-Development 資源群組] 刀鋒視窗中的 TestApp1DevApp，刪除 TestApp1DevApp Web 應用程式資源，再按一下 [TestApp1DevApp Web 應用程式] 刀鋒視窗中的 [刪除]。![入口網站](./media/solution-dev-test-environments/portal2.png)
+1. 開啟 [Azure 入口網站](https://portal.azure.com)以變更環境。 
+2. 以您用來完成上述步驟所使用的相同帳戶登入。 
+3. 如下圖所示，按一下 [瀏覽] --> [資源群組] \(您可能需要向下捲動才會看到資源群組)。
+   ![入口網站](./media/solution-dev-test-environments/rgbrowse.png)
+4. 按一下上圖中的 [資源群組] 之後，您會看到 [資源群組] 刀鋒視窗以及您在上一個步驟中建立的三個資源群組，如上圖所示。按一下 [TestApp1-Development 資源群組] 之後，您會看到刀鋒視窗，列出範本在您於上一個步驟完成的 TestApp1-Development 資源群組部署中所建立的資源。按一下 [TestApp1-Development 資源群組] 刀鋒視窗中的 TestApp1DevApp，刪除 TestApp1DevApp Web 應用程式資源，再按一下 [TestApp1DevApp Web 應用程式] 刀鋒視窗中的 [刪除]。
+   ![入口網站](./media/solution-dev-test-environments/portal2.png)
 5. 當入口網站提示您是否確定要刪除資源時，按一下 [是]。關閉 [TestApp1-Development 資源群組] 刀鋒視窗並重新開啟，顯示的內容不會出現您剛才刪除的 Web 應用程式。資源群組的內容現在與其應有內容不同。您可以從多個資源群組刪除多個資源來進一步實驗，或甚至變更部分資源的組態設定。如果不使用 Azure 入口網站從資源群組刪除資源，您可以使用 PowerShell [Remove-AzureResource](https://msdn.microsoft.com/library/azure/dn757676.aspx) 命令，或來自 CLI 的 "azure resource delete" 命令來完成相同工作。
 6. 要讓所有應該位於資源群組中的所有資源和設定回到原本狀態，請使用您在[將資源部署至環境](#deploy-resources-to-environments)一節中相同的命令，將環境重新部署至資源群組，但請用 "Deployment2." 取代 "Deployment1"。
 7.  如同步驟 4 中的圖所顯示的 TestApp1-Development 刀鋒視窗中的 [摘要] 區段，您會看到在上一個步驟中刪除的 Web 應用程式以及其他刪除的資源再次出現。如果您變更了任何資源的設定，也可以確認參數檔案中的這些設定是否也回到了原本的值。利用 Azure 資源管理員範本部署環境的優點之一是您可以隨時輕鬆地將環境重新部署回已知狀態。
-8. 如果您按一下圖中 [上次部署] 下的文字，您會看到刀鋒視窗顯示資源群組的部署歷程記錄。因為您將名稱 "Deployment1" 用於第一個部署，將 "Deployment2" 用於第二個部署，所以您將有兩個項目。按一下部署會顯示刀鋒視窗，其顯示每個部署的結果。![入口網站](./media/solution-dev-test-environments/portal3.png)
+8. 如果您按一下圖中 [上次部署] 下的文字，您會看到刀鋒視窗顯示資源群組的部署歷程記錄。因為您將名稱 "Deployment1" 用於第一個部署，將 "Deployment2" 用於第二個部署，所以您將有兩個項目。按一下部署會顯示刀鋒視窗，其顯示每個部署的結果。
+  ![入口網站](./media/solution-dev-test-environments/portal3.png)
 
 
 
@@ -342,7 +345,7 @@ Azure 資源管理員範本會定義應用程式所使用的所有 Azure 資源�
 
 ### Azure 入口網站
 
-1. 在 Azure 入口網站中，瀏覽到資源群組，如同上一個步驟所述。
+1. 在 Azure 入口網站中，瀏覽到資源群組，如同上一個步驟所述。 
 2. 選取 [TestApp1-Development 資源群組]，再按一下 [TestApp1-Development 資源群組] 刀鋒視窗中的 [刪除]。隨即顯示新的刀鋒視窗。輸入資源群組名稱，再按一下 [刪除] 按鈕。![入口網站](./media/solution-dev-test-environments/rgdelete.png)
 3. 用您刪除 TestApp1-Development 資源群組相同的方式，刪除 TestApp1-Test 和 TestApp1-Pre-Production 資源群組。
 

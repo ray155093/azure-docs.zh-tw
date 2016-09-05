@@ -46,7 +46,7 @@ Add-AzureRmLogProfile -Name my_log_profile -StorageAccountId /subscriptions/s1/r
 | 屬性 | 必要 | 說明 |
 |------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | StorageAccountId | 否 | 資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
-| 位置 | 是 | 以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。您要檢視所有地區的清單，可以[瀏覽此頁面](https://azure.microsoft.com/zh-TW/regions)或使用 [Azure 管理 REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx)。 |
+| 位置 | 是 | 以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。您要檢視所有地區的清單，可以[瀏覽此頁面](https://azure.microsoft.com/regions)或使用 [Azure 管理 REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx)。 |
 | RetentionInDays | 是 | 事件應保留的天數。值為 0 會無限期地儲存記錄檔。 |
 | 類別 | 是 | 以逗號分隔的類別清單，其中列出應該收集的事件類別。可能的值有 Write、Delete、Action。 |
 ## 透過 CLI 封存活動記錄檔
@@ -58,7 +58,7 @@ azure insights logprofile add --name my_log_profile --storageId /subscriptions/s
 |-----------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 名稱 | 是 | 記錄檔設定檔的名稱。 |
 | storageId | 否 | 資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
-| 位置 | 是 | 以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。您要檢視所有地區的清單，可以[瀏覽此頁面](https://azure.microsoft.com/zh-TW/regions)或使用 [Azure 管理 REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx)。 |
+| 位置 | 是 | 以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。您要檢視所有地區的清單，可以[瀏覽此頁面](https://azure.microsoft.com/regions)或使用 [Azure 管理 REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx)。 |
 | retentionInDays | 是 | 事件應保留的天數。值為 0 會無限期地儲存記錄檔。 |
 | categories | 是 | 以逗號分隔的類別清單，其中列出應該收集的事件類別。可能的值有 Write、Delete、Action。 |
 
