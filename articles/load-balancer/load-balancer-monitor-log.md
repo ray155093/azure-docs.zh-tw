@@ -3,7 +3,7 @@
    description="了解如何啟用 Azure 負載平衡器的警示事件和探查健全狀況狀態記錄"
    services="load-balancer"
    documentationCenter="na"
-   authors="joaoma"
+   authors="sdwheeler"
    manager="carmonm"
    editor="tysonn"
    tags="azure-resource-manager"
@@ -15,14 +15,14 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="04/05/2016"
-   ms.author="joaoma" />
+   ms.author="sewhee" />
 
 # Azure 負載平衡器的記錄檔分析 (預覽)
 您可以在 Azure 中使用不同類型的記錄檔來管理和疑難排解負載平衡器。透過入口網站可以存取其中一些記錄檔，而從 Azure Blob 儲存體可以擷取所有記錄檔並且在不同的工具中進行檢視，例如 Excel 和 PowerBI。您可以從下列清單進一步了解不同類型的記錄檔。
 
 
 - **稽核記錄檔︰**您可以使用 [Azure 稽核記錄檔](../../articles/azure-portal/insights-debugging-with-events.md) (之前稱為「作業記錄檔」) 來檢視提交至您的 Azure 訂用帳戶的所有作業及其狀態。預設會啟用稽核記錄檔，並可在 Azure 入口網站中進行檢視。
-- **警示事件記錄檔：**您可以使用此記錄檔來檢視已引發哪些負載平衡器警示。系統每五分鐘會收集一次負載平衡器的狀態。只有在引發負載平衡器警示事件時，才會寫入此記錄檔。  
+- **警示事件記錄檔：**您可以使用此記錄檔來檢視已引發哪些負載平衡器警示。系統每五分鐘會收集一次負載平衡器的狀態。只有在引發負載平衡器警示事件時，才會寫入此記錄檔。
 - **健全狀況探查記錄檔：**您可以使用此記錄檔檢查探查的健全狀況檢查狀態、負載平衡器後端中有多少個執行個體在線上，以及從負載平衡器接收網路流量之虛擬機器的百分比。探查狀態事件發生變更時，便會寫入此記錄檔。
 
 >[AZURE.WARNING] 記錄檔僅適用於在資源管理員部署模型中部署的資源。您無法將記錄檔使用於傳統部署模型中的資源。若要深入了解這兩個模型，請參閱[了解資源管理員部署和傳統部署](../../articles/resource-manager-deployment-model.md)一文。<BR> 記錄檔分析目前僅適用於網際網路面向的負載平衡器。此限制是暫時的，隨時可能變更。請務必再次瀏覽此頁面，以確認未來變更。
@@ -128,4 +128,4 @@ JSON 輸出在屬性欄位中顯示了探查健全狀況狀態的基本資訊。
 - [使用 Power BI 視覺化您的 Azure 稽核記錄檔](http://blogs.msdn.com/b/powerbi/archive/2015/09/30/monitor-azure-audit-logs-with-power-bi.aspx)部落格文章。
 - [在 Power BI 和其他工具中檢視和分析 Azure 稽核記錄](https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/)部落格文章。
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0824_2016-->

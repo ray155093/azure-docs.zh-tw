@@ -3,7 +3,7 @@
    description="本文說明可搭配 Azure 流量管理員使用的各類型端點"
    services="traffic-manager"
    documentationCenter=""
-   authors="jtuliani"
+   authors="sdwheeler"
    manager="carmonm"
    editor="tysonn" />
 <tags
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="06/08/2016"
-   ms.author="jtuliani" />
+   ms.author="sewhee" />
 
 # 流量管理員端點
 
@@ -144,4 +144,4 @@ PublicIPAddress 資源是 Azure Resource Manager 資源，它們不存在於 Azu
 
 - 了解「流量管理員」的[流量路由方法](traffic-manager-routing-methods.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

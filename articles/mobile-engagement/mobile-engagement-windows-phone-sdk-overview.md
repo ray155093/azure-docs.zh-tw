@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-phone" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/03/2016" 
+	ms.date="08/19/2016" 
 	ms.author="piyushjo" />
 
 #適用於 Azure Mobile Engagement 的 Windows Phone Silverlight SDK 概觀
@@ -43,7 +43,7 @@
 
 如果您已經整合我們的舊版 SDK 到您的應用程式，在升級 SDK 時您必須考慮以下幾點。
 
-如果您有錯過幾個版本的 SDK，您必須遵循幾個步驟。請參閱完整的[升級程序](mobile-engagement-windows-phone-upgrade-procedure.md)。例如，如果您要從 0.10.1 移轉到 0.11.0 您必須先遵循「從 0.9.0 到 0.10.1」的程序，然後「從 0.10.1 到 0.11.0」的程序。
+如果您有錯過幾個版本的 SDK，您必須遵循幾個步驟。請參閱完整的[升級程序](mobile-engagement-windows-phone-upgrade-procedure.md)。例如，如果您要從 0.10.1 移轉到 0.11.0，必須先遵循「從 0.9.0 到 0.10.1」的程序，然後「從 0.10.1 到 0.11.0」的程序。
 
 ###從 2.0.0 到 3.3.0
 
@@ -56,7 +56,7 @@ SDK 所產生的主控台記錄檔現在可以啟用/停用/篩選。若要自�
 
 ### 從舊版升級
 
-請參閱[升級程序](mobile-engagement-windows-phone-upgrade-procedure/)
+請參閱[升級程序](mobile-engagement-windows-phone-upgrade-procedure.md)
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/01/2016"
+	ms.date="08/19/2016"
 	ms.author="piyushjo" />
 
 # Azure Mobile Engagement - 重要功能
@@ -22,19 +22,19 @@
 
 ## **一般**
 
-- **尋找適用於所有主要平台的 SDK** SDK 可供所有主要平台使用 - iOS、Android、通用 Windows、Windows Phone Silverlight、Kindle、Cordova。我們提供簡單的 SDK 整合方式及實用的說明文件，協助您在所選擇的任何平台上開始整合。 
+- **尋找適用於所有主要平台的 SDK** SDK 可供所有主要平台使用 - iOS、Android、通用 Windows、Windows Phone Silverlight、Kindle、Cordova。我們提供簡單的 SDK 整合方式及實用的說明文件，協助您在所選擇的任何平台上開始整合。
 
 - **個別 SaaS 入口網站** 可讓您輕鬆存取行銷團隊，不需要透過 Azure 管理入口網站。
 
 - **開放式 REST API 的可用性** 利用開放式平台 API 達到與 CRM/CMS/IT 系統整合及自動化的目的，我們提供開放式 REST API 和 .NET SDK 來使用這些可以讓您輕鬆整合及自動化 Mobile Engagement 的 API。如需詳細資訊，請參閱[本文](mobile-engagement-api-authentication.md)。
 
-- **Power BI 連接器可供使用** 您也可以將重要分析圖表拉出到 Power BI 儀表板中。請參閱本[指南](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-mobile/)
+- **Power BI 連接器可供使用** 您也可以將重要分析圖表拉出到 Power BI 儀表板中。請參閱本[指南](https://powerbi.microsoft.com/zh-TW/documentation/powerbi-content-pack-azure-mobile/)
 
 - **安全性和隱私權保證** Azure Mobile Engagement 是 Azure 系列產品的一部份，遵循雲端服務在安全性和隱私權上預期遵循的所有標準最佳做法。
 
 ## **可操作的分析**
 
-- **即時監視資料** 您可以使用我們可即時顯示詳細資料 (例如工作階段、事件、錯誤及當機) 的監視模組追蹤即時分析。請看一下此[文章](mobile-engagement-concepts.md)以了解基本概念。 
+- **即時監視資料** 您可以使用我們可即時顯示詳細資料 (例如工作階段、事件、錯誤及當機) 的監視模組追蹤即時分析。請看一下此[文章](mobile-engagement-concepts.md)以了解基本概念。
 
 	![][1]
 
@@ -164,4 +164,4 @@
 [27]: ./media/mobile-engagement-key-features/push_emoji.png
 [28]: ./media/mobile-engagement-key-features/push_limits.png
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0824_2016-->

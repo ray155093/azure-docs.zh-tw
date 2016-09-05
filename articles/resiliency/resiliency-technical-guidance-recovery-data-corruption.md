@@ -4,7 +4,7 @@
    services=""
    documentationCenter="na"
    authors="adamglick"
-   manager="hongfeig"
+   manager="saladki"
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/01/2016"
+   ms.date="08/18/2016"
    ms.author="aglick"/>
 
 #Azure 復原技術指導：從資料損毀或意外刪除復原
@@ -45,7 +45,7 @@
 
 ###SQL Database 備份
 
-Microsoft Azure SQL Database 的時間點備份，是透過[複製您的 Azure SQL Database](../sql-database/sql-database-copy.md) 達成。您可以使用此命令對相同邏輯資料庫伺服器或不同伺服器建立資料庫的交易一致複本。在任一情況下，資料庫複本完整可運作，且完全獨立於來源資料庫。您所建立的每個複本代表一個時間點復原選項。您可以將新的資料庫重新命名為來源資料庫名稱，藉以完全復原資料庫狀態。或者，您可以使用 Transact-SQL 查詢，從新的資料庫復原特定資料子集。如需 SQL Database 的其他詳細資訊，請參閱[雲端商務持續性和 SQL Database 的資料庫災害復原](../sql-database/sql-database-business-continuity.md)。
+Microsoft Azure SQL Database 的時間點備份，是透過[複製您的 Azure SQL Database](../sql-database/sql-database-copy.md) 達成。您可以使用此命令對相同邏輯資料庫伺服器或不同伺服器建立資料庫的交易一致複本。在任一情況下，資料庫複本完整可運作，且完全獨立於來源資料庫。您所建立的每個複本代表一個時間點復原選項。您可以將新的資料庫重新命名為來源資料庫名稱，藉以完全復原資料庫狀態。或者，您可以使用 Transact-SQL 查詢，從新的資料庫復原特定資料子集。如需 SQL Database 的其他詳細資訊，請參閱[使用 Azure SQL Database 的商務持續性概觀](../sql-database/sql-database-business-continuity.md)。
 
 ###虛擬機器備份上的 SQL Server
 
@@ -60,27 +60,33 @@ Microsoft Azure SQL Database 的時間點備份，是透過[複製您的 Azure S
 ##資料損毀或意外刪除的檢查清單
 
 ##虛擬機器檢查清單
-  1. 檢閱此文件的[虛擬機器](#virtual-machines)一節。
+
+  1. 檢閱此文件的＜虛擬機器＞一節。
   2. 使用 Azure 備份來備份及維護 VM 磁碟 (或使用 Azure Blob 儲存體和 VHD 的快照集之您自己的備份系統)。
 
 ##儲存體檢查清單
-  1. 檢閱此文件的[儲存體](#storage)一節。
+
+  1. 檢閱此文件的＜儲存體＞一節。
   2. 定期備份重要的儲存體資源。
   3. 考慮對 Blob 使用快照集功能。
 
 ##資料庫檢查清單
-  1. 檢閱此文件的[資料庫](#database)一節。
+
+  1. 檢閱此文件的＜資料庫＞一節。
   2. 使用資料庫複製命令建立時間點備份。
 
 ##虛擬機器備份上的 SQL Server 檢查清單
-  1. 檢閱此文件的[虛擬機器備份上的 SQL Server](#sql-server-on-virtual-machines-backup) 一節。
+
+  1. 檢閱此文件的＜虛擬機器備份上的 SQL Server＞一節。
   2. 使用傳統備份和還原技術。
   3. 建立延後的記錄傳送工作階段。
 
 ##Web Apps 檢查清單
+
   1. 備份及維護相關聯的資料庫，如果有的話。
 
 ##媒體服務檢查清單
+
   1. 備份及維護相關聯的儲存體資源。
 
 ##詳細資訊
@@ -91,4 +97,4 @@ Microsoft Azure SQL Database 的時間點備份，是透過[複製您的 Azure S
 
 這篇文章是一系列文章的一部分，著重在 [Azure 復原技術指導](./resiliency-technical-guidance.md)。如果您要尋找更多恢復、災害復原和高可用性的資源，請參閱 Azure 復原技術指導[其他資源](./resiliency-technical-guidance.md#additional-resources)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

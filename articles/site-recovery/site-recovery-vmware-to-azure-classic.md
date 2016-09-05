@@ -529,6 +529,14 @@ UnifiedAgent.exe [/Role <Agent/MasterTarget>] [/InstallLocation <Installation Di
 - /PassphraseFilePath：必要。指定組態伺服器複雜密碼。
 - /LogFilePath：必要。指定記錄安裝檔案位置
 
+#### 手動針對行動服務進行解除安裝
+
+行動服務可以透過使用 [控制台] 中的 [新增或移除程式]，或是使用命令列來進行解除安裝。
+
+使用命令列針對行動服務進行解除安裝的命令是
+
+	MsiExec.exe /qn /x {275197FC-14FD-4560-A5EB-38217F80CBD1}
+
 #### 修改管理伺服器的 IP 位址
 
 在執行精靈之後，您可以修改管理伺服器的 IP 位址，如下所示：
@@ -570,7 +578,7 @@ UnifiedAgent.exe [/Role <Agent/MasterTarget>] [/InstallLocation <Installation Di
 - 虛擬機器上的環境變更 (例如 VMware 工具安裝) 也可能需要超過 15 分鐘的時間，才能在 Site Recovery 中更新。
 - 您可以在 [組態伺服器] 索引標籤上 vCenter 伺服器/ESXi 主機的 [上次連絡時間] 欄位中，查看 VMware VM 的上次探索時間。
 - 如果您已經建立保護群組，並隨後新增 vCenter 伺服器或 ESXi 主機，可能需要 15 分鐘以上的時間，才能讓 Azure Site Recovery 入口網站重新整理，並且讓 [將機器加入保護群組] 對話方塊列出虛擬機器。
-- 如果您想要立即繼續將機器加入至保護群組，而不想等候排程的探索，請反白顯示設定伺服器 (不要按它)，然後按一下 [重新整理] 按鈕。
+- 如果您想要立即繼續將機器加入至保護群組，而不想等候排程的探索，請反白顯示組態伺服器 (不要按它)，然後按一下 [重新整理] 按鈕。
 
 此外，請注意：
 
@@ -796,4 +804,4 @@ The complete file may be found on the [Microsoft Download Center](http://go.micr
 
 [深入了解容錯回復](site-recovery-failback-azure-to-vmware-classic.md)，以便將在 Azure 中容錯移轉的機器回復到您的內部部署環境。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -26,7 +26,7 @@ Azure Site Recovery 可藉由協調虛擬機器與實體伺服器的複寫、容
 在這篇文章下方或 [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)中張貼意見或問題。
 
 
-## 概觀
+## Overview
 
 當使用 Hyper-V 複本或 SAN 複寫來部署 Azure Site Recovery 將 Hyper-V 虛擬機器複寫到 Azure 或次要資料中心時，會使用網路對應。
 
@@ -55,7 +55,7 @@ Azure Site Recovery 可藉由協調虛擬機器與實體伺服器的複寫、容
 紐約 | VMM-NewYork| VMNetwork1-NewYork | 對應至 VMNetwork1-Chicago
  | | VMNetwork2-NewYork | 未對應
 芝加哥 | VMM-Chicago| VMNetwork1-Chicago | 對應至 VMNetwork1-NewYork
- | | VMNetwork1-Chicago | 未對應
+ | | VMNetwork2-Chicago | 未對應
 
 在此範例中：
 
@@ -123,4 +123,4 @@ VMNetwork1-Chicago 的網路對應已變更。 | VM-1 現在會連線到對應�
 
 既然您已經更了解網路對應，[請開始部署 Site Recovery](site-recovery-best-practices.md)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0824_2016-->

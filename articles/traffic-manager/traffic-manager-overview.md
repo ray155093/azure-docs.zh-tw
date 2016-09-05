@@ -3,7 +3,7 @@
    description="本文將協助您了解何謂流量管理員，以及它是否為您的應用程式的正確流量路由選擇"
    services="traffic-manager"
    documentationCenter=""
-   authors="jtuliani"
+   authors="sdwheeler"
    manager="carmonm"
    editor="tysonn" />
 <tags 
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="06/09/2016"
-   ms.author="jtuliani" />
+   ms.author="sewhee" />
 
 # 什麼是流量管理員？
 
@@ -33,7 +33,7 @@ Microsoft Azure 流量管理員可讓您控制使用者流量，將流量分散�
 - **改善高效能應用程式的回應能力** – Azure 可讓您在位於世界各地的資料中心執行雲端服務或網站。流量管理員可以藉由將使用者導向用戶端網路延遲最低的端點，改善應用程式的回應性。
 - **升級和執行服務維護而不需要停機** – 您可以在進行維護時，使用流量管理員將流量導向替代端點，順暢地對應用程式執行升級及其他計劃性維護作業，而不需要使用者停機。
 - **結合內部部署和雲端應用程式** – 流量管理員支援外部、非 Azure 端點，並可搭配混合式雲端和內部部署使用，包括「高載至雲端」、「移轉至雲端」和「容錯移轉至雲端」案例。
-- **分散大型複雜部署的流量** – 使用[巢狀流量管理員設定檔](traffic-manager-nested-profiles.md)可以合併流量路由方法，以建立複雜而有彈性的流量路由組態，進而符合更大型、更複雜部署的需求。 
+- **分散大型複雜部署的流量** – 使用[巢狀流量管理員設定檔](traffic-manager-nested-profiles.md)可以合併流量路由方法，以建立複雜而有彈性的流量路由組態，進而符合更大型、更複雜部署的需求。
 
 [AZURE.INCLUDE [load-balancer-compare-tm-ag-lb-include.md](../../includes/load-balancer-compare-tm-ag-lb-include.md)]
 
@@ -48,4 +48,4 @@ Microsoft Azure 流量管理員可讓您控制使用者流量，將流量分散�
 - [建立流量管理員設定檔](traffic-manager-manage-profiles.md)。
  
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0824_2016-->

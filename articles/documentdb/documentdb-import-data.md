@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/05/2016"
+	ms.date="08/23/2016"
 	ms.author="anhoh"/>
 
 # 使用資料庫移轉工具來將資料匯入 DocumentDB
@@ -490,4 +490,4 @@ DocumentDB JSON 匯出工具可讓您將任何可用的來源選項匯出至包�
 
 - 若要深入了解 DocumentDB，請參閱[學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0824_2016-->

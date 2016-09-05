@@ -4,7 +4,7 @@
    services=""
    documentationCenter="na"
    authors="adamglick"
-   manager="hongfeig"
+   manager="saladki"
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/01/2016"
+   ms.date="08/18/2016"
    ms.author="aglick"/>
 
 # Microsoft Azure 服務恢復指引
@@ -38,4 +38,4 @@ Microsoft Azure 的設計目的是要提供您所需的資源 (需要時)。作�
 ##後續步驟
 如果您正在尋找著重在更廣泛的系統與解決方案的指引，請參閱[建置在 Microsoft Azure 上之應用程式的災害復原和高可用性](https://aka.ms/drtechguide)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

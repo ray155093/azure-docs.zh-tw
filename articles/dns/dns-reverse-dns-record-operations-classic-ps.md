@@ -1,4 +1,4 @@
-<properties 
+<properties
    pageTitle="如何在傳統部署模型中使用 PowerShell 管理服務的反向 DNS 記錄| Microsoft Azure"
    description="如何在傳統部署模型中使用 PowerShell 管理 Azure 服務的反向 DNS 記錄或 PTR 記錄。"
    services="DNS"
@@ -8,14 +8,14 @@
    editor=""
    tags="azure-service-management"
 />
-<tags  
+<tags
    ms.service="DNS"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/09/2016"
-   ms.author="s-malone" />
+   ms.author="smalone" />
 
 # 如何使用 PowerShell 管理服務 (傳統) 的反向 DNS 記錄
 
@@ -55,4 +55,4 @@
 
 [AZURE.INCLUDE [常見問題集](../../includes/dns-reverse-dns-record-operations-faq-asm-include.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0824_2016-->

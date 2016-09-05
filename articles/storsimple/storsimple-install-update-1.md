@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="05/24/2016"
+   ms.date="08/22/2016"
    ms.author="alkohli" />
 
 # 在 StorSimple 裝置上安裝 Update 1.2
 
-## 概觀
+## Overview
 
 本教學課程說明如何在執行 Update 1 之前軟體版本的 StorSimple 裝置上安裝 Update 1.2。本教學課程也涵蓋了在 StorSimple 裝置之 DATA 0 以外的網路介面上設定閘道器時，進行更新所需的額外步驟。
 
@@ -125,4 +125,4 @@ Update 1.2 包括裝置軟體更新、LSI 驅動程式更新和磁碟韌體更�
 
 深入了解 [Update 1.2 版](storsimple-update1-release-notes.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/06/2016"
+	ms.date="08/22/2016"
 	ms.author="markvi"/>
 
 #Azure Active Directory Identity Protection 腳本 
@@ -43,7 +43,7 @@
 **若要模擬從匿名 IP 登入，請執行下列步驟**：
 
 1.	下載 [Tor 瀏覽器](https://www.torproject.org/projects/torbrowser.html.en)。
-2.	使用 Tor 瀏覽器，瀏覽至 [https://myapps.microsoft.com](https://myapps.microsoft.com)。   
+2.	使用 Tor 瀏覽器，瀏覽至 [https://myapps.microsoft.com](https://myapps.microsoft.com)。
 3.	輸入您要在 [從匿名 IP 位址登入] 報告中顯示之帳戶的認證。
 
 登入將會在 5 分鐘內顯示於 Identity Protection 儀表板上。
@@ -63,7 +63,7 @@ Azure Active Directory Identity Protection：
 
 **若要模擬從不熟悉的位置登入，請執行下列步驟**：
 
-1.	選擇至少有 14 天登入歷程記錄的帳戶。 
+1.	選擇至少有 14 天登入歷程記錄的帳戶。
 
 2.	請執行下列其中一項：
 	
@@ -78,7 +78,7 @@ Azure Active Directory Identity Protection：
 
 **若要模擬不可能到達非典型位置的移動，請執行下列步驟**：
 
-1.	使用標準瀏覽器，瀏覽至 [https://myapps.microsoft.com](https://myapps.microsoft.com)。  
+1.	使用標準瀏覽器，瀏覽至 [https://myapps.microsoft.com](https://myapps.microsoft.com)。
 
 2.	輸入您想要對其產生不可能移動風險事件之帳戶的認證。
 
@@ -96,7 +96,7 @@ Azure Active Directory Identity Protection：
 
 -	Azure AD [Multi-Factor Authentication？](../multi-factor-authentication/multi-factor-authentication.md)
 -	Azure AD [Cloud App Discovery](active-directory-cloudappdiscovery-whatis.md)。
--	Azure AD [Privileged Identity Management](active-directory-privileged-identity-management-configure.md)。 
+-	Azure AD [Privileged Identity Management](active-directory-privileged-identity-management-configure.md)。
 
 
 
@@ -150,7 +150,7 @@ Azure Active Directory Identity Protection：
 
 7.	選取下列其中一個選項：
 
-    a.若要封鎖，請選取 [封鎖登入] 之下 [中]。
+    a.若要封鎖，請選取 [封鎖登入] 之下的 [中]。
 
     b.若要強制執行安全的密碼變更，請選取 [需要 Multi-Factor Authentication] 之下的 [中]。
 
@@ -169,4 +169,4 @@ Azure Active Directory Identity Protection：
 
  - [Azure Active Directory Identity Protection](active-directory-identityprotection.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0824_2016-->

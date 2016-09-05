@@ -423,26 +423,22 @@
 - 您有對應至 Azure 應用程式的自訂網域，
 - 您的應用程式是以**基本**或更高層的方案執行，以及
 - 您有來自 CA 的自訂網域 SSL 憑證。
- 
-1.	在 [Azure 入口網站](https://portal.azure.com)中，移至應用程式的 [自訂網域及 SSL] 刀鋒視窗。
 
-7.	按一下 [詳細資訊] > [上傳憑證]。
 
-	![](./media/web-sites-configure-ssl-certificate/sslupload.png)
+1. 在瀏覽器中，開啟 **[Azure 入口網站](https://portal.azure.com/)**。
+2.	按一下頁面左側的 [App Service] 選項。
+3.	按一下您要指派此憑證的應用程式的名稱。
+4.	在 [設定] 中，按一下 [SSL 憑證]。
+5.	按一下 [上傳憑證]。
+6.	選取您在[步驟 1](#bkmk_getcert) 匯出的.pfx 檔案，並指定您之前建立的密碼。按一下 [上傳] 以上傳憑證。您現在應該會在 [SSL 憑證] 刀鋒視窗中看到您上傳的憑證
+7. 在 [SSL 繫結] 區段按一下 [新增繫結]
+8. 在 [新增 SSL 繫結] 刀鋒視窗中，使用下拉式清單選取要以 SSL 保護的網域名稱，以及要使用的憑證。您也可以選擇使用**[伺服器名稱指示 (SNI)](http://en.wikipedia.org/wiki/Server_Name_Indication)** 還是 IP SSL。
 
-8.	選取您在[步驟 1](#bkmk_getcert) 匯出的.pfx 檔案，並指定您之前建立的密碼。接著按一下 [儲存] 以上傳憑證。您現在應該會在 [自訂網域及 SSL] 刀鋒視窗中看到您上傳的憑證。
+    ![插入 SSL 繫結的影像](./media/web-sites-configure-ssl-certificate/sslbindings.png)
 
-	![](./media/web-sites-configure-ssl-certificate/sslcertview.png)
-
-9. 在 [SSL 繫結] 區段中，選取網域名稱，SSL 憑證就會繫結在一起。您也可以選擇使用 SNI SSL 或以 IP 為主的 SSL。
-
-	![](./media/web-sites-configure-ssl-certificate/sslbindcert.png)
-
-	* **以 IP 為主的 SSL** 會將含有網域名稱和應用程式專用公用 IP 位址的憑證繫結至網域名稱。它是傳統的 SSL 繫結方法，App Service 會為繫結建立專用的 IP 位址。
-
-	* [**SNI SSL**](https://en.wikipedia.org/wiki/Server_Name_Indication) 可將多個憑證繫結至多個網域。現今大部分的瀏覽器 (包括 Internet Explorer、Chrome、Firefox 和 Safari) 都支援 SNI SSL，但較舊的瀏覽器可能不支援。
- 
-10. 按一下 [儲存] 來完成。
+       IP SSL 會將伺服器的專用公用 IP 位址對應至網域名稱，以建立憑證與網域名稱的關聯。這需要與您服務相關聯的每個網域名稱 (contoso.com、fabricam.com 等) 都有專用 IP 位址。這是傳統用來建立 SSL 憑證與網頁伺服器之關聯的方法。• SNI SSL 是 SSL 和**[傳輸層安全性](http://en.wikipedia.org/wiki/Transport_Layer_Security)** (TLS) 的延伸，可讓多個網域共用相同的 IP 位址，而每個網域都有個別的安全性憑證。現今大部分的瀏覽器 (包括 Internet Explorer、Chrome、Firefox 和 Opera) 都支援 SNI，不過，較舊的瀏覽器可能不支援 SNI。如需 SNI 的詳細資訊，請參閱 Wikipedia 上的**[伺服器名稱指示](http://en.wikipedia.org/wiki/Server_Name_Indication)**一文。
+     
+9. 按一下 [新增繫結]，儲存變更並啟用 SSL。
 
 ## 步驟 3.變更網域名稱對應 (僅限以 IP 為主的 SSL)
 
@@ -450,9 +446,9 @@
 
 - 您[使用 A 記錄將您的自訂網域對應至 Azure 應用程式](web-sites-custom-domain-name.md#a)，而且您剛新增一個**以 IP 為主的 SSL** 繫結。在此案例中，您需要遵循下列步驟來重新對應現有的 A 記錄，以指向專用的 IP 位址︰
 
-	1. 設定以 IP 為主的 SSL 繫結後，請在您應用程式的 [設定] > [內容] 刀鋒視窗中尋找新的 IP 位址 ([使用外部網域] 刀鋒視窗中顯示的虛擬 IP 位址可能不是最新的)：
+	1. 設定 IP SSL 繫結之後，您的應用程式將會獲派專用的 IP 位址。您可以在應用程式設定下的 [自訂網域] 頁面上找到此 IP 位址，正好位於 [主機名稱] 區段上面。它將會列出成為 [外部 IP 位址]：
     
-	    ![虛擬 IP 位址](./media/web-sites-configure-ssl-certificate/staticip.png)
+	    ![虛擬 IP 位址](./media/web-sites-configure-ssl-certificate/virtual-ip-address.png)
 
 	2. [將自訂網域名稱的 A 記錄重新對應至這個新 IP 位址](web-sites-custom-domain-name.md#a)。
 
@@ -551,4 +547,4 @@
 [certwiz3]: ./media/web-sites-configure-ssl-certificate/waws-certwiz3.png
 [certwiz4]: ./media/web-sites-configure-ssl-certificate/waws-certwiz4.png
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

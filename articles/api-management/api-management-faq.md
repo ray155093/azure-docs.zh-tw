@@ -38,6 +38,7 @@
 -	[可以使用 ARM 範本建立 API 管理服務執行個體嗎？](#can-i-create-an-api-management-service-instance-using-an-arm-template)
 -	[是否可以對後端使用自我簽署 SSL 憑證？](#can-i-use-a-self-signed-ssl-certificate-for-a-backend)
 -	[為什麼我在嘗試複製 GIT 儲存機制時發生驗證失敗？](#why-am-i-getting-authentication-failure-when-i-try-to-clone-the-git-repository)
+-	[API 管理是否能搭配 Express Route 運作？](#does-api-management-work-with-express-route)
 
 
 ### 如何向 API 管理小組詢問問題？
@@ -150,4 +151,8 @@ API 管理使用[效能流量路由方法](../traffic-manager/traffic-manager-ro
 
 如果您使用 GIT 認證管理員，或嘗試透過 Visual Studio 複製儲存機制，您可能遇到 Windows 認證對話方塊的已知問題，此對話方塊將密碼長度限制為最多 127 個字元，因此會截斷我們產生的密碼。我們正在努力縮短密碼。目前請使用 GIT Bash 來複製。
 
-<!---HONumber=AcomDC_0810_2016------>
+### API 管理是否能搭配 Express Route 運作？
+
+可以！
+
+<!---HONumber=AcomDC_0824_2016-->

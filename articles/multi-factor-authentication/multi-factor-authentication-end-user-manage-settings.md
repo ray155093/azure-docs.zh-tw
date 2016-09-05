@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/04/2016" 
+	ms.date="08/22/2016" 
 	ms.author="billmath"/>
 
 # 使用 Azure Multi-Factor Authentication 時碰到困難
@@ -30,7 +30,7 @@
 - [我有新的電話，需要變更我的電話號碼](#i-have-a-new-phone-and-need-to-change-my-phone-number)
 - [我的手機沒收到驗證碼](#i-am-not-receiving-a-code-or-a-call-on-my-phone)
 - [應用程式密碼無效](#app-passwords-are-not-working)
-- [如何清除舊裝置的 Azure 驗證資訊並移到新裝置？](#how-do-i-clean-up-azure-authenticator-from-my-old-device-and-move-to-a-new-one)
+- [如何清除舊裝置的 Microsoft驗證器並移到新裝置？](#how-do-i-clean-up-microsoft-authenticator-from-my-old-device-and-move-to-a-new-one)
 - [我找不到我的問題的解答](#i-didnt-find-an-answer-to-my-problem)
 
 ##相互關聯識別碼錯誤
@@ -147,7 +147,7 @@
 - 如果您選取要用簡訊將驗證碼傳送到行動電話上，請確定您的費率方案和裝置支援傳遞簡訊。傳遞速度以及是否可傳遞，取決於地點與服務供應商。另外，嘗試接收驗證碼時，請確定手機訊號強度能夠滿足需求。
 - 如果您選擇透過行動應用程式接收驗證碼，請確定您的手機訊號強度夠強。請注意，傳遞速度以及是否可傳遞，取決於地點與服務供應商。
 
-如果您使用的是智慧型手機，建議您使用 [Azure Authenticator 應用程式](multi-factor-authentication-azure-authenticator.md)。
+如果您使用的是智慧型手機，建議您使用 [Azure Authenticator 應用程式](multi-factor-authentication-microsoft-authenticator.md)。
 
 在登入時選擇 [使用不同的驗證選項]，就可以切換透過簡訊或透過行動應用程式接收驗證碼。
 
@@ -162,8 +162,8 @@
 ##應用程式密碼無效
 首先，請確定您輸入的是正確的應用程式密碼。如果仍無法登入，請嘗試登入並[建立新的應用程式密碼](multi-factor-authentication-end-user-app-passwords.md)。如果還是無法登入，請要求管理員[刪除您現有的應用程式密碼](multi-factor-authentication-manage-users-and-devices.md#delete-users-existing-app-passwords)，然後建立新的密碼並使用。
 
-##如何清除舊裝置的 Azure 驗證資訊並移到新裝置？
-無論您是從裝置解除安裝應用程式，或是重新整理裝置，都不會移除後端的啟動功能。您應該使用[移至新裝置](multi-factor-authentication-azure-authenticator.md#how-to-move-to-the-new-azure-authenticator-app)中所述的步驟。
+##如何清除舊裝置的 Microsoft驗證器並移到新裝置？
+無論您是從裝置解除安裝應用程式，或是重新整理裝置，都不會移除後端的啟動功能。您應該使用[移至新裝置](multi-factor-authentication-microsoft-authenticator.md#how-to-move-to-the-new-microsoft-authenticator-app)中所述的步驟。
 
 ##我找不到我的問題的解答
 如果在此頁面上找不到您的問題的解答，您可以將問題張貼在 [Azure AD 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=WindowsAzureAD)、[搜尋 Microsoft 知識庫 (KB)](https://www.microsoft.com/zh-TW/Search/result.aspx?q=azure%20active%20directory%20connect&form=mssupport) 或[連絡支援人員](https://support.microsoft.com/zh-TW)。
@@ -172,4 +172,4 @@
 
 最後，請務必在此頁面上留下一些詳細的意見反應，讓我們可以更新此頁面，並藉由提供更多的資訊，持續讓它更加完善。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

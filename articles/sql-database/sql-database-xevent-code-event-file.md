@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/24/2016" 
+	ms.date="08/23/2016" 
 	ms.author="genemi"/>
 
 
@@ -26,10 +26,10 @@
 您想要完整的程式碼範例以穩健方式擷取和報告擴充事件的資訊。
 
 
-在 Microsoft SQL Server 中，[事件檔案目標](http://msdn.microsoft.com/library/ff878115.aspx)是用來將事件輸出儲存到本機硬碟機的檔案。但是這類檔案並不適用於 Azure SQL Database。我們改為使用 Azure 儲存體服務來支援事件檔案目標。
+在 Microsoft SQL Server 中，[事件檔案目標](http://msdn.microsoft.com/library/ff878115.aspx)是用來將事件輸出儲存到本機硬碟機檔案中。但是這類檔案並不適用於 Azure SQL Database。我們改為使用 Azure 儲存體服務來支援事件檔案目標。
 
 
-本主題示範兩階段的程式碼範例：
+本主題示範一個兩階段的程式碼範例：
 
 
 - 使用 PowerShell 在雲端中建立 Azure 儲存體容器
@@ -49,10 +49,9 @@
  - 您可以選擇性快速[建立 **AdventureWorksLT** 示範資料庫](sql-database-get-started.md)。
 
 
-- SQL Server Management Studio (ssms.exe) 在 2015 年 8 月的預覽版或更新版本。您可以從下列位置下載最新的 ssms.exe：
+- SQL Server Management Studio (ssms.exe)，最好是最新的每月更新版本。您可以從下列位置下載最新的 ssms.exe：
  - 名稱為[下載 SQL Server Management Studio](http://msdn.microsoft.com/library/mt238290.aspx) 的主題。
  - [下載的直接連結。](http://go.microsoft.com/fwlink/?linkid=616025)
- - Microsoft 建議您定期更新 ssms.exe。在某些情況下，ssms.exe 將會每個月更新。
 
 
 - 您必須安裝 [Azure PowerShell 模組](http://go.microsoft.com/?linkid=9811175)。
@@ -64,7 +63,7 @@
 
 這個 PowerShell 是兩階段程式碼範例的第 1 階段。
 
-指令碼開頭的命令清除先前可能執行過的結果，而且設計為可重複執行。
+此指令碼是以可清除先前可能之執行結果的命令為開頭，並且可重複執行。
 
 
 
@@ -143,7 +142,7 @@ Select-AzureSubscription -SubscriptionName $subscriptionName
 
 
 '
-Clean-up the old Azure Storage Account after any previous run, 
+Clean up the old Azure Storage Account after any previous run, 
 before continuing this new run.'
 
 
@@ -266,11 +265,11 @@ Now shift to the Transact-SQL portion of the two-part code sample!'
 ## 第 2 階段：使用 Azure 儲存體容器的 Transact-SQL 程式碼
 
 
-- 在此程式碼範例的第 1 階段中，您執行了 PowerShell 指令碼建立 Azure 儲存體容器。
+- 在此程式碼範例的第 1 階段中，您執行了 PowerShell 指令碼來建立「Azure 儲存體」容器。
 - 接下來在第 2 階段中，下列 Transact-SQL 指令碼必須使用該容器。
 
 
-指令碼開頭的命令清除先前可能執行過的結果，而且設計為可重複執行。
+此指令碼是以可清除先前可能之執行結果的命令為開頭，並且可重複執行。
 
 
 PowerShell 指令碼在結束時列印出幾個具名的值。您必須編輯 Transact-SQL 指令碼以使用這些值。在 Transact-SQL 指令碼中尋找 **TODO** 找出編輯點。
@@ -292,7 +291,7 @@ PowerShell 指令碼在結束時列印出幾個具名的值。您必須編輯 Tr
 &nbsp;
 
 
-> [AZURE.WARNING] 上述 PowerShell 指令碼所產生的 SAS 金鑰值可能會以 '?' (問號) 開頭。當您在下列 T-SQL 指令碼中使用 SAS 金鑰時，您必須移除前置 '?'。否則您的動作可能會遭到安全性封鎖。
+> [AZURE.WARNING] 上述 PowerShell 指令碼所產生的 SAS 金鑰值可能會以 '?' (問號) 開頭。當您在下列 T-SQL 指令碼中使用 SAS 金鑰時，您必須「移除前置 '?'」。否則您的動作可能會遭到安全性封鎖。
 
 
 &nbsp;
@@ -512,9 +511,9 @@ GO
 ## 輸出
 
 
-Transact-SQL 指令碼完成時，按一下 **event\_data\_XML** 資料欄標題下的儲存格。此時會顯示一個 **<event>** 元素，顯示一個 UPDATE 陳述式。
+Transact-SQL 指令碼完成時，按一下 **event\_data\_XML** 資料欄標題下的儲存格。此時會顯示一個 **<event>** 元素，此元素會顯示一個 UPDATE 陳述式。
 
-以下是測試期間所產生的其中一個 **<event>** 元素：
+以下是測試期間所產生的一個 **<event>** 元素：
 
 
 &nbsp;
@@ -580,10 +579,10 @@ SELECT 'AFTER__Updates', EmployeeKudosCount, * FROM gmTabEmployee;
 假設您想要在 Microsoft SQL Server 上執行上述的 Transact-SQL 範例。
 
 
-- 為了簡單起見，您想要將 Azure 儲存體容器完全取代為簡單檔案 (例如 **C:\\myeventdata.xel**)。檔案會寫入裝載 SQL Server 之電腦的本機硬碟。
+- 為了簡單起見，您可以用簡單的檔案 (例如 **C:\\myeventdata.xel**) 來取代「Azure 儲存體」容器的使用。檔案會寫入裝載 SQL Server 之電腦的本機硬碟。
 
 
-- 您不需要 **CREATE MASTER KEY** 和 **CREATE CREDENTIAL** 的任何 Transact-SQL 陳述式。
+- 針對 **CREATE MASTER KEY** 和 **CREATE CREDENTIAL**，您不需要任何類型的 Transact-SQL 陳述式。
 
 
 - 在 **CREATE EVENT SESSION** 陳述式的 **ADD TARGET** 子句中，您要將對 **filename=** 指派的 Http 值取代為完整路徑字串 (例如 **C:\\myfile.xel**)。
@@ -610,4 +609,4 @@ Image references.
 
 [30_powershell_ise]: ./media/sql-database-xevent-code-event-file/event-file-powershell-ise-b30.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -124,7 +124,7 @@
 
 - **反惡意程式碼。** 如果啟用，資訊安全性中心會檢查是已安裝反惡意程式碼軟體。您也可以使用資訊安全中心來從 Azure 入口網站內安裝反惡意程式碼軟體。
 
-- 使用[角色型存取控制][rbac] (RBAC) 來控制對您所部署 Azure 資源的存取。RBAC 可讓您指派授權角色給您 DevOps 小組的成員。例如，「讀取者」角色能檢視 Azure 資源但不能建立、管理或刪除它們。某些角色專門用於特定的 Azure 資源類型。例如，「虛擬機器參與者」角色能重新啟動或解除配置 VM、重設系統管理員密碼、建立新的 VM 等等。其他對此參考架構可能有用的[內建 RBAC 角色][rbac-roles]包括 [DevTest Lab 使用者][rbac-devtest]和[網路參與者][rbac-network]。使用者可以被指派多個角色，且您可以針對更詳細的權限建立角色。
+- 使用[角色型存取控制][rbac] \(RBAC) 來控制對您所部署 Azure 資源的存取。RBAC 可讓您指派授權角色給您 DevOps 小組的成員。例如，「讀取者」角色能檢視 Azure 資源但不能建立、管理或刪除它們。某些角色專門用於特定的 Azure 資源類型。例如，「虛擬機器參與者」角色能重新啟動或解除配置 VM、重設系統管理員密碼、建立新的 VM 等等。其他對此參考架構可能有用的[內建 RBAC 角色][rbac-roles]包括 [DevTest Lab 使用者][rbac-devtest]和[網路參與者][rbac-network]。使用者可以被指派多個角色，且您可以針對更詳細的權限建立角色。
 
     > [AZURE.NOTE] RBAC 不會限制使用者登入 VM 可執行的動作。這些權限是由客體 OS上的帳戶類型來決定。
 
@@ -171,7 +171,7 @@
   }
 	```
 
-- **[networkSecurityGroup.parameters.json][nsg-parameters]**。此檔案包含 NSG 和 NSG 規則的定義。`virtualNetworkSettings` 區塊中的 `name` 參數可指定 NSG 要連接的 VNet。`networkSecurityGroupSettings` 區塊中的 `subnets` 參數可識別 VNet 中套用 NSG 規則的任何子網路。這些應該是 **virtualNetwork.parameters.json** 檔案中定義的項目。
+- **[networkSecurityGroups.parameters.json][nsg-parameters]**.此檔案包含 NSG 和 NSG 規則的定義。`virtualNetworkSettings` 區塊中的 `name` 參數可指定 NSG 要連接的 VNet。`networkSecurityGroupSettings` 區塊中的 `subnets` 參數可識別 VNet 中套用 NSG 規則的任何子網路。這些應該是 **virtualNetwork.parameters.json** 檔案中定義的項目。
 
 	請注意，範例中顯示的預設安全性規則可讓使用者透過遠端桌面 (RDP) 連線來連線到 VM。您可以在 `securityRules` 陣列中新增其他項目來開啟額外的連接埠 (或拒絕透過特定連接埠的存取)。
 
@@ -313,7 +313,7 @@
 
 	- [virtualNetwork.parameters.json][vnet-parameters]
 
-	- [networkSecurityGroup.parameters.json][nsg-parameters]
+	- [networkSecurityGroups.parameters.json][nsg-parameters]
 
 	- [virtualMachineParameters.json][vm-parameters]
 
@@ -386,11 +386,11 @@
 [vm-resize]: ../articles/virtual-machines/virtual-machines-linux-change-vm-size.md
 [vm-sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_0/
 [ARM-Templates]: https://azure.microsoft.com/documentation/articles/resource-group-authoring-templates/
-[solution-script]: https://raw.githubusercontent.com/mspnp/arm-building-blocks/master/guidance-compute-single-vm/Scripts/Deploy-ReferenceArchitecture.ps1
-[vnet-parameters]: https://raw.githubusercontent.com/mspnp/arm-building-blocks/master/guidance-compute-single-vm/Templates/windows/virtualNetwork.parameters.json
-[nsg-parameters]: https://raw.githubusercontent.com/mspnp/arm-building-blocks/master/guidance-compute-single-vm/Templates/windows/networkSecurityGroup.parameters.json
-[vm-parameters]: https://raw.githubusercontent.com/mspnp/arm-building-blocks/master/guidance-compute-single-vm/Templates/windows/virtualMachine.parameters.json
+[solution-script]: https://github.com/mspnp/reference-architectures/tree/master/guidance-compute-single-vm/Scripts/Deploy-ReferenceArchitecture.ps1
+[vnet-parameters]: https://github.com/mspnp/reference-architectures/tree/master/guidance-compute-single-vm/parameters/windows/virtualNetwork.parameters.json
+[nsg-parameters]: https://github.com/mspnp/reference-architectures/tree/master/guidance-compute-single-vm/parameters/windows/networkSecurityGroups.parameters.json
+[vm-parameters]: https://github.com/mspnp/reference-architectures/tree/master/guidance-compute-single-vm/parameters/windows/virtualMachine.parameters.json
 [azure-powershell-download]: https://azure.microsoft.com/documentation/articles/powershell-install-configure/
 [0]: ./media/guidance-blueprints/compute-single-vm.png "Azure 中的單一 Windows VM 架構"
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

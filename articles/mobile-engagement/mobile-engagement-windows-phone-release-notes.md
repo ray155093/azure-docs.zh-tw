@@ -11,9 +11,9 @@
 	ms.service="mobile-engagement" 
 	ms.workload="mobile" 
 	ms.tgt_pltfrm="mobile-windows-phone" 
-	ms.devlang="na" 
+	ms.devlang="na"
 	ms.topic="article" 
-	ms.date="02/29/2016" 
+	ms.date="08/19/2016" 
 	ms.author="piyushjo" />
 
 #Windows Phone Silverlight SDK 版本資訊
@@ -31,7 +31,7 @@
 -   穩定性改進。
   
 ##3\.1.0 (11/20/2015)
-*MicrosoftAzure.MobileEngagement* Nuget 套件 **v3.2.0** 的一部分。
+*MicrosoftAzure.MobileEngagement* Nuget 封裝 **v3.2.0** 的一部分
 
 -   修正初始化之後立即要求裝置 ID 時發生的當機。
 -   主控台記錄檔改善。
@@ -49,4 +49,4 @@
 -   增強安全性。
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0824_2016-->

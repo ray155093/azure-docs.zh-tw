@@ -13,21 +13,10 @@
 	ms.tgt_pltfrm="powershell" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/19/2016" 
+	ms.date="08/18/2016" 
 	ms.author="tomfitz"/>
 
 # 搭配使用 Azure PowerShell 與 Azure 資源管理員
-
-> [AZURE.SELECTOR]
-- [入口網站](azure-portal/resource-group-portal.md)
-- [Azure CLI](xplat-cli-azure-resource-manager.md)
-- [Azure PowerShell](powershell-azure-resource-manager.md)
-- [.NET](https://azure.microsoft.com/documentation/samples/resource-manager-dotnet-resources-and-groups/)
-- [Java](https://azure.microsoft.com/documentation/samples/resources-java-manage-resource-group/)
-- [節點](https://azure.microsoft.com/documentation/samples/resource-manager-node-resources-and-groups/)
-- [Python](https://azure.microsoft.com/documentation/samples/resource-manager-python-resources-and-groups/)
-- [Ruby](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-resources-and-groups/)
-
 
 Azure 資源管理員介紹一種看待 Azure 資源的嶄新方式。與其建立並管理個別資源，您首先想像整個解決方案，例如，部落格、相片庫、SharePoint 入口網站或 Wiki。使用範本 (解決方案的宣告式呈現) 建立包含支援解決方案所需所有資源的資源群組。然後，以邏輯單元的方式來管理與部署該資源群組。
 
@@ -78,7 +67,7 @@ Azure 資源管理員介紹一種看待 Azure 資源的嶄新方式。與其建�
 	Get-AzureRmADGroupMember               Get a group members.
 	...
 
-若要取得完整的 cmdlet，請輸入以下格式的命令：
+To get full help for a cmdlet, type a command with the format:
 
     Get-Help <cmdlet-name> -Full
   
@@ -102,7 +91,7 @@ cmdlet 會提示您 Azure 帳戶的登入認證。登入之後，它會下載您
 
 ## 建立資源群組
 
-將任何資源部署至訂用帳戶之前，您必須建立將包含資源的資源群組。
+將任何資源部署至訂用帳戶之前，您必須建立將包含該資源的資源群組。
 
 若要建立資源群組，請使用 **New-AzureRmResourceGroup** Cmdlet。
 
@@ -222,7 +211,7 @@ cmdlet 會提示您 Azure 帳戶的登入認證。登入之後，它會下載您
         Tags              : {System.Collections.Hashtable}
         ...
 	        
-- 您可以使用標記以邏輯方式組織您的訂用帳戶中的資源，並利用 **Find-AzureRmResource** 和 **Find-AzureRmResourceGroup** Cmdlet 擷取資源。
+- 您可以使用標籤以邏輯方式組織您的訂用帳戶中的資源，並利用 **Find-AzureRmResource** 和 **Find-AzureRmResourceGroup** Cmdlet 擷取資源。
 
         Find-AzureRmResource -TagName displayName -TagValue Website
 
@@ -387,4 +376,4 @@ cmdlet 會提示您 Azure 帳戶的登入認證。登入之後，它會下載您
 - 如需部署專案的詳細範例，請參閱[透過可預測方式在 Azure 中部署微服務](app-service-web/app-service-deploy-complex-application-predictably.md)。
 - 若要了解如何疑難排解失敗的部署，請參閱[在 Azure 中疑難排解資源群組部署](./resource-manager-troubleshoot-deployments-powershell.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

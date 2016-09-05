@@ -38,7 +38,7 @@
 
 利用資料閘道器進行複製步驟的高層級資料流和摘要如下：![使用閘道器的資料流](./media/data-factory-data-management-gateway/data-flow-using-gateway.png)
 
-1.	資料開發人員會使用 [Azure 入口網站](https://portal.azure.com)或 [PowerShell Cmdlet](https://msdn.microsoft.com/library/dn820234.aspx)，為 Azure Data Factory 建立新的閘道器。
+1.	資料開發人員會使用 [Azure 入口網站](https://portal.azure.com)或 [PowerShell Cmdlet](https://msdn.microsoft.com/library/dn820234.aspx)，為 Azure Data Factory 建立閘道器。
 2.	資料開發人員會藉由指定閘道，建立內部部署資料存放區的連結服務。在設定連結服務資料的過程中，開發人員會使用 [設定認證] 應用程式來指定驗證類型和認證。[設定認證] 應用程式對話方塊將會與資料存放區進行通訊，以測試要儲存認證的連線與閘道。
 3. 在雲端中儲存認證之前，閘道會利用與閘道 (由資料開發人員提供) 相關聯的憑證加密認證。
 4. Data Factory 服務會和閘道進行通訊，以透過使用共用 Azure 服務匯流排佇列的控制通道，進行工作的排程和管理。必須開始複製活動作業時，Data Factory 會將要求和認證資訊一起排入佇列。輪詢佇列之後，閘道器隨即啟動。
@@ -46,11 +46,11 @@
 6.	閘道器會根據複製活動在資料管線中的設定方式，將資料從內部部署存放區複製到雲端儲存體，或從雲端儲存體複製到內部部署資料存放區。請注意：在這個步驟中，閘道器會透過安全 (HTTPS) 通道直接與以雲端為基礎的儲存體服務 (例如 Azure Blob、Azure SQL 等) 通訊。
 
 ### 使用閘道的考量
-- 「資料管理閘道」的單一執行個體可用於多個內部部署資料來源，但是請注意，**單一閘道器執行個體只會繫結至一個 Azure 資料處理站**，不能與另一個資料處理站共用。
+- 「資料管理閘道」的單一執行個體可用於多個內部部署資料來源，但**單一閘道器執行個體只會繫結至一個 Azure 資料處理站**，不能與另一個資料處理站共用。
 - 單一電腦上**只能安裝一個資料管理閘道的執行個體**。假設您有兩個需要存取內部部署資料來源的 Data Factory，您需要將繫結至不同 Data Factory 的閘道器個別安裝在兩部內部部署電腦上。
 - 雖然閘道器不需要和資料來源位在相同的電腦上，但越接近資料來源可縮短閘道器連線到資料來源的時間。建議您安裝閘道器的電腦不同於裝載內部部署資料來源的電腦，如此閘道器才不會與資料來源爭奪資源。
 - 您可以有「多個閘道器在不同電腦上，但連接至相同的內部部署資料來源」。例如，您可能有兩個閘道器用於服務兩個 Data Factory，但相同的內部部署資料來源都向這兩個 Data Factory 註冊。
-- 若您已在電腦上安裝用於 **Power BI** 案例的閘道器，請於另一台電腦上安裝另一個用於 Azure Data Factory 的閘道器。
+- 若您已在電腦上安裝用於 **Power BI** 案例的閘道器，請於另一台電腦上安裝**另一個用於 Azure Data Factory 的閘道器**。
 - 您必須**使用閘道器，即使您使用 ExpressRoute 也一樣**。
 - 您應該將資料來源視為內部部署資料來源 (亦即在防火牆後面)，即使您使用 **ExpressRoute** 和**使用閘道**來建立服務與資料來源之間的連接也一樣。
 - 您必須**使用閘道**，即使資料存放區位於 **Azure IaaS VM** 上的雲端中。
@@ -59,21 +59,22 @@
 
 ### 必要條件
 - 支援的**作業系統**版本包括 Windows 7、Windows 8/8.1、Windows 10、Windows Server 2008 R2、Windows Server 2012、Windows Server 2012 R2。目前不支援在網域控制站上安裝資料管理閘道。
+- 必須有 .NET Framework 4.5.1 或更新版本。如果您要在 Windows 7 電腦上安裝閘道，請安裝 .NET Framework 4.5 或更新版本。如需詳細資訊，請參閱 [.NET Framework 系統需求](https://msdn.microsoft.com/library/8z6watww.aspx)。
 - 建議閘道器電腦的「組態」至少為 2 GHz、4 核心、8 GB RAM 和 80 GB 磁碟。
 - 如果主機電腦休眠，閘道器即無法回應資料要求。因此，安裝閘道器之前，請先在電腦上設定適當的「電源計劃」。如果電腦已設定為休眠，安裝閘道器時會提示訊息。
 - 您必須是電腦上的系統管理員，才能成功安裝和設定「資料管理閘道」。您可以將其他使用者加入至 [資料管理閘道使用者] 本機 Windows 群組。此群組的成員可以使用「資料管理閘道組態管理員」工具來設定閘道器。
 
-因為複製活動執行會以特定的頻率發生，在電腦上的資源使用量 (CPU、記憶體) 也會遵循與尖峰和閒置時間相同的模式。資源使用率也仰賴要移動的資料量。當多個複製工作正在進行中時，您將觀察到資源使用量會在尖峰時段增加。雖然上述情況是組態下限，根據資料移動的特定負載，您的組態最好還是要具備比上述組態下限還要多的資源。
+因為複製活動執行會以特定的頻率發生，在電腦上的資源使用量 (CPU、記憶體) 也會遵循與尖峰和閒置時間相同的模式。資源使用率也仰賴要移動的資料量。如果有多個複製作業正在進行，您會看到資源使用量在尖峰時段增加。雖然上述情況是組態下限，根據資料移動的特定負載，您的組態最好還是要具備比上述組態下限還要多的資源。
 
 ### 安裝選項
 可以用下列方式安裝資料管理閘道：
 
 - 從 [Microsoft 下載中心](https://www.microsoft.com/download/details.aspx?id=39717)下載 MSI 安裝套件。MSI 也可用來將現有的資料管理閘道升級至最新的版本，並保留所有設定。
-- 按一下 [手動設定] 底下的 [下載並安裝資料閘道] 連結，或 [快速安裝] 之下的 [直接安裝在此電腦上]。如需使用快速安裝的逐步指示，請參閱[在內部部署與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文。手動步驟會帶您前往下載中心，而下一節會提供從下載中心下載並安裝閘道的指示。
+- 按一下 [手動設定] 底下的 [下載並安裝資料閘道] 連結，或 [快速安裝] 之下的 [直接安裝在此電腦上]。如需使用快速安裝的逐步指示，請參閱[在內部部署與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文。手動步驟會帶您前往下載中心。下一節會提供從下載中心下載並安裝閘道的指示。
 
 ### 安裝最佳作法：
-1.	為閘道器設定主機電腦上的電源計劃，使電腦不休眠。如果主機電腦休眠，閘道器即無法回應資料要求。
-2.	您應該備份與閘道器相關聯的憑證。
+1.	為閘道器設定主機電腦上的電源計劃，使電腦不休眠。如果主機電腦休眠，閘道器不會回應資料要求。
+2.	請備份與閘道器相關聯的憑證。
 
 ### 從下載中心安裝閘道
 1. 瀏覽至 [Microsoft 資料管理閘道下載頁面](https://www.microsoft.com/download/details.aspx?id=39717)。
@@ -90,7 +91,7 @@
 ### 使用金鑰註冊閘道
 
 #### 如果您尚未在入口網站中建立邏輯閘道
-遵循[在內部部署與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文中的逐步解說步驟，以在入口網站中建立新的閘道並從 [設定] 刀鋒視窗取得金鑰。
+遵循[在內部部署與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文中的逐步解說步驟，以在入口網站中建立閘道並從 [設定] 刀鋒視窗取得金鑰。
 
 #### 如果您已經在入口網站中建立邏輯閘道
 1. 在 Azure 入口網站中，瀏覽至 [Data Factory] 刀鋒視窗，然後按一下 [連結服務] 圖格。
@@ -142,16 +143,16 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 
 
 ### Proxy 伺服器設定
-根據預設，資料管理閘道會採用 Internet Explorer 中的 Proxy 設定，並使用預設認證來存取它。如果這不符合您的需求，您可以依照下列方式進一步設定 **Proxy 伺服器設定**，以確保閘道能夠連接到 Azure Data Factory：
+根據預設，資料管理閘道會套用 Internet Explorer 中的 Proxy 設定，並使用預設認證來存取它。如果這不符合您的需求，您可以依照下列方式進一步設定 **Proxy 伺服器設定**，以確保閘道能夠連接到 Azure Data Factory：
 
 1.	安裝資料管理閘道後，請在 [檔案總管] 中安全地複製 “C:\\Program Files\\Microsoft Data Management Gateway\\1.0\\Shared\\diahost.exe.config”，以備份原始檔案。
-2.	以系統管理員身分啟動 Notepad.exe，並開啟文字檔 “C:\\Program Files\\Microsoft Data Management Gateway\\1.0\\Shared\\diahost.exe.config”。您會看見 system.net 的預設標記，如下所示：
+2.	以系統管理員身分啟動 Notepad.exe，並開啟文字檔 “C:\\Program Files\\Microsoft Data Management Gateway\\1.0\\Shared\\diahost.exe.config”。您會看見 system.net 的預設標籤，如下所示：
 
 			<system.net>
 				<defaultProxy useDefaultCredentials="true" />
 			</system.net>	
 
-	然後，您可以在該父標記內加入 Proxy 伺服器詳細資料，例如 Proxy 位址：
+	然後，您可以在該父標籤內新增 Proxy 伺服器詳細資料，例如 Proxy 位址：
 
 			<system.net>
 			      <defaultProxy enabled="true">
@@ -223,7 +224,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 ### 首頁
 首頁可讓您執行下列作業︰
 
-- 檢視閘道的狀態；不論閘道是否連接至雲端服務。
+- 檢視閘道的狀態 (連接至雲端服務等)。
 - 在入口網站中使用金鑰進行**註冊**。
 - 在閘道電腦上**停止**後啟動 [資料管理閘道主機服務]。
 - 在一天的特定時間**更新排程**。
@@ -240,7 +241,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 ### 診斷頁面
 [診斷] 頁面可讓您執行下列作業︰
 
-- 啟用詳細資訊**記錄**、在事件檢視器中檢視記錄檔，以及在失敗時將記錄檔傳送給 Microsoft。
+- 啟用詳細資訊**記錄**、在事件檢視器中檢視記錄檔，以及有失敗時將記錄檔傳送給 Microsoft。
 - **測試連線** (對資料來源的連線)。
 
 ### Help page
@@ -276,7 +277,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 4. 作業完成後，您會看到一個對話方塊，如下所示。
 	
 	![資料管理閘道 - 傳送記錄檔狀態](media/data-factory-data-management-gateway/data-management-gateway-send-logs-result.png)
-5. 請記下**報告識別碼**並與 Microsoft 支援服務共用。報告識別碼是用來尋找為了進行疑難排解所上傳的閘道記錄檔。報告識別碼也會儲存在事件檢視器，供您參考。查看事件識別碼 "25" 即可找到它，並檢查日期和時間。
+5. 記下**報告識別碼**並與 Microsoft 支援服務共用。報告識別碼是用來尋找為了進行疑難排解所上傳的閘道記錄檔。報告識別碼也會儲存在事件檢視器，供您參考。查看事件識別碼 "25" 即可找到它，並檢查日期和時間。
 	
 	![資料管理閘道 - 傳送記錄檔報告識別碼](media/data-factory-data-management-gateway/data-management-gateway-send-logs-report-id.png)
 
@@ -314,7 +315,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 6. 讓 [Microsoft 資料管理閘道器組態管理員]保持開啟。
  
 	![組態管理員](./media/data-factory-data-management-gateway/ConfigurationManager.png)
-7. 在入口網站的 [設定] 刀鋒視窗中，按一下命令列上的 [重新建立金鑰]，然後按一下警告訊息中的 [是]。按一下金鑰文字旁的**複製按鈕**，將金鑰複製到剪貼簿。請注意，一旦重新建立索引鍵，舊電腦上的閘道器便會停止運作。
+7. 在入口網站的 [設定] 刀鋒視窗中，按一下命令列上的 [重新建立金鑰]，然後按一下警告訊息中的 [是]。按一下金鑰文字旁的**複製按鈕**，將金鑰複製到剪貼簿。一旦重新建立索引鍵，舊電腦上的閘道器便會停止運作。
 	
 	![重新建立索引鍵](./media/data-factory-data-management-gateway/RecreateKey.png)
 	 
@@ -333,7 +334,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 若要在 Data Factory 編輯器中加密認證，請執行下列作業︰
 
 1. 啟動**閘道電腦**上的網頁瀏覽器，瀏覽至 [Azure 入口網站](http://portal.azure.com)，視需要搜尋您的 Data Factory，在 [DATA FACTORY] 刀鋒視窗中開啟 Data Factory，然後按一下 [製作和部署] 來啟動 Data Factory 編輯器。
-1. 在樹狀檢視中按一下現有的**連結服務**，以查看其 JSON 定義或建立需要「資料管理閘道」(例如︰SQL Server 或 Oracle) 的新連結服務。
+1. 在樹狀檢視中按一下現有的**連結服務**，以查看其 JSON 定義或建立需要「資料管理閘道」(例如︰SQL Server 或 Oracle) 的連結服務。
 2. 在 JSON 編輯器中，為 **gatewayName** 屬性輸入閘道的名稱。
 3. 在 **connectionString** 中輸入**資料來源**屬性的伺服器名稱。
 4. 在 **connectionString** 中輸入**初始目錄**屬性的資料庫名稱。
@@ -357,11 +358,11 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 		    	}
 			}
 
-如果您從閘道器電腦以外的另一台電腦存取入口網站，您必須確定「認證管理員」應用程式可以連接到閘道器電腦。如果應用程式無法連接閘道器電腦，它將不允許您設定資料來源的認證，以及測試資料來源的連接。
+如果您從閘道器電腦以外的另一台電腦存取入口網站，您必須確定「認證管理員」應用程式可以連接到閘道器電腦。如果應用程式無法連接閘道器電腦，它不會允許您設定資料來源的認證，以及測試資料來源的連接。
 
 當您使用從 Azure 入口網站啟動的**設定認證**應用程式來設定內部部署資料來源的認證時，入口網站會使用您在閘道機器上**資料管理閘道組態管理員**的 [憑證] 索引標籤中指定的憑證來加密認證。
 
-如果您要尋找以 API 為基礎的方法來加密認證，可以使用 [New-AzureRmDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) PowerShell Cmdlet 來加密認證。此 cmdlet 會使用閘道器設定用來加密認證的憑證。您可以加密這個 Cmdlet 傳回的認證，並將其新增至 JSON 檔案的 **connectionString** 的 **EncryptedCredential** 項目中，此 JSON 檔案是您將搭配 [New-AzureRmDataFactoryLinkedService](https://msdn.microsoft.com/library/mt603647.aspx) Cmdlet 使用或在入口網站之 Data Factory 編輯器的 JSON 程式碼片段中使用的檔案。
+如果您要尋找以 API 為基礎的方法來加密認證，可以使用 [New-AzureRmDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) PowerShell Cmdlet 來加密認證。此 cmdlet 會使用閘道器設定用來加密認證的憑證。您將加密的認證新增至 JSON 檔案的 **connectionString** 的 **EncryptedCredential** 項目中，此 JSON 檔案是您將搭配 [New-AzureRmDataFactoryLinkedService](https://msdn.microsoft.com/library/mt603647.aspx) Cmdlet 使用或在入口網站之 Data Factory 編輯器的 JSON 程式碼片段中使用的檔案。
 
 	"connectionString": "Data Source=<servername>;Initial Catalog=<databasename>;Integrated Security=True;EncryptedCredential=<encrypted credential>",
 
@@ -425,4 +426,4 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 ## 後續步驟
 - 如需閘道的詳細資訊，請參閱[資料管理閘道](data-factory-data-management-gateway.md)文章。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

@@ -1,10 +1,10 @@
 <properties 
-	pageTitle="適用於行動電話的 Azure Authenticator 應用程式" 
+	pageTitle="適用於行動電話的 Microsoft 驗證器應用程式" 
 	description="了解如何升級至最新版的 Azure Authenticatior。" 
 	services="multi-factor-authentication" 
 	documentationCenter="" 
 	authors="billmath" 
-	manager="stevenpo" 
+	manager="femila" 
 	editor="curtland"/>
 
 <tags 
@@ -13,19 +13,38 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/04/2016" 
+	ms.date="08/22/2016" 
 	ms.author="billmath"/>
 
+# Microsoft 驗證器
+
+Microsoft 驗證器應用程式提供額外一層安全性，可用於您的 Azure 帳戶 (例如 bsimon@contoso.onmicrosoft.com)、內部部署工作帳戶 (例如 bsimon@contoso.com)、或 Microsoft 帳戶 (例如 bsimon@outlook.com)。
+
+## 下載 Microsoft 驗證器應用程式
+
+Microsoft 驗證器應用程式適用於 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)、[Android](http://go.microsoft.com/fwlink/?Linkid=825072) 和 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)。
+
+## Microsoft 驗證器應用程式的運作方式
+此應用程式的運作方式，是將通知推送至您的智慧型手機或平板電腦上的 Microsoft 驗證器應用程式。您只要點選應用程式中的 [驗證] 進行驗證。
+
+或者，應用程式也可以使用驗證碼。您只需在登入畫面出現提示時輸入應用程式提供的驗證碼。
+
+這些 2 種不同模式分述如下︰
+
+**通知** - 在此模式中，Microsoft 驗證器應用程式可防止未經授權存取帳戶並停止詐騙交易。使用推播通知至您的電話或已註冊的裝置即可進行。只需檢視通知，如果合法，則選取 [驗證]。否則，您可選擇 [拒絕]，或選擇拒絕並回報詐騙通知。如需回報詐騙通知的相關資訊，請參閱＜如何使用 Multi-Factor Authentication 的拒絕和回報詐騙功能＞。
+
+**一次性密碼** - 在此模式中，Microsoft 驗證器應用程式可以作為軟體權杖來產生 OATH 驗證碼。然後，可以連同使用者名稱和密碼一起輸入此驗證碼，以提供第二種形式的驗證。
+
+## 新增帳戶至 Microsoft 驗證器應用程式
+
+## 移至新的 Microsoft 驗證器應用程式
+
+隨著此版本的推出，舊的 Azure Authenticator 應用程式將被取代。Azure 驗證器應用程式仍可繼續運作，但您應該決定移至新的 Microsoft 驗證器應用程式，這篇文章才對您有所幫助。
 
 
-# 移至新的 Azure Authenticator 應用程式
+## 如何移至新的 Microsoft 驗證器應用程式 
 
-發行 Azure Authenticator 應用程式以供 [Windows Phone](http://www.windowsphone.com/zh-TW/store/app/azure-authenticator/03a5b2bf-6066-418f-b569-e8aecbc06e50)、[Android](https://play.google.com/store/apps/details?id=com.azure.authenticator) 和 [IOS](https://itunes.apple.com/us/app/azure-authenticator/id983156458) 使用後，舊的 Multi-Factor Authentication 將會被取代。Multi-Factor Authentication 應用程式將會繼續運作，但您應該決定移至新的 Azure Authenticator 應用程式，這篇文章才對您有所幫助。
-
-
-## 如何將移至新的 Azure Authenticator 應用程式 
-
-**步驟 1：**安裝 Azure Authenticator。
+**步驟 1：**安裝 Microsoft 驗證器。
 
 ![雲端](./media/multi-factor-authentication-azure-authenticator/home.png)
 
@@ -73,7 +92,7 @@
   
 ![掃描條碼](./media/multi-factor-authentication-azure-authenticator/barcode2.png)
 
-- 現在開啟 Azure 驗證器應用程式，您應該會進入 [帳戶] 頁面。您會在這裡看到您已設定的帳戶的清單。如果您想要新增新的帳戶，請按一下 + 符號。這會開啟掃描器。
+- 現在開啟 Microsoft 驗證器應用程式，您應該會進入 [帳戶] 頁面。您會在這裡看到您已設定的帳戶的清單。如果您想要新增新的帳戶，請按一下 + 符號。這會開啟掃描器。
 
 ![Add Account](./media/multi-factor-authentication-azure-authenticator/addaccount3.png)
 
@@ -102,7 +121,7 @@
   
 ![掃描條碼](./media/multi-factor-authentication-azure-authenticator/barcode2.png)
 
-- 現在開啟 Azure 驗證器應用程式，您應該會進入 [帳戶] 頁面。您會在這裡看到您已設定的帳戶的清單。如果您想要新增新的帳戶，請按一下 + 符號。這會開啟掃描器。
+- 現在開啟 Microsoft 驗證器應用程式，您應該會進入 [帳戶] 頁面。您會在這裡看到您已設定的帳戶的清單。如果您想要新增新的帳戶，請按一下 + 符號。這會開啟掃描器。
 
 ![Add Account](./media/multi-factor-authentication-azure-authenticator/addaccount3.png)
 
@@ -131,7 +150,7 @@
 
 ![Add Account](./media/multi-factor-authentication-azure-authenticator/secretkey.png)
 
-- 開啟 Azure 驗證器應用程式，您應該會進入 [帳戶] 頁面。您會在這裡看到您已設定的帳戶的清單。如果您想要新增新的帳戶，請按一下 + 符號。這會開啟掃描器。
+- 開啟 Microsoft 驗證器應用程式，您應該會進入 [帳戶] 頁面。您會在這裡看到您已設定的帳戶的清單。如果您想要新增新的帳戶，請按一下 + 符號。這會開啟掃描器。
 
 ![Add Account](./media/multi-factor-authentication-azure-authenticator/addaccount3.png)
 
@@ -152,9 +171,9 @@
 ![Add Account](./media/multi-factor-authentication-azure-authenticator/verify.png)
 
 ## 如何使用 TouchID 新增帳戶
-在 iOS 上的 Azure 驗證器行動應用程式支援 Touch ID。Azure Multi-Factor Authentication 可讓組織除了持有已註冊的裝置之外，還可以要求 PIN。使用這項新功能，裝置已啟用 Touch ID 的 iOS 使用者就不需要再輸入 PIN。設定完成後，使用者只要掃描其指紋即可，不需要輸入 PIN 並且點選核准。
+在 iOS 上的 Microsoft 驗證器行動應用程式支援 Touch ID。Azure Multi-Factor Authentication 可讓組織除了持有已註冊的裝置之外，還可以要求 PIN。使用這項新功能，裝置已啟用 Touch ID 的 iOS 使用者就不需要再輸入 PIN。設定完成後，使用者只要掃描其指紋即可，不需要輸入 PIN 並且點選核准。
 
-設定 Touch ID 與 Azure 驗證器非常簡單。您剛剛完成 PIN 的一般驗證挑戰，如果您的裝置支援 Touch ID，我們會自動為您設定。
+設定 Touch ID 搭配 Azure 驗證器非常簡單。您剛剛完成 PIN 的一般驗證挑戰，如果您的裝置支援 Touch ID，我們會自動為您設定。
 
 ![Touch ID](./media/multi-factor-authentication-azure-authenticator/touchid1.png)
 
@@ -164,8 +183,8 @@
 
 ## 如何刪除帳戶
 
-若要從 Azure Authenticator 應用程式移除個別帳戶，只需點選帳戶即可。您會取得 [刪除] 選項。
+若要從 Microsoft 驗證器應用程式移除個別帳戶，只需點選帳戶即可。您會取得 [刪除] 選項。
 
 ![移除帳戶](./media/multi-factor-authentication-azure-authenticator/remove.png)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

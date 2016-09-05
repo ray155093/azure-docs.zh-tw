@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/31/2016" 
+	ms.date="08/23/2016" 
 	ms.author="stbaro"/>
 
 # 預覽具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶的開發指導方針
@@ -65,14 +65,14 @@ DocumentDB 不支援 MongoDB 彙總管線或 Map-Reduce 作業。彙總管線通
 將|ReplaceOne| |
 刪除|DeleteOne | |
  |DeleteMany| | 
- |Remove| | 
+ |移除| | 
 BulkWrite| |bulkWrite()| 
 比較|-all-| | 
 邏輯|-all-| | 
 元素查詢| |-all-| 
-評估|$mod|$regex、$text、$where| 
+評估|$mod、$regex |$text、$where| 
 GeoSpatial|2dsphere、2d、polygon|其餘| 
-Array|$all、$size|$elemMatch| 
+Array|$all、$size、$elemMatch|| 
 位元| |-all-| 
 註解|-all-| | 
 投射| |-all-| 
@@ -100,4 +100,4 @@ QueryPlan 快取| | |-all-
 
  
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

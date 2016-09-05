@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="06/06/2016"
+   ms.date="08/23/2016"
    ms.author="larryfr"/>
 
 # 搭配使用 MapReduce 與 HDInsight 上的 Hadoop 和 SSH
@@ -27,7 +27,7 @@
 
 ##<a id="prereq"></a>必要條件
 
-若要完成本文中的步驟，您需要下列項目：
+若要完成本文中的步驟，您需要下列項目。
 
 * Linux 型 HDInsight (HDInsight 上的 Hadoop) 叢集
 
@@ -57,7 +57,7 @@ Windows 未提供內建 SSH 用戶端。建議使用 **PuTTY**，您可以從下
 
 1. 連線到 HDInsight 叢集之後，請使用下列 **Hadoop** 命令來啟動 MapReduce 工作：
 
-		hadoop jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount wasbs:///example/data/gutenberg/davinci.txt wasbs:///example/data/WordCountOutput
+		yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount wasb:///example/data/gutenberg/davinci.txt wasb:///example/data/WordCountOutput
 
 	這樣會啟動 **wordcount** 類別 (內含於 **hadoop-mapreduce-examples.jar** 檔案中)。它使用 **wasbs://example/data/gutenberg/davinci.txt** 文件作為輸入，輸出則儲存在 **wasbs:///example/data/WordCountOutput**。
 
@@ -108,4 +108,4 @@ Windows 未提供內建 SSH 用戶端。建議使用 **PuTTY**，您可以從下
 
 * [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0824_2016-->

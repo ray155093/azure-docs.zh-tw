@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/03/2016"
+	ms.date="08/19/2016"
 	ms.author="piyushjo" />
 
 # 比較 Azure Mobile Engagement 與其他類似的 Azure 服務
@@ -44,7 +44,7 @@ Azure Mobile Engagement 是針對**數位行銷人員/CMO** 特別提供的服�
  
 了解這些差異之後，以下會說明我們如何與其他看起來類似的 Azure 產品做比較 - 請注意，本文並不做功能層級比較，但會透過以案例為基礎的方式定義哪一個產品最適用：
  
-1.	[HockeyApp](https://azure.microsoft.com/services/hockeyapp/) 是 Microsoft 的行動 DevOps 方案。利用該解決方案，您可以將組建散發給 Beta 版測試人員、收集損毀資料，以及取得使用者意見反應。它也會與 Visual Studio Team Services 整合，讓您能夠輕鬆建置部署和工作項目整合。 
+1.	[HockeyApp](https://azure.microsoft.com/services/hockeyapp/) 是 Microsoft 的行動 DevOps 方案。利用該解決方案，您可以將組建散發給 Beta 版測試人員、收集損毀資料，以及取得使用者意見反應。它也會與 Visual Studio Team Services 整合，讓您能夠輕鬆建置部署和工作項目整合。
 	
 	這裡的重點在 DevOps 及收集與行動應用程式有關的效能分析資料。您最後可能會在您的應用程式中整合 HockeyApps 與 Mobile Engagement，而且那將會是很正常的情況，因為即使收集的資料中有一些重疊，但這兩項產品的核心重點是不一樣的，因此它們可以協助您達到不同的目標。
 
@@ -56,7 +56,7 @@ Azure Mobile Engagement 是針對**數位行銷人員/CMO** 特別提供的服�
 
 我們來看一些案例：
 
-1.	Tim 是 Adventure Works 商店中負責為使用者發佈行動應用程式之數位行銷團隊的一員。Tim 的目標是確保下載其行動應用程式的使用者會繼續並頻繁使用應用程式。這不只是要提高品牌與應用程式使用者的黏著度，也要在應用程式使用者使用行動應用程式購買商品時提高獲利。因此，Tim 需要對應用程式使用者傳送會讓他們覺得很有用的目標性通知，以鼓勵使用者開啟應用程式，以及經常回到應用程式。這會是 Tim 將發現 Mobile Engagement 很有用的地方。 
+1.	Tim 是 Adventure Works 商店中負責為使用者發佈行動應用程式之數位行銷團隊的一員。Tim 的目標是確保下載其行動應用程式的使用者會繼續並頻繁使用應用程式。這不只是要提高品牌與應用程式使用者的黏著度，也要在應用程式使用者使用行動應用程式購買商品時提高獲利。因此，Tim 需要對應用程式使用者傳送會讓他們覺得很有用的目標性通知，以鼓勵使用者開啟應用程式，以及經常回到應用程式。這會是 Tim 將發現 Mobile Engagement 很有用的地方。
 
 2.	Joann 是 Adventure Works 中開發團隊的一員，而且正在尋找能夠記錄當機例外狀況相關詳細資料，以及能夠從應用程式取得效能遙測資料的產品。這是 Joann 將發現 HockeyApp 很有用的地方。Joann 可以在相同的應用程式中為其開發人員的重點案例整合 HockeyApp，以及為 Tim 整合 Azure Mobile Engagement，來同時提供兩者最好用的功能。
 
@@ -66,4 +66,4 @@ Azure Mobile Engagement 是針對**數位行銷人員/CMO** 特別提供的服�
 
 如需詳細資料，請參考這段有關 Mobile Engagement 簡略說明的[快速上手影片](mobile-engagement-overview.md)。
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0824_2016-->

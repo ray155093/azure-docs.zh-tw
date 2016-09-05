@@ -55,7 +55,7 @@
 
 1. 由於每個註冊機構的特殊要求可能有所不同，一般來說，您會「從」自訂網域名稱 (例如 **contoso.com**) 對應「至」您 Web 應用程式使用的流量管理員網域名稱 (**contoso.trafficmanager.net**)。
 
-> [AZURE.NOTE] 或者，如果記錄已在使用中，而您需要事先將您的應用程式繫結到該記錄，請將 **awverify.contoso.com** 對應至 **contoso.trafficmanager.net**。
+> [AZURE.NOTE] 或者，如果記錄已在使用中，而您需要事先將您的應用程式繫結到該記錄，請建立從 **awverify.contoso.com** 至 **contoso.trafficmanager.net** 的 TXT 記錄。
 
 1. 在註冊機構處將新增或修改 DNS 記錄的作業完成後，請儲存變更。
 
@@ -72,4 +72,4 @@
 
 [AZURE.INCLUDE [app-service-web-try-app-service](../../includes/app-service-web-try-app-service.md)]
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -1,10 +1,10 @@
 
 <properties 
-   pageTitle="網際網路面向的負載平衡器概觀 |Microsoft Azure"
+   pageTitle="網際網路面向的負載平衡器概觀 |Microsoft Azure "
    description="網際網路面向的負載平衡器及其功能的概觀。負載平衡器如何作用於使用虛擬機器和雲端服務的 Azure。"
    services="load-balancer"
    documentationCenter="na"
-   authors="joaoma"
+   authors="sdwheeler"
    manager="carmonm"
    editor="tysonn" />
 <tags 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="04/05/2016"
-   ms.author="joaoma" />
+   ms.author="sewhee" />
 
 
 # 多個虛擬機器或服務之間的網際網路面向負載平衡器
@@ -48,4 +48,4 @@ Servicedefinition.csdef 檔案將包含端點組態，而當一個 Web 或背景
 
  
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0824_2016-->

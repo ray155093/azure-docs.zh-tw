@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="03/25/2016"
+	ms.date="08/19/2016"
 	ms.author="piyushjo" />
 
 #<a id="unity-roll-a-ball"></a>建立 Unity Roll a Ball 遊戲
@@ -23,7 +23,7 @@
 ### 設定遊戲
 下列步驟來自 [Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/set-up?playlist=17141)
 
-1. 開啟 **Unity Editor**，然後按一下 **New**。 
+1. 開啟 **Unity Editor**，然後按一下 **New**。
 	
 	![][51]
 	
@@ -82,7 +82,7 @@
 ### 移動玩家
 下列步驟來自 [Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/moving-the-player?playlist=17141)
 
-1. 將 **RigidBody** 元件新增至 **Player** 物件。 
+1. 將 **RigidBody** 元件新增至 **Player** 物件。
 
 	![][13]
 
@@ -125,8 +125,8 @@
 ### 移動相機
 下列步驟來自 [Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/moving-the-camera?playlist=17141)，而且會將 **Main Camera** 繫結至 **Player** 物件。
 
-1. 將 **Transform.Position** 更新為 X = 0、Y = 10.5、Z =-10。  
-2. 將 **Transform.Rotation** 更新為 X = 45、Y = 0、Z = 0。  
+1. 將 **Transform.Position** 更新為 X = 0、Y = 10.5、Z =-10。
+2. 將 **Transform.Rotation** 更新為 X = 45、Y = 0、Z = 0。
 
 	![][16]
 
@@ -192,7 +192,7 @@
 ### 建立可收集的物件
 下列步驟來自 [Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/creating-collectables?playlist=17141)。我們將會建立一些外觀吸引人的物件，這些物件會形成一組可收集的物件，Player Ball 物件必須透過碰撞這組可收集的物件來「收集」它們。
 
-1. 建立新 **3D Cube** 物件，並將它命名為 Pickup。 
+1. 建立新 **3D Cube** 物件，並將它命名為 Pickup。
 
 2. 調整 Pickup 物件的 **Transform -> Rotation** 和 **Transform -> Scale**。
 
@@ -244,7 +244,7 @@
 ### 收集 Pickup 物件
 下列步驟來自 [Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/collecting-pick-up-objects?playlist=17141)。我們將更新 Player，使其能夠透過碰撞的方式，「收集」Pickup 物件。
 
-1. 開啟已附加至 Player 物件的 **PlayerController** 指令碼進行編輯，並將其更新為：  
+1. 開啟已附加至 Player 物件的 **PlayerController** 指令碼進行編輯，並將其更新為：
 
 		using UnityEngine;
 		using System.Collections;
@@ -374,4 +374,4 @@
 	
 	
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0824_2016-->

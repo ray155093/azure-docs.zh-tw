@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/02/2016"
+	ms.date="08/23/2016"
 	ms.author="andkjell;markvi"/>
 
 
@@ -30,14 +30,16 @@
 - dt – UTC 日期/時間
 - enum – 已知常數的列舉
 - exp – 運算式，預期會評估為布林值
-- mvbin – 多重值的二進位
-- mvstr – 多重值的字串
-- mvref – 多重值的參考
+- **mvbin** – 多重值的二進位
+- **mvstr** – 多重值的字串
+- **mvref** – 多重值的參考
 - **num** – 數值
-- **ref** – 單一值的參考
-- **str** – 單一值的字串
+- **ref** – 參考
+- **str** – 字串
 - **var** – (幾乎) 任何其他類型的變體
 - **void** – 不會傳回值
+
+類型為 **mvbin**、**mvstr** 和 **mvref** 的函式僅可用於多重值的屬性。類型為 **bin**、**str** 和 **ref** 的函式可用於單一值和多重值的屬性。
 
 ## 函式參考
 
@@ -73,13 +75,13 @@
 ----------
 ### BitAnd
 
-**說明：**BitAnd 函數會在值中設定指定的位元。
+**說明：**BitAnd 函式會在值中設定指定的位元。
 
 **語法：**`num BitAnd(num value1, num value2)`
 
 - value1，value2：應該使用 AND 連結在一起的數值
 
-**備註：**此函數會將這兩個參數轉換為二進位表示法，並將某一個位元設為：
+**備註：**此函式會將這兩個參數轉換為二進位表示法，並將某一個位元設為：
 
 - 0 - 如果 *mask* 和 *flag* 中有一個對應位元或這兩者為 0
 - 1 - 如果這兩個對應位元都是 1。
@@ -91,18 +93,18 @@
 ----------
 ### BitOr
 
-**說明：**BitOr 函數會在值中設定指定的位元。
+**說明：**BitOr 函式會在值中設定指定的位元。
 
 **語法：**`num BitOr(num value1, num value2)`
 
 - value1，value2：應該使用 OR 連結在一起的數值
 
-**備註：**此函數會將這兩個參數轉換成二進位表示法，而且，如果 mask 和 flag 中有一個的對應位元為 1 或兩者都是，就會將某一個位元設為 1，如果這兩個對應位元都為 0，則會設為 0。換句話說，除非這兩個參數的對應位元都是 0，否則在所有情況下都會傳回 1。
+**備註：**此函式會將這兩個參數轉換成二進位表示法，而且，如果 mask 和 flag 中有一個的對應位元為 1 或兩者都是，就會將某一個位元設為 1，如果這兩個對應位元都為 0，則會設為 0。換句話說，除非這兩個參數的對應位元都是 0，否則在所有情況下都會傳回 1。
 
 ----------
 ### CBool
 
-**說明：**CBool 函數會根據評估的運算式傳回布林值
+**說明：**CBool 函式會根據評估的運算式傳回布林值
 
 **語法：**`bool CBool(exp Expression)`
 
@@ -115,7 +117,7 @@
 ----------
 ### CDate
 
-**說明：**CDate 函數會傳回字串的 UTC DateTime。DateTime 不是同步處理中的原生屬性類型，但有部分函式會用到。
+**說明：**CDate 函式會傳回字串的 UTC DateTime。DateTime 不是同步處理中的原生屬性類型，但有部分函式會用到。
 
 **語法：**`dt CDate(str value)`
 
@@ -130,7 +132,7 @@
 ----------
 ### CGuid
 
-**說明：**CGuid 函數會將 GUID 的字串表示法轉換為二進位表示法。
+**說明：**CGuid 函式會將 GUID 的字串表示法轉換為二進位表示法。
 
 **語法：**`bin CGuid(str GUID)`
 
@@ -139,26 +141,26 @@
 ----------
 ### Contains
 
-**說明：**Contains 函數會在多重值屬性內尋找字串
+**說明：**Contains 函式會在多重值屬性內尋找字串
 
-**語法：**`num Contains (mvstring attribute, str search)` - 區分大小寫 `num Contains (mvstring attribute, str search, enum Casetype)` `num Contains (mvref attribute, str search)` - 區分大小寫
+**語法：**`num Contains (mvstring attribute, str search)` - 區分大小寫`num Contains (mvstring attribute, str search, enum Casetype)` `num Contains (mvref attribute, str search)` - 區分大小寫
 
-- attribute：要搜尋的多重值屬性。<br>
-- search：要在屬性中尋找的字串。<br>
-- Casetype：CaseInsensitive 或 CaseSensitive。<br>
+- attribute：要搜尋的多重值屬性。
+- search：要在屬性中尋找的字串。
+- Casetype：CaseInsensitive 或 CaseSensitive。
 
 傳回在多重值屬性中找到字串的索引。如果找不到該字串，即會傳回 0。
 
-**備註：**針對多重值字串屬性，搜尋將會在值中尋找子字串。針對參考屬性，搜尋的字串必須完全符合要被視為相符的值。
+**備註：**針對多重值字串屬性，搜尋會在值中尋找子字串。針對參考屬性，搜尋的字串必須完全符合要被視為相符的值。
 
 **範例：**`IIF(Contains([proxyAddresses],"SMTP:")>0,[proxyAddresses],Error("No primary SMTP address found."))` 如果 proxyAddresses 屬性具有主要電子郵件地址 (以大寫 "SMTP:" 表示)，就會傳回 proxyAddress 屬性，否則會傳回錯誤。
 
 ----------
 ### ConvertFromBase64
 
-**說明：**ConvertFromBase64 函數會將指定的 base64 編碼值轉換為一般字串。
+**說明：**ConvertFromBase64 函式會將指定的 base64 編碼值轉換為一般字串。
 
-**語法：**`str ConvertFromBase64(str source)` - 假設使用 Unicode 進行編碼<br>`str ConvertFromBase64(str source, enum Encoding)`
+**語法：**`str ConvertFromBase64(str source)` - 假設使用 Unicode 進行編碼`str ConvertFromBase64(str source, enum Encoding)`
 
 - source：Base64 編碼的字串
 - Encoding：Unicode、ASCII、UTF8
@@ -170,20 +172,20 @@
 ----------
 ### ConvertFromUTF8Hex
 
-**說明：**ConvertFromUTF8Hex 函數會將指定的 UTF8 十六進位編碼值轉換為字串。
+**說明：**ConvertFromUTF8Hex 函式會將指定的 UTF8 十六進位編碼值轉換為字串。
 
 **語法：**`str ConvertFromUTF8Hex(str source)`
 
 - source：UTF8 2 個位元組的編碼字串
 
-**備註：**此函數與 ConvertFromBase64(,UTF8) 之間的差異在於結果支援 DN 屬性。Azure Active Directory 會使用此格式做為 DN。
+**備註：**此函式與 ConvertFromBase64(,UTF8) 之間的差異在於結果支援 DN 屬性。Azure Active Directory 會使用此格式做為 DN。
 
 **範例：** `ConvertFromUTF8Hex("48656C6C6F20776F726C6421")` 傳回 "Hello world!"
 
 ----------
 ### ConvertToBase64
 
-**說明：**ConvertToBase64 函數會將字串轉換為 Unicode Base64 字串。將整數陣列的值轉換為其對等的字串表示法，此表示法是以 Base-64 數字編碼的。
+**說明：**ConvertToBase64 函式會將字串轉換為 Unicode Base64 字串。將整數陣列的值轉換為其對等的字串表示法，此表示法是以 Base-64 數字編碼的。
 
 **語法：**`str ConvertToBase64(str source)`
 
@@ -192,25 +194,25 @@
 ----------
 ### ConvertToUTF8Hex
 
-**說明：**ConvertToUTF8Hex 函數會將字串轉換為 UTF8 十六進位編碼值。
+**說明：**ConvertToUTF8Hex 函式會將字串轉換為 UTF8 十六進位編碼值。
 
 **語法：**`str ConvertToUTF8Hex(str source)`
 
-**備註：**Azure Active Directory 會使用此函數的輸出格式做為 DN 屬性格式。
+**備註：**Azure Active Directory 會使用此函式的輸出格式做為 DN 屬性格式。
 
 **範例：**`ConvertToUTF8Hex("Hello world!")` 傳回 48656C6C6F20776F726C6421
 
 ----------
 ### 計數
 
-**說明：**Count 函數會傳回多重值屬性中的元素個數
+**說明：**Count 函式會傳回多重值屬性中的元素個數
 
 **語法：**`num Count(mvstr attribute)`
 
 ----------
 ### CNum
 
-**說明：**CNum 函數會取得字串，並傳回數值資料類型。
+**說明：**CNum 函式會取得字串，並傳回數值資料類型。
 
 **語法：**`num CNum(str value)`
 
@@ -226,7 +228,7 @@
 ----------
 ### CStr
 
-**說明：**CStr 函數會轉換為字串資料類型。
+**說明：**CStr 函式會轉換為字串資料類型。
 
 **語法：**`str CStr(num value)` `str CStr(ref value)` `str CStr(bool value)`
 
@@ -237,7 +239,7 @@
 ----------
 ### DateAdd
 
-**說明：**傳回日期，其中包含已加入指定時間間隔的日期。
+**說明：**傳回日期，其中包含已新增指定時間間隔的日期。
 
 **語法：**`dt DateAdd(str interval, num value, dt date)`
 
@@ -255,12 +257,12 @@
 - value：您想要加入的單位數。它可以是正數 (用以取得未來的日期) 或負數 (用以取得過去的日期)。
 - date：DateTime 代表要加入間隔的日期。
 
-**範例：**`DateAdd("m", 3, CDate("2001-01-01"))` 加入 3 個月，並傳回代表 "2001-04-01" 的 DateTime
+**範例：**`DateAdd("m", 3, CDate("2001-01-01"))` 新增 3 個月，並傳回代表 "2001-04-01" 的 DateTime。
 
 ----------
 ### DateFromNum
 
-**說明：**DateFromNum 函數會將 AD 日期格式的值轉換為 DateTime 型別。
+**說明：**DateFromNum 函式會將 AD 日期格式的值轉換為 DateTime 類型。
 
 **語法：**`dt DateFromNum(num value)`
 
@@ -269,7 +271,7 @@
 ----------
 ### DNComponent
 
-**說明：**DNComponent 函數會從左邊傳回指定 DN 元件的值。
+**說明：**DNComponent 函式會從左邊傳回指定 DN 元件的值。
 
 **語法：**`str DNComponent(ref dn, num ComponentNumber)`
 
@@ -281,7 +283,7 @@
 ----------
 ### DNComponentRev
 
-**說明：**DNComponentRev 函數會從右邊 (結尾處) 傳回指定 DN 元件的值。
+**說明：**DNComponentRev 函式會從右邊 (結尾處) 傳回指定 DN 元件的值。
 
 **語法：**`str DNComponentRev(ref dn, num ComponentNumber)` `str DNComponentRev(ref dn, num ComponentNumber, enum Options)`
 
@@ -294,7 +296,7 @@
 ----------
 ### 錯誤
 
-**說明：**Error 函數是用來傳回自訂錯誤。
+**說明：**Error 函式是用來傳回自訂錯誤。
 
 **語法：**`void Error(str ErrorMessage)`
 
@@ -303,7 +305,7 @@
 ----------
 ### EscapeDNComponent
 
-**說明：**EscapeDNComponent 函數會接受 DN 的一個元件並逸出它，以便在 LDAP 中顯示它。
+**說明：**EscapeDNComponent 函式會接受 DN 的一個元件並逸出它，以便在 LDAP 中顯示它。
 
 **語法：**`str EscapeDNComponent(str value)`
 
@@ -312,14 +314,14 @@
 ----------
 ### FormatDateTime
 
-**說明：**FormatDateTime 函數可用來將 DateTime 格式化為具有指定格式的字串
+**說明：**FormatDateTime 函式可用來將 DateTime 格式化為具有指定格式的字串
 
 **語法：**`str FormatDateTime(dt value, str format)`
 
 - value：DateTime 格式的值
 - format：字串，表示要轉換的目標格式。
 
-**備註：**您可以在此處找到格式的可能值：[使用者定義日期/時間格式 (Format 函數)](http://msdn2.microsoft.com/library/73ctwf33(VS.90).aspx)
+**備註：**您可以在此處找到格式的可能值：[使用者定義日期/時間格式 (Format 函式)](http://msdn2.microsoft.com/library/73ctwf33(VS.90).aspx)
 
 **範例：**
 
@@ -330,27 +332,27 @@
 ----------
 ### GUID
 
-**說明：**函數 GUID 會產生新的隨機 GUID
+**說明：**函式 GUID 會產生新的隨機 GUID
 
 **語法：**`str GUID()`
 
 ----------
 ### IIF
 
-**說明：**IIF 函數會根據指定的條件傳回其中一組可能值。
+**說明：**IIF 函式會根據指定的條件傳回其中一組可能值。
 
 **語法：**`var IIF(exp condition, var valueIfTrue, var valueIfFalse)`
 
 - condition：可評估為 True 或 False 的任何值或運算式。
 - valueIfTrue：條件評估為 True 時所傳回的值。
-- valueIfFalse：條件評估為 False 時所傳回的值。
+- valueIfFalse：條件評估為 false 時所傳回的值。
 
 **範例：**`IIF([employeeType]="Intern","t-" & [alias],[alias])`如果使用者是實習生，就會傳回開頭加上 "t-" 的使用者別名，否則會依原樣傳回使用者的別名。
 
 ----------
 ### InStr
 
-**說明：**InStr 函數會在字串中尋找第一個出現的子字串
+**說明：**InStr 函式會在字串中尋找第一個出現的子字串
 
 **語法：**
 
@@ -370,7 +372,7 @@
 ----------
 ### InStrRev
 
-**說明：**InStrRev 函數會在字串中尋找最後一個出現的子字串
+**說明：**InStrRev 函式會在字串中尋找最後一個出現的子字串
 
 **語法：**`num InstrRev(str stringcheck, str stringmatch)` `num InstrRev(str stringcheck, str stringmatch, num start)` `num InstrRev(str stringcheck, str stringmatch, num start, enum compare)`
 
@@ -386,7 +388,7 @@
 ----------
 ### IsBitSet
 
-**說明：**IsBitSet 函數會測試是否已設定位元
+**說明：**IsBitSet 函式會測試是否已設定位元
 
 **語法：**`bool IsBitSet(num value, num flag)`
 
@@ -397,36 +399,36 @@
 ----------
 ### IsDate
 
-**說明：**如果運算式可評估為 DateTime 型別，IsDate 函數即會評估為 True。
+**說明：**如果運算式可評估為 DateTime 類型，則 IsDate 函式會評估為 True。
 
 **語法：**`bool IsDate(var Expression)`
 
-**備註：**用來判斷 CDate() 是否會成功。
+**備註：**用來判斷 CDate() 是否可能成功。
 
 ----------
 ### IsEmpty
 
-**說明：**如果屬性存在於 CS 或 MV 中，但評估為空字串，IsEmpty 函數即會評估為 True。
+**說明：**如果屬性存在於 CS 或 MV 中，但評估為空字串，則 IsEmpty 函式會評估為 True。
 
 **語法：**`bool IsEmpty(var Expression)`
 
 ----------
 ### IsGuid
 
-**說明：**如果字串可轉換為 GUID，IsGuid 函數即會評估為 True。
+**說明：**如果字串可轉換為 GUID，則 IsGuid 函式會評估為 True。
 
 **語法：**`bool IsGuid(str GUID)`
 
-**備註：**GUID 定義為下列其中一種模式的字串：xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx 或 {xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}
+**備註：**GUID 定義為下列其中一種模式的字串： xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx 或 {xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}
 
-用來判斷 CGuid() 是否將會成功。
+用來判斷 CGuid() 是否可能成功。
 
 **範例：**`IIF(IsGuid([strAttribute]),CGuid([strAttribute]),NULL)`如果 StrAttribute 具有 GUID 格式，即會傳回二進位表示法，否則會傳回 Null。
 
 ----------
 ### IsNull
 
-**說明：**如果運算式評估為 Null，IsNull 函數即會傳回 True。
+**說明：**如果運算式評估為 Null，則 IsNull 函式會傳回 True。
 
 **語法：**`bool IsNull(var Expression)`
 
@@ -437,18 +439,18 @@
 ----------
 ### IsNullOrEmpty
 
-**說明：**如果運算式為 Null 或空字串，IsNullOrEmpty 函數即會傳回 True。
+**說明：**如果運算式為 Null 或空字串，則 IsNullOrEmpty 函式會傳回 True。
 
 **語法：**`bool IsNullOrEmpty(var Expression)`
 
-**備註：**針對屬性，如果屬性不存在，或存在但為空字串，即會評估為 True。<br> 此函式的相反函式名稱為 IsPresent。
+**備註：**針對屬性，如果屬性不存在，或存在但為空字串，即會評估為 True。此函式的相反函式名稱為 IsPresent。
 
 **範例：**`IsNullOrEmpty([displayName])`如果屬性不存在於 CS 或 MV 中或為空字串，即會傳回 True。
 
 ----------
 ### IsNumeric
 
-**說明：**IsNumeric 函數會傳回布林值，指出運算式是否可評估為數字類型。
+**說明：**IsNumeric 函式會傳回布林值，指出運算式是否可評估為數字類型。
 
 **語法：**`bool IsNumeric(var Expression)`
 
@@ -457,7 +459,7 @@
 ----------
 ### IsString
 
-**說明：**如果運算式可評估為字串類型，IsString 函數即會評估為 True。
+**說明：**如果運算式可評估為字串類型，則 IsString 函式會評估為 True。
 
 **語法：**`bool IsString(var expression)`
 
@@ -466,25 +468,25 @@
 ----------
 ### IsPresent
 
-**說明：**如果運算式評估為非 Null 且不是空字串，IsPresent 函數即會傳回 True。
+**說明：**如果運算式評估為非 Null 且不是空字串，則 IsPresent 函式會傳回 True。
 
 **語法：**`bool IsPresent(var expression)`
 
-**備註：**這個函數的相反函數名稱為 IsNullOrEmpty。
+**備註：**這個函式的相反函式名稱為 IsNullOrEmpty。
 
 **範例：**`Switch(IsPresent([directManager]),[directManager], IsPresent([skiplevelManager]),[skiplevelManager], IsPresent([director]),[director])`
 
 ----------
 ### 項目
 
-**說明：**Item 函數會從多重值字串/屬性傳回一個項目。
+**說明：**Item 函式會從多重值字串/屬性傳回一個項目。
 
 **語法：**`var Item(mvstr attribute, num index)`
 
 - attribute：多重值的屬性
 - index：多重值字串中項目的索引。
 
-**備註：**Item 函數可以與 Contains 函數搭配使用，因為後者會將索引傳回多重值屬性中的項目。
+**備註：**Item 函式可以與 Contains 函式搭配使用，因為後者會將索引傳回多重值屬性中的項目。
 
 如果索引超出範圍，即會擲回錯誤。
 
@@ -493,35 +495,35 @@
 ----------
 ### ItemOrNull
 
-**說明：**ItemOrNull 函數會從多重值字串/屬性傳回一個項目。
+**說明：**ItemOrNull 函式會從多重值字串/屬性傳回一個項目。
 
 **語法：**`var ItemOrNull(mvstr attribute, num index)`
 
 - attribute：多重值的屬性
 - index：多重值字串中項目的索引。
 
-**備註：**ItemOrNull 函數可以與 Contains 函數一起搭配使用，因為後者會將索引傳回多重值屬性中的項目。
+**備註：**ItemOrNull 函式可以與 Contains 函式搭配使用，因為後者會將索引傳回多重值屬性中的項目。
 
-如果索引超出範圍，即會傳回 Null 值。
+如果索引超出範圍，則會傳回 Null 值。
 
 ----------
 ### Join
 
-**說明：**Join 函數會接受多重值的字串，並傳回單一值的字串，其中每個項目之間都插入指定的分隔符號。
+**說明：**Join 函式會接受多重值的字串，並傳回單一值的字串，其中每個項目之間都插入指定的分隔符號。
 
 **語法：**`str Join(mvstr attribute)` `str Join(mvstr attribute, str Delimiter)`
 
 - attribute：包含要聯結之字串的多重值屬性。
 - delimiter：任何字串，可用來分隔傳回字串中的子字串。如果省略，即會使用空格字元 (" ")。如果分隔符號是零長度字串 ("") 或 Nothing，就不會使用分隔符號來串連清單中的所有項目。
 
-備註 Join 和 Split 函數之間有同位。Join 函式可接受字串陣列，並使用分隔符號字串來聯結它們，以傳回單一字串。Split 函式會取得字串並以分隔符號來分隔，以傳回字串陣列。不過，主要的差別是 Join 可以使用任何分隔符號字串來串連字串，Split 只能使用單一字元分隔符號來分隔字串。
+**備註** Join 和 Split 函式之間有同位。Join 函式可接受字串陣列，並使用分隔符號字串來聯結它們，以傳回單一字串。Split 函式會取得字串並以分隔符號來分隔，以傳回字串陣列。不過，主要的差別是 Join 可以使用任何分隔符號字串來串連字串，Split 只能使用單一字元分隔符號來分隔字串。
 
 **範例：**`Join([proxyAddresses],",")` 可能會傳回："SMTP:john.doe@contoso.com,smtp:jd@contoso.com"
 
 ----------
 ### LCase
 
-**說明：**LCase 函數會將字串中的所有字元轉換為小寫。
+**說明：**LCase 函式會將字串中的所有字元轉換為小寫。
 
 **語法：**`str LCase(str value)`
 
@@ -530,7 +532,7 @@
 ----------
 ### Left
 
-**說明：**Left 函數會從字串左邊傳回指定的字元數。
+**說明：**Left 函式會從字串左邊傳回指定的字元數。
 
 **語法：**`str Left(str string, num NumChars)`
 
@@ -543,14 +545,14 @@
 - 如果 numChars < 0，會傳回輸入字串。
 - 如果 string 為 Null，會傳回空字串。
 
-如果 string 包含的字元數比 numChars 中指定的數目少，即會傳回與 string 完全相同的字串 (例如，包含參數 1 中的所有字元)。
+如果 string 包含的字元數比 numChars 中指定的數目少，即會傳回與 string 完全相同的字串 (也就是，包含參數 1 中的所有字元)。
 
 **範例：**`Left("John Doe", 3)` 傳回 "Joh"。
 
 ----------
 ### Len
 
-**說明：**Len 函數會傳回字串中的字元數。
+**說明：**Len 函式會傳回字串中的字元數。
 
 **語法：**`num Len(str value)`
 
@@ -559,16 +561,16 @@
 ----------
 ### LTrim
 
-**說明：**LTrim 函數會從字串中移除開頭空白字元。
+**說明：**LTrim 函式會從字串中移除開頭空白字元。
 
 **語法：**`str LTrim(str value)`
 
-**範例：**`LTrim(" Test ")` 傳回 "Test "
+**範例：**`LTrim(" Test ")` 傳回 "Test"
 
 ----------
 ### Mid
 
-**說明：**Mid 函數會從字串中的指定位置傳回指定的字元數。
+**說明：**Mid 函式會從字串中的指定位置傳回指定的字元數。
 
 **語法：**`str Mid(str string, num start, num NumChars)`
 
@@ -584,7 +586,7 @@
 - 如果 start < = 0，會傳回輸入字串。
 - 如果 string 為 Null，會傳回空字串。
 
-如果 string 中從位置 start 起算所剩餘的字元數不足 numChar 個字元，即會盡可能地傳回所有可傳回的字元。
+如果 string 中從位置 start 起算所剩餘的字元數不足 numChar 個字元，即會盡可能地傳回許多字元。
 
 **範例：**`Mid("John Doe", 3, 5)` 傳回 "hn Do"。
 
@@ -593,14 +595,14 @@
 ----------
 ### Now
 
-**說明：**Now 函數會根據您電腦的系統日期和時間，傳回指定目前日期和時間的 DateTime。
+**說明：**Now 函式會根據您電腦的系統日期和時間，傳回指定目前日期和時間的 DateTime。
 
 **語法：**`dt Now()`
 
 ----------
 ### NumFromDate
 
-**說明：**NumFromDate 函數會以 AD 的日期格式傳回日期。
+**說明：**NumFromDate 函式會以 AD 的日期格式傳回日期。
 
 **語法：**`num NumFromDate(dt value)`
 
@@ -609,7 +611,7 @@
 ----------
 ### PadLeft
 
-**說明：**PadLeft 函數會使用提供的填補字元，將字串左側填補到指定的長度。
+**說明：**PadLeft 函式會使用提供的填補字元，將字串左側填補到指定的長度。
 
 **語法：**`str PadLeft(str string, num length, str padCharacter)`
 
@@ -631,7 +633,7 @@
 ----------
 ### PadRight
 
-**說明：**PadRight 函數會使用提供的填補字元，將字串右側填補到指定的長度。
+**說明：**PadRight 函式會使用提供的填補字元，將字串右側填補到指定的長度。
 
 **語法：**`str PadRight(str string, num length, str padCharacter)`
 
@@ -653,7 +655,7 @@
 ----------
 ### PCase
 
-**說明：**PCase 函數會將字串中每個空格分隔之單字的第一個字元轉換為大寫，並將其他所有字元轉換為小寫。
+**說明：**PCase 函式會將字串中每個空格分隔之單字的第一個字元轉換為大寫，並將其他所有字元轉換為小寫。
 
 **語法：**`String PCase(string)`
 
@@ -763,7 +765,7 @@
 
 **語法：**`str RTrim(str value)`
 
-**範例：**`RTrim(" Test ")` 傳回 " Test"。
+**範例：**`RTrim(" Test ")` 傳回 "Test"。
 
 ----------
 ### 分割
@@ -774,7 +776,7 @@
 
 - value：以分隔符號字元分隔的字串。
 - delimiter：用來做為分隔符號的單一字元。
-- limit：將傳回的值數目上限。
+- limit：可以傳回的值數目上限。
 
 **範例：**`Split("SMTP:john.doe@contoso.com,smtp:jd@contoso.com",",")` 傳回多重值的字串，其中包含 2 個 proxyAddress 屬性可用的元素。
 
@@ -788,9 +790,9 @@
 ----------
 ### StringFromSid
 
-**說明：**StringFromSid 函式會將位元組陣列或包含安全性識別碼的多重值位元組陣列，轉換為字串或多重值的字串。
+**說明：**StringFromSid 函式會將包含安全性識別碼的位元組陣列轉換為字串。
 
-**語法：**`str StringFromSid(bin ObjectSID)` `mvstr StringFromSid(mvbin ObjectSID)`
+**語法：**`str StringFromSid(bin ObjectSID)`
 
 ----------
 ### Switch
@@ -822,7 +824,7 @@ Value 也可以是會傳回自訂字串的 Error 函式。
 
 **說明：**Trim 函式會從字串移除開頭和結尾的空白字元。
 
-**語法：**`str Trim(str value)` `mvstr Trim(mvstr value)`
+**語法：**`str Trim(str value)`
 
 **範例：**`Trim(" Test ")` 傳回 "Test"。
 
@@ -845,7 +847,7 @@ Value 也可以是會傳回自訂字串的 Error 函式。
 **語法：**`str Word(str string, num WordNumber, str delimiters)`
 
 - string：要傳回單字的字串
-- WordNumber：數字，可識別應傳回的字數。
+- WordNumber：一個數字，用於識別可傳回的字數。
 - delimiters：字串，表示應用來識別單字的分隔符號
 
 **備註：**string 內以 delimiters 其中一個字元來分隔之字元的每個字串，都會被識別為單字：
@@ -865,4 +867,4 @@ Value 也可以是會傳回自訂字串的 Error 函式。
 * [Azure AD Connect 同步處理：自訂同步處理選項](active-directory-aadconnectsync-whatis.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

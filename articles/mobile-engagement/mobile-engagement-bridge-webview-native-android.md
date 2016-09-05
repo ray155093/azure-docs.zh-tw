@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android" 
 	ms.devlang="Java" 
 	ms.topic="article" 
-	ms.date="02/25/2016" 
+	ms.date="08/19/2016" 
 	ms.author="piyushjo" />
 
 #將 Android WebView 與原生 Mobile Engagement Andoird SDK 橋接
@@ -24,7 +24,7 @@
 
 某些行動應用程式設計為混合式應用程式，其中應用程式本身使用原生 Android 開發方式開發，但部份或甚至所有的畫面是在 Android WebView 中轉譯。您仍然可以在這類應用程式中使用 Mobile Engagement Android SDK，而本教學課程將說明做法。下列的範例程式碼是以[這裡](https://developer.android.com/guide/webapps/webview.html#BindingJavaScript)的 Android 文件為基礎。它說明此記載的方法如何用於實作同樣的 Mobile Engagement Android SDK 常用方法，例如混合式應用程式的 Webview 同時可以初始化要求以追蹤事件、工作、錯誤、應用程式資訊，並同時透過我們的 Android SDK 傳遞它們。
 
-1. 首先，您必須確定您已經完成我們的[快速入門教學課程](mobile-engagement-android-get-started.md)以在您的混合式應用程式中整合 Mobile Engagement Android SDK。這麼做之後，您的 `OnCreate` 方法會看起來如下。  
+1. 首先，您必須確定您已經完成我們的[快速入門教學課程](mobile-engagement-android-get-started.md)以在您的混合式應用程式中整合 Mobile Engagement Android SDK。這麼做之後，您的 `OnCreate` 方法會看起來如下。
     
 		@Override
 	    protected void onCreate(Bundle savedInstanceState) {
@@ -200,10 +200,10 @@
 
 8. 請注意有關上述 HTML 檔案的重點：
 
-	- 	它包含一組輸入方塊，您可以在當中提供資料，用來做為事件、工作、錯誤，應用程式資訊的名稱。當您按一下它旁邊的按鈕，便會向 Javascript 進行呼叫，這通常會從橋接器檔案中呼叫方法，以將此呼叫傳遞到 Mobile Engagement Android SDK。 
-	- 	我們將一些額外的資訊標記到事件、工作，甚至是錯誤，來示範這是如何完成的。此額外資訊會以 JSON 字串傳送，它 (如果您查看 `WebAppInterface` 檔案) 可被解析並放入 Android `Bundle` 中，並隨傳送的事件、工作、錯誤傳遞。 
-	- 	Mobile Engagement 工作會以您在輸入方塊中指定的名稱開始工作，執行 10 秒鐘之後關閉。 
-	- 	Mobile Engagement 應用程式資訊或標記會以 'customer\_name' 傳遞作為靜態索引鍵，且您在輸入方塊輸入的值會作為此標記的值。 
+	- 	它包含一組輸入方塊，您可以在當中提供資料，用來做為事件、工作、錯誤，應用程式資訊的名稱。當您按一下它旁邊的按鈕，便會向 Javascript 進行呼叫，這通常會從橋接器檔案中呼叫方法，以將此呼叫傳遞到 Mobile Engagement Android SDK。
+	- 	我們將一些額外的資訊標記到事件、工作，甚至是錯誤，來示範這是如何完成的。此額外資訊會以 JSON 字串傳送，它 (如果您查看 `WebAppInterface` 檔案) 可被解析並放入 Android `Bundle` 中，並隨傳送的事件、工作、錯誤傳遞。
+	- 	Mobile Engagement 工作會以您在輸入方塊中指定的名稱開始工作，執行 10 秒鐘之後關閉。
+	- 	Mobile Engagement 應用程式資訊或標記會以 'customer\_name' 傳遞作為靜態索引鍵，且您在輸入方塊輸入的值會作為此標記的值。
  
 9. 執行應用程式，然後您會看到下列畫面。現在為測試事件提供一些名稱，如下所示，然後按一下它下方的 [傳送]。
 
@@ -217,4 +217,4 @@
 [1]: ./media/mobile-engagement-bridge-webview-native-android/sending-event.png
 [2]: ./media/mobile-engagement-bridge-webview-native-android/event-output.png
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0824_2016-->

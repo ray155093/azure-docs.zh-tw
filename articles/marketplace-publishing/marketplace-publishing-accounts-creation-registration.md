@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/01/2016"
+   ms.date="08/18/2016"
    ms.author="hascipio"/>
 
 # 建立 Microsoft 開發人員帳戶
@@ -172,7 +172,7 @@ Microsoft 開發人員中心用於註冊一次公司資訊。註冊者必須是�
 
   > [AZURE.TIP] 如需參與原則的說明，請參閱 [Azure 網站](https://azure.microsoft.com/support/legal/marketplace/participation-policies/)。
 
-## 在發佈入口網站新增共同管理員的步驟
+## 4\.在發佈入口網站新增共同管理員的步驟
 **假設您是管理員**，以下是新增共同管理員的步驟。
 
 >[AZURE.NOTE] **若為新使用者**，在您於發佈入口網站新增共同管理員之前，請確定您已在發佈入口網站建立至少一個應用程式。這是必要步驟，因為只有在發佈入口網站建立至少一個應用程式後，[發行者] 索引標籤才會顯示。
@@ -185,11 +185,20 @@ Microsoft 開發人員中心用於註冊一次公司資訊。註冊者必須是�
 
   ![繪圖](media/marketplace-publishing-accounts-creation-registration/imgAddAdmin_05.png)
 
+## 5\.在發佈入口網站刪除共同管理員的步驟
+**假設您是管理員**，以下是刪除共同管理員的步驟。
+
+1. 使用管理員電子郵件識別碼登入發佈入口網站。
+2. 瀏覽至 [發行者] -> 選取您的帳戶 -> [管理員] -> [共同管理員]。
+3. 按一下要刪除之共同管理員旁的 [X] 按鈕 (如下方示螢幕擷取畫面所示)。
+
+    ![繪圖](media/marketplace-publishing-accounts-creation-registration/imgDeleteAdmin_03.png)
+
 ## 後續步驟
-現在您的帳戶已建立並註冊，請透過檢閱[非技術性必要條件](marketplace-publishing-pre-requisites.md)，來確定您滿足或符合所有發行供應項目所需的非技術性必要條件。
+現在您的帳戶已建立並註冊，請透過檢閱[非技術性必要條件](marketplace-publishing-pre-requisites.md)，來確定您滿足或符合所有發佈供應項目所需的非技術性必要條件。
 
 ## 另請參閱
-- [使用者入門：如何將供應項目發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)
+- [使用者入門：如何將優惠發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)
 
 [img-msalive]: media/marketplace-publishing-accounts-creation-registration/creating-msa-account-msa-live.jpg
 [img-email]: media/marketplace-publishing-accounts-creation-registration/creating-msa-account-msa-verifyemail.jpg
@@ -218,4 +227,4 @@ Microsoft 開發人員中心用於註冊一次公司資訊。註冊者必須是�
 [link-devsvc-prereq]: marketplace-publishing-dev-service-creation-prerequisites.md
 [link-pushstaging]: marketplace-publishing-push-to-staging.md
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

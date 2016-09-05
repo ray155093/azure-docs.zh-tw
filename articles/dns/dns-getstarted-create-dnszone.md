@@ -23,7 +23,7 @@
 - [PowerShell](dns-getstarted-create-dnszone.md)
 - [Azure CLI](dns-getstarted-create-dnszone-cli.md)
 
-本文將逐步引導您完成使用 CLI 建立 DNS 區域的步驟。您也可以使用 PowerShell 或 Azure 入口網站來建立 DNS 區域。
+本文將逐步引導您完成使用 PowerShell 建立 DNS 區域的步驟。您也可以使用 CLI 或 Azure 入口網站來建立 DNS 區域。
 
 [AZURE.INCLUDE [dns-create-zone-about](../../includes/dns-create-zone-about-include.md)]
 
@@ -174,4 +174,4 @@ Azure DNS 服務由 Microsoft.Network 資源提供者管理。您的 Azure 訂�
 
 建立 DNS 區域之後，請建立[記錄集和記錄](dns-getstarted-create-recordset.md)，以開始解析您的網際網路網域名稱。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

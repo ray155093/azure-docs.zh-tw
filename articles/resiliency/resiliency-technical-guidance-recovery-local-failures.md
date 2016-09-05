@@ -4,7 +4,7 @@
    services=""
    documentationCenter="na"
    authors="adamglick"
-   manager="hongfeig"
+   manager="saladki"
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/01/2016"
+   ms.date="08/18/2016"
    ms.author="aglick"/>
 
 #Azure 復原技術指導：從 Azure 的本機失敗中復原
@@ -160,23 +160,23 @@ Azure SQL Database 針對節點層級失敗提供內建的復原功能。所有�
 
 ###服務匯流排
 
-為了避免 Azure 服務匯流排暫時中斷，請考慮建立耐久性用戶端佇列。這會暫時使用替代的本機儲存體機制，來儲存無法新增至服務匯流排佇列的訊息。應用程式可以決定服務還原之後，要如何處理暫時儲存的訊息。如需詳細資訊，請參閱[使用服務匯流排代理傳訊的效能改進最佳作法](../service-bus/service-bus-performance-improvements.md)和[服務匯流排 (災害復原)](./resiliency-technical-guidance-recovery-loss-azure-region.md#service-bus)。
+為了避免 Azure 服務匯流排暫時中斷，請考慮建立耐久性用戶端佇列。這會暫時使用替代的本機儲存體機制，來儲存無法新增至服務匯流排佇列的訊息。應用程式可以決定服務還原之後，要如何處理暫時儲存的訊息。如需詳細資訊，請參閱[使用服務匯流排代理傳訊的效能改進最佳作法](../service-bus/service-bus-performance-improvements.md)和[服務匯流排 (災害復原)](./resiliency-technical-guidance-recovery-loss-azure-region.md#other-azure-platform-services)。
 
 ###行動服務
 
 Azure 行動服務有兩個可用性考量。首先，定期備份與行動服務相關聯的 SQL Database。其次，備份行動服務指令碼。如需詳細資訊，請參閱[發生災害時回復行動服務](../mobile-services/mobile-services-disaster-recovery.md)。
 
-如果行動服務發生暫時性中斷，您可能必須暫時使用替代的 Azure 資料中心。如需詳細資訊，請參閱[行動服務 (災害復原)](./resiliency-technical-guidance-recovery-loss-azure-region.md#mobile-services)。
+如果行動服務發生暫時性中斷，您可能必須暫時使用替代的 Azure 資料中心。如需詳細資訊，請參閱[行動服務 (災害復原)](./resiliency-technical-guidance-recovery-loss-azure-region.md#other-azure-platform-services)。
 
 ###HDInsight
 
-根據預設，與 Azure HDInsight 相關聯的資料會儲存在 Azure Blob 儲存體中。Azure 儲存體會指定 Blob 儲存體的高可用性和耐久性屬性。與 Hadoop MapReduce 作業相關聯的多重節點處理，會在暫時性的 Hadoop 分散式檔案系統 (HDFS) 中進行，如果 HDInsight 有需要，便會佈建此系統。根據預設，MapReduce 作業的結果也會儲存在 Azure Blob 儲存體中，因此在取消佈建 Hadoop 叢集之後，處理過的資料仍具有耐久性且維持高可用性。如需詳細資訊，請參閱 [HDInsight (災害復原)](./resiliency-technical-guidance-recovery-loss-azure-region.md#hdinsight)。
+根據預設，與 Azure HDInsight 相關聯的資料會儲存在 Azure Blob 儲存體中。Azure 儲存體會指定 Blob 儲存體的高可用性和耐久性屬性。與 Hadoop MapReduce 作業相關聯的多重節點處理，會在暫時性的 Hadoop 分散式檔案系統 (HDFS) 中進行，如果 HDInsight 有需要，便會佈建此系統。根據預設，MapReduce 作業的結果也會儲存在 Azure Blob 儲存體中，因此在取消佈建 Hadoop 叢集之後，處理過的資料仍具有耐久性且維持高可用性。如需詳細資訊，請參閱 [HDInsight (災害復原)](./resiliency-technical-guidance-recovery-loss-azure-region.md#other-azure-platform-services)。
 
 ##本機失敗的檢查清單
 
 ###雲端服務
 
-  1. 檢閱此文件的[雲端服務](#cloud-services)一節。
+  1. 檢閱此文件的＜雲端服務＞一節。
   2. 為每個角色設定至少兩個執行個體。
   3. 在耐久性儲存體 (而非角色執行個體) 中保存狀態。
   4. 正確地處理 StatusCheck 事件。
@@ -187,40 +187,40 @@ Azure 行動服務有兩個可用性考量。首先，定期備份與行動服�
 
 ###虛擬機器
 
-  1. 檢閱此文件的[虛擬機器](#virtual-machines)一節。
+  1. 檢閱此文件的＜虛擬機器＞一節。
   2. 請勿使用磁碟機 D 來進行永續性儲存。
   3. 將服務層中的電腦群組為可用性設定組。
   4. 設定負載平衡和選擇性探查。
 
 ###儲存體
 
-  1. 檢閱此文件的[儲存體](#storage)一節。
+  1. 檢閱此文件的＜儲存體＞一節。
   2. 當資料或頻寬超出配額時，使用多個儲存體帳戶。
 
 ###SQL Database
 
-  1. 檢閱此文件的 [SQL Database](#sql-database) 一節。
+  1. 檢閱此文件的＜SQL Database＞一節。
   2. 實作重試原則來處理暫時性錯誤。
   3. 使用分割/分區化做為相應放大策略。
 
 ###虛擬機器上的 SQL Server
 
-  1. 檢閱此文件的[虛擬機器上的 SQL Server](#sql-server-on-virtual-machines) 一節。
+  1. 檢閱此文件的＜虛擬機器上的 SQL Server＞一節。
   2. 遵循先前的虛擬機器建議。
   3. 使用 SQL Server 高可用性功能，例如 AlwaysOn。
 
 ###服務匯流排
 
-  1. 檢閱此文件的[服務匯流排](#service-bus)一節。
+  1. 檢閱此文件的＜服務匯流排＞一節。
   2. 考慮建立耐久性用戶端佇列來做為備份。
 
 ###HDInsight
 
-  1. 檢閱此文件的 [HDInsight](#hdinsight) 一節。
+  1. 檢閱此文件的＜HDInsight＞一節。
   2. 本機失敗不需要其他可用性步驟。
 
 ##後續步驟
 
-這篇文章是一系列文章的一部分，著重在 [Azure 復原技術指導](./resiliency-technical-guidance.md)。這一系列文章的下一篇是[從全區域服務中斷復原](./resiliency-technical-guidance-recovery-loss-azure-region.md)。
+這篇文章是一系列文章的一部分，著重在 [Azure 復原技術指導](./resiliency-technical-guidance.md)。系列文章的下一篇是[從全區域服務中斷復原](./resiliency-technical-guidance-recovery-loss-azure-region.md)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

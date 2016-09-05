@@ -30,12 +30,13 @@
 問題|說明
 ---|---
 有幾個常用的 HTTP 標頭未提供於 REST API 中。|如果您使用 REST API 開發媒體服務應用程式，您會發現有些常用的 HTTP 標頭欄位 (包括 CLIENT-REQUEST-ID、REQUEST-ID 和 RETURN-CLIENT-REQUEST-ID) 不受支援。這些標頭將在未來的更新中加入。
-使用包含逸出字元 (例如 %20) 的檔案名稱為資產編碼時，作業會失敗，並出現「MediaProcessor：找不到檔案。」|要新增至資產並編碼的檔案，其名稱只能包含英數字元和空格。此問題將在未來的更新中修正。
+不允許 percent-encoding。|媒體服務在建置串流內容的 URL 時使用 IAssetFile.Name 屬性的值 (例如，http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters.) 基於這個理由，不允許 percent-encoding。**Name** 屬性的值不能有下列任何 [percent-encoding-reserved 字元](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters)：!*'();:@&=+$,/?%#"。而且，副檔名只能有一個 ‘.’。
 屬於 Azure Storage SDK 3.x 版的 ListBlobs 方法無法運作。|媒體服務會根據 [2012-02-12](http://msdn.microsoft.com/library/azure/dn592123.aspx) 版本產生 SAS URL。如果您要使用 Azure Storage SDK 列出 Blob 容器中的 Blob，請使用屬於 Azure Storage SDK 2.x 版的 [CloudBlobContainer.ListBlobs](http://msdn.microsoft.com/library/microsoft.windowsazure.storage.blob.cloudblobcontainer.listblobs.aspx) 方法。屬於 Azure Storage SDK 3.x 版的 ListBlobs 方法將會失敗。
-媒體服務節流機制會針對向服務發出過多要求的應用程式限制資源使用量。服務可能會傳回「服務無法使用 (503)」HTTP 狀態碼。|如需詳細資訊，請在 [Azure 媒體服務錯誤碼](http://msdn.microsoft.com/library/azure/dn168949.aspx)主題中參閱 503 HTTP 狀態碼的說明。
+媒體服務節流機制會針對向服務發出過多要求的應用程式限制資源使用量。服務可能會傳回「服務無法使用 (503)」HTTP 狀態碼。|如需詳細資訊，請參閱 [Azure 媒體服務錯誤碼](http://msdn.microsoft.com/library/azure/dn168949.aspx)主題中 503 HTTP 狀態碼的說明。
 查詢項目時，有一次最多傳回 1000 個實體的限制，因為公用 REST v2 有 1000 個查詢結果數目的限制。 | 您需要使用 [略過] 和 [採用] \(.NET) \[最前面] \(REST)，如[此 .NET 範例](media-services-dotnet-manage-entities.md#enumerating-through-large-collections-of-entities)和[此 REST API 範例](media-services-rest-manage-entities.md#enumerating-through-large-collections-of-entities)中所述。 
 某些用戶端在 Smooth Streaming 資訊清單中可能會遇到重複標記問題。|如需詳細資訊，請參閱[本節](media-services-deliver-content-overview.md#known-issues)。
 Azure 媒體服務 .NET SDK 物件無法序列化，因此無法與 Azure 快取搭配運作。|如果您嘗試序列化 SDK AssetCollection 物件以將其新增至 Azure 快取，將會擲回例外狀況。
+編碼工作失敗，並顯示訊息字串「階段︰DownloadFile。代碼：System.NullReferenceException」。|典型的編碼工作流程是將輸入視訊檔案上傳至輸入資產，然後提交該輸入資產的一個或多個編碼工作，而不需要進一步修改該輸入資產。不過，如果您修改輸入資產 (例如新增/刪除/重新命名資產內的檔案)，後續的工作可能會失敗並伴隨「DownloadFile」錯誤。解決方法是刪除輸入資產，然後將輸入檔案重新上傳到新的資產。 
 
 ##<a id="rest_version_history"></a>REST API 版本歷程記錄
 
@@ -73,7 +74,7 @@ Azure 媒體服務現在能讓您透過 Apple FairPlay 來動態加密您的 HTT
   
 ##<a id="feb_changes16"></a>2016 年 2 月版本
 
-Azure Media Services SDK for .NET (3.5.3) 的最新版本包含 Widevine 相關的錯誤修正。問題是：AssetDeliveryPolicy 無法重複用於多個以 Widevine 加密的資產。在此錯誤修正中，已將下列屬性加入至 SDK：**WidevineBaseLicenseAcquisitionUrl**。
+Azure Media Services SDK for .NET (3.5.3) 的最新版本包含 Widevine 相關的錯誤修正。問題是：AssetDeliveryPolicy 無法重複用於多個以 Widevine 加密的資產。在此錯誤修正中，已將下列屬性新增至 SDK：**WidevineBaseLicenseAcquisitionUrl**。
 	
 	Dictionary<AssetDeliveryPolicyConfigurationKey, string> assetDeliveryPolicyConfiguration =
 	    new Dictionary<AssetDeliveryPolicyConfigurationKey, string>
@@ -328,7 +329,7 @@ Media Services SDK for .NET 目前的版本為 3.0.0.7。
 	* 您必須建立另一個 CName，將自訂主機名稱 (例如，sports.contoso.com) 對應到您的媒體服務 StreamingEndpont 主機名稱 (例如，amstest.streaming.mediaservices.windows.net)。
 
 
-	如需詳細資訊，請參閱 **StreamingEndpoint** 主題中的 [CustomHostNames] 屬性。
+	如需詳細資訊，請參閱 [StreamingEndpoint] 主題中的 **CustomHostNames** 屬性。
 
 ### <a id="sept_14_preview_changes"></a>公用預覽版本中的新功能/案例
 
@@ -477,7 +478,7 @@ Azure 媒體服務 .NET SDK 延伸是一組延伸方法和協助程式函數，�
 	
 	NotificationEndPoint
 	
-	Job
+	工作 (Job)
 
 * Asset.Uri
 
@@ -620,7 +621,6 @@ Azure 媒體服務 .NET SDK 延伸是一組延伸方法和協助程式函數，�
 [傳遞內容]: http://msdn.microsoft.com/library/azure/hh973618.aspx
 [使用 Azure 媒體索引器編製媒體檔案的索引]: http://msdn.microsoft.com/library/azure/dn783455.aspx
 [StreamingEndpoint]: http://msdn.microsoft.com/library/azure/dn783468.aspx
-[CustomHostNames]: http://msdn.microsoft.com/library/azure/dn783468.aspx
 [使用 Azure 媒體服務即時資料流]: http://msdn.microsoft.com/library/azure/dn783466.aspx
 [使用 AES-128 動態加密和金鑰傳遞服務]: http://msdn.microsoft.com/library/azure/dn783457.aspx
 [使用 PlayReady 動態加密和授權傳遞服務]: http://msdn.microsoft.com/library/azure/dn783467.aspx
@@ -646,4 +646,4 @@ Azure 媒體服務 .NET SDK 延伸是一組延伸方法和協助程式函數，�
 [處理媒體服務工作通知]: http://msdn.microsoft.com/library/azure/dn261241.aspx
  
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

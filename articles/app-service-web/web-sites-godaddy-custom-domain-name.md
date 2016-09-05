@@ -60,14 +60,14 @@
 
 	![新增區域記錄](./media/web-sites-godaddy-custom-domain-name/godaddy-addzonerecord.png)
 
-	* 新增 [A (主機) 記錄] 時，您必須將 [主機] 欄位設定為 **@** (這代表根網域名稱，例如 **contoso.com**)、* (符合多個子網域的萬用字元)，或您要使用的子網域 (例如 **www**)。 您必須將 [指向] 欄位設為 Azure Web 應用程式的 IP 位址。
+	* 新增 [A (主機) 記錄] 時，您必須將 [主機] 欄位設定為 **@** (這代表根網域名稱，例如 **contoso.com**)、* (符合多個子網域的萬用字元)，或您要使用的子網域 (例如 *www**)。 您必須將* [指向] 欄位設為 Azure Web 應用程式的 IP 位址。
 
 	* 新增 [CNAME (別名) 記錄] 時，您必須將 [主機] 欄位設定為您要使用的子網域。例如 **www**。您必須將 [指向] 欄位設為 Azure Web 應用程式的 **.azurewebsites.net** 網域名稱。例如 **contoso.azurwebsites.net**。
 
 5. 按一下 [加入另一個]。
-6. 選取 [CNAME] 做為記錄類型，然後將 [主機] 值指定為 [awverify]，並將 [指向] 值指定為 [awverify.&lt;您的 Web 應用程式名稱&gt;.azurewebsites.net]。
+6. 選取 [TXT] 做為記錄類型，然後指定 **@** 的 [主機] 值和 **&lt;yourwebappname&gt;.azurewebsites.net** 的 [指向] 值。
 
-	> [AZURE.NOTE] Azure 會使用 CNAME 記錄來驗證您擁有 A 記錄或第一筆 CNAME 記錄所述的網域。一旦網域對應至 Azure 入口網站中的 Web 應用程式，即可移除 [awverify] 項目。
+	> [AZURE.NOTE] Azure 會使用 TXT 記錄來驗證您擁有 A 記錄或第一筆 TXT 記錄所述的網域。一旦網域對應至 Azure 入口網站中的 Web 應用程式，即可移除此 TXT 記錄項目。
 
 5. 當您完成新增或修改記錄時，請按一下 [完成] 以儲存變更。
 
@@ -81,4 +81,4 @@
 ## 變更的項目
 * 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0824_2016-->

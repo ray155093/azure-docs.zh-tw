@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration" 
-   ms.date="04/20/2016"
+   ms.date="08/23/2016"
    ms.author="rajram"/>
 
 # 開始使用 AS2 連接器並將它加入您的邏輯應用程式
@@ -80,7 +80,7 @@ TPM 執行個體名稱 | 輸入您先前建立的 **BizTalk 交易夥伴管理**
 
 連接器會傳回 AS2 承載以及 AS2 特定的中繼資料，做為輸出的一部分。
 
-當 AS2 承載發佈至 https://{Host URL}/decode 時會引發觸發程序。您可以在 API 應用程式設定中找到主機 URL。您也可能需要在應用程式設定中變更 API 應用程式的 [存取層級] 為 [公用] \(已驗證或匿名)。
+當 AS2 承載發佈至 https://{Host URL}/decode 時會引發觸發程序。您可以在 API 應用程式設定中找到主機 URL。您也可能需要在應用程式設定中變更 API 應用程式的 [存取層級] 為 [公用]\(已驗證或匿名)。
 
 ## 使用連接器做為動作
 1. 在觸發程序 (或選擇 [手動執行此邏輯]) 之後，請從右窗格中加入您建立的 AS2 連接器：  
@@ -100,9 +100,9 @@ TPM 執行個體名稱 | 輸入您先前建立的 **BizTalk 交易夥伴管理**
 	參數 | 類型 | 說明
 --- | --- | ---
 Payload | 物件| 要編碼並張貼至已設定端點的承載內容。必須以 JSON 物件提供承載。
-AS2 來源 | 字串 | AS2 訊息傳送者的 AS2 識別。這個參數是用來查閱可傳送訊息的適當協議。
-AS2 目標 | 字串 | AS2 訊息接收者的 AS2 識別。這個參數是用來查閱可傳送訊息的適當協議。
-交易夥伴 URL | 字串 | 需要將訊息傳送至此夥伴的端點。
+AS2 來源 | string | AS2 訊息傳送者的 AS2 識別。這個參數是用來查閱可傳送訊息的適當協議。
+AS2 目標 | string | AS2 訊息接收者的 AS2 識別。這個參數是用來查閱可傳送訊息的適當協議。
+交易夥伴 URL | string | 需要將訊息傳送至此夥伴的端點。
 啟用封存 | 布林值 | 決定是否應該封存輸出訊息。
 
 此動作會在成功完成時傳回 HTTP 200 回應碼。
@@ -130,4 +130,4 @@ AS2 目標 | 字串 | AS2 訊息接收者的 AS2 識別。這個參數是用來�
 [9]: ./media/app-service-logic-connector-as2/EncodeAndSendInput.PNG
 [10]: ./media/app-service-logic-connector-as2/EncodeAndSendConfigured.PNG
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

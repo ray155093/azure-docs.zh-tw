@@ -47,12 +47,12 @@ Predictix Assortment Planning 與 Azure AD 整合提供下列優點：
 
 
 ## 案例描述
-在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。
+在本教學課程中，您會在測試環境中測試 Microsoft Azure AD 單一登入。
 
 本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫新增 Predictix Assortment Planning
-2. 設定並測試 Azure AD 單一登入
+2. 設定並測試 Microsoft Azure AD 單一登入
 
 
 ## 從資源庫新增 Predictix Assortment Planning
@@ -86,37 +86,37 @@ Predictix Assortment Planning 與 Azure AD 整合提供下列優點：
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-predictix-assortment-planning-tutorial/tutorial_predictixassortmentplanning_02.png)
 
 
-##  設定並測試 Azure AD 單一登入
-在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 Predictix Assortment Planning 設定及測試 Azure AD 單一登入。
+##  設定並測試 Microsoft Azure AD 單一登入
+在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 Predictix Assortment Planning 設定及測試 Microsoft Azure AD 單一登入。
 
 若要讓單一登入運作，Azure AD 必須知道 Predictix Assortment Planning 與 Azure AD 中互相對應的使用者。換句話說，必須要建立某位 Azure AD 使用者與 Predictix Assortment Planning 中相關使用者之間的連結關聯性。
 
 建立此連結關聯性的方法是將 Azure AD 中**使用者名稱**的值指定為 Predictix Assortment Planning 中 **Username** 的值。
 
-若要使用 Predictix Assortment Planning 設定並測試 Azure AD 單一登入，您需要完成下列建置組塊：
+若要使用 Predictix Assortment Planning 設定並測試 Microsoft Azure AD 單一登入，您需要完成下列建置組塊：
 
-1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。
-2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
+1. **[設定 Microsoft Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** - 讓使用者能夠使用此功能。
+2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Microsoft Azure AD 單一登入。
 3. **[建立 Predictix Assortment Planning 測試使用者](#creating-a-predictix-price-reporting-test-user)** - 在 Predictix Assortment Planning 中建立 Britta Simon 的對應項目，且該項目必須與 Azure AD 中代表 Britta Simon 的項目連結。
-4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
+4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Microsoft Azure AD 單一登入。
 5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### 設定 Azure AD 單一登入
+### 設定 Microsoft Azure AD 單一登入
 
-在本節中，您會在傳統入口網站中啟用 Azure AD 單一登入，並在您的 Predictix Assortment Planning 應用程式中設定單一登入。
+在本節中，您會在傳統入口網站中啟用 Microsoft Azure AD 單一登入，並在您的 Predictix Assortment Planning 應用程式中設定單一登入。
 
 
-**若要使用 Predictix Assortment Planning 設定 Azure AD 單一登入，請執行下列步驟：**
+**若要使用 Predictix Assortment Planning 設定 Microsoft Azure AD 單一登入，請執行下列步驟：**
 
 1. 在傳統入口網站的 [Predictix Assortment Planning] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 	 
 	![設定單一登入][6]
 
-2. 在 [要如何讓使用者登入 Predictix Assortment Planning] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
+2. 在 [要如何讓使用者登入 Predictix Assortment Planning] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
 	![設定單一登入](./media/active-directory-saas-predictix-assortment-planning-tutorial/tutorial_predictixassortmentplanning_03.png)
 
-3. 在 [設定 App 設定] 對話方塊頁面執行下列步驟：
+3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟：
 
 	![設定單一登入](./media/active-directory-saas-predictix-assortment-planning-tutorial/tutorial_predictixassortmentplanning_04.png)
 
@@ -166,15 +166,15 @@ Predictix Assortment Planning 與 Azure AD 整合提供下列優點：
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-predictix-assortment-planning-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列上的 [加入使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-predictix-assortment-planning-tutorial/create_aaduser_04.png)
 
-5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行以下步驟：![建立 Azure AD 測試使用者](./media/active-directory-saas-predictix-assortment-planning-tutorial/create_aaduser_05.png)
+5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟：![建立 Azure AD 測試使用者](./media/active-directory-saas-predictix-assortment-planning-tutorial/create_aaduser_05.png)
 
     a.針對 [使用者類型]，選取 [您組織中的新使用者]。
 
@@ -242,7 +242,7 @@ Predictix Assortment Planning 與 Azure AD 整合提供下列優點：
 
 ### 測試單一登入
 
-在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。
+在本節中，您會使用存取面板來測試您的 Microsoft Azure AD 單一登入設定。
 
 當您在存取面板中按一下 [Predictix Assortment Planning] 圖格時，應該會自動登入 Predictix Assortment Planning 應用程式。
 
@@ -271,4 +271,4 @@ Predictix Assortment Planning 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-predictix-assortment-planning-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-predictix-assortment-planning-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0824_2016-->

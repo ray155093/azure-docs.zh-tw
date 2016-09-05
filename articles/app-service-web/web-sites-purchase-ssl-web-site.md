@@ -159,26 +159,27 @@
 1.	在瀏覽器中，開啟 **[Azure 入口網站](https://portal.azure.com/)**。
 2.	按一下頁面左側的 [App Service] 選項。
 3.	按一下您要指派此憑證的應用程式的名稱。
-4.	在 [設定] 中，按一下 [自訂網域和 SSL]。
-5.	在 [憑證區段] 中，按一下 [匯入憑證] 並選取您剛剛購買的憑證
+4.	在 [設定] 中，按一下 [SSL 憑證]。
+5.	按一下 [匯入 App Service 憑證] 並選取您剛剛購買的憑證
 
-    ![插入匯入憑證的影像](./media/app-service-web-purchase-ssl-web-site/ImportCertificate.jpg)
+    ![插入匯入憑證的影像](./media/app-service-web-purchase-ssl-web-site/ImportCertificate.png)
 
-6. 在 [**SSL 設定**] 索引標籤的 [**SSL 繫結**] 區段中，使用下拉式清單選取要以 SSL 保護的網域名稱，以及要使用的憑證。您也可以選擇使用**[伺服器名稱指示 (SNI)](http://en.wikipedia.org/wiki/Server_Name_Indication)** 還是 IP SSL。
+6. 在 [SSL 繫結] 區段按一下 [新增繫結]
+7. 在 [新增 SSL 繫結] 刀鋒視窗中，使用下拉式清單選取要以 SSL 保護的網域名稱，以及要使用的憑證。您也可以選擇使用**[伺服器名稱指示 (SNI)](http://en.wikipedia.org/wiki/Server_Name_Indication)** 還是 IP SSL。
 
-    ![插入 SSL 繫結的影像](./media/app-service-web-purchase-ssl-web-site/SSLBindings.jpg)
+    ![插入 SSL 繫結的影像](./media/app-service-web-purchase-ssl-web-site/SSLBindings.png)
 
        IP SSL 會將伺服器的專用公用 IP 位址對應至網域名稱，以建立憑證與網域名稱的關聯。這需要與您服務相關聯的每個網域名稱 (contoso.com、fabricam.com 等) 都有專用 IP 位址。這是傳統用來建立 SSL 憑證與網頁伺服器之關聯的方法。• SNI SSL 是 SSL 和**[傳輸層安全性](http://en.wikipedia.org/wiki/Transport_Layer_Security)** (TLS) 的延伸，可讓多個網域共用相同的 IP 位址，而每個網域都有個別的安全性憑證。現今大部分的瀏覽器 (包括 Internet Explorer、Chrome、Firefox 和 Opera) 都支援 SNI，不過，較舊的瀏覽器可能不支援 SNI。如需 SNI 的詳細資訊，請參閱 Wikipedia 上的**[伺服器名稱指示](http://en.wikipedia.org/wiki/Server_Name_Indication)**一文。
        
-7. 按一下 [儲存]，儲存變更並啟用 SSL。
+7. 按一下 [新增繫結]，儲存變更並啟用 SSL。
 
 
 
 如果您已選取 [**IP SSL**]，而且您的自訂網域是以 A 記錄設定，則必須執行下列額外步驟：
 
-* 設定 IP SSL 繫結之後，您的應用程式將會獲派專用的 IP 位址。您可以在應用程式 [儀表板] 頁面上的 [快速概覽] 區段中，找到這個 IP 位址。它將會列出成為 [虛擬 IP 位址]：
+* 設定 IP SSL 繫結之後，您的應用程式將會獲派專用的 IP 位址。您可以在應用程式設定下的 [自訂網域] 頁面上找到此 IP 位址，正好位於 [主機名稱] 區段上面。它將會列出成為 [外部 IP 位址]：
     
-    ![插入 IP SSL 的影像](./media/app-service-web-purchase-ssl-web-site/IPSSL.jpg)
+    ![插入 IP SSL 的影像](./media/app-service-web-purchase-ssl-web-site/virtual-ip-address.png)
 
     請注意，此 IP 位址與先前用來設定您網域之 A 記錄的虛擬 IP 位址不同。如果您設定成使用 SNI SSL，或未設定成使用 SSL，則不會列出此項目的位址。
     
@@ -208,4 +209,4 @@
 
 >[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="05/04/2016"
+	ms.date="08/22/2016"
 	ms.author="mahender"/>
 
 # 如何設定 App Service 應用程式以使用 Microsoft 帳戶登入
@@ -24,7 +24,7 @@
 
 ## <a name="register-microsoft-account"> </a>使用 Microsoft 帳戶註冊應用程式
 
-1. 登入 [Azure 入口網站]，然後瀏覽到您的應用程式。複製您的 **URL**。您將以此使用 Microsoft 帳戶來設定應用程式。
+1. 登入 [Azure 入口網站]，然後瀏覽到您的應用程式。複製 **URL**，以供稍後使用 Microsoft 帳戶來設定應用程式。
 
 2. 瀏覽到 Microsoft 帳戶開發人員中心的 [我的應用程式]頁面，並視需要使用您的 Microsoft 帳戶登入。
 
@@ -76,4 +76,4 @@
 [我的應用程式]: http://go.microsoft.com/fwlink/p/?LinkId=262039
 [Azure 入口網站]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0824_2016-->

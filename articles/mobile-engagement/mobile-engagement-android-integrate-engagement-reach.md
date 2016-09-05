@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="05/10/2016"
+	ms.date="08/19/2016"
 	ms.author="piyushjo" />
 
 #如何在 Android 上整合 Engagement Reach
@@ -245,7 +245,7 @@ Engagement Reach SDK 會自動偵測到通知配置已包含在此活動中，�
 
 #### <a name="categories"></a> 類別
 
-當您修改提供的配置時，您會修改所有通知的外觀。類別允許您定義通知的各種目標外觀 (也可能是行為)。當您建立觸達活動時可以指定類別。請記住，類別也可讓您自訂宣告與輪詢，本文件稍後將會說明。
+當您修改提供的配置時，您會修改所有通知的外觀。類別可讓您定義通知的各種目標外觀 (也可能是行為)。當您建立觸達活動時可以指定類別。請記住，類別也可讓您自訂宣告與輪詢，本文件稍後將會說明。
 
 若要登記通知的類別處理常式，您需要在應用程式初始化時加入呼叫。
 
@@ -515,7 +515,7 @@ Engagement Reach SDK 會自動偵測到通知配置已包含在此活動中，�
 
 ##### 替代版面配置
 
-類似於通知，活動類別可以用來做為宣告和輪詢的替代版片配置。
+類似通知，活動類別可以用來做為宣告和輪詢的替代版片配置。
 
 例如，若要為文字公告建立類別，您可以延伸 `EngagementTextAnnouncementActivity` 並在 `AndroidManifest.xml` 檔案中加以參考：
 
@@ -644,4 +644,4 @@ Reach SDK 使用意圖系統來解析特定類別的正確活動，如果解析�
 [Google Cloud Messaging]: http://developer.android.com/guide/google/gcm/index.html
 [Amazon Device Messaging]: https://developer.amazon.com/sdk/adm.html
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0824_2016-->

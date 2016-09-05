@@ -34,7 +34,7 @@ PostgreSQL 是與 Oracle 和 DB2 類似的進階開放原始碼資料庫。它�
 
 在此情況下，使用連接埠 1999 做為 PostgreSQL 連接埠。
 
-連接到您透過 PuTTY 建立的 Linux VM。如果這是您第一次使用 Azure Linux VM，請參閱[如何搭配 Azure 上的 Linux 使用 SSH](virtual-machines-linux-ssh-from-linux.md) 以了解如何使用 PuTTY 來連接到 Linux VM。
+連接到您透過 PuTTY 建立的 Linux VM。如果這是您第一次使用 Azure Linux VM，請參閱[如何搭配 Azure 上的 Linux 使用 SSH](virtual-machines-linux-mac-create-ssh-keys.md) 以了解如何使用 PuTTY 來連接到 Linux VM。
 
 1. 執行下列命令來切換至 root (admin)：
 
@@ -255,4 +255,4 @@ PostgreSQL 是與 Oracle 和 DB2 類似的進階開放原始碼資料庫。它�
 ##取得 PostgreSQL 的詳細資訊
 既然您已完成在 Azure Linux VM 中的 PostgreSQL 安裝，您可以在 Azure 中享用它。若要深入了解 PostgreSQL，請造訪 [PostgreSQL 網站](http://www.postgresql.org/)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0824_2016-->

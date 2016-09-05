@@ -1,6 +1,6 @@
 <properties
 	pageTitle="Microsoft Azure 中的監視概觀 | Microsoft Azure"
-	description="針對其他非 Azure 系統 Azure 警示中的監視與診斷高層級概觀。"
+	description="Microsoft Azure 中監視與診斷的最上層概觀，包括警示、webhook、自動調整等等。"
 	authors="rboucher"
 	manager=""
 	editor=""
@@ -138,4 +138,4 @@ Azure 有提供監視您服務 (從裸機基礎結構到應用程式遙測) 的�
 - [針對 Azure 儲存體進行疑難排解](../storage/storage-e2e-troubleshooting.md)，如果您正在使用儲存體 Blob、資料表或佇列
 - [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics/) 及 [Operations Management Suite](https://www.microsoft.com/cloud-platform/operations-management-suite)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

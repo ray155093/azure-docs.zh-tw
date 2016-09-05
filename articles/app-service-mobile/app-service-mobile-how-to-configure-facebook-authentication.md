@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="05/04/2016"
+	ms.date="08/22/2016"
 	ms.author="mahender"/>
 
 # 如何設定 App Service 應用程式以使用 Facebook 登入
@@ -44,11 +44,11 @@
 
 	> [AZURE.IMPORTANT] 應用程式密鑰是重要的安全性認證。請勿與任何人共用此密碼，或在用戶端應用程式中加以散發。
 
-7. 用來註冊應用程式的 Facebook 帳戶是應用程式的系統管理員。此時，只有系統管理員可以登入此應用程式。若要驗證其他 Facebook 帳戶，請按一下 [應用程式檢閱] 並啟用 [公開 <your-app-name>]，以允許使用 Facebook 驗證來公開存取。
+7. 用來註冊應用程式的 Facebook 帳戶是應用程式的系統管理員。此時，只有系統管理員可以登入此應用程式。若要驗證其他 Facebook 帳戶，請按一下 [應用程式檢閱] 並啟用 [公開 <您的應用程式名稱>]，以允許使用 Facebook 驗證來公開存取。
 
 ## <a name="secrets"> </a>將 Facebook 資訊加入應用程式
 
-1. 回到 [Azure 入口網站]，並瀏覽到您的應用程式。按一下 [設定] > [驗證/授權]，並確定 [App Service 驗證] 為 [開啟]。
+1. 請回到 [Azure 入口網站]，並瀏覽到您的應用程式。按一下 [設定] > [驗證/授權]，並確定 [App Service 驗證] 為 [開啟]。
 
 2. 按一下 [Facebook]，貼上先前取得的應用程式識別碼與應用程式密碼值，選擇性啟用應用程式需要的任何範圍，然後按一下 [確定]。
 
@@ -75,4 +75,4 @@
 [Get started with authentication]: /zh-TW/develop/mobile/tutorials/get-started-with-users-dotnet/
 [Azure 入口網站]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0824_2016-->

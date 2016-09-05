@@ -15,11 +15,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/25/2016"
+	ms.date="08/24/2016"
 	ms.author="genli"/>
 
 # 如何針對 Azure 計費和訂用帳戶問題建立支援票證
-
 本文提供建立 Azure 支援票證所需的資訊。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。選取 [說明+支援] > [新增支援要求]。
@@ -44,4 +43,4 @@ Azure 支援代表將會根據合約條款來與您聯絡。
 
  >[AZURE.NOTE]僅 Azure 帳戶管理員有權存取帳戶中心。如需有關如何找出訂用帳戶管理員的詳細資訊，請參閱[常見問題集](billing-subscription-transfer.md#faq)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

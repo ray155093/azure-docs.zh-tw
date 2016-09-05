@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="05/20/2016"
+   ms.date="08/19/2016"
    ms.author="masnider"/>
 
 # 應用程式群組簡介
@@ -158,7 +158,7 @@ Update-ServiceFabricApplication –Name fabric:/MyApplication1 6 –MinimumNodes
 -	請勿使用應用程式容量來確保相同應用程式的兩個服務一律放在彼此左右。這可透過使用服務之間的同質關聯性來達成，同質可以限制為僅限應該實際放在一起的服務。
 
 ## 後續步驟
-- 如需可用來設定服務的其他選項的詳細資訊，請查看[深入了解設定服務](service-fabric-cluster-resource-manager-configure-services.md)中提供的其他叢集 Resource Manager 組態的相關主題
+- 如需可用來設定服務的其他選項的詳細資訊，請查看[深入了解設定服務](service-fabric-cluster-resource-manager-configure-services.md)中提供的其他叢集資源管理員組態的相關主題
 - 若要了解叢集 Resource Manager 如何管理並平衡叢集中的負載，請查看關於[平衡負載](service-fabric-cluster-resource-manager-balancing.md)的文章
 - 從頭開始，並[取得 Service Fabric 叢集 Resource Manager 的簡介](service-fabric-cluster-resource-manager-introduction.md)
 - 如需度量通常如何運作的詳細資訊，請繼續閱讀 [Service Fabric 負載度量](service-fabric-cluster-resource-manager-metrics.md)
@@ -168,4 +168,4 @@ Update-ServiceFabricApplication –Name fabric:/MyApplication1 6 –MinimumNodes
 [Image1]: ./media/service-fabric-cluster-resource-manager-application-groups/application-groups-max-nodes.png
 [Image2]: ./media/service-fabric-cluster-resource-manager-application-groups/application-groups-reserved-capacity.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0824_2016-->

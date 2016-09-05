@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/20/2016"
+	ms.date="08/17/2016"
 	ms.author="cjiang"/>
 
 # 搭配使用現有的 Office 365 帳戶與 Azure 訂用帳戶，反之亦然
@@ -22,14 +22,16 @@
 
 > [AZURE.NOTE] 本文不適用於 Enterprise 合約 (EA) 客戶。
 
+> [AZURE.NOTE] 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+
 ## 簡要指引
 
 - 如果您已經擁有 Office 365 訂用帳戶，並且想要註冊 Azure，請使用 [使用組織帳戶登入] 選項，然後再繼續使用 Office 365 帳戶註冊 Azure。請參閱[詳細步驟](#s1)。
-- 如果您已經擁有 Azure 訂用帳戶，並且想要取得 Office 365 訂用帳戶，請使用 Azure 帳戶登入 Office 365，然後再繼續進行註冊步驟。完成後，系統會將 Office 365 訂用帳戶加入 Azure 訂用帳戶隸屬的同一個 Azure Active Directory。請參閱[詳細步驟](#s2)。
+- 如果您已經擁有 Azure 訂用帳戶，並且想要取得 Office 365 訂用帳戶，請使用 Azure 帳戶登入 Office 365，然後再繼續進行註冊步驟。完成後，系統會將 Office 365 訂用帳戶新增至 Azure 訂用帳戶隸屬的同一個 Azure Active Directory。請參閱[詳細步驟](#s2)。
 
 >[AZURE.NOTE] 若要取得 Office 365 訂用帳戶，登入所用的帳戶必須是 Azure AD 租用戶中全域管理員或帳務管理員目錄角色的成員。[了解如何得知 Azure Active Directory 的角色](#how-to-know-your-role-in-your-azure-active-directory)
 
-若要了解將訂用帳戶加入帳戶後的整體運作情形，請參閱本文章後續的[背景資訊](#background-information)。
+若要了解將訂用帳戶新增至帳戶後的整體運作情形，請參閱本文章後續的[背景資訊](#background-information)。
 
 ## 詳細步驟
 <a id="s1"></a>
@@ -147,4 +149,6 @@ Office 365 和 Azure 均使用 Azure Active Directory (AAD) 服務來管理使�
 ##後續步驟
 相關案例：您在過去分開取得 Azure 和 Office 365 訂用帳戶，而且想要能夠從 Azure 訂用帳戶存取 Office 365 租用戶。若要了解如何完成此工作，請參閱[將 Office 365 租用戶與 Azure 訂用帳戶建立關聯](billing-add-office-365-tenant-to-azure-subscription.md)。
 
-<!---HONumber=AcomDC_0803_2016-->
+> [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+
+<!---HONumber=AcomDC_0824_2016-->

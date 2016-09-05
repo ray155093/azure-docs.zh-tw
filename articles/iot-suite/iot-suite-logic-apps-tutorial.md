@@ -82,7 +82,7 @@ _如果您要尋找有關如何佈建遠端監視預先設定解決方案的逐�
     }
     ```
     
-    注意︰您可以在儲存邏輯應用程式之後複製 HTTP post 要求的 URL，但必須先加入動作。
+    > [AZURE.NOTE] 您可以在儲存邏輯應用程式之後複製 HTTP post 要求的 URL，但必須先新增動作。
 
 8. 按一下手動觸發程序下的 [+ 新增步驟]。然後按一下 [加入動作]。
 
@@ -182,4 +182,4 @@ _如果您要尋找有關如何佈建遠端監視預先設定解決方案的逐�
 [lnk-localdeploy]: https://github.com/Azure/azure-iot-remote-monitoring/blob/master/Docs/local-deployment.md
 [lnk-clouddeploy]: https://github.com/Azure/azure-iot-remote-monitoring/blob/master/Docs/cloud-deployment.md
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

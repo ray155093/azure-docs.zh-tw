@@ -29,7 +29,7 @@ Birst Agile Business Analytics 與 Azure AD 整合提供下列優點：
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
-## 先決條件
+## 必要條件
 
 若要設定 Azure AD 與 Birst Agile Business Analytics 的整合，需要下列項目：
 
@@ -123,7 +123,7 @@ Birst Agile Business Analytics 與 Azure AD 整合提供下列優點：
 	![設定單一登入](./media/active-directory-saas-birst-tutorial/tutorial_birst_04.png)
 
 
-    a.在 [登入 URL] 文字方塊中，使用下列模式輸入使用者用來登入 Birst Agile Business Analytics 應用程式的 URL：**“https://login.bws.birst.com/SAMLSSO/Service.aspx?birst.idpid=TENANTIDPID”**。
+    a.在 [登入 URL] 文字方塊中，使用下列模式輸入使用者用來登入 Birst Agile Business Analytics 應用程式的 URL：**“https://login.bws.birst.com/SAMLSSO/Services.aspx?birst.idpid=TENANTIDPID”**。URL 相依於 Birst 帳戶所在的資料中心。對美國資料中心使用 **“https://login.bws.birst.com/SAMLSSO/Services.aspx?birst.idpid=TENANTIDPID”**，對歐洲資料中心使用 **“https://login.eu1.birst.com/SAMLSSO/Services.aspx?birst.idpid=TENANTIDPID"**
 
 	b.按 [下一步]。
 
@@ -144,7 +144,7 @@ Birst Agile Business Analytics 與 Azure AD 整合提供下列優點：
 
 
 
-6. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步]。
+6. 在 Azure 傳統入口網站中，選取單一登入設定確認，然後按 [下一步]。
 	
 	![Azure AD 單一登入][10]
 
@@ -155,7 +155,7 @@ Birst Agile Business Analytics 與 Azure AD 整合提供下列優點：
 
 
 ### 建立 Azure AD 測試使用者
-本節目標是在 Azure 傳統入口網站中建立名為 Britta Simon 的測試使用者。
+本節的目標是要在 Azure 傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
 
 在 [使用者] 清單中，選取 [Britta Simon]。
 
@@ -163,17 +163,17 @@ Birst Agile Business Analytics 與 Azure AD 整合提供下列優點：
 
 **若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
+1. 在「Azure 傳統入口網站」中，按一下左方瀏覽窗格上的 [Active Directory]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-birst-tutorial/create_aaduser_09.png)
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-birst-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列上的 [加入使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-birst-tutorial/create_aaduser_04.png)
 
@@ -187,7 +187,7 @@ Birst Agile Business Analytics 與 Azure AD 整合提供下列優點：
 
     c.按 [下一步]。
 
-6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
+6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-birst-tutorial/create_aaduser_06.png)
 
@@ -253,9 +253,9 @@ Birst Agile Business Analytics 與 Azure AD 整合提供下列優點：
 
 ### 測試單一登入
 
-本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。
+本節的目標是要使用「存取面板」來測試您的 Azure AD 單一登入組態。
 
-當您在存取面板中按一下 Birst Agile Business Analytics 磚時，應該會自動登入 Birst Agile Business Analytics 應用程式。
+當您在存取面板中按一下 Birst Agile Business Analytics 圖格時，應該會自動登入 Birst Agile Business Analytics 應用程式。
 
 
 ## 其他資源
@@ -282,4 +282,4 @@ Birst Agile Business Analytics 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-birst-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-birst-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

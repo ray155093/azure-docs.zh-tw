@@ -13,10 +13,14 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/09/2016" 
+	ms.date="08/17/2016" 
 	ms.author="luisca"/>
 
 # Machine Learning Recommendations API 的快速入門指南
+
+> 這是資料市場中舊建議 API 的文件，將於 2016 年 12 月 31 日作廢。您現在應該繼續使用[建議 API Cognitive Service](https://www.microsoft.com/cognitive-services/zh-TW/recommendations-api)。
+
+
 
 本文說明如何準備您的服務或應用程式來開始使用 Microsoft Azure Machine Learning 建議。您可於[資源庫](http://gallery.cortanaanalytics.com/MachineLearningAPI/Recommendations-2)中找到有關建議 API 更詳細的資料。
 
@@ -27,7 +31,7 @@
 若要使用 Azure Machine Learning 建議，您需要執行下列步驟：
 
 * 建立模型 - 模型是使用資料、目錄資料和建議模型的容器。
-* 匯入目錄資料 - 目錄包含項目的中繼資料資訊。 
+* 匯入目錄資料 - 目錄包含項目的中繼資料資訊。
 * 匯入使用資料 - 上傳使用資料的方式有 2 種 (使用其中一種或兩種皆用)：
 	* 上傳包含使用資料的檔案。
 	* 傳送資料擷取事件。通常您會上傳使用方式檔案以便建立初始建議模型 (啟動程序)，並使用這個模型，直到系統收集採用資料擷取格式的足夠資料為止。
@@ -87,10 +91,10 @@ Azure Machine Learning 建議 API 的服務根 URI 在[這裡。](https://api.da
 
 |	參數名稱 |	有效值 |
 |:--------			|:--------								|
-|	modelName |	只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (\_)。<br>長度上限：20 |
-| apiVersion | 1.0 |
+|	modelName |	只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (\_)。<br>最大長度：20 |
+|	apiVersion | 1\.0 |
 |||
-| 要求主體 | 無 |
+| 要求本文 | 無 |
 
 
 **回應**：
@@ -141,10 +145,10 @@ OData XML
 |	參數名稱 |	有效值 |
 |:--------			|:--------								|
 |	modelId |	模型的唯一識別碼 (區分大小寫) |
-| 檔名 | 目錄的文字識別碼。<br>只可使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (\_)。<br>長度上限：50 |
-| apiVersion | 1.0 |
+| 檔名 | 目錄的文字識別碼。<br>只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (\_)。<br>最大長度：50 |
+|	apiVersion | 1\.0 |
 |||
-| 要求主體 | 目錄資料。格式：<br>`<Item Id>,<Item Name>,<Item Category>[,<description>]`<br><br><table><tr><th>名稱</th><th>強制</th><th>類型</th><th>描述</th></tr><tr><td>項目識別碼</td><td>是</td><td>英數字元，長度上限 50</td><td>項目的唯一識別碼</td></tr><tr><td>項目名稱</td><td>是</td><td>英數字元，長度上限 255</td><td>項目名稱</td></tr><tr><td>項目類別</td><td>是</td><td>英數字元，長度上限 255</td><td>這個項目所屬類別 (例如烹飪書籍、戲劇...)</td></tr><tr><td>描述</td><td>否</td><td>英數字元，長度上限 4000</td><td>這個項目的描述</td></tr></table><br>檔案大小上限為 200 MB。<br><br>範例：<br><pre>2406e770-769c-4189-89de-1c9283f93a96,Clara Callan,Book<br>21bf8088-b6c0-4509-870c-e1c7ac78304a,The Forgetting Room: A Fiction (Byzantium Book),Book<br>3bb5cb44-d143-4bdd-a55c-443964bf4b23,Spadework,Book<br>552a1940-21e4-4399-82bb-594b46d7ed54,Restraint of Beasts,Book</pre> |
+| 要求本文 | 目錄資料。格式：<br>`<Item Id>,<Item Name>,<Item Category>[,<description>]`<br><br><table><tr><th>名稱</th><th>強制</th><th>類型</th><th>描述</th></tr><tr><td>項目識別碼</td><td>是</td><td>英數字元，長度上限 50</td><td>項目的唯一識別碼</td></tr><tr><td>項目名稱</td><td>是</td><td>英數字元，長度上限 255</td><td>項目名稱</td></tr><tr><td>項目類別</td><td>是</td><td>英數字元，長度上限 255</td><td>這個項目所屬類別 (例如烹飪書籍、戲劇...)</td></tr><tr><td>描述</td><td>否</td><td>英數字元，長度上限 4000</td><td>這個項目的描述</td></tr></table><br>檔案大小上限為 200 MB。<br><br>範例：<br><pre>2406e770-769c-4189-89de-1c9283f93a96,Clara Callan,Book<br>21bf8088-b6c0-4509-870c-e1c7ac78304a,The Forgetting Room: A Fiction (Byzantium Book),Book<br>3bb5cb44-d143-4bdd-a55c-443964bf4b23,Spadework,Book<br>552a1940-21e4-4399-82bb-594b46d7ed54,Restraint of Beasts,Book</pre> |
 
 
 **回應**：
@@ -190,10 +194,10 @@ OData XML
 |	參數名稱 |	有效值 |
 |:--------			|:--------								|
 |	modelId |	模型的唯一識別碼 (區分大小寫) |
-| 檔名 | 目錄的文字識別碼。<br>只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (\_)。<br>長度上限：50 |
-| apiVersion | 1.0 |
+| 檔名 | 目錄的文字識別碼。<br>只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (\_)。<br>最大長度：50 |
+|	apiVersion | 1\.0 |
 |||
-| 要求主體 | 使用狀況資料。格式：<br>`<User Id>,<Item Id>[,<Time>,<Event>]`<br><br><table><tr><th>名稱</th><th>強制</th><th>類型</th><th>描述</th></tr><tr><td>使用者識別碼</td><td>是</td><td>英數字元</td><td>使用者的唯一識別碼</td></tr><tr><td>項目識別碼</td><td>是</td><td>英數字元，長度上限 50</td><td>項目的唯一識別碼</td></tr><tr><td>時間</td><td>否</td><td>日期格式：YYYY/MM/DDTHH:MM:SS (例如 2013/06/20T10:00:00)</td><td>資料的時間</td></tr><tr><td>事件</td><td>否；如果提供，也必須註明日期</td><td>下列其中之一：<br>• Click<br>• RecommendationClick<br>• AddShopCart<br>• RemoveShopCart<br>• Purchase</td><td></td></tr></table><br>檔案大小上限為 200 MB。<br><br>範例：<br><pre>149452,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>6360,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>50321,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>71285,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>224450,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>236645,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>107951,1b3d95e2-84e4-414c-bb38-be9cf461c347</pre> |
+| 要求本文 | 使用狀況資料。格式：<br>`<User Id>,<Item Id>[,<Time>,<Event>]`<br><br><table><tr><th>名稱</th><th>強制</th><th>類型</th><th>描述</th></tr><tr><td>使用者識別碼</td><td>是</td><td>英數字元</td><td>使用者的唯一識別碼</td></tr><tr><td>項目識別碼</td><td>是</td><td>英數字元，長度上限 50</td><td>項目的唯一識別碼</td></tr><tr><td>時間</td><td>否</td><td>日期格式：YYYY/MM/DDTHH:MM:SS (例如 2013/06/20T10:00:00)</td><td>資料的時間</td></tr><tr><td>事件</td><td>否；如果提供，也必須註明日期</td><td>下列其中之一：<br>• Click<br>• RecommendationClick<br>• AddShopCart<br>• RemoveShopCart<br>• Purchase</td><td></td></tr></table><br>檔案大小上限為 200 MB。<br><br>範例：<br><pre>149452,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>6360,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>50321,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>71285,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>224450,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>236645,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>107951,1b3d95e2-84e4-414c-bb38-be9cf461c347</pre> |
 
 **回應**：
 
@@ -690,7 +694,7 @@ OData XML
 | id | 模型的唯一識別碼 (區分大小寫) |
 | apiVersion | 1\.0 |
 |||
-| 要求本文 | `<ModelUpdateParams xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">`<br>`   <Description>New Description</Description>`<br>`          <ActiveBuildId>-1</ActiveBuildId>`<br>`</ModelUpdateParams>`<br><br>請注意，XML 標記說明和 ActiveBuildId 是選擇性的。如果您不想設定 Description 或 ActiveBuildId，請移除整個標記。 |
+| 要求本文 | `<ModelUpdateParams xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">`<br>`   <Description>New Description</Description>`<br>`          <ActiveBuildId>-1</ActiveBuildId>`<br>`</ModelUpdateParams>`<br><br>請注意，XML 標籤說明和 ActiveBuildId 是選擇性的。如果您不想設定 Description 或 ActiveBuildId，請移除整個標記。 |
 
 **回應**：
 
@@ -714,4 +718,4 @@ OData XML
 © 2014 Microsoft.著作權所有，並保留一切權利。
  
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0824_2016-->

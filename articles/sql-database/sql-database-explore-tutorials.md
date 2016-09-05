@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management"
-   ms.date="06/01/2016"
+   ms.date="08/24/2016"
    ms.author="carlrab"/>
    
 # 探索 Azure SQL Database 教學課程
@@ -184,4 +184,4 @@
 
 [探索 Azure SQL Database 解決方案快速入門](sql-database-solution-quick-starts.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

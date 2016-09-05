@@ -3,7 +3,7 @@
    description="了解如何使用 Azure 入口網站在資源管理員中建立內部負載平衡器"
    services="load-balancer"
    documentationCenter="na"
-   authors="joaoma"
+   authors="sdwheeler"
    manager="carmonm"
    editor=""
    tags="azure-service-management"
@@ -15,11 +15,11 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/04/2016"
-   ms.author="joaoma" />
+   ms.author="sewhee" />
 
 # 開始在 Azure 入口網站中建立內部負載平衡器
 
-[AZURE.INCLUDE [load-balancer-get-started-ilb-arm-selectors-include.md](../../includes/load-balancer-get-started-ilb-arm-selectors-include.md)]<BR>[AZURE.INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
+[AZURE.INCLUDE [load-balancer-get-started-ilb-arm-selectors-include.md](../../includes/load-balancer-get-started-ilb-arm-selectors-include.md)] <BR> [AZURE.INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 [AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)] [classic deployment model](load-balancer-get-started-ilb-classic-ps.md).
 
@@ -43,8 +43,8 @@
 
 >[AZURE.NOTE] 如果您選擇使用靜態 IP 位址，您必須提供負載平衡器的位址。
     
-7. 在 [資源群組] 下，指定負載平衡器的新資源群組名稱，或按一下 [選取現有]，然後選取現有的資源群組。 
-8. 按一下 [建立]。 
+7. 在 [資源群組] 下，指定負載平衡器的新資源群組名稱，或按一下 [選取現有]，然後選取現有的資源群組。
+8. 按一下 [建立]。
 
 ## 設定負載平衡規則 
 
@@ -55,7 +55,7 @@
 設定後端集區︰
 
 1. 在 Azure 入口網站中，按一下 [瀏覽] > [負載平衡器]，然後按一下您先前建立的負載平衡器。
-2. 在 [設定] 刀鋒視窗中，按一下 [後端集區]。 
+2. 在 [設定] 刀鋒視窗中，按一下 [後端集區]。
 3. 在 [後端位址集區] 刀鋒視窗中，按一下 [加入]。
 4. 在 [加入後端集區] 刀鋒視窗中，輸入後端集區的**名稱**，然後按一下 [確定]。
 
@@ -64,7 +64,7 @@
 設定探查︰
  
 1. 在 Azure 入口網站中，按一下 [瀏覽] > [負載平衡器]，然後按一下您先前建立的負載平衡器。
-2. 在 [設定] 刀鋒視窗中，按一下 [探查]。 
+2. 在 [設定] 刀鋒視窗中，按一下 [探查]。
 3. 在 [探查] 刀鋒視窗中，按一下 [加入]。
 4. 在 [加入探查] 刀鋒視窗中，輸入探查的**名稱**。
 5. 在 [通訊協定] 下，選取 [HTTP] \(適用於網站) 或 [TCP] \(適用於其他 TCP 型應用程式)。
@@ -79,7 +79,7 @@
 設定負載平衡規則：
 
 1. 在 Azure 入口網站中，按一下 [瀏覽] > [負載平衡器]，然後按一下您先前建立的負載平衡器。
-2. 在 [設定] 刀鋒視窗中，按一下 [負載平衡規則]。 
+2. 在 [設定] 刀鋒視窗中，按一下 [負載平衡規則]。
 3. 在 [負載平衡規則] 刀鋒視窗中，按一下 [加入]。
 4. 在 [加入負載平衡規則] 刀鋒視窗中，輸入規則的**名稱**。
 5. 在 [通訊協定] 下，選取 [HTTP] \(適用於網站) 或 [TCP] \(適用於其他 TCP 型應用程式)。
@@ -97,4 +97,4 @@
 
 [設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0824_2016-->

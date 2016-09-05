@@ -14,7 +14,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="na"
  ms.workload="big-data"
- ms.date="06/03/2016"
+ ms.date="08/23/2016"
  ms.author="larryfr"/>
 
 #使用 Hive JDBC 驅動程式連接到 Azure HDInsight 上的 Hive
@@ -27,7 +27,7 @@
 
 ##必要條件
 
-若要完成本文中的步驟，您需要下列項目：
+若要完成本文中的步驟，您需要下列項目。
 
 * HDInsight 叢集上的 Hadoop。以 Linux 或 Windows 為基礎的叢集都會運作。
 
@@ -182,4 +182,4 @@ __解決方案__︰若要修正此錯誤，請使用下列步驟。
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0824_2016-->

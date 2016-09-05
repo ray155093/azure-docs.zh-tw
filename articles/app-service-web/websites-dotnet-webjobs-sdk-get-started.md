@@ -42,7 +42,7 @@
   >
   > + 您可以[啟用 MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F) - 您的 MSDN 訂用帳戶每月會提供您額度，您可以用在 Azure 付費服務。
   >
-  >如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
+  >如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；無需承諾。
 
 ## <a id="learn"></a>您將學到什麼
 
@@ -154,15 +154,15 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
 
 	此檔案有兩個儲存體連接字串，一個供應用程式使用，另一個供記錄使用。您可以對應用程式資料和記錄使用不同的儲存體帳戶，以及您可以[對資料使用多個儲存體帳戶](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/MultipleStorageAccountsEndToEndTests.cs)。在本教學課程中，您將使用單一儲存體帳戶。連接字串具有儲存體帳戶金鑰的預留位置。
   	<pre class="prettyprint">&lt;configuration>
-	&lt;connectionStrings>
-	    &lt;add name="AzureWebJobsDashboard" connectionString="DefaultEndpointsProtocol=https;AccountName=<mark>[accountname]</mark>;AccountKey=<mark>[accesskey]</mark>"/>
-	    &lt;add name="AzureWebJobsStorage" connectionString="DefaultEndpointsProtocol=https;AccountName=<mark>[accountname]</mark>;AccountKey=<mark>[accesskey]</mark>"/>
-	    &lt;add name="ContosoAdsContext" connectionString="Data Source=(localdb)\v11.0; Initial Catalog=ContosoAds; Integrated Security=True; MultipleActiveResultSets=True;"/>
-	&lt;/connectionStrings>
-	    &lt;startup>
-	        &lt;supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
-	&lt;/startup>
-	&lt;/configuration></pre>
+  	&lt;connectionStrings>
+  	    &lt;add name="AzureWebJobsDashboard" connectionString="DefaultEndpointsProtocol=https;AccountName=<mark>[accountname]</mark>;AccountKey=<mark>[accesskey]</mark>"/>
+  	    &lt;add name="AzureWebJobsStorage" connectionString="DefaultEndpointsProtocol=https;AccountName=<mark>[accountname]</mark>;AccountKey=<mark>[accesskey]</mark>"/>
+  	    &lt;add name="ContosoAdsContext" connectionString="Data Source=(localdb)\v11.0; Initial Catalog=ContosoAds; Integrated Security=True; MultipleActiveResultSets=True;"/>
+  	&lt;/connectionStrings>
+  	    &lt;startup>
+  	        &lt;supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
+  	&lt;/startup>
+  	&lt;/configuration></pre>
 
 	依預設，WebJobs SDK 會尋找名為 AzureWebJobsStorage 和 AzureWebJobsDashboard 的連接字串。另一種方式是，您可以[任意儲存您要的連接字串，並將它明確傳遞至 `JobHost` 物件](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#config)。
 
@@ -253,7 +253,7 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
 
 	伺服器名稱必須是唯一的。它可以包含小寫字母、數字和連字號。不能包含結尾連字號。
 
-	或者，如果您的訂閱已有伺服器，您可以從下拉式清單選取該伺服器。
+	或者，如果您的訂用帳戶已有伺服器，您可以從下拉式清單選取該伺服器。
 
 12. 輸入系統管理員的 [資料庫使用者名稱] 和 [資料庫密碼]。
 
@@ -403,7 +403,7 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
 
 11. 在 [新增專案] 對話方塊中，依序選擇 [Visual C#] > [Windows Desktop] > [類別庫] 範本。
 
-10. 將專案命名為 *ContosoAdsCommon* ，然後按一下 [確定]。
+10. 將專案命名為 *ContosoAdsCommon*，然後按一下 [確定]。
 
 	此專案將包含由前端與後端使用的 Entity Framework 內容和資料模型。作為替代方式，您可以在 Web 專案中定義 EF 相關的類別，並從 WebJob 專案參考該專案。但之後您的 WebJob 專案會有不需要的 Web 組件參考。
 
@@ -473,9 +473,9 @@ Web 和 WebJob 專案都將使用 SQL Database，因此兩者都會需要 Contos
 2. 在 ContosoAdsWeb 專案中，從所下載的專案加入下列檔案。
 
 	- *Web.config*
-	- *Global.asax.cs*  
+	- *Global.asax.cs*
 	- 在 *Controllers* 資料夾中，新增檔案︰*AdController.cs*
-	- *Views\\Shared* 資料夾中的 *\_Layout.cshtml* 檔案
+	- 在 *Views\\Shared* 資料夾中：*\_Layout.cshtml* 檔案
 	- 在 *Views\\Home* 資料夾中：*Index.cshtml*
 	- 在 *Views\\Ad* 資料夾中 (請先建立此資料夾)：五個 *.cshtml* 檔案<br/><br/>
 
@@ -602,10 +602,10 @@ ContosoAdsContext 類別可指定廣告類別用於 DbSet 集合，Entity Framew
 		        });
 		}
 
-類似的程式碼可取得 *blobnamerequest* 佇列的參考，並建立新佇列。在此情況下，即不需要變更權限。稍後在本教學課程的 [ResolveBlobName](#resolveblobname) 區段中，將說明為何只將 Web 應用程式所寫入的佇列用來取得 Blob 名稱但不用來產生縮圖。
+類似的程式碼可取得 *thumbnailrequest* 佇列的參考，並建立新佇列。在此情況下，即不需要變更權限。
 
 		CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
-		var imagesQueue = queueClient.GetQueueReference("blobnamerequest");
+		var imagesQueue = queueClient.GetQueueReference("thumbnailrequest");
 		imagesQueue.CreateIfNotExists();
 
 ### ContosoAdsWeb - \_Layout.cshtml
@@ -823,4 +823,4 @@ https://{webappname}.scm.azurewebsites.net/azurejobs/#/functions
 
 如需詳細資訊，請參閱 [Azure WebJobs 文件資源](http://go.microsoft.com/fwlink/?LinkId=390226)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0824_2016-->

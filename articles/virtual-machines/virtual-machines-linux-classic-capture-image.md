@@ -33,7 +33,7 @@ Azure 會將映像儲存在 [**映像**] 底下。這也是您已上傳的任何
 
 ## 擷取虛擬機器
 
-1. 使用您所選擇的 SSH 用戶端[連線到虛擬機器](virtual-machines-linux-classic-log-on.md)。
+1. 使用您所選擇的 SSH 用戶端來[連線到虛擬機器](virtual-machines-linux-mac-create-ssh-keys.md)。
 
 2. 在 SSH 視窗中，輸入下列命令。請注意，不同版本的 `waagent` 公用程式可能會有稍微不同的輸出：
 
@@ -95,4 +95,4 @@ Azure 會將映像儲存在 [**映像**] 底下。這也是您已上傳的任何
 [How to Attach a Data Disk to a Virtual Machine]: virtual-machines-windows-classic-attach-disk.md
 [如何建立 Linux 虛擬機器]: virtual-machines-linux-classic-create-custom.md
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0824_2016-->

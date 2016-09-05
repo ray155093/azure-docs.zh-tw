@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="mobile-windows-phone" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/29/2016" 
+	ms.date="08/19/2016" 
 	ms.author="piyushjo" />
 
 #在推播通知內使用 Emoji 表情符號
 
 只要幾個簡單步驟，您就可以在推播通知中加入 Emoji 表情符號：
 
-1. 首先您需要尋找要在訊息中傳送的 Emoji。請確定您要選取的 Emoji 可受目標裝置支援，因為裝置製造商需要一些時間才能將新核准的 Emoji 新增至裝置平台。 
+1. 首先您需要尋找要在訊息中傳送的 Emoji。請確定您要選取的 Emoji 可受目標裝置支援，因為裝置製造商需要一些時間才能將新核准的 Emoji 新增至裝置平台。
 
 2. 在 **Windows** 上 - 您可以瀏覽這個[連結](http://apps.timwhitlock.info/emoji/tables/unicode)，並複製 'Native' 圖示。
 
@@ -40,7 +40,7 @@
 
 7. 當您執行測試或啟動公告時，您會看到具有指定表情符號的通知。
 
-	![][3] 
+	![][3]
 	![][4]
 	![][5]
 
@@ -52,4 +52,4 @@
 [6]: ./media/mobile-engagement-use-emoji-with-push/Mac_SelectEmoji.png
 [7]: ./media/mobile-engagement-use-emoji-with-push/Windows_SelectEmoji.png
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0824_2016-->

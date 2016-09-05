@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/25/2016"
+	ms.date="08/21/2016"
 	ms.author="DouglasL"/>
 
 
@@ -60,8 +60,8 @@
 
 | &nbsp; | 課程名稱 | 說明 |
 | --: | :-- | :-- |
-| 12 | [為 Azure 上的 SQL Server Stretch Database 啟用透明資料加密 (TDE)](sql-server-stretch-database-encryption-tde.md) | 為 Azure 上的 SQL Server Stretch Database 啟用透明資料加密 (TDE) |
-| 13 | [為 Azure 上的 SQL Server Stretch Database 啟用透明資料加密 (TDE)](sql-server-stretch-database-tde-tsql.md) | 為 Azure TSQL 上的 SQL Server Stretch Database 啟用透明資料加密 (TDE) |
+| 12 | [為 Azure 上的 Stretch Database 啟用透明資料加密 (TDE)](sql-server-stretch-database-encryption-tde.md) | 為 Azure 上的 SQL Server Stretch Database 啟用透明資料加密 (TDE) |
+| 13 | [為 Azure 上的 Stretch Database 啟用透明資料加密 (TDE) (Transact-SQL)](sql-server-stretch-database-tde-tsql.md) | 為 Azure TSQL 上的 SQL Server Stretch Database 啟用透明資料加密 (TDE) |
 
 
 
@@ -72,4 +72,4 @@
 | 14 | [備份已啟用 Stretch 的資料庫](sql-server-stretch-database-backup.md) | 了解如何備份已啟用 Stretch 的資料庫。 |
 | 15 | [還原已啟用 Stretch 的資料庫](sql-server-stretch-database-restore.md) | 了解如何還原已啟用 Stretch 的資料庫。 |
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

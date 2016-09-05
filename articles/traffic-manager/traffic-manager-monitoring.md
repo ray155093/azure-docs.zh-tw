@@ -3,7 +3,7 @@
    description="本文有助於您了解流量管理員如何使用端點監視和自動端點容錯移轉，以協助 Azure 客戶部署高可用性應用程式"
    services="traffic-manager"
    documentationCenter=""
-   authors="jtuliani"
+   authors="sdwheeler"
    manager="carmonm"
    editor="tysonn" />
 <tags
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="07/01/2016"
-   ms.author="jtuliani" />
+   ms.author="sewhee" />
 
 # 流量管理員端點監視和容錯移轉
 
@@ -175,4 +175,4 @@ HTTP 和 HTTPS 健全狀況檢查中使用的主機標頭是與每個端點相�
 
 [疑難排解流量管理員端點上的已降級狀態](traffic-manager-troubleshooting-degraded.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -29,7 +29,7 @@ Azure 應用程式閘道可以設定為在閘道終止安全通訊端層 (SSL) �
 
 1. 使用 Web Platform Installer 安裝最新版的 Azure PowerShell Cmdlet。您可以從[下載頁面](https://azure.microsoft.com/downloads/)的 **Windows PowerShell** 區段下載並安裝最新版本。
 2. 請確認您的運作中虛擬網路具有有效子網路。請確定沒有虛擬機器或是雲端部署正在使用子網路。應用程式閘道必須單獨位於虛擬網路子網路中。
-3. 您要設定來使用應用程式閘道的伺服器必須存在，或在虛擬網路中建立其端點，或是已指派公用 IP/VIP。
+3. 您要設定來使用應用程式閘道的伺服器必須存在，或是在虛擬網路中建立其端點，或是已指派公用 IP/VIP。
 
 若要在應用程式閘道上設定 SSL 卸載，請依列出的順序執行下列步驟：
 
@@ -132,7 +132,7 @@ Azure 應用程式閘道可以設定為在閘道終止安全通訊端層 (SSL) �
 **組態 XML 範例**
 
 
-	    <?xml version="1.0" encoding="utf-8"?>
+	<?xml version="1.0" encoding="utf-8"?>
 	<ApplicationGatewayConfiguration xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/windowsazure">
 	    <FrontendIPConfigurations />
 	    <FrontendPorts>
@@ -235,4 +235,4 @@ Azure 應用程式閘道可以設定為在閘道終止安全通訊端層 (SSL) �
 - [Azure 負載平衡器](https://azure.microsoft.com/documentation/services/load-balancer/)
 - [Azure 流量管理員](https://azure.microsoft.com/documentation/services/traffic-manager/)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

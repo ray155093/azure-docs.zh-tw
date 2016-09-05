@@ -20,7 +20,7 @@
 
 [AZURE.INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
 
-## 概觀
+## Overview
 
 本文件說明 Microsoft Azure CDN 中的即時統計資料。在將內容傳遞給您的用戶端時，這項功能會提供即時資料 (例如頻寬、快取狀態和並行連線) 給您的 CDN 設定檔。這可讓您隨時連續監視服務的健全狀況，包括上線事件。
 
@@ -42,7 +42,7 @@
 
 	![[CDN 設定檔] 刀鋒視窗的 [管理] 按鈕](./media/cdn-real-time-stats/cdn-manage-btn.png)
 
-	CDN 管理入口網站隨即開啟。
+	隨即開啟 CDN 管理入口網站。
 
 3. 將滑鼠暫留在 [分析] 索引標籤上，然後暫留在 [即時統計資料] 飛出視窗上。按一下 [HTTP 大型物件]。
 
@@ -90,7 +90,8 @@ HTTP 狀態碼的清單會顯示於圖表正上方。此清單表示每個可包
 
 ## 後續步驟
 
+- 透過 [Azure CDN 中的即時警示](cdn-real-time-alerts.md)獲得通知
 - 進一步了解[進階 HTTP 報告](cdn-advanced-http-reports.md)
 - 分析[使用模式](cdn-analyze-usage-patterns.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

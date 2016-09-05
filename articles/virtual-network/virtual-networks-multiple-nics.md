@@ -31,54 +31,7 @@
 - 執行個體層級公用 IP (LPIP) 位址 (傳統部署) 目前不支援多個 NIC 的 VM。
 - VM 內部的 NIC 順序是隨機的，而且也可透過 Azure 基礎結構更新來變更。不過，IP 位址及對應的乙太網路 MAC 位址會維持不變。例如，假設 **Eth1** 具有 IP 位址 10.1.0.100 和 MAC 位址 00-0D-3A-B0-39-0D；在 Azure 基礎結構更新並重新開機之後，就無法變更為 **Eth2**，但是 IP 和 MAC 配對會保持相同。當客戶起始重新啟動時，NIC 順序會保持相同。
 - 每個 VM 上的每個 NIC 位址都必須位於子網路中，單一 VM 上的多個 NIC 每個都可以指派位於相同子網路的位址。
-- VM 大小會決定您可以為 VM 建立的 NIC 數目。下表列出與 VM 大小相對應的 NIC 數目：
-
-|VM 大小 (標準 SKU)|NIC 數目 (每個 VM 允許的最大值)|
-|---|---|
-|所有基本大小|1|
-|A0\\超小型|1|
-|A1\\小型|1|
-|A2\\中型|1|
-|A3\\大型|2|
-|A4\\超大型|4|
-|A5|1|
-|A6|2|
-|A7|4|
-|A8|2|
-|A9|4|
-|A10|2|
-|A11|4|
-|D1|1|
-|D2|2|
-|D3|4|
-|D4|8|
-|D11|2|
-|D12|4|
-|D13|8|
-|D14|8|
-|DS1|1|
-|DS2|2|
-|DS3|4|
-|DS4|8|
-|DS11|2|
-|DS12|4|
-|DS13|8|
-|DS14|8|
-|D1\_v2|1|
-|D2\_v2|2|
-|D3\_v2|4|
-|D4\_v2|8|
-|D5\_v2|8|
-|D11\_v2|2|
-|D12\_v2|4|
-|D13\_v2|8|
-|D14\_v2|8|
-|G1|1|
-|G2|2|
-|G3|4|
-|G4|8|
-|G5|8|
-|所有的其他大小|1|
+- VM 大小會決定您可以為 VM 建立的 NIC 數目。請參考 [Windows Server](../virtual-machines/virtual-machines-windows-sizes.md) 和 [Linux](../virtual-machines/virtual-machines-linux-sizes.md) VM 大小文章，以確定每個 VM 大小支援的 NIC 數目。
 
 ## 網路安全性群組 (NSG)
 在資源管理員部署中，VM 上的任何 NIC 可能會關聯至網路安全性群組 (NSG)，包括已啟用多個 NIC 功能的 VM 上的任何 NIC。如果已為 NIC 指派子網路 (該子網路會關聯至 NSG) 內的位址，則子網路 NSG 中的規則也適用於該 NIC。除了將子網路關聯至 NSG，您也可以將 NIC 關聯至 NSG。
@@ -265,4 +218,4 @@
 - 部署[在資源管理員部署中的 2 層應用程式案例之多個 NIC VM](virtual-network-deploy-multinic-arm-template.md)。
 - 部署[在傳統部署中的 2 層應用程式案例之多個 NIC VM](virtual-network-deploy-multinic-classic-ps.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

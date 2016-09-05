@@ -14,22 +14,16 @@ ms.devlang="multiple"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="integration"
-ms.date="05/17/2016"
+ms.date="08/18/2016"
 ms.author="deonhe"/>
 
 # 開始使用 Wunderlist 連接器
 
-
-
-您可從下列位置使用 Wunderlist 連接器︰
-
-- [邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)
-- [PowerApps](http://powerapps.microsoft.com)
-- [Flow](http://flows.microsoft.com)
+Wunderlist 提供待辦事項清單和工作管理員，協助使用者完成其工作。無論是與親愛的人共用購物清單、處理專案，還是計劃假期，Wunderlist 都能讓您輕鬆擷取、共用及完成待辦事項。Wunderlist 立即同步處理您的電話、平板電腦及電腦，讓您可在任何地方存取工作。
 
 >[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
-您可以從立即建立邏輯應用程式開始，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ## 觸發程序及動作
 
@@ -124,7 +118,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|作業已順利完成|
 
@@ -169,7 +163,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 ```POST: /lists```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
 |post| |yes|body|無|要建立的新清單|
 
@@ -186,7 +180,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 ```GET: /tasks```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
 |list\_id|integer|yes|query|無|清單識別碼|
 |完成|布林值|no|query|無|Completed|
@@ -206,7 +200,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 ```POST: /tasks```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
 |post| |yes|body|無|要建立的新工作|
 
@@ -230,7 +224,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|作業已順利完成|
 |400|不正確的要求|
@@ -243,7 +237,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 ```POST: /subtasks```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
 |post| |yes|body|無|要建立的新的子工作|
 
@@ -285,7 +279,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |201|建立時間|
 
@@ -331,7 +325,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 ```GET: /reminders```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
 |list\_id|integer|yes|query|無|清單識別碼|
 |task\_id|integer|no|query|無|工作識別碼|
@@ -357,7 +351,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|作業已順利完成|
 |預設值|作業失敗。|
@@ -390,7 +384,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|id|字串|yes|路徑|無|清單識別碼|
+|id|string|yes|路徑|無|清單識別碼|
 
 #### Response
 
@@ -421,7 +415,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 ```PATCH: /lists/{id}```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
 |id|integer|yes|路徑|無|清單識別碼|
 |post| |yes|body|無|清單詳細資料|
@@ -438,14 +432,14 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 ```GET: /tasks/{id}```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
 |list\_id|integer|yes|query|無|清單識別碼|
 |id|integer|yes|路徑|無|工作識別碼|
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|OK|
 
@@ -491,9 +485,9 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 ```GET: /subtasks/{id}```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|id|字串|yes|路徑|無|子工作識別碼|
+|id|string|yes|路徑|無|子工作識別碼|
 
 #### Response
 
@@ -507,7 +501,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 ```PATCH: /subtasks/{id}```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
 |id|integer|yes|路徑|無|子工作識別碼|
 |post| |yes|body|無|子工作詳細資料|
@@ -524,7 +518,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 ```DELETE: /subtasks/{id}```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
 |id|integer|yes|路徑|無|子工作識別碼|
 |修訂|integer|yes|query|無|修訂|
@@ -543,11 +537,11 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|id|字串|yes|路徑|無|附註識別碼|
+|id|string|yes|路徑|無|附註識別碼|
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|OK|
 
@@ -581,7 +575,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |204|沒有內容|
 
@@ -591,13 +585,13 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 ```GET: /task_comments/{id}```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|id|字串|yes|路徑|無|註解識別碼|
+|id|string|yes|路徑|無|註解識別碼|
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|OK|
 
@@ -644,10 +638,10 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
 |id|integer|否 |
-|created\_at|字串|否 |
-|title|字串|否 |
-|list\_type|字串|否 |
-|類型|字串|否 |
+|created\_at|string|否 |
+|title|string|否 |
+|list\_type|string|否 |
+|類型|string|否 |
 |修訂|integer|否 |
 
 
@@ -658,10 +652,10 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
 |id|integer|否 |
-|created\_at|字串|否 |
-|title|字串|否 |
+|created\_at|string|否 |
+|title|string|否 |
 |修訂|integer|否 |
-|類型|字串|否 |
+|類型|string|否 |
 
 
 
@@ -673,13 +667,13 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 |id|integer|否 |
 |assignee\_id|integer|否 |
 |assigner\_id|integer|否 |
-|created\_at|字串|否 |
+|created\_at|string|否 |
 |created\_by\_id|integer|否 |
-|due\_date|字串|否 |
+|due\_date|string|否 |
 |list\_id|integer|否 |
 |修訂|integer|否 |
 |已加星號|布林值|否 |
-|title|字串|否 |
+|title|string|否 |
 
 
 
@@ -690,10 +684,10 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 |---|---|---|
 |id|integer|否 |
 |task\_id|integer|否 |
-|created\_at|字串|否 |
+|created\_at|string|否 |
 |created\_by\_id|integer|否 |
-|修訂|字串|否 |
-|title|字串|否 |
+|修訂|string|否 |
+|title|string|否 |
 
 
 
@@ -704,9 +698,9 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 |---|---|---|
 |id|integer|否 |
 |task\_id|integer|否 |
-|內容|字串|否 |
-|created\_at|字串|否 |
-|updated\_at|字串|否 |
+|內容|string|否 |
+|created\_at|string|否 |
+|updated\_at|string|否 |
 |修訂|integer|否 |
 
 
@@ -719,9 +713,9 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 |id|integer|否 |
 |task\_id|integer|否 |
 |修訂|integer|否 |
-|文字|字串|否 |
-|類型|字串|否 |
-|created\_at|字串|否 |
+|文字|string|否 |
+|類型|string|否 |
+|created\_at|string|否 |
 
 
 
@@ -731,12 +725,12 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
 |id|integer|否 |
-|日期|字串|否 |
+|日期|string|否 |
 |task\_id|integer|否 |
 |修訂|integer|否 |
-|類型|字串|否 |
-|created\_at|字串|否 |
-|updated\_at|字串|否 |
+|類型|string|否 |
+|created\_at|string|否 |
+|updated\_at|string|否 |
 
 
 
@@ -746,11 +740,11 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
 |id|integer|否 |
-|日期|字串|否 |
+|日期|string|否 |
 |task\_id|integer|否 |
 |修訂|integer|否 |
-|created\_at|字串|否 |
-|updated\_at|字串|否 |
+|created\_at|string|否 |
+|updated\_at|string|否 |
 
 
 
@@ -760,17 +754,17 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
 |id|integer|否 |
-|url|字串|否 |
+|url|string|否 |
 |task\_id|integer|否 |
 |list\_id|integer|否 |
 |user\_id|integer|否 |
-|file\_name|字串|否 |
-|content\_type|字串|否 |
+|file\_name|string|否 |
+|content\_type|string|否 |
 |file\_size|integer|否 |
-|local\_created\_at|字串|否 |
-|created\_at|字串|否 |
-|updated\_at|字串|否 |
-|類型|字串|否 |
+|local\_created\_at|string|否 |
+|created\_at|string|否 |
+|updated\_at|string|否 |
+|類型|string|否 |
 |修訂|integer|否 |
 
 
@@ -781,12 +775,12 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
 |list\_id|integer|是 |
-|title|字串|是 |
+|title|string|是 |
 |assignee\_id|integer|否 |
 |完成|布林值|否 |
-|recurrence\_type|字串|否 |
+|recurrence\_type|string|否 |
 |recurrence\_count|integer|否 |
-|due\_date|字串|否 |
+|due\_date|string|否 |
 |已加星號|布林值|否 |
 
 
@@ -796,7 +790,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|title|字串|是 |
+|title|string|是 |
 
 
 
@@ -807,7 +801,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 |---|---|---|
 |list\_id|integer|是 |
 |task\_id|integer|是 |
-|title|字串|是 |
+|title|string|是 |
 |完成|布林值|否 |
 
 
@@ -819,7 +813,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 |---|---|---|
 |list\_id|integer|是 |
 |task\_id|integer|是 |
-|內容|字串|是 |
+|內容|string|是 |
 
 
 
@@ -830,7 +824,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 |---|---|---|
 |list\_id|integer|是 |
 |task\_id|integer|是 |
-|文字|字串|是 |
+|文字|string|是 |
 
 
 
@@ -841,7 +835,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 |---|---|---|
 |list\_id|integer|是 |
 |task\_id|integer|是 |
-|日期|字串|是 |
+|日期|string|是 |
 
 
 
@@ -851,12 +845,12 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
 |修訂|integer|否 |
-|title|字串|否 |
+|title|string|否 |
 |assignee\_id|integer|否 |
 |完成|布林值|否 |
-|recurrence\_type|字串|否 |
+|recurrence\_type|string|否 |
 |recurrence\_count|integer|否 |
-|due\_date|字串|否 |
+|due\_date|string|否 |
 |已加星號|布林值|否 |
 
 
@@ -867,7 +861,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
 |修訂|integer|否 |
-|title|字串|否 |
+|title|string|否 |
 
 
 
@@ -877,7 +871,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
 |修訂|integer|否 |
-|title|字串|否 |
+|title|string|否 |
 |完成|布林值|否 |
 
 
@@ -888,7 +882,7 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
 |修訂|integer|否 |
-|內容|字串|否 |
+|內容|string|否 |
 
 
 
@@ -897,11 +891,11 @@ Wunderlist 連接器可當做動作使用，它有觸發程序。所有連接器
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|日期|字串|否 |
+|日期|string|否 |
 |修訂|integer|否 |
 
 
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

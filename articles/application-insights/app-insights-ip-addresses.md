@@ -1,6 +1,6 @@
 <properties 
 	pageTitle="Application Insights 使用的 IP 位址 | Microsoft Azure"
-	description="靜態位址的清單" 
+	description="Application Insights 所需的伺服器防火牆例外狀況" 
 	services="application-insights"
     documentationCenter=".net"
 	authors="alancameronwills" 
@@ -12,12 +12,12 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/30/2016" 
+	ms.date="08/24/2016" 
 	ms.author="awills"/>
  
 # Application Insights 使用的 IP 位址
 
-[Visual Studio Application Insights](app-insights-overview.md) 服務使用很多個 IP 位址，您可能想要知道這些位址 - 例如，如果您正在監視防火牆後方執行的應用程式。
+[Visual Studio Application Insights](app-insights-overview.md) 服務會使用許多 IP 位址。如果您所監視的應用程式裝載於防火牆後面，您可能需要知道這些位址。
 
 > [AZURE.NOTE] 雖然這些位址是靜態的，但可能隨時需要變更。
 
@@ -46,11 +46,11 @@
 
 這份清單可能會隨時變更。
 
-## Availability
+## 可用性集合
 
-這是用來執行[可用性 Web 測試](app-insights-monitor-web-app-availability.md)的位址清單。
+這是用來執行[可用性 Web 測試](app-insights-monitor-web-app-availability.md)的位址清單。如果您想要在您的應用程式上執行 Web 測試，但您的 Web 伺服器限於為特定用戶端提供服務，則您必須允許來自我們的可用性測試伺服器的連入流量。
 
-開啟連接埠 80 (http) 和 443 (https)。
+為來自這些位址的連入流量開啟連接埠 80 (http) 和 443 (https)︰
 
 ```
 
@@ -184,4 +184,4 @@
 
  
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

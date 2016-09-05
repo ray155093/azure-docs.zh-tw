@@ -3,8 +3,8 @@
    description="本文將協助您測試流量管理員設定。"
    services="traffic-manager"
    documentationCenter="na"
-   authors="joaoma"
-   manager="adinah"
+   authors="sdwheeler"
+   manager="carmonm"
    editor="tysonn" />
 <tags 
    ms.service="traffic-manager"
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="06/10/2016"
-   ms.author="joaoma" />
+   ms.author="sewhee" />
 
 # 測試流量管理員設定
 
@@ -59,4 +59,4 @@
 [關於流量管理員流量路由方法](traffic-manager-routing-methods.md) [Traffic Manager](traffic-manager-overview.md)
  
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0824_2016-->

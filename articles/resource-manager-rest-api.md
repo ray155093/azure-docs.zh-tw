@@ -17,12 +17,19 @@
    ms.author="navale;tomfitz;"/>
    
 # 資源管理員 REST API
+
+> [AZURE.SELECTOR]
+- [Azure PowerShell](powershell-azure-resource-manager.md)
+- [Azure CLI](xplat-cli-azure-resource-manager.md)
+- [入口網站](./azure-portal/resource-group-portal.md)
+- [REST API](resource-manager-rest-api.md)
+
 在每次對 Azure Resource Manager 的呼叫之後、每個部署的範本之後、每個設定的儲存體帳戶之後，都有一或數次對 Azure Resource Manager 之 Rest API 的呼叫。本主題專門討論這些 API 以及如何在完全不使用任何 SDK 的情況下呼叫它們。如果您想要完全控制對 Azure 的所有要求，或如果您偏好語言的 SDK 無法使用或不支援您要執行的作業，這可能非常有用。
 
 本文並不會逐一介紹 Azure 中公開的每個 API，而會以某些 API 為例，說明如何繼續進行並連線到這些 API。如果您了解基本概念，您即可繼續進行並閱讀 [Azure Resource Manager REST API 參考](https://msdn.microsoft.com/library/azure/dn790568.aspx)，以尋找如何使用其餘 API 的詳細資訊。
 
 ## 驗證
-ARM 的驗證由 Azure Active Directory (AD) 處理。為了連接到任何 API，您必須先向 Azure AD 進行驗證，以接收可以傳遞給每個要求的驗證權杖。由於我們要說明直接對 REST API 的純呼叫，所以我們也會假設當快顯畫面提示您輸入使用者名稱和密碼時，或者甚至是在雙因素驗證案例中使用的其他驗證機制中，您不想使用一般使用者名稱和密碼進行驗證。因此，我們將建立所謂的 Azure AD 應用程式和服務主體，以便用來進行登入。但請記住，Azure AD 支援數個驗證程序，而這些程序全都可以用來擷取後續 API 要求所需的驗證權杖。請依照[建立 Azure AD 應用程式和服務主體](./resource-group-create-service-principal-portal.md)的逐步指示。
+ARM 的驗證由 Azure Active Directory (AD) 處理。為了連接到任何 API，您必須先向 Azure AD 進行驗證，以接收可以傳遞給每個要求的驗證權杖。由於我們要說明直接對 REST API 的純呼叫，所以我們也會假設當快顯畫面提示您輸入使用者名稱和密碼時，或者甚至是在雙因素驗證案例中使用的其他驗證機制中，您不想使用一般使用者名稱和密碼進行驗證。因此，我們將建立所謂的 Azure AD 應用程式和服務主體，以便用來進行登入。但請記住，Azure AD 支援數個驗證程序，而這些程序全都可以用來擷取後續 API 要求所需的驗證權杖。請依照建立 [Azure AD 應用程式和服務主體](./resource-group-create-service-principal-portal.md)的逐步指示。
 
 ### 產生存取權杖 
 向外呼叫位於 login.microsoftonline.com 的 Azure AD，集合完成對 Azure AD 驗證。若要驗證，您必須具有下列資訊︰
@@ -115,7 +122,7 @@ Content-Type: application/json
 
 ### 列出特定訂用帳戶中的所有資源群組
 
-適用於 ARM API 的所有資源都放在資源群組中。我們將使用下列 HTTP GET 要求，向 ARM 查詢我們的訂用帳戶中現有的資源群組。請注意，這此如何傳入訂用帳戶識別碼做為 URL 的一部分。
+適用於 ARM API 的所有資源都放在資源群組中。我們將使用下列 HTTP GET 要求，向 ARM 查詢我們的訂用帳戶中現有的資源群組。請注意，這次訂用帳戶識別碼是如何當作 URL 的一部分而傳入。
 
 (以您實際的存取權杖和訂用帳戶識別碼取代 YOUR\_ACCESS\_TOKEN 和 SUBSCRIPTION\_ID。)
 
@@ -240,4 +247,4 @@ Content-Type: application/json
 
 省略了此要求的較長 JSON 回應，以便改善這份文件的可讀性。回應將會包含您剛建立的樣板化部署相關資訊。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0824_2016-->

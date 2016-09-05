@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="all" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="12/07/2015" 
+	ms.date="08/19/2016" 
 	ms.author="piyushjo" />
 
 #包括使用者名稱來個人化通知
@@ -22,10 +22,10 @@
 
 技術上來說，您可以使用 Azure Mobile engagement 完成個人化通知，方法是依照下列步驟，我們將會使用在通知中包含使用者名稱的案例。您會使用應用程式資訊或標記的概念，其值可以由 SDK 傳遞，該 SDK 是在行動應用程式中或透過 API 整合。然後可以使用這些應用程式資訊或標記：
 
-1. 根據應用程式資訊的值將通知的目標設為特定使用者，或 
-2. 做為通知中的預留位置，在將通知傳送給該裝置時，會以裝置/使用者的特定值取代。 
+1. 根據應用程式資訊的值將通知的目標設為特定使用者，或
+2. 做為通知中的預留位置，在將通知傳送給該裝置時，會以裝置/使用者的特定值取代。
 
-> [AZURE.IMPORTANT]請注意，因為取代每個通知的應用程式資訊值的這項額外處理，傳送通知的速度將會降低。
+> [AZURE.IMPORTANT] 請注意，因為取代每個通知的應用程式資訊值的這項額外處理，傳送通知的速度將會降低。
 
 ##在 Mobile Engagement 入口網站註冊應用程式資訊
 
@@ -59,7 +59,7 @@
 
 ![][4]
 
-> [AZURE.NOTE]未設定 user\_name 應用程式資訊的任何使用者，不會收到任何通知。如果您在測試模式中執行通知活動，且如果您沒有設定應用程式資訊，則我們將傳送 '?' 字元來取代預留位置。
+> [AZURE.NOTE] 未設定 user\_name 應用程式資訊的任何使用者，不會收到任何通知。如果您在測試模式中執行通知活動，且如果您沒有設定應用程式資訊，則我們將傳送 '?' 字元來取代預留位置。
 
 2) 當 Mobile Engagement 選取裝置來傳送此通知時，則它會查看此應用程式資訊，並取代預留位置的值。例如，如果我們為使用者設定 `str = "Scott"`，則裝置註冊會針對此使用者與 **user\_name = SCOTT** 產生關聯，而且此使用者會看到下列格式的應用程式推播通知。
 
@@ -72,4 +72,4 @@
 [4]: ./media/mobile-engagement-send-personalized-notifications/personal-notification.png
 [5]: ./media/mobile-engagement-send-personalized-notifications/notification.png
 
-<!---HONumber=AcomDC_1223_2015-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -22,7 +22,9 @@
 
 Azure Container Service 可讓您輕鬆建立、設定及管理虛擬機器的叢集，這些虛擬機器預先設定為執行容器化應用程式。它使用受歡迎開放原始碼排程和協調流程工具的最佳化組態。這樣可讓您使用現有技能，或運用大量且不斷成長的社群專業知識，在 Microsoft Azure 上部署及管理容器應用程式。
 
-<br /> ![Azure Container Service 提供一個方法來在 Azure 的多部主機上管理容器化應用程式。](./media/acs-intro/acs-cluster.png) <br /><br />
+
+![Azure Container Service 提供一個方法來在 Azure 的多部主機上管理容器化應用程式。](./media/acs-intro/acs-cluster.png)
+
 
 Azure Container Service 會使用 Docker 容器格式，確保您的應用程式容器具有完全的可攜式特性。它也支援您對於 Marathon 和 DC/OS 或 Docker Swarm 的選擇，確保您可以將這些應用程式擴展為成千上萬個容器。
 
@@ -96,12 +98,12 @@ Docker Swarm 為 Docker 提供原生叢集。由於 Docker Swarm 可作為標準
 影片
 ------
 
-開始使用 Azure Container Service：
+開始使用 Azure Container Service (101)：
 
-> [AZURE.VIDEO connect-2015-getting-started-developing-with-docker-and-azure-container-service]
+> [AZURE.VIDEO azure-container-service-101]
 
-使用 Azure Container Service 建置應用程式
+使用 Azure Container Service 建置應用程式 (組建 2016)
 
-> [https://channel9.msdn.com/Events/Build/2016/B822]
+> [AZURE.VIDEO build-2016-building-applications-using-the-azure-container-service]
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0824_2016-->

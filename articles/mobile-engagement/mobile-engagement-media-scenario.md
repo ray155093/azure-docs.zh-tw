@@ -13,12 +13,12 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="mobile-multiple"
 	ms.workload="mobile" 
-	ms.date="02/29/2016"
+	ms.date="08/19/2016"
 	ms.author="piyushjo"/>
 
 #對媒體應用程式實作 Mobile Engagement
 
-## 概觀
+## Overview
 
 John 是一家大型媒體公司的行動裝置專案經理。他最近推出了一款新的應用程式，並獲得很高的下載次數。他已達成預定的下載次數目標，但從每位使用者身上所獲得的投資回報 (ROI) 卻未達要求。
 
@@ -101,4 +101,4 @@ John 決定使用觸達 API，這種 HTTP REST API 可讓他們管理觸達活�
 <!--Link references-->
 [Media Playbook link]: https://github.com/Azure/azure-mobile-engagement-samples/tree/master/Playbooks
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0824_2016-->

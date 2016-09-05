@@ -4,7 +4,7 @@
 	services="functions"
 	documentationCenter="na"
 	authors="tdykstra"
-	manager="wpickett"
+	manager="erikre"
 	editor=""/>
 
 <tags
@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="multiple"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="04/14/2016"
-	ms.author="tdykstra"/>
+	ms.date="08/22/2016"
+	ms.author="glenga"/>
 
 # 如何在 Visual Studio 中編碼和測試 Azure Functions
 
-## 概觀
+## Overview
 
 這篇文章說明如何透過下載 [WebJobs.Script](https://github.com/Azure/azure-webjobs-sdk-script/) GitHub 儲存機制在本機執行 [Azure Functions](functions-overview.md)，並執行其所包含的 Visual Studio 解決方案。
 
@@ -222,4 +222,4 @@ API 金鑰儲存在 WebJobs.Script.WebHost 專案之 [App\_Data/secrets](https:/
 * [Azure Functions NodeJS 開發人員參考](functions-reference-node.md)
 * [Azure Functions 觸發程序和繫結](functions-triggers-bindings.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0824_2016-->
