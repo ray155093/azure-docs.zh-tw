@@ -166,6 +166,7 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 
 您可以在 Azure 入口網站的 [設定] 刀鋒視窗中進行此設定。若使用 VM 擴展集，您可以更新 ARM 範本中的自動調整設定，改為使用 *metricName* 做為 *ApproximateMessageCount*，並傳遞儲存體佇列的識別碼做為 *metricResourceUri*。
 
+例如，使用傳統儲存體帳戶時，自動調整設定 metricTrigger 會包含：
 
 ```
 "metricName": "ApproximateMessageCount",
@@ -173,11 +174,19 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
  "metricResourceUri": "/subscriptions/s1/resourceGroups/rg1/providers/Microsoft.ClassicStorage/storageAccounts/mystorage/services/queue/queues/mystoragequeue"
  ```
 
+使用 (非傳統) 儲存體帳戶時，metricTrigger 會包含：
+
+```
+"metricName": "ApproximateMessageCount",
+"metricNamespace": "",
+"metricResourceUri": "/subscriptions/s1/resourceGroups/rg1/providers/Microsoft.Storage/storageAccounts/mystorage/services/queue/queues/mystoragequeue"
+```
+
 ## 常用的服務匯流排衡量標準
 
 您可以依服務匯流排佇列長度做為調整依據，它是服務匯流排佇列中的訊息數目。服務匯流排佇列長度是一個特殊衡量標準，套用的特定臨界值是每個執行個體的訊息數。這表示如果有兩個執行個體，且如果臨界值設定為 100 時，當佇列中的訊息總數為 200 時將會進行調整。例如，每個執行個體 100 個訊息。
 
-若使用 VM 擴展集，您可以更新 ARM 範本中的自動調整設定，改為使用 metricName 做為 ApproximateMessageCount，並傳遞儲存體佇列的識別碼做為 metricResourceUri。
+若使用 VM 擴展集，您可以更新 ARM 範本中的自動調整設定，改為使用 *metricName* 做為 *ApproximateMessageCount*，並傳遞儲存體佇列的識別碼做為 *metricResourceUri*。
 
 ```
 "metricName": "MessageCount",
@@ -187,4 +196,4 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 
 >[AZURE.NOTE] 若使用服務匯流排，資源群組的概念不存在，但 Azure Resource Manager 會建立每個區域的預設資源群組。此資源群組通常是 'Default-ServiceBus-[region]' 的格式。例如，'Default-ServiceBus-EastUS'、'Default-ServiceBus-WestUS'、'Default-ServiceBus-AustraliaEast' 等。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

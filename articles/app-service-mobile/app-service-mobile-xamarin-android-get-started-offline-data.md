@@ -13,18 +13,18 @@
     ms.tgt_pltfrm="mobile-xamarin-android"
     ms.devlang="dotnet"
     ms.topic="article"
-	ms.date="05/05/2016"
+	ms.date="08/19/2016"
     ms.author="wesmc"/>
 
 # 啟用您 Xamarin.Android 行動應用程式的離線同步處理
 
 [AZURE.INCLUDE [app-service-mobile-selector-offline](../../includes/app-service-mobile-selector-offline.md)]
 
-## 概觀
+## Overview
 
 此教學課程介紹適用於 Xamarin.Android 之Azure 行動應用程式的離線同步處理功能。離線同步處理可讓使用者與行動應用程式進行互動--檢視、新增或修改資料--即使沒有網路連線進也可行。變更會儲存在本機資料庫中︰裝置上線後，這些變更就會與遠端服務進行同步處理。
 
-在本教學課程中，您將會更新[建立 Xamarin Android 應用程式]教學課程中的用戶端專案，來支援 Azure Mobile Apps 的離線功能。如果您不要使用下載的快速入門伺服器專案，必須將資料存取擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
+在本教學課程中，您將會更新[建立 Xamarin Android 應用程式]教學課程中的用戶端專案，來支援 Azure Mobile Apps 的離線功能。如果您不要使用下載的快速入門伺服器專案，必須將資料存取擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure Mobile Apps 的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
 若要深入了解離線同步處理功能，請參閱 [Azure Mobile Apps 中的離線資料同步處理]主題。
 
@@ -142,9 +142,9 @@
 
 ## 其他資源
 
-* [Azure 行動應用程式中的離線資料同步處理]
+* [Azure Mobile Apps 中的離線資料同步處理]
 
-* [雲端報導︰Azure 行動服務中的離線同步處理] \(注意︰影片位於行動服務上，但離線同步處理的運作方式類似在 Azure Mobile Apps 中的方式)
+* [雲端報導︰Azure Mobile Services 中的離線同步處理] (注意︰影片位於 Mobile Services 上，但離線同步處理的運作方式類似在 Azure Mobile Apps 中的方式)
 
 <!-- ##Summary
 
@@ -162,13 +162,12 @@
 <!-- URLs. -->
 [建立 Xamarin Android 應用程式]: ../app-service-mobile-xamarin-android-get-started.md
 [Azure Mobile Apps 中的離線資料同步處理]: ../app-service-mobile-offline-data-sync.md
-[Azure 行動應用程式中的離線資料同步處理]: ../app-service-mobile-offline-data-sync.md
 
 [How to use the Xamarin Component client for Azure Mobile Services]: ../partner-xamarin-mobile-services-how-to-use-client-library.md
 
 [Xamarin Studio]: http://xamarin.com/download
 [Xamarin extension]: http://xamarin.com/visual-studio
 
-[雲端報導︰Azure 行動服務中的離線同步處理]: http://channel9.msdn.com/Shows/Cloud+Cover/Episode-155-Offline-Storage-with-Donna-Malayeri
+[雲端報導︰Azure Mobile Services 中的離線同步處理]: http://channel9.msdn.com/Shows/Cloud+Cover/Episode-155-Offline-Storage-with-Donna-Malayeri
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0824_2016-->

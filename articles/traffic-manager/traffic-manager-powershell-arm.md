@@ -1,9 +1,9 @@
 <properties
-   pageTitle="Azure Resource Manager 的流量管理員支援 | Microsoft Azure"
+   pageTitle="Azure Resource Manager 的流量管理員支援 | Microsoft Azure "
    description="使用適用於流量管理員的 PowerShell 與 Azure Resource Manager (ARM)"
    services="traffic-manager"
    documentationCenter="na"
-   authors="jtuliani"
+   authors="sdwheeler"
    manager="carmonm"
    editor="tysonn" />
 <tags
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/17/2016"
-   ms.author="jtuliani" />
+   ms.author="sewhee" />
 
 # Azure Resource Manager 的 Azure 流量管理員支援
 Azure 資源管理員 (ARM) 是 Azure 中新的服務管理架構。Azure 流量管理員設定檔現在可使用以 Azure 資源管理員為基礎的 API 和工具來管理 。
@@ -70,7 +70,7 @@ Azure 流量管理員使用名為「流量管理員設定檔」的設定集合�
 
 ### 步驟 4
 
-流量管理員服務由 Microsoft.Network 資源提供者管理。您的 Azure 訂用帳戶必須先註冊以使用此資源提供者，才能透過 ARM 使用流量管理員。每個訂用帳戶只需執行一次此作業。
+流量管理員服務由 Microsoft.Network 資源提供者管理。您的 Azure 訂用帳戶必須先註冊以使用此資源提供者，您才能透過 ARM 使用「流量管理員」。每個訂用帳戶只需執行一次此作業。
 
 	PS C:\> Register-AzureRmResourceProvider –ProviderNamespace Microsoft.Network
 
@@ -79,7 +79,7 @@ Azure 流量管理員使用名為「流量管理員設定檔」的設定集合�
 
 	PS C:\> New-AzureRmResourceGroup -Name MyRG -Location "West US"
 
-Azure 資源管理員需要所有的資源群組指定一個位置。這用來作為該資源群組中資源的預設位置。然而，因為流量管理員設定檔的所有資源是全域而非區域，資源群組位置的選擇不會影響 Azure 流量管理員。
+Azure Resource Manager 需要所有的資源群組指定一個位置。這用來作為該資源群組中資源的預設位置。然而，因為流量管理員設定檔的所有資源是全域而非區域，資源群組位置的選擇不會影響 Azure 流量管理員。
 
 ## 建立流量管理員設定檔
 
@@ -309,4 +309,4 @@ Disable-AzureRmTrafficManagerProfile Cmdlet 會顯示確認提示，但使用 '-
 [流量管理員的效能考量](traffic-manager-performance-considerations.md)
  
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0824_2016-->

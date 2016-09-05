@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="05/24/2016"
+   ms.date="08/18/2016"
    ms.author="alkohli@microsoft.com" />
 
 # 使用 Windows PowerShell for StorSimple 管理您的裝置
@@ -45,7 +45,7 @@ Windows PowerShell for StorSimple 提供命令列介面，可讓您用來管理 
 
 ## 透過裝置序列主控台連線至 Windows PowerShell for StorSimple
 
-您可以[下載 PuTTY](http://www.putty.org/) 或類似的終端機模擬軟體，以連線至 Windows PowerShell for StorSimple。您需要將 PuTTY 設定為專門存取 Microsoft Azure StorSimple 裝置。下列主題包含如何設定 PuTTy 並連接至裝置的詳細步驟。並且說明序列主控台中的各種功能表選項。
+您可以[下載 PuTTY](http://www.putty.org/) 或類似的終端機模擬軟體，以連線至 Windows PowerShell for StorSimple。您需要將 PuTTY 設定為專門存取 Microsoft Azure StorSimple 裝置。下列主題包含有關如何設定 PuTTy 並連接至裝置的詳細步驟。並且說明序列主控台中的各種功能表選項。
 
 ### PuTTY 設定
 
@@ -106,13 +106,13 @@ Windows PowerShell for StorSimple 提供命令列介面，可讓您用來管理 
 
 2. **登入對等控制器並具備完整存取權** 此選項和選項 1 相同，不過是讓您連線 (使用適當的認證) 至對等控制器上的 **SSAdminConsole** Runspace。因為 StorSimple 裝置是高可用性的裝置，具有兩個主動-被動組態的控制器；對等指的是您透過序列主控台存取的裝置中的其他控制器。和選項 1 類似，此選項也可用於讓「Microsoft 支援」存取對等控制器上不受限制的 Runspace。
 
-3. **連線並具備有限存取權** 此選項用於在有限制的模式下存取 Windows PowerShell 介面。系統不會提示您輸入存取認證。相較於選項 1 和 2，此選項會連線至更多限制的 Runspace。採取選項 1 可使用的工作，其中一些在此 Runspace 中不能執行：
+3. **連線並具備有限存取權** 此選項用於在有限制的模式下存取 Windows PowerShell 介面。系統不會提示您輸入存取認證。相較於選項 1 和 2，此選項會連線至更多限制的 Runspace。可透過選項 1 執行但在此 Runspace 中「無法」執行的一些工作包括：
 
 	- 重設為原廠設定
 	- 變更密碼
 	- 啟用或停用支援存取
 	- 套用更新
-	- 安裝 Hotfix 
+	- 安裝 Hotfix
 												
 
 	>[AZURE.NOTE] **如果您忘記裝置管理員密碼並透過選項 1 或 2無法連線，這是慣用的選項。**
@@ -175,7 +175,7 @@ Windows PowerShell for StorSimple 提供命令列介面，可讓您用來管理 
 
 - 若要取得任何 Cmdlet 的線上說明，請使用前述 Cmdlet 搭配 `-Online` 參數：`Get-Help <cmdlet-name> -Online`
 
-- 如需完整說明，可以使用 `–Full` 參數以及使用 `–Examples` 參數。
+- 如需完整說明，可以使用 `–Full` 參數，如需範例，則可使用 `–Examples` 參數。
 
 #### 更新說明
 
@@ -192,9 +192,9 @@ Windows PowerShell for StorSimple 提供命令列介面，可讓您用來管理 
 1. 在說明檔案安裝之後，輸入：`Get-Help Get-Command`。將會顯示可用說明的 Cmdlet 清單。
 
 
->[AZURE.NOTE] 若要取得任何 Runspace 中所有可用 Cmdlet 的清單，請登入對應的功能表選項並執行 `Get-Command` Cmdlet。
+>[AZURE.NOTE] 若要取得 Runspace 中所有可用 Cmdlet 的清單，請登入對應的功能表選項並執行 `Get-Command` Cmdlet。
 
 ## 後續步驟
 如果您在執行上述任何工作流程時遇到任何 StorSimple 裝置的問題，請參閱[適用於疑難排解 StorSimple 部署的工具](storsimple-troubleshoot-deployment.md#tools-for-troubleshooting-storsimple-deployments)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0824_2016-->

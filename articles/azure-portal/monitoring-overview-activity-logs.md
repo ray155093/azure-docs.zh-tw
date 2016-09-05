@@ -29,7 +29,7 @@
 - 在 **Azure 入口網站**中查詢和檢視活動記錄檔。
 - 透過 REST API、PowerShell Cmdlet 或 CLI 查詢活動記錄檔。
 - [建立電子郵件或可觸發關閉活動記錄檔事件的 webhook 警示。](./insights-auditlog-to-webhook-email.md)
-- 將活動記錄檔儲存到**儲存體帳戶**以利封存或手動檢查。您可以使用**記錄檔設定檔**指定保留時間 (以天為單位)。
+- [將活動記錄檔儲存到**儲存體帳戶**以供封存或手動檢查](./monitoring-archive-activity-log.md)。您可以使用**記錄檔設定檔**指定保留時間 (以天為單位)。
 - 使用 [**PowerBI 內容套件**](https://powerbi.microsoft.com/zh-TW/documentation/powerbi-content-pack-azure-audit-logs/)在 PowerBI 中分析活動記錄檔。
 - [將活動記錄檔串流至**事件中樞**](./monitoring-stream-activity-logs-event-hubs.md)，以利第三方服務或自訂的分析解決方案 (如 PowerBI) 擷取。
 
@@ -223,4 +223,4 @@ azure insights logprofile delete --name my_log_profile
 - [深入了解活動記錄檔 (之前的稽核記錄檔)](../resource-group-audit.md)
 - [將 Azure 活動記錄檔串流至事件中樞](./monitoring-stream-activity-logs-event-hubs.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

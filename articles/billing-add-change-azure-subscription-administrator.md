@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/06/2016"
+	ms.date="08/17/2016"
 	ms.author="genli"/>
 
 # 如何新增或變更 Azure 管理員角色
@@ -29,13 +29,15 @@ Microsoft Azure 中的管理員角色有三種：
 
 > [AZURE.NOTE] Azure Active Directory 角色型存取控制 (RBAC) 能讓使用者擁有多個角色。如需詳細資訊，請參閱 [Azure Active Directory 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
 
+> [AZURE.NOTE] 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+
 ## 如何新增訂用帳戶的管理員
 
 **Azure 入口網站**
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 
-2. 在 [中樞] 功能表中，選取 [訂用帳戶] > 您想要讓管理員存取的訂用帳戶。
+2. 在 [中樞] 功能表中，選取 [訂用帳戶] >「您想要讓管理員存取的訂用帳戶」。
 
 	![newselectsub](./media/billing-add-change-azure-subscription-administrator/newselectsub.png)
 
@@ -114,4 +116,6 @@ Microsoft Azure 中的管理員角色有三種：
 
 * 如需 Azure Active Directory 如何與您 Azure 訂用帳戶產生關聯的詳細資訊，請參閱[在 Azure Active Directory (Azure AD) 中指派系統管理員角色](./active-directory/active-directory-assign-admin-roles.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+> [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+
+<!---HONumber=AcomDC_0824_2016-->

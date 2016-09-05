@@ -13,7 +13,7 @@
   ms.topic="article"
   ms.tgt_pltfrm="Azure"
   ms.workload="na"
-  ms.date="08/01/2016"
+  ms.date="08/18/2016"
   ms.author="hascipio"/>
 
 # 建立 Azure Marketplace 供應項目的一般必要條件
@@ -34,7 +34,7 @@
 2. 嘗試新增共同管理員之前，請確定管理員帳戶下至少有一個應用程式。
 3. 上述步驟完成之後，請以共同管理員電子郵件識別碼登入再登出發佈入口網站。
 4. 現在請使用管理員電子郵件識別碼登入發佈入口網站。
-5. 瀏覽至 [發行者] -> [選取您的帳戶] -> [管理員] -> [新增共同管理員] \(如以下螢幕擷取畫面所示)
+5. 瀏覽至 [發行者] -> [選取您的帳戶] -> [管理員] -> [新增共同管理員] (如以下螢幕擷取畫面所示)
 
     ![繪圖](media/marketplace-publishing-pre-requisites/imgAddAdmin_05.png)
 
@@ -42,12 +42,21 @@
 7. 在開發人員中心註冊時，請避免使用與單一人員相關聯的帳戶。為了不受限於個人使用，我們會建議您這麼做。
 8. 如果您面臨和開發人員中心註冊相關的任何問題，請使用此[連結](https://developer.microsoft.com/zh-TW/windows/support)提出票證。
 
+## 在發佈入口網站刪除共同管理員的步驟
+**假設您是管理員**，以下是刪除共同管理員的步驟。
+
+1. 使用管理員電子郵件識別碼登入發佈入口網站。
+2. 瀏覽至 [發行者] -> 選取您的帳戶 -> [管理員] -> [共同管理員]。
+3. 按一下要刪除之共同管理員旁的 [X] 按鈕 (如下方示螢幕擷取畫面所示)。
+
+    ![繪圖](media/marketplace-publishing-pre-requisites/imgDeleteAdmin_03.png)
+
 > [AZURE.IMPORTANT] 如果您只要發佈免費項目 (或自備授權)，就不必填寫公司稅務和銀行資訊。
 
 > 您必須先完成公司註冊才能開始使用。不過，您的公司在 Microsoft 開發人員中心帳戶中處理稅務和銀行資訊時，開發人員就可以開始著手在[發佈入口網站](https://publish.windowsazure.com)中建立虛擬機器映像、取得認證以及在 Azure 預備環境中加以測試。只有在將供應項目發佈到 Azure Marketplace 的最後一個步驟時，才必須完成賣方帳戶的核准程序。
 
 ## 取得 Azure「隨用隨付」訂用帳戶
-這是您要用來建立 VM 映像和提交映像到 [Azure Marketplace](https://azure.microsoft.com/marketplace/) 的訂用帳戶。如果您沒有現有的訂用帳戶，請在 https://account.windowsazure.com/signup?offer=ms-azr-0003p 註冊。
+這是您要用來建立 VM 映像和提交映像到 [Azure Marketplace](https://azure.microsoft.com/marketplace/) 的訂用帳戶。如果您沒有訂用帳戶，請在 https://account.windowsazure.com/signup?offer=ms-azr-0003p 註冊。
 
 ## 「銷售來源」國家/地區
 > [AZURE.WARNING]
@@ -62,4 +71,4 @@
 ## 另請參閱
 - [使用者入門：如何將供應項目發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

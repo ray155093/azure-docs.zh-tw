@@ -1,5 +1,5 @@
 <properties
-pageTitle="在 PowerApps Enterprise 中新增 Excel 連接器 | Microsoft Azure"
+pageTitle="新增 Excel 連接器 | Microsoft Azure"
 description="搭配 REST API 參數來使用 Excel 連接器的概觀"
 services=""    
 documentationCenter=""     
@@ -14,198 +14,204 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="na"
-ms.date="05/18/2016"
+ms.date="08/23/2016"
 ms.author="deonhe"/>
 
 # 開始使用 Excel 連接器
 
-連接至 Excel 以插入資料列、刪除資料列等。您可以從下列應用程式使用 Excel 連接器︰
+目前，Logic Apps 中沒有任何 Excel 連接器。
 
-- PowerApps
+## 使用 Excel 資料
+您可以將 Excel 資料儲存為儲存體資料夾中的逗號分隔值 (CSV) 檔案，例如 [OneDrive](connectors-create-api-onedrive.md)。您也可以搭配使用此 CSV 檔案與[一般檔案連接器](../app-service-logic/app-service-logic-enterprise-integration-flatfile.md)。
 
-Excel 可讓您：
+<!---
 
-- 將 Excel 連接器新增到 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個連接器。 
+There is no Excel connector in Logic Apps. Originally, this topic only referenced PowerApps. Removed all PowerApps references. 
 
-如需如何在 PowerApps Enterprise 中新增連接器的資訊，請移至[在 PowerApps 中註冊連接器](../power-apps/powerapps-register-from-available-apis.md)。
 
-## 觸發程序及動作
-Excel 包含下列動作。無觸發程序。
 
-|觸發程序|動作|
+Connect to Excel to insert a row, delete a row, and more. 
+
+## Triggers and actions
+Excel includes the following action. There are no triggers. 
+
+|Trigger|Actions|
 |--- | ---|
-|None | <ul><li>取得資料列</li><li>插入資料列</li><li>刪除資料列</li><li>取得資料列</li><li>取得資料表</li><li>更新資料列</li></ul>
+|None | <ul><li>Get rows</li><li>Insert row</li><li>Delete row</li><li>Get row</li><li>Get tables</li><li>Update row</li></ul>
 
-所有連接器都支援 JSON 和 XML 格式的資料。
+All connectors support data in JSON and XML formats. 
 
-## Swagger REST API 參考
-適用的版本：1.0。
+## Swagger REST API reference
+Applies to version: 1.0.
 
-### 在 Excel 資料表中插入新的資料列
-```POST: /datasets/{dataset}/tables/{table}/items```
+### Inserts a new row into an Excel table
+```POST: /datasets/{dataset}/tables/{table}/items``` 
 
 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|Excel 檔案名稱|
-|資料表|字串|yes|路徑|無|Excel 資料表名稱|
-|item| |yes|body|無|要在指定的 Excel 資料表中插入的資料列|
+|dataset|string|yes|path|none|Excel file name|
+|table|string|yes|path|none|Excel table name|
+|item| |yes|body|none|Row to insert into the specified Excel table|
 
 
 ### Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
 
 
-### 從 Excel 資料表擷取單一資料列
-```GET: /datasets/{dataset}/tables/{table}/items/{id}```
+### Retrieves a single row from an Excel table
+```GET: /datasets/{dataset}/tables/{table}/items/{id}``` 
 
 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|Excel 檔案名稱|
-|資料表|字串|yes|路徑|無|Excel 資料表名稱|
-|id|字串|yes|路徑|無|要擷取的資料列的唯一識別碼|
+|dataset|string|yes|path|none|Excel file name|
+|table|string|yes|path|none|Excel table name|
+|id|string|yes|path|none|Unique identifier of row to retrieve|
 
 
 ### Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
 
 
-### 刪除 Excel 資料表中的資料列。
-```DELETE: /datasets/{dataset}/tables/{table}/items/{id}```
+### Deletes a row from an Excel table
+```DELETE: /datasets/{dataset}/tables/{table}/items/{id}``` 
 
 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|Excel 檔案名稱|
-|資料表|字串|yes|路徑|無|Excel 資料表名稱|
-|id|字串|yes|路徑|無|要刪除的資料列的唯一識別碼|
+|dataset|string|yes|path|none|Excel file name|
+|table|string|yes|path|none|Excel table name|
+|id|string|yes|path|none|Unique identifier of the row to delete|
 
 
 ### Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
 
 
-### 更新 Excel 資料表中的現有資料列
-```PATCH: /datasets/{dataset}/tables/{table}/items/{id}```
+### Updates an existing row in an Excel table
+```PATCH: /datasets/{dataset}/tables/{table}/items/{id}``` 
 
 
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| Data Type|Required|Located In|Default Value|Description|
 | ---|---|---|---|---|---|
-|資料集|字串|yes|路徑|無|Excel 檔案名稱|
-|資料表|字串|yes|路徑|無|Excel 資料表名稱|
-|id|字串|yes|路徑|無|要更新的資料列的唯一識別碼|
-|item| |yes|body|無|值已更新的資料列|
+|dataset|string|yes|path|none|Excel file name|
+|table|string|yes|path|none|Excel table name|
+|id|string|yes|path|none|Unique identifier of the row to update|
+|item| |yes|body|none|Row with updated values|
 
 
 ### Response
 
-|名稱|說明|
+|Name|Description|
 |---|---|
 |200|OK|
-|預設值|作業失敗。|
+|default|Operation Failed.|
 
 
 
 
-## 物件定義
+## Object definitions
 
 #### DataSetsMetadata
 
-| 名稱 | 資料類型 | 必要|
+| Name | Data Type | Required|
 |---|---|---|
-|表格式|未定義|no|
-|blob|未定義|no|
+|tabular|not defined|no|
+|blob|not defined|no|
 
 #### TabularDataSetsMetadata
 
-| 名稱 | 資料類型 |必要|
+| Name | Data Type |Required|
 |---|---|---|
-|來源|字串|no|
-|displayName|字串|no|
-|urlEncoding|字串|no|
-|tableDisplayName|字串|no|
-|tablePluralName|字串|no|
+|source|string|no|
+|displayName|string|no|
+|urlEncoding|string|no|
+|tableDisplayName|string|no|
+|tablePluralName|string|no|
 
 #### BlobDataSetsMetadata
 
-| 名稱 | 資料類型 |必要|
+| Name | Data Type |Required|
 |---|---|---|
-|來源|字串|no|
-|displayName|字串|no|
-|urlEncoding|字串|no|
+|source|string|no|
+|displayName|string|no|
+|urlEncoding|string|no|
 
 #### TableMetadata
 
-| 名稱 | 資料類型 |必要|
+| Name | Data Type |Required|
 |---|---|---|
-|名稱|字串|no|
-|title|字串|no|
-|x-ms-permission|字串|no|
-|結構描述|未定義|no|
+|name|string|no|
+|title|string|no|
+|x-ms-permission|string|no|
+|schema|not defined|no|
 
 #### DataSetsList
 
-| 名稱 | 資料類型 |必要|
+| Name | Data Type |Required|
 |---|---|---|
 |value|array|no|
 
 #### DataSet
 
-| 名稱 | 資料類型 |必要|
+| Name | Data Type |Required|
 |---|---|---|
-|名稱|字串|no|
-|DisplayName|字串|no|
+|Name|string|no|
+|DisplayName|string|no|
 
-#### 資料表
+#### Table
 
-| 名稱 | 資料類型 |必要|
+| Name | Data Type |Required|
 |---|---|---|
-|名稱|字串|no|
-|DisplayName|字串|no|
+|Name|string|no|
+|DisplayName|string|no|
 
-#### 項目
+#### Item
 
-| 名稱 | 資料類型 |必要|
+| Name | Data Type |Required|
 |---|---|---|
-|ItemInternalId|字串|no|
+|ItemInternalId|string|no|
 
 #### TablesList
 
-| 名稱 | 資料類型 |必要|
+| Name | Data Type |Required|
 |---|---|---|
 |value|array|no|
 
 #### ItemsList
 
-| 名稱 | 資料類型 |必要|
+| Name | Data Type |Required|
 |---|---|---|
 |value|array|no|
 
 
-## 後續步驟
-[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md) [建立 Power 應用程式](../power-apps/powerapps-get-started-azure-portal.md)
+## Next Steps
+[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md)  
 
-<!---HONumber=AcomDC_0525_2016-->
+
+-->
+
+<!---HONumber=AcomDC_0824_2016-->

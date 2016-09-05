@@ -1,9 +1,9 @@
 <properties
-   pageTitle="開始使用 Azure 資源管理員設定網際網路面向的負載平衡器 | Microsoft Azure"
+   pageTitle="開始使用 Azure 資源管理員設定網際網路面向的負載平衡器 | Microsoft Azure "
    description="如何建立 Azure 資源管理員的負載平衡器規則、NAT 規則、探查。逐步示範建立負載平衡器資源的端對端流程。"
    services="load-balancer"
    documentationCenter="na"
-   authors="joaoma"
+   authors="sdwheeler"
    manager="carmonm"
    editor="tysonn" />
 <tags
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/09/2016"
-   ms.author="joaoma" />
+   ms.author="sewhee" />
 
 # 開始使用 Azure 資源管理員設定網際網路面向的負載平衡器
 
@@ -281,4 +281,4 @@ PS C:\> $backendnic1
 
 [設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0824_2016-->

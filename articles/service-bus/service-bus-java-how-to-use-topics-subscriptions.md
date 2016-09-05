@@ -13,60 +13,34 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="05/06/2016"
+	ms.date="08/23/2016"
 	ms.author="sethm"/>
 
 # 如何使用服務匯流排主題和訂用帳戶
 
 [AZURE.INCLUDE [service-bus-selector-topics](../../includes/service-bus-selector-topics.md)]
 
-本指南說明如何使用服務匯流排主題和訂用帳戶。相關範例是以 Java 撰寫並使用 [Azure SDK for Java][]。所涵蓋的案例包括**建立主題和訂閱**、**建立訂閱篩選器**、**傳送訊息至主題**、**接收訂閱的訊息**，及**刪除主題和訂閱**。
+本指南說明如何使用服務匯流排主題和訂閱。相關範例是以 Java 撰寫並使用 [Azure SDK for Java][]。所涵蓋的案例包括**建立主題和訂閱**、**建立訂閱篩選器**、**傳送訊息至主題**、**接收訂閱的訊息**，及**刪除主題和訂閱**。
 
 ## 什麼是服務匯流排主題和訂用帳戶？
 
-服務匯流排主題和訂用帳戶支援*發佈/訂用帳戶*訊息通訊模型。使用主題和訂用帳戶時，分散式應用程式的元件彼此不直接通訊，相反的，他們會透過扮演中繼角色的主題來交換訊息。
+服務匯流排主題和訂用帳戶支援「發佈/訂閱」訊息通訊模型。使用主題和訂用帳戶時，分散式應用程式的元件彼此不會直接通訊，相反地，它們會透過扮演中繼角色的主題來交換訊息。
 
 ![主題概念](./media/service-bus-java-how-to-use-topics-subscriptions/sb-topics-01.png)
 
-有別於服務匯流排佇列，服務匯流排佇列中的每個訊息只會由單一取用者處理，主題和訂用帳戶採用發佈/訂用帳戶模式，提供一對多的通訊形式。一個主題可以登錄多個訂用帳戶。當訊息傳送至主題時，每個訂用帳戶都可取得訊息來個別處理。
+服務匯流排佇列中的每個訊息只會由單一取用者處理，而服務匯流排主題和訂用帳戶則採用發佈/訂用帳戶模式，提供「一對多」的通訊形式。一個主題可以登錄多個訂閱。當訊息傳送至主題時，每個訂閱都可取得訊息來個別處理。
 
-主題的訂用帳戶類似於虛擬佇列，同樣可接收已傳送到主題的訊息複本。您可以選擇為個別訂用帳戶來登錄主題的篩選規則，以篩選/限制主題的哪些訊息由哪些主題訂用帳戶接收。
+主題的訂用帳戶類似於虛擬佇列，同樣可接收已傳送到主題的訊息複本。您可以選擇為個別訂閱來登錄主題的篩選規則，以篩選/限制主題的哪些訊息由哪些主題訂閱接收。
 
 服務匯流排主題和訂用帳戶可讓您擴大處理非常多使用者和應用程式上非常大量的訊息。
 
 ## 建立服務命名空間
 
-若要開始在 Azure 中使用服務匯流排主題和訂用帳戶，首先必須建立服務命名空間。命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。
+若要開始在 Azure 中使用服務匯流排主題和訂閱，首先必須建立服務命名空間。命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。
 
 若要建立命名空間：
 
-1.  登入 [Azure 傳統入口網站][]。
-
-2.  在入口網站的左方瀏覽窗格中，按一下 [服務匯流排]。
-
-3.  在入口網站的下方窗格中，按一下 [建立]。![][0]
-
-4.  在 [Add a new namespace] 對話方塊中，輸入命名空間名稱。系統會立即檢查此名稱是否可用。![][2]
-
-5.  確定命名空間名稱可用之後，請選擇要代管命名空間的國家或區域 (必須使用您要部署計算資源的相同國家/區域)。
-
-	重要事項：請挑選您想要選擇來部署應用程式的**相同區域**。這樣可以獲得最佳效能。
-
-6. 	讓對話方塊中的其他欄位保留其預設值 ([**傳訊**] 和 [**標準層**])，然後按一下核取記號。此時系統會建立並啟用服務命名空間。系統為帳戶提供資源時，您可能需要等幾分鐘。
-
-## 取得命名空間的預設管理認證
-
-若要在新的命名空間上執行管理作業，例如建立主題或訂用帳戶，您必須取得命名空間的管理認證。您可以從入口網站取得這些認證。
-
-### 從入口網站取得管理認證
-
-1.  在左方瀏覽窗格中，按一下 [**服務匯流排**] 節點，以顯示可用的命名空間清單：![][0]
-
-2.  從顯示的清單中，選取您剛建立的命名空間：![][3]
-
-3.  按一下 [**設定**]，檢視您的命名空間的共用存取原則。![](./media/service-bus-java-how-to-use-topics-subscriptions/sb-queues-14.png)
-
-4.  記下主要金鑰，或將它複製到剪貼簿。
+[AZURE.INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
 ## 設定應用程式以使用服務匯流排
 
@@ -122,11 +96,11 @@ import javax.xml.datatype.*;
 
 ## 建立訂用帳戶
 
-**ServiceBusService** 類別也能用來建立主題的訂用帳戶。為訂用帳戶命名，且能包含選擇性篩選器，以用來限制傳遞至訂用帳戶的虛擬佇列的訊息集合。
+**ServiceBusService** 類別也能用來建立主題的訂用帳戶。為訂閱命名，且能包含選擇性篩選器，以用來限制傳遞至訂閱的虛擬佇列的訊息集合。
 
-### 使用預設 (MatchAll) 篩選器建立訂閱
+### 使用預設 (MatchAll) 篩選器建立訂用帳戶
 
-**MatchAll** 篩選器是預設篩選器，如果在建立新的訂閱時沒有指定篩選器，便會使用此篩選器。使用 **MatchAll** 篩選器時，所有發佈至主題的訊息都會被置於訂閱的虛擬佇列中。下列範例將建立名為 "AllMessages" 的訂閱，並使用預設的 **MatchAll** 篩選器。
+如果在建立新的訂用帳戶時沒有指定篩選器，**MatchAll** 篩選器就會是預設使用的篩選器。使用 **MatchAll** 篩選器時，所有發佈至主題的訊息都會被置於訂用帳戶的虛擬佇列中。下列範例將建立名為 "AllMessages" 的訂閱，並使用預設的 **MatchAll** 篩選器。
 
     SubscriptionInfo subInfo = new SubscriptionInfo("AllMessages");
     CreateSubscriptionResult result =
@@ -134,9 +108,9 @@ import javax.xml.datatype.*;
 
 ### 使用篩選器建立訂用帳戶
 
-您也可以設定篩選器，讓您界定傳送至主題的哪些訊息應出現在特定主題訂用帳戶中。
+您也可以建立篩選器，讓您界定傳送至主題的哪些訊息應出現在特定主題訂用帳戶中。
 
-訂閱所支援的最具彈性篩選器類型是實作 SQL92 子集的 [SqlFilter][]。SQL 篩選器會對發佈至主題之訊息的屬性運作。如需可與 SQL 篩選器搭配使用的運算式詳細資料，請檢閱 [SqlFilter.SqlExpression][] 語法。
+訂用帳戶所支援的最具彈性篩選器類型是實作 SQL92 子集的 [SqlFilter][]。SQL 篩選器會對發佈至主題之訊息的屬性運作。如需可與 SQL 篩選器搭配使用的運算式詳細資料，請檢閱 [SqlFilter.SqlExpression][] 語法。
 
 以下範例將建立名為 `HighMessages` 的訂用帳戶，其帶有只選取自訂 **MessageNumber** 屬性大於 3 之訊息的 [SqlFilter][] 物件：
 
@@ -175,9 +149,9 @@ BrokeredMessage message = new BrokeredMessage("MyMessage");
 service.sendTopicMessage("TestTopic", message);
 ```
 
-傳送至服務匯流排主題的訊息是 [BrokeredMessage][] 類別的執行個體。[BrokeredMessage][]* 物件具有一組標準方法 (例如 **setLabel** 和 **TimeToLive**)、一個用來保存自訂應用程式特定屬性的目錄，以及一組任意的應用程式資料。應用程式可設定訊息內文，方法是將任何可序列化物件傳遞到 [BrokeredMessage][] 的建構函式，接著系統便會使用適當的 **DataContractSerializer** 來序列化物件。或者，也可以提供 **java.io.InputStream**。
+傳送至服務匯流排主題的訊息是 [BrokeredMessage][] 類別的執行個體。[BrokeredMessage][] 物件具有一組標準方法 (例如 *setLabel* 和 *TimeToLive**)、用來保存自訂應用程式特定屬性的字典，以及任意的應用程式資料本文。應用程式可設定訊息內文，方法是將任何可序列化物件傳遞到 [BrokeredMessage][] 的建構函式，接著系統便會使用適當的 **DataContractSerializer** 來序列化物件。或者，也可以提供 **java.io.InputStream**。
 
-下列範例將示範如何傳送五則測試訊息至上述程式碼片段中所取得的 `TestTopic` **MessageSender**。請注意迴圈反覆運算上每個訊息的 **MessageNumber** 屬性值的變化 (這可判斷接收訊息的訂閱為何)：
+下列範例將示範如何傳送五則測試訊息至上述程式碼片段中所取得的 `TestTopic` **MessageSender**。請注意迴圈反覆運算上每個訊息的 **MessageNumber** 屬性值的變化 (這可判斷接收訊息的訂用帳戶為何)：
 
 ```
 for (int i=0; i<5; i++)  {
@@ -265,7 +239,7 @@ catch (Exception e) {
 
 ## 刪除主題和訂用帳戶
 
-刪除主題和訂閱的主要方式，是使用 **ServiceBusContract** 物件。刪除主題也將會刪除對主題註冊的任何訂用帳戶。您也可以個別刪除訂用帳戶。
+刪除主題和訂用帳戶的主要方式，是使用 **ServiceBusContract** 物件。刪除主題也將會刪除對主題註冊的任何訂用帳戶。您也可以個別刪除訂用帳戶。
 
 ```
 // Delete subscriptions
@@ -279,12 +253,12 @@ service.deleteTopic("TestTopic");
 
 ## 後續步驟
 
-現在您已了解服務匯流排佇列的基本概念，請參閱[服務匯流排佇列、主題和訂用帳戶][]，以取得詳細資訊。
+現在您已了解服務匯流排佇列的基本概念，請參閱[服務匯流排佇列、主題和訂用帳戶s][]，以取得詳細資訊。
 
   [Azure SDK for Java]: http://azure.microsoft.com/develop/java/
   [Azure Toolkit for Eclipse]: https://msdn.microsoft.com/library/azure/hh694271.aspx
-  [Azure 傳統入口網站]: http://manage.windowsazure.com/
-  [服務匯流排佇列、主題和訂用帳戶]: service-bus-queues-topics-subscriptions.md
+  [Azure classic portal]: http://manage.windowsazure.com/
+  [服務匯流排佇列、主題和訂用帳戶s]: service-bus-queues-topics-subscriptions.md
   [SqlFilter]: http://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sqlfilter.aspx
   [SqlFilter.SqlExpression]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sqlfilter.sqlexpression.aspx
   [BrokeredMessage]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.aspx
@@ -293,4 +267,4 @@ service.deleteTopic("TestTopic");
   [2]: ./media/service-bus-java-how-to-use-topics-subscriptions/sb-queues-04.png
   [3]: ./media/service-bus-java-how-to-use-topics-subscriptions/sb-queues-09.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0824_2016-->

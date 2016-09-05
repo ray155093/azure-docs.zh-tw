@@ -23,17 +23,12 @@
 - [Azure CLI](resource-group-template-deploy-cli.md)
 - [入口網站](resource-group-template-deploy-portal.md)
 - [REST API](resource-group-template-deploy-rest.md)
-- [.NET](https://azure.microsoft.com/documentation/samples/resource-manager-dotnet-template-deployment/)
-- [Java](https://azure.microsoft.com/documentation/samples/resources-java-deploy-using-arm-template/)
-- [節點](https://azure.microsoft.com/documentation/samples/resource-manager-node-template-deployment/)
-- [Python](https://azure.microsoft.com/documentation/samples/resource-manager-python-template-deployment/)
-- [Ruby](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-template-deployment/)
 
 這篇文章說明如何使用 Resource Manager REST API 與 Resource Manager 範本來將您的資源部署至 Azure。
 
 > [AZURE.TIP] 如需部署期間偵錯錯誤的說明，請參閱︰
 >
-> - [使用 REST API 檢視部署作業](resource-manager-troubleshoot-deployments-rest.md)，以了解有關取得可協助您針對錯誤進行疑難排解的資訊
+> - [使用 REST API 來檢視部署作業](resource-manager-troubleshoot-deployments-rest.md)，以了解有關取得可協助您針對錯誤進行疑難排解的資訊
 > - [針對使用 Azure Resource Manager 將資源部署至 Azure 時常見的錯誤進行疑難排解](resource-manager-common-deployment-errors.md)，以了解如何解決常見的部署錯誤
 
 您的範本可以是本機檔案，或者是透過 URI 提供使用的外部檔案。當您的範本位於儲存體帳戶中時，您可以限制範本的存取權，並在部署期間提供共用存取簽章 (SAS) Token
@@ -42,7 +37,7 @@
 
 ## 使用 REST API 部署
 1. 設定[一般參數和標頭](https://msdn.microsoft.com/library/azure/8d088ecc-26eb-42e9-8acc-fe929ed33563#bk_common) (包括驗證權杖)。
-2. 如果您沒有現有資源群組，請建立新的資源群組。提供您的訂用帳戶識別碼、新資源群組的名稱，以及解決方案需要的位置。如需詳細資訊，請參閱[建立資源群組](https://msdn.microsoft.com/library/azure/dn790525.aspx)。
+2. 如果您沒有現有資源群組，請建立新的資源群組。提供您的訂用帳戶識別碼、新資源群組的名稱，以及需要解決方案的位置。如需詳細資訊，請參閱[建立資源群組](https://msdn.microsoft.com/library/azure/dn790525.aspx)。
 
         PUT https://management.azure.com/subscriptions/<YourSubscriptionId>/resourcegroups/<YourResourceGroupName>?api-version=2015-01-01
           <common headers>
@@ -53,9 +48,9 @@
             }
           }
    
-3. 請先執行[驗證範本部署](https://msdn.microsoft.com/library/azure/dn790547.aspx)作業來驗證部署，然後再執行部署。測試部署時，請提供與執行部署時完全一致的參數 (如下個步驟所示)。
+3. 請先執行[驗證範本部署作業](https://msdn.microsoft.com/library/azure/dn790547.aspx)來驗證部署，然後再執行部署。測試部署時，請提供與執行部署時完全一致的參數 (如下個步驟所示)。
 
-3. 建立新的部署。提供您的訂用帳戶識別碼、要部署之資源群組的名稱、部署的名稱，以及範本的連結。如需範本檔案的相關資訊，請參閱[參數檔案](./#parameter-file)。如需以 REST API 建立資源群組的相關詳細資訊，請參閱 [建立範本部署](https://msdn.microsoft.com/library/azure/dn790564.aspx)。請注意，**mode** 是設為 **Incremental**。若要執行完整部署，請將 **mode** 設為 **Complete**。使用完整模式時請務必謹慎，因為您可能會不小心刪除不在範本中的資源。
+3. 建立部署。提供您的訂用帳戶識別碼、要部署之資源群組的名稱、部署的名稱，以及範本的連結。如需範本檔案的相關資訊，請參閱[參數檔案](./#parameter-file)。如需以 REST API 建立資源群組的相關詳細資訊，請參閱 [建立範本部署](https://msdn.microsoft.com/library/azure/dn790564.aspx)。請注意，**mode** 是設為 **Incremental**。若要執行完整部署，請將 **mode** 設為 **Complete**。使用完整模式時請務必謹慎，因為您可能會不小心刪除不在範本中的資源。
     
         PUT https://management.azure.com/subscriptions/<YourSubscriptionId>/resourcegroups/<YourResourceGroupName>/providers/Microsoft.Resources/deployments/<YourDeploymentName>?api-version=2015-01-01
           <common headers>
@@ -94,4 +89,4 @@
 - 如需將您的方案部署到不同環境的指引，請參閱 [Microsoft Azure 中的開發和測試環境](solution-dev-test-environments.md)。
 - 如需有關使用 KeyVault 參考來傳遞安全值的詳細資料，請參閱[在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

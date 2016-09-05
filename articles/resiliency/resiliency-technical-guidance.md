@@ -4,7 +4,7 @@
    services=""
    documentationCenter="na"
    authors="adamglick"
-   manager="hongfeig"
+   manager="saladki"
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/01/2016"
+   ms.date="08/18/2016"
    ms.author="aglick"/>
 
 #Azure 復原技術指導
@@ -61,4 +61,4 @@
 
 這篇文章是一系列文章的一部分，著重在 Azure 復原的技術指導。如果您有興趣閱讀本系列的其他文章，您可以從[從本機失敗中復原](resiliency-technical-guidance-recovery-local-failures.md)開始。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

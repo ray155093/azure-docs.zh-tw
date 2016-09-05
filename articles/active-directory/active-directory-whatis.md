@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="07/13/2016"
+    ms.date="08/23/2016"
     ms.author="markusvi"/>
 
 
@@ -39,7 +39,7 @@ Azure AD 也包含一組完整的身分識別管理功能，包括多重要素�
 
 
 
-<center>![Azure AD Connect Stack](./media/active-directory-whatis/Azure_Active_Directory.png) </center>
+![Azure AD Connect 堆疊](./media/active-directory-whatis/Azure_Active_Directory.png)
 
 
 ## Azure AD 有多可靠？
@@ -104,4 +104,4 @@ Azure AD 經悉心設計，不但支援多租用戶、地理分布周全，更�
 
 - [如何探索組織內使用未經批准的雲端應用程式](active-directory-cloudappdiscovery-whatis.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

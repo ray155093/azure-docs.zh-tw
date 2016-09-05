@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/21/2016"
+	ms.date="08/24/2016"
 	ms.author="genli"/>
 
 # 將您的 Azure 訂用帳戶切換到其他優惠
@@ -23,6 +23,8 @@
 
 -	如果您發現您的 Azure 花費很高，切換至綁約方案，可能會有折扣。按一下[這裡](billing-usage-rate-card-overview.md)查看有關如何深入了解您的 Microsoft Azure 資源耗用量的詳細資訊。
 -	如果您希望在註冊「隨用隨付」訂用帳戶之後，利用成員資格的權益 (例如 MSDN 或 BizSpark)。
+
+> [AZURE.NOTE] 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
 ## 如何將訂用帳戶切換到其他優惠
 
@@ -66,7 +68,7 @@
 
 **我可以使用這個機制從 Web 直接移轉至[雲端方案提供者](https://partner.microsoft.com/Solutions/cloud-reseller-overview) (CSP)，或[企業合約](https://azure.microsoft.com/pricing/enterprise-agreement/) (EA) 優惠嗎？**
 
-這個機制僅限 Web 直接優惠來回切換。若要將現有的訂用帳戶移至 EA，請您的註冊系統管理員將您的帳戶加入至 EA。接著，您會收到邀請電子郵件。當您遵循指示接受邀請時，您的訂用帳戶會自動移至企業合約。目前沒有將現有的 Web 直接訂用帳戶移到 CSP 的選項。
+這個機制僅限 Web 直接優惠來回切換。若要將現有的訂用帳戶移至 EA，請您的註冊系統管理員將您的帳戶新增至 EA。接著，您會收到邀請電子郵件。當您遵循指示接受邀請時，您的訂用帳戶會自動移至企業合約。目前沒有將現有的 Web 直接訂用帳戶移到 CSP 的選項。
 
 ## 您可以切換的可用優惠
 
@@ -77,4 +79,6 @@
 
 如需其他優惠變更，[請連絡支援中心](http://go.microsoft.com/fwlink/?LinkID=619338)。
 
-<!---HONumber=AcomDC_0803_2016-->
+> [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+
+<!---HONumber=AcomDC_0824_2016-->

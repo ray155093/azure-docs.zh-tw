@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/31/2016" 
+	ms.date="08/23/2016" 
 	ms.author="stbaro"/>
 
 # 如何連接至具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶
@@ -24,7 +24,7 @@
 ## 取得帳戶的連接字串資訊
 
 1. 在新的視窗中，登入 [Azure 入口網站](https://portal.azure.com)。
-2. 在 [所有設定] 刀鋒視窗中，按一下 [連接字串]。若要瀏覽至 [所有設定]，在 Jumpbar 上按一下 [瀏覽]、按一下 [DocumentDB] 帳戶，然後選取具有 MongoDB 通訊協定支援的 DocumentDB 帳戶。
+2. 在 [帳戶] 刀鋒視窗的**左導覽**列中，按一下 [連接字串]。若要瀏覽至 [帳戶] 刀鋒視窗，請在 Jumpbar 上按一下 [其他服務]、按一下 [DocumentDB (NoSQL)]，然後選取具有 MongoDB 通訊協定支援的 DocumentDB 帳戶。
 
 	![[所有設定] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-connect-mongodb-account/SettingsBlade.png)
 
@@ -84,4 +84,4 @@
 
  
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -23,12 +23,6 @@
 - [Azure CLI](resource-group-template-deploy-cli.md)
 - [入口網站](resource-group-template-deploy-portal.md)
 - [REST API](resource-group-template-deploy-rest.md)
-- [.NET](https://azure.microsoft.com/documentation/samples/resource-manager-dotnet-template-deployment/)
-- [Java](https://azure.microsoft.com/documentation/samples/resources-java-deploy-using-arm-template/)
-- [節點](https://azure.microsoft.com/documentation/samples/resource-manager-node-template-deployment/)
-- [Python](https://azure.microsoft.com/documentation/samples/resource-manager-python-template-deployment/)
-- [Ruby](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-template-deployment/)
-
 
 本主題示範如何使用 [Azure 入口網站](https://portal.azure.com)搭配 [Azure Resource Manager](resource-group-overview.md) 來部署您的 Azure 資源。若要了解如何管理您的資源，請參閱[透過入口網站管理 Azure 資源](./azure-portal/resource-group-portal.md)。
 
@@ -56,15 +50,15 @@
 
     ![搜尋 Marketplace](./media/resource-group-template-deploy-portal/search-resource.png)
 
-3. 根據您選取的資源類型，您必須在部署前設定相關的屬性集合。這些選項並未在這裡顯示，因為它們會隨著資源類型而有所不同。對於所有類型，您必須選取目的地資源群組。下圖顯示如何建立新的 Web 應用程式並將它部署至您剛建立的資源群組。
+3. 根據您選取的資源類型，您必須在部署前設定相關的屬性集合。這些選項並未在這裡顯示，因為它們會隨著資源類型而有所不同。對於所有類型，您必須選取目的地資源群組。下圖顯示如何建立 Web 應用程式並將其部署至您建立的資源群組。
 
     ![建立資源群組](./media/resource-group-template-deploy-portal/select-existing-group.png)
 
-    或者，您也可以決定在部署資源時建立新的資源群組。選取 [新建] 並提供資源群組的名稱。
+    或者，您也可以決定在部署資源時建立資源群組。選取 [新建] 並提供資源群組的名稱。
 
     ![建立新的資源群組](./media/resource-group-template-deploy-portal/select-new-group.png)
 
-4. 您的部署即將開始。這可能需要幾分鐘的時間。部署完成後，您就會看到通知。
+4. 您的部署隨即開始。部署可能需要幾分鐘的時間。部署完成後，您就會看到通知。
 
     ![檢視通知](./media/resource-group-template-deploy-portal/view-notification.png)
 
@@ -76,7 +70,7 @@
 
 如果您想要執行部署，但不使用 Marketplace 中的任何範本，您可建立自訂範本以定義您的解決方案的基礎結構。若要了解如何建立範本，請參閱[撰寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
 
-1. 若要透過入口網站來部署自訂的範本，請選取 [新增]，並開始搜尋**範本部署**，直到您可以從選項中選取它為止。
+1. 若要透過入口網站來部署自訂的範本，請選取 [新增]，並開始搜尋 [範本部署]，直到您可以從選項中選取它為止。
 
     ![搜尋範本部署](./media/resource-group-template-deploy-portal/search-template.png)
 
@@ -124,4 +118,4 @@
 - 若要針對部署錯誤進行疑難排解，請參閱[使用 Azure 入口網站對資源群組部署進行疑難排解](resource-manager-troubleshoot-deployments-portal.md)。
 - 若要從部署或資源群組擷取範本，請參閱[從現有資源匯出 Azure Resource Manager 範本](resource-manager-export-template.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

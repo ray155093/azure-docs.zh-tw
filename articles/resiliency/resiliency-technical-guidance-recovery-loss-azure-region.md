@@ -4,7 +4,7 @@
    services=""
    documentationCenter="na"
    authors="adamglick"
-   manager="hongfeig"
+   manager="saladki"
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/01/2016"
+   ms.date="08/18/2016"
    ms.author="aglick"/>
 
 #Azure 復原技術指導：從全區域服務中斷復原
@@ -102,11 +102,11 @@ Azure SQL Database 提供兩種復原：異地還原和作用中異地複寫。
 
 ####異地還原
 
-[異地還原](../sql-database/sql-database-recovery-using-backups.md#geo-restore)也適用於基本、標準和進階資料庫。它會在資料庫因裝載區域中的事件而無法使用時，提供預設復原選項。異地還原與還原時間點類似，需要使用 Azure 異地備援儲存體中的資料庫備份。它會從異地複寫的備份複本還原，因此可彈性地回應主要區域的儲存體中斷情況。如需詳細資訊，請參閱[從中斷復原](../sql-database/sql-database-disaster-recovery.md)。
+[異地還原](../sql-database/sql-database-recovery-using-backups.md#geo-restore)也適用於基本、標準和進階資料庫。它會在資料庫因裝載區域中的事件而無法使用時，提供預設復原選項。異地還原與還原時間點類似，需要使用 Azure 異地備援儲存體中的資料庫備份。它會從異地複寫的備份複本還原，因此可彈性地回應主要區域的儲存體中斷情況。詳細資訊請參閱[還原 Azure SQL Database 或容錯移轉到次要資料庫](../sql-database/sql-database-disaster-recovery.md)。
 
 ####主動式異地複寫
 
-[作用中異地複寫](../sql-database/sql-database-geo-replication-overview.md)適用於所有資料庫層。其設計是針對比異地還原需要更主動復原的應用程式。透過主動式異地複寫，您可以在不同區域的伺服器上最多建立四個可讀取的次要資料庫。您可以起始容錯移轉至任何次要資料庫。此外，主動式異地複寫可用來支援應用程式升級或重新配置案例，以及對唯讀工作負載進行負載平衡。如需詳細資訊，請參閱[設定異地複寫](../sql-database/sql-database-geo-replication-portal.md)和[容錯移轉至次要資料庫](../sql-database/sql-database-geo-replication-failover-portal.md)。請參閱[使用 SQL Database 的作用中異地複寫設計雲端災害復原應用程式](../sql-database/sql-database-designing-cloud-solutions-for-disaster-recovery.md)和[在不停機的情況下升級應用程式](../sql-database/sql-database-manage-application-rolling-upgrade.md)，以取得如何設計和實作應用程式以及在不停機情況下升級應用程式的詳細說明。
+[作用中異地複寫](../sql-database/sql-database-geo-replication-overview.md)適用於所有資料庫層。其設計是針對比異地還原需要更主動復原的應用程式。透過主動式異地複寫，您可以在不同區域的伺服器上最多建立四個可讀取的次要資料庫。您可以起始容錯移轉至任何次要資料庫。此外，主動式異地複寫可用來支援應用程式升級或重新配置案例，以及對唯讀工作負載進行負載平衡。如需詳細資訊，請參閱[設定異地複寫](../sql-database/sql-database-geo-replication-portal.md)和[容錯移轉至次要資料庫](../sql-database/sql-database-geo-replication-failover-portal.md)。請參閱[使用 SQL Database 的主動式異地複寫設計雲端災害復原應用程式](../sql-database/sql-database-designing-cloud-solutions-for-disaster-recovery.md)和[使用 SQL Database 主動式異地複寫管理雲端應用程式的輪流升級](../sql-database/sql-database-manage-application-rolling-upgrade.md)，以取得如何設計和實作應用程式以及在不停機情況下升級應用程式的詳細說明。
 
 ###虛擬機器上的 SQL Server
 
@@ -120,7 +120,7 @@ Azure 虛擬機器中執行的 SQL Server 2012 (和更新版本) 有各種選項
 
 ###服務匯流排
 
-Azure 服務匯流排使用不跨越 Azure 區域的唯一命名空間。因此，第一項需求是在替代區域設定必要的服務匯流排命名空間。不過，還需要考量佇列訊息的持久性。跨 Azure 區域複寫訊息有幾種策略。如需這些複寫策略和其他災害復原策略的詳細資訊，請參閱[將應用程式與服務匯流排中斷和災害隔絕的最佳作法](../service-bus/service-bus-outages-disasters.md)。關於其他可用性考量，請參閱[服務匯流排 (可用性)](./resiliency-technical-guidance-recovery-local-failures.md#service-bus)。
+Azure 服務匯流排使用不跨越 Azure 區域的唯一命名空間。因此，第一項需求是在替代區域設定必要的服務匯流排命名空間。不過，還需要考量佇列訊息的持久性。跨 Azure 區域複寫訊息有幾種策略。如需這些複寫策略和其他災害復原策略的詳細資訊，請參閱[將應用程式與服務匯流排中斷和災害隔絕的最佳作法](../service-bus/service-bus-outages-disasters.md)。關於其他可用性考量，請參閱[服務匯流排 (可用性)](./resiliency-technical-guidance-recovery-local-failures.md#other-azure-platform-services)。
 
 ###Web Apps
 
@@ -132,7 +132,7 @@ Azure 服務匯流排使用不跨越 Azure 區域的唯一命名空間。因此�
 
 ###HDInsight
 
-根據預設，與 HDInsight 相關聯的資料會儲存在 Azure Blob 儲存體中。HDInsight 要求 Hadoop 叢集處理 MapReduce 作業，以及包含要分析之資料的儲存體帳戶，必須並存於相同的區域。假設您使用 Azure 儲存體可用的異地複寫功能，如果主要區域因為某些原因而無法再使用，您可以在已複寫資料的次要地區存取您的資料。您可以在已複寫資料的區域建立新的 Hadoop 叢集，然後繼續處理資料。關於其他可用性考量，請參閱 [HDInsight (可用性)](./resiliency-technical-guidance-recovery-local-failures.md#hdinsight)。
+根據預設，與 HDInsight 相關聯的資料會儲存在 Azure Blob 儲存體中。HDInsight 要求 Hadoop 叢集處理 MapReduce 作業，以及包含要分析之資料的儲存體帳戶，必須並存於相同的區域。假設您使用 Azure 儲存體可用的異地複寫功能，如果主要區域因為某些原因而無法再使用，您可以在已複寫資料的次要地區存取您的資料。您可以在已複寫資料的區域建立新的 Hadoop 叢集，然後繼續處理資料。關於其他可用性考量，請參閱 [HDInsight (可用性)](./resiliency-technical-guidance-recovery-local-failures.md#other-azure-platform-services)。
 
 ###SQL Reporting
 
@@ -149,69 +149,81 @@ Azure 媒體服務在編碼和串流處理方面有不同的復原方法。一�
 ##災害復原檢查清單
 
 ##雲端服務檢查清單
-  1. 檢閱此文件的[雲端服務](#cloud-services)一節。
+
+  1. 檢閱此文件的＜雲端服務＞一節。
   2. 建立跨區域災害復原策略。
   3. 了解在替代區域保留容量的利弊取捨。
   4. 使用流量路由工具，例如 Azure 流量管理員。
 
 ##虛擬機器檢查清單
-  1. 檢閱此文件的[虛擬機器](#virtual-machines)一節。
+
+  1. 檢閱此文件的＜虛擬機器＞一節。
   2. 使用 [Azure 備份](https://azure.microsoft.com/services/backup/)建立跨區域的應用程式一致備份。
 
 ##儲存體檢查清單
-  1. 檢閱此文件的[儲存體](#storage)一節。
+
+  1. 檢閱此文件的＜儲存體＞一節。
   2. 請勿停用儲存體資源的異地複寫。
   3. 了解容錯移轉時異地複寫的替代區域。
   4. 針對使用者控制的容錯移轉策略建立自訂的備份策略。
 
 ##SQL Database 檢查清單
-  1. 檢閱此文件的 [SQL Database](#sql-database) 一節。
+
+  1. 檢閱此文件的＜SQL Database＞一節。
   2. 視需要使用[異地還原](../sql-database/sql-database-recovery-using-backups.md#geo-restore)或[異地複寫](../sql-database/sql-database-geo-replication-overview.md)。
 
 ##虛擬機器上的 SQL Server 檢查清單
-  1. 檢閱此文件的[虛擬機器上的 SQL Server](#sql-server-on-virtual-machines) 一節。
+
+  1. 檢閱此文件的＜虛擬機器上的 SQL Server＞一節。
   2. 使用跨區域 AlwaysOn 可用性群組或資料庫鏡像。
   3. 或者使用備份及還原到 Blob 儲存體。
 
 ##服務匯流排檢查清單
-  1. 檢閱此文件的[服務匯流排](#service-bus)一節。
+
+  1. 檢閱此文件的＜服務匯流排＞一節。
   2. 在替代區域中設定服務匯流排命名空間。
   3. 針對跨區域訊息考慮採用自訂的複寫策略。
 
 ##Web Apps 檢查清單
-  1. 檢閱此文件的 [Web Apps](#web-apps) 一節。
+
+  1. 檢閱此文件的＜Web Apps＞一節。
   2. 在主要區域外部維護網站備份。
   3. 如果是局部性中斷運作，嘗試使用 FTP 擷取目前站台。
   4. 規劃將網站部署到替代區域中的新網站或現有網站。
   5. 規劃應用程式與 DNS CNAME 記錄的設定變更。
 
 ##行動服務檢查清單
-  1. 檢閱此文件的[行動服務](#mobile-services)一節。
+
+  1. 檢閱此文件的＜行動服務＞一節。
   2. 在替代區域建立備份行動服務。
   3. 管理相關聯 Azure SQL Database 的備份供容錯移轉期間還原。
   4. 使用 Azure 命令列工具來移動行動服務。
 
 ##HDInsight 檢查清單
-  1. 檢閱此文件的 [HDInsight](#hdinsight) 一節。
+
+  1. 檢閱此文件的＜HDInsight＞一節。
   2. 使用複寫的資料在區域建立新的 Hadoop 叢集。
 
 ##SQL Reporting 檢查清單
-  1. 檢閱此文件的 [SQL Reporting](#sql-reporting) 一節。
+
+  1. 檢閱此文件的＜SQL Reporting＞一節。
   2. 在不同區域維護替代 SQL Reporting 執行個體。
   3. 維護個別計畫將目標複寫到該區域。
 
 ##媒體服務檢查清單
-  1. 檢閱此文件的[媒體服務](#media-services)一節。
+
+  1. 檢閱此文件的＜媒體服務＞一節。
   2. 在替代區域建立媒體服務帳戶。
   3. 編碼兩個區域中相同的內容以支援串流容錯移轉。
-  4. 中斷運作時將編碼作業提交至替代區域。
+  4. 於服務中斷時將編碼作業提交至替代區域。
 
 ##虛擬網路檢查清單
-  1. 檢閱此文件的[虛擬網路](#virtual-network)一節。
+
+  1. 檢閱此文件的＜虛擬網路＞一節。
   2. 使用匯出的虛擬網路設定在其他區域重新建立它。
 
 ##後續步驟
 
 這篇文章是一系列文章的一部分，著重在 [Azure 復原技術指導](./resiliency-technical-guidance.md)。這一系列的下一篇文章著重於[從內部部署資料中心復原到 Azure](./resiliency-technical-guidance-recovery-on-premises-azure.md)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

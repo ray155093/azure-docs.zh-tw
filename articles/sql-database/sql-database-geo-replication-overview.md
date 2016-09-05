@@ -118,7 +118,7 @@
 |---|-----------|
 |[Create or Update Database (createMode=Restore)](https://msdn.microsoft.com/library/azure/mt163685.aspx)|建立、更新或還原主要或次要資料庫。|
 |[取得建立或更新資料庫狀態](https://msdn.microsoft.com/library/azure/mt643934.aspx)|在建立作業期間傳回狀態。|
-|[將次要資料庫設定為主要資料庫 (計劃的容錯移轉)](https://msdn.microsoft.com/ibrary/azure/mt575007.aspx)|在異地複寫關聯性中升級次要資料庫以做為新的主要資料庫。|
+|[將次要資料庫設定為主要資料庫 (計劃性容錯移轉)](https://msdn.microsoft.com/ibrary/azure/mt575007.aspx)|在異地複寫關聯性中升級次要資料庫以做為新的主要資料庫。|
 |[將次要資料庫設定為主要資料庫 (非計劃的容錯移轉)](https://msdn.microsoft.com/library/azure/mt582027.aspx)|強制容錯移轉至次要資料庫，並將次要資料庫設定為主要資料庫。|
 |[取得複寫連結](https://msdn.microsoft.com/library/azure/mt600929.aspx)|取得異地複寫關聯性中指定 SQL Database 的所有複寫連結。它會擷取 sys.geo\_replication\_links 目錄檢視中顯示的資訊。|
 |[取得複寫連結](https://msdn.microsoft.com/library/azure/mt600778.aspx)|取得異地複寫關聯性中指定 SQL Database 的特定複寫連結。它會擷取 sys.geo\_replication\_links 目錄檢視中顯示的資訊。|
@@ -133,4 +133,4 @@
 - 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)。
 - 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0824_2016-->

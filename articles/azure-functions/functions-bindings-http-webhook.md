@@ -15,10 +15,12 @@
 	ms.topic="reference"
 	ms.tgt_pltfrm="multiple"
 	ms.workload="na"
-	ms.date="05/16/2016"
+	ms.date="08/22/2016"
 	ms.author="chrande"/>
 
 # Azure Functions HTTP 和 Webhook 繫結
+
+[AZURE.INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
 這篇文章說明如何在 Azure Functions 中為 HTTP 和 Webhook 觸發程序與繫結進行設定及撰寫程式碼。
 
@@ -26,23 +28,23 @@
 
 ## HTTP 和 Webhook 繫結的 function.json
 
-*function.json* 檔案會提供要求和回應的相關內容。
+「function.json」檔案會提供要求和回應的相關內容。
 
 HTTP 要求的屬性︰
 
-- `name`︰函數程式碼中用於要求物件 (或是在 Node.js 函數的情況下，則是要求本文) 的變數名稱。
-- `type`︰必須設定為 *httpTrigger*。
-- `direction`：必須設定為 *in*。 
-- `webHookType`︰就 WebHook 觸發程序而言，有效值為 *github*、*slack* 及 *genericJson*。對於非 WebHook 的 HTTP 觸發程序，會將這個屬性設為空字串。如需有關 Webhook 的詳細資訊，請參閱接下來的 [WebHook 觸發程序](#webhook-triggers)一節。
+- `name`︰函式程式碼中用於要求物件 (或是在 Node.js 函式的情況下，則是要求本文) 的變數名稱。
+- `type`︰必須設定為「httpTrigger」。
+- `direction`：必須設為「in」。
+- `webHookType`︰就 WebHook 觸發程序而言，有效值為「github」、「slack」及「genericJson」。對於非 WebHook 的 HTTP 觸發程序，會將這個屬性設為空字串。如需有關 Webhook 的詳細資訊，請參閱接下來的 [WebHook 觸發程序](#webhook-triggers)一節。
 - `authLevel`︰不適用於 WebHook 觸發程序。設定為 [function] 要求 API 金鑰、[anonymous] 以拖放 API 金鑰需求，或 [admin] 要求主要 API 金鑰。如需詳細資訊，請參閱 [API 金鑰](#apikeys)。
 
 HTTP 回應的屬性︰
 
-- `name`︰函數程式碼中用於回應物件的變數名稱。
-- `type`：必須設定為 *http*。
-- `direction`：必須設定為 *out*。 
+- `name`︰函式程式碼中用於回應物件的變數名稱。
+- `type`：必須設定為「http」。
+- `direction`：必須設為「out」。
  
-範例 *function.json*：
+範例「function.json」：
 
 ```json
 {
@@ -84,9 +86,9 @@ WebHook 觸發程序是一種 HTTP 觸發程序，具有下列專為 Webhook 而
 
 ## API 金鑰
 
-根據預設，API 金鑰必須包含在 HTTP 要求之中，才能觸發 HTTP 或 WebHook 函式。金鑰可以包含在名為 `code` 的查詢字串變數中，或包含在 `x-functions-key` HTTP 標頭中。對於非 WebHook 函數 ，您可以在 *function.json* 檔案中將 `authLevel` 屬性設定為 "anonymous"，以表示不需要 API 金鑰。
+根據預設，API 金鑰必須包含在 HTTP 要求之中，才能觸發 HTTP 或 WebHook 函式。金鑰可以包含在名為 `code` 的查詢字串變數中，或包含在 `x-functions-key` HTTP 標頭。對於非 WebHook 函式，您可以在 function.json 檔案中將 `authLevel` 屬性設為 [anonymous]，以將 API 金鑰指定為非必要。
 
-您可以在函數應用程式的檔案系統中，於 *D:\\home\\data\\Functions\\secrets* 資料夾中找到 API 金鑰值。主要金鑰和函數金鑰都是在 *host.json* 檔案中設定，如此範例所示。
+您可以在函式應用程式的檔案系統中，於 D:\\home\\data\\Functions\\secrets 中找到 API 金鑰值。主要金鑰和函式金鑰均設定於 host.json 檔案之中，如此範例所示。
 
 ```json
 {
@@ -95,9 +97,9 @@ WebHook 觸發程序是一種 HTTP 觸發程序，具有下列專為 Webhook 而
 }
 ```
 
-來自 *host.json* 的函數金鑰可用來觸發任何函數，但不會觸發已停用的函數。主要金鑰可用來觸發任何函式，並且會觸發已停用的函式。您可以藉由將 `authLevel` 屬性設定為 "admin"，來設定讓函數要求主要金鑰。
+host.json 的函式鍵可用來觸發任何函式，但不會觸發已停用的函式。主要金鑰可用來觸發任何函式，並且會觸發已停用的函式。您可以將 `authLevel` 屬性設為 [admin]，設定函式來要求主要金鑰。
 
-如果 [secrets] 資料夾包含與函數同名的 JSON 檔案，則也可以使用該檔案中的 `key` 屬性來觸發函數，而且此金鑰只會對它所參考的函數發揮作用。例如，名為 `HttpTrigger` 之函數的 API 金鑰是在 [secrets] 資料夾的 *HttpTrigger.json* 中指定。下列是一個範例：
+如果 secrets 資料夾包含與函式同名的 JSON 檔案，也可使用該檔案中的 `key` 屬性來觸發函式，且此金鑰只會使用其參考的函式。例如，名為 `HttpTrigger` 之函式的 API 金鑰應在 secrets 資料夾的 HttpTrigger.json 中加以指定。下列是一個範例：
 
 ```json
 {
@@ -109,7 +111,7 @@ WebHook 觸發程序是一種 HTTP 觸發程序，具有下列專為 Webhook 而
 
 ## HTTP 觸發程序函式的 C# 程式碼範例 
 
-此程式碼範例會在查詢字串或 HTTP 要求本文中尋找 `name` 參數。
+程式碼範例會尋找 `name` 參數，其位於查詢字串或 HTTP 要求的主體。
 
 ```csharp
 using System.Net;
@@ -138,7 +140,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 
 ## HTTP 觸發程序函式的 Node.js 程式碼範例 
 
-此程式碼範例會在查詢字串或 HTTP 要求本文中尋找 `name` 參數。
+此程式碼範例會尋找 `name` 參數，其位於查詢字串或 HTTP 要求的主體。
 
 ```javascript
 module.exports = function(context, req) {
@@ -201,4 +203,4 @@ module.exports = function (context, data) {
 
 [AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0824_2016-->

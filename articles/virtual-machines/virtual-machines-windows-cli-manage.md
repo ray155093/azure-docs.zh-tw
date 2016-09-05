@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows"
 	ms.workload="infrastructure-services"
-	ms.date="07/12/2016"
+	ms.date="08/23/2016"
 	ms.author="danlep"/>
 
 # 在 Resource Manager 部署模型中虛擬機器工作的常用 Azure CLI 命令 
@@ -23,4 +23,4 @@
 
 [AZURE.INCLUDE [virtual-machines-common-cli-manage](../../includes/virtual-machines-common-cli-manage.md)]
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0824_2016-->

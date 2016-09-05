@@ -50,7 +50,7 @@ info:    vm disk attach-new command OK
 
 ## 連接到 Linux VM 以掛接新磁碟
 
-> [AZURE.NOTE] 本主題會利用使用者名稱和密碼連線到 VM。若要使用公開和私密金鑰組來與您的 VM 通訊，請參閱[如何搭配使用 SSH 與 Azure 上的 Linux](virtual-machines-linux-ssh-from-linux.md)。您可以修改利用 `azure vm quick-create` 命令建立之 VM 的 **SSH** 連線能力，方法為使用 `azure vm reset-access` 命令來完全地重設 **SSH** 存取、新增或移除使用者，或新增公開金鑰檔案來保護存取安全。
+> [AZURE.NOTE] 本主題會利用使用者名稱和密碼連線到 VM。若要使用公開和私密金鑰組來與您的 VM 通訊，請參閱[如何搭配使用 SSH 與 Azure 上的 Linux](virtual-machines-linux-mac-create-ssh-keys.md)。您可以修改利用 `azure vm quick-create` 命令建立之 VM 的 **SSH** 連線能力，方法為使用 `azure vm reset-access` 命令來完全地重設 **SSH** 存取、新增或移除使用者，或新增公開金鑰檔案來保護存取安全。
 
 您必須使用 SSH 登入 Azure VM 來分割、格式化和掛接新磁碟，以供 Linux VM 使用。如果您不熟悉使用 **ssh** 進行連接，此命令會採用 `ssh <username>@<FQDNofAzureVM> -p <the ssh port>` 形式，如下所示：
 
@@ -277,4 +277,4 @@ UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults   1   2
 - 若要確保您的 Linux VM 已正確設定，請檢閱[最佳化您的 Linux 機器效能](virtual-machines-linux-optimization.md)建議。
 - 新增其他磁碟以擴充儲存體容量，並[設定 RAID](virtual-machines-linux-configure-raid.md) 以提升效能。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

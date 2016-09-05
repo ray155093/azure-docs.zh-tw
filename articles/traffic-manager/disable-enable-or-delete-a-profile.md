@@ -3,14 +3,17 @@
    description="本文將協助您使用流量管理員設定檔。"
    services="traffic-manager"
    documentationCenter="na"
-   authors="joaoma"
+   authors="sdwheeler"
    manager="carmonm"
    editor="tysonn" />
-<tags  ms.service="traffic-manager" ms.devlang="na" ms.topic="article" ms.tgt_pltfrm="na" ms.workload="infrastructure-services"
-   
+<tags 
+   ms.service="traffic-manager"
+   ms.devlang="na"
+   ms.topic="article"
+   ms.tgt_pltfrm="na"
+   ms.workload="infrastructure-services"   
    ms.date="06/10/2016"
-
-   ms.author="joaoma" />
+   ms.author="sewhee" />
 
 # 停用、啟用或刪除設定檔
 
@@ -35,7 +38,7 @@
 
 
 1. 請確定網際網路 DNS 伺服器上的 DNS 資源記錄所使用的 CNAME 資源記錄，不再指向流量管理員設定檔的網域名稱。
-1. 選取您想要刪除的設定檔。若要選取設定檔，請在 [流量管理員] 頁面上反白顯示設定檔，方法是 
+1. 選取您想要刪除的設定檔。若要選取設定檔，請在 [流量管理員] 頁面上反白顯示設定檔，方法是
 1. 按一下設定檔旁邊的資料行。請不要按設定檔的名稱或名稱旁的箭號，這樣會帶您到設定檔的設定頁面。
 1. 選取設定檔之後，按一下頁面底部的 [刪除]。
 
@@ -51,4 +54,4 @@
 
 [疑難排解流量管理員的已降級狀態](traffic-manager-troubleshooting-degraded.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0824_2016-->

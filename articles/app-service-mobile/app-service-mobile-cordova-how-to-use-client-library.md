@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-html"
 	ms.devlang="javascript"
 	ms.topic="article"
-	ms.date="05/23/2016"
+	ms.date="08/22/2016"
 	ms.author="ggailey"/>
 
 # 如何使用適用於 Azure Mobile Apps 的 Apache Cordova 用戶端程式庫
@@ -24,7 +24,7 @@
 
 ##<a name="Setup"></a>設定和必要條件
 
-本指南假設您已建立包含資料表的後端。本指南假設資料表的結構描述與這些教學課程中的資料表相同。本指南也假設您已將 Apache Cordova 外掛程式加入至程式碼。如果您還沒有這樣做，您可以在命令列將 Apache Cordova 外掛程式加入至您的專案：
+本指南假設您已建立包含資料表的後端。本指南假設資料表的結構描述與這些教學課程中的資料表相同。本指南也假設您已將 Apache Cordova 外掛程式加入至程式碼。如果您還沒有這樣做，您可以在命令列將 Apache Cordova 外掛程式新增至您的專案：
 
 ```
 cordova plugin add cordova-plugin-ms-azure-mobile-apps
@@ -51,7 +51,7 @@ Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、M
 
 有數種類型的 Apache Cordova 應用程式會使用回送功能來處理 OAuth UI 流程。因為驗證服務預設只知道如何使用您的服務，而這會引發問題。這個範例會使用 Ripple 模擬器，在本機或在不同的 Azure App Service 中執行您的服務，但會重新導向至 Azure App Service 以進行驗證，或使用 Ionic 即時重新載入。請遵循下列指示來將您的本機設定加入組態︰
 
-1. 登入 [Azure 入口網站]。
+1. 登入 [Azure 入口網站]
 2. 選取 [所有資源] 或 [應用程式服務]，然後按一下您「行動應用程式」的名稱。
 3. 按一下 [工具]
 4. 按一下 [觀察] 功能表中的 [資源總管]，然後按一下 [移至]。新的視窗或索引標籤隨即開啟。
@@ -70,7 +70,7 @@ Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、M
 
 此時將會儲存設定。在設定完成儲存之前，請勿關閉瀏覽器視窗。您也必須將這些回送 URL 加入至 CORS 設定：
 
-1. 登入 [Azure 入口網站]。
+1. 登入 [Azure 入口網站]
 2. 選取 [所有資源] 或 [應用程式服務]，然後按一下您「行動應用程式」的名稱。
 3. [設定] 刀鋒視窗隨即自動開啟。如果沒有，請按一下 [所有設定]。
 4. 按一下 API 功能表下方的 [CORS]。
@@ -137,4 +137,4 @@ pushHandler.on('error', function (error) {
 [cordova-plugin-inappbrowser]: https://www.npmjs.com/package/cordova-plugin-inappbrowser
 [Query object documentation]: https://msdn.microsoft.com/zh-TW/library/azure/jj613353.aspx
 
-<!----HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0824_2016-->

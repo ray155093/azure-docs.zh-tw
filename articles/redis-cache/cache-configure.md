@@ -12,7 +12,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="cache-redis"
 	ms.workload="tbd"
-	ms.date="07/25/2016"
+	ms.date="08/18/2016"
 	ms.author="sdanie" />
 
 # 如何設定 Azure Redis 快取
@@ -35,9 +35,7 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 -	[一般設定](#general-settings)
 	-	[屬性](#properties)
 	-	[存取金鑰](#access-keys)
-	-	[存取連接埠](#access-ports)
-	-	[Maxmemory 原則](#maxmemory-policy-and-maxmemory-reserved)
-	-	[進階設定 (Keyspace 通知)](#keyspace-notifications-advanced-settings)
+	-	[進階設定](#advanced-settings)
 	-	[Redis 快取顧問](#redis-cache-advisor)
 -	[擴充設定](#scale-settings)
 	-	[定價層](#pricing-tier)
@@ -60,9 +58,9 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 按一下 [疑難排解] 將提供您解決這些常見問題和解決問題的策略。
 
-按一下 [稽核記錄檔]，以檢視在快取上執行的動作。您也可以使用篩選，來展開此檢視以包含其他資源。如需使用稽核記錄檔的詳細資訊，請參閱[檢視事件和稽核記錄檔](../azure-portal/insights-debugging-with-events.md)及[使用 Resource Manager 來稽核作業](../resource-group-audit.md)。如需如何監視 Azure Redis 快取事件的詳細資訊，請參閱[作業和警示](cache-how-to-monitor.md#operations-and-alerts)。
+按一下 [稽核記錄檔]，以檢視在快取上執行的動作。您也可以使用篩選，來展開此檢視以包含其他資源。如需使用稽核記錄檔的詳細資訊，請參閱[檢視事件和稽核記錄檔](../azure-portal/insights-debugging-with-events.md)及[使用資源管理員來稽核作業](../resource-group-audit.md)。如需有關監視 Azure Redis 快取事件的詳細資訊，請參閱[作業和警示](cache-how-to-monitor.md#operations-and-alerts)。
 
-**資源健康狀態**會監看您的資源，並告知您其是否正在如預期般執行。如需 Azure 資源健康狀態服務的詳細資訊，請參閱 [Azure 資源健康狀態概觀](../resource-health/resource-health-overview.md)。
+**資源健康狀態**會監看您的資源，並告知您資源是否正如預期般執行。如需 Azure 資源健康狀態服務的詳細資訊，請參閱 [Azure 資源健康狀態概觀](../resource-health/resource-health-overview.md)。
 
 >[AZURE.NOTE] 資源健全狀況目前無法回報裝載於虛擬網路上的 Azure Redis 快取執行個體健全狀況。如需詳細資訊，請參閱[將快取裝載於 VNET 時，所有快取功能都可以正常運作嗎？](cache-how-to-premium-vnet.md#do-all-cache-features-work-when-hosting-a-cache-in-a-vnet)
 
@@ -76,9 +74,7 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 -	[屬性](#properties)
 -	[存取金鑰](#access-keys)
--	[存取連接埠](#access-ports)
--	[Maxmemory 原則](#maxmemory-policy-and-maxmemory-reserved)
--	[進階設定 (Keyspace 通知)](#keyspace-notifications-advanced-settings)
+-	[進階設定](#advanced-settings)
 -	[Redis 快取顧問](#redis-cache-advisor)
 
 ### 屬性
@@ -93,15 +89,29 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 ![Redis 快取存取金鑰](./media/cache-configure/redis-cache-manage-keys.png)
 
+
+
+
+
+
+### 進階設定
+
+下列設定是在 [進階設定] 刀鋒視窗上進行設定。
+
+-	[存取連接埠](#access-ports)
+-	[Maxmemory-policy 和 maxmemory-reserved](#maxmemory-policy-and-maxmemory-reserved)
+-	[Keyspace 通知 (進階設定)](#keyspace-notifications-advanced-settings)
+
+
 ### 存取連接埠
 
-根據預設，新的快取會停用非 SSL 存取。若要啟用非 SSL 連接埠，請按一下 [存取連接埠] 刀鋒視窗，然後按一下 [否]。
+根據預設，新的快取會停用非 SSL 存取。若要啟用非 SSL 連接埠，請針對 [進階設定] 刀鋒視窗上的 [只允許透過 SSL 存取]，按一下 [否]，然後按一下 [儲存]。
 
 ![Redis 快取存取連接埠](./media/cache-configure/redis-cache-access-ports.png)
 
 ### Maxmemory-policy 和 maxmemory-reserved
 
-按一下 [Maxmemory 原則] 以設定快取的記憶體原則。**maxmemory-policy** 設定會設定快取的收回原則，而 **maxmemory-reserved** 設定則會設定保留給非快取程序的記憶體。
+[進階設定] 刀鋒視窗中的 [Maxmemory 原則] 和 [maxmemory-reserved] 設定會設定快取的記憶體原則。**maxmemory-policy** 設定會設定快取的收回原則，而 **maxmemory-reserved** 設定則會設定保留給非快取程序的記憶體。
 
 ![Redis 快取 Maxmemory 原則](./media/cache-configure/redis-cache-maxmemory-policy.png)
 
@@ -122,7 +132,7 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 ### Keyspace 通知 (進階設定)
 
-按一下 [進階設定] 以設定 Redis Keyspace 通知。Keyspace 通知可讓用戶端在特定事件發生時收到通知。
+Redis Keyspace 通知是在 [進階設定] 刀鋒視窗上進行設定。Keyspace 通知可讓用戶端在特定事件發生時收到通知。
 
 ![Redis 快取進階設定](./media/cache-configure/redis-cache-advanced-settings.png)
 
@@ -370,7 +380,7 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 
 ## Redis 主控台
 
-您可以使用 [Redis 主控台] \(可供標準與進階快取使用) 安全地發出命令給您的 Azure Redis 快取執行個體。
+您可以使用 [Redis 主控台] (可供標準與進階快取使用) 安全地發出命令給您的 Azure Redis 快取執行個體。
 
 >[AZURE.IMPORTANT] Redis 主控台無法使用 VNET、叢集和 0 以外的資料庫。
 >
@@ -399,4 +409,4 @@ Azure Redis 快取會在 [設定] 刀鋒視窗上提供下列設定。
 ## 後續步驟
 -	如需使用 Redis 命令的詳細資訊，請參閱[如何執行 Redis 命令？](cache-faq.md#how-can-i-run-redis-commands)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0824_2016-->

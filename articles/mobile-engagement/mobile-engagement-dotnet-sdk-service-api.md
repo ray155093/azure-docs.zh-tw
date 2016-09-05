@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-multiple" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="03/01/2016" 
+	ms.date="08/19/2016" 
 	ms.author="piyushjo" />
 
 #使用 .NET SDK 存取 Azure Mobile Engagement 服務 API
@@ -24,7 +24,7 @@ Azure Mobile Engagement 公開一組 API，讓您可以管理裝置、觸達/推
 
 這個範例逐步說明使用 .NET SDK 所遵循的一組步驟：
 
-1. 首先，您必須使用 Azure Active Directory 為您的 API 設定驗證，如[這裡](mobile-engagement-api-authentication.md#authentication)所述。在這些步驟的結尾，您應該會有有效的 **SubscriptionId**、**TenantId**、**ApplicationId** 和 **Secret**。 
+1. 首先，您必須使用 Azure Active Directory 為您的 API 設定驗證，如[這裡](mobile-engagement-api-authentication.md#authentication)所述。在這些步驟的結尾，您應該會有有效的 **SubscriptionId**、**TenantId**、**ApplicationId** 和 **Secret**。
 
 2. 我們將使用簡單的 Windows 主控台應用程式，示範使用 .NET SDK 建立公告行銷活動的案例。開啟 Visual Studio，建立 [主控台應用程式]。
 
@@ -122,4 +122,4 @@ Azure Mobile Engagement 公開一組 API，讓您可以管理裝置、觸達/推
 
 [1]: ./media/mobile-engagement-dotnet-sdk-service-api/include-prerelease.png
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0824_2016-->

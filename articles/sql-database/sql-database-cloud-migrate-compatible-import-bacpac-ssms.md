@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="sqldb-migrate"
-   ms.date="06/07/2016"
+   ms.date="08/24/2016"
    ms.author="carlrab"/>
 
 # 使用 SSMS 從 BACPAC 匯入到 SQL Database
@@ -26,7 +26,7 @@
 
 本文說明如何使用 SQL Server Management Studio 中的「匯出資料層應用程式精靈」從 [BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4) 檔案匯入到 SQL Database。
 
-> [AZURE.NOTE] 下列步驟假設您已佈建 Azure SQL 邏輯執行個體並且手邊有連接資訊。
+> [AZURE.NOTE] 下列步驟假設您已佈建 Azure SQL 邏輯執行個體，並且手邊有連接資訊。
 
 1. 請確認您有最新版本的 SQL Server Management Studio。新版的 Management Studio 會每月更新以維持與 Azure 入口網站的更新同步。
 
@@ -36,21 +36,21 @@
 
     ![匯入資料層應用程式功能表項目](./media/sql-database-cloud-migrate/MigrateUsingBACPAC03.png)
 
-3.	在匯入精靈中，從您的本機磁碟匯入 BACPAC 檔案，或選取 Azure 儲存體帳戶和 BACPAC 檔案上傳目標的容器，以在 Azure SQL Database 中建立新的資料庫。
+3.	若要在 Azure SQL Database 中建立資料庫，請從您的本機磁碟匯入 BACPAC 檔案，或選取您已上傳 BACPAC 檔案的 Azure 儲存體帳戶和容器。
 
     ![匯入設定](./media/sql-database-cloud-migrate/MigrateUsingBACPAC04.png)
 
-    ***重要：***從 Azure blob 儲存體匯入 BACPAC 時，請使用標準儲存體。不支援從進階儲存體匯入 BACPAC。
+	 > [AZURE.IMPORTANT] 從 Azure Blob 儲存體匯入 BACPAC 時，請使用標準儲存體。不支援從進階儲存體匯入 BACPAC。
 
-4.	在 Azure SQL DB 上提供資料庫的**新資料庫名稱**，設定 **Microsoft Azure SQL Database 的版本** (服務層)、**資料庫大小上限**和**服務目標** (效能等級)。
+4.	為 Azure SQL DB 上的資料庫提供 [新資料庫名稱]、設定 [Microsoft Azure SQL Database 的版本] (服務層)、[資料庫大小上限] 及 [服務目標] (效能等級)。
 
     ![資料庫設定](./media/sql-database-cloud-migrate/MigrateUsingBACPAC05.png)
 
 5.	按一下 [下一步]，然後按一下 [完成] 以將 BACPAC 檔案匯入到 Azure SQL Database 伺服器中的新資料庫。
 
-6. 使用 [物件總管] 時，請連接到 Azure SQL Database 伺服器中已移轉的資料庫。
+6. 使用「物件總管」，連接到 Azure SQL Database 伺服器中已移轉的資料庫。
 
-6.	使用 Azure 入口網站時，請檢視您的資料庫和它的屬性。
+6.	使用 Azure 入口網站，檢視您的資料庫及其屬性。
 
 ## 後續步驟
 
@@ -63,4 +63,4 @@
 - [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
 - [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

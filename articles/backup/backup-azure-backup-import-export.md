@@ -39,7 +39,7 @@ Azure 備份的離線植入程序與 [Azure 匯入/匯出服務](../storage/stor
 2. 起始工作流程之前，請確定已建立 Azure 備份保存庫、已下載保存庫認證、Azure 備份代理程式已安裝於您的 Windows Server/Windows 用戶端或 System Center Data Protection Manager (SCDPM) 伺服器，且電腦已註冊 Azure 備份保存庫。
 3. 在您打算備份我們資料的電腦上，從[這裡](https://manage.windowsazure.com/publishsettings)下載 Azure 發佈檔案設定。
 4. 準備可能是網路共用或電腦上其他磁碟機的「預備位置」。預備位置是「暫時性儲存體」，因此在此工作流程期間會暫時使用。請確定預備位置有足夠的磁碟空間來保存您的初始複本。例如：若您正在嘗試備份 500 GB 的檔案伺服器，請確定預備區域至少有 500 GB 的空間 (不過，由於會經過壓縮，實際使用量不會那麼多)。
-5. 外接式 SATA 磁碟機寫入器和外接式 3.5 英吋 SATA 磁碟機。只有 3.5 英吋的 SATA II/III 硬碟能夠用於匯入/匯出服務。不支援大於 8 TB 的硬碟。您可以將 SATA II/III 磁碟附加至大多數使用 SATA II/III USB 介面卡的外部電腦。檢查 Azure 匯入/匯出文件以取得服務所支援的最新磁碟機組合。
+5. 一或多個 3.5 吋內接式 SATA II/III 硬碟。只有 3.5 吋的內接式 SATA II/III 硬碟能夠用於 Azure 匯入/匯出服務。不支援大於 10 TB 的硬碟。這些硬碟可以是使用相容的 SATA 連接器在內部連接，或使用 SATA II/III USB 配接器在外部連接。如需服務所支援的最新硬碟和 SATA USB 配接器組合，請查看 [Azure 匯入/匯出文件](../storage/storage-import-export-service.md)。
 6. 在 SATA 磁碟機寫入器所連接的電腦上啟用 BitLocker。
 7. 從[這裡](http://go.microsoft.com/fwlink/?LinkID=301900&clcid=0x409)將 Azure 匯入/匯出工具下載至 SATA 磁碟機寫入器所連接的電腦上。如果您已下載並安裝 Azure 備份的 2016 年 8 月更新 (或更新版本)，就不需要此步驟。
 
@@ -184,4 +184,4 @@ Azure 備份的離線植入程序與 [Azure 匯入/匯出服務](../storage/stor
 - 若您有關於 Azure 匯入/匯出工作流程的任何問題，請參閱此[文章](../storage/storage-import-export-service.md)。
 - 若您有關於工作流程的任何問題，請參閱 Azure 備份[常見問題集](backup-azure-backup-faq.md)的＜離線備份＞章節
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

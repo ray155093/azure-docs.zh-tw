@@ -1,4 +1,4 @@
-<properties 
+<properties
    pageTitle="如何在傳統部署模型中使用 PowerShell 管理服務的反向 DNS 記錄| Microsoft Azure"
    description="如何在傳統部署模型中使用 PowerShell 管理 Azure 服務的反向 DNS 記錄或 PTR 記錄。"
    services="DNS"
@@ -8,22 +8,18 @@
    editor=""
    tags="azure-service-management"
 />
-<tags  
+<tags
    ms.service="DNS"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/09/2016"
-   ms.author="s-malone" />
+   ms.author="smalone" />
 
 # 如何使用 PowerShell 管理服務 (傳統) 的反向 DNS 記錄
 
-[AZURE.INCLUDE [dns-reverse-dns-record-operations-arm-selectors-include.md](../../includes/dns-reverse-dns-record-operations-arm-selectors-include.md)]
-<BR>
-[AZURE.INCLUDE [DNS-reverse-dns-record-operations-intro-include.md](../../includes/dns-reverse-dns-record-operations-intro-include.md)]
-<BR>
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](dns-reverse-dns-record-operations-ps.md)。
+[AZURE.INCLUDE [dns-reverse-dns-record-operations-arm-selectors-include.md](../../includes/dns-reverse-dns-record-operations-arm-selectors-include.md)] <BR> [AZURE.INCLUDE [DNS-reverse-dns-record-operations-intro-include.md](../../includes/dns-reverse-dns-record-operations-intro-include.md)] <BR> [AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](dns-reverse-dns-record-operations-ps.md)。
 
 ## 反向 DNS 記錄的驗證
 為了確保其他人無法建立對應至您 DNS 網域的反向 DNS 記錄，Azure 僅會在下列其中一種情況成立時允許建立反向 DNS 記錄：
@@ -38,7 +34,7 @@
 
 	PS C:\> Set-AzureService –ServiceName “contosoapp1” –Description “App1 with Reverse DNS” –ReverseDnsFqdn “contosoapp1.cloudapp.net.”
 
-## 建立具有反向 DNS 的雲端服務  
+## 建立具有反向 DNS 的雲端服務
 您可以使用 "Set-AzureService" Cmdlet，建立指定了反向 DNS 屬性的新雲端服務：
 
 	PS C:\> New-AzureService –ServiceName “contosoapp1” –Location “West US” –Description “App1 with Reverse DNS” –ReverseDnsFqdn “contosoapp1.cloudapp.net.”
@@ -55,4 +51,4 @@
 
 [AZURE.INCLUDE [常見問題集](../../includes/dns-reverse-dns-record-operations-faq-asm-include.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0824_2016-->

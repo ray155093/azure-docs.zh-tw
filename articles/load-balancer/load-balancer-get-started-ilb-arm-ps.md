@@ -3,7 +3,7 @@
    description="了解如何使用資源管理員中的 PowerShell 建立內部負載平衡器"
    services="load-balancer"
    documentationCenter="na"
-   authors="joaoma"
+   authors="sdwheeler"
    manager="carmonm"
    editor=""
    tags="azure-resource-manager"
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/09/2016"
-   ms.author="joaoma" />
+   ms.author="sewhee" />
 
 # 開始使用 PowerShell 建立內部負載平衡器
 
@@ -316,4 +316,4 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。這用來
 [設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
  
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

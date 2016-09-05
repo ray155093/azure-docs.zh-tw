@@ -4,7 +4,7 @@
    services="virtual-machines-linux"
    documentationCenter="virtual-machines"
    authors="kmouss"
-   manager="drewm"
+   manager="timlt"
    editor=""/>
 
 <tags
@@ -37,7 +37,7 @@ Azure VM 的唯一識別碼是唯讀屬性。在重新開機關機 (計劃中或
 ## 連接至 VM
  
 
-如需詳細資訊，請參閱 [Linux 中的 SSH](virtual-machines-linux-ssh-from-linux.md)
+如需詳細資訊，請參閱 [Linux 中的 SSH](virtual-machines-linux-mac-create-ssh-keys.md)
 
 
 ## 查詢 VM 的唯一識別碼
@@ -57,4 +57,4 @@ Azure VM 的唯一識別碼是唯讀屬性。在重新開機關機 (計劃中或
     
 不論 VM 是在 Azure 上還是內部部署執行，都可以在不同的案例中使用 Azure VM 的唯一識別碼，而且可以協助您在 Azure IaaS 部署中可能會有的授權、報告或一般追蹤需求。建置應用程式並在 Azure 上進行驗證的許多獨立軟體廠商可能需要在整個生命週期找出 Azure VM，並辨別 VM 是在 Azure、內部部署，或其他雲端提供者上執行。例如，此平台識別碼可協助偵測軟體是否獲得正確授權，或協助將任何 VM 資料及其來源相互關聯，以協助為適當的平台設定適當的計量，並在其他用途之間追蹤和相互關聯這些度量。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0824_2016-->

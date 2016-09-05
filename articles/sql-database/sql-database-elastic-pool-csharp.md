@@ -14,7 +14,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="powershell"
     ms.workload="data-management"
-    ms.date="05/03/2016"
+    ms.date="08/18/2016"
     ms.author="sstein"/>
 
 # C&#x23; 資料庫開發：為 SQL 資料庫建立和設定彈性資料庫集區
@@ -29,15 +29,14 @@
 
 > [AZURE.NOTE] 彈性資料庫集區目前為預覽版，且僅能搭配 SQL Database V12 伺服器使用。如果您有 SQL Database V11 伺服器，您可以在單一步驟中[使用 PowerShell 升級至 V12 並建立集區](sql-database-upgrade-server-powershell.md)。
 
-範例使用的是[適用於 .NET 的 Azure SQL Database 程式庫](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)。
-為了清楚起見，將個別程式碼片段分別列出，範例主控台應用程式會將所有命令整合在本文底端的區段中。
+範例使用的是[適用於 .NET 的 Azure SQL Database 程式庫](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)。為了清楚起見，將個別程式碼片段分別列出，範例主控台應用程式會將所有命令整合在本文底端的區段中。
 
 
 > [AZURE.NOTE] SQL Database Library for .NET 目前為預覽狀態。
 
 
 
-如果您沒有 Azure 訂用帳戶，可以先按一下此頁面頂端的 [免費試用]，然後再回來這篇文章。如需 Visual Studio 的免費複本，請參閱 [Visual Studio 下載](https://www.visualstudio.com/downloads/download-visual-studio-vs)頁面。
+如果您沒有 Azure 訂用帳戶，只要按一下此頁面頂端的 [免費試用]，然後再回到這篇文章即可。如需 Visual Studio 的免費複本，請參閱 [Visual Studio 下載](https://www.visualstudio.com/downloads/download-visual-studio-vs)頁面。
 
 ## 安裝必要的程式庫
 
@@ -52,17 +51,17 @@
 
 在您開始以 C# 進行 SQL 開發之前，您必須在 Azure 入口網站中完成一些工作。首先，請設定必要的驗證以讓您的應用程式能夠存取 REST API。
 
-[Azure 資源管理員 REST API](https://msdn.microsoft.com/library/azure/dn948464.aspx) 會使用 Azure Active Directory 來進行驗證，而不是使用先前「Azure 服務管理 REST API」所使用的憑證。
+[Azure Resource Manager REST API](https://msdn.microsoft.com/library/azure/dn948464.aspx) 會使用 Azure Active Directory 來進行驗證，而不是使用先前傳統部署模型所使用的憑證。
 
-若要根據目前的使用者驗證您的用戶端應用程式，您必須先在與訂用帳戶 (已在其下建立 Azure 資源) 相關聯的 AAD 網域中註冊您的應用程式。如果您的 Azure 訂用帳戶是以 Microsoft 帳戶而不是工作或學校帳戶建立的，您便已經有預設 AAD 網域。您可以在[傳統入口網站](https://manage.windowsazure.com/)中完成應用程式註冊。
+若要驗證您的用戶端應用程式，您必須先在已建立 Azure 資源之訂用帳戶的 AAD 網域中，註冊您的應用程式。如果您的 Azure 訂用帳戶是以 Microsoft 帳戶建立，而不是以工作或學校帳戶建立，您便已經有預設的 AAD 網域。在[傳統入口網站](https://manage.windowsazure.com/)中註冊新的應用程式。
 
-若要建立新的應用程式並且在正確的 Active Directory 中註冊，請執行下列動作：
+若要建立應用程式並在正確的 Active Directory 中註冊，請執行下列動作：
 
-1. 捲動左側的功能表以找出 **Active Directory** 服務並且開啟。
+1. 找出 **Active Directory** 服務並開啟它。
 
     ![C# SQL 資料庫開發：Active Directory 設定][1]
 
-2. 選取要驗證您的應用程式的目錄並按一下該目錄的**名稱**。
+2. 選取要驗證您應用程式的目錄，然後按一下該目錄的「名稱」。
 
     ![選取目錄。][4]
 
@@ -70,7 +69,7 @@
 
     ![按一下 [應用程式]。][5]
 
-4. 按一下 [新增] 以新增新的應用程式。
+4. 按一下 [加入] 以建立應用程式。
 
     ![按一下 [加入] 按鈕：建立 C# 應用程式。][6]
 
@@ -84,7 +83,7 @@
 
     ![新增應用程式][8]
 
-7. 完成建立應用程式，按一下 [設定]，然後複製 [用戶端識別碼] \(您在程式碼中需要用戶端識別碼)。
+7. 完成應用程式的建立，按一下 [設定]，然後複製 [用戶端識別碼] (您在程式碼中需要此用戶端識別碼)。
 
     ![取得用戶端識別碼][9]
 
@@ -105,7 +104,7 @@
 您的程式碼需要網域名稱。可以輕易地識別正確的網域名稱的方式是：
 
 1. 移至 [Azure 入口網站](https://portal.azure.com)。
-2. 將滑鼠停留在右上角的名稱，並記下出現在快顯視窗的網域。以您帳戶的值取代下方程式碼片段中的 **domain.onmicrosoft.com**。
+2. 將滑鼠停留在右上角的名稱，並記下出現在快顯視窗的網域。以您帳戶的值取代程式碼片段中的 **domain.onmicrosoft.com**。
 
     ![識別網域名稱][3]
 
@@ -118,7 +117,7 @@
 
 ### 擷取目前使用者的存取權杖
 
-用戶端應用程式必須擷取目前使用者的應用程式存取權杖。使用者第一次執行程式碼時，系統會提示使用者輸入其使用者認證，產生的權杖會在本機快取。後續執行會從快取擷取權杖，並且在權杖過期時僅提示使用者登入。
+用戶端應用程式必須擷取目前使用者的應用程式存取權杖。第一次執行程式碼時，系統會提示您輸入您的認證，產生的權杖則會快取在本機。後續的執行會從快取擷取權杖，而只在權杖過期時才會提示您登入。
 
 
     private static AuthenticationResult GetAccessToken()
@@ -162,7 +161,7 @@
 
 ## 建立伺服器
 
-彈性資料庫集區包含在 Azure SQL Database 伺服器內，因此下一步就是建立伺服器。伺服器名稱在全域的所有 Azure SQL Server 中必須是唯一的，因此如果伺服器名稱已被採用，您會收到錯誤。另外值得注意的是，此命令可能需要數分鐘才能完成。為了讓應用程式能夠連線到伺服器，您必須也在伺服器上建立防火牆規則，以允許從用戶端 IP 位址進行存取。
+彈性資料庫集區包含在 Azure SQL Database 伺服器內，因此下一步就是建立伺服器。伺服器名稱在所有 Azure SQL Server 之間必須是全域唯一的，因此如果伺服器名稱已被採用，您在這裡就會收到錯誤。另外值得注意的是，此命令可能需要數分鐘才能完成。為了讓應用程式能夠連線到伺服器，您必須也在伺服器上建立防火牆規則，以允許從用戶端 IP 位址進行存取。
 
 
     // Create a SQL Database management client
@@ -207,7 +206,7 @@
 
 
 
-若要允許其他 Azure 服務存取伺服器，則新增防火牆規則並且將 StartIpAddress 和 EndIpAddress 都設為 0.0.0.0。請注意，這可讓來自*任何* Azure 訂用帳戶的 Azure 流量存取伺服器。
+若要允許其他 Azure 服務存取伺服器，請新增防火牆規則，並將 StartIpAddress 和 EndIpAddress 都設為 0.0.0.0。這可讓來自「任何」Azure 訂用帳戶的 Azure 流量存取伺服器。
 
 
 ## 建立資料庫
@@ -574,4 +573,4 @@
 [8]: ./media/sql-database-elastic-pool-csharp/add-application2.png
 [9]: ./media/sql-database-elastic-pool-csharp/clientid.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0824_2016-->

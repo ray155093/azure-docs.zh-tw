@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/07/2016"
+	ms.date="08/23/2016"
 	ms.author="genemi"/>
 
 
@@ -23,7 +23,7 @@
 
 [AZURE.INCLUDE [sql-database-xevents-selectors-1-include](../../includes/sql-database-xevents-selectors-1-include.md)]
 
-本主題說明 Azure SQL Database 中的擴充事件的實作方式與 Microsoft SQL server 中的擴充事件相較之下，有如何的些微不同。
+本主題說明與 Microsoft SQL server 中的擴充事件相比，Azure SQL Database 中的擴充事件實作有何些微不同。
 
 
 - SQL Database V12 在 2015 年行事曆下半年度獲得擴充事件功能。
@@ -76,7 +76,7 @@
 
 - [SQL Database 中擴充事件的信號緩衝區目標程式碼](sql-database-xevent-code-ring-buffer.md)
  - 簡短的簡單 Transact-SQL 指令碼。
- - 我們在程式碼範例主題中強調，當您完成信號緩衝區目標時，您應該釋放其資源，方法是執行 alter-drop `ALTER EVENT SESSION ... ON DATABASE DROP TARGET ...;` 陳述式。稍後您可以藉由 `ALTER EVENT SESSION ... ON DATABASE ADD TARGET ...`，加入信號緩衝區的另一個執行個體。
+ - 我們在程式碼範例主題中強調，當您完成「信號緩衝區」目標的相關作業時，應該執行 alter-drop `ALTER EVENT SESSION ... ON DATABASE DROP TARGET ...;` 陳述式來釋出其資源。稍後您可以藉由 `ALTER EVENT SESSION ... ON DATABASE ADD TARGET ...`，加入信號緩衝區的另一個執行個體。
 
 
 - [SQL Database 中擴充事件的事件檔案目標程式碼](sql-database-xevent-code-event-file.md)
@@ -200,10 +200,10 @@ SELECT
 ## 限制
 
 
-有幾個安全性相關差異適用於 SQL Database 的雲端環境：
+有幾個適用於 SQL Database 雲端環境的安全性相關差異：
 
 
-- 擴充事件是在單一租用戶隔離模型中建構。一個資料庫中的事件工作階段無法從另一個資料庫存取資料或事件。
+- 擴充事件是建構在單一租用戶隔離模型的基礎上。一個資料庫中的事件工作階段無法從另一個資料庫存取資料或事件。
 
 - 無法在 **master** 資料庫的內容中發出 **CREATE EVENT SESSION** 陳述式。
 
@@ -217,7 +217,7 @@ SELECT
 ### 儲存體容器授權
 
 
-您針對 Azure 儲存體容器產生的 SAS 權杖必須指定權限的 **rwl**。提供下列權限：
+您針對 Azure 儲存體容器產生的 SAS 權杖必須指定權限的 **rwl**。**rwl** 值會提供下列權限：
 
 
 - 讀取
@@ -276,4 +276,4 @@ SELECT
 - Code sample for SQL Server: [Find the Objects That Have the Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
 -->
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0824_2016-->

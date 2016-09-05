@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/19/2016"
+   ms.date="08/18/2016"
    ms.author="tomfitz"/>
 
 # 使用入口網站來建立可存取資源的 Active Directory 應用程式和服務主體
@@ -36,23 +36,23 @@
 
 1. 透過[傳統入口網站](https://manage.windowsazure.com/)登入 Azure 帳戶。
 
+2. 請確定您知道訂用帳戶的預設 Active Directory。您只能將存取權授與和您訂用帳戶位於相同目錄的應用程式。選取 [設定]，然後尋找與您訂用帳戶關聯的目錄名稱。如需詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](./active-directory/active-directory-how-subscriptions-associated-directory.md)。
+   
+     ![尋找預設目錄](./media/resource-group-create-service-principal-portal/show-default-directory.png)
+
 2. 從左窗格中，選取 [**Active Directory**]。
 
      ![選取 Active Directory](./media/resource-group-create-service-principal-portal/active-directory.png)
      
-3. 選取您想要用來建立新應用程式的 Active Directory。如果您有多個 Active Directory，您通常會想在您訂用帳戶所在的目錄中建立應用程式。您只能將您訂用帳戶中資源的存取權授與和您訂用帳戶位於相同目錄的應用程式。
+3. 選取您想要用來建立應用程式的 Active Directory。如果您有多個 Active Directory，請在您訂用帳戶的預設目錄中建立應用程式。
 
      ![選擇目錄](./media/resource-group-create-service-principal-portal/active-directory-details.png)
      
-    如果您需要尋找您訂用帳戶的目錄，請選取 [設定]，然後尋找該目錄名稱。
-   
-     ![尋找預設目錄](./media/resource-group-create-service-principal-portal/show-default-directory.png)
-
-3. 若要檢視目錄中的應用程式，請按一下 [**應用程式**]。
+3. 若要檢視目錄中的應用程式，選取 [應用程式]。
 
      ![檢視應用程式](./media/resource-group-create-service-principal-portal/view-applications.png)
 
-4. 如果您之前尚未在該目錄中建立應用程式，則應該會看到與下面類似的映像。按一下 [**新增應用程式**]。
+4. 如果您之前尚未在該目錄中建立應用程式，則應該會看到類似下圖。選取 [新增應用程式]
 
      ![新增應用程式](./media/resource-group-create-service-principal-portal/create-application.png)
 
@@ -60,7 +60,7 @@
 
      ![新增](./media/resource-group-create-service-principal-portal/add-icon.png)
 
-5. 選取您想要建立的應用程式類型。針對本教學課程，選取 [加入我的組織正在開發的應用程式]。
+5. 選取您想要建立的應用程式類型。針對本教學課程，選取 [新增我的組織正在開發的應用程式]。
 
      ![新的應用程式](./media/resource-group-create-service-principal-portal/what-do-you-want-to-do.png)
 
@@ -68,7 +68,7 @@
 
      ![名稱應用程式](./media/resource-group-create-service-principal-portal/tell-us-about-your-application.png)
 
-7. 填寫您應用程式的屬性。針對 [登入 URL]，提供描述您應用程式之網站的 URI。這並不會驗證網站是否存在。針對 [**應用程式識別碼 URI**]，提供識別您應用程式的 URI。
+7. 填寫您應用程式的屬性。在 [登入 URL] 提供描述您應用程式之網站的 URI。這並不會驗證網站是否存在。針對 [**應用程式識別碼 URI**]，提供識別您應用程式的 URI。
 
      ![應用程式屬性](./media/resource-group-create-service-principal-portal/app-properties.png)
 
@@ -78,7 +78,7 @@
 
 以程式設計方式登入時，您需要應用程式的識別碼。如果應用程式是在自己的認證下執行，則您還需要一個驗證金鑰。
 
-1. 按一下 [**設定**] 索引標籤設定您應用程式的密碼。
+1. 按一下 [設定] 索引標籤設定應用程式的密碼。
 
      ![設定應用程式](./media/resource-group-create-service-principal-portal/application-configure.png)
 
@@ -94,13 +94,13 @@
 
      ![儲存](./media/resource-group-create-service-principal-portal/save-icon.png)
 
-     即會顯示儲存的金鑰，而且您可以進行複製。您將無法在稍後擷取金鑰，所以您應該會想現在就複製金鑰。
+     即會顯示儲存的金鑰，而且您可以進行複製。您無法在之後擷取金鑰，所以您現在就要複製金鑰。
 
      ![儲存的金鑰](./media/resource-group-create-service-principal-portal/save-key.png)
 
 ## 取得租用戶識別碼
 
-以程式設計方式登入時，您需要將租用戶識別碼與您的驗證要求一起傳送。針對 Web Apps 和 Web API Apps，您可以透過選取畫面底部的 [檢視端點]，然後擷取如以下所示的識別碼，來擷取租用戶識別碼。
+以程式設計方式登入時，您需要將租用戶識別碼與您的驗證要求一起傳送。針對 Web Apps 和 Web API Apps，您可以透過選取畫面底部的 [檢視端點]，然後擷取如下圖中所示的識別碼，來擷取租用戶識別碼。
 
    ![租用戶識別碼](./media/resource-group-create-service-principal-portal/save-tenant.png)
 
@@ -128,23 +128,27 @@
 
 4. 儲存變更。
 
-## 設定多租用戶應用程式
-
-如果其他 Azure Active Directory 的使用者可以連線到應用程式並登入，您必須啟用多重租用。在 [設定] 索引標籤上，將 [應用程式為多租用戶] 設定為 [是]。
-
-![多租用戶](./media/resource-group-create-service-principal-portal/multi-tenant.png)
-
 ## 將應用程式指派給角色
 
-如果應用程式是在自己的認證下執行，您就必須將應用程式指派給某個角色。您必須決定哪些角色代表應用程式的正確權限。如要深入了解可用的角色，請參閱 [RBAC：內建角色](./active-directory/role-based-access-built-in-roles.md)。
+如果應用程式是在自己的認證下執行，您就必須將應用程式指派給某個角色。決定哪個角色代表應用程式的正確權限。如要深入了解可用的角色，請參閱 [RBAC：內建角色](./active-directory/role-based-access-built-in-roles.md)。
 
-若要指派角色，您必須擁有 `Microsoft.Authorization/*/Write` 存取權，這是透過[擁有者](./active-directory/role-based-access-built-in-roles.md#owner)角色或[使用者存取系統管理員](./active-directory/role-based-access-built-in-roles.md#user-access-administrator)角色來授與。
+若要將角色指派給應用程式，您必須使用正確的權限。具體而言，您必須擁有 `Microsoft.Authorization/*/Write` 存取權，而這是透過[擁有者](./active-directory/role-based-access-built-in-roles.md#owner)角色或[使用者存取系統管理員](./active-directory/role-based-access-built-in-roles.md#user-access-administrator)角色來授與。參與者角色並沒有正確的存取權。
 
-您可以針對訂用帳戶、資源群組或資源的層級設定範圍。較低的範圍層級會繼承較高層級的權限 (舉例來說，為資源群組的讀取者角色新增應用程式，代表該角色可以讀取資源群組及其所包含的任何資源)。
+您可以針對訂用帳戶、資源群組或資源的層級設定範圍。較低的範圍層級會繼承較高層級的權限。例如，為資源群組的讀取者角色新增應用程式，代表該角色可以讀取資源群組及其所包含的任何資源。
 
 1. 如要指派應用程式給角色，請從傳統入口網站切換到 [Azure 入口網站](https://portal.azure.com)。
 
-1. 在入口網站中，瀏覽至您想要讓應用程式指派至的範圍層級。而對於本主題，您可以瀏覽至某個資源群組，然後選取 [資源群組] 刀鋒視窗上的**存取**圖示。
+1. 檢查您的權限，確定您可以將服務主體指派給角色。選取您的帳戶的 [我的權限]。
+
+    ![選取我的權限](./media/resource-group-create-service-principal-portal/my-permissions.png)
+
+1. 檢視指派給您的帳戶的權限。如先前所述，您必須是「擁有者」或「使用者存取系統管理員」角色，或是具有可授與 Microsoft.Authorization 寫入存取權的自訂角色。下圖顯示指派給訂用帳戶的「參與者」角色的帳戶，它沒有足夠權限可指派應用程式給角色。
+
+    ![顯示選取我的權限](./media/resource-group-create-service-principal-portal/show-permissions.png)
+
+     如果您沒有授與應用程式存取權的正確權限，您必須要求您的訂用帳戶系統管理員將您新增至「使用者存取系統管理員」角色，或要求系統管理員授與您應用程式的存取權。
+
+1. 瀏覽至您想要讓應用程式指派至的範圍層級。因應本主題，您可以瀏覽至某個資源群組，然後選取 [資源群組] 刀鋒視窗上的 [存取控制]。
 
      ![選取使用者](./media/resource-group-create-service-principal-portal/select-users.png)
 
@@ -166,9 +170,8 @@
 
 6. 選取 [確定] 來結束角色的指派。現在您應該會在指派至該資源群組中某個角色的清單中，看到自己的應用程式。
 
-     ![顯示](./media/resource-group-create-service-principal-portal/show-app.png)
 
-如需透過入口網站將使用者和應用程式指派給角色的詳細資訊，請參閱[使用 Azure 管理入口網站管理存取權](role-based-access-control-configure.md#manage-access-using-the-azure-management-portal)。
+如需透過入口網站將使用者和應用程式指派給角色的詳細資訊，請參閱[使用角色指派來管理 Azure 訂用帳戶資源的存取權](role-based-access-control-configure.md#manage-access-using-the-azure-management-portal)。
 
 ## 範例應用程式
 
@@ -205,4 +208,4 @@
 - 如要了解如何指定安全性原則，請參閱[Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
 - 若要取得這些步驟的示範影片，請參閱[利用 Azure Active Directory 啟用 Azure 資源的程式化管理](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Enabling-Programmatic-Management-of-an-Azure-Resource-with-Azure-Active-Directory)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

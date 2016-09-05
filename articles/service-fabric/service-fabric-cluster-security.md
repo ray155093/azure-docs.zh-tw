@@ -13,12 +13,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/10/2016"
+   ms.date="08/19/2016"
    ms.author="chackdan"/>
 
 # Service Fabric 叢集安全性案例
 
-Service Fabric 叢集是您所擁有的資源。為了防止未經授權的資源存取，您必須保護其安全性，尤其是當其中有執行中的生產工作負載時。本文針對 Azure 或獨立伺服器上執行之叢集的安全性案例，以及用來實作這些案例的各種技術，提供概觀。叢集安全性案例包括：
+Service Fabric 叢集是您所擁有的資源。叢集應一律受到安全保護，以防止未經授權使用者連線您的叢集，特別是當叢集上有生產工作負載正在執行時。雖然可以建立不安全的叢集，但這樣做將會在叢集向公用網際網路公開管理端點時，允許任何匿名使用者連線叢集。
+
+本文針對 Azure 或獨立伺服器上執行之叢集的安全性案例，以及用來實作這些案例的各種技術，提供概觀。叢集安全性案例包括：
 
 - 節點對節點安全性
 - 用戶端對節點安全性
@@ -35,7 +37,7 @@ Service Fabric 會使用您建立叢集時在節點類型組態中指定的 X.50
 
 憑證安全性是在建立叢集時設定，透過 Azure 入口網站、Azure Resource Manager 範本或獨立 JSON 範本。您可以指定用於憑證變換的主要憑證和選用次要憑證。您指定的主要和次要憑證，應該不同於您為[用戶端對節點安全性](#client-to-node-security)指定的系統管理用戶端憑證和唯讀用戶端憑證。
 
-對於 Azure，若要了解如何在叢集中設定憑證安全性，請參閱[使用憑證保護 Azure 上的 Service Fabric 叢集](service-fabric-secure-azure-cluster-with-certs.md)或[使用 Azure Resource Manager 範本來設定叢集](service-fabric-cluster-creation-via-arm.md)。
+對於 Azure，若要了解如何在叢集中設定憑證安全性，請參閱[使用 Azure Resource Manager 範本來設定叢集](service-fabric-cluster-creation-via-arm.md)。
 
 對於獨立 Windows Server，請參閱[使用 X.509 憑證保護 Windows 上的獨立叢集](service-fabric-windows-cluster-x509-security.md)
 
@@ -54,12 +56,12 @@ Service Fabric 會使用您建立叢集時在節點類型組態中指定的 X.50
 
 用戶端如果是使用系統管理憑證來連接到叢集，就會擁有管理功能的完整存取權。用戶端如果是使用唯讀使用者用戶端憑證來連接到叢集，則只會擁有管理功能的唯讀存取權。換句話說，這些憑證是用於下文所述的角色型存取控制 (RBAC)。
 
-若要了解如何在叢集中設定憑證安全性，請參閱[使用憑證保護 Azure 上的 Service Fabric 叢集](service-fabric-secure-azure-cluster-with-certs.md)或[使用 Azure Resource Manager 範本來設定叢集](service-fabric-cluster-creation-via-arm.md)。
+對於 Azure，若要了解如何在叢集中設定憑證安全性，請參閱[使用 Azure Resource Manager 範本來設定叢集](service-fabric-cluster-creation-via-arm.md)。
 
 對於獨立 Windows Server，請參閱[使用 X.509 憑證保護 Windows 上的獨立叢集](service-fabric-windows-cluster-x509-security.md)
 
 ### Azure 上的用戶端對節點 Azure Active Directory (AAD)
-在 Azure 上執行的叢集也可以使用 Azure Active Directory (AAD) 來保護對管理端點的存取。若要了解如何建立必要的 AAD 構件、如何在建立叢集時填入這些構件，以及之後如何連接到這些叢集，請參閱[建立使用 Azure Active Directory 進行用戶端驗證的 Service Fabric 叢集](service-fabric-cluster-security-client-auth-with-aad.md)。
+在 Azure 上執行的叢集也可以使用 Azure Active Directory (AAD) 來保護對管理端點的存取。若要了解如何建立必要的 AAD 構件、如何在建立叢集時填入這些構件，以及之後如何連接到這些叢集，請參閱[使用 Azure Resource Manager 範本來設定叢集](service-fabric-cluster-creation-via-arm.md)。
 
 ## 安全性建議
 對於 Azure 叢集，建議您針對節點對節點安全性使用 AAD 安全性來驗證用戶端和憑證。
@@ -104,23 +106,10 @@ X509 數位憑證通常用來驗證用戶端與伺服器，以及加密及數位
 
 ## 後續步驟
 
-設定安全叢集：
-
-- [使用憑證保護 Azure 上的 Service Fabric 叢集](service-fabric-secure-azure-cluster-with-certs.md)
-
-在您設定好叢集之後，可以了解叢集升級：
-
-- [Service Fabric 叢集升級程序與期望](service-fabric-cluster-upgrade.md)
-- [Rolling over or adding new Certificates (變換或加入新憑證)](service-fabric-cluster-security-update-certs-azure.md)
-
-深入了解應用程式安全性：
-
-- [應用程式安全性及 RunAs](service-fabric-application-runas-security.md)
-
-- [安全服務通訊](service-fabric-reliable-services-secure-communication.md)
+本文提供與叢集安全性有關的概念資訊。接下來，[使用 Resource Manager 範本在 Azure 中建立叢集](service-fabric-cluster-creation-via-arm.md)或透過 [Azure 入口網站](service-fabric-cluster-creation-via-portal.md)建立叢集。
 
 <!--Image references-->
 [Node-to-Node]: ./media/service-fabric-cluster-security/node-to-node.png
 [Client-to-Node]: ./media/service-fabric-cluster-security/client-to-node.png
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

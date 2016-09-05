@@ -15,10 +15,12 @@
 	ms.topic="reference"
 	ms.tgt_pltfrm="multiple"
 	ms.workload="na"
-	ms.date="05/16/2016"
+	ms.date="08/19/2016"
 	ms.author="wesmc"/>
 
 # Azure Functions 通知中樞輸出繫結
+
+[AZURE.INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
 這篇文章說明如何在 Azure Functions 中為「Azure 通知中樞」繫結進行設定及撰寫程式碼。
 
@@ -30,12 +32,12 @@
 
 function.json 檔案提供下列屬性：
 
-- `name`︰函數程式碼中用於通知中樞訊息的變數名稱。
-- `type`︰必須設定為 *"notificationHub"*。
-- `tagExpression`︰標記運算式可讓您指定將通知傳遞到一組裝置，這些裝置已註冊要接收與標記運算式相符的通知。如需詳細資訊，請參閱[路由與標記運算式](../notification-hubs/notification-hubs-tags-segment-push-message.md)。
+- `name`︰函式程式碼中用於通知中樞訊息的變數名稱。
+- `type`︰必須設為「"notificationHub"」。
+- `tagExpression`︰標籤運算式可讓您指定將通知傳遞到一組裝置，這些裝置已註冊要接收與標籤運算式相符的通知。如需詳細資訊，請參閱[路由與標籤運算式](../notification-hubs/notification-hubs-tags-segment-push-message.md)。
 - `hubName`︰Azure 入口網站中通知中樞資源的名稱。
-- `connection`︰此連接字串必須是針對您的通知中樞設定為 *DefaultFullSharedAccessSignature* 值的「應用程式設定」連接字串。
-- `direction`：必須設定為 *"out"*。 
+- `connection`︰此連接字串必須是針對通知中樞設為「DefaultFullSharedAccessSignature」值的**應用程式設定**連接字串。
+- `direction`：必須設為「"out"」。
  
 function.json 範例：
 
@@ -57,13 +59,13 @@ function.json 範例：
 
 若要使用通知中樞輸出繫結，必須設定中樞的連接字串。若要這麼做，只要在 [整合] 索引標籤上選取您的通知中樞或建立一個新通知中樞即可。
 
-您也可以將 *DefaultFullSharedAccessSignature* 的連接字串新增至通知中樞，來手動新增現有中樞的連接字串。此連接字串提供您的函式存取權限來傳送通知訊息。您可以從 Azure 入口網站之通知中樞資源的主要刀鋒視窗中，透過 [金鑰] 按鈕存取 *DefaultFullSharedAccessSignature* 連接字串值。若要手動新增中樞的連接字串，請使用下列步驟︰
+您也可以將「DefaultFullSharedAccessSignature」新增至通知中樞，手動新增現有中樞的連接字串。此連接字串提供您的函式存取權限來傳送通知訊息。您可從 Azure 入口網站的通知中樞資源的主要刀鋒視窗，從 [金鑰] 按鈕存取「DefaultFullSharedAccessSignature」連接字串值。若要手動新增中樞的連接字串，請使用下列步驟︰
 
-1. 在 Azure 入口網站的 [函數應用程式] 刀鋒視窗中，按一下 [函數應用程式設定] > [移至 App Service 設定]。
+1. 在 Azure 入口網站的 [函式應用程式] 刀鋒視窗中，按一下 [函式應用程式設定] > [移至 App Service 設定]。
 
 2. 在 [設定] 刀鋒視窗中，按一下 [應用程式設定]。
 
-3. 向下捲動至 [連接字串] 區段，為通知中樞新增一個指定的 *DefaultFullSharedAccessSignature* 值項目。將類型變更為 [自訂]。
+3. 向下捲動至 [連接字串] 區段，再為通知中樞新增「DefaultFullSharedAccessSignature」值的命名項目。將類型變更為 [自訂]。
 4. 參考輸出繫結中的連接字串名稱。與上述範例中使用的 **MyHubConnectionString** 類似。
 
 ## Node.js 計時器觸發程序的 Azure 通知中樞程式碼範例 
@@ -119,7 +121,7 @@ function.json 範例：
 
 ## 使用通知類型的 Azure 通知中樞佇列觸發程序 C# 程式碼範例
 
-這個範例示範如何使用 [Microsoft Azure 通知中樞程式庫](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)中所定義的 `Notification` 類型。為了使用此類型和程式庫，您必須上傳函數應用程式的 *project.json* 檔案。project.json 檔案是看起來類似下列的 JSON 文字檔︰
+這個範例示範如何使用 [Microsoft Azure 通知中樞程式庫](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)中所定義的 `Notification` 類型。若要使用此類型和程式庫，您必須上傳函式應用程式的「project.json」檔案。project.json 檔案是看起來類似下列的 JSON 文字檔︰
 
 	{
 	  "frameworks": {
@@ -155,4 +157,4 @@ function.json 範例：
 
 [AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -15,12 +15,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-windows"
    ms.workload="infrastructure"
-   ms.date="06/06/2016"
+   ms.date="08/23/2016"
    ms.author="rasquill"/>
 
 # 使用 PowerShell 或 CLI 在 Azure 中瀏覽並選取 Windows 虛擬機器映像
 
-本主題描述如何為您可能在其中進行部署的每個位置，尋找 VM 映像發行者、優惠、SKU 及版本。例如，一些常用的 Windows VM 映像包括︰
+本主題說明如何針對您可能在其中進行部署的每個位置，尋找 VM 映像發行者、提供項目、SKU 及版本。例如，一些常用的 Windows VM 映像包括︰
 
 ## 常用 Windows 映像表
 
@@ -41,4 +41,4 @@
 
 [AZURE.INCLUDE [virtual-machines-common-cli-ps-findimage](../../includes/virtual-machines-common-cli-ps-findimage.md)]
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-ios"
 	ms.devlang="objective-c"
 	ms.topic="article"
-	ms.date="02/29/2016"
+	ms.date="08/19/2016"
 	ms.author="MehrdadMzfr" />
 
 #如何在 iOS 上整合 Engagement
@@ -32,21 +32,18 @@
 
 ##將 Engagement SDK 嵌入您的 iOS 專案
 
-從[這裡](http://aka.ms/qk2rnj)下載 iOS SDK。
-將 Engagement SDK 加入您的 iOS 專案：在 Xcode 中，以滑鼠右鍵按一下專案，然後選取 [**新增檔案至**]，再選擇 `EngagementSDK` 資料夾。
+從[這裡](http://aka.ms/qk2rnj)下載 iOS SDK。將 Engagement SDK 加入您的 iOS 專案：在 Xcode 中，以滑鼠右鍵按一下專案，然後選取 [**新增檔案至**]，再選擇 `EngagementSDK` 資料夾。
 
 Engagement 需要額外的架構才能運作：在專案總管中，開啟專案窗格並選取正確的目標。然後，開啟 [建置階段] 索引標籤，在 [連結二進位檔與程式庫] 功能表中加入下列架構：
 
-> -   `AdSupport.framework` ： 將連結設為 `Optional`
+> -   `AdSupport.framework`：將連結設為`Optional`
 > -   `SystemConfiguration.framework`
 > -   `CoreTelephony.framework`
 > -   `CFNetwork.framework`
 > -   `CoreLocation.framework`
 > -   `libxml2.dylib`
 
-<br\>
-
-> [AZURE.NOTE] AdSupport 架構可以移除。Engagement 需要此架構來收集 IDFA。但您可以停用 IDFA 集合 \<ios-sdk-engagement-idfa\>，以符合關於此識別碼的新 Apple 原則。
+> [AZURE.NOTE] AdSupport 架構可以移除。Engagement 需要此架構來收集 IDFA。但您可以停用 IDFA 集合 <ios-sdk-engagement-idfa>，以符合關於此識別碼的新 Apple 原則。
 
 ##初始化 Engagement SDK
 
@@ -109,7 +106,7 @@ Apple 服務條款不允許應用程式只為了統計資料的目的而使用�
 
 從 iOS 8 開始，您必須提供應用程式如何使用位置服務的描述，方法是在應用程式的 Info.plist 檔案中設定索引鍵 [NSLocationWhenInUseUsageDescription] 或 [NSLocationAlwaysUsageDescription] 的字串。如果您想要在背景以 Engagement 報告位置，請加入 NSLocationAlwaysUsageDescription 索引鍵。在其他情況下，請加入 NSLocationWhenInUseUsageDescription 索引鍵。
 
-### 延遲區域位置報告
+### 簡易區域位置報告
 
 延遲區域位置報告允許報告國家、地區以及與裝置相關聯的位置。這類位置報告只會使用網路位置 (根據基地台識別碼或 WIFI)。每個工作階段最多報告一次裝置區域。絕不會使用 GPS，因此這類位置報告對於電池的影響很小 (但不是沒有)。
 
@@ -210,4 +207,4 @@ Engagement API 可允許使用所有 Engagement 的進階功能，詳情請見�
 [startMonitoringSignificantLocationChanges]: http://developer.apple.com/library/IOs/#documentation/CoreLocation/Reference/CLLocationManager_Class/CLLocationManager/CLLocationManager.html#//apple_ref/occ/instm/CLLocationManager/startMonitoringSignificantLocationChanges
 [IDFA]: https://developer.apple.com/library/ios/documentation/AdSupport/Reference/ASIdentifierManager_Ref/ASIdentifierManager.html#//apple_ref/occ/instp/ASIdentifierManager/advertisingIdentifier
 
-<!------HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0824_2016-->

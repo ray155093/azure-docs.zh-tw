@@ -4,7 +4,7 @@
 	services="virtual-machines-windows"
 	documentationCenter=""
 	authors="singhkays"
-	manager="drewm"
+	manager="timlt"
 	editor=""
 	tags="azure-resource-manager"/>
 
@@ -185,4 +185,4 @@ _Add-AzureSMVmToRM_ Cmdlet 使用下列測試案例進行驗證：
 ## 注意事項
 1. 如果逐一複製多個 VM，且每個複製之間有短時間間隔，因為 DNS 快取重新整理時間的緣故，公用 IP 位址可能會有 DNS 名稱衝突。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

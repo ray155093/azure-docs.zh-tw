@@ -14,12 +14,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/27/2016"
+	ms.date="08/17/2016"
 	ms.author="genli"/>
 
 #  Azure 計費及訂用帳戶常見問題集
 
 這篇文章回答一些有關 Azure 計費及訂用帳戶的最常見問題。
+
+> [AZURE.NOTE] 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
 ## 帳戶管理
 
@@ -134,7 +136,7 @@
 
 >[AZURE.NOTE] 如需虛擬機器的特定詳細資訊，請參閱 [Planned maintenance for Azure virtual machines (Azure 虛擬機器的計劃性維護)](virtual-machines/virtual-machines-linux-planned-maintenance.md) 一文。
 
-#### 非計劃性維護 
+#### 非計劃性維護
 
 如果 Azure 平台發生非計劃性服務中斷，我們的[服務儀表板](http://status.azure.com/)上會進行狀態更新，而客戶會同時在 [Azure 傳統入口網站](https://manage.windowsazure.com/)收到通知。
 
@@ -286,7 +288,7 @@ Auzre 已在全球超過 140 個國家/地區銷售，並可以多種貨幣計�
 
 Azure 免費試用訂用帳戶是為任何新客戶提供的為期一個月的免費試用，並且免費提供 $200 美元的 Azure 信用額度。若要查看免費試用的信用額度涵蓋和不涵蓋哪些服務，請參閱[免費試用優惠網頁](https://azure.microsoft.com/offers/ms-azr-0044p/)。
 
-您可以在[這裡](http://azure.microsoft.com/pricing/free-trial/)註冊試用訂用帳戶。如需逐步指示，請參閱[](billing-buy-sign-up-azure-subscription.md#sign-up-for-an-azure-free-trial-subscription)。
+您可以在[這裡](http://azure.microsoft.com/pricing/free-trial/)註冊試用訂用帳戶。如需逐步指示，請參閱[本指南](billing-buy-sign-up-azure-subscription.md#sign-up-for-an-azure-free-trial-subscription)。
 
 ### 使用免費試用時有哪些資源可用？
 
@@ -310,4 +312,6 @@ Azure 免費試用訂用帳戶是為任何新客戶提供的為期一個月的�
 
 請瀏覽[免費試用優惠網頁](https://azure.microsoft.com/offers/ms-azr-0044p/)和閱讀[官方的免費試用常見問題集](https://azure.microsoft.com/pricing/free-trial-faq/)。
 
-<!---HONumber=AcomDC_0803_2016-->
+> [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+
+<!---HONumber=AcomDC_0824_2016-->

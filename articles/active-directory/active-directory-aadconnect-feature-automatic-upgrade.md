@@ -13,19 +13,19 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="06/27/2016"
+   ms.date="08/24/2016"
    ms.author="andkjell"/>
 
 # Azure AD Connect：自動升級
 此功能是隨組建 1.1.105.0 (於 2016 年 2 月發行) 一起導入。
 
-## 概觀
+## Overview
 使用「自動升級」功能是可確保您 Azure AD Connect 安裝永遠維持在最新狀態的最簡單方式。此功能預設為啟用，以供進行快速安裝及 DirSync 升級。新版本發行時，您的安裝會自動升級。
 
 預設會針對下列情況啟用自動升級：
 
 - 快速設定安裝和 DirSync 升級。
-- 使用 SQL Express LocalDB (這是「快速設定」一律會使用的)使用 SQL Express 的 DirSync 也將會使用 LocalDB。
+- 使用 SQL Express LocalDB (這是「快速設定」一律使用的)。使用 SQL Express 的 DirSync 也會使用 LocalDB。
 - AD 帳戶是「快速設定」和 DirSync 所建立的預設 MSOL\_ 帳戶。
 - Metaverse 中的物件少於 100,000 個
 
@@ -39,9 +39,9 @@ State | 註解
 
 您可以使用 `Set-ADSyncAutoUpgrade` 在 [已啟用] 與 [已停用] 之間進行變更。應該只有系統才能設定 [已暫止] 狀態。
 
-自動升級使用 Azure AD Connect Health 做為升級基礎結構。為了讓自動升級能夠正確運作，請確定您已依照 [Office 365 URL 與 IP 位址範圍](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2)中的記載，在您 Proxy 伺服器中開啟 **Azure AD Connect Health** 的 URL。
+自動升級使用 Azure AD Connect Health 做為升級基礎結構。為了讓自動升級能夠運作，請確定您已依照 [Office 365 URL 與 IP 位址範圍](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2)中的記載，在您 Proxy 伺服器中開啟 **Azure AD Connect Health** 的 URL。
 
-如果伺服器上正在執行 **Synchronization Service Manager** UI，則升級會暫止，直到 UI 關閉為止。
+如果伺服器上正在執行 **Synchronization Service Manager** UI，則會暫止升級，直到 UI 關閉為止。
 
 ## 疑難排解
 如果您的 Connect 安裝未如預期般自動升級，請遵循下列步驟來找出可能的錯誤。
@@ -50,16 +50,18 @@ State | 註解
 
 如果您認為有問題，請先執行 `Get-ADSyncAutoUpgrade` 確保已啟用自動升級。
 
-啟動事件檢視器，並查看**應用程式**事件記錄。新增來源 **Azure AD Connect 升級**的事件記錄篩選以及事件識別碼範圍 **300-399**。 ![自動升級的事件記錄篩選](./media/active-directory-aadconnect-feature-automatic-upgrade/eventlogfilter.png)
+然後，確定您已在您的 Proxy 或防火牆中開啟所需的 URL。自動更新會如[概觀](#overview)所述使用 Azure AD Connect Health。如果您使用 Proxy，請確定 Health 已設定為使用 [roxy 伺服器](active-directory-aadconnect-health-agent-install.md#configure-azure-ad-connect-health-agents-to-use-http-proxy)。而且測試對 Azure AD 的 [Health 連線](active-directory-aadconnect-health-agent-install.md#test-connectivity-to-azure-ad-connect-health-service)。
 
-您在將會看到與自動升級狀態關聯的事件記錄。![自動升級的事件記錄篩選](./media/active-directory-aadconnect-feature-automatic-upgrade/eventlogresult.png)
+透過對已驗證 Azure AD 的連線，即可查看事件記錄檔。啟動事件檢視器，並查看**應用程式**事件記錄。新增來源 **Azure AD Connect 升級**的事件記錄篩選以及事件識別碼範圍 **300-399**。 ![自動升級的事件記錄篩選](./media/active-directory-aadconnect-feature-automatic-upgrade/eventlogfilter.png)
+
+您現在可以看到與自動升級狀態關聯的事件記錄。![自動升級的事件記錄篩選](./media/active-directory-aadconnect-feature-automatic-upgrade/eventlogresult.png)
 
 結果碼前面會有包含狀態概觀的前置詞。
 
 結果碼前置詞 | 說明
 --- | ---
 成功 | 安裝已順利升級。
-UpgradeAborted | 發生暫時狀況導致升級停止。它將會重試一次，而且預期之後會成功。
+UpgradeAborted | 發生暫時狀況導致升級停止。它將會重試一次，而且預期稍後成功。
 UpgradeNotSupported | 系統具有封鎖自動升級系統的組態。它將會重試以查看狀態是否已變更，但預期情況是系統必須手動升級。
 
 以下是最常見的訊息清單。清單不完整，但結果訊息應該清楚顯示問題所在。
@@ -70,7 +72,7 @@ UpgradeNotSupported | 系統具有封鎖自動升級系統的組態。它將會�
 UpgradeAbortedCouldNotSetUpgradeMarker | 無法寫入登錄。
 UpgradeAbortedInsufficientDatabasePermissions | 內建的系統管理員群組沒有資料庫的權限。請手動升級至最新版的 Azure AD Connect 來解決此問題。
 UpgradeAbortedInsufficientDiskSpace | 沒有足夠的光碟空間，以支援升級。
-UpgradeAbortedSecurityGroupsNotPresent | 找不到且無法解析同步引擎使用的所有安全性群組。
+UpgradeAbortedSecurityGroupsNotPresent | 找不到且無法解析同步處理引擎使用的所有安全性群組。
 UpgradeAbortedServiceCanNotBeStarted | NT 服務 **Microsoft Azure AD Sync** 無法啟動。
 UpgradeAbortedServiceCanNotBeStopped | NT 服務 **Microsoft Azure AD Sync** 無法停止。
 UpgradeAbortedServiceIsNotRunning | NT 服務 **Microsoft Azure AD Sync** 並未執行。
@@ -92,4 +94,4 @@ UpgradeNotSupportedUserWritebackEnabled | 您已啟用[使用者回寫](active-d
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0824_2016-->

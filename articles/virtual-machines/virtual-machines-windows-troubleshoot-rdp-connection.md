@@ -130,7 +130,7 @@
 
 如果您並非真的需要多於兩個對 VM 的同步遠端桌面連線，則您可以使用伺服器管理員來移除遠端桌面伺服器角色。
 
-如需詳細資訊，請參閱部落格文章：[Azure VM fails with "No Remote Desktop License Servers available" (Azure VM 因「沒有可用的遠端桌面授權伺服器」而失敗)](http://blogs.msdn.com/b/wats/archive/2014/01/21/rdp-to-azure-vm-fails-with-quot-no-remote-desktop-license-servers-available-quot.aspx)。
+如需詳細資訊，請參閱部落格文章：[Azure VM fails with "No Remote Desktop License Servers available" (Azure VM 因「沒有可用的遠端桌面授權伺服器」而失敗)](https://blogs.msdn.microsoft.com/mast/2014/01/21/rdp-to-azure-vm-fails-with-no-remote-desktop-license-servers-available/)。
 
 <a id="rdpname"></a>
 ### 遠端桌面找不到電腦「名稱」。
@@ -210,4 +210,4 @@
 
 [疑難排解存取在 Azure 虛擬機器上執行的應用程式](virtual-machines-linux-troubleshoot-app-connection.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

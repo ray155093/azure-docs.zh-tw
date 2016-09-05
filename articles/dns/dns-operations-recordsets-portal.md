@@ -4,7 +4,7 @@
    services="dns"
    documentationCenter="na"
    authors="cherylmc"
-   manager="carmon"
+   manager="carmonm"
    editor=""
    tags="azure-resource-manager"/>
 
@@ -134,4 +134,4 @@
 -   如需自動化 DNS 的相關資訊，請參閱[使用 .NET SDK 建立 DNS 區域和記錄集](dns-sdk.md)。
 -   如需反向 DNS 記錄的詳細資訊，請參閱[如何使用 PowerShell 管理服務的反向 DNS 記錄](dns-reverse-dns-record-operations-ps.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

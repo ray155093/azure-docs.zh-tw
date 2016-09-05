@@ -3,7 +3,7 @@
    description="復原 Azure SQL 資料倉儲中資料庫之資料庫還原選項的概觀。"
    services="sql-data-warehouse"
    documentationCenter="NA"
-   authors="sonyam"
+   authors="Lakshmi1812"
    manager="barbkess"
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
    ms.date="06/28/2016"
-   ms.author="sonyama;barbkess"/>
+   ms.author="lakshmir;barbkess;sonyama"/>
 
 
 # 還原 Azure SQL 資料倉儲 (概觀)
@@ -72,4 +72,4 @@ order by run_id desc;
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0824_2016-->

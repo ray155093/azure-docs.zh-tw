@@ -15,12 +15,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="multiple"
    ms.workload="na"
-   ms.date="03/30/2016"
+   ms.date="08/19/2016"
    ms.author="wesmc"/>
 
 # 測試 Azure Functions
 
-## 概觀
+## Overview
 
 在本教學課程中，我們將逐步進行測試函數的不同方法。我們會定義會透過查詢字串參數或要求主體接受輸入的 http 觸發程序函數。預設 **HttpTrigger Node.js 函數**範本程式碼支援 `name` 查詢字串參數。我們也會新增程式碼來支援該參數，連同要求主體中使用者的 `address` 資訊。
 
@@ -28,7 +28,7 @@
 
 本教學課程中的大多數時間，我們將使用建立新的函數時可以使用 **HttpTrigger Nodejs 函數**範本稍經修改的版本。如果您需要建立新函數的說明，可以檢閱[建立您的第一個 Azure 函數](functions-create-first-azure-function.md)。在 [Azure 入口網站]中建立測試函數時，只要選擇 **HttpTrigger Nodejs 函數**範本。
 
-預設函數範本基本上是 hello world 函數，可從要求主體或查詢字串參數 `name=<your name>` 回應名稱。我們將更新程式碼，以讓您在要求主體中以 JSON 內容的形式提供名稱和位址。然後函數會在可使用時將這些內容回應給用戶端。
+預設函式範本基本上是 hello world 函式，可從要求主體或查詢字串參數 `name=<your name>` 回應名稱。我們將更新程式碼，以讓您在要求主體中以 JSON 內容的形式提供名稱和位址。然後函數會在可使用時將這些內容回應給用戶端。
 
 使用我們將用來測試的下列程式碼更新函數︰
 
@@ -135,8 +135,8 @@
 
 > [AZURE.TIP] 方便時請使用 REST 用戶端。以下是 Postman 的一些替代方案︰
 > 
-> * [Fiddler](http://www.telerik.com/fiddler)  
-> * [Paw](https://luckymarmot.com/paw)  
+> * [Fiddler](http://www.telerik.com/fiddler)
+> * [Paw](https://luckymarmot.com/paw)
 
 若要在 Postman 中測試要求主體的函數︰
 
@@ -238,7 +238,7 @@
 > [AZURE.NOTE] 如果您使用不同的佇列名稱，請確定您使用的名稱符合[命名佇列和中繼資料](https://msdn.microsoft.com/library/dd179349.aspx)的規則。否則，您會得到的 HTTP 狀態碼 400︰錯誤的要求。
 
 1. 在 Functions 應用程式的 [Azure 入口網站]，按一下 [新增函數] > [QueueTrigger - C#]。
-2. 輸入要使用佇列函數監視的佇列名稱 
+2. 輸入要使用佇列函式監視的佇列名稱
 
 		queue-newusers 
 
@@ -350,7 +350,7 @@
 
 
 
-Output:
+輸出：
 
 	C:\Users\Wesley\testing\Node.js>node testHttpTriggerExample.js
 	*** Sending name and address in body ***
@@ -439,4 +439,4 @@ Output:
 
 [Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0824_2016-->

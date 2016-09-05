@@ -1,5 +1,5 @@
 <properties
-	pageTitle="使用 PowerShell (Resource Manager) 將位於 VMM 雲端的 Hyper-V 虛擬機器複寫至次要 VMM 站台 | Microsoft Azure"
+	pageTitle="使用 PowerShell 將位於 VMM 雲端中的 Hyper-V 虛擬機器複寫至次要 VMM 站台 (Resource Manager) | Microsoft Azure"
 	description="描述如何使用 PowerShell (Resource Manager) 部署 Azure Site Recovery，以協調將 VMM 雲端中的 Hyper-V VM 複寫、容錯移轉和復原至次要 VMM 站台"
 	services="site-recovery"
 	documentationCenter=""
@@ -16,7 +16,7 @@
 	ms.date="07/19/2016"
 	ms.author="sutalasi"/>
 
-# 使用 PowerShell (Resource Manager) 將位於 VMM 雲端的 Hyper-V 虛擬機器複寫至次要 VMM 站台
+# 使用 PowerShell 將位於 VMM 雲端中的 Hyper-V 虛擬機器複寫至次要 VMM 站台 (Resource Manager)
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](site-recovery-vmm-to-vmm.md)
@@ -214,7 +214,7 @@
 
 2. 下列命令取得來源 VMM 伺服器和目標 VMM 伺服器的站台復原網路。
 
-    	$PrimaryNetworks = Get-AzureRmSiteRecoveryNetwork -Server $Servers[0]
+    	$PrimaryNetworks = Get-AzureRmSiteRecoveryNetwork -Server $Servers[0]        
 
 		$RecoveryNetworks = Get-AzureRmSiteRecoveryNetwork -Server $Servers[1]
 
@@ -226,7 +226,30 @@
 
 		New-AzureRmSiteRecoveryNetworkMapping -PrimaryNetwork $PrimaryNetworks[0] -RecoveryNetwork $RecoveryNetworks[0]
 
-## 步驟 6：對虛擬機器啟用保護
+## 步驟 6：設定儲存體對應
+
+1. 下列命令將能把儲存體分類清單置入 $storageclassifications 變數中。
+
+		$storageclassifications = Get-AzureRmSiteRecoveryStorageClassification
+
+
+2. 下列命令將能把來源分類置入 $SourceClassificaion 變數中，並把目標分類置入 $TargetClassification 變數中。
+
+    	$SourceClassificaion = $storageclassifications[0]
+
+		$TargetClassification = $storageclassifications[1]
+
+	
+	> [AZURE.NOTE] 來源和目標分類可以是陣列中的任何元素。請參考下列命令的輸出，以了解 $storageclassifications 陣列中來源和目標分類的目錄。
+	
+	> Get-AzureRmSiteRecoveryStorageClassification | Select-Object -Property FriendlyName, Id | Format-Table
+
+
+3. 下列 Cmdlet 能在來源分類和目標分類之間建立對應。
+
+		New-AzureRmSiteRecoveryStorageClassificationMapping -PrimaryStorageClassification $SourceClassificaion -RecoveryStorageClassification $TargetClassification
+
+## 步驟 7：對虛擬機器啟用保護
 
 正確設定伺服器、雲端和網路後，您就可以對雲端中的虛擬機器啟用保護。
 
@@ -331,4 +354,4 @@
 
 [閱讀更多](https://msdn.microsoft.com/library/azure/mt637930.aspx)使用 Azure Resource Manager PowerShell Cmdlet 進行 Azure Site Recovery 的相關資訊。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0824_2016-->

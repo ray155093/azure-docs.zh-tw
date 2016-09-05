@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/04/2016" 
+	ms.date="08/22/2016" 
 	ms.author="billmath"/>
 
 # 搭配 Azure Multi-Factor Authentication 使用行動應用程式做為連絡方式
 
-如果您要使用行動應用程式做為主要連絡方式，您可以使用這份文件。它會引導您設定 Multi-Factor Authentication，以利用行動應用程式做為主要連絡方式。
+如果您要使用 Microsoft 驗證器應用程式做為主要連絡方式，您可以使用這份文件。它會引導您設定 Multi-Factor Authentication，以利用行動應用程式做為主要連絡方式。
 
-適用於 [Windows Phone](http://www.windowsphone.com/zh-TW/store/app/azure-authenticator/03a5b2bf-6066-418f-b569-e8aecbc06e50)、[Android](https://play.google.com/store/apps/details?id=com.azure.authenticator) 和 [IOS](https://itunes.apple.com/us/app/azure-authenticator/id983156458) 的 Azure Authenticator 應用程式。
+Microsoft 驗證器應用程式適用於 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)、[Android](http://go.microsoft.com/fwlink/?Linkid=825072) 和 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)。
 
 ## 使用行動應用程式做為連絡方式
 
@@ -31,7 +31,7 @@
 ![設定](./media/multi-factor-authentication-end-user-first-time-mobile-app/mobileapp.png)
 
 - 選取 [通知] 或 [單次密碼]，然後按一下 [設定]。
-- 在已安裝 Azure Authenticator 應用程式的電話上，啟動該應用程式並按一下 [掃描條碼]。若要加入已經有 Azure MFA 的帳戶或協力廠商帳戶，請參閱[手動新增帳戶](#adding-an-account-manually)。
+- 在已安裝 Microsoft 驗證器應用程式的電話上，啟動該應用程式並按一下 [掃描條碼]。若要加入已經有 Azure MFA 的帳戶或協力廠商帳戶，請參閱[手動新增帳戶](#adding-an-account-manually)。
 
 ![設定](./media/multi-factor-authentication-end-user-first-time-mobile-app/scan.png)
 
@@ -54,7 +54,7 @@
 - 按一下 [完成]。
 
 
-<h2 id="zhtw">手動新增帳戶</h2>
+## 手動新增帳戶
 如果想要手動新增帳戶，請選取手動輸入帳戶的按鈕。
 
 ![設定](./media/multi-factor-authentication-end-user-first-time-mobile-app/addaccount.png)
@@ -70,7 +70,7 @@
 
 ![設定](./media/multi-factor-authentication-end-user-first-time-mobile-app/add3rdparty.png)
 
->[AZURE.NOTE]如果您看到「新增工作帳戶」，這是針對「加入工作場所」而非多因素驗證。您可以忽略此項目。
+
  
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

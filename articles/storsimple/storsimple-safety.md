@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/13/2016"
+   ms.date="08/18/2016"
    ms.author="alkohli" />
 
 # 安全地安裝和操作您的 StorSimple 裝置
@@ -143,7 +143,7 @@
 
 ![注意事項圖示](./media/storsimple-safety/IC740881.png) **注意事項：**
 
-觀察下列 ESD 相關的預防措施。
+請遵循下列 ESD 相關的預防措施。
 
 - 請確定您已安裝並檢查適合的抗靜電腕或踝帶。
 
@@ -179,4 +179,4 @@
 
 - 針對 8600 裝置，請至[安裝您的 StorSimple 8600 裝置](storsimple-8600-hardware-installation.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0824_2016-->

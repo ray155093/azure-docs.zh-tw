@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="使用 REST API 傳遞點播內容入門" 
+	pageTitle="使用 REST 傳遞點播內容入門 | Microsoft Azure" 
 	description="本教學課程會帶您逐步完成使用 REST API 實作含 Azure 媒體服務的點播內容傳遞應用程式。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,10 +13,10 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016" 
+	ms.date="08/17/2016" 
 	ms.author="juliako"/>
 
-#使用 REST API 傳遞點播內容入門
+#使用 REST 傳遞點播內容入門 
 
 [AZURE.INCLUDE [media-services-selector-get-started](../../includes/media-services-selector-get-started.md)]
 
@@ -66,7 +66,7 @@
 
 	成功建立帳戶之後，狀態會變更為作用中。
 	
-	在頁面底部會顯示 [管理金鑰] 按鈕。當您按一下此按鈕時，會顯示對話方塊，其中具有媒體服務帳戶名稱和主要和次要金鑰。您將需要帳戶名稱和主要金鑰資訊，以便以程式設計方式存取媒體服務帳戶。
+	在頁面底部會顯示 [管理金鑰] 按鈕。當您按一下此按鈕時，會顯示對話方塊，其中具有媒體服務帳戶名稱和主要和次要金鑰。您需要帳戶名稱和主要金鑰資訊，以便以程式設計方式存取媒體服務帳戶。
 
 	
 	![Media Services Page](./media/media-services-rest-get-started/wams-mediaservices-page.png)
@@ -212,7 +212,7 @@
 	 
 
 
->[AZURE.NOTE] 從現在起新 URI 將用於本教學課程。
+>[AZURE.NOTE] 從現在起，新 URI 將用於本教學課程。
 
 ## <a id="upload"></a>使用 REST API 建立新資產並上傳視訊檔案
 
@@ -221,7 +221,7 @@
 您必須建立資產時提供的值是資產建立選項。**Options** 屬性是描述可以使用建立資產之加密選項的列舉值。有效的值是以下清單的其中一個值，而不是值的組合。
 
  
-- **None** = **0** - 不會使用加密。請注意，使用此選項時，您的內容在傳輸或儲存體中靜止時不會受到保護。如果您計劃使用漸進式下載傳遞 MP4，請使用此選項。
+- **None** = **0** - 不會使用加密。請注意，使用這個選項時您的內容在傳輸中或在儲存體中不受保護。如果您計劃使用漸進式下載傳遞 MP4，請使用此選項。
 - **StorageEncrypted** = **1** - 在本機使用 AES-256 位元加密將您的純文字內容加密，然後將它上傳到 Azure 儲存體，在該處以加密的方式儲存。以儲存體加密保護的資產會自動解除加密並在編碼前放置在加密的檔案系統中，並且會在上傳為新輸出資產之前選擇性地重新編碼。儲存體加密的主要使用案例是讓您可以使用強式加密來保護磁碟中靜止的高品質輸入媒體檔。
 - **CommonEncryptionProtected** = **2** - 如果您要上傳已經使用一般加密或 PlayReady DRM (例如使用 PlayReady DRM 保護的 Smooth Streaming) 加密及保護的內容，請使用這個選項。
 - **EnvelopeEncryptionProtected** = **4** – 如果您要上傳使用 AES 加密的 HLS，請使用這個選項。請注意，檔案必須已由 Transform Manager 編碼和加密。
@@ -497,8 +497,7 @@ SAS URL 具有下列格式：
 
 **HTTP 回應**
 
-如果成功，會傳回下列訊息：
-	HTTP/1.1 204 沒有內容
+如果成功，會傳回下列訊息：HTTP/1.1 204 沒有內容
 
 ## 刪除 Locator 和 AccessPolicy 
 
@@ -543,9 +542,9 @@ SAS URL 具有下列格式：
  
 ## <a id="configure_streaming_units"></a>使用 REST API 來設定串流單位
 
-使用 Azure 媒體服務時，其中一個最常見案例是提供調適性位元速率串流給您的用戶端。使用調適性位元速率串流，用戶端可以在視訊顯示時，根據目前網路頻寬、CPU 使用率以及其他因素，切換成較高或較低的位元速率串流。媒體服務支援下列調適性位元速率串流技術：HTTP 即時串流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access 授權)。
+使用 Azure 媒體服務時，其中一個最常見案例是提供自適性串流給您的用戶端。使用調適性位元速率串流，用戶端可以在視訊顯示時，根據目前網路頻寬、CPU 使用率以及其他因素，切換成較高或較低的位元速率串流。媒體服務支援下列調適性位元速率串流技術：HTTP 即時串流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access 授權)。
 
-媒體服務提供動態封裝，這讓您以媒體服務支援的串流格式 (MPEG DASH, 、HLS、Smooth Streaming、HDS) 提供調適性位元速率 MP4 或 Smooth Streaming 編碼內容，而不必重新封裝成這些串流格式。
+媒體服務提供動態封裝，這讓您以媒體服務支援的串流格式 (MPEG DASH、HLS、Smooth Streaming、HDS) 提供調適性位元速率 MP4 或 Smooth Streaming 編碼內容，而不必重新封裝成這些串流格式。
 
 若要利用動態封裝，您需要執行下列動作：
 
@@ -557,7 +556,7 @@ SAS URL 具有下列格式：
 
 >[AZURE.NOTE] 如需定價詳細資料的相關資訊，請參閱＜[媒體服務定價詳細資料](http://go.microsoft.com/fwlink/?LinkId=275107)＞。
 
-若要變更串流保留單元的數目，請執行下列動作：
+若要變更串流保留單元數目，請執行下列動作：
 	
 ### 取得您想要更新的串流端點
 
@@ -615,7 +614,7 @@ SAS URL 具有下列格式：
 	
 ### <a id="long_running_op_status"></a> 檢查長時間執行作業的狀態
 
-任何新的單位配置需要大約 20 分鐘的時間才能完成。若要檢查作業的狀態，請使用 **Operations** 方法，並指定作業識別碼。作業識別碼是在 **Scale** 要求的回應中傳回。
+配置任何新的單元需要大約 20 分鐘的時間才能完成。若要檢查作業的狀態，請使用 **Operations** 方法，並指定作業識別碼。作業識別碼是在 **Scale** 要求的回應中傳回。
 
 	operation-id: nb:opid:UUID:1853bcbf-b71f-4ed5-a4c7-a581d4f45ae7
  
@@ -662,7 +661,7 @@ SAS URL 具有下列格式：
 
 ## <a id="encode"></a>將來源檔案編碼為一組調適性位元速率 MP4 檔案
 
-將資產內嵌到媒體服務之後，可以先將媒體編碼、轉碼多工處理、加上浮水印等，再傳遞給用戶端。這些活動會針對多個背景角色執行個體排定和執行，以確保高效能與可用性。這些活動稱為工作，每個[工作](http://msdn.microsoft.com/library/azure/hh974289.aspx)包含對資產檔案執行實際工作的不可部分完成的工作。
+將資產內嵌到媒體服務之後，可以先將媒體編碼、轉碼多工處理、加上浮水印等，再傳遞給用戶端。這些活動會針對多個背景角色執行個體排定和執行，以確保高效能與可用性。這些活動稱為「工作」，每個「工作」[](http://msdn.microsoft.com/library/azure/hh974289.aspx)包含對資產檔案執行實際工作的不可部分完成的工作。
 
 如稍早所提及，使用 Azure 媒體服務時，其中一個最常見的案例是將調適性位元速率串流傳遞給用戶端。媒體服務可以以下列其中一種格式動態封裝一組可調位元速率 MP4 檔案：HTTP 即時資料流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/存取使用權)。
 
@@ -675,7 +674,7 @@ SAS URL 具有下列格式：
 
 ### 取得媒體處理器
 
-在媒體服務中，媒體處理器是可處理特定處理工作的元件，例如編碼、格式轉換、加密或解密媒體內容。針對此教學課程中所示的編碼工作，我們將使用媒體編碼器標準。
+在媒體服務中，媒體處理器是可處理特定處理工作的元件，例如編碼、格式轉換、加密或解密媒體內容。此教學課程中所示的編碼工作，我們將使用媒體編碼器標準。
 
 下列程式碼要求編碼器的識別碼。
 
@@ -961,7 +960,7 @@ SAS URL 具有下列格式：
 
 ## <a id="publish_get_urls"></a>使用 REST API 發行資產及取得串流和漸進式下載 URL
 
-若要串流處理或下載資產，您必須先建立定位器來「發佈」它。定位器可以存取資產中所含的檔案。媒體服務支援兩種類型的定位器：OnDemandOrigin 定位器，用於串流媒體 (例如，MPEG DASH、HLS 或 Smooth Streaming) 和存取簽章 (SAS) 定位器，用來下載媒體檔案。
+若要串流處理或下載資產，您必須先建立定位器來「發佈」它。定位器提供對於資產中包含之檔案的存取。媒體服務支援兩種類型的定位器：OnDemandOrigin 定位器，用於串流媒體 (例如，MPEG DASH、HLS 或 Smooth Streaming) 和存取簽章 (SAS) 定位器，用來下載媒體檔案。
 
 建立定位器之後，您便可以建立用來串流或下載檔案的 URL。
 
@@ -983,7 +982,7 @@ MPEG DASH 的串流 URL 具有下列格式：
 
 	{blob container name}/{asset name}/{file name}/{SAS signature}
 
-本節示範如何執行「發行」您的資產所需的下列工作。
+本節示範如何執行「發佈」您的資產所需的下列工作。
 
 - 建立具有讀取權限的 AccessPolicy
 - 建立下載內容用的 SAS URL
@@ -1107,7 +1106,7 @@ MPEG DASH 的串流 URL 具有下列格式：
 	https://storagetestaccount001.blob.core.windows.net/asset-38058602-a4b8-4b33-b9f0-6880dc1490ea/BigBuckBunny_AAC_und_ch2_56kbps.mp4?sv=2012-02-12&sr=c&si=166d5154-b801-410b-a226-ee2f8eac1929&sig=P2iNZJAvAWpp%2Bj9yV6TQjoz5DIIaj7ve8ARynmEM6Xk%3D&se=2015-02-14T01:13:05Z
 
 
-###建立串流內容用的串流 URL
+### 建立串流內容用的串流 URL
 
 
 下列程式碼示範如何建立串流 URL 定位器：
@@ -1197,11 +1196,11 @@ MPEG DASH 的串流 URL 具有下列格式：
 
 ## 尋找其他內容嗎？
 
-如果本主題未包含您預期的內容、缺少部分內容，或者提供了一些其他不符合您需求的方式，請在下方提供您使用 Disqus 執行緒的意見反應給我們。
+如果本主題未包含您預期的內容、缺少部分內容，或者提供了一些其他不符合您需求的方式，請使用下方的 Disqus 執行緒將您的意見反應提供給我們。
 
 
 
 <!-- URLs. -->
   [Azure 傳統入口網站]: http://manage.windowsazure.com/
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0824_2016-->

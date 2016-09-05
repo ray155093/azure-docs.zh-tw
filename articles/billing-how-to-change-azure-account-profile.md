@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/11/2016"
+	ms.date="08/17/2016"
 	ms.author="genli"/>
 
 # 如何變更連絡人電子郵件、地址和電話號碼等 Azure 帳戶的設定檔資訊
@@ -26,6 +26,8 @@
 
 -	[如何變更設定檔資訊](#how-to-change-your-profile-information)
 -	[常見問題解答](#frequently-asked-questions)
+
+> [AZURE.NOTE] 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
 ## 設定檔電子郵件地址的重要資訊
 
@@ -61,4 +63,6 @@
 
 如果您註冊新的 Azure 計費警示預覽功能，就會在您指定的地址收到 Azure 計費警示的電子郵件，不論您是否變更過帳戶管理員電子郵件地址。
 
-<!---HONumber=AcomDC_0817_2016-->
+> [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+
+<!---HONumber=AcomDC_0824_2016-->

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="SQL 資料倉儲解決方案合作夥伴 | Microsoft Azure"
-   description="提供 SQL 資料倉儲解決方案的協力廠商清單。"
+   pageTitle="SQL 資料倉儲資料管理合作夥伴 | Microsoft Azure"
+   description="具有可支援「SQL 資料倉儲」之解決方案的協力廠商資料管理合作夥伴清單。"
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="jrowlandjones"
@@ -13,22 +13,22 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/11/2016"
+   ms.date="08/17/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 # SQL 資料倉儲資料管理合作夥伴
 
-若要建立端對端資料倉儲解決方案，請從各式各樣領先業界的工具中選擇。以下是提供 SQL 資料倉儲資料管理工具和解決方案的其中一些合作夥伴公司的清單。
+若要建立端對端資料倉儲解決方案，請從各式各樣領先業界的工具中選擇。本文將重點放在具有可支援「Azure SQL 資料倉儲」之資料管理工具和解決方案的 Microsoft 合作夥伴公司。
 
 ## 我們的資料管理合作夥伴
 
 | 合作夥伴 | 說明 | 連結 | 影片 |
 | ------- | ----------- | ----- | ------ |
 | ![Coffing Data Warehousing][1] |**Coffing Data Warehousing**<br>Coffing Data Warehousing 提供 Nexus Chameleon，這是專門用來查詢系統的工具，已有十年的歷史。Nexus 可做為 SQL 資料倉儲的查詢工具。請使用 Nexus 查詢內部部署和雲端電腦，並聯結不同平台的資料。點擊式報告！ | [Marketplace][coffing_marketplace]<br>[網站][coffing_website]<br>[新聞稿][coffing_press]<br>[Twitter][coffing_twitter]<br>[YouTube][coffing_youtube] | [![Coffing 影片](./media/sql-data-warehouse-partner-data-management/coffing_video.jpg)](https://www.youtube.com/watch?v=N5GSxBEySFc) |
-| ![Inbrein][2] |**MicroERD**<br>Inbrein MicroERD 提供您必要的工具，來建立精確的資料模型、減少資料冗餘、提升產能及遵守標準。根據廣泛的使用者經驗所開發的 UI，可讓模型塑造者輕鬆又方便地處理 DB 模型。透過及時的功能改進和更新，您可以持續享有 MicroERD 最新改善的功能。 | [網站][inbrein_website]<br>[規格書][inbrein_datasheet]<br>[Twitter][inbrein_twitter]<br>[YouTube][inbrein_youtube] | [![Inbrein 影片](./media/sql-data-warehouse-partner-data-management/inbrein_video.jpg)](https://www.youtube.com/watch?v=IGHSAk4bxdE)|
-| ![Infolibrarian][3] |**Infolibrarian**<br>InfoLibrarian 能夠歸類、儲存和管理中繼資料，協助您解決資料管理的主要難題。此外，我們提供中繼資料管理、資料控管和資產管理軟體解決方案，可讓您管理和發佈各種不同工具和技術的中繼資料。 | [Marketplace][infolibrarian_marketplace]<br>[網站][infolibrarian_website]<br>[Twitter][infolibrarian_twitter] | [![Infolibrarian 影片](./media/sql-data-warehouse-partner-data-management/infolibrarian_video.png)](http://www.infolibcorp.com/metadata-management-videos/vdbplayer.swf?volume=100&url=video/infolibrarian-azure-provisioning.mp4) |
+| ![Inbrein][2] |**MicroERD**<br>Inbrein MicroERD 提供您建立精確資料模型、減少資料備援、提升產能及遵守標準所需的工具。透過使用其根據廣泛使用者體驗所開發的 UI，可讓模型塑造既輕鬆又方便地處理 DB 模型。透過及時的功能改進和更新，您可以持續享有 MicroERD 最新改善的功能。 | [網站][inbrein_website]<br>[規格書][inbrein_datasheet]<br>[Twitter][inbrein_twitter]<br>[YouTube][inbrein_youtube] | [![Inbrein 影片](./media/sql-data-warehouse-partner-data-management/inbrein_video.jpg)](https://www.youtube.com/watch?v=IGHSAk4bxdE)|
+| ![Infolibrarian][3] |**Infolibrarian**<br>InfoLibrarian 能夠歸類、儲存和管理中繼資料，協助您解決資料管理的主要難題。此外，我們還提供中繼資料管理、資料控管和資產管理軟體解決方案，可讓您透過一組多樣的工具和技術來管理和發佈中繼資料。 | [Marketplace][infolibrarian_marketplace]<br>[網站][infolibrarian_website]<br>[Twitter][infolibrarian_twitter] | [![Infolibrarian 影片](./media/sql-data-warehouse-partner-data-management/infolibrarian_video.png)](http://www.infolibcorp.com/metadata-management-videos/vdbplayer.swf?volume=100&url=video/infolibrarian-azure-provisioning.mp4) |
 | ![Redpoint Global][4] |**RedPoint Interaction**<br>RedPoint Interaction 讓您能夠在每個通訊通道與接觸點上，透過連續對話來與客戶交流。從作業控制的單一點輕鬆管理全通路行銷的完整週期 | [Marketplace][redpoint_it_marketplace]<br>[網站][redpoint_it_website]<br>[新聞稿][redpoint_press]<br>[規格書][redpoint_it_datasheet]<br>[Twitter][redpoint_twitter]<br>[YouTube][redpoint_youtube] | [![Redpoint DM 影片](./media/sql-data-warehouse-partner-data-management/redpoint_it_video.jpg)](https://vimeo.com/103715582) |
-| ![Redpoint Global][4] |**RedPoint Data Management**<br>RedPoint Data Management 可讓行銷人員運用其所有資料來促進跨通路客戶的參與，同時執行結構化和非結構化的資料管理。RedPoint 使用者可以運用 Microsoft Azure SQL 資料倉儲，讓其所有的結構化或非結構化資料發揮最大的價值，經由高度個人化和情境式互動，吸引現今泛通路的客戶。拖放介面讓設計和執行資料管理程序變得很輕鬆。 | [Marketplace][redpoint_dm_marketplace]<br>[網站][redpoint_dm_website]<br>[新聞稿][redpoint_press]<br>[規格書][redpoint_dm_datasheet]<br>[Twitter][redpoint_twitter]<br>[YouTube][redpoint_youtube] | [![Redpoint DM 影片](./media/sql-data-warehouse-partner-data-management/redpoint_dm_video.jpg)](https://vimeo.com/103715581) |
+| ![Redpoint Global][4] |**RedPoint Data Management**<br>RedPoint Data Management 可讓行銷人員運用其所有資料來提升跨通路的客戶參與率，同時又能執行結構化和非結構化的資料管理。透過利用「Azure SQL 資料倉儲」與 RedPoint，您可以發揮您結構化和非結構化資料的最大價值，提供吸引現今全通路客戶所需的超高度個人化情境式互動。拖放介面讓設計和執行資料管理程序變得很輕鬆。 | [Marketplace][redpoint_dm_marketplace]<br>[網站][redpoint_dm_website]<br>[新聞稿][redpoint_press]<br>[規格書][redpoint_dm_datasheet]<br>[Twitter][redpoint_twitter]<br>[YouTube][redpoint_youtube] | [![Redpoint DM 影片](./media/sql-data-warehouse-partner-data-management/redpoint_dm_video.jpg)](https://vimeo.com/103715581) |
 | ![SQL Sentry][5] |**SQL Sentry**<br>SQL Sentry Performance Advisor 提供最適當 Azure SQL 資料倉儲效能度量的即時和歷史觀點，讓客戶看出效能趨勢，並輕鬆地存取更詳細的資訊來深入分析和疑難排解。此效能顧問可讓您檢視任何時間點或日期範圍內的效能資料。 | [Marketplace][sql_sentry_marketplace]<br>[網站][sql_sentry_website]<br>[新聞稿][sql_sentry_press]<br>[Twitter][sql_sentry_twitter]<br>[YouTube][sql_sentry_youtube] | |
 
 ## 後續步驟
@@ -97,4 +97,4 @@
 
 <!--Video links-->
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0824_2016-->

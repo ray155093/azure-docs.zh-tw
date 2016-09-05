@@ -3,7 +3,7 @@
    description="了解如何使用 Azure CLI 在資源管理員中建立網際網路面向的負載平衡器"
    services="load-balancer"
    documentationCenter="na"
-   authors="joaoma"
+   authors="sdwheeler"
    manager="carmonm"
    editor=""
    tags="azure-resource-manager"
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/24/2016"
-   ms.author="joaoma" />
+   ms.author="sewhee" />
 
 # 開始使用 Azure CLI 建立網際網路面向的負載平衡器
 
@@ -23,7 +23,7 @@
 
 [AZURE.INCLUDE [load-balancer-get-started-internet-intro-include.md](../../includes/load-balancer-get-started-internet-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]本文涵蓋之內容包括資源管理員部署模型。您也可以[了解如何使用傳統部署建立網際網路面向的負載平衡器](load-balancer-get-started-internet-classic-portal.md)
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] 本文涵蓋之內容包括資源管理員部署模型。您也可以[了解如何使用傳統部署建立網際網路面向的負載平衡器](load-balancer-get-started-internet-classic-portal.md)
 
 
 [AZURE.INCLUDE [load-balancer-get-started-internet-scenario-include.md](../../includes/load-balancer-get-started-internet-scenario-include.md)]
@@ -35,7 +35,7 @@
 
 您需要建立和設定下列物件以部署負載平衡器。
 
-- 前端 IP 組態 - 包含傳入網路流量的公用 IP 位址。 
+- 前端 IP 組態 - 包含傳入網路流量的公用 IP 位址。
 
 - 後端位址集區 - 包含虛擬機器的網路介面 (NIC)，可從負載平衡器接收網路流量。
 
@@ -78,7 +78,7 @@
 	azure network public-ip create -g NRPRG -n NRPPublicIP -l eastus -d loadbalancernrp -a static -i 4
 
 
->[AZURE.IMPORTANT] 負載平衡器將使用公用 IP 的網域標籤做為其 FQDN。這樣會變更傳統部署，該部署使用雲端服務做為負載平衡器 FQDN。在此範例中，FQDN 是 *loadbalancernrp.eastus.cloudapp.azure.com* 。
+>[AZURE.IMPORTANT] 負載平衡器將使用公用 IP 的網域標籤做為其 FQDN。這樣會變更傳統部署，該部署使用雲端服務做為負載平衡器 FQDN。在此範例中，FQDN 是 *loadbalancernrp.eastus.cloudapp.azure.com*。
 
 ## 建立負載平衡器
 
@@ -123,9 +123,9 @@
 參數：
 
 - **-g** - 資源群組名稱
-- **-l** - 負載平衡器名稱 
+- **-l** - 負載平衡器名稱
 - **-n** -資源名稱是否為 nat 規則、探查或 lb 規則。
-- **-p** - 通訊協定 (可以是 TCP 或 UDP)  
+- **-p** - 通訊協定 (可以是 TCP 或 UDP)
 - **-f** - 要使用的前端連接埠 (探查命令會使用 -f 來定義探查路徑)
 - **-b** - 要使用的後端連接埠
 
@@ -226,10 +226,10 @@
 
 - **-g** - 資源群組名稱
 - **-n** - NIC 資源的名稱
-- **--subnet-name** - 子網路的名稱 
+- **--subnet-name** - 子網路的名稱
 - **--subnet-vnet-name** - 虛擬網路的名稱
-- **-d** - 後端集區資源的 ID - 開頭為 /subscription/{subscriptionID/resourcegroups/<resourcegroup-name>/providers/Microsoft.Network/loadbalancers/<load-balancer-name>/backendaddresspools/<name-of-the-backend-pool> 
-- **-e** - 將與 NIC 資源相關聯的 NAT 規則 ID - 開頭為 /subscriptions/####################################/resourceGroups/<resourcegroup-name>/providers/Microsoft.Network/loadBalancers/<load-balancer-name>/inboundNatRules/<nat-rule-name>
+- **-d** - 後端集區資源的識別碼 - 開頭為 /subscription/{subscriptionID/resourcegroups/<resourcegroup-name>/providers/Microsoft.Network/loadbalancers/<load-balancer-name>/backendaddresspools/<name-of-the-backend-pool>
+- **-e** - 將與 NIC 資源相關聯的 NAT 規則識別碼 - 開頭為 /subscriptions/####################################/resourceGroups/<resourcegroup-name>/providers/Microsoft.Network/loadBalancers/<load-balancer-name>/inboundNatRules/<nat-rule-name>
 
 
 預期的輸出：
@@ -293,11 +293,11 @@
 
 >[AZURE.NOTE] 預期會顯示「此 NIC 未設有 publicIP」訊息，因為針對負載平衡器建立的 NIC 會使用負載平衡器公用 IP 位址連線到網際網路。
 
-由於 *lb-nic1-be* NIC 會與 *rdp1* NAT 規則相關聯，因此您可以使用 RDP 透過負載平衡器上的連接埠 3441 連線至 *web1* 。
+由於 *lb-nic1-be* NIC 會與 *rdp1* NAT 規則相關聯，因此您可以使用 RDP 透過負載平衡器上的連接埠 3441 連線至 *web1*。
 
 ### 步驟 4
 
-建立名為 *web2* 的虛擬機器 (VM)，並將它與名為 *lb-nic2-be* 的 NIC 產生關聯。系統先建立了名為 *web1nrp* 的儲存體帳戶，再執行下方命令。
+建立名為 *web2* 的虛擬機器 (VM)，並將它與名為 *lb-nic2-be* 的 NIC 產生關聯。在執行下列命令之前，會先建立名為 *web1nrp* 的儲存體帳戶。
 
 	azure vm create --resource-group nrprg --name web2 --location eastus --vnet-	name nrpvnet --vnet-subnet-name nrpvnetsubnet --nic-name lb-nic2-be --availset-name nrp-avset --storage-account-name web2nrp --os-type Windows --image-urn MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter:4.0.20150825
 
@@ -328,4 +328,4 @@
 
 [設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0824_2016-->

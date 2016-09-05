@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/24/2016"
+	ms.date="08/17/2016"
 	ms.author="luisca"/>
 
 # 以批次方式取得建議
@@ -198,4 +198,4 @@ API 要求本文必須定義須儲存輸入、輸出及錯誤檔的位置。也�
 -	每個訂用帳戶一次只能呼叫一個批次作業。
 -	批次作業輸入檔不能超過 2 MB。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

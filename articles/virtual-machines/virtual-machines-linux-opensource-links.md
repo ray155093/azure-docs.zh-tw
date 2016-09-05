@@ -30,7 +30,7 @@
 - [關於以傳統部署模型建立之 Azure 虛擬機器的常見問題集](virtual-machines-linux-classic-faq.md)
 - [關於虛擬機器的映像](virtual-machines-linux-classic-about-images.md)
 - [上傳您自己的 Distro 映像](virtual-machines-linux-classic-create-upload-vhd.md) (以及使用 [Azure 背書散發版本](virtual-machines-linux-endorsed-distros.md)的指示)
-- [使用 Azure 傳統入口網站登入 Linux VM](virtual-machines-linux-classic-log-on.md)
+- [使用 Azure 傳統入口網站登入 Linux VM](virtual-machines-linux-mac-create-ssh-keys.md)
 
 ## 設定
 
@@ -71,7 +71,7 @@
 
 
 ## 規劃
-- [Azure 基礎結構服務實作指導方針](virtual-machines-linux-infrastructure-service-guidelines.md)
+- [Azure 基礎結構服務實作指導方針](virtual-machines-linux-infrastructure-subscription-accounts-guidelines.md)
 - [選取 Linux 使用者名稱](virtual-machines-linux-usernames.md)
 - [如何以傳統部署模型設定虛擬機器的可用性設定組](virtual-machines-linux-classic-configure-availability.md)
 - [如何排定在 Azure VM 上的計劃性維護](virtual-machines-linux-planned-maintenance-schedule.md)
@@ -79,7 +79,7 @@
 - [Azure 中 Linux 虛擬機器預定進行的維修](virtual-machines-linux-planned-maintenance.md)
 
 
-## Deployment
+## 部署
 - [建立執行 Linux 的自訂虛擬機器](virtual-machines-linux-classic-createportal.md)
 - [基本概念：擷取 Linux VM 來製作範本](virtual-machines-linux-classic-capture-image.md)
 - [非背書散發套件的資訊](virtual-machines-linux-create-upload-generic.md)
@@ -87,7 +87,7 @@
 
 ## 管理
 
-- [SSH](virtual-machines-linux-ssh-from-linux.md)
+- [SSH](virtual-machines-linux-mac-create-ssh-keys.md)
 - [如何重設 Linux 的密碼或 SSH 屬性](virtual-machines-linux-classic-reset-access.md)
 - [使用 Root](virtual-machines-linux-use-root-privileges.md)
 
@@ -189,4 +189,4 @@
 
 - [Azure 的 Packer 外掛程式](https://github.com/msopentech/packer-azure)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0824_2016-->

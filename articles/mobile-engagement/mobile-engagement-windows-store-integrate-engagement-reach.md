@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-store" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="02/29/2016" 
+	ms.date="08/19/2016" 
 	ms.author="piyushjo" />
 
 # Windows 通用 app Reach SDK 整合
@@ -59,7 +59,7 @@ Engagement 提供兩種方式在應用程式中加入 Reach 應用程式內橫�
 兩種整合之間的選擇可以如此歸納︰
 
 -   如果您的頁面已繼承自代理程式 `EngagementPage`，您可以選擇重疊整合，只需在頁面中將 `EngagementPage` 取代為 `EngagementPageOverlay`，將 `xmlns:engagement="using:Microsoft.Azure.Engagement"` 取代為 `xmlns:engagement="using:Microsoft.Azure.Engagement.Overlay"`。
--   如果您想要精確地將 Reach UI 放在頁面中，或是不想在頁面加入另一個繼承層級，可以選擇 Web 檢視手動整合。 
+-   如果您想要精確地將 Reach UI 放在頁面中，或是不想在頁面加入另一個繼承層級，可以選擇 Web 檢視手動整合。
 
 ### 重疊整合
 
@@ -334,4 +334,4 @@ NotfificationHTML 是 `ms-appx-web:///Resources/EngagementNotification.html`。�
 			  #endregion
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0824_2016-->

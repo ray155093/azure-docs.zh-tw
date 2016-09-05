@@ -214,7 +214,7 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
     * Google Play 服務 (版本 27 或更高版本)
     * Google Repository (版本 22 或更高版本)
 
-2.  按一下 [Install Packages]\(安裝封裝)，並等候安裝完成。
+2.  按一下 [Install Packages] (安裝封裝)，並等候安裝完成。
 
 目前的必要程式庫會在 [phonegap-plugin-push Installation 文件]中列出。
 
@@ -249,6 +249,8 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
 請先進行 [iOS 安裝指南](http://taco.visualstudio.com/zh-TW/docs/ios-guide/)中的步驟來安裝和執行 remotebuild 代理程式，才可以使用 Visual Studio 在 iOS 上執行 Cordova 應用程式。
 
 確定您可以建置適用於 iOS 的應用程式。必須執行安裝指南中的步驟才能從 Visual Studio 針對 iOS 建置。如果您沒有 Mac，您可以在 MacInCloud 之類的服務上使用 remotebuild 代理程式針對 iOS 建置。如需詳細資訊，請參閱[在雲端中執行 iOS 應用程式](http://taco.visualstudio.com/zh-TW/docs/build_ios_cloud/)。
+
+>[AZURE.NOTE] 必須有 XCode 7 或更新版本，才能在 iOS 上使用推播外掛程式。
 
 ####尋找要做為應用程式識別碼的識別碼
 
@@ -320,7 +322,7 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
 
 開啟組態設計工具 (以滑鼠右鍵按一下 config.xml 並選取 [檢視表設計工具])，選取 [Windows] 索引標籤，然後選擇 [Windows 目標版本] 下的 [Windows 10]。
 
-	>[AZURE.NOTE] If you are using a Cordova version prior to Cordova 5.1.1 (6.1.1 recommended), you must also set the Toast Capable flag to true in config.xml.
+>[AZURE.NOTE] 如果您使用 Cordova 5.1.1 之前的 Cordova 版本 (建議使用 6.1.1)，您也必須在 config.xml 中將 [支援快顯通知] 旗標設定為 true。
 
 若要在您的預設 (偵錯) 組建中支援推播通知，請開啟 build.json 檔案。將 "release" 組態複製到您的偵錯組態。
 
@@ -383,4 +385,4 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些�
 [ASP.NET Server SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Node.js Server SDK]: app-service-mobile-node-backend-how-to-use-server-sdk.md
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

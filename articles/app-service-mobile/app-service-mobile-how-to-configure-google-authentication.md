@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="05/04/2016"
+	ms.date="08/22/2016"
 	ms.author="mahender"/>
 
 # 如何設定 App Service 應用程式以使用 Google 登入
@@ -26,9 +26,9 @@
 
 ## <a name="register"> </a>向 Google 註冊您的應用程式
 
-1. 登入 [Azure 入口網站]，然後瀏覽到您的應用程式。複製您的 **URL**。您將使用此 URI 設定您的 Google 應用程式。
+1. 登入 [Azure 入口網站]，然後瀏覽到您的應用程式。複製 **URL**，以供稍後用來設定 Google 應用程式。
 
-2. 瀏覽至 [Google apis](http://go.microsoft.com/fwlink/p/?LinkId=268303) (英文) 網站，以您的 Google 帳戶認證登入，按一下 [Create Project]，提供「專案名稱」，然後按一下 [Create]。
+2. 瀏覽至 [Google apis](http://go.microsoft.com/fwlink/p/?LinkId=268303) (英文) 網站，以您的 Google 帳戶認證登入，按一下 [Create Project]，提供**專案名稱**，然後按一下 [Create]。
 
 3. 在 [社交 API] 下，按一下 [Google + API]，然後按一下 [啟用]。
 
@@ -81,4 +81,4 @@
 
 [Azure 入口網站]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0824_2016-->

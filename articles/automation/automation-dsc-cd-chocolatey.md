@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-windows"
    ms.workload="na"
-   ms.date="05/24/2016"
+   ms.date="08/08/2016"
    ms.author="golive"/>
 
 # 使用範例：使用 Automation DSC 和 Chocolatey 持續部署至虛擬機器
@@ -51,7 +51,7 @@ ARM 範本的一項主要功能是能夠在佈建時將 VM 延伸模組安裝至
 
 圖表左下方有一個 Azure 資源管理員 (ARM) 範本。在這個使用範例中，VM 延伸模組將 VM 註冊到 Azure 自動化 DSC 提取伺服器 (也就是提取伺服器) 成為「節點」。組態儲存在提取伺服器中。實際上儲存兩次：一次儲存為純文字，另一次編譯成 MOF 檔案 (適用於對此有所瞭解的人。) 在入口網站，MOF 是「節點組態」(而非只是「組態」)。它是與「節點」相關聯的構件，節點會知道它的組態。下列詳細資料示範如何將節點組態指派給節點。
 
-想必您已在進行頂端的一些或大部分工作。建立 nuspec、編譯和儲存在 NuGet 伺服器中很簡單。您已經在管理 VM。持續部署的下一步需要設定提取伺服器 (一次)、向它註冊節點 (一次)，然後建立組態並儲存到那裡 (初步)。接著，當封裝升級並部署至儲存機制時，請重新整理提取伺服器中的 [組態] 和 [節點組態]\(視需要重複)。
+想必您已在進行頂端的一些或大部分工作。建立 nuspec、編譯和儲存在 NuGet 伺服器中很簡單。您已經在管理 VM。持續部署的下一步需要設定提取伺服器 (一次)、向它註冊節點 (一次)，然後建立組態並儲存到那裡 (初步)。接著，當封裝升級並部署至儲存機制時，請重新整理提取伺服器中的 [組態] 和 [節點組態] (視需要重複)。
 
 如果不是從 ARM 範本開始，也沒關係。有一些 PowerShell Cmdlet 可協助您向提取伺服器註冊 VM，以及完成其餘所有工作。如需祥氣資訊，請參閱下列文章：[上架由 Azure 自動化 DSC 管理的機器](automation-dsc-onboarding.md)
 
@@ -74,6 +74,8 @@ ARM 範本的一項主要功能是能夠在佈建時將 VM 延伸模組安裝至
 PowerShell 資源庫會自動將 DSC 資源安裝到您的 Azure 自動化帳戶。瀏覽至您要的資源，按一下 [部署到 Azure 自動化] 按鈕。
 
 ![PowerShell 資源庫範例](./media/automation-dsc-cd-chocolatey/xNetworking.PNG)
+
+最近新增至 Azure 入口網站的另一種技術可讓您提取新模組或更新現有模組。按一下 [自動化帳戶資源]、[資產] 圖格和 [模組] 圖格。[瀏覽資源庫] 圖示可讓您查看資源庫的模組清單，深入了解詳細資料，並最終匯入您的自動化帳戶。這是讓您的模組隨時保持最新狀態的絕佳方法。而且，匯入功能會檢查與其他模組的相依性以確保所有模組都保持同步。
 
 還有手動方法。適用於 Windows 電腦的 PowerShell 整合模組的資料夾結構，與 Azure 自動化所需的資料夾結構稍有不同。您需要稍微調整一下。但並不難，每個資源只需要進行一次 (除非您將來想要升級。) 如需關於撰寫 PowerShell 整合模組的詳細資訊，請參閱下列文章：[撰寫 Azure 自動化的整合模組](https://azure.microsoft.com/blog/authoring-integration-modules-for-azure-automation/)
 
@@ -167,7 +169,7 @@ New-ConfigurationScript.ps1：
 
 ## 步驟 6：整合一切
 
-每當有某個版本通過 QA 並核准可部署時，即會建立封裝，且 nuspec 及 nupkg 會更新並部署至 NuGet 伺服器。此外也必須更新組態 (上述的步驟 4)，以符合新的版本號碼。它必須傳送至提取伺服器並進行編譯。從這裡開始，則須由依存於該組態的 VM 提取更新並加以安裝。這些更新內容很簡單 - 只有一兩行 PowerShell。以 Visual Studio Team Services 為例，有些更新會封裝在可一起鏈結在組建內的建置工作中。[本文](https://www.visualstudio.com/zh-TW/get-started/build/build-your-app-vs)將詳加說明。此 [GitHub 儲存機制](https://github.com/Microsoft/vso-agent-tasks)會詳細說明各種可用的建置工作。
+每當有某個版本通過 QA 並核准可部署時，即會建立封裝，且 nuspec 及 nupkg 會更新並部署至 NuGet 伺服器。此外也必須更新組態 (上述的步驟 4)，以符合新的版本號碼。它必須傳送至提取伺服器並進行編譯。從這裡開始，則須由依存於該組態的 VM 提取更新並加以安裝。這些更新內容很簡單 - 只有一兩行 PowerShell。以 Visual Studio Team Services 為例，有些更新會封裝在可一起鏈結在組建內的建置工作中。[本文](https://www.visualstudio.com/zh-TW/docs/alm-devops-feature-index#continuous-delivery)將詳加說明。此 [GitHub 儲存機制](https://github.com/Microsoft/vso-agent-tasks)會詳細說明各種可用的建置工作。
 
 ## 注意事項
 
@@ -185,4 +187,4 @@ New-ConfigurationScript.ps1：
 - [Azure 自動化 DSC Cmdlet](https://msdn.microsoft.com/library/mt244122.aspx)
 - [上架由 Azure 自動化 DSC 管理的機器](automation-dsc-onboarding.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0824_2016-->

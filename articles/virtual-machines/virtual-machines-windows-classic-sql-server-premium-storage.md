@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="05/04/2016"
+	ms.date="08/19/2016"
 	ms.author="jroth"/>
 
 # 在虛擬機器上搭配使用 Azure 進階儲存體和 SQL Server
@@ -27,7 +27,7 @@
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 
-本文提供移轉執行 SQL Server 的虛擬機器來執行進階儲存體的規劃與指導方針。這包括 Azure 基礎結構 (網路功能、儲存體) 和客體 Windows VM 步驟。[附錄](#appendix-migrating-a-multisite-alwayson-cluster-to-premium-storage)中的範例示範一個全方位的端對端移轉，說明如何透過 PowerShell 移動更大規模的 VM，來利用 改善的本機 SSD 儲存體。
+本文提供移轉執行 SQL Server 的虛擬機器來執行進階儲存體的規劃與指導方針。這包括 Azure 基礎結構 (網路功能、儲存體) 和客體 Windows VM 步驟。[附錄](#appendix-migrating-a-multisite-alwayson-cluster-to-premium-storage)中的範例示範一個全方位的端對端移轉，說明如何透過 PowerShell 來移動更大的 VM，以利用改進的本機 SSD 儲存體。
 
 請務必了解在 IAAS VM 上搭配使用 Azure 進階儲存體和 SQL Server 的端對端處理程序。其中包括：
 
@@ -135,7 +135,7 @@
 
 	![VirtualDiskPropertyDetails][4]
 
-2. 針對每個儲存集區，傾印出相關聯的磁碟：
+2. 針對每個儲存集區，傾印出關聯的磁碟：
 
     Get-StoragePool -FriendlyName AMS1pooldata | Get-PhysicalDisk
 
@@ -350,20 +350,20 @@
 
 > [AZURE.NOTE] 針對現有部署，請先參閱本主題的[必要條件](#prerequisites-for-premium-storage)一節。
 
-對於未使用 Always On 可用性群組的 SQL Server 部署，以及使用該可用性群組的部署有不同的考量。如果您未使用 Always On 且目前擁有獨立的 SQL Server，就可以使用新的雲端服務和儲存體帳戶升級到進階儲存體。請考量下列選項：
+對於未使用「Always On 可用性群組」的 SQL Server 部署與使用該可用性群組的部署，有不同的考量。如果您未使用 Always On 且目前擁有獨立的 SQL Server，就可以使用新的雲端服務和儲存體帳戶升級到進階儲存體。請考量下列選項：
 
 - **建立新的 SQL Server VM**。您可以建立新的 SQL Server VM 來使用進階儲存體帳戶，如＜新的部署＞中所述。然後備份並還原 SQL Server 設定和使用者資料庫。如果您會從內部或外部存取應用程式，就需要更新該應用程式，才能參考新的 SQL Server。您需要複製所有「超出資料庫範圍」的物件，如同執行並存的 (SxS) SQL Server 移轉一樣。這包含像是登入、憑證及連結的伺服器等物件。
 - **移轉現有的 SQL Server VM**。這需要使 SQL Server VM 離線，然後將它傳輸到新的雲端服務，其中包含將其連結的所有 VHD 複製到進階儲存體帳戶。當 VM 上線時，應用程式將和以前一樣參考伺服器主機名稱。請注意，現有磁碟的大小將影響效能特性。例如，400 GB 的磁碟會調高為 P20。如果您知道不需要該磁碟效能，則可重新建立 VM 做為 DS 系列 VM，然後連結所需大小/效能規格的進階儲存體 VHD。然後，您可以中斷連結並重新連結 SQL DB 檔案。
 
-> [AZURE.NOTE] 複製 VHD 磁碟時，您應該注意大小，根據大小而定表示它們所屬的進階儲存體磁碟類型，這會決定磁碟效能規格。Azure 將調高為最接近的磁碟大小，因此，如果您擁有 400 GB 的磁碟，這將會調高為 P20。根據您對於作業系統 VHD 的現有 IO 需求而定，可能不需要將此移轉到進階儲存體帳戶。
+> [AZURE.NOTE] 複製 VHD 磁碟時，您應該注意大小，取決於大小將意謂著它們會屬於哪一個「進階儲存體磁碟」類型，這會決定磁碟效能規格。Azure 將調高為最接近的磁碟大小，因此，如果您擁有 400 GB 的磁碟，這將會調高為 P20。根據您對於作業系統 VHD 的現有 IO 需求而定，可能不需要將此移轉到進階儲存體帳戶。
 
-如果您的 SQL 可從外部存取，則雲端服務 VIP 將會變更。您也必須更新端點、ACL 及 DNS 設定。
+如果您的 SQL 可從外部存取，則雲端服務 VIP 將會變更。您也將必須更新端點、ACL 及 DNS 設定。
 
 ## 使用 Always On 可用性群組的現有部署
 
 > [AZURE.NOTE] 針對現有部署，請先參閱本主題的[必要條件](#prerequisites-for-premium-storage)一節。
 
-本節一開始，我們將查看 Always On 與 Azure 網路互動的方式。然後將移轉細分為兩種案例：可容許一段停機時間的移轉，以及必須達到最低停機時間的移轉。
+在本節一開始，我們將了解 Always On 如何與「Azure 網路」互動。然後將移轉細分為兩種案例：可容許一段停機時間的移轉，以及必須達到最低停機時間的移轉。
 
 內部部署的 SQL Server Always On 可用性群組會使用內部部署的接聽程式，來註冊虛擬 DNS 名稱以及 IP 位址，其可在一或多部 SQL Server 之間共用。當用戶端連結時，即會透過接聽程式 IP 將它們路由傳送到主要的 SQL Server。這是當時擁有 Always On IP 資源的伺服器。
 
@@ -395,7 +395,7 @@
 
 ![DeploymentUseAlways On2][7]
 
-> [AZURE.NOTE] 您應該停止 SQL Server 的所有執行個體，您會在驗證執行之前在其中使用儲存集區。
+> [AZURE.NOTE] 您應該在「驗證」執行之前，先將所使用「儲存體集區」所屬的全部 SQL Server 執行個體停止。
 ##### 高階步驟
 
 1. 在新的雲端服務中，使用連結的進階儲存體來建立兩部新的 SQL Server。
@@ -409,7 +409,7 @@
 1. 將新節點新增到叢集，然後執行完整驗證。
 1. 驗證成功之後，啟動所有 SQL Server 服務。
 1. 備份交易記錄，然後還原使用者資料庫。
-1. 將新節點新增到 AlwaysOn 可用性群組，並使複寫可以**同步**。
+1. 將新節點新增到「AlwaysOn 可用性群組」中，並將複寫切換至 [同步]。
 1. 根據[附錄](#appendix-migrating-a-multisite-alwayson-cluster-to-premium-storage)中的多站台範例，透過適用於 AlwaysOn 的 PowerShell 新增新雲端服務 ILB/ELB 的 IP 位址資源。在 Windows 叢集中，將 [IP 位址] 資源的 [可能的擁有者] 設為之前的新節點。請參閱[附錄](#appendix-migrating-a-multisite-alwayson-cluster-to-premium-storage)的＜在同一個子網路上新增 IP 位址資源＞。
 1. 容錯移轉到其中一個新節點。
 1. 使新節點成為自動容錯移轉夥伴並測試容錯移轉。
@@ -425,7 +425,7 @@
 - 使用 Windows 儲存集區時，會在為新的其他節點進行完整叢集驗證期間產生叢集停機時間。
 - 根據 SQL Server 版本和次要複本的現有數目而定，您可能無法在不移除現有次要項目的情況下新增更多次要複本。
 - 在設定次要項目時，可能需要較長的 SQL 資料傳輸時間。
-- 當您平行執行新機器時，會在移轉期間產生額外成本。
+- 如果您以平行方式執行新機器，則在移轉期間會產生額外的成本。
 
 #### 2\.移轉到新的 Always On 叢集
 
@@ -465,9 +465,9 @@
 
 ##### 停機時間點
 
-- 當您使用負載平衡的端點更新最後一個節點時，即會產生停機時間。
+- 當您使用「負載平衡」端點更新最後一個節點時，會產生停機時間。
 - 根據您的用戶端/DNS 設定而定，用戶端連線可能會延遲。
-- 如果您選擇使 Always On 叢集群組離線以交換出 IP 位址，則會產生額外的停機時間。您可以針對新增的 IP 位址資源使用 OR 相依性和可能的擁有者，來避免發生這個情況。請參閱[附錄](#appendix-migrating-a-multisite-alwayson-cluster-to-premium-storage)的＜在同一個子網路上新增 IP 位址資源＞。
+- 如果您選擇使 Always On 叢集群組離線以交換出 IP 位址，則會產生額外的停機時間。您可以針對新增的「IP 位址」資源使用 OR 相依性和「可能的擁有者」，來避免發生這種情況。請參閱[附錄](#appendix-migrating-a-multisite-alwayson-cluster-to-premium-storage)的＜在同一個子網路上新增 IP 位址資源＞。
 
 > [AZURE.NOTE] 當您想要加入新增的節點以成為 Always On 容錯移轉夥伴時，就需要新增參考負載平衡集的 Azure 端點。當您執行 **Add-AzureEndpoint** 命令來執行這個動作時，目前的連線仍會維持開啟狀態，但在更新負載平衡器之前，將無法建立與接聽程式的新連線。測試時，若看見此項目持續 90-120 秒，就應該測試此項目。
 
@@ -552,7 +552,7 @@
 
 ## 附錄：將多站台 Always On 叢集移轉到進階儲存體
 
-本主題的剩餘內容提供將多站台 Always On 叢集轉換為進階儲存體的詳盡範例。它還會將接聽程式從使用外部負載平衡器 (ELB) 轉換為內部負載平衡器 (ILB)。
+本主題的其餘部分提供將多站台 Always On 叢集轉換為「進階儲存體」的詳盡範例。它還會將接聽程式從使用外部負載平衡器 (ELB) 轉換為內部負載平衡器 (ILB)。
 
 ### Environment
 
@@ -624,12 +624,12 @@
 
 #### 步驟 4：DNS 設定
 
-若要實作流暢的轉換，取決於使用和更新 DNS 的方法。安裝 Always On 時，它會建立 Windows 叢集資源群組，如果您開啟容錯移轉叢集管理員，就會看見它至少具有三個資源，文件中所指的是下列這兩個資源：
+若要實作流暢的轉換，需取決於使用和更新 DNS 的方式。安裝 Always On 時，它會建立 Windows 叢集資源群組，如果您開啟容錯移轉叢集管理員，就會看見它至少具有三個資源，文件中所指的是下列這兩個資源：
 
 - 虛擬網路名稱 (VNN) - 這是 DNS 名稱，當用戶端想要透過 Always On 連線到 SQL Server 時要連接的名稱。
 - IP 位址資源 - 這是與 VNN 相關聯的 IP 位址，您可以擁有一個以上這類位址，而且在多站台設定中，您將針對每個站台/子網路擁有一個 IP 位址。
 
-連線到 SQL Sevrer 時，SQL Sevrer 用戶端驅動程式將抓取與接聽程式相關聯的 DNS 記錄，並嘗試連線到每個與 Always On 相關聯的 IP 位址，我們將在下列內容中討論數個會影響這一點的因素。
+連線到 SQL Sevrer 時，「SQL Sevrer 用戶端」驅動程式將抓取與接聽程式關聯的 DNS 記錄，並嘗試連線到每個 Always On 關聯 IP 位址，下面將討論可能對此造成影響的一些因素。
 
 與接聽程式名稱相關聯的並行 DNS 記錄數目不只取決於相關聯的 IP 位址數目，而且還取決於適用於 Always ON VNN 資源之容錯移轉叢集中的 ‘RegisterAllIpProviders’ 設定。
 
@@ -643,7 +643,7 @@
 
 ![Appendix5][15]
 
-下列程式碼將傾印出 VNN 設定，並為您設定它，請注意，若要讓變更生效，您需要使 VNN 離線，並使它再度上線，使接聽程式離線會導致用戶端連線中斷。
+下列程式碼將傾印出 VNN 設定，並為您設定它，請注意，若要讓變更生效，您將需要使 VNN 離線，然後再讓它重新上線，這會使「接聽程式」離線而導致用戶端連線中斷。
 
     ##Always On Listener Name
     $ListenerName = "Mylistener"
@@ -654,7 +654,7 @@
 
 在後續的移轉步驟中，您需要使用參考負載平衡器的更新 IP 位址來更新 Always On 接聽程式，這將涉及 IP 位址資源的移除與新增。更新 IP 之後，您需要確定新的 IP 位址已在 DNS 區域中更新，而且用戶端正在更新它們的本機 DNS 快取。
 
-如果您的用戶端位於不同的網路區段並參考不同的 DNS 伺服器，您需要考量移轉期間 DNS 區域傳輸會發生什麼事，因為應用程式重新連線時間至少會受到任何適用於接聽程式之新 IP 位址的區域傳輸時間所限制。如果您受到此處所討論的時間所限制，就應該與您的 Windows 小組討論並測試強制執行增量區域傳輸，同時降低 DNS 主機記錄的存留時間，讓用戶端能夠更新。如需詳細資訊，請參閱[增量區域傳輸](https://technet.microsoft.com/library/cc958973.aspx)和 [Start-DnsServerZoneTransfer](https://technet.microsoft.com/library/jj649917.aspx)。
+如果您的用戶端位於不同的網路區段並參考不同的 DNS 伺服器，您就需要考量在移轉期間「DNS 區域傳輸」會發生什麼情況，因為應用程式重新連線時間至少會受到任何新接聽程式 IP 位址的「區域傳輸時間」限制。如果您受到此處所討論的時間所限制，就應該與您的 Windows 小組討論並測試強制執行增量區域傳輸，同時降低 DNS 主機記錄的存留時間，讓用戶端能夠更新。如需詳細資訊，請參閱[增量區域傳輸](https://technet.microsoft.com/library/cc958973.aspx)和 [Start-DnsServerZoneTransfer](https://technet.microsoft.com/library/jj649917.aspx)。
 
 針對 Azure 中與 Always On 上接聽程式相關聯的 DNS 記錄，其適用的 TTL 預設是 1200 秒。如果您在移轉期間受到時間限制，可能希望降低這個時間，以確保用戶端可以使用適用於接聽程式的更新 IP 位址來更新他們的 DNS。您可以藉由傾印出 VNN 設定來查看並修改設定：
 
@@ -676,7 +676,7 @@
 
 #### 步驟 5：叢集仲裁設定
 
-如果您一次至少會取出一部要關閉 SQL Server，就應該修改叢集仲裁設定，如果使用的是含有 2 個節點的檔案共用見證 (FSW)，就應該設定仲裁以允許節點多數並利用動態投票，這樣就能讓單一節點維持常設狀態。
+由於您將一次至少關閉一部 SQL Server，因此您應該修改叢集仲裁設定，如果使用的是含有 2 個節點的「檔案共用見證」(FSW)，您應該設定仲裁以允許節點多數並利用動態投票，這樣就能讓單一節點維持運作。
 
 
     Set-ClusterQuorum -NodeMajority  
@@ -911,7 +911,7 @@
 
 #### 步驟 16：重新設定 Always On
 
-此時，您要等待已移轉之節點的次要項目與內部部署節點重新進行完整的同步處理，並切換到同步複寫節點，使它成為 AFP。
+此時，您需要等待已移轉的次要節點與內部部署節點完全重新同步，然後切換到同步複寫節點並使它成為 AFP。
 
 #### 步驟 17：移轉第二個節點
     $vmNameToMigrate="dansqlams1"
@@ -1092,7 +1092,7 @@
 
 #### 步驟 23：測試容錯移轉
 
-您現在應該讓移轉的節點與內部部署的 Always On 節點進行同步，使它處於同步複寫模式，並且繼續等待，直到它完成同步為止。然後從內部部署容錯移轉到第一個移轉的節點，其為 AFP。一旦該節點開始運作之後，請將最後一個移轉的節點變更為 AFP。
+您現在應該讓已移轉的節點與內部部署的 Always On 節點進行同步、使它處於同步複寫模式，然後等待直到它完成同步為止。然後從內部部署容錯移轉到第一個移轉的節點，其為 AFP。一旦該節點開始運作之後，請將最後一個移轉的節點變更為 AFP。
 
 您應該在所有節點之間測試容錯移轉，並且完整執行混亂測試，以確保容錯移轉會如預期般及時執行。
 
@@ -1105,11 +1105,11 @@
 
 若要新增 IP 位址，請參閱[附錄](#appendix-migrating-a-multisite-alwayson-cluster-to-premium-storage)的步驟 14。
 
-1. 針對目前的 IP 位址資源，將 [可能的擁有者] 變更為「現有的主要 SQL Server」，在下列範例中為 ‘dansqlams4’：
+1. 針對目前的「IP 位址」資源，將 [可能的擁有者] 變更為「現有的主要 SQL Server」，在下列範例中為 ‘dansqlams4’：
 
 	![Appendix13][23]
 
-1. 針對新的 IP 位址資源，將 [可能的擁有者] 變更為「移轉的次要 SQL Server」，在下列範例中為 ‘dansqlams5’：
+1. 針對新的「IP 位址」資源，將 [可能的擁有者] 變更為「已移轉的次要 SQL Server」，在下列範例中為 ‘dansqlams5’：
 
 	![Appendix14][24]
 
@@ -1149,4 +1149,4 @@
 [24]: ./media/virtual-machines-windows-classic-sql-server-premium-storage/10_Appendix_14.png
 [25]: ./media/virtual-machines-windows-classic-sql-server-premium-storage/10_Appendix_15.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0824_2016-->

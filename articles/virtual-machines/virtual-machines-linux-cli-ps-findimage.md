@@ -15,12 +15,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-linux"
    ms.workload="infrastructure"
-   ms.date="06/06/2016"
+   ms.date="08/23/2016"
    ms.author="rasquill"/>
 
 # 使用 Azure CLI 選取 Linux VM 映像
 
-本主題描述如何為可能會進行部署的每個位置，找到發行者、訂閱詳情、SKU 和版本。例如，一些常用的 Linux VM 映像包括︰
+本主題說明如何針對您可能在其中進行部署的每個位置，尋找發行者、提供項目、SKU 及版本。例如，一些常用的 Linux VM 映像包括︰
 
 **常用 Linux 映像表**
 
@@ -38,4 +38,4 @@
 
 [AZURE.INCLUDE [virtual-machines-common-cli-ps-findimage](../../includes/virtual-machines-common-cli-ps-findimage.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0824_2016-->

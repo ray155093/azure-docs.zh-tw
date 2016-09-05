@@ -12,24 +12,24 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/24/2016"
+   ms.date="08/18/2016"
    ms.author="alkohli" />
 
 # 使用 StorSimple Manager 服務管理存取控制記錄
 
-## 概觀
+## Overview
 
 存取控制記錄 (ACR) 可讓您指定哪些主機可連接至 StorSimple 裝置上的磁碟區。ACR 設為特定的磁碟區，並且包含主機的 iSCSI 限定名稱 (IQN)。當主機嘗試連線到磁碟區時，裝置會檢查與該磁碟區相關聯的 ACR 的 IQN 名稱，如果相符，則會建立連接。[**設定**] 頁面上的存取控制記錄區段會顯示具有主機對應 IQN 的所有存取控制記錄。
 
 本教學課程將說明下列常見 ACR 相關工作：
 
-- 加入存取控制記錄 
-- 編輯存取控制記錄 
-- 刪除存取控制記錄 
+- 加入存取控制記錄
+- 編輯存取控制記錄
+- 刪除存取控制記錄
 
 > [AZURE.IMPORTANT] 
 > 
-> - 將 ACR 指派到磁碟區時，請注意磁碟區並未被多個非叢集主機並行存取，因為這可能會損毀磁碟區。 
+> - 將 ACR 指派到磁碟區時，請注意磁碟區並未被多個非叢集主機並行存取，因為這可能會損毀磁碟區。
 > - 從磁碟區刪除 ACR 時，請確定對應的主機未存取磁碟區，因為刪除作業可能會導致讀寫中斷。
 
 ## 加入存取控制記錄
@@ -95,4 +95,4 @@
 - 深入了解[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
  
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0824_2016-->

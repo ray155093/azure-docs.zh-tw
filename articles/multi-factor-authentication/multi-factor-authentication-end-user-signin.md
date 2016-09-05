@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/04/2016" 
+	ms.date="08/22/2016" 
 	ms.author="billmath"/>
 
 # Azure Multi-Factor Authentication 的登入體驗
@@ -28,12 +28,12 @@
 
 您在做什麼？|說明
 :------------- | :------------- | 
-<a href="#-1">使用行動或辦公室電話登入</a> | 這是使用行動或辦公室電話登入時所能預期的情況。
-<a href="#-3">使用通知登入行動應用程式</a> | 這是使用通知登入行動應用程式時所能預期的情況。
-<a href="#-5">使用驗證碼登入行動應用程式</a> | 這是使用驗證碼登入行動應用程式時所能預期的情況。
-<a href="#-7">使用替代方法登入</a> | 這會顯示想要使用替代方法時所能預期的情況。
+[使用行動或辦公室電話登入](#signing-in-with-mobile-or-office-phone) | 這是使用行動或辦公室電話登入時所能預期的情況。
+[使用通知登入 Microsoft 驗證器應用程式](#signing-in-with-the-microsoft-authenticator-app-using-notification) | 這是搭配使用 Microsoft 驗證器應用程式與通知時所能預期的情況。
+[使用驗證碼登入 Microsoft 驗證器應用程式](#signing-in-with-the-microsoft-authenticator-app-using-verification-code)|這是搭配使用 Microsoft 驗證器應用程式與驗證碼時所能預期的情況。
+[使用替代方法登入](#signing-in-with-an-alternate-method)|這會顯示想要使用替代方法時所能預期的情況。
 
-<h2 id="-1">使用行動或辦公室電話登入</h2>
+## 使用行動或辦公室電話登入
 
 下列資訊將說明搭配行動電話或辦公室電話使用 Multi-Factor Authentication 的經驗。
 
@@ -50,11 +50,11 @@
 
 - 您現在應已登入。</li>
 
-<h2 id="-3">使用通知登入行動應用程式</h2>
+## 使用通知登入 Microsoft 驗證器應用程式
 
-下列資訊將說明當您接獲通知時，將 Multi-Factor Authentication 使用於您的行動應用程式的經驗。
+下列資訊將說明當您接獲通知時，將 Multi-Factor Authentication 使用於 Microsoft 驗證器應用程式的經驗。
 
-### 使用傳送至您的行動應用程式的通知登入
+### 使用傳送的通知登入 Microsoft 驗證器應用程式
 
 - 使用您的使用者名稱和密碼登入應用程式或服務，例如 Office 365。
 - Microsoft 會傳送通知。
@@ -70,25 +70,25 @@
 - 您現在應已登入。
 
 
-<h2 id="-5">使用驗證碼登入行動應用程式</h2>
+## 使用驗證碼登入 Microsoft 驗證器應用程式
 
-下列資訊將說明當您搭配驗證碼使用 Multi-Factor Authentication 時，將 Multi-Factor Authentication 使用於您的行動應用程式的經驗。
+下列資訊將說明當您搭配驗證碼使用 Multi-Factor Authentication 時，將 Multi-Factor Authentication 使用於 Microsoft 驗證器應用程式的經驗。
 
-### 搭配行動應用程式使用驗證碼進行登入
+### 使用驗證碼登入 Microsoft 驗證器應用程式
 
 - 使用您的使用者名稱和密碼登入應用程式或服務，例如 Office 365。
 - Microsoft 將會提示您輸入驗證碼。
 
 ![輸入驗證碼](./media/multi-factor-authentication-end-user-signin-app-verify/verify.png)
 
-- 在電話上開啟 Azure Authenticatior 應用程式，並在登入時的方塊中輸入驗證碼。
+- 在電話上開啟 Microsoft 驗證器應用程式，並在登入的方塊中輸入驗證碼。
 
 ![取得驗證碼](./media/multi-factor-authentication-end-user-signin-app-verify/phone.png)
 
 - 您現在應已登入。
 
 
-<h2 id="-7">使用替代方法登入</h2>
+## 使用替代方法登入
 
 
 下一節將說明當主要方法無法使用時，如何使用替代方法進行登入。
@@ -104,4 +104,4 @@
 
  
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

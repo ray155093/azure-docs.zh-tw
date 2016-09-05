@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/15/2016"
+	ms.date="08/22/2016"
 	ms.author="markvi"/>
 
 # 開始使用 Azure Active Directory Identity Protection 和 Microsoft Graph
@@ -23,7 +23,7 @@ Microsoft Graph 是 Microsoft 的統一 API 端點，也是 [Azure Active Direct
 
 透過 Microsoft Graph 存取 Identity Protection 資料需要三個步驟︰
 
-1. 新增應用程式與用戶端密碼。 
+1. 新增應用程式與用戶端密碼。
 
 2. 使用此密碼和其他幾項資訊向 Microsoft Graph 驗證，以從中收到驗證權杖。
 
@@ -39,7 +39,7 @@ Microsoft Graph 是 Microsoft 的統一 API 端點，也是 [Azure Active Direct
 ## 新增應用程式與用戶端密碼
 
 
-1. 以系統管理員身分[登入](https://manage.windowsazure.com) Azure 傳統入口網站。 
+1. 以系統管理員身分[登入](https://manage.windowsazure.com) Azure 傳統入口網站。
 
 1. 在左方的瀏覽窗格中，按一下 [Active Directory]。
 
@@ -91,7 +91,7 @@ Microsoft Graph 是 Microsoft 的統一 API 端點，也是 [Azure Active Direct
 ## 授與您的應用程式使用 API 的權限
 
 
-1. 在應用程式頁面頂端的功能表中，按一下 [設定]。 
+1. 在應用程式頁面頂端的功能表中，按一下 [設定]。
 
 	![建立應用程式](./media/active-directory-identityprotection-graph-getting-started/tutorial_general_08.png)
 
@@ -155,9 +155,9 @@ Microsoft Graph 是 Microsoft 的統一 API 端點，也是 [Azure Active Direct
 
 - resource：“**https://graph.microsoft.com**”
 
-- client\_id：<your client ID>
+- client\_id：<您的用戶端識別碼>
 
-- client\_secret：<your key>
+- client\_secret：<您的金鑰>
 
 
 > [AZURE.NOTE] 您必須提供 **client\_id** 和 **client\_secret** 參數的值。
@@ -223,4 +223,4 @@ Microsoft Graph 是 Microsoft 的統一 API 端點，也是 [Azure Active Direct
 
 - [Azure AD Identity Protection 服務根目錄](https://graph.microsoft.io/docs/api-reference/beta/resources/identityprotection_root)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0824_2016-->

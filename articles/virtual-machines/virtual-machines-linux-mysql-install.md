@@ -1,5 +1,5 @@
 <properties
-	pageTitle="設定 Linux VM 上的 MySQL | Microsoft Azure"
+	pageTitle="設定 Linux VM 上的 MySQL | Microsoft Azure "
 	description="了解如何在 Azure 中的 Linux 虛擬機器 (Ubuntu 或 RedHat 系列 OS) 上安裝 MySQL 堆疊"
 	services="virtual-machines-linux"
 	documentationCenter=""
@@ -32,7 +32,7 @@
 
 在此情況下，請使用連接埠 3306 作為 MySQL 連接埠。
 
-連接到您透過 putty 建立的 Linux VM。如果這是您第一次使用 Azure Linux VM，請在[這裡](virtual-machines-linux-ssh-from-linux.md)看看如何使用 putty 連接到 Linux VM。
+連接到您透過 putty 建立的 Linux VM。如果這是您第一次使用 Azure Linux VM，請在[這裡](virtual-machines-linux-mac-create-ssh-keys.md)看看如何使用 putty 連接到 Linux VM。
 
 本文的範例將使用儲存機制封裝安裝 MySQL5.6。事實上，MySQL5.6 的效能改良功能比 MySQL5.5 更多。詳細資訊請參閱[這裡](http://www.mysqlperformanceblog.com/2013/02/18/is-mysql-5-6-slower-than-mysql-5-5/)。
 
@@ -185,4 +185,4 @@
 ###下一步
 按一下[這裡](https://www.mysql.com/)，了解更多 MySQL 使用方式和相關資訊。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -1,4 +1,4 @@
-<properties 
+<properties
    pageTitle="如何在資源管理員中使用 Azure CLI 管理服務的反向 DNS 記錄 | Microsoft Azure"
    description="如何在資源管理員中使用 Azure CLI 管理 Azure 服務的反向 DNS 記錄或 PTR 記錄"
    services="DNS"
@@ -8,25 +8,20 @@
    editor=""
    tags="azure-resource-manager"
 />
-<tags  
+<tags
    ms.service="DNS"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/09/2016"
-   ms.author="s-malone" />
+   ms.author="smalone" />
 
 # 如何使用 Azure CLI 管理服務的反向 DNS 記錄
 
-[AZURE.INCLUDE [DNS-reverse-dns-record-operations-arm-selectors-include.md](../../includes/dns-reverse-dns-record-operations-arm-selectors-include.md)]
-<BR>
-[AZURE.INCLUDE [DNS-reverse-dns-record-operations-intro-include.md](../../includes/dns-reverse-dns-record-operations-intro-include.md)]
+[AZURE.INCLUDE [DNS-reverse-dns-record-operations-arm-selectors-include.md](../../includes/dns-reverse-dns-record-operations-arm-selectors-include.md)] <BR> [AZURE.INCLUDE [DNS-reverse-dns-record-operations-intro-include.md](../../includes/dns-reverse-dns-record-operations-intro-include.md)] <BR> [AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)] [classic deployment model](dns-reverse-dns-record-operations-classic-ps.md)。
 
-<BR>
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)] [classic deployment model](dns-reverse-dns-record-operations-classic-ps.md)。
-
-## 反向 DNS 記錄的驗證 
+## 反向 DNS 記錄的驗證
 為了確保其他人無法建立對應至您 DNS 網域的反向 DNS 記錄，Azure 僅會在下列其中一種情況成立時允許建立反向 DNS 記錄：
 
 - "ReverseFqdn" 與其所指定之公用 IP 位址資源的 "Fqdn" 相同，或是相同訂用帳戶內任何公用 IP 位址的 "Fqdn"，例如，"ReverseFqdn" 為 "contosoapp1.northus.cloudapp.azure.com."。
@@ -48,17 +43,17 @@
 您可以透過使用 azure network public-ip create 指定的反向 DNS 屬性，建立新的公用 IP 位址：
 
 	azure network public-ip create -n PublicIp3 -g NRP-DemoRG-PS -l westus -d contosoapp3 -f contosoapp3.westus.cloudapp.azure.com.
- 
+
 ## 檢視現有公用 IP 位址的反向 DNS
 您可以使用 azure network public-ip show，檢視現有公用 IP 位址的設定值：
 
-	azure network public-ip show -n PublicIp3 -g NRP-DemoRG-PS 
+	azure network public-ip show -n PublicIp3 -g NRP-DemoRG-PS
 
 ## 移除現有公用 IP 位址的反向 DNS
 您可以使用 azure network public-ip set，移除現有公用 IP 位址的反向 DNS 屬性。這可以透過將 ReverseFqdn 屬性值設定為空白來完成：
 
-	azure network public-ip set -n PublicIp3 -g NRP-DemoRG-PS –f “” 
+	azure network public-ip set -n PublicIp3 -g NRP-DemoRG-PS –f “”
 
 [AZURE.INCLUDE [常見問題集](../../includes/dns-reverse-dns-record-operations-faq-arm-include.md)]
 
-<!-----HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0824_2016-->

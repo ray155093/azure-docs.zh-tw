@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/27/2016" 
+	ms.date="08/24/2016" 
 	ms.author="awills"/>
  
 # 沒有要進行疑難排解的資料 - Application Insights for .NET
@@ -21,14 +21,18 @@
 
 在 Application Insights 中，我只會看到我的應用程式所產生的一小部分事件。
 
-* 如果您持續看到同一個部分，可能是因為調適性[取樣](app-insights-sampling.md)所導致。若要確認這一點，開啟 [搜尋] \(從 [概觀] 刀鋒視窗)，並查看要求或其他事件的執行個體。按一下 [屬性] 區段底部的 [...]，以取得完整的屬性詳細資料。如果要求計數 > 1，則表示取樣正在運作中。 
+* 如果您持續看到同一個部分，可能是因為調適性[取樣](app-insights-sampling.md)所導致。若要確認這一點，開啟 [搜尋] (從 [概觀] 刀鋒視窗)，並查看要求或其他事件的執行個體。按一下 [屬性] 區段底部的 [...]，以取得完整的屬性詳細資料。如果要求計數 > 1，則表示取樣正在運作中。
 * 否則，有可能是您已達到定價方案的[資料速率限制](app-insights-pricing.md#limits-summary)。每分鐘都會套用這些限制。
 
-## 狀態監視器問題
+## 沒有來自我的伺服器的資料
+
+我已在 Web 伺服器上安裝我的應用程式，而我現在沒看到任何來自於它的遙測。它在我的開發電腦上運作正常。
+
+* 可能是防火牆問題。[設定 Application Insights 的防火牆例外狀況以傳送資料](app-insights-ip-addresses.md)。
 
 我已在 Web 伺服器上[安裝狀態監視器來監視現有的應用程式。我沒有看到任何結果。](app-insights-monitor-performance-live-website-now.md)
 
-請參閱[疑難排解狀態監視器](app-insights-monitor-performance-live-website-now.md#troubleshooting)。防火牆連接埠是最常見的問題。
+* 請參閱[疑難排解狀態監視器](app-insights-monitor-performance-live-website-now.md#troubleshooting)。
 
 
 ## <a name="q01"></a>在 Visual Studio 中沒有「新增 Application Insights」選項
@@ -53,10 +57,10 @@
 
 修正：
 
-+ 請檢查您為正確的 Azure 帳戶提供登入認證。 
++ 請檢查您為正確的 Azure 帳戶提供登入認證。
 + 在瀏覽器中，檢查您是否可以存取 [Azure 入口網站](https://portal.azure.com)。開啟 [設定] 並查看是否有任何限制。
 + [將 Application Insights 加入至您現有的專案](app-insights-asp-net.md)：在 [方案總管] 中以滑鼠右鍵按一下您的專案，並選擇 [加入 Application Insights]。
-+ 如果仍然無法運作，請依照下列[手動程序](app-insights-asp-net-manual.md)，在入口網站中加入資源，然後將 SDK 加入至您的專案。 
++ 如果仍然無法運作，請依照下列[手動程序](app-insights-asp-net-manual.md)，在入口網站中加入資源，然後將 SDK 加入至您的專案。
 
 ## <a name="emptykey"></a>我收到「檢測金鑰不能是空白」的錯誤
 
@@ -98,7 +102,7 @@
 
 您上一次在預設瀏覽器中使用的 Microsoft 登入，沒有[將 Application Insights 新增至這個應用程式時所建立的資源](app-insights-asp-net.md)的存取權。有兩個可能的原因：
 
-* 您有一個以上的 Microsoft 帳戶 - 可能是工作和個人 Microsoft 帳戶？ 您上一次在預設瀏覽器上使用的登入，是與具有[將 Application Insights 新增至專案](app-insights-asp-net.md)的存取權的帳戶不同的帳戶。 
+* 您有一個以上的 Microsoft 帳戶 - 可能是工作和個人 Microsoft 帳戶？ 您上一次在預設瀏覽器上使用的登入，是與具有[將 Application Insights 新增至專案](app-insights-asp-net.md)的存取權的帳戶不同的帳戶。
 
  * 修正：按一下瀏覽器視窗右上方的您的名稱並且登出。然後以具有存取權的帳戶登入。然後在左側的導覽列中，按一下 [Application Insights]，並選取您的應用程式。
 
@@ -115,7 +119,7 @@
 可能的原因：
 
 * 您的應用程式的 Application Insights 資源已刪除；或
-* 檢測金鑰已在 ApplicationInsights.config 中直接編輯以設定或變更，而不需更新專案檔案。 
+* 檢測金鑰已在 ApplicationInsights.config 中直接編輯以設定或變更，而不需更新專案檔案。
 
 ApplicationInsights.config 中的檢測金鑰會控制遙測傳送的位置。專案檔案中的資料行控制當您在 Visual Studio 中使用命令時會開啟哪一個資源。
 
@@ -141,7 +145,7 @@ ApplicationInsights.config 中的檢測金鑰會控制遙測傳送的位置。�
 
 *我執行我的應用程式，然後在 Microsoft Azure 中開啟 Application Insights 服務，但是所有圖表都顯示「了解如何收集...」或「未設定」。* 或者，只有頁面檢視和使用者資料，但卻沒有任何伺服器資料。
 
-+ 在 Visual Studio 中以偵錯模式執行您的應用程式 (F5)。使用您的應用程式以產生一些遙測。請檢查您可以在 Visual Studio 的 [輸出] 視窗中看到所記錄的事件。 
++ 在 Visual Studio 中以偵錯模式執行您的應用程式 (F5)。使用您的應用程式以產生一些遙測。請檢查您可以在 Visual Studio 的 [輸出] 視窗中看到所記錄的事件。
 
     ![](./media/app-insights-asp-net-troubleshoot-no-data/output-window.png)
 
@@ -205,10 +209,10 @@ ApplicationInsights.config 中的檢測金鑰會控制遙測傳送的位置。�
 
 ## 在 Azure 雲端服務中執行時發生的「找不到方法」例外狀況
 
-您是否已針對 .NET 4.6 組建？ Azure 雲端服務角色不自動支援 4.6。先[在每個角色上安裝 4.6](../cloud-services/cloud-services-dotnet-install-dotnet.md)，然後執行您的應用程式。
+您是否已針對 .NET 4.6 組建？ Azure 雲端服務角色不自動支援 4.6。請先[在每個角色上安裝 4.6](../cloud-services/cloud-services-dotnet-install-dotnet.md)，再執行您的 App。
 
 ## 仍然無法運作...
 
 * [Application Insights 論壇](https://social.msdn.microsoft.com/Forums/vstudio/zh-TW/home?forum=ApplicationInsights)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0824_2016-->

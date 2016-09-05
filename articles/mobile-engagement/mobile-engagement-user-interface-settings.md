@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="mobile-multiple"
    ms.workload="mobile" 
-   ms.date="11/29/2015"
+   ms.date="08/19/2016"
    ms.author="piyushjo"/>
 
 # 如何管理應用程式的全域設定
@@ -21,7 +21,7 @@
 視應用程式平台和您所擁有的該應用程式權限而定，應用程式中所提供的 [**設定**] 功能表選項將有所不同。設定中包含：[詳細資料]、[專案]、[原生推送]、[推送速度]、 [標記 (應用程式資訊)] 和 [商業壓力]。[設定] 區段中的 [標記 (應用程式資訊)] 功能表選項可透過您的應用程式 (使用 SDK) 或您的後端 (使用裝置 API) 管理。
 
 
->[AZURE.NOTE]許多 **Mobile Engagement** 入口網站 UI 的區段含有 [**顯示說明**] 按鈕。按該按鈕，可獲得關於區段的詳細內容資訊。
+>[AZURE.NOTE] 許多 **Mobile Engagement** 入口網站 UI 的區段含有 [**顯示說明**] 按鈕。按該按鈕，可獲得關於區段的詳細內容資訊。
 
 ## 詳細資料
 
@@ -202,4 +202,4 @@
 [Link 33]: ../mobile-engagement-how-tos-web-view.md
  
 
-<!---HONumber=AcomDC_1203_2015-->
+<!---HONumber=AcomDC_0824_2016-->

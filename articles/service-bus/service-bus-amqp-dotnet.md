@@ -25,7 +25,7 @@
 
 ## 設定 .NET 應用程式以使用 AMQP 1.0
 
-依預設，服務匯流排 .NET 用戶端程式庫能使用專屬的 SOAP 型通訊協定與服務匯流排服務通訊。若要使用 AMQP 1.0 (而非預設的通訊協定)，您需要明確地設定服務匯流排連接字串，如下節內容所述。除了這項變更之外，在使用 AMQP 1.0 時，應用程式程式碼基本上會維持不變。
+依預設，服務匯流排 .NET 用戶端程式庫能使用專屬的 SOAP 型通訊協定與服務匯流排服務通訊。若要使用 AMQP 1.0 (而非預設的通訊協定)，您需要明確地設定服務匯流排連接字串，如下節內容所述。除了這項變更之外，在使用 AMQP 1.0 時，應用程式程式碼會維持不變。
 
 目前的版本中有幾項在使用 AMQP 時不支援的 API 功能。這些不支援的功能稍後會在[不支援的功能、限制與行為差異](#unsupported-features-restrictions-and-behavioral-differences)一節中列示。在使用 AMQP 時，某些進階組態設定亦有不同的意義。
 
@@ -45,7 +45,7 @@
 
 	Endpoint=sb://[namespace].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[SAS key];TransportType=Amqp
 
-其中的 `[namespace]` 和 `SharedAccessKey` 是從 [Azure 傳統入口網站][]取得。如需詳細資訊，請參閱[如何使用服務匯流排佇列][] \(英文)。
+其中的 `[namespace]` 和 `SharedAccessKey` 是從 [Azure 入口網站][]取得。如需詳細資訊，請參閱[如何使用服務匯流排佇列][] (英文)。
 
 使用 AMQP 時，在連接字串中附加 `;TransportType=Amqp`。此標記法會通知用戶端程式庫使用 AMQP 1.0 連線到服務匯流排。
 
@@ -75,7 +75,7 @@
 | DateTime | timestamp | AMQP 值 |
 | Guid | uuid | AMQP 值 |
 | byte | binary | AMQP 值 |
-| 字串 | 字串 | AMQP 值 |
+| string | string | AMQP 值 |
 | System.Collections.IList | list | AMQP 值︰集合中包含的項目只能是在此表格中定義的項目。 |
 | System.Array | array | AMQP 值︰集合中包含的項目只能是在此表格中定義的項目。 |
 | System.Collections.IDictionary | map | AMQP 值︰集合中包含的項目只能是在此表格中定義的項目。注意︰僅支援 String 索引鍵。 |
@@ -134,9 +134,9 @@
   [Microsoft.ServiceBus.Messaging.MessagingFactory.CreateMessageSender(System.String,System.String)]: https://msdn.microsoft.com/library/azure/jj657703.aspx
   [OperationTimeout]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagingfactorysettings.operationtimeout.aspx
 [NuGet]: http://nuget.org/packages/WindowsAzure.ServiceBus/
-[Azure 傳統入口網站]: http://manage.windowsazure.com
+[Azure 入口網站]: https://portal.azure.com
 [服務匯流排 AMQP 概觀]: service-bus-amqp-overview.md
 [適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援]: service-bus-partitioned-queues-and-topics-amqp-overview.md
 [Windows Server 服務匯流排中的 AMQP]: https://msdn.microsoft.com/library/dn574799.aspx
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0824_2016-->
