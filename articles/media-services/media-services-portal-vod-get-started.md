@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="08/18/2016"
+	ms.date="08/30/2016"
 	ms.author="juliako"/>
 
 
@@ -22,8 +22,6 @@
 [AZURE.INCLUDE [media-services-selector-get-started](../../includes/media-services-selector-get-started.md)]
 
 本教學課程會逐步引導您使用 Azure 入口網站實作含 Azure 媒體服務 (AMS) 應用程式的基本點播視訊 (VoD) 內容傳遞服務。
-
-Azure 入口網站中的 Azure 媒體服務目前為預覽狀態。
 
 > [AZURE.NOTE] 若要完成此教學課程，您需要 Azure 帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
@@ -53,10 +51,10 @@ Azure 入口網站中的 Azure 媒體服務目前為預覽狀態。
 	1. 在 [帳戶名稱] 中，輸入新 AMS 帳戶的名稱。媒體服務帳戶名稱為全部小寫且不含空格的數字或字母，且長度是 3 到 24 個字元。
 	2. 在訂用帳戶中，從您可存取的不同 Azure 訂用帳戶中進行選取。
 	
-	2. 在 [資源群組] 中，選取新的或現有資源。資源群組是共用相同生命週期、權限及原則的資源集合。在[按此](resource-group-overview.md#resource-groups)深入了解。
+	2. 在 [資源群組] 中，選取新的或現有資源。資源群組是共用生命週期、權限及原則的資源集合。在[按此](resource-group-overview.md#resource-groups)深入了解。
 	3. 在 [位置] 中，選取用來儲存您媒體服務帳戶之媒體和中繼資料記錄的地理區域。此區域用於處理和串流媒體。只有可用的媒體服務區域才會出現在下拉式清單方塊中。
 	
-	3. 在 [儲存體帳戶] 中，選取儲存體帳戶以從媒體服務帳戶提供媒體內容的 Blob 儲存體。您可以選取與媒體服務帳戶相同地理區域中的現有儲存體帳戶，也可以建立新的儲存體帳戶。新的儲存體帳戶會建立於相同的區域中。儲存體帳戶名稱的規則會與媒體服務帳戶相同。
+	3. 在 [儲存體帳戶] 中，選取儲存體帳戶以從媒體服務帳戶提供媒體內容的 Blob 儲存體。您可以選取與媒體服務帳戶相同地理區域中的現有儲存體帳戶，也可以建立儲存體帳戶。新的儲存體帳戶會建立於相同的區域中。儲存體帳戶名稱的規則會與媒體服務帳戶相同。
 
 		在[這裡](storage-introduction.md)深入了解儲存體。
 
@@ -87,7 +85,7 @@ Azure 入口網站中的 Azure 媒體服務目前為預覽狀態。
 
 ## 設定串流端點
 
-使用 Azure 媒體服務時，其中一個最常見案例是透過自適性串流提供影片給您的用戶端。使用自適性串流，用戶端可以在視訊顯示時，根據目前網路頻寬、CPU 使用率以及其他因素，切換成較高或較低的位元速率串流。媒體服務支援下列調適性位元速率串流技術：HTTP 即時串流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access 授權)。
+使用 Azure 媒體服務時，其中一個最常見案例是透過自適性串流提供影片給您的用戶端。媒體服務支援下列調適性位元速率串流技術：HTTP 即時串流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access 授權)。
 
 媒體服務提供動態封裝，這讓您以媒體服務即時支援的串流格式 (MPEG DASH、HLS、Smooth Streaming、HDS) 提供自適性 MP4 編碼內容，而不必儲存這些串流格式個別的預先封裝版本。
 
@@ -222,7 +220,9 @@ Azure 入口網站提供內容播放程式，您可用來測試您的視訊。
 - 確定已發佈視訊。
 - 此**媒體播放器**會從預設串流端點播放。如果您想要從非預設串流端點播放，請按一下以複製 URL 並使用其他播放器。例如，[Azure 媒體服務播放器](http://amsplayer.azurewebsites.net/azuremediaplayer.html)。
 
-##後續步驟：媒體服務學習路徑
+##後續步驟
+
+檢閱媒體服務學習路徑。
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
@@ -230,4 +230,4 @@ Azure 入口網站提供內容播放程式，您可用來測試您的視訊。
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!----HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

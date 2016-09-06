@@ -60,7 +60,7 @@
 5. 將下列欄位新增到 **Program** 類別。將預留位置的值替換為您在上一節中為 IoT 中樞所建立的連接字串。
 
 		static RegistryManager registryManager;
-        static string connectionString = "{iothub connection string}";
+        static string connectionString = "{iot hub connection string}";
 
 6. 將下列方法加入至 **Program** 類別：
 
@@ -282,4 +282,4 @@
 [lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
 [lnk-connect-device]: https://azure.microsoft.com/develop/iot/
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0831_2016-->

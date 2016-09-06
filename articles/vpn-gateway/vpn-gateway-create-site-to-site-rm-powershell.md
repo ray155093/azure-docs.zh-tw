@@ -1,6 +1,6 @@
 <properties
    pageTitle="使用 Azure Resource Manager 和 PowerShell 建立具有網站間 VPN 連線的虛擬網路 | Microsoft Azure"
-   description="本文會帶領您建立使用資源管理員模型的 VNet 並使用 S2S VPN 閘道連線將其連接到您的本機內部部署網路。"
+   description="本文逐步引導您建立使用 Resource Manager 部署模型的 VNet，並使用 S2S VPN 閘道連線將其連接到您的本機內部部署網路。"
    services="vpn-gateway"
    documentationCenter="na"
    authors="cherylmc"
@@ -14,17 +14,17 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/24/2016"
+   ms.date="08/31/2016"
    ms.author="cherylmc"/>
 
-# 使用 PowerShell 和 Azure Resource Manager 建立具有網站間 VPN 連線的虛擬網路
+# 使用 PowerShell 建立具有站對站連線的 VNet
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
 - [Azure 傳統入口網站](vpn-gateway-site-to-site-create.md)
 - [PowerShell - 資源管理員](vpn-gateway-create-site-to-site-rm-powershell.md)
 
-本文逐步引導您使用 Azure Resource Manager 部署模型建立虛擬網路以及內部部署網路的網站間 VPN 連線。網站間連線可以用於跨單位與混合式組態。
+本文逐步引導您使用 **Azure Resource Manager 部署模型**建立虛擬網路以及內部部署網路的網站間 VPN 連線。網站間連線可以用於跨單位與混合式組態。
 
 ![網站間圖表](./media/vpn-gateway-create-site-to-site-rm-powershell/s2srmps.png "網站間")
 
@@ -35,7 +35,7 @@
 
 [AZURE.INCLUDE [vpn-gateway-table-site-to-site](../../includes/vpn-gateway-table-site-to-site-include.md)]
 
-如果您想要將 VNet 連接在一起，但不要建立對內部部署位置的連線，請參閱[設定 VNet 對 VNet 連線](vpn-gateway-vnet-vnet-rm-ps.md)。如果您要尋找不同類型的連線組態，請參閱 [VPN 閘道連線拓撲](vpn-gateway-topology.md)一文。
+如果您想要將 VNet 連接在一起，但不要建立對內部部署位置的連線，請參閱[設定 VNet 對 VNet 連線](vpn-gateway-vnet-vnet-rm-ps.md)。
 
 
 ## 開始之前
@@ -146,11 +146,11 @@ Azure 會使用您指定的 IP 位址前置詞來識別要傳送至內部部署�
 
 接下來，要求要配置給 Azure VNet VPN 閘道的公用 IP 位址。這不是指派給 VPN 裝置的相同 IP 位址，而是指派給 Azure VPN 閘道本身的 IP 位址。您無法指定想要使用的 IP 位址。該 IP 位址會以動態方式配置給您的閘道。在設定內部部署 VPN 裝置以連接到閘道時，您會使用此 IP 位址。
 
-使用下列 PowerShell 範例。此位址的配置方法必須為「動態」。
+資源管理員部署模型的 Azure VPN 閘道目前使用動態配置方法，僅支援公用 IP 位址。但是，這不代表 IP 位址會變更。Azure VPN 閘道 IP 位址只會在刪除或重新建立閘道時變更。閘道公用 IP 位址不會因為重新調整、重設或 Azure VPN 閘道的其他內部維護/升級而變更。
+
+使用下列 PowerShell 範例。
 
 	$gwpip= New-AzureRmPublicIpAddress -Name gwpip -ResourceGroupName testrg -Location 'West US' -AllocationMethod Dynamic
-
->[AZURE.NOTE] 資源管理員部署模型的 Azure VPN 閘道目前使用動態配置方法，僅支援公用 IP 位址。但是，這不代表 IP 位址會變更。Azure VPN 閘道 IP 位址只會在刪除或重新建立閘道時變更。閘道公用 IP 位址不會因為重新調整、重設或 Azure VPN 閘道的其他內部維護/升級而變更。
 
 ## 5\.建立閘道器 IP 位址組態
 
@@ -222,4 +222,4 @@ VPN 連線有幾種不同的驗證方式。
 
 - 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md)和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

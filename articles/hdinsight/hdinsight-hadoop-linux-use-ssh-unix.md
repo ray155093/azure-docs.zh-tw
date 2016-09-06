@@ -1,6 +1,6 @@
 <properties
    pageTitle="從 Linux、Unix 或 OS X 搭配使用 SSH 金鑰與 Linux 架構的 Hadoop | Microsoft Azure"
-   description="您可以使用安全殼層 (SSH) 存取 Linux 架構的 HDInsight。本文件提供從 Linux、Unix 或 OS X 用戶端搭配使用 SSH 與 HDInsight 的資訊。"
+   description=" 您可以使用安全殼層 (SSH) 存取 Linux 架構的 HDInsight。本文件提供從 Linux、Unix 或 OS X 用戶端搭配使用 SSH 與 HDInsight 的資訊。"
    services="hdinsight"
    documentationCenter=""
    authors="Blackmist"
@@ -14,7 +14,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="06/14/2016"
+   ms.date="08/30/2016"
    ms.author="larryfr"/>
 
 #從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop
@@ -25,7 +25,9 @@
 
 [安全殼層 (SSH)](https://en.wikipedia.org/wiki/Secure_Shell) 可讓您使用命令列介面在以 Linux 為基礎的 HDInsight 叢集上遠端執行作業。本文件提供從 Linux、Unix 或 OS X 用戶端搭配使用 SSH 與 HDInsight 的資訊。
 
-> [AZURE.NOTE] 本文中的步驟假設您是使用 Linux、Unix 或 OS X 用戶端。雖然在安裝有提供 `ssh` 和 `ssh-keygen` 的封裝 (例如 Git for Windows) 後可以在以 Windows 為基礎的用戶端上執行這些步驟，但建議以 Windows 為基礎的用戶端遵循[從 Windows 搭配使用 SSH 與以 Linux 為基礎的 HDInsight (Hadoop)](hdinsight-hadoop-linux-use-ssh-windows.md) 中的步驟。
+> [AZURE.NOTE] 本文中的步驟假設您是使用 Linux、Unix 或 OS X 用戶端。如果您安裝的封裝可提供 `ssh` 和 `ssh-keygen`，例如 [Windows 上 Ubuntu 上的Bash](https://msdn.microsoft.com/commandline/wsl/about)，則可能會在以 Windows 為基礎的用戶端上執行這些步驟。
+>
+> 如果您未在以 Windows 為基礎的用戶端上安裝 SSH，請使用[從 Windows 搭配使用 SSH 與以 Linux 為基礎的 HDInsight (Hadoop)](hdinsight-hadoop-linux-use-ssh-windows.md) 中的步驟，以取得安裝和使用 PuTTY 的相關資訊。
 
 ##必要條件
 
@@ -245,4 +247,4 @@ SSH 可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDInsi
 
 [preview-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0831_2016-->

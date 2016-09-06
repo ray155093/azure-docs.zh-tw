@@ -67,7 +67,7 @@
 
 ## 帳戶
 
-批次帳戶是批次服務內唯一識別的實體。所有處理都與 Batch 帳戶相關聯。當您使用 Batch 服務執行作業時，需要帳戶名稱以及其中一個帳戶金鑰。您可以[在 Azure 入口網站中建立和管理 Azure Batch 帳戶](batch-account-create-portal.md)。
+批次帳戶是批次服務內唯一識別的實體。所有處理都與 Batch 帳戶相關聯。當您使用 Batch 服務執行作業時，需要帳戶名稱以及其中一個帳戶金鑰。您可以[使用 Azure 入口網站建立 Azure Batch 帳戶](batch-account-create-portal.md)。
 
 ## 計算節點
 
@@ -518,4 +518,4 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 
 [vm_marketplace]: https://azure.microsoft.com/marketplace/virtual-machines/
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

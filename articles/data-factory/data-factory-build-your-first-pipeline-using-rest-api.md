@@ -32,7 +32,7 @@
 
 - 詳閱[教學課程概觀](data-factory-build-your-first-pipeline.md)一文。本文協助您了解 Azure Data Factory 的基本概念。
 - 在您的電腦上安裝 [Curl](https://curl.haxx.se/dlwiz/)。您可搭配使用 CURL 工具與 REST 命令來建立 Data Factory。
-- 請依照[本文](../resource-group-create-service-principal-portal.md)的指示來執行下列作業：
+- 請依照[本文](../resource-group-create-service-principal-portal.md)的指示：
 	1. 在 Azure Active Directory 中建立名為 **ADFGetStartedApp** 的 Web 應用程式。
 	2. 取得**用戶端識別碼**和**秘密金鑰**。
 	3. 取得**租用戶識別碼**。
@@ -101,7 +101,7 @@
 
 - Data Factory 會以上述 JSON 為您建立「以 Windows 為基礎的」HDInsight 叢集。您也可以讓它建立**以 Linux 為基礎的** HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
 - 您可以使用**自己的 HDInsight 叢集**，不必使用隨選的 HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 連結服務](data-factory-compute-linked-services.md#azure-hdinsight-linked-service)。
-- HDInsight 叢集會在您於 JSON 中指定的 Blob 儲存體 (**linkedServiceName**) 建立**預設容器**。HDInsight 不會在刪除叢集時刪除此容器。這是設計的行為。在使用 HDInsight 隨選連結服務時，除非有現有的即時叢集 (**timeToLive**)，否則每當需要處理配量時，就會建立 HDInsight 叢集，並在處理完成時予以刪除。
+- HDInsight 叢集會在您於 JSON 中指定的 Blob 儲存體 (**linkedServiceName**) 建立**預設容器**。HDInsight 不會在刪除叢集時刪除此容器。這是設計的行為。在使用 HDInsight 隨選連結服務時，除非有現有的即時叢集 (**timeToLive**)，否則每次處理配量時，就會建立 HDInsight 叢集，並在處理完成時予以刪除。
 
 	隨著處理的配量越來越多，您會在 Azure Blob 儲存體中看到許多容器。如果在疑難排解作業時不需要這些容器，建議您加以刪除以降低儲存成本。這些容器的名稱遵循下列模式："adf**yourdatafactoryname**-**linkedservicename**-datetimestamp"。請使用 [Microsoft 儲存體總管](http://storageexplorer.com/)之類的工具，來刪除 Azure Blob 儲存體中的容器。
 
@@ -214,7 +214,7 @@ JSON 會定義名為 **AzureBlobOutput** 的資料集，以表示管線中活動
 
 Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (透過 scriptLinkedService 指定，名為 **StorageLinkedService**)，且位於 **adfgetstarted**容器的 **script** 資料夾中。
 
-**defines** 區段可用來指定執行階段設定，該設定將傳遞到 Hive 指令碼做為 Hive 設定值 (例如 ${hiveconf:inputtable}、${hiveconf:partitionedtable})。
+**defines** 區段可指定執行階段設定，這些設定會傳遞到 Hive 指令碼做為 Hive 設定值 (例如 ${hiveconf:inputtable}、${hiveconf:partitionedtable})。
 
 管線的 **start** 和 **end** 屬性會指定管線的作用中期間。
 
@@ -250,7 +250,7 @@ Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (�
 
 ## 建立 Data Factory
 
-在此步驟中，您會建立名為 **FirstDataFactoryREST** 的 Azure Data Factory。資料處理站可以有一或多個管線。其中的管線可以有一或多個活動。例如，「複製活動」會從來源複製資料到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼轉換輸入資料以產生輸出資料。執行以下命令以建立 Data Factory：
+在此步驟中，您會建立名為 **FirstDataFactoryREST** 的 Azure Data Factory。資料處理站可以有一或多個管線。其中的管線可以有一或多個活動。例如，「複製活動」會從來源複製資料到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼來轉換資料。執行以下命令以建立 Data Factory：
 
 1. 將命令指派給名為 **cmd** 的變數。
 
@@ -262,7 +262,7 @@ Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (�
 		$results = Invoke-Command -scriptblock $cmd;
 3. 檢視結果。如果已成功建立 Data Factory，您會在**結果**中看到 Data Factory 的 JSON；不然，您會看到一則錯誤訊息。
 
-		$results
+		Write-Host $results
 
 請注意：
  
@@ -283,7 +283,7 @@ Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (�
 			Get-AzureRmResourceProvider
 	- 使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)並瀏覽至 [Data Factory] 刀鋒視窗 (或) 在 Azure 入口網站中建立 Data Factory。此動作會自動為您註冊提供者。
 
-建立管線之前，您必須先建立一些 Data Factory 項目。首先，您要先建立連結的服務，以便將資料存放區/電腦連結到您的資料存放區；並定義輸入和輸出資料集，表示資料位於連結的資料存放區中，再建立具有使用這些資料集的活動之管線。
+建立管線之前，您必須先建立一些 Data Factory 項目。首先，您要先建立連結的服務，以便將資料存放區/電腦連結到您的資料存放區；並定義輸入和輸出資料集，表示資料位於連結的資料存放區中。
 
 ## 建立連結服務 
 在此步驟中，您會將您的 Azure 儲存體帳戶和隨選 Azure HDInsight 叢集連結到您的 Data Factory。Azure 儲存體帳戶會保留此範例中管線的輸入和輸出資料。HDInsight 連結服務會用來執行此範例中管線活動指定的 Hive 指令碼。
@@ -299,7 +299,7 @@ Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (�
 		$results = Invoke-Command -scriptblock $cmd;
 3. 檢視結果。如果已成功建立連結服務，您會在**結果**中看到連結服務的 JSON；不然，您會看到一則錯誤訊息。
   
-		$results
+		Write-Host $results
 
 ### 建立 Azure HDInsight 連結服務
 在此步驟中，您可將隨選 HDInsight 叢集連結至 Data Factory。HDInsight 叢集會在執行階段自動建立，並在處理完成之後刪除，且會閒置一段時間。您可以使用自己的 HDInsight 叢集，不必使用隨選的 HDInsight 叢集。請參閱[計算連結服務](data-factory-compute-linked-services.md)以取得詳細資料。
@@ -312,7 +312,7 @@ Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (�
 		$results = Invoke-Command -scriptblock $cmd;
 3. 檢視結果。如果已成功建立連結服務，您會在**結果**中看到連結服務的 JSON；不然，您會看到一則錯誤訊息。
 
-		$results
+		Write-Host $results
 
 ## 建立資料集
 在此步驟中，您會建立資料集來代表 Hive 處理的輸入和輸出資料。這些資料集是您稍早在本教學課程中建立的 **StorageLinkedService**。連結的服務會指向 Azure 儲存體帳戶，而資料集則會指定保留輸入和輸出資料儲存體中的容器、資料夾和檔案名稱。
@@ -328,7 +328,7 @@ Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (�
 		$results = Invoke-Command -scriptblock $cmd;
 3. 檢視結果。如果已成功建立資料集，您會在**結果**中看到資料集的 JSON；不然，您會看到一則錯誤訊息。
   
-		$results
+		Write-Host $results
 ### 建立輸出資料集
 在此步驟中，您會建立輸出資料集來代表 Azure Blob 儲存體中儲存的輸出資料。
 
@@ -340,10 +340,10 @@ Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (�
 		$results = Invoke-Command -scriptblock $cmd;
 3. 檢視結果。如果已成功建立資料集，您會在**結果**中看到資料集的 JSON；不然，您會看到一則錯誤訊息。
   
-		$results 
+		Write-Host $results 
 
 ## 建立管線
-在此步驟中，您會建立第一個具有 **HDInsightHive** 活動的管線。您每個月都可取得輸入配量資訊 (頻率：每月，間隔：1)，輸出配量則是每用產生，而活動的排程器屬性也設為每用 (如下所示)。輸出資料集設定及活動排程器必須相符。目前，輸出資料集會影響排程，因此即使活動並未產生任何輸出，您都必須建立輸出資料集。如果活動沒有任何輸入，您可以略過建立輸入資料集。
+在此步驟中，您會建立第一個具有 **HDInsightHive** 活動的管線。您每個月都可取得輸入配量資訊 (頻率：每月，間隔：1)，輸出配量則是每用產生，而活動的排程器屬性也設為每月。輸出資料集設定及活動排程器必須相符。目前，輸出資料集會影響排程，因此即使活動並未產生任何輸出，您都必須建立輸出資料集。如果活動沒有任何輸入，您可以略過建立輸入資料集。
 
 確認您在 Azure Blob 儲存體的 **adfgetstarted/inputdata** 資料夾中看到了**input.log** 檔案，並執行下列命令以部署管線。由於 **start** 和 **end** 時間設定在過去，且 **isPaused** 設為 false，管線 (管線中的活動) 會在部署之後立即執行。
 
@@ -355,7 +355,7 @@ Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (�
 		$results = Invoke-Command -scriptblock $cmd;
 3. 檢視結果。如果已成功建立資料集，您會在**結果**中看到資料集的 JSON；不然，您會看到一則錯誤訊息。
 
-		$results
+		Write-Host $results
 5. 恭喜，您已經成功使用 Azure PowerShell 建立您的第一個管線！
 
 ## 監視管線
@@ -373,7 +373,7 @@ Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (�
     	    (convertFrom-Json $results2).RemoteException
 	}
 
-執行 Invoke-Command 和下一個命令，直到您看到配量處於 [就緒] 狀態或 [失敗] 狀態。當配量處於就緒狀態時，檢查您 Blob 儲存體中 **adfgetstarted** 容器內 **partitioneddata** 資料夾的輸出資料。請注意，建立隨選 HDInsight 叢集通常需要一些時間。
+執行 Invoke-Command 和下一個命令，直到您看到配量處於 [就緒] 狀態或 [失敗] 狀態。當配量處於就緒狀態時，檢查您 Blob 儲存體中 **adfgetstarted** 容器內 **partitioneddata** 資料夾的輸出資料。建立隨選 HDInsight 叢集通常需要一些時間。
 
 ![輸出資料](./media/data-factory-build-your-first-pipeline-using-rest-api/three-ouptut-files.png)
 
@@ -405,4 +405,4 @@ Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (�
 | [使用 Azure 入口網站刀鋒視窗監視及管理管線](data-factory-monitor-manage-pipelines.md) | 本文描述如何使用 Azure 入口網站刀鋒視窗來監視、管理和偵錯您的管線。 |
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

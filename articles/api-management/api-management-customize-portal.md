@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="08/09/2016"
+	ms.date="08/24/2016"
 	ms.author="sdanie"/>
 
 # 在 Azure API 管理中自訂開發人員入口網站
@@ -78,7 +78,7 @@
 
 ## <a name="next-steps"> </a>後續步驟
 
--	在[開始使用進階 API 組態][]教學課程中查看其他主題。
+-	了解如何使用[開發人員入口網站範本](api-management-developer-portal-templates.md)，自訂開發人員入口網站頁面內容。
 
 [Change the text/logo in the page headers]: #change-page-headers
 [Change the styling of the headers]: #change-headers-styling
@@ -95,8 +95,7 @@
 [api-management-customization-manage-content]: ./media/api-management-customize-portal/api-management-customization-manage-content.png
 
 
-[開始使用進階 API 組態]: api-management-get-started-advanced.md
 [啟動程序]: http://getbootstrap.com/
 [變數較少]: http://getbootstrap.com/css/
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0831_2016-->

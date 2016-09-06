@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="hero-article" 
-	ms.date="08/11/2016" 
+	ms.date="08/25/2016" 
 	ms.author="anhoh"/>
 
 # <a name="_Toc395809351"></a>ASP.NET MVC 教學課程：使用 DocumentDB 開發 Web 應用程式
@@ -208,7 +208,7 @@
 	- 在 [檢視名稱] 方塊中，輸入「***索引***」。
 	- 在 [範本] 方塊中，選取 [清單]。
 	- 在 [模型類別] 方塊中，選取 [項目 (todo.Models)]。
-	- 將 [資料內容類別] 方塊保留空白。
+	- 將 [資料內容類別] 方塊保留空白。 
 	- 在 [版面配置頁面] 方塊中，輸入 ***~/Views/Shared/\_Layout.cshtml***。
 	
 	![顯示 [新增檢視] 對話方塊的螢幕擷取畫面](./media/documentdb-dotnet-application/image18.png)
@@ -239,7 +239,7 @@
 	- 在 [**檢視名稱**] 方塊中，輸入「***編輯***」。
 	- 在 [範本] 方塊中，選取 [編輯]。
 	- 在 [模型類別] 方塊中，選取 [項目 (todo.Models)]。
-	- 將 [資料內容類別] 方塊保留空白。
+	- 將 [資料內容類別] 方塊保留空白。 
 	- 在 [版面配置頁面] 方塊中，輸入 ***~/Views/Shared/\_Layout.cshtml***。
 	- 按一下 [新增]。
 
@@ -591,4 +591,4 @@
 [ASP.NET MVC 中的基本 CRUD 作業]: http://go.microsoft.com/fwlink/?LinkId=317598
 [GitHub]: https://github.com/Azure-Samples/documentdb-net-todo-app
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->
