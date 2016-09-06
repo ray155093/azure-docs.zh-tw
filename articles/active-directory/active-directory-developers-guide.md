@@ -13,25 +13,25 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="07/06/2016"
+   ms.date="09/01/2016"
    ms.author="mbaldwin"/>
 
 
 # Azure Active Directory 開發人員指南
 
-## 概觀
+## Overview
 Azure Active Directory (AD) 是身分識別管理即服務 (IDMaaS) 平台，提供有效的方法，協助開發人員將身分識別管理整合到他們的應用程式中。下列文章提供實作的概觀和 Azure AD 的重要功能。我們建議您依序閱讀，如果您尚未準備好開始進行，請跳到[開始使用](#getting-started)。
 
 
-1. [Azure Active Directory 整合的優點](active-directory-how-to-integrate.md)：探索為什麼與 Azure AD 整合是提供安全登入和授權的最佳解決方案。
+1. [Azure AD 整合的優點](active-directory-how-to-integrate.md)：探索為什麼與 Azure AD 整合是提供安全登入和授權的最佳解決方案。
 
-1. [Active Directory 驗證案例](active-directory-authentication-scenarios.md)：利用 Azure AD 的簡易驗證來提供登入功能給您的應用程式。
+1. [Azure AD 驗證案例](active-directory-authentication-scenarios.md)：利用 Azure AD 的簡易驗證來提供登入功能給您的應用程式。
 
-1. [整合應用程式與 Azure Active Directory](active-directory-integrating-applications.md)：了解如何從 Azure AD 加入、更新和移除應用程式、以及關於整合應用程式商標指導方針的資訊。
+1. [整合應用程式與 Azure AD](active-directory-integrating-applications.md)：了解如何從 Azure AD 加入、更新和移除應用程式、以及關於整合應用程式商標指導方針的資訊。
 
-1. [Azure Active Directory 圖形 API](active-directory-graph-api.md)：使用 Azure AD 圖形 API 以程式設計方式透過 REST API 端點存取 Azure AD。請注意，Azure AD Graph API 也可透過 [Microsoft Graph](https://graph.microsoft.io/) 存取，其為統一的 API，可透過單一 REST API 端點以單一的存取權杖，存取多個 Microsoft 雲端服務 API。
+1. [Azure AD 圖形 API](active-directory-graph-api.md)：使用 Azure AD 圖形 API 以程式設計方式透過 REST API 端點存取 Azure AD。Azure AD Graph API 也是可透過 [Microsoft Graph](https://graph.microsoft.io/) 存取。Microsoft Graph 會提供統一的 API，可透過單一 REST API 端點以單一的存取權杖，存取多個 Microsoft 雲端服務 API。
 
-1. [Azure Active Directory 驗證程式庫](active-directory-authentication-libraries.md)：利用適用於 .NET、JavaScript、Objective-C、Android 及其他項目的 Azure AD 驗證程式庫，輕鬆地驗證使用者的身分來取得存取權杖。
+1. [Azure AD 驗證程式庫](active-directory-authentication-libraries.md)：利用適用於 .NET、JavaScript、Objective-C、Android 及其他項目的 Azure AD 驗證程式庫，輕鬆地驗證使用者的身分來取得存取權杖。
 
 
 ## 開始使用
@@ -84,6 +84,7 @@ Azure Active Directory (AD) 是身分識別管理即服務 (IDMaaS) 平台，提
 
 ###  支援
 - [標記的問題](http://stackoverflow.com/questions/tagged/azure-active-directory)：如要尋找 Azure Active Directory 對於堆疊溢位的解決方案，請搜尋 [azure-active-directory](http://stackoverflow.com/questions/tagged/azure-active-directory) 及 [adal](http://stackoverflow.com/questions/tagged/adal) 標記。
+- 如需應用程式開發和整合相關的一些常用詞彙的定義，請參閱 [Azure AD 開發人員詞彙](active-directory-dev-glossary.md)。
 
 ### 代碼
 
@@ -107,7 +108,7 @@ Azure Active Directory (AD) 是身分識別管理即服務 (IDMaaS) 平台，提
 
 - [OAuth 2.0 通訊協定︰了解隱含授權](active-directory-dev-understanding-oauth2-implicit-grant.md)︰深入了解隱含授權授與，以及它是否適合您的應用程式。
 
-- [OAuth 2.0 通訊協定：使用認證進行服務對服務呼叫](active-directory-protocols-oauth-service-to-service.md)：OAuth 2.0 用戶端認證授與流程可允許 Web 服務 (機密用戶端) 在呼叫另一個 Web 服務時使用它自己的認證來進行驗證，而不必模擬使用者。在此案例中，用戶端通常是中介層 Web 服務、精靈服務或網站。
+- [OAuth 2.0 通訊協定：使用認證進行服務對服務呼叫](active-directory-protocols-oauth-service-to-service.md)：OAuth 2.0 用戶端認證可允許 Web 服務 (機密用戶端) 在呼叫另一個 Web 服務時使用它自己的認證來進行驗證，而不必模擬使用者。在此案例中，用戶端通常是中介層 Web 服務、精靈服務或網站。
 
 - [OpenID Connect 1.0 通訊協定：登入和驗證](active-directory-protocols-openid-connect-code.md)：OpenID Connect 1.0 通訊協定會擴充 OAuth 2.0，來做為驗證通訊協定。用戶端應用程式可以接收 id\_token 以管理登入程序，或增加授權碼流程以接收 id\_token 和授權碼。
 
@@ -145,4 +146,4 @@ Azure Active Directory (AD) 是身分識別管理即服務 (IDMaaS) 平台，提
 
 - [Twitter 上的 Azure Active Directory](https://twitter.com/azuread)：140 個字元以內的 Azure Active Directory 公告。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0831_2016-->

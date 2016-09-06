@@ -85,10 +85,10 @@ Application Insights 資源是您的頁面的效能和使用量相關資料顯�
     // Send telemetry immediately without batching.
     // Remember to remove this when no longer required, as it
     // can affect browser performance.
-    enableDebug: true,
+    enableDebug: boolean,
 
     // Don't log browser exceptions.
-    disableExceptionTracking: true,
+    disableExceptionTracking: boolean,
 
     // Don't log ajax calls.
     disableAjaxTracking: boolean,
@@ -249,4 +249,4 @@ Ajax 呼叫包含從您的網頁指令碼所做的任何 HTTP 呼叫。如果您
 * [自訂事件和計量](app-insights-api-custom-events-metrics.md)
 * [Build-measure-learn](app-insights-overview-usage.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

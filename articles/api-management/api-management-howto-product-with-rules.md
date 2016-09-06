@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="08/09/2016"
+	ms.date="08/24/2016"
 	ms.author="sdanie"/>
 
 # 使用 Azure API 管理以頻率限制保護 API
@@ -26,7 +26,7 @@
 
 ## <a name="create-product"> </a>建立產品
 
-在本步驟中，您將建立不需核准訂閱的免費試用產品。
+在本步驟中，您將建立不需核准訂用帳戶的免費試用產品。
 
 >[AZURE.NOTE] 如果您已經有設定好的產品，且想要在本教學課程中使用該產品，可以直接跳到[設定呼叫頻率限制和配額原則][]，並從該處使用您的產品 (而非「免費試用」產品) 來進行本教學課程。
 
@@ -46,12 +46,11 @@
 
 在 [標題] 文字方塊中輸入**免費試用**。
 
-在 [描述] 文字方塊中輸入下列文字：
-**存取遭到拒絕後，訂戶每分鐘可以執行 10 次呼叫，每週最多 200 次呼叫**。
+在 [描述] 文字方塊中輸入下列文字：**存取遭到拒絕後，訂戶每分鐘可以執行 10 次呼叫，每週最多 200 次呼叫**。
 
 API 管理中的產品可以是受保護或開放的。受保護的產品必須先訂閱才能使用。開放產品不需要訂用帳戶即可使用。若要建立需要訂用帳戶的受保護產品，請務必選取 [需要訂用帳戶]。這是預設設定。
 
-如果您希望系統管理員檢閱並接受或拒絕對此產品的訂閱嘗試，請選取 [需要訂用帳戶核准]。如果未選取此核取方塊，將會自動核准訂閱嘗試。在此範例中會自動核准訂閱，因此請勿選取此方塊。
+如果您希望系統管理員檢閱並接受或拒絕對此產品的訂用帳戶嘗試，請選取 [需要訂用帳戶核准]。如果未選取此核取方塊，將會自動核准訂用帳戶嘗試。在此範例中會自動核准訂用帳戶，因此請勿選取此方塊。
 
 若要允許開發人員帳戶多次訂閱新產品，請選取 [允許多項同時訂閱] 核取方塊。本教學課程不會使用多項同時訂閱，所以維持未核取即可。
 
@@ -87,7 +86,7 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 
 ## <a name="policies"> </a>設定呼叫頻率限制和配額原則
 
-費率限制和配額是在原則編輯器中設定。在左邊的 [API 管理] 功能表下，按一下 [原則]。在 [產品] 清單中，按一下 [免費試用版]。
+頻率限制和配額是在原則編輯器中設定。在左邊的 [API 管理] 功能表下，按一下 [原則]。在 [產品] 清單中，按一下 [免費試用版]。
 
 ![Product policy][api-management-product-policy]
 
@@ -95,7 +94,7 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 
 ![Add policy][api-management-add-policy]
 
-若要插入原則，請將游標放在原則範本的 [輸入] 或 [輸出] 區段上。費率限制和配額原則為輸入原則，因此將游標放置在輸入元素中。
+若要插入原則，請將游標放在原則範本的 [輸入] 或 [輸出] 區段上。頻率限制和配額原則為輸入原則，因此將游標放置在輸入元素中。
 
 ![Policy editor][api-management-policy-editor-inbound]
 
@@ -121,7 +120,7 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 	<rate-limit calls="10" renewal-period="60">
 	</rate-limit>
 
-若要設定 \[設定每個訂用帳戶的使用量配額] 原則，請將游標放置在 **inbound** 元素內新加入的 **rate-limit** 元素正下方，然後按一下 \[設定每個訂用帳戶的使用量配額] 左側的箭頭。
+若要設定 [設定每個訂用帳戶的使用量配額] 原則，請將游標放置在 **inbound** 元素內新加入的 **rate-limit** 元素正下方，然後按一下 [設定每個訂用帳戶的使用量配額] 左側的箭頭。
 
 	<quota calls="number" bandwidth="kilobytes" renewal-period="seconds">
 	<api name="name" calls="number" bandwidth="kilobytes">
@@ -190,23 +189,23 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 
 按一下 [**加入訂閱**]。
 
-![Add subscription][api-management-add-subscription-menu]
+![新增訂用帳戶][api-management-add-subscription-menu]
 
 選取 [免費試用]，然後按一下 [訂閱]。
 
-![Add subscription][api-management-add-subscription]
+![新增訂用帳戶][api-management-add-subscription]
 
->[AZURE.NOTE] 在本教學課程中，沒有針對「免費試用」產品啟用多項同時訂閱。如果有啟用，則系統會提示您為訂閱項命名，如以下範例所示。
+>[AZURE.NOTE] 在本教學課程中，沒有針對「免費試用」產品啟用多項同時訂閱。如果有啟用，則系統會提示您為訂用帳戶命名，如以下範例所示。
 
-![Add subscription][api-management-add-subscription-multiple]
+![新增訂用帳戶][api-management-add-subscription-multiple]
 
-按一下 [**訂閱**] 後，產品會出現在使用者的 [**訂閱**] 清單中。
+按一下 [訂閱] 後，產品會出現在使用者的 [訂閱] 清單中。
 
-![Subscription added][api-management-subscription-added]
+![已新增訂用帳戶][api-management-subscription-added]
 
 ## <a name="test-rate-limit"> </a>呼叫作業並測試頻率限制
 
-現在免費試用產品已設定和發佈，我們可以呼叫一些作業並測試費率限制原則。在右上角的功能表中按一下 [開發人員入口網站]，切換到開發人員入口網站。
+現在免費試用產品已設定和發佈，我們可以呼叫一些作業並測試頻率限制原則。在右上角的功能表中按一下 [開發人員入口網站]，切換到開發人員入口網站。
 
 ![開發人員入口網站][api-management-developer-portal-menu]
 
@@ -220,7 +219,7 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 
 保留預設的參數值，然後選取「免費試用」產品的訂用帳戶金鑰。
 
-![Subscription key][api-management-select-key]
+![訂用帳戶金鑰][api-management-select-key]
 
 >[AZURE.NOTE] 如果您有多個訂用帳戶，請務必選取「免費試用」的金鑰，否則在先前步驟中設定的原則將不會生效。
 
@@ -228,7 +227,7 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 
 ![Operation results][api-management-http-get-results]
 
-在速率超過每分鐘 10 個呼叫的速率限制原則時，按一下 [傳送]。超出頻費限制原則之後，會傳回 [429 太多要求] 回應狀態。
+在頻率超過每分鐘 10 個呼叫的頻率限制原則時，按一下 [傳送]。超出頻費限制原則之後，會傳回 [429 太多要求] 回應狀態。
 
 ![Operation results][api-management-http-get-429]
 
@@ -238,7 +237,6 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 
 ## <a name="next-steps"> </a>後續步驟
 
--	在[開始使用進階 API 組態][]教學課程中查看其他主題。
 -	請觀看以下影片中設定頻率限制和配額的示範。
 
 > [AZURE.VIDEO rate-limits-and-quotas]
@@ -289,9 +287,8 @@ API 管理中的產品可以是受保護或開放的。受保護的產品必須�
 [Publish the product]: #publish-product
 [Subscribe a developer account to the product]: #subscribe-account
 [Call an operation and test the rate limit]: #test-rate-limit
-[開始使用進階 API 組態]: api-management-get-started-advanced.md
 
 [Limit call rate]: https://msdn.microsoft.com/library/azure/dn894078.aspx#LimitCallRate
 [Set usage quota]: https://msdn.microsoft.com/library/azure/dn894078.aspx#SetUsageQuota
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -159,10 +159,10 @@
 
   * 使用您的網站來產生一些資料。
   * 等候幾分鐘讓資料抵達，然後按一下 [重新整理]。
-  * 開啟 [診斷搜尋]\([搜尋] 磚) 以查看個別事件。彙總資料在圖表中出現之前，事件通常會顯示在 [診斷搜尋] 中。
+  * 開啟 [診斷搜尋] ([搜尋] 圖格) 以查看個別事件。彙總資料在圖表中出現之前，事件通常會顯示在 [診斷搜尋] 中。
   * 開啟狀態監視器，然後選取左窗格中的應用程式。檢查 [設定通知] 區段中是否有任何關於此應用程式的診斷訊息：
 
-  ![](./media/app-insights-monitor-performance-live-website-now/appinsights-status-monitor-diagnostics-message.png)
+  ![開啟 [效能] 刀鋒視窗，即可查看要求、回應時間、相依性和其他資料](./media/app-insights-monitor-performance-live-website-now/appinsights-status-monitor-diagnostics-message.png)
 
   * 請確定伺服器防火牆允許上列連接埠的連出流量。
   * 如果您在伺服器上看到有關「權限不足」的訊息，請嘗試下列操作：
@@ -300,4 +300,4 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 [roles]: app-insights-resources-roles-access-control.md
 [usage]: app-insights-web-track-usage.md
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

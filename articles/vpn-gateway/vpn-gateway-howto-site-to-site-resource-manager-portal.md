@@ -1,6 +1,6 @@
 <properties
    pageTitle="使用 Azure Resource Manager 和 Azure 入口網站建立具有網站間 VPN 連線的虛擬網路 | Microsoft Azure"
-   description="如何使用 Resource Manager 模型建立 VNet 並使用 S2S VPN 閘道連線將它連接到您的本機內部部署網路。"
+   description="如何使用 Resource Manager 部署模型建立 VNet 並使用 S2S VPN 閘道連線將它連接到您的本機內部部署網路。"
    services="vpn-gateway"
    documentationCenter="na"
    authors="cherylmc"
@@ -14,10 +14,10 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/22/2016"
+   ms.date="08/31/2016"
    ms.author="cherylmc"/>
 
-# 使用 Azure 入口網站和 Azure Resource Manager 建立具有網站間 VPN 連線的 VNet
+# 使用 Azure 入口網站建立具有網站間連線的 VNet
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
@@ -25,7 +25,7 @@
 - [PowerShell - 資源管理員](vpn-gateway-create-site-to-site-rm-powershell.md)
 
 
-本文逐步引導您使用 Azure Resource Manager 部署模型和 Azure 入口網站，建立虛擬網路以及內部部署網路的網站間 VPN 連線。
+本文逐步引導您使用 **Azure Resource Manager 部署模型**和 Azure 入口網站，建立虛擬網路以及內部部署網路的網站間 VPN 連線。網站間連線可以用於跨單位與混合式組態。
 
 ![圖表](./media/vpn-gateway-howto-site-to-site-resource-manager-portal/s2srmportal.png)
 
@@ -43,7 +43,7 @@
 
 在開始設定之前，請確認您具備下列項目：
 
-- 相容的 VPN 裝置以及能夠進行設定的人員。請參閱[關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)。如果不熟悉設定 VPN 裝置，或不熟悉位於內部部署網路組態的 IP 位址範圍，則您需要與能夠提供那些詳細資料的人協調。
+- 相容的 VPN 裝置 (以及能夠進行設定的人員)。請參閱[關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)。如果不熟悉設定 VPN 裝置，或不熟悉位於內部部署網路組態的 IP 位址範圍，則您需要與能夠提供那些詳細資料的人協調。
 
 - 您的 VPN 裝置對外開放的公用 IP 位址。此 IP 位址不能位於 NAT 後方。
 	
@@ -154,4 +154,4 @@
 
 - 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md)和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

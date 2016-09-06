@@ -14,7 +14,7 @@
     ms.workload="search"
     ms.topic="get-started-article"
     ms.tgt_pltfrm="na"
-    ms.date="08/15/2016"
+    ms.date="08/29/2016"
     ms.author="brjohnst"/>
 
 # 使用 .NET SDK 將資料上傳到 Azure 搜尋服務
@@ -53,8 +53,7 @@ SearchIndexClient indexClient = serviceClient.Indexes.GetClient("hotels");
 --- | --- | --- | ---
 `Upload` | `Upload` 動作類似「upsert」，如果是新文件，就會插入該文件，如果文件已經存在，就會更新/取代它。 | 索引鍵以及其他任何您想要定義的欄位 | 在更新/取代現有文件時，要求中未指定的欄位會將其欄位設定為 `null`。即使先前已將欄位設定為非 null 值也是一樣。
 `Merge` | 使用指定的欄位更新現有文件。如果文件不存在於索引中，合併就會失敗。 | 索引鍵以及其他任何您想要定義的欄位 | 您在合併中指定的任何欄位將取代文件中現有的欄位。這包括類型 `DataType.Collection(DataType.String)` 的欄位。例如，如果文件包含欄位 `tags` 且值為 `["budget"]`，而您使用值 `["economy", "pool"]` 針對 `tags` 執行合併，則 `tags` 欄位最後的值會是 `["economy", "pool"]`。而不會是 `["budget", "economy", "pool"]`。
-`MergeOrUpload` | 如果含有指定索引鍵的文件已經存在於索引中，則此動作的行為會類似 `Merge`。如果文件不存在，其行為會類似新文件的 `Upload`。| 索引鍵以及其他任何您想要定義的欄位 |-
-`Delete` | 從索引中移除指定的文件。| 僅索引鍵 | 索引鍵欄位以外的所有指定欄位都將遭到忽略。如果您想要從文件中移除個別欄位，請改用 `Merge`，而且只需明確地將該欄位設為 null。
+`MergeOrUpload` | 如果含有指定索引鍵的文件已經存在於索引中，則此動作的行為會類似 `Merge`。如果文件不存在，其行為會類似新文件的 `Upload`。| 索引鍵以及其他任何您想要定義的欄位 |- `Delete` | 從索引中移除指定的文件。| 僅索引鍵 | 索引鍵欄位以外的所有指定欄位都將遭到忽略。如果您想要從文件中移除個別欄位，請改用 `Merge`，而且只需明確地將該欄位設為 null。
 
 您可以指定要搭配 `IndexBatch` 不同靜態方法及 `IndexAction` 類別使用的動作，如下一節所示。
 
@@ -140,7 +139,7 @@ Console.WriteLine("Waiting for documents to be indexed...\n");
 Thread.Sleep(2000);
 ```
 
-請留意對 `Index` 方法的呼叫前後的 `try`/`catch`。Catch 區塊會處理索引編製的重大錯誤案例。如果您的 Azure Search 服務無法將 Batch 中的一些文件編制索引，則 `Documents.Index` 會擲回 `IndexBatchException`。如果您在服務負載過重時編制文件的索引，就會發生此情況。我們強烈建議您在程式碼中明確處理此情況。 您可以延遲，然後重新嘗試將失敗的文件編制索引，或像範例一樣加以記錄並繼續，或是根據您應用程式的資料一致性需求執行其他操作。
+請留意對 `Index` 方法的呼叫前後的 `try`/`catch`。Catch 區塊會處理索引編製的重大錯誤案例。如果您的 Azure Search 服務無法將 Batch 中的一些文件編制索引，則 `Documents.Index` 會擲回 `IndexBatchException`。如果您在服務負載過重時編制文件的索引，就會發生此情況。**我們強烈建議您在程式碼中明確處理此情況。** 您可以延遲，然後重新嘗試將失敗的文件編制索引，或像範例一樣加以記錄並繼續，或是根據您應用程式的資料一致性需求執行其他操作。
 
 最後，上方範例中的程式碼會延遲兩秒。您的 Azure 搜尋服務中會發生非同步索引編製，因此範例應用程式必須稍待一會，才能確定文件已準備好可供搜尋。通常只有在示範、測試和範例應用程式中，才需要這類延遲。
 
@@ -192,7 +191,7 @@ public partial class Hotel
 
 > [AZURE.NOTE] Azure 搜尋服務 .NET SDK 還支援使用 `Document` 類別的動態類型文件，也就是欄位名稱與欄位值的索引鍵/值對應。當您在設計階段卻不知道索引的結構描述時，這很實用，否則要繫結到特定模型類別會很麻煩。SDK 中所有處理文件的方法，都有可搭配 `Document` 類別使用的多載，以及使用泛型類型參數的強類型多載。本文的範例程式碼只使用了後者。您可以[在 MSDN](https://msdn.microsoft.com/library/azure/microsoft.azure.search.models.document.aspx) 找到 `Document` 類別的詳細資訊。
 
-資料類型的重要注意事項
+**資料類型的重要注意事項**
 
 當您將自己的模型類別設計為可對應至 Azure 搜尋服務索引時，建議您將 `bool` 和 `int` 等的值類型屬性宣告為可為 Null (例如宣告為 `bool?`，而不是 `bool`)。如果您使用不可為 Null 的屬性，則必須保證索引中沒有任何文件的對應欄位包含 Null 值。SDK 和 Azure 搜尋服務都不會協助您強制執行這項規定。
 
@@ -205,4 +204,4 @@ public partial class Hotel
 ## 下一步
 在填入 Azure 搜尋服務索引後，您就可以開始發出查詢來搜尋文件。如需詳細資料，請參閱[查詢 Azure 搜尋服務索引](search-query-overview.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -14,10 +14,10 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/23/2016"
+   ms.date="08/31/2016"
    ms.author="cherylmc"/>
 
-# 使用 Azure 傳統入口網站建立具有網站間 VPN 連線的虛擬網路
+# 使用 Azure 傳統入口網站建立具有網站間連線的 VNet
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
@@ -25,7 +25,7 @@
 - [PowerShell - 資源管理員](vpn-gateway-create-site-to-site-rm-powershell.md)
 
 
-本文將逐步引導您建立虛擬網路以及內部部署網路的網站間 VPN 連線。網站間連線可以用於跨單位與混合式組態。本文適用於傳統部署模型並且會使用 Azure 傳統入口網站。目前您無法使用 Azure 入口網站為傳統部署模型建立端對端網站間組態。
+本文逐步引導您使用**傳統部署模型**和傳統入口網站，建立虛擬網路以及內部部署網路的網站間 VPN 連線。網站間連線可以用於跨單位與混合式組態。目前您無法使用 Azure 入口網站為傳統部署模型建立端對端網站間組態。
 
 ![網站間圖表](./media/vpn-gateway-site-to-site-create/site2site.png "網站間")
 
@@ -42,7 +42,7 @@
 
 在開始設定之前，請確認您具備下列項目。
 
-- 相容的 VPN 裝置以及能夠進行設定的人員。請參閱[關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)。如果不熟悉設定 VPN 裝置，或不熟悉位於內部部署網路組態的 IP 位址範圍，則您需要與能夠提供那些詳細資料的人協調。
+- 相容的 VPN 裝置 (以及能夠進行設定的人員)。請參閱[關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)。如果不熟悉設定 VPN 裝置，或不熟悉位於內部部署網路組態的 IP 位址範圍，則您需要與能夠提供那些詳細資料的人協調。
 
 - 您的 VPN 裝置對外開放的公用 IP 位址。此 IP 位址不能位於 NAT 後方。
 
@@ -107,4 +107,4 @@
 
 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。如需詳細資訊，請參閱[虛擬機器文件](https://azure.microsoft.com/documentation/services/virtual-machines/)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

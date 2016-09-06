@@ -1,5 +1,5 @@
 <properties
-    pageTitle="iOS 應用程式的分析"
+    pageTitle="iOS 應用程式的分析 | Microsoft Azure"
     description="分析 iOS 應用程式的使用情況和效能。"
     services="application-insights"
     documentationCenter="ios"
@@ -12,7 +12,7 @@
     ms.tgt_pltfrm="ibiza"
     ms.devlang="na"
     ms.topic="get-started-article"
-    ms.date="06/20/2016"
+    ms.date="08/26/2016"
     ms.author="awills"/>
 
 # iOS 應用程式的分析
@@ -31,8 +31,16 @@ Microsoft 為裝置 devOps 提供兩個解決方案：適用於用戶端裝置�
 
 如果您的應用程式有伺服器端，請使用 [Application Insights](app-insights-overview.md) 在 [ASP.NET](app-insights-asp-net.md) 或 [J2EE](app-insights-java-get-started.md) 上監視您的應用程式的 Web 伺服器端。
 
-> [AZURE.NOTE] 您很快就能夠使用 [Application Insights 分析](app-insights-analytics.md)和[連續匯出](app-insights-export-telemetry.md)搭配從 HockeyApp SDK 傳送的遙測。
->
-> [這項變更的詳細資訊。](https://azure.microsoft.com/blog/update-on-transitioning-mobile-apps-from-application-insights-to-hockeyapp/)
 
-<!---HONumber=AcomDC_0622_2016-->
+## HockeyApp 資料的分析、匯出和 API 存取 
+
+在 Application Insights 中[設定 HockeyApp 橋接器](app-insights-hockeyapp-bridge-app.md)。這可讓您：
+
+* 對您的遙測使用強大的[分析](app-insights-analytics.md)查詢語言。
+* [匯出遙測](app-insights-export-telemetry.md)至 Azure Blob 儲存體。
+
+## 後續步驟
+
+* [開始使用適用於 iOS 的 HockeyApp](http://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/hockeyapp-for-ios)
+
+<!---HONumber=AcomDC_0831_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="08/09/2016"
+	ms.date="08/24/2016"
 	ms.author="sdanie"/>
 
 # 在 Azure API 管理中管理您的第一個 API
@@ -67,7 +67,7 @@
 
 針對 [URL]，請指定要用於服務 URL 的唯一子網域名稱。
 
-針對您的服務執行個體，選擇需要的 [**訂用帳戶**] 和 [**地區**]。進行選擇之後，按 [下一步] 按鈕。
+針對您的服務執行個體，選擇需要的 [訂用帳戶] 和 [區域]。進行選擇之後，按 [下一步] 按鈕。
 
 ![New API Management service][api-management-create-instance-step1]
 
@@ -186,7 +186,7 @@ API 區段有一些索引標籤。[摘要] 索引標籤會顯示 API 的基本�
 
 ## <a name="next-steps"> </a>後續步驟
 
--	在[開始使用進階 API 組態][]教學課程中查看其他主題。
+- 了解[以頻率限制保護您的 API](api-management-howto-product-with-rules.md)。
 
 [Azure 免費試用]: http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=api_management_hero_a
 
@@ -205,7 +205,6 @@ API 區段有一些索引標籤。[摘要] 索引標籤會顯示 API 的基本�
 [如何在 Azure API 管理中設定通知和電子郵件範本]: api-management-howto-configure-notifications.md
 [Responses]: api-management-howto-add-operations.md#responses
 [How create and publish a product]: api-management-howto-add-products.md
-[開始使用進階 API 組態]: api-management-get-started-advanced.md
 [API 管理定價]: http://azure.microsoft.com/pricing/details/api-management/
 
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
@@ -245,4 +244,4 @@ API 區段有一些索引標籤。[摘要] 索引標籤會顯示 API 的基本�
 [api-management-]: ./media/api-management-get-started/api-management-.png
 [api-management-]: ./media/api-management-get-started/api-management-.png
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0831_2016-->

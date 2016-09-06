@@ -13,10 +13,10 @@
  ms.topic="get-started-article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="06/06/2016"
+ ms.date="08/25/2016"
  ms.author="dobett"/>
 
-# 何謂 Azure IoT 中樞?
+# 何謂 Azure IoT 中心？
 
 歡迎使用 Azure IoT 中樞。本文提供 Azure IoT 中樞的概觀，並描述在實作物聯網 (IoT) 解決方案時，您應該使用此服務的原因。
 
@@ -53,7 +53,7 @@ Azure IoT 中樞會以下列方式解決裝置連線能力面臨的挑戰：
 
 -   **每一裝置的驗證和安全連線能力**。您可以提供每個裝置獨有的[安全性金鑰][lnk-devguide-security]讓它連線到 IoT 中樞。[IoT 中樞身分識別註冊][lnk-devguide-identityregistry]會在解決方案中儲存裝置身分識別和金鑰。解決方案後端可將個別裝置加入允許或拒絕清單，以達到完全控制裝置存取權。
 
--   **裝置連線作業的監視**。您可以收到有關裝置身分識別管理作業與裝置連線事件的詳細作業記錄檔。此監視功能可讓 IoT 解決方案輕鬆找出連線問題，例如，嘗試使用錯誤認證來連線的裝置、訊息傳送太頻繁，或拒絕所有雲端到裝置的訊息。
+-   **裝置連線作業的監視**。您可以收到有關裝置身分識別管理作業與裝置連線事件的詳細作業記錄檔。此監視功能可讓 IoT 解決方案找出連線問題，例如，嘗試使用錯誤認證來連線的裝置、訊息傳送太頻繁，或拒絕所有雲端到裝置的訊息。
 
 -   **一組廣泛的裝置程式庫**。[Azure IoT 裝置 SDK][lnk-device-sdks] 可供各種語言和平台使用並受其支援：C 表示許多 Linux 散發套件、Windows 和即時作業系統。Azure IoT 裝置 SDK 也支援 C#、Java 和 JavaScript 等 Managed 語言。
 
@@ -92,7 +92,7 @@ Azure IoT 中樞會在實作[服務輔助通訊][lnk-service-assisted-pattern]�
 - 對於因為電源或連線能力而導致連線不穩定的裝置而言，可透過保留命令和通知直到裝置連線並接收它們，進而促進其雙向通訊。IoT 中樞會為傳送的命令維護裝置特定的佇列。
 - 針對透過閘道對特定服務的受保護傳輸，應用程式承載資料會個別受到保護。
 
-行動產業已大規模成功使用服務輔助通訊模式來實作推播通知服務，例如 [Windows 推播通知服務][lnk-wns]、[Google 雲端通訊][lnk-google-messaging]和 [Apple Push Notification Service][lnk-apple-push]。
+行動產業已大規模使用服務輔助通訊模式來實作推播通知服務，例如 [Windows 推播通知服務][lnk-wns]、[Google 雲端通訊][lnk-google-messaging]和 [Apple Push Notification Service][lnk-apple-push]。
 
 ## 後續步驟
 
@@ -123,4 +123,4 @@ Azure IoT 中樞會在實作[服務輔助通訊][lnk-service-assisted-pattern]�
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk
 [lnk-device-management]: iot-hub-device-management-overview.md
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

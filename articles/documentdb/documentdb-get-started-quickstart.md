@@ -23,33 +23,29 @@
 - [.NET](documentdb-get-started.md)
 - [Node.js](documentdb-nodejs-get-started.md)
 
-歡迎使用 Azure DocumentDB .NET SDK 的 NoSQL 教學課程！ 完成本教學課程之後，您將會有一個主控台應用程式，可用來建立和查詢 DocumentDB 資源。
+歡迎使用 Azure DocumentDB .NET SDK 的 NoSQL 教學課程！ 取得快速入門專案或完成本教學課程之後，您會有一個主控台應用程式可用來建立和查詢 DocumentDB 資源。
 
-本文將討論：
-
-- 建立和連接到 DocumentDB 帳戶
-- 設定 Visual Studio 方案
-- 建立線上資料庫
-- 建立集合
-- 建立 JSON 文件
-- 查詢集合
-- 取代文件
-- 刪除文件
-- 刪除資料庫
-
-沒有時間嗎？ 別擔心！ 您可以在 [GitHub](https://github.com/Azure-Samples/documentdb-dotnet-getting-started) 上找到完整的方案。請跳至[取得完整的解決方案](#GetSolution)一節，以取得簡要指示。
-
-之後，請使用此頁面頂端或底部的投票按鈕，將意見反應提供給我們。如果想要我們直接與您連絡，歡迎在留言中留下電子郵件地址。
-
-讓我們開始吧！
+- **[快速入門](#quickstart)**︰下載範例專案、新增您的連線資訊，而且在 5 分鐘內執行 DocumentDB 應用程式。
+- **[教學課程](#tutorial)**︰在 30 分鐘內從頭開始建置快速入門應用程式。
 
 ## 必要條件
 
-請確定您具有下列項目：
-
 - 使用中的 Azure 帳戶。如果您沒有帳戶，您可以註冊[免費帳戶](https://azure.microsoft.com/free/)。
-- [Visual Studio 2013/Visual Studio 2015](http://www.visualstudio.com/)。
+- [Visual Studio 2013 或 Visual Studio 2015](http://www.visualstudio.com/)。
 - .NET Framework 4.6
+
+## 快速入門
+
+1. 從 [GitHub](https://github.com/Azure-Samples/documentdb-dotnet-getting-started-quickstart/archive/master.zip) 下載範例專案。
+2. 使用 Azure 入口網站[建立 DocumentDB 帳戶](documentdb-create-account.md)。
+3. 在 App.config 檔案中，以從 [Azure 入口網站](https://portal.azure.com/)擷取的值取代 EndpointUri 和 PrimaryKey 值，方法是瀏覽至 [DocumentDB (NoSQL)] 刀鋒視窗，按一下 [帳戶名稱]，然後按一下資源功能表上的 [金鑰]。![在 App.config 中要取代的 EndpointUri 和 PrimaryKey 值的螢幕擷取畫面](./media/documentdb-get-started-quickstart/nosql-tutorial-documentdb-keys.png)
+4. 建置專案。主控台視窗會顯示正在建立、查詢而後清除的新資源。
+    
+    ![主控台輸出的螢幕擷取畫面](./media/documentdb-get-started-quickstart/nosql-tutorial-documentdb-console-output.png)
+
+## <a id="tutorial"></a>教學課程
+
+本教學課程會逐步引導您建立 DocumentDB 資料庫、DocumentDB 集合和 JSON 文件。然後，您會查詢集合，並清除和刪除資料庫。本教學課程會建置與快速入門專案相同的專案，但您會以累加方式建置它，並收到有關您正新增至專案的程式碼說明。
 
 ## 步驟 1：建立 DocumentDB 帳戶
 
@@ -194,7 +190,7 @@
 		this.client = new DocumentClient(new Uri(EndpointUri), PrimaryKey);
 
 		// ADD THIS PART TO YOUR CODE
-		await this.CreateDatabaseIfNotExists("FamilyDB_oa");
+		await this.CreateDatabaseIfNotExists("FamilyDB_va");
 
 按 **F5** 鍵執行您的應用程式。
 
@@ -242,14 +238,14 @@
 		}
 	}
 
-複製下列程式碼並貼到 **GetStartedDemo** 方法的資料庫建立之下。這會建立名為 FamilyCollection\_oa 的文件集合。
+複製下列程式碼並貼到 **GetStartedDemo** 方法的資料庫建立之下。這會建立名為 FamilyCollection\_va 的文件集合。
 
 		this.client = new DocumentClient(new Uri(EndpointUri), PrimaryKey);
 
 		await this.CreateDatabaseIfNotExists("FamilyDB_oa");
 
 		// ADD THIS PART TO YOUR CODE
-		await this.CreateDocumentCollectionIfNotExists("FamilyDB_oa", "FamilyCollection_oa");
+		await this.CreateDocumentCollectionIfNotExists("FamilyDB_va", "FamilyCollection_va");
 
 按 **F5** 鍵執行您的應用程式。
 
@@ -340,9 +336,9 @@
 
 複製下列程式碼並貼到 **GetStartedDemo** 方法的文件集合建立之下。
 
-	await this.CreateDatabaseIfNotExists("FamilyDB_oa");
+	await this.CreateDatabaseIfNotExists("FamilyDB_va");
 
-	await this.CreateDocumentCollectionIfNotExists("FamilyDB_oa", "FamilyCollection_oa");
+	await this.CreateDocumentCollectionIfNotExists("FamilyDB_va", "FamilyCollection_va");
 
 	// ADD THIS PART TO YOUR CODE
 	Family andersenFamily = new Family
@@ -371,7 +367,7 @@
 			IsRegistered = true
 	};
 
-	await this.CreateFamilyDocumentIfNotExists("FamilyDB_oa", "FamilyCollection_oa", andersenFamily);
+	await this.CreateFamilyDocumentIfNotExists("FamilyDB_va", "FamilyCollection_va", andersenFamily);
 
 	Family wakefieldFamily = new Family
 	{
@@ -408,7 +404,7 @@
 			IsRegistered = false
 	};
 
-	await this.CreateFamilyDocumentIfNotExists("FamilyDB_oa", "FamilyCollection_oa", wakefieldFamily);
+	await this.CreateFamilyDocumentIfNotExists("FamilyDB_va", "FamilyCollection_va", wakefieldFamily);
 
 按 **F5** 鍵執行您的應用程式。
 
@@ -458,10 +454,10 @@ DocumentDB 支援對儲存於每個集合的 JSON 文件進行豐富[查詢](doc
 
 複製下列程式碼並貼到 **GetStartedDemo** 方法的次要文件建立之下。
 
-	await this.CreateFamilyDocumentIfNotExists("FamilyDB_oa", "FamilyCollection_oa", wakefieldFamily);
+	await this.CreateFamilyDocumentIfNotExists("FamilyDB_va", "FamilyCollection_va", wakefieldFamily);
 
 	// ADD THIS PART TO YOUR CODE
-	this.ExecuteSimpleQuery("FamilyDB_oa", "FamilyCollection_oa");
+	this.ExecuteSimpleQuery("FamilyDB_va", "FamilyCollection_va");
 
 按 **F5** 鍵執行您的應用程式。
 
@@ -495,17 +491,17 @@ DocumentDB 支援取代 JSON 文件。
 
 複製下列程式碼並貼到 **GetStartedDemo** 方法的查詢執行之下。取代文件後，此程式碼會再次執行相同的查詢以檢視變更後的文件。
 
-	await this.CreateFamilyDocumentIfNotExists("FamilyDB_oa", "FamilyCollection_oa", wakefieldFamily);
+	await this.CreateFamilyDocumentIfNotExists("FamilyDB_va", "FamilyCollection_va", wakefieldFamily);
 
-	this.ExecuteSimpleQuery("FamilyDB_oa", "FamilyCollection_oa");
+	this.ExecuteSimpleQuery("FamilyDB_va", "FamilyCollection_va");
 
 	// ADD THIS PART TO YOUR CODE
 	// Update the Grade of the Andersen Family child
 	andersenFamily.Children[0].Grade = 6;
 
-	await this.ReplaceFamilyDocument("FamilyDB_oa", "FamilyCollection_oa", "Andersen.1", andersenFamily);
+	await this.ReplaceFamilyDocument("FamilyDB_va", "FamilyCollection_va", "Andersen.1", andersenFamily);
 
-	this.ExecuteSimpleQuery("FamilyDB_oa", "FamilyCollection_oa");
+	this.ExecuteSimpleQuery("FamilyDB_va", "FamilyCollection_va");
 
 按 **F5** 鍵執行您的應用程式。
 
@@ -533,12 +529,12 @@ DocumentDB 支援刪除 JSON 文件。
 
 複製下列程式碼並貼到 **GetStartedDemo** 方法的次要查詢執行之下。
 
-	await this.ReplaceFamilyDocument("FamilyDB_oa", "FamilyCollection_oa", "Andersen.1", andersenFamily);
+	await this.ReplaceFamilyDocument("FamilyDB_va", "FamilyCollection_va", "Andersen.1", andersenFamily);
 
-	this.ExecuteSimpleQuery("FamilyDB_oa", "FamilyCollection_oa");
+	this.ExecuteSimpleQuery("FamilyDB_va", "FamilyCollection_va");
 
 	// ADD THIS PART TO CODE
-	await this.DeleteFamilyDocument("FamilyDB_oa", "FamilyCollection_oa", "Andersen.1");
+	await this.DeleteFamilyDocument("FamilyDB_va", "FamilyCollection_va", "Andersen.1");
 
 按 **F5** 鍵執行您的應用程式。
 
@@ -550,13 +546,13 @@ DocumentDB 支援刪除 JSON 文件。
 
 複製下列程式碼並貼到 **GetStartedDemo** 方法的文件刪除之下，以刪除整個資料庫和所有子系資源。
 
-	this.ExecuteSimpleQuery("FamilyDB_oa", "FamilyCollection_oa");
+	this.ExecuteSimpleQuery("FamilyDB_va", "FamilyCollection_va");
 
-	await this.DeleteFamilyDocument("FamilyDB_oa", "FamilyCollection_oa", "Andersen.1");
+	await this.DeleteFamilyDocument("FamilyDB_va", "FamilyCollection_va", "Andersen.1");
 
 	// ADD THIS PART TO CODE
 	// Clean up/delete the database
-	await this.client.DeleteDatabaseAsync(UriFactory.CreateDatabaseUri("FamilyDB_oa"));
+	await this.client.DeleteDatabaseAsync(UriFactory.CreateDatabaseUri("FamilyDB_va"));
 
 按 **F5** 鍵執行您的應用程式。
 
@@ -568,9 +564,9 @@ DocumentDB 支援刪除 JSON 文件。
 
 您應該可以看到入門應用程式的輸出。輸出將會顯示新增的查詢結果，而且應該符合以下的範例文字。
 
-	Created FamilyDB_oa
+	Created FamilyDB_va
 	Press any key to continue ...
-	Created FamilyCollection_oa
+	Created FamilyCollection_va
 	Press any key to continue ...
 	Created Family Andersen.1
 	Press any key to continue ...
@@ -591,15 +587,6 @@ DocumentDB 支援刪除 JSON 文件。
 
 恭喜！ 您已經完成本 NoSQL 教學課程，並擁有運作中的 C# 主控台應用程式！
 
-##<a id="GetSolution"></a> 取得完整的 NoSQL 教學課程方案
-若要建置包含本文中所有範例的 GetStarted 方案，您將需要下列項目：
-
-- 使用中的 Azure 帳戶。如果您沒有帳戶，您可以註冊[免費帳戶](https://azure.microsoft.com/free/)。
--   [DocumentDB 帳戶][documentdb-create-account]。
--   您可以在 GitHub 上找到 [GetStarted](https://github.com/Azure-Samples/documentdb-dotnet-getting-started) 方案。
-
-若要在 Visual Studio 中還原 DocumentDB .NET SDK 的參考，請在 [方案總管] 的 **GetStarted** 方案上按一下滑鼠右鍵，然後按一下 [啟用 NuGet 封裝還原]。接下來，在 App.config 檔案中更新 EndpointUrl 和 AuthorizationKey 值，如[連接至 DocumentDB 帳戶](#Connect)中所述。
-
 ## 後續步驟
 
 - 需要更複雜的 ASP.NET MVC NoSQL 教學課程嗎？ 請參閱[使用 DocumentDB 建置具有 ASP.NET MVC 的 Web 應用程式](documentdb-dotnet-application.md)。
@@ -610,6 +597,6 @@ DocumentDB 支援刪除 JSON 文件。
 
 [documentdb-create-account]: documentdb-create-account.md
 [documentdb-manage]: documentdb-manage.md
-[keys]: media/documentdb-get-started/nosql-tutorial-keys.png
+[keys]: media/documentdb-get-started-quickstart/nosql-tutorial-keys.png
 
 <!---HONumber=AcomDC_0831_2016-->

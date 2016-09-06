@@ -1,6 +1,6 @@
 <properties
-	pageTitle="在 Azure 虛擬機器上開始使用 SQL Server | Microsoft Azure"
-	description="將您的內部部署 SQL Server 資料庫工作負載移至雲端與 Azure 虛擬機器。即刻開始使用預先設定的 SQL VM 映像。"
+	pageTitle="Azure 虛擬機器上的 SQL Server 概觀 | Microsoft Azure"
+	description="深入了解如何在 Azure 虛擬機器上執行完整的 SQL Server 版本。取得所有 SQL Server VM 映像和相關內容的直接連結。"
 	services="virtual-machines-windows"
 	documentationCenter=""
 	authors="rothja"
@@ -14,13 +14,16 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="07/22/2016"
+	ms.date="08/29/2016"
 	ms.author="jroth"/>
 
-# 在 Azure 虛擬機器上開始使用 SQL Server
+# Azure 虛擬機器上的 SQL Server 概觀
 
-本主題描述在 Azure 虛擬機器上執行 SQL Server 的選項，並提供可讓您快速入門的指引和資源。
+本主題說明在 Azure 虛擬機器上執行 SQL Server 的選項，以及提供[入口網站映像的連結](#option-1-deploy-a-sql-vm-per-minute-licensing)和[常見工作](#manage-your-sql-vm)的概觀。
 
+>[AZURE.NOTE] 如果您已熟悉 SQL Server，只想要了解如何部署 SQL Server VM，請參閱[ Azure 入口網站中佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。
+
+## Overview
 您可能是想要將內部部署 SQL Server 工作負載移到雲端的資料庫系統管理員。或者，可能是針對 Azure 應用程式考慮 SQL Server 關聯式資料庫功能的開發人員。在 Azure 虛擬機器中執行 SQL Server 工作負載的優點為何？ 以下概觀影片討論這些優點並提供技術概觀。
 
 > [AZURE.VIDEO data-driven-sql-server-2016-azure-vm-is-the-best-platform-for-sql-server-2016]
@@ -91,4 +94,4 @@ Azure VM 可以使用[自動修補](virtual-machines-windows-sql-automated-patch
 
 其他問題？ 請先參閱 [Azure 虛擬機器上的 SQL Server 常見問題集](virtual-machines-windows-sql-server-iaas-faq.md)。也請將您的問題或意見加入任何 SQL VM 主題的底部來與 Microsoft 和社群互動。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0831_2016-->

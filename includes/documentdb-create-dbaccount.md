@@ -1,9 +1,9 @@
-1.	登入線上 [Microsoft Azure 入口網站](https://portal.azure.com/)。
-2.	在 Jumpbar，依序按一下 [**新增**]、[**資料 + 儲存體**]、[**Azure DocumentDB**]。
+1.	登入 [Azure 入口網站](https://portal.azure.com/)。
+2.	在 Jumpbar 中，按一下 [新增]，按一下 [資料 + 儲存體]，然後按一下 [DocumentDB (NoSQL)]。
 
-	![用來建立資料庫之 Azure 入口網站的螢幕擷取畫面，反白顯示 [新增] 按鈕、[建立] 刀鋒視窗中的 [資料 + 儲存體]，以及 [資料 + 儲存體] 刀鋒視窗中的 Azure DocumentDB](./media/documentdb-create-dbaccount/create-nosql-db-databases-json-tutorial-1.png)
+	![Azure 入口網站的螢幕擷取畫面，其中反白顯示 [其他服務] 和 DocumentDB (NoSQL)](./media/documentdb-create-dbaccount/create-nosql-db-databases-json-tutorial-1.png)
 
-3. 在 [新增 DocumentDB 帳戶] 刀鋒視窗中，指定想要的 DocumentDB 帳戶組態。
+3. 在 [新增帳戶] 刀鋒視窗中，指定想要的 DocumentDB 帳戶組態。
 
 	![[新增 DocumentDB] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-create-dbaccount/create-nosql-db-databases-json-tutorial-2.png)
 
@@ -18,8 +18,7 @@
 	
     - 若想要方便存取您未來建立的帳戶和資源，請勾選 [釘選到儀表板]。
 
-4.	設定新的 DocumentDB 帳戶選項之後，按一下 [建立]。若要檢查部署的狀態，您可以監視「開始面板」上的進度。
-	![「開始面板」上 [建立] 圖格的螢幕擷取畫面 - 線上資料庫建立者](./media/documentdb-create-dbaccount/create-nosql-db-databases-json-tutorial-3.png)
+4.	設定新的 DocumentDB 帳戶選項之後，按一下 [建立]。若要檢查部署的狀態，您可以監視「開始面板」上的進度。![「開始面板」上 [建立] 圖格的螢幕擷取畫面 - 線上資料庫建立者](./media/documentdb-create-dbaccount/create-nosql-db-databases-json-tutorial-3.png)
 
 	或者，您也可以從 [通知] 中樞監視進度。
 
@@ -27,7 +26,7 @@
 
 	![通知中樞的螢幕擷取畫面，顯示已成功建立 DocumentDB 帳戶並部署到資源群組 - 線上資料庫建立者通知](./media/documentdb-create-dbaccount/create-nosql-db-databases-json-tutorial-5.png)
 
-5.	建立 DocumentDB 帳戶之後，即可在線上入口網站中使用預設設定。請注意，DocumentDB 帳戶的預設一致性會設定為 [工作階段]。您可以藉由按一下功能表中的 [預設一致性]，調整預設一致性設定。若要深入了解 DocumentDB 所提供的一致性層級，請參閱 [DocumentDB 中的一致性層級](../articles/azure-portal/resource-group-portal.md)
+5.	建立好的 DocumentDB 帳戶可立即以預設值來使用。請注意，DocumentDB 帳戶的預設一致性會設定為 [工作階段]。您可以藉由按一下資源功能表中的 [預設一致性]，調整預設一致性。若要深入了解 DocumentDB 所提供的一致性層級，請參閱 [DocumentDB 中的一致性層級](../articles/azure-portal/resource-group-portal.md)。
 
     ![[資源群組] 刀鋒視窗的螢幕擷取畫面 - 開始進行應用程式開發](./media/documentdb-create-dbaccount/create-nosql-db-databases-json-tutorial-6.png)
 
@@ -37,4 +36,4 @@
 [Next steps]: #NextSteps
 [documentdb-manage]: ../articles/documentdb/documentdb-manage.md
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

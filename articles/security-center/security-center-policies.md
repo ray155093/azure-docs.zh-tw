@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/24/2016"
+   ms.date="08/26/2016"
    ms.author="yurid"/>
 
 # 在 Azure 資訊安全中心設定安全性原則
@@ -38,7 +38,13 @@
 
     ![啟用資料收集](./media/security-center-policies/security-center-policies-fig2-ga.png)
 
-4. 確定 [從虛擬機器收集資料] 選項為 [開啟]。此選項可啟用現有資源與新資源的自動記錄收集。
+	刀鋒視窗中可用的選項如下：
+	- **預防原則**︰此選項可讓您為每個訂用帳戶或資源群組設定原則。
+	- **電子郵件通知**：在每天第一個警示發生時且僅針對高嚴重性警示，才會傳送電子郵件通知。電子郵件喜好設定只能針對訂用帳戶原則設定。如需如何設定電子郵件通知的詳細資訊，請閱讀[在 Azure 資訊安全中心提供安全性連絡人詳細資料](security-center-provide-security-contact-details.md)。
+	- **定價層**：使用此選項從定價層選取項目升級。若要深入了解價格選項，請瀏覽[資訊安全中心](https://azure.microsoft.com/pricing/details/security-center/)頁面。
+
+	
+4.  確定 [從虛擬機器收集資料] 選項為 [開啟]。此選項可啟用現有資源與新資源的自動記錄收集。
 
     >[AZURE.NOTE] 建議您為每個訂用帳戶開啟資料收集功能，以確保安全性監視可用於所有現有的 VM 和新的 VM。如果啟用資料收集，將會安裝監視代理程式。如果您不想現在從這個位置開啟資料收集，可以稍後從健全狀況和建議檢視開啟。您也可以只針對訂用帳戶或特定 VM 啟用資料收集。若要深入了解支援的 VM，請參閱 [Azure 資訊安全中心常見問題集](security-center-faq.md)。
 
@@ -100,4 +106,4 @@
 - [Azure 資訊安全中心常見問題集](security-center-faq.md) — 尋找有關使用服務的常見問題。
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) — 尋找有關 Azure 安全性與相容性的部落格文章。
 
-<!----HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

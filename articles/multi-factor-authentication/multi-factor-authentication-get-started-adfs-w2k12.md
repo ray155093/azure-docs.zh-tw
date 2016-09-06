@@ -78,11 +78,11 @@
 |MultiFactorAuthenticationAdfsAdapter.config 步驟| 子步驟|
 |:------------- | :------------- |
 |將 **UseWebServiceSdk** 節點設定為 **true**。||
-|將 **WebServiceSdkUrl** 的值設定為 Multi-Factor Authentication Web 服務 SDK 的 URL。||
+|將 **WebServiceSdkUrl** 的值設定為 Multi-Factor Authentication Web 服務 SDK 的 URL。</br></br>範例：**https://contoso.com/&lt;certificatename&gt;/MultiFactorAuthWebServicesSdk/PfWsSdk.asmx**</br></br>其中 certificatename 是您的憑證名稱。 ||
 |設定 Web 服務 SDK。<br><br>*選項 1*：使用使用者名稱和密碼|<ol type="a"><li>將 **WebServiceSdkUsername** 的值設定為屬於 PhoneFactor Admins 安全性群組的帳戶。使用 &lt;domain&gt;&#92;&lt;user name&gt; 格式。<li>將 **WebServiceSdkPassword** 的值設定為適當的帳戶密碼。</li></ol>
 |設定 Web 服務 SDK (繼續)<br><br>*選項 2*：使用用戶端憑證|<ol type="a"><li>從執行 Web 服務 SDK 之伺服器的憑證授權單位取得用戶端憑證。了解如何[取得用戶端憑證](https://technet.microsoft.com/library/cc770328.aspx)。</li><li>將用戶端憑證匯入執行 Web 服務 SDK 的伺服器上的本機電腦個人憑證存放區。注意：請確定憑證授權單位的公開憑證是在受信任的根憑證存放區中。</li><li>將用戶端憑證的公開和私人金鑰匯出至 .pfx 檔案。</li><li>將 Base64 格式的公開金鑰匯出至 .cer 檔案。</li><li>在 [伺服器管理員] 中，確認已安裝網頁伺服器 (IIS)\\網頁伺服器\\安全性\\IIS 用戶端憑證對應驗證功能。如果未安裝，請選擇 [新增角色及功能] 來新增此功能。</li><li>在 [IIS 管理員] 中，按兩下包含 Web 服務 SDK 虛擬目錄的網站中的 [設定編輯器]。注意：請務必在網站層級而非虛擬目錄層級執行此作業。</li><li>移至 **system.webServer/security/authentication/iisClientCertificateMappingAuthentication** 區段。</li><li>將 **enabled** 設定為 **true**。</li><li>將 **oneToOneCertificateMappingsEnabled** 設定為 **true**。</li><li>按一下 **oneToOneMappings** 旁邊的 [...] 按鈕，然後按一下 [新增] 連結。</li><li>開啟先前匯出的 Base64.cer 檔案。移除 *-----BEGIN CERTIFICATE-----*、*-----END CERTIFICATE-----*，以及任何分行符號。複製產生的字串。</li><li>將 **certificate** 設定為在上一個步驟中複製的字串。</li><li>將 **enabled** 設定為 **true**。</li><li>將 **userName** 設定為屬於 PhoneFactor Admins 安全性群組的帳戶。使用 &lt;domain&gt;&#92;&lt;user name&gt; 格式。</li><li>將 password 設定為適當的帳戶密碼，然後關閉 [設定編輯器]。</li><li>按一下 [套用] 連結。</li><li>在 Web 服務 SDK 虛擬目錄中，連按兩下 [驗證]。</li><li>確認 [ASP.NET 模擬] 和 [基本驗證] 均設為 [已啟用]，而所有其他項目都設為 [已停用]。</li><li>在 Web 服務 SDK 虛擬目錄中，連按兩下 [SSL 設定]。</li><li>將 [用戶端憑證] 設定為 [接受]，然後按一下 [套用]。</li><li>將先前匯出的 .pfx 檔案複製到執行 AD FS 配接器的伺服器。</li><li>將 .pfx 檔案匯入至本機電腦個人憑證存放區。</li><li>按一下滑鼠右鍵並選取 [管理私密金鑰]，然後將讀取權授與用來登入 AD FS 服務的帳戶。</li><li>開啟用戶端憑證，並從 [詳細資料] 索引標籤複製指紋。</li><li>在 MultiFactorAuthenticationAdfsAdapter.config 檔案中，將 **WebServiceSdkCertificateThumbprint** 設定為在上一個步驟中複製的字串。</li></ol>
 | 編輯 Register-MultiFactorAuthenticationAdfsAdapter.ps1 指令碼，將 -ConfigurationFilePath &lt;path&gt; 加入至 `Register-AdfsAuthenticationProvider` 命令的結尾，其中 &lt;path&gt; 是 MultiFactorAuthenticationAdfsAdapter.config 檔案的完整路徑。||
 
 若要登錄配接器，在 PowerShell 中執行 \\Program Files\\Multi-Factor Authentication Server\\Register-MultiFactorAuthenticationAdfsAdapter.ps1 指令碼。此配接器會登錄為 WindowsAzureMultiFactorAuthentication。您必須重新啟動 AD FS 服務，登錄才會生效。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0831_2016-->

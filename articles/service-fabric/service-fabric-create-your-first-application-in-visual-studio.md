@@ -123,6 +123,7 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 - 了解如何[在 Azure 中建立叢集](service-fabric-cluster-creation-via-portal.md)或[在 Windows 上建立獨立叢集](service-fabric-cluster-creation-for-windows-server.md)。
 - 嘗試使用 [Reliable Services](service-fabric-reliable-services-quick-start.md) 或 [Reliable Actors](service-fabric-reliable-actors-get-started.md) 程式設計模型來建立服務。
 - 了解如何透過 [Web 服務前端](service-fabric-add-a-web-frontend.md)在網際網路公開服務。
+- 逐步完成[實際操作實驗室](https://msdnshared.blob.core.windows.net/media/2016/07/SF-Lab-Part-I.docx)及建立無狀態服務、設定監視和健康情況報告，以及執行應用程式升級。
 
 <!-- Image References -->
 
@@ -138,4 +139,4 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 [diagnostic-events-viewer-detail-post-failover]: ./media/service-fabric-create-your-first-application-in-visual-studio/diagnostic-events-viewer-detail-post-failover.png
 [sfe-delete-application]: ./media/service-fabric-create-your-first-application-in-visual-studio/sfe-delete-application.png
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0831_2016-->

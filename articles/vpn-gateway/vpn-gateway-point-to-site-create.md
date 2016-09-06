@@ -14,10 +14,10 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/16/2016"
+   ms.date="08/31/2016"
    ms.author="cherylmc"/>
 
-# 使用傳統入口網站設定 VNet 的點對站 VPN 連線
+# 使用傳統入口網站設定 VNet 的點對站連線
 
 > [AZURE.SELECTOR]
 - [PowerShell - 資源管理員](vpn-gateway-howto-point-to-site-rm-ps.md)
@@ -25,9 +25,10 @@
 
 點對站 (P2S) 設定可讓您建立從個別的用戶端電腦到虛擬網路的安全連線。當您想要從遠端位置 (例如從住家或會議) 連接到您的 VNet 時，或您只有幾個需要連線至虛擬網路的用戶端時，P2S 連線是很實用的解決方案。
 
+本文逐步引導您使用傳統入口網站，在**傳統部署模型**中建立具有點對站連線的 VNet。您目前無法在 Azure 入口網站中為傳統部署模型建立此端對端組態。
+
 點對站連線不需要 VPN 裝置或公眾對應 IP 位址即可運作。VPN 連線的建立方式是從用戶端電腦啟動連線。如需點對站連線的詳細資訊，請參閱 [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md#point-to-site-connections)和[計劃與設計](vpn-gateway-plan-design.md)。
 
-本文章適用於使用傳統部署模型所建立的虛擬網路點對站連線。這篇文章中的步驟使用傳統的入口網站。目前您無法使用 Azure 入口網站建立此設定。
 
 **點對站連線的部署模型和工具**
 
@@ -37,7 +38,7 @@
 
 [AZURE.INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
-![Point-to-Site-diagram](./media/vpn-gateway-point-to-site-create/point2site.png "點對站")
+![Point-to-Site-diagram](./media/vpn-gateway-point-to-site-create/p2sclassic.png "點對站")
 
 ## 有關建立點對站連線
  
@@ -135,13 +136,13 @@
 
 ### 第 1 部份 - 建立 VPN 用戶端組態封裝
 
-1. 在 Azure 傳統入口網站中，虛擬網路的**儀表板**頁面上，瀏覽至右上角的 [快速瀏覽] 功能表。如需用戶端支援的作業系統清單，請參閱 VPN 閘道常見問題集中的[點對站連線](vpn-gateway-vpn-faq.md#point-to-site-connections)一節。<br><br>選取對應至即將安裝之目標用戶端作業系統的下載封裝：
+1. 在 Azure 傳統入口網站中，虛擬網路的**儀表板**頁面上，瀏覽至右上角的 [快速瀏覽] 功能表。如需用戶端支援的作業系統清單，請參閱 VPN 閘道常見問題集中的[點對站連線](vpn-gateway-vpn-faq.md#point-to-site-connections)一節。VPN 用戶端封裝包含的組態資訊可設定 Windows 內建的 VPN 用戶端軟體。此封裝不會安裝其他軟體。這些設定專屬於您想要連接的虛擬網路。<br><br>選取對應至即將安裝之目標用戶端作業系統的下載封裝：
  - 如果是 32 位元用戶端，請選取 [下載 32 位元用戶端 VPN 封裝]。
  - 如果是 64 位元用戶端，請選取 [下載 64 位元用戶端 VPN 封裝]。
 
 2. 建立您的用戶端封裝將需要幾分鐘的時間。一旦封裝完成之後，您就可以下載檔案。您下載的 *.exe* 檔案可以安全地儲存在本機電腦上。
 
-3. 從 Azure 傳統入口網站產生及下載 VPN 用戶端封裝之後，您便可將用戶端封裝安裝至要連線到虛擬網路的用戶端電腦上。如果您打算將 VPN 用戶端封裝安裝到多部用戶端電腦，請確定它們也已安裝用戶端憑證。VPN 用戶端封裝包含的組態資訊可設定 Windows 內建的 VPN 用戶端軟體。此封裝不會安裝其他軟體。
+3. 從 Azure 傳統入口網站產生及下載 VPN 用戶端封裝之後，您便可將用戶端封裝安裝至要連線到虛擬網路的用戶端電腦上。如果您打算將 VPN 用戶端封裝安裝到多部用戶端電腦，請確定它們也已安裝用戶端憑證。
 
 ### 第 2 部份：在用戶端上安裝 VPN 組態封裝並啟動連線
 
@@ -178,4 +179,4 @@
 
 如需關於虛擬網路的詳細資訊，請參閱[虛擬網路文件](https://azure.microsoft.com/documentation/services/virtual-network/)頁面。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->
