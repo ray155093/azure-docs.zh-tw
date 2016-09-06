@@ -58,7 +58,7 @@
 <br>
 2. 從 Azure 入口網站中，開啟您的自動化帳戶，然後按一下 [Runbook] 圖格 。
 3. 從 [Runbook] 刀鋒視窗中，選取 [新增 Runbook]。
-4. 在 [新增 Runbook] 刀鋒視窗上，選取 [快速建立] (建立新的 Runbook)。
+4. 在 [新增 Runbook] 刀鋒視窗上，選取 [快速建立]\(建立新的 Runbook)。
 5. 在 [Runbook] 屬性刀鋒視窗上，於 Runbook 的 [名稱] 方塊中輸入名稱，並從 [Runbook 類型] 下拉式清單中選取 [PowerShell]，然後按一下 [建立]。<br> ![匯入模組刀鋒視窗](./media/automation-scenario-aws-deployment/runbook-quickcreate-properties.png)
 6. [編輯 PowerShell Runbook] 刀鋒視窗出現時，請將 PowerShell 指令碼複製並貼入 Runbook 製作畫布。<br> ![Runbook PowerShell 指令碼](./media/automation-scenario-aws-deployment/runbook-powershell-script.png)<br>
 
