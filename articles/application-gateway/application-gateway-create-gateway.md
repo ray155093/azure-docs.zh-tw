@@ -80,7 +80,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 	Successful OK                   55ef0460-825d-2981-ad20-b9a8af41b399
 
 
- *Description*、*InstanceCount* 和 *GatewaySize* 為選用參數。
+ *Description* 、 *InstanceCount* 和 *GatewaySize* 為選用參數。
 
 
 若要驗證是否已建立閘道，您可以使用 **Get-AzureApplicationGateway** Cmdlet。

@@ -108,7 +108,7 @@ Microsoft Azure Redis 快取有下列階層：
 	    }
 	}
 
-如需進階連線組態選項的詳細資訊，請參閱 [StackExchange.Redis 組態模型][] (英文)。
+如需進階連線組態選項的詳細資訊，請參閱 [StackExchange.Redis 組態模型][] \(英文)。
 
 [AZURE.INCLUDE [redis-cache-create](../../includes/redis-cache-access-keys.md)]
 
@@ -196,7 +196,7 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 -	Azure Redis 快取也可以與協力廠商服務和工具搭配使用 (例如 Redsmin 和 Redis Desktop Manager)。
 	-	如需 Redsmin 的詳細資訊，請參閱[如何擷取 Azure Redis 連接字串並將它與 Redsmin 搭配使用][]。
 	-	使用 [RedisDesktopManager](https://github.com/uglide/RedisDesktopManager)，透過 GUI 存取和檢查 Azure Redis 快取中的資料。
--	請參閱 [Redis][] (英文) 文件，並閱讀有關 [Redis 資料類型][] (英文) 和 [Redis 資料類型的 15 分鐘簡介][] (英文)。
+-	請參閱 [Redis][] \(英文) 文件，並閱讀有關 [Redis 資料類型][] \(英文) 和 [Redis 資料類型的 15 分鐘簡介][] \(英文)。
 
 
 

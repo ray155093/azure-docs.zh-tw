@@ -18,7 +18,8 @@
 	
     - 若想要方便存取您未來建立的帳戶和資源，請勾選 [釘選到儀表板]。
 
-4.	設定新的 DocumentDB 帳戶選項之後，按一下 [建立]。若要檢查部署的狀態，您可以監視「開始面板」上的進度。![「開始面板」上 [建立] 圖格的螢幕擷取畫面 - 線上資料庫建立者](./media/documentdb-create-dbaccount/create-nosql-db-databases-json-tutorial-3.png)
+4.	設定新的 DocumentDB 帳戶選項之後，按一下 [建立]。若要檢查部署的狀態，您可以監視「開始面板」上的進度。
+	![「開始面板」上 [建立] 圖格的螢幕擷取畫面 - 線上資料庫建立者](./media/documentdb-create-dbaccount/create-nosql-db-databases-json-tutorial-3.png)
 
 	或者，您也可以從 [通知] 中樞監視進度。
 

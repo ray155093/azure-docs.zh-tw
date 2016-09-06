@@ -24,7 +24,7 @@
 ## 必要條件
 
  - Visual Studio 2013 或 2015
- - [Python Tools for Visual Studio][] (PTVS)
+ - [Python Tools for Visual Studio][] \(PTVS)
  - [Azure SDK Tools for VS 2013][] 或 [Azure SDK Tools for VS 2015][]
  - [Python 2.7 32 位元][]或 [Python 3.5 32 位元][]
 
