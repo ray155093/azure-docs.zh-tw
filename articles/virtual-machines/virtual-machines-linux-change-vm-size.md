@@ -4,7 +4,7 @@
    services="virtual-machines-linux"
    documentationCenter="na"
    authors="mikewasson"
-   manager="roshar"
+   manager="timlt"
    editor=""
    tags=""/>
 
@@ -20,13 +20,13 @@
 
 # 如何重新調整 Linux VM 的大小
 
-## 概觀 
+## Overview 
 
 部屬虛擬機器 (VM) 之後，您可以藉由變更 [VM 大小][vm-sizes]來相應增加或減少 VM。在某些情況下，您必須先解除配置 VM。如果新的大小無法在裝載 VM 的硬體叢集上取得，可能有這樣的情況。
 
 本文說明如何使用 [Azure CLI][azure-cli] 重新調整 Linux VM 的大小。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]傳統部署模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型。
 
 
 ## 重新調整 Linux VM 的大小 
@@ -74,4 +74,4 @@
 [scale-set]: ../virtual-machine-scale-sets/virtual-machine-scale-sets-linux-autoscale.md
 [vm-sizes]: virtual-machines-linux-sizes.md
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0824_2016-->

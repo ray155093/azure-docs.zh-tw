@@ -14,7 +14,7 @@
     ms.workload="search"
     ms.topic="get-started-article"
     ms.tgt_pltfrm="na"
-    ms.date="05/31/2016"
+    ms.date="08/29/2016"
     ms.author="ashmaka"/>
 
 # 使用 REST API 建立 Azure 搜尋服務索引
@@ -106,4 +106,4 @@
 ## 下一步
 建立 Azure 搜尋服務索引後，您就可以[將內容上傳到索引](search-what-is-data-import.md)，以便開始搜尋資料。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0831_2016-->

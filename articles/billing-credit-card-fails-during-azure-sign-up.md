@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/01/2016"
+	ms.date="08/17/2016"
 	ms.author="cjiang"/>
 
 # 當我嘗試註冊 Azure時，我的信用卡或金融卡被拒絕
@@ -23,7 +23,7 @@
 
 如果您確實使用有效的信用卡或金融卡，請確定卡片可正常使用且您的銀行不會因為其安全性原則而封鎖線上交易。
 
-[AZURE.INCLUDE [支援免責聲明](../includes/support-disclaimer.md)]
+> [AZURE.NOTE] 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
 ## 您的信用卡資訊正確且完整嗎？
 - 您使用的信用卡或轉帳卡應該會列示在您選擇之國家/地區的下拉式清單中。如果未列出，表示它不是您所在國家/地區的可用選項。
@@ -41,4 +41,6 @@
 
 若要啟動發票的設定程序，請參閱[Azure 帳單 - 如何開立發票](https://azure.microsoft.com/pricing/invoicing/)以取得詳細資訊。
 
-<!---HONumber=AcomDC_0803_2016-->
+> [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+
+<!---HONumber=AcomDC_0824_2016-->

@@ -23,11 +23,6 @@
 - [Azure CLI](resource-group-template-deploy-cli.md)
 - [入口網站](resource-group-template-deploy-portal.md)
 - [REST API](resource-group-template-deploy-rest.md)
-- [.NET](https://azure.microsoft.com/documentation/samples/resource-manager-dotnet-template-deployment/)
-- [Java](https://azure.microsoft.com/documentation/samples/resources-java-deploy-using-arm-template/)
-- [Python](https://azure.microsoft.com/documentation/samples/resource-manager-python-template-deployment/)
-- [節點](https://azure.microsoft.com/documentation/samples/resource-manager-node-template-deployment/)
-- [Ruby](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-template-deployment/)
 
 本主題說明如何使用 Azure CLI 與 Resource Manager 範本，將您的資源部署至 Azure。
 
@@ -176,4 +171,4 @@
 - 如需將您的方案部署到不同環境的指引，請參閱 [Microsoft Azure 中的開發和測試環境](solution-dev-test-environments.md)。
 - 如需有關使用 KeyVault 參考來傳遞安全值的詳細資料，請參閱[在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

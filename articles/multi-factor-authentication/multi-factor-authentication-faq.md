@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/04/2016"
+	ms.date="08/22/2016"
 	ms.author="billmath"/>
 
 # Azure Multi-Factor Authentication 常見問題集
@@ -145,7 +145,7 @@ Azure Multi-Factor Authentication 能當作獨立服務選購，並按照每位�
 
 Azure Multi-Factor Authentication 服務會透過簡訊彙總工具傳送簡訊。許多因素可能會影響簡訊傳遞和接收的可靠性，包括使用的彙總工具、目的地國家/地區、使用者的行動電話業者及訊號強度。基於此原因，不保證使用雙向簡訊時可正常傳遞簡訊及接收簡訊回覆。我們建議盡可能使用單向簡訊，而不要使用雙向簡訊。單向簡訊比較可靠，並可防止使用者因為回覆從其他國家/地區傳送的簡訊而產生全域簡訊費用。
 
-在某些國家/地區 (例如美國和加拿大) 簡訊驗證更為可靠。我們鼓勵在使用 Azure Multi-Factor Authentication 時遭遇簡訊接收困難的使用者，改為選取行動應用程式或電話通話方法。行動應用程式是很棒的驗證方法，因為使用者透過行動數據和 Wi-Fi 連線，都能接收行動應用程式通知。此外，即使裝置收不到訊號，仍會顯示行動應用程式驗證碼。Azure Authenticator 應用程式適用於 [Windows Phone](http://www.windowsphone.com/store/app/azure-authenticator/03a5b2bf-6066-418f-b569-e8aecbc06e50)、[Android](https://play.google.com/store/apps/details?id=com.azure.authenticator) 和 [iOS](https://itunes.apple.com/us/app/azure-authenticator/id983156458)。
+在某些國家/地區 (例如美國和加拿大) 簡訊驗證更為可靠。我們鼓勵在使用 Azure Multi-Factor Authentication 時遭遇簡訊接收困難的使用者，改為選取行動應用程式或電話通話方法。行動應用程式是很棒的驗證方法，因為使用者透過行動數據和 Wi-Fi 連線，都能接收行動應用程式通知。此外，即使裝置收不到訊號，仍會顯示行動應用程式驗證碼。Microsoft 驗證器應用程式適用於 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)、[Android](http://go.microsoft.com/fwlink/?Linkid=825072) 和 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)。
 
 **問：我是否可以搭配 Azure Multi-Factor Authentication Server 使用硬體權杖？**
 
@@ -185,4 +185,4 @@ Windows Server 2012 R2 中的安全性變更已改變 Azure Multi-Factor Authent
 
 此種情況的因應措施是使用不同的使用者帳戶，進行系統管理和非系統管理作業。您稍後可以連結系統管理帳戶與非系統管理帳戶之間的信箱，以便使用非系統管理帳戶登入 Outlook。如需詳細資訊，請了解如何[讓系統管理員能夠開啟及檢視使用者信箱的內容](http://help.outlook.com/141/gg709759.aspx?sl=1)。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

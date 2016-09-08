@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="mobile-multiple"
    ms.workload="mobile" 
-   ms.date="02/29/2016"
+   ms.date="08/19/2016"
    ms.author="piyushjo"/>
 
 # 服務問題的疑難排解指南
@@ -56,8 +56,8 @@
 4) 若要測試是否為您裝置的問題：
 
    - 測試您的裝置是否能透過另一個 Azure Mobile Engagement 整合式應用程式連接到 Azure Mobile Engagement。
-   - 測試您是否可以從手機產生可在 Azure Mobile Engagement UI 中看到的事件、工作和當機情況。 
-   - 測試是否能夠從 Azure Mobile Engagement UI，根據裝置識別碼傳送推播通知給您的裝置。 
+   - 測試您是否可以從手機產生可在 Azure Mobile Engagement UI 中看到的事件、工作和當機情況。
+   - 測試是否能夠從 Azure Mobile Engagement UI，根據裝置識別碼傳送推播通知給您的裝置。
 
 5) 若要測試是否為您應用程式的問題：
 
@@ -89,4 +89,4 @@
     - 使用小於 35MB 檔案大小上限的檔案。
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0824_2016-->

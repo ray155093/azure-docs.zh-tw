@@ -25,7 +25,7 @@
 
 ## 步驟 1：安裝 Azure PowerShell
 
-如需如何安裝最新版 Azure PowerShell 的資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)，並選取您要使用的訂用帳戶，然後登入您的 Azure 帳戶。
+如需如何安裝最新版 Azure PowerShell、選取要使用的訂用帳戶，以及登入 Azure 帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
         
 ## 步驟 2：建立資源群組
 
@@ -104,12 +104,12 @@
 
 若要與虛擬網路中的虛擬機器通訊，您需要[公用 IP 位址](../virtual-network/virtual-network-ip-addresses-overview-arm.md)和網路介面。
 
-1. 使用公用 IP 位址的名稱取代 **$ipName** 的值。建立變數和公用 IP 位址。
+1. 使用公用 IP 位址的名稱來取代 **$ipName** 的值。建立變數和公用 IP 位址。
 
         $ipName = "myIPaddress1"
         $pip = New-AzureRmPublicIpAddress -Name $ipName -ResourceGroupName $rgName -Location $locName -AllocationMethod Dynamic
         
-2. 使用網路介面的名稱取代 **$nicName** 的值。建立變數和網路介面。
+2. 使用網路介面的名稱來取代 **$nicName** 的值。建立變數和網路介面。
 
         $nicName = "mynic1"
         $nic = New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName $rgName -Location $locName -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id
@@ -122,7 +122,7 @@
 
         $cred = Get-Credential -Message "Type the name and password of the local administrator account."
         
-    密碼長度必須介於 12-123 個字元，並且具有至少 1 個小寫字元、1 個大寫字元、1 個數字和 1 個特殊字元。
+    密碼長度必須介於 8-123 個字元，且符合下列四個複雜性需求的其中三項：1 個小寫字元、1 個大寫字元、1 個數字和 1 個特殊字元。進一步了解[使用者名稱和密碼需求](virtual-machines-windows-faq.md#what-are-the-username-requirements-when-creating-a-vm)。
         
 2. 使用虛擬機器的名稱取代 **$vmName** 的值。建立變數和虛擬機器組態。
 
@@ -168,8 +168,8 @@
                                   
 ## 後續步驟
 
-- 如果部署發生問題，下一個步驟是查看[使用 Azure 入口網站針對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)。
-- 請檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)，了解如何管理您剛才建立的虛擬機器。
-- 使用[利用 Resource Manager 範本建立 Windows 虛擬機器](virtual-machines-windows-ps-template.md)中的資訊，充分運用使用範本建立虛擬機器
+- 如果部署有問題，下一個步驟就是查看[使用 Azure 入口網站針對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)。
+- 檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)，以了解如何管理您剛建立的虛擬機器。
+- 使用[利用 Resource Manager 範本建立 Windows 虛擬機器](virtual-machines-windows-ps-template.md)中的資訊，充分運用使用範本建立虛擬機器。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0831_2016-->

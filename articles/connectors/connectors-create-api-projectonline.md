@@ -14,18 +14,12 @@ ms.devlang="multiple"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="integration"
-ms.date="05/16/2016"
+ms.date="08/18/2016"
 ms.author="deonhe"/>
 
 # 開始使用 ProjectOnline 連接器
 
 Project Online 是專案組合管理 (PPM) 與 Microsoft 日常工作的彈性線上方案。Project Online 透過 Office 365 傳遞，可讓組織快速開始使用功能強大的專案管理功能，來規劃、設定優先順序以及管理專案和專案組合投資，不受場地和裝置的限制。
-
-您可從下列位置使用 ProjectOnline 連接器︰
-
-- [邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)
-- [PowerApps](http://powerapps.microsoft.com)
-- [Flow](http://flow.microsoft.com)
 
 >[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
@@ -80,7 +74,7 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|siteUrl|字串|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
+|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
 
 #### Response
 
@@ -102,7 +96,7 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|siteUrl|字串|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
+|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
 
 #### Response
 
@@ -124,11 +118,11 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|siteUrl|字串|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
+|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|OK|
 |400|不正確的要求|
@@ -146,7 +140,7 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|siteUrl|字串|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
+|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
 
 #### Response
 
@@ -166,9 +160,9 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 
 ```POST: /_api/ProjectServer/Projects```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|siteUrl|字串|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
+|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
 |proj| |yes|body|無|要建立的新專案|
 
 #### Response
@@ -191,13 +185,13 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|siteUrl|字串|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
-|project\_id|字串|yes|路徑|無|要加入工作中的專案唯一識別碼|
+|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
+|project\_id|string|yes|路徑|無|要加入工作中的專案唯一識別碼|
 |工作| |yes|body|無|要加入專案中的新工作|
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|OK|
 |400|不正確的要求|
@@ -215,12 +209,12 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|siteUrl|字串|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
-|resource| |yes|body|無|要加入專案中的新企業資源|
+|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
+|資源| |yes|body|無|要加入專案中的新企業資源|
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|OK|
 |400|不正確的要求|
@@ -236,10 +230,10 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 
 ```GET: /_api/ProjectServer/Projects('{project_id}')/Tasks```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|siteUrl|字串|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
-|project\_id|字串|yes|路徑|無|擷取工作的專案唯一識別碼|
+|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
+|project\_id|string|yes|路徑|無|擷取工作的專案唯一識別碼|
 
 #### Response
 
@@ -259,14 +253,14 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 
 ```POST: /_api/ProjectServer/Projects('{project_id}')/checkOut```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|siteUrl|字串|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
-|project\_id|字串|yes|路徑|無|要加入工作中的專案唯一識別碼|
+|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
+|project\_id|string|yes|路徑|無|要加入工作中的專案唯一識別碼|
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|OK|
 |400|不正確的要求|
@@ -284,12 +278,12 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|siteUrl|字串|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
-|project\_id|字串|yes|路徑|無|簽入的專案唯一識別碼|
+|siteUrl|string|yes|query|無|專案網站的根網站 URL (範例︰https://sampletenant.sharepoint.com/teams/sampleteam)|
+|project\_id|string|yes|路徑|無|簽入的專案唯一識別碼|
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|OK|
 |400|不正確的要求|
@@ -316,13 +310,13 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|ProjectStartDate|字串|否 |
-|ProjectFinishDate|字串|否 |
-|ProjectCreatedDate|字串|否 |
-|ProjectId|字串|否 |
-|ProjectModifiedDate|字串|否 |
+|ProjectStartDate|string|否 |
+|ProjectFinishDate|string|否 |
+|ProjectCreatedDate|string|否 |
+|ProjectId|string|否 |
+|ProjectModifiedDate|string|否 |
 |ProjectType|integer|否 |
-|ProjectName|字串|否 |
+|ProjectName|string|否 |
 
 
 
@@ -340,24 +334,24 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|ResourceId|字串|否 |
-|ResourceBaseCalendar|字串|否 |
+|ResourceId|string|否 |
+|ResourceBaseCalendar|string|否 |
 |ResourceBookingType|integer|否 |
 |ResourceCanLevel|布林值|否 |
 |ResourceCostPerUse|number|否 |
-|ResourceCreatedDate|字串|否 |
-|ResourceEarliestAvailableFrom|字串|否 |
-|ResourceEmail|字串|否 |
-|ResourceInitials|字串|否 |
+|ResourceCreatedDate|string|否 |
+|ResourceEarliestAvailableFrom|string|否 |
+|ResourceEmail|string|否 |
+|ResourceInitials|string|否 |
 |ResourceIsActive|布林值|否 |
 |ResourceIsGeneric|布林值|否 |
-|ResourceLatestAvailableTo|字串|否 |
-|ResourceModifiedDate|字串|否 |
-|ResourceName|字串|否 |
-|ResourceStatsuName|字串|否 |
+|ResourceLatestAvailableTo|string|否 |
+|ResourceModifiedDate|string|否 |
+|ResourceName|string|否 |
+|ResourceStatsuName|string|否 |
 |ResourceType|integer|否 |
-|TypeDescription|字串|否 |
-|TypeName|字串|否 |
+|TypeDescription|string|否 |
+|TypeName|string|否 |
 
 
 
@@ -375,14 +369,14 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|ProjectId|字串|否 |
-|TaskId|字串|否 |
-|ProjectName|字串|否 |
-|TaskName|字串|否 |
-|TaskCreatedDate|字串|否 |
-|TaskModifieddate|字串|否 |
-|TaskStartDate|字串|否 |
-|TaskFinishDate|字串|否 |
+|ProjectId|string|否 |
+|TaskId|string|否 |
+|ProjectName|string|否 |
+|TaskName|string|否 |
+|TaskCreatedDate|string|否 |
+|TaskModifieddate|string|否 |
+|TaskStartDate|string|否 |
+|TaskFinishDate|string|否 |
 |TaskPriority|integer|否 |
 |TaskIsActive|布林值|否 |
 
@@ -393,9 +387,9 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|名稱|字串|是 |
-|說明|字串|否 |
-|啟動|字串|否 |
+|名稱|string|是 |
+|說明|string|否 |
+|啟動|string|否 |
 
 
 
@@ -404,7 +398,7 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|名稱|字串|是 |
+|名稱|string|是 |
 |IsBudget|布林值|否 |
 |IsGeneric|布林值|否 |
 |IsInactive|布林值|否 |
@@ -416,21 +410,21 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|ApprovedStart|字串|否 |
-|ApprovedEnd|字串|否 |
-|CheckedOutDate|字串|否 |
-|CheckOutDescription|字串|否 |
-|CheckOutId|字串|否 |
-|CreatedDate|字串|否 |
-|識別碼|字串|否 |
+|ApprovedStart|string|否 |
+|ApprovedEnd|string|否 |
+|CheckedOutDate|string|否 |
+|CheckOutDescription|string|否 |
+|CheckOutId|string|否 |
+|CreatedDate|string|否 |
+|識別碼|string|否 |
 |IsCheckedOut|布林值|否 |
-|LastPublishedDate|字串|否 |
-|LastSavedDate|字串|否 |
+|LastPublishedDate|string|否 |
+|LastSavedDate|string|否 |
 |OptimizerDecision|integer|否 |
 |PlannerDecision|integer|否 |
 |ProjectType|integer|否 |
-|名稱|字串|否 |
-|WinprojVersion|字串|否 |
+|名稱|string|否 |
+|WinprojVersion|string|否 |
 
 
 
@@ -457,10 +451,10 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|名稱|字串|是 |
-|注意事項|字串|否 |
-|啟動|字串|否 |
-|持續時間|字串|否 |
+|名稱|string|是 |
+|注意事項|string|否 |
+|啟動|string|否 |
+|持續時間|string|否 |
 
 
 
@@ -470,28 +464,28 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
 |CanLevel|布林值|否 |
-|代碼|字串|否 |
+|代碼|string|否 |
 |CostAccrual|integer|否 |
-|CostCenter|字串|否 |
-|建立時間|字串|否 |
+|CostCenter|string|否 |
+|建立時間|string|否 |
 |DefaultBookingType|integer|否 |
-|電子郵件|字串|否 |
-|ExternalId|字串|否 |
-|群組|字串|否 |
-|HireDate|字串|否 |
-|識別碼|字串|否 |
-|Initials|字串|否 |
+|電子郵件|string|否 |
+|ExternalId|string|否 |
+|群組|string|否 |
+|HireDate|string|否 |
+|識別碼|string|否 |
+|Initials|string|否 |
 |IsActive|布林值|否 |
 |IsBudget|布林值|否 |
 |IsCheckedOut|布林值|否 |
 |IsGeneric|布林值|否 |
 |IsTeam|布林值|否 |
-|MaterialLabel|字串|否 |
-|修改時間|字串|否 |
-|名稱|字串|否 |
-|Phonetics|字串|否 |
+|MaterialLabel|string|否 |
+|修改時間|string|否 |
+|名稱|string|否 |
+|Phonetics|string|否 |
 |ResourceType|integer|否 |
-|TerminationDate|字串|否 |
+|TerminationDate|string|否 |
 
 
 
@@ -509,19 +503,19 @@ ProjectOnline 連接器可當成動作使用，它有觸發程序。所有連接
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|建立時間|字串|否 |
-|修改時間|字串|否 |
-|啟動|字串|否 |
-|完成|字串|否 |
-|名稱|字串|否 |
-|識別碼|字串|否 |
+|建立時間|string|否 |
+|修改時間|string|否 |
+|啟動|string|否 |
+|完成|string|否 |
+|Name|string|否 |
+|識別碼|string|否 |
 |優先順序|integer|否 |
 |PercentComplete|integer|否 |
-|注意事項|字串|否 |
-|連絡人|字串|否 |
+|注意事項|string|否 |
+|連絡人|string|否 |
 
 
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

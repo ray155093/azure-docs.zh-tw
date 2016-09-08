@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="java"
 	ms.topic="get-started-article"
-	ms.date="06/01/2016"
+	ms.date="08/31/2016"
 	ms.author="rachelap"/>
 
 # 在 Azure App Service 中建置和部署 Java API 應用程式
@@ -153,7 +153,7 @@
 
 在本節中，您將使用您自訂的程式碼，來取代 Swagger 所產生程式碼的伺服器端實作。新的程式碼會把連絡人實體的 ArrayList 傳回給呼叫中的用戶端。
 
-1. 使用 [Visual Studio Code] 或您偏好的文字編輯器，來開啟「Contact.java」模型檔案 (位於「src/gen/java/io/swagger/model」資料夾)。
+1. 使用 [Visual Studio Code] 或您偏好的文字編輯器，來開啟「Contact.java」模型檔案 (位於「src/gen/java/io/swagger/model」資料夾)。 
 
     ![開啟連絡人模型檔案][open-contact-model-file]
 
@@ -338,4 +338,4 @@
 [copy-git-repo-url]: ./media/app-service-api-java-api-app/copy-git-repo-url.png
 [postman-calling-azure-contacts]: ./media/app-service-api-java-api-app/postman-calling-azure-contacts.png
 
-<!----HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -152,7 +152,7 @@
 
 
 ### 剪輯清單 XML 自訂
-您可以在組態字串 XML 中使用 **sourceTranscode**，以在執行階段於工作流程中指定剪輯清單 XML。這需要剪輯清單 XML 接點才能連接到工作流程中的媒體來源元件。
+您可以在組態字串 XML 中使用 **transcodeSource**，以在執行階段於工作流程中指定剪輯清單 XML。這需要剪輯清單 XML 接點才能連接到工作流程中的媒體來源元件。
 
     <?xml version="1.0" encoding="utf-16"?>
       <transcodeRequest>
@@ -432,4 +432,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

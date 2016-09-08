@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="07/12/2016"
+	ms.date="08/19/2016"
 	ms.author="MikeRayMSFT" />
 
 # 設定 Azure 中 Always On 可用性群組的 ILB 接聽程式
@@ -24,7 +24,7 @@
 
 ## 概觀
 
-本主題說明如何使用**內部負載平衡器 (ILB)** 來設定 Always On 可用性群組的接聽程式。
+本主題說明如何使用「內部負載平衡器」(ILB) 來設定「Always On 可用性群組」的接聽程式。
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 若要在 Resource Manager 模型中設定 Always On 可用性群組的 ILB 接聽程式，請參閱[在 Azure 中設定 Always On 可用性群組的內部負載平衡器](virtual-machines-windows-portal-sql-alwayson-int-listener.md)。
 
@@ -104,7 +104,9 @@
 		$ServiceName="<MyServiceName>" # the name of the cloud service that contains the AG nodes
 		(Get-AzureInternalLoadBalancer -ServiceName $ServiceName).IPAddress
 
-1. 在其中一個 VM 上，將下方的 PowerShell 指令碼複製到文字編輯器，並將變數設定為之前記下的值。
+1. 在其中一個 VM 上，將適用於您作業系統的 PowerShell 指令碼複製到文字編輯器中，並將變數設定為您先前記下的值。
+
+    針對 Windows Server 2012 或更新版本，請使用下列指令碼︰
 
 		# Define variables
 		$ClusterNetworkName = "<MyClusterNetworkName>" # the cluster network name (Use Get-ClusterNetwork on Windows Server 2012 of higher to find the name)
@@ -113,10 +115,19 @@
 
 		Import-Module FailoverClusters
 
-		# If you are using Windows Server 2012 or higher, use the Get-Cluster Resource command. If you are using Windows Server 2008 R2, use the cluster res command. Both commands are commented out. Choose the one applicable to your environment and remove the # at the beginning of the line to convert the comment to an executable line of code.
+	    Get-ClusterResource $IPResourceName | Set-ClusterParameter -Multiple @{"Address"="$ILBIP";"ProbePort"="59999";"SubnetMask"="255.255.255.255";"Network"="$ClusterNetworkName";"EnableDhcp"=0}
+		
+    針對 Windows Server 2008 R2，請使用下列指令碼︰
 
-		# Get-ClusterResource $IPResourceName | Set-ClusterParameter -Multiple @{"Address"="$ILBIP";"ProbePort"="59999";"SubnetMask"="255.255.255.255";"Network"="$ClusterNetworkName";"EnableDhcp"=0}
-		# cluster res $IPResourceName /priv enabledhcp=0 address=$ILBIP probeport=59999  subnetmask=255.255.255.255
+		# Define variables
+		$ClusterNetworkName = "<MyClusterNetworkName>" # the cluster network name (Use Get-ClusterNetwork on Windows Server 2012 of higher to find the name)
+		$IPResourceName = "<IPResourceName>" # the IP Address resource name
+		$ILBIP = “<X.X.X.X>” # the IP Address of the Internal Load Balancer (ILB)
+
+		Import-Module FailoverClusters
+
+		cluster res $IPResourceName /priv enabledhcp=0 address=$ILBIP probeport=59999  subnetmask=255.255.255.255
+	
 
 1. 設定變數之後，開啟提升權限的 Windows PowerShell 視窗中，然後從文字編輯器將指令碼複製並貼到您的 Azure PowerShell 工作階段來執行它。如果提示依然顯示「>>」，請再次按 ENTER 鍵以確定指令碼開始執行。
 
@@ -138,4 +149,4 @@
 
 [AZURE.INCLUDE [Listener-Next-Steps](../../includes/virtual-machines-ag-listener-next-steps.md)]
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0824_2016-->

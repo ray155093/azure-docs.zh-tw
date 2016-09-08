@@ -12,7 +12,7 @@
  ms.tgt_pltfrm="na"
  ms.devlang="dotnet"
  ms.topic="article"
- ms.date="06/30/2016"
+ ms.date="08/18/2016"
  ms.author="krisragh"/>
 
 # 如何使用 Azure 排程器建立複雜的排程和進階週期  
@@ -197,4 +197,4 @@ Azure 排程器工作中的日期時間參考遵循 [ISO 8601 規格](http://en.
 
  [Azure 排程器輸出驗證](scheduler-outbound-authentication.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

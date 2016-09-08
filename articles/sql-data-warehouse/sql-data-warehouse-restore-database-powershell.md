@@ -3,7 +3,7 @@
    description="還原 Azure SQL 資料倉儲的 PowerShell 工作。"
    services="sql-data-warehouse"
    documentationCenter="NA"
-   authors="sonyam"
+   authors="Lakshmi1812"
    manager="barbkess"
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
    ms.date="07/18/2016"
-   ms.author="sonyama;barbkess"/>
+   ms.author="lakshmir;barbkess;sonyama"/>
 
 # 還原 Azure SQL 資料倉儲 (PowerShell)
 
@@ -39,7 +39,7 @@
 若要從快照還原資料庫，請使用 [Restore-AzureRmSqlDatabase][] PowerShell Cmdlet。
 
 1. 開啟 Windows PowerShell。
-2. 連接到您的 Azure 帳戶，並列出與您的帳戶相關聯的所有訂用帳戶。
+2. 連接到您的 Azure 帳戶，然後列出與您帳戶關聯的所有訂用帳戶。
 3. 選取包含要還原之資料庫的訂用帳戶。
 4. 列出資料庫的還原點。
 5. 使用 RestorePointCreationDate 挑選出想要的還原點。
@@ -86,7 +86,7 @@ $RestoredDatabase.status
 若要還原已刪除的資料庫，請使用 [Restore-AzureRmSqlDatabase][] Cmdlet。
 
 1. 開啟 Windows PowerShell。
-2. 連接到您的 Azure 帳戶，並列出與您的帳戶相關聯的所有訂用帳戶。
+2. 連接到您的 Azure 帳戶，然後列出與您帳戶關聯的所有訂用帳戶。
 3. 選取包含要還原之已刪除資料庫的訂用帳戶。
 4. 取得已刪除的特定資料庫。
 5. 還原已刪除的資料庫。
@@ -121,7 +121,7 @@ $RestoredDatabase.status
 若要復原資料庫，請使用 [Restore-AzureRmSqlDatabase][] Cmdlet。
 
 1. 開啟 Windows PowerShell。
-2. 連接到您的 Azure 帳戶，並列出與您的帳戶相關聯的所有訂用帳戶。
+2. 連接到您的 Azure 帳戶，然後列出與您帳戶關聯的所有訂用帳戶。
 3. 選取包含要還原之資料庫的訂用帳戶。
 4. 取得您想要復原的資料庫。
 5. 建立資料庫的復原要求。
@@ -171,4 +171,4 @@ $GeoRestoredDatabase.status
 [Azure Portal]: https://portal.azure.com/
 [Microsoft Web Platform Installer]: https://aka.ms/webpi-azps
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

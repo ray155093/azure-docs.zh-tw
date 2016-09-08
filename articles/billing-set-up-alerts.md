@@ -10,27 +10,27 @@
 	/>
 
 <tags
-	ms.service="multiple"
-	ms.workload="multiple"
+	ms.service="billing"
+	ms.workload="na"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/17/2016"
+	ms.date="08/18/2016"
 	ms.author="vikdesai"/>
 
 # 為您的 Microsoft Azure 訂用帳戶設定帳單通知
 
 您在乎您的 Azure 訂用帳戶每個月花費多少錢嗎？ 如果您是 Azure 訂用帳戶的帳戶管理員，您可以使用「Azure 計費警示服務」來建立自訂計費警示，以協助您監視和管理您 Azure 帳戶的計費活動。
 
-這項服務是預覽服務，因此您需要做的第一件事就是註冊，請瀏覽 Azure 帳戶管理入口網站中的<a href="https://account.windowsazure.com/PreviewFeatures">預覽功能頁面</a>來執行此動作。
+這項服務是預覽服務，因此您需要做的第一件事就是註冊。請瀏覽 Azure 帳戶管理入口網站中的[預覽功能頁面](https://account.windowsazure.com/PreviewFeatures)來啟用這項功能。
 
 ## 設定警示閾值與電子郵件收件者
 
-在收到已為您的訂用帳戶開啟計費服務的電子郵件確認之後，請瀏覽帳戶入口網站中的<a href="https://account.windowsazure.com/Subscriptions">訂用帳戶頁面</a>。按一下您想要監視的訂用帳戶，然後按一下 [**警示**]。
+在收到已為您的訂用帳戶開啟計費服務的電子郵件確認之後，請瀏覽帳戶入口網站中的[訂用帳戶頁面](https://account.windowsazure.com/Subscriptions)。按一下您想要監視的訂用帳戶，然後按一下 [警示]。
 
 ![][Image1]
 
-接著，按一下 [**加入警示**] 來建立您的第一個警示 - 每一訂用帳戶總計可以設定 5 個具有不同臨界值的警示，每個警示最多可以設定兩個電子郵件收件者。
+接著，按一下 [新增警示] 來建立您的第一個警示 - 每一訂用帳戶總計可以設定 5 個具有不同臨界值的警示，每個警示最多可以設定兩個電子郵件收件者。
 
 ![][Image2]
 
@@ -48,4 +48,4 @@ Azure 支援任何電子郵件地址，但不會驗證電子郵件地址是否�
 [Image2]: ./media/azure-billing-set-up-alerts/billingalert2.png
 [Image3]: ./media/azure-billing-set-up-alerts/billingalerts3.png
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

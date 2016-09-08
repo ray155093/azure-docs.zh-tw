@@ -13,7 +13,7 @@ ms.devlang="java"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="06/06/2016"
+ms.date="08/23/2016"
 ms.author="larryfr"/>
 
 #使用 Apache Storm on HDInsight 處理 Azure 事件中樞的車輛感應器資料
@@ -22,7 +22,7 @@ ms.author="larryfr"/>
 
 ![HDInsight 和物聯網 (IoT) 架構圖表](./media/hdinsight-storm-iot-eventhub-documentdb/iot.png)
 
-##概觀
+##Overview
 
 將感應器新增至車輛可讓您根據歷程記錄資料趨勢預測設備問題，並且根據使用模式分析增強未來版本的功能。雖然傳統 MapReduce 批次處理可以用來進行這項分析，但您必須能在 MapReduce 處理發生之前，快速且有效地將來自所有車輛的資料載入 Hadoop。此外，您可能會想要執行嚴重失敗路徑 (引擎溫度、煞車等) 的即時分析。
 
@@ -58,4 +58,4 @@ Storm 拓撲中使用的元件如下：
 
 若需更多範例 Storm 拓撲，請參閱 [Storm on HDInsight 上的範例拓撲](hdinsight-storm-example-topology.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0824_2016-->

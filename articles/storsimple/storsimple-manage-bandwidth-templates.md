@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/24/2016"
+   ms.date="08/16/2016"
    ms.author="alkohli" />
 
 # 使用 StorSimple Manager 服務管理 StorSimple 頻寬範本
 
-## 概觀
+## Overview
 
 頻寬範本可讓您設定多個日期時間排程的網路頻寬使用量，以將 StorSimple 裝置的資料分層至雲端。
 
@@ -66,7 +66,7 @@
 
          > [AZURE.NOTE] 不允許重疊的排程。如果開始和結束時間會產生重疊排程，您會看到錯誤訊息。
 
-   5. 指定 **頻寬速率**。這是以 MB / 秒 (Mbps) 為單位的頻寬，由包含雲端之作業中的 StorSimple 裝置所使用。提供一個介於 1 到 1000 之間的數目給此欄位。
+   5. 指定 **頻寬速率**。這是以 MB / 秒 (Mbps) 為單位的頻寬，由包含雲端之作業中 (上傳與下載) 的 StorSimple 裝置所使用。提供一個介於 1 到 1000 之間的數目給此欄位。
 
    6. 按一下核取圖示 ![核取圖示](./media/storsimple-manage-bandwidth-templates/HCS_CheckIcon.png)。您已建立的範本會新增至服務**設定**頁面上的頻寬範本清單。
 
@@ -172,4 +172,4 @@
 
 深入了解[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0824_2016-->

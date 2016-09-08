@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="mobile-multiple"
    ms.workload="mobile" 
-   ms.date="02/29/2016"
+   ms.date="08/19/2016"
    ms.author="piyushjo"/>
 
 # 如何開始使用及管理推送通知以推送給使用者
@@ -21,7 +21,7 @@
 一旦 SDK 完全整合至應用程式後，您便可以開始使用 UI 的 [Reach] 區段，將通知推送給應用程式使用者。
 
 ## 進行第一個推送通知活動
--    確認您的 Reach 已藉由 SDK 整合到應用程式。 
+-    確認您的 Reach 已藉由 SDK 整合到應用程式。
 -    選取您的應用程式
  
 ![First1][1]
@@ -112,7 +112,7 @@
 「僅限應用程式外」傳遞模式會在應用程式關閉時提供推送通知。這是標準的推送通知。當您選取「僅限應用程式外」時，您必須已提供應用程式建置所在平台 (APN 或 GCM) 上的憑證。
 
 ### 另請參閱
--  [Apple Push Notification Service – 憑證](http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9)、Google Cloud Messaging – 憑證 (http://developer.android.com/google/gcm/index.html) 
+-  [Apple Push Notification Service – 憑證](http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9)、Google Cloud Messaging – 憑證 (http://developer.android.com/google/gcm/index.html)
 
 ### 「僅限應用程式內」傳遞模式
 ![Differentiate3][17]
@@ -127,7 +127,7 @@
 ![Shedule1][18]
 
 時間是 3 月 21 日，您要進行公告，且計畫是在 3 月 22 日午夜。您不需要待在介面前就可以推送！ 您可以事先規劃確切在哪一分鐘會傳送通知。
--    取消核取 [無] 核取方塊，然後選取開始時間 
+-    取消核取 [無] 核取方塊，然後選取開始時間
 -    選擇您想要開始推送活動的日期與時間。
 
 ### 計畫結束活動
@@ -190,7 +190,7 @@
 ### 什麼是網頁檢視？
 ![WebView1][28]
 
-網頁檢視是具有網頁內容的快顯視窗。使用者按下推送通知時，就會出現這個快顯視窗。網頁檢視可讓您與使用者有更多互動。這也是呈現動作呼叫的機會，例如重新導向至應用程式市集、開啟網頁、傳送電子郵件、開始地理當地語系化的搜尋等等...
+網頁檢視是具有網頁內容的快顯視窗。使用者按下推播通知時，就會出現這個快顯視窗。網頁檢視可讓您與使用者有更多互動。這也是呈現動作呼叫的機會，例如重新導向至應用程式市集、開啟網頁、傳送電子郵件、開始地理當地語系化的搜尋等等...
 
 ### 範例：網頁檢視
 -    在 [Reach] 區段中建立推送活動，並為您的活動指定名稱。
@@ -297,4 +297,4 @@
 [Link 33]: ../mobile-engagement-how-tos-web-view.md
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0824_2016-->

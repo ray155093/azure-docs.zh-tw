@@ -106,7 +106,7 @@
 		Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.19.208020213
 6. 將下列 **appSetttings** 區段加入 **App.config** 檔案。以下 Helper 方法會使用這些設定：**Microsoft.identitymodel.waad.preview.graph.graphinterface**。
 
-	以您自己的值取代 **&lt;Application ID&gt;**、**&lt;Password&gt;**、**&lt;Subscription ID&gt;** 和 **&lt;tenant ID**&gt;。
+	以您自己的值取代 **&lt;Application ID&gt;**、**&lt;Password&gt;**、**&lt;Subscription ID&gt;** 和 **&lt;tenant ID&gt;**。
 
 		<appSettings>
 		    <add key="ActiveDirectoryEndpoint" value="https://login.windows.net/" />
@@ -458,4 +458,4 @@
 
  
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

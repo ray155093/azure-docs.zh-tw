@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-store" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="02/29/2016" 
+	ms.date="08/19/2016" 
 	ms.author="piyushjo" />
 
 #Windows 通用 app SDK 版本資訊
@@ -62,9 +62,9 @@
 ##2\.0.0 (2015/02/17)
 
 -   Azure Mobile Engagement 的最初發行版本
--   連接字串組態取代 appId/sdkKey 組態。
+-   以連接字串組態取代 appId/sdkKey 組態。
 -   增強安全性。
 
  
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0824_2016-->

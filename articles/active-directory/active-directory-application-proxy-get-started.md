@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="kgremban"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,28 +13,28 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/25/2016"
+	ms.date="08/25/2016"
 	ms.author="kgremban"/>
 
 # 如何為內部部署應用程式提供安全的遠端存取
 
 > [AZURE.NOTE] 應用程式 Proxy 是您升級至 Premium 或 Basic 版本的 Azure Active Directory 時才能使用的功能。如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
 
-現今的員工想要隨時隨地都能在任何裝置發揮生產力。他們想要在自己的裝置上工作，不論這些裝置是平板電腦、手機或膝上型電腦。而且他們期望能夠存取其所有的應用程式︰雲端中的應用程式，以及其他內部部署的公司應用程式。傳統上，提供內部部署應用程式的存取權會涉及虛擬私人網路 (VPN)、非軍事區 (DMZ)，或內部部署的反向 Proxy。這些解決方案不僅複雜且難以確保安全，而且設定及管理成本也很高。
+現今的員工想要隨時隨地都能在任何裝置發揮生產力。他們想要在自己的裝置上工作，不論這些裝置是平板電腦、手機或膝上型電腦。而且他們期望能夠存取其所有的應用程式︰雲端中的 SaaS 應用程式以及內部部署的公司應用程式。傳統上，提供內部部署應用程式的存取權會涉及虛擬私人網路 (VPN)、非軍事區 (DMZ)，或內部部署的反向 Proxy。這些解決方案不僅複雜且難以確保安全，而且設定及管理成本也很高。
 
 還有更好的辦法！
 
 在行動至上、雲端至上的世界裡，現代化的員工需要現代化的遠端存取解決方案。Azure AD 應用程式 Proxy 是 Azure Active Directory Premium 產品的一項功能，並提供遠端存取做為服務。這表示它很容易部署、使用和管理。
 
 ## 什麼是 Azure Active Directory 應用程式 Proxy？
-Azure AD 應用程式 Proxy 針對 Web 應用程式託管的內部部署，提供單一登入 (SSO) 及安全的遠端存取。這可能包括 SharePoint 網站、Outlook Web Access 或其他任何您擁有的 LOB Web 應用程式。這些內部部署 Web 應用程式會與 Azure AD (O365 所使用的相同身分識別和控制平台) 整合。使用者接著可以使用和 O365 以及其他與 Azure AD 整合的 SaaS 應用程式相同的存取方式，來存取內部部署應用程式，而不需要 VPN 或變更網路基礎結構。
+Azure AD 應用程式 Proxy 針對 Web 應用程式託管的內部部署，提供單一登入 (SSO) 及安全的遠端存取。這可能包括 SharePoint 網站、Outlook Web Access 或其他任何您擁有的 LOB Web 應用程式。這些內部部署 Web 應用程式會與 Azure AD (O365 所使用的相同身分識別和控制平台) 整合。使用者接著可以使用和 O365 以及其他與 Azure AD 整合的 SaaS 應用程式相同的存取方式，來存取內部部署應用程式。您不需要變更網路基礎結構，或需要 VPN 才能為使用者提供此解決方案。
 
 ## 為什麼這是更好的解決方案？
 Azure AD 應用程式 Proxy 可對所有內部部署應用程式提供簡單、安全且符合成本效益的遠端存取解決方案。
 
 Azure AD 應用程式 Proxy：
 
-- 在雲端中運作，因此可以節省時間和金錢。內部部署解決方案則需要您設定及維護 DMZ、Edge Server 或其他複雜的基礎結構。  
+- 在雲端中運作，因此可以節省時間和金錢。內部部署解決方案則需要您設定及維護 DMZ、Edge Server 或其他複雜的基礎結構。
 
 - 比內部部署解決方案更容易設定和保護，因為您不必開放讓任何輸入連線穿過防火牆。
 
@@ -45,13 +45,13 @@ Azure AD 應用程式 Proxy：
 ## 哪種應用程式可與 Azure AD 應用程式 Proxy 搭配運作？
 透過 Azure AD 應用程式 Proxy，您可以存取不同類型的內部應用程式︰
 
-- 使用整合式 Windows 驗證來進行驗證的 Web 應用程式  
-- 使用表單架構存取的 Web 應用程式  
-- 您想要公開給不同裝置上豐富應用程式的 Web API  
-- 裝載在遠端桌面閘道之後的應用程式  
+- 使用整合式 Windows 驗證來進行驗證的 Web 應用程式
+- 使用表單架構存取的 Web 應用程式
+- 您想要公開給不同裝置上豐富應用程式的 Web API
+- 裝載在遠端桌面閘道之後的應用程式
 
 ## 運作方式
-應用程式 Proxy 的運作方式是透過在網路內部安裝一個稱為連接器的精簡型 Windows Server 服務。透過此連接器，您就不需要開放任何輸入連接埠，或在 DMZ 中放置任何物件。如果您的應用程式有大量的流量，您可以新增更多連接器，而且該服務將會負責負載平衡。連接器是無狀態的，而且必要時，會從雲端提取所有內容。
+應用程式 Proxy 的運作方式是透過在網路內部安裝一個稱為連接器的精簡型 Windows Server 服務。透過此連接器，您就不需要開放任何輸入連接埠，或在 DMZ 中放置任何物件。如果您的應用程式有大量的流量，您可以新增更多連接器，而且該服務會負責負載平衡。連接器是無狀態的，而且必要時，會從雲端提取所有內容。
 
 當使用者從遠端存取應用程式時，他們會連線到已發佈的端點。使用者在 Azure AD 中進行驗證，然後透過連接器路由至內部部署應用程式。
 
@@ -73,7 +73,7 @@ Azure AD 應用程式 Proxy 會針對使用整合式 Windows 驗證 (IWA) 的應
 
 設定應用程式 Proxy 是以兩個步驟完成：
 
-1. [啟用應用程式 Proxy 並設定連接器](active-directory-application-proxy-enable.md)  
+1. [啟用應用程式 Proxy 並設定連接器](active-directory-application-proxy-enable.md)
 2. [發佈應用程式](active-directory-application-proxy-publish.md)：使用快速且簡單的精靈發佈內部部署應用程式並提供遠端存取。
 
 ## 後續步驟
@@ -86,4 +86,4 @@ Azure AD 應用程式 Proxy 會針對使用整合式 Windows 驗證 (IWA) 的應
 
 如需最新消息，請查閱[應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0824_2016-->

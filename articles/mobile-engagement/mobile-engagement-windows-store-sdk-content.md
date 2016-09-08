@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-store" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="02/29/2016" 
+	ms.date="08/19/2016" 
 	ms.author="piyushjo" />
 
 #Windows 通用 app SDK 內容
@@ -47,4 +47,4 @@
 - `EngagementPageOverlay.cs`：負責將 Engagement Reach 應用程式內 UI 加入子系的重疊頁面。
   
 
-<!---HONumber=AcomDC_0420_2016-->
+<!---HONumber=AcomDC_0824_2016-->

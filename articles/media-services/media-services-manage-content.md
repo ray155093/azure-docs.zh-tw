@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"  
+	ms.date="08/17/2016"  
 	ms.author="juliako"/>
 
 
@@ -47,11 +47,11 @@
 	![UploadContentDialog][uploadcontent]
 
 5. 在 [Upload Content] 對話方塊中，按一下核取按鈕以接受 [File and Content Name]。
-6. 上傳隨即開始，而您可以在入口網站底部追蹤進度。
+6. 上傳隨即開始。您可以在入口網站底部追蹤進度。
 
 	![JobStatus][status]
 
-上傳完成之後，您將會看到新資產列在 [內容] 清單中。依照慣例，名稱的結尾會附加 "**-Source**"，以協助追蹤新的內容作為編碼工作的來源內容。
+上傳完成之後，您會看到新資產列在 [內容] 清單中。依照慣例，名稱的結尾會附加 "**-Source**"，以協助追蹤新的內容作為編碼工作的來源內容。
 
 ![ContentPage][contentpage]
 
@@ -67,9 +67,12 @@ Azure Media Indexer 讓您能將媒體檔案的內容變成可搜尋，並產生
 
 下列步驟示範如何使用 Azure 傳統入口網站來編製內容索引。
 
-1. 選取您想要編製索引的檔案。如果支援此檔案類型的索引，[內容] 頁面上底部的 [處理] 按鈕將會啟用。
+1. 選取您想要編製索引的檔案。
+
+	如果此檔案類型支援索引，[內容] 頁面底部的 [處理] 按鈕便會啟用。
+	
 1. 按下 [處理] 按鈕。
-2. 在**處理**對話方塊選擇 **Azure Media Indexer** 處理器。
+2. 在 [處理]對話方塊中選擇 [Azure Media Indexer] 處理器。
 3. 然後，在 [處理] 對話方塊，填寫輸入媒體檔案的詳細**標題**和**描述**資訊。
 
 ![Process][process]
@@ -83,9 +86,9 @@ Azure Media Indexer 讓您能將媒體檔案的內容變成可搜尋，並產生
 
 若要透過網際網路傳遞數位視訊，您必須壓縮媒體。媒體服務提供媒體編碼程式，可讓您指定要如何為您的內容編碼 (例如，要使用的轉碼器、檔案格式、解析度及位元速率)。
 
-使用 Azure 媒體服務時，其中一個最常見案例是提供調適性位元速率串流給您的用戶端。使用調適性位元速率串流，用戶端可以在視訊顯示時，根據目前網路頻寬、CPU 使用率以及其他因素，切換成較高或較低的位元速率串流。媒體服務支援下列調適性位元速率串流技術：HTTP 即時串流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access 授權)。
+使用 Azure 媒體服務時，其中一個最常見案例是提供自適性串流給您的用戶端。使用調適性位元速率串流，用戶端可以在視訊顯示時，根據目前網路頻寬、CPU 使用率以及其他因素，切換成較高或較低的位元速率串流。媒體服務支援下列調適性位元速率串流技術：HTTP 即時串流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access 授權)。
 
-媒體服務提供動態封裝，這讓您以媒體服務支援的串流格式 (MPEG DASH, 、HLS、Smooth Streaming、HDS) 提供調適性位元速率 MP4 或 Smooth Streaming 編碼內容，而不必重新封裝成這些串流格式。
+媒體服務提供動態封裝，這讓您以媒體服務支援的串流格式 (MPEG DASH、HLS、Smooth Streaming、HDS) 提供調適性位元速率 MP4 或 Smooth Streaming 編碼內容，而不必重新封裝成這些串流格式。
 
 若要利用動態封裝，您需要執行下列動作：
 
@@ -94,23 +97,24 @@ Azure Media Indexer 讓您能將媒體檔案的內容變成可搜尋，並產生
 
 使用動態封裝，您只需要以單一儲存格式儲存及播放檔案，媒體服務會根據來自用戶端的要求建置及傳遞適當的回應。
 
-請注意，除了能夠使用動態封裝功能，隨選串流保留單元提供您專用傳出功能，此功能可以以 200 Mbps 為增量來購買。依預設，隨選串流是以共用執行個體模型來設定，可與其他所有使用者共用伺服器資源 (例如，運算、流出容量等)。若要改進隨選串流輸送量，建議購買隨選串流保留單元。
+除了能夠使用動態封裝功能，隨選資料流處理保留單元提供您專用傳出功能，此功能可以以 200 Mbps 為增量來購買。依預設，隨選資料流處理是以共用執行個體模型來設定，可與其他所有使用者共用伺服器資源 (例如，計算、流出容量)。若要改進隨選串流輸送量，建議購買隨選串流保留單元。
 
 本章說明當您要使用 Azure 傳統入口網站來透過媒體編碼器標準為您的內容編碼時，可以採取的步驟。
 
 1.  選取您想要編碼的檔案。
 
-  如果支援此檔案類型的編碼，[內容] 頁面底部的 [處理] 按鈕將會啟用。
-4. 在 [處理] 對話方塊中，選取 [媒體編碼器標準] 處理器。
-5. 選擇其中一種**編碼組態**。
+	如果支援此檔案類型的編碼，[內容] 頁面底部的 [處理] 按鈕便會啟用。
 
-![Process2][process2]
+2. 在 [處理] 對話方塊中，選取 [媒體編碼器標準] 處理器。
+3. 選擇其中一種**編碼組態**。
+
+	![Process2][process2]
 
 
-[媒體編碼器標準的工作預設字串](https://msdn.microsoft.com/library/mt269960)主題說明每個預設格式的意義。
+	[媒體編碼器標準的工作預設字串](https://msdn.microsoft.com/library/mt269960)主題說明每個預設格式的意義。
 
-5. 接著，輸入想要的好記輸出內容名稱或接受預設值。然後，按一下核取按鈕以啟動編碼作業，而您可以在入口網站底部追蹤進度。
-6. 按下 [確定]。
+4. 接著，輸入想要的好記輸出內容名稱或接受預設值。然後，按一下核取按鈕以啟動編碼作業，而您可以在入口網站底部追蹤進度。
+5. 按下 [確定]。
 
 編碼完成之後，[內容] 頁面會包含編碼的檔案。
 
@@ -132,7 +136,7 @@ Azure Media Indexer 讓您能將媒體檔案的內容變成可搜尋，並產生
 
 	![加密][encrypt]
 
-	啟用加密之後，播放程式要求串流時，媒體服務便會使用 AES 或 PlayReady 加密，使用指定的金鑰動態加密您的內容。為了將串流解密，播放程式將從金鑰傳遞服務要求金鑰。為了決定使用者是否有權取得金鑰，服務會評估為金鑰指定的授權原則。
+	啟用加密之後，播放程式要求串流時，媒體服務便會使用 AES 或 PlayReady 加密，使用指定的金鑰動態加密您的內容。為了將串流解密，播放程式將向金鑰傳遞服務要求金鑰。為了決定使用者是否有權取得金鑰，服務會評估為金鑰指定的授權原則。
 
 另外，請參閱：
 
@@ -146,9 +150,9 @@ Azure Media Indexer 讓您能將媒體檔案的內容變成可搜尋，並產生
 - [REST](media-services-rest-deliver-streaming-content.md)
 - [入口網站](media-services-manage-content.md#publish)
 
-###概觀
+###Overview
 
-如要想提供 URL 給使用者，讓使用者可以利用這個 URL 來傳送或下載內容，請您先建立定位器來發佈您的資產。定位器可以存取資產中所含的檔案。媒體服務支援兩種類型的定位器：OnDemandOrigin 定位器，用於串流媒體 (例如，MPEG DASH、HLS 或 Smooth Streaming) 和存取簽章 (SAS) 定位器，用來下載媒體檔案。
+如要想提供 URL 給使用者，讓使用者可以利用這個 URL 來傳送或下載內容，請您先建立定位器來發行您的資產。定位器提供對於資產中包含之檔案的存取。媒體服務支援兩種類型的定位器：OnDemandOrigin 定位器，用於串流媒體 (例如，MPEG DASH、HLS 或 Smooth Streaming) 和存取簽章 (SAS) 定位器，用來下載媒體檔案。
 
 當您使用 Azure 傳統入口網站發佈您的資產時，系統會為您建立定位器，並提供 OnDemantOrigin 式的 URL (如果您的資產包含 .ism 檔案) 或 SAS URL。
 
@@ -164,7 +168,7 @@ SAS URL 具有下列格式：
 
 	{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=m3u8-aapl)
 
-若要建立 MPEG DASH 資料流 URL，請在 URL 加上 (format=mpd-time-csf)。
+若要建置 MPEG DASH 串流 URL，請將 (格式=mpd-time-csf) 附加至 URL。
 
 	{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=mpd-time-csf)
 
@@ -173,9 +177,9 @@ SAS URL 具有下列格式：
 
 >[AZURE.NOTE] 如果您在 2015 年 3 月前使用入口網站來建立定位器，則建立的定位器 2 年後便告失效。
 
-若要更新定位器的到期日，請使用 [REST](http://msdn.microsoft.com/library/azure/hh974308.aspx#update_a_locator) 或 [.NET](http://go.microsoft.com/fwlink/?LinkID=533259) API。請注意，當您更新 SAS 定位器的到期日，URL 也會隨之變更。
+若要更新定位器的到期日，請使用 [REST](http://msdn.microsoft.com/library/azure/hh974308.aspx#update_a_locator) 或 [.NET](http://go.microsoft.com/fwlink/?LinkID=533259) API。當您更新 SAS 定位器的到期日，URL 也會隨之變更。
 
-###Publish
+###發佈
 
 若要使用入口網站發佈資產，請執行下列作業：
 
@@ -222,4 +226,4 @@ SAS URL 具有下列格式：
 [encrypt]: ./media/media-services-manage-content/media-services-encrypt-content.png
 [AMSPlayer]: ./media/media-services-manage-content/media-services-portal-player.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0824_2016-->

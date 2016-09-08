@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="05/24/2016"
+   ms.date="08/17/2016"
    ms.author="alkohli" />
 
 # 更換 StorSimple 裝置上的 EBOD 控制器
@@ -89,7 +89,7 @@
 
     ![將您的 4U 裝置接上纜線，以取得電源](./media/storsimple-ebod-controller-replacement/IC770723.png)
 
-    **圖 4**重新連接纜線
+    **圖 4**.重新連接纜線
 
     |標籤|說明|
     |:----|:----------|
@@ -107,4 +107,4 @@
 
 深入了解 [StorSimple 硬體元件更換](storsimple-hardware-component-replacement.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0824_2016-->

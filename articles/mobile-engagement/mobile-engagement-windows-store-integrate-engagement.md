@@ -13,20 +13,20 @@
 	ms.tgt_pltfrm="mobile-windows-store" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="05/03/2016" 
+	ms.date="08/19/2016" 
 	ms.author="piyushjo" />
 
 # Windows 通用 app Engagement SDK 整合
 
 > [AZURE.SELECTOR] 
-- [Universal Windows](mobile-engagement-windows-store-integrate-engagement.md) 
-- [Windows Phone Silverlight](mobile-engagement-windows-phone-integrate-engagement.md) 
-- [iOS](mobile-engagement-ios-integrate-engagement.md) 
-- [Android](mobile-engagement-android-integrate-engagement.md) 
+- [Universal Windows](mobile-engagement-windows-store-integrate-engagement.md)
+- [Windows Phone Silverlight](mobile-engagement-windows-phone-integrate-engagement.md)
+- [iOS](mobile-engagement-ios-integrate-engagement.md)
+- [Android](mobile-engagement-android-integrate-engagement.md)
 
 本程序說明如何以最簡單的方式啟用 Windows 通用 app 內 Engagement 的分析與監視功能。
 
-下列步驟便足以啟用計算使用者、工作階段、活動、當機和技術相關的所有統計資料需要的記錄檔之報告。用來計算其他統計資料 (例如事件、錯誤及工作) 所需的記錄檔報告必須使用 Engagement API 來手動完成 (請參閱[如何在 Windows 通用 app 中使用進階的 Mobile Engagement 標記 API](mobile-engagement-windows-store-use-engagement-api.md))，因為這些是應用程式相依的統計資料。
+下列步驟便足以啟用計算使用者、工作階段、活動、當機和技術等所有統計資料時需要的記錄檔報告。用來計算其他統計資料 (例如事件、錯誤及工作) 所需的記錄檔報告必須使用 Engagement API 來手動完成 (請參閱[如何在 Windows 通用 app 中使用進階的 Mobile Engagement 標記 API](mobile-engagement-windows-store-use-engagement-api.md))，因為這些是應用程式相依的統計資料。
 
 ## 支援的版本
 
@@ -54,7 +54,7 @@ NuGet 會自動在您的應用程式專案根目錄 `Resources` 資料夾中部�
 NuGet 目前還不會自動在您的 UWP 應用程式部署 SDK 資源。您必須手動執行，直到 NuGet 重新引進資源部署：
 
 1.  開啟 [檔案總管]。
-2.  瀏覽至以下位置 (**x.x.x** 是您安裝的 Engagement 版本): *%USERPROFILE%\\.nuget\\packages\\MicrosoftAzure.MobileEngagement\**x.x.x**\\content\\win81*
+2.  瀏覽至以下位置 (**x.x.x** 是您安裝的 Engagement 版本)：*%USERPROFILE%\\.nuget\\packages\\MicrosoftAzure.MobileEngagement\**x.x.x**\\content\\win81*
 3.  從檔案總管將 [Resources] 資料夾拖放到您的專案在 Visual Studio 中的根目錄。
 4.  在 Visual Studio 中，選取您的專案並啟動 [方案總管] 上方的 [顯示所有檔案] 圖示。
 5.  部分檔案未包含在專案中。若要將它們一次匯入，請在 [Resources] 資料夾上按一下滑鼠右鍵，[從專案移除] 然後再次在 [Resources] 資料夾上按一次滑鼠右鍵，[加入至專案] 以重新包含整個資料夾。所有來自 [Resources] 資料夾的檔案現在已經包含在您的專案中。
@@ -283,4 +283,4 @@ Engagement 組態會集中在您專案的 `Resources\EngagementConfiguration.xml
 [NuGet website]: http://docs.nuget.org/docs/start-here/overview
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0824_2016-->

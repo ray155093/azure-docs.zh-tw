@@ -20,6 +20,8 @@
 
 # Azure Functions Mobile Apps 繫結
 
+[AZURE.INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
+
 這篇文章說明如何在 Azure Functions 中為 Azure Mobile Apps 繫結進行設定及撰寫程式碼。
 
 [AZURE.INCLUDE [簡介](../../includes/functions-bindings-intro.md)]
@@ -28,17 +30,17 @@ Azure App Service Mobile Apps 可讓您將資料表端點資料公開至行動�
 
 ## 針對您的行動應用程式後端 URL 建立環境變數
 
-Mobile Apps 繫結目前會要求您建立環境變數，以傳回行動應用程式後端本身的 URL。您可以藉由尋找您的行動應用程式並開啟刀鋒視窗，在 [Azure 入口網站](https://portal.azure.com)中找到這個 URL。。
+Mobile Apps 繫結目前會要求您建立環境變數，以傳回行動應用程式後端本身的 URL。您可以藉由尋找您的行動應用程式並開啟刀鋒視窗，在 [Azure 入口網站](https://portal.azure.com)中找到這個 URL。
 
 ![Azure 入口網站中的 Mobile Apps 刀鋒視窗](./media/functions-bindings-mobile-apps/mobile-app-blade.png)
 
 在您的函數應用程式中設定此 URL 做為環境變數：
 
-1. 在 [Azure Functions 入口網站](https://functions.azure.com/signin)的函數應用程式中，按一下 [函數應用程式設定] > [移至 App Service 設定]。 
+1. 在 [Azure Functions 入口網站](https://functions.azure.com/signin)的函式應用程式中，按一下 [函式應用程式設定] > [移至 App Service 設定]。
 
 	![函數應用程式設定刀鋒視窗](./media/functions-bindings-mobile-apps/functions-app-service-settings.png)
 
-2. 在函數應用程式中，按一下 [所有設定]、向下捲動至 [應用程式設定]，然後在 [應用程式設定] 下方輸入環境變數的新**名稱**、將 URL 貼至 [值]、確定使用 HTTPS 配置，然後按一下 [儲存] 並關閉函數應用程式刀鋒視窗，以返回 Functions 入口網站。
+2. 在函式應用程式中，按一下 [所有設定]、向下捲動至 [應用程式設定]，然後在 [應用程式設定] 下方輸入環境變數的新**名稱**、將 URL 貼至 [值]、確定使用 HTTPS 配置，然後按一下 [儲存] 並關閉函式應用程式刀鋒視窗，以返回 Functions 入口網站。
 
 	![新增應用程式設定環境變數](./media/functions-bindings-mobile-apps/functions-app-add-app-setting.png)
 
@@ -56,17 +58,17 @@ Mobile Apps 繫結目前會要求您建立環境變數，以傳回行動應用�
 
 #### Mobile Apps 輸入繫結的 function.json
 
-*function.json* 檔案支援下列屬性：
+「function.json」檔案支援下列屬性：
 
-- `name`︰函數程式碼中用於新記錄的變數名稱。
-- `type`︰繫結類型必須設定為 *mobileTable*。
+- `name`︰函式程式碼中用於新記錄的變數名稱。
+- `type`︰繫結類型必須設為「mobileTable」。
 - `tableName`︰其中將建立新記錄的資料表。
 - `id`：要擷取之記錄的識別碼。此屬性支援類似於 `{queueTrigger}` 的繫結，此繫結會使用佇列訊息的字串值做為記錄識別碼。
 - `apiKey`︰字串，此字串是為行動應用程式指定選擇性 API 金鑰的應用程式設定。當您的行動應用程式使用 API 金鑰來限制用戶端存取時，這是必要的選項。
 - `connection`︰應用程式設定中環境變數名稱的字串，可指定行動應用程式後端的 URL。
-- `direction`︰繫結方向，必須設定為 *in*。
+- `direction`︰繫結方向，必須設定為「in」。
 
-範例 *function.json* 檔案：
+範例「function.json」檔案：
 
 	{
 	  "bindings": [
@@ -85,7 +87,7 @@ Mobile Apps 繫結目前會要求您建立環境變數，以傳回行動應用�
 
 #### C# 佇列觸發程序的 Azure Mobile Apps 程式碼範例
 
-根據上述範例 function.json，輸入繫結會從 Mobile Apps 資料表端點擷取識別碼符合佇列訊息字串的記錄，並將它傳遞給 *record* 參數。找不到記錄時，參數為 null。接著，當函數結束時，會以新的 *Text* 值更新記錄。
+根據上述範例 function.json，輸入繫結會從 Mobile Apps 資料表端點擷取識別碼符合佇列訊息字串的記錄，並將它傳遞給「record」參數。找不到記錄時，參數為 null。接著，當函式結束時，會以新的「Text」值更新記錄。
 
 	#r "Newtonsoft.Json"	
 	using Newtonsoft.Json.Linq;
@@ -100,7 +102,7 @@ Mobile Apps 繫結目前會要求您建立環境變數，以傳回行動應用�
 
 #### Node.js 佇列觸發程序的 Azure Mobile Apps 程式碼範例
 
-根據上述範例 function.json，輸入繫結會從 Mobile Apps 資料表端點擷取識別碼符合佇列訊息字串的記錄，並將它傳遞給 *record* 參數。在 Node.js 函式中，更新的記錄不會傳回至資料表。這個程式碼範例會將擷取的記錄寫入記錄檔。
+根據上述範例 function.json，輸入繫結會從 Mobile Apps 資料表端點擷取識別碼符合佇列訊息字串的記錄，並將它傳遞給「record」參數。在 Node.js 函式中，更新的記錄不會傳回至資料表。這個程式碼範例會將擷取的記錄寫入記錄檔。
 
 	module.exports = function (context, input) {    
 	    context.log(context.bindings.record);
@@ -116,12 +118,12 @@ Mobile Apps 繫結目前會要求您建立環境變數，以傳回行動應用�
 
 function.json 檔案支援下列屬性：
 
-- `name`︰函數程式碼中用於新記錄的變數名稱。
-- `type`︰必須設定為 *mobileTable* 的繫結類型。
+- `name`︰函式程式碼中用於新記錄的變數名稱。
+- `type` ︰必須設為「mobileTable」的繫結類型。
 - `tableName`︰其中將建立新記錄的資料表。
 - `apiKey`︰字串，此字串是為行動應用程式指定選擇性 API 金鑰的應用程式設定。當您的行動應用程式使用 API 金鑰來限制用戶端存取時，這是必要的選項。
 - `connection`︰應用程式設定中環境變數名稱的字串，可指定行動應用程式後端的 URL。
-- `direction`︰繫結方向，必須設定為 *out*。
+- `direction`︰繫結方向，必須設定為「out」。
 
 function.json 範例：
 
@@ -141,7 +143,7 @@ function.json 範例：
 
 #### C# 佇列觸發程序的 Azure Mobile Apps 程式碼範例
 
-這個 C# 程式碼範例會將新記錄插入 Mobile Apps 資料表端點，其中會將 *Text* 屬性插入上述繫結中指定的資料表。
+這個 C# 程式碼範例會將新記錄插入 Mobile Apps 資料表端點，並將「Text」屬性插入上述繫結中指定的資料表。
 
 	public static void Run(string myQueueItem, out object record)
 	{
@@ -152,7 +154,7 @@ function.json 範例：
 
 #### Node.js 佇列觸發程序的 Azure Mobile Apps 程式碼範例
 
-這個 Node.js 程式碼範例會將新記錄插入 Mobile Apps 資料表端點，其中會將 *text* 屬性插入上述繫結中指定的資料表。
+這個 Node.js 程式碼範例會將新記錄插入 Mobile Apps 資料表端點，並將「text」屬性插入上述繫結中指定的資料表。
 
 	module.exports = function (context, input) {
 	
@@ -167,4 +169,4 @@ function.json 範例：
 
 [AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -1,19 +1,20 @@
-<properties 
-	pageTitle="何謂 Team Data Science Process？| Microsoft Azure" 
-	description="Team Data Science Process 是一種系統化的方法，可建置運用進階分析的智慧型應用程式。" 
-	services="machine-learning" 
-	documentationCenter="" 
+<properties
+	pageTitle="何謂 Team Data Science Process？| Microsoft Azure"
+	description="Team Data Science Process 是一種系統化的方法，可建置運用進階分析的智慧型應用程式。"
+	keywords="資料科學程序, 資料科學小組"
+	services="machine-learning"
+	documentationCenter=""
 	authors="bradsev"
-	manager="paulettm" 
+	manager="paulettm"
 	editor="cgronlun" />
 
-<tags 
-	ms.service="machine-learning" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="06/17/2016" 
+<tags
+	ms.service="machine-learning"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="06/17/2016"
 	ms.author="bradsev;gopitk" />
 
 
@@ -26,9 +27,9 @@ Team Data Science Process (TDSP) 提供系統化的方式建置智慧型應用�
 - **方法論**︰概述定義開發週期的一系列步驟，以提供如何定義問題、分析相關資料、建置及評估預測模型，然後在企業應用程式中部署這些模型的指引。
 - **資源**︰可簡化設定適用於資料科學活動環境的工具和技術 (例如資料科學 VM)，以及適用於加入新技術的實用指引。
 
-以下是 TDSP 的開發週期：
+以下是 Team Data Science Process 的開發週期：
 
-![TDSP-poster](./media/data-science-process-overview/TDSP-poster-simplified.png)
+![圖表︰小組的資料科學程序](./media/data-science-process-overview/data-science-process-for-teams-diagram.png)
 
 
 此程序是**反覆執行的**：對於模型能有新的和現有的了解或精確調整，可發展出、同時也有賴於先前依序完成的修改步驟。現有的組織開發和專案規劃程序**可輕易調整**，以使用 TDSP 定義的步驟順序。
@@ -36,7 +37,7 @@ Team Data Science Process (TDSP) 提供系統化的方式建置智慧型應用�
 程序中的步驟已在 [TDSP 學習路徑](https://azure.microsoft.com/documentation/learning-paths/data-science-process/)中以圖表和連結方式呈現，如下所述。
 
 
-## 規劃與準備步驟 
+## 規劃與準備步驟
 
 ## P1.商務和技術規劃
 
@@ -56,24 +57,24 @@ Team Data Science Process 的分析環境包含數個元件：
 
 ## 分析步驟：  
 
-## 1\.將資料內嵌於資料平台 
+## 1\.將資料內嵌於資料平台
 
 第一個步驟是從各種來源 (企業內部或外部) 將相關資料導入預計用來處理資料的分析環境中。來源的資料**格式**可能不同於目的地所需的格式。因此，嵌入工具也可能必須完成某些資料轉換。如需選項，請參閱[將資料載入至儲存體環境進行分析](machine-learning-data-science-ingest-data.md)
 
 除了初始的資料擷取以外，許多智慧型應用程式還需要在進行中的學習過程中定期重新整理資料。這可以透過設定**資料管線**或工作流程來完成。這構成了程序中反覆執行的部分，包括會重新建置和重新評估部署解決方案的智慧型應用程式所使用的分析模型。例如，請參閱[使用 Azure Data Factory 從內部部署的 SQL Server 移動資料至 SQL Azure](machine-learning-data-science-move-sql-azure-adf.md)。
 
 
-## 2\.探索資料並加以視覺化 
+## 2\.探索資料並加以視覺化
 
 下一個步驟藉由調查資料的**摘要統計資料**、關聯性和使用**視覺效果**之類的技術，來深入了解資料。這也是處理**資料品質**及完整性問題之處，例如遺漏值、資料類型不相符和資料關聯性不一致等。必須先使用前置處理轉換來清理原始資料，才能進一步執行分析和模型化。如需說明，請參閱[工作以準備資料增強機器學習](machine-learning-data-science-prepare-data.md)。
 
 
-## 3\.產生特徵並加以選取 
+## 3\.產生特徵並加以選取
 
 與網域專家合作的資料科學家，必須識別可擷取資料集的顯著屬性以及最適合用來預測計劃期間所識別之重要商業變數的特性。這些新特性可以衍生自現有資料，或可能需要收集其他資料。此程序稱為**特性工程**，這是建置有效預測性分析系統的重要步驟之一。要執行此步驟，必須有創意地結合網域知識和獲取自資料瀏覽步驟的深入資訊。如需指引，請參閱 [Team Data Science Process 中的特徵工程設計](machine-learning-data-science-create-features.md)。
 
 
-## 4\.建立 ML 模型並加以訓練 
+## 4\.建立 ML 模型並加以訓練
 
 資料科學家會建立分析模型，使用已清理和特性化的資料來預測規劃步驟中定義的商業需求所識別的重要變數。機器學習系統支援多個適用於各種情況的**模型化演算法**。如需指引，請參閱[如何選擇 Team Azure 機器學習的演算法](machine-learning-algorithm-choice.md)。
 
@@ -99,4 +100,4 @@ Team Data Science Process 的分析環境包含數個元件：
 
 此外也會提供完整的端對端逐步解說，說明**特定案例**之程序中的所有步驟。[Team Data Science Process 逐步解說](data-science-process-walkthroughs.md)主題中會列出這些逐步解說與縮圖描述。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0824_2016-->

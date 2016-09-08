@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="08/15/2016" 
+	ms.date="08/24/2016" 
 	ms.author="rnagpal"/>
 
 # DocumentDB API 和 SDK 
@@ -39,8 +39,14 @@
 
 ## 版本資訊
 
-### <a name="1.9.3"/>[1\.9.3](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.9.3)
 > [AZURE.IMPORTANT] 查詢分割集合時，您可能會收到 System.NotSupportedException。若要避免這個錯誤，請在 [建置] 索引標籤上取消選取專案屬性視窗中的 [建議使用 32 位元] 選項。
+
+### <a name="1.9.4"/>[1\.9.4](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.9.4)
+
+  - 修改了 ResourceResponse、FeedResponse、StoredProcedureResponse 和 MediaResponse 類別以實作對應的公用介面，讓它們可以模擬用於測試導向部署 (TDD)。
+  - 修正了使用自訂 JsonSerializerSettings 物件來序列化資料時，會造成資料分割索引鍵標頭格式不正確的問題。
+
+### <a name="1.9.3"/>[1\.9.3](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.9.3)
 
   - 已修正造成長時間執行的查詢失敗，並伴隨「授權權杖目前無效」錯誤的問題。
   - 已修正會從跨資料分割的排名/排序依據查詢中移除原始 SqlParameterCollection 的問題。
@@ -163,9 +169,11 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
  
 | 版本 | 發行日期 | 停用日期 
 | ---	  | ---	         | ---
+| [1\.9.4](#1.9.4) | 2016 年 8 月 24 日 |--- 
 | [1\.9.3](#1.9.3) | 2016 年 8 月 15 日 |--- 
 | [1\.9.2](#1.9.2) | 2016 年 7 月 23 日 |--- 
-| 1.9.1 | 已過時 |--- | 1.9.0 | 已過時 |--- 
+| 1.9.1 | 已過時 |--- 
+| 1.9.0 | 已過時 |--- 
 | [1\.8.0](#1.8.0) | 2016 年 6 月 14 日 |--- 
 | [1\.7.1](#1.7.1) | 2016 年 5 月 6 日 |--- 
 | [1\.7.0](#1.7.0) | 2016 年 4 月 26 日 |--- 
@@ -193,4 +201,4 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 
 若要深入了解 DocumentDB，請參閱 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 服務頁面。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -21,7 +21,7 @@ description="了解如何在 Windows 電腦上產生並使用 SSH 金鑰來連�
 
 > [AZURE.SELECTOR]
 - [Windows](virtual-machines-linux-ssh-from-windows.md)
-- [Linux/Mac](virtual-machines-linux-ssh-from-linux.md)
+- [Linux/Mac](virtual-machines-linux-mac-create-ssh-keys.md)
 
 
 本主題描述如何在 Windows 上建立和使用 **ssh-rsa** 和 **.pem** 格式的公用和私密金鑰檔案，您可以使用這些檔案，在 Azure 上以 **ssh** 命令連接至 Linux VM。如果您已經建立 **.pem** 檔案，您可以使用這些檔案來建立 Linux VM (可以使用 **ssh** 來連接)。其他數個命令使用 **SSH** 通訊協定和金鑰檔案安全地執行工作，值得注意的是 **scp** 或[安全複製](https://en.wikipedia.org/wiki/Secure_copy)，可以安全地將檔案複製到支援 **SSH** 連線的電腦，或從中複製。
@@ -142,13 +142,13 @@ Azure 的基本 SSH 安裝程式包含 2048 位元的 **ssh-rsa** 公用和私�
 
 6. 按一下 [開啟]。您將看見提示，看起來如下所示：
 
-	![linuxgoodforeignkey](./media/virtual-machines-linux-ssh-from-linux/linuxgoodforeignkey.png)
+	![linuxgoodforeignkey](./media/virtual-machines-linux-ssh-from-windows/linuxgoodforeignkey.png)
 
 7. 按一下 [確定]。
 
 8. 按一下以下螢幕擷取畫面強調顯示的 [Save Private Key]：
 
-	![linuxputtyprivatekey](./media/virtual-machines-linux-ssh-from-linux/linuxputtygenprivatekey.png)
+	![linuxputtyprivatekey](./media/virtual-machines-linux-ssh-from-windows/linuxputtygenprivatekey.png)
 
 9. 將檔案儲存為 PPK。
 
@@ -159,13 +159,13 @@ Azure 的基本 SSH 安裝程式包含 2048 位元的 **ssh-rsa** 公用和私�
 2.	執行 putty.exe
 3.	使用管理入口網站的 IP 來填入主機名稱：
 
-	![linuxputtyconfig](./media/virtual-machines-linux-ssh-from-linux/linuxputtyconfig.png)
+	![linuxputtyconfig](./media/virtual-machines-linux-ssh-from-windows/linuxputtyconfig.png)
 
 4.	選取 [Open] 之前，請按一下 [Connection] > [SSH] > [Auth] 索引標籤來選擇您的金鑰。請參閱以下螢幕擷取畫面，以了解要填入的欄位：
 
-	![linuxputtyprivatekey](./media/virtual-machines-linux-ssh-from-linux/linuxputtyprivatekey.png)
+	![linuxputtyprivatekey](./media/virtual-machines-linux-ssh-from-windows/linuxputtyprivatekey.png)
 
 5.	按一下 [開啟] 以連線到虛擬機器。
  
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -10,16 +10,17 @@
     info:    Executing command vm image list
     warn:    The parameter --sku if specified will be ignored
     + Getting virtual machine image skus (Publisher:"canonical" Offer:"ubuntuserver" Location:"westus")
-    data:    Publisher  Offer         Sku          Version          Location  Urn
-    data:    ---------  ------------  -----------  ---------------  --------  --------------------------------------------------
-    data:    canonical  ubuntuserver  12.04-DAILY  12.04.201504201  westus    canonical:ubuntuserver:12.04-DAILY:12.04.201504201
-    data:    canonical  ubuntuserver  12.04.2-LTS  12.04.201302250  westus    canonical:ubuntuserver:12.04.2-LTS:12.04.201302250
-    data:    canonical  ubuntuserver  12.04.2-LTS  12.04.201303250  westus    canonical:ubuntuserver:12.04.2-LTS:12.04.201303250
-    data:    canonical  ubuntuserver  12.04.2-LTS  12.04.201304150  westus    canonical:ubuntuserver:12.04.2-LTS:12.04.201304150
-    data:    canonical  ubuntuserver  12.04.2-LTS  12.04.201305160  westus    canonical:ubuntuserver:12.04.2-LTS:12.04.201305160
-    data:    canonical  ubuntuserver  12.04.2-LTS  12.04.201305270  westus    canonical:ubuntuserver:12.04.2-LTS:12.04.201305270
-    data:    canonical  ubuntuserver  12.04.2-LTS  12.04.201306030  westus    canonical:ubuntuserver:12.04.2-LTS:12.04.201306030
-    data:    canonical  ubuntuserver  12.04.2-LTS  12.04.201306240  westus    canonical:ubuntuserver:12.04.2-LTS:12.04.201306240
+    data:    Publisher  Offer         Sku                OS     Version          Location  Urn
+    data:    ---------  ------------  -----------------  -----  ---------------  --------  --------------------------------------------------------
+    data:    canonical  ubuntuserver  16.04.0-LTS        Linux  16.04.201604203  westus    canonical:ubuntuserver:16.04.0-LTS:16.04.201604203
+    data:    canonical  ubuntuserver  16.04.0-LTS        Linux  16.04.201605161  westus    canonical:ubuntuserver:16.04.0-LTS:16.04.201605161
+    data:    canonical  ubuntuserver  16.04.0-LTS        Linux  16.04.201606100  westus    canonical:ubuntuserver:16.04.0-LTS:16.04.201606100
+    data:    canonical  ubuntuserver  16.04.0-LTS        Linux  16.04.201606270  westus    canonical:ubuntuserver:16.04.0-LTS:16.04.201606270
+    data:    canonical  ubuntuserver  16.04.0-LTS        Linux  16.04.201607210  westus    canonical:ubuntuserver:16.04.0-LTS:16.04.201607210
+    data:    canonical  ubuntuserver  16.04.0-LTS        Linux  16.04.201608150  westus    canonical:ubuntuserver:16.04.0-LTS:16.04.201608150
+    data:    canonical  ubuntuserver  16.10-DAILY        Linux  16.10.201607220  westus    canonical:ubuntuserver:16.10-DAILY:16.10.201607220
+    data:    canonical  ubuntuserver  16.10-DAILY        Linux  16.10.201607230  westus    canonical:ubuntuserver:16.10-DAILY:16.10.201607230
+    data:    canonical  ubuntuserver  16.10-DAILY        Linux  16.10.201607240  westus    canonical:ubuntuserver:16.10-DAILY:16.10.201607240
 
 **Urn** 資料行將是您傳遞給 `azure vm quick-create` 的表單。
 
@@ -28,7 +29,7 @@
     azure vm image list-publishers
     info:    Executing command vm image list-publishers
     Location: westus
-    + Getting virtual machine image publishers (Location: "westus")
+    + Getting virtual machine and/or extension image publishers (Location: "westus")
     data:    Publisher                                       Location
     data:    ----------------------------------------------  --------
     data:    a10networks                                     westus  
@@ -44,9 +45,14 @@
     Location: westus
     Publisher: canonical
     + Getting virtual machine image offers (Publisher: "canonical" Location:"westus")
-    data:    Publisher  Offer         Location
-    data:    ---------  ------------  --------
-    data:    canonical  UbuntuServer  westus  
+    data:    Publisher  Offer                      Location
+    data:    ---------  -------------------------  --------
+    data:    canonical  Ubuntu15.04Snappy          westus
+    data:    canonical  Ubuntu15.04SnappyDocker    westus
+    data:    canonical  UbunturollingSnappy        westus
+    data:    canonical  UbuntuServer               westus
+    data:    canonical  Ubuntu_Snappy_Core         westus
+    data:    canonical  Ubuntu_Snappy_Core_Docker  westus
     info:    vm image list-offers command OK
 
 現在，我們知道在美國西部區域中，Canonical 在 Azure 上發佈 **UbuntuServer** 提供項目。但是，是什麼 SKU？ 若要取得那些項目，請呼叫 `azure vm image list-skus`，並使用您探索到的位置、發行者和提供項目來回應提示。
@@ -57,47 +63,60 @@
     Publisher: canonical
     Offer: ubuntuserver
     + Getting virtual machine image skus (Publisher:"canonical" Offer:"ubuntuserver" Location:"westus")
-    data:    Publisher  Offer         sku          Location
-    data:    ---------  ------------  -----------  --------
-    data:    canonical  ubuntuserver  12.04-DAILY  westus  
-    data:    canonical  ubuntuserver  12.04.2-LTS  westus  
-    data:    canonical  ubuntuserver  12.04.3-LTS  westus  
-    data:    canonical  ubuntuserver  12.04.4-LTS  westus  
-    data:    canonical  ubuntuserver  12.04.5-LTS  westus  
-    data:    canonical  ubuntuserver  12.10        westus  
-    data:    canonical  ubuntuserver  14.04-beta   westus  
-    data:    canonical  ubuntuserver  14.04-DAILY  westus  
-    data:    canonical  ubuntuserver  14.04.0-LTS  westus  
-    data:    canonical  ubuntuserver  14.04.1-LTS  westus  
-    data:    canonical  ubuntuserver  14.04.2-LTS  westus  
-    data:    canonical  ubuntuserver  14.10        westus  
-    data:    canonical  ubuntuserver  14.10-beta   westus  
-    data:    canonical  ubuntuserver  14.10-DAILY  westus  
-    data:    canonical  ubuntuserver  15.04        westus  
-    data:    canonical  ubuntuserver  15.04-beta   westus  
-    data:    canonical  ubuntuserver  15.04-DAILY  westus  
+    data:    Publisher  Offer         sku                Location
+    data:    ---------  ------------  -----------------  --------
+    data:    canonical  ubuntuserver  12.04.2-LTS        westus
+    data:    canonical  ubuntuserver  12.04.3-LTS        westus
+    data:    canonical  ubuntuserver  12.04.4-LTS        westus
+    data:    canonical  ubuntuserver  12.04.5-DAILY-LTS  westus
+    data:    canonical  ubuntuserver  12.04.5-LTS        westus
+    data:    canonical  ubuntuserver  12.10              westus
+    data:    canonical  ubuntuserver  14.04-beta         westus
+    data:    canonical  ubuntuserver  14.04.0-LTS        westus
+    data:    canonical  ubuntuserver  14.04.1-LTS        westus
+    data:    canonical  ubuntuserver  14.04.2-LTS        westus
+    data:    canonical  ubuntuserver  14.04.3-LTS        westus
+    data:    canonical  ubuntuserver  14.04.4-DAILY-LTS  westus
+    data:    canonical  ubuntuserver  14.04.4-LTS        westus
+    data:    canonical  ubuntuserver  14.04.5-DAILY-LTS  westus
+    data:    canonical  ubuntuserver  14.04.5-LTS        westus
+    data:    canonical  ubuntuserver  14.10              westus
+    data:    canonical  ubuntuserver  14.10-beta         westus
+    data:    canonical  ubuntuserver  14.10-DAILY        westus
+    data:    canonical  ubuntuserver  15.04              westus
+    data:    canonical  ubuntuserver  15.04-beta         westus
+    data:    canonical  ubuntuserver  15.04-DAILY        westus
+    data:    canonical  ubuntuserver  15.10              westus
+    data:    canonical  ubuntuserver  15.10-alpha        westus
+    data:    canonical  ubuntuserver  15.10-beta         westus
+    data:    canonical  ubuntuserver  15.10-DAILY        westus
+    data:    canonical  ubuntuserver  16.04-alpha        westus
+    data:    canonical  ubuntuserver  16.04-beta         westus
+    data:    canonical  ubuntuserver  16.04.0-DAILY-LTS  westus
+    data:    canonical  ubuntuserver  16.04.0-LTS        westus
+    data:    canonical  ubuntuserver  16.10-DAILY        westus
     info:    vm image list-skus command OK
 
 現在使用這項資訊在頂端呼叫原始呼叫，即可找到您所要的映像。
 
-    azure vm image list westus canonical ubuntuserver 14.04.2-LTS
+    azure vm image list westus canonical ubuntuserver 16.04.0-LTS
     info:    Executing command vm image list
-    + Getting virtual machine images (Publisher:"canonical" Offer:"ubuntuserver" Sku: "14.04.2-LTS" Location:"westus")
-    data:    Publisher  Offer         Sku          Version          Location  Urn
-    data:    ---------  ------------  -----------  ---------------  --------  --------------------------------------------------
-    data:    canonical  ubuntuserver  14.04.2-LTS  14.04.201503090  westus    canonical:ubuntuserver:14.04.2-LTS:14.04.201503090
-    data:    canonical  ubuntuserver  14.04.2-LTS  14.04.20150422   westus    canonical:ubuntuserver:14.04.2-LTS:14.04.20150422
-    data:    canonical  ubuntuserver  14.04.2-LTS  14.04.201504270  westus    canonical:ubuntuserver:14.04.2-LTS:14.04.201504270
+    + Getting virtual machine images (Publisher:"canonical" Offer:"ubuntuserver" Sku: "16.04.0-LTS" Location:"westus")
+    data:    Publisher  Offer         Sku          OS     Version          Location  Urn
+    data:    ---------  ------------  -----------  -----  ---------------  --------  --------------------------------------------------
+    data:    canonical  ubuntuserver  16.04.0-LTS  Linux  16.04.201604203  westus    canonical:ubuntuserver:16.04.0-LTS:16.04.201604203
+    data:    canonical  ubuntuserver  16.04.0-LTS  Linux  16.04.201605161  westus    canonical:ubuntuserver:16.04.0-LTS:16.04.201605161
+    data:    canonical  ubuntuserver  16.04.0-LTS  Linux  16.04.201606100  westus    canonical:ubuntuserver:16.04.0-LTS:16.04.201606100
+    data:    canonical  ubuntuserver  16.04.0-LTS  Linux  16.04.201606270  westus    canonical:ubuntuserver:16.04.0-LTS:16.04.201606270
+    data:    canonical  ubuntuserver  16.04.0-LTS  Linux  16.04.201607210  westus    canonical:ubuntuserver:16.04.0-LTS:16.04.201607210
+    data:    canonical  ubuntuserver  16.04.0-LTS  Linux  16.04.201608150  westus    canonical:ubuntuserver:16.04.0-LTS:16.04.201608150
     info:    vm image list command OK
 
 現在，您可以精確地選擇想要使用的映像。若要使用您剛找到的 URN 資訊快速地建立虛擬機器，或使用具有該 URN 資訊的範本，請參閱[搭配使用適用於 Mac、Linux 和 Windows 的 Azure CLI 與 Azure 資源管理員](../articles/xplat-cli-azure-resource-manager.md)。
 
 ## PowerShell
 
-搭配 PowerShell 時，則請輸入 `Switch-AzureMode AzureResourceManager`。請參閱[搭配使用 Azure CLI 與資源管理員](../articles/xplat-cli-azure-resource-manager.md)和[搭配使用 Azure PowerShell 與 Azure 資源管理員](../articles/powershell-azure-resource-manager.md)，以取得更多完整的更新與設定詳細資料。
-
-> [AZURE.NOTE] 由於具有 1.0 以上的 Azure PowerShell 模組，`Switch-AzureMode` Cmdlet 已移除。搭配該版本和更新版本時，請使用由 `AzureRm` 所取代的 `Azure` 部分來取代以下命令。如果您使用 1.0 以下的 Azure PowerShell 模組，則您將使用下列命令，但您必須先 `Switch-AzureMode AzureResourceManager`。
-
+> [AZURE.NOTE] 安裝及設定[最新的 Azure PowerShell](../articles/powershell-install-configure.md)。如果您使用 1.0 以下的 Azure PowerShell 模組，您仍可以使用下列命令，但您必須先 `Switch-AzureMode AzureResourceManager`。
 
 使用 Azure 資源管理員建立新的虛擬機器時，在某些情況下，您需要使用下列映像屬性組合來指定映像：
 
@@ -105,7 +124,7 @@
 - 提供項目
 - SKU
 
-例如，**Set-AzureVMSourceImage** PowerShell Cmdlet 或資源群組範本檔案需要這些值，而在此檔案中，您必須指定要建立的虛擬機器類型。
+例如，`Set-AzureRMVMSourceImage` PowerShell Cmdlet 或資源群組範本檔案需要這些值，而在此檔案中，您必須指定要建立的虛擬機器類型。
 
 如果您需要決定這些值，則可以巡覽映像以決定這些值，方法是：
 
@@ -113,69 +132,79 @@
 2. 針對指定的發行者，列出其提供項目。
 3. 針對指定的提供項目，列出其 SKU。
 
-若要在 PowerShell 中這麼做，請先切換到 Azure PowerShell 的資源管理員模式。
 
-	Switch-AzureMode AzureResourceManager
+首先，使用以下命令列出發行者：
 
-在上面第一個步驟中，使用這些命令列出發佈者。
+```powershell
+$locName="<Azure location, such as West US>"
+Get-AzureRMVMImagePublisher -Location $locName | Select PublisherName
+```
 
-	$locName="<Azure location, such as West US>"
-	Get-AzureVMImagePublisher -Location $locName | Select PublisherName
+填入您選擇的發行者名稱，然後執行以下命令：
 
-填寫所選擇的發佈者名稱，然後執行以下命令。
+```powershell
+$pubName="<publisher>"
+Get-AzureRMVMImageOffer -Location $locName -Publisher $pubName | Select Offer
+```
 
-	$pubName="<publisher>"
-	Get-AzureVMImageOffer -Location $locName -Publisher $pubName | Select Offer
+填入您選擇的提供項目名稱，然後執行以下命令：
 
-填寫所選擇的提供項目名稱，然後執行以下命令。
+```powershell
+$offerName="<offer>"
+Get-AzureRMVMImageSku -Location $locName -Publisher $pubName -Offer $offerName | Select Skus
+```
 
-	$offerName="<offer>"
-	Get-AzureVMImageSku -Location $locName -Publisher $pubName -Offer $offerName | Select Skus
+從 `Get-AzureRMVMImageSku` 命令的顯示中，您擁有指定新虛擬機器映像時所需的所有資訊。
 
-從 **Get-AzureVMImageSku** 命令的顯示中，您擁有指定新虛擬機器之映像所需的所有資訊。
+下圖顯示完整範例：
 
-範例如下。
+```powershell
+PS C:\> $locName="West US"
+PS C:\> Get-AzureRMVMImagePublisher -Location $locName | Select PublisherName
 
-	PS C:\> $locName="West US"
-	PS C:\> Get-AzureVMImagePublisher -Location $locName | Select PublisherName
-
-	PublisherName
-	-------------
-	a10networks
-	aiscaler-cache-control-ddos-and-url-rewriting-
-	alertlogic
-	AlertLogic.Extension
-	Barracuda.Azure.ConnectivityAgent
-	barracudanetworks
-	basho
-	boxless
-	bssw
-	Canonical
-	...
+PublisherName
+-------------
+a10networks
+aiscaler-cache-control-ddos-and-url-rewriting-
+alertlogic
+AlertLogic.Extension
+Barracuda.Azure.ConnectivityAgent
+barracudanetworks
+basho
+boxless
+bssw
+Canonical
+...
+```
 
 針對 "MicrosoftWindowsServer" 發佈者：
 
-	PS C:\> $pubName="MicrosoftWindowsServer"
-	PS C:\> Get-AzureVMImageOffer -Location $locName -Publisher $pubName | Select Offer
+```powershell
+PS C:\> $pubName="MicrosoftWindowsServer"
+PS C:\> Get-AzureRMVMImageOffer -Location $locName -Publisher $pubName | Select Offer
 
-	Offer
-	-----
-	WindowsServer
+Offer
+-----
+WindowsServer
+```
 
 針對 "WindowsServer" 提供項目：
 
-	PS C:\> $offerName="WindowsServer"
-	PS C:\> Get-AzureVMImageSku -Location $locName -Publisher $pubName -Offer $offerName | Select Skus
+```powershell
+PS C:\> $offerName="WindowsServer"
+PS C:\> Get-AzureRMVMImageSku -Location $locName -Publisher $pubName -Offer $offerName | Select Skus
 
-	Skus
-	----
-	2008-R2-SP1
-	2012-Datacenter
-	2012-R2-Datacenter
-	Windows-Server-Technical-Preview
+Skus
+----
+2008-R2-SP1
+2012-Datacenter
+2012-R2-Datacenter
+2016-Nano-Server-Technical-Previe
+2016-Technical-Preview-with-Conta
+Windows-Server-Technical-Preview
+```
 
-從這份清單中複製所選擇的 SKU 名稱，而且您擁有 **Set-AzureVMSourceImage** PowerShell Cmdlet 或資源群組範本檔案的所有資訊，而資源群組範本檔案需要您指定映像的發行者、提供項目和 SKU。
-
+從這個清單中，複製選擇的 SKU 名稱，您就可以取得 `Set-AzureRMVMSourceImage` PowerShell Cmdlet 或資源群組範本的所有資訊。
 
 
 <!--Image references-->
@@ -189,4 +218,4 @@
 [yah]: http://search.yahoo.com/
 [msn]: http://search.msn.com/
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0824_2016-->

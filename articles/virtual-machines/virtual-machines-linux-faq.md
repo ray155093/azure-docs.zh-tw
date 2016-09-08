@@ -37,7 +37,7 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 ## 如何存取我的虛擬機器？
 
-您需要使用安全殼層 (SSH) 建立遠端連線來登入虛擬機器。請參閱如何[從 Windows](virtual-machines-linux-ssh-from-windows.md) 或[從 Linux 及 Mac](virtual-machines-linux-ssh-from-linux.md) 連線的指示。根據預設，SSH 允許最多 10 個並行連線。您可以編輯組態檔以增加這個數字。
+您需要使用安全殼層 (SSH) 建立遠端連線來登入虛擬機器。請參閱如何[從 Windows](virtual-machines-linux-ssh-from-windows.md) 或[從 Linux 及 Mac](virtual-machines-linux-mac-create-ssh-keys.md) 連線的指示。根據預設，SSH 允許最多 10 個並行連線。您可以編輯組態檔以增加這個數字。
 
 
 如果您遇到問題，請參閱[疑難排解以 Linux 為基礎之 Azure 虛擬機器的安全殼層 (SSH) 連線](virtual-machines-linux-troubleshoot-ssh-connection.md)。
@@ -58,4 +58,4 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 否。新增 NIC 只能在建立期間完成。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

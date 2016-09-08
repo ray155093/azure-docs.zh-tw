@@ -1,5 +1,5 @@
 <properties
-	pageTitle="Microsoft Azure 訂用帳戶及服務限制、配額與限制"
+	pageTitle="Microsoft Azure 訂用帳戶和服務限制、配額與限制"
 	description="提供通用的 Azure 訂用帳戶和服務限制、配額和條件約束的清單。這包括如何增加限制和最大值的詳細資訊。"
 	services=""
 	documentationCenter=""
@@ -10,19 +10,19 @@
 	/>
 
 <tags
-	ms.service="multiple"
-	ms.workload="multiple"
+	ms.service="billing"
+	ms.workload="na"
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/03/2016"
+	ms.date="08/18/2016"
 	ms.author="btardif"/>
 
 # Azure 訂用帳戶和服務限制、配額與限制
 
 ## 概觀
 
-本文件說明一些最常見的 Microsoft Azure 限制。請注意，這目前未涵蓋所有 Azure 服務。這些限制將隨著時間擴展並更新以涵蓋更多平台。
+本文件說明一些最常見的 Microsoft Azure 限制。這目前未涵蓋所有 Azure 服務。這些限制將隨著時間擴展並更新以涵蓋更多平台。
 
 > [AZURE.NOTE] 如果您想要將限制提升到**預設限制**以上，您可以[免費提出線上客戶支援要求](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。您無法將限制提升到高於下表中所示的**上限**值。如果沒有**上限**欄，指定的資源即沒有可調整的限制。
 
@@ -30,7 +30,7 @@
 
 現在您可以結合多個 Azure 中的資源到單一的 Azure 資源群組。使用資源群組時的限制是，在全域時會使用 Azure 資源管理員在地區層級管理。如需 Azure 資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](resource-group-overview.md)。
 
-在以下的限制中，已加入了新資料表，以反映在使用 Azure 資源管理員時的限制方面的任何差異。例如，有**訂用帳戶限制**資料表和**訂用帳戶限制 - Azure 資源管理員**資料表。當某個限制同時適用於這兩個案例時，只會顯示在第一個資料表中。除非另有說明，限制在所有區域中全域適用。
+在以下的限制中，已加入了新資料表，以反映在使用 Azure 資源管理員時的限制方面的任何差異。例如，有**訂用帳戶限制**資料表和**訂用帳戶限制 - Azure Resource Manager** 資料表。當某個限制同時適用於這兩個案例時，只會顯示在第一個資料表中。除非另有說明，限制在所有區域中全域適用。
 
 > [AZURE.NOTE] 請務必強調 Azure 資源群組中資源的配額是基於您的訂閱可以存取的每一區域，而不是每一訂閱 (服務管理配額則是)。讓我們以核心配額為例。如果您需要要求增加配額以支援核心，您必須決定您想要在哪些區域中使用多少個核心，然後提出 Azure 資源群組核心配額的特定要求，以取得您想要的數量和區域。因此，如果您需要在西歐使用 30 個核心以在該處執行應用程式，您應該在西歐特別要求 30 個核心。但是您在任何其他區域中的核心配額將不會增加 -- 僅西歐會有 30 個核心配額。
 <!-- -->
@@ -303,4 +303,4 @@
 
 [雲端服務的大小](cloud-services/cloud-services-sizes-specs.md)
 
-<!----HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

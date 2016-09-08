@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-ios"
 	ms.devlang="objective-c"
 	ms.topic="article"
-	ms.date="02/29/2016"
+	ms.date="08/19/2016"
 	ms.author="MehrdadMzfr" />
 
 #如何在 iOS 上整合 Engagement Reach
@@ -31,7 +31,7 @@
 
 -   在您的 Xcode 專案中加入 Reach SDK。在 Xcode 中，移至 [專案] > [加入至專案]，然後選擇 `EngagementReach` 資料夾。
 
-### 修改您的應用程式委派
+### 修改您的應用程式代理人
 
 -   在您的實作檔案頂端，匯入 Engagement Reach 模組：
 
@@ -416,4 +416,4 @@
 
 	@end
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -4,7 +4,7 @@
    services=""
    documentationCenter="na"
    authors="adamglick"
-   manager="hongfeig"
+   manager="saladki"
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/01/2016"
+   ms.date="08/18/2016"
    ms.author="aglick"/>
 
 #在 Microsoft Azure 上建置的應用程式的災害復原
@@ -305,4 +305,4 @@ IaaS 解決方案也為內部部署應用程式提供比較簡單的路徑，以
 
 本文屬於著重[在 Microsoft Azure 上建置的應用程式的災害復原和高可用性](./resiliency-disaster-recovery-high-availability-azure-applications.md)的系列文章。這一系列中的前一篇文章是[在 Microsoft Azure 上建置的應用程式的高可用性](./resiliency-high-availability-azure-applications.md)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

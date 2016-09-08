@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/24/2016"
+	ms.date="08/24/2016"
 	ms.author="dineshm"/>
 
 
@@ -31,7 +31,7 @@
 ### 透過信封技術加密  
 透過信封技術加密的運作方式如下：
 
-1.	Azure 儲存體用戶端程式庫會產生內容加密金鑰 (CEK)，這是使用一次的對稱金鑰。  
+1.	Azure 儲存體用戶端程式庫會產生內容加密金鑰 (CEK)，這是使用一次的對稱金鑰。
 
 2.	使用此 CEK 加密使用者資料。
 
@@ -42,7 +42,7 @@
 ### 透過信封技術解密  
 透過信封技術解密的運作方式如下：
 
-1.	用戶端程式庫假設使用者在本機或 Azure 金鑰保存庫中管理金鑰加密金鑰 (KEK)。使用者不必知道用於加密的特定金鑰。相反地，可以設定並使用金鑰解析程式，將不同的金鑰識別碼解析成金鑰。  
+1.	用戶端程式庫假設使用者在本機或 Azure 金鑰保存庫中管理金鑰加密金鑰 (KEK)。使用者不必知道用於加密的特定金鑰。相反地，可以設定並使用金鑰解析程式，將不同的金鑰識別碼解析成金鑰。
 
 2.	用戶端程式庫會下載加密的資料，以及儲存在服務上的任何加密資料。
 
@@ -54,13 +54,13 @@
 儲存體用戶端程式庫會使用 [AES](http://en.wikipedia.org/wiki/Advanced_Encryption_Standard) 來加密使用者資料。具體來說，就是[加密區塊鏈結 (CBC)](http://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher-block_chaining_.28CBC.29) 模式搭配 AES。每個服務的運作方式稍有不同，我們將在這裡討論每個服務。
 
 ### Blob  
-用戶端程式庫目前僅支援整個 Blob 的加密。尤其支援使用者使用 **upload*** 方法或 **openOutputStream** 方法時的加密。針對下載，則皆支援完整與範圍下載。
+用戶端程式庫目前僅支援整個 Blob 的加密。更明確地說，是在使用者使用 **upload** 方法或 *openOutputStream** 方法時支援加密。針對下載，則皆支援完整與範圍下載。
 
 在加密期間，用戶端程式庫會產生 16 位元組的隨機初始化向量 (IV)，以及 32 位元組的隨機內容加密金鑰 (CEK)，並使用這項資訊執行 blob 資料的信封加密。然後，已包裝的 CEK 和一些其他加密中繼資料會儲存為 blob 中繼資料，並連同加密的 blob 一起儲存在服務上。
 
 >[AZURE.WARNING] 如果您要為 blob 編輯或上傳您自己的中繼資料，則必須確定保留此中繼資料。如果您上傳新的中繼資料，但缺少此中繼資料，包裝的 CEK、IV 和其他中繼資料將會遺失，而且永遠無法再擷取 blob 內容。
 
-下載已加密的 blob 牽涉到使用 **download*/openInputStream** 便利方法擷取整個 blob 的內容。包裝的 CEK 會解除包裝，並與 IV (在此情況下儲存為 blob 中繼資料) 一起用來傳回解密的資料給使用者。
+下載已加密的 blob 牽涉到使用 **download*/openInputStream** 便利方法來擷取整個 blob 的內容。包裝的 CEK 會解除包裝，並與 IV (在此情況下儲存為 blob 中繼資料) 一起用來傳回解密的資料給使用者。
 
 在加密的 Blob 中下載任意範圍 (**downloadRange*** 方法)，包含調整使用者所提供的範圍，藉此取得少量額外的資料以便用來成功解密所要求的範圍。
 
@@ -82,7 +82,7 @@
 
 資料表資料加密的運作方式如下：
 
-1.	使用者指定要加密的屬性。  
+1.	使用者指定要加密的屬性。
 
 2.	用戶端程式庫會針對每個實體產生 16 位元組的隨機初始化向量 (IV) 以及 32 位元組的隨機內容加密金鑰 (CEK)，並在個別屬性上執行信封加密，使每個屬性衍生新的 IV，藉此進行加密。加密的屬性會儲存為二進位資料。
 
@@ -109,16 +109,16 @@ Azure 金鑰保存庫可協助保護雲端應用程式和服務所使用的密�
 有三個金鑰保存庫封裝：
 
 - azure-keyvault-core 包含 IKey 和 IKeyResolver。這是不具有相依性的小型封裝。Java 的儲存體用戶端程式庫會將其定義為相依。
-- azure-keyvault 包含金鑰保存庫 REST 用戶端。  
-- azure-keyvault-extensions 包含延伸模組程式碼，其中包含密碼編譯演算法的實作及 RSAKey 和 SymmetricKey。它依賴 Core 和 KeyVault 命名空間，並提供功能來定義彙總解析程式 (當使用者想要使用多個金鑰提供者時) 和快取金鑰解析程式。儲存體用戶端程式庫不直接依賴這個封裝，如果使用者想要使用 Azure 金鑰保存庫來儲存其金鑰，或使用金鑰保存庫延伸模組來取用本機和雲端密碼編譯提供者，則需要此封裝。  
+- azure-keyvault 包含金鑰保存庫 REST 用戶端。
+- azure-keyvault-extensions 包含延伸模組程式碼，其中包含密碼編譯演算法的實作及 RSAKey 和 SymmetricKey。它依賴 Core 和 KeyVault 命名空間，並提供功能來定義彙總解析程式 (當使用者想要使用多個金鑰提供者時) 和快取金鑰解析程式。儲存體用戶端程式庫不直接依賴這個封裝，如果使用者想要使用 Azure 金鑰保存庫來儲存其金鑰，或使用金鑰保存庫延伸模組來取用本機和雲端密碼編譯提供者，則需要此封裝。
 
   金鑰保存庫是專為高價值的主要金鑰而設計，個別金鑰保存庫的節流限制都以此為設計重點。使用金鑰保存庫執行用戶端加密時，慣用的模型是使用在金鑰保存庫中儲存為密碼且在本機快取的對稱主要金鑰。使用者必須執行下列動作：
 
-1.	離線建立密碼，再上載至金鑰保存庫。  
+1.	離線建立密碼，再上載至金鑰保存庫。
 
 2.	使用密碼的基底識別碼做為參數，解析用於加密的目前密碼版本，並在本機快取這項資訊。使用 CachingKeyResolver 進行快取。使用者不需要實作自己的快取邏輯。
 
-3.	建立加密原則時，使用快取解析程式做為輸入。有關金鑰保存庫使用方式的詳細資訊位於加密程式碼範例。<fix URL>
+3.	建立加密原則時，使用快取解析程式做為輸入。如需有關「金鑰保存庫」使用方式的詳細資訊，請參閱加密程式碼範例。<fix URL>
 
 ## 最佳作法  
 只有 Java 的儲存體用戶端程式庫才支援加密。
@@ -136,12 +136,12 @@ Azure 金鑰保存庫可協助保護雲端應用程式和服務所使用的密�
 ## 用戶端 API / 介面  
 使用者在建立 EncryptionPolicy 物件時，可以只提供金鑰 (實作 IKey)、只提供者解析程式 (實作 IKeyResolver)，或兩者都提供。IKey 是以金鑰識別碼來識別的基本金鑰類型，且提供包裝/解除包裝的邏輯。IKeyResolver 在解密程序期間用來解析金鑰。它定義 ResolveKey 方法，可根據金鑰識別碼傳回 IKey。這可讓使用者從多個位置中管理的多個金鑰之中選擇。
 
-- 加密時一律使用金鑰，缺少金鑰將會導致錯誤。  
-- 解密：  
-	- 叫用金鑰解析程式 (如果指定) 以取得金鑰。如果已指定解析程式，但沒有金鑰識別碼的對應，則會擲回錯誤。  
-	- 如果未指定解析程式但指定了金鑰，則如果其識別項符合所需的金鑰識別項，就會使用該金鑰。如果識別項不符合，則會擲回錯誤。  
+- 加密時一律使用金鑰，缺少金鑰將會導致錯誤。
+- 解密：
+	- 叫用金鑰解析程式 (如果指定) 以取得金鑰。如果已指定解析程式，但沒有金鑰識別碼的對應，則會擲回錯誤。
+	- 如果未指定解析程式但指定了金鑰，則如果其識別項符合所需的金鑰識別項，就會使用該金鑰。如果識別項不符合，則會擲回錯誤。
 
-	  [加密範例](https://github.com/Azure/azure-storage-net/tree/master/Samples/GettingStarted/EncryptionSamples)<fix URL>會針對 Blob、佇列和資料表以及金鑰保存庫的整合，示範更詳細的端對端案例。
+	  [加密範例](https://github.com/Azure/azure-storage-net/tree/master/Samples/GettingStarted/EncryptionSamples) <fix URL>針對 blob、佇列和資料表以及「金鑰保存庫」整合，示範更詳細的端對端案例。
 
 ### RequireEncryption 模式  
 使用者可以針對所有上傳和下載都必須加密的作業模式，從中選擇啟用。在此模式中，在用戶端上嘗試上傳沒有加密原則的資料或下載未在服務上加密的資料將會失敗。要求選項物件的 **requireEncryption** 旗標會控制此行為。如果您的應用程式會將所有儲存在 Azure 儲存體中的物件加密，則您可以在服務用戶端服務的預設要求選項上，設定 **requireEncryption** 屬性。
@@ -240,11 +240,11 @@ Azure 金鑰保存庫可協助保護雲端應用程式和服務所使用的密�
 
 ## 後續步驟  
 
-- 下載 [Azure Storage Client Library for Java Maven package (適用於 Java Maven 封裝的 Azure 儲存體用戶端程式庫)](http://mvnrepository.com/artifact/com.microsoft.azure/azure-storage)  
-- 從 GitHub 下載 [Azure Storage Client Library for Java Source Code (適用於 Java 原始程式碼的 Azure 儲存體用戶端程式庫)](https://github.com/Azure/azure-storage-java)   
+- 下載 [Azure Storage Client Library for Java Maven package (適用於 Java Maven 封裝的 Azure 儲存體用戶端程式庫)](http://mvnrepository.com/artifact/com.microsoft.azure/azure-storage)
+- 從 GitHub 下載 [Azure Storage Client Library for Java Source Code (適用於 Java 原始程式碼的 Azure 儲存體用戶端程式庫)](https://github.com/Azure/azure-storage-java)
 - 下載適用於 Java Maven 的 Azure 金鑰保存庫 Maven 程式庫封裝：
 	- [核心](http://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault-core)封裝
 	- [用戶端](http://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault)封裝
-- 請瀏覽 [Azure 金鑰保存庫文件](../key-vault/key-vault-whatis.md)  
+- 請瀏覽 [Azure 金鑰保存庫文件](../key-vault/key-vault-whatis.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0824_2016-->

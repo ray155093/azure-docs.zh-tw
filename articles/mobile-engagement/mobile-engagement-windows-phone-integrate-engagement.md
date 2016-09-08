@@ -13,20 +13,20 @@
 	ms.tgt_pltfrm="mobile-windows-phone" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="05/03/2016" 
+	ms.date="08/19/2016" 
 	ms.author="piyushjo" />
 
 #Windows Phone Silverlight Engagement SDK 整合
 
 > [AZURE.SELECTOR] 
-- [Windows Universal](mobile-engagement-windows-store-integrate-engagement.md) 
-- [Windows Phone Silverlight](mobile-engagement-windows-phone-integrate-engagement.md) 
-- [iOS](mobile-engagement-ios-integrate-engagement.md) 
-- [Android](mobile-engagement-android-integrate-engagement.md) 
+- [Windows Universal](mobile-engagement-windows-store-integrate-engagement.md)
+- [Windows Phone Silverlight](mobile-engagement-windows-phone-integrate-engagement.md)
+- [iOS](mobile-engagement-ios-integrate-engagement.md)
+- [Android](mobile-engagement-android-integrate-engagement.md)
 
 本程序說明如何以最簡單的方式啟用 Windows Phone Silverlight 應用程式內 Azure Mobile Engagement 的分析與監視功能。
 
-下列步驟便足以啟用計算使用者、工作階段、活動、當機和技術等所有統計資料時需要的記錄檔報告。用來計算其他統計資料 (例如事件、錯誤和工作) 所需的記錄檔報告必須使用 Engagement API 來手動完成 (請參閱下方的[如何在 Windows Phone Silverlight 應用程式中使用進階的 Mobile Engagement 標記 API](mobile-engagement-windows-phone-use-engagement-api.md))，因為這些是與應用程式相依的統計資料。
+下列步驟便足以啟用計算使用者、工作階段、活動、當機和技術等所有統計資料時需要的記錄檔報告。用來計算其他統計資料 (例如事件、錯誤和工作) 所需的記錄檔報告必須使用 Engagement API 來手動完成 (請參閱下方的[如何在 Windows Phone Silverlight 應用程式中使用進階的 Mobile Engagement 標籤 API](mobile-engagement-windows-phone-use-engagement-api.md))，因為這些是與應用程式相依的統計資料。
 
 ##支援的版本
 
@@ -247,4 +247,4 @@ Engagement 組態會集中在您專案的 `Resources\EngagementConfiguration.xml
 > [AZURE.WARNING] 高載閾值無法設定為小於一秒的時間間隔。如果您嘗試這樣做，SDK 會顯示含錯誤訊息的追蹤，並且會自動重設為預設值 (0 秒)。這樣會觸發 SDK 以即時的方式報告記錄檔。
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0824_2016-->

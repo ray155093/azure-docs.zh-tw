@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="dotnet" 
 	ms.topic="hero-article" 
-	ms.date="06/09/2016" 
+	ms.date="08/25/2016" 
 	ms.author="sdanie"/>
 
 # 如何使用 Azure Redis 快取
@@ -286,4 +286,4 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 
 [應用程式字串與連接字串的運作方式]: http://azure.microsoft.com/blog/2013/07/17/windows-azure-web-sites-how-application-strings-and-connection-strings-work/
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0831_2016-->

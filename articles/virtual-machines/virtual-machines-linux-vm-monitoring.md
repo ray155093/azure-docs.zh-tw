@@ -4,7 +4,7 @@
    services="virtual-machines-linux"
    documentationCenter="virtual-machines"
    authors="kmouss"
-   manager="drewm"
+   manager="timlt"
    editor=""/>
 
 <tags
@@ -52,10 +52,10 @@
 
 [Azure.Note] 若有提供，您可以從 2.0 版變更為較新的版本。
 
-如需有關設定監視度量和範例的詳細資料，請瀏覽文件-* *[使用 Linux 診斷延伸模組監視 Linux VM 的效能和診斷資料](virtual-machines-linux-diagnostic-extension/)。
+如需有關設定監視度量和範例的更多詳細資料，請瀏覽文件 - **[使用 Linux 診斷擴充功能監視 Linux VM 的效能和診斷資料](virtual-machines-linux-classic-diagnostic-extension.md)。
 
 <!--Image references-->
 [1]: ./media/virtual-machines-linux-vm-monitoring/portal-enable-disable.png
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0824_2016-->

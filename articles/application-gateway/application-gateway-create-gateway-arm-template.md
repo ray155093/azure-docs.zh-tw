@@ -26,6 +26,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 - [Azure Resource Manager PowerShell](application-gateway-create-gateway-arm.md)
 - [Azure 傳統 PowerShell](application-gateway-create-gateway.md)
 - [Azure Resource Manager 範本](application-gateway-create-gateway-arm-template.md)
+- [Azure CLI](application-gateway-create-gateway-cli.md)
 
 <BR>
 
@@ -74,7 +75,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 	| **backendaddress2** | 第二部 Web 伺服器的 IP 位址 |
 
 
->[AZURE.IMPORTANT] GitHub 所維護的 Azure 資源管理員範本可能會隨著時間改變。使用範本前，請務必先檢查當中的內容。
+	>[AZURE.IMPORTANT] GitHub 所維護的 Azure 資源管理員範本可能會隨著時間改變。使用範本前，請務必先檢查當中的內容。
 
 6. 檢查 **resources** 下方的內容，並注意以下項目：
 
@@ -147,8 +148,6 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 如有需要，請使用 **New-AzureResourceGroup** Cmdlet 建立資源群組。在下列範例中，您會在美國東部位置建立名為 AppgatewayRG 的新資源群組。
 
 	New-AzureRmResourceGroup -Name AppgatewayRG -Location "East US"
-		VERBOSE: 5:38:49 PM - Created resource group 'AppgatewayRG' in location 'eastus'
-
 
 		ResourceGroupName : AppgatewayRG
 		Location          : eastus
@@ -293,4 +292,4 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 - [Azure 負載平衡器](https://azure.microsoft.com/documentation/services/load-balancer/)
 - [Azure 流量管理員](https://azure.microsoft.com/documentation/services/traffic-manager/)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -14,13 +14,13 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/30/2016"
+	ms.date="08/17/2016"
 	ms.author="cjiang"/>
 
 # Azure 註冊問題疑難排解
 本文針對註冊 Azure 時可能發生的問題，協助您對常見的原因進行疑難排解。
 
-> [AZURE.NOTE] 如果您對本文內容有需要協助之處，可以連絡 [MSDN Azure 和堆疊溢位論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專家。或者，您也可以在 [Azure 支援網站](http://go.microsoft.com/fwlink/?linkid=544831&clcid=0x409)上提出 Azure 支援事件。如需關於使用 Azure 支援的資訊，請參閱 [Microsoft Azure 支援常見問題集](https://azure.microsoft.com/support/faq/)。
+> [AZURE.NOTE] 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](http://go.microsoft.com/fwlink/?linkid=544831&clcid=0x409)以快速解決您的問題。
 
 ## 我在輸入註冊資訊時出現錯誤。
 帳戶個人檔案資訊正確嗎？ 您的個人檔案詳細資料會用來產生帳單，因此請務必輸入正確的資訊。不正確的欄位範例如下︰
@@ -81,4 +81,6 @@
 建議：
 - 如果您以前已啟用過 Azure 訂用帳戶，以致於免費試用啟用失敗，請考慮購買「隨用隨付」訂用帳戶。您也可能有資格獲得權益優惠。請在 [Microsoft Azure 優惠詳細資料頁面](https://azure.microsoft.com/support/legal/offer-details/)深入了解，而非 Azure 免費試用方案。請注意，權益方案需要特定的必要條件。
 
-<!---HONumber=AcomDC_0803_2016-->
+> [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](http://go.microsoft.com/fwlink/?linkid=544831&clcid=0x409)以快速解決您的問題。
+
+<!---HONumber=AcomDC_0824_2016-->

@@ -15,10 +15,12 @@
 	ms.topic="reference"
 	ms.tgt_pltfrm="multiple"
 	ms.workload="na"
-	ms.date="05/27/2016"
+	ms.date="08/22/2016"
 	ms.author="wesmc"/>
 
 # Azure Functions 事件中樞繫結
+
+[AZURE.INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
 本文說明如何針對 Azure Functions 設定 [Azure 事件中樞](../event-hubs/event-hubs-overview.md)繫結以及撰寫程式碼。Azure Functions 支援適用於 Azure 事件中樞的觸發程序和輸出繫結。
 
@@ -31,11 +33,11 @@ Azure 事件中樞觸發程序可用來回應傳送至事件中樞事件資料�
 
 #### 適用於事件中樞觸發程序繫結的 function.json
 
-適用於 Azure 事件中樞觸發程序的 *function.json* 檔案會指定下列屬性：
+適用於 Azure 事件中樞觸發程序的「function.json」檔案會指定下列屬性：
 
-- `type`︰必須設定為 *eventHubTrigger*。
-- `name`︰用於事件中樞訊息之函數程式碼中的變數名稱。
-- `direction`：必須設定為 *in*。
+- `type`︰必須設定為「eventHubTrigger」。
+- `name`︰用於事件中樞訊息之函式程式碼中的變數名稱。
+- `direction`：必須設為 in。
 - `path`：事件中樞的名稱。
 - `connection`：應用程式設定的名稱，包含事件中樞所在之命名空間的連接字串。按一下命名空間的 [連接資訊] 按鈕 (而不是事件中樞本身)，來複製此連接字串。此連接字串至少必須具備讀取權限，才能啟動觸發程序。
 
@@ -79,13 +81,13 @@ Azure 事件中樞輸出繫結可用來將事件寫入事件中樞事件資料�
 
 #### 適用於事件中樞輸出繫結的 function.json
 
-適用於 Azure 事件中樞輸出繫結的 *function.json* 檔案會指定下列屬性：
+適用於 Azure 事件中樞輸出繫結的「function.json」檔案會指定下列屬性：
 
-- `type`：必須設定為 *eventHub*。
-- `name`︰用於事件中樞訊息之函數程式碼中的變數名稱。
+- `type`：必須設定為「eventHub」。
+- `name`︰用於事件中樞訊息之函式程式碼中的變數名稱。
 - `path`：事件中樞的名稱。
 - `connection`：應用程式設定的名稱，包含事件中樞所在之命名空間的連接字串。按一下命名空間的 [連接資訊] 按鈕 (而不是事件中樞本身)，來複製此連接字串。此連接字串必須具有傳送權限，才能將訊息傳送至事件中樞資料流。
-- `direction`：必須設定為 *out*。
+- `direction`：必須設為「out」。
 
 	    {
 	      "type": "eventHub",
@@ -134,4 +136,4 @@ Azure 事件中樞輸出繫結可用來將事件寫入事件中樞事件資料�
 
 [AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0824_2016-->

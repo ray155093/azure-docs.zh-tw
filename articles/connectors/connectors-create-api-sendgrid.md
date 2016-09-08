@@ -14,28 +14,22 @@ ms.devlang="multiple"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="integration"
-ms.date="05/17/2016"
+ms.date="08/18/2016"
 ms.author="deonhe"/>
 
 # 開始使用 SendGrid 連接器
 
-
-
-您可從下列位置使用 SendGrid 連接器︰
-
-- [邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)
-- [PowerApps](http://powerapps.microsoft.com)
-- [Flow](http://flows.microsoft.com)
+SendGrid 連線提供者可讓您傳送電子郵件及管理收件者清單。
 
 >[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
-您可以從立即建立邏輯應用程式開始，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ## 觸發程序及動作
 
 SendGrid 連接器可當做動作使用，它有觸發程序。所有連接器都支援 JSON 和 XML 格式的資料。
 
- SendGrid 連接器提供下列動作及/或觸發程序：
+ SendGrid 連接器提供下列動作。但不包含觸發程序。
 
 ### SendGrid 動作
 您可以採取下列動作：
@@ -44,11 +38,6 @@ SendGrid 連接器可當做動作使用，它有觸發程序。所有連接器�
 |--- | ---|
 |[SendEmail](connectors-create-api-sendgrid.md#sendemail)|使用 SendGrid API 傳送電子郵件 (限制為 10,000 名收件者)|
 |[AddRecipientToList](connectors-create-api-sendgrid.md#addrecipienttolist)|將個別的收件者加入收件者清單中|
-### SendGrid 觸發程序
-您可以接聽下列事件：
-
-|觸發程序 | 說明|
-|--- | ---|
 
 
 ## 建立 SendGrid 的連線
@@ -73,13 +62,13 @@ SendGrid 連接器可當做動作使用，它有觸發程序。所有連接器�
 
 ```POST: /api/mail.send.json```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
 |要求| |yes|body|無|要傳送的電子郵件訊息|
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|OK|
 |400|不正確的要求|
@@ -98,8 +87,8 @@ SendGrid 連接器可當做動作使用，它有觸發程序。所有連接器�
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|清單識別碼|字串|yes|路徑|無|收件者清單的唯一識別碼|
-|recipientId|字串|yes|路徑|無|收件者的唯一識別碼|
+|清單識別碼|string|yes|路徑|無|收件者清單的唯一識別碼|
+|recipientId|string|yes|路徑|無|收件者的唯一識別碼|
 
 #### Response
 
@@ -121,20 +110,20 @@ SendGrid 連接器可當做動作使用，它有觸發程序。所有連接器�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|from|字串|是 |
-|fromname|字串|否 |
-|to|字串|是 |
-|toname|字串|否 |
-|主旨|字串|是 |
-|body|字串|是 |
+|from|string|是 |
+|fromname|string|否 |
+|to|string|是 |
+|toname|string|否 |
+|主旨|string|是 |
+|body|string|是 |
 |ishtml|布林值|否 |
-|副本|字串|否 |
-|ccname|字串|否 |
-|密件副本|字串|否 |
-|bccname|字串|否 |
-|replyto|字串|否 |
-|日期|字串|否 |
-|headers|字串|否 |
+|副本|string|否 |
+|ccname|string|否 |
+|密件副本|string|否 |
+|bccname|string|否 |
+|replyto|string|否 |
+|日期|string|否 |
+|headers|string|否 |
 |檔案|array|否 |
 |檔名|array|否 |
 
@@ -145,7 +134,7 @@ SendGrid 連接器可當做動作使用，它有觸發程序。所有連接器�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|訊息|字串|否 |
+|訊息|string|否 |
 
 
 
@@ -164,7 +153,7 @@ SendGrid 連接器可當做動作使用，它有觸發程序。所有連接器�
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
 |id|integer|否 |
-|名稱|字串|否 |
+|名稱|string|否 |
 |recipient\_count|integer|否 |
 
 
@@ -183,13 +172,13 @@ SendGrid 連接器可當做動作使用，它有觸發程序。所有連接器�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|電子郵件|字串|否 |
-|last\_name|字串|否 |
-|first\_name|字串|否 |
-|id|字串|否 |
+|電子郵件|string|否 |
+|last\_name|string|否 |
+|first\_name|string|否 |
+|id|string|否 |
 
 
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

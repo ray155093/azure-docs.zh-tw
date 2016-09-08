@@ -13,12 +13,12 @@
     ms.tgt_pltfrm="mobile-xamarin-ios"
     ms.devlang="dotnet"
     ms.topic="article"
-    ms.date="05/10/2016"
+    ms.date="08/22/2016"
     ms.author="donnam"/>
 
 #連接至 Xamarin.Forms 應用程式中的 Azure 儲存體
 
-## 概觀
+## Overview
 
 Azure Mobile Apps 用戶端與伺服器 SDK 支援離線同步處理結構化資料與針對 /tables 端點的 CRUD 作業。通常這項資料會儲存在資料庫或類似的存放區，而且這些資料存放區通常無法有效地儲存大型二進位資料。此外，某些應用程式有關聯的資料會儲存在其他地方 (例如，blob 儲存體、檔案共用)，能夠建立 /tables 端點中的記錄與其他資料之間的關聯相當有用。
 
@@ -36,9 +36,9 @@ Azure Mobile Apps 用戶端與伺服器 SDK 支援離線同步處理結構化資
 
 ## 建立儲存體帳戶
 
-1. 遵循[建立 Azure 儲存體帳戶]教學課程，建立儲存體帳戶。 
+1. 遵循[建立 Azure 儲存體帳戶]教學課程，建立儲存體帳戶。
 
-2. 在 Azure 入口網站中，瀏覽至新建立的儲存體帳戶，並按一下**金鑰**圖示。複製**主要連接字串**。
+2. 在 Azure 入口網站中，瀏覽至新建立的儲存體帳戶，並按一下 [金鑰] 圖示。複製**主要連接字串**。
 
 3. 瀏覽至行動應用程式後端。在 [所有設定] -> [應用程式設定] -> [連接字串] 底下，建立名為 `MS_AzureStorageAccountConnectionString` 的新金鑰，並使用從儲存體帳戶複製的值。使用 [自訂] 作為金鑰類型。
 
@@ -52,7 +52,7 @@ Azure Mobile Apps 用戶端與伺服器 SDK 支援離線同步處理結構化資
 
 ###<a name="add-controller-code"></a>將儲存體控制器新增至您的伺服器專案
 
-1. 在 Visual Studio 中，開啟您的 .NET 伺服器專案。新增 NuGet 封裝 [Microsoft.Azure.Mobile.Server.Files]。請務必選取 [包括發行前版本]。
+1. 在 Visual Studio 中，開啟您的 .NET 伺服器專案。新增 Nuget 封裝 [Microsoft.Azure.Mobile.Server.Files]。請務必選取 [包括發行前版本]。
 
 2. 在 Visual Studio 中，開啟您的 .NET 伺服器專案。以滑鼠右鍵按一下 [控制器] 資料夾，然後選取 [加入] -> [控制器] -> [Web API 2 控制器 - 空白]。將控制器命名為 `TodoItemStorageController`。
 
@@ -131,9 +131,9 @@ Azure Mobile Apps 用戶端與伺服器 SDK 支援離線同步處理結構化資
 
 ## 更新您的用戶端應用程式以新增映像支援
 
-在 Visual Studio 或 Xamarin Studio 中開啟 Xamarin.Forms 快速入門專案。您將安裝 NuGet 封裝，並更新可攜式程式庫專案及 iOS、Android 和 Windows 用戶端專案︰
+在 Visual Studio 或 Xamarin Studio 中開啟 Xamarin.Forms 快速入門專案。您將安裝 Nuget 封裝，並更新可攜式程式庫專案及 iOS、Android 和 Windows 用戶端專案︰
 
-- [新增 NuGet 封裝](#add-nuget)
+- [新增 Nuget 封裝](#add-nuget)
 - [新增 IPlatform 介面](#add-iplatform)
 - [新增 FileHelper 類別](#add-filehelper)
 - [新增檔案同步處理常式](#file-sync-handler)
@@ -146,7 +146,7 @@ Azure Mobile Apps 用戶端與伺服器 SDK 支援離線同步處理結構化資
 
 ###<a name="add-nuget"></a>新增 Nuget 封裝
 
-以滑鼠右鍵按一下方案，然後選取 [管理方案的 NuGet 封裝]。將下列 NuGet 封裝加入方案中的**所有**專案。請務必選取 [包括發行前版本]。
+以滑鼠右鍵按一下方案，然後選取 [管理方案的 Nuget 封裝]。將下列 Nuget 封裝新增至方案中的**所有**專案。請務必選取 [包括發行前版本]。
 
   - [Microsoft.Azure.Mobile.Client.Files]
 
@@ -243,7 +243,7 @@ Azure Mobile Apps 用戶端與伺服器 SDK 支援離線同步處理結構化資
 
 在主要可攜式程式庫專案中建立新的類別 `TodoItemFileSyncHandler`。這個類別包含 Azure SDK 的回呼，以在新增或移除檔案時，通知您的程式碼。
 
-Azure 行動用戶端 SDK 不會實際儲存任何檔案資料：此用戶端 SDK 會叫用您的 `IFileSyncHandler` 實作，進而決定是否在本機裝置上儲存檔案及如何儲存。
+Azure 行動用戶端 SDK 實際上不會儲存任何檔案資料：此用戶端 SDK 會叫用您的 `IFileSyncHandler` 實作，進而決定是否在本機裝置上儲存檔案及如何儲存。
 
 1. 加入下列 using 陳述式：
 
@@ -622,7 +622,7 @@ Azure 行動用戶端 SDK 不會實際儲存任何檔案資料：此用戶端 SD
 
 ###<a name="update-windows"></a>更新 Windows 專案
 
-1. 安裝 Visual Studio 擴充功能 [SQLite for Windows 8.1](http://go.microsoft.com/fwlink/?LinkID=716919)。如需詳細資訊，請參閱[啟用 Windows 應用程式離線同步處理](app-service-mobile-windows-store-dotnet-get-started-offline-data.md)教學課程。 
+1. 安裝 Visual Studio 擴充功能 [SQLite for Windows 8.1](http://go.microsoft.com/fwlink/?LinkID=716919)。如需詳細資訊，請參閱[啟用 Windows 應用程式離線同步處理](app-service-mobile-windows-store-dotnet-get-started-offline-data.md)教學課程。
 
 2. 編輯 **Package.appxmanifest** 並檢查**網路攝影機**功能。
 
@@ -705,7 +705,7 @@ Azure 行動用戶端 SDK 不會實際儲存任何檔案資料：此用戶端 SD
 
 - `MobileServiceFile` 可以在線上或離線模式下使用，方法是分別透過使用 `IMobileServiceTable` 或 `IMobileServiceSyncTable`。在離線案例中，會在應用程式呼叫 `PushFileChangesAsync` 時進行上傳。這會導致對離線作業佇列進行處理；針對每個檔案作業，Azure 行動用戶端 SDK 會在 `IFileSyncHandler` 執行個體上叫用 `GetDataSource` 方法，以擷取要上傳的檔案內容。
 
-- 為了擷取項目的檔案，請在 `IMobileServiceTable<T>` 或 IMobileServiceSyncTable<T> 執行個體上呼叫 `GetFilesAsync` 方法。這個方法會傳回與提供的資料項目相關聯的檔案的清單。(請注意：這是*本機*作業，而且會根據物件上次同步處理時的狀態，傳回檔案。若要從伺服器取得更新的檔案清單，您應該先起始同步處理作業。)
+- 為了擷取項目的檔案，請呼叫「`IMobileServiceTable<T>` 或 IMobileServiceSyncTable<T> 上的 `GetFilesAsync` 方法」執行個體。這個方法會傳回與提供的資料項目相關聯的檔案的清單。(請注意：這是「本機」作業，而且會根據物件上次同步處理時的狀態，傳回檔案。若要從伺服器取得更新的檔案清單，您應該先起始同步處理作業。)
 
         IEnumerable<MobileServiceFile> files = await myTable.GetFilesAsync(myItem);
 
@@ -734,4 +734,4 @@ Azure 行動用戶端 SDK 不會實際儲存任何檔案資料：此用戶端 SD
 [了解共用存取簽章]: ../storage/storage-dotnet-shared-access-signature-part-1.md
 [建立 Azure 儲存體帳戶]: ../storage/storage-create-storage-account.md#create-a-storage-account
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0824_2016-->

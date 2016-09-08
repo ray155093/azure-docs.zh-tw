@@ -71,7 +71,8 @@ azure insights logprofile add --name my_log_profile --storageId /subscriptions/s
 [記錄檔的結構描述可在此取得](./monitoring-overview-activity-logs.md)。每個事件位於名為「記錄」的 JSON blob 陣列中。
 
 ## 後續步驟
+- [將活動記錄檔封存至儲存體帳戶](./monitoring-archive-activity-log.md)
 - [閱讀 Azure 活動記錄檔的概觀](./monitoring-overview-activity-logs.md)
 - [根據活動記錄檔事件設定警示](./insights-auditlog-to-webhook-email.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

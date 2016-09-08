@@ -14,18 +14,12 @@ ms.devlang="multiple"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="integration"
-ms.date="04/29/2016"
+ms.date="08/18/2016"
 ms.author="deonhe"/>
 
 # 開始使用 Outlook.com 連接器
 
 Outlook.com 連接器可讓您管理您的郵件、行事曆和連絡人。您可以執行各種動作，例如傳送郵件、排程會議、新增連絡人等等。
-
-您可從下列位置使用 Outlook.com 連接器︰
-
-- [邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)
-- [PowerApps](http://powerapps.microsoft.com)
-- [Flow](http://flow.microsoft.com)
 
 >[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
@@ -93,9 +87,9 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 ```GET: /Events/OnUpcomingEvents```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|資料表|字串|yes|query|無|行事曆的唯一識別碼|
+|資料表|string|yes|query|無|行事曆的唯一識別碼|
 |lookAheadTimeInMinutes|integer|no|query|15|即將來臨的事件的倒數時間 (以分鐘為單位)。|
 
 #### Response
@@ -116,15 +110,15 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 ```GET: /Mail```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|folderPath|字串|no|query|Inbox|要從中擷取電子郵件的資料夾路徑 (預設值：'Inbox')|
+|folderPath|string|no|query|Inbox|要從中擷取電子郵件的資料夾路徑 (預設值：'Inbox')|
 |top|integer|no|query|10|要擷取的電子郵件數目 (預設值：10)|
 |fetchOnlyUnread|布林值|no|query|true|只擷取未讀取的電子郵件嗎？|
 |includeAttachments|布林值|no|query|false|如果設為 true，附件會和電子郵件一起擷取。|
-|searchQuery|字串|no|query|無|搜尋 query 來篩選電子郵件|
+|searchQuery|string|no|query|無|搜尋 query 來篩選電子郵件|
 |skip|integer|no|query|0|要略過的電子郵件數目 (預設值：0)|
-|skipToken|字串|no|query|無|跳過語彙基元來提取新頁面|
+|skipToken|string|no|query|無|跳過語彙基元來提取新頁面|
 
 #### Response
 
@@ -149,7 +143,7 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|作業已順利完成|
 |400|BadRequest|
@@ -164,13 +158,13 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 ```DELETE: /Mail/{messageId}```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|messageId|字串|yes|路徑|無|要刪除的電子郵件識別碼|
+|messageId|string|yes|路徑|無|要刪除的電子郵件識別碼|
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|作業已順利完成|
 |400|BadRequest|
@@ -187,7 +181,7 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|messageId|字串|yes|路徑|無|要標示為已讀取的電子郵件識別碼|
+|messageId|string|yes|路徑|無|要標示為已讀取的電子郵件識別碼|
 
 #### Response
 
@@ -208,8 +202,8 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|messageId|字串|yes|路徑|無|要回覆的電子郵件識別碼|
-|comment|字串|yes|query|無|回覆意見|
+|messageId|string|yes|路徑|無|要回覆的電子郵件識別碼|
+|comment|string|yes|query|無|回覆意見|
 |replyAll|布林值|no|query|false|回覆所有收件者|
 
 #### Response
@@ -231,12 +225,12 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|messageId|字串|yes|路徑|無|電子郵件識別碼|
-|attachmentId|字串|yes|路徑|無|要下載的附件的識別碼|
+|messageId|string|yes|路徑|無|電子郵件識別碼|
+|attachmentId|string|yes|路徑|無|要下載的附件的識別碼|
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|作業已順利完成|
 |400|BadRequest|
@@ -253,13 +247,13 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|folderPath|字串|no|query|Inbox|要擷取的電子郵件資料夾 (預設值：Inbox)|
-|to|字串|no|query|無|收件者電子郵件地址|
-|from|字串|no|query|無|寄件者地址|
-|importance|字串|no|query|正常|電子郵件的重要性 (High、Normal、Low) (預設值：Normal)|
+|folderPath|string|no|query|Inbox|要擷取的電子郵件資料夾 (預設值：Inbox)|
+|to|string|no|query|無|收件者電子郵件地址|
+|from|string|no|query|無|寄件者地址|
+|importance|string|no|query|正常|電子郵件的重要性 (High、Normal、Low) (預設值：Normal)|
 |fetchOnlyWithAttachment|布林值|no|query|false|只擷取含有附件的電子郵件|
 |includeAttachments|布林值|no|query|false|包含附件|
-|subjectFilter|字串|no|query|無|要在主旨中尋找的字串|
+|subjectFilter|string|no|query|無|要在主旨中尋找的字串|
 
 #### Response
 
@@ -279,7 +273,7 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 ```POST: /mailwithoptions/$subscriptions```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
 |optionsEmailSubscription| |yes|body|無|有選項電子郵件的訂用帳戶要求|
 
@@ -301,7 +295,7 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 ```POST: /approvalmail/$subscriptions```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
 |approvalEmailSubscription| |yes|body|無|核准電子郵件的訂用帳戶要求|
 
@@ -339,9 +333,9 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|資料表|字串|yes|路徑|無|要擷取的行事曆的唯一識別碼|
-|$filter|字串|no|query|無|用來限制項目數目的 ODATA filter 查詢|
-|$orderby|字串|no|query|無|用來指定項目順序的 ODATA orderBy 查詢|
+|資料表|string|yes|路徑|無|要擷取的行事曆的唯一識別碼|
+|$filter|string|no|query|無|用來限制項目數目的 ODATA filter 查詢|
+|$orderby|string|no|query|無|用來指定項目順序的 ODATA orderBy 查詢|
 |$skip|integer|no|query|無|要略過的項目數目 (預設值 = 0)|
 |$top|integer|no|query|無|要擷取的項目數目上限 (預設值 = 256)|
 
@@ -360,7 +354,7 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|資料表|字串|yes|路徑|無|行事曆的唯一識別碼|
+|資料表|string|yes|路徑|無|行事曆的唯一識別碼|
 |item| |yes|body|無|要建立的行事曆項目|
 
 #### Response
@@ -378,8 +372,8 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|資料表|字串|yes|路徑|無|行事曆的唯一識別碼|
-|id|字串|yes|路徑|無|要擷取的行事曆項目的唯一識別碼|
+|資料表|string|yes|路徑|無|行事曆的唯一識別碼|
+|id|string|yes|路徑|無|要擷取的行事曆項目的唯一識別碼|
 
 #### Response
 
@@ -396,8 +390,8 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|資料表|字串|yes|路徑|無|行事曆的唯一識別碼|
-|id|字串|yes|路徑|無|要刪除的行事曆項目的唯一識別碼|
+|資料表|string|yes|路徑|無|行事曆的唯一識別碼|
+|id|string|yes|路徑|無|要刪除的行事曆項目的唯一識別碼|
 
 #### Response
 
@@ -414,8 +408,8 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|資料表|字串|yes|路徑|無|行事曆的唯一識別碼|
-|id|字串|yes|路徑|無|要更新的行事曆項目的唯一識別碼|
+|資料表|string|yes|路徑|無|行事曆的唯一識別碼|
+|id|string|yes|路徑|無|要更新的行事曆項目的唯一識別碼|
 |item| |yes|body|無|要更新的行事曆項目|
 
 #### Response
@@ -431,11 +425,11 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 ```GET: /datasets/calendars/tables/{table}/onnewitems```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|資料表|字串|yes|路徑|無|行事曆的唯一識別碼|
-|$filter|字串|no|query|無|用來限制項目數目的 ODATA filter 查詢|
-|$orderby|字串|no|query|無|用來指定項目順序的 ODATA orderBy 查詢|
+|資料表|string|yes|路徑|無|行事曆的唯一識別碼|
+|$filter|string|no|query|無|用來限制項目數目的 ODATA filter 查詢|
+|$orderby|string|no|query|無|用來指定項目順序的 ODATA orderBy 查詢|
 |$skip|integer|no|query|無|要略過的項目數目 (預設值 = 0)|
 |$top|integer|no|query|無|要擷取的項目數目上限 (預設值 = 256)|
 
@@ -452,11 +446,11 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 ```GET: /datasets/calendars/tables/{table}/onupdateditems```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|資料表|字串|yes|路徑|無|行事曆的唯一識別碼|
-|$filter|字串|no|query|無|用來限制項目數目的 ODATA filter 查詢|
-|$orderby|字串|no|query|無|用來指定項目順序的 ODATA orderBy 查詢|
+|資料表|string|yes|路徑|無|行事曆的唯一識別碼|
+|$filter|string|no|query|無|用來限制項目數目的 ODATA filter 查詢|
+|$orderby|string|no|query|無|用來指定項目順序的 ODATA orderBy 查詢|
 |$skip|integer|no|query|無|要略過的項目數目 (預設值 = 0)|
 |$top|integer|no|query|無|要擷取的項目數目上限 (預設值 = 256)|
 
@@ -489,9 +483,9 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|資料表|字串|yes|路徑|無|要擷取的連絡人資料夾的唯一識別碼|
-|$filter|字串|no|query|無|用來限制項目數目的 ODATA filter 查詢|
-|$orderby|字串|no|query|無|用來指定項目順序的 ODATA orderBy 查詢|
+|資料表|string|yes|路徑|無|要擷取的連絡人資料夾的唯一識別碼|
+|$filter|string|no|query|無|用來限制項目數目的 ODATA filter 查詢|
+|$orderby|string|no|query|無|用來指定項目順序的 ODATA orderBy 查詢|
 |$skip|integer|no|query|無|要略過的項目數目 (預設值 = 0)|
 |$top|integer|no|query|無|要擷取的項目數目上限 (預設值 = 256)|
 
@@ -510,7 +504,7 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|資料表|字串|yes|路徑|無|連絡人資料夾的唯一識別碼|
+|資料表|string|yes|路徑|無|連絡人資料夾的唯一識別碼|
 |item| |yes|body|無|要建立的連絡人|
 
 #### Response
@@ -526,10 +520,10 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 ```GET: /datasets/contacts/tables/{table}/items/{id}```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|資料表|字串|yes|路徑|無|連絡人資料夾的唯一識別碼|
-|id|字串|yes|路徑|無|要擷取的連絡人的唯一識別碼|
+|資料表|string|yes|路徑|無|連絡人資料夾的唯一識別碼|
+|id|string|yes|路徑|無|要擷取的連絡人的唯一識別碼|
 
 #### Response
 
@@ -546,8 +540,8 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|資料表|字串|yes|路徑|無|連絡人資料夾的唯一識別碼|
-|id|字串|yes|路徑|無|要刪除的連絡人的唯一識別碼|
+|資料表|string|yes|路徑|無|連絡人資料夾的唯一識別碼|
+|id|string|yes|路徑|無|要刪除的連絡人的唯一識別碼|
 
 #### Response
 
@@ -564,8 +558,8 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|資料表|字串|yes|路徑|無|連絡人資料夾的唯一識別碼|
-|id|字串|yes|路徑|無|要更新的連絡人的唯一識別碼|
+|資料表|string|yes|路徑|無|連絡人資料夾的唯一識別碼|
+|id|string|yes|路徑|無|要更新的連絡人的唯一識別碼|
 |item| |yes|body|無|要更新的連絡人項目|
 
 #### Response
@@ -601,14 +595,14 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
 |附件|array|否 |
-|從|字串|否 |
-|副本|字串|否 |
-|密件副本|字串|否 |
-|主旨|字串|是 |
-|內文|字串|是 |
-|重要性|字串|否 |
+|從|string|否 |
+|副本|string|否 |
+|密件副本|string|否 |
+|主旨|string|是 |
+|內文|string|是 |
+|重要性|string|否 |
 |IsHtml|布林值|否 |
-|收件人|字串|是 |
+|收件人|string|是 |
 
 
 
@@ -617,9 +611,9 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|@odata.type|字串|否 |
-|名稱|字串|是 |
-|ContentBytes|字串|是 |
+|@odata.type|string|否 |
+|名稱|string|是 |
+|ContentBytes|string|是 |
 
 
 
@@ -628,19 +622,19 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|識別碼|字串|否 |
+|識別碼|string|否 |
 |IsRead|布林值|否 |
 |HasAttachment|布林值|否 |
-|DateTimeReceived|字串|否 |
+|DateTimeReceived|string|否 |
 |附件|array|否 |
-|從|字串|否 |
-|副本|字串|否 |
-|密件副本|字串|否 |
-|主旨|字串|是 |
-|內文|字串|是 |
-|重要性|字串|否 |
+|從|string|否 |
+|副本|string|否 |
+|密件副本|string|否 |
+|主旨|string|是 |
+|內文|string|是 |
+|重要性|string|否 |
 |IsHtml|布林值|否 |
-|收件人|字串|是 |
+|收件人|string|是 |
 
 
 
@@ -649,11 +643,11 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|識別碼|字串|是 |
-|ContentType|字串|是 |
-|@odata.type|字串|否 |
-|名稱|字串|是 |
-|ContentBytes|字串|是 |
+|識別碼|string|是 |
+|ContentType|string|是 |
+|@odata.type|string|否 |
+|Name|string|是 |
+|ContentBytes|string|是 |
 
 
 
@@ -662,12 +656,12 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|主旨|字串|是 |
-|內文|字串|否 |
-|重要性|字串|否 |
+|主旨|string|是 |
+|內文|string|否 |
+|重要性|string|否 |
 |Digest|array|是 |
 |附件|array|否 |
-|收件人|字串|是 |
+|收件人|string|是 |
 
 
 
@@ -695,11 +689,11 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|來源|字串|否 |
-|displayName|字串|否 |
-|urlEncoding|字串|否 |
-|tableDisplayName|字串|否 |
-|tablePluralName|字串|否 |
+|來源|string|否 |
+|displayName|string|否 |
+|urlEncoding|string|否 |
+|tableDisplayName|string|否 |
+|tablePluralName|string|否 |
 
 
 
@@ -708,9 +702,9 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|來源|字串|否 |
-|displayName|字串|否 |
-|urlEncoding|字串|否 |
+|來源|string|否 |
+|displayName|string|否 |
+|urlEncoding|string|否 |
 
 
 
@@ -719,9 +713,9 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|名稱|字串|否 |
-|title|字串|否 |
-|x-ms-permission|字串|否 |
+|名稱|string|否 |
+|title|string|否 |
+|x-ms-permission|string|否 |
 |x-ms-capabilities|沒有定義|否 |
 |結構描述|沒有定義|否 |
 
@@ -765,7 +759,7 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|NotificationUrl|字串|否 |
+|NotificationUrl|string|否 |
 |訊息|沒有定義|否 |
 
 
@@ -775,12 +769,12 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|主旨|字串|是 |
-|選項|字串|是 |
-|內文|字串|否 |
-|重要性|字串|否 |
+|主旨|string|是 |
+|選項|string|是 |
+|內文|string|否 |
+|重要性|string|否 |
 |附件|array|否 |
-|收件人|字串|是 |
+|收件人|string|是 |
 
 
 
@@ -789,10 +783,10 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|id|字串|否 |
-|resource|字串|否 |
-|notificationType|字串|否 |
-|notificationUrl|字串|否 |
+|id|string|否 |
+|resource|string|否 |
+|notificationType|string|否 |
+|notificationUrl|string|否 |
 
 
 
@@ -801,7 +795,7 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|NotificationUrl|字串|否 |
+|NotificationUrl|string|否 |
 |訊息|沒有定義|否 |
 
 
@@ -811,12 +805,12 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|主旨|字串|是 |
-|選項|字串|是 |
-|內文|字串|否 |
-|重要性|字串|否 |
+|主旨|string|是 |
+|選項|string|是 |
+|內文|string|否 |
+|重要性|string|否 |
 |附件|array|否 |
-|收件人|字串|是 |
+|收件人|string|是 |
 
 
 
@@ -825,7 +819,7 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|SelectedOption|字串|否 |
+|SelectedOption|string|否 |
 
 
 
@@ -843,8 +837,8 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|名稱|字串|否 |
-|DisplayName|字串|否 |
+|名稱|string|否 |
+|DisplayName|string|否 |
 
 
 
@@ -853,7 +847,7 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|ItemInternalId|字串|否 |
+|ItemInternalId|string|否 |
 
 
 
@@ -871,7 +865,7 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|ItemInternalId|字串|否 |
+|ItemInternalId|string|否 |
 
 
 
@@ -889,7 +883,7 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|ItemInternalId|字串|否 |
+|ItemInternalId|string|否 |
 
 
 
@@ -907,11 +901,11 @@ Outlook.com 連接器可當成動作使用，它有觸發程序。所有連接�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|名稱|字串|否 |
-|DisplayName|字串|否 |
+|Name|string|否 |
+|DisplayName|string|否 |
 
 
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -1,9 +1,9 @@
 <properties
-   pageTitle="Azure 資源管理員的負載平衡器支援預覽版 | Microsoft Azure"
+   pageTitle="Azure 資源管理員的負載平衡器支援預覽版 | Microsoft Azure "
    description="在預覽中，搭配使用適用於負載平衡器的 PowerShell 與 Azure 資源管理員 (ARM)在負載平衡器中使用範本"
    services="load-balancer"
    documentationCenter="na"
-   authors="joaoma"
+   authors="sdwheeler"
    manager="carmonm"
    editor="tysonn" />
 <tags
@@ -13,10 +13,10 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/17/2016"
-   ms.author="joaoma" />
+   ms.author="sewhee" />
 
 
-# Azure 資源管理員的 Azure 負載平衡器支援 
+# Azure 資源管理員的 Azure 負載平衡器支援
 
 Azure 資源管理員 (ARM) 是 Azure 中新的服務管理架構。Azure 負載平衡器現在可使用以 Azure 資源管理員為基礎的 API 和工具來進行管理。
 
@@ -40,13 +40,14 @@ Azure 資源管理員 (ARM) 是 Azure 中新的服務管理架構。Azure 負載
 
 
 ## 快速入門範本
+
 Azure 資源管理員可讓您使用宣告式範本佈建應用程式。在單一的範本中，您可以部署多個服務及其相依性。您可以使用相同的範本，在應用程式生命週期的每個階段重複部署應用程式
 
 範本包含虛擬機器、虛擬網路、可用性設定組、網路介面 (NIC)、儲存體帳戶、負載平衡器、網路安全性群組和公開 IP。有了範本之後，您可以使用一個可以簽入及共同作業的簡單檔案，來建立複雜應用程式所需的所有項目。
 
 [深入了解範本](http://go.microsoft.com/fwlink/?LinkId=544798)
 
-[深入了解網路資源](../virtual-network/resource-groups-networking)
+[深入了解網路資源](../virtual-network/resource-groups-networking.md)
 
 您可以在 [GitHub 儲存機制](https://github.com/Azure/azure-quickstart-templates) (裝載了一組社群產生的範本) 中找到使用 Azure 負載平衡器的範本
 
@@ -76,4 +77,4 @@ Azure 資源管理員可讓您使用宣告式範本佈建應用程式。在單�
 
 如果您的應用程式需要讓負載平衡器後方的伺服器保持連接狀態，您可以深入了解[負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)。當您使用 Azure 負載平衡器時，該文章可幫助您了解閒置連接行為。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0824_2016-->

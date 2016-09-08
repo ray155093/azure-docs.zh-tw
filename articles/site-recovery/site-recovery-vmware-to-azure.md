@@ -101,7 +101,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 **必要條件** | **詳細資料**
 --- | ---
-**設定伺服器**| 您必須執行 Windows Server 2012 R2 的內部部署實體或虛擬機器。所有內部部署 Site Recovery 元件是安裝在此機器上。<br/><br/>針對 VMware VM 複寫，建議您部署伺服器作為高可用性的 VMware VM。如果您要複寫實體機器，則機器可以是實體伺服器。<br/><br/> 從 Azure 容錯回復到內部部署網站時一律是容錯回復到 VMware VM，無論您是容錯移轉 VM 還是實體伺服器。如果您不將組態伺服器部署為 VMware VM，則必須設定不同的主要目標伺服器作為 VMware VM，以接收容錯回復流量。<br/><br/>如果伺服器是 VMware VM，網路介面卡類型應該是 VMXNET3。如果您使用不同類型的網路介面卡，則必須在 vSphere 5.5 伺服器上安裝 [VMware 更新](https://kb.vmware.com/selfservice/microsites/search.do?cmd=displayKC&docType=kc&externalId=2110245&sliceId=1&docTypeID=DT_KB_1_1&dialogID=26228401&stateId=1)。<br/><br/>伺服器應該要有靜態 IP 位址。<br/><br/>伺服器不應該是網域控制站。<br/><br/>伺服器的主機名稱應該在 15 個字元以內。<br/><br/>應該只有英文版作業系統。<br/><br/> 您必須在組態伺服器上安裝 VMware vSphere PowerCLI 6.0。<br/><br/>組態伺服器需要網際網路存取。需要對外存取權，如下︰<br/><br/>安裝 Site Recovery 元件期間 HTTP 80 上的暫時存取權 (以便下載 MySQL)<br/><br/>HTTPS 443 上的持續對外存取權，用於管理複寫<br/><br/>HTTPS 9443 上的持續對外存取權，用於處理複寫流量 (可以修改此連接埠)<br/><br/>伺服器也需要下列 URL 的存取權，以便連線到 Azure：*.hypervrecoverymanager.windowsazure.com；*.accesscontrol.windows.net；*.backup.windowsazure.com；*.blob.core.windows.net；*.store.core.windows.net<br/><br/>如果您的伺服器上有以 IP 位址為基礎的防火牆規則，請檢查這些規則是否允許對 Azure 進行通訊。您將需要允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)和 HTTPS (443) 通訊協定。<br/><br/>請允許您訂用帳戶之 Azure 區域及美國西部的 IP 位址範圍。<br/><br/>允許此 URL 以進行 MySQL 下載：.http://cdn.mysql.com/archives/mysql-5.5/mysql-5.5.37-win32.msi
+**組態伺服器**| 您必須執行 Windows Server 2012 R2 的內部部署實體或虛擬機器。所有內部部署 Site Recovery 元件是安裝在此機器上。<br/><br/>針對 VMware VM 複寫，建議您部署伺服器作為高可用性的 VMware VM。如果您要複寫實體機器，則機器可以是實體伺服器。<br/><br/> 從 Azure 容錯回復到內部部署網站時一律是容錯回復到 VMware VM，無論您是容錯移轉 VM 還是實體伺服器。如果您不將組態伺服器部署為 VMware VM，則必須設定不同的主要目標伺服器作為 VMware VM，以接收容錯回復流量。<br/><br/>如果伺服器是 VMware VM，網路介面卡類型應該是 VMXNET3。如果您使用不同類型的網路介面卡，則必須在 vSphere 5.5 伺服器上安裝 [VMware 更新](https://kb.vmware.com/selfservice/microsites/search.do?cmd=displayKC&docType=kc&externalId=2110245&sliceId=1&docTypeID=DT_KB_1_1&dialogID=26228401&stateId=1)。<br/><br/>伺服器應該要有靜態 IP 位址。<br/><br/>伺服器不應該是網域控制站。<br/><br/>伺服器的主機名稱應該在 15 個字元以內。<br/><br/>應該只有英文版作業系統。<br/><br/> 您必須在組態伺服器上安裝 VMware vSphere PowerCLI 6.0。<br/><br/>組態伺服器需要網際網路存取。需要對外存取權，如下︰<br/><br/>安裝 Site Recovery 元件期間 HTTP 80 上的暫時存取權 (以便下載 MySQL)<br/><br/>HTTPS 443 上的持續對外存取權，用於管理複寫<br/><br/>HTTPS 9443 上的持續對外存取權，用於處理複寫流量 (可以修改此連接埠)<br/><br/>伺服器也需要下列 URL 的存取權，以便連線到 Azure：*.hypervrecoverymanager.windowsazure.com；*.accesscontrol.windows.net；*.backup.windowsazure.com；*.blob.core.windows.net；*.store.core.windows.net<br/><br/>如果您的伺服器上有以 IP 位址為基礎的防火牆規則，請檢查這些規則是否允許對 Azure 進行通訊。您將需要允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)和 HTTPS (443) 通訊協定。<br/><br/>請允許您訂用帳戶之 Azure 區域及美國西部的 IP 位址範圍。<br/><br/>允許此 URL 以進行 MySQL 下載：.http://cdn.mysql.com/archives/mysql-5.5/mysql-5.5.37-win32.msi
 
 
 ## VMware vCenter/vSphere 主機必要條件
@@ -407,7 +407,7 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 **元件** | **詳細資料**
 --- | --- | ---
 **複寫** | **每日變更率上限** - 受保護的機器只能使用一部處理序伺服器，而且單一處理序伺服器可處理的每日變更率最多為 2 TB。因此 2 TB 是針對受保護機器支援的每日資料變更率上限。<br/><br/> **最大輸送量** - 複寫的機器可以屬於 Azure 中的一個儲存體帳戶。標準儲存體帳戶每秒可處理最多 20000 個要求，建議您將來源機器的 IOPS 數保持為 20000。例如，如果您有一部具備 5 個磁碟的來源機器，並且在來源上的每個磁碟會產生 120 個 IOP (8K 大小)，則它會在 Azure 每個磁碟 IOPS 限制 500 之內。儲存體帳戶所需的數目 = 來源 IOP 總計/20000。
-**設定伺服器** | 組態伺服器應該要能夠處理在受保護機器上執行之所有工作負載的每日變更率容量，因此需要足夠頻寬以持續地將資料複寫到 Azure 儲存體。<br/><br/> 我們建議的最佳做法是組態伺服器與您想要保護的機器位於相同網路與 LAN 區段上。它可以位於不同的網路，但是您想要保護的機器應該具有 L3 網路可見性。<br/><br/> 下表摘要說明組態伺服器的大小建議。
+**組態伺服器** | 組態伺服器應該要能夠處理在受保護機器上執行之所有工作負載的每日變更率容量，因此需要足夠頻寬以持續地將資料複寫到 Azure 儲存體。<br/><br/> 我們建議的最佳做法是組態伺服器與您想要保護的機器位於相同網路與 LAN 區段上。它可以位於不同的網路，但是您想要保護的機器應該具有 L3 網路可見性。<br/><br/> 下表摘要說明組態伺服器的大小建議。
 **處理序伺服器** | 組態伺服器上會安裝第一部處理序伺服器。您可以部署額外的處理序伺服器來調整您的環境。注意：<br/><br/>處理序伺服器會從受保護的機器接收複寫資料，然後以快取、壓縮及加密將資料最佳化之後，才傳送給 Azure。處理序伺服器機器應該要有足夠的資源來執行這些工作。<br/><br/> 處理序伺服器使用磁碟快取。我們建議每個快取磁碟有 600 GB 以上的空間，以處理發生網路瓶頸或中斷時儲存的資料變更。
 
 ### 組態伺服器的大小建議
@@ -438,7 +438,7 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 - 您已設定受保護的虛擬機器，以使用額外的處理序伺服器。
 - 每個受保護的來源機器已設定各 100 GB 的 3 個磁碟。
 
-**設定伺服器** | **額外處理序伺服器**| **快取磁碟大小** | **資料變更率** | **受保護的機器**
+**組態伺服器** | **額外處理序伺服器**| **快取磁碟大小** | **資料變更率** | **受保護的機器**
 --- | --- | --- | --- | ---
 8 個 vCPU (2 個通訊端 * 四核心 @ 2.5GHz)，16 GB 記憶體 | 4 個 vCPU (2 個通訊端 * 雙核心 @ 2.5GHz)，8 GB 記憶體 | 300 GB | 250 GB 或更少 | 複寫 85 部或更少的機器。
 8 個 vCPU (2 個通訊端 * 四核心 @ 2.5GHz)，16 GB 記憶體 | 8 個 vCPU (2 個通訊端 * 四核心 @ 2.5GHz)，12 GB 記憶體 | 600 GB | 250 GB 至 1 TB | 複寫 85-150 部機器。
@@ -563,7 +563,7 @@ Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.
 
 	![行動服務](./media/site-recovery-vmware-to-azure/mobility3.png)
 
-3. 在 [組態伺服器詳細資料] 中，指定組態伺服器的 IP 位址，以及您執行「統一安裝」時所產生的複雜密碼。您可以在組態伺服器上執行下列命令來取得複雜密碼：**<SiteRecoveryInstallationFolder>\\home\\sysystems\\bin\\genpassphrase.exe –n**。
+3. 在 [組態伺服器詳細資料] 中，指定組態伺服器的 IP 位址，以及您執行「統一安裝」時所產生的複雜密碼。您可以在組態伺服器上執行下列命令來取得複雜密碼：**<SiteRecoveryInstallationFolder>\\home\\sysystems\\bin\\genpassphrase.exe –v**。
 
 	![行動服務](./media/site-recovery-vmware-to-azure/mobility6.png)
 
@@ -580,6 +580,14 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 - /InstallLocation：必要。指定安裝服務的位置。
 - /PassphraseFilePath：必要。組態伺服器複雜密碼。
 - /LogFilePath：必要。記錄安裝檔案位置。
+
+#### 手動針對行動服務進行解除安裝
+
+行動服務可以透過使用 [控制台] 中的 [新增或移除程式]，或是使用命令列來進行解除安裝。
+
+使用命令列針對行動服務進行解除安裝的命令是
+
+	MsiExec.exe /qn /x {275197FC-14FD-4560-A5EB-38217F80CBD1}
 
 
 #### 在 Linux 伺服器上手動安裝：
@@ -851,4 +859,4 @@ The information in Section B is regarding Third Party Code components that are b
 
 The complete file may be found on the [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428).Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

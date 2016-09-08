@@ -13,26 +13,37 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/05/2016"
+   ms.date="08/22/2016"
    ms.author="hascipio" />
 
 # 如何在 Azure Marketplace 中發佈和管理供應項目
 此文章可協助開發人員建立解決方案、部署並管理他們在 Azure Marketplace 中列出的解決方案，讓其他的 Azure 客戶和合作夥伴可進行購買及利用。
 
-首先，您需要以發行者的身分，定義您的公司提供的解決方案類型。Azure Marketplace 支援多種解決方案，您必須為每個解決方案進行略為不同的工作，才能成功發佈到 Marketplace。
+## 什麼是 Azure Marketplace？
+Azure 的訂閱者可以在 Azure Marketplace 找到服務，用來協助他們開發內部部署或雲端型解決方案和應用程式。然後使用 [Azure 認證](http://azure.com/certified)的服務當做建置組塊，快速開發用於企業營運和其他 Azure 訂用帳戶的創新應用程式或服務。
 
-## 供應項目類型
-|供應項目類型| 定義 |
-|---|---|
-|虛擬機器映像 | 預先配置的虛擬機器 (VM) 映像，包含完整安裝的作業系統以及一或多個應用程式。虛擬機器映像供應項目包含單一 VM 映像或是由解決方案範本繫結在一起的多個 VM 映像。虛擬機器映像 (「映像」) 提供在 Azure 虛擬機器服務中建立及部署虛擬機器所需的資訊。「映像」是由作業系統虛擬硬碟和零或多個資料磁碟虛擬硬碟組成。客戶可以從單一「映像」部署一些虛擬機器。|
-|開發人員服務| 完全管理的服務，由資訊工作者、商業分析師、開發人員或 IT 專家用於客戶應用程式開發或系統管理。開發人員服務提供可讓客戶在 Azure 上快速部署雲端規模應程式的功能。客戶必須有 Azure 訂用帳戶才能購買開發人員服務。如「Microsoft Azure Marketplace 發行者合約」所述，發行者負責計量客戶的開發人員服務使用量以及向 Microsoft 報告使用量資訊。|
-|解決方案範本|可參考一個或多個獨特供應項目的「Azure Resource Manager (ARM) 解決方案範本」，包括發行者發行的供應項目在內，讓 Azure 客戶能夠以單一、協調的方式部署一或多個供應項目。|
+身為 Azure 的發佈者，Azure Marketplace 可讓您發佈及販售創新解決方案或服務給其他想要快速開發其雲端應用程式和行動解決方案的開發者、ISV、IT 專業人員。
+
+## 支援的供應項目類型
+首先，您需要以發行者的身分，定義您的公司提供的解決方案類型。Azure Marketplace 支援三種供應項目：
+
+- **虛擬機器映像**是預先配置的映像，包含完整安裝的作業系統以及一或多個應用程式。虛擬機器映像提供在 Azure 虛擬機器服務中建立及部署虛擬機器所需的資訊。
+
+    >[AZURE.NOTE] **例如**，身為 Azure 的發佈者，您已建立並驗證帶有創新資料庫服務的 VM，此 VM 令人讚賞，使其他 Azure 訂戶願意購買此 VM 並部署至其雲端服務環境。
+
+- **開發人員服務**是用於應用程式開發或系統管理、完全受管理的服務。它們提供的功能使得 Azure 上雲端規模的應用程式得以快速開發。
+
+    >[AZURE.NOTE] **例如**，身為 Azure 的發佈者，您已開發可根據歷史資料提供預測的 API 存取服務 (裝載於 Azure 或其他位置)。而且這個服務是其他建立解決方案的 Azure 訂閱者人員可能想要使用的服務。您可以將此服務部署至 Azure Marketplace 供其他人尋找、購買，並用在其各自的服務中。
+
+- **解決方案範本**是可參考一個或多個獨特 Azure 服務的資料結構 (包含由其他賣家發佈的服務)，讓 Azure 訂戶能以單一、協調的方式部署一或多個供應項目。
+
+    >[AZURE.NOTE] **例如**，身為 Azure 的發佈者，您組合了 Azure 上的幾個服務，只需按幾下滑鼠便可以更快速地部署安全、高可用性且負載平衡的雲端服務。其他 Azure 訂戶發現這個解決方案範本的價值，能夠為他們節省時間，不必手動識別和設定相同或類似的 Azure 服務。
 
 不同類型的解決方案之間有一些相同的步驟。本文提供簡短的概觀，讓您了解每種類型的解決方案必須完成哪些步驟。
 
 ## 1\.必要條件
 
-> [AZURE.NOTE] 開始在 Azure Marketplace 上進行任何工作之前，必須取得預先核准。這不適用於資料服務發佈者。
+> [AZURE.NOTE] 開始在 Azure Marketplace 上進行任何工作之前，必須先通過核准 ([預先核准](http://azure.com/certified))。
 
 1. [適用於 Microsoft Azure 認證的預先核准](marketplace-publishing-azure-certification.md)
 2. [建立與註冊 Microsoft 開發人員帳戶](marketplace-publishing-accounts-creation-registration.md)
@@ -68,7 +79,15 @@
 ## 3\.供應項目的後期發佈管理
 - [虛擬機器優惠的後期製作指南](marketplace-publishing-vm-image-post-publishing.md)
 - [如何更新優惠或 SKU 的非技術性詳細資料](marketplace-publishing-vm-image-post-publishing.md#2-how-to-update-the-non-technical-details-of-an-offer-or-a-sku)
-- [如何從 Azure Marketplace 刪除供應項目或 SKU](marketplace-publishing-vm-image-post-publishing.md#4-how-to-delete-a-live-offer-or-sku-from-the-azure-marketplace)
+- [如何更新供應項目或 SKU 的技術性詳細資料](marketplace-publishing-vm-image-post-publishing.md#1-how-to-update-the-technical-details-of-a-sku)
+- [如何在已列出的供應項目下新增 SKU](marketplace-publishing-vm-image-post-publishing.md#3-how-to-add-a-new-sku-under-a-listed-offer)
+- [如何變更已列出 SKU 的資料磁碟計數](marketplace-publishing-vm-image-post-publishing.md#4-how-to-change-the-data-disk-count-for-a-listed-sku)
+- [如何從 Azure Marketplace 刪除已列出的供應項目](marketplace-publishing-vm-image-post-publishing.md#5-how-to-delete-a-listed-offer-from-the-azure-marketplace)
+- [如何從 Azure Marketplace 刪除已列出的 SKU](marketplace-publishing-vm-image-post-publishing.md#6-how-to-delete-a-listed-sku-from-the-azure-marketplace)
+- [如何從 Azure Marketplace 刪除已列出的 SKU 目前的版本](marketplace-publishing-vm-image-post-publishing.md#7-how-to-delete-the-current-version-of-a-listed-sku-from-the-azure-marketplace)
+- [如何將列出價格還原成生產環境值](marketplace-publishing-vm-image-post-publishing.md#8-how-to-revert-listing-price-to-production-values)
+- [如何將計費模式還原成生產環境值](marketplace-publishing-vm-image-post-publishing.md#9-how-to-revert-billing-model-to-production-values)
+- [如何將已列出的 SKU 的可見性設定還原成生產環境值](marketplace-publishing-vm-image-post-publishing.md#10-how-to-revert-visibility-setting-of-a-listed-sku-to-the-production-value)
 - [如何變更雲端解決方案提供者轉售商獎勵](marketplace-publishing-csp-incentive.md)
 - [了解賣方 Insights 報告](marketplace-publishing-report-seller-insights.md)
 - [了解付款報告](marketplace-publishing-report-payout.md)
@@ -77,4 +96,4 @@
 ## 其他資源
 - [設定 Azure PowerShell](marketplace-publishing-powershell-setup.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0824_2016-->

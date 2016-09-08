@@ -44,10 +44,13 @@
 - EDI - 電子資料交換
 - EAI - 企業應用程式整合
 
-## 以下是您需要立即開始進行的事項
+## 若要開始，您需要：
 - 具有整合帳戶的 Azure 訂用帳戶
 - 可建立對應和結構描述的 Visual Studio 2015
 - [Visual Studio 2015 2.0 適用的 Microsoft Azure Logic Apps 企業整合工具](https://aka.ms/vsmapsandschemas)
+
+## 親身體驗
+何不嘗試看看。按一下[這裡](https://github.com/Azure/azure-quickstart-templates/tree/master/201-logic-app-as2-send-receive)，使用 Logic Apps 的 B2B 功能部署您自己的全功能 AS2 傳送與接收邏輯應用程式。
 
 ## 深入了解：
 - [合約](./app-service-logic-enterprise-integration-agreements.md "了解企業整合合約")
@@ -61,4 +64,4 @@
 - [XML 訊息驗證](./app-service-logic-enterprise-integration-xml.md "了解如何使用 Logic Apps 驗證 XML 訊息")
 - [XML 轉換](./app-service-logic-enterprise-integration-transform.md "了解企業整合對應")
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

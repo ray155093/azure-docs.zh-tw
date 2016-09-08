@@ -1,5 +1,5 @@
 <properties
-   pageTitle="URL 型內容路由概觀 |Microsoft Azure"
+   pageTitle="URL 型內容路由概觀 | Microsoft Azure"
    description="此頁面提供應用程式閘道 URL 型內容路由、UrlPathMap 組態和 PathBasedRouting 規則的概觀。"
    documentationCenter="na"
    services="application-gateway"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="04/05/2016"
+   ms.date="08/18/2016"
    ms.author="gwallace"/>
 
 # URL 路徑型路由概觀
@@ -21,11 +21,11 @@ URL 路徑型路由可讓您根據要求的 URL 路徑，將流量路由傳送�
 
 ![imageURLroute](./media/application-gateway-url-route-overview/figure1.png)
 
-對於 http://contoso.com/video* 的要求將會路由傳送至 VideoServerPool，而 http://contoso.com/images* 將會路由傳送至 ImageServerPool。如果沒有任何路徑模式相符，則會選取 DefaultServerPool。
+對於 http://contoso.com/video* 的要求會路由傳送至 VideoServerPool，而 http://contoso.com/images* 會路由傳送至 ImageServerPool。如果沒有任何路徑模式相符，則會選取 DefaultServerPool。
 
 ## UrlPathMap 組態元素
 
-UrlPathMap 元素是用來指定與後端伺服器集區對應的路徑模式。這是範本檔案中 urlPathMap 元素的程式碼片段。
+UrlPathMap 元素是用來指定與後端伺服器集區對應的路徑模式。以下是範本檔案中 urlPathMap 元素的程式碼片段。
 
 	"urlPathMaps": [
 	{
@@ -58,9 +58,9 @@ UrlPathMap 元素是用來指定與後端伺服器集區對應的路徑模式。
 	}
 	
 
->[AZURE.NOTE] PathPattern：這是要比對的路徑模式清單。每個都必須以 / 開始，而且唯一允許出現 * 的地方是緊接在 '/' 之後的結尾處。傳送給路徑比對器的字串未在第一個 ? 或 # 之後包含任何文字，而這些字元在此處是不允許的。
+>[AZURE.NOTE] PathPattern：此設定是要比對的路徑模式清單。每個都必須以 / 開始，而且唯一允許出現 "*" 的地方是緊接在 "/" 之後的結尾處。傳送給路徑比對器的字串未在第一個 ? 或 # 之後包含任何文字，而這些字元在此處是不允許的。
 
-如需詳細資訊，您可以查看[使用 URL 型路由的 ARM 範本](https://azure.microsoft.com/documentation/templates/201-application-gateway-url-path-based-routing)。
+如需詳細資訊，您可以查看[使用 URL 型路由的 Resource Manager 範本](https://azure.microsoft.com/documentation/templates/201-application-gateway-url-path-based-routing)。
 
 ## PathBasedRouting 規則
 
@@ -84,6 +84,6 @@ UrlPathMap 元素是用來指定與後端伺服器集區對應的路徑模式。
 	
 ## 後續步驟 
 
-了解 URL 型內容路由之後，請移至[使用 URL 型路由建立應用程式閘道](application-gateway-create-url-route-arm-ps.md)，利用 URL 路由規則來建立應用程式閘道。
+了解 URL 型內容路由之後，請移至[使用 URL 型路由建立應用程式閘道](application-gateway-create-url-route-portal.md)，利用 URL 路由規則來建立應用程式閘道。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

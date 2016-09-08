@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/27/2016" 
+	ms.date="08/18/2016" 
 	ms.author="spelluru"/>
 
 # SQL Server 預存程序活動
@@ -52,10 +52,10 @@
 名稱 | 活動的名稱 | 是
 說明 | 說明活動用途的文字 | 否
 類型 | SqlServerStoredProcedure | 是
-輸入 | 輸入資料集必須可供使用 (「就緒」狀態)，才能執行預存程序活動。將預存程序活動與其他活動鏈結時，此活動的輸入僅用於相依性管理。在預存程序中輸入資料集無法做為參數取用 | 否
-輸出 | 預存程序活動產生的輸出資料集。請確定輸出資料表會使用連結的服務，該服務將 Azure SQL Database 或 Azure SQL 資料倉儲或 SQL Server 資料庫連結至 Data Factory。預存程序活動中的輸出，可以做為傳遞預存程序活動結果的方式，以進行後續的處理，及/或在此活動與其他活動鏈結時，用於相依性管理 | 是
+輸入 | 選用。如果您有指定輸入資料集，它必須可供使用 (「就緒」狀態)，預存程序活動才能執行。在預存程序中輸入資料集無法做為參數取用。它只會用來在啟動預存程序活動之前檢查相依性。 | 否
+輸出 | 您必須指定預存程序活動的輸出資料集。輸出資料集會指定預存程序活動的**排程** (每小時、每週、每月等)。<br/><br/>輸出資料集必須使用參考了想在其中執行預存程序之 Azure SQL Database、Azure SQL 資料倉儲或 SQL Server Database 的**連結服務**。<br/><br/>輸出資料集可以做為傳遞預存程序結果，以供管線中的另一個活動 ([鏈結活動](data-factory-scheduling-and-execution.md#chaining-activities)) 進行後續處理的方式。不過，Data Factory 不會自動將預存程序的輸出寫入至此資料集。它是會寫入至輸出資料集所指向之 SQL 資料表的預存程序。<br/><br/>在某些情況下，輸出資料集可以是**虛擬資料集**，只會用來指定用於執行預存程序活動的排程。 | 是
 storedProcedureName | 指定 Azure SQL Database 或 Azure SQL 資料倉儲中預存程序的名稱，由輸出資料表使用的連結的服務代表。 | 是
-storedProcedureParameters | 指定預存程序參數的值 | 否
+storedProcedureParameters | 指定預存程序參數的值。如果您要為參數傳遞 null，請使用語法："param1": null (全部小寫)。請參閱下列範例以了解如何使用這個屬性。| 否
 
 ## 範例逐步解說
 
@@ -95,7 +95,7 @@ storedProcedureParameters | 指定預存程序參數的值 | 否
 	2.	按一下 [建立] 刀鋒視窗中的 [資料分析]。
 	3.	按一下 [資料分析] 刀鋒視窗上的 [Data Factory]。
 4.	在 [新增 Data Factory] 刀鋒視窗中，輸入 **LogProcessingFactory** 做為 [名稱]。Azure Data Factory 名稱必須是全域唯一的。您必須在 Data Factory 的名稱前面加上您的名稱，才能成功建立 Factory。
-3.	如果您尚未建立任何資源群組，您必須建立資源群組。作法：
+3.	如果您尚未建立任何資源群組，您必須建立資源群組。
 	1.	按一下 [資源群組名稱]。
 	2.	在 [資源群組] 刀鋒視窗中，選取 [建立新的資源群組]。
 	3.	在 [建立資源群組] 刀鋒視窗中，輸入 **ADFTutorialResourceGroup** 做為 [名稱]。
@@ -105,9 +105,9 @@ storedProcedureParameters | 指定預存程序參數的值 | 否
 6.	您會看到 Data Factory 建立在 Azure 入口網站的 [開始面板] 中。在 Data Factory 成功建立後，您會看到 Data Factory 頁面，顯示 Data Factory 的內容。
 
 ### 建立 Azure SQL 連結服務  
-建立 Data Factory 之後，您可以建立 Azure SQL 連結的服務，將 Azure SQL Database 連結到 Data Factory。這是包含 sampletable 資料表和 sp\_sample 預存程序的資料庫。
+建立 Data Factory 之後，您可以建立 Azure SQL 連結的服務，將 Azure SQL Database 連結到 Data Factory。此資料庫包含 sampletable 資料表和 sp\_sample 預存程序。
 
-7.	在適用於 **SProcDF** 的 [DATA FACTORY] 刀鋒視窗中，按一下 [製作和部署]。這會啟動 Data Factory 編輯器。
+7.	在 **SProcDF** 的 [DATA FACTORY] 刀鋒視窗上，按一下 [製作和部署] 來啟動 Data Factory 編輯器。
 2.	在命令列上按一下 [新增資料儲存區]，然後選擇 [Azure SQL]。您應該會在編輯器中看到用來建立 Azure SQL 連結服務的 JSON 指令碼。
 4. 使用您的 Azure SQL Database 伺服器名稱來取代 **servername**、使用您在其中建立資料表和預存程序的資料庫來取代 **databasename**、使用有權存取資料庫的使用者帳戶來取代 **username@servername**，以及使用該使用者帳戶的密碼來取代 **password**。
 5. 按一下命令列的 [部署]，部署連結服務。
@@ -162,25 +162,27 @@ storedProcedureParameters | 指定預存程序參數的值 | 否
 		                "name": "SprocActivitySample"
 		            }
 		        ],
-		        "start": "2015-01-02T00:00:00Z",
-		        "end": "2015-01-03T00:00:00Z",
+         		"start": "2016-08-02T00:00:00Z",
+         		"end": "2016-08-02T05:00:00Z",
 		        "isPaused": false
 		    }
 		}
+
+	如果您要為參數傳遞 null，請使用語法："param1": null (全部小寫)。
 9. 按一下工具列上的 [部署] 來部署管線。
 
 ### 監視管線
 
-6. 按一下 **X** 以關閉 [Data Factory 編輯器] 刀鋒視窗、瀏覽回到 [Data Factory] 刀鋒視窗，然後按一下 [圖表]。
+6. 按一下 **X** 以關閉 [Data Factory 編輯器] 刀鋒視窗、瀏覽回 [Data Factory] 刀鋒視窗，然後按一下 [圖表]。
 7. 在 [圖表檢視] 中，您會看到管線的概觀，以及在本教學課程中使用的資料集。
-8. 在 [圖表檢視] 中，按兩下 **sprocsampleout** 資料集。您將會看到就緒狀態的配量。由於配量是針對 2015/01/02 和 2015/01/03 之間的每一個小時所產生，因此，應該會有 24 個配量。
-10. 當配量處於**就緒**狀態時，請根據 Azure SQL Database 執行 **select from sampledata** 查詢，以驗證預存程序已將資料插入資料表。
+8. 在 [圖表檢視] 中，按兩下 **sprocsampleout** 資料集。您會看到就緒狀態的配量。由於配量是針對 JSON 的開始時間和結束時間之間的每一個小時所產生，因此，應該會有 5 個配量。
+10. 當配量處於**就緒**狀態時，請根據 Azure SQL Database 執行 *select from sampletable** 查詢，以驗證預存程序已將資料插入資料表。
 
 	![輸出資料](./media/data-factory-stored-proc-activity/output.png)
 
 	如需監視 Azure Data Factory 管線的詳細資訊，請參閱[監視管線](data-factory-monitor-manage-pipelines.md) 。
 
-> [AZURE.NOTE] 在上述範例中，SprocActivitySample 沒有輸入。如果您想要鏈結此活動與活動上游 (例如預先處理)，可以使用上游活動的輸出做為此活動的輸入。在此情況下，上游活動完成且能使用上游活動的輸出 (處於就緒狀態) 之前，此活動不會執行。輸入無法直接做為預存程序活動的參數使用。
+> [AZURE.NOTE] 在上述範例中，SprocActivitySample 沒有輸入。如果您想要鏈結此活動與活動上游 (亦即預先處理)，可以使用上游活動的輸出做為此活動的輸入。在此情況下，上游活動完成且能使用上游活動的輸出 (處於就緒狀態) 之前，此活動不會執行。輸入無法直接做為預存程序活動的參數使用。
 
 ## 傳遞靜態值 
 現在我們來考量在包含稱為「文件範例」的靜態值的資料表中，新增另一個名為「案例」的資料行。
@@ -196,7 +198,7 @@ storedProcedureParameters | 指定預存程序參數的值 | 否
 	    VALUES (newid(), @DateTime, @Scenario)
 	END
 
-若要這麼做，從預存程序活動傳遞「案例」參數和值。在上述範例中，typeproperties 區段如下：
+現在，從預存程序活動傳遞「案例」參數和值。在上述範例中，typeproperties 區段看起來像下列程式碼片段：
 
 	"typeProperties":
 	{
@@ -208,4 +210,4 @@ storedProcedureParameters | 指定預存程序參數的值 | 否
 		}
 	}
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0824_2016-->

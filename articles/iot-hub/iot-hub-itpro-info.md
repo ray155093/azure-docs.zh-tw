@@ -32,11 +32,11 @@
 | MQTT | 8883 |
 | LWM2M (裝置管理) | 5684 |
 
-當您在 Azure 區域中建立 IoT 中樞後，中樞將在該中樞的存留期間，保留相同的 IP 位址。不過，為了維護服務品質，如果 Microsoft 將 IoT 中樞移至不同的縮放單位，則它會獲派新的 IP 位址。
+當您在 Azure 區域中建立 IoT 中樞後，中樞將在該中樞的存留期間保留相同的 IP 位址。不過，為了維護服務品質，如果 Microsoft 將 IoT 中樞移至不同的縮放單位，則它會獲派新的 IP 位址。
 
 ## IoT 中樞和安全性
 
-只有向 IoT 中樞註冊的裝置可與該 IoT 中樞進行通訊。已註冊的裝置必須獲得 *DeviceConnect* 權限。裝置會藉由包含權杖 (其會封裝其建立之每個要求中的裝置唯一識別碼) 來識別其本身，且中心會檢查權杖的有效性，以及裝置是否未列入黑名單 (*DeviceConnect* 權限已撤銷)。如需 IoT 中樞所支援權杖的相關資訊，請參閱[使用 IoT 中樞安全性權杖和 X.509 憑證][lnk-tokens]
+只有向 IoT 中樞註冊的裝置可與該 IoT 中樞進行通訊。已註冊的裝置必須獲得 *DeviceConnect* 權限。裝置會在它發出的每個要求中加入封裝了裝置唯一識別碼的權杖，藉此識別它自己。然後中樞會檢查該權杖的有效性，以及裝置是否在拒絕 (*DeviceConnect* 權限被撤銷) 的清單上。如需 IoT 中樞所支援權杖的相關資訊，請參閱[使用 IoT 中樞安全性權杖和 X.509 憑證][lnk-tokens]
 
 IoT 中樞內對其他管理端點的存取權，也是透過一組權限來控制：*iothubowner*、*service*、*registryRead* 和 *registryReadWrite*。連接到 IoT 中樞的所有用戶端管理應用程式，都必須包含具有適當權限的權杖。
 
@@ -59,4 +59,4 @@ IoT 中樞內對其他管理端點的存取權，也是透過一組權限來控�
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-tokens]: iot-hub-sas-tokens.md
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

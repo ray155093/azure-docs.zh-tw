@@ -12,15 +12,16 @@
    ms.topic="article" 
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="07/19/2016"
+   ms.date="08/18/2016"
    ms.author="cherylmc"/>
 
 # ExpressRoute 工作流程線路佈建和線路狀態
+
 這個頁面以高階觀點引導您完成服務佈建和路由設定的工作流程。
 
 ![](./media/expressroute-workflows/expressroute-circuit-workflow.png)
 
-上圖和以下對應的步驟顯示佈建端對端 ExpressRoute 線路所必須執行的工作。
+下圖和對應的步驟顯示佈建端對端 ExpressRoute 線路所必須執行的工作。
 
 1. 使用 PowerShell 來設定 ExpressRoute 線路。如需更多詳細資料，請依照[建立 ExpressRoute 線路](expressroute-howto-circuit-classic.md)一文中的指示進行。
 
@@ -36,7 +37,8 @@
 	
 	>[AZURE.IMPORTANT] 必須確定您使用個別的 Proxy / 邊緣來連接到 Microsoft，而不是您用於網際網路的 Proxy / 邊緣。ExpressRoute 和網際網路使用相同的邊緣會導致路由不對稱，並造成網路連線中斷。
 
-	![](./media/expressroute-workflows/expressroute-routing-workflow.png)
+	![](./media/expressroute-workflows/routing-workflow.png)
+
 
 5. 將虛擬網路連結到 ExpressRoute 線路 - 您可以將虛擬網路連結到 ExpressRoute 線路。請依照指示[連結 VNet](expressroute-howto-linkvnet-arm.md) 到您的線路。這些 VNet 可以與 ExpressRoute 線路位於相同的 Azure 訂用帳戶中，也可以在不同的訂用帳戶中。
 
@@ -46,7 +48,7 @@
 每個 ExpressRoute 線路有兩種狀態：
 
 - 服務提供者佈建狀態
-- Status
+- 狀態
 
 Status 代表 Microsoft 的佈建狀態。這個屬性可能是下列其中一種狀態：*Enabled*、*Enabling* 或 *Disabling*。ExpressRoute 線路必須處於 Enabled 狀態，才可供您使用。
 
@@ -58,7 +60,7 @@ Status 代表 Microsoft 的佈建狀態。這個屬性可能是下列其中一�
 
 #### 在建立時
 
-執行 PowerShell Cmdlet 建立 ExpressRoute 線路後，您很快就會看到 ExpressRoute 線路處於以下所述的狀態。
+執行 PowerShell Cmdlet 建立 ExpressRoute 線路後，您很快就會看到 ExpressRoute 線路處於下列狀態。
 
 	ServiceProviderProvisioningState : NotProvisioned
 	Status                           : Enabled
@@ -66,7 +68,7 @@ Status 代表 Microsoft 的佈建狀態。這個屬性可能是下列其中一�
 
 #### 當連線提供者正在佈建線路時
 
-當您將服務金鑰傳遞給連線提供者且他們也啟動佈建程序時，您快很就會看到 ExpressRoute 線路處於以下所述的狀態。
+當您將服務金鑰傳遞給連線提供者且他們也啟動佈建程序時，您快很就會看到 ExpressRoute 線路處於下列狀態。
 
 	ServiceProviderProvisioningState : Provisioning
 	Status                           : Enabled
@@ -74,7 +76,7 @@ Status 代表 Microsoft 的佈建狀態。這個屬性可能是下列其中一�
 
 #### 當連線提供者完成佈建程序時
 
-當連線提供者完成佈建程序後，您快很就會看到 ExpressRoute 線路處於以下所述的狀態。
+當連線提供者完成佈建程序後，您快很就會看到 ExpressRoute 線路處於下列狀態。
 
 	ServiceProviderProvisioningState : Provisioned
 	Status                           : Enabled
@@ -83,7 +85,7 @@ Status 代表 Microsoft 的佈建狀態。這個屬性可能是下列其中一�
 
 #### 如果先在 Microsoft 端起始取消佈建
 
-執行 PowerShell Cmdlet 刪除 ExpressRoute 線路後，您很快就會看到 ExpressRoute 線路處於以下所述的狀態。
+執行 PowerShell Cmdlet 刪除 ExpressRoute 線路後，您很快就會看到 ExpressRoute 線路處於下列狀態。
 
 	ServiceProviderProvisioningState : Provisioned
 	Status                           : Disabling
@@ -92,7 +94,7 @@ Status 代表 Microsoft 的佈建狀態。這個屬性可能是下列其中一�
 
 #### 如果在服務提供者那端起始取消佈建
 
-如果您要求服務提供者先取消佈建 ExpressRoute 線路，當服務提供者完成取消佈建程序後，您會看到線路設定為以下所述的狀態。
+如果您要求服務提供者先取消佈建 ExpressRoute 線路，當服務提供者完成取消佈建程序後，您會看到線路設定為下列狀態。
 
 
 	ServiceProviderProvisioningState : NotProvisioned
@@ -120,4 +122,4 @@ BGP 佈建狀態可讓您知道 Microsoft 邊緣是否已啟用 BGP 工作階段
 	- [設定路由](expressroute-howto-routing-arm.md)
 	- [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

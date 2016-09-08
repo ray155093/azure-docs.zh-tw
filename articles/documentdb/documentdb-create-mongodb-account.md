@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/31/2016" 
+	ms.date="08/23/2016" 
 	ms.author="stbaro"/>
 
 # 如何使用 Azure 入口網站，建立具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶
@@ -78,4 +78,4 @@
 
  
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

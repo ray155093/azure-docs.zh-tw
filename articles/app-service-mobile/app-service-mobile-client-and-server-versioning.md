@@ -13,7 +13,7 @@
   ms.tgt_pltfrm="mobile-multiple"
   ms.devlang="dotnet"
   ms.topic="article"
-  ms.date="05/10/2016"
+  ms.date="08/22/2016"
   ms.author="donnam"/>
 
 # Mobile Apps 和行動服務中的用戶端和伺服器版本控制
@@ -79,8 +79,8 @@ POST https://service.azurewebsites.net/tables/TodoItem?ZUMO-API-VERSION=2.0.0
 
 | 伺服器平台 | 版本 | 接受的版本標頭 |
 | ---------------- | ------------------------------------------------------------                                                   | ----------------------- |
-| .NET | [WindowsAzure.MobileServices.Backend.* 版本 1.0.x](https://www.nuget.org/packages/WindowsAzure.MobileServices.Backend/) | **沒有版本標頭** | 
-|Node.js | (即將推出) | **沒有版本標頭** |
+| .NET | [WindowsAzure.MobileServices.Backend.* 版本 1.0.x](https://www.nuget.org/packages/WindowsAzure.MobileServices.Backend/) | **無版本標頭** |
+| Node.js | (敬請期待) | **無版本標頭** |
 
 <!-- TODO: add Node npm version -->
 
@@ -138,4 +138,4 @@ POST https://service.azurewebsites.net/tables/TodoItem?ZUMO-API-VERSION=2.0.0
 [Mobile App Server SDK]: http://www.nuget.org/packages/microsoft.azure.mobile.server
 [將行動服務移轉至 Azure App Service]: app-service-mobile-migrating-from-mobile-services.md
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0824_2016-->

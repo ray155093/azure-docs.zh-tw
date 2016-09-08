@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="05/05/2016"
+	ms.date="08/22/2016"
 	ms.author="mahender"/>
 
 # Azure Mobile Apps 中的驗證與授權
@@ -56,7 +56,7 @@ App Service 會使用同盟身分識別，第 3 方**身分識別提供者** ("I
 
 ### 不使用提供者 SDK 進行驗證的運作方式
 
-如果您不想設定提供者 SDK，則可允許 Mobile Apps 來為您執行登入。Mobile Apps 用戶端 SDK 將為您選擇的提供者開啟網頁檢視，然後完成登入。您有時會在部落格和論壇上看到這稱為「伺服器流程」或「伺服器導向的流程」，因為伺服器正在管理登入，而用戶端 SDK 永遠都不會收到提供者權杖。
+如果您不想設定提供者 SDK，則可允許 Mobile Apps 來為您執行登入。Mobile Apps 用戶端 SDK 將為您選擇的提供者開啟網頁檢視，然後完成登入。您有時會在部落格和論壇上看到這稱為「伺服器流程」或「伺服器導向流程」。因為伺服器正在管理登入，而用戶端 SDK 永遠都不會收到提供者權杖。
 
 啟動此流程所需的程式碼會包含於適用於每個平台的驗證教學課程中。在流程結束時，用戶端 SDK 會擁有一個 App Service 權杖，而該權杖會自動附加至對後端的所有要求。
 
@@ -104,4 +104,4 @@ App Service 驗證 / 授權會公開**未驗證要求時要採取的動作**的�
 [如何設定 App 以使用 Microsoft 帳戶登入]: app-service-mobile-how-to-configure-microsoft-authentication.md
 [如何設定 App 以使用 Twitter 登入]: app-service-mobile-how-to-configure-twitter-authentication.md
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="multiple"
-   ms.date="06/08/2016"
+   ms.date="08/18/2016"
    ms.author="allclark" />
 
 # 疑難排解 Visual Studio Docker 開發
@@ -21,7 +21,7 @@
 
 ##無法設定 Program.cs 進行 Docker 支援
 
-新增 Docker 支援時，必須將 `.UseUrls(Environment.GetEnvironmentVariable("ASPNETCORE_SERVER.URLS"))` 新增至 WebHostBuilder()。如果找不到 `Main()` 函式或新的 WebHostBuilder 類別，則會顯示警告。需要有 `.UseUrls()`，才能讓 Kestrel 接聽連入流量 (在 Docker 容器內執行時，localhost 除外)。完成時，一般程式碼看起來如下︰
+新增 Docker 支援時，必須將 `.UseUrls(Environment.GetEnvironmentVariable("ASPNETCORE_URLS"))` 新增至 WebHostBuilder()。如果在 `Program.cs` 中找不到 `Main()` 函式或新的 WebHostBuilder 類別，則會顯示警告。需要有 `.UseUrls()`，才能讓 Kestrel 接聽連入流量 (在 Docker 容器內執行時，localhost 除外)。完成時，一般程式碼看起來如下︰
 
 ```
 public class Program
@@ -83,19 +83,19 @@ Documents        Libraries        Pictures         desktop.ini
 /wormhole #
 ```
 
-**注意：**使用 Linux VM 時，容器檔案系統區分大小寫。
+> [AZURE.NOTE] 使用 Linux VM 時，容器檔案系統會區分大小寫。
 
 如果您看不到內容，請嘗試下列動作︰
 
 **Docker for Windows Beta**
-- 請在系統匣中尋找白鯨圖示並確定它是白色且運作，確認 Docker for Windows 桌面應用程式正在執行。
-- 在系統匣中的白鯨圖示上按一下滑鼠右鍵，選取 [設定]，然後按一下 [管理共用磁碟機...]，來確認已設定磁碟區對應。
+- 請在系統匣中尋找 `moby` 圖示並確定它是白色且正在作用中，以確認 Docker for Windows 桌面應用程式正在執行。
+- 在系統匣中的 `moby` 圖示上按一下滑鼠右鍵，選取 [設定]，然後按一下 [管理共用磁碟機...]，來確認已設定磁碟區對應。
 
 **Docker 工具箱 (含 VirtualBox)**
 
 根據預設，VirtualBox 會將 `C:\Users` 當做 `c:/Users` 來共用。可能的話，請將您的專案移到此目錄下方。否則，您可以手動將它新增至 VirtualBox [共用資料夾](https://www.virtualbox.org/manual/ch04.html#sharedfolders)。
 	
-##建置：無法建置映像、查看 TLS 連線時發生錯誤：主機並未執行
+##建置：無法建置映像、檢查 TLS 連線時發生錯誤：主機並未執行
 
 - 請確認預設的 Docker 主機正在執行。請參閱[設定 Docker 用戶端](./vs-azure-tools-docker-setup.md)一文。
 
@@ -103,7 +103,7 @@ Documents        Libraries        Pictures         desktop.ini
 
 如果您在使用 Microsoft Edge 瀏覽器，網站可能不會開啟，原因是 Edge 認為該 IP 位址不安全。如要修正這個問題，請執行下列步驟：
 
-1. 移至**網際網路選項**。
+1. 移至 [網際網路選項]。
     - 在 Windows 10 上，您可以在 Windows [執行] 方塊中輸入 `Internet Options`。
     - 在 Internet Explorer 中，您可以移至 [設定] 功能表，然後選取 [網際網路選項]。
 1. 選取出現的 [網際網路選項]。
@@ -119,7 +119,7 @@ Documents        Libraries        Pictures         desktop.ini
 
 ###執行應用程式會導致 PowerShell 開啟、顯示錯誤訊息，然後關閉。瀏覽器頁面未開啟。
 
-這可能是在 `docker-compose-up` 期間發生的錯誤。如要檢視該錯誤，請執行下列步驟：
+開啟瀏覽器失敗可能是 `docker-compose-up` 期間的錯誤。如要檢視該錯誤，請執行下列步驟：
 
 1. 開啟 `Properties\launchSettings.json` 檔案
 1. 找出 Docker 項目。
@@ -129,10 +129,10 @@ Documents        Libraries        Pictures         desktop.ini
     "commandLineArgs": "-ExecutionPolicy RemoteSigned …”
     ```
 	
-1. 新增 `-noexit` 參數，讓該行看起來類似下列內容。這會使 PowerShell 保持開啟，讓您能檢視錯誤訊息。
+1. 新增 `-noexit` 參數，讓該行看起來類似下列內容。此程式碼會使 PowerShell 保持開啟，讓您能檢視錯誤訊息。
 
     ```
 	"commandLineArgs": "-noexit -ExecutionPolicy RemoteSigned …”
     ```
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0824_2016-->

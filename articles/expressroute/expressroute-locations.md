@@ -12,7 +12,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="07/28/2016"
+   ms.date="08/29/2016"
    ms.author="cherylmc" />
 
 # ExpressRoute 合作夥伴和對等互連位置
@@ -76,7 +76,7 @@
 | **[Internet Initiative Japan Inc. - IIJ](http://www.iij.ad.jp/en/news/pressrelease/2015/1216-2.html)** | 支援 | 支援 | 大阪、東京 |
 | **[InterCloud](https://www.intercloud.com/)** | 支援 | 支援 | 阿姆斯特丹、倫敦、新加坡、華盛頓特區 |
 | **Internet Solutions - Cloud Connect** | 支援 | 支援 | 阿姆斯特丹、倫敦 |
-| **Interxion** | 支援 | 支援 | 阿姆斯特丹、倫敦、巴黎 |
+| **[Interxion](http://www.interxion.com/why-interxion/colocate-with-the-clouds/colocated-hybrid-cloud/microsoft-azure/)** | 支援 | 支援 | 阿姆斯特丹、倫敦、巴黎 |
 | **Jisc** | 敬請期待 | 敬請期待 | 倫敦+ | 
 | **[Level 3 Communications](http://your.level3.com/LP=882?WT.tsrc=02192014LP882AzureVanityAzureText)** | 支援 | 支援 | 阿姆斯特丹、芝加哥、達拉斯、拉斯維加斯+、倫敦、西雅圖、矽谷、華盛頓特區 |
 | **Megaport** | 支援 | 支援 | 達拉斯、香港、拉斯維加斯、洛杉磯、墨爾本、紐約、西雅圖、新加坡、雪梨、華盛頓特區 |
@@ -89,7 +89,7 @@
 | **Softbank** | 支援 | 支援 | 大阪、東京 | 
 | **[Tata Communications](http://www.tatacommunications.com/lp/izo/azure/azure_index.html)** | 支援 | 支援 | 阿姆斯特丹、辰內、香港、倫敦、孟買、矽谷、新加坡、華盛頓特區 |
 | **[TeleCity Group](http://www.telecitygroup.com/investor-centre/news_details.htm?locid=03100500400b00d&xml)** | 支援 | 支援 | 阿姆斯特丹、倫敦 |
-| **Telefonica** | 敬請期待 | 敬請期待 | 聖保羅+ |
+| **Telefonica** | 支援 | 敬請期待 | 聖保羅 |
 | **Telenor** | 支援 | 支援 | 阿姆斯特丹、倫敦 |
 | **[Telstra Corporation](http://www.telstra.com.au/business-enterprise/network-services/networks/cloud-direct-connect/)** | 支援 | 敬請期待 | 墨爾本、雪梨 |
 | **[Verizon](http://www.verizonenterprise.com/products/networking/secure-cloud-interconnect/)** | 支援 | 支援 | 阿姆斯特丹、香港、倫敦、矽谷、新加坡、雪梨、東京、華盛頓特區 |
@@ -133,7 +133,7 @@
 
 	- [Equinix Cloud Exchange](http://www.equinix.com/services/interconnection-connectivity/cloud-exchange/)
 	- [TeleCity CloudIX](http://www.telecitygroup.com/colocation-services/cloud-ix.htm)
-	- [InterXion](http://www.interxion.com/)
+	- [Interxion](http://www.interxion.com/why-interxion/colocate-with-the-clouds/colocated-hybrid-cloud/microsoft-azure/)
 	- [NextDC](http://www.nextdc.com/)
 	- [CoreSite](http://www.coresite.com/)
 	- [Cologix](http://www.cologix.com/)
@@ -171,4 +171,4 @@
 <!--Image References-->
 [0]: ./media/expressroute-locations/expressroute-locations-map.png "位置圖"
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

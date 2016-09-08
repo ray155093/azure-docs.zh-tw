@@ -1,7 +1,7 @@
 <properties 
 	pageTitle="DocumentDB 的 SQL 語法和 SQL 查詢 | Microsoft Azure" 
 	description="了解 DocumentDB (NoSQL 資料庫) 的 SQL 語法、資料庫概念和 SQL 查詢。SQL 可以做為 DocumentDB 中的 JSON 查詢語言。" 
-	keywords="sql 語法, sql 查詢, sql 查詢, json 查詢語言, 資料庫概念和 sql 查詢"
+	keywords="sql 語法, sql 查詢, sql 查詢, json 查詢語言, 資料庫概念和 sql 查詢, 彙總函式"
 	services="documentdb" 
 	documentationCenter="" 
 	authors="arramac" 
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/07/2016" 
+	ms.date="08/22/2016" 
 	ms.author="arramac"/>
 
 # DocumentDB 中的 SQL 查詢和 SQL 語法
@@ -2356,6 +2356,18 @@ DocumentDB 提供一個程式設計模型，以使用預存程序和觸發程序
 	        });
 	}
 
+## 彙總函式
+
+我們正在計劃原生支援彙總函式，但如果您在此同時需要計數或加總功能，您可以使用不同方法來達到相同的結果。
+
+在讀取路徑上︰
+
+- 您可以藉由在本機擷取資料並執行計數以執行彙總函式。建議您使用成本較低的查詢投影，例如 `SELECT VALUE 1`，而非使用完整的文件，例如 `SELECT * FROM c`。這有助於將每一頁結果中處理的文件數目最大化，進而在需要時避免額外的服務反覆存取。
+- 您也可以使用預存程序來將重複的反覆存取網路延遲降至最低。如需會計算給定篩選查詢之計數的範例預存程序，請參閱 [Count.js](https://github.com/Azure/azure-documentdb-js-server/blob/master/samples/stored-procedures/Count.js)。預存程序可以讓使用者結合豐富的商務邏輯以及以有效率的方式進行彙總。
+
+在寫入路徑上︰
+
+- 另一個常見模式是在「寫入」路徑預先彙總結果。當「讀取」要求的數量高於「寫入」要求的數量時，此模式特別具有吸引力。一旦預先彙總，便可透過單點讀取要求取得結果。在 DocumentDB 中預先彙總的最佳方式是設定透過每個「寫入」來叫用的觸發程序，並更新具有將要具體化之查詢最新結果的中繼資料文件。例如，請查看 [UpdateaMetadata.js](https://github.com/Azure/azure-documentdb-js-server/blob/master/samples/triggers/UpdateMetadata.js) 範例，這會更新集合之中繼資料文件的 minSize、maxSize 和 totalSize。此範例可以延伸為更新計數器、總和等。
 
 ##參考
 1.	[Azure DocumentDB 簡介][introduction]
@@ -2378,4 +2390,4 @@ DocumentDB 提供一個程式設計模型，以使用預存程序和觸發程序
 [consistency-levels]: documentdb-consistency-levels.md
  
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0824_2016-->

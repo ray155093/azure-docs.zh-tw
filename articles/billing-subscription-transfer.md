@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="07/21/2016"
+   ms.date="08/17/2016"
    ms.author="genli"/>
 
 # 轉移 Azure 訂用帳戶的擁有權
@@ -26,11 +26,14 @@
 - 想要將您的 Azure 訂用帳戶移到另一個目錄？
 - Azure 和 Office 365 在不同的租用戶中，想要合併？
 
-您現在可以針對隨用隨付、MSDN、行動套件或 BizSpark 訂用帳戶，輕鬆地在 Microsoft Azure 帳戶中心執行此動作。我們已經可讓您將您的訂用帳戶轉移給另一位使用者。換句話說，您現在可以在所擁有的任何隨用隨付、MSDN、行動套件或 BizSpark 訂用帳戶上變更帳戶管理員，而不論您是在哪個國家/地區進行操作。我們現在也支援移轉這些訂用帳戶類型的 Azure Marketplace 購買。
+您現在可以針對隨用隨付、MSDN、行動套件或 BizSpark 訂用帳戶，輕鬆地在 Microsoft Azure 帳戶中心執行此動作。我們已經可讓您將您的訂用帳戶轉移給另一位使用者。換句話說，您現在可以在所擁有的任何隨用隨付、MSDN、行動套件或 BizSpark 訂用帳戶上變更帳戶管理員，而不論您是在哪個國家/地區進行操作。
+我們現在也支援移轉這些訂用帳戶類型的 Azure Marketplace 購買。
 
 > [AZURE.NOTE]  若要將您的訂用帳戶變更至不同的優惠，請參閱[切換至不同的 Azure 訂用帳戶優惠](billing-how-to-switch-azure-offer.md)，以取得更多詳細資訊。
 
-> 您必須是帳戶管理員，才能執行擁有權轉移。如需有關如何找出誰是訂用帳戶管理員的詳細資訊，請參閱[常見問題集](#faq)。
+> [AZURE.NOTE] 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+
+> 您必須是帳戶管理員，才能執行擁有權轉移。如需有關如何找出訂用帳戶管理員的詳細資訊，請參閱[常見問題集](#faq)。
 
 ## 如何轉移 Azure 訂用帳戶的擁有權
 
@@ -76,7 +79,8 @@
 
     不會影響服務。這實際上會在目前的帳戶管理員下取消訂用帳戶，並在接受者的帳戶下建立新的訂用帳戶，但會將基礎的 Azure 服務與新的訂用帳戶產生關聯。訂用帳戶 ID 維持不變。
 
--   **如何使用這項機制變更訂用帳戶的目錄？**- Azure 訂用帳戶建立在帳戶管理員所屬的目錄中。所以，若要變更目錄，只要將訂用帳戶轉移到目標目錄中的使用者帳戶即可。當使用者完成步驟接受轉移時，訂用帳戶就會自動移至目標目錄。
+-   **如何使用這項機制變更訂用帳戶的目錄？**-   
+    Azure 訂用帳戶建立在帳戶管理員所屬的目錄中。所以，若要變更目錄，只要將訂用帳戶轉移到目標目錄中的使用者帳戶即可。當使用者完成步驟接受轉移時，訂用帳戶就會自動移至目標目錄。
 
 -   **如果我接管另一個組織的訂用帳戶帳單擁有權，他們可以繼續存取我的資源嗎？**
 
@@ -128,7 +132,9 @@
     - 可將使用者管理權限授與給訂用帳戶資源的管理憑證。如需詳細資訊，請參閱[建立和上傳 Azure 的管理憑證](https://msdn.microsoft.com/library/azure/gg551722.aspx)。
     -	服務 (例如儲存體) 的存取金鑰。如需詳細資訊，請參閱[檢視、複製和重新產生儲存體存取金鑰](storage-create-storage-account.md#view-copy-and-regenerate-storage-access-keys)
     -	服務 (例如 Azure 虛擬機器) 的遠端存取認證
-4. 請至 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)[深入了解](http://go.microsoft.com/fwlink/?LinkID=533292) 更新此訂用帳戶的計費警示。
+4. 請至 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)[深入了解](http://go.microsoft.com/fwlink/?LinkID=533292) 更新此訂用帳戶的計費警示
 5. 	如果您正與合作夥伴協力作業，請考慮更新此訂用帳戶的合作夥伴 ID。您可以在 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)中執行這個動作。
 
-<!---HONumber=AcomDC_0803_2016-->
+> [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+
+<!---HONumber=AcomDC_0824_2016-->

@@ -14,14 +14,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/01/2016"
+	ms.date="08/21/2016"
 	ms.author="trinadhk; jimpark; markgal;"/>
 
 
 # 準備環境以備份 Resource Manager 部署的虛擬機器
 
 > [AZURE.SELECTOR]
-- [資源管理員模型](backup-azure-arm-vms-prepare.md)
+- [Resource Manager 模型](backup-azure-arm-vms-prepare.md)
 - [傳統模型](backup-azure-vms-prepare.md)
 
 本文提供的步驟可讓環境做好備份 Resource Manager 部署之虛擬機器 (VM) 的準備。程序中展示的步驟使用 Azure 入口網站。
@@ -46,6 +46,8 @@ Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務
 
 - 不支援備份具有 16 個以上資料磁碟的虛擬機器。
 - 不支援備份具有保留的 IP 且沒有已定義之端點的虛擬機器。
+- 不支援備份具有 Docker 擴充功能的 Linux 虛擬機器。
+- 備份資料不包含連接至 VM 的網路掛接磁碟機。
 - 不支援在還原期間取代現有的虛擬機器。如果您嘗試在 VM 存在時還原 VM，還原作業將會失敗。
 - 不支援跨區域備份和還原。
 - 您可以在 Azure 的所有公開區域中備份虛擬機器 (請參閱支援之區域的[檢查清單](https://azure.microsoft.com/regions/#services))。如果您尋找的區域目前不受支援，在建立保存庫期間，該區域就不會顯示在下拉式清單中。
@@ -66,7 +68,7 @@ Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 
-2. 在 [中樞] 功能表上按一下 [瀏覽]，然後在資源清單中輸入**復原服務**。當您開始輸入時，清單將會根據您輸入的文字進行篩選。按一下 [復原服務保存庫]。
+2. 在 [中樞] 功能表上按一下 [瀏覽]，然後在資源清單中輸入 **復原服務**。當您開始輸入時，清單將會根據您輸入的文字進行篩選。按一下 [復原服務保存庫]。
 
     ![建立復原服務保存庫的步驟 1](./media/backup-azure-vms-first-look-arm/browse-to-rs-vaults.png) <br/>
 
@@ -98,7 +100,7 @@ Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務
 
 ## 設定儲存體複寫
 
-儲存體複寫選項有異地備援儲存體和本地備援儲存體可供您選擇。根據預設，保存庫具有異地備援儲存體。如果這是您的主要備份，請讓選項繼續設定為異地備援儲存體。如果您想要更便宜但不持久的選項，請選擇本地備援儲存體。在 [Azure 儲存體複寫概觀](../storage/storage-redundancy.md)中，深入了解[異地備援](../storage/storage-redundancy.md#geo-redundant-storage)儲存體和[本地備援](../storage/storage-redundancy.md#locally-redundant-storage)儲存體選項。
+儲存體複寫選項有異地備援儲存體和本地備援儲存體可供您選擇。根據預設，保存庫具有異地備援儲存體。如果這是您的主要備份，請讓選項繼續設定為異地備援儲存體。如果您想要更便宜但不持久的選項，請選擇本地備援儲存體。在 [Azure 儲存體複寫概觀](../storage/storage-redundancy.md) 中，深入了解[異地備援](../storage/storage-redundancy.md#geo-redundant-storage)儲存體和[本地備援](../storage/storage-redundancy.md#locally-redundant-storage)儲存體選項。
 
 若要編輯儲存體複寫設定︰
 
@@ -113,12 +115,12 @@ Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務
 
 ## 選取備份目標、設定原則及定義要保護的項目
 
-在向保存庫註冊 VM 前，請先執行探索程序，以確保能夠識別任何加入至訂用帳戶的新虛擬機器。此程序會在 Azure 中查詢訂用帳戶中的虛擬機器清單，以及其他資訊，例如雲端服務名稱、區域等。在 Azure 入口網站中，案例是指您要放入復原服務保存庫中的項目。原則是復原點擷取頻率和時間的排程。原則也會包含復原點的保留範圍。
+在向保存庫註冊 VM 前，請先執行探索程序，以確保能夠識別任何新增至訂用帳戶的新虛擬機器。此程序會在 Azure 中查詢訂用帳戶中的虛擬機器清單，以及其他資訊，例如雲端服務名稱、區域等。在 Azure 入口網站中，案例是指您要放入復原服務保存庫中的項目。原則是復原點擷取頻率和時間的排程。原則也會包含復原點的保留範圍。
 
 1. 如果您已開啟復原服務保存庫，請繼續步驟 2。如果您並未開啟復原服務保存庫，但位於 Azure 入口網站中，請在 [中樞] 功能表上按一下 [瀏覽]。
 
   - 在資源清單中輸入**復原服務**。
-  - 當您開始輸入時，清單將會根據您輸入的文字進行篩選。當您看到 [復原服務保存庫] 時，請按一下它。
+  - 當您開始輸入時，清單將會根據您輸入的文字進行篩選。當您看到 [復原服務保存庫] 時，請按一下。
 
     ![建立復原服務保存庫的步驟 1](./media/backup-azure-vms-first-look-arm/browse-to-rs-vaults.png) <br/>
 
@@ -151,7 +153,7 @@ Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務
 
     ![選取備份原則](./media/backup-azure-vms-first-look-arm/setting-rs-backup-policy-new.png)
 
-    預設原則的詳細資料便會列在詳細資料中。如果您想要建立新原則，請在下拉式功能表中選取 [建立新的]。下拉式功能表也提供選項，可讓您將快照的擷取時間切換為晚上 7 點。如需定義備份原則的指示，請參閱[定義備份原則](backup-azure-vms-first-look-arm.md#defining-a-backup-policy)。一旦您按一下 [確定] 時，備份原則便會與保存庫建立關聯。
+    預設原則的詳細資料便會列在詳細資料中。如果您想要建立新原則，請在下拉式功能表中選取 [建立新的]。下拉式功能表也提供選項，可讓您將快照的擷取時間切換為晚上 7 點。如需定義備份原則的指示，請參閱[定義備份原則](backup-azure-vms-first-look-arm.md#defining-a-backup-policy)。一旦您按下 [確定]，備份原則便會與保存庫建立關聯。
 
     接下來選擇要與保存庫建立關聯的 VM。
 
@@ -182,7 +184,7 @@ Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能�
 | --- | --- | --- |
 | 安裝 VM 代理程式 | <li>下載並安裝[代理程式 MSI](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409)。您需要有系統管理員權限，才能完成安裝。<li>[更新 VM 屬性](http://blogs.msdn.com/b/mast/archive/2014/04/08/install-the-vm-agent-on-an-existing-azure-vm.aspx)以表示已安裝代理程式。 | <li>從 GitHub 安裝最新的 [Linux 代理程式](https://github.com/Azure/WALinuxAgent)。您需要有系統管理員權限，才能完成安裝。<li> [更新 VM 屬性](http://blogs.msdn.com/b/mast/archive/2014/04/08/install-the-vm-agent-on-an-existing-azure-vm.aspx)以表示已安裝代理程式。 |
 | 更新 VM 代理程式 | 更新 VM 代理程式與重新安裝 [VM 代理程式二進位檔](http://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409)一樣簡單。<br>確定在更新 VM 代理程式時，沒有任何執行中的備份作業。 | 請遵循[更新 Linux VM 代理程式](../virtual-machines-linux-update-agent.md)上的指示。<br>確定在更新 VM 代理程式時，沒有任何執行中的備份作業。 |
-| 驗證 VM 代理程式安裝 | <li>瀏覽至 Azure VM 中的「C:\\WindowsAzure\\Packages」資料夾。<li>您應該會發現有 WaAppAgent.exe 檔案。<li> 在該檔案上按一下滑鼠右鍵，移至 [屬性]，然後選取 [詳細資料] 索引標籤。[產品版本] 欄位應為 2.6.1198.718 或更高版本。 | N/A |
+| 驗證 VM 代理程式安裝 | <li>瀏覽至 Azure VM 中的 C:\\WindowsAzure\\Packages 資料夾。<li>您應該會發現有 WaAppAgent.exe 檔案。<li> 在該檔案上按一下滑鼠右鍵，移至 [屬性]，然後選取 [詳細資料] 索引標籤。[產品版本] 欄位應為 2.6.1198.718 或更高版本。 | N/A |
 
 
 ### 備份擴充功能
@@ -196,7 +198,7 @@ Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能�
 
 為了管理 VM 快照，備份擴充功能需要連接 Azure 公用 IP 位址。若無適當的網際網路連線，虛擬機器的 HTTP 要求將會逾時，而備份作業將會失敗。如果您的部署有存取限制 (如透過網路安全性群組 (NSG))，請選擇其中一個選項來為備份流量提供明確的路徑︰
 
-- [將 Azure 資料中心 IP 範圍列入白名單](http://www.microsoft.com/zh-TW/download/details.aspx?id=41653) - 請參閱文章以取得將 IP 位址列入白名單的指示。
+- [將 Azure 資料中心 IP 範圍列入允許清單](http://www.microsoft.com/zh-TW/download/details.aspx?id=41653) - 請參閱文章以取得將 IP 位址列入白名單的指示。
 - 部署 HTTP Proxy 伺服器來路由傳送流量。
 
 在決定該使用哪個選項時，要取捨的不外乎是可管理性、精確控制及成本等要素。
@@ -208,7 +210,7 @@ Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能�
 
 ### 將 Azure 資料中心的 IP 範圍列入允許清單
 
-若要將 Azure 資料中心 IP 範圍列入白名單，請參閱 [Azure 網站](http://www.microsoft.com/zh-TW/download/details.aspx?id=41653)以取得 IP 範圍的詳細資料和指示。
+若要將 Azure 資料中心 IP 範圍列入允許清單，請參閱 [Azure 網站](http://www.microsoft.com/zh-TW/download/details.aspx?id=41653)以取得 IP 範圍的詳細資料和指示。
 
 ### 使用 HTTP Proxy 進行 VM 備份
 備份 VM 時，VM 上的備份擴充功能會使用 HTTPS API 將快照管理命令傳送到 Azure 儲存體。透過 HTTP Proxy 路由傳送擴充功能流量，因為它是唯一為了要存取公用網際網路而設定的元件。
@@ -321,4 +323,4 @@ Set-AzureNetworkSecurityRule -Name "allow-proxy " -Action Allow -Protocol TCP -T
 - [規劃 VM 備份基礎結構](backup-azure-vms-introduction.md)
 - [管理虛擬機器備份](backup-azure-manage-vms.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

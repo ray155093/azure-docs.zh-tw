@@ -1,5 +1,5 @@
 <properties
-	pageTitle="使用 Azure 入口網站將 Hyper-V 虛擬機器 (位於 VMM 雲端中) 複寫至次要 VMM 站台 | Microsoft Azure"
+	pageTitle="使用 Azure 入口網站將位於 VMM 雲端中的 Hyper-V 虛擬機器複寫至次要 VMM 站台 | Microsoft Azure"
 	description="描述如何使用 Azure 入口網站部署 Azure Site Recovery，以協調將 VMM 雲端中的 Hyper-V VM 複寫、容錯移轉和復原至次要 VMM 站台。"
 	services="site-recovery"
 	documentationCenter=""
@@ -13,10 +13,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/26/2016"
+	ms.date="08/23/2016"
 	ms.author="raynew"/>
 
-# 使用 Azure 入口網站將位於 VMM 雲端的 Hyper-V 虛擬機器複寫至次要 VMM 站台
+# 使用 Azure 入口網站將位於 VMM 雲端中的 Hyper-V 虛擬機器複寫至次要 VMM 站台
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](site-recovery-vmm-to-vmm.md)
@@ -57,8 +57,8 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 案例元件如下：
 
 - **主要站台**︰在主要站台中，有一或多部 Hyper-V 主機伺服器執行您想要複寫的來源 VM。這些主要的主機伺服器都位於 VMM 私人雲端。
-- **次要站台**︰在次要站台中，有一或多部 Hyper-V 主機伺服器執行您要複寫主要 VM 的目標 VM。這些主機伺服器都位於 VMM 私人雲端。雲端可位於主要伺服器 (如果您只有單一 VMM 伺服器) 或次要 VMM 伺服器上。
-- **提供者**：在 Site Recovery 部署期間，您會在 VMM 伺服器上安裝 Azure Site Recovery Provider，並在復原服務保存庫中註冊這些服務。在 VMM 上執行的 Provider 會透過 HTTPS 443 與 Site Recovery 通訊，以複寫協調流程。資料複寫會在主要和次要 Hyper-V 主機伺服器之間發生。複寫的資料會保留於內部部署網站和網路中，不會傳送到 Azure。深入了解[隱私權](#privacy-information-for-site-recovery)。
+- **次要站台**︰在次要站台中，有一或多部 Hyper-V 主機伺服器執行您複寫主要 VM 的目標 VM。這些主機伺服器都位於 VMM 私人雲端。雲端可位於主要伺服器 (如果您只有單一 VMM 伺服器) 或次要 VMM 伺服器上。
+- **Provider**：在 Site Recovery 部署期間，您會在 VMM 伺服器上安裝 Azure Site Recovery Provider，並在復原服務保存庫中註冊那些服務。在 VMM 上執行的 Provider 會透過 HTTPS 443 與 Site Recovery 通訊，以複寫協調流程。資料複寫會在主要和次要 Hyper-V 主機伺服器之間發生。複寫的資料會保留於內部部署網站和網路中，不會傳送到 Azure。深入了解[隱私權](#privacy-information-for-site-recovery)。
 
 ![E2E 拓樸](./media/site-recovery-vmm-to-vmm/architecture.png)
 
@@ -66,9 +66,9 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 下表摘要說明此案例中儲存資料的方式︰
 ****
-動作 | **詳細資料** | **收集的資料** | **使用** | **必要** 
+動作 | **詳細資料** | **收集的資料** | **使用** | **必要**
 --- | --- | --- | --- | ---
-**註冊** | 您在復原服務保存庫中註冊 VMM 伺服器。如果您稍後想要取消註冊伺服器，可以從 Azure 入口網站刪除該伺服器資訊來達成此目的。 | 註冊 VMM 伺服器之後，Site Recovery 即會收集、處理和傳輸有關 VMM 伺服器的中繼資料以及 Site Recovery 偵測到的 VMM 雲端名稱。 | 資料可用來識別適當的 VMM 伺服器並進行通訊，以及設定適用於 VMM 雲端的設定。 | 此為必要功能。如果您不想將此資訊傳送到 Site Recovery，就不應該使用 Site Recovery 服務。 
+**註冊** | 您在復原服務保存庫中註冊 VMM 伺服器。如果您稍後想要取消註冊伺服器，可以從 Azure 入口網站刪除該伺服器資訊來達成此目的。 | 註冊 VMM 伺服器之後，Site Recovery 即會收集、處理和傳輸有關 VMM 伺服器的中繼資料以及 Site Recovery 偵測到的 VMM 雲端名稱。 | 資料可用來識別適當的 VMM 伺服器並進行通訊，以及設定適用於 VMM 雲端的設定。 | 此為必要功能。如果您不想將此資訊傳送到 Site Recovery，就不應該使用 Site Recovery 服務。
 **啟用複寫** | 安裝在 VMM 伺服器上的 Azure Site Recovery Provider 是用來和 Site Recovery 服務通訊的管道。提供者是裝載在 VMM 程序中的動態連結程式庫 (DLL)。安裝 Provider 之後，「Datacenter Recovery」功能就會在 VMM 系統管理員主控台中啟用。新的和現有的 VM 可以啟用此功能來啟用對 VM 的保護。 | 設定這個屬性，Provider 就能將 VM 的名稱和識別碼傳送到 Site Recovery。複寫是透過 Windows Server 2012 或 Windows Server 2012 R2 Hyper-V 複本來啟用。虛擬機器資料會從一個 Hyper-V 主機複寫至另一個 (通常位於不同的「復原」資料中心)。 | Site Recovery 會使用中繼資料來填入 Azure 入口網站中的 VM 資訊。 | 此功能是服務不可或缺的一部分，而且無法關閉。如果您不想傳送此資訊，請勿針對 VM 啟用 Site Recovery 保護。請注意，由 Provider 傳送到 Site Recovery 的所有資料都是透過 HTTPS 傳送。
 **復原計畫** | 復原方案可協助您建立復原資料中心的協調流程計劃。您可以定義 VM 或虛擬機器群組應在復原站台上啟動的順序。您也可以指定在每個 VM 復原時任何要執行的自動化指令碼，或任何要採取的手動動作。容錯移轉通常會在協調復原的復原方案層級觸發。 | Site Recovery 會收集、處理和傳輸復原方案的中繼資料，包含虛擬機器中繼資料，以及任何自動化指令碼和手動動作備註的中繼資料。 | 中繼資料可用來建置 Azure 入口網站中的復原方案。 | 此功能是服務不可或缺的一部分，而且無法關閉。如果您不想將此資訊傳送到 Site Recovery，請勿建立復原方案。
 **網路對應** | 將網路資訊從主要資料中心對應至復原資料中心。在復原站台上復原 VM 時，網路對應可協助建立網路連線。 | Site Recovery 會為各站台 (主要與資料中心) 收集、處理並傳輸其邏輯網路的中繼資料。 | 中繼資料可用來填入網路設定，讓您能夠對應網路資訊。 | 此功能是服務不可或缺的一部分，而且無法關閉。如果您不想將此資訊傳送到 Site Recovery，請勿使用網路對應。
@@ -77,21 +77,21 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 ## Azure 必要條件
 
-以下是您在 Azure 中部署此案例所需的項目：
+以下是部署此案例時，在 Azure 中所需的項目：
 
-**必要條件** | **詳細資料** 
+**必要條件** | **詳細資料**
 --- | ---
-**Azure**| 您將需要 [Microsoft Azure](http://azure.microsoft.com/) 帳戶。您可以從[免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。[深入了解](https://azure.microsoft.com/pricing/details/site-recovery/) Site Recovery 定價。 
+**Azure**| 您需要 [Microsoft Azure](http://azure.microsoft.com/) 帳戶。您可以從[免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。[深入了解](https://azure.microsoft.com/pricing/details/site-recovery/) Site Recovery 定價。
 
 
 ## 內部部署必要條件
 
-以下是您需要在主要和次要內部部署站台中部署此案例的情況：
+以下是部署此案例時，在主要和次要內部部署站台中所需的項目：
 
-**必要條件** | **詳細資料** 
+**必要條件** | **詳細資料**
 --- | ---
-**VMM** | 我們建議您在主要站台與次要站台中各部署一部 VMM 伺服器。<br/><br/> 您也可以[在單一 VMM 伺服器上的雲端之間進行複寫](site-recovery-single-vmm.md)。若要這樣做，您至少需要在 VMM 伺服器上設定兩個雲端。<br/><br/> VMM 伺服器至少應執行含有最新更新的 System Center 2012 SP1。<br/><br/> 每部 VMM 伺服器都必須設定一或多個雲端，而所有雲端都必須設定 Hyper-V 容量設定檔。<br/><br/>雲端必須包含一或多個 VMM 主機群組。<br/><br/>在[設定 VMM 雲端網狀架構](https://msdn.microsoft.com/library/azure/dn469075.aspx#BKMK_Fabric)和 [Walkthrough: Creating private clouds with System Center 2012 SP1 VMM (逐步解說：使用 System Center 2012 SP1 VMM 建立私人雲端)](http://blogs.technet.com/b/keithmayer/archive/2013/04/18/walkthrough-creating-private-clouds-with-system-center-2012-sp1-virtual-machine-manager-build-your-private-cloud-in-a-month.aspx) 中深入了解設定 VMM 雲端的方式。<br/><br/> VMM 伺服器需要網際網路存取。 
-**Hyper-V** | Hyper-V 伺服器至少必須以 Hyper-V 角色執行 Windows Server 2012，並已安裝最新更新。<br/><br/> Hyper-V 伺服器應該包含一或多部 VM。<br/><br/> Hyper-V 主機伺服器應該位於主要和次要 VMM 雲端的主機群組中。<br/><br/> 如果您正在 Windows Server 2012 R2 上的叢集中執行 Hyper-V，則應安裝[更新 2961977](https://support.microsoft.com/kb/2961977)<br/><br/> 如果您正在 Windows Server 2012 上的叢集中執行 Hyper-V，請注意，如果您具有以靜態 IP 位址為基礎的叢集，該叢集代理人不會自動建立。您必須手動設定叢集代理。[閱讀更多資訊](http://social.technet.microsoft.com/wiki/contents/articles/18792.configure-replica-broker-role-cluster-to-cluster-replication.aspx)。
+**VMM** | 我們建議您在主要站台與次要站台中各部署一部 VMM 伺服器。<br/><br/> 您也可以[在單一 VMM 伺服器上的雲端之間進行複寫](site-recovery-single-vmm.md)。若要這樣做，您必須在 VMM 伺服器上設定至少兩個雲端。<br/><br/> VMM 伺服器至少應執行含有最新更新的 System Center 2012 SP1。<br/><br/> 每部 VMM 伺服器都必須設定一或多個雲端，而所有雲端都必須設定 Hyper-V 容量設定檔。<br/><br/>雲端必須包含一或多個 VMM 主機群組。<br/><br/>在[設定 VMM 雲端網狀架構](https://msdn.microsoft.com/library/azure/dn469075.aspx#BKMK_Fabric)和 [Walkthrough: Creating private clouds with System Center 2012 SP1 VMM (逐步解說：使用 System Center 2012 SP1 VMM 建立私人雲端)](http://blogs.technet.com/b/keithmayer/archive/2013/04/18/walkthrough-creating-private-clouds-with-system-center-2012-sp1-virtual-machine-manager-build-your-private-cloud-in-a-month.aspx) 中深入了解設定 VMM 雲端的方式。<br/><br/> VMM 伺服器需要網際網路存取。
+**Hyper-V** | Hyper-V 伺服器至少必須以 Hyper-V 角色執行 Windows Server 2012，並已安裝最新更新。<br/><br/> Hyper-V 伺服器應該包含一或多部 VM。<br/><br/> Hyper-V 主機伺服器應該位於主要和次要 VMM 雲端的主機群組中。<br/><br/> 如果您正在 Windows Server 2012 R2 上的叢集中執行 Hyper-V，則應安裝[更新 2961977](https://support.microsoft.com/kb/2961977)<br/><br/> 如果您正在 Windows Server 2012 上的叢集中執行 Hyper-V，請注意到在您具有以靜態 IP 位址為基礎的叢集時，系統將不會自動建立叢集代理人。您必須手動設定叢集代理人。[閱讀更多資訊](http://social.technet.microsoft.com/wiki/contents/articles/18792.configure-replica-broker-role-cluster-to-cluster-replication.aspx)。
 **提供者** | 在 Site Recovery 部署期間，您會在 VMM 伺服器上安裝 Azure Site Recovery Provider。Provider 會透過 HTTPS 443 與 Site Recovery 通訊來協調複寫。資料複寫是透過 LAN 或 VPN 連線在主要和次要 Hyper-V 伺服器之間進行。<br/><br/> 在 VMM 伺服器上執行的提供者需要存取下列 URL：*.hypervrecoverymanager.windowsazure.com*、.accesscontrol.windows.net、*.backup.windowsazure.com*、.blob.core.windows.net、*.store.core.windows.net。<br/><br/> 此外，還要允許從 VMM 伺服器到 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)的防火牆通訊，並允許 HTTPS (443) 通訊協定。
 
 ## 準備部署
@@ -116,25 +116,25 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 - 如果您想要在 Site Recovery 部署期間設定網路對應，就需要執行下列動作：
 
 	- 確認來源 Hyper-V 主機伺服器上的 VM 已連接到 VMM VM 網路。該網路應該連結到與雲端相關聯的邏輯網路。
-	- 確認您將用於復原的次要雲端已設定相對應的 VM 網路。該 VM 網路應該連結到與次要雲端相關聯的邏輯網路。
+	- 確認您用於復原的次要雲端已設定相對應的 VM 網路。該 VM 網路應該連結到與次要雲端相關聯的邏輯網路。
 
 - [深入了解](site-recovery-network-mapping.md)網路對應的運作方式。
 
 ## 準備使用單一 VMM 伺服器進行部署
 
-如果您只有單一 VMM 伺服器，可以在 VMM 雲端中，將 Hyper-V 主機上的 VM 複寫到 [Azure](site-recovery-vmm-to-azure.md) 或次要 VMM 雲端。我們建議使用第一個選項，因為雲端之間的複寫並不是非常順暢，但是，如果您需要執行此動作，就需要執行下列動作：
+如果您只有單一 VMM 伺服器，可以在 VMM 雲端中，將 Hyper-V 主機上的 VM 複寫到 [Azure](site-recovery-vmm-to-azure.md) 或次要 VMM 雲端。我們建議使用第一個選項，因為雲端之間的複寫並無法順暢地進行，但如果您必須這麼做，就需要執行下列動作：
 
 1. **在 Hyper-V VM 上設定 VMM**。當我們執行此動作時，建議您將 VMM 使用的 SQL Server 執行個體共置在相同的 VM 上。因為只需建立一個 VM，這樣就能節省時間。如果您想要使用遠端 SQL Server 執行個體卻發生中斷，則必須先復原該執行個體後再復原 VMM。
-2. **確定 VMM 伺服器至少已設定兩個雲端**。其中一個雲端包含您想要複寫的 VM，另一個雲端做為次要位置。包含您要保護之 VM 的雲端必須遵守[必要條件](#on-premises-prerequisites)。
+2. **確定 VMM 伺服器至少已設定兩個雲端**。其中一個雲端包含您想要複寫的 VM，另一個雲端做為次要位置。包含要保護 VM 的雲端必須遵守[必要條件](#on-premises-prerequisites)。
 3. 以本文所述的方式設定 Site Recovery。在保存庫中建立並註冊 VMM 伺服器、設定複寫原則，然後啟用複寫。您應該指定初始複寫要透過網路執行。
 4. 當您設定網路對應時，要將主要雲端的 VM 網路對應到次要雲端的 VM 網路。
 5. 使用 Hyper-V 管理員主控台，在包含 VMM VM 的 Hyper-V 主機上啟用 Hyper-V 複本，並啟用 VM 的複寫功能。請不要將 VMM 虛擬機器加入受 Site Recovery 保護的雲端，以確保 Site Recovery 不會覆寫 Hyper-V 複本設定。
-6. 如果您建立適用於容錯移轉的復原方案，將會使用同一部 VMM 伺服器做為來源與目標。
-7. 您將以如下方式進行容錯移轉和復原︰
+6. 如果您建立適用於容錯移轉的復原方案，便須使用同一部 VMM 伺服器做為來源與目標。
+7. 您會以如下方式進行容錯移轉和復原︰
 
 	- 搭配使用 Hyper-V 管理員與規劃的容錯移轉，手動將 VMM VM 容錯移轉至次要站台。
 	- 容錯移轉 VM。
-	- 復原主要 VMM VM 之後，請登入 Azure 入口網站 -> 復原服務保存庫，然後執行從次要站台至主要站台的非計劃性 VM 容錯移轉。
+	- 復原主要 VMM VM 之後，請登入 [Azure 入口網站] -> [復原服務保存庫]，然後執行從次要站台至主要站台的非計劃性 VM 容錯移轉。
 	- 在非計劃性的容錯移轉完成之後，將可透過主要站台再次存取所有資源。
 
 
@@ -145,7 +145,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 	![新增保存庫](./media/site-recovery-vmm-to-vmm/new-vault3.png)
 
-3. 在 [名稱] 中，指定可識別保存庫的易記名稱。如果您有多個訂用帳戶，請選取其中一個。
+3. 在 [名稱] 中，指定保存庫的易記識別名稱。如果您有多個訂用帳戶，請選取其中一個。
 4. [建立新的資源群組](../resource-group-template-deploy-portal.md)或選取現有的資源群組，並指定 Azure 區域。機器將會複寫到此區域。若要查看支援的地區，請參閱 [Azure Site Recovery 定價詳細資料](https://azure.microsoft.com/pricing/details/site-recovery/) (英文) 中的＜各地區上市情況＞。
 4. 如果您想要從儀表板快速存取保存庫，請按一下 [釘選到儀表板] > [建立保存庫]。
 
@@ -171,7 +171,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 1. 在 [復原服務保存庫] 刀鋒視窗中選取您的保存庫，然後按一下 [設定]。
 2. 在 [設定] > [快速入門] 中，按一下 [Site Recovery] > [步驟 1: 準備基礎結構] > [保護目標]。
 3. 在 [保護目標] 中，選取 [到復原站台]，然後選取 [是，利用 Hyper-V]。
-4. 選取 [是] 以表示您使用 VMM 來管理 Hyper-V 主機，如果您有次要 VMM 伺服器，請選取 [是]。如果您要在單一 VMM 伺服器上的雲端之間部署複寫，就按一下 [否]。然後按一下 [確定]。
+4. 選取 [是] 以表示您使用 VMM 來管理 Hyper-V 主機，如果您有次要 VMM 伺服器，請選取 [是]。如果您要在單一 VMM 伺服器上的雲端之間部署複寫，請按一下 [否]。然後按一下 [確定]。
 
 	![選擇目標](./media/site-recovery-vmm-to-vmm/choose-goals.png)
 
@@ -229,7 +229,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 		- *.backup.windowsazure.com
 		- *.blob.core.windows.net
 		- *.store.core.windows.net
-	- 允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)中所述的 IP 位址和 HTTPS (443) 通訊協定。您必須具有打算使用以及美國西部之 Azure 區域的白名單 IP 範圍。
+	- 允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)中所述的 IP 位址和 HTTPS (443) 通訊協定。您必須具有打算使用以及美國西部之 Azure 區域的允許清單 IP 範圍
 	- 如果您使用的是自訂 proxy，則會使用指定的 proxy 認證自動建立 VMM RunAs 帳戶 (DRAProxyAccount)。設定 proxy 伺服器，讓此帳戶可以成功進行驗證。在 VMM 主控台中，可以修改 VMM RunAs 帳戶設定。若要這樣做，請開啟 [設定] 工作區、展開 [安全性]、按一下 [執行身分帳戶]，然後修改 DRAProxyAccount 的密碼。您必須重新啟動 VMM 服務，這項設定才會生效。
 
 
@@ -242,8 +242,8 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 12.  在 [同步處理雲端中繼資料] 中，選取您是否要將 VMM 伺服器上所有雲端的中繼資料與保存庫同步。這個動作只需要在每個伺服器上進行一次。如果不要同步所有雲端，您可以取消核取這項設定，再於 VMM 主控台的雲端屬性中個別同步每個雲端。
 
 13.  按 [下一步]，完成此程序。註冊後，Azure Site Recovery 即可從 VMM 伺服器擷取中繼資料。此伺服器會顯示於保存庫中 [伺服器] 頁面的 [VMM 伺服器] 索引標籤上。
- 	
-	![Lastpage](./media/site-recovery-vmm-to-vmm-classic/provider13.PNG)
+
+	![伺服器](./media/site-recovery-vmm-to-vmm-classic/provider13.PNG)
 
 11. 當伺服器可以在 Site Recovery 主控台中使用之後，於 [來源] > [準備來源] 中選取 VMM 伺服器，然後選取 Hyper-V 主機所在的雲端。然後按一下 [確定]。
 
@@ -275,7 +275,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
  - **/proxyAddress**：指定 Proxy 伺服器位址的選用參數。
  - **/proxyport**：指定 Proxy 伺服器連接埠的選用參數。
  - **/proxyUsername**：指定 Proxy 使用者名稱 (如果 Proxy 需要驗證) 的選用參數。
- - **/proxyPassword**：指定用以驗證 Proxy 伺服器之密碼 (如果 Proxy 需要驗證) 的選用參數。
+ - **/proxyPassword**：指定用於驗證 Proxy 伺服器的密碼 (如果 Proxy 需要驗證) 的選用參數。
 
 ## 步驟 3︰設定目標環境
 
@@ -295,7 +295,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 2. 在 [建立及關聯原則] 中指定原則名稱。來源和目標類型應該是 **Hyper-V**。
 3. 在 [Hyper-V 主機版本] 中，選取在主機上執行的作業系統。
 
-	> [AZURE.NOTE] VMM 雲端可以包含執行不同 (支援) 版本之 Windows Server 的 Hyper-V 主機，但一個複寫原則適用於執行相同作業系統的主機。如果您的主機會執行多個作業系統版本，請建立不同的複寫原則。
+	> [AZURE.NOTE] VMM 雲端可以包含執行不同 (已支援) 版本 Windows Server 的 Hyper-V 主機，但針對執行相同作業系統的主機將會套用相同的複寫原則。如果您的主機會執行多個作業系統版本，請建立不同的複寫原則。
 
 4. 在 [驗證類型] 和 [驗證連接埠] 中，指定驗證主要與復原 Hyper-V 主機伺服器之間流量的方式。除非您有正常運作的 Kerberos 環境，否則請選取 [憑證]。Azure Site Recovery 會自動設定用於 HTTPS 驗證的憑證。您不需要手動執行任何動作。根據預設，連接埠 8083 和 8084 (用於憑證) 將在 Hyper-V 主機伺服器上的 Windows 防火牆中開啟。如果您選取 **Kerberos**，Kerberos 票證將會用於主機伺服器的相互驗證。請注意，這項設定只有在 Hyper-V 主機伺服器是執行於 Windows Server 2012 R2 時才有重要性。
 3. 在 [複製頻率] 中，指定您要在初始複寫後複寫差異資料的頻率 (每隔 30 秒、5 或 15 分鐘)。
@@ -333,7 +333,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 
 設定來源與目標網路之間的網路對應。
 
-- [閱讀](#prepare-for-network-mapping)網路對應的快速概觀。另請[閱讀](site-recovery-network-mapping.md)更深入的說明。
+- [閱讀](#prepare-for-network-mapping)網路對應的快速概觀。另請[閱讀](site-recovery-network-mapping.md)以取得更深入的說明。
 - 確認 VMM 伺服器上的虛擬機器已連線到 VM 網路。
 
 設定對應，如下所示︰
@@ -386,7 +386,7 @@ Site Recovery 會提供以 Excel 為基礎的 Capacity Planner，協助您為來
 - 其他關於 [New-NetQosPolicy Cmdlet](https://technet.microsoft.com/library/hh967468.aspx) 的資訊。
 
 
-## 步驟 6：啟用複寫 
+## 步驟 6：啟用複寫
 
 立即啟用複寫，如下所示︰
 
@@ -493,4 +493,4 @@ Site Recovery 會提供以 Excel 為基礎的 Capacity Planner，協助您為來
 
 在您的部署設定完成並開始執行之後，請[深入了解](site-recovery-failover.md)不同類型的容錯移轉。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

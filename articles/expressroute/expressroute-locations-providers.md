@@ -12,7 +12,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="07/28/2016"
+   ms.date="08/29/2016"
    ms.author="cherylmc" />
 
 # ExpressRoute 合作夥伴和對等互連位置
@@ -76,7 +76,7 @@
 | **孟買** | Tata Communications |
 | **大阪** | Equinix、Internet Initiative Japan Inc. - IIJ、NTT Communications、Softbank |
 | **巴黎** | Interxion |
-| **聖保羅** | Equinix、Telefonica+ |
+| **聖保羅** | Equinix、Telefonica |
 | **Seattle** | Equinix、Level 3 Communications、Megaport |
 | **矽谷** | Aryaka Networks、AT&T NetBond、British Telecom、CenturyLink+、Comcast、Equinix、Level 3 Communications、Orange、Tata Communications、Verizon、Zayo Group |
 | **新加坡** | Aryaka Networks、AT&T NetBond、British Telecom、Equinix、InterCloud、Megaport、Orange、SingTel、Tata Communications、Verizon |
@@ -156,4 +156,4 @@
 <!--Image References-->
 [0]: ./media/expressroute-locations/expressroute-locations-map.png "位置圖"
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

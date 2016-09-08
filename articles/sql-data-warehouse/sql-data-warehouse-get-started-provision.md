@@ -14,7 +14,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/23/2016"
+   ms.date="08/25/2016"
    ms.author="barbkess;lodipalm;sonyama"/>
 
 # 建立 Azure SQL 資料倉儲
@@ -60,6 +60,8 @@
 
     - **選取來源**：按一下 [選取來源] > [範例]。Azure 會自動將 AdventureWorksDW 填入 [選取範例] 選項。
 
+> [AZURE.NOTE] SQL 資料倉儲的預設定序為 SQL\_Latin1\_General\_CP1\_CI\_AS。如果需要不同的定序，可以使用 [T-SQL][] 來建立具有不同定序的資料庫。
+
 4. 按一下 [建立] 來建立您的 SQL 資料倉儲。
 
 5. 等候幾分鐘的時間。當您的資料倉儲準備就緒時，您應該會返回 [Azure 入口網站](https://portal.azure.com)。您可以在儀表板上尋找您的 SQL 資料倉儲，其列在您的 SQL 資料庫之下，或在您用來建立它的資源群組中。
@@ -88,7 +90,8 @@
 [DWU]: sql-data-warehouse-overview-what-is.md#data-warehouse-units
 [訂用帳戶]: ../azure-glossary-cloud-terminology.md#subscription
 [resource group]: ../azure-glossary-cloud-terminology.md#resource-group
-
+[T-SQL]: ./sql-data-warehouse-get-started-create-database-tsql.md
+ 
 <!--MSDN references-->
 [sp\_set\_firewall\_rule]: https://msdn.microsoft.com/library/dn270017.aspx
 [sp\_set\_database\_firewall\_rule]: https://msdn.microsoft.com/library/dn270010.aspx
@@ -99,4 +102,4 @@
 [Azure 免費試用]: https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F
 [MSDN Azure 點數]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0831_2016-->

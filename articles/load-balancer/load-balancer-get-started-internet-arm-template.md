@@ -3,7 +3,7 @@
    description="了解如何使用 ARM 範本在資源管理員中建立網際網路面向的負載平衡器"
    services="load-balancer"
    documentationCenter="na"
-   authors="joaoma"
+   authors="sdwheeler"
    manager="carmonm"
    editor=""
    tags="azure-resource-manager"
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/09/2016"
-   ms.author="joaoma" />
+   ms.author="sewhee" />
 
 # 開始使用 ARM 範本建立網際網路面向的負載平衡器
 
@@ -23,7 +23,7 @@
 
 [AZURE.INCLUDE [load-balancer-get-started-internet-intro-include.md](../../includes/load-balancer-get-started-internet-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]本文涵蓋之內容包括資源管理員部署模型。您也可以[了解如何使用傳統部署模型建立網際網路面向的負載平衡器](load-balancer-get-started-internet-classic-portal.md)
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] 本文涵蓋之內容包括資源管理員部署模型。您也可以[了解如何使用傳統部署模型建立網際網路面向的負載平衡器](load-balancer-get-started-internet-classic-portal.md)
 
 
 [AZURE.INCLUDE [load-balancer-get-started-internet-scenario-include.md](../../includes/load-balancer-get-started-internet-scenario-include.md)]
@@ -57,7 +57,7 @@
 
 		info:    New mode is arm
 
-3. 從您的瀏覽器，瀏覽至 ****https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-2-vms-loadbalancer-lbrules/azuredeploy.parameters.json**，複製 json 檔案的內容並貼上到您電腦中的新檔案。在此案例中，您會將以下的值複製到名為 **c:\\lb\\azuredeploy.parameters.json** 的檔案。
+3. 從您的瀏覽器，瀏覽至 **https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-2-vms-loadbalancer-lbrules/azuredeploy.parameters.json**，複製 json 檔案的內容並貼上到您電腦中的新檔案。在此案例中，您會將以下的值複製到名為 **c:\\lb\\azuredeploy.parameters.json** 的檔案。
 4. 執行 **azure group deployment create** Cmdlet，使用先前下載並修改的範本和參數檔案來部署新的負載平衡器。輸出後顯示的清單可說明所使用的參數。
 
 		azure group create -n TestRG -l westus -f 'https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-2-vms-loadbalancer-lbrules/azuredeploy.json' -e 'c:\lb\azuredeploy.parameters.json'
@@ -70,4 +70,4 @@
 
 [設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0824_2016-->

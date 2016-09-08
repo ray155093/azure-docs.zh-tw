@@ -3,7 +3,7 @@
    description="本文將協助您設定流量管理員端點的循環配置資源負載平衡。"
    services="traffic-manager"
    documentationCenter=""
-   authors="joaoma"
+   authors="sdwheeler"
    manager="carmonm"
    editor="tysonn" />
 <tags 
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/17/2016"
-   ms.author="joaoma" />
+   ms.author="sewhee" />
 
 # 設定循環配置資源路由方法
 
@@ -52,4 +52,4 @@
 
  
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0824_2016-->

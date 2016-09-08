@@ -85,7 +85,7 @@ TcpTestSucceeded       : True
 
 如果您想要更詳細的資訊，請將 **ComputerName** 和 **Port** 取代為本主題稍後的[設定連接埠](#configure-ports)之下所列的值。
 
-防火牆也可能會封鎖 Azure 服務匯流排到 Azure 資料中心的連線。如果是這樣，您可以針對這些資料中心的區域，將所有 IP 位址放入白名單 (解除封鎖)。您可以[在這裡取得 Azure IP 位址](https://www.microsoft.com/download/details.aspx?id=41653)清單。
+防火牆也可能會封鎖 Azure 服務匯流排到 Azure 資料中心的連線。如果是這樣，您可以針對這些資料中心的區域，將所有 IP 位址放入允許清單 (解除封鎖)。您可以[在這裡取得 Azure IP 位址](https://www.microsoft.com/download/details.aspx?id=41653)清單。
 
 ### 設定連接埠
 
@@ -104,7 +104,7 @@ TcpTestSucceeded       : True
 | login.microsoftonline.com | 443 | HTTPS |
 | *.msftncsi.com | 443 | 如果 Power BI 服務無法連接至閘道，則用來測試網際網路連線能力。 |
 
-如果您需要將 IP 位址而不是網域加入白名單，您可以下載並使用 [Microsoft Azure Datacenter IP ranges list (Microsoft Azure 資料中心 IP 範圍清單)](https://www.microsoft.com/download/details.aspx?id=41653)。在某些情況下，Azure 服務匯流排會與 IP 位址而非完整的網域名稱進行連接。
+如果您需要將 IP 位址而不是網域加入允許清單，您可以下載並使用 [Microsoft Azure Datacenter IP ranges list (Microsoft Azure 資料中心 IP 範圍清單)](https://www.microsoft.com/download/details.aspx?id=41653)。在某些情況下，Azure 服務匯流排會與 IP 位址而非完整的網域名稱進行連接。
 
 ### 登入帳戶
 

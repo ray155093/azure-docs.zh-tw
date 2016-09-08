@@ -92,7 +92,7 @@
 
 為了管理 VM 快照，備份擴充功能需要連接 Azure 公用 IP 位址。若無適當的網際網路連線，虛擬機器的 HTTP 要求將會逾時，而備份作業將會失敗。如果您的部署有存取限制 (如透過網路安全性群組 (NSG))，請選擇其中一個選項來為備份流量提供明確的路徑︰
 
-- [將 Azure 資料中心 IP 範圍列入白名單](http://www.microsoft.com/zh-TW/download/details.aspx?id=41653) - 請參閱文章以取得將 IP 位址列入白名單的指示。
+- [將 Azure 資料中心 IP 範圍列入允許清單](http://www.microsoft.com/zh-TW/download/details.aspx?id=41653) - 請參閱文章以取得將 IP 位址列入白名單的指示。
 - 部署 HTTP Proxy 伺服器來路由傳送流量。
 
 在決定該使用哪個選項時，要取捨的不外乎是可管理性、精確控制及成本等要素。
@@ -104,7 +104,7 @@
 
 ### 將 Azure 資料中心的 IP 範圍列入允許清單
 
-若要將 Azure 資料中心 IP 範圍列入白名單，請參閱 [Azure 網站](http://www.microsoft.com/zh-TW/download/details.aspx?id=41653)以取得 IP 範圍的詳細資料和指示。
+若要將 Azure 資料中心 IP 範圍列入允許清單，請參閱 [Azure 網站](http://www.microsoft.com/zh-TW/download/details.aspx?id=41653)以取得 IP 範圍的詳細資料和指示。
 
 ### 使用 HTTP Proxy 進行 VM 備份
 備份 VM 時，VM 上的備份擴充功能會使用 HTTPS API 將快照管理命令傳送到 Azure 儲存體。透過 HTTP Proxy 路由傳送擴充功能流量，因為它是唯一為了要存取公用網際網路而設定的元件。

@@ -204,7 +204,7 @@
 
 			AzCopy /Source:. /Dest:https://<storageaccountname>.blob.core.windows.net/adfgetstarted/inputdata /DestKey:<storagekey>  /Pattern:input.log
 
-		> [AZURE.NOTE] 上述命令會在您的 Azure Blob 儲存體建立名為 **adfgetstarted** 的容器，並從您的本機磁碟將 **partitionweblogs.hql** 檔案複製到該容器中的 **inputdata** 資料夾。
+		> [AZURE.NOTE] 上述命令會在您的 Azure Blob 儲存體建立名為 **adfgetstarted** 的容器，並從您的本機磁碟將 **input.log** 檔案複製到該容器中的 **inputdata** 資料夾。
 	
 	5. 檔案成功上傳之後，您會看見來自 AzCopy 的輸出，如下所示。
 	
@@ -228,4 +228,4 @@
 - [使用 PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
 - [使用資源管理員範本](data-factory-build-your-first-pipeline-using-arm.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="mobile-multiple"
    ms.workload="mobile" 
-   ms.date="02/26/2016"
+   ms.date="08/19/2016"
    ms.author="piyushjo"/>
 
 # Azure Mobile Engagement - 疑難排解指南
@@ -121,4 +121,4 @@
 	- Mobile Engagement SDK 版本 (例如 Android SDK v2.1.0)
 	- 附有確切錯誤訊息與狀況的錯誤詳細資料
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

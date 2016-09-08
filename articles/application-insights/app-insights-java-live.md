@@ -12,18 +12,18 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/02/2016" 
+	ms.date="08/24/2016" 
 	ms.author="awills"/>
  
 # 適用於使用中 Java Web 應用程式的 Application Insights
 
-Application Insights 目前僅供預覽。
+*Application Insights 目前僅供預覽。*
 
-如果您有 Web 應用程式已在 J2EE 伺服器上執行，您可以使用 [Appliction Insights](app-insights-overview.md) 開始監視它，不需要變更程式碼或重新編譯您的專案。使用此選項可以取得傳送至您伺服器的 HTTP 要求、未處理的例外狀況和效能計數器的相關資訊。
+如果您有 Web 應用程式已在 J2EE 伺服器上執行，您可以使用 [Application Insights](app-insights-overview.md) 開始監視它，不需要變更程式碼或重新編譯您的專案。使用此選項可以取得傳送至您伺服器的 HTTP 要求、未處理的例外狀況和效能計數器的相關資訊。
 
 您將需要 [Microsoft Azure](https://azure.com) 訂用帳戶。
 
-> [AZURE.NOTE] 此頁面上的程序會在執行階段將 SDK 加入您的 Web 應用程式。如果您不想要更新或重建您的原始程式碼，這會非常好用。不過，如果可以的話，我們建議您改為[將 SDK 加入原始程式碼](app-insights-java-get-started.md)。這樣可以提供您更多選項，包括撰寫程式碼來追蹤使用者活動。
+> [AZURE.NOTE] 此頁面上的程序會在執行階段將 SDK 加入您的 Web 應用程式。如果您不想要更新或重建您的原始程式碼，此執行階段檢測非常好用。不過，如果可以的話，我們建議您改為[將 SDK 加入原始程式碼](app-insights-java-get-started.md)。這樣可以提供您更多選項，包括撰寫程式碼來追蹤使用者活動。
 
 ## 1\.取得 Application Insights 檢測金鑰
 
@@ -34,14 +34,14 @@ Application Insights 目前僅供預覽。
 3. 將應用程式類型設定為 Java Web 應用程式。
 
     ![填寫名稱，選擇 [Java Web 應用程式]，然後按一下 [建立]](./media/app-insights-java-live/02-create.png)
-4. 尋找新資源的檢測金鑰。您很快需要將此資訊貼上到程式碼專案中。
+4. 尋找新資源的檢測金鑰。您很快需要將此金鑰貼到程式碼專案中。
 
     ![在新資源概觀中，按一下 [屬性] 並複製檢測金鑰](./media/app-insights-java-live/03-key.png)
 
 ## 2\.下載 SDK
 
 1. 下載 [Application Insights SDK for Java](https://aka.ms/aijavasdk)。
-2. 在您的伺服器上，將 SDK 內容解壓縮到載入您專案二進位檔的目錄。如果您使用 Tomcat，這通常會在 `webapps<your_app_name>\WEB-INF\lib` 下
+2. 在您的伺服器上，將 SDK 內容解壓縮到載入您專案二進位檔的目錄。如果您使用 Tomcat，此目錄通常在 `webapps<your_app_name>\WEB-INF\lib` 之下
 
 
 ## 3\.加入 Application Insights XML 檔案
@@ -83,7 +83,7 @@ Application Insights 目前僅供預覽。
 
 * 檢測金鑰會隨著遙測的每個項目傳送，並告知 Application Insights 在您的資源中顯示它。
 * HTTP 要求元件是選用的。它會自動將要求和回應時間的遙測傳送到入口網站。
-* 事件相互關聯是 HTTP 要求元件的補充。它會指派識別碼給伺服器收到的每個要求，並將它加入為遙測的每個項目的屬性，作為 'Operation.Id' 屬性。它可讓您相互關聯與每個要求關聯的遙測，方法是在[診斷搜尋](app-insights-diagnostic-search.md)中設定篩選器。
+* 事件相互關聯是 HTTP 要求元件的補充。它會將識別碼指派給伺服器收到的每個要求，並將此識別碼加入為遙測的每個項目的屬性，作為 'Operation.Id' 屬性。它可讓您相互關聯與每個要求關聯的遙測，方法是在[診斷搜尋](app-insights-diagnostic-search.md)中設定篩選器。
 
 
 ## 4\.加入 HTTP 篩選器
@@ -103,13 +103,17 @@ Application Insights 目前僅供預覽。
        <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+## 5\.檢查防火牆例外狀況
+
+您可能需要[設定防火牆例外狀況以傳送輸出資料](app-insights-ip-addresses.md)。
+
 ## 5\.重新啟動您的 Web 應用程式
 
 ## 6\.在 Application Insights 中檢視遙測
 
 返回 [Microsoft Azure 入口網站](https://portal.azure.com) 中的 Application Insights 資源。
 
-[概觀] 分頁上會顯示 HTTP 要求資料。(如果沒有出現，請稍等片刻，然後按一下 [重新整理]。)
+[概觀] 刀鋒視窗會顯示 HTTP 要求的相關遙測。(如果沒有出現，請稍等片刻，然後按一下 [重新整理]。)
 
 ![範例資料](./media/app-insights-java-live/5-results.png)
  
@@ -139,4 +143,4 @@ Application Insights 目前僅供預覽。
 
  
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

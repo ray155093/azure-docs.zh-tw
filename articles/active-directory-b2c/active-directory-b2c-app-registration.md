@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="07/22/2016"
+	ms.date="08/30/2016"
 	ms.author="swkrish"/>
 
 
@@ -39,11 +39,14 @@
 2. 按一下刀鋒視窗頂端的 [新增]。
 3. 輸入應用程式的**名稱**，此名稱將會為取用者說明您的應用程式。例如，您可以輸入「Contoso B2C app」。
 4. 如果您正在撰寫 Web 應用程式，請將 [包含 Web 應用程式/Web API] 切換為 [是]。**回覆 URL** 是 Azure AD B2C 傳回您應用程式要求之任何權杖的所在端點。例如，輸入 `https://localhost:44321/`。若您的 Web 應用程式也會呼叫 Azure AD B2C 所保護的一些 Web API，您可按一下 [產生金鑰] 按鈕以建立 [應用程式密碼]。
+
+    > [AZURE.NOTE] **應用程式密碼**是重要的安全性認證，應該適當地加以保護。
+
 5. 如果您正在撰寫行動應用程式，請將 [包含原生用戶端] 切換為 [是]。複製系統自動為您建立的預設**重新導向 URI**。
 6. 按一下 [建立] 以註冊您的應用程式。
 7. 按一下您剛才建立的應用程式，並複製稍後要在程式碼中使用的全域唯一**應用程式用戶端識別碼**。
 
-> [AZURE.NOTE] **應用程式密碼**是重要的安全性認證，應該適當地加以保護。
+> [AZURE.IMPORTANT] 在 B2C 功能刀鋒視窗中建立的應用程式必須在相同的位置中進行管理。如果您使用 PowerShell 或其他入口網站編輯 B2C 應用程式，這些應用程式會變得不受支援且可能不適用於 Azure AD B2C。
 
 ## 建置快速啟動應用程式
 
@@ -51,4 +54,4 @@
 
 [AZURE.INCLUDE [active-directory-v2-quickstart-table](../../includes/active-directory-b2c-quickstart-table.md)]
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="mobile-multiple"
    ms.workload="mobile" 
-   ms.date="02/29/2016"
+   ms.date="08/19/2016"
    ms.author="piyushjo"/>
 
 # SDK 整合問題的疑難排解指南
@@ -31,8 +31,8 @@
 
 ### 原因
 
-- 大部分需要解決的 Azure Mobile Engagement SDK 問題，都會因為您應用程式中發生失敗而發現 (例如 UI 資料收集失敗、推送失敗、進階功能失敗、API 失敗、應用程式當機或明顯的服務中斷)。  
-- 如果 Azure Mobile Engagement 的某項特定功能從未在您的應用程式中運作過，表示您必須完成整合。 
+- 大部分需要解決的 Azure Mobile Engagement SDK 問題，都會因為您應用程式中發生失敗而發現 (例如 UI 資料收集失敗、推送失敗、進階功能失敗、API 失敗、應用程式當機或明顯的服務中斷)。
+- 如果 Azure Mobile Engagement 的某項特定功能從未在您的應用程式中運作過，表示您必須完成整合。
 - 如果 Azure Mobile Engagement 的某項特定功能曾運作並停止，表示您可能需要升級到 Azure Mobile Engagement SDK 的最新版本。請記住，Azure Mobile Engagement 支援的每個平台 (Android、iOS、Windows 及 Windows Phone) 皆有不同的 Azure Mobile Engagement SDK 適用版本。
 
 #### SDK 整合
@@ -47,7 +47,7 @@
 
 **另請參閱：**
 
-- [SDK 文件 - 整合指南][Link 5] 
+- [SDK 文件 - 整合指南][Link 5]
 - [疑難排解指南 - 推送][Link 23]
 
 #### SDK 升級
@@ -57,7 +57,7 @@
 
 **另請參閱：**
 
-- [SDK 文件 - 版本資訊](http://go.microsoft.com/fwlink/?LinkId= 525554) 
+- [SDK 文件 - 版本資訊](http://go.microsoft.com/fwlink/?LinkId= 525554)
 - [SDK 文件 - 升級指南](http://go.microsoft.com/fwlink/?LinkId= 525554)
 
 #### SDK 其他問題
@@ -77,7 +77,7 @@
 ### 原因
 
 - 許多 Azure Mobile Engagement 的進階編碼問題，都是因為沒有正確撰寫，且與 Azure Mobile Engagement 沒有直接相關的平台特定程式碼而產生。除了Azure Mobile Engagement 文件 (Android、iOS、Web、Windows 及 Windows Phone) 之外，您也必須參考您正在開發之平台的特定文件。
-- 未正確設定「類別」會導致無法從通知連結到應用程式內或應用程式外的另一個位置 (僅限 Android )。 
+- 未正確設定「類別」會導致無法從通知連結到應用程式內或應用程式外的另一個位置 (僅限 Android )。
 - 在您的 iOS 程式碼中未將 "UIKit.framework" 設定為 "optional"，會在較舊的 iOS 裝置上顯示「錯誤：找不到符號」及/或當機 (僅限 iOS)。
 - 過期的憑證或未正確使用憑證的 DEV 或 Prod 版本，會造成推送問題 (僅限 iOS)。
 - 平台中有一些固有限制是 Azure Mobile Engagement 無法控制的 (例如系統中心針對 Android 和 iOS 中的應用程式外推送所採用的運作方式)。
@@ -85,7 +85,7 @@
 
 ### 另請參閱
 
- - [疑難排解指南 - 推送][Link 23] 
+ - [疑難排解指南 - 推送][Link 23]
  - [SDK 文件 - 版本資訊][Link 5]
  - [SDK 文件 - 升級指南][Link 5]
 
@@ -112,7 +112,7 @@
 
 ### 原因
 
-- 應用程式商店有時候會封鎖已啟用特定功能的應用程式 (例如 Apple Store 會防止商店中的應用程式使用 IDFV，Google Play 商店則是會防止應用程式之間共享應用程式資訊)。 
+- 應用程式商店有時候會封鎖已啟用特定功能的應用程式 (例如 Apple Store 會防止商店中的應用程式使用 IDFV，Google Play 商店則是會防止應用程式之間共享應用程式資訊)。
 - 如果您無法將應用程式上傳至商店，請務必查閱平台與 SDK 目前版本的相關版本資訊。
 
 <!--Link references-->
@@ -147,4 +147,4 @@
 [Link 29]: mobile-engagement-user-interface-reach-content.md
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0824_2016-->

@@ -12,7 +12,7 @@
    ms.topic="article" 
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services" 
-   ms.date="04/05/2016"
+   ms.date="08/19/2016"
    ms.author="gwallace"/>
 
 # 搭配內部負載平衡器 (ILB) 的應用程式閘道
@@ -22,7 +22,7 @@
 - [Resource Manager PowerShell 步驟](application-gateway-ilb-arm.md)
 
 
-可以使用面對網際網路的虛擬 IP 或不會對網際網路公開的內部端點 (也稱為內部負載平衡器 (ILB) 端點) 來設定應用程式閘道。使用 ILB 設定閘道適合不會對網際網路公開的內部企業營運應用程式。對於位在不會對網際網路公開的安全性界限中的多層式應用程式內的服務/階層也很有用的，但仍需要循環配置資源負載散發、工作階段綁定或 SSL 終止。本文將逐步引導您完成使用 ILB 設定應用程式閘道。
+可以使用面對網際網路的虛擬 IP 或不會對網際網路公開的內部端點 (也稱為內部負載平衡器 (ILB) 端點) 來設定應用程式閘道。使用 ILB 設定閘道適合不會對網際網路公開的內部企業營運應用程式。對於位在不會對網際網路公開的安全性界限中的多層式應用程式內的服務/階層也很有用的，但仍需要循環配置資源負載散發、工作階段綁定或 SSL 終止。本文會逐步引導您完成使用 ILB 設定應用程式閘道。
 
 ## 開始之前
 
@@ -31,9 +31,9 @@
 3. 請確認您的後端伺服器位於虛擬網路中，或已指派公用 IP/VIP。
 
 
-若要建立新的應用程式閘道，請依列出的順序執行下列步驟。
+若要建立應用程式閘道，請依列出的順序執行下列步驟。
 
-1. [建立新的應用程式閘道](#create-a-new-application-gateway)
+1. [建立應用程式閘道](#create-a-new-application-gateway)
 2. [設定閘道](#configure-the-gateway)
 3. [設定閘道組態](#set-the-gateway-configuration)
 4. [啟動閘道](#start-the-gateway)
@@ -41,7 +41,7 @@
 
 
 
-## 建立新的應用程式閘道：
+## 建立應用程式閘道：
 
 **若要建立閘道器**請使用 `New-AzureApplicationGateway` Cmdlet，並以您的值取代。請注意，此時不會開始為閘道計費。會在稍後的步驟中於成功啟動閘道之後開始計費。
 
@@ -55,7 +55,7 @@
 
 **若要驗證**已建立閘道器，您可以使用 `Get-AzureApplicationGateway` Cmdlet。
 
-在範例中，*Description*、*InstanceCount* 和 *GatewaySize* 是選用參數。*InstanceCount* 的預設值是 2，且最大值是 10。*GatewaySize* 的預設值是 Medium。Small 和 Large 也是可用的值。因為尚未啟動閘道，所以 *Vip* 和 *DnsName* 會顯示為空白。一旦閘道處於執行狀態，就會建立這些項目。
+在範例中，*Description*、*InstanceCount* 和 *GatewaySize* 是選用參數。*InstanceCount* 的預設值是 2，且最大值是 10。*GatewaySize* 的預設值是 Medium。Small 和 Large 也是可用的值。因為尚未啟動閘道，所以 *Vip* 和 *DnsName* 會顯示為空白。閘道處於執行中狀態之後，就會建立這些項目。
 
 	PS C:\> Get-AzureApplicationGateway AppGwTest
 
@@ -96,7 +96,7 @@
 
 - 前端 IP *類型*應該設定為「私人」
 
-- *StaticIPAddress* 應該設定為需要的內部 IP，閘道器會在該處接收流量。請注意，*StaticIPAddress* 元素為選擇性。如果未設定，會選擇來自已部署子網路的可用內部 IP。
+- StaticIPAddress 應該設定為需要的內部 IP，閘道器會在該處接收流量。請注意，*StaticIPAddress* 元素為選擇性。如果未設定，會選擇來自已部署子網路的可用內部 IP。
 
 - 在 *FrontendIPConfiguration* 中指定的 *Name* 元素的值應該用於 HTTPListener 的 *FrontendIP* 元素，以指向 FrontendIPConfiguration。
 
@@ -212,4 +212,4 @@
 - [Azure 負載平衡器](https://azure.microsoft.com/documentation/services/load-balancer/)
 - [Azure 流量管理員](https://azure.microsoft.com/documentation/services/traffic-manager/)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

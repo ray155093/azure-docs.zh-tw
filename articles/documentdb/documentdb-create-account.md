@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="08/11/2016"
+	ms.date="08/25/2016"
 	ms.author="mimig"/>
 
 # 如何使用 Azure 入口網站建立 DocumentDB 帳戶
@@ -28,7 +28,7 @@
 - 具有 Azure 帳戶。您可以取得[免費 Azure 帳戶](https://azure.microsoft.com/free) (若您尚無此帳戶)。
 - 建立 DocumentDB 帳戶。
 
-您可以使用 Azure 入口網站、Azure Resource Manager 範本或 Azure 命令列介面 (CLI) 來建立 DocumentDB 帳戶。本文說明如何使用在 Azure 入口網站中建立資料庫帳戶。若要使用 Azure 資源管理員或 Azure CLI 建立帳戶，請參閱[自動建立 DocumentDB 資料庫帳戶](documentdb-automation-resource-manager-cli.md)。
+您可以使用 Azure 入口網站、Azure Resource Manager 範本或 Azure 命令列介面 (CLI) 來建立 DocumentDB 帳戶。本文說明如何使用 Azure 入口網站建立 DocumentDB 帳戶。若要使用 Azure 資源管理員或 Azure CLI 建立帳戶，請參閱[自動建立 DocumentDB 資料庫帳戶](documentdb-automation-resource-manager-cli.md)。
 
 您是 DocumentDB 的新手嗎？ 觀看 Scott Hanselman 製作的[這部](https://azure.microsoft.com/documentation/videos/create-documentdb-on-azure/)四分鐘的影片，以了解如何在線上入口網站中完成最常見工作。
 
@@ -46,11 +46,11 @@
 
 建立您的資料庫之後, 您必須[加入一或多個集合](documentdb-create-collection.md)至資料庫，然後[加入文件](documentdb-view-json-document-explorer.md)至集合。
 
-在集合中有了文件之後，您可以使用入口網站中的[查詢總管](documentdb-query-collections-query-explorer.md)、[REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 或其中一個 [SDK](documentdb-sdk-dotnet.md)，針對文件使用 [DocumentDB SQL](documentdb-sql-query.md) 來[執行查詢](documentdb-sql-query.md#executing-queries)。
+當集合中有文件之後，您就可以利用入口網站中的[查詢總管](documentdb-query-collections-query-explorer.md)、[REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx)，或其中一個 [SDK](documentdb-sdk-dotnet.md)，來針對文件使用 [DocumentDB SQL](documentdb-sql-query.md) 來[執行查詢](documentdb-sql-query.md#executing-queries)。
 
 若要深入了解 DocumentDB，請探索以下資源：
 
 -	[DocumentDB 的學習途徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)
 -	[DocumentDB 資源模型和概念](documentdb-resources.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

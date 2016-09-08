@@ -15,12 +15,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/27/2016"
+	ms.date="08/24/2016"
 	ms.author="genli"/>
 
 # 如果我的 Azure 訂用帳戶被停用，該怎麼辦？
 
-如果您的 Azure 訂用帳戶被停用，您可以使用本文中的步驟重新啟用它。您的 Azure 訂用帳戶遭停用原因可能如下：
+> [AZURE.NOTE] 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+
+如果您的 Azure 訂用帳戶被停用，您可以使用本文中的步驟重新啟用它。您的 Azure 訂用帳戶可能會因下列原因而遭到停用。
 
 ## 您已達到消費限制
 
@@ -35,9 +37,9 @@
 3. 選取一個訂用帳戶。
 
 4. 如果您看到「此訂用帳戶已達消費限制，並已停用以避免收費」，請對它按一下。
-	
+
 	或者，按一下 [訂用帳戶狀態] 區域中的 [移除消費限制]。
-	
+
 5. 選取下列適合您的選項之一︰
 
 |選項|效果|
@@ -71,4 +73,6 @@
 
 如需詳細資訊，請參閱[如何針對 Azure 計費和訂用帳戶問題建立支援票證](billing-how-to-create-billing-support-ticket.md)。
 
-<!---HONumber=AcomDC_0810_2016------>
+> [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+
+<!---HONumber=AcomDC_0824_2016-->

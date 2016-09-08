@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="05/04/2016"
+	ms.date="08/22/2016"
 	ms.author="mahender"/>
 
 # 如何設定 App Service 應用程式使用 Azure Active Directory 登入
@@ -61,7 +61,7 @@
 
 7. 在 [登入 URL] 方塊中，貼上您之前複製的應用程式 URL。在 [應用程式識別碼 URI] 方塊中輸入相同的 URL。接著，按一下以繼續。
 
-8. 新增應用程式之後，按一下 [設定] 索引標籤。將 [單一登入] 下的 [回覆 URL] 編輯成您應用程式的 URL，並加上 _/.auth/login/aad/callback_ 路徑。例如：`https://contoso.azurewebsites.net/.auth/login/aad/callback`。請確實使用 HTTPS 配置。
+8. 新增應用程式之後，按一下 [設定] 索引標籤。將 [單一登入] 下的 [回覆 URL] 編輯成您應用程式的 URL，並加上「/.auth/login/aad/callback」路徑。例如：`https://contoso.azurewebsites.net/.auth/login/aad/callback`。請確實使用 HTTPS 配置。
 
     ![][3]
 
@@ -101,7 +101,7 @@ Azure Active Directory 也可讓您註冊更能控制權限對應的原生用戶
 
 4. 在 [新增應用程式精靈] 中，輸入應用程式的 [名稱]，然後按一下 [原生用戶端應用程式] 類型。接著，按一下以繼續。
 
-5. 在 [**重新導向 URI**] 方塊中，請使用 HTTPS 配置輸入您網站的 _/.auth/login/done_ 端點。此值應與 \__https://contoso.azurewebsites.net/.auth/login/done_ 類似。如果是建立 Windows 應用程式，請改用[封裝 SID](app-service-mobile-dotnet-how-to-use-client-library.md#package-sid) 作為 URI。
+5. 在 [**重新導向 URI**] 方塊中，請使用 HTTPS 配置輸入您網站的 _/.auth/login/done_ 端點。此值應與 \_https://contoso.azurewebsites.net/.auth/login/done_ 類似。如果是建立 Windows 應用程式，請改用[封裝 SID](app-service-mobile-dotnet-how-to-use-client-library.md#package-sid) 作為 URI。
 
 6. 新增原生應用程式之後，按一下 [**設定**] 索引標籤。請找到**用戶端識別碼**並記下該值。
 
@@ -130,4 +130,4 @@ Azure Active Directory 也可讓您註冊更能控制權限對應的原生用戶
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
 [alternative method]: #advanced
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -12,14 +12,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="03/23/2016"
+   ms.date="08/17/2016"
    ms.author="alkohli" />
 
 # 從備份組還原 StorSimple 磁碟區
 
 [AZURE.INCLUDE [storsimple-version-selector-restore-from-backup](../../includes/storsimple-version-selector-restore-from-backup.md)]
 
-## 概觀
+## Overview
 
 [備份類別目錄] 頁面會顯示在產生手動或自動備份時建立的所有備份組。您可以使用此頁面來列出備份原則或磁碟區的所有備份、選取或刪除備份，或是使用備份來還原或複製磁碟區。
 
@@ -39,7 +39,7 @@
 
 - **名稱** - 與備份組相關聯的備份原則或磁碟區的名稱。
 - **大小** - 備份組的實際大小。
-- **建立日期** - 建立備份的日期和時間。 
+- **建立日期** - 建立備份的日期和時間。
 - **類型** - 備份組可以是本機快照集或雲端快照集。本機快照是本機儲存於裝置上的所有磁碟區資料備份，而雲端快照是指位於雲端的磁碟區資料備份。本機快照可提供更快速的存取，而雲端快照是選擇來進行資料復原。
 - **起始者** - 備份可根據排程自動初始，或由使用者手動初始。(您可以使用備份原則來排程備份。或者，可以使用 [取得備份] 選項來取得互動式備份。)
 
@@ -89,4 +89,4 @@
 
 - 了解如何[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0824_2016-->

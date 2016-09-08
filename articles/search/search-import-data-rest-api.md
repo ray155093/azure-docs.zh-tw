@@ -14,7 +14,7 @@
     ms.workload="search"
     ms.topic="get-started-article"
     ms.tgt_pltfrm="na"
-    ms.date="05/31/2016"
+    ms.date="08/29/2016"
     ms.author="ashmaka"/>
 
 # 使用 REST API 將資料上傳至 Azure 搜尋服務
@@ -168,4 +168,4 @@
 ## 下一步
 在填入 Azure 搜尋服務索引後，您就可以開始發出查詢來搜尋文件。如需詳細資料，請參閱[查詢 Azure 搜尋服務索引](search-query-overview.md)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0831_2016-->

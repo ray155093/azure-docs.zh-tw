@@ -13,16 +13,16 @@
 	ms.tgt_pltfrm="mobile-xamarin-ios"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="05/05/2016"
+	ms.date="08/19/2016"
 	ms.author="wesmc"/>
 
 # 將推播通知新增至 Xamarin.iOS 應用程式
 
 [AZURE.INCLUDE [app-service-mobile-selector-get-started-push](../../includes/app-service-mobile-selector-get-started-push.md)]
 
-##概觀
+##Overview
 
-本教學課程以[建立 Xamarin.iOS 應用程式](app-service-mobile-xamarin-ios-get-started.md)教學課程為基礎，您必須先完成該教學課程。您將會新增推播通知至 Xamarin.iOS 快速入門專案，以便在每次插入一筆記錄時傳送推播通知。如果您不要使用下載的快速入門伺服器專案，必須將推播通知擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
+本教學課程以[建立 Xamarin.iOS 應用程式](app-service-mobile-xamarin-ios-get-started.md)教學課程為基礎，您必須先完成該教學課程。您將會新增推播通知至 Xamarin.iOS 快速入門專案，以便在每次插入一筆記錄時傳送推播通知。如果您不要使用下載的快速入門伺服器專案，必須將推播通知擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure Mobile Apps 的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
 ##必要條件
 
@@ -156,4 +156,4 @@
 
 <!-- URLs. -->
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0824_2016-->

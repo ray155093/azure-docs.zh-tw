@@ -1,6 +1,6 @@
 <properties
    pageTitle="Azure 的安全性管理 | Microsoft Azure"
-   description="本文探討管理 Microsoft Azure 環境時提升遠端管理安全性的步驟，這些環境包括雲端服務、虛擬機器及自訂應用程式。"
+   description=" 本文探討管理 Microsoft Azure 環境時提升遠端管理安全性的步驟，這些環境包括雲端服務、虛擬機器及自訂應用程式。"
    services="security"
    documentationCenter="na"
    authors="TerryLanfear"
@@ -13,14 +13,14 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/26/2016"
+   ms.date="08/25/2016"
    ms.author="terrylan"/>
 
 # Azure 的安全性管理
 
 Azure 訂閱者可從多種裝置管理其雲端環境，這些裝置包括管理工作站、開發人員的電腦，甚至是具有工作專用權限的特殊權限使用者裝置。有時候，管理功能是透過 Web 式主控台來執行，例如 [Azure 入口網站](https://azure.microsoft.com/features/azure-portal/)。至於其他時候，則可能會從內部部署系統，透過虛擬私人網路 (VPN)、終端機服務、用戶端應用程式通訊協定或 Azure 服務管理 API (SMAPI) (以程式設計方式) 直接連線至 Azure。此外，用戶端端點也可以加入網域或是遭到隔離且不受管理，例如平板電腦或智慧型手機。
 
-雖然這麼多種的存取和管理功能可提供一組豐富的選項，但選項太多也可能會讓雲端部署承受巨大風險，因而難以管理、追蹤和稽核管理動作。選項太多也可能會因為用來管理雲端服務之用戶端端點所進行的存取不受管制而招致安全性威脅。使用一般工作站或私人工作站來開發和管理基礎結構將會打開無法預期的威脅媒介，例如網頁瀏覽 (例如水坑攻擊) 或電子郵件 (例如社交工程和網路釣魚)。
+雖然多項存取和管理功能可提供一組豐富的選項，但選項太多也可能會讓雲端部署承受巨大風險。因而難以管理、追蹤和稽核管理動作。選項太多也可能會因為用來管理雲端服務之用戶端端點所進行的存取不受管制而招致安全性威脅。使用一般工作站或私人工作站來開發和管理基礎結構將會打開無法預期的威脅媒介，例如網頁瀏覽 (例如水坑攻擊) 或電子郵件 (例如社交工程和網路釣魚)。
 
 ![][1]
 
@@ -247,4 +247,4 @@ Azure 雲端服務組態是透過 Azure 入口網站或 SMAPI，經由 Windows P
 [3]: ./media/azure-security-management/hardened-workstation-enabled-with-hyper-v.png
 [4]: ./media/azure-security-management/hardened-workstation-using-windows-to-go-on-a-usb-flash-drive.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0831_2016-->
