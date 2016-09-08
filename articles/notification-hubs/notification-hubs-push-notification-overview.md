@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="multiple"
 	ms.devlang="multiple"
 	ms.topic="hero-article"
-	ms.date="06/29/2016"
+	ms.date="08/25/2016"
 	ms.author="wesmc"/>
 
 
 #Azure 通知中心
 
-##概觀
+##Overview
 
 Azure 通知中樞提供一種易用、多平台、向外延展的推播基礎結構，可讓您將行動推播通知從任何後端 (在雲端或內部部署) 傳送到任何行動平台。
 
@@ -37,9 +37,9 @@ Azure 通知中樞提供一種易用、多平台、向外延展的推播基礎�
 
 ##什麼是推播通知？
 
-智慧型手機和平板電腦都具有在事件發生時「通知」使用者的功能。這些通知可以有許多形式。
+智慧型手機和平板電腦都可以在事件發生時「通知」使用者。這些通知可以有許多形式。
 
-在 Windows 市集和 Windows Phone 應用程式中，通知可以是_「推播」_形式：具有音效的非強制回應視窗出現，以指出有新的通知。支援其他通知類型 (包括_「磚」_、_「原始」_和_「徽章」_通知)。如需 Windows 裝置上所支援通知類型的詳細資訊，請參閱[磚、徽章和通知](http://msdn.microsoft.com/library/windows/apps/hh779725.aspx)。
+在 Windows 市集和 Windows Phone 應用程式中，通知可以是_「推播」_形式：具有音效的非強制回應視窗出現，以指出有新的通知。其他支援的通知類型包括「圖格」、「原始」和「徽章」通知。如需 Windows 裝置上所支援通知類型的詳細資訊，請參閱[圖格、徽章和通知](http://msdn.microsoft.com/library/windows/apps/hh779725.aspx)。
 
 在 Apple iOS 裝置上，推播同樣會以對話方塊的形式通知使用者，而要求使用者檢視或關閉通知。按一下 [檢視] 即會開啟接收訊息的應用程式。如需 iOS 通知的詳細資訊，請參閱 [iOS 通知](http://go.microsoft.com/fwlink/?LinkId=615245)。
 
@@ -47,13 +47,13 @@ Azure 通知中樞提供一種易用、多平台、向外延展的推播基礎�
 
 行動應用案例的特定範例包括：
 
-1.  以目前的財務資訊更新 Windows 8 或 Windows Phone 上的磚。
+1.  以目前的財務資訊更新 Windows 8 或 Windows Phone 上的圖格。
 2.  在以工作流程為基礎的企業應用程式中，透過已將某個工作項目指派給使用者的快顯通知，對該名使用者發出警示。
 3.  在 CRM 應用程式 (例如 Microsoft Dynamics CRM) 中，顯示具有目前潛在客戶數目的徽章。
 
 ##推播通知的運作方式
 
-推播通知可透過名為_平台通知系統_ (PNS) 的平台特定基礎結構來傳遞。PNS 可提供準系統功能 (即不支援廣播和個人化的系統)，不具共同介面。例如，若要傳送通知給 Windows 市集應用程式，開發人員必須連絡 WNS (Windows 通知服務) 以將通知傳送至 iOS 裝置，且必須連絡 APNS (Apple 推播通知服務)，而再次傳送訊息。Azure 通知中樞提供通用介面以及其他功能，以協助支援跨每個平台的推播通知。
+推播通知可透過名為_平台通知系統_ (PNS) 的平台特定基礎結構來傳遞。PNS 可提供準系統功能 (即不支援廣播和個人化的系統)，不具共同介面。例如，若要將通知傳送至 Windows 市集應用程式，開發人員必須連絡 WNS (Windows 通知服務)。若要將通知傳送至 iOS 裝置，同一位開發人員必須連絡 APNS (Apple Push Notification Service)，並再次傳送訊息。Azure 通知中樞提供通用介面以及其他功能，以協助支援跨每個平台的推播通知。
 
 但綜觀而言，所有平台通知系統都依循相同的模式：
 
@@ -70,12 +70,12 @@ Azure 通知中樞提供一種易用、多平台、向外延展的推播基礎�
 
 就行動應用程式而言，推播通知是雲端服務中最常被要求的功能之一。原因是，其運作所需的基礎結構頗為複雜，且大部分與應用程式的主要商業邏輯沒有關聯。建置隨選推播基礎結構的挑戰包括：
 
-- **平台相依性。** 若要將通知傳送至不同平台上的裝置，必須在後端為多個介面進行編碼。除了低階細節有所差異外，通知的呈現方式 (磚、快顯通知或徽章) 也會隨平台而不同。這些差異可能會致使後端程式碼複雜且難以維護。
+- **平台相依性。** 若要將通知傳送至不同平台上的裝置，必須在後端為多個介面進行編碼。除了低階細節有所差異外，通知的呈現方式 (圖格、快顯通知或徽章) 也會隨平台而不同。這些差異可能會致使後端程式碼複雜且難以維護。
 
 - **調整。** 此基礎結構的調整可分為兩個層面：
 	+ 根據 PNS 準則，在每次啟動應用程式時，都必須重新整理裝置權杖。在此情況下，光是為了保有最新的裝置權杖，就會產生大量的流量 (和隨之而來的資料庫存取)。當裝置數目增加時 (可能達百萬以上)，建立及維護此基礎結構的成本將會很可觀。
 
-	+ 大部分的 PNS 並不支援廣播至多個裝置。因此，若要廣播至數百萬個裝置，就必須對 PNS 呼叫數百萬次。要能夠調整這些要求可不是容易的事，因為應用程式開發人員通常都會想要維持較低的整體延遲性 (例如，最後一個接收訊息的裝置，不應在通知送出的 30 分鐘後才收到通知，因為這樣很可能就失去推播通知的意義了)。
+	+ 大部分的 PNS 並不支援廣播至多個裝置。因此，若要廣播至數百萬個裝置，就必須對 PNS 呼叫數百萬次。要能夠調整這些要求可不是容易的事，因為應用程式開發人員通常都會想要維持較低的整體延遲性。例如，最後一個接收訊息的裝置，不應在通知送出的 30 分鐘後才收到通知，因為這樣很可能就失去推播通知的意義了。
 - **路由。** PNS 提供將訊息傳送至裝置的途徑。但大部分的應用程式通知都會以使用者和 (或) 相關群組 (例如，所有指派至特定客戶帳戶的員工) 為對象。因此，若要將通知遞送至正確的裝置，應用程式後端必須保有為相關群組與裝置權杖建立關聯的登錄。這項額外工作將導致應用程式的上市時程延宕和維護成本提高。
 
 ##為何要使用通知中心？
@@ -128,11 +128,15 @@ Mobile Apps 開發人員可以使用下列流程來利用通知中樞：
 3. 從 App 後端使用通知中樞傳送通知
 
 以下是透過此註冊為開發人員帶來的一些便利性：
+
 - **Mobile Apps Client SDK。** 這些多平台 SDK 提供簡單的 API 來進行註冊，然後會自動與連結到行動 App 的通知中樞聯繫。開發人員不需要透過通知中樞認證進行挖掘，以及使用其他服務。
     + SDK 會使用 Mobile Apps 驗證的使用者識別碼自動標記指定的裝置，以啟用推送至使用者案例。
     + SDK 會自動使用 Mobile Apps 安裝識別碼做為 GUID 來向通知中樞註冊，省去開發人員維護多個服務 GUID 的麻煩。
+    
 - **安裝模型。** Mobile Apps 會使用通知中樞的最新推送模型，來呈現 JSON 安裝中所有與裝置相關聯的推送屬性，其會與推播通知密切合作且易於使用。
+
 - **彈性。** 即使已就地整合，開發人員一律還是可以選擇直接使用通知中樞。
+
 - **[Azure 入口網站]中的整合體驗。** Mobile Apps 中會以視覺化方式呈現以功能形式出現的推送，而開發人員可以透過 Mobile Apps 輕鬆使用相關聯的通知中樞。
 
 
@@ -166,9 +170,9 @@ Mobile Apps 開發人員可以使用下列流程來利用通知中樞：
   [Xamarin.Android]: http://azure.microsoft.com/documentation/articles/partner-xamarin-notification-hubs-android-get-started
   [Microsoft.WindowsAzure.Messaging.NotificationHub]: http://msdn.microsoft.com/library/microsoft.windowsazure.messaging.notificationhub.aspx
   [Microsoft.ServiceBus.Notifications]: http://msdn.microsoft.com/library/microsoft.servicebus.notifications.aspx
-  [App Service Mobile Apps]: https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-value-prop/
+  [App Service Mobile Apps]: https://azure.microsoft.com/documentation/articles/app-service-mobile-value-prop/
   [範本]: notification-hubs-templates.md
   [Azure 入口網站]: https://portal.azure.com
   [標記]: (http://msdn.microsoft.com/library/azure/dn530749.aspx)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0831_2016-->

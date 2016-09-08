@@ -99,7 +99,7 @@
 
 	您可以從 JSON 檔案範本取得映像的 URL。請依序前往 [資源] > [storageProfile] > [osDisk] > [映像] > [uri] 區段，取得您映像的完整路徑。映像的 URL 如下所示：`https://<storageAccountName>.blob.core.windows.net/system/Microsoft.Compute/Images/<imagesContainer>/<templatePrefix-osDisk>.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.vhd`
 	
-	您也可以在入口網站中驗證 URI。系統會將映像複製到儲存體帳戶中名為 **system** 的 Blob。
+	您也可以在入口網站中驗證 URI。系統會將映像複製到儲存體帳戶中名為 **system** 的容器中。
 
 2. 建立映像路徑的變數。
 
@@ -210,4 +210,4 @@
 
 若要使用 Azure PowerShell 管理新的虛擬機器，請參閱[使用 Azure Resource Manager 與 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

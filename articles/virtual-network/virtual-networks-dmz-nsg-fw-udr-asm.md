@@ -76,7 +76,7 @@ VNETLocal 一律是該特定網路之 VNet 的定義位址前置詞 (也就是�
 
 如果路由表中有兩個相同的前置詞，則根據路由的 “source” 屬性，其喜好順序如下：
 
-1.	<blank> = 手動新增到表格中的「使用者定義路由」
+1.	"VirtualAppliance" = 手動新增到表格中的「使用者定義路由」
 2.	“VPNGateway” = 由動態網路通訊協定新增的動態路由 (與混合式網路搭配使用時為 BGP)，這些路由會隨時間改變，因為動態通訊協定會自動反映對等網路中的變更
 3.	“Default” = 上述路由表所示的系統路由、本機 VNet 和靜態項目。
 
@@ -941,4 +941,4 @@ Barracuda 網站可以找到這些規則的詳細資訊。
 [HOME]: ../best-practices-network-security.md
 [SampleApp]: ./virtual-networks-sample-app.md
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

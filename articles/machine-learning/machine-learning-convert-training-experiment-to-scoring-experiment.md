@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/02/2016"
+	ms.date="08/19/2016"
 	ms.author="garye"/>
 
 # 將機器學習服務訓練實驗轉換成預測實驗
@@ -37,7 +37,7 @@ Azure Machine Learning 可讓您建置、測試以及部署預測性分析解決
 執行您的實驗之後 (實驗畫布底部的 [執行] 按鈕)，[設定 Web 服務] 按鈕 (選取 [預測 Web 服務] 選項) 會為您執行三個步驟將訓練實驗轉換成預測實驗：
 
 1.	它會將定型模型當做模組，儲存在模組調色盤的 [定型模型] 區段 (實驗畫布的左側)，然後將機器學習演算法和[訓練模型][train-model]模組替換為所儲存的定型模型。
-2.	它會移除顯然不需要的模組。在我們的範例中，這包括[分割][split]、第 2 個[評分模型][score-model]以及[評估模型][evaluate-model]模組。
+2.	它會移除顯然不需要的模組。在我們的範例中，這包括[分割資料][split]、第 2 個[評分模型][score-model]以及[評估模型][evaluate-model]模組。
 3.	它會建立 Web 服務輸入和輸出模組，並將它們加入到實驗的預設位置中。
 
 例如，以下實驗會使用範例人口普查資料，訓練二元推進式決策樹模型：
@@ -96,7 +96,7 @@ Azure Machine Learning 可讓您建置、測試以及部署預測性分析解決
 
 常見的範例是設定[匯入資料][import-data]模組，讓已部署之 Web 服務的使用者可以在存取 Web 服務時，指定不同的資料來源。或者，設定[匯出資料][export-data]模組，以便能夠指定不同的目的地。
 
-您可以定義 Web 服務參數，並使其與一個或多個模組參數產生關聯，而且您可以指定它們是必要還是選用參數。接著，Web 服務的使用者可以在服務遭到存取時，提供這些參數的值，並據此修改模組動作。
+您可以定義 Web 服務參數，並使其與一個或多個模組參數產生關聯，而且您可以指定它們是必要還是選用參數。接著，Web 服務的使用者可以在服務受到存取時，提供這些參數的值，並據此修改模組動作。
 
 如需關於 Web 服務參數的詳細資訊，請參閱[使用 Azure Machine Learning Web 服務參數][webserviceparameters]。
 
@@ -131,4 +131,4 @@ Azure Machine Learning 可讓您建置、測試以及部署預測性分析解決
 [train-model]: https://msdn.microsoft.com/library/azure/5cc7053e-aa30-450d-96c0-dae4be720977/
 [export-data]: https://msdn.microsoft.com/library/azure/7a391181-b6a7-4ad4-b82d-e419c0d6522c/
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0824_2016-->

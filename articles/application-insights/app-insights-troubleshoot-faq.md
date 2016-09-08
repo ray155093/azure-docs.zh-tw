@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/13/2016" 
+	ms.date="08/24/2016" 
 	ms.author="awills"/>
  
 # 問題 - ASP.NET 的 Application Insights
@@ -27,6 +27,12 @@
 * [Java Web 應用程式](app-insights-java-troubleshoot.md)
 * [其他平台](app-insights-platforms.md)
 
+我未取得任何來自我的伺服器的資料
+
+* [設定防火牆例外狀況](app-insights-ip-addresses.md)
+* [設定 ASP.NET 伺服器](app-insights-monitor-performance-live-website-now.md)
+* [設定 Java 伺服器](app-insights-java-agent.md)
+
 
 ## 我是否可以使用 Application Insights 搭配...？
 
@@ -35,7 +41,7 @@
 
 ## 它是免費的嗎？
 
-* 是的，如果您選擇免費[定價層](app-insights-pricing.md)。您會獲得大部分的功能和大量資料配額。 
+* 是的，如果您選擇免費[定價層](app-insights-pricing.md)。您會獲得大部分的功能和大量資料配額。
 * 您必須提供信用卡資料以向 Microsoft Azure 註冊，但我們不會收取任何費用，除非您使用其他付費 Azure 服務，或明確地升級至付費層。
 * 如果您的應用程式傳送的資料超過免費層的每月配額，它會停止記錄。如果發生這種情況，您可以選擇開始付費，或等到月底重設配額。
 * 基本的使用情況和工作階段資料不受配額限制。
@@ -104,7 +110,7 @@
 
 我們不會自動記錄 POST 資料，但您可以使用 TrackTrace 呼叫：將資料放置到訊息參數中。相較於字串屬性的限制，此呼叫可容許較長的大小，不過您無法篩選。
 
-## Security
+## 安全性
 
 #### 保留在入口網站上的資料安全嗎？ 會保留多久？
 
@@ -145,4 +151,4 @@
 
  
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0824_2016-->

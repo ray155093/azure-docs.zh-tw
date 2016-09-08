@@ -39,10 +39,10 @@
 - 逐步了解[教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
 - 在您的電腦上安裝 [Curl](https://curl.haxx.se/dlwiz/)。您可搭配使用 Curl 工具與 REST 命令來建立 Data Factory。
 - 請依照[本文](../resource-group-create-service-principal-portal.md)的指示：
-	1. 在 Azure Active Directory 中建立名為 **ADFCopyTutotiralApp** 的 Web 應用程式。
+	1. 在 Azure Active Directory 中建立名為 **ADFCopyTutorialApp** 的 Web 應用程式。
 	2. 取得**用戶端識別碼**和**秘密金鑰**。
 	3. 取得**租用戶識別碼**。
-	4. 將 **ADFCopyTutotiralApp** 應用程式指派給 **Data Factory 參與者**角色。
+	4. 將 **ADFCopyTutorialApp** 應用程式指派給 **Data Factory 參與者**角色。
 - 安裝 [Azure PowerShell](../powershell-install-configure.md)。
 - 啟動 **PowerShell** 並執行下列命令。將 Azure PowerShell 維持在開啟狀態，直到本教學課程結束為止。如果您關閉並重新開啟，則需要再次執行這些命令。
 	1. 執行下列命令並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
@@ -298,7 +298,7 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 		$results = Invoke-Command -scriptblock $cmd;
 3. 檢視結果。如果已成功建立 Data Factory，您會在**結果**中看到 Data Factory 的 JSON；不然，您會看到一則錯誤訊息。
 
-		$results
+		Write-Host $results
 
 請注意：
  
@@ -339,7 +339,7 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 		$results = Invoke-Command -scriptblock $cmd;
 3. 檢視結果。如果已成功建立連結服務，您會在**結果**中看到連結服務的 JSON；不然，您會看到一則錯誤訊息。
   
-		$results
+		Write-Host $results
 
 ### 建立 Azure SQL 連結服務
 在此步驟中，您會將您的 Azure SQL Database 連結到您的 Data Factory。在本教學課程中，您會使用相同的 Azure SQL Database 來存放輸出資料。
@@ -352,7 +352,7 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 		$results = Invoke-Command -scriptblock $cmd;
 3. 檢視結果。如果已成功建立連結服務，您會在**結果**中看到連結服務的 JSON；不然，您會看到一則錯誤訊息。
   
-		$results
+		Write-Host $results
 
 ## 建立資料集
 
@@ -404,7 +404,7 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 		$results = Invoke-Command -scriptblock $cmd;
 3. 檢視結果。如果已成功建立資料集，您會在**結果**中看到資料集的 JSON；不然，您會看到一則錯誤訊息。
   
-		$results
+		Write-Host $results
 
 ### 建立輸出資料集
 在此步驟中，您會建立名為 **AzureSqlOutput** 的輸出資料表。此資料集指向 Azure SQL Database 中 **AzureSqlLinkedService** 所代表的 SQL 資料表 (**emp**)。管線會將輸入 Blob 中的資料複製到 **emp** 資料表。
@@ -417,7 +417,7 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 		$results = Invoke-Command -scriptblock $cmd;
 3. 檢視結果。如果已成功建立資料集，您會在**結果**中看到資料集的 JSON；不然，您會看到一則錯誤訊息。
   
-		$results 
+		Write-Host $results 
 
 ## 建立管線
 在此步驟中，您會建立管線，其中含有使用 **AzureBlobInput** 做為輸入和使用 **AzureSqlOutput** 做為輸出的**複製活動**。
@@ -430,7 +430,7 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 		$results = Invoke-Command -scriptblock $cmd;
 3. 檢視結果。如果已成功建立資料集，您會在**結果**中看到資料集的 JSON；不然，您會看到一則錯誤訊息。
 
-		$results
+		Write-Host $results
 
 **恭喜！** 您已成功建立 Azure Data Factory，其中有管線可將資料從 Azure Blob 儲存體複製到 Azure SQL Database。
 
@@ -493,4 +493,4 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 [sql-management-studio]: ../sql-database/sql-database-manage-azure-ssms.md
  
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

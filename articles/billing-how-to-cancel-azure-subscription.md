@@ -15,12 +15,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/11/2016"
+	ms.date="08/24/2016"
 	ms.author="genli"/>
 
 # 如何取消 Azure 訂用帳戶
 
->[AZURE.NOTE] Azure 支援方案為 6 個月期，而 Microsoft 要求您對該期的期間履行貨幣承諾量。在期限到期前解約並不會免除剩餘的承諾量，亦不會針對任何預付金額進行退款。如果您不小心取消訂用帳戶並需要重新啟用，請連絡 [Azure 支援](billing-how-to-create-billing-support-ticket.md)尋求協助。
+>[AZURE.NOTE] Azure 支援方案為 6 個月期，而 Microsoft 要求您對該期的期間履行貨幣承諾量。在期限到期前解約並不會免除剩餘的承諾量，亦不會針對任何預付金額進行退款。如果您不小心取消訂用帳戶並需要重新啟用，您可以[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以尋求協助。
+
+> [AZURE.NOTE] 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
 如果您取消訂用帳戶，將會立即刪除您所有的服務。取消前，請務必先備份您要儲存的資料。
 
@@ -30,4 +32,6 @@
 4. 選取 [是，取消我的訂用帳戶]。</br> ![cancelbox](.\media\billing-how-to-cancel-azure-subscription\cancelbox.png)
 5. 按一下 ![checkbutton](.\media\billing-how-to-cancel-azure-subscription\checkbutton.png) 關閉對話視窗並返回您的訂用帳戶頁面。
 
-<!---HONumber=AcomDC_0817_2016-->
+> [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+
+<!---HONumber=AcomDC_0824_2016-->

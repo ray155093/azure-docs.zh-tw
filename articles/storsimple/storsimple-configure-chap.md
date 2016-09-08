@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="TBD"
-   ms.date="05/25/2016"
+   ms.date="08/17/2016"
    ms.author="alkohli" />
 
 # 為 StorSimple 裝置設定 CHAP
@@ -31,7 +31,7 @@ CHAP 代表 Challenge Handshake 驗證通訊協定。它是伺服器用來驗證
 
 - 雙向、相互或反向驗證
 
-在各種情況下，都需要設定裝置入口網站和伺服器 iSCSI 啟動器軟體。下列教學課程將說明這項設定的詳細步驟。
+在這每一種情況下，都需要設定裝置入口網站和伺服器 iSCSI 啟動器軟體。下列教學課程將說明這項設定的詳細步驟。
 
 ## 單向驗證
 
@@ -198,4 +198,4 @@ CHAP 代表 Challenge Handshake 驗證通訊協定。它是伺服器用來驗證
 
 - 深入了解[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0824_2016-->

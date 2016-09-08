@@ -47,12 +47,12 @@ Aravo 與 Azure AD 整合提供下列優點：
 
 
 ## 案例描述
-此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。
+此教學課程的目標是讓您在測試環境中測試 Microsoft Azure AD 單一登入。
 
 本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫新增 Aravo
-2. 設定並測試 Azure AD 單一登入
+2. 設定並測試 Microsoft Azure AD 單一登入
 
 
 ## 從資源庫新增 Aravo
@@ -60,7 +60,7 @@ Aravo 與 Azure AD 整合提供下列優點：
 
 **若要從資源庫加入 Aravo，請執行下列步驟：**
 
-1. 在「Azure 傳統入口網站」中，按一下左方瀏覽窗格的 [Active Directory]。
+1. 在「Azure 傳統入口網站」中，按一下左方瀏覽窗格上的 [Active Directory]。
 
 	![Active Directory][1]
 
@@ -86,32 +86,32 @@ Aravo 與 Azure AD 整合提供下列優點：
 	![選取資源庫中的應用程式](./media/active-directory-saas-aravo-tutorial/tutorial_aravo_0001.png)
 
 
-##  設定並測試 Azure AD 單一登入
-本節的目標是要說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Aravo 搭配運作的 Azure AD 單一登入。
+##  設定並測試 Microsoft Azure AD 單一登入
+本節的目標是要說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Aravo 搭配運作的 Microsoft Azure AD 單一登入。
 
 若要讓單一登入運作，Azure AD 必須知道 Aravo 與 Azure AD 中互相對應的使用者。換句話說，必須建立 Azure AD 使用者和 Aravo 中相關使用者之間的連結關聯性。
 
 建立此連結關聯性的方法，就是將 Azure AD 中 [使用者名稱] 的值，指派為 Aravo 中 [使用者名稱] 的值。
 
-若要設定及測試與 Aravo 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
+若要設定及測試對 Aravo 的 Microsoft Azure AD 單一登入，您需要完成下列建置組塊：
 
-1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
-2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
+1. **[設定 Microsoft Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓使用者能夠使用此功能。
+2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Microsoft Azure AD 單一登入。
 3. **[建立 Aravo 測試使用者](#creating-a-aravo-test-user)** - 使 Aravo 中對應的 Britta Simon 連結到她在 Azure AD 中的代表項目。
-4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
+4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Microsoft Azure AD 單一登入。
 5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### 設定 Azure AD 單一登入
+### 設定 Microsoft Azure AD 單一登入
 
-在本節中，您會在傳統入口網站中啟用 Azure AD 單一登入，並在您的 Aravo 中設定單一登入。
+在本節中，您會在傳統入口網站中啟用 Microsoft Azure AD 單一登入，並在您的 Aravo 應用程式中設定單一登入。
 
-**若要使用 Aravo 設定 Azure AD 單一登入，請執行下列步驟：**
+**若要使用 Aravo 設定 Microsoft Azure AD 單一登入功能，請執行下列步驟：**
 
 1. 在傳統入口網站的 [Aravo] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 	 
 	![設定單一登入][6]
 
-2. 在 [您希望使用者如何登入 Aravo] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
+2. 在 [要如何讓使用者登入 Aravo] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
 	![設定單一登入](./media/active-directory-saas-aravo-tutorial/tutorial_aravo_03.png)
 
@@ -123,7 +123,7 @@ Aravo 與 Azure AD 整合提供下列優點：
 
     b.在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://<company name>.aravo.com/aems/login.do`
 
-	c.按 [**下一步**]
+	c.按 [下一步]
 
 	> [AZURE.NOTE] 請注意這些不是真正的值。您必須使用實際的識別碼和回覆 URL 更新這些值。若要取得這些值，請連絡 Aravo。
 
@@ -162,17 +162,17 @@ Aravo 與 Azure AD 整合提供下列優點：
 
 **若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
+1. 在「Azure 傳統入口網站」中，按一下左方瀏覽窗格上的 [Active Directory]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-aravo-tutorial/create_aaduser_09.png)
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
 	
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-aravo-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
 	
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-aravo-tutorial/create_aaduser_04.png)
 
@@ -186,7 +186,7 @@ Aravo 與 Azure AD 整合提供下列優點：
 
     c.按 [下一步]。
 
-6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
+6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
 	
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-aravo-tutorial/create_aaduser_06.png)
 
@@ -249,7 +249,7 @@ Aravo 與 Azure AD 整合提供下列優點：
 
 ### 測試單一登入
 
-本節的目標是要使用「存取面板」來測試您的 Azure AD 單一登入組態。
+本節的目標是要使用「存取面板」來測試您的 Microsoft Azure AD 單一登入組態。
 
 當您在存取面板中按一下 Aravo 圖格時，應該會自動登入您的 Aravo 應用程式。
 
@@ -279,4 +279,4 @@ Aravo 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-aravo-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-aravo-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -27,7 +27,7 @@
 
 Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共同建置安全應用程式。您可以使用[用戶端加密](storage-client-side-encryption.md)、HTTP 或 SMB 3.0，在應用程式和 Azure 之間進行傳輸時保護資料的安全。儲存體服務加密是 Azure 儲存體的新功能，在資料寫入至 Azure 儲存體 (支援區塊 Blob、分頁 Blob 和附加 Blob) 時加密資料。您可以針對使用 Azure Resource Manager 部署模型的新儲存體帳戶啟用此功能，並且適用於所有備援層級 (LRS、ZRS、GRS、RA-GRS)。儲存體服務加密適用於標準和進階儲存體，以完全透明的方式處理加密、解密和金鑰管理。所有資料都使用 256 位元 [AES 加密](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) (可用的最強區塊加密方式之一) 進行加密。下方的 [預覽] 區段有關於如何連線儲存體服務加密的預覽程式的詳細資訊。
 
-這個螢幕擷取畫面顯示如何使用 [Azure 入口網站](https://azure.portal.com)尋找儲存體服務加密設定。在此畫面上，按一下 [加密] 以繼續。
+這個螢幕擷取畫面顯示如何使用 [Azure 入口網站](https://azure.portal.com)來尋找「儲存體服務加密」設定。在此畫面上，按一下 [加密] 以繼續。
 
 ![入口網站螢幕擷取畫面顯示 [加密] 選項](./media/storage-service-encryption/image1.png)
 
@@ -35,13 +35,9 @@ Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共�
 
 ![入口網站螢幕擷取畫面顯示 [加密] 屬性](./media/storage-service-encryption/image2.png)
 
-##Availability
+##可用性
 
-針對標準儲存體，這項功能目前在澳大利亞東南部、加拿大中部、加拿大東部、美國中部、東亞、美國東部 2、美國中北部、北歐、美國中南部、東南亞、西歐和美國西部提供使用。
-
-針對進階儲存體，這項功能目前在澳大利亞東南部、加拿大中部、加拿大東部、美國中部、東亞、美國東部 2、日本東部、美國中北部、北歐、美國中南部、東南亞和美國西部提供使用。
-
-當我們在其他區域推出這項功能時，我們將會更新此文件。
+目前在所有區域的「標準儲存體」和「進階儲存體」都有提供此功能。
 
 ##加密案例
 
@@ -61,7 +57,7 @@ Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共�
 
 -   現有資料 - SSE 只會加密啟用加密之後新建立的資料。例如，如果您建立新的 Resource Manager 儲存體帳戶但是未開啟加密，然後您將 blob 或封存 VHD 上傳至該儲存體帳戶，然後開啟 SSE，那些 blob 將不會加密，除非它們重新寫入或複製。
 
--   Marketplace 支援 - 對於從 Marketplace 使用 (Azure 入口網站)[https://portal.azure.com、PowerShell 和 Azure CLI 建立的 VM 啟用加密。VHD 基底影像將保持未加密狀態；不過，在 VM 啟動之後完成的任何寫入將會加密。
+-   Marketplace 支援 - 允許使用 [Azure 入口網站](https://portal.azure.com)、PowerShell 及 Azure CLI 來加密從 Marketplace 建立的 VM。VHD 基底影像將保持未加密狀態；不過，在 VM 啟動之後完成的任何寫入將會加密。
 
 -   資料表、佇列和檔案資料將不會加密。
 
@@ -97,9 +93,9 @@ Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共�
 
 ###步驟 3︰啟用加密。
 
-您可以使用 [Azure 入口網站](https://portal.azure.com)啟用加密。
+您可以使用 [Azure 入口網站](https://portal.azure.com)來啟用加密。
 
-> [AZURE.NOTE] 如果您想要以程式設計方式啟用或停用儲存體帳戶上的儲存體服務加密，您可以使用 [Azure 儲存體資源提供者 REST API](https://msdn.microsoft.com/library/azure/mt163683.aspx)。我們即將會將此功能新增至[適用於 .NET 的儲存體資源提供者用戶端程式庫](https://msdn.microsoft.com/library/azure/mt131037.aspx)、Azure PowerShell 和 Azure CLI。
+> [AZURE.NOTE] 如果您想要以程式設計方式啟用或停用儲存體帳戶上的儲存體服務加密，您可以使用 [Azure 儲存體資源提供者 REST API](https://msdn.microsoft.com/library/azure/mt163683.aspx)。我們很快就會將此功能新增到[適用於 .NET 的儲存體資源提供者用戶端程式庫](https://msdn.microsoft.com/library/azure/mt131037.aspx)、Azure PowerShell 及 Azure CLI。
 
 ###步驟 4︰將資料複製到儲存體帳戶
 
@@ -127,7 +123,7 @@ AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率�
 
 廣泛使用 SSE 之後，會部署儲存體用戶端程式庫的更新版本，可讓您查詢物件的狀態，以判斷它是否加密。
 
-在此同時，您可以呼叫[取得帳戶屬性](https://msdn.microsoft.com/library/azure/mt163553.aspx)來驗證儲存體帳戶已啟用加密，或在 Azure 入口網站中檢視儲存體帳戶屬性。
+在此同時，您可以呼叫[取得帳戶屬性](https://msdn.microsoft.com/library/azure/mt163553.aspx)來確認儲存體帳戶是否已啟用加密，或在 Azure 入口網站中檢視儲存體帳戶屬性。
 
 ##加密和解密工作流程
 
@@ -159,7 +155,7 @@ AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率�
 
 **問︰我想要加密現有 Resource Manager 儲存體帳戶中目前的資料？**
 
-答︰如果您現有的 Resource Manager 儲存體帳戶是在此預覽公告之前建立，您可以建立新的 Resource Manager 儲存體帳戶，並啟用加密。然後您可以從先前的儲存體帳戶複製資料，資料就會自動加密。不過，如果您的 Resource Manager 儲存體帳戶是在預覽公告之後建立，且您稍後決定啟用加密，您可以使用 Azure 入口網站對此儲存體帳戶啟用加密，然後將未加密的資料重新寫入回儲存體帳戶。
+答︰如果您現有的 Resource Manager 儲存體帳戶是在此預覽公告之前建立，您可以建立新的 Resource Manager 儲存體帳戶，並啟用加密。然後您可以從先前的儲存體帳戶複製資料，資料就會自動加密。不過，如果您的 Resource Manager 儲存體帳戶是在「預覽版」公告之後建立，而您稍後決定啟用加密，則您可以使用 Azure 入口網站來為此儲存體帳戶啟用加密，然後將未加密的資料重新寫回儲存體帳戶。
 
 **問︰我使用進階儲存體，可以使用 SSE 嗎？**
 
@@ -229,4 +225,4 @@ AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率�
 
 Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共同建置安全應用程式。如需詳細資訊，請參閱[儲存體安全性指南](storage-security-guide.md)。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

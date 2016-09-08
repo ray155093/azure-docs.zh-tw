@@ -1,6 +1,6 @@
 <properties
 	pageTitle="開始使用 SQL In-Memory | Microsoft Azure"
-	description="SQL In-Memory 技術大幅提升交易和分析工作負載的效能。了解如何利用這些技術。"
+	description="SQL 記憶體內部技術大幅提升交易和分析工作負載的效能。了解如何利用這些技術。"
 	services="sql-database"
 	documentationCenter=""
 	authors="jodebrui"
@@ -20,9 +20,9 @@
 
 # 在 SQL Database 中開始使用 In-Memory (預覽)
 
-In-Memory 功能大幅提升適當情況下交易和分析工作負載的效能。
+記憶體內部功能大幅提升適當情況下交易和分析工作負載的效能。
 
-本主題強調兩個示範，一個適用於 In-Memory OLTP，一個適用於 In-Memory Analytics。每個示範都有完整的步驟以及執行示範所需的程式碼。您可以：
+本主題著重在兩個示範，一個針對「記憶體內部 OLTP」，一個針對「記憶體內部分析」。每個示範都有完整的步驟以及執行示範所需的程式碼。您可以：
 
 - 使用程式碼來測試變化以查看效能結果差異；或
 - 閱讀程式碼來了解案例，以及了解如何建立和利用 In-Memory 物件。
@@ -31,9 +31,9 @@ In-Memory 功能大幅提升適當情況下交易和分析工作負載的效能�
 
 - [Quick Start 1: In-Memory OLTP Technologies for Faster T-SQL Performance (快速入門 1：記憶體內部 OLTP 技術以獲得更快的 T-SQL 效能)](http://msdn.microsoft.com/library/mt694156.aspx) - 是另一篇文章，可協助您開始著手。
 
-#### In-Memory OLTP
+#### 記憶體內部 OLTP
 
-In-Memory [OLTP](#install_oltp_manuallink) (線上交易處理) 的功能如下：
+記憶體內部 [OLTP](#install_oltp_manuallink) (線上交易處理) 的功能如下：
 
 - 記憶體最佳化資料表。
 - 原生編譯預存程序。
@@ -41,27 +41,22 @@ In-Memory [OLTP](#install_oltp_manuallink) (線上交易處理) 的功能如下�
 
 除了硬碟上的標準表示法以外，記憶體最佳化資料表本身在使用中記憶體中有一個表示法。資料表的商務交易執行速度更快，因為這些交易只會直接與使用中記憶體中的表示法互動。
 
-透過 In-Memory OLTP，視工作負載的詳細規格而定，最高可以達到 30 倍的交易輸送量。
+透過「記憶體內部 OLTP」，視工作負載的細節而定，在交易輸送量上最高可以達到 30 倍的增益。
 
 
-相較於建立為傳統解譯預存程序，原生編譯預存程序在執行階段需要較少的機器指示。我們已看見 1/100 解譯持續時間的持續時間中的原生編譯結果。
+與傳統解譯預存程序相比，原生編譯預存程序在執行階段所需的機器指示較少。我們已看見 1/100 解譯持續時間的持續時間中的原生編譯結果。
 
 
-#### In-Memory Analytics 
+#### 記憶體內部分析 
 
-In-Memory [Analytics](#install_analytics_manuallink) 的功能如下：
+記憶體內部[分析](#install_analytics_manuallink)的功能如下：
 
-- 資料行存放區索引
-
-
-資料行存放區索引藉由奇特的資料壓縮來改善查詢工作負載效能。
-
-在其他服務中，資料行存放區索引必定會進行記憶體最佳化。不過，Azure SQL Database 中的資料行存放區索引可以與其檢索的傳統資料表一起存在於硬碟機上。
+資料行存放區索引可改善分析和報表查詢的效能。
 
 
 #### 即時分析
 
-如需[即時分析](http://msdn.microsoft.com/library/dn817827.aspx)，您可結合 In-Memory OLTP 和 Analytics 來取得：
+如需[即時分析](http://msdn.microsoft.com/library/dn817827.aspx)，您可結合記憶體內部 OLTP 和分析來取得：
 
 - 以作業資料為基礎的即時商務深入解析。
 
@@ -76,12 +71,11 @@ In-Memory [Analytics](#install_analytics_manuallink) 的功能如下：
 
 預覽：
 
-- In-Memory OLTP
-- 具有記憶體最佳化資料行存放區索引的 In-Memory Analytics
+- 記憶體內部 OLTP
 - Real-Time Operational Analytics
 
 
-[本主題稍後](#preview_considerations_for_in_memory)會描述 In-Memory 功能在預覽階段的注意事項。
+[本主題稍後](#preview_considerations_for_in_memory)會描述在「預覽」階段的「記憶體內部」功能考量事項。
 
 
 > [AZURE.NOTE] 這些預覽階段功能僅適用於 [Premium](sql-database-service-tiers.md) Azure SQL 資料庫，不適用於標準或基本服務層上的資料庫。
@@ -92,7 +86,7 @@ In-Memory [Analytics](#install_analytics_manuallink) 的功能如下：
 
 &nbsp;
 
-## A.安裝 In-Memory OLTP 範例
+## A.安裝記憶體內部 OLTP 範例
 
 在 [Azure 入口網站](https://portal.azure.com/)中按幾下滑鼠，即可建立 AdventureWorksLT [V12] 範例資料庫。本節中的步驟說明如何擴充 AdventureWorksLT 資料庫：
 
@@ -102,7 +96,7 @@ In-Memory [Analytics](#install_analytics_manuallink) 的功能如下：
 
 #### 安裝步驟
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，在 V12 伺服器上建立高階資料庫。將 [來源] 設定為 AdventureWorksLT [V12] 範例資料庫。
+1. 在 [Azure 入口網站](https://portal.azure.com/)中，於 V12 伺服器上建立高階資料庫。將 [來源] 設定為 AdventureWorksLT [V12] 範例資料庫。
  - 如需詳細指示，請參閱[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
 
 2. 使用 SQL Server Management Studio [(SSMS.exe)](http://msdn.microsoft.com/library/mt238290.aspx) 連接到資料庫。
@@ -110,7 +104,7 @@ In-Memory [Analytics](#install_analytics_manuallink) 的功能如下：
 3. 將 [In-Memory OLTP Transact-SQL 指令碼](https://raw.githubusercontent.com/Microsoft/sql-server-samples/master/samples/features/in-memory/t-sql-scripts/sql_in-memory_oltp_sample.sql)複製到剪貼簿。
  - T-SQL 指令碼會在步驟 1 建立的 AdventureWorksLT 範例資料庫中建立所需的 In-Memory 物件。
 
-4. 將 T-SQL 指令碼貼到 SSMS，然後執行此指令碼。
+4. 將 T-SQL 指令碼貼到 SSMS 中，然後執行該指令碼。
  - 重要的是 `MEMORY_OPTIMIZED = ON` 子句 CREATE TABLE 陳述式，如下所示：
 
 
@@ -135,7 +129,7 @@ SELECT DatabasePropertyEx(DB_Name(), 'IsXTPSupported');
 
 結果為 **0** 表示不支援 In-Memory，而 1 表示提供支援。若要診斷此問題：
 
-- 確保資料庫建立於 In-Memory OLTP 功能可用於預覽版本之後。
+- 確保資料庫建立於記憶體內部 OLTP 功能可用於預覽版本之後。
 - 確保資料庫位於「高階」服務層。
 
 
@@ -190,8 +184,8 @@ SELECT uses_native_compilation, OBJECT_NAME(object_id), definition
 
 當您執行 ostress.exe 時，建議您將指定的參數值傳遞至兩者：
 
-- 執行大量的並行連線 (或許使用 -n100)。
-- 讓每個連線執行迴圈數百次 (或許使用 -r500)。
+- 使用 -n100 來執行大量的並行連線。
+- 使用 -r500 讓每個連線執行幾百次迴圈。
 
 
 不過，您可能想從較小的值 (-n10 和 -r50) 開始，以確保一切都運作正常。
@@ -233,7 +227,7 @@ end
 ```
 
 
-若要針對 ostress.exe 製作上述 T-SQL 的 \_ondisk 版本，您只需以 *\_ondisk* 取代兩著出現的 *\_inmem* 子字串。這類取代會影響資料表和預存程序的名稱。
+若要針對 ostress.exe 製作上述 T-SQL 的 \_ondisk 版本，您只需以 *\_ondisk* 取代兩個出現的 *\_inmem* 子字串即可。這類取代會影響資料表和預存程序的名稱。
 
 
 ### 安裝 RML 公用程式和 ostress
@@ -242,10 +236,10 @@ end
 您最好規劃在 Azure VM 上執行 ostress.exe。您會在 AdventureWorksLT 資料庫所在的相同 Azure 地理區域中建立 [Azure 虛擬機器](https://azure.microsoft.com/documentation/services/virtual-machines/)。但是您可以改在您的膝上型電腦上執行 ostress.exe。
 
 
-在 VM 上，或在任何選擇的主機上，安裝包含 ostress.exe 的 Replay Markup Language (RML) 公用程式。
+在 VM 上或你選擇的任何主機上，安裝包含 ostress.exe 的 Replay Markup Language (RML) 公用程式。
 
 - 請參閱 [In-Memory OLTP 的範例資料庫](http://msdn.microsoft.com/library/mt465764.aspx)中的 ostress.exe 討論。
- - 或參閱 [In-Memory OLTP 的範例資料庫](http://msdn.microsoft.com/library/mt465764.aspx)。
+ - 或參閱[記憶體內部 OLTP 的範例資料庫](http://msdn.microsoft.com/library/mt465764.aspx)。
  - 或參閱[安裝 ostress.exe 的部落格](http://blogs.msdn.com/b/psssql/archive/2013/10/29/cumulative-update-2-to-the-rml-utilities-for-microsoft-sql-server-released.aspx)
 
 
@@ -286,7 +280,7 @@ EXECUTE Demo.usp_DemoReset;
 
 2. 將上述 ostress.exe 命令列的文字複製到剪貼簿。
 
-3. 以正確的實數值取代參數 -S -U -P -d 的 <placeholders>。
+3. 以正確的實數值取代參數 -S -U -P -d 的 `<placeholders>`。
 
 4. 在 [RML 命令] 視窗中執行已編輯的命令列。
 
@@ -319,7 +313,7 @@ EXECUTE Demo.usp_DemoReset;
 
 #### 預期的比較結果
 
-若在與資料庫相同之 Azure 區域的 Azure VM 上執行 ostress，我們的 In-Memory 測試顯示這個簡單的工作負載將能獲得大約 **9 倍**的效能改善。
+就這個過度簡單的工作負載而言，我們的「記憶體內部」測試顯示當 ostress 是在與資料庫相同 Azure 區域中的 Azure VM 上執行時，可獲得「9 倍」的效能改善。
 
 
 
@@ -328,13 +322,10 @@ EXECUTE Demo.usp_DemoReset;
 &nbsp;
 
 
-## B.安裝 In-Memory Analytics 範例
+## B.安裝記憶體內部分析範例
 
 
-在本節中，您會比較使用資料行存放區索引與一般索引時的 IO 和統計資料結果。
-
-
-資料行存放區索引與一般索引在邏輯上相同，但實體上卻不同。資料行存放區索引會以非原生方式組織資料，大幅壓縮資料。如此即可大幅改進效能。
+在本節中，您將比較使用資料行存放區索引與使用傳統 B 型樹狀結構索引時的 IO 和統計資料結果。
 
 
 針對 OLTP 工作負載的即時分析，通常最好使用非叢集式資料行存放區索引。如需詳細資訊，請參閱[已描述的資料行存放區索引](http://msdn.microsoft.com/library/gg492088.aspx)。
@@ -353,7 +344,7 @@ EXECUTE Demo.usp_DemoReset;
  - 此指令碼會建立維度資料表和兩個事實資料表。每個事實資料表會填入 350 萬個資料列。
  - 此指令碼可能需要 15 分鐘才能完成。
 
-3. 將 T-SQL 指令碼貼到 SSMS，然後執行此指令碼。
+3. 將 T-SQL 指令碼貼到 SSMS 中，然後執行該指令碼。
  - 重要的是 **CREATE INDEX** 陳述式上的 **COLUMNSTORE** 關鍵字，如下所示：<br/>`CREATE NONCLUSTERED COLUMNSTORE INDEX ...;`
 
 4. 將 AdventureWorksLT 設為相容性層級 130：<br/>`ALTER DATABASE AdventureworksLT SET compatibility_level = 130;`
@@ -363,9 +354,9 @@ EXECUTE Demo.usp_DemoReset;
 #### 重要資料表和資料行存放區索引
 
 
-- dbo.FactResellerSalesXL\_CCI 是具有叢集式**資料行存放區**索引的資料表，已在*資料*層級進一步壓縮。
+- dbo.FactResellerSalesXL\_CCI 是具有叢集式「資料行存放區」索引的資料表，此資料表已在「資料」層級進一步壓縮。
 
-- dbo.FactResellerSalesXL\_PageCompressed 是具有對等一般叢集式索引的資料表，只會在*頁面*層級壓縮。
+- dbo.FactResellerSalesXL\_PageCompressed 是具有對等一般叢集式索引的資料表，此資料表只在「頁面」層級壓縮。
 
 
 #### 用來比較資料行存放區索引的重要查詢
@@ -454,34 +445,34 @@ GO
 <a id="preview_considerations_for_in_memory" name="preview_considerations_for_in_memory"></a>
 
 
-## In-Memory OLTP 預覽版本注意事項
+## 記憶體內部 OLTP 預覽版本注意事項
 
 
-Azure SQL Database 中的 In-Memory OLTP 功能[於 2015 年 10 月 28 日進入預覽階段](https://azure.microsoft.com/updates/public-preview-in-memory-oltp-and-real-time-operational-analytics-for-azure-sql-database/)。
+Azure SQL Database 中的記憶體內部 OLTP 功能[於 2015 年 10 月 28 日進入預覽階段](https://azure.microsoft.com/updates/public-preview-in-memory-oltp-and-real-time-operational-analytics-for-azure-sql-database/)。
 
 
 在目前的預覽版本中，記憶體內部 OLTP 支援僅適用於：
 
 - 在*進階*服務層的資料庫。
 
-- 在 In-Memory OLTP 功能生效後建立的資料庫。
- - 如果從 In-Memory OLTP 功能生效前建立的資料庫還原，則新的資料庫無法支援 In-memory OLTP。
+- 在記憶體內部 OLTP 功能生效後建立的資料庫。
+ - 如果從記憶體內部 OLTP 功能生效前建立的資料庫還原，則新的資料庫無法支援記憶體內部 OLTP。
 
 
-如有疑問，您一律可以執行下列 T-SQL SELECT 來確定您的資料庫是否支援 In-memory OLTP。結果為 **1** 表示資料庫可支援 In-Memory OLTP：
+如有疑問，您一律可以執行下列 T-SQL SELECT 來確定您的資料庫是否支援「記憶體內部 OLTP」。結果為 **1** 表示資料庫可支援記憶體內部 OLTP：
 
 ```
 SELECT DatabasePropertyEx(DB_NAME(), 'IsXTPSupported');
 ```
 
 
-如果查詢傳回 **1**，此資料庫即可支援 In-Memory OLTP，以及根據此資料庫建立的任何資料庫複製和資料庫還原。
+如果查詢傳回 **1**，即表示在此資料庫及根據此資料庫建立的任何資料庫複本和資料庫還原，都支援「記憶體內部 OLTP」。
 
 
 #### 只允許進階的物件
 
 
-如果資料庫包含下列任何種類的 In-Memory OLTP 物件或類型，則不支援將資料庫的服務層從進階降級為基本或標準。若要將資料庫降級，您必須先卸除下列物件：
+如果資料庫包含下列任何種類的記憶體內部 OLTP 物件或類型，則不支援將資料庫的服務層從進階降級為基本或標準。若要將資料庫降級，您必須先卸除下列物件：
 
 - 記憶體最佳化資料表
 - 記憶體最佳化資料表類型
@@ -494,40 +485,40 @@ SELECT DatabasePropertyEx(DB_NAME(), 'IsXTPSupported');
 - 在預覽期間不支援將記憶體內部 OLTP 功能使用於彈性集區中的資料庫。
  - 若要將具有或已經有記憶體內部 OLTP 物件的資料庫移動至彈性集區，請遵循下列步驟 ︰
   - 1. 在資料庫中卸除任何記憶體最佳化資料表、資料表類型和原生編譯的 T-SQL 模組
-  - 2. 將資料庫的服務層變更為標準 (* 目前有導致過去已有記憶體內部 OLTP 物件之高階資料庫無法移入彈性集區的問題；Azure DB 小組正積極地解決問題)
+  - 2. 將資料庫的服務層變更為標準
   - 3. 將資料庫移入彈性集區。
 
-- 不支援使用 In-Memory OLTP 搭配 SQL 資料倉儲。
- - SQL 資料倉儲支援 In-Memory Analytics 的資料行存放區索引功能。
+- 不支援使用記憶體內部 OLTP 搭配 SQL 資料倉儲。
+ - SQL 資料倉儲支援記憶體內部分析的資料行存放區索引功能。
 
-- 在預覽期間「查詢存放區」不會擷取原生編譯模組內的查詢，但未來可能會這麼做。
+- 「查詢存放區」不會擷取原生編譯模組內的查詢。
 
-- In-Memory OLTP 不支援某些 TRANSACT-SQL 功能。這適用於 Microsoft SQL Server 和 Azure SQL Database。如需詳細資料，請參閱：
- - [記憶體中 OLTP 的 Transact-SQL 支援](http://msdn.microsoft.com/library/dn133180.aspx)
- - [In-Memory OLTP 不支援的 Transact-SQL 建構。](http://msdn.microsoft.com/library/dn246937.aspx)
+- 記憶體內部 OLTP 不支援某些 TRANSACT-SQL 功能。這適用於 Microsoft SQL Server 和 Azure SQL Database。如需詳細資訊，請參閱：
+ - [記憶體內部 OLTP 的 Transact-SQL 支援](http://msdn.microsoft.com/library/dn133180.aspx)
+ - [記憶體內部 OLTP 不支援的 Transact-SQL 建構。](http://msdn.microsoft.com/library/dn246937.aspx)
 
 
 ## 後續步驟
 
 
-- 嘗試[在現有的 Azure SQL 應用程式中使用 In-Memory OLTP](sql-database-in-memory-oltp-migration.md)。
+- 嘗試[在現有的 Azure SQL 應用程式中使用記憶體內部 OLTP](sql-database-in-memory-oltp-migration.md)。
 
 
 ## 其他資源
 
 #### 更深入的資訊
 
-- [了解 In-Memory OLTP (這適用於 Microsoft SQL Server 和 Azure SQL Database)](http://msdn.microsoft.com/library/dn133186.aspx)
+- [了解記憶體內部 OLTP (這適用於 Microsoft SQL Server 和 Azure SQL Database)](http://msdn.microsoft.com/library/dn133186.aspx)
 
 - [深入了解 MSDN 上的 Real-Time Operational Analytics](http://msdn.microsoft.com/library/dn817827.aspx)
 
-- [一般工作負載模式和移轉考量白皮書](http://msdn.microsoft.com/library/dn673538.aspx)，其中描述 In-Memory OLTP 經常提供顯著效能改善的工作負載模式。
+- [一般工作負載模式和移轉考量白皮書](http://msdn.microsoft.com/library/dn673538.aspx)，其中描述記憶體內部 OLTP 經常提供顯著效能改善的工作負載模式。
 
 #### 應用程式設計
 
-- [In-Memory OLTP (In-Memory Optimization)](http://msdn.microsoft.com/library/dn133186.aspx)
+- [記憶體內部 OLTP (記憶體內部最佳化)](http://msdn.microsoft.com/library/dn133186.aspx)
 
-- [在現有的 Azure SQL 應用程式中使用 In-Memory OLTP。](sql-database-in-memory-oltp-migration.md)
+- [在現有的 Azure SQL 應用程式中使用記憶體內部 OLTP。](sql-database-in-memory-oltp-migration.md)
 
 #### 工具
 
@@ -535,6 +526,6 @@ SELECT DatabasePropertyEx(DB_NAME(), 'IsXTPSupported');
 
 - [SQL Server 的 Replay Markup Language (RML) 公用程式說明](http://support.microsoft.com/zh-TW/kb/944837)
 
-- 適用於 In-Memory OLTP 的[監視記憶體內部儲存體](sql-database-in-memory-oltp-monitoring.md)。
+- 適用於記憶體內部 OLTP 的[監視記憶體內部儲存體](sql-database-in-memory-oltp-monitoring.md)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

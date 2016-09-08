@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="kgremban"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="identity"
-	ms.date="05/20/2016"
+	ms.date="08/25/2016"
 	ms.author="kgremban"/>
 
 #RBAC：內建角色
@@ -42,7 +42,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | [New Relic APM 帳戶參與者](#new-relic-apm-account-contributor) | 可以管理 New Relic 應用程式效能管理帳戶和應用程式 |
 | [擁有者](#owner) | 可以管理所有項目，包括存取 |
 | [讀取者](#reader) | 可以檢視所有項目，但是無法進行變更 |
-| [Redis 快取參與者](#redis-cache-contributor]) | 可以管理 Redis 快取 |
+| [Redis 快取參與者](#redis-cache-contributor) | 可以管理 Redis 快取 |
 | [排程器工作集合參與者](#scheduler-job-collections-contributor) | 可以管理排程器工作集合 |
 | [搜尋服務參與者](#search-service-contributor) | 可以管理搜尋服務 |
 | [安全性管理員](#security-manager) | 可以管理安全性元件、安全性原則及虛擬機器 |
@@ -147,8 +147,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 
 | **NotActions** ||
 | ------- | ------ |
+| Microsoft.Authorization/*/Delete | 無法刪除角色和角色指派 |  
 | Microsoft.Authorization/*/Write | 無法建立角色和角色指派 |
-| Microsoft.Authorization/*/Delete | 無法刪除角色和角色指派 |
 
 ### Data Factory 參與者
 可以管理資料處理站
@@ -260,7 +260,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 
 | **動作** ||
 | ------- | ------ |
-| **/read | 讀取密碼以外的所有類型的資源。|
+| */read | 讀取密碼以外的所有類型的資源。 |
 
 ### Redis 快取參與者
 可以管理 Redis 快取
@@ -284,7 +284,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Insights/alertRules/* | 建立及管理警示規則 |
 | Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
-| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 | Microsoft.Scheduler/jobcollections/* | 建立和管理工作集合 |
+| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 |  
+| Microsoft.Scheduler/jobcollections/* | 建立和管理工作集合 |
 | Microsoft.Support/* | 建立和管理支援票證 |
 
 ### 搜尋服務參與者
@@ -296,7 +297,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Insights/alertRules/* | 建立及管理警示規則 |
 | Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
-| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 | Microsoft.Search/searchServices/* | 建立和管理搜尋服務 |
+| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 |  
+| Microsoft.Search/searchServices/* | 建立和管理搜尋服務 |
 | Microsoft.Support/* | 建立和管理支援票證 |
 
 ### 安全性管理員
@@ -311,7 +313,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Insights/alertRules/* | 建立及管理警示規則 |
 | Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
-| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 | Microsoft.Security/* | 建立和管理安全性元件和原則 |
+| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 |  
+| Microsoft.Security/* | 建立和管理安全性元件和原則 |
 | Microsoft.Support/* | 建立和管理支援票證 |
 
 ### SQL DB 參與者
@@ -323,7 +326,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Insights/alertRules/* | 建立及管理警示規則 |
 | Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
-| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 | Microsoft.Sql/servers/databases/* | 建立和管理 SQL 資料庫 |
+| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 |
+| Microsoft.Sql/servers/databases/* | 建立和管理 SQL 資料庫 |
 | Microsoft.Sql/servers/read | 讀取 SQL Server |
 | Microsoft.Support/* | 建立和管理支援票證 |
 
@@ -331,6 +335,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | ------- | ------ |
 | Microsoft.Sql/servers/databases/auditingPolicies/* | 無法編輯稽核原則 |
 | Microsoft.Sql/servers/databases/auditingSettings/* | 無法編輯稽核設定 |
+| Microsoft.Sql/servers/databases/auditRecords/read | 無法讀取稽核記錄 |
 | Microsoft.Sql/servers/databases/connectionPolicies/* | 無法編輯連接原則 |
 | Microsoft.Sql/servers/databases/dataMaskingPolicies/* | 無法編輯資料遮罩原則 |
 | Microsoft.Sql/servers/databases/securityAlertPolicies/* | 無法編輯安全性警示原則 |
@@ -345,10 +350,12 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Insights/alertRules/* | 建立和管理 Insights 警示規則 |
 | Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
-| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 | Microsoft.Sql/servers/auditingPolicies/* | 建立和管理 SQL Server 稽核原則 |
+| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 |
+| Microsoft.Sql/servers/auditingPolicies/* | 建立和管理 SQL Server 稽核原則 |
 | Microsoft.Sql/servers/auditingSettings/* | 建立和管理 SQL Server 稽核設定 |
 | Microsoft.Sql/servers/databases/auditingPolicies/* | 建立和管理 SQL Server 資料庫稽核原則 |
 | Microsoft.Sql/servers/databases/auditingSettings/* | 建立和管理 SQL Server 資料庫稽核設定 |
+| Microsoft.Sql/servers/databases/auditRecords/read | 讀取稽核記錄 |
 | Microsoft.Sql/servers/databases/connectionPolicies/* | 建立和管理 SQL Server 資料庫連接原則 |
 | Microsoft.Sql/servers/databases/dataMaskingPolicies/* | 建立和管理 SQL Server 資料庫資料遮罩原則 |
 | Microsoft.Sql/servers/databases/read | 讀取 SQL 資料庫 |
@@ -370,7 +377,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Insights/alertRules/* | 建立和管理 Insights 警示規則 |
 | Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
-| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 | Microsoft.Sql/servers/* | 建立和管理 SQL Server |
+| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 |
+| Microsoft.Sql/servers/* | 建立和管理 SQL Server |
 | Microsoft.Support/* | 建立和管理支援票證 |
 
 | **NotActions** ||
@@ -379,6 +387,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Sql/servers/auditingSettings/* | 無法編輯 SQL Server 稽核設定 |
 | Microsoft.Sql/servers/databases/auditingPolicies/* | 無法編輯 SQL Server 資料庫稽核原則 |
 | Microsoft.Sql/servers/databases/auditingSettings/* | 無法編輯 SQL Server 資料庫稽核設定 |
+| Microsoft.Sql/servers/databases/auditRecords/read | 無法讀取稽核記錄 |
 | Microsoft.Sql/servers/databases/connectionPolicies/* | 無法編輯 SQL Server 資料庫連接原則 |
 | Microsoft.Sql/servers/databases/dataMaskingPolicies/* | 無法編輯 SQL Server 資料庫資料遮罩原則 |
 | Microsoft.Sql/servers/databases/securityAlertPolicies/* | 無法編輯 SQL Server 資料庫安全性警示原則 |
@@ -395,7 +404,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Insights/alertRules/* | 建立和管理 Insights 警示規則 |
 | Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
-| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 | Microsoft.Support/* | 建立和管理支援票證 |
+| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 |  
+| Microsoft.Support/* | 建立和管理支援票證 |
 
 ### 儲存體帳戶參與者
 可管理儲存體帳戶，但無法存取它們。
@@ -407,7 +417,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Insights/diagnosticSettings/* | 管理診斷設定 |
 | Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
-| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 | Microsoft.Storage/storageAccounts/* | 建立及管理儲存體帳戶 |
+| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 |  
+| Microsoft.Storage/storageAccounts/* | 建立及管理儲存體帳戶 |
 | Microsoft.Support/* | 建立和管理支援票證 |
 
 ### 使用者存取系統管理員
@@ -415,7 +426,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 
 | **動作** ||
 | ------- | ------ |
-| */read | 讀取密碼以外的所有類型資源。 |
+| */read | 讀取密碼以外的所有類型的資源。 |
 | Microsoft.Authorization/* | 管理授權 |
 | Microsoft.Support/* | 建立和管理支援票證 |
 
@@ -439,7 +450,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Insights/alertRules/* | 建立和管理 Insights 警示規則 |
 | Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
-| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 | Microsoft.Support/* | 建立和管理支援票證 |
+| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 |
+| Microsoft.Support/* | 建立和管理支援票證 |
 
 ### 虛擬機器參與者
 可以管理虛擬機器，但是無法管理它們連接的虛擬網路或儲存體帳戶
@@ -467,7 +479,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Network/virtualNetworks/subnets/join/action | 加入虛擬網路子網路 |
 | Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
-| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 | Microsoft.Storage/storageAccounts/listKeys/action | 列出儲存體帳戶金鑰 |
+| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 |  
+| Microsoft.Storage/storageAccounts/listKeys/action | 列出儲存體帳戶金鑰 |
 | Microsoft.Storage/storageAccounts/read | 讀取儲存體帳戶 |
 | Microsoft.Support/* | 建立和管理支援票證 |
 
@@ -481,7 +494,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Insights/alertRules/* | 建立和管理 Insights 警示規則 |
 | Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
-| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 | Microsoft.Support/* | 建立和管理支援票證 |
+| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 |  
+| Microsoft.Support/* | 建立和管理支援票證 |
 
 ### Web 方案參與者
 可以管理 Web 方案
@@ -492,7 +506,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Insights/alertRules/* | 建立和管理 Insights 警示規則 |
 | Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
-| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 | Microsoft.Support/* | 建立和管理支援票證 |
+| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 |  
+| Microsoft.Support/* | 建立和管理支援票證 |
 | Microsoft.Web/serverFarms/* | 建立和管理伺服器陣列 |
 
 ### 網站參與者
@@ -505,7 +520,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Insights/components/* | 建立和管理 Insights 元件 |
 | Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
-| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 | Microsoft.Support/* | 建立和管理支援票證 |
+| Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 |  
+| Microsoft.Support/* | 建立和管理支援票證 |
 | Microsoft.Web/certificates/* | 建立和管理網站憑證 |
 | Microsoft.Web/listSitesAssignedToHostName/read | 讀取指派給主機名稱的網站 |
 | Microsoft.Web/serverFarms/join/action | 加入伺服器陣列 |
@@ -514,8 +530,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 
 ## 另請參閱
 - [角色型存取控制](role-based-access-control-configure.md)：開始在 Azure 入口網站中使用 RBAC。
-- [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)︰了解如何建立自訂角色以符合您的存取需求。
+- [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)︰了解如何建立自訂角色，以符合您的存取需求。
 - [建立存取權變更歷程記錄報告](role-based-access-control-access-change-history-report.md)︰記錄 RBAC 中的角色指派變更。
 - [角色型存取控制疑難排解](role-based-access-control-troubleshooting.md)︰取得修正常見問題的建議。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0824_2016-->

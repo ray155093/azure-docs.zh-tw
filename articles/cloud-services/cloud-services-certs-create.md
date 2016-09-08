@@ -81,7 +81,7 @@ Export-Certificate -Type CERT -Cert $cert -FilePath .\my-cert-file.cer
 您可以使用 Java [建立憑證](../app-service-web/java-create-azure-website-using-java-sdk.md#create-a-certificate)。
 
 ### Linux
-[本文](../virtual-machines/virtual-machines-linux-ssh-from-linux.md)說明如何使用 SSH 建立憑證。
+[本文](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md)說明如何使用 SSH 建立憑證。
 
 ## 後續步驟
 
@@ -91,4 +91,4 @@ Export-Certificate -Type CERT -Cert $cert -FilePath .\my-cert-file.cer
 
 >[AZURE.NOTE] Azure 入口網站不會使用管理憑證存取 API，但是會使用使用者帳戶。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0824_2016-->

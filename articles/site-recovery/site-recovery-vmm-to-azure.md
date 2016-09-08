@@ -114,12 +114,16 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 - 視您想要針對已容錯移轉的 Azure VM 使用的資源模型而定，您將以 [Resource Manager 模式](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)或[傳統模式](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)設定 Azure 網路。
 - 建議您在開始之前先設定網路。若非如此，則必須在 Site Recovery 部署期間這麼做。
 
+> [AZURE.NOTE] [Migration of networks]對於用於部署 Site Recovery 的網路，不支援橫跨相同訂用帳戶內的資源群組或橫跨資源群組 (../resource-group-move-resources.md)。
+
 
 ### 設定 Azure 儲存體帳戶
 
 - 您需要標準 Azure 儲存體帳戶來保存複寫到 Azure 的資料。此帳戶必須位於與復原服務保存庫相同的區域中。
 - 視您想要針對已容錯移轉的 Azure VM 使用的資源模型而定，您會以 [Resource Manager 模式](../storage/storage-create-storage-account.md)或[傳統模式](../storage/storage-create-storage-account-classic-portal.md)設定帳戶。
 - 建議您在開始之前先設定帳戶。若非如此，則必須在 Site Recovery 部署期間這麼做。
+
+> [AZURE.NOTE] [Migration of storage accounts]對於用於部署 Site Recovery 的儲存體帳戶，不支援橫跨相同訂用帳戶內的資源群組或橫跨資源群組 (../resource-group-move-resources.md)。
 
 ### 準備 VMM 伺服器
 
@@ -144,7 +148,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 ## 建立復原服務保存庫
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 按一下 [新增] > [管理] > [復原服務]。或者，您可以按一下 [瀏覽] > [復原服務保存庫] > [新增]。
+2. 按一下 [新增] > [管理] > [復原服務]。或者，您可以按一下 [瀏覽] > [復原服務保存庫] > [加入]。
 
 	![新增保存庫](./media/site-recovery-vmm-to-azure/new-vault3.png)
 
@@ -175,7 +179,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 
 	![選擇目標](./media/site-recovery-vmm-to-azure/choose-goals.png)
 
-3. 在 [Protection goal]\(保護目標) 中選取 [To Azure]\(至 Azure)，然後選取 [Yes, with Hyper-V]\(是，利用 Hyper-V)。選取 [是]，確認您使用 VMM 來管理 Hyper-V 主機和復原網站。然後按一下 [確定]。
+3. 在 [保護目標] 中選取 [至 Azure]，然後選取 [是，利用 Hyper-V]。選取 [是]，確認您使用 VMM 來管理 Hyper-V 主機和復原網站。然後按一下 [確定]。
 
 	![選擇目標](./media/site-recovery-vmm-to-azure/choose-goals2.png)
 
@@ -189,11 +193,11 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 
 	![設定來源](./media/site-recovery-vmm-to-azure/set-source1.png)
 
-2. 在 [準備來源] 中按一下 [+ VMM] 以新增 VMM 伺服器。
+2. 在 [準備來源] 中，按一下 [+ VMM] 以新增 VMM 伺服器。
 
 	![設定來源](./media/site-recovery-vmm-to-azure/set-source2.png)
 
-3. 在 [新增伺服器] 刀鋒視窗中，檢查 [System Center VMM 伺服器] 是否出現在 [伺服器類型] 中，以及 VMM 伺服器是否符合 [必要條件和 URL 需求](#on-premises-prerequisites)。
+3. 在 [新增伺服器] 刀鋒視窗中，檢查 [System Center VMM 伺服器] 是否出現在 [伺服器類型] 中，以及 VMM 伺服器是否符合[必要條件和 URL 需求](#on-premises-prerequisites)。
 4. 下載 Azure Site Recovery Provider 安裝檔案。
 5. 下載註冊金鑰。您會在執行安裝程式時用到此金鑰。該金鑰在產生後會維持 5 天有效。
 
@@ -318,7 +322,7 @@ Site Recovery 提供的「快速入門」經驗可協助您盡快部署。「快
 	- 如果您想要使用傳統模型建立儲存體帳戶，請在 Azure 入口網站中執行該作業。[深入了解](../storage/storage-create-storage-account-classic-portal.md)
 	- 如果您將進階儲存體帳戶使用於複寫的資料，則必須設定其他標準儲存體帳戶來儲存複寫記錄檔，而這類記錄檔會擷取內部部署資料的進行中變更。
 
-4.	如果您尚未建立 Azure 網路，而且想要使用 ARM 建立一個，請按一下 [+Network]\(+網路) 以內嵌方式執行該作業。在 [建立虛擬網路] 刀鋒視窗上，指定網路名稱、位址範圍、子網路詳細資料、訂用帳戶和位置。此網路應位於與復原服務保存庫相同的位置。
+4.	如果您尚未建立 Azure 網路，而且想要使用 Resource Manager 建立一個，請按一下 [+網路] 以內嵌方式執行該作業。在 [建立虛擬網路] 刀鋒視窗上，指定網路名稱、位址範圍、子網路詳細資料、訂用帳戶和位置。此網路應位於與復原服務保存庫相同的位置。
 
 	![網路](./media/site-recovery-vmm-to-azure/gs-createnetwork.png)
 
@@ -436,7 +440,7 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 	![啟用複寫](./media/site-recovery-vmm-to-azure/enable-replication-target.png)
 
 4. 選取您要使用的儲存體帳戶。如果您想使用與現有不同的儲存體帳戶，您可以[建立一個](#set-up-an-azure-storage-account)。若要使用 Resource Manager 模型來建立儲存體帳戶，請按一下 [新建]。如果您想要使用傳統模型建立儲存體帳戶，請[在 Azure 入口網站中](../storage/storage-create-storage-account-classic-portal.md)執行該作業。然後按一下 [確定]。
-5. 選取 Azure VM 在容錯移轉後啟動時所要啟動的 Azure 網路和子網路。選取 [Configure now for selected machines]\(立即針對選取的機器進行設定)，將網路設定套用至您選取要進行保護的所有機器。選取 [稍後設定] 以選取每部機器的 Azure 網路。如果您想使用與現有不同的網路，您可以[建立一個](#set-up-an-azure-network)。若要使用 ARM 模型建立網路，請按一下 [新建]。如果您想要使用傳統模型建立網路，請在 [Azure 入口網站](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)中執行該作業。選取適用的子網路。然後按一下 [確定]。
+5. 選取 Azure VM 在容錯移轉後啟動時所要啟動的 Azure 網路和子網路。選取 [立即設定選取的機器]，將網路設定套用至您選取要進行保護的所有機器。選取 [稍後設定] 以選取每部機器的 Azure 網路。如果您想使用與現有不同的網路，您可以[建立一個](#set-up-an-azure-network)。若要使用 Resource Manager 模型建立網路，請按一下 [新建]。如果您想要使用傳統模型建立網路，請在 [Azure 入口網站](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)中執行該作業。選取適用的子網路。然後按一下 [確定]。
 6. 在 [虛擬機器] > [選取虛擬機器] 中，按一下並選取您要複寫的每部機器。您只能選取可以啟用複寫的機器。然後按一下 [確定]。
 
 	![啟用複寫](./media/site-recovery-vmm-to-azure/enable-replication5.png)
@@ -553,9 +557,9 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 
 ## 監視您的部署
 
-以下是監視 Site Recovery 部署的組態設定、狀態和健全狀況的方式︰
+以下是監視 Site Recovery 部署的組態設定、狀態和健康狀態的方式︰
 
-1. 按一下保存庫名稱來存取 [基本資訊] 儀表板。在此儀表板中，您可以看見 Site Recovery 作業、複寫狀態、復原方案、伺服器健全狀況和事件。您可以自訂 [基本資訊] 以顯示最適合您的圖格和配置，包括其他 Site Recovery 和備份保存庫的狀態。
+1. 按一下保存庫名稱來存取 [基本資訊] 儀表板。在此儀表板中，您可以看見 Site Recovery 作業、複寫狀態、復原方案、伺服器健康狀態和事件。您可以自訂 [基本資訊] 以顯示最適合您的圖格和配置，包括其他 Site Recovery 和備份保存庫的狀態。
 
 	![基本資訊](./media/site-recovery-vmm-to-azure/essentials.png)
 
@@ -567,4 +571,4 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 
 在您的部署設定完成並開始執行之後，請[深入了解](site-recovery-failover.md)不同類型的容錯移轉。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

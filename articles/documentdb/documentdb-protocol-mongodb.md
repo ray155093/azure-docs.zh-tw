@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/31/2016" 
+	ms.date="08/23/2016" 
 	ms.author="stbaro"/>
 
 # MongoDB 的 DocumentDB 通訊協定支援
@@ -38,4 +38,4 @@ MongoDB 的 DocumentDB 通訊協定支援可以啟用核心 MongoDB API 函式�
 
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -4,7 +4,7 @@
 	services="virtual-machines-windows"
 	documentationCenter=""
 	authors="mahthi"
-	manager="drewm"
+	manager="timlt"
 	editor=""
 	tags="azure-resource-manager"/>
 
@@ -42,7 +42,7 @@
 
 	Login-AzureRmAccount
 
-使用下列命令，可以取得可用的訂用帳戶。
+使用下列命令來取得可用的訂用帳戶。
 
 	Get-AzureRMSubscription | Sort SubscriptionName | Select SubscriptionName
 
@@ -67,7 +67,7 @@
 
 	Add-AzureAccount
 
-使用下列命令，可以取得可用的訂用帳戶。
+使用下列命令來取得可用的訂用帳戶。
 
 	Get-AzureSubscription | Sort SubscriptionName | Select SubscriptionName
 
@@ -181,4 +181,4 @@
 - [平台支援的從傳統移轉至 Resource Manager 的技術深入探討](virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
 - [使用社群 PowerShell 指令碼將傳統虛擬機器複製到 Azure Resource Manager](virtual-machines-windows-migration-scripts.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0824_2016-->

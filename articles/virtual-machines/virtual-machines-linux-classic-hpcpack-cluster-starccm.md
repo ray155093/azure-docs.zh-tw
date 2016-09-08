@@ -4,7 +4,7 @@
  services="virtual-machines-linux"
  documentationCenter=""
  authors="xpillons"
- manager="kateh"
+ manager="timlt"
  editor=""
  tags="azure-service-management,azure-resource-manager,hpc-pack"/>
 <tags
@@ -99,9 +99,9 @@ Azure PowerShell 是必要條件。如果未在本機電腦上設定 PowerShell�
 
 在提高權限的命令提示字元中，執行下列 Azure PowerShell 命令：
 
-1.  執行 **Add-AzureAccount** 以連接您的 Azure 訂用帳戶。
+1.  執行 **Add-AzureAccount** 以連接到您的 Azure 訂用帳戶。
 
-2.  如果您有多個訂用帳戶，請執行 **Get-AzureSubscription** 來列出這些訂用帳戶
+2.  如果您有多個訂用帳戶，請執行 **Get-AzureSubscription** 來列出這些訂用帳戶。
 
 3.  執行 **Select-AzureSubscription -SubscriptionName xxxx -Default** 命令來設定預設訂用帳戶。
 
@@ -345,4 +345,4 @@ HPC Pack 用於其工作排程器功能，以便執行 STAR-CCM+ 作業。若要
 [hndeploy]: ./media/virtual-machines-linux-classic-hpcpack-cluster-starccm/hndeploy.png
 [clustermanager]: ./media/virtual-machines-linux-classic-hpcpack-cluster-starccm/ClusterManager.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0824_2016-->

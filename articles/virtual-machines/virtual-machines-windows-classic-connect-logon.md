@@ -22,7 +22,7 @@
 
 在 Azure 傳統入口網站中，使用 [連接] 按鈕來啟動遠端桌面工作階段，並登入 Windows VM。
 
-您想要連線至 Linux VM 嗎？ 請參閱[如何登入執行 Linux 的虛擬機器](virtual-machines-linux-classic-log-on.md)。
+您想要連線至 Linux VM 嗎？ 請參閱[如何登入執行 Linux 的虛擬機器](virtual-machines-linux-mac-create-ssh-keys.md)。
 
 了解如何[使用 Azure 入口網站來執行這些步驟](virtual-machines-windows-connect-logon.md)。
 
@@ -58,4 +58,4 @@
 
 如果這些秘訣無效，或者不是您所需要的，請參閱[針對以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線進行疑難排解](virtual-machines-windows-troubleshoot-rdp-connection.md)。本文會逐步帶領您診斷及解決常見的問題。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

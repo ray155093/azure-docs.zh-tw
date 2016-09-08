@@ -53,9 +53,9 @@
 
 ## 後續步驟
 
-主動診斷是完全自動的。但是，或許您會想要再設定一些警示？
+主動式偵測是完全自動的。但是，或許您會想要再設定一些警示？
 
 * [手動設定的度量警示](app-insights-alerts.md)
 * [可用性 Web 測試](app-insights-monitor-web-app-availability.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

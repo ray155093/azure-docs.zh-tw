@@ -13,13 +13,15 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/17/2016"
+	ms.date="08/22/2016"
 	ms.author="stefsch"/>
 
 # App Service 環境的自訂組態設定
 
 ## Overview ##
 因為 App Service 環境對單一客戶是隔離的，所以有某些專門套用到 App Service 環境的組態設定。本文記錄各種可供 App Service 環境使用的特定自訂。
+
+如果您沒有 App Service 環境，請參閱[如何建立 App Service 環境](app-service-web-how-to-create-an-app-service-environment.md)。
 
 您可以使用新 **clusterSettings** 屬性的陣列儲存 App Service 環境自訂。這個屬性是在 *hostingEnvironments* Azure Resource Manager 實體的「屬性」字典中找到的。
 
@@ -95,4 +97,4 @@ Azure 快速入門 Resource Manager 範本網站包含具有[建立 App Service 
 
 <!-- IMAGES -->
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

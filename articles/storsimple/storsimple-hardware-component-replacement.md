@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="05/25/2016"
+   ms.date="08/22/2016"
    ms.author="alkohli" />
 
 # StorSimple 硬體元件更換
 
-## 概觀
+## Overview
 
 硬體元件更換教學課程將說明 Microsoft Azure StorSimple 8000 系列裝置的硬體元件，以及取下並更換這些元件所需的步驟。本文說明安全圖示、提供詳細教學課程的重點，並列出可替換的元件。
 
@@ -142,4 +142,4 @@ StoreSimple 8000 系列裝置由主要和/或 EBOD 機箱的數個外掛程式�
 
 請先閱讀所有[安全資訊](storsimple-safety.md)，再嘗試更換 StorSimple 硬體元件。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0824_2016-->

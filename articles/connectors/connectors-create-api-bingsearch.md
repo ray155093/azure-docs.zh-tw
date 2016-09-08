@@ -1,5 +1,5 @@
 <properties
-    pageTitle="在 PowerApps 或邏輯應用程式中新增 Bing 搜尋連接器 | Microsoft Azure"
+    pageTitle="新增 Bing 搜尋連接器邏輯應用程式 | Microsoft Azure"
     description="搭配 REST API 參數來使用 Bing 搜尋連接器的概觀"
     services=""
     suite=""
@@ -15,29 +15,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="05/18/2016"
+   ms.date="08/18/2016"
    ms.author="mandia"/>
 
 # 開始使用 Bing 搜尋連接器 
-連線到 Bing 搜尋來搜尋新聞、搜尋影片等等。您可以從下列應用程式使用 Bing 搜尋連接器：
+連線到 Bing 搜尋來搜尋新聞、搜尋影片等等。您可以利用 Bing 搜尋來：
 
-- 邏輯應用程式 
-- PowerApps
-
-> [AZURE.SELECTOR]
-- [邏輯應用程式](../articles/connectors/connectors-create-api-bingsearch.md)
-- [PowerApps Enterprise](../articles/power-apps/powerapps-create-api-bingsearch.md)
-
-
-您可以利用 Bing 搜尋來：
-
-- 根據您透過搜尋所取得的資料，來建置您的商務流程。 
+- 根據您透過搜尋所取得的資料，來建置您的商務流程。
 - 使用動作來搜尋圖像、搜尋新聞等等。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，您可以搜尋某支影片，然後利用 Twitter 把該影片張貼在某個 Twitter 摘要上。
-- 將 Bing 搜尋連接器新增至 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個連接器。 
 
-如需如何在 PowerApps Enterprise 中新增連接器的資訊，請移至[在 PowerApps 中註冊連接器](../power-apps/powerapps-register-from-available-apis.md)。
-
-如果要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ## 觸發程序及動作
 Bing 搜尋包含下列動作，但不包含觸發程序。
@@ -60,11 +47,11 @@ None | <ul><li>搜尋網站</li><li>搜尋影片</li><li>搜尋圖像</li><li>�
 |query|字串|yes|query|無 |要搜尋的文字 (例如「xbox」)|
 |maxResult|integer|no|query|無 |要傳回的結果數目上限|
 |startOffset|integer|no|query| 無|要略過的結果數目|
-|adultContent|字串|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
-|market|字串|no|query|無 |用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
+|adultContent|string|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
+|market|string|no|query|無 |用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
 |經度|number|no|query| 無|用來縮小搜尋範圍的經度 (東/西向座標) (例如：47.603450)|
 |緯度|number|no|query| 無|用來縮小搜尋範圍的緯度 (南/北向座標) (例如：-122.329696)|
-|webFileType|字串|no|query|無 |用來縮小搜尋範圍的檔案類型 (例如：「DOC」)|
+|webFileType|string|no|query|無 |用來縮小搜尋範圍的檔案類型 (例如：「DOC」)|
 
 #### Response
 |名稱|說明|
@@ -81,12 +68,12 @@ None | <ul><li>搜尋網站</li><li>搜尋影片</li><li>搜尋圖像</li><li>�
 |query|字串|yes|query|無 |要搜尋的文字 (例如「xbox」)|
 |maxResult|integer|no|query| 無|要傳回的結果數目上限|
 |startOffset|integer|no|query|無 |要略過的結果數目|
-|adultContent|字串|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
-|market|字串|no|query|無 |用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
+|adultContent|string|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
+|market|string|no|query|無 |用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
 |經度|number|no|query|無 |用來縮小搜尋範圍的經度 (東/西向座標) (例如：47.603450)|
 |緯度|number|no|query|無 |用來縮小搜尋範圍的緯度 (南/北向座標) (例如：-122.329696)|
-|videoFilters|字串|no|query|無 |根據影片的大小、外觀比例、色彩、樣式、方向，或上述條件的任何組合來篩選搜尋。有效值：<ul><li>Duration:Short</li><li>Duration:Medium</li><li>Duration:Long</li><li>Aspect:Standard</li><li>Aspect:Widescreen</li><li>Resolution:Low</li><li>Resolution:Medium</li><li>Resolution:High</li></ul> <br/><br/>例如：'Duration:Short+Resolution:High'|
-|videoSortBy|字串|no|query|無 |搜尋結果的排序次序。有效值：<ul><li>Date</li><li>Relevance</li></ul> <p>日期的排序次序必須為遞減。</p>|
+|videoFilters|string|no|query|無 |根據影片的大小、外觀比例、色彩、樣式、方向，或上述條件的任何組合來篩選搜尋。有效值：<ul><li>Duration:Short</li><li>Duration:Medium</li><li>Duration:Long</li><li>Aspect:Standard</li><li>Aspect:Widescreen</li><li>Resolution:Low</li><li>Resolution:Medium</li><li>Resolution:High</li></ul> <br/><br/>例如：'Duration:Short+Resolution:High'|
+|videoSortBy|string|no|query|無 |搜尋結果的排序次序。有效值：<ul><li>Date</li><li>Relevance</li></ul> <p>日期的排序次序必須為遞減。</p>|
 
 #### Response
 |名稱|說明|
@@ -103,11 +90,11 @@ None | <ul><li>搜尋網站</li><li>搜尋影片</li><li>搜尋圖像</li><li>�
 |query|字串|yes|query|無 |要搜尋的文字 (例如「xbox」)|
 |maxResult|integer|no|query|無 |要傳回的結果數目上限|
 |startOffset|integer|no|query|無 |要略過的結果數目|
-|adultContent|字串|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
-|market|字串|no|query|無 |用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
+|adultContent|string|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
+|market|string|no|query|無 |用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
 |經度|number|no|query| 無|用來縮小搜尋範圍的經度 (東/西向座標) (例如：47.603450)|
 |緯度|number|no|query|無 |用來縮小搜尋範圍的緯度 (南/北向座標) (例如：-122.329696)|
-|imageFilters|字串|no|query|無 |根據影片的大小、外觀比例、色彩、樣式、方向，或上述條件的任何組合來篩選搜尋。有效值：<ul><li>Size:Small</li><li>Size:Medium</li><li>Size:Large</li><li>Size:Width:[寬度]</li><li>Size:Height:[高度]</li><li>Aspect:Square</li><li>Aspect:Wide</li><li>Aspect:Tall</li><li>Color:Color</li><li>Color:Monochrome</li><li>Style:Photo</li><li>Style:Graphics</li><li>Face:Face</li><li>Face:Portrait</li><li>Face:Other</li></ul><br/><br/>例如：'Size:Small+Aspect:Square'|
+|imageFilters|string|no|query|無 |根據影片的大小、外觀比例、色彩、樣式、方向，或上述條件的任何組合來篩選搜尋。有效值：<ul><li>Size:Small</li><li>Size:Medium</li><li>Size:Large</li><li>Size:Width:[寬度]</li><li>Size:Height:[高度]</li><li>Aspect:Square</li><li>Aspect:Wide</li><li>Aspect:Tall</li><li>Color:Color</li><li>Color:Monochrome</li><li>Style:Photo</li><li>Style:Graphics</li><li>Face:Face</li><li>Face:Portrait</li><li>Face:Other</li></ul><br/><br/>例如：'Size:Small+Aspect:Square'|
 
 #### Response
 |名稱|說明|
@@ -124,16 +111,16 @@ None | <ul><li>搜尋網站</li><li>搜尋影片</li><li>搜尋圖像</li><li>�
 |query|字串|yes|query|無 |要搜尋的文字 (例如「xbox」)|
 |maxResult|integer|no|query|無 |要傳回的結果數目上限|
 |startOffset|integer|no|query| 無|要略過的結果數目|
-|adultContent|字串|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
-|market|字串|no|query|無 |用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
+|adultContent|string|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
+|market|string|no|query|無 |用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
 |經度|number|no|query|無 |用來縮小搜尋範圍的經度 (東/西向座標) (例如：47.603450)|
 |緯度|number|no|query|無 |用來縮小搜尋範圍的緯度 (南/北向座標) (例如：-122.329696)|
-|newsSortBy|字串|no|query| 無|搜尋結果的排序次序。有效值：<ul><li>Date</li><li>Relevance</li></ul> <p>日期的排序次序必須為遞減。</p>|
-|newsCategory|字串|no|query| |用來縮小搜尋範圍的新聞類別 (例如：「rt\_Business」)|
-|newsLocationOverride|字串|no|query|無 |覆寫 Bing 位置偵測的結果。此參數僅適用於 zh-TW 市場。輸入的格式為 US./<state /> (例如：'US.WA')|
+|newsSortBy|string|no|query| 無|搜尋結果的排序次序。有效值：<ul><li>Date</li><li>Relevance</li></ul> <p>日期的排序次序必須為遞減。</p>|
+|newsCategory|string|no|query| |用來縮小搜尋範圍的新聞類別 (例如：「rt\_Business」)|
+|newsLocationOverride|string|no|query|無 |覆寫 Bing 位置偵測的結果。此參數僅適用於 zh-TW 市場。輸入的格式為 US./<state /> (例如：'US.WA')|
 
 #### Response
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|OK|
 |預設值|作業失敗。|
@@ -147,13 +134,13 @@ None | <ul><li>搜尋網站</li><li>搜尋影片</li><li>搜尋圖像</li><li>�
 |query|字串|yes|query| 無|要搜尋的文字 (例如「xbox」)|
 |maxResult|integer|no|query|無 |要傳回的結果數目上限|
 |startOffset|integer|no|query| 無|要略過的結果數目|
-|adultContent|字串|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
-|market|字串|no|query| 無|用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
+|adultContent|string|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
+|market|string|no|query| 無|用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
 |經度|number|no|query|無 |用來縮小搜尋範圍的經度 (東/西向座標) (例如：47.603450)|
 |緯度|number|no|query|無 |用來縮小搜尋範圍的緯度 (南/北向座標) (例如：-122.329696)|
 
 #### Response
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|OK|
 |預設值|作業失敗。|
@@ -162,13 +149,13 @@ None | <ul><li>搜尋網站</li><li>搜尋影片</li><li>搜尋圖像</li><li>�
 ### 搜尋相關結果    
 擷取某次 Bing 搜尋結果中的相關搜尋結果。```GET: /RelatedSearch```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
 |query|字串|yes|query|無 |要搜尋的文字 (例如「xbox」)|
 |maxResult|integer|no|query|無 |要傳回的結果數目上限|
 |startOffset|integer|no|query| 無|要略過的結果數目|
-|adultContent|字串|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
-|market|字串|no|query|無 |用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
+|adultContent|string|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
+|market|string|no|query|無 |用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
 |經度|number|no|query|無 |用來縮小搜尋範圍的經度 (東/西向座標) (例如：47.603450)|
 |緯度|number|no|query| 無|用來縮小搜尋範圍的緯度 (南/北向座標) (例如：-122.329696)|
 
@@ -187,17 +174,17 @@ None | <ul><li>搜尋網站</li><li>搜尋影片</li><li>搜尋圖像</li><li>�
 |query|字串|yes|query|無 |要搜尋的文字 (例如「xbox」)|
 |maxResult|integer|no|query|無 |要傳回的結果數目上限|
 |startOffset|integer|no|query|無 |要略過的結果數目|
-|adultContent|字串|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
-|market|字串|no|query|無 |用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
+|adultContent|string|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
+|market|string|no|query|無 |用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
 |經度|number|no|query|無 |用來縮小搜尋範圍的經度 (東/西向座標) (例如：47.603450)|
 |緯度|number|no|query|無 |用來縮小搜尋範圍的緯度 (南/北向座標) (例如：-122.329696)|
-|webFileType|字串|no|query|無 |用來縮小搜尋範圍的檔案類型 (例如：「DOC」)|
-|videoFilters|字串|no|query|無 |根據影片的大小、外觀比例、色彩、樣式、方向，或上述條件的任何組合來篩選搜尋。有效值：<ul><li>Duration:Short</li><li>Duration:Medium</li><li>Duration:Long</li><li>Aspect:Standard</li><li>Aspect:Widescreen</li><li>Resolution:Low</li><li>Resolution:Medium</li><li>Resolution:High</li></ul> <br/><br/>例如：'Duration:Short+Resolution:High'|
-|videoSortBy|字串|no|query|無 |搜尋結果的排序次序。有效值：<ul><li>Date</li><li>Relevance</li></ul> <p>日期的排序次序必須為遞減。</p>|
-|imageFilters|字串|no|query|無 |根據影片的大小、外觀比例、色彩、樣式、方向，或上述條件的任何組合來篩選搜尋。有效值：<ul><li>Size:Small</li><li>Size:Medium</li><li>Size:Large</li><li>Size:Width:[寬度]</li><li>Size:Height:[高度]</li><li>Aspect:Square</li><li>Aspect:Wide</li><li>Aspect:Tall</li><li>Color:Color</li><li>Color:Monochrome</li><li>Style:Photo</li><li>Style:Graphics</li><li>Face:Face</li><li>Face:Portrait</li><li>Face:Other</li></ul><br/><br/>例如：'Size:Small+Aspect:Square'|
-|newsSortBy|字串|no|query|無 |搜尋結果的排序次序。有效值：<ul><li>Date</li><li>Relevance</li></ul> <p>日期的排序次序必須為遞減。</p>|
-|newsCategory|字串|no|query|無 |用來縮小搜尋範圍的新聞類別 (例如：「rt\_Business」)|
-|newsLocationOverride|字串|no|query|無 |覆寫 Bing 位置偵測的結果。此參數僅適用於 zh-TW 市場。輸入的格式為 US./<state /> (例如：'US.WA')|
+|webFileType|string|no|query|無 |用來縮小搜尋範圍的檔案類型 (例如：「DOC」)|
+|videoFilters|string|no|query|無 |根據影片的大小、外觀比例、色彩、樣式、方向，或上述條件的任何組合來篩選搜尋。有效值：<ul><li>Duration:Short</li><li>Duration:Medium</li><li>Duration:Long</li><li>Aspect:Standard</li><li>Aspect:Widescreen</li><li>Resolution:Low</li><li>Resolution:Medium</li><li>Resolution:High</li></ul> <br/><br/>例如：'Duration:Short+Resolution:High'|
+|videoSortBy|string|no|query|無 |搜尋結果的排序次序。有效值：<ul><li>Date</li><li>Relevance</li></ul> <p>日期的排序次序必須為遞減。</p>|
+|imageFilters|string|no|query|無 |根據影片的大小、外觀比例、色彩、樣式、方向，或上述條件的任何組合來篩選搜尋。有效值：<ul><li>Size:Small</li><li>Size:Medium</li><li>Size:Large</li><li>Size:Width:[寬度]</li><li>Size:Height:[高度]</li><li>Aspect:Square</li><li>Aspect:Wide</li><li>Aspect:Tall</li><li>Color:Color</li><li>Color:Monochrome</li><li>Style:Photo</li><li>Style:Graphics</li><li>Face:Face</li><li>Face:Portrait</li><li>Face:Other</li></ul><br/><br/>例如：'Size:Small+Aspect:Square'|
+|newsSortBy|string|no|query|無 |搜尋結果的排序次序。有效值：<ul><li>Date</li><li>Relevance</li></ul> <p>日期的排序次序必須為遞減。</p>|
+|newsCategory|string|no|query|無 |用來縮小搜尋範圍的新聞類別 (例如：「rt\_Business」)|
+|newsLocationOverride|string|no|query|無 |覆寫 Bing 位置偵測的結果。此參數僅適用於 zh-TW 市場。輸入的格式為 US./<state /> (例如：'US.WA')|
 
 #### Response
 |名稱|說明|
@@ -212,20 +199,20 @@ None | <ul><li>搜尋網站</li><li>搜尋影片</li><li>搜尋圖像</li><li>�
 
 |屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|課程名稱|字串|no|
-|說明|字串|no|
-|DisplayUrl|字串|no|
-|識別碼|字串|no|
-|FullUrl|字串|no|
+|課程名稱|string|no|
+|說明|string|no|
+|DisplayUrl|string|no|
+|識別碼|string|no|
+|FullUrl|string|no|
 
 #### VideoResultModel：Bing 的影片搜尋結果
 
 |屬性名稱 | 資料類型 |必要 |
 |---|---|---|
-|課程名稱|字串|no|
-|DisplayUrl|字串|no|
-|識別碼|字串|no|
-|MediaUrl|字串|no|
+|課程名稱|string|no|
+|DisplayUrl|string|no|
+|識別碼|string|no|
+|MediaUrl|string|no|
 |執行階段|integer|no|
 |縮圖|沒有定義|no|
 
@@ -233,8 +220,8 @@ None | <ul><li>搜尋網站</li><li>搜尋影片</li><li>搜尋圖像</li><li>�
 
 |屬性名稱 | 資料類型 |必要 |
 |---|---|---|
-|MediaUrl|字串|no|
-|ContentType|字串|no|
+|MediaUrl|string|no|
+|ContentType|string|no|
 |寬度|integer|no|
 |高度|integer|no|
 |FileSize|integer|no|
@@ -243,38 +230,38 @@ None | <ul><li>搜尋網站</li><li>搜尋影片</li><li>搜尋圖像</li><li>�
 
 |屬性名稱 | 資料類型 |必要 |
 |---|---|---|
-|課程名稱|字串|no|
-|DisplayUrl|字串|no|
-|識別碼|字串|no|
-|MediaUrl|字串|no|
-|SourceUrl|字串|no|
+|課程名稱|string|no|
+|DisplayUrl|string|no|
+|識別碼|string|no|
+|MediaUrl|string|no|
+|SourceUrl|string|no|
 |縮圖|沒有定義|no|
 
 #### NewsResultModel：Bing 的新聞搜尋結果
 
 |屬性名稱 | 資料類型 |必要 |
 |---|---|---|
-|課程名稱|字串|no|
-|說明|字串|no|
-|DisplayUrl|字串|no|
-|識別碼|字串|no|
-|來源|字串|no|
-|Date|字串|no|
+|課程名稱|string|no|
+|說明|string|no|
+|DisplayUrl|string|no|
+|識別碼|string|no|
+|來源|string|no|
+|Date|string|no|
 
 #### SpellResultModel：Bing 的拼字建議結果
 
 |屬性名稱 | 資料類型 |必要 |
 |---|---|---|
-|識別碼|字串|no|
-|值|字串|no|
+|識別碼|string|no|
+|值|string|no|
 
 #### RelatedSearchResultModel：Bing 的相關搜尋結果
 
 |屬性名稱 | 資料類型 |必要 |
 |---|---|---|
-|課程名稱|字串|no|
-|識別碼|字串|no|
-|BingUrl|字串|no|
+|課程名稱|string|no|
+|識別碼|string|no|
+|BingUrl|string|no|
 
 #### CompositeSearchResultModel：Bing 的綜合搜尋結果
 
@@ -298,4 +285,4 @@ None | <ul><li>搜尋網站</li><li>搜尋影片</li><li>搜尋圖像</li><li>�
 
 返回 [API 清單](apis-list.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0824_2016-->

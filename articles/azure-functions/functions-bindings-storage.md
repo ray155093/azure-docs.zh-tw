@@ -15,10 +15,12 @@
 	ms.topic="reference"
 	ms.tgt_pltfrm="multiple"
 	ms.workload="na"
-	ms.date="05/16/2016"
+	ms.date="08/22/2016"
 	ms.author="chrande"/>
 
 # Azure 儲存體的 Azure Functions 觸發程序和繫結
+
+[AZURE.INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
 這篇文章說明如何在 Azure Functions 中為「Azure 儲存體」觸發程序和繫結進行設定及撰寫程式碼。
 
@@ -28,15 +30,15 @@
 
 #### 儲存體佇列觸發程序的 function.json
 
-*function.json* 檔案指定了下列屬性。
+「function.json」檔案指定了下列屬性。
 
-- `name`︰函數程式碼中用於佇列或佇列訊息的變數名稱。 
+- `name`︰函式程式碼中用於佇列或佇列訊息的變數名稱。
 - `queueName`：要輪詢的佇列名稱。若要了解佇列命名規則，請參閱[為佇列和中繼資料命名](https://msdn.microsoft.com/library/dd179349.aspx)。
-- `connection`︰包含儲存體連接字串的應用程式設定名稱。如果將 `connection` 留白，觸發程序將會使用函數應用程式的預設儲存體連接字串，此預設值是由 AzureWebJobsStorage 應用程式設定所指定。
-- `type`︰必須設定為 *queueTrigger*。
-- `direction`：必須設定為 *in*。 
+- `connection`︰包含儲存體連接字串的應用程式設定名稱。如果將 `connection` 留白，觸發程序將會使用函式應用程式的預設儲存體連接字串，此預設值是由 AzureWebJobsStorage 應用程式設定所指定。
+- `type`︰必須設為「queueTrigger」。
+- `direction`：必須設為「in」。
 
-儲存體佇列觸發程序的範例 *function.json*
+儲存體佇列觸發程序的範例「function.json」：
 
 ```json
 {
@@ -59,8 +61,8 @@
 
 * 物件 (來自 JSON)
 * String
-* 位元組陣列 
-* `CloudQueueMessage` (C#) 
+* 位元組陣列
+* `CloudQueueMessage` (C#)
 
 #### 佇列觸發程序中繼資料
 
@@ -112,15 +114,15 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。如果第五次嘗試�
 
 #### 儲存體佇列輸出繫結的 function.json
 
-*function.json* 檔案指定了下列屬性。
+「function.json」檔案指定了下列屬性。
 
-- `name`︰函數程式碼中用於佇列或佇列訊息的變數名稱。 
+- `name`︰函式程式碼中用於佇列或佇列訊息的變數名稱。
 - `queueName`：佇列的名稱。若要了解佇列命名規則，請參閱[為佇列和中繼資料命名](https://msdn.microsoft.com/library/dd179349.aspx)。
-- `connection`︰包含儲存體連接字串的應用程式設定名稱。如果將 `connection` 留白，觸發程序將會使用函數應用程式的預設儲存體連接字串，此預設值是由 AzureWebJobsStorage 應用程式設定所指定。
-- `type`：必須設定為 *queue*。
-- `direction`：必須設定為 *out*。 
+- `connection`︰包含儲存體連接字串的應用程式設定名稱。如果將 `connection` 留白，觸發程序將會使用函式應用程式的預設儲存體連接字串，此預設值是由 AzureWebJobsStorage 應用程式設定所指定。
+- `type`：必須設為「queue」。
+- `direction`：必須設為「out」。
 
-儲存體佇列輸出繫結的範例 *function.json*，此繫結會使用佇列觸發程序並寫入佇列訊息︰
+儲存體佇列輸出繫結的範例「function.json」，此繫結會使用佇列觸發程序並寫入佇列訊息︰
 
 ```json
 {
@@ -148,10 +150,10 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。如果第五次嘗試�
 
 `queue` 繫結可將下列類型序列化到佇列訊息︰
 
-* 物件 (在 C# 中為 `out T`，如果函數結束時，參數為 Null，就會使用 Null 物件來建立訊息)
-* 字串 (在 C# 中為 `out string`，如果函數結束時，參數值不是 Null，就會建立佇列訊息)
-* 位元組陣列 (在 C# 中為 `out byte[]`，運作方式與字串相同) 
-* `out CloudQueueMessage`(C#，運作方式與字串相同) 
+* 物件 (在 C# 中為 `out T`，如果函式結束時，參數為 Null，就會使用 Null 物件來建立訊息)
+* 字串 (在 C# 中為 `out string`，如果函式結束時，參數值不是 Null，就會建立佇列訊息)
+* 位元組陣列 (在 C# 中為 `out byte[]`，運作方式與字串相同)
+* `out CloudQueueMessage`(C#，運作方式與字串相同)
 
 在 C# 中，您也可以繫結至 `ICollector<T>` 或 `IAsyncCollector<T>`，其中 `T` 是其中一個支援的類型。
 
@@ -166,7 +168,7 @@ public static void Run(string myQueueItem, out string myOutputQueueItem, TraceWr
 }
 ```
 
-這個 C# 程式碼範例會使用 `ICollector<T>` (在非同步函數中會使用 `IAsyncCollector<T>`) 來撰寫多個訊息：
+這個 C# 程式碼範例會使用 `ICollector<T>` (在非同步函式中會使用 `IAsyncCollector<T>`) 來撰寫多個訊息：
 
 ```csharp
 public static void Run(string myQueueItem, ICollector<string> myQueue, TraceWriter log)
@@ -180,15 +182,15 @@ public static void Run(string myQueueItem, ICollector<string> myQueue, TraceWrit
 
 #### 儲存體 Blob 觸發程序的 function.json
 
-*function.json* 檔案指定了下列屬性。
+「function.json」檔案指定了下列屬性。
 
-- `name`︰函數程式碼中用於 Blob 的變數名稱。 
+- `name`︰函式程式碼中用於 Blob 的變數名稱。
 - `path`：指定要監視之容器的路徑，此路徑也可以依選擇指定 Blob 名稱模式。
-- `connection`︰包含儲存體連接字串的應用程式設定名稱。如果將 `connection` 留白，觸發程序將會使用函數應用程式的預設儲存體連接字串，此預設值是由 AzureWebJobsStorage 應用程式設定所指定。
-- `type`︰必須設定為 *blobTrigger*。
-- `direction`：必須設定為 *in*。
+- `connection`︰包含儲存體連接字串的應用程式設定名稱。如果將 `connection` 留白，觸發程序將會使用函式應用程式的預設儲存體連接字串，此預設值是由 AzureWebJobsStorage 應用程式設定所指定。
+- `type`︰必須設為「blobTrigger」。
+- `direction`：必須設為「in」。
 
-儲存體 Blob 觸發程序的範例 *function.json*，此觸發程序會監看新增至 samples-workitems 容器的 Blob：
+儲存體 Blob 觸發程序的範例「function.json」，此觸發程序會監看新增至 samples-workitems 容器的 Blob：
 
 ```json
 {
@@ -223,7 +225,7 @@ public static void Run(string myQueueItem, ICollector<string> myQueue, TraceWrit
 * `CloudBlobDirectory`
 * `IEnumerable<CloudBlockBlob>`
 * `IEnumerable<CloudPageBlob>`
-* 透過 [ICloudBlobStreamBinder](../app-service-web/websites-dotnet-webjobs-sdk-storage-blobs-how-to.md#icbsb) 還原序列化的其他型別 
+* 透過 [ICloudBlobStreamBinder](../app-service-web/websites-dotnet-webjobs-sdk-storage-blobs-how-to.md#icbsb) 還原序列化的其他型別
 
 #### Blob 觸發程序 C# 程式碼範例
 
@@ -244,7 +246,7 @@ public static void Run(string myBlob, TraceWriter log)
 "path": "input/original-{name}",
 ```
 
-此路徑會尋找 *input* 容器中名為 *original-Blob1.txt* 的 Blob，而函數程式碼中的 `name` 變數值會是 `Blob1`。
+此路徑會在「input」容器中尋找名為「original-Blob1.txt」的 Blob，且函式程式碼中的 `name` 變數值會是 `Blob1`。
 
 另一個範例：
 
@@ -252,9 +254,9 @@ public static void Run(string myBlob, TraceWriter log)
 "path": "input/{blobname}.{blobextension}",
 ```
 
-此路徑也會尋找名為 *original-Blob1.txt* 的 Blob，而函數程式碼中的 `blobname` 和 `blobextension` 變數值則會是 *original-Blob1* 和 *txt*。
+此路徑也會尋找名為「original-Blob1.txt」的 Blob，而函式程式碼中的 `blobname` 和 `blobextension` 變數值會是「original-Blob1」和「txt」。
 
-您可以使用固定值來為副檔名指定模式，從而限制觸發函式的 blob 類型。如果您將 `path` 設定為 *samples/{name}.png*，則只有 *samples* 容器中的 *.png* Blob 會觸發函數。
+您可以使用固定值來為副檔名指定模式，從而限制觸發函式的 blob 類型。如果您將 `path` 設為「samples/{name}.png」，只有「samples」容器中的「.png」Blob 會觸發函式。
 
 如果您需要針對名稱中包含大括號的 Blob 名稱指定名稱模式，請按兩下大括號。例如，如果您想要在 *images* 容器中尋找具備如下名稱的 Blob：
 
@@ -264,7 +266,7 @@ public static void Run(string myBlob, TraceWriter log)
 
 		images/{{20140101}}-{name}
 
-在此範例中，`name` 變數值會是 *soundfile.mp3*。
+在此範例中，`name` 變數值會是「soundfile.mp3」。
 
 #### Blob 回條
 
@@ -272,7 +274,7 @@ Azure Functions 執行階段可確保不會針對一樣新或版本相同的 blo
 
 Blob 回條儲存於 AzureWebJobsStorage 連接字串所指定之 Azure 儲存體帳戶中名為 *azure-webjobs-hosts* 的容器中。Blob 回條具有下列資訊：
 
-* 已為 Blob 呼叫的函數 ("*{function app name}*.Functions.*{function name}*"，例如："functionsf74b96f7.Functions.CopyBlob")
+* 已為 Blob 呼叫的函式 ("{function app name}.Functions.{function name}"，例如："functionsf74b96f7.Functions.CopyBlob")
 * 容器名稱
 * Blob 類型 ("BlockBlob" 或 "PageBlob")
 * Blob 名稱
@@ -286,7 +288,7 @@ Blob 回條儲存於 AzureWebJobsStorage 連接字串所指定之 Azure 儲存�
 
 適用於有害 Blob 的佇列訊息是一個 JSON 物件，其中包含下列屬性：
 
-* FunctionId (格式為 *{function app name}*.Functions.*{function name}*)
+* FunctionId (格式為 {function app name}.Functions.{function name})
 * BlobType ("BlockBlob" 或 "PageBlob")
 * ContainerName
 * BlobName
@@ -300,15 +302,15 @@ Blob 回條儲存於 AzureWebJobsStorage 連接字串所指定之 Azure 儲存�
 
 #### 儲存體 Blob 輸入或輸出繫結的 function.json
 
-*function.json* 檔案指定了下列屬性。
+「function.json」檔案指定了下列屬性。
 
-- `name`︰函數程式碼中用於 Blob 的變數名稱。 
+- `name`︰函式程式碼中用於 Blob 的變數名稱。
 - `path`：指定要從中讀取 Blob 或將 Blob 寫入到其中的容器路徑，此路徑也可以依選擇指定 Blob 名稱模式。
-- `connection`︰包含儲存體連接字串的應用程式設定名稱。如果將 `connection` 留白，繫結將會使用函數應用程式的預設儲存體連接字串，此預設值是由 AzureWebJobsStorage 應用程式設定所指定。
-- `type`：必須設定為 *blob*。
-- `direction`：設定為 *in* 或 *out*。 
+- `connection`︰包含儲存體連接字串的應用程式設定名稱。如果將 `connection` 留白，繫結將會使用函式應用程式的預設儲存體連接字串，此預設值是由 AzureWebJobsStorage 應用程式設定所指定。
+- `type`：必須設為「blob」。
+- `direction`︰設定為「in」或「out」。
 
-儲存體 Blob 輸入或輸出繫結的範例 *function.json*，其中使用佇列觸發程序來複製 Blob：
+儲存體 Blob 輸入或輸出繫結的範例「function.json」，其中使用佇列觸發程序來複製 Blob：
 
 ```json
 {
@@ -341,10 +343,10 @@ Blob 回條儲存於 AzureWebJobsStorage 連接字串所指定之 Azure 儲存�
 
 #### Blob 輸入和輸出支援的類型
 
-在 Node.js 或 C# 函數中，`blob` 繫結可將下列類型序列化或還原序列化︰
+在 Node.js 或 C# 函式中，`blob` 繫結可將下列類型序列化或還原序列化︰
 
-* 物件 (在 C# 中為 `out T`，適用於輸出 Blob︰如果函數結束時，參數值為 Null，就會將 Blob 建立成 Null 物件)
-* 字串 (在 C# 中為 `out string`，適用於輸出 Blob：如果函數傳回時，字串參數不是 Null，則只會建立 Blob)
+* 物件 (在 C# 中為 `out T`，適用於輸出 Blob︰如果函式結束時，參數值為 Null，就會將 Blob 建立成 Null 物件)
+* 字串 (在 C# 中為 `out string`，適用於輸出 Blob：如果函式傳回時，字串參數不是 Null，則只會建立 Blob)
 
 在 C# 函式中，您也可以繫結至下列類型︰
 
@@ -353,8 +355,8 @@ Blob 回條儲存於 AzureWebJobsStorage 連接字串所指定之 Azure 儲存�
 * `Stream`
 * `CloudBlobStream` (僅限輸出)
 * `ICloudBlob`
-* `CloudBlockBlob` 
-* `CloudPageBlob` 
+* `CloudBlockBlob`
+* `CloudPageBlob`
 
 #### Blob 輸出 C# 程式碼範例
 
@@ -372,18 +374,18 @@ public static void Run(string myQueueItem, string myInputBlob, out string myOutp
 
 #### 儲存體資料表的 function.json
 
-*function.json* 指定了下列屬性。
+「function.json」指定了下列屬性。
 
-- `name`︰函數程式碼中用於資料表繫結的變數名稱。 
+- `name`︰函式程式碼中用於資料表繫結的變數名稱。
 - `tableName`：資料表的名稱。
-- `partitionKey` 和 `rowKey`：搭配使用可讀取 C# 或 Node 函數中的單一實體，或在 Node 函數中寫入單一實體。
-- `take`：針對 Node 函數中資料表輸入所讀取的資料列數目上限。
-- `filter`：適用於 Node 函數中資料表輸入的 OData 篩選運算式。
-- `connection`︰包含儲存體連接字串的應用程式設定名稱。如果將 `connection` 留白，繫結將會使用函數應用程式的預設儲存體連接字串，此預設值是由 AzureWebJobsStorage 應用程式設定所指定。
-- `type`：必須設定為 *table*。
-- `direction`：設定為 *in* 或 *out*。 
+- `partitionKey` 和 `rowKey`：搭配使用可讀取 C# 或 Node 函式中的單一實體，或在 Node 函式中寫入單一實體。
+- `take`：針對 Node 函式中資料表輸入所讀取的資料列數目上限。
+- `filter`：適用於 Node 函式中資料表輸入的 OData 篩選運算式。
+- `connection`︰包含儲存體連接字串的應用程式設定名稱。如果將 `connection` 留白，繫結將會使用函式應用程式的預設儲存體連接字串，此預設值是由 AzureWebJobsStorage 應用程式設定所指定。
+- `type`：必須設為「table」。
+- `direction`︰設定為「in」或「out」。
 
-以下的範例 *function.json* 會使用佇列觸發程序來讀取單一資料表列。JSON 提供硬式編碼的資料分割索引鍵值，並指定資料列索引鍵來自佇列訊息。
+以下的範例「function.json」會使用佇列觸發程序來讀取單一資料表列。JSON 提供硬式編碼的資料分割索引鍵值，並指定資料列索引鍵來自佇列訊息。
 
 ```json
 {
@@ -411,7 +413,7 @@ public static void Run(string myQueueItem, string myInputBlob, out string myOutp
 
 #### 儲存體資料表輸入和輸出支援的類型
 
-在 Node.js 或 C# 函數中，`table` 繫結可將物件序列化或還原序列化。物件會有 RowKey 和 PartitionKey 屬性。
+在 Node.js 或 C# 函式中，`table` 繫結可將物件序列化或還原序列化。物件會有 RowKey 和 PartitionKey 屬性。
 
 在 C# 函式中，您也可以繫結至下列類型︰
 
@@ -442,7 +444,7 @@ public static void Run(string myQueueItem, string myInputBlob, out string myOutp
 
 #### 儲存體資料表範例︰讀取 C# 或 Node 中的單一資料表實體
 
-下列 C# 程式碼範例可與前述稍早所示的 *function.json* 檔案搭配運作，以讀取單一資料表實體。佇列訊息具有資料列索引鍵值，而資料表實體則會被讀入 *run.csx* 檔案中定義的類型。類型包括 `PartitionKey` 和 `RowKey` 屬性，且不是衍生自 `TableEntity`。
+下列 C# 程式碼範例可與前述稍早所示的「function.json」檔案搭配運作，以讀取單一資料表實體。佇列訊息具有資料列金鑰值，並將資料表實體讀入「run.csx」檔案中定義的類型。類型包括 `PartitionKey` 和 `RowKey` 屬性，且不是衍生自 `TableEntity`。
 
 ```csharp
 public static void Run(string myQueueItem, Person personEntity, TraceWriter log)
@@ -459,7 +461,7 @@ public class Person
 }
 ```
 
-下列 Node 程式碼範例也可與前述 *function.json* 檔案搭配運作，以讀取單一資料表實體。
+下列 Node 程式碼範例也使用上述「function.json」檔案以讀取單一資料表實體。
 
 ```javascript
 module.exports = function (context, myQueueItem) {
@@ -471,7 +473,7 @@ module.exports = function (context, myQueueItem) {
 
 #### 儲存體資料表範例︰讀取 C 中的多個資料表實體# 
 
-下列 *function.json* 和 C# 程式碼範例會讀取實體，以找出佇列訊息中指定的資料分割索引鍵。
+下列「function.json」和 C# 程式碼範例會讀取佇列訊息中指定的資料分割金鑰的實體。
 
 ```json
 {
@@ -518,7 +520,7 @@ public class Person : TableEntity
 
 #### 儲存體資料表範例︰在 C 中建立資料表實體# 
 
-下列 *function.json* 和 *run.csx* 範例示範如何以 C# 撰寫資料表實體。
+下列「function.json」和「run.csx」範例示範如何在 C# 中撰寫資料表實體。
 
 ```json
 {
@@ -567,7 +569,7 @@ public class Person
 
 #### 儲存體資料表範例︰在 Node 中建立資料表實體
 
-下列 *function.json* 和 *run.csx* 範例示範如何以 Node 撰寫資料表實體。
+下列「function.json」和「run.csx」範例示範如何在 Node 中撰寫資料表實體。
 
 ```json
 {
@@ -605,4 +607,4 @@ module.exports = function (context, myQueueItem) {
 
 [AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -4,7 +4,7 @@
    services="virtual-machines-linux,virtual-network,storage"
    documentationCenter="saponazure"
    authors="MSSedusch"
-   manager="juergent"
+   manager="timlt"
    editor=""
    tags="azure-resource-manager"
    keywords=""/>
@@ -104,7 +104,7 @@
 [deployment-guide-3.1.2]: virtual-machines-linux-sap-deployment-guide.md#3688666f-281f-425b-a312-a77e7db2dfab "使用自訂映像部署 VM"
 [deployment-guide-3.2]: virtual-machines-linux-sap-deployment-guide.md#db477013-9060-4602-9ad4-b0316f8bb281 "案例 1：從 Azure Marketplace 為 SAP 部署 VM"
 [deployment-guide-3.3]: virtual-machines-linux-sap-deployment-guide.md#54a1fc6d-24fd-4feb-9c57-ac588a55dff2 "案例 2：使用自訂映像為 SAP 部署 VM"
-[deployment-guide-3.4]: virtual-machines-linux-sap-deployment-guide.md#a9a60133-a763-4de8-8986-ac0fa33aa8c1 "案例 3：使用非一般化 Azure VHD 和 SAP 從內部部署移動 VM"
+[deployment-guide-3.4]: virtual-machines-linux-sap-deployment-guide.md#a9a60133-a763-4de8-8986-ac0fa33aa8c1 "案例 3：使用非一般化 Azure VHD 搭配 SAP 從內部部署環境移動 VM"
 [deployment-guide-3]: virtual-machines-linux-sap-deployment-guide.md#b3253ee3-d63b-4d74-a49b-185e76c4088e "適用於 Microsoft Azure 上 SAP 的 VM 部署案例"
 [deployment-guide-4.1]: virtual-machines-linux-sap-deployment-guide.md#604bcec2-8b6e-48d2-a944-61b0f5dee2f7 "部署 Azure PowerShell Cmdlet"
 [deployment-guide-4.2]: virtual-machines-linux-sap-deployment-guide.md#7ccf6c3e-97ae-4a7a-9c75-e82c37beb18e "下載並匯入與 SAP 相關的 PowerShell Cmdlet"
@@ -171,11 +171,11 @@
 
 [msdn-set-azurermvmaemextension]: https://msdn.microsoft.com/library/azure/mt670598.aspx
 
-[planning-guide]: virtual-machines-linux-sap-planning-guide.md "Linux 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南"
+[planning-guide]: virtual-machines-linux-sap-planning-guide.md "Linux 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃及實作指南"
 [planning-guide-1.2]: virtual-machines-linux-sap-planning-guide.md#e55d1e22-c2c8-460b-9897-64622a34fdff "資源"
 [planning-guide-11.4.1]: virtual-machines-linux-sap-planning-guide.md#5d9d36f9-9058-435d-8367-5ad05f00de77 "SAP 應用程式伺服器的高可用性"
 [planning-guide-11.5]: virtual-machines-linux-sap-planning-guide.md#4e165b58-74ca-474f-a7f4-5e695a93204f "對 SAP 執行個體使用自動啟動"
-[planning-guide-2.1]: virtual-machines-linux-sap-planning-guide.md#1625df66-4cc6-4d60-9202-de8a0b77f803 "僅限雲端 - 將虛擬機器部署到 Azure，而不需要相依於內部部署客戶網路"
+[planning-guide-2.1]: virtual-machines-linux-sap-planning-guide.md#1625df66-4cc6-4d60-9202-de8a0b77f803 "僅限雲端 - 將虛擬機器部署到 Azure，無須倚賴內部部署客戶網路"
 [planning-guide-2.2]: virtual-machines-linux-sap-planning-guide.md#f5b3b18c-302c-4bd8-9ab2-c388f1ab3d10 "跨單位 - 將單一或多個 SAP VM 部署到 Azure，必須完全整合到內部部署網路"
 [planning-guide-3.1]: virtual-machines-linux-sap-planning-guide.md#be80d1b9-a463-4845-bd35-f4cebdb5424a "Azure 區域"
 [planning-guide-3.2.1]: virtual-machines-linux-sap-planning-guide.md#df49dc09-141b-4f34-a4a2-990913b30358 "容錯網域"
@@ -189,7 +189,7 @@
 [planning-guide-5.2.2]: virtual-machines-linux-sap-planning-guide.md#57f32b1c-0cba-4e57-ab6e-c39fe22b6ec3 "準備使用客戶特定的映像為 SAP 部署 VM"
 [planning-guide-5.2]: virtual-machines-linux-sap-planning-guide.md#6ffb9f41-a292-40bf-9e70-8204448559e7 "使用適用於 Azure 的 SAP 準備 VM"
 [planning-guide-5.3.1]: virtual-machines-linux-sap-planning-guide.md#6e835de8-40b1-4b71-9f18-d45b20959b79 "Azure 磁碟與 Azure 映像之間的差異"
-[planning-guide-5.3.2]: virtual-machines-linux-sap-planning-guide.md#a43e40e6-1acc-4633-9816-8f095d5a7b6a "將 VHD 從內部部署上傳至 Azure"
+[planning-guide-5.3.2]: virtual-machines-linux-sap-planning-guide.md#a43e40e6-1acc-4633-9816-8f095d5a7b6a "將 VHD 從內部部署環境上傳至 Azure"
 [planning-guide-5.4.2]: virtual-machines-linux-sap-planning-guide.md#9789b076-2011-4afa-b2fe-b07a8aba58a1 "在 Azure 儲存體帳戶之間複製磁碟"
 [planning-guide-5.5.1]: virtual-machines-linux-sap-planning-guide.md#4efec401-91e0-40c0-8e64-f2dceadff646 "SAP 部署的 VM/VHD 結構"
 [planning-guide-5.5.3]: virtual-machines-linux-sap-planning-guide.md#17e0d543-7e8c-4160-a7da-dd7117a1ad9d "為連接的磁碟設定自動掛接"
@@ -406,7 +406,7 @@ ___
 #### 使用非一般化磁碟將 VM 從內部部署移至 Microsoft Azure
 您想要將特定 SAP 系統從內部部署移至 Microsoft Azure。作法是將包含 OS、SAP 二進位檔和最終 DBMS 二進位檔的 VHD，以及包含 DBMS 資料和記錄檔的 VHD 上傳至 Microsoft Azure。相對於上面[使用自訂映像部署 VM][deployment-guide-3.1.2] 一章所述的案例，您可以如在內部部署環境中所設定的一樣，在 Azure VM 中保留主機名稱、SAP SID 和 SAP 使用者帳戶。因此，並不需要一般化作業系統。此情況最適用於跨單位案例，其中 SAP 地標的一部分是在內部部署環境中執行，一部分是在 Microsoft Azure 上執行。
 
-如需更多詳細資料，請參閱[案例 3：使用非一般化 Azure VHD 和 SAP 從內部部署移動 VM][deployment-guide-3.4] 一章。
+如需更多詳細資料，請參閱[案例 3：使用非一般化 Azure VHD 搭配 SAP 從內部部署環境移動 VM][deployment-guide-3.4] 一章。
 
 ### <a name="db477013-9060-4602-9ad4-b0316f8bb281"></a>案例 1：從 Azure Marketplace 為 SAP 部署 VM
 Microsoft Azure 可讓您從 Azure Marketplace 部署 VM 執行個體，而 Azure Marketplace 提供 Windows Server 的一些標準 OS 映像以及不同的 Linux 散發套件。它也可以部署包含 DBMS SKU 的映像 (例如 SQL Server)。如需將那些映像與 DBMS SKU 搭配使用的詳細資料，請參閱 [DBMS 部署指南][dbms-guide]
@@ -425,7 +425,7 @@ Microsoft Azure 可讓您從 Azure Marketplace 部署 VM 執行個體，而 Azur
 1. 基本概念
     1. 名稱：資源名稱 (即虛擬機器名稱)
     1. 使用者名稱和密碼/SSH 公用金鑰︰輸入在佈建期間建立之使用者的使用者名稱和密碼。對於 Linux 虛擬機器，您也可以輸入要用來使用 SSH 登入電腦的公開 SSH 金鑰。
-    1. 訂閱：選取您想要用來佈建新虛擬機器的訂閱。
+    1. 訂用帳戶：選取您想要用來佈建新虛擬機器的訂用帳戶。
     1. 資源群組：資源群組的名稱。您可以插入新資源群組的名稱，或現有資源群組的名稱。
     1. 位置︰選取應該部署新虛擬機器的位置。如果您想要將虛擬機器連接到內部部署網路，請務必選取將 Azure 連接到內部部署網路的虛擬網路位置。如需更多詳細資料，請參閱[規劃指南][planning-guide]中的 [Microsoft Azure 網路][planning-guide-microsoft-azure-networking]一章。
 1. 大小︰如需所支援 VM 類型的清單，請參閱 SAP 附註 [1928533]。如果您想要使用進階儲存體，也請務必選取正確的類型。並非所有 VM 類型都支援進階儲存體。如需更多詳細資料，請參閱[規劃指南][planning-guide]中的[儲存體：Microsoft Azure 儲存體和資料磁碟][planning-guide-storage-microsoft-azure-storage-and-data-disks]一章及 [Azure 進階儲存體][planning-guide-azure-premium-storage]一章。
@@ -540,7 +540,7 @@ VM 在建立之後將會進行部署，然後由您將所有必要軟體元件�
 #### 監視檢查
 如[針對 Azure 上的 SAP 進行端對端監視設定檢查及疑難排解][deployment-guide-troubleshooting-chapter]一章所述，檢查監視是否正常運作。
 
-### <a name="a9a60133-a763-4de8-8986-ac0fa33aa8c1"></a>案例 3：使用非一般化 Azure VHD 和 SAP 從內部部署移動 VM
+### <a name="a9a60133-a763-4de8-8986-ac0fa33aa8c1"></a>案例 3：使用非一般化 Azure VHD 搭配 SAP 從內部部署環境移動 VM
 此案例是要解決只以其目前形式和形狀從內部部署移至 Azure 的 SAP 系統的情況。表示 Windows 或 Linux 主機名稱和 SAP SID 或這類項目的名稱未變更。在此情況下，VHD 在部署期間不是當成映像，而是直接作為 OS 磁碟。就部署而言，此案例與先前的兩個案例不同，不同處在於部署期間無法自動安裝 VM 代理程式。因此，Azure VM 代理程式必須從 Microsoft 進行下載，而且之後必須在 VM 內手動進行安裝並啟用。該工作成功之後，您可以繼續起始 SAP Host Monitoring Azure Extension 和其組態。如需 Azure VM 代理程式之這項功能的詳細資訊，請參閱本文︰
 
 [comment]: <> (MSSedusch TODO 更新下方的 Windows 連結)
@@ -563,7 +563,7 @@ ___
 
 假設已上傳磁碟並在 Azure 中定義 (請參閱[規劃和實作指南][planning-guide])，請依照下列步驟操作。
 
-#### 建立虛擬機器
+#### Create virtual machine
 若要透過「Azure 入口網站」使用私人 OS 磁碟來建立部署，請使用 [azure-quickstart-templates github 儲存機制][azure-quickstart-templates-github]上所發佈的 SAP 範本。您也可以使用 PowerShell 或 Azure CLI 手動建立虛擬機器。
 
 * [2 層組態 (僅一部虛擬機器) 範本][sap-templates-2-tier-os-disk]
@@ -955,7 +955,7 @@ Windows 服務 ‘AzureEnhancedMonitoring’ 存在並已啟用，但無法啟�
 組態錯誤。如[設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 一章所述，重新啟用 VM 的監視擴充功能。
 
 #### ![Windows][Logo_Windows] 遺失部分 Azure 效能計數器
-從數個來源取得資料的 Windows 服務 ‘AzureEnhancedMonitoring’ 會收集 Azure 上的效能度量。某些組態資料是在本機進行收集、從 Azure Diagnostics 讀取效能度量，並從您登入儲存體訂用帳戶層級開始使用儲存體計數器。
+Azure 上效能度量的收集工作是由 Windows 服務 ‘AzureEnhancedMonitoring’ 執行，它會從數個來源取得資料。有些組態資料是在本機進行收集、效能度量是讀取自「Azure 診斷」，而儲存體計數器的使用則是從您在儲存體訂用帳戶層級登入開始。
 
 如果使用 SAP 附註 [1999351] 進行排解疑難沒有任何幫助，請重新執行組態指令碼 Set-AzureRmVMAEMExtension。因為儲存體分析或診斷計數器在啟用後可能未立即建立，所以您可能必須等待一個小時的時間。如果問題仍然存在，請在元件 BC-OP-NT-AZR 上開啟 SAP 客戶支援訊息。
 
@@ -973,10 +973,10 @@ Deamon 會收集 Azure 上的效能度量。如果未執行 Deamon，則根本�
 
 #### ![Linux][Logo_Linux] 遺失部分 Azure 效能計數器
 
-從數個來源取得資料的 Deamon 會收集 Azure 上的效能度量。某些組態資料是在本機進行收集、從 Azure Diagnostics 讀取效能度量，並從您登入儲存體訂用帳戶層級開始使用儲存體計數器。
+從數個來源取得資料的 Deamon 會收集 Azure 上的效能度量。有些組態資料是在本機進行收集、效能度量是讀取自「Azure 診斷」，而儲存體計數器的使用則是從您在儲存體訂用帳戶層級登入開始。
 
 如需完整且最新的已知問題清單，請參閱 SAP 附註 [1999351]，當中包含適用於 SAP 的「增強型 Azure 監視」的其他疑難排解資訊。
 
 如果使用 SAP 附註 [1999351] 進行排解疑難沒有任何幫助，請重新執行組態指令碼 Set-AzureRmVMAEMExtension (如[設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 一章所述)。因為儲存體分析或診斷計數器在啟用後可能未立即建立，所以您可能必須等待一個小時的時間。如果問題仍然存在，請在元件 BC-OP-NT-AZR (適用於 Windows) 或 BC-OP-LNX-AZR (適用於 Linux 虛擬機器) 上開啟 SAP 客戶支援訊息。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

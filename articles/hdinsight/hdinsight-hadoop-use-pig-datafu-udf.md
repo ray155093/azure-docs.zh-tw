@@ -13,14 +13,14 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="06/06/2016"
+ms.date="08/23/2016"
 ms.author="larryfr"/>
 
 #在 HDInsight 上搭配使用 DataFu 與 Pig
 
 DataFu 是搭配 Hadoop 使用的開放原始碼程式庫集合。在這份文件中，您將學習如何在 HDInsight 叢集上使用 DataFu，以及如何搭配 Pig 使用 DataFu 使用者定義函數 (UDF)。
 
-##先決條件
+##必要條件
 
 * Azure 訂用帳戶。
 
@@ -30,7 +30,9 @@ DataFu 是搭配 Hadoop 使用的開放原始碼程式庫集合。在這份文�
 
 ##在以 Linux 為基礎的 HDInsight 上安裝 DataFu
 
-> [AZURE.NOTE] 以 Windows 為基礎的 HDInsight 叢集上已預先安裝 DataFu如果您是使用以 Windows 為基礎的叢集，請略過本節。
+> [AZURE.NOTE] DataFu 是安裝在 Linux 架構的叢集 3.3 版和更高版本上，以及在 Windows 架構的叢集上。不會安裝在比 3.3 版更早的 Linux 架構叢集上。
+>
+> 如果您使用 Linux 架構的叢集 3.3 版或更高版本，或是 Windows 架構的叢集，可以略過本節。
 
 可以從 Maven 儲存機制下載並安裝 DataFu。使用下列步驟將 DataFu 新增至您的 HDInsight 叢集：
 
@@ -107,4 +109,4 @@ DataFu 是搭配 Hadoop 使用的開放原始碼程式庫集合。在這份文�
 
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="08/09/2016"
+	ms.date="08/24/2016"
 	ms.author="sdanie"/>
 
 # 新增快取以改善 Azure API 管理的效能
@@ -129,7 +129,6 @@
 
 ## <a name="next-steps"> </a>後續步驟
 
--	在[開始使用進階 API 組態][]教學課程中查看其他主題。
 -	如需快取原則的詳細資訊，請參閱 [API 管理原則參考文件][]中的[快取原則][]。
 -	如需使用原則運算式依索引鍵快取項目的詳細資訊，請參閱 [在 Azure API 管理中自訂快取](api-management-sample-cache-by-key.md)。
 
@@ -152,7 +151,6 @@
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [建立 API 管理服務執行個體]: api-management-get-started.md
 [開始使用 Azure API 管理]: api-management-get-started.md
-[開始使用進階 API 組態]: api-management-get-started-advanced.md
 
 [API 管理原則參考文件]: https://msdn.microsoft.com/library/azure/dn894081.aspx
 [快取原則]: https://msdn.microsoft.com/library/azure/dn894086.aspx
@@ -164,4 +162,4 @@
 [Call an operation and test the caching]: #test-operation
 [Next steps]: #next-steps
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0831_2016-->

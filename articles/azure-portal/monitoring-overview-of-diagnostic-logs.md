@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/08/2016"
+	ms.date="08/24/2016"
 	ms.author="johnkem"/>
 
 # Azure 診斷記錄檔概觀
@@ -25,12 +25,13 @@
 以下是您可以利用診斷檔進行的事：
 
 - 將診斷記錄檔儲存到**儲存體帳戶**以利稽核或手動檢查。您可以使用**診斷設定**指定保留時間 (以天為單位)。
-- [將診斷記錄檔串流至**事件中樞**](monitoring-stream-diagnostic-logs-to-event-hubs.md)，以利第三方服務或自訂的分析解決方案 (如 PowerBI) 擷取。
+- [將診斷記錄檔串流至**事件中樞**](monitoring-stream-diagnostic-logs-to-event-hubs.md)，以供第三方服務或自訂的分析解決方案 (如 PowerBI) 擷取。
+- 以 [OMS Log Analytics](../log-analytics/log-analytics-azure-storage-json.md) 分析它們
 
 ## 診斷設定
 非計算資源的診斷記錄檔要使用「診斷設定」來設定。用於資源控制的**診斷設定**：
 
-- 診斷記錄檔傳送至何處 (儲存體帳戶、事件中樞和/或 OMS)。
+- 診斷記錄檔傳送至何處 (儲存體帳戶、事件中樞和/或 OMS Log Analytics)。
 - 傳送何種類別的記錄檔。
 - 診斷記錄檔應該在儲存體帳戶中保留多久 – 保留期零天表示要永遠保留記錄檔。如果有設定保留原則，但將儲存體帳戶的記錄檔儲存停用 (例如，如果只選取事件中樞或 OMS 選項)，保留原則不會有任何作用。
 
@@ -107,5 +108,6 @@
 ## 後續步驟
 - [將診斷記錄檔串流至**事件中樞**](monitoring-stream-diagnostic-logs-to-event-hubs.md)
 - [使用 Insights REST API 變更診斷設定](https://msdn.microsoft.com/library/azure/dn931931.aspx)
+- [以 OMS Log Analytics 分析記錄檔](../log-analytics/log-analytics-azure-storage-json.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

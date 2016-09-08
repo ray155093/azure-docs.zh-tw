@@ -3,7 +3,7 @@
    description="本文會協助您了解流量管理員的運作方式"
    services="traffic-manager"
    documentationCenter=""
-   authors="jtuliani"
+   authors="sdwheeler"
    manager="carmonm"
    editor="tysonn"/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="06/07/2016"
-   ms.author="jonatul"/>
+   ms.author="sewhee"/>
 
 # 流量管理員的運作方式
 
@@ -131,4 +131,4 @@ DNS 標準並不允許 CNAME 與其他相同類型的 DNS 記錄並存。由於 
 [1]: ./media/traffic-manager-how-traffic-manager-works/dns-configuration.png
 [2]: ./media/traffic-manager-how-traffic-manager-works/flow.png
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

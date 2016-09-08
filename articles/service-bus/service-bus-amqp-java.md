@@ -82,9 +82,9 @@ amqps://[username]:[password]@[namespace].servicebus.windows.net
 
 | 名稱 | 意義 | | | | |
 |---------------|--------------------------------------------------------------------------------|---|---|---|---|
-| `[namespace]` | 從 [Azure 傳統入口網站][]取得的服務匯流排命名空間。 | | | | |
-| `[username]` | 從 [Azure 傳統入口網站][]取得的服務匯流排發行者名稱。 | | | | |
-| `[password]` | 從 [Azure 傳統入口網站][]取得的 URL 編碼格式的服務匯流排發行者金鑰。 | | | | |
+| `[namespace]` | 從 [Azure 入口網站][]取得的服務匯流排命名空間。 | | | | |
+| `[username]` | 從 [Azure 入口網站][]取得的服務匯流排發行者名稱。 | | | | |
+| `[password]` | 從 [Azure 入口網站][]取得的服務匯流排發行者金鑰，為 URL 編碼格式。 | | | | |
 
 > [AZURE.NOTE] 您必須手動使用 URL 將密碼編碼。[http://www.w3schools.com/tags/ref\_urlencode.asp](http://www.w3schools.com/tags/ref_urlencode.asp) 中提供實用的 URL 編碼公用程式。
 
@@ -124,7 +124,7 @@ topic.[jndi_name] = [physical_name]
 - 也可以將服務匯流排主題訂用帳戶視為 JMS 佇列。這種方法有幾個好處：相同的接收者程式碼可用於佇列和主題訂用帳戶，而屬性檔中的所有位址資訊 (主題和訂用帳戶名稱) 都外部化。
 - 若要將服務匯流排主題訂用帳戶視為 JMS 佇列，屬性檔案中的項目格式應為：`queue.[jndi\_name] = [topic\_name]/Subscriptions/[subscription\_name]`。|
 
-若要定義名為 "TOPIC" 的邏輯 JMS 目的地來對應至名為 "topic1" 的服務匯流排主題，屬性檔中的項目應該如下:
+若要定義名為 "TOPIC" 的邏輯 JMS 目的地來對應至名為 "topic1" 的服務匯流排主題，屬性檔中的項目應該如下：
 
 ```
 topic.TOPIC = topic1
@@ -179,7 +179,7 @@ JMS 規格定義如何撰寫 API 方法和應用程式碼的例外狀況合約�
 -   使用 **connection.setExceptionListener** 向 JMS 連接註冊 **ExceptionListener**。這樣可透過非同步方式向用戶端通知問題。此通知對於只取用訊息的連接特別重要，因為它們沒有其他方法可得知連接已失敗。如果基礎 AMQP 連接、工作階段或連結發生問題，將呼叫 **ExceptionListener**。在此情況下，應用程式應該從頭重新建立 **JMS Connection**、**Session**、**MessageProducer** 和 **MessageConsumer** 物件。
 
 -   若要確認訊息已成功從 **MessageProducer** 傳送至服務匯流排實體，請確定已透過 **qpid.sync\_publish** 系統屬性集設定該應用程式。作法是啟動應用程式時，透過在命令列上設定的 **-Dqpid.sync\_publish=true** Java VM 選項來啟動程式。設定此選項可在接獲確認服務匯流排已收到訊息之前，不要讓程式庫從傳送呼叫返回。如果傳送作業期間發生問題，將引發 **JMSException**。有兩個可能的原因：
-	1. 如果問題是因為服務匯流排拒絕讓特定訊息進行傳送而造成的，便會引發 **MessageRejectedException** 例外狀況。這個錯誤可能是暫時性，或由於訊息的某些問題而引起。建議是動作是以某種後退邏輯來多次重試作業。如果問題持續發生，就應該放棄訊息並在本機記錄錯誤。在此情況下，不需要重新建立 **JMS Connection**、**Session** 或 **MessageProducer** 物件。 
+	1. 如果問題是因為服務匯流排拒絕讓特定訊息進行傳送而造成的，便會引發 **MessageRejectedException** 例外狀況。這個錯誤可能是暫時性，或由於訊息的某些問題而引起。建議是動作是以某種後退邏輯來多次重試作業。如果問題持續發生，就應該放棄訊息並在本機記錄錯誤。在此情況下，不需要重新建立 **JMS Connection**、**Session** 或 **MessageProducer** 物件。
 	2. 如果問題是因為服務匯流排關閉 AMQP 連結而造成的，將引發 **InvalidDestinationException** 例外狀況。這可能是因為暫時性問題或已刪除訊息實體。無論是哪一種狀況，都應該重新建立 **JMS Connection**、**Session** 及 **MessageProducer** 物件。如果錯誤狀況是暫時性，此作業最終還是會成功。如果已刪除實體，則為永久失敗。
 
 ## 在 .NET 與 JMS 之間傳訊
@@ -320,7 +320,7 @@ if (message.Properties.Keys.Count > 0)
 | Float | float |
 | Double | double |
 | Boolean | 布林 |
-| String | 字串 |
+| String | string |
 
 [BrokeredMessage][] 類型支援下列類型的應用程式屬性︰**byte**、**sbyte**、**char**、**short**、**ushort**、**int**、**uint**、**long**、**ulong**、**float**、**double**、**decimal**、**bool**、**Guid**、**string**、**Uri**、**DateTime**、**DateTimeOffset** 和 **TimeSpan**。下列 .NET 程式碼示範如何使用每一個屬性類型設定 [BrokeredMessage][] 物件的屬性。
 
@@ -362,25 +362,25 @@ while (propertyNames.hasMoreElements())
 
 | .NET 屬性類型 | JMS 屬性類型 | 注意事項 |
 |--------------------|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| byte | UnsignedByte | - | 
-| sbyte | Byte | - | 
-| char | Character | - | 
-| short | Short | - | 
-| ushort | UnsignedShort | - | 
-| int | Integer | - | 
-| uint | UnsignedInteger | - | 
-| long | Long | - | 
-| ulong | UnsignedLong | - | 
-| float | Float | - | 
-| double | Double | - | 
-| decimal | BigDecimal | - | 
-| bool | Boolean | - | 
-| Guid | UUID | - | 
-| string | String | - | 
-| DateTime | Date | - | 
-| DateTimeOffset | DescribedType | DateTimeOffset.UtcTicks 對應至 AMQP 類型：<type name=”datetime-offset” class=restricted source=”long”> <descriptor name=”com.microsoft:datetime-offset” /></type> | 
-| TimeSpan | DescribedType | Timespan.Ticks 對應至 AMQP 類型：<type name=”timespan” class=restricted source=”long”> <descriptor name=”com.microsoft:timespan” /></type> | 
-| Uri | DescribedType | Uri.AbsoluteUri 對應至 AMQP 類型：<type name=”uri” class=restricted source=”string”> <descriptor name=”com.microsoft:uri” /></type> |
+| byte | UnsignedByte | - |
+| sbyte | Byte | - |
+| char | Character | - |
+| short | Short | - |
+| ushort | UnsignedShort | - |
+| int | Integer | - |
+| uint | UnsignedInteger | - |
+| long | Long | - |
+| ulong | UnsignedLong | - |
+| float | Float | - |
+| double | Double | - |
+| decimal | BigDecimal | - |
+| bool | Boolean | - |
+| Guid | UUID | - |
+| string | String | - |
+| DateTime | Date | - |
+| DateTimeOffset | DescribedType | DateTimeOffset.UtcTicks 對應至 AMQP 類型：<type name=”datetime-offset” class=restricted source=”long”> <descriptor name=”com.microsoft:datetime-offset” /></type> |
+| TimeSpan | DescribedType | Timespan.Ticks 對應至 AMQP 類型：<type name=”timespan” class=restricted source=”long”> <descriptor name=”com.microsoft:timespan” /></type> |
+| Uri | DescribedType | Uri.AbsoluteUri mapped to AMQP type:<type name=”uri” class=restricted source=”string”> <descriptor name=”com.microsoft:uri” /></type> |
 
 ### 標準標頭
 
@@ -390,31 +390,31 @@ while (propertyNames.hasMoreElements())
 
 | JMS | 服務匯流排 .NET | 注意事項 |
 |------------------|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| JMSCorrelationID | Message.CorrelationID | - | 
-| JMSDeliveryMode | 目前無法使用 | 不論指定何者，服務匯流排僅支援永久訊息；例如 DeliveryMode.PERSISTENT。| 
-| JMSDestination | Message.To | - | 
-| JMSExpiration | Message。TimeToLive | Conversion | 
-| JMSMessageID | Message.MessageID | 根據預設，JMSMessageID 在 AMQP 訊息中以二進位格式編碼。收到二進位訊息識別碼時，.NET 用戶端程式庫會根據位元組的 unicode 值，將它轉換為字串表示法。若要將 JMS 程式庫切換為使用字串訊息識別碼，請將 “binary-messageid=false” 字串附加至 JNDI ConnectionURL 的查詢參數。例如："“amqps://[username]:[password]@[namespace].servicebus.windows.net? binary-messageid=false”。| 
-| JMSPriority | 目前無法使用 | 服務匯流排不支援訊息優先順序。| 
-| JMSRedelivered | 目前無法使用 | - | 
-| JMSReplyTo | Message。ReplyTo | - | 
-| JMSTimestamp | Message.EnqueuedTimeUtc | Conversion | 
+| JMSCorrelationID | Message.CorrelationID | - |
+| JMSDeliveryMode | 目前無法使用 | 不論指定何者，服務匯流排僅支援永久訊息；例如 DeliveryMode.PERSISTENT。|
+| JMSDestination | Message.To | - |
+| JMSExpiration | Message。TimeToLive | Conversion |
+| JMSMessageID | Message.MessageID | 根據預設，JMSMessageID 在 AMQP 訊息中以二進位格式編碼。收到二進位訊息識別碼時，.NET 用戶端程式庫會根據位元組的 unicode 值，將它轉換為字串表示法。若要將 JMS 程式庫切換為使用字串訊息識別碼，請將 “binary-messageid=false” 字串附加至 JNDI ConnectionURL 的查詢參數。例如："“amqps://[username]:[password]@[namespace].servicebus.windows.net? binary-messageid=false”。|
+| JMSPriority | 目前無法使用 | 服務匯流排不支援訊息優先順序。|
+| JMSRedelivered | 目前無法使用 | - |
+| JMSReplyTo | Message。ReplyTo | - |
+| JMSTimestamp | Message.EnqueuedTimeUtc | Conversion |
 | JMSType | Message.Properties[“jms-type”] | - |
 
 #### 服務匯流排 .NET API 至 JMS
 
 | 服務匯流排 .NET | JMS | 注意事項 |
 |-------------------------|------------------|-------------------------|
-| ContentType | - | 目前無法使用 | 
-| CorrelationId | JMSCorrelationID | - | 
-| EnqueuedTimeUtc | JMSTimestamp | Conversion | 
-| Label | n/a | 目前無法使用 | 
-| MessageId | JMSMessageID | - | 
-| ReplyTo | JMSReplyTo | - | 
-| ReplyToSessionId | n/a | 目前無法使用 | 
-| ScheduledEnqueueTimeUtc | n/a | 目前無法使用 | 
-| SessionId | n/a | 目前無法使用 | 
-| TimeToLive | JMSExpiration | Conversion | 
+| ContentType | - | 目前無法使用 |
+| CorrelationId | JMSCorrelationID | - |
+| EnqueuedTimeUtc | JMSTimestamp | Conversion |
+| Label | n/a | 目前無法使用 |
+| MessageId | JMSMessageID | - |
+| ReplyTo | JMSReplyTo | - |
+| ReplyToSessionId | n/a | 目前無法使用 |
+| ScheduledEnqueueTimeUtc | n/a | 目前無法使用 |
+| SessionId | n/a | 目前無法使用 |
+| TimeToLive | JMSExpiration | Conversion |
 | To | JMSDestination | - |
 
 ## 不支援的功能和限制
@@ -423,7 +423,7 @@ JMS over AMQP 1.0 和服務匯流排一起使用時有下列限制：
 
 -   每工作階段僅允許一個 **MessageProducer** 或 **MessageConsumer**。如果您想要在應用程式中建立多個 **MessageProducer** 或 **MessageConsumer** 物件，請分別建立專用的工作階段。
 
--   目前不支援可變更的主題訂用帳戶。
+-   目前不支援可變更的主題訂閱。
 
 -   不支援 **MessageSelector** 物件。
 
@@ -445,6 +445,6 @@ JMS over AMQP 1.0 和服務匯流排一起使用時有下列限制：
 [BrokeredMessage]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.aspx
 
 [服務匯流排 AMQP 概觀]: service-bus-amqp-overview.md
-[Azure 傳統入口網站]: http://manage.windowsazure.com
+[Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0824_2016-->

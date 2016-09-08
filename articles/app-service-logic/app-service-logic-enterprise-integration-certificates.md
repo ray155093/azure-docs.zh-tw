@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/29/2016" 
+	ms.date="08/24/2016" 
 	ms.author="deonhe"/>
 
 # 了解憑證與企業整合套件
 
-## 概觀
+## Overview
 企業整合使用憑證來保護 B2B 通訊的安全。您可以在企業整合應用程式中使用兩種憑證類型：
 - 公開憑證，必須先向憑證授權單位 (CA) 購買
 - 您可以自行發出的私人憑證。這有時稱為自我簽署憑證。
@@ -36,7 +36,7 @@
 ### 公開憑證
 若要在具備 B2B 功能的 Logic Apps 中使用**公開憑證**，您必須先將它上傳到整合帳戶。另一方面，若要使用**自我簽署憑證**，必須先將它上傳到[金鑰保存庫](../key-vault/key-vault-get-started.md "了解金鑰保存庫")。
 
-上傳憑證之後，當您在[合約](./app-service-logic-enterprise-integration-agreements.md)中定義 B2B 訊息的屬性時，就能使用它來保護這些訊息的安全。
+上傳憑證之後，當您在自己建立的[合約](./app-service-logic-enterprise-integration-agreements.md)中定義 B2B 訊息的屬性時，就能使用它來保護這些訊息的安全。
 
 以下是您登入 Azure 入口網站後，將公開憑證上傳到整合帳戶的詳細步驟：
 1. 選取 [瀏覽] ![](./media/app-service-logic-enterprise-integration-overview/overview-1.png)
@@ -49,9 +49,10 @@
 8. 選取 [憑證] 圖格。這會重新整理頁面，而您應該會看到新加入的憑證︰![](./media/app-service-logic-enterprise-integration-certificates/certificate-4.png)
 
 ### 私人憑證
-您也可以將私人憑證上傳到整合帳戶。若要達到此目的，您將需要執行下列步驟：
+您也可以將私人憑證上傳到整合帳戶。若要達到此目的，您需要執行下列步驟：
 1. [將您的私人金鑰上傳到金鑰保存庫](../key-vault/key-vault-get-started.md "了解金鑰保存庫")
-2. 建立私人憑證。將該私人憑證上傳到您的整合帳戶
+2. 建立私人憑證
+3. 將私人憑證上傳到整合帳戶中
 
 完成上述步驟之後，您就可以使用私人憑證來建立合約。
 
@@ -63,14 +64,14 @@
 5. 在開啟的 [憑證] 刀鋒視窗中選取 [新增] 按鈕 ![](./media/app-service-logic-enterprise-integration-certificates/certificate-2.png)
 6. 輸入憑證的**名稱**、選取憑證類型 (在此範例中，我使用了公開憑證類型)，然後選取 [憑證] 文字方塊右邊的資料夾圖示。這會開啟檔案選擇器，可讓您瀏覽並選取您想要上傳到整合帳戶的憑證檔案。當您選取憑證之後，請在檔案選擇器中選取 [確定]。這會驗證憑證並上傳到您的整合帳戶。最後，返回 [新增憑證] 刀鋒視窗，然後選取 [確定] 按鈕。![](./media/app-service-logic-enterprise-integration-certificates/privatecertificate-1.png)
 7. 您會在一分鐘內看見一則通知，表示憑證上傳已完成。
-8. 選取 [憑證] 圖格。這會重新整理頁面，而您應該會看到新加入的憑證︰![](./media/app-service-logic-enterprise-integration-certificates/privatecertificate-2.png)
+8. 選取 [憑證] 圖格。這會重新整理頁面，而您應該會看到新增的憑證︰![](./media/app-service-logic-enterprise-integration-certificates/privatecertificate-2.png)
 
 上傳憑證之後，當您在[合約](./app-service-logic-enterprise-integration-agreements.md)中定義 B2B 訊息的屬性時，就能使用它來保護這些訊息的安全。
 
 
 ## 後續步驟
+- - [建立使用 B2B 功能的邏輯應用程式](./app-service-logic-enterprise-integration-b2b.md)
 - [建立 B2B 合約](./app-service-logic-enterprise-integration-agreements.md)
-- [使用 B2B 功能建立邏輯應用程式](./app-service-logic-enterprise-integration-b2b.md)
 - [深入了解金鑰保存庫](../key-vault/key-vault-get-started.md "了解金鑰保存庫")
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

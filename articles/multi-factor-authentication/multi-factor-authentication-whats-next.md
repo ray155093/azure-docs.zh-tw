@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/04/2016" 
+	ms.date="08/22/2016" 
 	ms.author="billmath"/>
 
 # 設定 Azure Multi-Factor Authentication
@@ -66,7 +66,7 @@ Microsoft 的預設語音問候語會指示使用者按 0# 以提交詐騙警示
 
 
 
-1. 當系統將驗證傳送到電話時，請按一下它，Azure Authenticator 應用程式隨即會啟動。
+1. 當系統將驗證傳送到電話時，請按一下它，Microsoft 驗證器應用程式將隨即啟動。
 2. 若要提報詐騙活動，請按一下 [取消及提報詐騙]。指出系統將會通知組織 IT 支援員工的方塊隨即會出現。
 3. 按一下 [提報詐騙]。
 4. 在應用程式中，按一下 [關閉]。
@@ -362,8 +362,8 @@ Azure AD 支援與內部部署 Windows Server Active Directory 網域服務 (AD 
 :------------- | :------------- | 
 [電話通話](multi-factor-authentication-end-user-first-time-mobile-phone.md)| 撥打自動語音電話給驗證電話。使用者可接聽電話並按電話鍵盤上的 # 進行驗證。此電話號碼將不會同步到內部部署 Active Directory。
 [電話簡訊](multi-factor-authentication-end-user-first-time-mobile-phone.md)|傳送包含驗證碼的簡訊給使用者。系統會提示使用者使用驗證碼來回覆簡訊，或在登入介面中輸入驗證碼。
-[行動應用程式的通知](multi-factor-authentication-end-user-first-time-mobile-app.md)|在此模式中，Azure Authenticator 應用程式可防止未經授權存取帳戶並停止詐騙交易。使用推播通知至您的電話或已註冊的裝置即可進行。只需檢視通知，如果合法，則點選 [驗證]。否則，您可選擇 [拒絕]，或選擇拒絕並回報詐騙通知。如需回報詐騙通知的相關資訊，請參閱＜如何使用 Multi-Factor Authentication 的拒絕和回報詐騙功能＞。</br></br>Azure Authenticator 應用程式適用於 [Windows Phone](http://www.windowsphone.com/zh-TW/store/app/azure-authenticator/03a5b2bf-6066-418f-b569-e8aecbc06e50)、[Android](https://play.google.com/store/apps/details?id=com.azure.authenticator) 和 [IOS](https://itunes.apple.com/us/app/azure-authenticator/id983156458)。|
-[行動應用程式傳回的驗證碼](multi-factor-authentication-end-user-first-time-mobile-app.md)|在此模式中，Azure Authenticator 應用程式可以作為軟體權杖來產生 OATH 驗證碼。然後，可以連同使用者名稱和密碼一起輸入此驗證碼，以提供第二種形式的驗證。</li><br><p> Azure Authenticator 應用程式適用於 [Windows Phone](http://www.windowsphone.com/zh-TW/store/app/azure-authenticator/03a5b2bf-6066-418f-b569-e8aecbc06e50)、[Android](https://play.google.com/store/apps/details?id=com.azure.authenticator) 和 [IOS](https://itunes.apple.com/us/app/azure-authenticator/id983156458)。
+[行動應用程式的通知](multi-factor-authentication-end-user-first-time-mobile-app.md)|在此模式中，Microsoft 驗證器應用程式可防止未經授權存取帳戶，並停止詐騙交易。使用推播通知至您的電話或已註冊的裝置即可進行。只需檢視通知，如果合法，則點選 [驗證]。否則，您可選擇 [拒絕]，或選擇拒絕並回報詐騙通知。如需回報詐騙通知的相關資訊，請參閱＜如何使用 Multi-Factor Authentication 的拒絕和回報詐騙功能＞。</br></br>Microsoft 驗證器應用程式適用於 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)、[Android](http://go.microsoft.com/fwlink/?Linkid=825072) 和 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)。|
+[行動應用程式傳回的驗證碼](multi-factor-authentication-end-user-first-time-mobile-app.md)|在此模式中，Microsoft 驗證器應用程式可以作為軟體權杖來產生 OATH 驗證碼。然後，可以連同使用者名稱和密碼一起輸入此驗證碼，以提供第二種形式的驗證。</li><br><p> Microsoft 驗證器應用程式適用於 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)、[Android](http://go.microsoft.com/fwlink/?Linkid=825072) 和 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)。
 
 ### 如何啟用/停用驗證方法
 
@@ -376,4 +376,4 @@ Azure AD 支援與內部部署 Windows Server Active Directory 網域服務 (AD 
 9. 按一下 [儲存]。
 10. 按一下 [關閉]。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

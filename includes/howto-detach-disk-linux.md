@@ -9,8 +9,7 @@
 
 1. 	開啟 Azure CLI 並[連接至您的 Azure 訂用帳戶](../articles/xplat-cli-connect.md)。確定處於 Azure 服務管理模式中 (`azure config mode asm`)。
 
-2. 	使用 `azure vm disk list
-	<virtual-machine-name>` 來找出哪些磁碟已連結至您的 VM：
+2. 	使用 `azure vm disk list <virtual-machine-name>` 來找出哪些磁碟已連結至您的 VM：
 
 		$azure vm disk list UbuntuVM
 		info:    Executing command vm disk list
@@ -28,9 +27,9 @@
 
 ## 移除磁碟的作業系統參考
 
-在卸離 Linux 客體中的磁碟之前，您應該確認並未使用磁碟上任何一個分割區，並確保作業系統不會在重新開機後嘗試重新裝載。下列步驟可復原您在[附加](../articles/virtual-machines-linux-classic-attach-disk.md)磁碟時可能建立的組態。
+在從 Linux 客體中斷連結磁碟之前，您應該先確定磁碟上的所有磁碟分割都不在使用中。請確定作業系統沒有在重新開機之後嘗試重新掛接它們。下列步驟可復原您在[附加](../articles/virtual-machines/virtual-machines-linux-classic-attach-disk.md)磁碟時可能建立的組態。
 
-1. 使用 `lsscsi` 命令來找出磁碟識別碼。您可透過 `yum install lsscsi` (Red Hat 式散發) 或 `apt-get install lsscsi`(Debian 式散發) 來安裝 `lsscsi`。您可以使用上述的 LUN 編號找到要尋找的磁碟識別碼。在每個資料列的 Tuple 中，最後一個數字即為 LUN。在以下範例中，LUN 0 將對應至 _/dev/sdc_
+1. 使用 `lsscsi` 命令來找出磁碟識別碼。您可透過 `yum install lsscsi` (Red Hat 式散發) 或 `apt-get install lsscsi`(Debian 式散發) 來安裝 `lsscsi`。您可以使用 LUN 編號找到要尋找的磁碟識別碼。在每個資料列的 Tuple 中，最後一個數字即為 LUN。在以下範例中，LUN 0 將對應至 _/dev/sdc_
 
 			ops@TestVM:~$ lsscsi
 			[1:0:0:0]    cd/dvd  Msft     Virtual CD/ROM   1.0   /dev/sr0
@@ -97,4 +96,4 @@
 
 卸離的磁碟仍留在儲存體中，但不再連接至虛擬機器。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0824_2016-->

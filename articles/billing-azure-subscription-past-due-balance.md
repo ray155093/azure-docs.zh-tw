@@ -15,11 +15,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/22/2016"
+	ms.date="08/17/2016"
 	ms.author="genli"/>
 
 # 為什麼會收到 Azure 訂用帳戶有逾期未付帳款的通知?
 如果您是 Azure 訂用帳戶的帳戶管理員，且帳戶沒有準時付款，您會收到一封逾期未付帳款的電子郵件通知，或在 [https://account.windowsazure.com](https://account.windowsazure.com) 或 [https://portal.azure.com](https://portal.azure.com) 上看到警示。
+
+> [AZURE.NOTE] 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
 如果我們因為某些原因無法處理您的付款，則您可能會收到一封電子郵件，並含有類似如下的訊息：
 
@@ -45,4 +47,6 @@
 
 > [AZURE.NOTE] 如果您的 Azure 訂用帳戶被停用，您可以使用本文中的步驟重新啟用它：[如果我的 Azure 訂用帳戶被停用，該怎麼辦？](billing-subscription-become-disable.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+> [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+
+<!---HONumber=AcomDC_0824_2016-->

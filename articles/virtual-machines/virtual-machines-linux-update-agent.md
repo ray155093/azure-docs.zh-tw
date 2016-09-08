@@ -29,7 +29,7 @@
 
 <br>
 
-> [AZURE.NOTE] 如果您會從 Windows 電腦執行這項工作，可以使用 PuTTY 來 SSH 到 Linux 機器。如需詳細資訊，請參閱[如何登入執行 Linux 的虛擬機器](virtual-machines-linux-classic-log-on.md)。
+> [AZURE.NOTE] 如果您會從 Windows 電腦執行這項工作，可以使用 PuTTY 來 SSH 到 Linux 機器。如需詳細資訊，請參閱[如何登入執行 Linux 的虛擬機器](virtual-machines-linux-mac-create-ssh-keys.md)。
 
 支援 Azure 的 Linux 散發版本有將 Azure Linux 代理程式套件放在其儲存機制，因此請先從這個 Distro 儲存機制檢查並安裝最新版本。
 
@@ -159,4 +159,4 @@ Oracle Linux 7 虛擬機器︰
 
 如需有關「Azure Linux 代理程式」的詳細資訊，請參閱 [Azure Linux 代理程式讀我檔案](https://github.com/Azure/WALinuxAgent)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

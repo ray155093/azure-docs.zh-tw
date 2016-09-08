@@ -4,7 +4,7 @@
 	services="virtual-machines"
 	documentationCenter=""
 	authors="kmouss"
-	manager="drewm"
+	manager="timlt"
 	editor=""/>
 
 <tags
@@ -62,4 +62,4 @@ Azure 已經有許多支援高可用性應用程式的內建平台功能。如�
 
 如果指示不清楚，或如果您希望 Microsoft 代您執行作業，請連絡[客戶支援](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0824_2016-->

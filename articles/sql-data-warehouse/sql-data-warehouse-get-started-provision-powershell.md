@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="08/16/2016"
+   ms.date="08/25/2016"
    ms.author="lodipalm;barbkess;sonyama"/>
 
 # 使用 PowerShell 建立 SQL 資料倉儲
@@ -23,7 +23,7 @@
 - [TSQL](sql-data-warehouse-get-started-create-database-tsql.md)
 - [PowerShell](sql-data-warehouse-get-started-provision-powershell.md)
 
-本文將說明使用 PowerShell 建立 SQL 資料倉儲的方式。
+本文說明如何使用 PowerShell 建立 SQL 資料倉儲。
 
 ## 必要條件
 
@@ -34,7 +34,7 @@
 - **資源群組**︰使用與 Azure SQL Server 相同的資源群組，或參閱[如何建立資源群組][]。
 - **PowerShell 1.0.3 版或更新版本**：您可以執行 **Get-Module -ListAvailable -Name Azure** 來檢查您的版本。可透過 [Microsoft Web Platform Installer][] 安裝最新的版本。如需安裝最新版本的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell][]。
 
-> [AZURE.NOTE] 建立新的 SQL 資料倉儲可能會導致新的可計費服務。如需價格的詳細資訊，請參閱 [SQL 資料倉儲價格][]。
+> [AZURE.NOTE] 建立 SQL 資料倉儲可能會導致新的可計費服務。如需價格的詳細資訊，請參閱 [SQL 資料倉儲價格][]。
 
 ## 建立 SQL 資料倉儲
 
@@ -51,21 +51,27 @@
 	Get-AzureRmSubscription	-SubscriptionName "MySubscription" | Select-AzureRmSubscription
 	```
 
-4.  建立資料庫。這個範例會使用服務目標等級 "DW400" 建立名為 "mynewsqldw" 的新資料庫，以部署到 "mywesteuroperesgp1" 資源群組中名為 "sqldwserver1" 的伺服器。
+4.  建立資料庫。這個範例會使用服務目標等級 "DW400" 建立名為 "mynewsqldw" 的資料庫，以部署到 "mywesteuroperesgp1" 資源群組中名為 "sqldwserver1" 的伺服器。
 
 	```Powershell
-	New-AzureRmSqlDatabase -RequestedServiceObjectiveName "DW400" -DatabaseName "mynewsqldw" -ServerName "sqldwserver1" -ResourceGroupName "mywesteuroperesgp1" -Edition "DataWarehouse"
+	New-AzureRmSqlDatabase -RequestedServiceObjectiveName "DW400" -DatabaseName "mynewsqldw" -ServerName "sqldwserver1" -ResourceGroupName "mywesteuroperesgp1" -Edition "DataWarehouse" -CollationName "SQL_Latin1_General_CP1_CI_AS" -MaxSizeBytes 10995116277760
 	```
 
-此 Cmdlet 所需的參數：
+必要參數如下：
 
 - **RequestedServiceObjectiveName**：您要求的 [DWU][] 數量。支援的值為︰DW100、DW200、DW300、DW400、DW500、DW600、DW1000、DW1200、DW1500、DW2000、DW3000 和 DW6000。
 - **DatabaseName**：您要建立的 SQL 資料倉儲的名稱。
 - **ServerName**：您用來建立的伺服器名稱 (必須是 V12)。
 - **ResourceGroupName**：您使用的資源群組。若要尋找訂用帳戶中可用的資源，請使用 Get-AzureResource。
-- **版本**：您必須將版本設定為 "DataWarehouse"，才能建立 SQL 資料倉儲。
+- **版本**：必須是 "DataWarehouse"，才能建立 SQL 資料倉儲。
 
-如需參數選項的詳細資訊，請參閱[建立資料庫 (Azure SQL 資料倉儲)][]。如需命令參考，請參閱 [New-AzureRmSqlDatabase][]
+選擇性參數如下：
+
+- **CollationName**：未指定定序時的預設值為 SQL\_Latin1\_General\_CP1\_CI\_AS。無法變更資料庫的定序。
+- **MaxSizeBytes**︰資料庫的預設大小上限為 10 GB。
+
+
+如需參數選項的詳細資訊，請參閱 [New-AzureRmSqlDatabase][] 和[建立資料庫 (Azure SQL 資料倉儲)][]。
 
 ## 後續步驟
 
@@ -101,4 +107,4 @@ SQL 資料倉儲完成佈建之後，建議您試著[載入範例資料][]，或
 [Azure 免費試用]: https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F
 [MSDN Azure 點數]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

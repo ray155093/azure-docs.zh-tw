@@ -14,20 +14,17 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na" 
-   ms.date="05/18/2016"
+   ms.date="08/18/2016"
    ms.author="mandia"/>
 
 # 開始使用 Box 連接器
-連線到 Box 來建立檔案、刪除檔案等等。您可以從下列應用程式使用 Box 連接器︰
-
-- 邏輯應用程式 (如本主題所述)
-- PowerApps (如需完整清單，請參閱 [PowerApps 連線清單](https://powerapps.microsoft.com/tutorials/connections-list/))
+連線到 Box 來建立檔案、刪除檔案等等。
 
 >[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
 您可以利用 Box 來：
 
-- 根據您從 Box 所取得的資料，來建置您的商務流程。 
+- 根據您從 Box 所取得的資料，來建置您的商務流程。
 - 在檔案建立或更新時使用觸發程序。
 - 使用會複製檔案、刪除檔案等等的動作。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，當 Box 中的某個檔案變更時，您可以取得該檔案，並利用 Office 365 來傳送已附加該檔案的電子郵件。
 
@@ -47,7 +44,7 @@ Box 包含下列觸發程序及動作。
 
 >[AZURE.INCLUDE [建立至 Box 連線的步驟](../../includes/connectors-create-api-box.md)]
 
-當您建立連線之後，請輸入 Box 的屬性。本主題的 **REST API 參考**一節會說明這些屬性。
+當您建立連線之後，請輸入 Box 的屬性。本主題的 **REST API 參考**一節說明這些屬性。
 
 >[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的 Box 連線。
 
@@ -59,8 +56,8 @@ Box 包含下列觸發程序及動作。
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|folderPath|字串|是|query|None |用來把檔案上傳到 Box 的資料夾路徑|
-|名稱|字串|是|query|None |要在 Box 中建立之檔案的名稱|
+|folderPath|string|是|query|None |用來把檔案上傳到 Box 的資料夾路徑|
+|名稱|string|是|query|None |要在 Box 中建立之檔案的名稱|
 |body|字串 (二進位) |是|body|None |要上傳到 Box 之檔案的內容|
 
 #### Response
@@ -75,10 +72,10 @@ Box 包含下列觸發程序及動作。
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|folderId|字串|是|query|None |Box 中資料夾的唯一識別碼|
+|folderId|string|是|query|None |Box 中資料夾的唯一識別碼|
 
 #### Response
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|OK|
 |預設值|作業失敗。|
@@ -89,8 +86,8 @@ Box 包含下列觸發程序及動作。
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|來源|字串|是|query|None |來源檔案的 URL|
-|目的地|字串|是|query| None|Box 中的目的檔案路徑，包括目標檔案名稱|
+|來源|string|是|query|None |來源檔案的 URL|
+|目的地|string|是|query| None|Box 中的目的檔案路徑，包括目標檔案名稱|
 |overwrite|布林值|否|query| None|如果設定為「True」，則會覆寫目的檔案|
 
 #### Response
@@ -106,7 +103,7 @@ Box 包含下列觸發程序及動作。
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|id|字串|是|路徑|None |要從 Box 刪除之檔案的唯一識別碼|
+|id|string|是|路徑|None |要從 Box 刪除之檔案的唯一識別碼|
 
 #### Response
 |名稱|說明|
@@ -120,8 +117,8 @@ Box 包含下列觸發程序及動作。
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|來源|字串|是|query| |封存檔案的路徑|
-|目的地|字串|是|query| |用來把封存檔案內容解壓縮到 Box 中的路徑|
+|來源|string|是|query| |封存檔案的路徑|
+|目的地|string|是|query| |用來把封存檔案內容解壓縮到 Box 中的路徑|
 |overwrite|布林值|否|query| |如果設定為「True」，則會覆寫目的檔案|
 
 #### Response
@@ -136,7 +133,7 @@ Box 包含下列觸發程序及動作。
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|id|字串|是|路徑|None |Box 中檔案的唯一識別碼|
+|id|string|是|路徑|None |Box 中檔案的唯一識別碼|
 
 #### Response
 |名稱|說明|
@@ -150,7 +147,7 @@ Box 包含下列觸發程序及動作。
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|路徑|字串|是|query|None |Box 中檔案的唯一路徑|
+|路徑|string|是|query|None |Box 中檔案的唯一路徑|
 
 #### Response
 |名稱|說明|
@@ -162,12 +159,12 @@ Box 包含下列觸發程序及動作。
 ### 使用識別碼來取得檔案中繼資料
 使用檔案識別碼來擷取 Box 中的檔案中繼資料。```GET: /datasets/default/files/{id}```
 
-| 名稱|資料類型|必要|位於|預設值|說明|
+| Name|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|id|字串|是|路徑| None|Box 中檔案的唯一識別碼|
+|id|string|是|路徑| None|Box 中檔案的唯一識別碼|
 
 #### Response
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|OK|
 |預設值|作業失敗。|
@@ -178,7 +175,7 @@ Box 包含下列觸發程序及動作。
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|路徑|字串|是|query|None |Box 中檔案的唯一路徑|
+|路徑|string|是|query|None |Box 中檔案的唯一路徑|
 
 #### Response
 |名稱|說明|
@@ -190,13 +187,13 @@ Box 包含下列觸發程序及動作。
 ### 更新檔案
 更新 Box 中的檔案。```PUT: /datasets/default/files/{id}```
 
-| 名稱|資料類型|必要|位於|預設值|說明|
+| Name|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|id|字串|是|路徑| None|Box 中要更新之檔案的唯一識別碼|
+|id|string|是|路徑| None|Box 中要更新之檔案的唯一識別碼|
 |body|字串 (二進位) |是|body|None |Box 中要更新之檔案的內容|
 
 #### Response
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|OK|
 |預設值|作業失敗。|
@@ -207,7 +204,7 @@ Box 包含下列觸發程序及動作。
 
 | 名稱|資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|folderId|字串|是|query|None |Box 中資料夾的唯一識別碼|
+|folderId|string|是|query|None |Box 中資料夾的唯一識別碼|
 
 #### Response
 |名稱|說明|
@@ -222,44 +219,44 @@ Box 包含下列觸發程序及動作。
 
 |屬性名稱 | 資料類型 | 必要|
 |---|---|---|
-|表格式|未定義|no|
-|blob|未定義|no|
+|表格式|沒有定義|no|
+|blob|沒有定義|no|
 
 #### TabularDataSetsMetadata
 
 |屬性名稱 | 資料類型 |必要|
 |---|---|---|
-|來源|字串|no|
-|displayName|字串|no|
-|urlEncoding|字串|no|
-|tableDisplayName|字串|no|
-|tablePluralName|字串|no|
+|來源|string|no|
+|displayName|string|no|
+|urlEncoding|string|no|
+|tableDisplayName|string|no|
+|tablePluralName|string|no|
 
 #### BlobDataSetsMetadata
 
 |屬性名稱 | 資料類型 |必要|
 |---|---|---|
-|來源|字串|no|
-|displayName|字串|no|
-|urlEncoding|字串|no|
+|來源|string|no|
+|displayName|string|no|
+|urlEncoding|string|no|
 
 #### BlobMetadata
 
 |屬性名稱 | 資料類型 |必要|
 |---|---|---|
-|識別碼|字串|no|
-|名稱|字串|no|
-|DisplayName|字串|no|
-|Path|字串|no|
-|LastModified|字串|no|
+|識別碼|string|no|
+|名稱|string|no|
+|DisplayName|string|no|
+|Path|string|no|
+|LastModified|string|no|
 |大小|integer|no|
-|MediaType|字串|no|
+|MediaType|string|no|
 |IsFolder|布林值|no|
-|ETag|字串|no|
-|FileLocator|字串|no|
+|ETag|string|no|
+|FileLocator|string|no|
 
 ## 後續步驟
 
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-<!----HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0824_2016-->

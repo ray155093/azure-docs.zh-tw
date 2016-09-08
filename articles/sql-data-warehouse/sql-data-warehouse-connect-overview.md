@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/20/2016"
+   ms.date="08/27/2016"
    ms.author="sonyama;barbkess"/>
 
 # 連接到 Azure SQL 資料倉儲
@@ -27,7 +27,7 @@
 
 ## 從入口網站探索連接字串
 
-您的 SQL 資料倉儲會與 Azure SQL 伺服器相關聯。若要進行連接，您需要伺服器的完整名稱 (**servername**.database.windows.net*)。
+您的 SQL 資料倉儲會與 Azure SQL 伺服器相關聯。若要進行連接，您需要伺服器的完整名稱 。例如，**myserver**.database.windows.net。
 
 若要尋找完整的伺服器名稱：
 
@@ -38,86 +38,38 @@
     ![完整伺服器名稱][1]
 
 ## 連線設定
+
 SQL 資料倉儲會在連線和建立物件期間標準化一些設定。這些不會被覆寫。
 
 | 資料庫設定 | 值 |
-| :----------------- | :--------------------------- |
-| ANSI\_NULLS | 開啟 |
-| QUOTED\_IDENTIFIERS | 開啟 |
-| NO\_COUNT | 關閉 |
-| DATEFORMAT | mdy |
-| DATEFIRST | 7 |
-| 資料庫定序 | SQL\_Latin1\_General\_CP1\_CI\_AS |
+| :--------------------- | :--------------------------- |
+| [ANSI\_NULLS][] | 開啟 |
+| [QUOTED\_IDENTIFIERS][] | 開啟 |
+| [DATEFORMAT][] | mdy |
+| [DATEFIRST][] | 7 |
 
-## 工作階段和要求
-建立連線和工作階段之後，您就可以撰寫查詢並將其提交至 SQL 資料倉儲。
+## 監視連線和查詢
 
-每個查詢都會由一或多個要求識別碼表示。在該連線上提交的所有查詢都是單一工作階段的一部分，因此無法由單一工作階段識別碼表示。
-
-不過，SQL 資料倉儲是散發式的 MPP (大量平行處理) 系統，相較於 SQL Server，工作階段和要求識別碼的公開方式都有點不同。
-
-工作階段和要求皆由其各自的識別碼以邏輯方式表示。
-
-| 識別碼 | 範例值 |
-| :--------- | :------------ |
-| 工作階段識別碼 | SID123456 |
-| 要求 ID | QID123456 |
-
-請注意，工作階段識別碼的前置詞為 SID - 工作階段識別碼的速記格式 - 而要求的前置詞為 QID，此為查詢識別碼的速記格式。
-
-您將需要此資訊，幫助您在監視查詢效能時識別您的查詢。您可以使用 [Azure 入口網站]和動態管理檢視來監視查詢效能。
-
-此查詢會識別目前的工作階段。
-
-```sql
-SELECT SESSION_ID()
-;
-```
-
-若要檢視目前正在執行或近期曾針對資料倉儲執行的所有查詢，您可以使用下列範例。這會建立檢視，然後執行此檢視。
-
-```sql
-CREATE VIEW dbo.vSessionRequests
-AS
-SELECT 	 s.[session_id]									AS Session_ID
-		,s.[status]										AS Session_Status
-		,s.[login_name]									AS Session_LoginName
-		,s.[login_time]									AS Session_LoginTime
-        ,r.[request_id]									AS Request_ID
-		,r.[status]										AS Request_Status
-		,r.[submit_time]								AS Request_SubmitTime
-		,r.[start_time]									AS Request_StartTime
-		,r.[end_compile_time]							AS Request_EndCompileTime
-		,r.[end_time]									AS Request_EndTime
-		,r.[total_elapsed_time]							AS Request_TotalElapsedDuration_ms
-        ,DATEDIFF(ms,[submit_time],[start_time])		AS Request_InitiateDuration_ms
-        ,DATEDIFF(ms,[start_time],[end_compile_time])	AS Request_CompileDuration_ms
-        ,DATEDIFF(ms,[end_compile_time],[end_time])		AS Request_ExecDuration_ms
-		,[label]										AS Request_QueryLabel
-		,[command]										AS Request_Command
-		,[database_id]									AS Request_Database_ID
-FROM    sys.dm_pdw_exec_requests r
-JOIN    sys.dm_pdw_exec_sessions s	ON	r.[session_id] = s.[session_id]
-WHERE   s.[session_id] <> SESSION_ID()
-;
-
-SELECT * FROM dbo.vSessionRequests;
-```
+建立連線和工作階段之後，您就可以撰寫查詢並將其提交至 SQL 資料倉儲。若要了解如何監視工作階段和查詢，請參閱[使用 DMV 監視工作負載][]。
 
 ## 後續步驟
 
-若要透過 Visual Studio 和其他應用程式開始查詢您的資料倉儲，請參閱[透過 Visual Studio 查詢][]。
+若要透過 Visual Studio 和其他應用程式開始查詢您的資料倉儲，請參閱[使用 Visual Studio 查詢][]。
 
+<!--Articles-->
+[使用 Visual Studio 查詢]: ./sql-data-warehouse-query-visual-studio.md
+[使用 DMV 監視工作負載]: ./sql-data-warehouse-manage-monitor.md
 
-<!--Arcticles-->
-
-[透過 Visual Studio 查詢]: ./sql-data-warehouse-query-visual-studio.md
+<!--MSDN references-->
+[ANSI\_NULLS]: https://msdn.microsoft.com/library/ms188048.aspx
+[QUOTED\_IDENTIFIERS]: https://msdn.microsoft.com/library/ms174393.aspx
+[DATEFORMAT]: https://msdn.microsoft.com/library/ms189491.aspx
+[DATEFIRST]: https://msdn.microsoft.com/library/ms181598.aspx
 
 <!--Other-->
 [Azure 入口網站]: https://portal.azure.com
 
 <!--Image references-->
-
 [1]: media/sql-data-warehouse-connect-overview/get-server-name.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0831_2016-->

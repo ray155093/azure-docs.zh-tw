@@ -14,22 +14,16 @@ ms.devlang="multiple"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="integration"
-ms.date="05/17/2016"
+ms.date="08/18/2016"
 ms.author="deonhe"/>
 
 # 開始使用 GitHub 連接器
 
-
-
-您可從下列位置使用 GitHub 連接器︰
-
-- [邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)
-- [PowerApps](http://powerapps.microsoft.com)
-- [Flow](http://flows.microsoft.com)
+GitHub 是 Web 架構的 Git 儲存機制裝載服務。它提供所有 Git 分散式修訂控制項和來源程式碼管理 (SCM) 功能，也加入自己的功能。
 
 >[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
-您可以從立即建立邏輯應用程式開始，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
+您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ## 觸發程序及動作
 
@@ -75,8 +69,8 @@ GitHub 連接器可當成動作使用，它有觸發程序。所有連接器都�
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|repositoryOwner|字串|yes|路徑|無|儲存機制擁有者|
-|repositoryName|字串|yes|路徑|無|儲存機制名稱|
+|repositoryOwner|string|yes|路徑|無|儲存機制擁有者|
+|repositoryName|string|yes|路徑|無|儲存機制名稱|
 |issueBasicDetails| |yes|body|無|問題詳細資料|
 
 #### Response
@@ -156,9 +150,9 @@ GitHub 連接器可當成動作使用，它有觸發程序。所有連接器都�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|title|字串|是 |
-|body|字串|是 |
-|受託人|字串|是 |
+|title|string|是 |
+|body|string|是 |
+|受託人|string|是 |
 
 
 
@@ -167,16 +161,16 @@ GitHub 連接器可當成動作使用，它有觸發程序。所有連接器都�
 
 | 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|title|字串|是 |
-|body|字串|是 |
-|受託人|字串|是 |
-|number|字串|否 |
-|state|字串|否 |
-|created\_at|字串|否 |
-|repository\_url|字串|否 |
+|title|string|是 |
+|body|string|是 |
+|受託人|string|是 |
+|number|string|否 |
+|state|string|否 |
+|created\_at|string|否 |
+|repository\_url|string|否 |
 
 
 ## 後續步驟
 [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

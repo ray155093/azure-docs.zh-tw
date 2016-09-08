@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-store" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="05/03/2016" 
+	ms.date="08/19/2016" 
 	ms.author="piyushjo" />
 
 #如何在 Windows 通用上使用 Engagement API
@@ -36,7 +36,7 @@ Engagement API 是由 `EngagementAgent` 類別提供。您可以透過 `Engageme
 
 「活動」通常與應用程式的某個頁面關聯，也就是說，「活動」會在頁面顯示時啟動，當頁面關閉時就停止：使用 `EngagementPage` 類別來整合 Engagement SDK 的情況便是如此。
 
-但您也可以透過 Engagement API 手動控制「活動」。這樣可允許將指定的頁面分割成多個部分，以獲得有關該頁面使用方式的詳細資訊 (例如，對話方塊在此頁面的使用平率和使用時間)。
+但您也可以透過 Engagement API 手動控制「活動」。這樣可允許您將指定的頁面分割成多個部分，以獲得有關該頁面使用方式的詳細資訊 (例如，對話方塊在此頁面的使用平率和使用時間)。
 
 ##報告活動
 
@@ -46,7 +46,7 @@ Engagement API 是由 `EngagementAgent` 類別提供。您可以透過 `Engageme
 
 			void StartActivity(string name, Dictionary<object, object> extras = null)
 
-每當使用者活動變更，您就需要呼叫 `StartActivity()`。第一次呼叫此函式會啟動新的使用者工作階段。
+每當使用者活動變更，您就需要呼叫 `StartActivity()`。第一次呼叫此函數會啟動新的使用者工作階段。
 
 > [AZURE.IMPORTANT] 當應用程式關閉時，SDK 會自動呼叫 EndActivity 方法。因此，「強烈」建議每當使用者的活動變更時便叫呼叫 StartActivity 方法，並且「絕對不要」呼叫 EndActivity 方法，因為呼叫此方法會強制結束目前的工作階段。
 
@@ -160,7 +160,7 @@ Engagement API 是由 `EngagementAgent` 類別提供。您可以透過 `Engageme
 
 ##報告錯誤
 
-錯誤有三種類型：
+有三種錯誤類型：
 
 -   獨立錯誤
 -   工作階段錯誤
@@ -329,7 +329,7 @@ Engagement API 是由 `EngagementAgent` 類別提供。您可以透過 `Engageme
 
 您可以使用 SendAppInfo() 函式來報告追蹤資訊 (或任何其他應用程式相關的資訊)。
 
-請注意，這些資訊可以累加地傳送：只有指定的索引鍵的最新值會保留給指定的裝置。和事件額外資料一樣，請使用 Dictionary<object, object> 來附加資訊。
+請注意，此項資料可以累加地傳送：只有指定的索引鍵的最新值會保留給指定的裝置。和事件額外資料一樣，請使用 Dictionary<object, object> 來附加資料。
 
 ### 範例
 
@@ -368,4 +368,4 @@ SDK 可以設定為在 IDE 主控台中產生測試記錄檔。預設不會啟�
 			EngagementAgent.Instance.Init();
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0824_2016-->

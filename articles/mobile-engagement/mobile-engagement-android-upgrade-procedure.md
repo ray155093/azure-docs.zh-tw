@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android" 
 	ms.devlang="Java" 
 	ms.topic="article" 
-	ms.date="05/10/2016"
+	ms.date="08/19/2016"
 	ms.author="piyushjo" />
 
 
@@ -396,7 +396,7 @@ Reach 活動現在宣告如下：
 
 			protected void onDeviceMessageReceived(android.content.Context context, java.lang.String deviceId, java.lang.String payload)
 
-and
+和
 
 			protected void onXMPPMessageReceived(android.content.Context context, android.os.Bundle message)
 
@@ -404,7 +404,7 @@ and
 
 			sendMessageToDevice(java.lang.String deviceId, java.lang.String payload, java.lang.String packageName)
 
-and
+和
 
 			sendXMPPMessage(android.os.Bundle msg)
 
@@ -421,4 +421,4 @@ Proguard 組態受到品牌重新命名的影響，規則現在類似：
 			}
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0824_2016-->

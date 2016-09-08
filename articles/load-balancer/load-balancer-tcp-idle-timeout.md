@@ -3,7 +3,7 @@
    description="設定負載平衡器 TCP 閒置逾時"
    services="load-balancer"
    documentationCenter="na"
-   authors="joaoma"
+   authors="sdwheeler"
    manager="carmonm"
    editor="tysonn" />
 <tags 
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="03/03/2016"
-   ms.author="joaoma" />
+   ms.author="sewhee" />
 
 # 如何變更負載平衡器的 TCP 閒置逾時設定
 
@@ -166,4 +166,4 @@ IdleTimeoutInMinutes 是選擇性的。若未設定，則預設的逾時為 4 �
 
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0824_2016-->

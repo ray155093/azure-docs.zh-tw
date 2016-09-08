@@ -1,21 +1,21 @@
-<properties 
+<properties
    pageTitle="在傳統部署模型中使用 Azure CLI 建立內部負載平衡器 | Microsoft Azure"
    description="瞭解如何使用 Azure CLI 在傳統部署模型中建立內部負載平衡器"
    services="load-balancer"
    documentationCenter="na"
-   authors="joaoma"
-   manager="carolz"
+   authors="sdwheeler"
+   manager="carmonm"
    editor=""
    tags="azure-service-management"
 />
-<tags  
+<tags
    ms.service="load-balancer"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/09/2016"
-   ms.author="joaoma" />
+   ms.author="sewhee" />
 
 # 開始使用 Azure CLI 建立內部負載平衡器 (傳統)
 
@@ -53,7 +53,7 @@
 		info:    New mode is asm
 
 
-## 建立端點與負載平衡器集 
+## 建立端點與負載平衡器集
 
 此案例假設在稱為「mytestcloud」的雲端服務中，具有虛擬機器「DB1」和「DB2」。這些虛擬機器使用稱為我的「testvnet」，且具子網路「subnet-1」的虛擬網路。
 
@@ -62,18 +62,18 @@
 此為常見案例：若您在後端具有 SQL 虛擬機器，則可使用內部負載平衡器確保不會透過公用 IP 位址直接公開資料庫伺服器。
 
 
-### 步驟 1 
+### 步驟 1
 
 使用 `azure network service internal-load-balancer add` 建立內部負載平衡器集。
 
 	 azure service internal-load-balancer add -r mytestcloud -n ilbset -t subnet-1 -a 192.168.2.7
 
-所使用的參數：
+使用的參數：
 
 **-r** - 雲端服務名稱<BR> **-n** - 內部負載平衡器名稱<BR> **-t** - 子網路名稱 (與您新增至內部負載平衡器所用虛擬機器相同的子網路)<BR> **-a** - (選用) 新增靜態私人 IP 位址<BR>
 
 如需詳細資訊，請參閱 `azure service internal-load-balancer --help`。
- 
+
 您可使用`azure service internal-load-balancer list` *cloud service name* 命令，檢查內部負載平衡器屬性。
 
 以下遵循輸出範例：
@@ -87,22 +87,22 @@
 	info:    service internal-load-balancer list command OK
 
 
-## 步驟 2 
+## 步驟 2
 
 您可在新增第一個端點時，設定內部負載平衡器集。您會在此步驟中，將端點、虛擬機器和探查連接埠與內部負載平衡器集建立關聯。
 
 	azure vm endpoint create db1 1433 -k 1433 tcp -t 1433 -r tcp -e 300 -f 600 -i ilbset
 
-所使用的參數：
+使用的參數：
 
 **-k** - 本機虛擬機器連接埠<BR> **-t** - 探查連接埠<BR> **-r** - 探查通訊協定<BR> **-e** - 探查間隔 (單位為秒)<BR> **-f** - 逾時間隔 (單位為秒) <BR> **-i** - 內部負載平衡器名稱 <BR>
 
 
-## 步驟 3 
+## 步驟 3
 
 使用 `azure vm show` *virtual machine name* 驗證負載平衡器組態
 
-	azure vm show DB1 
+	azure vm show DB1
 
 輸出將是：
 
@@ -132,7 +132,7 @@
 	data:    Network Endpoints 0 name "PowerShell"
 	data:    Network Endpoints 0 port 5986
 	data:    Network Endpoints 0 protocol "tcp"
-	data:    Network Endpoints 0 virtualIPAddress "137.116.64.107"	
+	data:    Network Endpoints 0 virtualIPAddress "137.116.64.107"
 	data:    Network Endpoints 0 enableDirectServerReturn false
 	data:    Network Endpoints 1 localPort 3389
 	data:    Network Endpoints 1 name "Remote Desktop"
@@ -158,7 +158,7 @@
 
 您可以使用 `azure vm endpoint create` 建立遠端桌面端點，針對特定的虛擬機器將網路流量從公用連接埠轉送至本機連接埠。
 
-	azure vm endpoint create web1 54580 -k 3389 
+	azure vm endpoint create web1 54580 -k 3389
 
 
 ## 從負載平衡器移除虛擬機器
@@ -179,4 +179,4 @@
 
 [設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0824_2016-->

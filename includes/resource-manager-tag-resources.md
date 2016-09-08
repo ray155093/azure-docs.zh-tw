@@ -6,7 +6,7 @@
 
      ![使用名稱/值組標記資源](./media/resource-manager-tag-resources/tag-resources.png)
 
-1. 若要在入口網站中檢視標記的分類法，請選取 [瀏覽] 和 [標記]。
+1. 若要在入口網站中檢視標記的分類法，請選取 [更多服務] 和 [標記]。
 
      ![透過 [瀏覽中樞] 尋找標記](./media/resource-manager-tag-resources/browse-tags.png)
 
@@ -22,4 +22,4 @@
 
      ![將標記釘選到「開始面板」](./media/resource-manager-tag-resources/show-pinned-tag.png)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

@@ -23,12 +23,6 @@
 - [Azure CLI](resource-group-template-deploy-cli.md)
 - [入口網站](resource-group-template-deploy-portal.md)
 - [REST API](resource-group-template-deploy-rest.md)
-- [.NET](https://azure.microsoft.com/documentation/samples/resource-manager-dotnet-template-deployment/)
-- [Java](https://azure.microsoft.com/documentation/samples/resources-java-deploy-using-arm-template/)
-- [Python](https://azure.microsoft.com/documentation/samples/resource-manager-python-template-deployment/)
-- [節點](https://azure.microsoft.com/documentation/samples/resource-manager-node-template-deployment/)
-- [Ruby](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-template-deployment/)
-
 
 本主題說明如何使用 Azure PowerShell 與 Resource Manager 範本，將您的資源部署至 Azure。
 
@@ -128,7 +122,7 @@
         Mode              : Incremental
         ...
 
-     如果您範本所含的參數名稱與 PowerShell 命令中的其中一個參數一樣，系統會提示您為結尾標記為 **FromTemplate** 的該參數提供值。例如，範本中名為 **ResourceGroupName** 的參數與 [New-AzureRmResourceGroupDeployment](https://msdn.microsoft.com/library/azure/mt679003.aspx) Cmdlet 中的 **ResourceGroupName** 參數發生衝突。系統會提示您為 **ResourceGroupNameFromTemplate** 提供值。一般而言，在為參數命名時，請勿使用與部署作業所用參數相同的名稱，以避免發生這種混淆的情形。
+     如果您範本所含的參數名稱與 PowerShell 命令中的其中一個參數一樣，系統會提示您提供該參數的值。來自您範本的參數會包含後置詞 **FromTemplate**。例如，範本中名為 **ResourceGroupName** 的參數與 [New-AzureRmResourceGroupDeployment](https://msdn.microsoft.com/library/azure/mt679003.aspx) Cmdlet 中的 **ResourceGroupName** 參數發生衝突。系統會提示您為 **ResourceGroupNameFromTemplate** 提供值。一般而言，在為參數命名時，請勿使用與部署作業所用參數相同的名稱，以避免發生這種混淆的情形。
 
 6. 如果您想要記錄部署的其他相關資訊，以助於針對任何部署錯誤進行疑難排解，請使用 **DeploymentDebugLogLevel** 參數。您可以指定在記錄部署作業時，一併記錄要求內容及/或回應內容。
 
@@ -195,8 +189,8 @@
 如需有關使用 KeyVault 參考來傳遞安全值的詳細資料，請參閱[在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)。
 
 ## 後續步驟
-- 如需透過 .NET 用戶端程式庫部署資源的範例，請參閱[使用 .NET 程式庫和範本部署資源](virtual-machines/virtual-machines-windows-csharp-template.md)。
+- 如需透過 .NET 用戶端程式庫部署資源的範例，請參閱[使用 .NET 程式庫與範本部署資源](virtual-machines/virtual-machines-windows-csharp-template.md)。
 - 若要在範本中定義參數，請參閱[編寫範本](resource-group-authoring-templates.md#parameters)。
 - 如需如何將解決方案部署到不同環境的指南，請參閱[Microsoft Azure 中開發和測試環境](solution-dev-test-environments.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

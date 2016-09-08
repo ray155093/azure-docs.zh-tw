@@ -62,7 +62,7 @@ Azure 僅支援固定的 VHD 格式虛擬硬碟。如果您想要在 Azure 中�
 您需要建立遠端連線以登入虛擬機器，針對 Windows VM，請使用遠端桌面連線；針對 Linux VM，請使用安全殼層 (SSH)。如需相關指示，請參閱：
 
 - [如何登入執行 Windows Server 的虛擬機器](../articles/virtual-machines/virtual-machines-windows-classic-connect-logon.md)：最多支援 2 個並行連線，除非伺服器設定為遠端桌面服務工作階段主機。
-- [如何登入執行 Linux 的虛擬機器](../articles/virtual-machines/virtual-machines-linux-classic-log-on.md)。根據預設，SSH 允許最多 10 個並行連線。您可以編輯組態檔以增加這個數字。
+- [如何登入執行 Linux 的虛擬機器](../articles/virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md)。根據預設，SSH 允許最多 10 個並行連線。您可以編輯組態檔以增加這個數字。
 
 
 如果您遇到遠端桌面或 SSH 的相關問題，請安裝並使用 [VMAccess](../articles/virtual-machines/virtual-machines-windows-extensions-features.md) 擴充功能來協助修正問題。
@@ -140,7 +140,7 @@ Azure 有時會重新啟動您的 VM，這是 Azure 資料中心中定期、計�
 
 當 Azure 偵測到嚴重的硬體問題可能會影響您的 VM 時，會發生非計劃性維護事件。對於非計劃性事件，Azure 會自動地移轉 VM 至狀況良好的主機並重新啟動 VM。
 
-針對任何獨立的 VM (表示 VM 並非可用性集合的一部份)，Azure 在計劃性維護之前，至少每一個星期會使用電子郵件通知訂用帳戶的服務管理員，因為 VM 可能會在更新期間重新啟動。在 VM上執行的應用程式可能會遭遇停機時間。
+針對任何獨立的 VM (表示 VM 並非可用性設定組的一部份)，Azure 至少會在執行計劃性維護的一個星期之前使用電子郵件通知訂用帳戶的服務管理員，因為 VM 可能會在更新期間重新啟動。在 VM上執行的應用程式可能會遭遇停機時間。
 
 當因為計畫性維護而發生重新啟動時，您也可以使用 Azure 傳統入口網站或 Azure PowerShell 來檢視重新啟動記錄。如需詳細資訊，請參閱[檢視 VM 重新啟動記錄檔](https://azure.microsoft.com/blog/2015/04/01/viewing-vm-reboot-logs/)。
 
@@ -156,4 +156,4 @@ Azure 有時會重新啟動您的 VM，這是 Azure 資料中心中定期、計�
 
 [建立 Windows 虛擬機器的不同方式](../articles/virtual-machines/virtual-machines-windows-creation-choices.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

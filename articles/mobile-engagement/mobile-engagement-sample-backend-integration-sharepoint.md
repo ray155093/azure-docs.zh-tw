@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-multiple" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="02/29/2016" 
+	ms.date="08/19/2016" 
 	ms.author="piyushjo" />
 
 # Azure Mobile Engagement - API 整合
@@ -86,7 +86,7 @@
         }
 
 ## Mobile Engagement 整合
-1.  一旦我們找到需要處理的項目 - 我們會擷取必要的資訊以從清單項目建立公告，並且呼叫 `CreateAzMECampaign` 來建立它，然後呼叫 `ActivateAzMECampaign` 來啟動它。這些基本上是 REST API 呼叫，呼叫至 Mobile Engagement 後端。 
+1.  一旦我們找到需要處理的項目 - 我們會擷取必要的資訊以從清單項目建立公告，並且呼叫 `CreateAzMECampaign` 來建立它，然後呼叫 `ActivateAzMECampaign` 來啟動它。這些基本上是 REST API 呼叫，呼叫至 Mobile Engagement 後端。
 
 2.  Mobile Engagement REST API 需要**基本驗證配置授權 HTTP 標頭**，由 `ApplicationId` 和 `ApiKey` 組成，您可以從 Azure 入口網站取得。請確定您使用的金鑰是來自 **api 金鑰** 區段，而*不*是來自 **sdk 金鑰** 區段。
 
@@ -207,4 +207,4 @@
 
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0824_2016-->

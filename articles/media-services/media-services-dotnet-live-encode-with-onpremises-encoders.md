@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="如何透過內部部署編碼器執行即時串流" 
+	pageTitle="如何使用 .NET 透過內部部署編碼器執行即時視訊串流 | Microsoft Azure" 
 	description="本主題將說明如何使用 .NET 透過內部部署編碼器執行即時編碼。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,10 +13,10 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="ne" 
 	ms.topic="article" 
- 	ms.date="05/05/2016"  
+ 	ms.date="08/19/2016"  
 	ms.author="cenkdin;juliako"/>
 
-#如何透過內部部署編碼器執行即時串流
+#如何使用 .NET 透過內部部署編碼器執行即時視訊串流
 
 ##必要條件
 
@@ -377,7 +377,9 @@
 	    }
 	}
 
-##媒體服務學習路徑
+##下一步
+
+檢閱媒體服務學習路徑
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
@@ -385,4 +387,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0824_2016-->

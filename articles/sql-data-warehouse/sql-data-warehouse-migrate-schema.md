@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="08/08/2016"
+   ms.date="08/17/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 # 將您的結構描述移轉至 SQL 資料倉儲#
 
-下列摘要可協助您了解 SQL Server 和 SQL 資料倉儲之間的差異，幫助您移轉資料庫。
+下列摘要可協助您了解 SQL Server 與「SQL 資料倉儲」之間的差異，以幫助您移轉資料庫。
 
 ### 資料表功能
 SQL 資料倉儲不使用或支援下列功能：
@@ -30,7 +30,7 @@ SQL 資料倉儲不使用或支援下列功能：
 - 唯一索引
 - 計算資料行
 - 疏鬆資料行
-- 使用者定義型別
+- 使用者定義的類型
 - 索引檢視表
 - 身分識別
 - 順序
@@ -95,7 +95,7 @@ AND  y.[is_user_defined] = 1
 
 ```
 
-此查詢也包含任何不支援的使用者定義資料類型。
+該查詢包含任何使用者定義的資料類型，而系統也不支援這些資料類型。
 
 如果您的資料庫中有不支援的類型，請不要擔心。以下提出一些您可以改用的替代方案。
 
@@ -107,8 +107,8 @@ AND  y.[is_user_defined] = 1
 - **image**、**text**、**ntext**，使用 varchar/nvarchar (越小越好)
 - **sql\_variant**，將資料行分割成數個強型別資料行
 - **table**，轉換成暫時資料表
-- **timestamp**，修改程式碼來使用 datetime2 和 `CURRENT_TIMESTAMP` 函式。請注意，您不能以 current\_timestamp 做為預設條件約束，因為值不會自動更新。如果您需要從 timestamp 類型資料行移轉 rowversion 值，請對 NOT NULL 或 NULL 資料列版本值使用 binary(8) 或 varbinary(8)。
-- **使用者定義型別**，可能的話，轉換回原生型別
+- **timestamp**，修改程式碼來使用 datetime2 和 `CURRENT_TIMESTAMP` 函數。請注意，您不能使用 current\_timestamp 作為預設條件約束。如果您需要從 timestamp 類型資料行移轉 rowversion 值，請使用 binary(8) 或 varbinary(8) 作為 NOT NULL 或 NULL 資料列版本值。
+- **使用者定義類型**，可能的話，轉換回其原生類型
 - **xml**，使用 varchar(max) 或更小，效能將會更好。必要的話，分割資料行
 
 若要取得更加的效能，與其使用：
@@ -120,10 +120,10 @@ AND  y.[is_user_defined] = 1
 
 - 預設條件約束僅支援常值和常數。不支援不具決定性的運算式或函式，例如 `GETDATE()` 或 `CURRENT_TIMESTAMP`。
 
-> [AZURE.NOTE] 如果您正在使用 PolyBase 以載入您的資料表，請定義您的資料表，使最大可能的資料列大小 (包括可變長度資料行的完整長度) 不超過 32,767 個位元組。雖然您定義的資料列可以有超過此數據的可變長度資料，並透過 BCP 載入資料列，您尚無法使用 PolyBase 以載入此資料。PolyBase 針對廣泛資料列的支援將會於近期內新增。此外，也請限制可變長度資料行的大小，以便執行查詢時有更大的輸送量。
+> [AZURE.NOTE] 定義您的資料表，使得在使用 PolyBase 來執行載入時，資料列大小上限不會超過 32,767 個位元組。請務必記得資料列大小上限包括任何可變長度資料行的完整長度。雖然您可以定義可變長度資料超過此數字的資料列，但是目前無法使用 PolyBase 來載入此資料。作為暫時的因應措施，請使用 BCP 來載入寬資料列。最後，請嘗試限制可變長度資料行的大小，以便在執行查詢時獲得更大的輸送量。
 
 ## 後續步驟
-一旦成功將資料庫結構描述移轉到 SQLDW，您就可以繼續閱讀下列其中一篇文章：
+將資料庫結構描述成功移轉到「SQL 資料倉儲」之後，您就可以繼續閱讀下列其中一篇文章：
 
 - [移轉資料][]
 - [移轉程式碼][]
@@ -142,4 +142,4 @@ AND  y.[is_user_defined] = 1
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

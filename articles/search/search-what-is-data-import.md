@@ -14,7 +14,7 @@
     ms.workload="search"
     ms.topic="get-started-article"
     ms.tgt_pltfrm="na"
-    ms.date="05/31/2016"
+    ms.date="08/29/2016"
     ms.author="ashmaka"/>
 
 # 上傳資料至 Azure 搜尋服務
@@ -45,4 +45,4 @@
 
 索引子功能會在 [Azure 入口網站](search-import-data-portal.md)以及 [REST API](https://msdn.microsoft.com/library/azure/dn946891.aspx) 中出現。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0831_2016-->

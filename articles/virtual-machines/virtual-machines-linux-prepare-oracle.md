@@ -3,6 +3,7 @@ pageTitle="準備 Azure 的 Oracle Linux 虛擬機器 | Microsoft Azure"
 description="逐步完成在 Microsoft Azure 中執行 Linux 的 Oracle 虛擬機器設定。"
 services="virtual-machines-linux"
 authors="bbenz"
+manager="timlt"
 documentationCenter="virtual-machines"
 tags="azure-service-management,azure-resource-manager"
 />
@@ -50,7 +51,7 @@ ms.author="bbenz" />
 ## Oracle Linux 6.4+
 您必須在作業系統中完成特定組態步驟，虛擬機器才能在 Azure 中執行。
 
-1. 在 Hyper-V 管理員的中央窗格中，選取虛擬機器。
+1. 在 Hyper-V 管理員的中間窗格中，選取虛擬機器。
 
 2. 按一下 **[連接]**，以開啟虛擬機器的視窗。
 
@@ -225,4 +226,4 @@ ms.author="bbenz" />
 
 15.  在 Hyper-V 管理員中，依序按一下 [動作] -> [關閉]。您現在可以將 Linux VHD 上傳至 Azure。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0824_2016-->

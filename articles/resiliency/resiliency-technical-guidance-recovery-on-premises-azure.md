@@ -4,7 +4,7 @@
    services=""
    documentationCenter="na"
    authors="adamglick"
-   manager="hongfeig"
+   manager="saladki"
    editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/01/2016"
+   ms.date="08/18/2016"
    ms.author="aglick"/>
 
 #Azure 復原技術指導：從內部部署復原至 Azure
@@ -79,22 +79,23 @@ AlwaysOn 可用性群組可以在混合式 IT 環境中使用，在該環境中�
 
 ###網路
 
-  1. 檢閱此文件的[網路](#networking)一節。
+  1. 檢閱此文件的＜網路＞一節。
   2. 使用虛擬網路將內部部署安全地連接至雲端。
 
 ###計算
 
-  1. 檢閱此文件的[計算](#compute)一節。
+  1. 檢閱此文件的＜計算＞一節。
   2. 在 Hyper-V 與 Azure 之間重新放置 VM。
 
 ###儲存體
-  1. 檢閱此文件的[儲存體](#storage)一節。
+
+  1. 檢閱此文件的＜儲存體＞一節。
   2. 利用 StorSimple 服務以使用雲端儲存體。
   3. 使用 Azure 備份服務。
 
 ###資料庫
 
-  1. 檢閱此文件的[資料庫](#database)一節。
+  1. 檢閱此文件的＜資料庫＞一節。
   2. 考量使用 Azure VM 上的 SQL Server 做為備份。
   3. 設定 AlwaysOn 可用性群組。
   4. 設定憑證式資料庫鏡像。
@@ -105,4 +106,4 @@ AlwaysOn 可用性群組可以在混合式 IT 環境中使用，在該環境中�
 
 這篇文章是一系列文章的一部分，著重在 [Azure 復原技術指導](./resiliency-technical-guidance.md)。這一系列文章的下一篇是[從資料損毀或意外刪除復原](./resiliency-technical-guidance-recovery-data-corruption.md)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0824_2016-->

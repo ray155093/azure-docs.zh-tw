@@ -4,7 +4,7 @@
    services="virtual-machines,virtual-network,storage"
    documentationCenter="saponazure"
    authors="hermanndms"
-   manager="juergent"
+   manager="timlt"
    editor=""
    tags="azure-resource-manager"
    keywords=""/>
@@ -166,4 +166,4 @@ SUSE 提供稱為 "sapconf" 的封裝，這組封裝負責管理一組 SAP 特�
 
 在虛擬環境中，Oracle 對 Linux 的支援有所限制。雖然這不是 Azure 專屬的主題，不過仍請務必了解。SAP 不支援 SUSE 上的 Oracle 或類似 Azure 之公用雲端中的 Red Hat。若要討論這個主題，請直接連絡 Oracle。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0824_2016-->

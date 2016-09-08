@@ -15,10 +15,12 @@
 	ms.topic="reference"
 	ms.tgt_pltfrm="multiple"
 	ms.workload="na"
-	ms.date="05/16/2016"
-	ms.author="chrande"/>
+	ms.date="08/22/2016"
+	ms.author="chrande; glenga"/>
 
 # Azure Functions DocumentDB 繫結
+
+[AZURE.INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
 這篇文章說明如何在 Azure Functions 中為 Azure DocumentDB 繫結進行設定及撰寫程式碼。
 
@@ -30,17 +32,17 @@
 
 #### DocumentDB 輸入繫結的 function.json
 
-*function.json* 檔案提供下列屬性：
+「function.json」檔案提供下列屬性：
 
-- `name`︰函數程式碼中用於文件的變數名稱。
+- `name`︰函式程式碼中用於文件的變數名稱。
 - `type`︰必須設定為 "documentdb"。
 - `databaseName`︰包含文件的資料庫。
 - `collectionName`︰包含文件的集合。
 - `id`︰要擷取之文件的識別碼。此屬性支援類似於 "{queueTrigger}" 的繫結，會將佇列訊息的字串值做為文件識別碼。
 - `connection`︰此字串必須是針對您的 DocumentDB 帳戶設定為端點的「應用程式設定」。如果您是從 [整合] 索引標籤選擇您的帳戶，系統將會為您建立新的應用程式設定，其名稱會採用下列格式：yourAccount\_DOCUMENTDB。如果您需要手動建立應用程式設定，則實際的連接字串必須採用下列格式：AccountEndpoint=<Endpoint for your account>;AccountKey=<Your primary access key>;。
-- direction︰必須設定為 *"in"*。
+- `direction︰必須設為「"in"」。
 
-範例 *function.json*：
+範例「function.json」：
  
 	{
 	  "bindings": [
@@ -78,19 +80,19 @@
 
 ## <a id="docdboutput"></a>Azure DocumentDB 輸出繫結
 
-您的函數可以使用「Azure DocumentDB 文件」輸出繫結，將 JSON 文件寫入 Azure DocumentDB 資料庫中。如需有關 Azure DocumentDB 的詳細資訊，請檢閱 [DocumentDB 簡介](../documentdb/documentdb-introduction.md)和[開始使用教學課程](../documentdb/documentdb-get-started.md)。
+您的函式可以使用 **Azure DocumentDB 文件**輸出繫結，將 JSON 文件寫入 Azure DocumentDB 資料庫中。如需有關 Azure DocumentDB 的詳細資訊，請檢閱 [DocumentDB 簡介](../documentdb/documentdb-introduction.md)和[開始使用教學課程](../documentdb/documentdb-get-started.md)。
 
 #### DocumentDB 輸出繫結的 function.json
 
 function.json 檔案提供下列屬性：
 
-- `name`︰函數程式碼中用於新文件的變數名稱。
-- `type`︰必須設定為 *"documentdb"*。
+- `name`︰函式程式碼中用於新文件的變數名稱。
+- `type`︰必須設為「"documentdb"」。
 - `databaseName`︰包含其中將建立新文件之集合的資料庫。
 - `collectionName`︰其中將建立新文件的集合。
 - `createIfNotExists`︰這是一個布林值，用以指出當集合不存在時是否要建立集合。預設值為 *false*。因為新集合會使用保留的輸送量建立，其具有價格含意。如需詳細資訊，請瀏覽[定價頁面](https://azure.microsoft.com/pricing/details/documentdb/)。
-- `connection`︰此字串必須是針對您的 DocumentDB 帳戶設定為端點的「應用程式設定」。如果您是從 [整合] 索引標籤選擇您的帳戶，系統將會為您建立新的應用程式設定，其名稱會採用下列格式：`yourAccount_DOCUMENTDB`。如果您需要手動建立應用程式設定，實際的連接字串必須採用下列格式：`AccountEndpoint=<Endpoint for your account>;AccountKey=<Your primary access key>;`。 
-- `direction`：必須設定為 *"out"*。 
+- `connection`︰此字串必須是針對您的 DocumentDB 帳戶設定為端點的**應用程式設定**。如果您是從 [整合] 索引標籤選擇您的帳戶，系統將會為您建立新的應用程式設定，其名稱會採用下列格式：`yourAccount_DOCUMENTDB`。如果您需要手動建立應用程式設定，實際的連接字串必須採用下列格式：`AccountEndpoint=<Endpoint for your account>;AccountKey=<Your primary access key>;`。
+- `direction`：必須設為「"out"」。
  
 function.json 範例：
 
@@ -146,7 +148,7 @@ function.json 範例：
 
 #### Azure DocumentDB 輸出程式碼範例設定檔名稱
 
-如果您想要在函數中設定文件名稱，只要設定 `id` 值即可。例如，如果正在將員工的 JSON 內容排入佇列中，如下所示︰
+如果您想要在函式中設定文件名稱，只要設定 `id` 值即可。例如，如果正在將員工的 JSON 內容排入佇列中，如下所示︰
 
 	{
 	  "name" : "John Henry",
@@ -189,4 +191,4 @@ function.json 範例：
 
 [AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0824_2016-->

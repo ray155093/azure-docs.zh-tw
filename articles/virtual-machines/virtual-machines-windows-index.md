@@ -66,7 +66,7 @@
 
 [Azure 虛擬機器的計劃性維護](virtual-machines-windows-planned-maintenance.md)
 
-[Azure 基礎結構服務實作指導方針](virtual-machines-windows-infrastructure-service-guidelines.md)
+[Azure 基礎結構服務實作指導方針](virtual-machines-windows-infrastructure-subscription-accounts-guidelines.md)
 
 [建立虛擬機器的可用性設定組](virtual-machines-windows-classic-configure-availability.md)
 
@@ -90,7 +90,7 @@
 
 [使用 Azure PowerShell 管理您的虛擬機器](virtual-machines-windows-classic-manage-psh.md)
 	
-[將傳統 VNET 連接至新的 VNET](../virtual-network/virtual-networks-arm-asm-s2s-howto.md)
+[將傳統 VNET 連接至新的 VNET](../vpn-gateway/vpn-gateway-connect-different-deployment-models-powershell.md)
 	
 [有關虛擬機器代理程式和擴充功能](virtual-machines-windows-classic-agents-and-extensions.md)
 
@@ -192,4 +192,4 @@
 
 [針對在 Azure 中重新啟動或調整現有 Windows 虛擬機器大小的傳統部署問題進行疑難排解](virtual-machines-windows-classic-restart-resize-error-troubleshooting.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

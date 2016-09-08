@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article" 
-	ms.date="08/04/2016"
+	ms.date="08/22/2016"
 	ms.author="billmath"/>
 
 # 什麼是 Azure Multi-Factor Authentication？
@@ -47,8 +47,8 @@ Azure Multi-Factor Authentication 是一個容易使用、可調整且可靠的�
 :-------------: | :-------------: | :-------------: | :-------------: |
 **容易使用**|**可調整**|**永遠受到保護**|**可靠**
 
-- **容易使用** - Azure Multi-Factor Authenticaton 很容易設定及使用。Azure Multi-Factor Authentication 提供的額外保護功能可讓使用者使用及管理他們自己的裝置，而且在許多情況下，只要簡單地按幾下就可以設定完成。
-- **可調整** - Azure Multi-Factor Authenticaton 採用雲端技術且與您內部部署的 AD 與自訂應用程式整合。此保護功能甚至可以擴充以因應您高任務關鍵性的狀況。
+- **容易使用** - Azure Multi-Factor Authentication 很容易設定及使用。Azure Multi-Factor Authentication 提供的額外保護功能可讓使用者使用及管理他們自己的裝置，而且在許多情況下，只要簡單地按幾下就可以設定完成。
+- **可調整** - Azure Multi-Factor Authentication 採用雲端技術且與您內部部署的 AD 與自訂應用程式整合。此保護功能甚至可以擴充以因應您高任務關鍵性的狀況。
 - **永遠受到保護** - Azure Multi-Factor Authentication 使用最高工業標準提供強大驗證功能。
 - **可靠** - 我們保證 Azure Multi-Factor Authentication 的可用性可達到 99.9%。當服務無法接收或處理多因素驗證的驗證要求時，服務會被視為無法使用。
 
@@ -84,8 +84,8 @@ Azure Multi-Factor Authentication 有助於保護對資料與應用程式的存�
 ------------- | ------------- |
 撥打電話 | 撥打使用者的智慧型手機，要求他們按 # 符號來驗證登入。如此將可完成驗證程序。這是可設定的選項，您可以變更為指定的代碼。
 簡訊 | 傳送含 6 位數代碼的簡訊到使用者智慧型手機。輸入此代碼可完成驗證程序。
-行動應用程式通知 | 將驗證要求傳送到使用者的智慧型手機，要求他們在行動應用程式中選取 [驗證] 來完成驗證。如果您將應用程式通知選為主要驗證方法，這種情況便會發生。如果它們在未登入時收到通知，他們可以選擇提報詐騙。
-透過行動應用程式的驗證碼 | 將驗證碼傳送到在使用者智慧型手機中運作的行動應用程式。如果您將驗證碼選為主要驗證方法，這種情況便會發生。
+行動應用程式通知 | 將驗證要求傳送到使用者的智慧型手機，要求他們在行動應用程式中選取 [驗證] 來完成驗證。如果您將應用程式通知選為主要驗證方法，這種情況便會發生。如果它們在未登入時收到通知，他們可以選擇提報詐騙。</li><br><p> Microsoft 驗證器應用程式適用於 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)、[Android](http://go.microsoft.com/fwlink/?Linkid=825072) 和 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)。
+透過行動應用程式的驗證碼 | 將驗證碼傳送到在使用者智慧型手機中運作的行動應用程式。如果您選擇驗證碼做為主要驗證方法，便會發生這種情況。</li><br><p> Microsoft 驗證器應用程式適用於 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)、[Android](http://go.microsoft.com/fwlink/?Linkid=825072) 和 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)。
 
 
 ## 可用的 Azure Multi-Factor Authentication 版本
@@ -134,8 +134,8 @@ MFA SDK | | | * 需要 Multi-Factor Auth Provider 和完整的 Azure 訂用帳�
 使用 Azure Multi-Factor Authentication 提供者時，有兩種使用量模型可透過您的 Azure 訂用帳戶計費：
 
 
-- **每位使用者**。通常適用於想要為一群定期需要驗證之固定數量員工啟用 Multi-Factor Authentication 的企業。
-- **每次驗證**。通常適用於想要為大量不定期需要驗證之外部使用者啟用 Multi-Factor Authentication 的企業。
+- **每位使用者**。適用於想要為一群定期需要驗證之固定數量員工啟用 Multi-Factor Authentication 的企業。
+- **每次驗證**。適用於想要為大量不定期需要驗證之外部使用者啟用 Multi-Factor Authentication 的企業。
 
 Azure Multi-Factor Authentication 為雲端與伺服器提供可選取的驗證方法。這表示您可以選擇可供使用者用於多重要素驗證的方法。在雲端版的多重要素驗證中，這項功能目前為公開預覽狀態。如需其他資訊，請參閱[可選取的驗證方法](multi-factor-authentication-whats-next.md#selectable-verification-methods)。
 
@@ -209,4 +209,4 @@ MFA 報告 | ● | ●
 
 <center> [![Cloud](./media/multi-factor-authentication-get-started/cloud2.png)](multi-factor-authentication-get-started-cloud.md) &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[![Proofup](./media/multi-factor-authentication-get-started/server2.png)](multi-factor-authentication-get-started-server.md) &#160;&#160;&#160;&#160;&#160; </center>
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0824_2016-->

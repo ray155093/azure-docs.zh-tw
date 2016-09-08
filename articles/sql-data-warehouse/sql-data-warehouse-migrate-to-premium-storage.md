@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="08/11/2016"
+   ms.date="08/19/2016"
    ms.author="nicw;barbkess;sonyama"/>
 
 # 移轉至進階儲存體詳細資料
@@ -91,13 +91,13 @@ SQL 資料倉儲最新引進了[進階儲存體，以獲得更高的效能可預
 | 日本東部 | 2016 年 8 月 10 日 | 2016 年 8 月 24 日 |
 | 日本西部 | 尚未決定 | 尚未決定 |
 | 美國中北部 | 尚未決定 | 尚未決定 |
-| 北歐 | 2016 年 8 月 10 日 | 2016 年 8 月 24 日 |
+| 北歐 | 2016 年 8 月 10 日 | 2016 年 8 月 31 日 |
 | 美國中南部 | 2016 年 6 月 23日 | 2016 年 7 月 2 日 |
 | 東南亞 | 2016 年 6 月 23日 | 2016 年 7 月 1 日 |
 | 西歐 | 2016 年 6 月 23日 | 2016 年 7 月 8 日 |
-| 美國中西部 | 2016 年 8 月 14 日 | 2016 年 8 月 28 日 |
+| 美國中西部 | 2016 年 8 月 14 日 | 2016 年 8 月 31 日 |
 | 美國西部 | 2016 年 6 月 23日 | 2016 年 7 月 7 日 |
-| 美國西部 2 | 2016 年 8 月 14 日 | 2016 年 8 月 28 日 |
+| 美國西部 2 | 2016 年 8 月 14 日 | 2016 年 8 月 31 日 |
 
 ## 自行移轉至進階儲存體
 如果您想要控制發生停機的時間，您可以使用下列步驟，將標準儲存體上的現有資料倉儲移轉至進階儲存體。如果您選擇自行移轉，則必須在該區域的自動移轉開始前，先完成自行移轉，以避免任何會造成衝突的自動移轉風險 (請參閱[自動移轉排程][])。
@@ -147,19 +147,42 @@ ALTER DATABASE CurrentDatabasename MODIFY NAME = NewDatabaseName;
 -- 步驟 1︰建立資料表以控制索引重建
 -- 以具有 mediumrc 角色或更高權限的使用者身分執行
 --------------------------------------------------------------------------------
-create table sql\_statements WITH (distribution = round\_robin) as select 'alter index all on ' + s.name + '.' + t.NAME + ' rebuild;' as statement, row\_number() over (order by s.name, t.name) as sequence from sys.schemas s inner join sys.tables t on s.schema\_id = t.schema\_id where is\_external = 0 ; go
+create table sql_statements
+WITH (distribution = round_robin)
+as select 
+    'alter index all on ' + s.name + '.' + t.NAME + ' rebuild;' as statement,
+    row_number() over (order by s.name, t.name) as sequence
+from 
+    sys.schemas s
+    inner join sys.tables t
+        on s.schema_id = t.schema_id
+where
+    is_external = 0
+;
+go
  
 --------------------------------------------------------------------------------
 -- 步驟 2︰執行索引重建。如果指令碼失敗，可以重新執行以下程式碼從最後中斷的地方重新開始
 -- 以具有 mediumrc 角色或更高權限的使用者身分執行
 --------------------------------------------------------------------------------
 
-declare @nbr\_statements int = (select count(*) from sql\_statements) declare @i int = 1 while(@i <= @nbr\_statements) begin declare @statement nvarchar(1000)= (select statement from sql\_statements where sequence = @i) print cast(getdate() as nvarchar(1000)) + ' Executing... ' + @statement exec (@statement) delete from sql\_statements where sequence = @i set @i += 1 end;
+declare @nbr_statements int = (select count(*) from sql_statements)
+declare @i int = 1
+while(@i <= @nbr_statements)
+begin
+      declare @statement nvarchar(1000)= (select statement from sql_statements where sequence = @i)
+      print cast(getdate() as nvarchar(1000)) + ' Executing... ' + @statement
+      exec (@statement)
+      delete from sql_statements where sequence = @i
+      set @i += 1
+end;
 go
 -------------------------------------------------------------------------------
 -- 步驟 3︰清除在步驟 1 中建立的資料表
 --------------------------------------------------------------------------------
-drop table sql\_statements; go ````
+drop table sql_statements;
+go
+````
 
 如果您遇到任何關於資料倉儲的問題，請[建立支援票證][]和參考「移轉至進階儲存體」做為可能的原因。
 
@@ -184,4 +207,4 @@ drop table sql\_statements; go ````
 [進階儲存體，以獲得更高的效能可預測性]: https://azure.microsoft.com/blog/azure-sql-data-warehouse-introduces-premium-storage-for-greater-performance/
 [Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0824_2016-->

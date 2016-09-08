@@ -26,7 +26,7 @@
 
 ## 開始使用服務匯流排
 
-本文假設您已經有服務匯流排命名空間，其中包含名稱為「queue1」的佇列。 如果沒有，您可以使用 [Azure 傳統入口網站](http://manage.windowsazure.com)建立命名空間和佇列。如需有關如何建立服務匯流排命名空間和佇列的相關詳細資訊，請參閱[如何使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)。
+本文假設您已經有服務匯流排命名空間，其中包含名稱為「queue1」的佇列。 如果沒有，您可以使用 [Azure 入口網站][]建立命名空間和佇列。如需有關如何建立服務匯流排命名空間和佇列的相關詳細資訊，請參閱[如何使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)。
 
 ## 下載服務匯流排 SDK
 
@@ -63,7 +63,7 @@
 Endpoint=sb://[namespace].servicebus.windows.net;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[SAS key];TransportType=Amqp
 ```
 
-其中的 `[namespace]` 和 `[SAS key]` 是從 [Azure 傳統入口網站][]取得。如需詳細資訊，請參閱 [如何使用服務匯流排佇列][]。
+其中的 `[namespace]` 和 `[SAS key]` 是從 [Azure 入口網站][]取得。如需詳細資訊，請參閱 [如何使用服務匯流排佇列][]。
 
 在使用 AMQP 時，連接字串會加上 `;TransportType=Amqp`，它能告知用戶端程式庫使用 AMQP 1.0 來建立服務匯流排連線。
 
@@ -291,23 +291,6 @@ Received message with JMSMessageID = ID:acbca67f03c346de9b7893026f97ddeb
 exit
 ```
 
-## 不支援的功能和限制
-
-以下 .NET 服務匯流排 API 功能是目前使用 AMQP 時無法支援的功能：
-
-* 交易
-* 透過傳輸目的地傳送
-* 依照訊息序號接收
-* 訊息和工作階段瀏覽
-* 工作階段狀態
-* Batch 型 API
-* 向外延展接收
-* 訂用帳戶規則的執行階段操作
-* 工作階段鎖定更新
-* 某些輕微的行為差異
-
-如需詳細資訊，請參閱[服務匯流排 AMQP 概觀](service-bus-amqp-dotnet.md)。本文包含不支援之 API 的詳細清單。
-
 ## 摘要
 
 本文示範如何使用 AMQP 1.0 和服務匯流排 .NET API，從 .NET 存取服務匯流排代理傳訊功能 (佇列和發佈/訂閱主題)。
@@ -322,6 +305,6 @@ exit
 * [如何搭配使用 Java 訊息服務 (JMS) API 與服務匯流排和 AMQP 1.0](service-bus-java-how-to-use-jms-api-amqp.md)
 * [如何使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
  
-[Azure 傳統入口網站]: https://manage.windowsazure.com
+[Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0824_2016-->

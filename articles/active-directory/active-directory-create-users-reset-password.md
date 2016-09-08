@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/29/2016"
+	ms.date="08/23/2016"
 	ms.author="curtand"/>
 
 # 重設使用者的密碼
@@ -35,4 +35,4 @@
 - [在 Azure AD 中管理密碼](active-directory-manage-passwords.md)
 - [在 Azure AD 中管理群組](active-directory-manage-groups.md)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0824_2016-->

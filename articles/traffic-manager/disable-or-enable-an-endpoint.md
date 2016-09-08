@@ -3,7 +3,7 @@
    description="本文將協助停用或啟用流量管理員設定檔端點。"
    services="traffic-manager"
    documentationCenter="na"
-   authors="joaoma"
+   authors="sdwheeler"
    manager="carmonm"
    editor="tysonn" />
 <tags 
@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="06/10/2016"
-   ms.author="joaoma" />
+   ms.author="sewhee" />
 
 # 停用或啟用流量管理員端點
 
@@ -24,7 +24,7 @@
 ## 若要停用端點
 
 1. 在 Azure 傳統入口網站的 [流量管理員] 窗格中，找出包含您要修改端點設定的流量管理員設定檔，然後按一下設定檔名稱右側的箭號。這會開啟設定檔的設定頁面。
-1. 在頁面的頂端，按一下 [**端點**] 以檢視包含在組態中的端點。 
+1. 在頁面的頂端，按一下 [**端點**] 以檢視包含在組態中的端點。
 1. 按一下您要停用的端點，然後按一下頁面底部的 [**停用**]。
 1. 根據流量管理員網域名稱的 DNS 存留時間 (TTL) 設定，流量將會停止流向端點。您可以從流量管理員設定檔的 [組態] 頁面變更 TTL。
 
@@ -44,4 +44,4 @@
 
 [流量管理員的效能考量](traffic-manager-performance-considerations.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0824_2016-->

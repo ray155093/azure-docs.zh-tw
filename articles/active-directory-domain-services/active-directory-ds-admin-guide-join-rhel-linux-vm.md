@@ -71,7 +71,7 @@
 ## 遠端連線到新佈建的 Linux 虛擬機器
 RHEL 7.2 虛擬機器已佈建在 Azure 中。下一個工作是從遠端連線至虛擬機器。
 
-**連線到 RHEL 7.2 虛擬機器** 遵循[如何登入執行 Linux 的虛擬機器](../virtual-machines/virtual-machines-linux-classic-log-on.md)一文中的指示。
+**連線到 RHEL 7.2 虛擬機器** 遵循[如何登入執行 Linux 的虛擬機器](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md)一文中的指示。
 
 下列剩餘步驟假設您使用 PuTTY 做為 SSH 用戶端來連線至 RHEL 虛擬機器。如需詳細資訊，請參閱 [PuTTY 下載頁面](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
 
@@ -173,8 +173,8 @@ RHEL 7.2 虛擬機器已佈建在 Azure 中。下一個工作是從遠端連線�
 
 
 ## 詳細資訊
-- [如何登入執行 Linux 的虛擬機器](../virtual-machines/virtual-machines-linux-classic-log-on.md)。
+- [如何登入執行 Linux 的虛擬機器](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md)。
 - [安裝 Kerberos](https://access.redhat.com/documentation/zh-TW/Red_Hat_Enterprise_Linux/6/html/Managing_Smart_Cards/installing-kerberos.html)
 - [Red Hat Enterprise Linux 7 - Windows 整合指南](https://access.redhat.com/documentation/zh-TW/Red_Hat_Enterprise_Linux/7/html/Windows_Integration_Guide/index.html)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0824_2016-->

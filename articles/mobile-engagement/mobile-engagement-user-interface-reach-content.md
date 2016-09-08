@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="mobile-multiple"
    ms.workload="mobile" 
-   ms.date="02/29/2016"
+   ms.date="08/19/2016"
    ms.author="piyushjo"/>
 
 # 如何管理不同類型推播通知活動的指定內容
@@ -35,7 +35,7 @@
 -    Web 通知：這是一種吸引使用者查看 Web 檢視的通知。
 
 ### 另請參閱
-- [觸達 - 作法 - 通知][Link 3] 
+- [觸達 - 作法 - 通知][Link 3]
 
 ### 關於 Web 檢視通知：
 您在此處提供的每個 "{deviceid}" 字樣 (在 HTML 程式碼或 JavaScript 程式碼中) 將會自動取代為顯示通知的裝置識別碼。這個簡單的方法可以擷取您後端系統裝載的外部 Web 服務中的 Azure Mobile Engagement 裝置識別碼。如果您想要建立全螢幕的 Web 檢視 (不含我們提供的預設 [動作] 和 [離開] 按鈕)，您可以從 Web 檢視通知的 JavaScript 程式碼中使用下列函式：
@@ -50,56 +50,56 @@
 
 - **Android + iOS 動作**
     - 開啟網頁
-    - http://[web-site-domain\] 
+    - http://[web-site-domain\]
     - 範例：http://www.azure.com
     - 傳送電子郵件
-    - mailto:[收件者]?subject=[主旨]&body=[訊息] 
+    - mailto:[收件者]?subject=[主旨]&body=[訊息]
     - 範例：mailto:foo@example.com?subject=Greetings%20from%20Azure%20Mobile%20Engagement!&body=Good%20stuff!
     - 傳送簡訊
-    - sms:[電話號碼] 
+    - sms:[電話號碼]
     - 範例：sms:2125551212
     - 撥電話號碼
-    - tel:[電話號碼] 
+    - tel:[電話號碼]
     - 範例：tel:2125551212
 - **僅限 Android 的動作**
     - 下載 Play 商店上的應用程式
-    - market://details?id=[app 套件] 
+    - market://details?id=[app 套件]
     - 範例：market://details?id=com.microsoft.office.word
     - 開始地理當地化的搜尋
-    - geo:0,0?q=[搜尋查詢] 
+    - geo:0,0?q=[搜尋查詢]
     - 範例：geo:0,0?q=starbucks,paris
 - **僅限 iOS 的動作**
     - 下載 App Store 上的應用程式
-    - http://itunes.apple.com/[country]/app/[app name]/id[app id]?mt=8 
+    - http://itunes.apple.com/[country]/app/[app name]/id[app id]?mt=8
     - 範例：http://itunes.apple.com/fr/app/briquet-virtuel/id430154748?mt=8
     - Windows 動作
     - 開啟網頁
-    - http://[web-site-domain\] 
+    - http://[web-site-domain\]
     - 範例：http://www.azure.com
     - 傳送電子郵件
-    - mailto:[收件者]?subject=[主旨]&body=[訊息] 
+    - mailto:[收件者]?subject=[主旨]&body=[訊息]
     - 範例：mailto:foo@example.com?subject=Greetings%20from%20Azure%20Mobile%20Engagement!&body=Good%20stuff!
     - 傳送簡訊 (需要 Skype 市集應用程式)
-    - sms:[電話號碼] 
+    - sms:[電話號碼]
     - 範例：sms:2125551212
     - 撥電話號碼 (需要 Skype 市集應用程式)
-    - tel:[電話號碼] 
+    - tel:[電話號碼]
     - 範例：tel:2125551212
     - 下載 Play 商店上的應用程式
-    - ms-windows-store:PDP?PFN=[應用程式套件識別碼] 
+    - ms-windows-store:PDP?PFN=[應用程式套件識別碼]
     - 範例：ms-windows-store:PDP?PFN=4d91298a-07cb-40fb-aecc-4cb5615d53c1
     - 開始 bingmaps 搜尋
-    - bingmaps:?q=[搜尋查詢] 
+    - bingmaps:?q=[搜尋查詢]
     - 範例：bingmaps:?q=starbucks,paris
     - 使用自訂配置
-    - [自訂配置]://[自訂配置參數] 
+    - [自訂配置]://[自訂配置參數]
     - 範例：myCustomProtocol://myCustomParams
     - 使用套件資料 (需要副檔名讀取的市集應用程式)
-    - [資料夾][資料].[副檔名] 
+    - [資料夾][資料].[副檔名]
     - 範例：myfolderdata.txt
  
 ### 建置追蹤 URL：
--    請參閱 <UI Documentation> 的＜設定＞一節，了解建置可讓使用者下載其他應用程式之追蹤 URL 的相關指示。
+-    請參閱＜UI 文件＞的＜設定＞一節，了解建置可讓使用者下載其他應用程式之追蹤 URL 的相關指示。
  
 ### 定義您的通知文字：
 填寫通知的標題、內容和按鈕文字。您可以根據使用者如何回應此活動的觸達意見反應，找出未來的活動對象。選取目標對象可以根據此活動是否已推送、回覆、採取動作或離開的意見反應。
@@ -230,4 +230,4 @@
 [Link 29]: mobile-engagement-user-interface-reach-content.md
  
 
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0824_2016-->

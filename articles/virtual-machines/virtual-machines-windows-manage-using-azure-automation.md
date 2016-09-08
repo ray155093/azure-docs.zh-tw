@@ -4,7 +4,7 @@
 	services="virtual-machines-windows, automation"
 	documentationCenter=""
 	authors="jodoglevy"
-	manager="eamono"
+	manager="timlt"
 	editor=""/>
 
 <tags
@@ -45,4 +45,4 @@ Azure 自動化提供非常可靠且高度可用的工作流程執行引擎，�
 - [我的第一個 Runbook](../automation/automation-first-runbook-graphical.md)
 - [Azure 自動化的學習地圖](https://azure.microsoft.com/documentation/learning-paths/automation/)
 
-<!---HONumber=AcomDC_0427_2016-->
+<!---HONumber=AcomDC_0824_2016-->

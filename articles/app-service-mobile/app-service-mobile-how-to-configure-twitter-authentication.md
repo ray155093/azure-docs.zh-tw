@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="05/04/2016"
+	ms.date="08/22/2016"
 	ms.author="mahender"/>
 
 # 如何設定 App Service 應用程式以使用 Twitter 登入
@@ -29,7 +29,7 @@
 
 1. 登入 [Azure 入口網站]，然後瀏覽到您的應用程式。複製您的 **URL**。您將使用此 URL 設定您的 Twitter 應用程式。
 
-2. 瀏覽至 [Twitter Developers] 網站，使用您的 Twitter 帳戶認證登入，然後按一下 [**建立新的應用程式**]。
+2. 瀏覽至 [Twitter Developers] 網站，使用您的 Twitter 帳戶認證登入，然後按一下 [建立新的應用程式]。
 
 3. 針對您新的應用程式輸入**名稱**和**說明**。貼上您應用程式的 **URL** 作為**網站**值。然後，針對**回呼 URL**，貼上您之前複製的**回呼 URL**。這是您已附加路徑 _/.auth/login/twitter/callback_ 的行動應用程式閘道器。例如：`https://contoso.azurewebsites.net/.auth/login/twitter/callback`。請確實使用 HTTPS 配置。
 
@@ -77,4 +77,4 @@
 [Azure 入口網站]: https://portal.azure.com/
 [xamarin]: ../app-services-mobile-app-xamarin-ios-get-started-users.md
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0824_2016-->

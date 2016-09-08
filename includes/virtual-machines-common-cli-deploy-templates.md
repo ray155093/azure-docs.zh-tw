@@ -30,13 +30,13 @@
 
 ### 設定 Azure 帳戶和訂用帳戶
 
-如果您還沒有 Azure 訂閱帳戶，但是有 MSDN 訂閱帳戶，請啟用 [MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。或者申請[免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+如果您還沒有 Azure 訂用帳戶，但是有 MSDN 訂用帳戶，請啟用 [MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。或者申請[免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 現在，輸入 `azure login` 並遵循提示來進行 Azure 帳戶的互動式登入體驗，[以互動方式登入您的 Azure 帳戶](../articles/xplat-cli-connect.md#use-the-log-in-method)。
 
 > [AZURE.NOTE] 如果您有公司或學校識別碼，而且知道尚未啟用雙因素驗證，則您「也」可以使用 `azure login -u` 再加上公司或學校識別碼，在「沒有」互動式工作階段的情況下進行登入。如果沒有公司或學校識別碼，您可以[從個人 Microsoft 帳戶建立公司或學校識別碼](../articles/virtual-machines/virtual-machines-windows-create-aad-work-id.md)，使用相同方式來登入。
 
-您的帳戶可能會有一個以上的訂閱帳戶。您可以輸入 `azure account list`，即可列出訂閱帳戶，如以下所示：
+您的帳戶可能會有一個以上的訂用帳戶。您可以輸入 `azure account list`，即可列出訂用帳戶，如以下所示：
 
     azure account list
     info:    Executing command account list
@@ -223,7 +223,7 @@
 - 讓外界使用的網域名稱。
 - Ubuntu Server 版本號碼 -- 但只能接受一個清單。
 
-決定這些值之後，就可以開始建立群組，然後將這個範本部署到 Azure 訂閱帳戶。
+決定這些值之後，就可以開始建立群組，然後將這個範本部署到 Azure 訂用帳戶。
 
     {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -1240,7 +1240,7 @@
 
 ## <a id="log-on-to-a-linux-based-virtual-machine"></a>工作：登入 Linux 架構的虛擬機器
 
-通常 Linux 機器是透過 SSH 連接的。如需詳細資訊，請參閱[如何在 Azure 上搭配使用 SSH 與 Linux](../articles/virtual-machines/virtual-machines-linux-ssh-from-linux.md)。
+通常 Linux 機器是透過 SSH 連接的。如需詳細資訊，請參閱[如何在 Azure 上搭配使用 SSH 與 Linux](../articles/virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md)。
 
 ## <a id="stop-a-virtual-machine"></a>工作：停止 VM
 
@@ -1278,4 +1278,4 @@
 
 如需您可以使用的其他範本，請參閱 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)和[使用範本的應用程式架構](../articles/virtual-machines/virtual-machines-linux-app-frameworks.md)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0824_2016-->

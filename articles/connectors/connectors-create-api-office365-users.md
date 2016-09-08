@@ -1,5 +1,5 @@
 <properties
-    pageTitle="在 PowerApps Enterprise 或 Logic Apps 中新增 Office 365 使用者連接器 | Microsoft Azure"
+    pageTitle="在 Logic Apps 中新增 Office 365 使用者連接器 | Microsoft Azure"
     description="搭配 REST API 參數來使用 Office 365 使用者連接器的概觀"
     services=""    
     documentationCenter=""     
@@ -14,32 +14,19 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="integration"
-ms.date="05/18/2016"
+ms.date="08/18/2016"
 ms.author="deonhe"/>
 
 # 開始使用 Office 365 使用者連接器
 
-連接至 Office 365 使用者，以取得設定檔、搜尋使用者等等。您可以從下列應用程式使用 Office 365 使用者連接器︰
-
-- 邏輯應用程式 
-- PowerApps
-
-> [AZURE.SELECTOR]
-- [邏輯應用程式](../articles/connectors/connectors-create-api-office365-users.md)
-- [PowerApps Enterprise](../articles/power-apps/powerapps-create-api-office365-users.md)
-
-&nbsp;
+連接至 Office 365 使用者，以取得設定檔、搜尋使用者等等。
 
 >[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
-
 您可以利用 Office 365 使用者來：
 
-- 根據您從 Office 365 使用者所取得的資料，來建置您的商務流程。 
-- 使用可取得直屬員工、取得管理員的使用者設定檔等等的動作。這些動作會收到回應，然後輸出能讓其他動作使用的資料。例如，取得某人的直屬員工，然後利用此資訊更新 SQL Azure 資料庫。 
-- 將 Office 365 使用者連接器新增到 PowerApps Enterprise，讓您的使用者能夠在自己的應用程式中使用這個連接器。 
-
-如需如何在 PowerApps Enterprise 中新增連接器的資訊，請移至[在 PowerApps 中註冊連接器](../power-apps/powerapps-register-from-available-apis.md)。
+- 根據您從 Office 365 使用者所取得的資料，來建置您的商務流程。
+- 使用可取得直屬員工、取得管理員的使用者設定檔等等的動作。這些動作會收到回應，然後輸出能讓其他動作使用的資料。例如，取得某人的直屬員工，然後利用此資訊更新 SQL Azure 資料庫。
 
 如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
@@ -60,7 +47,7 @@ Office 365 使用者連接器提供下列動作。但不包含觸發程序。
 
 >[AZURE.INCLUDE [建立至 Office 365 使用者連線的步驟](../../includes/connectors-create-api-office365users.md)]
 
-連線建立之後，您需要輸入 Office 365 使用者屬性，像是使用者識別碼。本主題的 **REST API 參考**一節會說明這些屬性。
+連線建立之後，您需要輸入 Office 365 使用者屬性，像是使用者識別碼。本主題的 **REST API 參考**一節說明這些屬性。
 
 >[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的 Office 365 使用者連線。
 
@@ -91,11 +78,11 @@ Office 365 使用者連接器提供下列動作。但不包含觸發程序。
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|userId|字串|yes|路徑|無|使用者主體名稱或電子郵件識別碼|
+|userId|string|yes|路徑|無|使用者主體名稱或電子郵件識別碼|
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|作業已順利完成|
 |202|作業已順利完成|
@@ -111,7 +98,7 @@ Office 365 使用者連接器提供下列動作。但不包含觸發程序。
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|userId|字串|yes|路徑|無|使用者主體名稱或電子郵件識別碼|
+|userId|string|yes|路徑|無|使用者主體名稱或電子郵件識別碼|
 
 #### Response
 
@@ -132,7 +119,7 @@ Office 365 使用者連接器提供下列動作。但不包含觸發程序。
 
 | 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|userId|字串|yes|路徑|無|使用者主體名稱或電子郵件識別碼|
+|userId|string|yes|路徑|無|使用者主體名稱或電子郵件識別碼|
 
 #### Response
 
@@ -151,13 +138,13 @@ Office 365 使用者連接器提供下列動作。但不包含觸發程序。
 ### 搜尋使用者 
 擷取使用者設定檔的搜尋結果。```GET: /users```
 
-| 名稱| 資料類型|必要|位於|預設值|說明|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|searchTerm|字串|no|query|無|搜尋字串 (適用於：顯示名稱、名字、姓氏、郵件、郵件暱稱，及使用者主體名稱)|
+|searchTerm|string|no|query|無|搜尋字串 (適用於：顯示名稱、名字、姓氏、郵件、郵件暱稱，及使用者主體名稱)|
 
 #### Response
 
-|名稱|說明|
+|Name|說明|
 |---|---|
 |200|作業已順利完成|
 |202|作業已順利完成|
@@ -175,18 +162,18 @@ Office 365 使用者連接器提供下列動作。但不包含觸發程序。
 
 |屬性名稱 | 資料類型 |必要
 |---|---|---|
-|DisplayName|字串|no|
-|GivenName|字串|no|
-|Surname|字串|no|
-|Mail|字串|no|
-|MailNickname|字串|no|
-|TelephoneNumber|字串|no|
+|DisplayName|string|no|
+|GivenName|string|no|
+|Surname|string|no|
+|Mail|string|no|
+|MailNickname|string|no|
+|TelephoneNumber|string|no|
 |AccountEnabled|布林值|no|
-|識別碼|字串|yes
-|UserPrincipalName|字串|no|
-|部門|字串|no|
-|JobTitle|字串|no|
-|mobilePhone|字串|no|
+|識別碼|string|yes
+|UserPrincipalName|string|no|
+|系所|string|no|
+|JobTitle|string|no|
+|mobilePhone|string|no|
 
 
 ## 後續步驟
@@ -203,4 +190,4 @@ Office 365 使用者連接器提供下列動作。但不包含觸發程序。
 [10]: ./media/connectors-create-api-office365-users/contoso-aad-app.PNG
 [11]: ./media/connectors-create-api-office365-users/contoso-aad-app-configure.PNG
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0824_2016-->

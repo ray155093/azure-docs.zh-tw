@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-windows-phone" 
 	ms.devlang="na" 
 	ms.topic="article"
-	ms.date="07/07/2015" 
+	ms.date="08/19/2016" 
 	ms.author="piyushjo" />
 
 #Windows Phone Silverlight Reach SDK 整合
@@ -24,7 +24,7 @@
 
 您不需要新增任何項目。`EngagementReach` 的參考和資源已在您的專案中。
 
-> [AZURE.TIP]您可以自定專案的 `Resources` 資料夾中的影像，尤其是品牌圖示 (預設為 Engagement 的圖示)。
+> [AZURE.TIP]  您可以自定專案的 `Resources` 資料夾中的影像，尤其是品牌圖示 (預設為 Engagement 的圖示)。
 
 ##新增功能
 
@@ -73,7 +73,7 @@ Engagement 組態會集中在您專案的 `Resources\EngagementConfiguration.xml
 	/* Initialize Engagement agent with above configuration. */
 	EngagementAgent.Instance.Init(engagementConfiguration);
 
-> [AZURE.TIP]您可以指定應用程式的 MPNS 推播通道之名稱。根據預設，Engagement 會依 appId 建立名稱。您不需要自行指定名稱，除非您打算於 Engagement 之外使用該推播通道。
+> [AZURE.TIP] 您可以指定應用程式的 MPNS 推播通道之名稱。根據預設，Engagement 會依 appId 建立名稱。您不需要自行指定名稱，除非您打算於 Engagement 之外使用該推播通道。
 
 ### Engagement 初始化
 
@@ -99,7 +99,7 @@ Engagement 組態會集中在您專案的 `Resources\EngagementConfiguration.xml
 		   EngagementReach.Instance.OnActivated(e);
 		}
 
-> [AZURE.IMPORTANT]`EngagementReach.Instance.Init` 會在專用的執行緒中執行。您不必自行進行此作業。
+> [AZURE.IMPORTANT] `EngagementReach.Instance.Init` 會在專用的執行緒中執行。您不必自行進行此作業。
 
 ##應用程式商店提交考量事項
 
@@ -144,7 +144,7 @@ EngagementReach 物件提供兩種方法來管理加入/退出、`EnableNativePu
 
 您可以看到每個方法的回呼會傳回布林值。Engagement 會在發送資料推送之後傳送回饋到它的後端。如果回呼傳回 false，會傳送 `exit` 回饋。否則將會是 `action`。如果沒有設定事件的回呼，就會傳送 `drop` 回饋到 Engagement。
 
-> [AZURE.WARNING]Engagement 無法接收單一資料推送的多個回饋。如果計畫在單一事件上設定多個處理常式，請留意回饋將與最後一個傳送的對應。在此情況下，我們建議一律傳回相同的值，避免在前端有令人困惑的回饋。
+> [AZURE.WARNING] Engagement 無法接收單一資料推送的多個回饋。如果計畫在單一事件上設定多個處理常式，請留意回饋將與最後一個傳送的對應。在此情況下，我們建議一律傳回相同的值，避免在前端有令人困惑的回饋。
 
 ##自訂 UI (選擇性)
 
@@ -177,7 +177,7 @@ EngagementReach 物件提供兩種方法來管理加入/退出、`EnableNativePu
 	   // Engagement Agent and Reach initialization
 	}
 
-> [AZURE.NOTE]根據預設，Engagement 會使用自己的 `EngagementReachHandler` 實作。您不需要自己建立，但如果有需要，您不需要覆寫每個方法。預設行為是選取 Engagement 基底物件。
+> [AZURE.NOTE] 根據預設，Engagement 會使用自己的 `EngagementReachHandler` 實作。您不需要自己建立，但如果有需要，您不需要覆寫每個方法。預設行為是選取 Engagement 基底物件。
 
 ### 版面配置
 
@@ -211,11 +211,11 @@ EngagementReach 物件提供兩種方法來管理加入/退出、`EnableNativePu
 	   // return a new instance of your own notification
 	}
 
-> [AZURE.TIP]`CreateNotification` 方法可以傳回 Null。通知將無法顯示，且觸達活動將會被捨棄。
+> [AZURE.TIP] `CreateNotification` 方法可以傳回 Null。通知將無法顯示，且觸達活動將會被捨棄。
 
 若要簡化您的版面配置實作，我們也提供可讓您做為程式碼基礎的 xaml。它們在 Engagement SDK 封存內 (/src/reach/)。
 
-> [AZURE.WARNING]我們提供的來源與我們使用的完全相同。因此，如果您想要直接修改它們，別忘了變更命名空間和名稱。
+> [AZURE.WARNING] 我們提供的來源與我們使用的完全相同。因此，如果您想要直接修改它們，別忘了變更命名空間和名稱。
 
 ### 通知的位置
 
@@ -259,11 +259,11 @@ EngagementReach 物件提供兩種方法來管理加入/退出、`EnableNativePu
 
 您可以在 `App.xaml.cs` 檔案的 `Application_Launching` 方法中設定回呼，最好設定在 `EngagementReach.Instance.Init()` 呼叫之前。
 
-> [AZURE.TIP]每個處理常式都是由 UI 執行緒呼叫。在使用 MessageBox 或 UI 相關的項目時您不必擔心。
+> [AZURE.TIP] 每個處理常式都是由 UI 執行緒呼叫。在使用 MessageBox 或 UI 相關的項目時您不必擔心。
 
 [應用程式原則]: http://msdn.microsoft.com/library/windows/apps/hh184841(v=vs.105).aspx
 [Content Policies]: http://msdn.microsoft.com/library/windows/apps/hh184842(v=vs.105).aspx
 [適用於特定應用程式類型的額外需求]: http://msdn.microsoft.com/library/windows/apps/hh184838(v=vs.105).aspx
  
 
-<!---HONumber=Oct15_HO3-->
+<!---HONumber=AcomDC_0824_2016-->
