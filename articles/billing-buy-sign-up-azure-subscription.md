@@ -60,7 +60,7 @@ Azure 提供各種優惠來符合您的業務需求並開始使用 Azure。請�
 
 4. 在 [以電話驗證] 區段中，您必須提供電話號碼來接收您可以提供的驗證碼，以完成驗證程序。
 
-    您可以選擇以簡訊或透過語音電話接收驗證碼。選取 [傳送簡訊] 或 [撥號給我] 來決定方式。在第一個方塊中選取您國家的國際電話區碼，並在第二個方塊中輸入您的電話號碼。收到驗證碼之後，在第三個方塊輸入驗證碼，然後選取 [**驗證碼**] 按鈕。[如需詳細資訊，請參閱這篇文章](billing-troubleshoot-azure-sign-up-issues.md#i-am-not-getting-text-messages-or-calls-during-account-verification-when-i-try-to-sign-up)。
+    您可以選擇以簡訊或透過語音電話接收驗證碼。選取 [傳送簡訊] 或 [撥號給我] 來決定方式。在第一個方塊中選取您國家/地區的國際電話區碼，並在第二個方塊中輸入您的電話號碼。收到驗證碼之後，在第三個方塊輸入驗證碼，然後選取 [**驗證碼**] 按鈕。[如需詳細資訊，請參閱這篇文章](billing-troubleshoot-azure-sign-up-issues.md#i-am-not-getting-text-messages-or-calls-during-account-verification-when-i-try-to-sign-up)。
 
     >[AZURE.NOTE] 您無法使用 VOIP 電話號碼進行電話驗證程序。
 
