@@ -226,11 +226,11 @@
 
 `id` 的值必須是唯一的，且不可包含下列字元集中的字元：
 
-+ 控制字元：[0x0000-0x001F] 和 [0x007F-0x009F]。如需詳細資訊，請參閱 [ASCII 控制碼 C0 和 C1](http://en.wikipedia.org/wiki/Data_link_escape_character#C1_set) (英文)。
++ 控制字元：[0x0000-0x001F] 和 [0x007F-0x009F]。如需詳細資訊，請參閱 [ASCII 控制碼 C0 和 C1](http://en.wikipedia.org/wiki/Data_link_escape_character#C1_set) \(英文)。
 +  可列印的字元：**"**(0x0022)、**+** (0x002B)、**/** (0x002F)、**?** (0x003F)、**\** (0x005C)、**`** (0x0060)
 +  識別碼 "." 和 ".."
 
-您也可以在資料表中使用整數識別碼。若要使用整數識別碼，您必須使用 `--integerId` 選項，以 `mobile table create` 命令建立資料表。此命令需要在 Azure 的命令列介面 (CLI) 中執行。如需關於使用 CLI 的詳細資訊，請參閱[使用 CLI 管理行動服務資料表](../virtual-machines-command-line-tools.md#Mobile_Tables) (英文)。
+您也可以在資料表中使用整數識別碼。若要使用整數識別碼，您必須使用 `--integerId` 選項，以 `mobile table create` 命令建立資料表。此命令需要在 Azure 的命令列介面 (CLI) 中執行。如需關於使用 CLI 的詳細資訊，請參閱[使用 CLI 管理行動服務資料表](../virtual-machines-command-line-tools.md#Mobile_Tables) \(英文)。
 
 
 ###<a name="access-headers"></a>作法：存取自訂參數
@@ -289,7 +289,7 @@
 
 ###<a name="work-with-users"></a>作法：處理使用者
 
-在 Azure 行動服務中，您可以使用身分識別提供者來驗證使用者。如需詳細資訊，請參閱[開始使用驗證] (英文)。當已驗證使用者叫用資料表作業時，行動服務會使用 [user 物件]將使用者資訊提供給註冊的指令碼函數。**userId** 屬性可用於儲存及擷取使用者特定資訊。以下範例會根據已驗證使用者的 **userId** 設定項目的 owner 屬性：
+在 Azure 行動服務中，您可以使用身分識別提供者來驗證使用者。如需詳細資訊，請參閱[開始使用驗證] \(英文)。當已驗證使用者叫用資料表作業時，行動服務會使用 [user 物件]將使用者資訊提供給註冊的指令碼函數。**userId** 屬性可用於儲存及擷取使用者特定資訊。以下範例會根據已驗證使用者的 **userId** 設定項目的 owner 屬性：
 
 	function insert(item, user, request) {
 	    item.owner = user.userId;
@@ -376,7 +376,7 @@
 
 ###<a name="get-api-user"></a>作法：在自訂 API 中處理使用者和標頭
 
-在 Azure 行動服務中，您可以使用身分識別提供者來驗證使用者。如需詳細資訊，請參閱[開始使用驗證] (英文)。當已驗證使用者要求自訂 API 時，行動服務會使用 [user 物件]將有關使用者的資訊提供給自訂 API 程式碼。要從 [request 物件]的 user 屬性存取 [user 物件]。**userId** 屬性可用於儲存及擷取使用者特定資訊。
+在 Azure 行動服務中，您可以使用身分識別提供者來驗證使用者。如需詳細資訊，請參閱[開始使用驗證] \(英文)。當已驗證使用者要求自訂 API 時，行動服務會使用 [user 物件]將有關使用者的資訊提供給自訂 API 程式碼。要從 [request 物件]的 user 屬性存取 [user 物件]。**userId** 屬性可用於儲存及擷取使用者特定資訊。
 
 以下的 **OrderPizza** 自訂 API 函數會根據已驗證使用者的 **userId** 設定項目的 owner 屬性：
 
@@ -505,7 +505,7 @@ HTTP GET 要求可以如下叫用上述自訂 API 範例中的兩個路由 (也�
 
 您可以使用原始檔控制搭配 Node.js 封裝管理員 (npm) 來控制您的行動服務可使用哪些模組。作法有二：
 
-+ 針對發行至 npm 以及由 npm 安裝的模組，使用 package.json 檔案宣告哪些封裝要由您的行動服務安裝。這麼做時，您的服務一律有權存取所需封裝的最新版本。package.json 檔案會留存在 `.\service` 目錄中。如需詳細資訊，請參閱 [Azure 行動服務對 package.json 的支援] (英文)。
++ 針對發行至 npm 以及由 npm 安裝的模組，使用 package.json 檔案宣告哪些封裝要由您的行動服務安裝。這麼做時，您的服務一律有權存取所需封裝的最新版本。package.json 檔案會留存在 `.\service` 目錄中。如需詳細資訊，請參閱 [Azure 行動服務對 package.json 的支援] \(英文)。
 
 + 若為私人或自訂模組，您可以使用 npm 手動將模組安裝至原始檔控制的 `.\service\node_modules` 目錄中。如需手動上傳模組的範例，請參閱[在伺服器指令碼中運用共用程式碼和 Node.js 模組]。
 
@@ -755,7 +755,7 @@ HTTP GET 要求可以如下叫用上述自訂 API 範例中的兩個路由 (也�
 		insertItems(); 
 
 
-在這篇[部落格文章](http://blogs.msdn.com/b/jpsanders/archive/2013/03/20/server-script-to-insert-table-items-in-windows-azure-mobile-services.aspx) (英文) 中可以找到完整的程式碼範例以及相關的討論。如果您使用此程式碼，可以根據您的特定情況調整，並徹底測試。
+在這篇[部落格文章](http://blogs.msdn.com/b/jpsanders/archive/2013/03/20/server-script-to-insert-table-items-in-windows-azure-mobile-services.aspx) \(英文) 中可以找到完整的程式碼範例以及相關的討論。如果您使用此程式碼，可以根據您的特定情況調整，並徹底測試。
 
 ###<a name="JSON-types"></a>作法：將 JSON 類型對應至資料庫類型
 

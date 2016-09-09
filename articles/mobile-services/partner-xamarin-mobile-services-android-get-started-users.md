@@ -47,7 +47,7 @@
 [AZURE.INCLUDE [mobile-services-restrict-permissions-javascript-backend](../../includes/mobile-services-restrict-permissions-javascript-backend.md)]
 
 
-3. 在 Xamarin Studio 中，開啟您完成[開始使用行動服務] (英文) 教學課程時所建立的專案。
+3. 在 Xamarin Studio 中，開啟您完成[開始使用行動服務] \(英文) 教學課程時所建立的專案。
 
 4. 從 [執行] 功能表，按一下 [開始偵錯] 來啟動應用程式。確認應用程式啟動之後會引發無法處理的例外狀況，狀態碼為 401 (未授權)。
 
