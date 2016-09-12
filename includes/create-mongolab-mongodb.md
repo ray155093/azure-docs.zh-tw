@@ -25,7 +25,7 @@
 
 	![在 Azure 入口網站中管理 MongoLab 資料庫](./media/create-mongolab-mongodb/manage-mongolab-add-on.png)
 
-7. 按一下頁面底部的 [連接資訊] (如下所示)，即可取得資料庫連接資訊。
+7. 按一下頁面底部的 [連接資訊] \(如下所示)，即可取得資料庫連接資訊。
 
 	![MongoLab 連接資訊](./media/create-mongolab-mongodb/mongolab-conn-info.png)
 

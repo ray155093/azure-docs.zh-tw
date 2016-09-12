@@ -34,7 +34,7 @@
 
 1. 從實驗室清單中，選取所需的實驗室。
 
-1. 選取 [Settings] (設定)。
+1. 選取 [Settings] \(設定)。
 
 	![Settings](./media/devtest-lab-set-lab-policy/lab-blade-settings.png)
 

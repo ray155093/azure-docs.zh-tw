@@ -340,7 +340,7 @@ Azure Active Directory 存取控制是這項服務的另一個功能，可讓應
 
 ![MobileServices](./media/intro-to-azure/MobileServicesIntroNew.png) **圖：行動服務提供應用程式與行動裝置溝通經常需要用到的功能。**
 
-Azure 行動服務提供許多有用的功能，可讓您減少花費在建置行動應用程式後端的時間。它可讓您對 SQL Database 中儲存的資料進行簡單的佈建和管理。利用伺服器端程式碼，即可輕鬆地使用其他資料儲存選項，如 Blob 儲存體或 MongoDB。行動服務提供通知支援，但在某些情況下，您可以改用 [通知中樞] (如後續所述)。服務包括一個 REST API，您的行動應用程式可呼叫此 API 以完成工作。行動服務還提供透過 Microsoft 和 Active Directory 以及其他知名身分識別提供者 (如 Facebook、Twitter 和 Google) 來驗證使用者的能力。
+Azure 行動服務提供許多有用的功能，可讓您減少花費在建置行動應用程式後端的時間。它可讓您對 SQL Database 中儲存的資料進行簡單的佈建和管理。利用伺服器端程式碼，即可輕鬆地使用其他資料儲存選項，如 Blob 儲存體或 MongoDB。行動服務提供通知支援，但在某些情況下，您可以改用 [通知中樞] \(如後續所述)。服務包括一個 REST API，您的行動應用程式可呼叫此 API 以完成工作。行動服務還提供透過 Microsoft 和 Active Directory 以及其他知名身分識別提供者 (如 Facebook、Twitter 和 Google) 來驗證使用者的能力。
 
 
 您可以使用其他 Azure 服務 (如服務匯流排和背景工作角色)，並連接到內部部署系統。您甚至可以從 Azure Store 中取用協力廠商附加元件 (如用於電子郵件的 SendGrid)，以提供其他功能。
