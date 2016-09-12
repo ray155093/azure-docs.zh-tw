@@ -1431,7 +1431,7 @@ OData XML
           	</m:properties>
 		</content>
 	</entry>
-</摘要>
+</feed>
 
 ###9\.3.取得使用狀況統計資料
 取得使用狀況統計資料。
@@ -1735,7 +1735,7 @@ OData XML
 		</m:properties>
 		</content>
 	</entry>
-</摘要>
+</feed>
 
 
 ###10\.2.取得功能資訊 (適用於特定排名組建)
@@ -3001,7 +3001,7 @@ OData XML
 			</m:properties>
 		</content>
 	</entry>
-</摘要>
+</feed>
 
 ##14\.通知
 Azure Machine Learning 建議會在系統中持續發生錯誤時建立通知。有 3 種類型的通知：
