@@ -40,7 +40,7 @@
 
 ###建立新資料表
 
-在 SSMS 的 [物件總管] 中使用內容功能表項目 [新系統設定版本的資料表] 開啟查詢編輯器與時態表範本指令碼，然後使用 [指定範本參數的值] (Ctrl + Shift + M) 填入範本：
+在 SSMS 的 [物件總管] 中使用內容功能表項目 [新系統設定版本的資料表] 開啟查詢編輯器與時態表範本指令碼，然後使用 [指定範本參數的值] \(Ctrl + Shift + M) 填入範本：
 
 ![SSMSNewTable](./media/sql-database-temporal-tables/AzureTemporal2.png)
 

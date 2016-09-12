@@ -98,16 +98,16 @@
 <!--Marketplace Links -->
 [birst_marketplace]: https://azure.microsoft.com/en-gb/marketplace/partners/birst/birst/
 <!--[clearstory_marketplace]:-->
-[dell_statistica_marketplace]: https://azure.microsoft.com/zh-TW/marketplace/partners/dell-software/statistica-data-miner/
-[dundas_bi_marketplace]: https://azure.microsoft.com/zh-TW/marketplace/partners/dundas/dundas-bi/
+[dell_statistica_marketplace]: https://azure.microsoft.com/marketplace/partners/dell-software/statistica-data-miner/
+[dundas_bi_marketplace]: https://azure.microsoft.com/marketplace/partners/dundas/dundas-bi/
 <!--[jinfonet_marketplace]:-->
-[logianalytics_marketplace]: https://azure.microsoft.com/zh-TW/marketplace/partners/logi-analytics/logi-info-11/
-[looker_marketplace]: https://azure.microsoft.com/zh-TW/marketplace/partners/looker/looker-analytics-platform-326/
-<!--[qlik_marketplace]:https://azure.microsoft.com/zh-TW/marketplace/partners/qliktech-international-ab/qlikview/ -->
-[sisense_marketplace]: https://azure.microsoft.com/zh-TW/marketplace/partners/sisense/sisense-byol/
-[tableau_marketplace]: https://azure.microsoft.com/zh-TW/marketplace/partners/tableau/tableau-server/
-[targit_marketplace]: https://azure.microsoft.com/zh-TW/marketplace/partners/targit/targit-decision-suite/
-[yellowfin_marketplace]: https://azure.microsoft.com/zh-TW/marketplace/partners/yellowfin/yellowfin-for-azure-byol/
+[logianalytics_marketplace]: https://azure.microsoft.com/marketplace/partners/logi-analytics/logi-info-11/
+[looker_marketplace]: https://azure.microsoft.com/marketplace/partners/looker/looker-analytics-platform-326/
+<!--[qlik_marketplace]:https://azure.microsoft.com/marketplace/partners/qliktech-international-ab/qlikview/ -->
+[sisense_marketplace]: https://azure.microsoft.com/marketplace/partners/sisense/sisense-byol/
+[tableau_marketplace]: https://azure.microsoft.com/marketplace/partners/tableau/tableau-server/
+[targit_marketplace]: https://azure.microsoft.com/marketplace/partners/targit/targit-decision-suite/
+[yellowfin_marketplace]: https://azure.microsoft.com/marketplace/partners/yellowfin/yellowfin-for-azure-byol/
 
 <!--Press links-->
 <!--[birst_press]:-->

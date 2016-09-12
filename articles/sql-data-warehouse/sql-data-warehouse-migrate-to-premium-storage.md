@@ -147,19 +147,41 @@ ALTER DATABASE CurrentDatabasename MODIFY NAME = NewDatabaseName;
 -- 步驟 1︰建立資料表以控制索引重建
 -- 以具有 mediumrc 角色或更高權限的使用者身分執行
 --------------------------------------------------------------------------------
-create table sql\_statements WITH (distribution = round\_robin) as select 'alter index all on ' + s.name + '.' + t.NAME + ' rebuild;' as statement, row\_number() over (order by s.name, t.name) as sequence from sys.schemas s inner join sys.tables t on s.schema\_id = t.schema\_id where is\_external = 0 ; go
+create table sql_statements
+WITH (distribution = round_robin)
+as select 
+'alter index all on ' + s.name + '.' + t.NAME + ' rebuild;' as statement, 
+row\_number() over (order by s.name, t.name) as sequence 
+from 
+sys.schemas s 
+inner join sys.tables t 
+on s.schema\_id = t.schema\_id 
+where 
+is\_external = 0 
+; go
  
 --------------------------------------------------------------------------------
 -- 步驟 2︰執行索引重建。如果指令碼失敗，可以重新執行以下程式碼從最後中斷的地方重新開始
 -- 以具有 mediumrc 角色或更高權限的使用者身分執行
 --------------------------------------------------------------------------------
 
-declare @nbr\_statements int = (select count(*) from sql\_statements) declare @i int = 1 while(@i <= @nbr\_statements) begin declare @statement nvarchar(1000)= (select statement from sql\_statements where sequence = @i) print cast(getdate() as nvarchar(1000)) + ' Executing... ' + @statement exec (@statement) delete from sql\_statements where sequence = @i set @i += 1 end;
+declare @nbr_statements int = (select count(*) from sql_statements)
+declare @i int = 1
+while(@i <= @nbr_statements)
+begin
+      declare @statement nvarchar(1000)= (select statement from sql_statements where sequence = @i)
+      print cast(getdate() as nvarchar(1000)) + ' Executing... ' + @statement
+      exec (@statement)
+      delete from sql_statements where sequence = @i
+      set @i += 1
+end;
 go
 -------------------------------------------------------------------------------
 -- 步驟 3︰清除在步驟 1 中建立的資料表
 --------------------------------------------------------------------------------
-drop table sql\_statements; go ````
+drop table sql_statements;
+go
+````
 
 如果您遇到任何關於資料倉儲的問題，請[建立支援票證][]和參考「移轉至進階儲存體」做為可能的原因。
 
@@ -181,7 +203,7 @@ drop table sql\_statements; go ````
 
 
 <!--Other Web references-->
-[進階儲存體，以獲得更高的效能可預測性]: https://azure.microsoft.com/zh-TW/blog/azure-sql-data-warehouse-introduces-premium-storage-for-greater-performance/
+[進階儲存體，以獲得更高的效能可預測性]: https://azure.microsoft.com/blog/azure-sql-data-warehouse-introduces-premium-storage-for-greater-performance/
 [Azure 入口網站]: https://portal.azure.com
 
 <!---HONumber=AcomDC_0831_2016-->

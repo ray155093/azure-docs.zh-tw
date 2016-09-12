@@ -199,13 +199,14 @@ Operations | <li>完整匯入和差異匯入、匯出</li><li>若為匯出：新
 
 **資料表/檢視** 若要匯入物件的多重值屬性，您必須在 [多重資料表/檢視名稱] 中提供以逗號分隔的資料表/檢視名稱，以及在父資料表的 [聯結條件] 中提供各自的聯結條件。
 
-範例：您想要匯入 [員工] 物件與其所有的多重值屬性。有兩個資料表：[員工] (主要資料表) 和 [部門] (多重值)。執行下列動作：
+範例：您想要匯入 [員工] 物件與其所有的多重值屬性。有兩個資料表：[員工]\(主要資料表) 和 [部門]\(多重值)。執行下列動作：
 
 - 在 [資料表/檢視/SP] 中輸入 [員工]。
 - 在 [多重資料表/檢視名稱] 中輸入 [部門]。
 - 在 [聯結條件] 中輸入 [員工] 和 [部門] 之間的聯結條件，例如 `Employee.DEPTID=Department.DepartmentID`。![runstep2](./media/active-directory-aadconnectsync-connector-genericsql/runstep2.png)
 
-**預存程序** ![runstep3](./media/active-directory-aadconnectsync-connector-genericsql/runstep3.png)
+**預存程序**
+![runstep3](./media/active-directory-aadconnectsync-connector-genericsql/runstep3.png)
 
 - 如果您有大量資料，建議實作預存程序的分頁。
 - 若要讓預存程序支援分頁，您必須提供開始索引和結束索引。請參閱：[有效地進行大量資料的分頁](https://msdn.microsoft.com/library/bb445504.aspx)。
@@ -214,7 +215,8 @@ Operations | <li>完整匯入和差異匯入、匯出</li><li>若為匯出：新
 - 一般 SQL 連接器也支援從 Microsoft SQL Server 中連結伺服器的匯入作業。如果應該從連結的伺服器中的資料表擷取資訊，則應該以下列格式提供資料表：`[ServerName].[Database].[Schema].[TableName]`
 - 一般 SQL 連接器僅支援在執行步驟資訊和結構描述偵測之間具有類似結構 (包括別名和資料類型) 的物件。如果結構描述中選取的物件與在執行步驟提供的資訊不同，則 SQL 連接器無法支援這類案例。
 
-**SQL 查詢** ![runstep4](./media/active-directory-aadconnectsync-connector-genericsql/runstep4.png)
+**SQL 查詢**
+![runstep4](./media/active-directory-aadconnectsync-connector-genericsql/runstep4.png)
 
 ![runstep5](./media/active-directory-aadconnectsync-connector-genericsql/runstep5.png)
 
@@ -244,7 +246,8 @@ Operations | <li>完整匯入和差異匯入、匯出</li><li>若為匯出：新
 
 **資料表/檢視** 如果您選擇 [資料表/檢視] 選項，則連接器會產生各自的查詢來進行匯出。
 
-**預存程序** ![runstep8](./media/active-directory-aadconnectsync-connector-genericsql/runstep8.png)
+**預存程序**
+![runstep8](./media/active-directory-aadconnectsync-connector-genericsql/runstep8.png)
 
 如果您選擇預存程序選項，則匯出需要 3 個不同的預存程序才能執行插入/更新/刪除作業。
 
@@ -254,7 +257,8 @@ Operations | <li>完整匯入和差異匯入、匯出</li><li>若為匯出：新
 - 從結構描述選取的屬性會做為預存程序的參數值。範例：`EmployeeName: INPUT: @EmployeeName` (EmployeeName 已在連接器結構描述中選取，而連接器會在進行匯出時取代各自的值)
 - 若要執行參數化預存程序，請以 `[Name]:[Direction]:[Value]` 格式提供參數。在個別一行上輸入每個參數 (使用 Ctrl + Enter 來換行)。
 
-**SQL 查詢** ![runstep9](./media/active-directory-aadconnectsync-connector-genericsql/runstep9.png)
+**SQL 查詢**
+![runstep9](./media/active-directory-aadconnectsync-connector-genericsql/runstep9.png)
 
 如果您選擇 SQL 查詢選項，則匯出需要 3 個不同的查詢來執行插入/更新/刪除作業。
 

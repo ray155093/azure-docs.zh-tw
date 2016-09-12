@@ -425,7 +425,8 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 	1. 在安裝主要目標伺服器之前，請確定您已安裝最新的 Linux Integration Services (LIS)。您可以在[這裡](https://www.microsoft.com/download/details.aspx?id=46842)找到最新版本的 LIS 以及安裝指示。LIS 安裝之後重新啟動電腦。
 	2. 在 [準備目標 (Azure) 資源] 中，按一下 [下載及安裝其他軟體 (僅適用於 Linux 主要目標伺服器)]。將下載的 tar 檔案複製到使用 sftp 用戶端的虛擬機器。或者，您也可以登入已部署的 Linux 主要目標伺服器，然後使用 *wget http://go.microsoft.com/fwlink/?LinkID=529757&clcid=0x409* 來下載檔案。
 	2. 使用安全殼層用戶端登入伺服器。如果您已透過 VPN 連線到 Azure 網路，請使用內部 IP 位址。否則請使用外部 IP 位址與 SSH 公用端點。
-	3. 將檔案從 Gzip 安裝程式解壓縮，方法是執行：**tar –xvzf Microsoft-ASR\_UA\_8.4.0.0\_RHEL6-64***![Linux 主要目標伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/linux-tar.png)
+	3. 將檔案從 Gzip 安裝程式解壓縮，方法是執行：**tar –xvzf Microsoft-ASR\_UA\_8.4.0.0\_RHEL6-64***  
+	![Linux 主要目標伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/linux-tar.png)
 	4. 請確認您在解壓縮 tar 檔案內容的目錄中。
 	5. 使用命令 **echo *`<passphrase>`* >passphrase.txt** 將組態伺服器的複雜密碼複製到本機檔案
 	6. 執行 “**sudo ./install -t both -a host -R MasterTarget -d /usr/local/ASR -i *`<Configuration server internal IP address>`* -p 443 -s y -c https -P passphrase.txt**” 命令。

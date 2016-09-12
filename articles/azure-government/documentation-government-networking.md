@@ -39,7 +39,7 @@ Azure ExpressRoute 可用來在 Azure Government 資料中心之間、內部部�
 
 所有使用私人連線架構的客戶都應該驗證是否已針對客戶與 Azure Government 之閘道網路/網際網路 (GN/I) 邊緣路由器分界點的連線建立並維護適當實作。同樣地，您的組織必須在內部部署環境與 Azure Government 的閘道網路/客戶 (GN/C) 邊緣路由器分界點之間建立網路連線。
 
-ExpressRoute 已在 Azure Government 中正式推出。如需詳細資訊 (包括合作夥伴和對等互連位置)，請參閱 <a href="https://azure.microsoft.com/zh-TW/documentation/services/expressroute/">ExpressRoute 公開文件</a>。
+ExpressRoute 已在 Azure Government 中正式推出。如需詳細資訊 (包括合作夥伴和對等互連位置)，請參閱 <a href="https://azure.microsoft.com/documentation/services/expressroute/">ExpressRoute 公開文件</a>。
 
 如需補充資訊和更新，請訂閱 <a href="https://blogs.msdn.microsoft.com/azuregov/">Microsoft Azure Government 部落格。</a>
 

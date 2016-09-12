@@ -29,7 +29,7 @@
 
 2. 在資源功能表中，按一下 [文件總管]。
  
-	![[Document Explorer] 命令的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/documentexplorercommand.png)
+	![[Document Explorer] 命令的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/documentexplorercommand.png)
 
     在 [文件總管] 刀鋒視窗中，會根據您在其中啟動 [文件總管] 的內容預先填入 [資料庫] 和 [集合] 下拉式清單。
 
@@ -41,11 +41,11 @@
 
     [文件] 刀鋒視窗中會提供少量的 JSON 程式碼片段。
 
-	![[Document Explorer] 建立文件體驗的螢幕擷取畫面，您可以在其中檢視 JSON 和編輯 JSON](./media/documentdb-view-JSON-document-explorer/createdocument.png)
+	![[Document Explorer] 建立文件體驗的螢幕擷取畫面，您可以在其中檢視 JSON 和編輯 JSON](./media/documentdb-view-json-document-explorer/createdocument.png)
 
 2. 在 [文件] 刀鋒視窗中，輸入或貼上您想要建立的 JSON 文件內容，然後按一下 [儲存]，針對 [文件總管] 刀鋒視窗中指定的資料庫和集合認可您的文件。
 
-	![[Document Explorer] 儲存命令的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/savedocument1.png)
+	![[Document Explorer] 儲存命令的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/savedocument1.png)
 
 	> [AZURE.NOTE] 如果您未提供 "id" 屬性，則 Document Explorer 會自動新增 id 屬性，並產生一個 GUID 做為識別碼值。
 
@@ -57,11 +57,11 @@
 
 2. 若要編輯現有文件，在 [文件總管] 刀鋒視窗中選取該文件、在 [文件] 刀鋒視窗中進行編輯，然後按一下 [儲存]。
 
-    ![用來檢視 JSON 之 [Document Explorer] 編輯文件功能的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/editdocument.png)
+    ![用來檢視 JSON 之 [Document Explorer] 編輯文件功能的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/editdocument.png)
 
     如果您正在編輯文件，並決定要捨棄目前這組編輯，只需按一下 [文件] 刀鋒視窗中的 [捨棄]、確認捨棄動作，然後就會重新載入文件的先前狀態。
 
-    ![[Document Explorer] 捨棄命令的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/discardedit.png)
+    ![[Document Explorer] 捨棄命令的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/discardedit.png)
 
 ## 刪除文件
 
@@ -69,21 +69,21 @@
 
 2. 在 [文件總管] 中選取文件、按一下 [刪除]，然後確認刪除。確認後，系統會立即將文件從 Document Explorer 清單中移除。
 
-	![[Document Explorer] 刪除命令的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/deletedocument.png)
+	![[Document Explorer] 刪除命令的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/deletedocument.png)
 
 ## 使用 JSON 文件
 
 Document Explorer 會驗證任何新的或已編輯文件是否包含有效 JSON。您甚至可藉由移至不正確的區段來檢視 JSON 錯誤，以取得有關驗證錯誤的詳細資訊。
 
-![JSON 反白顯示無效之 [Document Explorer] 的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/invalidjson1.png)
+![JSON 反白顯示無效之 [Document Explorer] 的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/invalidjson1.png)
 
 此外，Document Explorer 會防止您儲存包含無效 JSON 內容的文件。
 
-![JSON 無效儲存錯誤之 [Document Explorer] 的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/invalidjson2.png)
+![JSON 無效儲存錯誤之 [Document Explorer] 的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/invalidjson2.png)
 
 最後，Document Explorer 可讓您輕鬆地檢視目前載入之文件的系統屬性，您只需按一下 [屬性] 命令即可。
 
-![[Document Explorer] 文件屬性檢視的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/documentproperties.png)
+![[Document Explorer] 文件屬性檢視的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/documentproperties.png)
 
 > [AZURE.NOTE] 時間戳記 (\_ts) 屬性在內部會以 Epoch 時間表示，但是 Document Explorer 會以一般人可判讀的 GMT 格式顯示此值。
 
@@ -96,11 +96,11 @@ Document Explorer 會驗證任何新的或已編輯文件是否包含有效 JSON
 
 2. 在 [文件總管] 刀鋒視窗的頂端，按一下 [篩選]。
 
-    ![[Document Explorer 篩選設定] 的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/documentexplorerfiltersettings.png)
+    ![[Document Explorer 篩選設定] 的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/documentexplorerfiltersettings.png)
   
 3.  篩選設定會出現在命令列下方。在篩選設定中，提供 WHERE 子句及/或 ORDER BY 子句，然後按一下 [篩選]。
 
-	![[Document Explorer 設定] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/documentexplorerfiltersettings2.png)
+	![[Document Explorer 設定] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/documentexplorerfiltersettings2.png)
 
 	Document Explorer 會以符合篩選查詢的文件自動重新整理結果。深入了解 [SQL 查詢和 SQL 語法](documentdb-sql-query.md)一文中的 DocumentDB SQL 文法，或列印一份 [SQL 查詢速查表](documentdb-sql-query-cheat-sheet.md)。
 
@@ -108,17 +108,17 @@ Document Explorer 會驗證任何新的或已編輯文件是否包含有效 JSON
 
     Document Explorer 還支援根據 id 屬性篩選目前載入的文件集。您只需在 [依識別碼篩選文件] 方塊中輸入即可。
 
-	![反白顯示篩選條件的 [Document Explorer] 螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/documentexplorerfilter.png)
+	![反白顯示篩選條件的 [Document Explorer] 螢幕擷取畫面](./media/documentdb-view-json-document-explorer/documentexplorerfilter.png)
 
 	Document Explorer 清單中的結果便會根據您所提供的準則進行篩選。
 
-	![含篩選結果的 [Document Explorer] 螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/documentexplorerfilterresults.png)
+	![含篩選結果的 [Document Explorer] 螢幕擷取畫面](./media/documentdb-view-json-document-explorer/documentexplorerfilterresults.png)
 
 	> [AZURE.IMPORTANT] Document Explorer 篩選功能只會從**目前**載入的文件集進行篩選，而且不會針對目前選取的集合執行查詢。
 
 4. 若要重新整理 Document Explorer 所載入的文件清單，請按一下刀鋒視窗頂端的 [重新整理]。
 
-	![[Document Explorer] 重新整理命令的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/documentexplorerrefresh.png)
+	![[Document Explorer] 重新整理命令的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/documentexplorerrefresh.png)
 
 ## 大量新增文件
 
@@ -128,19 +128,19 @@ Document Explorer 支援大量擷取一或多個現有 JSON 文件，每個上�
 
 2. 若要開始上傳程序，請按一下 [上傳文件]。
 
-	![[Document Explorer] 大量擷取功能的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/uploaddocument1.png)
+	![[Document Explorer] 大量擷取功能的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/uploaddocument1.png)
 
     [上傳文件] 刀鋒視窗隨即開啟。
 
 2. 按一下 [瀏覽] 按鈕以開啟檔案總管視窗、選取要上傳的一或多個 JSON 文件，然後按一下 [開啟]。
 
-	![[Document Explorer] 大量擷取程序的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/uploaddocument2.png)
+	![[Document Explorer] 大量擷取程序的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/uploaddocument2.png)
 
 	> [AZURE.NOTE] Document Explorer 的每個個別上傳作業目前支援多達 100 個 JSON 文件。
 
 3. 對您的選取項目感到滿意後，請按一下 [上傳] 按鈕。文件會自動新增至 Document Explorer 方格，且上傳結果會顯示為作業進度。系統會針對個別檔案回報匯入失敗。
 
-	![[Document Explorer] 大量擷取結果的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/uploaddocument3.png)
+	![[Document Explorer] 大量擷取結果的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/uploaddocument3.png)
 
 4. 作業完成後，您可以另外選取多達 100 個文件進行上傳。
 

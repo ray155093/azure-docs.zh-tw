@@ -38,7 +38,7 @@
 
 您應該參閱 <a href="http://www.microsoft.com/zh-TW/TrustCenter/Compliance/default.aspx/">Microsoft Azure 信任中心的規範頁面</a>，以取得 ITAR 下所涵蓋之 Azure Government 服務的最新資訊。可能也會有其他 Microsoft 服務可供使用，但不在 Azure Government 所涵蓋服務的範圍內。Azure Government 服務也可能會允許您使用協力廠商 (或 Microsoft 依據使用和隱私權原則的個別條款) 所提供的各種額外資源、應用程式或服務。您有責任檢閱所有這類「附加」服務 (例如 Martketplace 服務) 的條款，以確保它們符合您在 ITAR 規範方面的需求。
 
-<a href="https://azure.microsoft.com/zh-TW/features/gov/">Azure Government</a> 可供處理需遵守特定政府法規和規定 (例如 ITAR) 之資料的實體使用，但使用 Azure Government 時必須遵守法規。Azure Government 客戶必須接受資格驗證。Microsoft 所進行的資格驗證會包含確認您是根據 ITAR 或透過與具有特定資料處理需求之政府實體所簽訂的贊助協議所定義的防禦武器製造商、出口商或代理人 (依照您在美國國務院所做的註冊)。
+<a href="https://azure.microsoft.com/features/gov/">Azure Government</a> 可供處理需遵守特定政府法規和規定 (例如 ITAR) 之資料的實體使用，但使用 Azure Government 時必須遵守法規。Azure Government 客戶必須接受資格驗證。Microsoft 所進行的資格驗證會包含確認您是根據 ITAR 或透過與具有特定資料處理需求之政府實體所簽訂的贊助協議所定義的防禦武器製造商、出口商或代理人 (依照您在美國國務院所做的註冊)。
 
 實體若有關於 Azure Government 資格的問題，應向其客戶小組洽詢。
 
