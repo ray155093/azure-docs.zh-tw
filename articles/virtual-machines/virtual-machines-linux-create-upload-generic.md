@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/09/2016"
+	ms.date="08/24/2016"
 	ms.author="szark"/>
 
 # 非背書散發套件的資訊 #
@@ -25,7 +25,7 @@
 **重要事項**：只有在使用其中一個[背書散發套件](virtual-machines-linux-endorsed-distros.md)時，Azure 平台 SLA 才適用於執行 Linux OS 的虛擬機器。Azure 映像庫中提供的所有 Linux 散發套件，皆為使用必要組態的背書散發套件。
 
 - [Azure 背書散發套件上的 Linux](virtual-machines-linux-endorsed-distros.md)
-- [支援 Microsoft Azure 中的 Linux 映像](http://support2.microsoft.com/kb/2941892)
+- [支援 Microsoft Azure 中的 Linux 映像](https://support.microsoft.com/kb/2941892)
 
 所有執行於 Azure 的散發套件都必須符合許多必要條件，才能在平台上正確執行。本文並未列出所有的必要條件，因為每個散發套件都不同；而且即使您符合下列所有條件，仍很可能需要詳加審視您的 Linux 系統，以確保它可在平台上正常運作。
 
@@ -35,7 +35,7 @@
 - **[Debian Linux](virtual-machines-linux-debian-create-upload-vhd.md)**
 - **[Oracle Linux](virtual-machines-linux-oracle-create-upload-vhd.md)**
 - **[Red Hat Enterprise Linux](virtual-machines-linux-redhat-create-upload-vhd.md)**
-- **[SLES 和 openSUSE](../virtual-machines-linux-create-upload-vhd-suse)**
+- **[SLES 和 openSUSE](virtual-machines-linux-suse-create-upload-vhd.md)**
 - **[Ubuntu](virtual-machines-linux-create-upload-ubuntu.md)**
 
 本文接下來會將重點放在於 Azure 上執行 Linux 散發套件時的一般指引。
@@ -78,7 +78,7 @@ Azure 上的 VHD 映像必須具有與 1 MB 對應的虛擬大小。一般而言
 
 若要解決這個問題，您可以使用 Hyper-V 管理員主控台或 [Resize-VHD](http://technet.microsoft.com/library/hh848535.aspx) Powershell Cmdlet 調整 VM 的大小。如果您不在 Windows 環境中執行，建議使用 qemu-img 來轉換 VHD (如果需要) 及調整其大小。
 
-> [AZURE.NOTE] qemu-img >=2.2.1 的版本中已知有 Bug 會導致 VHD 的格式不正確。這個問題將於即將推出的 qemu-img 版本中獲得修正。目前建議使用 qemu-img 2.2.0 版或更低版本。參考：https://bugs.launchpad.net/qemu/+bug/1490611
+> [AZURE.NOTE] qemu-img >=2.2.1 的版本中已知有 Bug 會導致 VHD 的格式不正確。此問題已在 QEMU 2.6 中修正。建議使用 qemu-img 2.2.0 或更舊版本，或更新至 2.6 或更新版本。參考：https://bugs.launchpad.net/qemu/+bug/1490611。
 
 
  1. 直接使用工具 (例如 `qemu-img` 或 `vbox-manage`) 調整 VHD 的大小，可能會導致 VHD 無法開機。因此，建議先將 VHD 轉換為 RAW 磁碟映像。如果 VM 映像已建立為 RAW 磁碟映像 (有些 Hypervisor 的預設值，例如 KVM)，您可以省略此步驟：
@@ -135,6 +135,7 @@ Azure 上的 VHD 映像必須具有與 1 MB 對應的虛擬大小。一般而言
 - [storvsc：針對 RAID 和虛擬主機介面卡驅動程式停用 WRITE SAME](https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/commit/drivers/scsi/storvsc_drv.c?id=54b2b50c20a61b51199bedb6e5d2f8ec2568fb43)
 - [storvsc：NULL 指標取值修正](https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/commit/drivers/scsi/storvsc_drv.c?id=b12bb60d6c350b348a4e1460cd68f97ccae9822e)
 - [storvsc：信號緩衝區失敗可能導致 I/O 凍結](https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/commit/drivers/scsi/storvsc_drv.c?id=e86fb5e8ab95f10ec5f2e9430119d5d35020c951)
+- [scsi\_sysfs︰防範 \_\_scsi\_remove\_device 雙重執行](https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/commit/drivers/scsi/scsi_sysfs.c?id=be821fd8e62765de43cc4f0e2db363d0e30a7e9b)
 
 
 ## Azure Linux 代理程式 ##
@@ -154,7 +155,7 @@ Azure 上的 VHD 映像必須具有與 1 MB 對應的虛擬大小。一般而言
 
 - 在 GRUB 或 GRUB2 中修改核心開機行，以加入下列參數。這樣也可確保主控台訊息能傳送至第一個序列埠，以協助 Azure 支援偵錯問題：
 
-		console=ttyS0 earlyprintk=ttyS0 rootdelay=300
+		console=ttyS0,115200n8 earlyprintk=ttyS0,115200 rootdelay=300
 
 	這也將確保所有主控台訊息都會傳送給第一個序列埠，有助於 Azure 支援團隊進行問題偵錯程序。
 
@@ -182,19 +183,14 @@ Azure 上的 VHD 映像必須具有與 1 MB 對應的虛擬大小。一般而言
 		ResourceDisk.EnableSwap=y
 		ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
 
-- 在 "/etc/sudoers" 中，您必須移除或註解化下列程式碼行 (如果存在的話)：
-
-		Defaults targetpw
-		ALL    ALL=(ALL) ALL
-
 - 最後一個步驟是，執行下列命令以取消佈建虛擬機器：
 
 		# sudo waagent -force -deprovision
 		# export HISTSIZE=0
 		# logout
 
-	>[AZURE.NOTE] 在 Virtualbox 上，執行 'waagent -force -deprovision' 之後，您可能會看到以下錯誤訊息：`[Errno 5] Input/output error`。此錯誤訊息並不重要，您可以忽略。
+	>[AZURE.NOTE] 在 Virtualbox 上，執行 'waagent -force -deprovision' 之後，您可能會看到以下錯誤：`[Errno 5] Input/output error`。此錯誤訊息並不重要，您可以忽略。
 
 - 接著，您必須關閉虛擬機器，並將 VHD 上傳至 Azure。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0831_2016-->

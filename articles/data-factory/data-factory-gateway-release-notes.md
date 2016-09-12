@@ -13,16 +13,28 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/17/2016" 
+	ms.date="08/26/2016" 
 	ms.author="spelluru"/>
 
 # 資料管理閘道的版本資訊
+現代資料整合的挑戰之一是順暢地在內部部署和雲端之間來回移動資料。Data Factory 藉由「資料管理閘道」讓這項整合變得順暢無比；「資料管理閘道」是一個您可以在內部部署環境安裝來啟用混合式資料移動功能的代理程式。
 
-現代資料整合的挑戰之一是順暢地在內部部署和雲端之間來回移動資料。Data Factory 使得在資料管理閘道所進行的這項整合變得順暢無比；資料管理閘道是可以安裝在內部部署環境以便啟用混合式資料移動功能的代理程式。
+如需有關「資料管理閘道」的詳細資訊及其使用方式，請參閱下列文章：
 
-如需詳細資訊，請參閱[使用 Azure Data Factory 在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)和[資料管理閘道](data-factory-data-management-gateway.md)文章。
+- [資料管理閘道](data-factory-data-management-gateway.md)
+- [在內部部署和雲端之間使用 Azure Data Factory 移動資料](data-factory-move-data-between-onprem-and-cloud.md)
 
-## 目前版本 (2.1.6040.1)
+## 目前版本 (2.2.6072.1)
+
+- 支援使用「閘道組態管理員」來設定閘道的 HTTP Proxy。如果有設定，就會透過 HTTP Proxy 來存取 Azure Blob、「Azure 資料表」、Azure Data Lake 及 DocumentDB。
+- 從 Azure Blob、Azure Data Lake Store、內部部署「檔案系統」及內部部署 HDFS 複製資料，或將資料複製到這些位置時，支援處理 TextFormat 的標頭。
+- 除了已支援的「區塊 Blob」之外，也支援從「附加 Blob」和「分頁 Blob」複製資料。
+- 導入新的閘道狀態「線上 (受限)」，此狀態代表除了對「複製精靈」的互動式操作支援之外，閘道的主要功能都可運作。
+- 使用註冊金鑰增強閘道註冊的健全度。
+
+## 較早的版本
+
+## 2\.1.6040.1
 
 - DB2 驅動程式現已包含在閘道安裝封裝中。您不需要另外安裝。
 - DB2 驅動程式現可支援適用於 i (AS/400) 的 z/OS 和 DB2 以及早已支援的平台 (Linux、Unix 和 Windows)。
@@ -30,17 +42,15 @@
 - 支援在冷/熱 Blob 儲存體以及早已支援的一般用途儲存體帳戶來回複製資料。
 - 可讓您透過閘道以遠端登入權限連線到內部部署 SQL Server。
 
-## 較早的版本
-
 ## 2\.0.6013.1
 
 - 您可以選取要在手動安裝期間供閘道器使用的語言/文化特性。
-- 當閘道器無法如預期般運作時，您可以選擇將過去 7 天的閘道器記錄檔傳送給 Microsoft，以利進行問題的疑難排解。如果閘道器未連接到雲端服務，您可以選擇儲存並封存閘道器記錄檔。
+- 當閘道未如預期般運作時，您可以選擇將過去 7 天的閘道記錄檔傳送給 Microsoft，以協助進行問題的疑難排解。如果閘道器未連接到雲端服務，您可以選擇儲存並封存閘道器記錄檔。
 - 閘道器組態管理員的使用者介面增強功能：
 	- 讓閘道器狀態在 [常用] 索引標籤上看起來更清楚。
 	- 重新組織並簡化控制項。
-- 您可以使用[無程式碼複製預覽工具](data-factory-copy-data-wizard-tutorial.md)，透過 Polybase 和暫存 Blob，將資料從 Azure Blob 以外的儲存體複製到 Azure SQL 資料倉儲。如需此功能的一般詳細資料，請參閱[分段複製](data-factory-copy-activity-performance.md#staged-copy)。
-- 您可以利用資料管理閘道器，將資料從內部部署 SQL Server 資料庫直接輸入 Azure Machine Learning。
+- 您可以使用[無程式碼複製預覽工具](data-factory-copy-data-wizard-tutorial.md)從儲存體複製資料。如需此功能的一般詳細資料，請參閱[分段複製](data-factory-copy-activity-performance.md#staged-copy)。
+- 您可以使用「資料管理閘道」，將資料從內部部署 SQL Server 資料庫直接輸入到 Azure Machine Learning 中。
 - 效能改進
 	- 在無程式碼複製預覽工具中，改進對於 SQL Server 檢視結構描述或預覽的效能。
 
@@ -53,7 +63,7 @@
 
 - 閘道事件記錄檔的大小上限已經從 1 MB 增加到 40 MB。
 - 如果在閘道自動更新期間必須重新啟動，則會顯示警告對話方塊。您可以選擇立即重新啟動，或之後再重新啟動。
-- 如果自動更新失敗，則閘道安裝程式最多會重試自動更新 3 次。
+- 如果自動更新失敗，閘道安裝程式最多會重試自動更新 3 次。
 - 效能改進
 	- 改善無程式碼複製案例中從內部部署伺服器載入大型資料表的效能。
 - 錯誤修正
@@ -107,7 +117,7 @@
 - 支援 Azure Data Factory 表格式資料來源的資料表資料行
 - 針對 Azure Data Factory 支援 SQL DW
 - 針對 Azure Data Factory 支援 BlobSource 和 FileSource 的 Reclusive
-- 支援 CopyBehavior - 具有適用於 Azure Data Factory 之二進位複製的 BlobSink 和 FileSink 中的 MergeFiles、PreserveHierarchy 和 FlattenHierarchy
+- 針對 Azure Data Factory 支援 BlobSink 和 FileSink 中與「二進位複製」相關的 CopyBehavior - MergeFiles、PreserveHierarchy 及 FlattenHierarchy
 - 針對 Azure Data Factory 支援複製活動報告進度
 - 針對 Azure Data Factory 支援資料來源連線驗證
 - 錯誤修正
@@ -135,7 +145,7 @@
 
 ### 1\.5.5612.1
 
-- 針對 Azure Data Factory 支援 5 個關聯式資料庫 (MySQL、PostgreSQL、DB2、Teradata 和 Sybase)
+- 針對 Azure Data Factory 支援 5 種關聯式資料庫 (MySQL、PostgreSQL、DB2、Teradata 和 Sybase)
 - 壓縮支援 (Gzip 和 Deflate)
 - 效能改進
 - 錯誤修正
@@ -165,9 +175,4 @@
 
 - 沒有任何會影響 Azure Data Factory 案例的變更。
 
-## 問題/答案
-
-### 為什麼資料來源管理員會嘗試連線到閘道？
-這是一項安全性設計，讓您只能在公司網路內設定用於進行雲端存取的內部部署資料來源，因此認證不會流到公司防火牆之外。請確認您的電腦可以連線到閘道安裝所在的電腦。
-
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0831_2016-->

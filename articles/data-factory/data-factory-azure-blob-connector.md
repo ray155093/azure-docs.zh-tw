@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="了解如何複製/移動 Azure Blob 資料集 | Azure Data Factory" 
+	pageTitle="在 Azure Blob 儲存體來回複製資料 | Azure Data Factory" 
 	description="了解如何在 Azure Data Factory 複製 Blob 資料。使用我們的範例：如何在 Azure Blob 儲存體和 Azure SQL Database 將資料複製進來和複製出去。" 
     keywords="blob 資料, azure blob 複製"
 	services="data-factory" 
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/22/2016" 
+	ms.date="08/25/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Azure Data Factory 從 Azure Blob 來回移動資料
@@ -38,7 +38,7 @@
 4.	[AzureSqlTable](data-factory-azure-sql-connector.md#azure-sql-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
 4.	具有使用 [BlobSource](#azure-blob-copy-activity-type-properties) 和 [SqlSink](data-factory-azure-sql-connector.md#azure-sql-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
-此範例會每小時將時間序列資料從 Azure Blob 複製到 Azure SQL Database 中的資料表。範例後面的各節會說明這些範例中使用的 JSON 屬性。
+此範例會每小時將時間序列資料從 Azure Blob 複製到 Azure SQL 資料表。範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
 **Azure SQL 連結服務：**
 
@@ -210,7 +210,7 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
 4.	具有使用 [SqlSource](data-factory-azure-sql-connector.md#azure-sql-copy-activity-type-properties) 和 [BlobSink](#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
 
-此範例會每小時將時間序列資料從 Azure SQL Database 中的資料表複製到 Azure Blob。範例後面的各節會說明這些範例中使用的 JSON 屬性。
+此範例會每小時將時間序列資料從 Azure SQL 資料表複製到 Azure Blob。範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
 **Azure SQL 連結服務：**
 
@@ -433,7 +433,7 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
 
 
 ## Azure Blob 複製活動類型屬性  
-如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。名稱、描述、輸入和輸出資料表、各種原則等屬性都適用於所有活動類型。
+如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。屬性 (例如名稱、描述、輸入和輸出資料集，以及原則) 適用於所有類型的活動。
 
 另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。若為複製活動，這些屬性會根據來源和接收的類型而有所不同
 
@@ -441,17 +441,34 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | -------- | ----------- | -------------- | -------- | 
-| treatEmptyAsNull | 指定是否將 null 或空字串視為 null 值。<br/><br/>已指定 **quoteChar** 屬性時，加上引號的空字串在此屬性也會被視為 Null。 | TRUE (預設值) <br/>FALSE | 否 |
-| skipHeaderLineCount | 指出需要略過多少行。僅適用於輸入資料集使用 **TextFormat** 時。 | 0 與最大值之間的整數。 | 否 | 
 | 遞迴 | 表示是否從子資料夾，或只有從指定的資料夾，以遞迴方式讀取資料。 | True (預設值)、False | 否 | 
-
 
 **BlobSink** 在 **typeProperties** 區段中支援下列屬性：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | -------- | ----------- | -------------- | -------- |
-| blobWriterAddHeader | 指定是否要加入資料行定義的標頭。 | TRUE<br/>FALSE (預設值) | 否 |
 | copyBehavior | 當來源為 BlobSource 或 FileSystem 時，定義複製行為。 | **PreserveHierarchy：**在目標資料夾中保留檔案階層架構。來源檔案至來源資料夾的相對路徑，與目標檔案至目標資料夾的相對路徑完全相同。<br/><br/>**FlattenHierarchy：**來源資料夾的所有檔案會位於目標資料夾的第一層。目標檔案會有自動產生的名稱。<br/><br/>**MergeFiles：(預設值)** 將來源資料夾的所有檔案合併為一個檔案。如果已指定檔案/Blob 名稱，合併檔案名稱會是指定的名稱；否則，就會是自動產生的檔案名稱。 | 否 |
+
+**BlobSource** 也支援這兩個即將被取代的屬性。
+
+- **treatEmptyAsNull**：指定是否將 null 或空字串視為 null 值。
+- **skipHeaderLineCount** - 指定需略過多少行。僅適用於輸入資料集使用 TextFormat 時。
+
+同樣地，**BlobSink** 支援下列即將被取代的屬性。
+
+- **blobWriterAddHeader**︰指定是否要在寫入至輸出資料集時新增資料行定義的標頭。
+
+資料集現在支援下列會實作相同功能的屬性︰**treatEmptyAsNull**、**skipLineCount**、**firstRowAsHeader**。
+
+下表提供有關使用新的資料集屬性來取代即將被取代之 Blob 來源/接收屬性的指引。
+
+| 複製活動屬性 | 資料集屬性 |
+| :---------------------- | :---------------- | 
+| BlobSource 上的 skipHeaderLineCount | skipLineCount 和 firstRowAsHeader。會先略過行，然後讀取第一個資料列做為標頭。 |
+| BlobSource 上的 treatEmptyAsNull | 輸入資料集上的 treatEmptyAsNull |
+| BlobSink 上的 blobWriterAddHeader | 輸出資料集上的 firstRowAsHeader | 
+
+如需這些屬性的詳細資訊，請參閱[指定 TextFormat](#specifying-textformat) 一節。
 
 ### 遞迴和 copyBehavior 範例
 本節說明遞迴和 copyBehavior 值在不同組合的情況下，複製作業所產生的行為。
@@ -477,4 +494,4 @@ false | mergeFiles | 對於有下列結構的來源資料夾 Folder1：<br/><br/
 ## 效能和微調  
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/02/2016"
+	ms.date="08/25/2016"
 	ms.author="tarcher"/>
 
 # 每月估計成本趨勢
 
-## 概觀
+## Overview
 
 研測實驗室的成本管理功能可協助您追蹤實驗室成本。本文會示範如何使用「每月估計成本趨勢」圖表，來檢視目前日曆月份的到目前為止的估計成本，以及目前日曆月份的預計月底成本。
 
@@ -32,7 +32,7 @@
 
 1. 從實驗室清單中，選取所需的實驗室。
 
-1. 選取 [Settings] \(設定)。
+1. 選取 [Settings] (設定)。
 
 	![Settings](./media/devtest-lab-configure-cost-management/lab-blade-settings.png)
 
@@ -60,6 +60,8 @@
 - 您的折扣
 - 您的帳單貨幣。目前，實驗室成本只會以美元貨幣顯示。
 
+[AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
+
 ## 相關部落格文章
 
 - [讓 DevTest Labs 成本不失控的另外兩項須知](https://blogs.msdn.microsoft.com/devtestlab/2016/06/21/keep-your-cost-on-track/)
@@ -71,7 +73,7 @@
 
 - [定義實驗室原則](./devtest-lab-set-lab-policy.md) - 了解如何設定用來管理您實驗室及其 VM 使用方式的各種原則。
 - [建立自訂映像](./devtest-lab-create-template.md) - 當您建立 VM 時，您要指定一個基本映像，它可以是自訂映像或 Marketplace 映像。本文會示範如何從 VHD 檔案建立自訂的映像。
-- [設定 Marketplace 映像](./devtest-lab-configure-marketplace-images.md) - 研測實驗室支援根據 Azure Marketplace 映像建立新的 VM。本文會示範在實驗室中建立新的 VM 時，如何指定可以使用哪些 Azure Marketplace 映像 (如果有的話)。
+- [設定 Marketplace 映像](./devtest-lab-configure-marketplace-images.md) - DevTest Labs 支援根據 Azure Marketplace 映像建立新的 VM。本文會示範在實驗室中建立新的 VM 時，如何指定可以使用哪些 Azure Marketplace 映像 (如果有的話)。
 - [在實驗室中建立 VM](./devtest-lab-add-vm-with-artifacts.md) - 示範如何從基本映像 (自訂或 Marketplace) 建立新的 VM，以及如何使用 VM 中的構件。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0831_2016-->

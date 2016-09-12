@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="08/19/2016"
+   ms.date="08/24/2016"
    ms.author="nicw;barbkess;sonyama"/>
 
 # 移轉至進階儲存體詳細資料
@@ -47,9 +47,9 @@ SQL 資料倉儲最新引進了[進階儲存體，以獲得更高的效能可預
 | 美國中南部 | 2016 年 5 月 27 日 |
 | 東南亞 | 2016 年 5 月 24 日 |
 | 西歐 | 2016 年 5 月 25 日 |
-| 美國中西部 | 尚未提供進階儲存體 |
+| 美國中西部 | 2016 年 8 月 26 日 |
 | 美國西部 | 2016 年 5 月 26 日 |
-| 美國西部 2 | 尚未提供進階儲存體 |
+| 美國西部 2 | 2016 年 8 月 26 日 |
 
 ## 自動移轉詳細資料
 根據預設，在以下的[自動移轉排程][]期間，我們會在下午 6 點與上午 6 點之間 (您所在地區的當地時間) 為您移轉資料庫。在移轉期間，現有的資料倉儲將無法使用。我們預估每個資料倉儲每 TB 的儲存體需要約一小時的時間進行移轉。我們也會確保在自動移轉的任何部分中，您不需支付任何費用。
@@ -133,7 +133,7 @@ ALTER DATABASE CurrentDatabasename MODIFY NAME = NewDatabaseName;
 >	-  Firewall rules at the **Database** level need to be readded.  Firewall rules at the **Server** level are not be impacted.
 
 ## 後續步驟
-除了變更為進階儲存體，我們也會增加資料倉儲基礎架構中的資料庫 blob 檔案數目。如果您遇到任何效能問題，建議您使用下列指令碼來重建叢集資料行存放區索引。下列指令碼是藉由強制將某些現有資料移至其他 Blob 來運作。如果您不採取任何動作，隨著您將更多的資料載入資料倉儲資料表中，資料會在一段時間後自然重新分配。
+除了變更為進階儲存體，我們也會增加資料倉儲基礎架構中的資料庫 blob 檔案數目。為獲得此變更的最佳效益，建議您使用下列指令碼來重建叢集資料行存放區索引。下列指令碼是藉由強制將某些現有資料移至其他 Blob 來運作。如果您不採取任何動作，隨著您將更多的資料載入資料倉儲資料表中，資料會在一段時間後自然重新分配。
 
 **必要條件：**
 
@@ -147,42 +147,19 @@ ALTER DATABASE CurrentDatabasename MODIFY NAME = NewDatabaseName;
 -- 步驟 1︰建立資料表以控制索引重建
 -- 以具有 mediumrc 角色或更高權限的使用者身分執行
 --------------------------------------------------------------------------------
-create table sql_statements
-WITH (distribution = round_robin)
-as select 
-    'alter index all on ' + s.name + '.' + t.NAME + ' rebuild;' as statement,
-    row_number() over (order by s.name, t.name) as sequence
-from 
-    sys.schemas s
-    inner join sys.tables t
-        on s.schema_id = t.schema_id
-where
-    is_external = 0
-;
-go
+create table sql\_statements WITH (distribution = round\_robin) as select 'alter index all on ' + s.name + '.' + t.NAME + ' rebuild;' as statement, row\_number() over (order by s.name, t.name) as sequence from sys.schemas s inner join sys.tables t on s.schema\_id = t.schema\_id where is\_external = 0 ; go
  
 --------------------------------------------------------------------------------
 -- 步驟 2︰執行索引重建。如果指令碼失敗，可以重新執行以下程式碼從最後中斷的地方重新開始
 -- 以具有 mediumrc 角色或更高權限的使用者身分執行
 --------------------------------------------------------------------------------
 
-declare @nbr_statements int = (select count(*) from sql_statements)
-declare @i int = 1
-while(@i <= @nbr_statements)
-begin
-      declare @statement nvarchar(1000)= (select statement from sql_statements where sequence = @i)
-      print cast(getdate() as nvarchar(1000)) + ' Executing... ' + @statement
-      exec (@statement)
-      delete from sql_statements where sequence = @i
-      set @i += 1
-end;
+declare @nbr\_statements int = (select count(*) from sql\_statements) declare @i int = 1 while(@i <= @nbr\_statements) begin declare @statement nvarchar(1000)= (select statement from sql\_statements where sequence = @i) print cast(getdate() as nvarchar(1000)) + ' Executing... ' + @statement exec (@statement) delete from sql\_statements where sequence = @i set @i += 1 end;
 go
 -------------------------------------------------------------------------------
 -- 步驟 3︰清除在步驟 1 中建立的資料表
 --------------------------------------------------------------------------------
-drop table sql_statements;
-go
-````
+drop table sql\_statements; go ````
 
 如果您遇到任何關於資料倉儲的問題，請[建立支援票證][]和參考「移轉至進階儲存體」做為可能的原因。
 
@@ -204,7 +181,7 @@ go
 
 
 <!--Other Web references-->
-[進階儲存體，以獲得更高的效能可預測性]: https://azure.microsoft.com/blog/azure-sql-data-warehouse-introduces-premium-storage-for-greater-performance/
+[進階儲存體，以獲得更高的效能可預測性]: https://azure.microsoft.com/zh-TW/blog/azure-sql-data-warehouse-introduces-premium-storage-for-greater-performance/
 [Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

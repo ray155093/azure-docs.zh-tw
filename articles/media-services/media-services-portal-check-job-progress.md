@@ -1,6 +1,6 @@
 <properties 
-	pageTitle="如何使用 Azure 傳統入口網站檢查工作進度" 
-	description="了解如何使用 Azure 傳統入口網站追蹤工作進度。" 
+	pageTitle="透過 Azure 入口網站監視編碼作業進度" 
+	description="本教學課程將逐步引導您完成使用 Azure 入口網站監視作業進度的步驟。" 
 	services="media-services" 
 	documentationCenter="" 
 	authors="juliako" 
@@ -13,25 +13,33 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"  
+	ms.date="08/29/2016"  
 	ms.author="juliako"/>
 
-#作法：檢查工作進度
+#透過 Azure 入口網站監視編碼作業進度
 
 > [AZURE.SELECTOR]
 - [入口網站](media-services-portal-check-job-progress.md)
 - [.NET](media-services-check-job-progress.md)
 - [REST](media-services-rest-check-job-progress.md)
 
-##使用入口網站來檢查工作狀態
+## Overview
 
-1. 在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=256666&clcid=0x409)中，按一下 [媒體服務]，然後按一下媒體服務帳戶名稱。
-2. 選取 [**工作**] 頁面。
+> [AZURE.NOTE] 若要完成此教學課程，您需要 Azure 帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-	在頁面上，您可以看到您所有工作的狀態。您也可以依狀態、時間或工作識別碼來篩選。
+執行作業時，您通常需要設法追蹤作業進度。
 
-	![CheckStatus][checkstatus]
+若要監視編碼作業的進度，請按一下 [設定] (位於頁面頂端)，然後選取 [作業]。
 
+![作業](./media/media-services-portal-vod-get-started/media-services-jobs.png)
+
+您可以按一下作業以查看更多詳細資料。
+
+![作業](./media/media-services-portal-vod-get-started/media-services-job-progress2.png)
+
+##後續步驟
+
+編碼作業完成之後，您可以發佈並播放您的資產，如[這裡](media-services-portal-publish.md)所述。
 
 ##媒體服務學習路徑
 
@@ -41,13 +49,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-
-##下一步
-
-發佈內容。如需詳細資訊，請參閱[作法：為資產編碼](media-services-manage-content.md#publish)。
-
-
-[checkstatus]: ./media/media-services-portal-check-job-progress/media-services-monitor-job-progress.png
- 
-
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0831_2016-->

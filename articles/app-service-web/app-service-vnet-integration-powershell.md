@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/07/2016"
+	ms.date="08/29/2016"
 	ms.author="ccompy"/>
 
 # 使用 PowerShell 將應用程式連接到虛擬網路 #
 
-## 概觀 ##
+## Overview ##
 
 在 Azure App Service 中，您可以將應用程式 (Web、行動或 API) 連接到您訂用帳戶中的虛擬網路 (VNet)。這項功能稱為 VNet 整合。VNet 整合功能不應該與 App Service 環境功能混淆，後者可讓您在虛擬網路中執行 Azure App Service 的執行個體。
 
@@ -500,7 +500,7 @@ Resource Manager 虛擬網路有 Azure Resource Manager API，可簡化某些處
 
 		    Write-Host "Creating App association to VNET"
 		    $propertiesObject = @{
-		     "vnetResourceId" = "/subscriptions/$($subscriptionId)/resourceGroups/$($vnet.ResourceGroupName)/providers/Microsoft.Network/virtualNetworks/$($vnetName)"
+		     "vnetResourceId" = "/subscriptions/$($subscriptionId)/resourceGroups/$($vnet.ResourceGroupName)/providers/Microsoft.Network/virtualNetworks/$($vnet.Name)"
 		    }
 
 		    $virtualNetwork = New-AzureRmResource -Location $location -Properties $PropertiesObject -ResourceName "$($webAppName)/$($vnet.Name)" -ResourceType "Microsoft.Web/sites/virtualNetworkConnections" -ApiVersion 2015-08-01 -ResourceGroupName $resourceGroupName -Force
@@ -725,4 +725,4 @@ Resource Manager 虛擬網路有 Azure Resource Manager API，可簡化某些處
 [createvpngateway]: http://azure.microsoft.com/documentation/articles/vpn-gateway-point-to-site-create/
 [azureportal]: http://portal.azure.com
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0831_2016-->

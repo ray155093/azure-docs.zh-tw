@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/27/2016"
+	ms.date="08/24/2016"
 	ms.author="szark"/>
 
 #Azure 上的 Linux 簡介
@@ -96,6 +96,6 @@ Azure 可將現有虛擬機器的狀態擷取到映像中，供以後用來部�
 
 在 Linux 上，核心可能會將資料磁碟命名為 `/dev/sdc`，而使用者必須分割、格式化及掛接該資源。[如何將資料磁碟連接至虛擬機器](virtual-machines-linux-classic-attach-disk.md)的教學課程中涵蓋這部分的逐步指示。
 
- - **另請參閱：** [在 Linux 上設定軟體 RAID](virtual-machines-linux-configure-raid.md)
+ - **另請參閱︰** [Linux 上設定軟體 RAID](virtual-machines-linux-configure-raid.md) & [設定 Azure 中 Linux VM 的 LVM](virtual-machines-linux-configure-lvm.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -14,7 +14,7 @@
    	ms.topic="article"
    	ms.tgt_pltfrm="na"
    	ms.workload="big-data"
-   	ms.date="06/13/2016"
+   	ms.date="08/30/2016"
    	ms.author="larryfr"/>
 
 #使用 Azure CLI 建立 HDInsight 上的 Linux 型叢集
@@ -42,7 +42,7 @@ Azure 資源管理範本是描述__資源群組__與其中所有資源 (例如 H
 
 ##登入您的 Azure 訂用帳戶
 
-依照[從 Azure 命令列介面 (Azure CLI) 連線到 Azure 訂用帳戶](../xplat-cli-connect.md)中記載的步驟，使用 __login__ 方法連線到您的訂用帳戶。
+依照[從 Azure 命令列介面 (Azure CLI) 連接到 Azure 訂用帳戶](../xplat-cli-connect.md)中記載的步驟，使用 __login__ 方法連線到您的訂用帳戶。
 
 ##建立叢集
 
@@ -62,8 +62,8 @@ Azure 資源管理範本是描述__資源群組__與其中所有資源 (例如 H
 
         azure group create groupname location
         
-    * 以群組的唯一名稱取代 __groupname__。 
-    * 以您想要在其中建立群組的地理區域取代 __location__。 
+    * 以群組的唯一名稱取代 __groupname__。
+    * 以您想要在其中建立群組的地理區域取代 __location__。
     
         如需有效位置的清單，請使用 `azure locations list` 命令，然後使用 [名稱] 欄中的其中一個位置。
 
@@ -72,7 +72,7 @@ Azure 資源管理範本是描述__資源群組__與其中所有資源 (例如 H
         azure storage account create -g groupname --sku-name RAGRS -l location --kind Storage storagename
         
      * 以上一個步驟中建立的群組名稱取代 __groupname__。
-     * 以與上一個步驟中使用的相同位置取代 __location__。 
+     * 以與上一個步驟中使用的相同位置取代 __location__。
      * 以儲存體帳戶的唯一名稱取代 __storagename__。
      
      > [AZURE.NOTE] 如需有關此命令中所使用參數的詳細資訊，請使用 `azure storage account create -h` 來檢視此命令的說明。
@@ -93,7 +93,7 @@ Azure 資源管理範本是描述__資源群組__與其中所有資源 (例如 H
     * 以資源群組名稱取代 __groupname__。
     * 以與先前步驟中使用的相同位置取代 __location__。
     * 以儲存體帳戶名稱取代 __storagename__。
-    * 以在上一個步驟中取得的金鑰取代 __storagekey__。 
+    * 以在上一個步驟中取得的金鑰取代 __storagekey__。
     * 針對 `--defaultStorageContainer` 參數，使用與您用於叢集的相同名稱。
     * 以當您透過 HTTPS 存取叢集時所要使用的名稱和密碼取代 __admin__ 和 __httppassword__。
     * 以當您透過 SSH 存取叢集時所要使用的使用者名稱和密碼取代 __sshuser__ 和 __sshuserpassword__。
@@ -121,4 +121,4 @@ Azure 資源管理範本是描述__資源群組__與其中所有資源 (例如 H
 * [在 HDInsight 上的 Storm 中使用 Python 元件](hdinsight-storm-develop-python-topology.md)
 * [在 HDInsight 上使用 Storm 部署和監視拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0831_2016-->

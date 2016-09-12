@@ -94,7 +94,7 @@
  
 	![](./media/web-sites-migration-from-iis-server/readiness-assessment.png)
 
-12.	按一下 [開始移轉] 開始進行移轉。您現在會被重新導向至 Azure 來登入您的帳戶。請務必以具有使用中 Azure 訂閱的帳戶進行登入。如果您沒有 Azure 帳戶，可以在[這裡](https://azure.microsoft.com/pricing/free-trial/?WT.srch=1&WT.mc_ID=SEM_)註冊免費試用。
+12.	按一下 [開始移轉] 開始進行移轉。您現在會被重新導向至 Azure 來登入您的帳戶。請務必以具有作用中 Azure 訂用帳戶的帳戶進行登入。如果您沒有 Azure 帳戶，可以在[這裡](https://azure.microsoft.com/pricing/free-trial/?WT.srch=1&WT.mc_ID=SEM_)註冊免費試用。
 
 13.	選取要針對移轉的 Azure Web 應用程式和資料庫使用的租用戶帳戶、Azure 訂用帳戶和區域，然後按一下 [開始移轉]。您可以選取稍後要移轉的網站。
 
@@ -135,4 +135,4 @@
 * 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
  
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0831_2016-->

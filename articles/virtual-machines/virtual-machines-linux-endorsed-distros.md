@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/13/2016"
+	ms.date="08/24/2016"
 	ms.author="szark"/>
 
 
@@ -29,7 +29,7 @@ Azure 映像庫或 Marketplace 中的 Linux 映像是由許多合作夥伴所提
 
 ## 支援的散發套件和版本 ##
 
-下表列出 Azure 上支援的 Linux 散發套件和版本。
+下表列出 Azure 上支援的 Linux 散發套件和版本。如需詳細資訊，另請參閱 [Microsoft Azure 中的 Linux 映像支援](https://support.microsoft.com/zh-TW/kb/2941892) 。
 
 適用於 Hyper-V 和 Azure 的 Linux Integration Services (LIS) 驅動程式是核心模組，Microsoft 會直接提供給上游 Linux Kernel。LIS 驅動程式預設會內建於散發套件的核心，或者，如果是較舊的以 RHEL/CentOS 為基礎的散發套件，可從[這裡](http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409)個別下載。如需關於 LIS 驅動程式的詳細資訊，請參閱[這篇文章](virtual-machines-linux-create-upload-generic.md#linux-kernel-requirements)。
 
@@ -89,4 +89,4 @@ Canonical 對工程與開放社群的治理推動了 Ubuntu 在用戶端、伺�
 
 Canonical 在全球各地皆有開發人員和工程中心，此獨特的地位使其能和硬體製造商、內容供應商和軟體開發商合作，將 Ubuntu 解決方案帶到從電腦、伺服器到掌上型裝置等等的市場。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0831_2016-->

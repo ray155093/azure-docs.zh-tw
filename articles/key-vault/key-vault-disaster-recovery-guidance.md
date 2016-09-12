@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/17/2016"
+	ms.date="08/26/2016"
 	ms.author="sumedhb;aglick"/>
 
 
@@ -46,4 +46,4 @@ Azure 金鑰保存庫具備多層備援功能，以確保您的金鑰和密碼�
  * backup
 * 容錯移轉回復之後，所有要求的類型 (即讀取__和__寫入要求) 均可供使用。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -502,7 +502,7 @@ if (error.code == MSErrorPreconditionFailed) {
 
 ## <a name="adal"></a>如何：使用 Active Directory Authentication Library 驗證使用者
 
-您可以使用 Active Directory Authentication Library (ADAL)，利用 Azure Active Directory 將使用者登入應用程式。與使用 `loginAsync()` 方法相比，這通常是較建議採用的方式，因為它提供更原生的 UX 風格，並可允許進行其他自訂。
+您可以使用 Active Directory Authentication Library (ADAL)，利用 Azure Active Directory 將使用者登入應用程式。與使用 `loginWithProvider:completion:` 方法相比，這通常是較建議採用的方式，因為它提供更原生的 UX 風格，並可允許進行其他自訂。
 
 1. 依照[如何設定 App Service 來進行 Active Directory 登入](app-service-mobile-how-to-configure-active-directory-authentication.md)教學課程的說明，設定您的行動應用程式後端來進行 AAD 登入。請務必完成註冊原生用戶端應用程式的選擇性步驟。針對 iOS，建議 (但非必要) 重新導向 URI 的格式為 `<app-scheme>://<bundle-id>`。如需詳細資訊，請參閱 [ADAL iOS 快速入門](active-directory-devquickstarts-ios.md#em1-determine-what-your-redirect-uri-will-be-for-iosem)。
 
@@ -562,7 +562,7 @@ Objective-C：
 	}
 
 
-Swift：
+**Swift**：
 
 	// add the following imports to your bridging header:
 	//		#import <ADALiOS/ADAuthenticationContext.h>
@@ -591,7 +591,7 @@ Swift：
 
 ## <a name="facebook-sdk"></a>作法：使用 Facebook SDK for iOS 來驗證使用者
 
-您可以使用 Facebook SDK for iOS，利用 Facebook 將使用者登入應用程式。與使用 `loginAsync()` 方法相比，這通常是較建議採用的方式，因為它提供更原生的 UX 風格，並可允許進行其他自訂。
+您可以使用 Facebook SDK for iOS，利用 Facebook 將使用者登入應用程式。與使用 `loginWithProvider:completion:` 方法相比，這通常是較建議採用的方式，因為它提供更原生的 UX 風格，並可允許進行其他自訂。
 
 1. 依照[如何設定 App Service 來進行 Facebook 登入](app-service-mobile-how-to-configure-facebook-authentication.md)教學課程的說明，設定您的行動應用程式後端來進行 Facebook 登入。
 
@@ -669,7 +669,7 @@ Swift：
 
 ## <a name="twitter-fabric"></a>作法：使用 Twitter Fabric for iOS 來驗證使用者
 
-您可以使用 Fabric for iOS，利用 Twitter 將使用者登入應用程式。與使用 `loginAsync()` 方法相比，這通常是較建議採用的方式，因為它提供更原生的 UX 風格，並可允許進行其他自訂。
+您可以使用 Fabric for iOS，利用 Twitter 將使用者登入應用程式。與使用 `loginWithProvider:completion:` 方法相比，這通常是較建議採用的方式，因為它提供更原生的 UX 風格，並可允許進行其他自訂。
 
 1. 依照[如何設定 App Service 來進行 Twitter 登入](app-service-mobile-how-to-configure-twitter-authentication.md)教學課程的說明，設定您的行動應用程式後端來進行 Twitter 登入。
 
@@ -741,6 +741,68 @@ Swift：
 		}
 	}
 
+## <a name="google-sdk"></a>作法：使用 Google Sign-In SDK for iOS 來驗證使用者
+
+您可以使用 Google Sign-In SDK for iOS，利用 Google 帳戶將使用者登入應用程式。與使用 `loginWithProvider:completion:` 方法相比，這通常是較建議採用的方式，因為它提供更原生的 UX 風格，並可允許進行其他自訂。
+
+1. 依照[如何設定 App Service 來進行 Google 登入](app-service-mobile-how-to-configure-google-authentication.md)教學課程的說明，設定您的行動應用程式後端來進行 Google 登入。
+
+2. 請依照 [Google Sign-In for iOS - Start integrating](https://developers.google.com/identity/sign-in/ios/start-integrating) 文件安裝 Google SDK for iOS。您可以略過＜使用後端伺服器進行驗證＞一節，因為 App Service 會為您處理這項工作。
+
+3. 除了隨後的程式碼外，請根據您所使用的語言將下列內容新增到委派的 `signIn:didSignInForUser:withError:` 方法。
+
+**Objective-C**：
+
+	    NSDictionary *payload = @{
+	                              @"id_token":user.authentication.idToken,
+	                              @"authorization_code":user.serverAuthCode
+	                              };
+	    
+	    [client loginWithProvider:@"google" token:payload completion:^(MSUser *user, NSError *error) {
+	        // ...
+	    }];
+
+**Swift**：
+
+		let payload: [String: String] = ["id_token": user.authentication.idToken, "authorization_code": user.serverAuthCode]
+		client.loginWithProvider("google", token: payload) { (user, error) in
+			// ...
+		}
+
+4. 務必也將下列內容新增到應用程式委派中的 `application:didFinishLaunchingWithOptions:`，將 "SERVER\_CLIENT\_ID" 取代為您用來在步驟 1 中設定 App Service 的相同識別碼。
+
+**Objective-C**：
+
+ 		[GIDSignIn sharedInstance].serverClientID = @"SERVER_CLIENT_ID";
+ 
+ 
+ **Swift**：
+ 
+		GIDSignIn.sharedInstance().serverClientID = "SERVER_CLIENT_ID"
+
+ 
+ 5. 根據您所使用的語言將下列程式碼新增到應用程式的 UIViewController 中以實作 `GIDSignInUIDelegate` 通訊協定。請注意，使用者會先登出再登入，雖然他們不需要再次輸入認證，但仍會看到同意對話方塊。必須這麼做才能取得在上一個步驟中需要用到的新伺服器授權碼。請只在工作階段權杖過期時才呼叫這個方法。
+ 
+ **Objective-C**：
+
+		#import <Google/SignIn.h>
+		// ...
+		- (void)authenticate
+		{
+			    [GIDSignIn sharedInstance].uiDelegate = self;
+				[[GIDSignIn sharedInstance] signOut];
+			    [[GIDSignIn sharedInstance] signIn];
+ 		}
+ 
+ **Swift**：
+ 	
+		// ...
+		func authenticate() {
+			GIDSignIn.sharedInstance().uiDelegate = self
+			GIDSignIn.sharedInstance().signOut()
+			GIDSignIn.sharedInstance().signIn()
+		}
+ 		
 <!-- Anchors. -->
 
 [What is Mobile Services]: #what-is
@@ -792,4 +854,4 @@ Swift：
 [CLI to manage Mobile Services tables]: ../virtual-machines-command-line-tools.md#Mobile_Tables
 [Conflict-Handler]: mobile-services-ios-handling-conflicts-offline-data.md#add-conflict-handling
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0831_2016-->

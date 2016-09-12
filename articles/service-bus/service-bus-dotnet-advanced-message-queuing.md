@@ -291,6 +291,15 @@ Received message with JMSMessageID = ID:acbca67f03c346de9b7893026f97ddeb
 exit
 ```
 
+## 不支援的功能和限制
+
+以下 .NET 服務匯流排 API 功能是目前使用 AMQP 時無法支援的功能：
+
+ * 交易
+ * 透過傳輸目的地傳送
+
+如需詳細資訊，請參閱[不支援的功能、限制和行為差異](service-bus-amqp-dotnet.md#unsupported-features-restrictions-and-behavioral-differences)。
+
 ## 摘要
 
 本文示範如何使用 AMQP 1.0 和服務匯流排 .NET API，從 .NET 存取服務匯流排代理傳訊功能 (佇列和發佈/訂閱主題)。
@@ -307,4 +316,4 @@ exit
  
 [Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

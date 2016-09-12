@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-linux"
 	ms.workload="na"
-	ms.date="06/03/2016"
+	ms.date="08/26/2016"
 	ms.author="marsma" />
 
 # 在 Azure Batch 集區中佈建 Linux 計算節點
@@ -55,7 +55,7 @@ Batch 節點代理程式是一項程式，會在集區中的每個節點上執�
 
 ## 建立 Linux 集區︰Batch Python
 
-下列程式碼片段舉例示範如何使用 [Python 適用的 Microsoft Azure Batch 用戶端程式庫][py_batch_package]來建立 Ubuntu Server 計算節點的集區。Batch Python 模組的參考文件，可在此找到： [azure.batch package ][py_batch_docs] \(位於＜Read the Docs (閱讀文件)＞上)。
+下列程式碼片段舉例示範如何使用 [Python 適用的 Microsoft Azure Batch 用戶端程式庫][py_batch_package]來建立 Ubuntu Server 計算節點的集區。Batch Python 模組的參考文件，可在此找到： [azure.batch package ][py_batch_docs] (位於＜Read the Docs (閱讀文件)＞上)。
 
 此程式碼片段會明確建立 [ImageReference][py_imagereference]，並指定其每一個屬性 (發行者、服務、SKU、版本)。不過，我們建議您在實際執行程式碼中使用 [list\_node\_agent\_skus][py_list_skus] 方法來判斷，並在執行階段從可用映像和節點代理程式 SKU 組合中選擇。
 
@@ -198,7 +198,7 @@ ImageReference imageReference = new ImageReference(
 
 ## 虛擬機器映像的清單
 
-下表列出撰寫本文時，與可用 Batch 節點代理程式相容的 Marketplace 虛擬機器映像。請務必注意，此清單並非永久不變，因為可能隨時新增或移除映像和節點代理程式。我們建議您的 Batch 應用程式和服務一律使用 [list\_node\_agent\_skus][py_list_skus] \(Python) 和 [ListNodeAgentSkus][net_list_skus] \(Batch .NET) 來判斷，並從目前可用的 SKU 中選取。
+下表列出本文最後一次更新時，與可用 Batch 節點代理程式相容的 Marketplace 虛擬機器映像。請務必注意，此清單並非永久不變，因為可能隨時新增或移除映像和節點代理程式。我們建議您的 Batch 應用程式和服務一律使用 [list\_node\_agent\_skus][py_list_skus] (Python) 和 [ListNodeAgentSkus][net_list_skus] (Batch .NET) 來判斷，並從目前可用的 SKU 中選取。
 
 > [AZURE.WARNING] 下列清單可能會隨時變更。一律使用 Batch API 中提供的**清單節點代理程式 SKU**方法來列出，然後在執行 Batch 作業時，從相容的虛擬機器和節點代理程式的 SKU 選取。
 
@@ -209,19 +209,20 @@ ImageReference imageReference = new ImageReference(
 | Canonical | UbuntuServer | 14\.04.2-LTS | 最新 | batch.node.ubuntu 14.04 |
 | Canonical | UbuntuServer | 14\.04.3-LTS | 最新 | batch.node.ubuntu 14.04 |
 | Canonical | UbuntuServer | 14\.04.4-LTS | 最新 | batch.node.ubuntu 14.04 |
-| Canonical | UbuntuServer | 15\.10 | 最新 | batch.node.debian 8 |
+| Canonical | UbuntuServer | 14\.04.5-LTS | 最新 | batch.node.ubuntu 14.04 |
 | Canonical | UbuntuServer | 16\.04.0-LTS | 最新 | batch.node.ubuntu 16.04 |
 | Credativ | Debian | 8 | 最新 | batch.node.debian 8 |
 | OpenLogic | CentOS | 7\.0 | 最新 | batch.node.centos 7 |
 | OpenLogic | CentOS | 7\.1 | 最新 | batch.node.centos 7 |
-| OpenLogic | CentOS | 7\.2 | 最新 | batch.node.centos 7 |
 | OpenLogic | CentOS-HPC | 7\.1 | 最新 | batch.node.centos 7 |
+| OpenLogic | CentOS | 7\.2 | 最新 | batch.node.centos 7 |
 | Oracle | Oracle-Linux | 7\.0 | 最新 | batch.node.centos 7 |
-| SUSE | SLES | 12 | 最新 | batch.node.opensuse 42.1 |
-| SUSE | SLES | 12-SP1 | 最新 | batch.node.opensuse 42.1 |
-| SUSE | SLES-HPC | 12 | 最新 | batch.node.opensuse 42.1 |
 | SUSE | openSUSE | 13\.2 | 最新 | batch.node.opensuse 13.2 |
 | SUSE | openSUSE-Leap | 42\.1 | 最新 | batch.node.opensuse 42.1 |
+| SUSE | SLES-HPC | 12 | 最新 | batch.node.opensuse 42.1 |
+| SUSE | SLES | 12-SP1 | 最新 | batch.node.opensuse 42.1 |
+| microsoft-ads | standard-data-science-vm | standard-data-science-vm | 最新 | batch.node.windows amd64 |
+| microsoft-ads | linux-data-science-vm | linuxdsvm | 最新 | batch.node.centos 7 |
 | MicrosoftWindowsServer | WindowsServer | 2008-R2-SP1 | 最新 | batch.node.windows amd64 |
 | MicrosoftWindowsServer | WindowsServer | 2012-Datacenter | 最新 | batch.node.windows amd64 |
 | MicrosoftWindowsServer | WindowsServer | 2012-R2-Datacenter | 最新 | batch.node.windows amd64 |
@@ -234,31 +235,54 @@ ImageReference imageReference = new ImageReference(
 下列 Python 程式碼片段會在集區中的每個節點上建立使用者 (遠端連線所需)。接著，它會列印每個節點的安全殼層 (SSH) 連線資訊。
 
 ```python
+import datetime
 import getpass
+import azure.batch.batch_service_client as batch
+import azure.batch.batch_auth as batchauth
+import azure.batch.models as batchmodels
+
+# Specify your own account credentials
+batch_account_name = ''
+batch_account_key = ''
+batch_account_url = ''
+
+# Specify the ID of an existing pool containing Linux nodes
+# currently in the 'idle' state
+pool_id = ''
 
 # Specify the username and prompt for a password
-username = "linuxuser"
+username = 'linuxuser'
 password = getpass.getpass()
 
-# Create the user that will be added to each node
-# in the pool
+# Create a BatchClient
+credentials = batchauth.SharedKeyCredentials(
+    batch_account_name,
+    batch_account_key
+)
+batch_client = batch.BatchServiceClient(
+        credentials,
+        base_url=batch_account_url
+)
+
+# Create the user that will be added to each node in the pool
 user = batchmodels.ComputeNodeUser(username)
 user.password = password
 user.is_admin = True
-user.expiry_time = (datetime.datetime.today() + datetime.timedelta(days=30)).isoformat()
+user.expiry_time = \
+    (datetime.datetime.today() + datetime.timedelta(days=30)).isoformat()
 
 # Get the list of nodes in the pool
-nodes = client.compute_node.list(pool_id)
+nodes = batch_client.compute_node.list(pool_id)
 
 # Add the user to each node in the pool and print
 # the connection information for the node
 for node in nodes:
     # Add the user to the node
-    client.compute_node.add_user(pool_id, node.id, user)
+    batch_client.compute_node.add_user(pool_id, node.id, user)
 
     # Obtain SSH login information for the node
-    login = client.compute_node.get_remote_login_settings(pool_id,
-                                                          node.id)
+    login = batch_client.compute_node.get_remote_login_settings(pool_id,
+                                                                node.id)
 
     # Print the connection info for the node
     print("{0} | {1} | {2} | {3}".format(node.id,
@@ -291,7 +315,7 @@ Azure Batch 採用 Azure 雲端服務和 Azure 虛擬機器技術。Batch 服務
 
 ### Batch Python 程式碼範例
 
-查看 GitHub 上 [azure-batch-samples][github_samples] 儲存機制中的另一個 [Python 程式碼範例][github_samples_py]，以取得為您示範如何執行一般 Batch 作業 (例如建立集區、作業和工作) 的數個指令碼。Python 範例隨附的[讀我檔案][github_py_readme]具有如何安裝所需封裝的詳細資訊。
+查看 GitHub 上 [azure-batch-samples][github_samples] 儲存機制中的另一個 [Python 程式碼範例][github_samples_py]，以取得為您示範如何執行一般 Batch 作業 (例如建立集區、作業和工作) 的數個指令碼。Python 範例隨附的[讀我檔案][github_py_readme]具有如何安裝所需套件的詳細資訊。
 
 ### 批次論壇
 
@@ -327,4 +351,4 @@ MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 B
 
 [1]: ./media/batch-application-packages/app_pkg_01.png "應用程式封裝高階圖表"
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0831_2016-->

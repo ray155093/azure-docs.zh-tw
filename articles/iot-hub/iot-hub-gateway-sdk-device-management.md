@@ -81,7 +81,7 @@
 
 您也必須完成下列工作
 
-- 在您的 Azure 訂用帳戶中[建立 IoT 中樞][lnk-create-hub]。您需要您的中樞名稱才能完成本教學課程。如果您還沒有 Azure 訂用帳戶，則可以取得[免費帳戶][lnk-free-trial]。
+- 在您的 Azure 訂用帳戶中[建立 IoT 中樞][lnk-create-hub]。您需要您的中樞名稱才能完成本教學課程。如果您還沒有 Azure 訂用帳戶，可以取得[免費帳戶][lnk-free-trial]。
 - 將三個裝置 (**GW-ble1-demo**、**GW-ble2-demo** 和 **GW-device**) 加入至您的 IoT 中樞，並記下其識別碼和裝置金鑰。您可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具，將這些裝置加入您在上一個步驟中建立的 IoT 中樞，並擷取其金鑰。您可以使用其中兩個裝置 (**GW-ble1-demo** 和 **GW-ble2-demo**) 做為已連接至閘道的 BLE 模擬裝置，而使用另一個裝置 (**GW-device**) 將 Edison 閘道裝置視為您可從 IoT 中樞管理的裝置管理用戶端。
 
 ### 準備您的建置環境，並確認您可以建立自訂映像
@@ -425,4 +425,4 @@ IoT 裝置管理服務所要求的 Edison 韌體更新通常會下載 zip 檔案
 [lnk-dmui]: iot-hub-device-management-ui-sample.md
 [lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0831_2016-->

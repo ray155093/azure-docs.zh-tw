@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/07/2016" 
+	ms.date="08/30/2016" 
 	ms.author="awills"/>
 
 #  Application Insights 中的取樣
@@ -58,6 +58,8 @@
 
 進行 SDK 自適性或固定速率取樣時，不執行擷取取樣。如果 SDK 的取樣率小於 100%，則忽略您設定的擷取取樣率。
 
+> [AZURE.WARNING] 圖格上顯示的值會指出您要為擷取取樣的值。如果 SDK 取樣在運作中，這並不代表實際的取樣率。
+
 
 ## 在您 Web 伺服器上的調適性取樣
 
@@ -74,11 +76,11 @@ Application Insights SDK for ASP.NET v 2.0.0-beta3 及更新版本提供調適�
 
 **更新專案的 NuGet** 套件至最新的 Application Insights *預先發行*版本：以滑鼠右鍵按一下方案總管中的專案，選擇 [管理 NuGet 封裝]，然後核取 [包含發行前版本] 並搜尋 Microsoft.ApplicationInsights.Web。
 
-在 [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) 中，您可以調整 `AdaptiveSamplingTelemetryProcessor` 節點中的參數數目。顯示的數字是預設值：
+在 [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) 中，您可以調整 `AdaptiveSamplingTelemetryProcessor` 節點中的數個參數。顯示的數字是預設值：
 
 * `<MaxTelemetryItemsPerSecond>5</MaxTelemetryItemsPerSecond>`
 
-    調整演算法對於**單一伺服器主機**的目標速率。如果 Web 應用程式在許多主機上執行，您會想要減少此值，以保持在您的 Application Insights 入口網站的流量目標速率內。
+    調整演算法對於**每部伺服器主機**的目標速率。如果 Web 應用程式在許多主機上執行，請減少此值，以保持在您的 Application Insights 入口網站的流量目標速率內。
 
 * `<EvaluationInterval>00:00:15</EvaluationInterval>`
 
@@ -291,6 +293,17 @@ Application Insights SDK for ASP.NET v 2.0.0-beta3 及更新版本提供調適�
 否則，建議使用調適性取樣。在 ASP.NET 伺服器 SDK 版本 2.0.0-beta3 或更新版本中，此功能為預設啟用。它只會影響速率達到某個最低值的流量，因此不會影響使用率較低的網站。
 
 
+## 如何得知取樣是否正在運作中？
+
+若要找出實際的取樣率 (不論是否已套用)，請使用如下所示的[分析查詢](app-insights-analytics.md)︰
+
+    requests | where timestamp > ago(1d)
+    | summarize 100/avg(itemCount) by bin(timestamp, 1h) 
+    | render areachart 
+
+在每筆保留的記錄中，`itemCount` 表示它所代表的原始記錄筆數，其等於 1 + 先前捨棄的記錄筆數。
+
+
 ## 取樣運作方式？
 
 固定取樣率和調適性取樣是 ASP.NET 版本 (從 2.0.0 更新版本開始) 中 SDK 的一項功能。擷取取樣是 Application Insights 服務的一項功能，而且可在 SDK 未執行取樣時運作。
@@ -311,7 +324,7 @@ Application Insights SDK for ASP.NET v 2.0.0-beta3 及更新版本提供調適�
 
 ## 取樣與 JavaScript SDK
 
-用戶端 (JavaScript) SDK 與伺服器端 SDK 一同參與固定取樣率。已檢測的頁面只會從伺服器端決定「納入取樣」的相同使用者傳送用戶端遙測。此邏輯的設計是為了在用戶端和伺服器端之間保有使用者工作階段的完整性。如此一來，您可以從 Application Insights 中的任何特定遙測項目找到這個使用者或工作階段的所有其他遙測項目。
+用戶端 (JavaScript) SDK 與伺服器端 SDK 一同參與固定取樣率。已檢測的頁面只會從伺服器端決定「納入取樣」的相同使用者傳送用戶端遙測。 此邏輯的設計是為了在用戶端和伺服器端之間保有使用者工作階段的完整性。如此一來，您可以從 Application Insights 中的任何特定遙測項目找到這個使用者或工作階段的所有其他遙測項目。
 
 *我的用戶端和伺服器端遙測未顯示您上方描述的協調範例。*
 
@@ -344,7 +357,7 @@ Application Insights SDK for ASP.NET v 2.0.0-beta3 及更新版本提供調適�
 
 *如果將取樣百分比設定成太高會發生什麼事？*
 
-* 設定太高的取樣百分比 (不夠積極) 將會導致收集的遙測量減少不足。您可能仍會遇到與節流相關的遙測資料遺失，而使用 Application Insights 的成本由於超額費可能高於您的計劃。
+* 設定太高的取樣百分比 (不夠積極) 會導致收集的遙測量減少不足。您可能仍會遇到與節流相關的遙測資料遺失，而使用 Application Insights 的成本由於超額費可能高於您的計劃。
 
 *我可以在何種平台上使用取樣？*
 
@@ -356,4 +369,4 @@ Application Insights SDK for ASP.NET v 2.0.0-beta3 及更新版本提供調適�
 
  * 使用新的 TelemetryConfiguration (非預設使用中的組態) 初始化個別的 TelemetryClient 執行個體。使用該執行個體來傳送您的罕見的事件。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

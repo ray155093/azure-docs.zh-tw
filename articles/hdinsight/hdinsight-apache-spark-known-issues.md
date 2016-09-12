@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/06/2016" 
+	ms.date="08/25/2016" 
 	ms.author="nitinme"/>
 
 # HDInsight Linux 上的 Apache Spark 叢集已知問題
@@ -29,8 +29,8 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
 
 請使用下列程序解決此問題：
 
-1. Ssh 到前端節點。 
-2. 執行下列命令，以尋找透過 Livy 啟動之互動式作業的應用程式識別碼。 
+1. Ssh 到前端節點。
+2. 執行下列命令，以尋找透過 Livy 啟動之互動式作業的應用程式識別碼。
 
         yarn application –list
 
@@ -56,10 +56,10 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
 
 **緩和：**
  
-1. 將 hdiuser 新增至 Hadoop 群組。 
-2. 在叢集建立之後，提供 /var/log/spark 的 777 權限。 
-3. 使用 Ambari 將 Spark 記錄檔位置更新為具有 777 權限的目錄。  
-4. 以 sudo 的身分執行 spark-submit。  
+1. 將 hdiuser 新增至 Hadoop 群組。
+2. 在叢集建立之後，提供 /var/log/spark 的 777 權限。
+3. 使用 Ambari 將 Spark 記錄檔位置更新為具有 777 權限的目錄。
+4. 以 sudo 的身分執行 spark-submit。
 
 ## Jupyter Notebook 的相關問題
 
@@ -146,4 +146,4 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
 
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0831_2016-->

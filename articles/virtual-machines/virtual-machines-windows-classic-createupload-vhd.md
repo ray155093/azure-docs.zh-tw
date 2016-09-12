@@ -32,13 +32,13 @@
 
 - **[Microsoft Azure PowerShell](../powershell-install-configure.md)** - 您已安裝 Microsoft Azure PowerShell 模組，並設定成使用您的訂用帳戶。
 
-- **.VHD 檔案** - 儲存在 .vhd 檔案中並連接至虛擬機器的受支援 Windows 作業系統。您也應該檢查，以查看 sysprep 是否支援在 VHD 上執行的伺服器角色。如需詳細資訊，請參閱 [Sysprep Support for Server Roles (伺服器角色的 Sysprep 支援)](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)。
+- **.VHD 檔案** - 儲存在 .vhd 檔案中並連接至虛擬機器的受支援 Windows 作業系統。檢查以查看 Sysprep 是否支援在 VHD 上執行的伺服器角色。如需詳細資訊，請參閱 [Sysprep Support for Server Roles (伺服器角色的 Sysprep 支援)](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)。
 
 > [AZURE.IMPORTANT] Microsoft Azure 不支援 VHDX 格式。您可以使用 Hyper-V 管理員或 [Convert-VHD Cmdlet](http://technet.microsoft.com/library/hh848454.aspx)，將磁碟轉換為 VHD 格式。如需詳細資料，請參閱[部落格文章](http://blogs.msdn.com/b/virtual_pc_guy/archive/2012/10/03/using-powershell-to-convert-a-vhd-to-a-vhdx.aspx)。
 
 ## 步驟 1：準備 VHD 
 
-將 VHD 上傳至 Azure 之前，必須使用 Sysprep 工具來一般化。這要準備 VHD 以做為映像。如需 Sysprep 的詳細資訊，請參閱[如何使用 Sysprep：簡介](http://technet.microsoft.com/library/bb457073.aspx)。
+將 VHD 上傳至 Azure 之前，必須使用 Sysprep 工具來一般化。這要準備 VHD 以做為映像。如需 Sysprep 的詳細資訊，請參閱[如何使用 Sysprep：簡介](http://technet.microsoft.com/library/bb457073.aspx)。執行 Sysprep 前，請先備份 VM。
 
 從安裝作業系統的虛擬機器，完成下列程序：
 
@@ -104,4 +104,4 @@
 
 您現在可以使用上傳的映像來[建立自訂的 VM](virtual-machines-windows-classic-createportal.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

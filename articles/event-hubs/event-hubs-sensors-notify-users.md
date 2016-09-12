@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/31/2016"
+   ms.date="08/25/2016"
    ms.author="spyros;sethm" />
 
 # 通知使用者從感應器或其他系統接收到的資料
@@ -33,7 +33,7 @@
 
 首先，我們假設您有重大事件要推送至 Azure 事件中樞或 IoT 中樞。任何中樞都可以使用，只要您有其存取權，並且知道連接字串即可。
 
-如果您還沒有事件中樞或 IoT 中樞，您可以依照[逐步操作](https://github.com/Azure/connectthedots)專案中的指示，透過 Arduino Shield 與 Raspberry Pi 輕鬆設定測試平台。Arduino Shield 上的光感應器會透過 Pi 將光度數據傳送至 [Azure 事件中樞][] \(**ehdevices**)，如果接收到的光度數據低於特定水準，[Azure 串流分析](https://azure.microsoft.com/services/stream-analytics/)作業即會將警示傳送至第二個事件中樞 (**ehalerts**)。
+如果您還沒有事件中樞或 IoT 中樞，您可以依照[逐步操作](https://github.com/Azure/connectthedots)專案中的指示，透過 Arduino Shield 與 Raspberry Pi 輕鬆設定測試平台。Arduino Shield 上的光感應器會透過 Pi 將光度數據傳送至 [Azure 事件中樞][] (**ehdevices**)，如果接收到的光度數據低於特定水準，[Azure 串流分析](https://azure.microsoft.com/services/stream-analytics/)作業即會將警示傳送至第二個事件中樞 (**ehalerts**)。
 
 **AppToNotify** 在啟動時將會讀取組態檔 (App.config)，以取得接收警示之事件中心的 URL 和認證。接著，它會衍生出另一個程序，以持續監視該事件中樞是否有任何訊息傳入 – 只要您可以存取事件中樞或 IoT 中樞的 URL，並具備有效的認證，此事件中樞讀取器程式碼即會持續讀取傳入的訊息。在啟動期間，應用程式也會讀取您想要使用的訊息服務 (電子郵件、SMS、電話) 的 URL 和認證，以及寄件者的名稱/位址和收件者清單。
 
@@ -44,7 +44,7 @@
 此範例中的程式碼只會說明如何監視事件中樞，以及在您想要將這項功能新增至應用程式時如何呼叫外部訊息服務。請注意，此解決方案是需要獨立完成、側重於開發人員需求的範例。它無法因應企業需求，例如在失敗時進行備援、容錯移轉、重新啟動等。如需較全面的生產解決方案，請參閱下列各項：
 
 - 透過 [Azure Logic Apps](../app-service-logic/app-service-logic-connectors-list.md) 服務，使用連接器或推播通知。
-- 依照部落格[使用 Azure 通知中樞將推播通知廣播給數百萬個行動裝置](http://weblogs.asp.net/scottgu/broadcast-push-notifications-to-millions-of-mobile-devices-using-windows-azure-notification-hubs)中的說明，使用 [Azure 通知中樞](https://msdn.microsoft.com/library/azure/jj927170.aspx)。 
+- 依照部落格[使用 Azure 通知中樞將推播通知廣播給數百萬個行動裝置](http://weblogs.asp.net/scottgu/broadcast-push-notifications-to-millions-of-mobile-devices-using-windows-azure-notification-hubs)中的說明，使用 [Azure 通知中樞](https://msdn.microsoft.com/library/azure/jj927170.aspx)。
 
 ## 後續步驟
 
@@ -83,4 +83,4 @@
 [1]: ./media/event-hubs-sensors-notify-users/event-hubs-sensor-alert.png
 [2]: ./media/event-hubs-sensors-notify-users/event-hubs-erp-alert.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0831_2016-->

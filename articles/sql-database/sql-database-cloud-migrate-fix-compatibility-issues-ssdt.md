@@ -37,7 +37,7 @@
 
 ## 使用 SQL Server Data Tools for Visual Studio 偵測相容性問題
    
-1.	開啟 Visual Studio 中的 [SQL Server 物件總管]。使用 [加入 SQL Server] 連接到包含移轉之資料庫的 SQL Server 執行個體。在總管中找出資料庫，在該資料庫上按一下滑鼠右鍵，然後選取 [建立新專案]。
+1.	開啟 Visual Studio 中的 [SQL Server 物件總管]。使用 [加入 SQL Server] 連接到包含移轉之資料庫的 SQL Server 執行個體。在 [物件總管] 中找出資料庫，在該資料庫上按一下滑鼠右鍵，然後選取 [建立新專案]。
     
 	![New Project](./media/sql-database-migrate-visualstudio-ssdt/02MigrateSSDT.png)
    
@@ -49,7 +49,7 @@
 
     ![替代文字](./media/sql-database-migrate-visualstudio-ssdt/04MigrateSSDT.png)
 
-4.	在 Visual Studio「方案總管」中，於資料庫專案上按一下滑鼠右鍵，然後選取 [屬性]。這會開啟 [專案設定] 頁面，您應該在其中將 [目標平台] 設定為 [Microsoft Azure SQL Database V12]。
+4.	在 Visual Studio「方案總管」中，於資料庫專案上按一下滑鼠右鍵，然後選取 [屬性]。在 [專案設定] 頁面，將 [目標平台] 設定為 [Microsoft Azure SQL Database V12]。
     
     ![替代文字](./media/sql-database-migrate-visualstudio-ssdt/05MigrateSSDT.png)
     
@@ -61,28 +61,26 @@
     
 	![替代文字](./media/sql-database-migrate-visualstudio-ssdt/07MigrateSSDT.png)
     
-## 使用 SQL Server Data Tools for Visual Studio 修正相容性問題        
-    
+## 使用 SQL Server Data Tools for Visual Studio 修正相容性問題
+
 1.	在第一個指令碼上按兩下，在查詢視窗中開啟指令碼，為指令碼加上註解，然後執行指令碼。![替代文字](./media/sql-database-migrate-visualstudio-ssdt/08MigrateSSDT.png)
 
-2.	針對每一個有不相容情況的指令碼重複執行此程序，直到沒有錯誤為止。
-
-	![替代文字](./media/sql-database-migrate-visualstudio-ssdt/09MigrateSSDT.png)
+2.	對每一個含有不相容的指令碼重複執行此程序，直到沒有錯誤為止。![替代文字](./media/sql-database-migrate-visualstudio-ssdt/09MigrateSSDT.png)
     
-3.	當資料庫沒有錯誤時，在專案上按一下滑鼠右鍵，然後選取 [發行]。這會建立資料庫並將其發行成來源資料庫的複本 (強烈建議使用複本，至少在一開始時使用)。
+3.	當資料庫沒有錯誤時，在專案上按一下滑鼠右鍵，然後選取 [發行]。就會建立和發行來源資料庫的複本 (強烈建議使用複本，至少在一開始時使用)。
  - 在您發佈之前，根據來源 SQL Server 版本 (早於 SQL Server 2014)，您可能需要重設專案的目標平台以啟用部署。
- - 如果您要移轉舊版 SQL Server 資料庫，在您將資料庫移轉至新版 SQL Server 之前，請勿將來源 SQL Server 中不支援的任何功能導入到專案中。
+ - 如果您要移轉舊版 SQL Server 資料庫，在將資料庫移轉至新版 SQL Server 之前，請勿將來源 SQL Server 中不支援的任何功能導入到專案中。
 
     	![alt text](./media/sql-database-migrate-visualstudio-ssdt/10MigrateSSDT.png)    
     
     	![alt text](./media/sql-database-migrate-visualstudio-ssdt/11MigrateSSDT.png)    
-    
-4.	在 [SQL Server 物件總管] 中，以滑鼠右鍵按一下來源資料庫並按一下 [資料比較] 將專案與原始資料庫進行比較，了解精靈做過哪些變更。選取您的 Azure SQL V12 版本的資料庫，然後按一下 [完成]。
+    	
+4.	在 [SQL Server 物件總管] 中，於來源資料庫上按一下滑鼠右鍵，然後按一下 [資料比較]。比較專案和原始的資料庫可協助您了解精靈所做的變更。選取您的 Azure SQL V12 版本的資料庫，然後按一下 [完成]。
     
 	![替代文字](./media/sql-database-migrate-visualstudio-ssdt/12MigrateSSDT.png)
     
 	![替代文字](./media/sql-database-migrate-visualstudio-ssdt/13MigrateSSDT.png)
-    
+
 5.	檢閱偵測到的差異，然後按一下 [更新目標] 將資料從來源資料庫移轉至 Azure SQL V12 資料庫。
     
 	![替代文字](./media/sql-database-migrate-visualstudio-ssdt/14MigrateSSDT.png)
@@ -100,4 +98,4 @@
 - [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
 - [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -66,7 +66,7 @@ Batch 帳戶 (每一區域的每一訂用帳戶) | 1 | 50
 
 	a.[問題類型] > [配額]
 
-	b.選取您的訂閱。
+	b.選取您的訂用帳戶。
 
 	c.[配額類型] > [Batch]
 
@@ -94,7 +94,7 @@ Batch 帳戶 (每一區域的每一訂用帳戶) | 1 | 50
 
 ## 相關主題
 
-* [建立和管理 Azure Batch 帳戶](batch-account-create-portal.md)
+* [使用 Azure 入口網站建立 Azure Batch 帳戶](batch-account-create-portal.md)
 
 * [Azure Batch 功能概觀](batch-api-basics.md)
 
@@ -106,4 +106,4 @@ Batch 帳戶 (每一區域的每一訂用帳戶) | 1 | 50
 
 [account_quotas]: ./media/batch-quota-limit/accountquota_portal.PNG
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0831_2016-->

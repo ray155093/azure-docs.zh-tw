@@ -29,7 +29,7 @@
 
   ![1\_RequestRefund][1]
 
-  1. 瀏覽至 [支援] 頁面。
+  1. 請從這裡瀏覽至支援頁面：[https://support.microsoft.com/zh-TW/getsupport?tenant=ClassicCommercial&locale=zh-TW&supportregion=zh-TW&pesid=15635&sd=&oaspworkflow=start\_1.0.0.0&wf=0&ccsid=635562546535117884](https://support.microsoft.com/zh-TW/getsupport?tenant=ClassicCommercial&locale=zh-TW&supportregion=zh-TW&pesid=15635&sd=&oaspworkflow=start_1.0.0.0&wf=0&ccsid=635562546535117884)。
   2. 在 [問題類型] 方塊中，選取 [管理客戶]。
   3. 在 [類別] 方塊中，選取 [核准或要求客戶退款]。
   4. 按一下 [提出要求]。
@@ -120,4 +120,4 @@
 [7]: ./media/marketplace-publishing-support-common-issues/acctdetails.png
 [8]: ./media/marketplace-publishing-support-common-issues/manageadmins.png
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0831_2016-->

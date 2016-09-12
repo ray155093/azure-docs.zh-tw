@@ -26,7 +26,7 @@
 
 確定 Windows VHD 目前在本機伺服器上的運作正常。先解決 VM 本身的任何錯誤，然後嘗試轉換或上傳至 Azure。
 
-如果您需要將虛擬磁碟轉換為 Azure 所需的格式，請使用下列各節所述的其中一種方法。
+如果您需要將虛擬磁碟轉換為 Azure 所需的格式，請使用下列各節所述的其中一種方法。在執行任何虛擬磁碟轉換程序或 Sysprep 之前，請先備份 VM。
 
 ### 使用 HYPER-V 管理員進行轉換
 - 開啟 Hyper-V 管理員，然後在左側選取您的本機電腦。在上方功能表中，按一下 [動作] > [編輯磁碟]。
@@ -66,7 +66,7 @@ Convert-VHD –Path c:\test\MY-VM.vhdx –DestinationPath c:\test\MY-NEW-VM.vhd 
 3. 將磁碟 SAN 原則設為 [Onlineall](https://technet.microsoft.com/library/gg252636.aspx)：
 
 	```
-	dispart san policy=onlineall
+	diskpart san policy=onlineall
 	```
 
 4. 使用適用於 Windows 的國際標準時間 (UTC)，並將 Windows 時間 (w32time) 服務的啟動類型設為 [自動]：
@@ -287,6 +287,7 @@ Convert-VHD –Path c:\test\MY-VM.vhdx –DestinationPath c:\test\MY-NEW-VM.vhd 
 
 	- [使用 Resource Manager 部署模型，從現有的 Azure VM 建立 VM 映像](virtual-machines-windows-capture-image.md)
 	- [使用傳統部署模型，從現有的 Azure VM 建立 VM 映像](virtual-machines-windows-classic-capture-image.md)
+	- [伺服器角色的 Sysprep 支援](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)
 
 
 ## 建議的額外組態
@@ -320,4 +321,4 @@ Convert-VHD –Path c:\test\MY-VM.vhdx –DestinationPath c:\test\MY-NEW-VM.vhd 
 
 - [將 Windows VM 映像上傳至 Azure 供 Resource Manager 部署使用](virtual-machines-windows-upload-image.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -32,7 +32,7 @@ Azure Resource Manager 範本會協助您定義要部署給解決方案的資源
 - [建立服務匯流排命名空間與佇列](service-bus-resource-manager-namespace-queue.md)
 - [建立服務匯流排命名空間與主題和訂用帳戶](service-bus-resource-manager-namespace-topic.md)
 - [建立服務匯流排命名空間與佇列和授權規則](service-bus-resource-manager-namespace-auth-rule.md)
-- [建立服務匯流排命名空間與事件中樞和取用者群組](service-bus-resource-manager-namespace-event-hub.md)
+- [建立事件中樞命名空間與事件中樞和取用者群組](../event-hubs/event-hubs-resource-manager-namespace-event-hub.md)
 
 ## 使用 PowerShell 部署
 
@@ -253,4 +253,4 @@ Parameters        :
 [使用 Azure Resource Manager 範本部署資源]: ../resource-group-template-deploy.md
 [Azure 快速入門範本]: https://azure.microsoft.com/documentation/templates/?term=service+bus
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0831_2016-->

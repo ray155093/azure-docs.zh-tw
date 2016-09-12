@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="07/26/2016"
+   ms.date="08/31/2016"
    ms.author="alkohli"/>
 
 # StorSimple 軟體、高可用性和網路需求
 
-## 概觀
+## Overview
 
 歡迎使用 Microsoft Azure StorSimple。本文描述重要的系統需求和 StorSimple 裝置以及存取裝置之儲存體用戶端的最佳做法。建議您先仔細檢閱資訊，再部署 StorSimple 系統，然後在部署和後續作業期間，必要時回顧參考。
 
@@ -81,13 +81,24 @@
 
 > [AZURE.NOTE] 裝置 (來源) IP 應該一律設定為所有啟用的網路介面。目的地 IP 應該設為 [Azure 資料中心 IP 範圍](https://www.microsoft.com/zh-TW/download/confirmation.aspx?id=41653)。
 
-
+#### Azure 入口網站的 URL 模式
 | URL 模式 | 元件/功能 | 裝置 IP |
 |------------------------------------------------------------------|---------------------------------------------------------------|-----------------------------------------|
 | `https://*.storsimple.windowsazure.com/*`<br>`https://*.accesscontrol.windows.net/*`<br>`https://*.servicebus.windows.net/*` | StorSimple Manager 服務<br>存取控制服務<br>Azure 服務匯流排| 啟用雲端功能的網路介面 |
 |`https://*.backup.windowsazure.com`|裝置註冊| 僅限資料 0|
 |`http://crl.microsoft.com/pki/*`<br>`http://www.microsoft.com/pki/*`|憑證撤銷 |啟用雲端功能的網路介面 |
 | `https://*.core.windows.net/*` <br>`https://*.data.microsoft.com`<br>`http://*.msftncsi.com` | Azure 儲存體帳戶和監視 | 啟用雲端功能的網路介面 |
+| `http://*.windowsupdate.microsoft.com`<br>`https://*.windowsupdate.microsoft.com`<br>`http://*.update.microsoft.com`<br> `https://*.update.microsoft.com`<br>`http://*.windowsupdate.com`<br>`http://download.microsoft.com`<br>`http://wustat.windows.com`<br>`http://ntservicepack.microsoft.com`| Microsoft Update 伺服器<br> | 僅限控制站的固定 IP |
+| `http://*.deploy.akamaitechnologies.com` |Akamai CDN |僅限控制站的固定 IP |
+| `https://*.partners.extranet.microsoft.com/*` | 支援封裝 | 啟用雲端功能的網路介面 |
+
+#### Azure Government 入口網站的 URL 模式
+| URL 模式 | 元件/功能 | 裝置 IP |
+|------------------------------------------------------------------|---------------------------------------------------------------|-----------------------------------------|
+| `https://*.storsimple.windowsazure.us/*`<br>`https://*.accesscontrol.usgovcloudapi.net/*`<br>`https://*.servicebus.usgovcloudapi.net/*` | StorSimple Manager 服務<br>存取控制服務<br>Azure 服務匯流排| 啟用雲端功能的網路介面 |
+|`https://*.backup.windowsazure.us`|裝置註冊| 僅限資料 0|
+|`http://crl.microsoft.com/pki/*`<br>`http://www.microsoft.com/pki/*`|憑證撤銷 |啟用雲端功能的網路介面 |
+| `https://*.core.usgovcloudapi.net/*` <br>`https://*.data.microsoft.com`<br>`http://*.msftncsi.com` | Azure 儲存體帳戶和監視 | 啟用雲端功能的網路介面 |
 | `http://*.windowsupdate.microsoft.com`<br>`https://*.windowsupdate.microsoft.com`<br>`http://*.update.microsoft.com`<br> `https://*.update.microsoft.com`<br>`http://*.windowsupdate.com`<br>`http://download.microsoft.com`<br>`http://wustat.windows.com`<br>`http://ntservicepack.microsoft.com`| Microsoft Update 伺服器<br> | 僅限控制站的固定 IP |
 | `http://*.deploy.akamaitechnologies.com` |Akamai CDN |僅限控制站的固定 IP |
 | `https://*.partners.extranet.microsoft.com/*` | 支援封裝 | 啟用雲端功能的網路介面 |
@@ -127,12 +138,7 @@ Update 2 有幾項網路相關的改進且路由度量已變更。行為可以�
 
 	| 網路介面 | 已啟用雲端 | 已停用雲端且具有閘道器 |
 	|-----|---------------|---------------------------|
-	| Data 0 | 1 | - | 
-	| Data 1 | 2 | 20 | 
-	| Data 2 | 3 | 30 | 
-	| Data 3 | 4 | 40 | 
-	| Data 4 | 5 | 50 | 
-	| Data 5 | 6 | 60 |
+	| Data 0 | 1 | - | | Data 1 | 2 | 20 | | Data 2 | 3 | 30 | | Data 3 | 4 | 40 | | Data 4 | 5 | 50 | | Data 5 | 6 | 60 |
 
 
 - 雲端流量透過網路介面路由的順序為：
@@ -280,4 +286,4 @@ StorSimple 裝置包含使用鏡像空間保護的固態硬碟 (SSD) 與硬碟 (
 <!--Reference links-->
 [1]: https://technet.microsoft.com/library/cc731844(v=WS.10).aspx
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0831_2016-->

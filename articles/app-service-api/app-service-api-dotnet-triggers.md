@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="dotnet" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/16/2016" 
+	ms.date="08/25/2016" 
 	ms.author="rachelap"/>
 
 # Azure App Service API 應用程式觸發程序
@@ -21,7 +21,7 @@
 >[AZURE.NOTE] 這一版的文章適用於 API Apps 2014-12-01-preview 結構描述版本。
 
 
-## 概觀
+## Overview
 
 本文說明如何實作 API 應用程式觸發程序，並從邏輯應用程式加以使用。
 
@@ -342,4 +342,4 @@ API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採�
     }
  
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -13,16 +13,16 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="storage-backup-recovery"
-	ms.date="06/13/2016"
+	ms.date="08/31/2016"
 	ms.author="pratshar"/>
 
 # 以 Azure Site Recovery 保護 Active Directory 和 DNS
 
-企業應用程式，例如 SharePoint、Dynamics AX 和 SAP 都依存於 Active Directory 和 DNS 基礎結構才能正確運作。當您建立應用程式的災害復原解決方案時，請務必記住，您必須先保護及復原 Active Directory 和 DNS，再保護及復原其他應用程式元件，以確保災害發生時每樣東西能正常運作。
+企業應用程式 (例如 SharePoint、Dynamics AX 和 SAP) 須倚賴 Active Directory 和 DNS 基礎結構才能正確運作。當您建立應用程式的災害復原解決方案時，請務必記住，您必須先保護及復原 Active Directory 和 DNS，再保護及復原其他應用程式元件，以確保災害發生時每樣東西能正常運作。
 
-Site Recovery 是一項 Azure 服務，藉由協調虛擬機器的複寫、容錯移轉及復原，提供災害復原功能。Site Recovery 支援多種複寫案例，可持續保護及順暢地容錯移轉虛擬機器和應用程式至私密/公用或主機服務提供者的雲端。
+Site Recovery 是一項 Azure 服務，可藉由協調虛擬機器的複寫、容錯移轉及復原，提供災害復原功能。Site Recovery 支援一些複寫案例，可持續地保護虛擬機器和應用程式，並將其順暢地容錯移轉至私密/公用或主機服務提供者的雲端。
 
-使用 Site Recovery，您可以針對 Active Directory 建立一個完整的自動化災害復原計畫。當中斷發生時，您可以在幾秒鐘內從任何地方起始容錯移轉，並在數分鐘內啟動並執行 Active Directory。如果您已在主要網站針對多個應用程式 (例如 SharePoint 和 SAP) 部署 Active Directory，且您想要執行整個網站的容錯移轉，您可以先使用 Site Recovery 容錯移轉 Active Directory，再使用應用程式專用的復原計劃容錯移轉其他應用程式。
+使用 Site Recovery，您可以針對 Active Directory 建立一個完整的自動化災害復原計畫。當發生中斷情況時，您可以在幾秒鐘內從任何地方起始容錯移轉，並在數分鐘內啟動並執行 Active Directory。如果您已在主要網站針對多個應用程式 (例如 SharePoint 和 SAP) 部署 Active Directory，且您想要執行整個網站的容錯移轉，您可以先使用 Site Recovery 容錯移轉 Active Directory，再使用應用程式專用的復原計劃容錯移轉其他應用程式。
 
 本文說明如何建立 Active Directory 的災害復原解決方案、如何使用單鍵復原計劃執行計劃/未計劃/測試容錯移轉，以及執行支援的組態和必要條件。開始之前，您應該先熟悉 Active Directory 與 Azure Site Recovery。
 
@@ -34,7 +34,7 @@ Site Recovery 是一項 Azure 服務，藉由協調虛擬機器的複寫、容�
 
 ### 選項 2
 
-如果您有大量的應用程式且在環境中有一個以上的網域控制站，或您打算一次容錯移轉幾個應用程式，我們建議您除了使用 Site Recovery 複寫網域控制站虛擬機器外，也在目標網站 (Azure 或內部部署資料中心上的次要網站) 上設定其他網域控制站。
+如果您有大量應用程式且環境中有多個網域控制站，或您打算一次容錯移轉幾個應用程式，建議您除了使用 Site Recovery 來複寫網域控制站虛擬機器之外，也在目標站台 (Azure 或次要的內部部署資料中心) 上設定其他網域控制站。
 
 >[AZURE.NOTE] 即使您實作第 2 個選項來執行測試容錯移轉，您仍然需要使用 Site Recovery 複寫網域控制站。如需詳細資訊，請詳閱[測試容錯移轉考量](#considerations-for-test-failover)。
 
@@ -66,7 +66,7 @@ Site Recovery 是一項 Azure 服務，藉由協調虛擬機器的複寫、容�
 
 ### 站對站保護
 
-將伺服器提升至網域控制站角色時，請在次要網站上建立網域控制站，並指定主要網站使用的同一網域的名稱給它。您可以使用 **Active Directory 網站和服務**嵌入式管理單元來設定網站要新增至的網站連結物件上的設定。藉由設定網站連結，您可以控制兩個以上的網站之間的複寫發生的時間和頻率。請參閱[排程網站之間的複寫](https://technet.microsoft.com/library/cc731862.aspx)以取得詳細資訊。
+將伺服器提升至網域控制站角色時，請在次要站台上建立網域控制站，並指定與主要站台上所使用的相同網域名稱。您可以使用 **Active Directory 網站和服務**嵌入式管理單元來設定網站要新增至的網站連結物件上的設定。藉由設定網站連結，您可以控制兩個以上的網站之間的複寫發生的時間和頻率。請參閱[排程網站之間的複寫](https://technet.microsoft.com/library/cc731862.aspx)以取得詳細資訊。
 
 ###站對 Azure 保護
 
@@ -84,17 +84,17 @@ Site Recovery 是一項 Azure 服務，藉由協調虛擬機器的複寫、容�
 
 1. 在 Site Recovery 中啟用網域控制站/DNS 虛擬機器的保護。
 2. 建立隔離的網路。在 Azure 中建立的任何虛擬網路預設是與其他網路隔離。建議此網路的 IP 範圍使用與您的生產網路相同的 IP 範圍。請勿在此網路上啟用網站對網站連線能力。
-3. 提供建立之網站的 DNS IP 位址，做為您預期 DNS 虛擬機器取得的 IP 位址。如果您是複寫到 Azure，則提供 VM 的 IP 位址，該 VM 將會用於 VM 屬性中 [目標 IP] 設定的容錯移轉。如果您是複寫到其他內部部署網站，且您是使用 DHCP，請遵循指示來[針對測試容錯移轉設定 DNS 和 DHCP](site-recovery-failover.md#prepare-dhcp)。
+3. 提供建立之網站的 DNS IP 位址，做為您預期 DNS 虛擬機器取得的 IP 位址。如果您是複寫到 Azure，則請在 VM 屬性的 [目標 IP] 設定中，提供將用於容錯移轉的 VM IP 位址。如果您是複寫到其他內部部署網站，且您是使用 DHCP，請遵循指示來[針對測試容錯移轉設定 DNS 和 DHCP](site-recovery-failover.md#prepare-dhcp)。
 
->[AZURE.NOTE] 如果 IP 位址可用於測試容錯移轉網路，在測試容錯移轉期間配置給虛擬機器的 IP 位址，與它在執行計劃或未計劃的容錯移轉時得到的 IP 位址相同。如果不可用，則虛擬機器收到的 IP 位址與測試容錯移轉網路中所用的不同。
+>[AZURE.NOTE] 在測試容錯移轉期間配置給虛擬機器的 IP 位址如果是測試容錯移轉網路中可用的 IP 位址，就會與虛擬機器在計劃性或非計劃性容錯移轉時將得到的 IP 位址相同。如果該位址不可用，虛擬機器就會收到測試容錯移轉網路中一個可用的其他 IP 位址。
 
-4. 在網域控制站虛擬機器上，在隔離網路中執行它的測試容錯移轉。
+4. 在網域控制站虛擬機器上，在隔離網路中執行它的測試容錯移轉。請使用網域控制站虛擬機器的最新可用應用程式一致復原點來執行測試容錯移轉。
 5. 執行應用程式復原計畫的測試容錯移轉。
-6. 測試完成之後，在 Site Recovery 入口網站的 [作業] 索引標籤中，將網域控制站虛擬機器和復原計劃的作業的測試容錯移轉標示為｢完成」。
+6. 測試完成之後，在 Site Recovery 入口網站的 [作業] 索引標籤上，將網域控制站虛擬機器和復原方案的測試容錯移轉作業標示為 [完成]。
 
 ### 不同電腦上的 DNS 和網域控制站
 
-如果 DNS 與網域控制站不在相同的虛擬機器上，您必須為測試容錯移轉建立 DNS VM。如果是在相同 VM 上，您可以略過本節。
+如果 DNS 與網域控制站不在相同的虛擬機器上，您必須為測試容錯移轉建立 DNS VM。如果它們在相同的 VM 上，您可以略過本節。
 
 您可以使用全新的 DNS 伺服器，並建立所有的必要區域。例如，如果 Active Directory 網域是 contoso.com，您可以使用 contoso.com 的名稱來建立 DNS 區域。DNS 中對應至 Active Directory 的項目必須更新，如下：
 
@@ -121,4 +121,4 @@ Site Recovery 是一項 Azure 服務，藉由協調虛擬機器的複寫、容�
 
 閱讀[我可以保護哪些工作負載?](../site-recovery/site-recovery-workload.md) 深入了解如何以 Azure Site Recovery 保護企業工作負載。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0831_2016-->

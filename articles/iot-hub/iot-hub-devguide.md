@@ -70,7 +70,7 @@ Azure IoT 中樞是一項多租用戶服務，可將其功能公開給各種動�
 
     ![裝置到雲端設定][img-eventhubcompatible]
 
-> [AZURE.NOTE] 如果 SDK 需要 **主機名稱** 或 **命名空間** ，請從 [事件中樞相容端點] 中移除配置。例如，如果您的事件中樞相容端點為 **sb://iothub-ns-myiothub-1234.servicebus.windows.net/** ，主機名稱會是 **iothub-ns-myiothub-1234.servicebus.windows.net** ，而命名空間會是 **iothub-ns-myiothub-1234**。
+> [AZURE.NOTE] 如果 SDK 需要**主機名稱**或**命名空間**，請從 [事件中樞相容端點] 中移除配置。例如，如果您的事件中樞相容端點為 **sb://iothub-ns-myiothub-1234.servicebus.windows.net/****，主機名稱會是 **iothub-ns-myiothub-1234.servicebus.windows.net**，而命名空間會是 **iothub-ns-myiothub-1234****。
 
 然後，您可以使用具有 **ServiceConnect** 權限的任何共用存取安全性原則，連接至指定的事件中樞。
 
@@ -303,7 +303,7 @@ IoT 中樞會實作 MQTT v3.1.1 通訊協定，但其具有下列限制和特定
 
 如需詳細資訊，請參閱 [IoT 中樞的 MQTT 支援][lnk-mqtt-support]。
 
-最後請務必檢閱 [Azure IoT 通訊協定閘道][lnk-azure-protocol-gateway]，它可讓您部署直接與 IoT 中樞互動的高效能自訂通訊協定閘道。Azure IoT 通訊協定閘道器可讓您自訂裝置通訊協定，以順應要重建的 MQTT 部署或其他自訂通訊協定。不過，這種方法確實需要您自我裝載並操作自訂通訊協定閘道。
+最後請務必檢閱 [Azure IoT 通訊協定閘道][lnk-azure-protocol-gateway]，它可讓您部署高效能自訂通訊協定閘道，以便直接與 IoT 中樞互動。Azure IoT 通訊協定閘道器可讓您自訂裝置通訊協定，以順應要重建的 MQTT 部署或其他自訂通訊協定。不過，這種方法確實需要您自我裝載並操作自訂通訊協定閘道。
 
 ### 裝置到雲端 <a id="d2c"></a>
 
@@ -637,4 +637,4 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 [lnk-portal]: iot-hub-manage-through-portal.md
 [lnk-securing]: iot-hub-security-ground-up.md
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

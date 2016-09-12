@@ -1,5 +1,5 @@
  <properties
-	pageTitle="使用 IntelliJ IDEA 的 HDInsight 外掛程式建立 Spark Scala 應用程式 | Microsoft Azure"
+	pageTitle="使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具建立 Spark Scala 應用程式 | Microsoft Azure"
 	description="了解如何建立在 HDInsight Spark 叢集上執行的獨立 Spark 應用程式。"
 	services="hdinsight"
 	documentationCenter=""
@@ -14,13 +14,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/25/2016"
+	ms.date="08/26/2016"
 	ms.author="nitinme"/>
 
 
-# 使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立 HDInsight Spark Linux 叢集的 Spark 應用程式
+# 使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具建立 HDInsight Spark Linux 叢集的 Spark 應用程式
 
-本文章逐步指引您開發以 Scala 撰寫的 Spark 應用程式，以及使用 IntelliJ IDEA 的 HDInsight 外掛程式，將它提交給 HDInsight spark 叢集。您可以幾個不同的方式使用此外掛程式：
+本文將逐步指引您開發以 Scala 撰寫的 Spark 應用程式，以及使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具，將它提交給 HDInsight Spark 叢集。您可以利用數個不同的方式來使用此工具：
 
 * 在 HDInsight Spark 叢集上開發並提交 Scala Spark 應用程式
 * 存取您的 Azure HDInsight Spark 叢集資源
@@ -33,14 +33,14 @@
 
 ##必要條件
 
-* Azure 訂閱。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+* Azure 訂用帳戶。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * HDInsight Linux 上的 Apache Spark 叢集。如需指示，請參閱[在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 * Oracle Java Development Kit。您可以從[這裡](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)加以安裝。
 * IntelliJ IDEA。本文章使用 15.0.1 版。您可以從[這裡](https://www.jetbrains.com/idea/download/)加以安裝。
 
-## 安裝 IntelliJ IDEA 的 HDInsight Tools 外掛程式
+## 安裝適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具
 
-IntelliJ IDEA 的 HDInsight 工具外掛程式已是 Azure Toolkit for IntelliJ 的一部份。如需有關如何安裝 Azure 工具組的指示，請參閱[安裝 Azure Toolkit for IntelliJ](../azure-toolkit-for-intellij-installation.md)。
+適用於 IntelliJ 的 HDInsight 工具是適用於 IntelliJ 的 Azure 工具組的一部分。如需有關如何安裝 Azure 工具組的指示，請參閱[安裝 Azure Toolkit for IntelliJ](../azure-toolkit-for-intellij-installation.md)。
 
 ## 在 HDInsight Spark 叢集上執行 Spark Scala 應用程式
 
@@ -134,16 +134,16 @@ IntelliJ IDEA 的 HDInsight 工具外掛程式已是 Azure Toolkit for IntelliJ 
 
 		* 按一下 [提交]。
 
-	3. 視窗底部的 [Spark Submission (提交 Spark)] 索引標籤應會開始顯示進度。您也可以按一下 [Spark Submission]\(提交 Spark) 視窗中的紅色按鈕，即可停止應用程式。
+	3. 視窗底部的 [Spark Submission (提交 Spark)] 索引標籤應會開始顯示進度。您也可以按一下 [Spark Submission] (提交 Spark) 視窗中的紅色按鈕，即可停止應用程式。
 
         ![Spark 應用程式結果](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-spark-app-result.png)
 
-    在下節中，您會了解如何使用 IntelliJ IDEA 的 HDInsight 外掛程式來存取作業輸出。
+    在下節中，您會了解如何使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具來存取作業輸出。
 
 
-## 使用 IntelliJ HDInsight 的外掛程式存取和管理 HDInsight Spark 叢集
+## 使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具存取和管理 HDInsight Spark 叢集
 
-您可以使用 HDInsight 外掛程式執行各種作業。
+您可以使用 HDInsight 工具 (此工具為適用於 IntelliJ Azure 工具組的一部分) 來執行各種作業。
 
 ### 存取叢集的儲存體容器
 
@@ -157,7 +157,7 @@ IntelliJ IDEA 的 HDInsight 工具外掛程式已是 Azure Toolkit for IntelliJ 
 
 4. 按一下與叢集相關聯的儲存體容器名稱。在右窗格中，您應該會看到名稱為 **HVACOut** 的資料夾。按兩下以開啟資料夾，即可看到 **part-*** 檔案。開啟其中一個檔案以查看應用程式的輸出。
 
-### 直接在外掛程式中存取作業檢視
+### 直接從 HDInsight 工具存取作業檢視
 
 1. 從 [HDInsight 總管] 中，展開 Spark 叢集名稱，然後按一下 [作業]。
 
@@ -167,7 +167,7 @@ IntelliJ IDEA 的 HDInsight 工具外掛程式已是 Azure Toolkit for IntelliJ 
 
 3. 適用於 [錯誤訊息]、[作業輸出]、[Livy 作業記錄] 及 [Spark 驅動程式記錄] 的方塊都會根據您選取的應用程式來填入。
 
-4. 您也可以按一下畫面頂端的個別按鈕來開啟 [Spark 歷程記錄 UI] 和 [YARN UI]\(應用程式層級)。
+4. 您也可以按一下畫面頂端的個別按鈕來開啟 [Spark 歷程記錄 UI] 和 [YARN UI] (應用程式層級)。
 
 ### 存取 Spark 歷程記錄伺服器
 
@@ -181,12 +181,12 @@ IntelliJ IDEA 的 HDInsight 工具外掛程式已是 Azure Toolkit for IntelliJ 
 
 ### 管理 Azure 訂用帳戶
 
-根據預設，HDInsight 外掛程式會列出所有 Azure 訂用帳戶中的 Spark 叢集。如有需要，您可以指定您要存取其叢集的訂用帳戶。從 [HDInsight 總管] 中，以滑鼠右鍵按一下 [HDInsight] 根節點，然後按一下 [管理訂用帳戶]。從對話方塊中，清除您不想存取的訂用帳戶核取方塊，然後按一下 [關閉]。如果您想要從 Azure 訂用帳戶登出，也可以按一下 [登出]。
+根據預設，HDInsight 工具會列出您所有 Azure 訂用帳戶中的 Spark 叢集。如有需要，您可以指定要存取其叢集的訂用帳戶。從 [HDInsight 總管] 中，以滑鼠右鍵按一下 [HDInsight] 根節點，然後按一下 [管理訂用帳戶]。從對話方塊中，清除您不想存取的訂用帳戶核取方塊，然後按一下 [關閉]。如果您想要從 Azure 訂用帳戶登出，也可以按一下 [登出]。
 
 
 ## 在本機執行 Spark Scala 應用程式
 
-您可以使用 IntelliJ IDEA 的 HDInsight Tools外掛程式，在本機的工作站上執行 Spark Scala 應用程式。一般而言，這類應用程式不需要存取叢集資源 (例如儲存體容器)，而且可在本機上執行並測試。
+您可以使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具，在本機工作站上執行 Spark Scala 應用程式。一般而言，這類應用程式不需要存取叢集資源 (例如儲存體容器)，而且可在本機上執行並測試。
 
 ### 必要條件
 
@@ -224,9 +224,9 @@ IntelliJ IDEA 的 HDInsight 工具外掛程式已是 Azure Toolkit for IntelliJ 
 
 	![Spark 應用程式本機執行結果](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-spark-app-local-run-result.png)
 
-## 轉換現有的 IntelliJ IDEA 應用程式以使用 HDInsight 工具外掛程式
+## 轉換現有的 IntelliJ IDEA 應用程式以使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具
 
-您也可以將 IntelliJ IDEA 中建立的 Spark Scala 應用程式轉換為與 HDInsight 工具外掛程式相容。這可讓您使用工具，將應用程式提交給 HDInsight Spark 叢集。您可以執行下列步驟來這麼做：
+您也可以轉換 IntelliJ IDEA 中建立的 Spark Scala 應用程式，以便與適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具相容。這可讓您使用工具，將應用程式提交給 HDInsight Spark 叢集。您可以執行下列步驟來這麼做：
 
 1. 對於使用 IntelliJ IDEA 建立的現有 Spark Scala 應用程式，開啟相關聯的.iml 檔案。
 2. 在根層級中，您會看到如下的 **module** 元素：
@@ -237,7 +237,7 @@ IntelliJ IDEA 的 HDInsight 工具外掛程式已是 Azure Toolkit for IntelliJ 
 
 		<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4" UniqueKey="HDInsightTool">
 
-4. 儲存變更。您的應用程式現在應該與 HDInsight 工具外掛程式相容。您可以滑鼠右鍵按一下 [專案總管] 中的專案名稱，來測試此情況。快顯功能表現在應該具有 [Submit Spark Application to HDInsight (將 Spark 應用程式提交給 HDInsight)] 的選項。
+4. 儲存變更。您的應用程式現在應該可與適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具相容。您可以滑鼠右鍵按一下 [專案總管] 中的專案名稱，來測試此情況。快顯功能表現在應該具有 [Submit Spark Application to HDInsight (將 Spark 應用程式提交給 HDInsight)] 的選項。
 
 
 ## 疑難排解
@@ -298,9 +298,9 @@ IntelliJ IDEA 的 HDInsight 工具外掛程式已是 Azure Toolkit for IntelliJ 
 
 ### 工具和擴充功能
 
-* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式遠端偵錯 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+* [使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具遠端偵錯 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 
-* [使用 Eclipse 的 HDInsight Tools 外掛程式來建立 Spark 應用程式](hdinsight-apache-spark-eclipse-tool-plugin.md)
+* [使用適用於 Eclipse 的 Azure 工具組中的 HDInsight 工具建立 Spark 應用程式](hdinsight-apache-spark-eclipse-tool-plugin.md)
 
 * [利用 HDInsight 上的 Spark 叢集來使用 Zeppelin Notebook](hdinsight-apache-spark-use-zeppelin-notebook.md)
 
@@ -316,4 +316,4 @@ IntelliJ IDEA 的 HDInsight 工具外掛程式已是 Azure Toolkit for IntelliJ 
 
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0831_2016-->

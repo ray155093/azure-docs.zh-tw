@@ -13,10 +13,13 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="01/04/2016"
+   ms.date="08/26/2016"
    ms.author="hascipio; avikova" />
 
 # 在預備環境中測試您的資料服務產品
+
+>[AZURE.IMPORTANT] 目前我們已不再針對任何新的資料服務發行者進行上架。新的 Dataservice 將不會獲得核准以列出於清單上。 如果您有想要在 AppSource 上發佈的 SaaS 商務應用程式，您可以在[這裡](https://appsource.microsoft.com/partners)找到詳細資訊。如果您有想要在 Azure Marketplace 發佈的 IaaS 應用程式或開發人員服務，您可以在[這裡](https://azure.microsoft.com/marketplace/programs/certified/)找到詳細資訊。
+
 完成[建立 Microsoft 開發人員帳戶](marketplace-publishing-accounts-creation-registration.md)及[在發行入口網站中建立您的資料服務產品](marketplace-publishing-data-service-creation.md)這兩個步驟之後，您就可以開始準備在 Azure Marketplace 中銷售您的產品。本主題將逐步引導您執行第一個中繼步驟，稱為「預備環境」
 
 預備環境代表將您的供應項目部署在私人的「沙箱」中，您可以在推送到生產環境之前在沙箱中測試與驗證其功能。供應項目會出現在預備環境中，就如同客戶已部署該項目一樣。
@@ -36,7 +39,7 @@
 
 若您不打算在 Azure 入口網站 (目前容量有限) 中提供您的產品，或此舉未獲核准，只需關閉快顯視窗即可。
 
-除了 DataMarket 入口網站之外，若還要在 Azure 入口網站中測試您的資料服務，必須使用測試 Azure 訂用帳戶 ID。此訂用帳戶 ID 可用於識別能夠測試您產品的帳戶。
+除了 DataMarket 入口網站之外，若還要在 Azure 入口網站中測試您的資料服務，您必須要有可供測試的 Azure 訂用帳戶 ID。此訂用帳戶 ID 將會識別能夠測試您產品的帳戶。
 
 剪下並貼上您的訂用帳戶 ID，然後按一下核取記號以繼續。
 
@@ -86,4 +89,4 @@
 ## 另請參閱
 - [使用者入門：如何將供應項目發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0831_2016-->

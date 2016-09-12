@@ -80,7 +80,7 @@
 
 ### <a name="topologies"></a>連線拓撲
 
-先來看看[連線拓撲](vpn-gateway-topology.md)文章中的圖表。本文包含基本圖表、每種拓撲的部署模型 (Resource Manager 或傳統)，並說明您可以使用哪種部署工具來部署組態。
+先來看看[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)一文中的圖表。本文包含基本圖表、每種拓撲的部署模型 (Resource Manager 或傳統)，並說明您可以使用哪種部署工具來部署組態。
 
 ### <a name="designbasics"></a>設計基本概念
 
@@ -161,4 +161,4 @@
 
 如需有關特定閘道設定的詳細資訊，請參閱[關於 VPN 閘道設定](vpn-gateway-about-vpn-gateway-settings.md)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

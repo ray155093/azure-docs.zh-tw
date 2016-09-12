@@ -11,7 +11,7 @@
 	ms.workload="search"
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
-	ms.date="07/13/2016"
+	ms.date="08/29/2016"
 	ms.author="ashmaka"/>
 
 # 使用 Azure 入口網站建立 Azure 搜尋服務
@@ -76,4 +76,4 @@
 
 如需快速教學課程，請參閱[開始在入口網站中使用 Azure 搜尋服務](search-get-started-portal.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0831_2016-->

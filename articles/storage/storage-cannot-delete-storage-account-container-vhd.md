@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/20/2016"
+	ms.date="08/24/2016"
 	ms.author="genli"/>
 
 # 針對刪除 Azure 儲存體帳戶、容器或 VHD 進行疑難排解
@@ -50,7 +50,7 @@
 
 > [AZURE.WARNING] 請務必先備份您想要儲存的任何資料，再刪除帳戶。您無法還原已刪除的儲存體帳戶，也無法擷取刪除之前所包含的任何內容。這也適用於帳戶中的任何資源：一旦刪除 VHD、Blob、資料表、佇列或檔案，就是永久刪除。確定資源不在使用中。
 
-## 徵狀
+## 常見問題
 
 下列章節列出您在嘗試刪除 Azure 儲存體帳戶、容器或 VHD 時可能收到的常見錯誤。
 
@@ -60,11 +60,11 @@
 
 **在 Azure 入口網站上**：
 
-*無法刪除儲存體帳戶 <vm-storage-account-name>。無法刪除儲存體帳戶 <vm-storage-account-name>：「儲存體帳戶 <vm-storage-account-name> 有某些作用中的映像及/或磁碟。確認這些映像及/或磁碟已移除之後再刪除此儲存體帳戶。」*
+*無法刪除儲存體帳戶 <vm-storage-account-name>。無法刪除儲存體帳戶 <vm-storage-account-name>：儲存體帳戶 <vm-storage-account-name> 有些作用中的映像及/或磁碟。確認這些映像及/或磁碟已移除之後再刪除此儲存體帳戶。」*
 
 **在 Azure 傳統入口網站上**：
 
-*儲存體帳戶<vm-storage-account-name> 有某些作用中的映像及/或磁碟，例如 xxxxxxxxx- xxxxxxxxx-O-209490240936090599。確認這些映像及/或磁碟已移除之後再刪除此儲存體帳戶。*
+*儲存體帳戶 <vm-storage-account-name> 有某些作用中的映像及/或磁碟，例如 xxxxxxxxx- xxxxxxxxx-O-209490240936090599。確認這些映像及/或磁碟已移除之後再刪除此儲存體帳戶。*
 
 您也可能會看到此錯誤︰
 
@@ -88,23 +88,24 @@
 
 *無法刪除 blob 'path/XXXXXX-XXXXXX-os-1447379084699.vhd'。錯誤：「目前 blob 上沒有租用，且要求中沒有指定任何租用識別碼。*
 
-## 詳細資訊
+## 關於已停止 (已解除配置) 狀態
 
 已在傳統部署模型中建立並已保留的 VM 將在 [Azure 入口網站](https://portal.azure.com/)或 [Azure 傳統入口網站](https://manage.windowsazure.com/)上具有 [已停止 (已解除配置)] 狀態。
 
 **Azure 傳統入口網站**：
 
-![Azure 傳統入口網站上 VM 的已停止 (已解除配置) 狀態。](./media/storage-cannot-delete-storage-account-container-vhd/moreinfo1.png)
+![Azure 入口網站上 VM 的已停止 (已解除配置) 狀態。](./media/storage-cannot-delete-storage-account-container-vhd/moreinfo2.png)
+
 
 **Azure 入口網站**︰
 
-![Azure 入口網站上 VM 的已停止 (已解除配置) 狀態。](./media/storage-cannot-delete-storage-account-container-vhd/moreinfo2.png)
+![Azure 傳統入口網站上 VM 的已停止 (已解除配置) 狀態。](./media/storage-cannot-delete-storage-account-container-vhd/moreinfo1.png)
 
 「已停止 (已解除配置)」狀態會釋出電腦資源，例如 CPU、記憶體和網路。不過，磁碟仍會保留，以便使用者可在需要時快速重新建立 VM。這些磁碟都建立在由 Azure 儲存體提供的 VHD 上。儲存體帳戶具有這些 VHD，而磁碟有這些 VHD 上的租用。
 
-## 參考
+## 後續步驟
 
 - [刪除儲存體帳戶](storage-create-storage-account.md#delete-a-storage-account)
 - [如何在 Microsoft Azure (PowerShell) 中止 blob 儲存體的鎖定租用](https://gallery.technet.microsoft.com/scriptcenter/How-to-break-the-locked-c2cd6492)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0831_2016-->

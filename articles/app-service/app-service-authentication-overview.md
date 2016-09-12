@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="multiple"
 	ms.topic="article"
-	ms.date="04/25/2016"
+	ms.date="08/29/2016"
 	ms.author="mahender"/>
 
 # Azure App Service 中的驗證與授權
@@ -26,7 +26,7 @@ App Service 使用同盟身分識別，由第三方識別提供者儲存帳戶�
 
 如果您想要立即開始，請參閱下列其中一個教學課程︰
 
-- [將驗證新增至 iOS 應用程式][iOS] \(或 [Android]、[Windows]、[Xamarin.iOS]、[Xamarin.Android]、[Xamarin.Forms] 或 [Cordova])
+- [將驗證新增至 iOS 應用程式][iOS] (或 [Android]、[Windows]、[Xamarin.iOS]、[Xamarin.Android]、[Xamarin.Forms] 或 [Cordova])
 - [Azure App Service 中 API Apps 的使用者驗證][apia-user]
 - [開始使用 Azure App Service - 第 2 部分][web-getstarted]
 
@@ -89,7 +89,7 @@ App Service 邏輯應用程式至 API 應用程式的服務帳戶驗證屬於特
 
 	在此情況下，會關閉驗證/授權功能。將驗證和授權工作全部交由應用程式程式碼來處理。
 
-上述行為是由 Azure 入口網站中的 [當要求未經驗證時所要採取的動作] 選項所控制。如果您選擇 [使用「提供者名稱」登入]，則必須驗證所有要求。[允許要求 (無動作)] 會將授權決策交由您的程式碼決定，但仍會提供驗證資訊。如果您想要程式碼能夠處理所有要求，可以停用驗證/授權功能。
+上述行為是由 Azure 入口網站中的 [當要求未經驗證時所要採取的動作] 選項所控制。如果您選擇 [使用提供者名稱登入]，則必須驗證所有要求。[允許要求 (無動作)] 會將授權決策交由您的程式碼決定，但仍會提供驗證資訊。如果您想要程式碼能夠處理所有要求，可以停用驗證/授權功能。
 
 ## 在應用程式中使用您的使用者身分識別
 
@@ -139,6 +139,18 @@ App Service 會使用特殊標頭，將某些使用者資訊傳遞至您的應�
 - [使用 Active Directory Authentication Library for Android][ADAL-Android]
 - [使用 Active Directory Authentication Library for Windows 和 Xamarin][ADAL-dotnet]
 
+如果您想要使用適用於 Facebook 的用戶端導向流程，請參考下列資源︰
+
+- [使用 Facebook SDK for iOS](../app-service-mobile/app-service-mobile-ios-how-to-use-client-library.md#facebook-sdk)
+
+如果您想要使用適用於 Twitter 的用戶端導向流程，請參考下列資源︰
+
+- [使用 Twitter Fabric for iOS](../app-service-mobile/app-service-mobile-ios-how-to-use-client-library.md#twitter-fabric)
+
+如果您想要使用適用於 Google 的用戶端導向流程，請參考下列資源︰
+
+- [使用 Google Sign-In SDK for iOS](../app-service-mobile/app-service-mobile-ios-how-to-use-client-library.md#google-sdk)
+
 ### API 應用程式
 下列教學課程示範如何保護您的 API 應用程式︰
 
@@ -178,4 +190,4 @@ App Service 會使用特殊標頭，將某些使用者資訊傳遞至您的應�
 [ADAL-iOS]: ../app-service-mobile/app-service-mobile-ios-how-to-use-client-library.md#adal
 [ADAL-dotnet]: ../app-service-mobile/app-service-mobile-dotnet-how-to-use-client-library.md#adal
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0831_2016-->

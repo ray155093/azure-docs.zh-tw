@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/22/2016"
+	ms.date="08/25/2016"
 	ms.author="tarcher"/>
 
 #何謂研發/測試實驗室？
@@ -32,8 +32,10 @@ Azure DevTest Labs 是一項服務，可協助開發人員和測試人員在 Azu
 
 > [AZURE.VIDEO what-is-azure-devtest-labs]
 
+[AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
+
 ##後續步驟
 
 [為什麼需要研發/測試實驗室？](devtest-lab-why.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

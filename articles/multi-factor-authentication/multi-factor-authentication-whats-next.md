@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/22/2016" 
+	ms.date="08/30/2016" 
 	ms.author="billmath"/>
 
 # 設定 Azure Multi-Factor Authentication
@@ -57,7 +57,7 @@
 Microsoft 的預設語音問候語會指示使用者按 0# 以提交詐騙警示。如果您使用 0 以外的代碼，您必須記錄下來，並上傳您自己的自訂語音問候語與適當的指示。
 
 
-<center>![Cloud](./media/multi-factor-authentication-whats-next/fraud.png)</center>
+![雲端](./media/multi-factor-authentication-whats-next/fraud.png)
 
 ### 提報詐騙警示
 提報詐騙活動的方法有兩種。使用者可以透過或行動應用程式或電話來提報。
@@ -71,7 +71,10 @@ Microsoft 的預設語音問候語會指示使用者按 0# 以提交詐騙警示
 3. 按一下 [提報詐騙]。
 4. 在應用程式中，按一下 [關閉]。
 
-<center>![Cloud](./media/multi-factor-authentication-whats-next/report1.png)</center>
+![雲端](./media/multi-factor-authentication-whats-next/report1.png)
+
+
+![雲端](./media/multi-factor-authentication-whats-next/fraud2.png)
 
 ### 利用電話提報詐騙警示
 
@@ -376,4 +379,4 @@ Azure AD 支援與內部部署 Windows Server Active Directory 網域服務 (AD 
 9. 按一下 [儲存]。
 10. 按一下 [關閉]。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

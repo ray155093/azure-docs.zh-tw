@@ -279,11 +279,15 @@ A.2 在 Azure 備份失敗的 5 分鐘內就會引發警示。
 
 **Q3.是否會有已設定通知但不會傳送電子郵件的情況？**
 
-A3.如果通知頻率設為每小時，而且會在一小時內引發警示並加以解決，則不會傳送電子郵件。
+A3.以下是不傳送通知以便減少警示雜訊的案例︰
+
+   - 如果通知設為每小時，而且在一小時內引發警示並加以解決，
+   - 作業便會取消。
+   - 第二個備份作業會失敗，因為原始的備份作業正在進行中。
 
 ## 後續步驟
 - [從 Azure 還原 Windows Server 或 Windows 用戶端](backup-azure-restore-windows-server.md)
 - 若要深入了解 Azure 備份，請參閱 [Azure 備份概觀](backup-introduction-to-azure-backup.md)
 - 瀏覽 [Azure 備份論壇](http://go.microsoft.com/fwlink/p/?LinkId=290933)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

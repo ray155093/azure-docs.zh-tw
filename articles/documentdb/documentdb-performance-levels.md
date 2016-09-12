@@ -1,19 +1,19 @@
-<properties 
-	pageTitle="DocumentDB 中的效能等級 | Microsoft Azure" 
-	description="了解 DocumentDB 中的效能等級如何可讓您依每個集合為基礎保留輸送量。" 
-	services="documentdb" 
-	authors="mimig1" 
-	manager="jhubbard" 
-	editor="monicar" 
+<properties
+	pageTitle="DocumentDB 中的效能等級 | Microsoft Azure"
+	description="了解 DocumentDB 中的效能等級如何可讓您依每個集合為基礎保留輸送量。"
+	services="documentdb"
+	authors="mimig1"
+	manager="jhubbard"
+	editor="monicar"
 	documentationCenter=""/>
 
-<tags 
-	ms.service="documentdb" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="07/27/2016" 
+<tags
+	ms.service="documentdb"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/26/2016"
 	ms.author="mimig"/>
 
 # DocumentDB 中的效能等級
@@ -109,20 +109,20 @@ DocumentDB 集合可讓您根據查詢模式和應用程式的效能需求來群
 
       ![[資料庫] 刀鋒視窗與 S1 集合的螢幕擷取畫面](./media/documentdb-performance-levels/documentdb-change-performance-S1.png)
 
-4. 在 [集合] 刀鋒視窗中按一下頂端列上的 [設定]。
-5. 在 [設定] 刀鋒視窗中按一下 [定價層]，並請注意 [選擇定價層] 刀鋒視窗中會顯示每個方案的每月預估成本。若要變更使用者定義的輸送量，請按一下 [標準]，然後按一下 [選取] 以儲存變更。
+4. 在 [集合] 刀鋒視窗中按一下 [更多]，然後按一下頂端列上的 [設定]。
+5. 在 [設定] 刀鋒視窗中按一下 [定價層]，並請注意 [選擇定價層] 刀鋒視窗中會顯示每個方案的每月預估成本。若要變更使用者定義的輸送量，按一下 [標準]，然後按一下 [選取] 以儲存變更。
 
       ![DocumentDB 設定和 [選擇定價層] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-performance-levels/documentdb-change-performance.png)
 
-6. 回到 [設定] 刀鋒視窗中，[定價層] 已變更為 [標準]，並且 [輸送量 (RU/秒)] 方塊會顯示預設值 400。將輸送量設定為介於 400 到 10,000 [要求單位](documentdb-request-units.md)/秒 (RU/秒)。頁面底部的 [定價摘要] 會自動更新以提供每月成本估計。按一下 [確定] 儲存變更。
-    
+6. 回到 [設定] 刀鋒視窗中，[定價層] 已變更為 [標準]，並且 [輸送量 (RU/秒)] 方塊會顯示預設值 400。將輸送量設定為介於 400 到 10,000 個[要求單位](documentdb-request-units.md)/秒 (RU/秒)。頁面底部的 [定價摘要] 會自動更新以提供每月成本估計。按一下 [確定] 以儲存變更。
+
 	![[設定] 刀鋒視窗的螢幕擷取畫面，其中顯示可供變更輸送量值的位置](./media/documentdb-performance-levels/documentdb-change-performance-set-thoughput.png)
 
 7. 回到 [資料庫] 刀鋒視窗中，您可以確認集合的新輸送量。
 
 	![[資料庫] 刀鋒視窗與修改後集合的螢幕擷取畫面](./media/documentdb-performance-levels/documentdb-change-performance-confirmation.png)
 
-如果您判斷您需要更多輸送量 (大於 10,000 RU/秒) 或更多儲存體 (大於 10 GB)，您可以建立資料分割的集合。若要建立分割集合，請參閱[建立集合](documentdb-create-collection.md)。
+如果您判斷您需要更多輸送量 (大於 10,000 RU/秒) 或更多儲存體 (大於 10 GB)，您可以建立資料分割的集合。若要建立資料分割的集合，請參閱[建立集合](documentdb-create-collection.md)。
 
 >[AZURE.NOTE] 變更集合的效能層級最多需要 2 分鐘。
 
@@ -137,17 +137,17 @@ DocumentDB 集合可讓您根據查詢模式和應用程式的效能需求來群
 		              .Where(r => r.ResourceLink == collection.SelfLink)    
 		              .AsEnumerable()
 		              .SingleOrDefault();
-	                          
+
 	// Set the throughput to 5000 request units per second
 	offer = new OfferV2(offer, 5000);
-	                    
+
 	//Now persist these changes to the database by replacing the original resource
 	await client.ReplaceOfferAsync(offer);
 
 	// Set the throughput to S2
 	offer = new Offer(offer);
 	offer.OfferType = "S2";
-	                    
+
 	//Now persist these changes to the database by replacing the original resource
 	await client.ReplaceOfferAsync(offer);
 
@@ -169,17 +169,17 @@ DocumentDB 集合可讓您根據查詢模式和應用程式的效能需求來群
 1. 在瀏覽器中導覽至 [**Azure 入口網站**](https://portal.azure.com)。
 2. 按一下 [瀏覽] -> [DocumentDB 帳戶]，然後選取要修改的 DocumentDB 帳戶。
 3. 在 [DocumentDB 帳戶] 刀鋒視窗的 [資料庫] 功能濾鏡中選取要修改的資料庫，然後在 [資料庫] 刀鋒視窗中選取要修改的集合。
-4. 在 [集合] 刀鋒視窗中按一下頂端列上的 [設定]。
-5. 在 [設定] 刀鋒視窗中增加 [輸送量 (RU/秒)] 方塊中的值，然後再按一下 [確定] 儲存變更。刀鋒視窗底部的 [定價摘要] 就會更新，顯示該集合在單一區域新估計的每月成本。
+4. 在 [集合] 刀鋒視窗中，按一下頂端列上的 [設定]。
+5. 在 [設定] 刀鋒視窗中增加 [輸送量 (RU/秒)] 方塊中的值，然後按一下 [確定] 以儲存變更。刀鋒視窗底部的 [定價摘要] 就會更新，顯示該集合在單一區域新估計的每月成本。
 
-    ![[設定] 刀鋒視窗的螢幕擷取畫面，其中反白顯示 [輸送量] 方塊與 [定價摘要]](./media/documentdb-performance-levels/documentdb-change-throughput.png)
- 
+    ![[設定] 刀鋒視窗的螢幕擷取畫面，其中反白顯示 [輸送量] 方塊與 [定價摘要]](./media/documentdb-performance-levels/documentdb-change-performance-set-thoughput.png)
+
 如果您不確定要增加多少輸送量，請參閱[估計輸送量需求](documentdb-request-units.md#estimating-throughput-needs)和[要求單位計算機](https://www.documentdb.com/capacityplanner)。
 
 ## 後續步驟
 
 若要深入了解 Azure DocumentDB 的價格和管理資料，請探索這些資源：
- 
+
 - [DocumentDB 價格](https://azure.microsoft.com/pricing/details/documentdb/)
 - [管理 DocumentDB 容量](documentdb-manage.md)
 - [在 DocumentDB 中模型化資料](documentdb-modeling-data.md)
@@ -193,4 +193,4 @@ DocumentDB 集合可讓您根據查詢模式和應用程式的效能需求來群
 [1]: ./media/documentdb-performance-levels/documentdb-change-collection-performance7-9.png
 [2]: ./media/documentdb-performance-levels/documentdb-change-collection-performance10-11.png
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0831_2016-->

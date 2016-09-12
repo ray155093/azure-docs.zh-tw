@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/01/2016"
+	ms.date="08/25/2016"
 	ms.author="tarcher"/>
 
 # 設定適用於實驗室的虛擬網路
 
-## 概觀
+## Overview
 
 如[將具有構件的 VM 加入實驗室](devtest-lab-add-vm-with-artifacts.md)文章中所述，當您在實驗室中建立 VM 時，可為該 VM 指定已設定的虛擬網路 (和子網路)。有一個執行此動作的案例是，假設您想要能夠從使用 ExpressRoute 或站台對站台 VPN 設定的虛擬網路存取 VM 的公司網路資源。下列各節將說明如何將現有的虛擬網路加入至實驗室的虛擬網路設定，如此就可以在建立您的 VM 時加以選擇。
 
@@ -65,8 +65,10 @@
 
 1. 現在已設定虛擬網路，您可以在建立新的 VM 時加以選取。這將會在[將具有構件的 VM 加入實驗室](devtest-lab-add-vm-with-artifacts.md)文章中加以說明。
 
+[AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
+
 ## 後續步驟
 
 一旦您在實驗室中加入所需的虛擬網路之後，下一個步驟就是[將 VM 加入至實驗室](devtest-lab-add-vm-with-artifacts.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0831_2016-->

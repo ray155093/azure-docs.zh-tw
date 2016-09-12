@@ -31,11 +31,11 @@
 
 ## SQL Server Agent/工作
 
-Microsoft Azure SQL Database 不支援 SQL Server Agent 或工作。然而，您可以執行內部部署 SQL Server 上的 SQL Server Agent，並連線至 Microsoft Azure SQL Database。
+Microsoft Azure SQL Database 不支援 SQL Server Agent，不過您可以使用彈性工作執行一到多個資料庫間的工作。如需彈性工作的詳細資訊，請參閱[彈性工作](sql-database-elastic-jobs-overview.md)。
 
 ## SQL Server 定序支援
 
-Microsoft Azure SQL Database 使用的預設資料庫定序是 **SQL\_LATIN1\_GENERAL\_CP1\_CI\_AS**，其中 **LATIN1\_GENERAL** 是英文 (美國)，**CP1** 是代碼頁 1252，**CI** 不區分大小寫，**AS** 區分重音。無法改變 V12 資料庫的定序。如需如何設定定序的詳細資訊，請參閱 [COLLATE (Transact-SQL)](https://msdn.microsoft.com/library/ms184391.aspx)。
+Microsoft Azure SQL Database 使用的預設資料庫定序是 **SQL\_LATIN1\_GENERAL\_CP1\_CI\_AS**，其中 **LATIN1\_GENERAL** 是英文 (美國)，**CP1** 是代碼頁 1252，**CI** 不區分大小寫，**AS** 區分重音。無法改變 V12 資料庫的定序。如需如何設定定序的詳細資訊，請參閱＜[COLLATE (Transact-SQL)](https://msdn.microsoft.com/library/ms184391.aspx)＞。
 
 ## 命名需求
 
@@ -55,12 +55,12 @@ Microsoft Azure SQL Database 使用的預設資料庫定序是 **SQL\_LATIN1\_GE
 
 - 除了本文所述的一般限制外，SQL Database 會有根據您的**服務層級**而有特定的配額與限制。如需服務層級的概觀，請參閱 [SQL Database 服務層級](sql-database-service-tiers.md)。
 
-- 如需其他 SQL Database 限制，請參閱 [Azure SQL Database 資源限制](sql-database-resource-limits.md)。
+- 如需其他 SQL Database 限制，請參閱＜[Azure SQL Database 資源限制](sql-database-resource-limits.md)＞。
 
-- 如需與安全性相關的方針，請參閱 [Azure SQL Database 安全性方針與限制](sql-database-security-guidelines.md)。
+- 如需與安全性相關的方針，請參閱＜[Azure SQL Database 安全性方針與限制](sql-database-security-guidelines.md)＞。
 
-- 另一個相關範圍與相容性有關，就是 Azure SQL Database 有內部部署版的 SQL Server，例如 SQL Server 2014 和 SQL Server 2016。Azure SQL Database 的最新 V12 版已在此方面進行許多改善。如需詳細資訊，請參閱 [SQL Database V12 的新功能](sql-database-v12-whats-new.md)。
+- 另一個相關範圍與相容性有關，就是 Azure SQL Database 有內部部署版的 SQL Server，例如 SQL Server 2014 和 SQL Server 2016。Azure SQL Database 的最新 V12 版已在此方面進行許多改善。如需詳細資訊，請參閱＜[SQL Database V12 的新功能](sql-database-v12-whats-new.md)＞。
 
-- 如需驅動程式的可用性和 SQL Database 支援的相關資訊，請參閱 [SQL Database 與 SQL Server 的連線庫](sql-database-libraries.md)。
+- 如需驅動程式的可用性和 SQL Database 支援的相關資訊，請參閱＜[SQL Database 與 SQL Server 的連線庫](sql-database-libraries.md)＞。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0831_2016-->

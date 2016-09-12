@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="07/01/2016"
+   ms.date="08/29/2016"
    ms.author="nitinme"/>
 
 # 使用 Azure 入口網站建立 HDInsight 叢集與資料湖存放區
@@ -29,7 +29,7 @@
 
 * **對於 Storm 叢集 (Windows 和 Linux)**，Data Lake Store 可以用來從 Storm 拓撲寫入資料。資料湖存放區也可以用來儲存參考資料，該資料稍後可以由 Storm 拓撲讀取。如需詳細資訊，請參閱[在 Storm 拓撲中使用 Data Lake Store](#use-data-lake-store-in-a-storm-topology)。
 
-* **對於 HBase 叢集 (Windows 和 Linux)**，您可以使用資料湖存放區做為預設儲存體或額外的儲存體。如需詳細資訊，請參閱[搭配 HBase 叢集使用 Data Lake Store](#use-data-lake-store-with-hbase-clusters)。
+* **對於 HBase 叢集 (Windows 和 Linux)**，您可以使用 Data Lake Store 作為預設儲存體以及額外的儲存體。如需詳細資訊，請參閱[搭配 HBase 叢集使用 Data Lake Store](#use-data-lake-store-with-hbase-clusters)。
 
 > [AZURE.NOTE] 有一些需要注意的重要事項。
 > 
@@ -43,13 +43,13 @@
 開始進行本教學課程之前，您必須具備下列條件：
 
 - **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-- **啟用您的 Azure 訂用帳戶**以使用資料湖存放區公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
+- **啟用您的 Azure 訂用帳戶**以使用「Data Lake Store 公開預覽版」。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
 - **Azure Data Lake Store 帳戶**。遵循[使用 Azure 入口網站開始使用 Azure 資料湖存放區](data-lake-store-get-started-portal.md)的指示。一旦您建立好帳戶，請執行下列工作來上傳一些範例資料。稍後在教學課程中，您將需要這項資料，以從會存取資料湖存放區中資料的 HDInsight 叢集中執行作業。
 
 	* [在資料湖存放區中建立資料夾](data-lake-store-get-started-portal.md#createfolder)。
 	* [將檔案上傳至 Data Lake Store](data-lake-store-get-started-portal.md#uploaddata)。如果您正在尋找一些可上傳的範例資料，可以從 [Azure 資料湖 Git 存放庫](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData)取得 **Ambulance Data** 資料夾。
 
-## 使用影片快速學習？
+## 使用影片學得更快？
 
 觀看下列影片來了解如何透過存取 Data Lake Store 來佈建 HDInsight 叢集。
 
@@ -76,7 +76,7 @@
 
 			![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.2.png "將服務主體新增至 HDInsight 叢集")
 
-		* 在 [叢集 AAD 身分識別] 刀鋒視窗中，按一下 [管理 ADLS 存取]。窗格中會顯示與訂用帳戶相關聯的資料湖存放區帳戶。不過，您只能為自己建立的帳戶設定權限。為您想要與 HDInsight 叢集產生關聯的帳戶選取 READ/WRITE/EXECUTE 權限，然後按一下 [儲存權限]。
+		* 在 [叢集 AAD 身分識別] 刀鋒視窗中，按一下 [管理 ADLS 存取]。窗格會顯示與訂用帳戶關聯的 Data Lake Store 帳戶。不過，您只能為自己建立的帳戶設定權限。為您想要與 HDInsight 叢集產生關聯的帳戶選取 READ/WRITE/EXECUTE 權限，然後按一下 [儲存權限]。
 
 			![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.3.png "將服務主體新增至 HDInsight 叢集")
 
@@ -85,7 +85,7 @@
 			![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.4.png "將服務主體新增至 HDInsight 叢集")
 
 
-	* **選擇現有的服務主體**。
+	* **選擇現有的服務主體**
 
 		* 在 [叢集 AAD 身分識別] 刀鋒視窗中，按一下 [使用現有的]、按一下 [服務主體]，然後在 [選取服務主體] 刀鋒視窗中，搜尋現有的服務主體。按一下服務主體名稱，然後按一下 [選取]。
 
@@ -93,15 +93,29 @@
 
 		* 在 [叢集 AAD 身分識別] 刀鋒視窗中，上傳與您所選取服務主體相關聯的憑證 (.pfx)，然後提供憑證密碼。
 
-		* 按一下 [管理 ADLS 存取]。窗格中會顯示與訂用帳戶相關聯的資料湖存放區帳戶。不過，您只能為自己建立的帳戶設定權限。為您想要與 HDInsight 叢集產生關聯的帳戶選取 READ/WRITE/EXECUTE 權限，然後按一下 [儲存權限]。
+5. 按一下 [管理 ADLS 存取]，然後按一下 [選取檔案權限]。
 
-			![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.5.existing.save.png "將服務主體新增至 HDInsight 叢集")
+	![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.5.existing.save.png "將服務主體新增至 HDInsight 叢集")
 
-		* 按一下 [儲存權限]，然後按一下 [選取]。
+6. 在 [選取檔案權限] 刀鋒視窗中，從 [帳戶] 下拉式清單選取要與 HDInsight 叢集建立關聯的 Data Lake Store 帳戶。此刀鋒視窗會列出所選 Data Lake Store 帳戶中可用的檔案和資料夾。
+ 
+	![提供對 Data Lake Store 的存取權](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi-adl-permission-1.png "提供對 Data Lake Store 的存取權")
 
-6. 按一下 [資料來源] 刀鋒視窗上的 [選取]，並使用叢集佈建繼續作業，如[在 HDInsight 中建立 Hadoop 叢集](../hdinsight/hdinsight-provision-clusters.md#create-using-the-preview-portal)中所述。
+	然後，請決定要為所選檔案和資料夾提供的權限。針對資料夾，請一併指定權限只套用至資料夾，還是套用至資料夾及資料夾中的所有子項目。您可以從 [套用至] 下拉式清單中選取適當的值來進行這項選擇。若要移除權限，請按一下 [刪除] 圖示
 
-7. 佈建叢集之後，您可以驗證服務主體是與 HDInsight 叢集相關聯。若要這樣做，從 [叢集] 刀鋒視窗中依序按一下 [設定] 和 [叢集 AAD 身分識別]，您應該會看到相關聯的服務主體。
+	![提供對 Data Lake Store 的存取權](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi-adl-permission-2.png "提供對 Data Lake Store 的存取權")
+
+	請針對來自其他 Data Lake Store 的相關檔案和資料夾，也重複這些步驟。完成權限指派之後，請按一下刀鋒視窗底部的 [選取]。
+
+7. 在 [指派選取的權限] 刀鋒視窗中，檢閱您所提供的權限，然後按一下 [執行] 來授與這些權限。
+
+	![提供對 Data Lake Store 的存取權](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi-adl-permission-3.png "提供對 Data Lake Store 的存取權")
+
+	狀態欄會顯示進度。順利指派所有權限之後，請按一下 [完成]。
+
+6. 在 [叢集 AAD 識別] 和 [資料來源] 刀鋒視窗上按一下 [選取]，然後繼續進行叢集建立作業，如[在 HDInsight 中建立 Hadoop 叢集](../hdinsight/hdinsight-hadoop-create-linux-clusters-portal.md)所述。
+
+7. 佈建叢集之後，您可以確認「服務主體」是否與 HDInsight 叢集關聯。若要這樣做，請從叢集刀鋒視窗中，按一下 [叢集 AAD 識別] 來查看關聯的「服務主體」。
 
 	![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.6.png "將服務主體新增至 HDInsight 叢集")
 
@@ -115,9 +129,9 @@
 
 	![啟動叢集儀表板](./media/data-lake-store-hdinsight-hadoop-use-portal/hdiadlcluster1.png "啟動叢集儀表板")
 
-	您也可以在網頁瀏覽器中移至 https://CLUSTERNAME.azurehdinsight.net，直接瀏覽至 Ambari (其中 **CLUSTERNAME** 是您的 HDInsight 叢集名稱)。
+	您也可以在網頁瀏覽器中移至 https://CLUSTERNAME.azurehdinsight.net，來直接瀏覽至 Ambari (其中 **CLUSTERNAME** 是您的 HDInsight 叢集名稱)。
 
-2. 開啟 Hive 檢視。從頁面功能表選取方塊組合 (頁面右側的 [管理員] 連結和按鈕旁邊)，以列出可用的檢視。選取 [Hive] 檢視。
+2. 開啟 Hive 檢視。從頁面功能表中選取方塊組合 (在頁面右側的 [管理員] 連結和按鈕旁邊)，以列出可用的檢視。選取 [Hive 檢視]。
 
 	![選取 ambari 檢視](./media/data-lake-store-hdinsight-hadoop-use-portal/selecthiveview.png)
 
@@ -129,22 +143,22 @@
 
 		CREATE EXTERNAL TABLE vehicles (str string) LOCATION 'adl://mydatalakestore.azuredatalakestore.net:443/mynewfolder'
 
-5. 按一下 [查詢編輯器] 底部的 [執行] 按鈕，開始查詢。[查詢程序結果] 區段應該會出現在 [查詢編輯器] 下方並顯示作業相關資訊。
+5. 按一下 [查詢編輯器] 底部的 [執行] 按鈕，以開始查詢。[查詢程序結果] 區段應該會出現在 [查詢編輯器] 下方，並顯示作業相關資訊。
 
-6. 查詢完成後，[查詢程序結果] 區段會顯示作業的結果。[結果] 索引標籤應包含下列資訊：
+6. 查詢完成之後，[查詢程序結果] 區段會顯示作業的結果。[結果] 索引標籤應包含下列資訊：
 
 7. 執行下列查詢來確認已建立資料表。
 
 		SHOW TABLES;
 
-	[結果] 索引標籤應會顯示下列資訊：
+	[結果] 索引標籤應會顯示下列內容：
 
 		hivesampletable
 		vehicles
 
 	**vehicles** 是您稍早建立的資料表。**hivesampletable** 是所有 HDInsight 叢集中預設可用的範例資料表。
 
-8. 您也可以執行查詢，從 **vehicles** 資料表擷取資料。
+8. 您也可以執行查詢來從 **vehicles** 資料表擷取資料。
 
 		SELECT * FROM vehicles LIMIT 5;
 
@@ -174,14 +188,14 @@
 
 		SHOW TABLES;
 
-	按一下對應至此查詢的 [檢視詳細資料]，輸出應該會顯示下列項目：
+	按一下與此查詢對應的 [檢視詳細資料]，輸出應該會顯示下列內容：
 
 		hivesampletable
 		vehicles
 
 	**vehicles** 是您稍早建立的資料表。**hivesampletable** 是所有 HDInsight 叢集中預設可用的範例資料表。
 
-5. 您也可以執行查詢，從 **vehicles** 資料表擷取資料。
+5. 您也可以執行查詢來從 **vehicles** 資料表擷取資料。
 
 		SELECT * FROM vehicles LIMIT 5;
 
@@ -194,7 +208,7 @@
 
 在這一節中，您將 SSH 進入叢集並執行 HDFS 命令。Windows 未提供內建 SSH 用戶端。建議使用 **PuTTY**，您可以從下列位置下載：[http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
 
-如需使用 PuTTY 的詳細資訊，請參閱[從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](../hdinsight/hdinsight-hadoop-linux-use-ssh-windows.md)。
+如需有關使用 PuTTY 的詳細資訊，請參閱[從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](../hdinsight/hdinsight-hadoop-linux-use-ssh-windows.md)。
 
 連接之後，使用下列 HDFS 檔案系統命令列出資料湖存放區中的檔案。
 
@@ -245,20 +259,20 @@
 
 		AdlCopy /source https://<source_account>.blob.core.windows.net/<source_container>/<blob name> /dest swebhdfs://<dest_adls_account>.azuredatalakestore.net/<dest_folder>/ /sourcekey <storage_account_key_for_storage_container>
 
-	針對本教學課程，將 **/HdiSamples/HdiSamples/SensorSampleData/hvac/** 上的 **HVAC.csv** 範例資料檔案複製到 Azure Data Lake Store 帳戶。程式碼片段看起來應該如下：
+	針對本教學課程，請將位於 **/HdiSamples/HdiSamples/SensorSampleData/hvac/** 的 **HVAC.csv** 範例資料檔案複製到 Azure Data Lake Store 帳戶。程式碼片段看起來應該如下：
 
 		AdlCopy /Source https://mydatastore.blob.core.windows.net/mysparkcluster/HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv /dest swebhdfs://mydatalakestore.azuredatalakestore.net/hvac/ /sourcekey uJUfvD6cEvhfLoBae2yyQf8t9/BpbWZ4XoYj4kAS5Jf40pZaMNf0q6a8yqTxktwVgRED4vPHeh/50iS9atS5LQ==
 
 	>[AZURE.WARNING] 確定檔案和路徑名稱的大小寫正確。
 
-4. 系統將提示您輸入 Azure 訂用帳戶的認證，該帳戶為您的資料湖存放區帳戶所在之處。您將看到類似以下的輸出：
+4. 系統會提示您輸入您 Data Lake Store 帳戶所在 Azure 訂用帳戶的認證。您將看到類似以下的輸出：
 
 		Initializing Copy.
 		Copy Started.
 		100% data copied.
 		Copy Completed. 1 file copied.
 
-	資料檔案 (**HVAC.csv**) 將會複製到 Data Lake Store 帳戶中的 **/hvac** 資料夾下方。
+	資料檔案 (**HVAC.csv**) 將被複製到 Data Lake Store 帳戶中的 **/hvac** 資料夾底下。
 
 4. 在 [Azure 入口網站](https://portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。您也可以按一下 [瀏覽全部] > [HDInsight 叢集]，瀏覽至您的叢集。
 
@@ -272,9 +286,9 @@
 
 	![建立新的 Jupyter Notebook](./media/data-lake-store-hdinsight-hadoop-use-portal/hdispark.note.jupyter.createnotebook.png "建立新的 Jupyter Notebook")
 
-3. 系統隨即會建立新的 Notebook，並以 **Untitled.pynb** 的名稱開啟。
+3. 將會建立並開啟一個名稱為 **Untitled.pynb** 的新 Notebook。
 
-4. 您使用 PySpark 核心建立 Notebook，因此不需要明確建立任何內容。當您執行第一個程式碼儲存格時，系統會自動為您建立 Spark 和 Hive 內容。首先，您可以匯入此案例所需的類型。方法是將下列程式碼片段貼到儲存格，然後按下 **SHIFT + ENTER**。
+4. 您使用 PySpark 核心建立 Notebook，因此不需要明確建立任何內容。當您執行第一個程式碼儲存格時，系統會自動為您建立 Spark 和 Hive 內容。首先，您可以匯入此案例所需的類型。方法是將下列程式碼片段貼到儲存格中，然後按下 **SHIFT + ENTER**。
 
 		from pyspark.sql.types import *
 		
@@ -282,11 +296,11 @@
 
 	 ![Jupyter Notebook 工作的狀態](./media/data-lake-store-hdinsight-hadoop-use-portal/hdispark.jupyter.job.status.png "Jupyter Notebook 工作的狀態")
 
-4. 使用您複製到 Data Lake Store 帳戶的 **HVAC.csv** 檔案，將範例資料載入暫存資料表。您可以使用下列 URL 模式，存取 Data Lake Store 帳戶中的資料。
+4. 使用您複製到 Data Lake Store 帳戶的 **HVAC.csv** 檔案，將範例資料載入到暫存資料表中。您可以使用下列 URL 模式，存取 Data Lake Store 帳戶中的資料。
 
 		adl://<data_lake_store_name>.azuredatalakestore.net/<path_to_file>
 
-	在空白儲存格中，貼上下列程式碼範例、使用您的 Data Lake Store 帳戶名稱取代 **MYDATALAKESTORE**，然後按下 **SHIFT + ENTER**。此程式碼範例會將資料註冊到名為 **hvac** 的暫存資料表。
+	在空白儲存格中，貼上下列程式碼範例、使用您的 Data Lake Store 帳戶名稱取代 **MYDATALAKESTORE**，然後按 **SHIFT + ENTER**。此程式碼範例會將資料註冊到名為 **hvac** 的暫存資料表。
 
 		# Load the data
 		hvacText = sc.textFile("adl://MYDATALAKESTORE.azuredatalakestore.net/hvac/HVAC.csv")
@@ -303,7 +317,7 @@
 		# Register the data fram as a table to run queries against
 		hvacdf.registerTempTable("hvac")
 
-5. 由於您使用的是 PySpark 核心，因此現在可直接在您剛才使用 `%%sql` magic 建立的暫存資料表 **hvac** 上執行 SQL 查詢。如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 詳細資訊，請參閱 [HDInsight Spark 叢集可供 Jupyter Notebook 使用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-new-kernels)。
+5. 由於您使用的是 PySpark 核心，因此現在可直接在您剛才使用 `%%sql` magic 建立的暫存資料表 **hvac** 上執行 SQL 查詢。如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱[使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#why-should-i-use-the-new-kernels)。
 		
 		%%sql
 		SELECT buildingID, (targettemp - actualtemp) AS temp_diff, date FROM hvac WHERE date = "6/1/13"
@@ -321,7 +335,7 @@
 
 ## 在 Storm 拓撲中使用資料湖存放區
 
-您可以使用資料湖存放區從 Storm 拓撲寫入資料。如需如何達成這個情況的指示，請參閱[搭配使用 Azure Data Lake Store 與 HDInsight 上的 Apache Storm](../hdinsight/hdinsight-storm-write-data-lake-store.md)。
+您可以使用資料湖存放區從 Storm 拓撲寫入資料。如需有關如何達到這種情況的指示，請參閱[搭配使用 Azure Data Lake Store 與 HDInsight 上的 Apache Storm](../hdinsight/hdinsight-storm-write-data-lake-store.md)。
 
 ## 搭配 HBase 叢集使用 Data Lake Store
 
@@ -329,13 +343,13 @@
 
 1.  在 [資料來源] 刀鋒視窗中，針對 [HBase 資料位置] 選取 [Data Lake Store]。
 2.  選取您要使用的 Data Lake Store 名稱，或建立一個新的。
-3.  最後，指定 Data Lake Store 內的 **HBase 根資料夾**。如果 Data Lake Store 帳戶沒有根資料夾，請建立一個新的。
+3.  最後，指定 Data Lake Store 內的 [HBase 根資料夾]。如果 Data Lake Store 帳戶沒有根資料夾，請建立一個新的。
 
 	![HBase 與 Data Lake Store](./media/data-lake-store-hdinsight-hadoop-use-portal/hbase-data-lake-store.png "建立 Azure 資源群組")
 
 ### 使用 Data Lake Store 做為 HBase 叢集的預設儲存體時的考量
 
-* 您可以針對多個 HBase 叢集使用相同的 Data Lake Store 帳戶。不過，您為叢集提供的 **HBase 根資料夾** (上述螢幕擷取畫面中的步驟 # 4) 必須是唯一的。您**不得**跨兩個不同的 HBase 叢集使用相同的根資料夾。
+* 您可以針對多個 HBase 叢集使用相同的 Data Lake Store 帳戶。不過，您為叢集提供的 [HBase 根資料夾] (上述螢幕擷取畫面中的步驟 # 4) 必須是唯一的。您「不得」跨兩個不同的 HBase 叢集使用相同的根資料夾。
 * 雖然您可以使用 Data Lake Store 帳戶做為預設儲存體，但是 HBase 叢集記錄檔仍會儲存於與叢集相關聯的 Azure 儲存體 Blob (WASB) 中。這是上述螢幕擷取畫面中以藍色方塊反白顯示的項目。
 
 
@@ -347,4 +361,4 @@
 [makecert]: https://msdn.microsoft.com/library/windows/desktop/ff548309(v=vs.85).aspx
 [pvk2pfx]: https://msdn.microsoft.com/library/windows/desktop/ff550672(v=vs.85).aspx
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0831_2016-->

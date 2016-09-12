@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/28/2016"
+	ms.date="08/30/2016"
 	ms.author="anhoh"/>
 
 # 使用 DocumentDB 指令碼總管建立和執行預存程序、觸發程序和使用者定義函式
@@ -23,17 +23,13 @@
 
 ## 啟動指令碼總管
 
-1. 在 Azure 入口網站的動態工具列中，按一下 [DocumentDB 帳戶]。如果看不到 [DocumentDB 帳戶]，可依序按一下 [瀏覽] 和 [DocumentDB 帳戶]。
+1. 在 Azure 入口網站的動態工具列中，按一下 [DocumentDB (NoSQL)]。如果看不到 [DocumentDB 帳戶]，可依序按一下 [更多服務] 和 [DocumentDB (NoSQL)]。
 
-2. 在 [DocumentDB 帳戶] 刀鋒視窗的頂端，按一下 [指令碼總管]。
+2. 在資源功能表中，按一下 [指令碼總管]。
 
 	![[指令碼總管] 命令的螢幕擷取畫面](./media/documentdb-view-scripts/scriptexplorercommand.png)
  
-    >[AZURE.NOTE] [指令碼總管] 也會出現在資料庫和集合刀鋒視窗上。
-
     [資料庫] 和 [集合] 下拉式清單方塊會根據您要啟動 [指令碼總管] 的內容預先填入。例如，如果您要從資料庫刀鋒視窗啟動，則系統會預先填入目前資料庫。如果您要從集合刀鋒視窗啟動，則系統會預先填入目前集合。
-
-	![[指令碼總管] 的螢幕擷取畫面](./media/documentdb-view-scripts/scriptexplorerinitial.png)
 
 4.  使用 [資料庫] 和 [集合] 下拉式清單方塊，輕鬆地變更目前正在檢視文件的集合，而無需關閉並重新啟動 [指令碼總管]。
 
@@ -89,7 +85,7 @@
 
 ## 執行預存程序
 
-> [AZURE.WARNING] 伺服器端分割集合尚未支援在 [指令碼總管] 中執行預存程序。如需詳細資訊，請造訪 [DocumentDB 中的分割和縮放](documentdb-partition-data.md)。
+> [AZURE.WARNING] 伺服器端分割集合尚未支援在 [指令碼總管] 中執行預存程序。如需詳細資訊，請造訪 [Azure DocumentDB 的資料分割與調整規模](documentdb-partition-data.md)。
 
 [指令碼總管] 可讓您從 Azure 入口網站執行伺服器端預存程序。
 
@@ -99,13 +95,13 @@
 
 - 若要執行預存程序，只要在指令碼編輯器窗格內按一下 [儲存並執行] 命令即可。
 
-	> [AZURE.NOTE] [儲存並執行] 命令將會在執行您的預存程序之前先加以儲存，這表示它將會覆寫預存程序先前儲存的版本。
+	> [AZURE.NOTE] [儲存並執行] 命令將會在執行您的預存程序之前先加以儲存，這表示它將會覆寫先前儲存的預存程序版本。
 
-- 成功的預存程序執行必須具備 [成功儲存並執行預存程序] 狀態，且傳回的結果將會填入 [結果] 窗格中。
+- 成功的預存程序執行必須具備 [已成功儲存並執行預存程序] 狀態，並且會將傳回的結果填入 [結果] 窗格中。
 
 	![[指令碼總管預存程序] 刀鋒視窗的螢幕擷取畫面，可執行預存程序](./media/documentdb-view-scripts/documentdb-execute-a-stored-procedure.png)
 
-- 如果執行時發生錯誤，錯誤將會填入 [結果] 窗格中。
+- 如果執行時發生錯誤，即會將錯誤填入 [結果] 窗格中。
 
 	![[指令碼總管] 指令碼屬性檢視的螢幕擷取畫面執行預存程序時產生錯誤](./media/documentdb-view-scripts/documentdb-execute-a-stored-procedure-error.png)
 
@@ -119,4 +115,4 @@ Azure 入口網站中的 [指令碼總管] 只是在 DocumentDB 中使用預存�
 
 [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)也是很實用的資源，可引導您深入了解 DocumentDB。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0831_2016-->
