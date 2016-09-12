@@ -139,7 +139,7 @@ Azure 備份的離線植入程序與 [Azure 匯入/匯出服務](../storage/stor
 
 2. 解壓縮 *WAImportExport.zip* 檔案。執行「WAImportExport」工具，以格式化 SATA 磁碟機、將備份資料寫入 SATA 磁碟機並進行加密。執行下列命令之前請確定電腦上已啟用 BitLocker。<br/>
 
-    .\\WAImportExport.exe PrepImport /j:<JournalFile>.jrn /id: <SessionId> /sk:<StorageAccountKey> /BlobType:PageBlob /t:<TargetDriveLetter> /format /encrypt /srcdir:<staging location> /dstdir: <DestinationBlobVirtualDirectory>/
+    *.\WAImportExport.exe PrepImport /j:<*JournalFile*>.jrn /id: <*SessionId*> /sk:<*StorageAccountKey*> /BlobType:**PageBlob** /t:<*TargetDriveLetter*> /format /encrypt /srcdir:<*staging location*> /dstdir: <*DestinationBlobVirtualDirectory*>/*
     
     > [AZURE.NOTE] 如果您已安裝 Azure 備份的 2016 年 8 月更新 (或更新版本)，請確認所輸入的「預備位置」和 [立即備份] 畫面上所顯示的位置相同，且包含「AIB」和「Base Blob」檔案。
 
