@@ -236,6 +236,8 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 [深入了解](../virtual-network/virtual-networks-overview.md) Azure 網路。
 
+> [AZURE.NOTE] [Migration of networks]對於用於部署 Site Recovery 的網路，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶(../resource-group-move-resources.md)。
+
 ## 步驟 3：安裝 VMware 元件
 
 如果您想要複寫 VMware 虛擬機器，請在管理伺服器上安裝下列 VMware 元件：
@@ -520,7 +522,7 @@ Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.
 
 您也可以從命令列安裝：
 
-UnifiedAgent.exe [/Role <Agent/MasterTarget>] [/InstallLocation <Installation Directory>] [/CSIP <IP address of CS to be registered with>] [/PassphraseFilePath <Passphrase file path>] [/LogFilePath <Log File Path>]
+UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝目錄>] [/CSIP <用於註冊的 CS IP 位址>] [/PassphraseFilePath <複雜密碼檔案路徑>] [/LogFilePath <記錄檔路徑>]
 
 其中：
 
@@ -599,7 +601,7 @@ UnifiedAgent.exe [/Role <Agent/MasterTarget>] [/InstallLocation <Installation Di
 
 4. 在 [指定目標資源] 中，選取要用於複寫的儲存體帳戶，並選取是否應將設定用於所有工作負載。請注意，目前不支援進階儲存體帳戶。
 
-	>[AZURE.NOTE] 我們不支援使用[新的 Azure 入口網站](../storage/storage-create-storage-account.md)來跨資源群組移動所建立的儲存體帳戶。
+	>[AZURE.NOTE] 1. 我們不支援對使用[新的 Azure 入口網站](../storage/storage-create-storage-account.md)建立的儲存體帳戶進行跨資源群組的移動。2. 對於用於部署 Site Recovery 的儲存體帳戶，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶[移轉儲存體帳戶](../resource-group-move-resources.md)。
 
 	![啟用保護。](./media/site-recovery-vmware-to-azure-classic/enable-protection3.png)
 
@@ -804,4 +806,4 @@ The complete file may be found on the [Microsoft Download Center](http://go.micr
 
 [深入了解容錯回復](site-recovery-failback-azure-to-vmware-classic.md)，以便將在 Azure 中容錯移轉的機器回復到您的內部部署環境。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

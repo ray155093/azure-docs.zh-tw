@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-multiple"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/07/2016"
+	ms.date="08/24/2016"
 	ms.author="iainfou"/>
 
 
@@ -26,11 +26,11 @@
 
 透過 VM 代理程式，用戶端會安裝為安全性延伸模組。在新的虛擬機器上，您將安裝 VM 代理程式與 Deep Security 代理程式。在沒有 VM 代理程式的現有虛擬機器上，您必須先下載與安裝 VM 代理程式。本文將探討這兩種狀況。
 
-如果您已有 Trend Micro 的內部部署解決方案現有訂用帳戶，您可以用它來協助保護 Azure 虛擬機器的安全。如果您還不是 Trend 的客戶，您可以註冊試用訂閱。如需有關此解決方案的詳細資訊，請參閱 Trend Micro 部落格文章[適用於 Deep Security 的 Microsoft Azure VM 代理程式延伸模組](http://go.microsoft.com/fwlink/p/?LinkId=403945)。
+如果您已有 Trend Micro 的內部部署解決方案現有訂用帳戶，您可以用它來協助保護 Azure 虛擬機器的安全。如果您還不是 Symantec 客戶，您可以註冊試用訂用帳戶。如需有關此解決方案的詳細資訊，請參閱 Trend Micro 部落格文章[適用於 Deep Security 的 Microsoft Azure VM 代理程式延伸模組](http://go.microsoft.com/fwlink/p/?LinkId=403945)。
 
-## 在新的虛擬機器上安裝 Deep Security 代理程式
+## 在新的 VM 上安裝 Deep Security 代理程式
 
-當您使用 [從主機庫] 選項建立虛擬機器時，[Azure 傳統入口網站](http://manage.windowsazure.com)可讓您安裝 VM 代理程式和 Trend Micro 安全性擴充功能。如果您打算建立單一虛擬機器，使用此方法可輕易地新增 Trend Micro 的防護。
+當您使用 [從主機庫] 選項建立虛擬機器時，[Azure 傳統入口網站](http://manage.windowsazure.com)可讓您安裝 VM 代理程式和 Trend Micro 安全性擴充功能。如果您打算建立單一虛擬機器，使用此入口網站可輕易地新增 Trend Micro 的防護。
 
 此 [From Gallery] 選項會開啟可協助您設定虛擬機器的精靈。您可以使用精靈的最後一個頁面，來安裝 VM 代理程式和 Trend Micro 安全性延伸模組。如需一般指示，請參閱[在 Azure 傳統入口網站中建立執行 Windows 的虛擬機器](virtual-machines-windows-classic-tutorial.md)。當您進入精靈的最後一個頁面時，請執行下列動作：
 
@@ -42,11 +42,11 @@
 
 3.	按一下核取記號以建立虛擬機器。
 
-## 在現有虛擬機器上安裝 Deep Security 代理程式
+## 在現有 VM 上安裝 Deep Security 代理程式
 
-若要執行此作業，您將需要下列項目：
+若要在現有的 VM 上安裝代理程式，您需要下列各項：
 
-- 在本機電腦上安裝 Azure PowerShell 模組 0.8.2 版或更新版本。您可以使用 **Get-Module azure | format-table version** 命令來檢查已安裝的 Azure PowerShell 版本。如需最新版本的指示與連結，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+- 在本機電腦上安裝 Azure PowerShell 模組 0.8.2 版或更新版本。您可以使用 **Get-Module azure | format-table version** 命令來檢查已安裝的 Azure PowerShell 版本。如需最新版本的指示與連結，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。使用 `Add-AzureAccount` 登入您的 Azure 訂用帳戶。
 
 - 在目標虛擬機器上安裝 VM 代理程式。
 
@@ -57,7 +57,7 @@
 	$vm = Get-AzureVM -ServiceName $CSName -Name $VMName
 	write-host $vm.VM.ProvisionGuestAgent
 
-如果您不知道雲端服務和虛擬機器名稱，請執行 **Get-AzureVM**，來顯示目前訂用帳戶中所有虛擬機器的該項資訊。
+如果您不知道雲端服務和虛擬機器名稱，請執行 **Get-AzureVM** 以顯示目前訂用帳戶中所有虛擬機器的該項資訊。
 
 如果 **write-host** 命令傳回 **True**，則會安裝 VM 代理程式。如果傳回 **False**,，請參閱 Azure 部落格文章 [VM 代理程式與延伸模組 - 第 2 部分](http://go.microsoft.com/fwlink/p/?LinkId=403947)中的指示和下載連結。
 
@@ -86,4 +86,4 @@
 [如何登入執行 Windows Server 的虛擬機器]: virtual-machines-windows-classic-connect-logon.md
 [Azure VM 延伸模組與功能]: http://go.microsoft.com/fwlink/p/?linkid=390493&clcid=0x409
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0831_2016-->

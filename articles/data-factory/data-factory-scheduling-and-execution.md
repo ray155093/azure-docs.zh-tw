@@ -50,7 +50,7 @@
       "interval": 1
     },
 
-活動執行取用和產生的每個資料單位稱為資料**配量**。下圖顯示活動的範例，該活動具有輸入資料集與輸出資料集，每個都有設定為每小時頻率的可用性設定組。
+活動執行取用和產生的每個資料單位稱為資料**配量**。下圖顯示具有一個輸入資料集和一個輸出資料集的活動範例。這些資料集的可用性頻率是設定為每小時。
 
 ![可用性排程器](./media/data-factory-scheduling-and-execution/availability-scheduler.png)
 
@@ -239,38 +239,117 @@
 
 Data Factory 監視和管理工具可讓您深入診斷記錄以了解失敗的配量，輕鬆地找出問題的根本原因並加以修正。一旦您修正問題之後，也可以輕易地開始活動執行以產生失敗的配量。如需有關如何重新執行、了解資料配量的狀態轉換等其他詳細資料，請參閱使用 [Azure 入口網站刀鋒視窗](data-factory-monitor-manage-pipelines.md)來**監視和管理管線**或[監視和管理應用程式](data-factory-monitor-manage-app.md)。
 
-一旦重新執行 dataset2 的 9-10 AM 配量且其已準備就緒之後，Data Factory 就會開始最終資料集上 9-10 AM 相依配量的執行，如下圖所示。
+當您重新執行 dataset2 的 9-10 AM 分割且它已準備就緒之後，Data Factory 就會開始執行最終資料集上 9-10 AM 相依的分割。
 
 ![重新執行失敗的配量](./media/data-factory-scheduling-and-execution/rerun-failed-slice.png)
 
-若要深入了解一連串活動的相依性指定與追蹤，請參閱下列各節。
-
-## 鏈結活動
-您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動。活動可以在相同的管線中或在不同的管線中。只有當第一個活動執行成功完成時，第二個活動才會執行。
+## 依序執行活動
+您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。活動可以在相同的管線中或在不同的管線中。只有當第一個活動執行成功完成時，第二個活動才會執行。
 
 例如，請考慮下列情況：
  
-1.	管線 P1 具有需要外部輸入資料集 D1 的活動 A1，並且會產生**輸出**資料集 **D2**。
-2.	管線 P2 具有需要來自資料集 **D2** 之**輸入**的活動 A2，並且會產生輸出資料集 D3。
+1.	管線 P1 具有需要外部輸入資料集 D1 的活動 A1，並且會產生「輸出」資料集 **D2**。
+2.	管線 P2 具有需要來自資料集 **D2** 之「輸入」的活動 A2，並且會產生輸出資料集 **D3**。
  
-在此案例中，活動 A1 會在外部資料提供使用時執行，且達到排程的可用性頻率。活動 A2 會在 D2 的排定的分割可供使用時執行，且達到排程的可用性頻率。如果資料集 D2 中的其中一個分割發生錯誤，則不會針對該分割執行 A2，直到該分割可供使用為止。
+在此案例中，活動 A1 和 A2 是在不同的管線中。活動 A1 會在有外部資料可供使用且達到排定的可用性頻率時執行。活動 A2 會在來自 D2 的排定分割可供使用且達到排定的可用性頻率時執行。如果資料集 D2 中的其中一個分割發生錯誤，則不會針對該分割執行 A2，直到該分割可供使用為止。
 
 [圖表檢視] 看起來如下圖：
 
 ![兩個管線中的鏈結活動](./media/data-factory-scheduling-and-execution/chaining-two-pipelines.png)
 
-兩個活動同時在相同管線中的 [圖表檢視] 看起來如下圖：
+如先前所述，活動可以在相同的管線中。兩個活動都在同一個管線中的「圖表檢視」看起來會如下圖：
 
 ![相同管線中的鏈結活動](./media/data-factory-scheduling-and-execution/chaining-one-pipeline.png)
 
-### 已排序的複本
-您可以利用循序/排序的方式，逐一執行多個複製作業。假設您在管線中有兩個複製活動︰CopyActivity1 和 CopyActivity，並具備下列輸入資料輸出資料集。
+### 循序複製
+您可以利用循序/排序的方式，逐一執行多個複製作業。假設您在管線中有兩個複製活動︰具有下列輸入資料輸出資料集的 CopyActivity1 和 CopyActivity2。
 
 CopyActivity1：輸入：Dataset1 輸出 Dataset2
 
-CopyActivity2：輸入：Dataset2 輸出：Dataset4
+CopyActivity2：輸入：Dataset2 輸出：Dataset3
 
 唯有當 CopyActivity1 成功執行且 Dataset2 可供使用時，CopyActivity2 才會執行。
+
+以下是範例管線 JSON：
+
+	{
+		"name": "ChainActivities",
+	    "properties": {
+			"description": "Run activities in sequence",
+	        "activities": [
+	            {
+	                "type": "Copy",
+	                "typeProperties": {
+	                    "source": {
+	                        "type": "BlobSource"
+	                    },
+	                    "sink": {
+	                        "type": "BlobSink",
+	                        "copyBehavior": "PreserveHierarchy",
+	                        "writeBatchSize": 0,
+	                        "writeBatchTimeout": "00:00:00"
+	                    }
+	                },
+	                "inputs": [
+	                    {
+	                        "name": "Dataset1"
+	                    }
+	                ],
+	                "outputs": [
+	                    {
+	                        "name": "Dataset2"
+	                    }
+	                ],
+	                "policy": {
+	                    "timeout": "01:00:00"
+	                },
+	                "scheduler": {
+	                    "frequency": "Hour",
+	                    "interval": 1
+	                },
+	                "name": "CopyFromBlob1ToBlob2",
+	                "description": "Copy data from a blob to another"
+	            },
+	            {
+	                "type": "Copy",
+	                "typeProperties": {
+	                    "source": {
+	                        "type": "BlobSource"
+	                    },
+	                    "sink": {
+	                        "type": "BlobSink",
+	                        "writeBatchSize": 0,
+	                        "writeBatchTimeout": "00:00:00"
+	                    }
+	                },
+	                "inputs": [
+	                    {
+	                        "name": "Dataset2"
+	                    }
+	                ],
+	                "outputs": [
+	                    {
+	                        "name": "Dataset3"
+	                    }
+	                ],
+	                "policy": {
+	                    "timeout": "01:00:00"
+	                },
+	                "scheduler": {
+	                    "frequency": "Hour",
+	                    "interval": 1
+	                },
+	                "name": "CopyFromBlob2ToBlob3",
+	                "description": "Copy data from a blob to another"
+	            }
+	        ],
+	        "start": "2016-08-25T01:00:00Z",
+	        "end": "2016-08-25T01:00:00Z",
+	        "isPaused": false
+	    }
+	}
+
+請注意，在此範例中，是將第一個複製活動的輸出資料集 (Dataset2) 指定為第二個活動的輸入。因此，只有當來自第一個活動的輸出資料集準備就緒時，第二個活動才會執行。
 
 在範例中，CopyActivity2 可以有不同的輸入 (假設 Dataset3)，但是您也必須指定 Dataset2 做為 CopyActivity2 的輸入，因此在 CopyActivity1 完成之前，活動不會執行。例如：
 
@@ -278,7 +357,88 @@ CopyActivity1：輸入：Dataset1 輸出 Dataset2
 
 CopyActivity2：輸入：Dataset3、Dataset2 輸出：Dataset4
 
-指定多個輸入時，只有第一個輸入資料集會用來複製資料，但是其他資料集會用來做為相依性。CopyActivity2 只會符合下列條件時開始執行︰
+	{
+		"name": "ChainActivities",
+	    "properties": {
+			"description": "Run activities in sequence",
+	        "activities": [
+	            {
+	                "type": "Copy",
+	                "typeProperties": {
+	                    "source": {
+	                        "type": "BlobSource"
+	                    },
+	                    "sink": {
+	                        "type": "BlobSink",
+	                        "copyBehavior": "PreserveHierarchy",
+	                        "writeBatchSize": 0,
+	                        "writeBatchTimeout": "00:00:00"
+	                    }
+	                },
+	                "inputs": [
+	                    {
+	                        "name": "Dataset1"
+	                    }
+	                ],
+	                "outputs": [
+	                    {
+	                        "name": "Dataset2"
+	                    }
+	                ],
+	                "policy": {
+	                    "timeout": "01:00:00"
+	                },
+	                "scheduler": {
+	                    "frequency": "Hour",
+	                    "interval": 1
+	                },
+	                "name": "CopyFromBlobToBlob",
+	                "description": "Copy data from a blob to another"
+	            },
+	            {
+	                "type": "Copy",
+	                "typeProperties": {
+	                    "source": {
+	                        "type": "BlobSource"
+	                    },
+	                    "sink": {
+	                        "type": "BlobSink",
+	                        "writeBatchSize": 0,
+	                        "writeBatchTimeout": "00:00:00"
+	                    }
+	                },
+	                "inputs": [
+	                    {
+	                        "name": "Dataset3"
+	                    },
+	                    {
+	                        "name": "Dataset2"
+	                    }
+	                ],
+	                "outputs": [
+	                    {
+	                        "name": "Dataset4"
+	                    }
+	                ],
+	                "policy": {
+	                    "timeout": "01:00:00"
+	                },
+	                "scheduler": {
+	                    "frequency": "Hour",
+	                    "interval": 1
+	                },
+	                "name": "CopyFromBlob3ToBlob4",
+	                "description": "Copy data from a blob to another"
+	            }
+	        ],
+	        "start": "2017-04-25T01:00:00Z",
+	        "end": "2017-04-25T01:00:00Z",
+	        "isPaused": false
+	    }
+	}
+
+
+請注意，在此範例中，為第二個複製活動指定了兩個輸入資料集。**指定多個輸入時，只有第一個輸入資料集會用來複製資料，但是其他資料集會用來做為相依性。** CopyActivity2 只會符合下列條件時開始執行︰
 
 - CopyActivity1 已順利完成且 Dataset2 可供使用。將資料複製到 Dataset4 時，不會使用此資料集。它只會用來做為 CopyActivity2 的排程相依性。
 - Dataset3 可供使用。此資料集代表已複製到目的地的資料。
@@ -291,7 +451,7 @@ CopyActivity2：輸入：Dataset3、Dataset2 輸出：Dataset4
 
 ### 範例 1：對每小時可用的輸入資料產生每日輸出報告
 
-假設我們有 Azure Blob 中每小時來自可用感應器的輸入測量資料。您想要產生每日彙總報告，其中具有當天 Data Factory [Hive 活動](data-factory-hive-activity.md)的統計資料，例如平均值、最大值、最小值等。
+假設我們有 Azure Blob 中每小時來自可用感應器的輸入測量資料。您想要為具有 Data Factory [Hive 活動](data-factory-hive-activity.md)的日子，產生具有統計資料 (例如平均值、最大值及最小值) 的每日彙總報告。
 
 以下是使用 Data Factory 模型化此案例的方式：
 
@@ -700,4 +860,4 @@ Data Factory 中資料配量的各種狀態涵蓋於[監視和管理管線](data
 
   
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

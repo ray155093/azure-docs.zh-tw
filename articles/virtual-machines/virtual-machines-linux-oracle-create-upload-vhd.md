@@ -14,14 +14,14 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/09/2016"
+	ms.date="08/24/2016"
 	ms.author="szark"/>
 
 # 準備用於 Azure 的 Oracle Linux 虛擬機器
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-## 先決條件 ##
+## 必要條件 ##
 
 本文假設您已將 Oracle Linux 作業系統安裝到虛擬硬碟。有多個工具可用來建立 .vhd 檔案，例如，像是 Hyper-V 的虛擬化解決方案。如需指示，請參閱[安裝 Hyper-V 角色及設定虛擬機器](http://technet.microsoft.com/library/hh846766.aspx)。
 
@@ -51,7 +51,7 @@
 
 您必須在作業系統中完成特定組態步驟，虛擬機器才能在 Azure 中執行。
 
-1. 在 Hyper-V 管理員的中央窗格中，選取虛擬機器。
+1. 在 Hyper-V 管理員的中間窗格中，選取虛擬機器。
 
 2. 按一下 **[連接]**，以開啟虛擬機器的視窗。
 
@@ -230,4 +230,4 @@
 ## 後續步驟
 您現在可以開始使用您的 Oracle Linux .vhd 在 Azure 中建立新的虛擬機器。若這是您第一次將該 .vhd 檔案上傳到 Azure，請參閱[建立及上傳包含 Linux 作業系統的虛擬硬碟](virtual-machines-linux-classic-create-upload-vhd.md)中的步驟 2 和步驟 3。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0831_2016-->

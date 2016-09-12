@@ -18,7 +18,7 @@
 
 # 將 ASP.NET 容器部署到遠端 Docker 主機
 
-## 概觀
+## Overview
 Docker 是輕量級容器引擎，與虛擬機器在某些方面類似，您可以用它來裝載應用程式和服務。本教學課程將逐步引導您使用 [Visual Studio 2015 Tools for Docker](http://aka.ms/DockerToolsForVS) 擴充，透過 PowerShell 將 ASP.NET Core 應用程式部署至 Azure 上的 Docker 主機。
 
 ## 必要條件
@@ -39,7 +39,7 @@ Docker 是輕量級容器引擎，與虛擬機器在某些方面類似，您可�
 
 ## 3\.使用 DockerTask.ps1 PowerShell 指令碼 
 
-1.  將 PowerShell 提示開啟至您的專案的根目錄。 
+1.  將 PowerShell 提示開啟至您的專案的根目錄。
 
     ```
     PS C:\Src\WebApplication1>
@@ -64,7 +64,7 @@ Docker 是輕量級容器引擎，與虛擬機器在某些方面類似，您可�
     > [AZURE.NOTE] 如果您使用 Docker Beta 版，請省略 -Machine 引數
     > 
     > ```
-    > PS C:\Src\WebApplication1> .\Docker\DockerTask.ps1 -Build -Environment Release -Machine mydockerhost
+    > PS C:\Src\WebApplication1> .\Docker\DockerTask.ps1 -Build -Environment Release 
     > ```  
 
 
@@ -77,7 +77,7 @@ Docker 是輕量級容器引擎，與虛擬機器在某些方面類似，您可�
     > [AZURE.NOTE] 如果您使用 Docker Beta 版，請省略 -Machine 引數
     > 
     > ```
-    > PS C:\Src\WebApplication1> .\Docker\DockerTask.ps1 -Run -Environment Release -Machine mydockerhost
+    > PS C:\Src\WebApplication1> .\Docker\DockerTask.ps1 -Run -Environment Release 
     > ```
 
 	Docker 完成後，您應該會看到類似下面的結果：
@@ -89,4 +89,4 @@ Docker 是輕量級容器引擎，與虛擬機器在某些方面類似，您可�
 [2]: ./media/vs-azure-tools-docker-hosting-web-apps-in-docker/launch-application.png
 [3]: ./media/vs-azure-tools-docker-hosting-web-apps-in-docker/view-application.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0831_2016-->

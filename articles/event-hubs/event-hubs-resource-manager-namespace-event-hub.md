@@ -13,7 +13,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="dotnet"
     ms.workload="na"
-    ms.date="07/11/2016"
+    ms.date="08/31/2016"
     ms.author="sethm;shvija"/>
 
 # 使用 Azure Resource Manager 範本建立事件中樞命名空間與事件中樞和取用者群組
@@ -22,7 +22,7 @@
 
 如需建立範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本][]。
 
-如需完整的範本，請參閱 GitHub 上的[Service Bus Event Hub and consumer group template (服務匯流排事件中樞和取用者群組範本)][]。
+如需完整的範本，請參閱 GitHub 上的[事件中樞和取用者群組範本][]。
 
 >[AZURE.NOTE] 下列 Azure Resource Manager 範本可供下載和部署。
 >
@@ -31,17 +31,17 @@
 >-    [建立服務匯流排命名空間與主題和訂用帳戶](service-bus-resource-manager-namespace-topic.md)
 >-    [建立服務匯流排命名空間](service-bus-resource-manager-namespace.md)
 >
->若要檢查最新的範本，請造訪 [Azure 快速入門範本][]資源庫並搜尋服務匯流排。
+>若要檢查最新的範本，請造訪 [Azure 快速入門範本][]資源庫並搜尋事件中樞。
 
 ## 您將部署什麼？
 
-使用此範本，您將部署具有事件中樞和取用者群組的事件中樞命名空間。
+您將使用此範本，部署具有事件中樞和取用者群組的事件中樞命名空間。
 
 [事件中樞](../event-hubs/event-hubs-what-is-event-hubs.md)是事件處理服務，用於提供大規模進入 Azure 的事件和遙測入口，並具備低延遲和高可靠性等特性。
 
 若要自動執行部署，請按一下下列按鈕：
 
-[![部署至 Azure](./media/service-bus-resource-manager-namespace-event-hub/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-servicebus-create-eventhub-and-consumergroup%2Fazuredeploy.json)
+[![部署至 Azure](./media/event-hubs-resource-manager-namespace-event-hub/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-event-hubs-create-event-hub-and-consumer-group%2Fazuredeploy.json)
 
 ## 參數
 
@@ -71,7 +71,7 @@
 
 ### eventHubConsumerGroupName
 
-在服務匯流排命名空間中為事件中樞建立的取用者群組名稱。
+為事件中樞建立的取用者群組名稱。
 
 ```
 "eventHubConsumerGroupName": {
@@ -79,59 +79,59 @@
 }
 ```
 
-### serviceBusApiVersion
+### apiVersion
 
-範本的服務匯流排 API 版本。
+範本的 API 版本。
 
 ```
-"serviceBusApiVersion": {
+"apiVersion": {
 "type": "string"
 }
 ```
 
 ## 要部署的資源
 
-建立**事件中樞**類型的服務匯流排命名空間，以及事件中樞和取用者群組。
+建立 **EventHubs** 類型的服務匯流排命名空間，以及事件中樞和取用者群組。
 
 ```
-"resources": [
-        {
-            "apiVersion": "[variables('ehVersion')]",
-            "name": "[parameters('eventHubNamespaceName')]",
-            "type": "Microsoft.EventHub/Namespaces",
-            "location": "[variables('location')]",
-            "kind": "EventHub",
-            "sku": {
-                "name": "StandardSku",
-                "tier": "Standard"
-            },
-            "resources": [
-                {
-                    "apiVersion": "[variables('ehVersion')]",
-                    "name": "[parameters('eventHubName')]",
-                    "type": "EventHubs",
-                    "dependsOn": [
-                        "[concat('Microsoft.EventHub/namespaces/', parameters('eventHubNamespaceName'))]"
-                    ],
-                    "properties": {
-                        "path": "[parameters('eventHubName')]"
-                    },
-                    "resources": [
-                        {
-                            "apiVersion": "[variables('ehVersion')]",
-                            "name": "[parameters('eventHubConsumerGroupName')]",
-                            "type": "ConsumerGroups",
-                            "dependsOn": [
-                                "[parameters('eventHubName')]"
-                            ],
-                            "properties": {
-                            }
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
+"resources":[  
+      {  
+         "apiVersion":"[variables('ehVersion')]",
+         "name":"[parameters('namespaceName')]",
+         "type":"Microsoft.EventHub/Namespaces",
+         "location":"[variables('location')]",
+         "sku":{  
+            "name":"Standard",
+            "tier":"Standard"
+         },
+         "resources":[  
+            {  
+               "apiVersion":"[variables('ehVersion')]",
+               "name":"[parameters('eventHubName')]",
+               "type":"EventHubs",
+               "dependsOn":[  
+                  "[concat('Microsoft.EventHub/namespaces/', parameters('namespaceName'))]"
+               ],
+               "properties":{  
+                  "path":"[parameters('eventHubName')]"
+               },
+               "resources":[  
+                  {  
+                     "apiVersion":"[variables('ehVersion')]",
+                     "name":"[parameters('consumerGroupName')]",
+                     "type":"ConsumerGroups",
+                     "dependsOn":[  
+                        "[parameters('eventHubName')]"
+                     ],
+                     "properties":{  
+
+                     }
+                  }
+               ]
+            }
+         ]
+      }
+   ],
 ```
 
 ## 執行部署的命令
@@ -141,7 +141,7 @@
 ## PowerShell
 
 ```
-New-AzureRmResourceGroupDeployment -ResourceGroupName <resource-group-name> -TemplateFile https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-servicebus-create-eventhub-and-consumergroup/azuredeploy.json
+New-AzureRmResourceGroupDeployment -ResourceGroupName <resource-group-name> -TemplateFile https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-event-hubs-create-event-hub-and-consumer-group/azuredeploy.json
 ```
 
 ## Azure CLI
@@ -149,7 +149,7 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName <resource-group-name> -Tem
 ```
 azure config mode arm
 
-azure group deployment create <my-resource-group> <my-deployment-name> --template-uri [https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-servicebus-create-eventhub-and-consumergroup/azuredeploy.json][]
+azure group deployment create <my-resource-group> <my-deployment-name> --template-uri [https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-event-hubs-create-event-hub-and-consumer-group/azuredeploy.json][]
 ```
 
 ## 後續步驟
@@ -164,6 +164,6 @@ azure group deployment create <my-resource-group> <my-deployment-name> --templat
   [Azure 快速入門範本]: https://azure.microsoft.com/documentation/templates/?term=service+bus
   [Using Azure PowerShell with Azure Resource Manager]: ../powershell-azure-resource-manager.md
   [Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../xplat-cli-azure-resource-manager.md
-  [Service Bus Event Hub and consumer group template (服務匯流排事件中樞和取用者群組範本)]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-eventhub-and-consumergroup/
+  [事件中樞和取用者群組範本]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-event-hubs-create-event-hub-and-consumer-group/
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

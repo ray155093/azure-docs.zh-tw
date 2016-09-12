@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="02/09/2016"
+   ms.date="08/25/2016"
    ms.author="sewhee" />
 
 # 每一雲端服務有多重 VIP
@@ -37,7 +37,7 @@ VIP 預設是動態的，這表示指派給雲端服務的實際 IP 位址會隨
 
 目前，多重 VIP 功能受限於下列案例：
 
-- **僅限 IaaS**。您只能針對包含 VM 的雲端服務啟用多重 VIP。您無法在 PaaS 案例中將多重 VIP 與角色執行個體搭配使用。
+- **僅限 IaaS**。您只能針對包含 VM 的雲端服務啟用多重 VIP。您無法在 PaaS 案例中將多個 VIP 與角色執行個體搭配使用。
 - **僅限 PowerShell**。您只能使用 PowerShell 來管理多重 VIP。
 
 >[AZURE.IMPORTANT] 這些限制都是暫時的，隨時可能變更。請務必再次瀏覽此頁面，以確認未來變更。
@@ -160,4 +160,4 @@ VIP 預設是動態的，這表示指派給雲端服務的實際 IP 位址會隨
 
 [保留的 IP REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="07/19/2016"
+   ms.date="08/29/2016"
    ms.author="ganesr"/>
 
 # 建立和修改 ExpressRoute 線路
@@ -55,7 +55,7 @@ PowerShell Cmdlet `Get-AzureDedicatedCircuitServiceProvider` 會傳回此資訊�
 
 請檢查是否列出您的連線服務提供者。記下下列資訊，因為您稍後在建立線路時將會用到：
 
-- 名稱
+- Name
 
 - PeeringLocations
 
@@ -145,7 +145,7 @@ ExpressRoute 線路必須處於下列狀態，才可供您使用。
 	Status                           : Enabled
 
 
-### 6\.定期檢查循環金鑰的情況和狀態
+### 6\.定期檢查線路金鑰的情況和狀態
 
 這樣可讓您知道提供者何時已啟用您的線路。設定線路之後，[服務提供者佈建狀態] 會顯示為 [已佈建]，如下列範例所示：
 
@@ -290,15 +290,15 @@ ExpressRoute 線路必須處於下列狀態，才可供您使用。
 
 我們會在 Microsoft 端調整電路的大小。您必須連絡連線提供者，將他們那邊的設定更新為符合這項變更。請注意，從這個階段起，我們將開始計算更新頻寬選項的費用。
 
-## 刪除和取消佈建 ExpressRoute 線路
+## 取消佈建和刪除 ExpressRoute 循環
 
 請注意：
 
 - 您必須取消連結 ExpressRoute 線路的所有虛擬網路，此作業才會成功。如果此作業失敗，請檢查您是否有任何虛擬網路連結至線路。
 
-- 如果已啟用 ExpressRoute 線路服務提供者佈建狀態，狀態會從已啟用狀態變成 [正在停用]。您必須與服務提供者一起合作，取消佈建他們那邊的線路。我們將繼續保留資源並向您收取費用，直到線路服務提供者完成取消佈建並通知我們。
+- 如果 ExpressRoute 循環服務提供者佈建狀態為 [Provisioning] 或 [Provisioned]，您就必須與服務提供者一起合作，取消佈建他們那邊的循環。我們將繼續保留資源並向您收取費用，直到線路服務提供者完成取消佈建並通知我們。
 
-- 若服務提供者在您執行上述 Cmdlet 之前已取消佈建線路 (服務提供者佈建狀態設定為 [未佈建])，我們將會取消佈建線路並停止向您收費。
+- 若服務提供者已取消佈建循環 (服務提供者佈建狀態設定為 [NotProvisioned])，則您可以刪除循環。這樣將會停止針對循環計費。
 
 您可以執行下列命令來刪除 ExpressRoute 線路：
 
@@ -313,4 +313,4 @@ ExpressRoute 線路必須處於下列狀態，才可供您使用。
 - [建立和修改 ExpressRoute 線路的路由](expressroute-howto-routing-classic.md)
 - [將虛擬網路連結至 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0831_2016-->

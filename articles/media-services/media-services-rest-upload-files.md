@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="使用 REST API 將檔案上傳至媒體服務帳戶" 
+	pageTitle="使用 REST 將檔案上傳至媒體服務帳戶" 
 	description="了解如何建立並上傳資產，以將媒體內容移至媒體服務中。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,14 +13,16 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"
+	ms.date="08/30/2016"
 	ms.author="juliako"/>
 
 
-#使用 REST API 將檔案上傳至媒體服務帳戶
+# 使用 REST 將檔案上傳至媒體服務帳戶
 
-[AZURE.INCLUDE [media-services-selector-upload-files](../../includes/media-services-selector-upload-files.md)]
- 
+ > [AZURE.SELECTOR]
+ - [.NET](media-services-dotnet-upload-files.md)
+ - [REST](media-services-rest-upload-files.md)
+ - [入口網站](media-services-portal-upload-files.md)
 
 在媒體服務中，您會將數位檔案上傳到到資產。[資產](https://msdn.microsoft.com/library/azure/hh974277.aspx)實體可以包含視訊、音訊、影像、縮圖集合、文字播放軌及隱藏式字幕檔案 (以及這些檔案的相關中繼資料)。 一旦檔案會上傳到資產，您的內容會安全地儲存在雲端，以便進行進一步的處理和串流。
 
@@ -49,8 +51,8 @@ AMS 也可讓您上傳大量資產。如需詳細資訊，請參閱[本節](medi
 
 您可以在建立資產時指定的其中一個屬性是 **Options**。**Options** 是列舉值，描述可用來建立資產的加密選項。有效的值是以下清單的其中一個值，而不是值的組合。
 
-- **None** = **0**：將不使用加密。這是預設值。請注意，使用此選項時，您的內容在傳輸或儲存體中靜止時不會受到保護。
-	如果您計劃使用漸進式下載傳遞 MP4，請使用此選項。
+- **None** = **0**：將不使用加密。這是預設值。請注意，使用這個選項時您的內容在傳輸中或在儲存體中不受保護。
+	如果您計劃使用漸進式下載傳遞 MP4，請使用此選項。 
 
 - **StorageEncrypted** = **1**：如果要用 AES-256 位元加密來加密您的檔案，以便進行上傳和儲存，請指定此值。
 
@@ -116,7 +118,7 @@ AMS 也可讓您上傳大量資產。如需詳細資訊，請參閱[本節](medi
 
 請注意，**AssetFile** 執行個體和實際的媒體檔案是兩個不同的物件。AssetFile 執行個體包含媒體檔案的相關中繼資料，而媒體檔案包含實際的媒體內容。
 
-您將數位媒體檔案上傳至 blob 容器之後，您將使用 **MERGE** HTTP 要求，以媒體檔案的相關資訊來更新 AssetFile (如本主題稍後所示)。
+當您將數位媒體檔案上傳至 blob 容器之後，您將使用 **MERGE** HTTP 要求，以媒體檔案的相關資訊來更新 AssetFile (如本主題稍後所示)。
 
 **HTTP 要求**
 
@@ -324,8 +326,7 @@ SAS URL 具有下列格式：
 
 **HTTP 回應**
 
-如果成功，會傳回下列訊息：
-	HTTP/1.1 204 沒有內容
+如果成功，會傳回下列訊息：HTTP/1.1 204 沒有內容
 
 ### 刪除 Locator 和 AccessPolicy 
 
@@ -531,4 +532,4 @@ ProtectionKeyType | 這是適用於保護金鑰的加密類型，可用來將內
 [How to Get a Media Processor]: media-services-get-media-processor.md
  
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0831_2016-->

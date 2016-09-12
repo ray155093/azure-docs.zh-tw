@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/01/2016"
+	ms.date="08/25/2016"
 	ms.author="tarcher"/>
 
 # 定義實驗室原則
 
 > [AZURE.VIDEO how-to-set-vm-policies-in-a-devtest-lab]
 
-## 概觀
+## Overview
 
 研發/測試實驗室可讓您指定重要的原則，以控管使用您的實驗室及其 VM 的方式。例如，您可以設定建立 VM 所允許的 VM 大小規則、可以建立的 VM 數目臨界值，以及自動啟動/停止實驗室 VM 的排程工作。
 
@@ -34,9 +34,9 @@
 
 1. 從實驗室清單中，選取所需的實驗室。
 
-1. 選取 [Settings] \(設定)。
+1. 選取 [Settings] (設定)。
 
-	![設定](./media/devtest-lab-set-lab-policy/lab-blade-settings.png)
+	![Settings](./media/devtest-lab-set-lab-policy/lab-blade-settings.png)
 
 1. 在 [設定] 刀鋒視窗上，有一組名為 **VM Policies (VM 原則)** 的設定。
 
@@ -128,13 +128,15 @@
 
 1. 這個原則一經啟用，就不會自動套用到目前實驗室中的任何 VM。若要將這項設定套用至特定的 VM，請開啟 VM 的刀鋒視窗並變更其 [自動啟動] 設定。
 
+[AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
+
 ## 後續步驟
 
 實驗室一旦定義並套用了各種 VM 原則設定，接下來就要嘗試一些作業：
 
-- [設定成本管理](./devtest-lab-configure-cost-management.md) - 示範如何使用**每月估計成本趨勢**圖表，來檢視目前月份的到目前為止的估計成本，以及預計月底成本。
+- [設定成本管理](./devtest-lab-configure-cost-management.md) - 示範如何使用**每月估計成本趨勢**圖表，來檢視目前月份到目前為止的估計成本，以及預計月底成本。
 - [建立自訂映像](./devtest-lab-create-template.md) - 當您建立 VM 時，您要指定一個基本映像，它可以是自訂映像或 Marketplace 映像。本文會示範如何從 VHD 檔案建立自訂的映像。
-- [設定 Marketplace 映像](./devtest-lab-configure-marketplace-images.md) - 研測實驗室支援根據 Azure Marketplace 映像建立新的 VM。本文會示範在實驗室中建立新的 VM 時，如何指定可以使用哪些 Azure Marketplace 映像 (如果有的話)。
+- [設定 Marketplace 映像](./devtest-lab-configure-marketplace-images.md) - DevTest Labs 支援根據 Azure Marketplace 映像建立新的 VM。本文會示範在實驗室中建立新的 VM 時，如何指定可以使用哪些 Azure Marketplace 映像 (如果有的話)。
 - [在實驗室中建立 VM](./devtest-lab-add-vm-with-artifacts.md) - 示範如何從基本映像 (自訂或 Marketplace) 建立新的 VM，以及如何使用 VM 中的構件。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0831_2016-->

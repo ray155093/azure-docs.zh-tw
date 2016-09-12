@@ -223,6 +223,8 @@
 - 讓外界使用的網域名稱。
 - Ubuntu Server 版本號碼 -- 但只能接受一個清單。
 
+進一步了解[使用者名稱和密碼需求](virtual-machines-linux-faq.md#what-are-the-username-requirements-when-creating-a-vm)。
+
 決定這些值之後，就可以開始建立群組，然後將這個範本部署到 Azure 訂用帳戶。
 
     {
@@ -1278,4 +1280,4 @@
 
 如需您可以使用的其他範本，請參閱 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)和[使用範本的應用程式架構](../articles/virtual-machines/virtual-machines-linux-app-frameworks.md)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -13,15 +13,15 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"   
+	ms.date="08/30/2016"   
 	ms.author="juliako"/>
 
 
 #使用 Media Encoder Standard 進行進階編碼
 
-##概觀
+##Overview
 
-本主題說明如何以 Media Encoder Standard 執行進階編碼工作。本主題說明[如何使用 .NET 建立編碼工作與執行此工作的作業。](media-services-custom-mes-presets-with-dotnet.md#encoding_with_dotnet)。本主題也會說明如何提供自訂預設值給編碼工作。如需預設值所用項目的說明，請參閱[這份文件](https://msdn.microsoft.com/library/mt269962.aspx)。
+本主題說明如何以 Media Encoder Standard 執行進階編碼工作。本主題說明[如何使用 .NET 建立編碼工作與執行此工作的作業](media-services-custom-mes-presets-with-dotnet.md#encoding_with_dotnet)。本主題也會說明如何提供自訂預設值給編碼工作。如需預設值所用項目的說明，請參閱[這份文件](https://msdn.microsoft.com/library/mt269962.aspx)。
 
 以下說明執行下列編碼工作的自訂預設值：
 
@@ -30,10 +30,10 @@
 - [建立疊加層](media-services-custom-mes-presets-with-dotnet.md#overlay)
 - [在輸入不含音訊時插入靜音曲目](media-services-custom-mes-presets-with-dotnet.md#silent_audio)
 - [停用自動去交錯](media-services-custom-mes-presets-with-dotnet.md#deinterlacing)
-- [只有音訊的預設值](media-services-custom-mes-presets-with-dotnet.md#audio_only)
+- [純音訊預設值](media-services-custom-mes-presets-with-dotnet.md#audio_only)
 - [串連兩個以上的視訊檔案](media-services-custom-mes-presets-with-dotnet.md#concatenate)
 - [以 Media Encoder Standard 裁剪影片](media-services-custom-mes-presets-with-dotnet.md#crop)
-
+- [在輸入不含視訊時插入視訊播放軌](media-services-custom-mes-presets-with-dotnet.md#no_video)
 
 ##<a id="encoding_with_dotnet"></a>使用媒體服務 .NET SDK 進行編碼
 
@@ -47,7 +47,7 @@
 	    string configuration = File.ReadAllText(fileName);  
 - 將編碼工作新增至作業。
 - 指定要編碼的輸入資產。
-- 建立將包含已編碼資產的輸出資產。
+- 建立包含已編碼資產的輸出資產。
 - 加入事件處理常式來檢查工作進度。
 - 提交作業。
 	
@@ -240,7 +240,7 @@
 
 ##支援相對大小
 
-產生它的縮圖時，您不需要永遠指定輸出的寬度和高度 (以像素單位)。您可以以百分比指定它們，範圍為 [1%、…、100%]。
+產生它的縮圖時，您不需要永遠以像素單位指定輸出的寬度和高度。您可以以百分比指定它們，範圍為 [1%、…、100%]。
 
 ###JSON 預設值 
 	
@@ -256,10 +256,10 @@
 
 本節說明如何自訂產生縮圖的預設值。下面定義的預設值包含有關如何將檔案編碼的資訊，以及產生縮圖時所需的資訊。您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並加入可產生縮圖的程式碼。
 
->[AZURE.NOTE]如果編碼為單一位元速率視訊，下列預設值中的 **SceneChangeDetection** 設定只能設定為 true。如果編碼為多位元速率視訊，並將 **SceneChangeDetection** 設為 true，編碼器會傳回錯誤。
+>[AZURE.NOTE]如果您是針對單一位元速率視訊進行編碼，下列預設值中的 **SceneChangeDetection** 設定只能設定為 true。如果您是針對多位元速率視訊進行編碼，並將 **SceneChangeDetection** 設為 true，編碼器會傳回錯誤。
 
 
-如需結構描述的資訊，請參閱[這個主題](https://msdn.microsoft.com/library/mt269962.aspx)。
+如需結構描述的資訊，請參閱[這個](https://msdn.microsoft.com/library/mt269962.aspx)主題。
 
 請務必閱讀[考量](media-services-custom-mes-presets-with-dotnet.md#considerations)一節。
 
@@ -445,24 +445,24 @@
 您必須考量下列事項：
 
 - 為 Start/Step/Range 使用明確的時間戳記會假設輸入來源至少為 1 分鐘的長度。
-- 具有 Start、Step 和 Range 字串屬性的 Jpg/Png/BmpImage 項目 – 這些可以解譯為：
+- 具有 Start、Step 和 Range 字串屬性的 Jpg/Png/BmpImage 項目 - 這些可以解譯為：
 
-	- 畫面格數目 (如果是非負整數)，例如："Start"："120"，
-	- 相對於持續時間 (如果以 % 尾碼表示)，例如："Start"："15%" 或
-	- 時間戳記 (如果以 HH:MM:SS... 格式表示)。例如"Start"："00:01:00"
+	- 畫面格數目 (如果是非負整數)，例如 "Start": "120"、
+	- 相對於持續時間 (如果以 % 尾碼表示)，例如 "Start": "15%"，或
+	- 時間戳記 (如果以 HH:MM:SS... 格式表示)，例如 "Start" : "00:01:00"
 
 	您可以隨意混合使用標記法。
 	
 	此外， Start 也支援特殊的巨集 (即 {Best})，它會嘗試判斷第一個「 有趣 」的內容畫面。附註：(Start 設為 {Best} 時，會忽略 Step 與 Range)
 	
 	- 預設值：Start:{Best}
-- 必須明確地提供每個影像格式的輸出格式：Jpg/Png/BmpFormat。顯示時，AMS 會讓 JpgVideo 與 JpgFormat 相符，依此類推。OutputFormat 引進了新的影像轉碼器特定巨集 (即 {Index})，必須針對影像輸出格式提供一次 (只需一次)。
+- 必須明確地提供每個影像格式的輸出格式：Jpg/Png/BmpFormat。顯示時，MES 會比對 JpgVideo 與 JpgFormat，依此類推。OutputFormat 引進了新的影像轉碼器特定巨集 (即 {Index})，必須針對影像輸出格式提供一次 (只需一次)。
 
 ##<a id="trim_video"></a>修剪視訊 (裁剪)
 
 本節說明修改編碼器預設值，以裁剪或修剪其輸入為所謂的夾層檔或隨選檔的輸入視訊。編碼器也可以用來裁剪或修剪從即時串流擷取或封存的資產 - [此部落格](https://azure.microsoft.com/blog/sub-clipping-and-live-archive-extraction-with-media-encoder-standard/)提供詳細資料。
 
-若要剪輯您的視訊，可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並修改 **Sources** 元素 (如下所示)。StartTime 值必須符合輸入視訊的絕對時間戳記。例如，如果輸入視訊的第一個畫面有 12:00:10.000 的時間戳記，則 StartTime 至少應該為 12:00:10.000 以上。在下列範例中，我們假設輸入視訊的開始時間戳記為零。請注意，**Sources** 應該位於預設值開頭。
+若要剪輯您的視訊，可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並修改 **Sources** 元素 (如下所示)。StartTime 值必須符合輸入視訊的絕對時間戳記。例如，如果輸入視訊的第一個畫面有 12:00:10.000 的時間戳記，則 StartTime 至少應該為 12:00:10.000 以上。在下列範例中，我們假設輸入視訊的開始時間戳記為零。**Sources** 應該位於預設值開頭。
  
 ###<a id="json"></a>JSON 預設值
 	
@@ -707,9 +707,9 @@
 
 Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下列格式：png、jpg、gif 及 bmp。下面定義的預設值為視訊疊加層的基本範例。
 
-除了定義預設檔案之外，您還必須讓媒體服務知道資產中哪個檔案是疊加影像，以及哪個檔案是您要在上面疊加影像的來源影片。視訊檔案必須是**主要**檔案。
+除了定義預設檔案之外，您還必須讓媒體服務知道資產中哪個檔案是疊加影像，以及哪個檔案是您要在上面疊加影像的來源影片。視訊檔案必須是「主要」檔案。
 
-上述 .NET 範例定義兩個函式：**UploadMediaFilesFromFolder** 和 **EncodeWithOverlay**。UploadMediaFilesFromFolder 函式會上傳資料夾中的檔案 (例如，BigBuckBunny.mp4 和 Image001.png)，並將 mp4 檔案設定為資產中的主要檔案。**EncodeWithOverlay** 函式會使用傳遞給其的自訂預設值檔案 (例如，後續的預設值) 建立編碼工作。
+上述 .NET 範例定義兩個函式：**UploadMediaFilesFromFolder** 和 **EncodeWithOverlay**。UploadMediaFilesFromFolder 函式會上傳資料夾中的檔案 (例如，BigBuckBunny.mp4 和 Image001.png)，並將 mp4 檔案設定為資產中的主要檔案。**EncodeWithOverlay** 函式會使用傳遞給它的自訂預設值檔案 (例如後續的預設值) 建立編碼工作。
 
 >[AZURE.NOTE]目前限制：
 >
@@ -916,9 +916,9 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 	</Sources>
 
 
-##<a id="audio_only"></a>只有音訊的預設值
+##<a id="audio_only"></a>純音訊預設值
 
-本節示範兩個只有音訊的 MES 預設值︰AAC 音訊和 AAC 好品質音訊。
+本節示範兩個純音訊的 MES 預設值︰AAC 音訊和 AAC 好品質音訊。
 
 ###AAC 音訊 
 
@@ -968,7 +968,7 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 
 ##<a id="concatenate"></a>串連兩個以上的視訊檔案
 
-下列範例示範如何產生預設值來串連兩個以上的視訊檔案。最常見的案例是您想要在主要視訊中加入標頭或預告片時。預定用法是一起編輯的視訊檔案共用相同屬性 (視訊解析度、畫面播放速率、曲目數等) 時。您應該注意不要混合使用不同畫面播放速率或不同曲目數的視訊。
+下列範例示範如何產生預設值來串連兩個以上的視訊檔案。最常見的案例是您想要在主要視訊中加入標頭或預告片時。預定的使用時機為同時編輯的視訊檔案具有共用屬性 (視訊解析度、畫面播放速率、曲目數等) 時。您應該注意不要混合使用不同畫面播放速率或不同曲目數的視訊。
 
 ###需求和考量
 
@@ -976,7 +976,7 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 - 輸入視訊的畫面播放速率應該都相同。
 - 您必須將視訊上傳至不同的資產，並將視訊設定為每個資產中的主要檔案。
 - 您需要知道您視訊的持續時間。
-- 下列預設值範例假設所有輸入視訊的開頭為零時間戳記。如果視訊具有不同的開始時間戳記 (通常是即時封存的情況)，則需要修改 StartTime 值。
+- 下列預設值範例假設所有輸入視訊的開頭為零時間戳記。如果視訊具有不同的開始時間戳記 (即時封存時常發生這種情況)，則需要修改 StartTime 值。
 - JSON 預設值會建立輸入資產之 AssetID 值的明確參考。
 - 範例程式碼假設 JSON 預設值已儲存至本機檔案 (例如 "C:\\supportFiles\\preset.json")。其也會假設已透過上傳兩個視訊檔案來建立兩個資產，並假設您知悉產生的 AssetID 值。
 - 程式碼片段和 JSON 預設值顯示串連兩個視訊檔案的範例。您可以將其擴充至兩個以上的視訊，方法是︰
@@ -1079,6 +1079,58 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 
 請參閱[以 Media Encoder Standard 裁剪影片](media-services-crop-video.md)主題。
 
+##<a id="no_video"></a>在輸入不含視訊時插入視訊播放軌
+
+依照預設，如果您傳送僅包含音訊訊不含視訊的輸入到編碼器，輸出資產將包含僅含音訊資料的檔案。某些播放器，包括 Azure 媒體播放器 (請參閱[這篇文章](https://feedback.azure.com/forums/169396-azure-media-services/suggestions/8082468-audio-only-scenarios))，可能無法處理這類串流。您可以在該案例中使用此設定來強制編碼器將單色視訊播放軌新增至輸出。
+
+>[AZURE.NOTE]強制編碼器插入輸出視訊播放軌，將會增加輸出資產的大小，並提升編碼工作所產生的成本。您應該執行測試，以確認所導致的成本提升對您的每月費用沒有太大的影響。
+
+### 於最低位元速率插入視訊
+
+假設您正在使用多重位元速率編碼預設值 (例如 [「H264 Multiple 多重位元速率 720p」](https://msdn.microsoft.com/library/mt269960.aspx)) 來將整個輸入目錄針對串流進行編碼，這將會包含各種視訊檔案和純音訊檔案。在這個案例中，當輸入沒有視訊時，您可能需要強制編碼器於最低位元速率插入單色視訊播放軌，而非於所有輸出位元速率插入視訊。若要達成此目的，您必須指定 "InsertBlackIfNoVideoBottomLayerOnly" 旗標。
+
+您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並執行以下修改：
+
+#### JSON 預設值
+
+	{
+	      "KeyFrameInterval": "00:00:02",
+	      "StretchMode": "AutoSize",
+	      "Condition": "InsertBlackIfNoVideoBottomLayerOnly",
+	      "H264Layers": [
+	      …
+	      ]
+	}
+
+#### XML 預設值
+
+	<KeyFrameInterval>00:00:02</KeyFrameInterval>
+	<StretchMode>AutoSize</StretchMode>
+	<Condition>InsertBlackIfNoVideoBottomLayerOnly</Condition>
+
+### 以所有輸出位元速率插入視訊
+
+假設您正在使用多重位元速率編碼預設值 (例如 [「H264 Multiple 多重位元速率 720p」](https://msdn.microsoft.com/library/mt269960.aspx)) 來將整個輸入目錄針對串流進行編碼，這將會包含各種視訊檔案和純音訊檔案。在這個案例中，當輸入沒有視訊時，您可能需要強制編碼器於所有輸出位元速率插入單色視訊播放軌。這能確保您所有的輸出資產與視訊播放軌和音訊播放軌之間的同質性。若要達成此目的，您必須指定 "InsertBlackIfNoVideo" 旗標。
+
+您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並執行以下修改：
+
+#### JSON 預設值
+
+	{
+	      "KeyFrameInterval": "00:00:02",
+	      "StretchMode": "AutoSize",
+	      "Condition": "InsertBlackIfNoVideo",
+	      "H264Layers": [
+	      …
+	      ]
+	}
+
+#### XML 預設值
+	
+	<KeyFrameInterval>00:00:02</KeyFrameInterval>
+	<StretchMode>AutoSize</StretchMode>
+	<Condition>InsertBlackIfNoVideo</Condition>
+
 ##媒體服務學習路徑
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
@@ -1091,4 +1143,4 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 
 [媒體服務編碼概觀](media-services-encode-asset.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0831_2016-->

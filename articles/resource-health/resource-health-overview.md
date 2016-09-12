@@ -36,11 +36,11 @@ Azure 資源健康狀態是一項服務，會揭露個別 Azure 資源的健康�
 Azure 入口網站中的 [資源健康狀態] 刀鋒視窗，可提供資源健康狀態的詳細資訊以及建議採取的動作 (依據資源目前的健康狀態而定，會提供不同的建議)。此刀鋒視窗可在查詢資源健康狀態時提供最佳體驗，因為它能讓使用者便利地存取入口網站內的其他資源。如先前所述，[資源健康狀態] 刀鋒視窗中所建議的一組動作，會隨著目前的健康狀態而有所不同︰
 
 * 健康狀態良好的資源︰由於未偵測到任何可能影響資源健康狀態的問題，所建議的動作會著重在協助疑難排解程序。例如，它可供直接存取 [疑難排解] 刀鋒視窗，裡面會指導您如何解決客戶最常面臨的問題。
-* 健康狀態不良的資源︰若為 Azure 所造成的問題，刀鋒視窗中會顯示 Microsoft 將會採取 (或已採取) 以便復原資源的動作。若為使用者起始的動作所造成的問題，刀鋒視窗中會顯示客戶可以採取以便解決問題並復原資源的動作清單。  
+* 健康狀態不良的資源︰若為 Azure 所造成的問題，刀鋒視窗中會顯示 Microsoft 將會採取 (或已採取) 以便復原資源的動作。若為使用者起始的動作所造成的問題，刀鋒視窗中會顯示客戶可以採取以便解決問題並復原資源的動作清單。
 
 在登入 Azure 入口網站之後，有兩種方式可以存取 [資源健康狀態] 刀鋒視窗︰
 
-####開啟資源刀鋒視窗
+###開啟資源刀鋒視窗
 開啟指定資源的 [資源] 刀鋒視窗。在 [資源] 刀鋒視窗旁邊所開啟的 [設定] 刀鋒視窗中，按一下 [資源健康狀態] 以開啟 [資源健康狀態] 刀鋒視窗。
 
 ![資源健康狀態刀鋒視窗](./media/resource-health-overview/resourceBladeAndResourceHealth.png)
@@ -52,36 +52,11 @@ Azure 入口網站中的 [資源健康狀態] 刀鋒視窗，可提供資源健�
 
 ![說明 + 支援](./media/resource-health-overview/HelpAndSupport.png)
 
-按一下圖格會開啟 [資源健康狀態訂用帳戶] 刀鋒視窗，其中會列出訂用帳戶中的所有資源。每個資源旁邊各有一個圖示會指出其健康狀態。按一下每個資源就會開啟 [資源健康狀態] 刀鋒視窗。
+按一下磚會開啟 [資源健康狀態訂用帳戶] 刀鋒視窗，其中會列出訂用帳戶中的所有資源。每個資源旁邊各有一個圖示會指出其健康狀態。按一下每個資源就會開啟 [資源健康狀態] 刀鋒視窗。
 
 **資源健康狀態圖格**
 
 ![資源健康狀態圖格](./media/resource-health-overview/resourceHealthTile.png)
-
-### 資源健康狀態 API
-除了 Azure 入口網站體驗，還提供一組 API 可用來查詢資源健康狀態。透過可用的 API，使用者就能要求某個訂用帳戶中所有資源目前的健康狀態、資源群組中所有資源的健康狀態，或是單一資源的健康狀態。
-
-另一個 API 可讓使用者要求單一資源的健康狀態歷程記錄。回應是過去 14 天內資源健康狀態的集合。如果資源可能會受到已宣告的中斷所影響，則健康狀態將包含名為 serviceImpactingEvents 的註解，以及更多關於此次停機的詳細資料。
-
-在使用 API 來查詢資源健康狀態之前，必須對下列 URL︰磁碟區提交 POST 要求，以便向服務註冊訂用帳戶
- 
-        //Register the subscription with the Resource health resource provider
-        https://management.azure.com/subscriptions/{subscription-id}/providers/Microsoft.ResourceHealth/register?api-version=2015-01-01
-        
-以下是如何呼叫資源健康狀態 API 的範例
-
-        // GET health of all resources in a subscription:
-        https://management.azure.com/subscriptions/{subscription-id}/providers/Microsoft.ResourceHealth/availabilityStatuses?api-version=2015-01-01
-        
-        //GET health of all resources in a resource group:
-        https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.ResourceHealth/availabilityStatuses?api-version=2015-01-01
-        
-        //GET the health of a single resource:
-        https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/{resource-provider}/{resource-type}/{resource-name}/providers/Microsoft.ResourceHealth/availabilityStatuses/current?api-version=2015-01-01
-        
-        //GET the historical health of a single resource:
-        https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/{resource-provider}/{resource-type}/{resource-name}/providers/Microsoft.ResourceHealth/availabilityStatuses?api-version=2015-01-01
-
 
 ## 資源健康狀態所代表的意義為何？
 您可能會看到 4 種不同的資源健康狀態。
@@ -95,9 +70,9 @@ Azure 入口網站中的 [資源健康狀態] 刀鋒視窗，可提供資源健�
 
 在此情況下，表示服務已偵測到平台中正有問題在影響這項資源的可用性，例如，VM 執行所在的節點正在執行非預期的重新啟動。其代表圖示為紅色警告圖示。刀鋒視窗中段會提供問題的其他相關資訊，包括︰
 
-1.	Microsoft 將會採取以便復原資源的動作 
+1.	Microsoft 將會採取以便復原資源的動作
 2.	問題的詳細時間表，包括預期的解決時間
-3.	建議使用者採取的動作清單 
+3.	建議使用者採取的動作清單
 
 ![資源無法使用](./media/resource-health-overview/Unavailable.png)
 
@@ -132,4 +107,4 @@ Azure 入口網站中的 [資源健康狀態] 刀鋒視窗，可提供資源健�
 ## 意見反應
 我們歡迎意見反應和建議！ 請將您的[建議](https://feedback.azure.com/forums/266794-support-feedback)傳送給我們。此外，您可以透過 [Twitter](https://twitter.com/azuresupport) 或 [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure)與我們連絡。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0831_2016-->

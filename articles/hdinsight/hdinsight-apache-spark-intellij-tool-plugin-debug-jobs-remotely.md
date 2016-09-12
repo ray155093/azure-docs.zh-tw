@@ -1,6 +1,6 @@
  <properties
-	pageTitle="使用 IntelliJ IDEA 的 HDInsight 外掛程式在遠端偵錯 HDInsight Spark 叢集上執行的應用程式| Microsoft Azure"
-	description="了解如何使用 IntelliJ IDEA 的 HDInsight 外掛程式在遠端偵錯 HDInsight Spark 叢集上執行的應用程式。"
+	pageTitle="使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具遠端偵錯 HDInsight Spark 叢集上執行的應用程式 | Microsoft Azure"
+	description="了解如何使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具，遠端偵錯 HDInsight Spark 叢集上執行的應用程式。"
 	services="hdinsight"
 	documentationCenter=""
 	authors="nitinme"
@@ -14,13 +14,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/25/2016"
+	ms.date="08/26/2016"
 	ms.author="nitinme"/>
 
 
-# 使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式在遠端偵錯 HDInsight Spark Linux 叢集的 Spark 應用程式
+# 使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具遠端偵錯 HDInsight Spark Linux 叢集上的 Spark 應用程式
 
-本文提供有關如何使用 IntelliJ IDEA 的 HDInsight 工具外掛程式，來提交 HDInsight Spark 叢集上的 Spark 作業，然後從桌上型電腦遠端偵錯的逐步指引。若要這樣做，您必須執行下列高階步驟：
+本文提供如何使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具，來提交 HDInsight Spark 叢集上的 Spark 作業，然後從桌上型電腦遠端偵錯的逐步指引。若要這樣做，您必須執行下列高階步驟：
 
 1. 建立站對站或點對站 Azure 虛擬網路。本文件中的步驟假設您使用站對站網路。
 
@@ -34,7 +34,7 @@
 
 ##必要條件
 
-* Azure 訂閱。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+* Azure 訂用帳戶。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 
 * HDInsight Linux 上的 Apache Spark 叢集。如需指示，請參閱[在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
  
@@ -42,7 +42,7 @@
  
 * IntelliJ IDEA。本文章使用 15.0.1 版。您可以從[這裡](https://www.jetbrains.com/idea/download/)加以安裝。
  
-* IntelliJ IDEA 的 HDInsight Tools 外掛程式。IntelliJ IDEA 的 HDInsight 工具外掛程式已是 Azure Toolkit for IntelliJ 的一部份。如需有關如何安裝 Azure 工具組的指示，請參閱[安裝 Azure Toolkit for IntelliJ](../azure-toolkit-for-intellij-installation.md)。
+* 適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具。適用於 IntelliJ 的 HDInsight 工具是適用於 IntelliJ 的 Azure 工具組的一部分。如需有關如何安裝 Azure 工具組的指示，請參閱[安裝 Azure Toolkit for IntelliJ](../azure-toolkit-for-intellij-installation.md)。
  
 * 在 Windows 電腦上執行 Spark Scala 應用程式以進行遠端偵錯時，可能會發生 [SPARK-2356](https://issues.apache.org/jira/browse/SPARK-2356) 中所述的例外狀況，此例外狀況發生的原因是因為 Windows 上缺少 WinUtils.exe。若要解決這個錯誤，您必須[從這裡下載可執行檔](http://public-repo-1.hortonworks.com/hdp-win-alpha/winutils.exe)並將其放至 **C:\\WinUtils\\bin** 之類的位置。然後，您必須新增環境變數 **HADOOP\_HOME**，並將變數的值設為 **C\\WinUtils**。
 
@@ -97,7 +97,7 @@
 
 7. 對其他前端節點重複這些步驟。
 
-## 步驟 4：使用 HDInsight IntelliJ IDEA 中外掛程式建立 Spark Scala 應用程式，並設定它以進行遠端偵錯
+## 步驟 4：使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具來建立 Spark Scala 應用程式，並設定它以進行遠端偵錯
 
 1. 啟動 IntelliJ IDEA，並建立新的專案。在新增專案對話方塊中選取下列選項，然後按 [下一步]。
 
@@ -328,9 +328,9 @@
 
 ### 工具和擴充功能
 
-* [Use HDInsight Tools Plugin for IntelliJ IDEA to create and submit Spark Scala applicatons (使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式)](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具建立和提交 Spark Scala 應用程式](hdinsight-apache-spark-intellij-tool-plugin.md)
 
-* [使用 Eclipse 的 HDInsight Tools 外掛程式來建立 Spark 應用程式](hdinsight-apache-spark-eclipse-tool-plugin.md)
+* [使用適用於 Eclipse 的 Azure 工具組中的 HDInsight 工具建立 Spark 應用程式](hdinsight-apache-spark-eclipse-tool-plugin.md)
 
 * [利用 HDInsight 上的 Spark 叢集來使用 Zeppelin Notebook](hdinsight-apache-spark-use-zeppelin-notebook.md)
 
@@ -346,4 +346,4 @@
 
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0831_2016-->

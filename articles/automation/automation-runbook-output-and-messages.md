@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="06/08/2016"
+   ms.date="08/24/2016"
    ms.author="magoedte;bwren" />
 
 # Azure 自動化中的 Runbook 輸出與訊息
@@ -21,7 +21,7 @@
 
 下表提供每個資料流的簡短描述，以及它們在 Azure 管理入口網站中，執行已發佈的 Runbook 和[測試 Runbook](automation-testing-runbook.md) 時的行為。後續各節將提供每個資料流的進一步詳細資料。
 
-| Stream | 說明 | 已發佈 | 測試|
+| Stream | 說明 | Published | 測試|
 |:---|:---|:---|:---|
 |輸出|要供其他 Runbook 使用的物件。|寫入工作歷程記錄。|在 [測試輸出] 窗格中顯示。|
 |警告|適用於使用者的警告訊息。|寫入工作歷程記錄。|在 [測試輸出] 窗格中顯示。|
@@ -48,30 +48,43 @@
 
 	Workflow Test-Runbook
 	{
-	   Write-Verbose "Verbose outside of function"
-	   Write-Output "Output outside of function"
-	   $functionOutput = Test-Function
+        Write-Verbose "Verbose outside of function" -Verbose
+        Write-Output "Output outside of function"
+        $functionOutput = Test-Function
+        $functionOutput
 
-	   Function Test-Function
-	   {
-	      Write-Verbose "Verbose inside of function"
-	      Write-Output "Output inside of function"
-	   }
-	}
+    Function Test-Function
+     {
+        Write-Verbose "Verbose inside of function" -Verbose
+        Write-Output "Output inside of function"
+      }
+    }
+
 
 Runbook 工作的輸出資料流會是：
 
-	Output outside of function
+	Output inside of function
+    Output outside of function
 
 Runbook 工作的詳細資訊資料流會是：
 
 	Verbose outside of function
 	Verbose inside of function
 
+在您發佈 Runbook 之後，並在加以啟動之前，您還必須在 Runbook 設定中開啟詳細資訊記錄，以取得詳細資訊資料流的輸出。
+
 ### 宣告輸出資料類型
 
 工作流程可使用 [OutputType](http://technet.microsoft.com/library/hh847785.aspx) 屬性指定其輸出的資料類型。這個屬性在執行階段沒有任何作用，但它會在設計時向 Runbook 作者提供 Runbook 之預期輸出的指示。隨著 Runbook 的工具組持續發展，在設計時宣告輸出資料類型的重要性也隨之提升。如此一來，在任何您建立的 Runbook 中包含此宣告是最佳作法。
 
+以下是範例輸出類型清單：
+
+-	System.String
+-	System.Int32
+-	System.Collections.Hashtable
+-	Microsoft.Azure.Commands.Compute.Models.PSVirtualMachine
+
+  
 以下範例 Runbook 會輸出字串物件，並包含其輸出類型的宣告。如果您的 Runbook 會輸出特定類型的陣列，那麼您仍應指定類型而非陣列類型。
 
 	Workflow Test-Runbook
@@ -81,6 +94,25 @@ Runbook 工作的詳細資訊資料流會是：
 	   $output = "This is some string output."
 	   Write-Output $output
 	}
+
+若要在圖形化或圖形化 PowerShell 工作流程 Runbook 中宣告輸出類型，您可以選取 [輸入和輸出] 功能表選項，並輸入輸出類型的名稱。我們建議您使用完整的 .NET 類別名稱，以便在從父 Runbook 參考此名稱時可以輕鬆地找到。這會將該類別的所有屬性公開至 Runbook 中的資料匯流排，並在將其用於條件式邏輯、記錄以及參考做為 Runbook 中其他活動的值時提供很大的彈性。<br> ![Runbook 輸入和輸出選項](media/automation-runbook-output-and-messages/runbook-menu-input-and-output-option.png)
+
+在下列範例中，我們用兩個圖形化 Runbook 來示範這項功能。如果我們套用模組化 Runbook 設計模型，我們會將一個 Runbook 做為「驗證 Runbook 範本」，以使用執行身分帳戶來管理使用 Azure 進行的驗證。我們的第二個 Runbook 通常會執行核心邏輯以自動執行給定的案例，而在此情況下，此 Runbook 將會執行「驗證 Runbook 範本」，並將結果顯示到 [測試] 輸出窗格。在正常情況下，我們會讓此 Runbook 針對運用子 Runbook 輸出的資源執行某些工作。
+
+以下是 **AuthenticateTo-Azure** Runbook 的基本邏輯。<br> ![驗證 Runbook 範本範例](media/automation-runbook-output-and-messages/runbook-authentication-template.png)。
+
+它包含輸出類型「Microsoft.Azure.Commands.Profile.Models.PSAzureContext」，其會傳回驗證設定檔屬性。<br> ![Runbook 輸出類型範例](media/automation-runbook-output-and-messages/runbook-input-and-output-add-blade.png)
+
+雖然此 Runbook 非常簡單，但這裡有一個要對外呼叫的組態項目。最後一個活動是執行 **Write-Output** Cmdlet，並使用該 Cmdlet 所需之 **Inputobject** 參數的 PowerShell 運算式，將設定檔資料寫入到 $\_ 變數。
+
+對於此範例中名為「Test-ChildOutputType」的第二個 Runbook，我們只有兩個活動。<br> ![範例子輸出類型 Runbook](media/automation-runbook-output-and-messages/runbook-display-authentication-results-example.png)
+
+第一個活動會呼叫 **AuthenticateTo-Azure** Runbook，第二個活動則會使用**活動輸出**的**資料來源**和**欄位路徑**值 **Context.Subscription.SubscriptionName** 來執行 **Write-verbose** Cmdlet，這會指定 **AuthenticateTo-Azure** Runbook 的內容輸出。<br> ![Write-Verbose Cmdlet 參數的資料來源](media/automation-runbook-output-and-messages/runbook-write-verbose-parameters-config.png)
+
+產生的輸出是訂用帳戶的名稱。<br> ![Test-ChildOutputType Runbook 結果](media/automation-runbook-output-and-messages/runbook-test-childoutputtype-results.png)
+
+關於輸出類型控制項行為的一個附註。當您在 [輸入和輸出屬性] 刀鋒視窗的 [輸出類型] 欄位中輸入值時，您必須在輸入後於控制項外按一下，以便讓控制項辨識此輸入值。
+
 
 ## 訊息資料流
 
@@ -190,7 +222,7 @@ Windows PowerShell 使用[喜好設定變數](http://technet.microsoft.com/libra
 
 ## 後續步驟
 
-- 若要深入了解 Runbook 執行方式、如何監視 Runbook 工作，以及其他技術性詳細資訊，請參閱[追蹤 Runbook 工作](automation-runbook-execution.md)
+- 若要深入了解 Runbook 執行方式、如何監視 Runbook 工作，以及其他技術性詳細資料，請參閱[追蹤 Runbook 工作](automation-runbook-execution.md)
 - 若要了解如何設計和使用子 Runbook，請參閱 [Azure 自動化中的子 Runbook](automation-child-runbooks.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0831_2016-->

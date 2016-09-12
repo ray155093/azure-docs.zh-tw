@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/24/2016"
+   ms.date="08/18/2016"
    ms.author="alkohli" />
 
 # 使用 StorSimple Manager 服務監視硬體元件和狀態
 
-## 概觀
+## Overview
 
 本文描述內部部署 StorSimple 裝置中的各種實體和邏輯元件。它也會說明如何使用 StorSimple Manager 服務中的 [維護] 頁面監視裝置元件狀態。
 
@@ -46,7 +46,7 @@
 
 執行下列步驟來檢視裝置元件的硬體狀態：
 
-1. 瀏覽至**裝置**，選取特定的 StorSimple 裝置。按一下以進入裝置層級功能表，然後按一下 [維護]。 
+1. 瀏覽至**裝置**，選取特定的 StorSimple 裝置。按一下以進入裝置層級功能表，然後按一下 [維護]。
 2. 找出 [**硬體狀態**] 區段並選擇可用的元件 (如上所述)。只要按一下元件標籤之前的箭號即可展開清單並檢視各種裝置元件的狀態。請參閱[主要機箱的詳細元件清單](#component-list-for-primary-enclosure-of-storsimple-device)和 [EBOD 機箱的詳細元件清單](#component-list-for-ebod-enclosure-of-storsimple-device)。
 
 2. 您可以使用下列色彩編碼配置來解譯元件狀態：
@@ -136,4 +136,4 @@
 
 - 如果持續發生裝置問題，請[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0831_2016-->

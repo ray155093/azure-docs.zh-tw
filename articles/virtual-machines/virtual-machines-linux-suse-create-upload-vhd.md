@@ -14,42 +14,39 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/09/2016"
+	ms.date="08/24/2016"
 	ms.author="szark"/>
 
 # 準備適用於 Azure 的 SLES 或 openSUSE 虛擬機器
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-## 先決條件 ##
+## 必要條件 ##
 
 本文假設您已將 SUSE 或 openSUSE Linux 作業系統安裝到虛擬硬碟。有多個工具可用來建立 .vhd 檔案，例如，像是 Hyper-V 的虛擬化解決方案。如需指示，請參閱[安裝 Hyper-V 角色及設定虛擬機器](http://technet.microsoft.com/library/hh846766.aspx)。
 
- - [SUSE Studio](http://www.susestudio.com) 可讓您輕鬆建立及管理 Azure 和 Hyper-V 的 SLES / openSUSE 映像。這是建議用來自訂您自己的 SUSE 和 openSUSE 映像的方法。您也可以將 SUSE Studio Gallery 中的下列正式映像下載或複製到您專屬的 SUSE Studio：
-
-  - [SUSE Studio Gallery 上的 SLES 11 SP3 for Azure](http://susestudio.com/a/02kbT4/sles-11-sp3-for-windows-azure)
-  - [SUSE Studio Gallery 上的 openSUSE 13.1 for Azure](https://susestudio.com/a/02kbT4/opensuse-13-1-for-windows-azure)
-
-
-- SUSE 是建置您自己的 VHD 的替代選項，其也可在 [VMDepot](https://vmdepot.msopentech.com/User/Show?user=1007) 發佈 SLES 的 BYOS (自備訂用帳戶，Bring Your Own Subscription) 映像。
-
-
 ### SLES / openSUSE 安裝注意事項
 
-- 另請參閱[一般 Linux 安裝注意事項](virtual-machines-linux-create-upload-generic.md#general-linux-installation-notes)，以了解準備用於 Azure 的 Linux 的更多訣竅。
+- 如需有關準備 Azure 之 Linux 的更多秘訣，另請參閱[一般 Linux 安裝注意事項](virtual-machines-linux-create-upload-generic.md#general-linux-installation-notes)。
 
 - Azure 不支援 VHDX 格式，只支援**固定 VHD**。您可以使用 Hyper-V 管理員或 convert-vhd Cmdlet，將磁碟轉換為 VHD 格式。
 
-- 安裝 Linux 系統時，建議您使用標準磁碟分割而不是 LVM (常是許多安裝的預設設定)。這可避免 LVM 與複製之虛擬機器的名稱衝突，特別是為了疑難排解而需要將作業系統磁碟連接至其他虛擬機器時。您也可以視需要在資料磁碟上使用[LVM](virtual-machines-linux-configure-lvm.md) 或 [RAID](virtual-machines-linux-configure-raid.md)。
+- 安裝 Linux 系統時，建議您使用標準磁碟分割而不是 LVM (常是許多安裝的預設設定)。這可避免 LVM 與複製之虛擬機器的名稱衝突，特別是為了疑難排解而需要將作業系統磁碟連接至其他虛擬機器時。如果想要的話，您可以在資料磁碟上使用 [LVM](virtual-machines-linux-configure-lvm.md) 或 [RAID](virtual-machines-linux-configure-raid.md)。
 
 - 請勿在作業系統磁碟上設定交換磁碟分割。您可以設定 Linux 代理程式在暫存資源磁碟上建立交換檔。您可以在以下步驟中找到與此有關的詳細資訊。
 
 - 所有 VHD 的大小都必須是 1 MB 的倍數。
 
 
+## 使用 SUSE Studio
+[SUSE Studio](http://www.susestudio.com) 可讓您輕鬆建立及管理 Azure 和 Hyper-V 的 SLES 與 openSUSE 映像。這是建議用來自訂您自己的 SLES 和 openSUSE 映像的方法。
+
+SUSE 是建置您自己的 VHD 的替代選項，其也可在 [VMDepot](https://vmdepot.msopentech.com/User/Show?user=1007) 發佈 SLES 的 BYOS (自備訂用帳戶，Bring Your Own Subscription) 映像。
+
+
 ## 準備 SUSE Linux Enterprise Server 11 SP4 ##
 
-1. 在 Hyper-V 管理員的中央窗格中，選取虛擬機器。
+1. 在 Hyper-V 管理員的中間窗格中，選取虛擬機器。
 
 2. 按一下 **[連接]**，以開啟虛擬機器的視窗。
 
@@ -87,11 +84,11 @@
 
 	變更之前
 	
-		root=/dev/disk/bi-id/SCSI-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx-part1
+		root=/dev/disk/by-id/SCSI-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx-part1
 
 	變更之後
 	
-		root=/dev/disk/bi-uuid/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+		root=/dev/disk/by-uuid/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
 10. 修改 udev 角色可防止產生乙太網路介面的靜態規則。在 Microsoft Azure 或 Hyper-V 中複製虛擬機器時，這些規則可能會造成問題：
 
@@ -132,7 +129,7 @@
 
 ## 準備執行 openSUSE 13.1+ ##
 
-1. 在 Hyper-V 管理員的中央窗格中，選取虛擬機器。
+1. 在 Hyper-V 管理員的中間窗格中，選取虛擬機器。
 
 2. 按一下 **[連接]**，以開啟虛擬機器的視窗。
 
@@ -211,4 +208,4 @@
 ## 後續步驟
 您現在可以開始使用您的 SUSE Linux 虛擬硬碟在 Azure 建立新的虛擬機器。若這是您第一次將該 .vhd 檔案上傳到 Azure，請參閱[建立及上傳包含 Linux 作業系統的虛擬硬碟](virtual-machines-linux-classic-create-upload-vhd.md)中的步驟 2 和步驟 3。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -24,6 +24,8 @@ Azure Active Directory (Azure AD) B2C 有幾項目前還未支援的特性與功
 
 如果您在[建立 Azure AD B2C 租用戶](active-directory-b2c-get-started.md)期間遇到問題，請參閱[建立 Azure AD 租用戶或 Azure AD B2C 租用戶 - 問題與解決方法](active-directory-b2c-support-create-directory.md)以取得指導方針。
 
+請注意，當您刪除現有的 B2C 租用戶並使用相同的網域名稱加以重建時，會發生已知的問題。您必須使用不同的網域名稱建立 B2C 租用戶。
+
 ## B2C 租用戶配額的注意事項
 
 根據預設，B2C 租用戶的使用者數目限制為 50,000 名使用者。如果您需要提高 B2C 租用戶的配額，請連絡支援服務。
@@ -94,7 +96,7 @@ Azure AD B2C 租用戶不支援 [Azure AD 圖形 API 上的差異查詢功能](h
 
 ## 建立自訂屬性時的問題
 
-[在 Azure 入口網站上加入的自訂屬性](active-directory-b2c-reference-custom-attr.md)不會立即在 B2C 租用戶中建立。您必須至少在一個原則中使用自訂屬性，它才會在 B2C 租用戶中建立，也才可透過圖形 API 使用。
+[在 Azure 入口網站上新增的自訂屬性](active-directory-b2c-reference-custom-attr.md)不會立即在 B2C 租用戶中建立。您必須至少在一個原則中使用自訂屬性，它才會在 B2C 租用戶中建立，也才可透過圖形 API 使用。
 
 ## 在 Azure 傳統入口網站上驗證網域的問題
 
@@ -107,4 +109,4 @@ Azure AD B2C 租用戶不支援 [Azure AD 圖形 API 上的差異查詢功能](h
 - 使用「註冊或登入原則」而不是「登入原則」。
 - 減少原則中所要求的**應用程式宣告**數目。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0831_2016-->

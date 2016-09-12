@@ -19,7 +19,7 @@
 
 # 使用 Microsoft Azure 匯入/匯出服務將資料移轉至 Blob 儲存體
 
-## 概觀
+## Overview
 
 Azure 匯入/匯出服務可讓您將硬碟運送到 Azure 資料中心，安全地傳輸大量資料至 Azure Blob 儲存體。您也可以使用這項服務，從 Azure Blob 儲存體傳輸資料到硬碟，然後運送到您的內部部署網站。這項服務適合您想要和 Azure 相互傳輸數 TB 資料的情形，但是無法透過網路上傳或下載，因為頻寬有限或是網路成本高昴。
 
@@ -40,7 +40,6 @@ Azure 匯入/匯出服務可讓您將硬碟運送到 Azure 資料中心，安全
 - 備份︰備份內部部署資料以便儲存在 Azure Blob 儲存體。
 - 資料復原︰復原儲存在 Blob 儲存體中的大量資料，並將它傳遞到您的內部部署位置。
 
-
 ## 必要條件
 
 在本節中，我們列出了使用此服務所需的先決條件。請先仔細檢閱，再運送您的磁碟機。
@@ -53,7 +52,7 @@ Azure 匯入/匯出服務可讓您將硬碟運送到 Azure 資料中心，安全
 
 您可以使用 Azure 匯入/匯出服務，將資料複製到**區塊** Blob 或**分頁** Blob。相反地，您只能使用此服務從 Azure 儲存體匯出**區塊** Blob、**分頁** Blob 或**附加** Blob。
 
-### Job
+### 工作 (Job)
 
 若要開始進行 Blob 儲存體的匯入或匯出程序，請先建立「工作」。此工作可以是「匯入工作」或「匯出工作」：
 
@@ -220,7 +219,7 @@ Azure 匯入/匯出服務支援與所有公用 Azure 儲存體帳戶相互複製
 
 處理匯入/匯出作業所需的時間量，會根據不同的因素而有所差異，例如運送時間、作業類型、複製的資料類型及大小，以及所提供磁碟的大小。匯入/匯出服務沒有 SLA。您可以使用 REST API 更仔細地追蹤工作進度。在列出工作作業中有一個完成百分比的參數，它可以指出複製進度。如果您需要對完成一項時間緊迫的匯入/匯出工作的預估，請連絡我們。
 
-### 定價 
+### 價格 
 
 **磁碟機處理費用**
 
@@ -234,7 +233,7 @@ Azure 匯入/匯出服務支援與所有公用 Azure 儲存體帳戶相互複製
 
 將資料匯入到 Blob 儲存體時，沒有交易成本。從 Blob 儲存體匯出資料時，則適用標準出口流量費用。如需交易成本的更多詳細資料，請參閱[資料傳輸價格](https://azure.microsoft.com/pricing/details/data-transfers/)。
 
-## 快速入門
+## 快速啟動
 
 在本節中，我們將提供如何建立匯入和匯出作業的逐步指示。繼續進行之前，請先確定您符合所有的[先決條件](#pre-requisites)。
 
@@ -381,7 +380,7 @@ Azure 匯入/匯出服務支援與所有公用 Azure 儲存體帳戶相互複製
 
 	如果您有追蹤號碼，請從清單中選取您的貨運廠商，並輸入追蹤號碼。
 
-	如果沒有追蹤號碼，請選擇 **一旦傳送套件，就會提供此匯入工作的傳送資訊**，然後完成匯入程序。
+	如果沒有追蹤號碼，請選擇 [I will provide my shipping information for this export job once I have shipped my package]，然後完成匯出程序。
 
 6. 若要在寄出包裹之後輸入追蹤號碼，請在「傳統入口網站」中回到您儲存體帳戶的 [匯入/匯出] 頁面，從清單中選取作業，然後選擇 [出貨資訊]。逐步執行精靈，在步驟 2 中輸入追蹤號碼。
 
@@ -401,9 +400,12 @@ Azure 匯入/匯出服務支援與所有公用 Azure 儲存體帳戶相互複製
 
 ## 常見問題集 ##
 
+
 **我的磁碟到達資料中心之後，要花多少時間複製我的資料？**
 
 複製所需的時間，會根據不同的因素而有所差異，例如作業類型、複製的資料類型及大小、所提供磁碟的大小，以及現有的作業負載。根據這些因素，有可能從幾天到幾星期。因此，很難提供一般性的預估。服務會嘗試最佳化您的作業，以平行方式盡可能複製多個磁碟機。如果您有時間緊迫的匯入/匯出工作，請連絡我們以進行預估。
+
+**Azure 匯入/匯出服務的使用時機？** 如果網路的上傳或下載時間估計約超過 7 天，就應該考慮使用 Azure 匯入匯出。您可使用任何線上計算機或[下載](https://github.com/Azure-Samples/storage-dotnet-import-export-job-management/archive/master.zip) Azure 範例儲存機制的 Azure 匯入匯出 REST API 範例中的計算機 ([資料傳輸速度計算機](https://github.com/Azure-Samples/storage-dotnet-import-export-job-management/blob/master/DataTransferSpeedCalculator.html))，來計算所需要的時間。這只是概略計算，並非正確數字。
 
 **可以使用 Azure 匯入/匯出服務搭配 Resource Manage 儲存體帳戶嗎？**
 
@@ -501,4 +503,6 @@ Azure 資料中心會將不符支援需求的磁碟機退回給您。如果包�
 
 - [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+- [Azure 匯入匯出 REST API 範例](https://azure.microsoft.com/documentation/samples/storage-dotnet-import-export-job-management/)
+
+<!---HONumber=AcomDC_0831_2016-->

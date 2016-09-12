@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.topic="article"
     ms.devlang="na"
-	ms.date="07/24/2016"
+	ms.date="08/30/2016"
 	ms.author="swkrish"/>
 
 # Azure Active Directory B2C：建立 Azure AD B2C 租用戶
@@ -42,7 +42,7 @@
 6. 您的租用戶現會建立，且將會出現在 Active Directory 擴充功能中。系統亦會將您設為租用戶的「全域管理員」。您可視需要新增其他「全域管理員」。
 
     > [AZURE.IMPORTANT]
-	如果您打算將 B2C 租用戶用於生產應用程式，請閱讀[生產級別租用戶與預覽 B2C 租用戶](active-directory-b2c-reference-tenant-type.md)一文。
+	如果您打算將 B2C 租用戶用於生產應用程式，請閱讀[生產級別租用戶與預覽 B2C 租用戶](active-directory-b2c-reference-tenant-type.md)一文。請注意，當您刪除現有的 B2C 租用戶並使用相同的網域名稱加以重建時，會發生已知的問題。您必須使用不同的網域名稱建立 B2C 租用戶。
 
 ## 步驟 3：瀏覽至 Azure 入口網站上的 B2C 功能刀鋒視窗
 
@@ -79,4 +79,4 @@
 
 請閱讀 [Azure Active Directory B2C：註冊您的應用程式](active-directory-b2c-app-registration.md)，了解如何使用 Azure AD B2C 註冊應用程式，以及建置快速啟動應用程式。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0831_2016-->

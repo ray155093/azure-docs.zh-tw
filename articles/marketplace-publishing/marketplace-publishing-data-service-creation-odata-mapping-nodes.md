@@ -13,10 +13,13 @@
       ms.topic="article"
       ms.tgt_pltfrm="na"
       ms.workload="na"
-      ms.date="06/29/2016"
+      ms.date="08/26/2016"
       ms.author="hascipio; avikova" />
 
 # 了解透過 CSDL 將現有的 Web 服務對應至 OData 的節點結構描述
+
+>[AZURE.IMPORTANT] 目前我們已不再針對任何新的資料服務發行者進行上架。新的 Dataservice 將不會獲得核准以列出於清單上。 如果您有想要在 AppSource 上發佈的 SaaS 商務應用程式，您可以在[這裡](https://appsource.microsoft.com/partners)找到詳細資訊。如果您有想要在 Azure Marketplace 發佈的 IaaS 應用程式或開發人員服務，您可以在[這裡](https://azure.microsoft.com/marketplace/programs/certified/)找到詳細資訊。
+
 本文件將協助釐清將 OData 通訊協定對應至 CSDL 的節點結構。請務必注意，節點結構是格式正確的 XML。因此，設計 OData 對應時，根、父和子結構描述皆適用。
 
 ## 忽略的元素
@@ -143,12 +146,12 @@ FunctionImport 節點內的其他子節點 (未被 CSDL 文件涵蓋) 如下：
 
 此節點代表一個公開為 URI 範本 / 要求本文 (已在 FunctionImport 節點中指定) 一部分的參數。
 
-對「參數元素」節點很有用的詳細文件位於[這裡](http://msdn.microsoft.com/library/ee473431.aspx) (請使用 [其他版本] 下拉式清單，選取不同版本 (如有需要) 來檢視文件)。*範例：*`<Parameter Name="Query" Nullable="false" Mode="In" Type="String" d:Description="Query" d:SampleValues="Rudy Duck" d:EncodeParameterValue="true" MaxLength="255" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Identity"/>`
+有關「參數元素」節點的有用詳細文件頁面位於[這裡](http://msdn.microsoft.com/library/ee473431.aspx) (請使用 [其他版本] 下拉式清單，以視需要選取不同版本來檢視文件)。*範例：*`<Parameter Name="Query" Nullable="false" Mode="In" Type="String" d:Description="Query" d:SampleValues="Rudy Duck" d:EncodeParameterValue="true" MaxLength="255" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Identity"/>`
 
 | 參數屬性 | 必要 | 值 |
 |----|----|----|
 | 名稱 | 是 | 參數名稱。區分大小寫！ BaseUri 大小寫須相符。**範例：**`<Property Name="IsDormant" Type="Byte" />` |
-| 類型 | 是 | 參數類型。此值必須是 **EDMSimpleType** 或是模型範圍內的複雜類型。如需詳細資訊，請參閱「6 種支援的參數/屬性類型」。(區分大小寫！ 第一個字元是大寫，其他都是小寫)。 另請參閱[概念模型類型 (CSDL)][MSDNParameterLink]。**範例：**`<Property Name="LimitedPartnershipID " Type="Int32" />` |
+| 類型 | 是 | 參數類型。此值必須是 **EDMSimpleType** 或是模型範圍內的複雜類型。如需詳細資訊，請參閱「6 種支援的參數/屬性類型」。(區分大小寫！ 第一個字元是大寫，其他都是小寫)。 另請參閱[概念模型型別 (CSDL)][MSDNParameterLink]。**範例：**`<Property Name="LimitedPartnershipID " Type="Int32" />` |
 | 模式 | 否 | **In**、Out 或 InOut，取決於參數是輸入、輸出或輸入/輸出參數。(只有 “IN” 適用於 Azure Marketplace)。 **範例：**`<Parameter Name="StudentID" Mode="In" Type="Int32" />` |
 | MaxLength | 否 | 允許的參數長度上限。**範例：**`<Property Name="URI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />` |
 | Precision | 否 | 參數的精確度。**範例：**`<Property Name="PreviousDate" Type="DateTime" Precision="0" />` |
@@ -163,13 +166,13 @@ FunctionImport 節點內的其他子節點 (未被 CSDL 文件涵蓋) 如下：
 | **d:Regex** *(選用)* | 用來驗證輸入參數值的 regex 陳述式。如果輸入值不符合陳述式，則會拒絕此值。這允許也可指定一組可能值，例如 ^[0-9]+?$，以僅允許數字。**範例：**`<Parameter Name="name" Mode="In" Type="String" d:Nullable="false" d:Regex="^[a-zA-Z]*$" d:Description="A name that cannot contain any spaces or non-alpha non-English characters" d:SampleValues="George|John|Thomas|James"/>` |
 | **d:Enum** *(選用)* | 以直立線區隔的有效參數值清單。這些值的類型必須符合已定義的參數類型。範例：`english|metric|raw`.列舉將在 UI (服務總管) 中顯示為可選取的下拉式參數清單。**範例：**`<Parameter Name="Duration" Type="String" Mode="In" Nullable="true" d:Enum="1year|5years|10years"/>` |
 | **d:Nullable** *(選用)* | 允許定義參數是否可為 null。預設值為：true。不過，公開為 URI 範本中路徑一部分的參數不可為 null。當這些參數的屬性設為 false 時，使用者輸入會被覆寫。**範例：**`<Parameter Name="BikeType" Type="String" Mode="In" Nullable="false"/>` |
-| **d:SampleValue** *(選用)* | 要在 UI 中顯示為用戶端之附註的範例值。例如，可以使用管線分隔清單來新增數個值。`a|b|c` **範例：** `<Parameter Name="BikeOwner" Type="String" Mode="In" d:SampleValues="George|John|Thomas|James"/>` |
+| **d:SampleValue** *(選用)* | 要在 UI 中顯示為用戶端之附註的範例值。例如，可以使用管線分隔清單來新增數個值。`a|b|c` **範例：**`<Parameter Name="BikeOwner" Type="String" Mode="In" d:SampleValues="George|John|Thomas|James"/>` |
 
 ## EntityType 節點
 
 這個節點代表從 Marketplace 傳回給使用者的其中一個類型。它也包含從內容提供者服務所傳回之輸出到傳回給使用者之值的對應。
 
-這個節點的詳細資料位於[這裡](http://msdn.microsoft.com/library/bb399206.aspx) (請使用 [其他版本] 下拉式清單，選取不同版本 (如有需要) 來檢視文件)。
+這個節點的詳細資料位於[這裡](http://msdn.microsoft.com/library/bb399206.aspx) (請使用 [其他版本] 下拉式清單，以視需要選取不同版本來檢視文件)。
 
 | 屬性名稱 | 必要 | 值 |
 |----|----|----|
@@ -202,7 +205,7 @@ XPath 運算式將是 /foo/bar，因為每一個列節點就是輸出中的重�
 
 | AttributeName | 必要 | 值 |
 |----|----|----|
-| 名稱 | 是 | 屬性的名稱。 |
+| Name | 是 | 屬性的名稱。 |
 | 類型 | 是 | 屬性值的類型。屬性值類型必須是 **EDMSimpleType**，或是模型範圍內的複雜類型 (以完整名稱表示)。如需詳細資訊，請參閱概念模型類型 (CSDL)。 |
 | Nullable | 否 | **True** (預設值) 或 **False**，取決於屬性是否可以具有 null 值。注意：在 [http://schemas.microsoft.com/ado/2006/04/edm](http://schemas.microsoft.com/ado/2006/04/edm) 命名空間指出的 CSDL 版本中，複雜類型屬性必須具有 Nullable="False"。 |
 | DefaultValue | 否 | 屬性的預設值。 |
@@ -258,7 +261,7 @@ XPath 運算式將是 /foo/bar，因為每一個列節點就是輸出中的重�
 | 位元組 | 不帶正負號的 8 位元整數值|
 |DateTime| 代表範圍從西元 1753 年 1 月 1 日午夜 12:00:00 到西元 9999 年 12 月 31 日下午 11:59:59 的日期和時間|
 |十進位 | 代表精確度和小數位數固定的數值。此類型可以描述範圍從負 10 ^255 + 1 到正 10 ^255 - 1 的數值|
-| 兩倍 | 代表具有 15 位數精確度的浮點數，可以代表近似範圍從 ± 2.23e -308 到 ± 1.79e +308 的值。**由於 Exel 匯出問題使用小數**|
+| Double | 代表具有 15 位數精確度的浮點數，可以代表近似範圍從 ± 2.23e -308 到 ± 1.79e +308 的值。**由於 Exel 匯出問題使用小數**|
 | 單一 | 代表具有 7 位數精確度的浮點數，可以代表近似範圍從 ± 1.18e -38 到 ± 3.40e +38 的值。|
 |Guid |代表 16 位元組 (128 位元) 的唯一識別碼值 |
 |Int16|代表帶正負號的 16 位元整數值 |
@@ -272,4 +275,4 @@ XPath 運算式將是 /foo/bar，因為每一個列節點就是輸出中的重�
 - 如果您有興趣檢閱範例，請閱讀[資料服務 OData 對應範例](marketplace-publishing-data-service-creation-odata-mapping-examples.md)一文，來查看範例程式碼，並了解程式碼語法與內容。
 - 若要返回用於將資料服務發佈至 Azure Marketplace 的指定路徑，請閱讀[資料服務發佈指南](marketplace-publishing-data-service-creation.md)一文。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -13,10 +13,13 @@
       ms.topic="article"
       ms.tgt_pltfrm="na"
       ms.workload="na"
-      ms.date="06/28/2016"
+      ms.date="08/26/2016"
       ms.author="hascipio; avikova" />
 
 # 適用於 Azure Marketplace 的資料服務發佈指南
+
+>[AZURE.IMPORTANT] 目前我們已不再針對任何新的資料服務發行者進行上架。新的 Dataservice 將不會獲得核准以列出於清單上。 如果您有想要在 AppSource 上發佈的 SaaS 商務應用程式，您可以在[這裡](https://appsource.microsoft.com/partners)找到詳細資訊。如果您有想要在 Azure Marketplace 發佈的 IaaS 應用程式或開發人員服務，您可以在[這裡](https://azure.microsoft.com/marketplace/programs/certified/)找到詳細資訊。
+
 完成步驟 1 [帳戶建立及註冊](marketplace-publishing-accounts-creation-registration.md)之後，我們會透過 Azure Marketplace 上資料服務優惠的[一般非技術性](marketplace-publishing-pre-requisites.md)和[技術性需求](marketplace-publishing-data-service-creation-prerequisites.md)來引導您。現在，我們將逐步引導您在 Azure Marketplace 的[發佈入口網站][link-pubportal]上建立資料服務優惠。
 
 ## 1\.登入發佈入口網站。
@@ -49,7 +52,7 @@
 
 每個優惠都可以有多個方案，但至少必須有一 (1) 個方案。當使用者訂閱您的優惠時，他們會訂閱其中一個優惠方案。每個方案都會定義使用者將如何使用您的服務。
 
-Azure Marketplace 目前僅針對資料服務支援以每月訂用帳戶交易為基礎的模型，例如，使用者將根據其訂閱之特定方案的價格來支付每月費用，而且能夠取用該方案所定義的每月交易量。
+Azure Marketplace 目前僅針對資料服務支援以每月訂用帳戶交易為基礎的模型，也就是說，使用者將根據其訂用帳戶之特定方案的價格來支付每月費用，而且能夠取用該方案所定義的每月交易量。
 
 每個交易通常會定義為您的資料服務將根據傳送至服務之查詢傳回的記錄數。預設值為 100。傳回每個查詢的交易量將是除以 100 且無條件進位到最接近整數的記錄數。
 
@@ -145,4 +148,4 @@ Azure Marketplace 服務層必須負責監視每個查詢所取用的交易量 (
 
 [link-pubportal]: https://publish.windowsazure.com
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0831_2016-->

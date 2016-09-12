@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="07/19/2016"
+   ms.date="08/29/2016"
    ms.author="cherylmc"/>
 
 # 建立和修改 ExpressRoute 線路
@@ -136,15 +136,15 @@
 如需限制的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 
 
-## 刪除和取消佈建 ExpressRoute 線路
+## 取消佈建和刪除 ExpressRoute 循環
 
 您可以選取**刪除**圖示，刪除 ExpressRoute 線路。請注意：
 
 - 您必須取消連結 ExpressRoute 循環的所有虛擬網路。如果此操作失敗，請檢查您是否有任何虛擬網路連結至線路。
 
-- 如果已啟用 ExpressRoute 線路服務提供者佈建狀態，狀態會從已啟用狀態變成 [正在停用]。您必須與服務提供者一起合作，取消佈建他們那邊的線路。我們將繼續保留資源並向您收取費用，直到線路服務提供者完成取消佈建並通知我們。
+- 如果 ExpressRoute 循環服務提供者佈建狀態為 [Provisioning] 或 [Provisioned]，您就必須與服務提供者一起合作，取消佈建他們那邊的循環。我們將繼續保留資源並向您收取費用，直到線路服務提供者完成取消佈建並通知我們。
 
-- 若服務提供者在您執行上述 Cmdlet 之前已取消佈建線路 (服務提供者佈建狀態設定為 [未佈建])，我們將會取消佈建線路並停止向您收費。
+- 若服務提供者已取消佈建循環 (服務提供者佈建狀態設定為 [NotProvisioned])，則您可以刪除循環。這樣將會停止針對循環計費
 
 ## 後續步驟
 
@@ -153,4 +153,4 @@
 - [建立和修改 ExpressRoute 線路的路由](expressroute-howto-routing-portal-resource-manager.md)
 - [將虛擬網路連結至 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0831_2016-->

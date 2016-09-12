@@ -526,7 +526,7 @@
 		        "linkedServiceName": "AzureStorageLinkedService",
 		        "typeProperties": {
 		            "fileName": "{slice}.txt",
-		            "folderPath": "adftutorial/customactivityoutput",
+		            "folderPath": "adftutorial/customactivityoutput/",
 		            "partitionedBy": [
 		                {
 		                    "name": "slice",
@@ -615,10 +615,10 @@
 
 	- 由於 [並行] 已設定為 [2]，因此 Azure Batch 集區中會有 2 部 VM 以平行方式處理 2 個配量。
 	- activities 區段中有一個活動，它的類型是：**DotNetActivity**。
-	- **AssemblyName** 設定為此 DLL 的名稱：**MyActivities.dll**。
-	- **EntryPoint** 設定為 **MyDotNetActivityNS.MyDotNetActivity**。
+	- **AssemblyName** 已設定為 DLL 的名稱：**MyDotNetActivity.dll**。
+	- **EntryPoint** 已設定為 **MyDotNetActivityNS.MyDotNetActivity**。
 	- **PackageLinkedService** 已設定為 **AzureStorageLinkedService**，它會指向包含自訂活動 zip 檔案的 Blob 儲存體。如果您將不同的 Azure 儲存體帳戶用於輸入/輸出檔案和自訂活動 zip 檔案，您可以建立另一個 Azure 儲存體連結服務。本文假設您使用相同的 Azure 儲存體帳戶。
-	- **PackageFile** 設定為 **customactivitycontainer/MyDotNetActivity.zip**。其格式為：containerforthezip/nameofthezip.zip。
+	- **PackageFile** 已設定為 **customactivitycontainer/MyDotNetActivity.zip**。其格式為：containerforthezip/nameofthezip.zip。
 	- 自訂活動會採用 **InputDataset** 做為輸入和 **OutputDataset** 做為輸出。
 	- 自訂活動的 linkedServiceName 屬性會指向 **AzureBatchLinkedService**，這會告知 Azure Data Factory 自訂活動必須在 Azure Batch VM 上執行。
 	- **isPaused** 屬性預設為 **false**。在此範例中，管線會立即執行，因為配量已在過去開始。您可以將此屬性設為 true，以暫停管線，並將其設回 false，以重新啟動。
@@ -896,4 +896,4 @@ Azure Data Factory 服務支援建立隨選叢集，並使用它處理輸入來�
 
 [image-data-factory-download-logs-from-custom-activity]: ./media/data-factory-use-custom-activities/DownloadLogsFromCustomActivity.png
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -3,7 +3,7 @@
 	description="了解 Azure API 管理常見問題、模式和最佳作法的答案。" 
 	services="api-management" 
 	documentationCenter="" 
-	authors="steved0x" 
+	authors="miaojiang" 
 	manager="erikre" 
 	editor=""/>
 
@@ -14,7 +14,7 @@
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="08/09/2016" 
-	ms.author="sdanie"/>
+	ms.author="mijiang"/>
 
 # Azure API 管理常見問題集
 
@@ -155,4 +155,4 @@ API 管理使用[效能流量路由方法](../traffic-manager/traffic-manager-ro
 
 可以！
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

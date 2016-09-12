@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="07/25/2016"
+	ms.date="08/30/2016"
 	ms.author="dastrock"/>
 
 # Azure AD B2C：使用圖形 API
@@ -35,7 +35,7 @@ Azure Active Directory (Azure AD) B2C 租用戶通常會很龐大。這表示許
 
 有了 B2C 租用戶以後，您需要使用 Azure AD Powershell Cmdlet 建立服務應用程式。首先，下載並安裝 [Microsoft Online Services 登入小幫手](http://go.microsoft.com/fwlink/?LinkID=286152)。接著下載並安裝[適用於 Windows PowerShell 的 64 位元 Azure Active Directory 模組](http://go.microsoft.com/fwlink/p/?linkid=236297)。
 
-> [AZURE.NOTE]
+> [AZURE.IMPORTANT]
 若要使用圖形 API 搭配 B2C 租用戶，您必須使用 Powershell 註冊專用的應用程式。請依照本文中的指示執行該項操作。您不能重複使用已經在 Azure 入口網站中註冊的現有 B2C 應用程式。
 
 安裝 Powershell 模組之後，請開啟 Powershell 並連線到 B2C 租用戶。執行 `Get-Credential` 之後，系統將提示您輸入使用者名稱和密碼。請輸入 B2C 租用戶系統管理員帳戶的使用者名稱和密碼。
@@ -362,4 +362,4 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsIng1dCI6IjdkRC1nZWNOZ1gxWmY3R0xrT3ZwT0
 
 對於您想要使用圖形 API 在 B2C 租用戶上執行的動作，如有任何問題或要求，請在本文上留言，或在 GitHub 程式碼範例儲存機制中提出問題。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0831_2016-->

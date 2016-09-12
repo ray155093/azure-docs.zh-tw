@@ -147,7 +147,7 @@
 - 如果您選取要用簡訊將驗證碼傳送到行動電話上，請確定您的費率方案和裝置支援傳遞簡訊。傳遞速度以及是否可傳遞，取決於地點與服務供應商。另外，嘗試接收驗證碼時，請確定手機訊號強度能夠滿足需求。
 - 如果您選擇透過行動應用程式接收驗證碼，請確定您的手機訊號強度夠強。請注意，傳遞速度以及是否可傳遞，取決於地點與服務供應商。
 
-如果您使用的是智慧型手機，建議您使用 [Azure Authenticator 應用程式](multi-factor-authentication-microsoft-authenticator.md)。
+如果您擁有智慧型手機，我們建議您使用適用於 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)、[Android](http://go.microsoft.com/fwlink/?Linkid=825072) 及 [iOS](http://go.microsoft.com/fwlink/?Linkid=825073) 的 Microsoft 驗證器應用程式。
 
 在登入時選擇 [使用不同的驗證選項]，就可以切換透過簡訊或透過行動應用程式接收驗證碼。
 
@@ -172,4 +172,4 @@
 
 最後，請務必在此頁面上留下一些詳細的意見反應，讓我們可以更新此頁面，並藉由提供更多的資訊，持續讓它更加完善。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

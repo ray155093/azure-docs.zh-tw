@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/14/2016" 
+	ms.date="08/30/2016" 
 	ms.author="stefsch"/>
 
 # 實作具有 App Service 環境的多層式安全性架構。
 
-## 概觀 ##
+## Overview ##
  
 由於 App Service 環境提供部署至虛擬網路的隔離執行階段環境，因此開發人員能夠建立多層式安全性架構，針對每個實體應用程式層提供不同層級的網路存取。
 
@@ -41,7 +41,7 @@
 - **後端 API 應用程式是否需要呼叫本身？** 後端應用程式有時候需要呼叫本身，這是常會被忽略而難以察覺的情況。如果 App Service 環境上的後端 API 應用程式需要呼叫本身，我們也會將其視為「網際網路」呼叫。在範例架構中，這必須允許 "apiase" App Service 環境的輸出 IP 位址進行存取。
 
 ## 設定網路安全性群組 ##
-得知輸出 IP 位址集後，下一步是要建構網路安全群組。由於目前只有 "v1" 虛擬網路僅支援 App Service 環境，因此 [NSG 組態][NetworkSecurityGroupsClassic]須使用 Powershell 中的傳統 NSG 支援來完成。
+得知輸出 IP 位址集後，下一步是要建構網路安全群組。您可以針對以 Resource Manager 為基礎的虛擬網路以及傳統虛擬網路建立網路安全性群組。下列範例說明如何在傳統虛擬網路上使用 Powershell 建立和設定 NSG。
 
 在範例架構中，環境位於美國中南部，因此會在該區域中建立空的 NSG：
 
@@ -89,9 +89,9 @@ NSG 套用至子網路後，將只有三個上游 App Service 環境以及包含
 
 
 ## 其他連結和資訊 ##
-您可以在[應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
+您可以在 [應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
 
-在傳統虛擬網路上設定[網路安全性群組][NetworkSecurityGroupsClassic]。
+關於[網路安全性群組](../virtual-network/virtual-networks-nsg.md)的資訊。
 
 了解[輸出 IP 位址][NetworkArchitecture]和 App Service 環境。
 
@@ -104,11 +104,10 @@ App Service 環境所使用的[網路連接埠][InboundTraffic]
 <!-- LINKS -->
 [NetworkSecurityGroups]: https://azure.microsoft.com/documentation/articles/virtual-networks-nsg/
 [NetworkArchitecture]: https://azure.microsoft.com/documentation/articles/app-service-app-service-environment-network-architecture-overview/
-[NetworkSecurityGroupsClassic]: https://azure.microsoft.com/documentation/articles/virtual-networks-create-nsg-classic-ps/
 [InboundTraffic]: https://azure.microsoft.com/documentation/articles/app-service-app-service-environment-control-inbound-traffic/
 
 <!-- IMAGES -->
 [ConceptualArchitecture]: ./media/app-service-app-service-environment-layered-security/ConceptualArchitecture-1.png
 [NSGConfiguration]: ./media/app-service-app-service-environment-layered-security/NSGConfiguration-1.png
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -66,7 +66,7 @@
 
 在初始化方法中設定金鑰，例如 ASP.NET 服務中的 global.aspx.cs：
 
-C#
+*C#*
 
     protected void Application_Start()
     {
@@ -82,7 +82,7 @@ C#
 
 iKey 也會用在您的應用程式網頁中，在[您從快速啟動刀鋒視窗取得的指令碼](app-insights-javascript.md)中。不要按其原義編寫至指令碼，請從伺服器狀態產生。例如，在 ASP.NET 應用程式中：
 
-Razor 中的 JavaScript
+*Razor 中的 JavaScript*
 
     <script type="text/javascript">
     // Standard Application Insights web page script:
@@ -90,7 +90,7 @@ Razor 中的 JavaScript
     // Modify this part:
     }({instrumentationKey:  
       // Generate from server property:
-      @Microsoft.ApplicationInsights.Extensibility.
+      "@Microsoft.ApplicationInsights.Extensibility.
          TelemetryConfiguration.Active.InstrumentationKey"
     }) // ...
 
@@ -127,4 +127,4 @@ Razor 中的 JavaScript
 
  
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

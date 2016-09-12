@@ -12,12 +12,12 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/18/2016" 
+	ms.date="08/30/2016" 
 	ms.author="awills"/>
 
 # ASP.NET Core 的 Application Insights
 
-Visual Studio Application Insights 可讓您監視 Web 應用程式的可用性、效能和使用情形。當您取得有關應用程式在現實世界的效能和效率的意見反應時，您可以在每個開發生命週期中針對設計方向做出明智的抉擇。
+[Visual Studio Application Insights](app-insights-overview.md) 可讓您監視 Web 應用程式的可用性、效能和使用情形。當您取得有關應用程式在現實世界的效能和效率的意見反應時，您可以在每個開發生命週期中針對設計方向做出明智的抉擇。
 
 ![範例](./media/app-insights-asp-net-five/sample.png)
 
@@ -26,7 +26,7 @@ Visual Studio Application Insights 可讓您監視 Web 應用程式的可用性�
 
 ## 開始使用
 
-如果您是在 Visual Studio 2015 中建立您的專案，您應該已經有 Application Insights。否則，請依照[快速入門指南](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Getting-Started)的指示進行。
+請依照[快速入門指南](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Getting-Started)的指示進行。
 
 ## 使用 Application Insights
 
@@ -53,11 +53,11 @@ Visual Studio Application Insights 可讓您監視 Web 應用程式的可用性�
 * [將遙測加入至您的網頁](app-insights-javascript.md)以監視頁面使用情況和效能。
 * [監視相依性](app-insights-dependencies.md)，可查看 REST、SQL 或其他外部資源是否降低您的效能。
 * [使用 API](app-insights-api-custom-events-metrics.md) 可傳送您自己的事件和計量，以取得您的應用程式效能和使用方式的更詳細檢視。
-* [可用性測試](app-insights-monitor-web-app-availability.md)可持續從世界各地檢查您的應用程式。 
+* [可用性測試](app-insights-monitor-web-app-availability.md)可持續從世界各地檢查您的應用程式。
 
 
 ## 開放原始碼
 
 [讀取和貢獻程式碼](https://github.com/Microsoft/ApplicationInsights-aspnetcore#recent-updates)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0831_2016-->

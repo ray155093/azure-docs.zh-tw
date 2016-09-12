@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="07/11/2016"
+   ms.date="08/25/2016"
    ms.author="ryanwi"/>
 
 # 使用 FabricClient API 時常見的例外狀況和錯誤
@@ -44,4 +44,4 @@
 |InvalidSubjectName|主體名稱無效。|
 |InvalidAllowedCommonNameList|一般名稱清單字串的格式無效。它應該是以逗號分隔的清單。|
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0831_2016-->

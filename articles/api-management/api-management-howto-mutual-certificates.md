@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/09/2016" 
+	ms.date="08/24/2016" 
 	ms.author="sdanie"/>
 
 # 如何在 Azure API 管理中使用用戶端憑證驗證來保護後端服務
@@ -122,7 +122,6 @@ API 管理提供以用戶端憑證保護 API 後端服務之存取的功能。�
 [Add APIs to a product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [建立 API 管理服務執行個體]: api-management-get-started.md
-[Get started with advanced API configuration]: api-management-get-started-advanced.md
 [API Management policy reference]: api-management-policy-reference.md
 [Caching policies]: api-management-policy-reference.md#caching-policies
 [開始使用 Azure API 管理]: api-management-get-started.md#create-service-instance
@@ -141,4 +140,4 @@ API 管理提供以用戶端憑證保護 API 後端服務之存取的功能。�
 
  
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0831_2016-->

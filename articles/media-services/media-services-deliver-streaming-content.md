@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="如何從媒體服務傳遞串流內容" 
+	pageTitle="使用 .NET 發佈 Azure 媒體服務內容" 
 	description="了解如何建立定位器，用來建置串流 URL。程式碼範例以 C# 撰寫，並使用 Media Services SDK for .NET。" 
 	authors="juliako" 
 	manager="erikre" 
@@ -13,18 +13,18 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"
+	ms.date="08/30/2016"
 	ms.author="juliako"/>
 
 
-#作法：傳遞串流內容
+# 使用 .NET 發佈 Azure 媒體服務內容
  
 > [AZURE.SELECTOR]
 - [REST](media-services-rest-deliver-streaming-content.md)
 - [.NET](media-services-deliver-streaming-content.md)
-- [入口網站](media-services-manage-content.md#publish)
+- [入口網站](media-services-portal-publish.md)
 
-##概觀
+##Overview
 
 您可以建立隨選串流定位器及建置串流 URL，串流處理調適性位元速率 MP4 集。[為資產編碼](media-services-encode-asset.md)主題說明如何編碼為調適性位元速率 MP4 集。
 
@@ -171,4 +171,4 @@
 
 [下載資產](media-services-deliver-asset-download.md) [設定資產傳遞原則](media-services-dotnet-configure-asset-delivery-policy.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0831_2016-->

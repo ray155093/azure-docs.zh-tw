@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="06/13/2016"
+   ms.date="08/30/2016"
    ms.author="rick.byham@microsoft.com"/>
 
 # Azure SQL Database Transact-SQL 差異
@@ -26,22 +26,22 @@ Microsoft SQL Server 和 Azure SQL Database 都支援應用程式相依的大部
 - 運算子。
 - 字串、算術，邏輯和指標函式。
 
-不過，Azure SQL Database 的設計目的是將功能與任何在 **master** 資料庫上的相依性隔離。因此，SQL Database 並不適合，也不支援許多伺服器層級的活動。本主題將詳細說明 SQL Database 未完整支援的功能。
+不過，Azure SQL Database 的設計目的是將功能與任何在 **master** 資料庫上的相依性隔離。因此，SQL Database 並不適合，也不支援許多伺服器層級的活動。SQL Database 通常也不支援 SQL Server 中已過時的功能。
 
-同時，SQL Database 通常也不支援 SQL Server 中已過時的功能。
+> [AZURE.NOTE]
+本主題討論升級至目前的版本 SQL Database V12 時可用於 SQL Database 的功能。如需 V12 的詳細資訊，請參閱 [SQL Database V12 新功能](sql-database-v12-whats-new.md)。
 
-## 升級至 SQL Database V12
+下列各節列出部分支援的功能，以及完全不支援的功能。
 
-本主題討論當升級至免費的 SQL Database V12 時，SQL Database 可用的功能。如需 V12 的詳細資訊，請參閱 [SQL Database V12 新功能](sql-database-v12-whats-new.md)。SQL Database V12 新增效能和管理性增強功能，以及支援其他功能。新增的功能如下所示，分成完全支援的功能和部分支援的功能。
 
 ## 在 SQL Database V12 中部分支援的功能
 
-SQL Database V12 支援部分而非全部的引數，這些引數存在於對應的 SQL Server 2016 Transact-SQL 陳述式中。例如，可以使用 CREATE PROCEDURE 陳述式，但無法使用 CREATE PROCEDURE 的所有選項。請參閱連結的語法主題，以了解每個陳述式支援區域的詳細資訊。
+在對應的 SQL Server 2016 Transact-SQL 陳述式方面，SQL Database V12 支援部分而非全部的引數。例如，可以使用 CREATE PROCEDURE 陳述式，但無法使用 CREATE PROCEDURE 的所有選項。請參閱連結的語法主題，以了解每個陳述式支援區域的詳細資訊。
 
 - 資料庫：[CREATE](https://msdn.microsoft.com/library/dn268335.aspx)/[ALTER](https://msdn.microsoft.com/library/ms174269.aspx)
-- DMV 通常可用於已公開推出的功能
+- DMV 通常可用於已公開推出的功能。
 - 函式：[CREATE](https://msdn.microsoft.com/library/ms186755.aspx)/[ALTER FUNCTION](https://msdn.microsoft.com/library/ms186967.aspx)
-- [KILL](https://msdn.microsoft.com/library/ms173730.aspx) 
+- [KILL](https://msdn.microsoft.com/library/ms173730.aspx)
 - 登入：[CREATE](https://msdn.microsoft.com/library/ms189751.aspx)/[ALTER LOGIN](https://msdn.microsoft.com/library/ms189828.aspx)
 - 預存程序：[CREATE](https://msdn.microsoft.com/library/ms187926.aspx)/[ALTER PROCEDURE](https://msdn.microsoft.com/library/ms189762.aspx)
 - 資料表：[CREATE](https://msdn.microsoft.com/library/dn305849.aspx)/[ALTER](https://msdn.microsoft.com/library/ms190273.aspx)
@@ -52,7 +52,7 @@ SQL Database V12 支援部分而非全部的引數，這些引數存在於對應
 ## 在 SQL Database 中不支援的功能
 
 - 系統物件的定序
-- 相關連接：端點陳述式、ORIGINAL\_DB\_NAME。Windows 驗證不適用於登入或自主資料庫使用者。
+- 相關連接：端點陳述式、ORIGINAL\_DB\_NAME。SQL Database 不支援 Windows 驗證，但支援類似的 Azure Active Directory 驗證。某些驗證類型需要最新的 SSMS 版本。如需詳細資訊，請參閱[使用 Azure Active Directory 驗證連線到 SQL Database 或 SQL 資料倉儲](sql-database-aad-authentication.md)。
 - 使用三個或四個組件名稱跨資料庫查詢。(使用[彈性資料庫查詢](sql-database-elastic-query-overview.md)支援跨資料庫唯讀查詢。)
 - 跨資料庫擁有權鏈結、TRUSTWORTHY 設定
 - 資料收集器
@@ -72,28 +72,28 @@ SQL Database V12 支援部分而非全部的引數，這些引數存在於對應
 - 硬體相關的伺服器設定：記憶體、背景工作執行緒、CPU 親和性、追蹤旗標等。改用服務層級。
 - HAS\_DBACCESS
 - KILL STATS JOB
-- 連結的伺服器、OPENQUERY、OPENROWSET、OPENDATASOURCE、BULK INSERT、3 和 4 個組件名稱
+- 連結的伺服器、OPENQUERY、OPENROWSET、OPENDATASOURCE、BULK INSERT 及 4 個組件名稱
 - 主要/目標伺服器
 - .NET Framework [SQL Server CLR 整合](http://msdn.microsoft.com/library/ms254963.aspx)
 - 資源管理員
 - 語意搜尋
-- 伺服器認證
+- 伺服器認證。改用資料庫範圍認證。
 - 伺服器層級項目：伺服器角色、IS\_SRVROLEMEMBER、sys.login\_token。雖然某些伺服器層級權限已由資料庫層級權限取代，但是無法使用伺服器層級權限。雖然某些伺服器層級 DMV 已由資料庫層級 DMV 取代，但是無法使用某些伺服器層級 DMV。
 - 無伺服器 Express：localdb、使用者執行個體
 - Service broker
 - SET REMOTE\_PROC\_TRANSACTIONS
 - SHUTDOWN
 - sp\_addmessage
-- sp\_configure 選項和 RECONFIGURE
+- sp\_configure 選項和 RECONFIGURE。有些選項可透過[變更資料庫範圍組態](https://msdn.microsoft.com/library/mt629158.aspx)來使用。
 - sp\_helpuser
 - sp\_migrate\_user\_to\_contained
-- SQL Server Audit (改用 SQL Database Auditing)
+- SQL Server 稽核。改用 SQL Database 稽核。
 - SQL Server Profiler
 - SQL Server 追蹤
-- 追蹤旗標
+- 追蹤旗標。某些追蹤旗標項目已移至相容性模式。
 - Transact-SQL 偵錯
 - 觸發程序：伺服器範圍或登入觸發程序
-- USE 陳述式：若要將資料庫內容變更為不同的資料庫，您必須連接至新的資料庫。
+- USE 陳述式：若要將資料庫內容變更為不同的資料庫，您必須建立與新資料庫的連接。
 
 
 ## 完整 Transact-SQL 參考
@@ -102,10 +102,8 @@ SQL Database V12 支援部分而非全部的引數，這些引數存在於對應
 
 ### 關於「適用於」標記
 
-Transact-SQL 參考包括從 SQL Server 版本 2008 到目前版本的相關主題。在主題標題之下通常會有一行的「適用於」列出 SQL Server 版本，也可能有其他產品的名稱。通常相同的「適用於」標記也會列出 Azure SQL Database。如果「適用於」未列出 Azure SQL Database，則該主題內容就不適用於 Azure SQL Database。有時候您可能會看到一行的「適用於」列出多項產品並且皆隨附一個小圖示，指出該主題是否適用於每項產品。
-
- 例如，可用性群組是在 SQL Server 2012 中導入。＜**建立可用性群組**＞主題指出它適用於 **SQL Server (SQL Server 2012 到最新版本)**，因為它不適用於 SQL Server 2008、SQL Server 2008 R2 或 Azure SQL Database。
+Transact-SQL 參考包括從 SQL Server 版本 2008 到目前版本的相關主題。主題標題下方是圖示列，列出四個 SQL Server 平台並指出適用性。例如，可用性群組是在 SQL Server 2012 中導入。[建立可用性群組](https://msdn.microsoft.com/library/ff878399.aspx)主題指出陳述式會套用至 **SQL Server (從 2012 年開始)。陳述式不適用於 SQL Server 2008、SQL Server 2008 R2、Azure SQL Database、Azure SQL 資料倉儲或平行資料倉儲。
 
 在某些情況下，一般主題的主旨可用於產品中，但產品之間會有些微的差異。依適當情況會在主題的中間點指出差異。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0831_2016-->
