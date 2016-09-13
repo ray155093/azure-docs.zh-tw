@@ -132,7 +132,8 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
     - **展開 *資料行**
 
-        按一下 * 的右邊，您應該會看到 * 下方的藍色底線。將滑鼠游標移到藍色底線上，然後按一下向下箭號。![展開 Data Lake Visual Studio 工具 *](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-expand-asterisk.png)
+        按一下 * 的右邊，您應該會看到 * 下方的藍色底線。將滑鼠游標移到藍色底線上，然後按一下向下箭號。  
+    	![展開 Data Lake Visual Studio 工具 *](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-expand-asterisk.png)
 
         按一下 [展開資料行]，然後工具將會用資料行名稱取代 *。
 
@@ -150,7 +151,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
 	- **移至定義並尋找所有參考**
 
-		以滑鼠右鍵按一下資料列集/參數/資料行/UDO 等的名稱，然後按一下 [移至定義] (F12) 可讓您瀏覽至其定義。按一下 [尋找所有參考] (Shift + F12) 會顯示所有參考。
+		以滑鼠右鍵按一下資料列集/參數/資料行/UDO 等的名稱，然後按一下 [移至定義] \(F12) 可讓您瀏覽至其定義。按一下 [尋找所有參考] \(Shift + F12) 會顯示所有參考。
 
 	- **插入 Azure 路徑**
 

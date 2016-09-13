@@ -89,7 +89,7 @@
 入口網站會開啟應用程式的遙測檢視︰![](./media/app-insights-asp-net/66.png)
 
 * 第一個遙測會出現在[即時計量串流](app-insights-metrics-explorer.md#live-metrics-stream)。
-* 個別事件會出現在 [搜尋] (1)。資料可能需要數分鐘才會出現。按任一事件查看其屬性。
+* 個別事件會出現在 [搜尋] \(1)。資料可能需要數分鐘才會出現。按任一事件查看其屬性。
 * 彙總度量會出現在圖表 (2)。資料可能需要一兩分鐘的時間才會出現在這裡。按一下任何圖表即可開啟內含更多詳細資料的刀鋒視窗。
 
 [深入了解在 Azure 入口網站中使用 Application Insights](app-insights-dashboards.md)。
