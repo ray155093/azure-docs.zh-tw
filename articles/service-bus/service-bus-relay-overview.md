@@ -1,5 +1,5 @@
 <properties
-	pageTitle="服務匯流排轉送傳訊概觀 | Microsoft Azure"
+	pageTitle="服務匯流排轉送概觀 | Microsoft Azure"
 	description="服務匯流排轉送概觀。"
 	services="service-bus"
 	documentationCenter=".net"
@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="multiple"
 	ms.topic="get-started-article"
-	ms.date="05/06/2016"
+	ms.date="09/01/2016"
 	ms.author="sethm"/>
 
 
-# 服務匯流排轉送傳訊
+# 服務匯流排轉送概觀
 
-服務匯流排的主要元件是一種集中式 (但高度負載平衡) 轉送服務，能讓您建立一個可在 Azure 資料中心和您自己的內部部署企業環境中執行的混合式應用程式。轉送服務支援各種不同的傳輸通訊協定和 Web 服務標準。這包括 SOAP、WS-*，甚至是 REST。服務匯流排轉送可執行您的混合式應用程式，方法是讓您以安全的方式，向公用雲端公開位於企業網路內部的 Windows Communication Foundation (WCF) 服務，而無需開啟防火牆連線或要求對企業網路基礎結構的進行侵入式變更。
+服務匯流排的主要元件是一種集中式 (但高度負載平衡)「轉送」服務，能讓您建立一個可在 Azure 資料中心和您自己的內部部署企業環境中執行的混合式應用程式。服務匯流排轉送支援各種不同的傳輸通訊協定和 Web 服務標準。這包括 SOAP、WS-*，甚至是 REST。轉送服務可執行您的混合式應用程式，方法是讓您以安全的方式，向公用雲端公開位於企業網路內部的 Windows Communication Foundation (WCF) 服務，而無需開啟防火牆連線或要求對企業網路基礎結構的進行侵入式變更。
 
 ![轉送概念](./media/service-bus-relay-overview/sb-relay-01.png)
 
@@ -38,4 +38,4 @@
 
  
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0907_2016-->

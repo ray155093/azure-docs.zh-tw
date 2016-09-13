@@ -20,7 +20,7 @@
 
 Azure App Service 是完全受管理的[平台即服務](https://azure.microsoft.com/overview/what-is-paas/) (PaaS) 產品，適用於專業開發人員，具有一組豐富的功能可用於 Web、行動和整合案例。*Azure App Service* 中的「行動應用程式」具有高擴充性且可供全球使用，是專為企業開發人員與系統整合人員設計的行動應用程式開發平台，能提供一組豐富的功能給行動應用程式開發人員。
 
-![行動應用程式](./media/app-service-mobile-value-prop/overview.png)
+![Mobile Apps](./media/app-service-mobile-value-prop/overview.png)
 
 ##為何選擇行動應用程式？
 *Azure App Service* 中的「行動應用程式」具有高擴充性且可供全球使用，是專為企業開發人員與系統整合人員設計的行動應用程式開發平台，能提供一組豐富的功能給行動應用程式開發人員。您可以利用行動應用程式：
@@ -87,7 +87,7 @@ Azure App Service 是完全受管理的[平台即服務](https://azure.microsoft
 [DocumentDB]: ../documentdb/documentdb-get-started.md
 [驗證功能]: ./app-service-mobile-auth.md
 [資料功能]: ./app-service-mobile-offline-data-sync.md
-[推播通知功能]: ../notification-hubs/notification-hubs-overview.md
+[推播通知功能]: ../notification-hubs/notification-hubs-push-notification-overview.md
 [iOS]: ./app-service-mobile-ios-how-to-use-client-library.md
 [Android]: ./app-service-mobile-android-how-to-use-client-library.md
 [Windows]: ./app-service-mobile-dotnet-how-to-use-client-library.md
@@ -101,6 +101,6 @@ Azure App Service 是完全受管理的[平台即服務](https://azure.microsoft
 [虛擬網路]: ../app-service-web/web-sites-integrate-with-vnet.md
 [ExpressRoute]: ../app-service/app-service-app-service-environment-network-configuration-expressroute.md
 [App Service 環境]: ../app-service-web/app-service-app-service-environment-intro.md
-[學習地圖]: https://azure.microsoft.com/documentation/learning-paths/appservice-mobileapps/
+[學習地圖]: https://azure.microsoft.com/en-us/documentation/learning-paths/appservice-mobileapps/
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0907_2016-->

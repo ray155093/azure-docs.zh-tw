@@ -283,11 +283,7 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 * [加入 Web 用戶端遙測][usage]，以查看網頁程式碼中的例外狀況，並讓您插入追蹤呼叫。
 * [將 Application Insights SDK 加入至您的 Web 服務程式碼][greenbrown]，便可以將追蹤和記錄呼叫插入至伺服器程式碼中。
 
-## 影片
 
-#### 效能監視
-
-[AZURE.VIDEO app-insights-performance-monitoring]
 
 <!--Link references-->
 
@@ -300,4 +296,4 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 [roles]: app-insights-resources-roles-access-control.md
 [usage]: app-insights-web-track-usage.md
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

@@ -27,13 +27,13 @@
 - [Azure CLI](data-lake-store-get-started-cli.md)
 - [Node.js](data-lake-store-manage-use-nodejs.md)
 
-了解如何使用 Azure 資料湖存放區 .NET SDK 以建立 Azure 資料湖帳戶並執行基本作業，例如建立資料夾、上傳和下載資料檔案、刪除您的帳戶等等。如需有關資料湖的詳細資訊，請參閱 [Azure 資料湖存放區](data-lake-store-overview.md)。
+了解如何使用 [Azure Data Lake Store .NET SDK](https://msdn.microsoft.com/library/mt581387.aspx) 以建立 Azure Data Lake 帳戶並執行基本作業，例如建立資料夾、上傳和下載資料檔案、刪除您的帳戶等等。如需有關資料湖的詳細資訊，請參閱 [Azure Data Lake Store](data-lake-store-overview.md)。
 
 ## 必要條件
 
 * Visual Studio 2013 或 2015。以下指示使用 Visual Studio 2015。
 * **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-* **啟用您的 Azure 訂用帳戶**以使用資料湖存放區公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
+* **啟用您的 Azure 訂用帳戶**以使用 Data Lake Store 公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
 * **建立 Azure Active Directory 應用程式**。有兩種方式可使用 Azure Active Direcotry 來進行驗證 - **互動式**和**非互動式**。根據您要進行驗證的方式，會有不同的必要條件。
 	* **針對互動式驗證** (本文所使用的方式) - 在 Azure Active Directory 中，您必須建立**原生用戶端應用程式**。一旦您建立應用程式，請擷取與下列應用程式相關的值。
 		- 取得應用程式的**用戶端識別碼**和**重新導向 URI**
@@ -52,7 +52,7 @@
 
 2. 從 [檔案] 功能表中，按一下 [新增]，再按 [專案]。
 
-3. 在 [新增專案] 中，輸入或選取下列值：
+3. 在 [**新增專案**] 中，輸入或選取下列值：
 
 	| 屬性 | 值 |
 	|----------|-----------------------------|
@@ -64,7 +64,7 @@
 
 5. 將 Nuget 封裝新增至您的專案。
 
-	1. 在方案總管中以滑鼠右鍵按一下專案名稱，然後按一下 [管理 NuGet 封裝]。
+	1. 在方案總管中以滑鼠右鍵按一下專案名稱，然後按一下 [**管理 NuGet 封裝**]。
 	2. 在 [Nuget 封裝管理員] 索引標籤中，確定 [封裝來源] 設為 [nuget.org]，且已選取 [包含發行前版本] 核取方塊。
 	3. 搜尋並安裝下列資料湖存放區封裝：
 
@@ -73,14 +73,14 @@
 
 		![新增 Nuget 來源](./media/data-lake-store-get-started-net-sdk/ADL.Install.Nuget.Package.png "建立新的 Azure 資料湖帳戶")
 
-	4. 亦請安裝 Azure Active Directory 驗證的 `Microsoft.IdentityModel.Clients.ActiveDirectory` 封裝。確定您會「清除」[包括發行前版本] 核取方塊，如此一來，您就能安裝此封裝的穩定版本。
+	4. 亦請安裝 Azure Active Directory 驗證的 `Microsoft.IdentityModel.Clients.ActiveDirectory` 套件。確定您會「清除」[包括發行前版本] 核取方塊，如此一來，您就能安裝此套件的穩定版本。
 
 		![新增 Nuget 來源](./media/data-lake-store-get-started-net-sdk/adl.install.azure.auth.png "建立新的 Azure 資料湖帳戶")
 
 
-	5. 關閉 [Nuget 封裝管理員]。
+	5. 關閉 [**Nuget 封裝管理員**]。
 
-7. 開啟 **Program.cs**，刪除現有的程式碼，然後納入下列陳述式以加入命名空間的參考。
+7. 開啟 **Program.cs**，刪除現有的程式碼，然後納入下列陳述式以新增命名空間的參考。
 
 		using System;
         using System.IO;
@@ -139,7 +139,7 @@
  	// Authenticate the user with AAD through an interactive popup.
     // You need to have an application registered with AAD in order to authenticate.
     //   For more information and instructions on how to register your application with AAD, see:
-    //   https://azure.microsoft.com/documentation/articles/resource-group-create-service-principal-portal/
+    //   https://azure.microsoft.com/en-us/documentation/articles/resource-group-create-service-principal-portal/
 	public static TokenCredentials AuthenticateUser(string tenantId, string resource, string appClientId, Uri appRedirectUri, string userId = "")
 	{
 	    var authContext = new AuthenticationContext("https://login.microsoftonline.com/" + tenantId);
@@ -157,7 +157,7 @@
 	// Authenticate the application with AAD through the application's secret key.
 	// You need to have an application registered with AAD in order to authenticate.
 	//   For more information and instructions on how to register your application with AAD, see:
-	//   https://azure.microsoft.com/documentation/articles/resource-group-create-service-principal-portal/
+	//   https://azure.microsoft.com/en-us/documentation/articles/resource-group-create-service-principal-portal/
 	public static TokenCredentials AuthenticateApplication(string tenantId, string resource, string appClientId, Uri appRedirectUri, SecureString clientSecret)
 	{
 	    var authContext = new AuthenticationContext("https://login.microsoftonline.com/" + tenantId);
@@ -220,6 +220,8 @@
         var uploader = new DataLakeStoreUploader(parameters, frontend);
         uploader.Execute();
     }
+
+DataLakeStoreUploader 支援本機檔案 (或資料夾) 路徑與 Data Lake Store 之間的遞迴上傳和下載。
 
 ## 取得檔案或目錄資訊
 
@@ -400,7 +402,7 @@
             // Authenticate the user with AAD through an interactive popup.
             // You need to have an application registered with AAD in order to authenticate.
             //   For more information and instructions on how to register your application with AAD, see:
-            //   https://azure.microsoft.com/documentation/articles/resource-group-create-service-principal-portal/
+            //   https://azure.microsoft.com/en-us/documentation/articles/resource-group-create-service-principal-portal/
             public static TokenCredentials AuthenticateUser(string tenantId, string resource, string appClientId, Uri appRedirectUri, string userId = "")
             {
                 var authContext = new AuthenticationContext("https://login.microsoftonline.com/" + tenantId);
@@ -415,7 +417,7 @@
             // Authenticate the application with AAD through the application's secret key.
             // You need to have an application registered with AAD in order to authenticate.
             //   For more information and instructions on how to register your application with AAD, see:
-            //   https://azure.microsoft.com/documentation/articles/resource-group-create-service-principal-portal/
+            //   https://azure.microsoft.com/en-us/documentation/articles/resource-group-create-service-principal-portal/
             public static TokenCredentials AuthenticateApplication(string tenantId, string resource, string appClientId, Uri appRedirectUri, SecureString clientSecret)
             {
                 var authContext = new AuthenticationContext("https://login.microsoftonline.com/" + tenantId);
@@ -522,8 +524,10 @@
 
 ## 後續步驟
 
-- [保護資料湖存放區中的資料](data-lake-store-secure-data.md)
-- [搭配資料湖存放區使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
-- [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
+- [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
+- [搭配 Data Lake Store 使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
+- [搭配 Data Lake Store 使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
+- [Data Lake Store .NET SDK 參考](https://msdn.microsoft.com/library/mt581387.aspx)
+- [Data Lake Store REST 參考](https://msdn.microsoft.com/library/mt693424.aspx)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0907_2016-->

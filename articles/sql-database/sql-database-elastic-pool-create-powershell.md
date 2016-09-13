@@ -28,7 +28,7 @@
 
 如需常見的錯誤碼，請參閱 [SQL Database 用戶端應用程式的 SQL 錯誤碼：資料庫連線錯誤和其他問題](sql-database-develop-error-messages.md)。
 
-> [AZURE.NOTE] 彈性資料庫集區目前為預覽版，且僅能搭配 SQL Database V12 伺服器使用。如果您有 SQL Database V11 伺服器，您可以在單一步驟中[使用 PowerShell 升級至 V12 並建立集區](sql-database-upgrade-server-portal.md)。
+> [AZURE.NOTE] 彈性集區已在所有 Azure 區域中正式運作 (GA)，但美國中北部和印度西部除外，在這些區域目前是提供預覽版。我們將儘速在這些區域提供彈性集區的 GA。此外，彈性集區目前不支援使用[記憶體內部 OLTP 或記憶體內部分析](sql-database-in-memory.md)的資料庫。
 
 
 您必須是執行 Azure PowerShell 1.0 或更高版本。如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
@@ -80,4 +80,4 @@
 - [建立彈性工作](sql-database-elastic-jobs-overview.md) 彈性工作可讓您對集區中任意數目的資料庫執行 T-SQL 指令碼。
 - [使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)︰使用彈性資料庫工具來相應放大。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0907_2016-->

@@ -33,7 +33,7 @@
 
 ##必要條件
 
-> [AZURE.IMPORTANT] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdocumentation%2Farticles%2Fnotification-hubs-android-get-started)。
+> [AZURE.IMPORTANT] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-android-get-started)。
 
 除了上述的作用中 Azure 帳戶，本教學課程只需要最新版的 [Android Studio](http://go.microsoft.com/fwlink/?LinkId=389797)。
 
@@ -231,7 +231,7 @@
 		                regID = hub.register(token).getRegistrationId();
 
 		                // If you want to use tags...
-						// Refer to : https://azure.microsoft.com/zh-TW/documentation/articles/notification-hubs-routing-tag-expressions/
+						// Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
 		                // regID = hub.register(token, "tag1", "tag2").getRegistrationId();
 
 		                resultString = "Registered Successfully - RegId : " + regID;
@@ -621,7 +621,7 @@
 	
 	                        // Include any tags
 	                        // Example below targets 3 specific tags
-	                        // Refer to : https://azure.microsoft.com/zh-TW/documentation/articles/notification-hubs-routing-tag-expressions/
+	                        // Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
 	                        // urlConnection.setRequestProperty("ServiceBusNotification-Tags", 
 							//		"tag1 || tag2 || tag3");
 	
@@ -687,7 +687,7 @@
 
 我們建議以[使用通知中樞將通知推播給使用者]教學課程做為下一個步驟。它會示範如何使用標記以特定使用者為目標，從 ASP.NET 後端傳送通知。
 
-如果您想要按興趣群組分隔使用者，請查看[使用通知中樞傳送即時新聞]教學課程。
+如果您想要依興趣群組分隔使用者，請查看[使用通知中樞傳送即時新聞]教學課程。
 
 若要深入了解通知中樞的一般資訊，請參閱[通知中樞指引]。
 
@@ -722,8 +722,8 @@
 [Referencing a library project]: http://go.microsoft.com/fwlink/?LinkId=389800
 [Azure Classic Portal]: https://manage.windowsazure.com/
 [通知中樞指引]: http://msdn.microsoft.com/library/jj927170.aspx
-[使用通知中樞將通知推播給使用者]: notification-hubs-aspnet-backend-android-notify-users.md
-[使用通知中樞傳送即時新聞]: notification-hubs-aspnet-backend-android-breaking-news.md
+[使用通知中樞將通知推播給使用者]: notification-hubs-aspnet-backend-gcm-android-push-to-user-google-notification.md
+[使用通知中樞傳送即時新聞]: notification-hubs-aspnet-backend-android-xplat-segmented-gcm-push-notification.md
 [Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0907_2016-->

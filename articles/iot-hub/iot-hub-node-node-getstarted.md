@@ -48,7 +48,7 @@
     npm init
     ```
 
-2. 在 **createdeviceidentity** 資料夾中，於命令提示字元執行下列命令以安裝 **azure-iothub** 封裝：
+2. 在 **createdeviceidentity** 資料夾中，於命令提示字元執行下列命令以安裝 **azure-iothub** 服務 SDK 套件：
 
     ```
     npm install azure-iothub --save
@@ -184,7 +184,7 @@
     npm init
     ```
 
-2. 在 **simulateddevice** 資料夾中，於命令提示字元執行下列命令以安裝 **azure-iot-device-amqp** 封裝：
+2. 在 **simulateddevice** 資料夾中，於命令提示字元執行下列命令以安裝 **azure-iot-device** 裝置 SDK 套件以及 **azure-iot-device-amqp** 套件：
 
     ```
     npm install azure-iot-device azure-iot-device-amqp --save
@@ -201,7 +201,7 @@
     var Message = require('azure-iot-device').Message;
     ```
 
-5. 新增 **connectionString** 變數，並用它來建立裝置用戶端。將 **{youriothostname}** 取代為在 *建立 IoT 中樞* 區段建立的 IoT 中樞名稱，並將 **{yourdevicekey}** 取代為在 *建立裝置身分識別* 區段中產生的裝置金鑰值：
+5. 新增 **connectionString** 變數，並用它來建立裝置用戶端。將 **{youriothostname}** 取代為在 [建立 IoT 中樞] 區段建立的 IoT 中樞名稱，並將 **{yourdevicekey}** 取代為在 [建立裝置身分識別] 區段中產生的裝置金鑰值：
 
     ```
     var connectionString = 'HostName={youriothostname};DeviceId=myFirstNodeDevice;SharedAccessKey={yourdevicekey}';
@@ -286,7 +286,7 @@
 - [開始使用裝置管理][lnk-device-management]
 - [開始使用閘道 SDK][lnk-gateway-SDK]
 
-若要了解如何擴充您的 IoT 解決方案及大規模處理裝置對雲端訊息，請參閱 [處理裝置對雲端訊息][lnk-process-d2c-tutorial] 教學課程。
+若要了解如何擴充您的 IoT 解決方案及大規模處理裝置對雲端訊息，請參閱[處理裝置對雲端訊息][lnk-process-d2c-tutorial]教學課程。
 
 <!-- Images. -->
 [6]: ./media/iot-hub-node-node-getstarted/create-iot-hub6.png
@@ -312,4 +312,4 @@
 [lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
 [lnk-connect-device]: https://azure.microsoft.com/develop/iot/
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0907_2016-->

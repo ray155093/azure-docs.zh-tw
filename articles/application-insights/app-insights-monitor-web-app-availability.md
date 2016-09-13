@@ -12,12 +12,12 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="08/10/2016"
+	ms.date="09/07/2016"
 	ms.author="awills"/>
 
 # 監視任何網站的可用性和回應性
 
-將 Web 應用程式部署至任一主機之後，您可以設定 Web 測試來監視其可用性和回應性。[Visual Studio Application Insights](app-insights-overview.md) 會定期傳送來自全球各地的 Web 要求，如果應用程式回應太慢或完全沒有回應，則會警告您。
+將 Web 應用程式或網站部署至任何伺服器之後，您可以設定 Web 測試來監視其可用性和回應性。[Visual Studio Application Insights](app-insights-overview.md) 會將來自全球各地的 Web 要求定期傳送給您的應用程式。如果應用程式沒有回應或回應太慢，則會警告您。
 
 ![Web 測試範例](./media/app-insights-monitor-web-app-availability/appinsights-10webtestresult.png)
 
@@ -25,32 +25,29 @@
 
 Web 測試可分為兩種：
 
-* [URL Ping 測試](#set-up-a-url-ping-test)：您可以在 Azure 入口網站中建立的簡單測試。
+* [URL Ping 測試](#create)：您可以在 Azure 入口網站中建立的簡單測試。
 * [多步驟 Web 測試](#multi-step-web-tests)：您可以在 Visual Studio Ultimate 或 Visual Studio Enterprise 中建立並上傳至入口網站的測試。
 
 每個應用程式資源最多可以建立 10 個 Web 測試。
 
+## <a name="create"></a>1.建立測試報告的資源
 
-## 設定 URL Ping 測試
-
-### <a name="create"></a>1.建立新的資源？
-
-如果您已經為這個應用程式[設定 Application Insights 資源][start]，而且想要在相同位置中查看可用性資料，請略過此步驟。
+如果您已經為這個應用程式[設定 Application Insights 資源][start]，而且想要在相同位置中查看可用性報告，請略過此步驟。
 
 註冊 [Microsoft Azure](http://azure.com)，移至 [Azure 入口網站](https://portal.azure.com)，然後建立 Application Insights 資源。
 
 ![New > Application Insights](./media/app-insights-monitor-web-app-availability/11-new-app.png)
 
-新資源的 [概觀] 刀鋒視窗隨即開啟。若要在 [Azure 入口網站](https://portal.azure.com)中隨時找到此資源，請按一下 [瀏覽]。
+按一下 [所有資源]，以開啟新資源的 [概觀] 刀鋒視窗。
 
-### <a name="setup"></a>2.建立 Web 測試
+## <a name="setup"></a>2.建立 URL Ping 測試
 
 在您的 Application Insights 資源中，尋找 [可用性] 圖格。按一下以開啟應用程式的 [Web 測試] 刀鋒視窗，然後新增 Web 測試。
 
 ![Fill at least the URL of your website](./media/app-insights-monitor-web-app-availability/13-availability.png)
 
 - **URL** 必須可在公用網際網路上顯示。它可以包含查詢字串 - 例如，您可以訓練一下您的資料庫。如果 URL 解析為重新導向，我們會跟隨它，最多 10 個重新導向。
-- **剖析相依要求**：測試時會要求映像、指令碼、樣式檔和頁面的其他資源。如果無法在逾時內為整個測試成功下載所有這些資源，則測試將會失敗。
+- **剖析相依要求**：測試時會要求映像、指令碼、樣式檔和頁面的其他資源，而記錄的回應時間包含這些時間。如果無法在逾時內為整個測試成功下載所有這些資源，則測試將會失敗。
 - **啟用重試**：當測試失敗時，就會在短時間內進行重試。只有在連續三次重試失敗後，才會回報失敗。後續測試則會以一般測試頻率執行。重試會暫時停止，直到下次成功為止。此規則可個別套用在每個測試位置。(我們建議使用這個設定。平均來說，大約 80%的失敗會在重試後消失。)
 - **測試頻率**：設定從每個測試位置執行測試的頻率。頻率為 5 分鐘且有五個測試位置，則您的網站平均每一分鐘會執行測試。
 - **測試位置**是我們的伺服器將 Web 要求傳送至您的 URL 的位置。請選擇多個位置，以便區分網站問題與網路問題。您最多可以選取 16 個位置。
@@ -68,14 +65,14 @@ Web 測試可分為兩種：
 
     您可以設定會在產生警示時呼叫的 [webhook](../azure-portal/insights-webhooks-alerts.md)。(不過請注意，查詢參數目前不會當作屬性傳遞)。
 
-#### 測試更多 URL
+### 測試更多 URL
 
 加入更多測試。例如，除了測試首頁，您也可以測試搜尋的 URL 來確定資料庫在執行中。
 
 
-### <a name="monitor"></a>3.檢視可用性報告
+## <a name="monitor"></a>3.查看 Web 測試結果
 
-1-2 分鐘後，在 [可用性/Web 測試] 刀鋒視窗上按一下 [重新整理]。(它不會自動重新整理)。
+1-2 分鐘後，結果會出現在
 
 ![Summary results on the home blade](./media/app-insights-monitor-web-app-availability/14-availSummary.png)
 
@@ -83,15 +80,8 @@ Web 測試可分為兩種：
 
 這些圖表會結合此應用程式的所有 Web 測試的結果。
 
-#### 網頁的元件
 
-在測試中會要求您要測試的網頁的映像、樣式表、指令碼及其他靜態元件。
-
-記錄的回應時間是所有元件完成載入所花費的時間。
-
-如果有任何元件無法載入，測試會標示為失敗。
-
-## <a name="failures"></a>如果您看到失敗...
+## <a name="failures"></a>如果您看到失敗
 
 按一下一個紅點。
 
@@ -333,4 +323,4 @@ Web 測試外掛程式提供將時間參數化的方法。
 [qna]: app-insights-troubleshoot-faq.md
 [start]: app-insights-overview.md
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0907_2016-->

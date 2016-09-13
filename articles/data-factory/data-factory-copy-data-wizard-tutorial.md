@@ -25,7 +25,7 @@
 - [使用 REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
 - [使用複製精靈](data-factory-copy-data-wizard-tutorial.md)
 
-在本教學課程中，您會使用 Data Factory 複製精靈在 Data Factory 中建立具有複製活動的管線。首先，您會使用 Azure 入口網站建立 Data Factory，然後使用複製精靈建立 Data Factory 連結服務、資料集和具有複製活動的管線，將資料從 Azure Blob 儲存體複製到 Azure SQL Database。
+在本教學課程中，您會使用 Data Factory 複製精靈在 Data Factory 中建立具有複製活動的管線。首先，您會使用 Azure 入口網站建立 Data Factory。然後，使用複製精靈建立 Data Factory 連結服務、資料集和具有複製活動的管線，將資料從 Azure Blob 儲存體複製到 Azure SQL Database。如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)文章。
 
 > [AZURE.IMPORTANT] 請檢閱[教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)文章，並在執行本教學課程之前完成必要的步驟。
 
@@ -57,7 +57,7 @@
 	> [AZURE.NOTE] Data Factory 的名稱未來可能會註冊為 DNS 名稱，因此會變成公開可見的名稱。
 
 9. 按一下左側的 [通知] 中樞，然後從建立程序中尋找通知。按一下 **X** 關閉 [通知] 刀鋒視窗 (若已開啟)。
-10. 建立完成之後，您會看到 [DATA FACTORY] 刀鋒視窗，如下所示。
+10. 建立完成之後，您會看到 [DATA FACTORY] 刀鋒視窗，如下圖所示。
 
     ![Data Factory 首頁](./media/data-factory-copy-data-wizard-tutorial/getstarted-data-factory-home-page.png)
 
@@ -102,11 +102,11 @@
 
 	![複製工具 - 資料表對應](./media/data-factory-copy-data-wizard-tutorial/copy-tool-table-mapping-page.png)
 10. 在 [結構描述對應] 頁面上，按 [下一步]。
-11. 在 [摘要] 頁面中檢閱資訊，然後按一下 [完成]。這會在 Data factory (從您啟動複製精靈的位置) 中建立兩個連結服務、兩個資料集 (輸入和輸出)，以及一個管線。
+11. 在 [摘要] 頁面中檢閱資訊，然後按一下 [完成]。此精靈會在 Data Factory (從您啟動複製精靈的位置) 中建立兩個連結服務、兩個資料集 (輸入和輸出)，以及一個管線。
 12. 在 [部署成功] 頁面上，點選 [按一下這裡以監視複製管線]。
 
 	![複製工具 - 部署成功](./media/data-factory-copy-data-wizard-tutorial/copy-tool-deployment-succeeded.png)
-13. 使用[使用監視應用程式監視和管理管線](data-factory-monitor-manage-app.md)中的指示，了解如何監視您剛才建立的管線。
+13. 使用[使用監視應用程式監視和管理管線](data-factory-monitor-manage-app.md)中的指示，了解如何監視您建立的管線。
 
 	![監視應用程式](./media/data-factory-copy-data-wizard-tutorial/monitoring-app.png)
  
@@ -116,8 +116,8 @@
 | :---- | :---- |
 | [資料移動活動](data-factory-data-movement-activities.md) | 本文提供您在本教學課程中使用的複製活動詳細資訊。 |
 | [排程和執行](data-factory-scheduling-and-execution.md) | 本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
-| [管線](data-factory-create-pipelines.md) | 本文協助您了解 Azure Data Factory 中的管線和活動，以及如何運用這些來為您的案例或業務建構端對端的資料導向工作流程。 |
+| [管線](data-factory-create-pipelines.md) | 本文協助您了解 Azure Data Factory 中的管線和活動，以及如何使用這些來為您的案例或業務建構端對端的資料導向工作流程。 |
 | [資料集](data-factory-create-datasets.md) | 本文協助您了解 Azure Data Factory 中的資料集。
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0907_2016-->

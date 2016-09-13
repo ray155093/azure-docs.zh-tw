@@ -12,14 +12,13 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/09/2016"
+   ms.date="09/06/2016"
    ms.author="gwallace"/>
 
 
 # 使用 Azure 資源管理員建立、啟動或刪除應用程式閘道
 
 Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。應用程式閘道具有下列應用程式傳遞功能：HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性和安全通訊端層 (SSL) 卸載。
-
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](application-gateway-create-gateway-portal.md)
@@ -28,14 +27,10 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 - [Azure Resource Manager 範本](application-gateway-create-gateway-arm-template.md)
 - [Azure CLI](application-gateway-create-gateway-cli.md)
 
-<BR>
-
-
 本文將逐步引導您完成建立、設定、啟動及刪除應用程式閘道的步驟。
 
 
 >[AZURE.IMPORTANT] 使用 Azure 資源之前，請務必了解 Azure 目前有「資源管理員」和「傳統」兩種部署模型。在使用任何 Azure 資源之前，請先確認您了解[部署模型和工具](../azure-classic-rm.md)。您可以按一下本文頂端的索引標籤，檢視不同工具的文件。本文件會討論如何使用 Azure Resource Manager 建立應用程式閘道。若要使用傳統的版本，請移至[使用 PowerShell 建立應用程式閘道傳統部署](application-gateway-create-gateway.md)。
-
 
 
 ## 開始之前
@@ -46,21 +41,17 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 
 ## 建立應用程式閘道需要什麼？
 
-
 - **後端伺服器集區：**後端伺服器的 IP 位址清單。列出的 IP 位址應屬於虛擬網路子網路或是公用 IP/VIP。
 - **後端伺服器集區設定：**每個集區都包括一些設定，例如連接埠、通訊協定和以 Cookie 為基礎的同質性。這些設定會繫結至集區，並套用至集區內所有伺服器。
 - **前端連接埠：**此連接埠是在應用程式閘道上開啟的公用連接埠。流量會到達此連接埠，然後重新導向至其中一個後端伺服器。
 - **接聽程式：**接聽程式具有前端連接埠、通訊協定 (Http 或 Https，這些值都區分大小寫) 和 SSL 憑證名稱 (如果已設定 SSL 卸載)。
 - **規則：**規則會繫結接聽程式和後端伺服器集區，並定義流量達到特定接聽程式時應該導向至哪個後端伺服器集區。
 
-
-
 ## 建立應用程式閘道
 
 使用「Azure 傳統」和「Azure Resource Manager」的差別，在於您建立應用程式閘道和需設定項目的順序。
 
 透過 Resource Manager，組成應用程式閘道的所有項目會個別進行設定，然後一併建立應用程式閘道資源。
-
 
 以下是建立應用程式閘道所需的步驟。
 
@@ -69,31 +60,36 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 確定您使用最新版本的 Azure PowerShell。如需詳細資訊，請參閱[搭配使用 Windows PowerShell 與資源管理員](../powershell-azure-resource-manager.md)。
 
 ### 步驟 1
-登入 Azure Login-AzureRmAccount
 
-系統會提示使用您的認證進行驗證。<BR>
+登入 Azure
+	
+	Login-AzureRmAccount
+
+系統會提示使用您的認證進行驗證。
+
 ### 步驟 2
+
 檢查帳戶的訂用帳戶。
 
-		Get-AzureRmSubscription
+	Get-AzureRmSubscription
 
 ### 步驟 3
-選擇其中一個要使用的 Azure 訂用帳戶。<BR>
 
-		Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
+選擇要使用哪一個 Azure 訂用帳戶。
+
+	Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
 
 ### 步驟 4
-建立新的資源群組 (若使用現有的資源群組，請略過此步驟)。
 
-    New-AzureRmResourceGroup -Name appgw-rg -location "West US"
+建立資源群組 (若使用現有的資源群組，請略過此步驟)。
+
+    New-AzureRmResourceGroup -Name appgw-rg -Location "West US"
 
 Azure Resource Manager 需要所有的資源群組指定一個位置。此位置用來作為該資源群組中資源的預設位置。請確定所有用來建立應用程式閘道的命令都使用同一個資源群組。
 
 在上述範例中，我們建立名為 "appgw-RG" 的資源群組，且位置為美國西部 ("West US")。
 
 >[AZURE.NOTE] 如果您需要為應用程式閘道設定自訂探查，請參閱[使用 PowerShell 建立具有自訂探查的應用程式閘道](application-gateway-create-probe-ps.md)。請參閱[自訂探查和健全狀況監視](application-gateway-probe-overview.md)以取得詳細資訊。
-
-
 
 ## 建立應用程式閘道的虛擬網路和子網路
 
@@ -105,13 +101,11 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。此位置
 
 	$subnet = New-AzureRmVirtualNetworkSubnetConfig -Name subnet01 -AddressPrefix 10.0.0.0/24
 
-
 ### 步驟 2
 
 使用前置詞 10.0.0.0/16 搭配子網路 10.0.0.0/24，在美國西部 ("West US") 區域的 "appgw-rg" 資源群組中建立名為 "appgwvnet" 的虛擬網路。
 
 	$vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-rg -Location "West US" -AddressPrefix 10.0.0.0/16 -Subnet $subnet
-
 
 ### 步驟 3
 
@@ -134,9 +128,7 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。此位置
 
 建立名為 "gatewayIP01" 的應用程式閘道 IP 組態。當「應用程式閘道」啟動時，它會從已設定的子網路取得 IP 位址，再將網路流量路由傳送到後端 IP 集區中的 IP 位址。請記住，每個執行個體需要一個 IP 位址。
 
-
 	$gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Subnet $subnet
-
 
 ### 步驟 2
 
@@ -144,14 +136,11 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。此位置
 
 	$pool = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 134.170.185.46, 134.170.188.221,134.170.185.50
 
-
-
 ### 步驟 3
 
 設定後端集區中負載平衡網路流量的應用程式閘道設定 "poolsetting01"。
 
 	$poolSetting = New-AzureRmApplicationGatewayBackendHttpSettings -Name poolsetting01 -Port 80 -Protocol Http -CookieBasedAffinity Disabled
-
 
 ### 步驟 4
 
@@ -164,7 +153,6 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。此位置
 建立名為 "fipconfig01" 的前端 IP 組態，並將公用 IP 位址與前端 IP 組態產生關聯。
 
 	$fipconfig = New-AzureRmApplicationGatewayFrontendIPConfig -Name fipconfig01 -PublicIPAddress $publicip
-
 
 ### 步驟 6
 
@@ -197,26 +185,6 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。此位置
 
 	Get-AzureRmPublicIpAddress -Name publicIP01 -ResourceGroupName appgw-rg  
 
-	Name                     : publicIP01
-	ResourceGroupName        : appgwtest 
-	Location                 : westus
-	Id                       : /subscriptions/<sub_id>/resourceGroups/appgw-rg/providers/Microsoft.Network/publicIPAddresses/publicIP01
-	Etag                     : W/"12302060-78d6-4a33-942b-a494d6323767"
-	ResourceGuid             : ee9gd76a-3gf6-4236-aca4-gc1f4gf14171
-	ProvisioningState        : Succeeded
-	Tags                     : 
-	PublicIpAllocationMethod : Dynamic
-	IpAddress                : 137.116.26.16
-	IdleTimeoutInMinutes     : 4
-	IpConfiguration          : {
-	                             "Id": "/subscriptions/<sub_id>/resourceGroups/appgw-rg/providers/Microsoft.Network/applicationGateways/appgwtest/frontendIPConfigurations/fipconfig01"
-	                           }
-	DnsSettings              : {
-	                             "Fqdn": "ee7aca47-4344-4810-a999-2c631b73e3cd.cloudapp.net"
-	                           } 
-
-
-
 ## 刪除應用程式閘道
 
 若要刪除應用程式閘道，請遵循下列步驟：
@@ -225,7 +193,7 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。此位置
 
 取得應用程式閘道物件，並關聯至變數 "$getgw"。
 
-	$getgw =  Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg
+	$getgw = Get-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg
 
 ### 步驟 2
 
@@ -261,4 +229,4 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。此位置
 - [Azure 負載平衡器](https://azure.microsoft.com/documentation/services/load-balancer/)
 - [Azure 流量管理員](https://azure.microsoft.com/documentation/services/traffic-manager/)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->
