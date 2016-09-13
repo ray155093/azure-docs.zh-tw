@@ -15,7 +15,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="multiple"
    ms.workload="na"
-   ms.date="05/08/2016"
+   ms.date="08/29/2016"
    ms.author="cfowler;mahender;glenga"/>
    
    
@@ -29,13 +29,13 @@ Azure Functions 是可在雲端輕鬆執行程式碼片段或「函數」的解�
 
 以下是 Azure Functions 的一些主要功能︰
     
-* **選擇的語言** - 使用 C#、Node.js、Python、F#、PHP、batch、bash、Java 或任何可執行檔撰寫函數。  
-* **使用即付費價格模式** - 只對執行您的程式碼所花的時間付費。請參閱底下[價格](#pricing)一節中的「動態 App Service 方案」選項。  
-* **自備相依性** - Functions 支援 NuGet 和 NPM，以便您使用您最愛的程式庫。  
-* **整合式安全性** - 利用 OAuth 提供者 (如 Azure Active Directory、Facebook、Google、Twitter 和 Microsoft 帳戶) 保護 HTTP 觸發的函數。  
-* **簡化整合** - 輕鬆地利用 Azure 服務和軟體即服務 (SaaS) 供應項目。請參閱底下[整合](#integrations)一節中的相關範例。  
-* **彈性開發** - 直接在入口網站中撰寫函數的程式碼，或透過 GitHub、Visual Studio Team Services 和其他[支援的開發工具](../app-service-web/web-sites-deploy.md#deploy-using-an-ide)設定連續整合和部署程式碼。  
-* **開放原始碼** - Functions 執行階段是開放原始碼的平台並[可在 GitHub 上取得](https://github.com/azure/azure-webjobs-sdk-script)。  
+* **選擇的語言** - 使用 C#、Node.js、Python、F#、PHP、batch、bash、Java 或任何可執行檔撰寫函數。
+* **使用即付費價格模式** - 只對執行您的程式碼所花的時間付費。請參閱底下[價格](#pricing)一節中的「動態 App Service 方案」選項。
+* **自備相依性** - Functions 支援 NuGet 和 NPM，以便您使用您最愛的程式庫。
+* **整合式安全性** - 利用 OAuth 提供者 (如 Azure Active Directory、Facebook、Google、Twitter 和 Microsoft 帳戶) 保護 HTTP 觸發的函數。
+* **簡化整合** - 輕鬆地利用 Azure 服務和軟體即服務 (SaaS) 供應項目。請參閱底下[整合](#integrations)一節中的相關範例。
+* **彈性開發** - 直接在入口網站中撰寫函數的程式碼，或透過 GitHub、Visual Studio Team Services 和其他[支援的開發工具](../app-service-web/web-sites-deploy.md#deploy-using-an-ide)設定連續整合和部署程式碼。
+* **開放原始碼** - Functions 執行階段是開放原始碼的平台並[可在 GitHub 上取得](https://github.com/azure/azure-webjobs-sdk-script)。
 
 ## 我可以用 Functions 來做什麼？
 
@@ -49,8 +49,8 @@ Functions 提供範本，可讓您開始使用重要的案例，包括下列案�
 * **GitHub webhook** - 回應您的 GitHub 儲存機制中發生的事件。如需範例，請參閱[建立 Webhook 或 API 函數](functions-create-a-web-hook-or-api-function.md)。
 * **HTTPTrigger** - 使用 HTTP 要求觸發程式碼的執行。
 * **QueueTrigger** - 在訊息送達 Azure 儲存體佇列中時回應。如需範例，請參閱[建立繫結至 Azure 服務的 Azure 函數](functions-create-an-azure-connected-function.md)。
-* **ServiceBusQueueTrigger** - 將程式碼連接至其他 Azure 服務或內部部署服務，方法是接聽訊息佇列。 
-* **ServiceBusTopicTrigger** - 將程式碼連接至其他 Azure 服務或內部部署服務，方法是訂閱主題。 
+* **ServiceBusQueueTrigger** - 將程式碼連接至其他 Azure 服務或內部部署服務，方法是接聽訊息佇列。
+* **ServiceBusTopicTrigger** - 將程式碼連接至其他 Azure 服務或內部部署服務，方法是訂閱主題。
 * **TimerTrigger** - 在預先定義的排程執行清除或其他批次工作。如需範例，請參閱[建立事件處理函數](functions-create-an-event-processing-function.md)。
 
 Azure Functions 支援「觸發」，這是開始執行您的程式碼的方式，以及「繫結」，這是針對輸入和輸出資料簡化編碼的方式。如需 Azure Functions 提供的觸發和繫結的詳細說明，請參閱 [Azure Functions 觸發和繫結開發人員參考](functions-triggers-bindings.md)。
@@ -61,11 +61,11 @@ Azure Functions 支援「觸發」，這是開始執行您的程式碼的方式�
 Azure Functions 可以與各種 Azure 和第三方服務整合。您可以利用這些整合來觸發您的函數並開始執行，或做為您的程式碼的輸入和輸出。Azure Functions 支援下列服務整合。
 
 * Azure DocumentDB
-* Azure 事件中心 
+* Azure 事件中心
 * Azure Mobile Apps (資料表)
 * Azure 通知中心
 * Azure 服務匯流排 (佇列和主題)
-* Azure 儲存體 (Blob、佇列和資料表) 
+* Azure 儲存體 (Blob、佇列和資料表)
 * GitHub (webhook)
 * 內部部署 (使用服務匯流排)
 
@@ -73,7 +73,7 @@ Azure Functions 可以與各種 Azure 和第三方服務整合。您可以利用
 
 Azure Functions 有兩種價格方案，選擇一個最適合您的需求的方案︰
 
-* **動態主控方案** - 當您的函數執行時，Azure 會提供所有必要的運算資源。您不必擔心資源管理，您只需為您的程式碼執行時間支付費用。在 [Functions 價格](/pricing/details/functions)頁面上可取得完整的價格詳細資料。 
+* **動態主控方案** - 當您的函數執行時，Azure 會提供所有必要的運算資源。您不必擔心資源管理，您只需為您的程式碼執行時間支付費用。在 [Functions 價格](/pricing/details/functions)頁面上可取得完整的價格詳細資料。
 
 * **App Service 方案** - 可讓您如同 Web、行動及 API 應用程式一樣執行函數。當您已準備對其他應用程式使用 App Service 時，您可以在相同方案上執行您的函數，不會產生額外的費用。如需完整的詳細資訊，請參閱 [App Service 價格](/pricing/details/app-service/)頁面。
 
@@ -81,10 +81,10 @@ Azure Functions 有兩種價格方案，選擇一個最適合您的需求的方�
 
 ##後續步驟
 
-+ [建立您的第一個 Azure 函數](functions-create-first-azure-function.md) 直接進入正題並使用 Azure Functions 快速入門建立您的第一個函數。 
++ [建立您的第一個 Azure 函數](functions-create-first-azure-function.md) 直接進入正題並使用 Azure Functions 快速入門建立您的第一個函數。
 + [Azure Functions 開發人員參考](functions-reference.md) 提供更多有關 Azure Functions 執行階段的技術資訊，以及可供撰寫函數程式碼及定義觸發程序和繫結時參考。
 + [測試 Azure Functions](functions-test-a-function.md) 說明可用於測試函數的各種工具和技巧。
-+ [如何調整 Azure Functions](functions-scale.md) 討論 Azure Functions 可用的服務方案，包括動態服務方案，以及如何選擇正確的方案。 
-+ [深入了解 Azure App Service](../app-service/app-service-value-prop-what-is.md) Azure Functions 會利用 Azure App Service 平台執行核心功能，例如部署、環境變數和診斷。 
++ [如何調整 Azure Functions](functions-scale.md) 討論 Azure Functions 可用的服務方案，包括動態服務方案，以及如何選擇正確的方案。
++ [深入了解 Azure App Service](../app-service/app-service-value-prop-what-is.md) Azure Functions 會利用 Azure App Service 平台執行核心功能，例如部署、環境變數和診斷。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0907_2016-->

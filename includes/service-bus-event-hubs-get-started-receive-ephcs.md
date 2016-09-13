@@ -4,17 +4,21 @@
 
 若要使用 [EventProcessorHost][]，您必須擁有 [Azure 儲存體帳戶][]：
 
-1. 登入 [Azure 傳統入口網站][]，並按一下畫面底部的 [新增]。
+1. 登入 [Azure 入口網站][]，然後按一下畫面左上方的 [新增]。
 
-2. 依序按一下 [**資料服務**]、[**儲存體**] 和 [**快速建立**]，然後輸入儲存體帳戶的名稱。選取您所需的區域，然後按一下 [**建立儲存體帳戶**]。
+2. 按一下 [資料 + 儲存體]，然後按一下 [儲存體帳戶]。
 
-    ![][11]
+    ![][1]
 
-3. 按一下新建立的儲存體帳戶，然後按一下 [**管理存取金鑰**]：
+3. 在 [建立儲存體帳戶] 刀鋒視窗中，輸入儲存體帳戶名稱。選擇要在其中建立資源的 Azure 訂用帳戶、資源群組和位置。然後按一下 [**建立**]。
 
-    ![][12]
+    ![][2]
 
-    複製主要存取金鑰以便稍後在此教學課程中使用。
+4. 在儲存體帳戶清單中，按一下新建立的儲存體帳戶。
+
+5. 在 [儲存體帳戶] 刀鋒視窗中，按一下 [存取金鑰]。複製**金鑰 1** 的值以便稍後在此教學課程中使用。
+
+	![][3]
 
 4. 在 Visual Studio 中，使用**主控台應用程式**專案範本建立新的「Visual C# 桌面應用程式」專案。將專案命名為 **Receiver**。
 
@@ -121,16 +125,17 @@
 [事件中樞概觀]: event-hubs-overview.md
 [事件中樞程式設計指南]: event-hubs-programming-guide.md
 [擴充事件處理]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-45f43fc3
-[Azure 儲存體帳戶]: ../storage/storage-create-storage-account-classic-portal.md
+[Azure 儲存體帳戶]: ../storage/storage-create-storage-account.md
 [EventProcessorHost]: http://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventprocessorhost(v=azure.95).aspx
-[Azure 傳統入口網站]: http://manage.windowsazure.com
+[Azure 入口網站]: https://portal.azure.com
 
 <!-- Images -->
 
-[11]: ./media/service-bus-event-hubs-getstarted/create-eph-csharp2.png
-[12]: ./media/service-bus-event-hubs-getstarted/create-eph-csharp3.png
-[13]: ./media/service-bus-event-hubs-getstarted/create-eph-csharp1.png
-[14]: ./media/service-bus-event-hubs-getstarted/create-receiver-csharp1.png
-[15]: ./media/service-bus-event-hubs-getstarted/create-receiver-csharp2.png
+[1]: ./media/service-bus-event-hubs-getstarted-receive-ephcs/create-storage1.png
+[2]: ./media/service-bus-event-hubs-getstarted-receive-ephcs/create-storage2.png
+[3]: ./media/service-bus-event-hubs-getstarted-receive-ephcs/create-storage3.png
+[13]: ./media/service-bus-event-hubs-getstarted-receive-ephcs/create-eph-csharp1.png
+[14]: ./media/service-bus-event-hubs-getstarted-receive-ephcs/create-receiver-csharp1.png
+[15]: ./media/service-bus-event-hubs-getstarted-receive-ephcs/create-receiver-csharp2.png
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0907_2016-->

@@ -34,7 +34,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
     安裝 Visual Studio 適用的 Data Lake 工具之後，您會在 [伺服器總管] 中的 [Azure] 節點下看到 [Data Lake Analytics] 節點 (您可以按 Ctrl+Alt+S 開啟 [伺服器總管])。
 
-- **完成「[使用 Azure 入口網站開始使用 Azure 資料湖分析](data-lake-analytics-get-started-portal.md)」一文中的下列兩個小節**。
+- **完成[使用 Azure 入口網站開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md) 一文中的下列兩個小節**。
 
 	- [建立 Azure 資料湖分析帳戶](data-lake-analytics-get-started-portal.md#create_adl_analytics_account)。
 	- [將 SearchLog.tsv 上傳到預設資料湖儲存體帳戶](data-lake-analytics-get-started-portal.md#update-data-to-the-default-adl-storage-account)。
@@ -50,7 +50,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 1. 開啟 Visual Studio。
 2. 按一下 [檢視] 功能表的 [伺服器總管] 來開啟伺服器總管。或是按下 **[CTRL] + [ALT] + S**。
 3. 對 [Azure] 按一下滑鼠右鍵、按一下 [連接到 Microsoft Azure 訂用帳戶]，然後依照指示進行。
-4. 在 [伺服器總管] 中展開 [Azure]，然後展開 [資料湖分析]。如果有資料湖分析帳戶，您就會看到其清單。您無法從 Visual Studio 建立資料湖分析帳戶。若要建立帳戶，請參閱「[使用 Azure 入口網站開始使用 Azure 資料湖分析](data-lake-analytics-get-started-portal.md)」或「[使用 Azure PowerShell 開始使用 Azure 資料湖分析](data-lake-analytics-get-started-powershell.md)」。
+4. 在 [伺服器總管] 中展開 [Azure]，然後展開 [資料湖分析]。如果有資料湖分析帳戶，您就會看到其清單。您無法從 Visual Studio 建立資料湖分析帳戶。若要建立帳戶，請參閱[使用 Azure 入口網站開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md) 或[使用 Azure PowerShell 開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-powershell.md)。
 
 ## 上傳來源資料檔案
 
@@ -130,10 +130,9 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
 		目錄實體的 IntelliSense (資料庫、結構描述、資料表、UDO 等等) 與您的計算帳戶相關。您可以在頂端工具列中檢查目前作用中的計算帳戶、資料庫和結構描述，並且透過下拉式清單進行切換。
 
-    - **展開 * 資料行**
+    - **展開 *資料行**
 
-        按一下 * 的右邊，您應該會看到 * 下方的藍色底線。將滑鼠游標移到藍色底線上，然後按一下向下箭號。  
-    	![展開 Data Lake Visual Studio 工具 *](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-expand-asterisk.png)
+        按一下 * 的右邊，您應該會看到 * 下方的藍色底線。將滑鼠游標移到藍色底線上，然後按一下向下箭號。![展開 Data Lake Visual Studio 工具 *](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-expand-asterisk.png)
 
         按一下 [展開資料行]，然後工具將會用資料行名稱取代 *。
 
@@ -151,11 +150,11 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
 	- **移至定義並尋找所有參考**
 
-		以滑鼠右鍵按一下資料列集/參數/資料行/UDO 等的名稱，然後按一下 [移至定義] \(F12) 可讓您瀏覽至其定義。按一下 [尋找所有參考] \(Shift + F12) 會顯示所有參考。
+		以滑鼠右鍵按一下資料列集/參數/資料行/UDO 等的名稱，然後按一下 [移至定義] (F12) 可讓您瀏覽至其定義。按一下 [尋找所有參考] (Shift + F12) 會顯示所有參考。
 
 	- **插入 Azure 路徑**
 
-		並非在撰寫指令碼時記住 Azure 檔案路徑並且手動輸入，適用於 Visual Studio 的資料湖工具提供簡單的方法：在編輯器中按一下滑鼠右鍵，按一下 [插入 Azure 路徑]。瀏覽至 Azure Blob 瀏覽器對話方塊中的檔案。按一下 [確定]，檔案路徑就會插入您的程式碼。
+		並非在撰寫指令碼時記住 Azure 檔案路徑並且手動輸入，適用於 Visual Studio 的 Data Lake 工具提供簡單的方法：在編輯器中按一下滑鼠右鍵，按一下 [插入 Azure 路徑]。瀏覽至 Azure Blob 瀏覽器對話方塊中的檔案。按一下 [確定]，檔案路徑就會插入您的程式碼。
 
 5. 指定資料湖分析帳戶、資料庫和結構描述。為了測試，您可以選取 [(本機)] 以便在本機執行指令碼。如需詳細資訊，請參閱＜[在本機執行 U-SQL](#run-u-sql-locally)＞一節。
 
@@ -163,8 +162,8 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
     如需詳細資訊，請參閱[使用 U-SQL 目錄](data-lake-analytics-use-u-sql-catalog.md)。
 
-5. 在 [方案總管] 中，用滑鼠右鍵按一下 [Script.usql]，然後按一下 [建置指令碼]。確認 [輸出] 窗格中的結果。
-6. 在 [方案總管] 中，用滑鼠右鍵按一下 [Script.usql]，然後按一下 [提交指令碼]。(選擇性) 您也可以從 Script.usql 窗格按一下 [提交]。請參閱上一個螢幕擷取畫面。按一下 [提交] 按鈕旁的向下箭號，使用進階選項提交：
+5. 在 [方案總管] 中，用滑鼠右鍵按一下 **Script.usql**，然後按一下 [建置指令碼]。確認 [輸出] 窗格中的結果。
+6. 在 [方案總管] 中，用滑鼠右鍵按一下 **Script.usql**，然後按一下 [提交指令碼]。(選擇性) 您也可以從 Script.usql 窗格按一下 [提交]。請參閱上一個螢幕擷取畫面。按一下 [提交] 按鈕旁的向下箭號，使用進階選項提交：
 7. 指定 [工作名稱]、驗證 [分析帳戶]，然後按一下 [提交]。提交作業完成時，[適用於 Visual Studio 的資料湖工具結果] 視窗中便會出現提交結果和工作連結。
 
 	![提交 U-SQL Visual Studio 專案](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-submit-job-advanced.png)
@@ -261,13 +260,13 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
 您可以偵錯 C# 組件，而不需提交並向 Azure 資料湖分析服務註冊。您可以在這兩個程式碼後置檔案和參考的 C# 專案中設定中斷點。
 
-如何為程式碼後置檔案中的本機程式碼偵錯
+**如何為程式碼後置檔案中的本機程式碼偵錯**
 1.	在程式碼後置檔案中設定中斷點。
 2.	按下 **F5** 以便在本機為指令碼偵錯。
 
 下列程序僅適用於 Visual Studio 2015。在舊版 Visual Studio 中，您可能需要手動加入 pdb 檔案。
 
-如何為參考的 C# 專案中的本機程式碼偵錯
+**如何為參考的 C# 專案中的本機程式碼偵錯**
 1.	建立 C# 組件專案，並建置它來產生輸出 dll。
 2.	使用 U-SQL 陳述式來註冊 dll：
 
@@ -279,9 +278,10 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
 若要使用不同的工具開始使用資料湖分析，請參閱：
 
-- [使用 Azure 入口網站開始使用資料湖分析](data-lake-analytics-get-started-portal.md)
+- [使用 Azure 入口網站開始使用 Data Lake Analytics](data-lake-analytics-get-started-portal.md)
 - [使用 Azure PowerShell 開始使用資料湖分析](data-lake-analytics-get-started-powershell.md)
 - [使用 .NET SDK 開始使用資料湖分析](data-lake-analytics-get-started-net-sdk.md)
+- [在 U-SQL 作業中進行 C# 程式碼偵錯](data-lake-analytics-debug-u-sql-jobs.md)
 
 若要查看更多開發主題：
 
@@ -362,4 +362,4 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
     Get-AzureRmDataLakeStoreChildItem -Account $dataLakeStoreName -Path  "/Samples/Data/"
     #endregion
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0907_2016-->

@@ -12,7 +12,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/09/2016"
+   ms.date="09/02/2016"
    ms.author="gwallace"/>
 
 # 建立、啟動或刪除應用程式閘道
@@ -26,10 +26,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 - [Azure Resource Manager 範本](application-gateway-create-gateway-arm-template.md)
 - [Azure CLI](application-gateway-create-gateway-cli.md)
 
-<BR>
-
 本文將逐步引導您完成建立、設定、啟動及刪除應用程式閘道的步驟。
-
 
 ## 開始之前
 
@@ -40,9 +37,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 
 ## 建立應用程式閘道需要什麼？
 
-
 當您使用 **New-AzureApplicationGateway** 命令來建立應用程式閘道時，不需進行任何設定，而且使用 XML 或設定物件來設定新建立的資源。
-
 
 值如下：
 
@@ -51,7 +46,6 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 - **前端連接埠：**此連接埠是在應用程式閘道上開啟的公用連接埠。流量會到達此連接埠，然後重新導向至其中一個後端伺服器。
 - **接聽程式：**接聽程式具有前端連接埠、通訊協定 (Http 或 Https，這些值都區分大小寫) 和 SSL 憑證名稱 (如果已設定 SSL 卸載)。
 - **規則：**規則會繫結接聽程式和後端伺服器集區，並定義當流量到達特定接聽程式時，應該導向到哪個後端伺服器集區。
-
 
 ## 建立應用程式閘道
 
@@ -63,12 +57,11 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 
 >[AZURE.NOTE] 如果您需要設定應用程式閘道的自訂探查，請參閱[使用 PowerShell 建立具有自訂探查的應用程式閘道](application-gateway-create-probe-classic-ps.md)。請參閱[自訂探查和健全狀況監視](application-gateway-probe-overview.md)以取得詳細資訊。
 
-
 ### 建立應用程式閘道資源
 
 若要建立閘道，請使用 **New-AzureApplicationGateway** Cmdlet，並將值取代為您自己的值。此時還不會開始對閘道計費。會在稍後的步驟中於成功啟動閘道之後開始計費。
 
-下列範例會使用虛擬網路 (稱為 "testvnet1") 與子網路 (稱為 "subnet-1") 來建立新的應用程式閘道。
+下列範例會使用名為 "testvnet1" 的虛擬網路和名為 "subnet-1" 的子網路來建立應用程式閘道。
 
 
 	New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
@@ -80,13 +73,9 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 	Successful OK                   55ef0460-825d-2981-ad20-b9a8af41b399
 
 
- *Description* 、 *InstanceCount* 和 *GatewaySize* 為選用參數。
-
+ *Description*、*InstanceCount* 和 *GatewaySize* 為選用參數。
 
 若要驗證是否已建立閘道，您可以使用 **Get-AzureApplicationGateway** Cmdlet。
-
-
-
 
 	Get-AzureApplicationGateway AppGwTest
 	Name          : AppGwTest
@@ -101,8 +90,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 
 >[AZURE.NOTE]  InstanceCount 的預設值是 2，最大值是 10。*GatewaySize* 的預設值是 Medium。您可以選擇 Small、Medium 和 Large。
 
-
- 因為尚未啟動閘道，所以 *VirtualIPs* 和 *DnsName* 會顯示為空白。閘道處於執行中狀態之後，就會建立這些項目。
+因為尚未啟動閘道，所以 *VirtualIPs* 和 *DnsName* 會顯示為空白。閘道處於執行中狀態之後，就會建立這些項目。
 
 ## 設定應用程式閘道
 
@@ -224,7 +212,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 
 ## 使用設定物件設定應用程式閘道
 
-下列範例示範如何使用設定物件來設定應用程式閘道。必須個別設定所有設定項目，然後再加入至應用程式閘道設定物件。建立設定物件之後，您會使用 **Set-AzureApplicationGateway** 命令，將設定認可到先前建立的應用程式閘道資源。
+下列範例示範如何使用設定物件來設定應用程式閘道。必須個別設定所有組態項目，然後再將其新增至應用程式閘道組態物件。建立設定物件之後，您會使用 **Set-AzureApplicationGateway** 命令，將設定認可到先前建立的應用程式閘道資源。
 
 >[AZURE.NOTE] 在將值指派到各個設定物件之前，您必須宣告 PowerShell 要用來儲存的物件種類。用來建立個別項目的第一行會定義使用哪些 Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model(物件名稱)。
 
@@ -234,57 +222,57 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 
 建立前端 IP，如下列範例所示。
 
-	PS C:\> $fip = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendIPConfiguration
-	PS C:\> $fip.Name = "fip1"
-	PS C:\> $fip.Type = "Private"
-	PS C:\> $fip.StaticIPAddress = "10.0.0.5"
+	$fip = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendIPConfiguration
+	$fip.Name = "fip1"
+	$fip.Type = "Private"
+	$fip.StaticIPAddress = "10.0.0.5"
 
 建立前端連接埠，如下列範例所示。
 
-	PS C:\> $fep = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendPort
-	PS C:\> $fep.Name = "fep1"
-	PS C:\> $fep.Port = 80
+	$fep = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendPort
+	$fep.Name = "fep1"
+	$fep.Port = 80
 
 建立後端伺服器集區。
 
  定義加入至後端伺服器集區的 IP 位址，如下列範例所示。
 
 
-	PS C:\> $servers = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendServerCollection
-	PS C:\> $servers.Add("10.0.0.1")
-	PS C:\> $servers.Add("10.0.0.2")
+	$servers = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendServerCollection
+	$servers.Add("10.0.0.1")
+	$servers.Add("10.0.0.2")
 
  使用 $server 物件，將值加入至後端集區物件 ($pool)。
 
-	PS C:\> $pool = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendAddressPool
-	PS C:\> $pool.BackendServers = $servers
-	PS C:\> $pool.Name = "pool1"
+	$pool = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendAddressPool
+	$pool.BackendServers = $servers
+	$pool.Name = "pool1"
 
 建立後端伺服器集區設定。
 
-	PS C:\> $setting = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendHttpSettings
-	PS C:\> $setting.Name = "setting1"
-	PS C:\> $setting.CookieBasedAffinity = "enabled"
-	PS C:\> $setting.Port = 80
-	PS C:\> $setting.Protocol = "http"
+	$setting = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendHttpSettings
+	$setting.Name = "setting1"
+	$setting.CookieBasedAffinity = "enabled"
+	$setting.Port = 80
+	$setting.Protocol = "http"
 
 建立接聽程式。
 
-	PS C:\> $listener = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpListener
-	PS C:\> $listener.Name = "listener1"
-	PS C:\> $listener.FrontendPort = "fep1"
-	PS C:\> $listener.FrontendIP = "fip1"
-	PS C:\> $listener.Protocol = "http"
-	PS C:\> $listener.SslCert = ""
+	$listener = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpListener
+	$listener.Name = "listener1"
+	$listener.FrontendPort = "fep1"
+	$listener.FrontendIP = "fip1"
+	$listener.Protocol = "http"
+	$listener.SslCert = ""
 
 建立規則。
 
-	PS C:\> $rule = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpLoadBalancingRule
-	PS C:\> $rule.Name = "rule1"
-	PS C:\> $rule.Type = "basic"
-	PS C:\> $rule.BackendHttpSettings = "setting1"
-	PS C:\> $rule.Listener = "listener1"
-	PS C:\> $rule.BackendAddressPool = "pool1"
+	$rule = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpLoadBalancingRule
+	$rule.Name = "rule1"
+	$rule.Type = "basic"
+	$rule.BackendHttpSettings = "setting1"
+	$rule.Listener = "listener1"
+	$rule.BackendAddressPool = "pool1"
 
 ### 步驟 2
 
@@ -292,34 +280,34 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 
 將前端 IP 加入設定。
 
-	PS C:\> $appgwconfig = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.ApplicationGatewayConfiguration
-	PS C:\> $appgwconfig.FrontendIPConfigurations = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendIPConfiguration]"
-	PS C:\> $appgwconfig.FrontendIPConfigurations.Add($fip)
+	$appgwconfig = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.ApplicationGatewayConfiguration
+	$appgwconfig.FrontendIPConfigurations = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendIPConfiguration]"
+	$appgwconfig.FrontendIPConfigurations.Add($fip)
 
 將前端連接埠加入設定。
 
-	PS C:\> $appgwconfig.FrontendPorts = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendPort]"
-	PS C:\> $appgwconfig.FrontendPorts.Add($fep)
+	$appgwconfig.FrontendPorts = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendPort]"
+	$appgwconfig.FrontendPorts.Add($fep)
 
 將後端伺服器集區加入設定。
 
-	PS C:\> $appgwconfig.BackendAddressPools = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendAddressPool]"
-	PS C:\> $appgwconfig.BackendAddressPools.Add($pool)  
+	$appgwconfig.BackendAddressPools = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendAddressPool]"
+	$appgwconfig.BackendAddressPools.Add($pool)  
 
 將後端集區設定加入設定。
 
-	PS C:\> $appgwconfig.BackendHttpSettingsList = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendHttpSettings]"
-	PS C:\> $appgwconfig.BackendHttpSettingsList.Add($setting)
+	$appgwconfig.BackendHttpSettingsList = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendHttpSettings]"
+	$appgwconfig.BackendHttpSettingsList.Add($setting)
 
 將接聽程式加入設定。
 
-	PS C:\> $appgwconfig.HttpListeners = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpListener]"
-	PS C:\> $appgwconfig.HttpListeners.Add($listener)
+	$appgwconfig.HttpListeners = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpListener]"
+	$appgwconfig.HttpListeners.Add($listener)
 
 將規則加入設定。
 
-	PS C:\> $appgwconfig.HttpLoadBalancingRules = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpLoadBalancingRule]"
-	PS C:\> $appgwconfig.HttpLoadBalancingRules.Add($rule)
+	$appgwconfig.HttpLoadBalancingRules = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpLoadBalancingRule]"
+	$appgwconfig.HttpLoadBalancingRules.Add($rule)
 
 ### 步驟 3
 
@@ -331,10 +319,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 
 設定閘道之後，請使用 **Start-AzureApplicationGateway** Cmdlet 來啟動閘道。成功啟動閘道之後，會開始應用程式閘道計費。
 
-
 > [AZURE.NOTE] **Start-AzureApplicationGateway** Cmdlet 最多可能需要 15-20 分鐘才能完成。
-
-
 
 	Start-AzureApplicationGateway AppGwTest
 
@@ -415,4 +400,4 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 - [Azure 負載平衡器](https://azure.microsoft.com/documentation/services/load-balancer/)
 - [Azure 流量管理員](https://azure.microsoft.com/documentation/services/traffic-manager/)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

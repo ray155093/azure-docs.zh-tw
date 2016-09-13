@@ -75,7 +75,7 @@ Microsoft 採用業界標準動態路由通訊協定 (BGP)，在您的內部部�
 
 - Microsoft Azure 服務
 - Microsoft Office 365 服務
-- Microsoft CRM Online 服務 
+- Microsoft CRM Online 服務
  
 您可以瀏覽 [ExpressRoute 常見問題集](expressroute-faqs.md)頁面，取得透過 ExpressRoute 所支援的服務的詳細清單。
 
@@ -118,9 +118,9 @@ Microsoft 為特殊的地理政治地區和客戶群提供隔離的雲端環境�
 
 您可以挑選最適合的計費模型。請從下列計費模型中選擇。如需詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)頁面。
 
-- **無限制資料**。ExpressRoute 線路按月計費，所有輸入和輸出資料傳輸已免費包括在內。 
+- **無限制資料**。ExpressRoute 線路按月計費，所有輸入和輸出資料傳輸已免費包括在內。
 - **已計量資料**。ExpressRoute 線路按月計費。所有輸入資料傳輸都免費。輸出資料傳輸依每 GB 資料傳輸計費。資料傳輸費率依區域而不同。
-- **ExpressRoute Premium 附加元件**。ExpressRoute Premium 是 ExpressRoute 線路上的附加元件。ExpressRoute Premium 附加元件提供下列功能： 
+- **ExpressRoute Premium 附加元件**。ExpressRoute Premium 是 ExpressRoute 線路上的附加元件。ExpressRoute Premium 附加元件提供下列功能：
 	- Azure 公用和 Azure 私用對等的路由限制從 4,000 個路由提高到 10,000 個路由。
 	- 從全球連線到服務。任何區域中建立的 ExpressRoute 線路 (不包括國家雲端) 能夠存取全球其他任何區域的資源。例如，透過在美國矽谷佈建的 ExpressRoute 線路，可存取在西歐建立的虛擬網路。
 	- 每個 ExpressRoute 線路的 VNet 連結數目已從原本 10 個放寬限制，視線路的頻寬而定。
@@ -136,4 +136,4 @@ Microsoft 為特殊的地理政治地區和客戶群提供隔離的雲端環境�
 	- [設定路由](expressroute-howto-routing-classic.md)
 	- [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0907_2016-->

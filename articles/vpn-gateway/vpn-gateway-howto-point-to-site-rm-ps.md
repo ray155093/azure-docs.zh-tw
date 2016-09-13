@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="使用 Resource Manager 部署模型設定虛擬網路的點對站 VPN 連線 | Microsoft Azure"
-   description="建立點對站 VPN 連線來安全地連線到您的 Azure 虛擬網路。"
+   pageTitle="使用 Resource Manager 部署模型設定虛擬網路的點對站 VPN 閘道連線 | Microsoft Azure"
+   description="建立點對站 VPN 閘道連線來安全地連線到您的 Azure 虛擬網路。"
    services="vpn-gateway"
    documentationCenter="na"
    authors="cherylmc"
@@ -65,7 +65,7 @@
 
 - 請確認您有 Azure 訂用帳戶。如果您還沒有 Azure 訂用帳戶，可以啟用您的 [MSDN 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)或註冊[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 	
-- 您必須安裝 Azure Resource Manager PowerShell Cmdlet (1.0.2 或更新版本)。如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+- 您必須安裝 Azure Resource Manager PowerShell Cmdlet (1.0.2 或更新版本)。如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。使用 PowerShell 進行這項設定時，請確定您是以系統管理員身分執行。
 
 ## <a name="declare"></a>第 1 部分 - 登入和設定變數
 
@@ -176,15 +176,24 @@ Azure 會使用憑證來驗證想要透過 P2S 連接的用戶端。您會將根
 
 	![VPN 用戶端](./media/vpn-gateway-howto-point-to-site-rm-ps/vpn.png "VPN 用戶端")
 
-## <a name="cc"></a>第 6 部分 - 安裝用戶端憑證
-	
-產生並安裝從用戶端電腦上的根憑證建立的用戶端憑證 (*.pfx)。您可以使用您習慣的任何安裝方法。
+## <a name="cc"></a>第 6 部分 - 產生用戶端憑證
 
-如果您使用自我簽署根憑證，且不熟悉如何產生用戶端憑證，您可以參考[這篇文章](vpn-gateway-certificates-point-to-site.md)。如果您使用企業解決方案，請務必以一般的名稱值格式 'name@yourdomain.com' 發出用戶端憑證，而不要使用 'NetBIOS 網域名稱\\使用者名稱' 格式。
+接下來，產生用戶端憑證。您可以為每個會進行連線的用戶端產生唯一的憑證，您也可以在多個用戶端上使用相同的憑證。產生唯一的用戶端憑證的優點是能夠視需要撤銷單一憑證。否則，如果每個人都使用相同的用戶端憑證，而您發現需要撤銷某一個用戶端的憑證時，您必須為所有使用該憑證來驗證的用戶端產生並安裝新的憑證。
 
-您可以連按兩下 .pfx 檔案，直接在電腦上安裝用戶端憑證。
+- 如果您使用企業憑證解決方案，請以一般的名稱值格式 'name@yourdomain.com' 產生用戶端憑證，而不要使用 NetBIOS 'DOMAIN\\username' 格式。
 
-## 第 7 部分 - 連接到 Azure
+- 如果您使用自我簽署的憑證解決方案，請參閱[使用點對站設定的自我簽署根憑證](vpn-gateway-certificates-point-to-site.md)，以產生用戶端憑證。
+
+## 第 7 部分 - 安裝用戶端憑證
+
+在您想要連線至虛擬網路的每部電腦上安裝用戶端憑證。驗證會需要用戶端憑證。您可以自動安裝用戶端憑證，您也可以手動安裝。下列步驟將逐步引導您手動匯出並安裝用戶端憑證。
+
+1. 若要匯出用戶端憑證，請使用 *certmgr.msc*。以滑鼠右鍵按一下要匯出的用戶端憑證，然後依序按一下 [所有工作] 和 [匯出]。
+2. 匯出具有私密金鑰的用戶端憑證。這會是 *.pfx* 檔案。請務必記下或牢記您為這個憑證設定的密碼 (金鑰)。
+3. 將 *.pfx* 檔案複製到用戶端電腦。在用戶端電腦上按兩下 *.pfx* 檔案以安裝。在系統要求時輸入密碼。請勿修改安裝位置。
+
+
+## 第 8 部分 - 連接到 Azure
 
 1. 若要連接至您的 VNet，在用戶端電腦上瀏覽到 VPN 連線，然後找出所建立的 VPN 連線。其名稱會與虛擬網路相同。按一下 [**連接**]。可能會出現與使用憑證有關的快顯訊息。如果出現，按一下 [繼續] 以使用較高的權限。
 
@@ -196,7 +205,7 @@ Azure 會使用憑證來驗證想要透過 P2S 連接的用戶端。您會將根
 
 	![VPN 用戶端 3](./media/vpn-gateway-howto-point-to-site-rm-ps/connected.png "VPN 用戶端連線 2")
 
-## 第 8 部分 - 驗證您的連線
+## 第 9 部分 - 驗證您的連線
 
 1. 若要驗證您的 VPN 連線為作用中狀態，請開啟提升權限的命令提示字元，並執行 *ipconfig/all*。
 
@@ -302,4 +311,4 @@ Azure 會使用憑證來驗證想要透過 P2S 連接的用戶端。您會將根
 
 您可以將虛擬機器新增至虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

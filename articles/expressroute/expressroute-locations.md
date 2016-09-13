@@ -12,7 +12,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/29/2016"
+   ms.date="09/07/2016"
    ms.author="cherylmc" />
 
 # ExpressRoute 合作夥伴和對等互連位置
@@ -31,7 +31,7 @@
 |---|---|---|
 |**北美洲**|美國東部、美國西部、美國東部 2、美國中部、美國中南部、美國中北部、加拿大中部、加拿大東部|亞特蘭大、芝加哥、達拉斯、拉斯維加斯+、洛杉磯、紐約、西雅圖、矽谷、華盛頓特區、蒙特婁+、魁北克市+、多倫多|
 |**南美洲**|巴西南部|聖保羅|
-|**歐洲**|北歐、西歐|阿姆斯特丹、都柏林、倫敦、紐波特 (威爾斯)+、巴黎|
+|**歐洲**|北歐、西歐、英國西部、英國南部|阿姆斯特丹、都柏林、倫敦、紐波特 (威爾斯)+、巴黎|
 |**亞洲**|東亞、東南亞|香港特別行政區、新加坡|
 |**日本**|日本西部、日本東部|大阪、東京|
 |**澳大利亞**|澳洲東南部、澳洲東部|墨爾本、雪梨|
@@ -83,7 +83,7 @@
 | **MTN** | 支援 | 支援 | 倫敦 |
 | **NEXTDC** | 支援 | 支援 | 墨爾本、雪梨 |
 | **NTT Communications** | 支援 | 支援 | 倫敦、洛杉磯、大阪、東京 |
-| **[Orange](http://www.orange-business.com/en/products/business-vpn-galerie)** | 支援 | 支援 | 阿姆斯特丹、香港、倫敦、矽谷、新加坡、華盛頓特區 |
+| **[Orange](http://www.orange-business.com/en/products/business-vpn-galerie)** | 支援 | 支援 | 阿姆斯特丹、香港、倫敦、矽谷、新加坡、雪梨、華盛頓特區 |
 | **PCCW Global Limited** | 支援 | 支援 | 香港 |
 | **[SingTel](http://info.singtel.com/about-us/news-releases/singtel-provide-secure-private-access-microsoft-azure-public-cloud)** | 支援 | 支援 | 新加坡 |
 | **Softbank** | 支援 | 支援 | 大阪、東京 | 
@@ -171,4 +171,4 @@
 <!--Image References-->
 [0]: ./media/expressroute-locations/expressroute-locations-map.png "位置圖"
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

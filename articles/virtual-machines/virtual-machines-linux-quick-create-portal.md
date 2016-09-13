@@ -21,7 +21,6 @@
 
 # 使用入口網站在 Azure 上建立 Linux VM
 
-> [AZURE.NOTE] 若能耽擱您一些時間，請透過回答這個針對您經驗的[簡短問卷](https://aka.ms/linuxdocsurvey)，協助我們改善 Azure Linux VM 文件。每個答案都有助於我們協助您完成工作。
 
 本文將說明如何使用 [Azure 入口網站](https://portal.azure.com/)快速建立 Linux 虛擬機器。僅有的需求是 [Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)和 [SSH 公開和私密金鑰檔案](virtual-machines-linux-mac-create-ssh-keys.md)。
 
@@ -79,4 +78,4 @@ ssh -i ~/.ssh/azure_id_rsa ubuntu@13.91.99.206
 - [使用範本在 Azure 上建立受 SSH 保護的 Linux VM](virtual-machines-linux-create-ssh-secured-vm-from-template.md)
 - [使用 CLI 建立 Linux VM](virtual-machines-linux-create-cli-complete.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0907_2016-->

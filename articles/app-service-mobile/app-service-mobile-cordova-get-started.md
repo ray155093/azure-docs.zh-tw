@@ -79,9 +79,9 @@
 [新增驗證]: app-service-mobile-cordova-get-started-users.md
 [新增推播通知]: app-service-mobile-cordova-get-started-push.md
 [驗證]: app-service-mobile-auth.md
-[推播通知]: ../notification-hubs/notification-hubs-overview.md
+[推播通知]: ../notification-hubs/notification-hubs-push-notification-overview.md
 [Apache Cordova SDK]: app-service-mobile-cordova-how-to-use-client-library.md
 [ASP.NET Server SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Node.js Server SDK]: app-service-mobile-node-backend-how-to-use-server-sdk.md
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0907_2016-->

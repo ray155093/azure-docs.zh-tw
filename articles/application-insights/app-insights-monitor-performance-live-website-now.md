@@ -159,7 +159,7 @@
 
   * 使用您的網站來產生一些資料。
   * 等候幾分鐘讓資料抵達，然後按一下 [重新整理]。
-  * 開啟 [診斷搜尋] \([搜尋] 圖格) 以查看個別事件。彙總資料在圖表中出現之前，事件通常會顯示在 [診斷搜尋] 中。
+  * 開啟 [診斷搜尋] ([搜尋] 圖格) 以查看個別事件。彙總資料在圖表中出現之前，事件通常會顯示在 [診斷搜尋] 中。
   * 開啟狀態監視器，然後選取左窗格中的應用程式。檢查 [設定通知] 區段中是否有任何關於此應用程式的診斷訊息：
 
   ![開啟 [效能] 刀鋒視窗，即可查看要求、回應時間、相依性和其他資料](./media/app-insights-monitor-performance-live-website-now/appinsights-status-monitor-diagnostics-message.png)
@@ -283,11 +283,7 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 * [加入 Web 用戶端遙測][usage]，以查看網頁程式碼中的例外狀況，並讓您插入追蹤呼叫。
 * [將 Application Insights SDK 加入至您的 Web 服務程式碼][greenbrown]，便可以將追蹤和記錄呼叫插入至伺服器程式碼中。
 
-## 影片
 
-#### 效能監視
-
-[AZURE.VIDEO app-insights-performance-monitoring]
 
 <!--Link references-->
 
@@ -300,4 +296,4 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 [roles]: app-insights-resources-roles-access-control.md
 [usage]: app-insights-web-track-usage.md
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

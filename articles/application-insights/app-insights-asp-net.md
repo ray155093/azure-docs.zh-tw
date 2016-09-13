@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="使用 Application Insights 設定 ASP.NET 的 Web 應用程式分析" 
+	pageTitle="使用 Application Insights 設定 ASP.NET 的 Web 應用程式分析 | Microsoft Azure" 
 	description="針對裝載在內部部署環境或 Azure 的 ASP.NET 網站設定效能、可用性及使用情況分析。" 
 	services="application-insights" 
     documentationCenter=".net"
@@ -89,7 +89,7 @@
 入口網站會開啟應用程式的遙測檢視︰![](./media/app-insights-asp-net/66.png)
 
 * 第一個遙測會出現在[即時計量串流](app-insights-metrics-explorer.md#live-metrics-stream)。
-* 個別事件會出現在 [搜尋] \(1)。資料可能需要數分鐘才會出現。按任一事件查看其屬性。
+* 個別事件會出現在 [搜尋] (1)。資料可能需要數分鐘才會出現。按任一事件查看其屬性。
 * 彙總度量會出現在圖表 (2)。資料可能需要一兩分鐘的時間才會出現在這裡。按一下任何圖表即可開啟內含更多詳細資料的刀鋒視窗。
 
 [深入了解在 Azure 入口網站中使用 Application Insights](app-insights-dashboards.md)。
@@ -117,11 +117,11 @@ Application Insights 會將應用程式的遙測傳送至 Application Insights �
 2. 在 [Azure 入口網站](https://portal.azure.com/)中建立 Application Insights 資源。這是您會看到您的資料的位置。它會擷取可識別資源的「檢測金鑰」。
 3. 在 `ApplicationInsights.config` 中插入檢測金鑰，讓 SDK 可以將遙測傳送至入口網站。
 
-如果您想要的話，可以為 [ASP.NET 4](app-insights-asp-net-manual.md) 或 [ASP.NET 核心](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Getting-Started)手動進行這些步驟。
+如果您想要的話，可以為 [ASP.NET 4](app-insights-windows-services.md) 或 [ASP.NET 核心](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Getting-Started)手動進行這些步驟。
 
 ### 若要升級至未來的 SDK 版本
 
-若要升級至[新版的 SDK](app-insights-release-notes-dotnet.md)，請再次開啟 NuGet 封裝管理員，並篩選出已安裝的封裝。選取 Microsoft.ApplicationInsights.Web 然後選擇 [升級]。
+若要升級至[新版的 SDK](https://github.com/Microsoft/ApplicationInsights-dotnet-server/releases)，請再次開啟 NuGet 封裝管理員，並篩選出已安裝的封裝。選取 Microsoft.ApplicationInsights.Web 然後選擇 [升級]。
 
 如果您已對 ApplicationInsights.config 進行任何的自訂，請在升級前儲存複本，並在升級後合併您的變更到新版本中。
 
@@ -135,4 +135,4 @@ Application Insights 會將應用程式的遙測傳送至 Application Insights �
 |**[使用 Application Insights 入口網站](app-insights-dashboards.md)**<br/>儀表板、功能強大的診斷和分析工具、警示、即時的應用程式相依性對應，以及遙測匯出等功能。 |![Visual studio](./media/app-insights-asp-net/62.png)
 |**[新增更多資料](app-insights-asp-net-more.md)**<br/>監視使用狀況、可用性、相依性、例外狀況。整合來自記錄架構的追蹤。撰寫自訂遙測。 | ![Visual studio](./media/app-insights-asp-net/64.png)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0907_2016-->

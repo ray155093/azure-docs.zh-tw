@@ -12,8 +12,8 @@
 	ms.workload="tbd"
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
-	ms.topic="hero-article"
-	ms.date="05/27/2016"
+	ms.topic="get-started-article"
+	ms.date="09/01/2016"
 	ms.author="sethm"/>
 
 # 使用 Azure 服務匯流排佇列的 .NET 多層應用程式
@@ -237,7 +237,7 @@
 
 2.  將類別命名為 **QueueConnector.cs**。按一下 [加入] 以建立類別。
 
-3.  現在，加入可封裝連線資訊、並初始化與服務匯流排佇列連線的程式碼。在 QueueConnector.cs 中，加入下列程式碼，並在 [命名空間] \(您的服務命名空間) 和 [yourKey] \(也就是您稍早從) [Azure 傳統入口網站][]中取得的 SAS 金鑰) 中輸入值。
+3.  現在，加入可封裝連線資訊、並初始化與服務匯流排佇列連線的程式碼。以下列程式碼取代 QueueConnector.cs 的整個內容，並將值輸入 `your Service Bus namespace` (命名空間名稱) 和 `yourKey`，後者是先前取自 Azure 入口網站的**主要金鑰**。
 
 	```
 	using System;
@@ -462,4 +462,4 @@
   [mutitierstorage]: https://code.msdn.microsoft.com/Windows-Azure-Multi-Tier-eadceb36
   
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0907_2016-->

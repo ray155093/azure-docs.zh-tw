@@ -1,7 +1,7 @@
 <properties
 	pageTitle="Azure 中的 Active Directory Federation Services | Microsoft Azure"
 	description="在本文件中，您將了解如何在 Azure 中部署 AD FS 以獲得高可用性。"
-    keywords="AD FS 簡介, Azure, Azure AD Connect 概觀, Azure 中的 AD FS, iaas, ADFS"
+    keywords="在 azure 中部署 AD FS, 部署 azure adfs, azure adfs, azure ad fs, 部署 adfs, 部署 ad fs, azure 中的 adfs, 在 azure 中部署 adfs, 在 azure 中部署 AD FS, adfs azure, AD FS 簡介, Azure, Azure 中的 AD FS, iaas, ADFS, 將 adfs 移至 azure"
 	services="active-directory"
 	documentationCenter=""
 	authors="anandyadavmsft"
@@ -261,8 +261,7 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 |DenyAllFromDMZ| 此規則會封鎖所有從 DMZ 到內部子網路的流量。規則 AllowHTTPSFromDMZ 已經會負責確保 HTTPS 通訊能夠完成，其他流量則會被此規則封鎖 | 輸入 |
 |DenyInternetOutbound| 不得存取網際網路 | 輸出 |
 
-[註解]: <> (![INT access rules (inbound)](./media/active-directory-aadconnect-azure-adfs/nsgintinbound.png))
-[註解]: <> (![INT access rules (outbound)](./media/active-directory-aadconnect-azure-adfs/nsgintoutbound.png))
+[註解]：<> (![INT 存取規則 (輸入)](./media/active-directory-aadconnect-azure-adfs/nsgintinbound.png)) [註解]：<> (![INT 存取規則 (輸出)](./media/active-directory-aadconnect-azure-adfs/nsgintoutbound.png))
  
 **9.2.保護 DMZ 子網路**
 
@@ -273,8 +272,7 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 |DenyingressexceptHTTPS| 封鎖 HTTPS 以外來自網際網路的任何流量 | 輸入 |
 |DenyOutToInternet|	HTTPS 以外流向網際網路的任何流量都會遭到封鎖 | 輸出 |
 
-[註解]: <> (![EXT access rules (inbound)](./media/active-directory-aadconnect-azure-adfs/nsgdmzinbound.png))
-[註解]: <> (![EXT access rules (outbound)](./media/active-directory-aadconnect-azure-adfs/nsgdmzoutbound.png))
+[註解]：<> (![EXT 存取規則 (輸入)](./media/active-directory-aadconnect-azure-adfs/nsgdmzinbound.png)) [註解]：<> (![EXT 存取規則 (輸出)](./media/active-directory-aadconnect-azure-adfs/nsgdmzoutbound.png))
 
 >[AZURE.NOTE] 如果需要用戶端使用者憑證驗證 (使用 X509 使用者憑證的 clientTLS 驗證)，則 AD FS 需要啟用 TCP 連接埠 49443 以供輸入存取。
 
@@ -304,5 +302,6 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 * [使用 Azure AD Connect 設定和管理 AD FS](active-directory-aadconnectfed-whatis.md)
+* [使用 Azure 流量管理員在 Azure 中部署高可用性跨地區 AD FS](active-directory-adfs-in-azure-with-azure-traffic-manager.md)
 
-<!------HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0907_2016-->

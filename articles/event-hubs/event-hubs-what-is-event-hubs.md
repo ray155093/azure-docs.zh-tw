@@ -30,8 +30,6 @@
 
 一些其他重要的事件中樞功能包括行動應用程式中的行為追蹤、來自 Web 伺服陣列的流量資訊、遊戲機遊戲中的遊戲內部事件擷取，或是從產業用機器或連接之車輛收集而來的遙測。
 
-不像[服務匯流排佇列和主題](../service-bus/service-bus-messaging-overview.md)，事件中樞著重於提供大規模的訊息串流處理。舉例來說，事件中樞功能與服務匯流排主題的相異之處在於，事件中樞功能極度偏向高輸送量和事件處理案例。因此，事件中樞不會實作一些可用於[主題](../service-bus/service-bus-fundamentals-hybrid-solutions.md#topics)的傳訊功能。如果您需要這些功能，主題仍是最佳選擇。
-
 ## 後續步驟
 
 如需事件中樞的詳細資訊，請參閱下列主題。
@@ -45,4 +43,4 @@
 [事件中樞教學課程]: event-hubs-csharp-ephcs-getstarted.md
 [使用事件中樞的完整範例應用程式]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0907_2016-->
