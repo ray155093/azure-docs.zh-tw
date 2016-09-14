@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
    ms.workload="NA"
-	ms.date="07/14/2016"
+	ms.date="08/29/2016"
 	ms.author="sstein" />
 
 # 概觀︰SQL Database 主動式異地複寫
@@ -39,6 +39,9 @@
 - [容錯移轉︰Azure 入口網站](sql-database-geo-replication-failover-portal.md)
 - [容錯移轉︰PowerShell](sql-database-geo-replication-failover-powershell.md)
 - [容錯移轉︰T-SQL](sql-database-geo-replication-failover-transact-sql.md)
+
+容錯移轉之後，請確認已在新的主要資料庫上設定伺服器和資料庫的驗證需求。如需詳細資訊，請參閱[災害復原後的 SQL Database 安全性](sql-database-geo-replication-security-config.md)。
+
 
 主動式異地複寫功能會實作可在相同 Microsoft Azure 區域或不同區域 (異地備援) 內提供資料庫備援的機制。主動式異地複寫以非同步方式從資料庫將已認可的交易複寫至不同伺服器上最多四個資料庫複本，而且使用讀取認可快照隔離 (RCSI) 進行隔離。當設定主動式異地複寫時，會在指定的伺服器上建立次要資料庫。原始的資料庫會變成主要資料庫。主要資料庫會以非同步方式將已認可的交易複寫到每一個次要資料庫。雖然次要資料可能會在任何指定時間點稍微落後主要資料庫，但是次要資料庫保證一定會和主要資料庫認可的變更保持交易一致性。
 
@@ -132,5 +135,6 @@
 - 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)。
 - 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)。
 - 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)。
+- 若要深入了解新的主要伺服器和資料庫的驗證需求，請參閱[災害復原後的 SQL Database 安全性](sql-database-geo-replication-security-config.md)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

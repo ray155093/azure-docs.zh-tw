@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="sqldb-migrate"
-   ms.date="06/07/2016"
+   ms.date="08/29/2016"
    ms.author="carlrab"/>
 
 # 在移轉至 Azure SQL Database 之前，先使用 SQL Server Management Studio 來判斷 SQL Database 相容性
@@ -38,15 +38,15 @@
 
 	![從 [工作] 功能表匯出資料層應用程式](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSSMS01.png)
 
-4. 在匯出精靈中，按一下 [下一步]，然後在 [設定] 索引標籤上，將匯出設定為將 BACPAC 檔案儲存到本機磁碟位置或 Azure Blob。如果您有沒有資料庫相容性問題，才會儲存 BACPAC 檔案。如果有相容性問題，它們將顯示在主控台上。
+4. 在匯出精靈中，按一下 [下一步]，然後在 [設定] 索引標籤上，將匯出設定為將 BACPAC 檔案儲存到本機磁碟位置或 Azure Blob。如果您有沒有資料庫相容性問題，才會儲存 BACPAC 檔案。如果有相容性問題，它們會顯示在主控台上。
 
 	![匯出設定](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSSMS02.png)
 
-5. 按一下 [進階] 索引標籤並清除 [全選] 核取方塊以略過匯出資料。此時我們的目標是只測試相容性。
+5. 若要略過匯出資料，請按一下 [進階] 索引標籤並清除 [全選] 核取方塊。此時我們的目標是只測試相容性。
 
 	![匯出設定](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSSMS03.png)
 
-6. 然後依序按一下 [下一步] 和 [完成]。資料庫相容性問題 (如果有的話) 將會在精靈驗證結構描述之後出現。
+6. 然後依序按一下 [下一步] 和 [完成]。資料庫相容性問題 (如果有的話) 會在精靈驗證結構描述之後出現。
 
 	![匯出設定](./media/sql-database-cloud-migrate/TestForCompatibilityUsingSSMS04.png)
 
@@ -67,4 +67,4 @@
 - [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
 - [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0831_2016-->

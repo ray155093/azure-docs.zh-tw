@@ -6,18 +6,18 @@
 
     ![找出 IP 資源](./media/virtual-machines-common-portal-create-fqdn/locatePublicIP.PNG)
 
-2.  請注意，公用 IP 的 DNS 名稱是空白的。按一下 [公用 IP] 刀鋒視窗的 [所有設定]。
+2.  請注意，公用 IP 的 DNS 名稱是空白的。按一下 [公用 IP] 刀鋒視窗中的 [組態]。
 
     ![設定 IP](./media/virtual-machines-common-portal-create-fqdn/settingsIP.PNG)
 
-3.  開啟 [公用 IP 設定] 中的 [組態] 索引標籤。輸入想要的 DNS 名稱標籤，然後 [儲存] 此組態。
+3.  輸入想要的 DNS 名稱標籤，然後 [儲存] 此組態。
 
     ![輸入 DNS 名稱標籤](./media/virtual-machines-common-portal-create-fqdn/dnsNameLabel.PNG)
 
-    公用 IP 資源隨即會在其刀鋒視窗上顯示這個新的 DNS 標籤。
+    公用 IP 資源現在會在其刀鋒視窗上顯示這個新的 DNS 標籤。
 
 4.  關閉 [公用 IP] 刀鋒視窗，然後返回入口網站中的虛擬機器刀鋒視窗。請確認 DNS 名稱/FQDN 顯示在公用 IP 資源的 IP 位址旁邊。
 
     ![FQDN 已建立](./media/virtual-machines-common-portal-create-fqdn/fqdnCreated.PNG)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0831_2016-->

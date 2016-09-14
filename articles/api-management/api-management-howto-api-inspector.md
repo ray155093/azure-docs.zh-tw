@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/09/2016" 
+	ms.date="08/24/2016" 
 	ms.author="sdanie"/>
 
 # 如何在 Azure API 管理中使用 API 偵測器來追蹤呼叫
@@ -229,7 +229,6 @@ API 管理提供 API 偵測器工具協助您進行 API 的偵錯和疑難排解
 
 ## <a name="next-steps"> </a>後續步驟
 
--	在[開始使用進階 API 組態][]教學課程中查看其他主題。
 -	請觀看[雲端報導第 177 集：更多 API 管理功能](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/)中追蹤原則運算式的示範。向前快轉到 21:00 來查看示範。
 
 >[AZURE.VIDEO episode-177-more-api-management-features-with-vlad-vinogradsky]
@@ -244,7 +243,6 @@ API 管理提供 API 偵測器工具協助您進行 API 的偵錯和疑難排解
 
 [開始使用 Azure API 管理教學課程]: api-management-get-started.md
 [建立 API 管理服務執行個體]: api-management-get-started.md#create-service-instance
-[開始使用進階 API 組態]: api-management-get-started-advanced.md
 [Azure Classic Portal]: https://manage.windowsazure.com/
 
 
@@ -261,4 +259,4 @@ API 管理提供 API 偵測器工具協助您進行 API 的偵錯和疑難排解
 
  
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0831_2016-->

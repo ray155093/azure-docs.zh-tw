@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/01/2016"
+	ms.date="08/25/2016"
 	ms.author="tarcher"/>
 
 # 將 Git 構件儲存機制加入實驗室
 
 > [AZURE.NOTE] 檢視本文隨附的影片：[如何在 DevTest Labs 中新增私人構件儲存機制至實驗室](/documentation/videos/how-to-add-your-private-artifacts-repository-in-a-devtest-lab)
 
-## 概觀
+## Overview
 
 根據預設，實驗室包含來自官方 Azure DevTest Labs 構件儲存機制的構件。您可以將 Git 構件儲存機制加入您的實驗室，以包含小組建立的構件 。儲存機制可以裝載在 [GitHub](https://github.com) 或 [Visual Studio Team Services (VSTS)](https://visualstudio.com) 上。
 
@@ -117,8 +117,10 @@
     3. 在構件儲存機制中輸入儲存的**個人存取權杖**。
     4. 選取 [**儲存**]。
 
+[AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
+
 ## 相關部落格文章
 - [如何在 AzureDevTestLabs 疑難排解失敗的構件](http://www.visualstudiogeeks.com/blog/DevOps/How-to-troubleshoot-failing-artifacts-in-AzureDevTestLabs)
 - [在 Azure 研發測試實驗室使用 ARM 範本將 VM 加入至現有 AD 網域](http://www.visualstudiogeeks.com/blog/DevOps/Join-a-VM-to-existing-AD-domain-using-ARM-template-AzureDevTestLabs)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0831_2016-->

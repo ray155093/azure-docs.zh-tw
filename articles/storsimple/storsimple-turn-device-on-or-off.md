@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="08/17/2016"
+   ms.date="08/23/2016"
    ms.author="alkohli" />
 
 # 開啟或關閉您的 StorSimple 裝置 
@@ -189,39 +189,13 @@ StorSimple 8600 型同時具有主要機箱和 EBOD 機箱。這需要使用纜�
 
 ### 具有主要機箱的裝置 <a name="8100a"> 
 
-目前沒有方法從 Azure 傳統入口網站關閉執行中的 StorSimple 裝置。關閉它的唯一方式是使用 Windows PowerShell for StorSimple。若要以有條理的方式關閉裝置，請進入 Windows PowerShell for StorSimple 並依照下列步驟進行。
+若要依序且以受控制的方式關閉裝置，您可以透過 Azure 傳統入口網站或透過 Windows PowerShell for StorSimple 來執行。
 
 >[AZURE.IMPORTANT] 請勿使用裝置背面的電源按鈕關閉執行中的裝置。
 >
 >關閉裝置之前，請確定所有的裝置元件狀態良好。在 Azure 傳統入口網站中，瀏覽至 [裝置] > [維護] > [硬體狀態]，並確認所有的元件狀態是綠色的。這只適用於狀態良好的系統。如果系統正在關閉中以更換故障的元件，您會在 [硬體狀態] 中看到個別元件的失敗 (紅色) 或降級 (黃色) 狀態。
 
-透過裝置序列主控台或 Windows PowerShell 遠端處理，您可以連線至 Windows PowerShell for StorSimple。在您進入 Windows PowerShell for StorSimple 之後，執行下列步驟以關閉執行中的裝置。
-
-#### 若要關閉執行中的裝置
-
-1. 連接至裝置的序列主控台。
-
-2. 在出現的功能表中，確認您連接的控制器是 [待命] 控制器。如果不是待命控制器，請中斷控制器連接，然後連接至其他控制器。
-
-3. 在序列主控台功能表中，選擇 [選項 1] 以完整的存取權限登入待命控制器。
-
-4. 在出現提示時輸入：
-
-    `Stop-HCSController`
-
-    這應該會關閉目前的待命控制器。
-
-    >[AZURE.IMPORTANT] 請等候控制器完全關閉，再繼續進行下一步驟。
-
-5. 若要確認關閉已經完成，請檢查裝置背面。控制器的故障 LED 燈號應該是持續的紅燈。
-
-6. 透過序列主控台連接至作用中的控制器，並依照相同步驟將它關閉。
-
-7. 完全關閉兩個控制器之後，兩個控制器上的狀態 LED 燈號應該是閃爍的紅燈。
-
-8. 如果您需要在此時將裝置完全關閉，請將電源和冷卻模組 (PCM) 上的電源開關切換為 OFF 的位置。
-
-9. 若要確認該裝置已完全關閉，請檢查裝置背面的所有燈號都已關閉。
+存取 Windows PowerShell for StorSimple 或 Azure 傳統入口網站之後，請依照[關閉 StorSimple 裝置](storsimple-manage-device-controller.md#shut-down-a-storsimple-device)中的步驟進行。
 
 ### 具有 EBOD 機箱的裝置<a name="8600a">
 
@@ -229,7 +203,7 @@ StorSimple 8600 型同時具有主要機箱和 EBOD 機箱。這需要使用纜�
 
 #### 若要關閉具有 EBOD 機箱的執行中裝置
 
-1. 請依照[只有主要機箱的裝置](#8100a)中所列的步驟進行。
+1. 針對主要機箱，請依照[關閉 StorSimple 裝置](storsimple-manage-device-controller.md#shut-down-a-storsimple-device)中列出的所有步驟執行。
 
 2. 關閉主要機箱之後，將電源和冷卻模組 (PCM) 的開關都切換至 OFF 以關閉 EBOD。
 
@@ -241,4 +215,4 @@ StorSimple 8600 型同時具有主要機箱和 EBOD 機箱。這需要使用纜�
 
 如果您在開啟或關閉 StorSimple 裝置時發生問題，請[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

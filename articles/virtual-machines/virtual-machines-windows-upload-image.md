@@ -33,7 +33,7 @@
 
 - **執行 Windows 的虛擬機器** - 有許多工具可讓您在內部部署建立虛擬機器。如需範例，請參閱[安裝 Hyper-V 角色及設定虛擬機器](http://technet.microsoft.com/library/hh846766.aspx)。如需有關 Azure 上支援哪些 Windows 作業系統的資訊，請參閱 [Microsoft Azure 虛擬機器的 Microsoft 伺服器軟體支援](https://support.microsoft.com/kb/2721672)。
 
-- 請確定 VM 上執行的伺服器角色支援 Sysprep。如需詳細資訊，請參閱 [Sysprep Support for Server Roles (伺服器角色的 Sysprep 支援)](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)。
+- 請確定 VM 上執行的伺服器角色支援 Sysprep。如需詳細資訊，請參閱 [Sysprep Support for Server Roles (伺服器角色的 Sysprep 支援)](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)。執行 Sysprep 前，請先備份 VM。
 
 
 ## 確定 VM 的檔案格式正確
@@ -254,4 +254,4 @@
 
 若要使用 Azure PowerShell 來管理新的虛擬機器，請參閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

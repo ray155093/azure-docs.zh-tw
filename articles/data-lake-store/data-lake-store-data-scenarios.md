@@ -40,7 +40,7 @@
 | 資料來源 | 內嵌方式 |
 |--------------------|----------------------------------------------------------------------------------------|
 | 本機電腦 | <ul> <li>[Azure 入口網站](/data-lake-store-get-started-portal.md)</li> <li>[Azure PowerShell](data-lake-store-get-started-powershell.md)</li> <li>[Azure 跨平台 CLI](data-lake-store-get-started-cli.md)</li> <li>[使用適用於 Visual Studio 的 Data Lake 工具](../data-lake-analytics/data-lake-analytics-data-lake-tools-get-started.md#upload-source-data-files) </li></ul> |
-| Azure 儲存體 Blob | <ul> <li>[Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md#sample-copy-data-from-azure-blob-to-azure-data-lake-store)</li> <li>[AdlCopy 工具](data-lake-store-copy-data-azure-storage-blob.md)</li> </ul> |
+| Azure 儲存體 Blob | <ul> <li>[Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md#sample-copy-data-from-azure-blob-to-azure-data-lake-store)</li> <li>[AdlCopy 工具](data-lake-store-copy-data-azure-storage-blob.md)</li><li>[在 HDInsight 叢集上執行的 DistCp](data-lake-store-copy-data-wasb-distcp.md)</li> </ul> |
 
  
 ### 串流資料
@@ -49,9 +49,9 @@
 
 以下是您可以使用的工具︰
  
-* [Azure 串流分析](../stream-analytics-data-lake-output)：內嵌到事件中樞的事件可以使用 Azure Data Lake Store 輸出寫入 Azure Data Lake。
-* [Azure HDInsight Storm](../hdinsight/hdinsight-storm-write-data-lake-store.md)：您可以從 Storm 叢集將資料直接寫入 Data Lake Store。
-* [EventProcessorHost](../event-hubs/event-hubs-csharp-ephcs-getstarted.md#receive-messages-with-eventprocessorhost)：您可以接收來自事件中樞的事件，然後使用[Data Lake Store .NET SDK](data-lake-store-get-started-net-sdk.md) 寫入 Data Lake Store。
+* [Azure 串流分析](../stream-analytics-data-lake-output) - 內嵌到「事件中樞」的事件可以透過 Azure Data Lake Store 輸出被寫入 Azure Data Lake 中。
+* [Azure HDInsight Storm](../hdinsight/hdinsight-storm-write-data-lake-store.md) - 您可以從 Storm 叢集將資料直接寫入 Data Lake Store 中。
+* [EventProcessorHost](../event-hubs/event-hubs-csharp-ephcs-getstarted.md#receive-messages-with-eventprocessorhost) - 您可以從「事件中樞」接收事件，然後使用 [Data Lake Store .NET SDK](data-lake-store-get-started-net-sdk.md) 將事件寫入 Data Lake Store 中。
 
 ### 關聯式資料
 
@@ -88,7 +88,7 @@
 |-----------|---------|--------------|-----------------|
 | 使用 Azure Data Factory (ADF)，將資料從 Hadoop 叢集直接複製到 Azure Data Lake Store | [ADF 支援 HDFS 做為資料來源](../data-factory/data-factory-hdfs-connector.md) | ADF 針對 HDFS 提供全新支援，以及一流的端對端管理與監視 | 需要將資料管理閘道部署於內部部署或 IaaS 叢集中 |
 | 從 Hadoop 將資料匯出為檔案。然後使用適當的機制，將檔案複製到 Azure Data Lake Store。 | 您可以使用下列方法，將檔案複製到 Azure Data Lake Store︰<ul><li>[適用於 Windows 作業系統的 Azure PowerShell](data-lake-store-get-started-powershell.md)</li><li>[適用於非 Windows 作業系統的 Azure 跨平台 CLI](data-lake-store-get-started-cli.md)</li><li>使用任何 Data Lake Store SDK 的自訂應用程式</li></ul> | 快速開始使用。可以執行自訂的上傳 | 牽涉到多種技術的多步驟程序。考慮到自訂的工具性質，管理和監視會在經過一段時間之後逐漸變成是一項挑戰 |
-| 使用 Distcp，將資料從 Hadoop 複製到 Azure 儲存體。然後使用適當的機制，將資料從 Azure 儲存體複製到 Data Lake Store。 | 您也可以使用下列方法，將資料從 Azure 儲存體複製到 Data Lake Store︰<ul><li>[Azure Data Factory](../data-factory/data-factory-data-movement-activities.md)</li><li>[AdlCopy 工具](data-lake-store-copy-data-azure-storage-blob.md)</li><li>[在 HDInsight 叢集上執行的 Apache DistCp](data-lake-store-copy-data-wasb-distcp.md)</li></ul>| 您可以使用開放原始碼工具。 | 牽涉到多種技術的多步驟程序 |
+| 使用 Distcp，將資料從 Hadoop 複製到 Azure 儲存體。然後使用適當的機制，將資料從 Azure 儲存體複製到 Data Lake Store。 | 您可以使用下列方法，將資料從「Azure 儲存體」複製到 Data Lake Store︰<ul><li>[Azure Data Factory](../data-factory/data-factory-data-movement-activities.md)</li><li>[AdlCopy 工具](data-lake-store-copy-data-azure-storage-blob.md)</li><li>[在 HDInsight 叢集上執行的 Apache DistCp](data-lake-store-copy-data-wasb-distcp.md)</li></ul>| 您可以使用開放原始碼工具。 | 牽涉到多種技術的多步驟程序 |
 
 ### 大型資料集
 
@@ -97,7 +97,7 @@
 * **使用 Azure ExpressRoute**。Azure ExpressRoute 可讓您在 Azure 資料中心與內部部署的基礎結構之間建立私人連線。這是傳輸大量資料的可靠選項。如需詳細資訊，請參閱 [Azure ExpressRoute 文件](../expressroute/expressroute-introduction.md)。
 
 
-* **「離線」上傳資料**。如果因為任何原因而無法使用 Azure ExpressRoute，您可以使用 [Azure 匯入/匯出服務](../storage/storage-import-export-service.md)來將容納資料的硬碟運送到 Azure 資料中心。您的資料會先上傳到 Azure 儲存體 Blob。接下來，您可以使用 [Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md#sample-copy-data-from-azure-blob-to-azure-data-lake-store) 或 [AdlCopy 工具](data-lake-store-copy-data-azure-storage-blob.md)，將資料從 Azure 儲存體 Blob 複製到 Data Lake Store。
+* **「離線」上傳資料**。如果因為任何原因而無法使用 Azure ExpressRoute，您可以使用 [Azure 匯入/匯出服務](../storage/storage-import-export-service.md)，將含有您資料的硬碟送到 Azure 資料中心。您的資料會先上傳到 Azure 儲存體 Blob。接下來，您可以使用 [Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md#sample-copy-data-from-azure-blob-to-azure-data-lake-store) 或 [AdlCopy 工具](data-lake-store-copy-data-azure-storage-blob.md)，將資料從「Azure 儲存體 Blob」複製到 Data Lake Store。
 
 	>[AZURE.NOTE] 在使用匯入/匯出服務時，運送到 Azure 資料中心之磁碟上的檔案大小不得大於 200 GB。
 
@@ -143,6 +143,6 @@
 ![將 Data Lake 存放區中的資料視覺化](./media/data-lake-store-data-scenarios/visualize-data.png "將 Data Lake 存放區中的資料視覺化")
 
 * 您可以從使用 [Azure Data Factory 將資料從 Data Lake Store 移到 Azure SQL 資料倉儲](../data-factory/data-factory-data-movement-activities.md#supported-data-stores)開始
-* 之後，您可以[整合 Power BI 與 Azure SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-integrate-power-bi.md)，以視覺化方式呈現資料。
+* 之後，您可以[將 Power BI 與 Azure SQL 資料倉儲整合](../sql-data-warehouse/sql-data-warehouse-integrate-power-bi.md)，以視覺化方式呈現資料。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0831_2016-->

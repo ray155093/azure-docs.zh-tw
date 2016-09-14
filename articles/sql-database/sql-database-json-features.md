@@ -3,7 +3,7 @@
 	description="Azure SQL Database 可讓您剖析、查詢及格式化採用「JavaScript 物件標記法」(JSON) 的資料。"
 	services="sql-database"
 	documentationCenter=""
-	authors="carlrabeler"
+	authors="jovanpop-msft"
 	manager="jhubbard"
 	editor=""/>
 
@@ -11,7 +11,7 @@
 	ms.service="sql-database"
 	ms.devlang="NA"
 	ms.date="08/17/2016"
-	ms.author="carlrab"
+	ms.author="jovanpop"
    ms.workload="NA"
 	ms.topic="article"
 	ms.tgt_pltfrm="NA"/>
@@ -208,4 +208,4 @@ END
 
 若要了解將 JSON 整合到您應用程式中的各種案例，請參閱這個 [Channel 9 影片](https://channel9.msdn.com/Events/DataDriven/SQLServer2016/JSON-as-a-bridge-betwen-NoSQL-and-relational-worlds)中的示範，或從 [JSON 部落格文章](http://blogs.msdn.com/b/sqlserverstorageengine/archive/tags/json/)中尋找符合您使用案例的情況。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

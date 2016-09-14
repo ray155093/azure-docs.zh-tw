@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/17/2016" 
+	ms.date="08/25/2016" 
 	ms.author="nitinme"/>
 
 # 在 HDInsight Hadoop 叢集上安裝和使用 Hue
@@ -137,4 +137,4 @@ Hue 是一組 Web 應用程式，用來與 Hadoop 叢集互動。您可以使用
 [hdinsight-provision]: hdinsight-provision-clusters-linux.md
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster-linux.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="08/29/2016"
+	ms.date="09/01/2016"
 	ms.author="anhoh"/>
 
 # NoSQL 教學課程：建置 DocumentDB C# 主控台應用程式
@@ -25,7 +25,7 @@
 
 歡迎使用 Azure DocumentDB .NET SDK 的 NoSQL 教學課程！ 取得快速入門專案或完成本教學課程之後，您會有一個主控台應用程式可用來建立和查詢 DocumentDB 資源。
 
-- **[快速入門](#quickstart)**︰下載範例專案、新增您的連線資訊，而且在 5 分鐘內執行 DocumentDB 應用程式。
+- **[快速入門](#quickstart)**︰下載範例專案、新增您的連線資訊，而且在 10 分鐘內執行 DocumentDB 應用程式。
 - **[教學課程](#tutorial)**︰在 30 分鐘內從頭開始建置快速入門應用程式。
 
 ## 必要條件
@@ -36,7 +36,7 @@
 
 ## 快速入門
 
-1. 從 [GitHub](https://github.com/Azure-Samples/documentdb-dotnet-getting-started-quickstart/archive/master.zip) 下載範例專案。
+1. 從 [GitHub](https://github.com/Azure-Samples/documentdb-dotnet-getting-started-quickstart/archive/master.zip) 下載範例專案 .zip，或複製 [documentdb-dotnet-getting-started-quickstart](https://github.com/Azure-Samples/documentdb-dotnet-getting-started-quickstart) 儲存機制。
 2. 使用 Azure 入口網站[建立 DocumentDB 帳戶](documentdb-create-account.md)。
 3. 在 App.config 檔案中，以從 [Azure 入口網站](https://portal.azure.com/)擷取的值取代 EndpointUri 和 PrimaryKey 值，方法是瀏覽至 [DocumentDB (NoSQL)] 刀鋒視窗，按一下 [帳戶名稱]，然後按一下資源功能表上的 [金鑰]。![在 App.config 中要取代的 EndpointUri 和 PrimaryKey 值的螢幕擷取畫面](./media/documentdb-get-started-quickstart/nosql-tutorial-documentdb-keys.png)
 4. 建置專案。主控台視窗會顯示正在建立、查詢而後清除的新資源。
@@ -599,4 +599,4 @@ DocumentDB 支援刪除 JSON 文件。
 [documentdb-manage]: documentdb-manage.md
 [keys]: media/documentdb-get-started-quickstart/nosql-tutorial-keys.png
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

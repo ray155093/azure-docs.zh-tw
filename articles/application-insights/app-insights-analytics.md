@@ -1,6 +1,6 @@
 <properties 
 	pageTitle="強大的 Application Insights 搜尋工具 | Microsoft Azure" 
-	description="Analytics 概觀，強大的 Application Insights 診斷搜尋工具。" 
+	description="分析概觀，強大的 Application Insights 診斷搜尋工具。" 
 	services="application-insights" 
     documentationCenter=""
 	authors="alancameronwills" 
@@ -16,10 +16,10 @@
 	ms.author="awills"/>
 
 
-# Application Insights 的 Analytics
+# Application Insights 中的分析
 
 
-[分析](app-insights-analytics.md) 是 [Application Insights](app-insights-overview.md) 的強大搜尋功能。這些頁面說明 Analytics 查詢語言。
+[分析](app-insights-analytics.md)是 [Application Insights](app-insights-overview.md) 的強大搜尋功能。這些頁面說明分析查詢語言。
 
 * **[觀看簡介影片](https://applicationanalytics-media.azureedge.net/home_page_video.mp4)**。
 * **[在我們的模擬資料上測試分析](https://analytics.applicationinsights.io/demo)**，如果您的應用程式還未傳送資料至 Application Insights。
@@ -63,7 +63,6 @@
 
 
 
->[AZURE.NOTE] 我們建議您從[語言教學](app-insights-analytics-tour.md)開始。
 
 
 
@@ -84,4 +83,10 @@
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0727_2016-->
+
+## 後續步驟
+
+
+* 我們建議您從[語言教學](app-insights-analytics-tour.md)開始。
+
+<!---HONumber=AcomDC_0831_2016-->

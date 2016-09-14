@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/22/2016"
+   ms.date="08/30/2016"
    ms.author="rortloff;barbkess;sonyama"/>
 
 # 保護 SQL 資料倉儲中的資料庫
@@ -41,18 +41,18 @@
 
 ## 驗證
 
-「驗證」是指連線到資料庫時如何證明身分識別。SQL 資料倉儲目前支援使用使用者名稱和密碼的 SQL Server 驗證，以及 Azure Active Directory 的預覽。
+「驗證」是指連線到資料庫時如何證明身分識別。SQL 資料倉儲目前支援使用使用者名稱和密碼的 SQL Server 驗證，以及 Azure Active Directory。
 
 當您為資料庫建立邏輯伺服器時，採取使用者名稱和密碼指定了「伺服器管理員」登入。使用這些認證，您就可以透過 SQL Server 驗證，使用資料庫擁有者或 "dbo" 的身分驗證該伺服器上的任何資料庫。
 
 不過，最佳作法是，貴組織的使用者應該使用不同的帳戶來驗證。因為萬一應用程式的程式碼容易受到 SQL 插入式攻擊，您就可以限制授與應用程式的權限，並降低惡意活動的風險。
 
-若要建立 SQL Server 驗證使用者，請使用伺服器管理員登入連接到您伺服器上的 **master** 資料庫，並建立新的伺服器登入。
+若要建立 SQL Server 驗證使用者，請使用伺服器管理員登入連接到您伺服器上的 **master** 資料庫，並建立新的伺服器登入。此外，在主要資料庫中建立一個使用者做為 Azure SQL 資料倉儲使用者是不錯的主意。在主要資料庫中建立使用者，使用者就能使用類似 SSMS 的工具登入而不用指定資料庫名稱。它也可讓使用者使用物件總管來檢視 SQL Server 上的所有資料庫。
 
 ```sql
 -- Connect to master database and create a login
-CREATE LOGIN ApplicationLogin WITH PASSWORD = 'strong_password';
-
+CREATE LOGIN ApplicationLogin WITH PASSWORD = 'Str0ng_password';
+CREATE USER ApplicationUser FOR LOGIN ApplicationLogin;
 ```
 
 然後使用您的伺服器管理員登入，連接到 **SQL 資料倉儲資料庫**，並根據您剛建立的伺服器登入建立資料庫使用者。
@@ -60,10 +60,9 @@ CREATE LOGIN ApplicationLogin WITH PASSWORD = 'strong_password';
 ```sql
 -- Connect to SQL DW database and create a database user
 CREATE USER ApplicationUser FOR LOGIN ApplicationLogin;
-
 ```
 
-如需有關驗證 SQL Database 的詳細資訊，請參閱[管理 Azure SQL Database 中的資料庫和登入][]。如需更多將 Azure AD 預覽用於 SQL 資料倉儲的詳細資料，請參閱[使用 Azure Active Directory 驗證連線到 SQL 資料倉儲][]。
+如果使用者將會進行其他作業，例如建立登入或建立新資料庫，則也需要為他們指派主要資料庫中的 `Loginmanager` 和 `dbmanager` 角色。如需有關這些額外角色及向 SQL Database 驗證的詳細資訊，請參閱[管理 Azure SQL Database 中的資料庫和登入][]。如需更多將 Azure AD 用於 SQL 資料倉儲的詳細資料，請參閱[使用 Azure Active Directory 驗證連線到 SQL 資料倉儲][]。
 
 
 ## Authorization
@@ -91,9 +90,7 @@ Azure SQL 資料倉儲可以使用[透明資料加密][]，透過加密「靜止
 
 
 ```sql
-
 ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
-
 ```
 
 您也可以從 [Azure 入口網站][]中的資料庫設定，啟用透明資料加密。如需詳細資訊，請參閱[開始使用透明資料加密 (TDE)][]。
@@ -103,6 +100,7 @@ ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 稽核和追蹤資料庫事件可協助您遵循法規，並找出可疑的活動。SQL 資料倉儲稽核可讓您將資料庫中的事件記錄到 Azure 儲存體帳戶中的稽核記錄。SQL 資料倉儲稽核也整合了 Microsoft Power BI，具備向下鑽研報表和分析的功能。如需詳細資訊，請參閱[開始使用 Azure Database 稽核][]。
 
 ## 後續步驟
+
 如需使用不同通訊協定連接到 SQL 資料倉儲的詳細資料和範例，請參閱[連接到 SQL 資料倉儲][]。
 
 <!--Image references-->
@@ -127,4 +125,4 @@ ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 <!--Other Web references-->
 [Azure 入口網站中的角色型存取控制]: https://azure.microsoft.com/documentation/articles/role-based-access-control-configure
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

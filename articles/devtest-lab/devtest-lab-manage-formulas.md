@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/01/2016"
+	ms.date="08/25/2016"
 	ms.author="tarcher"/>
 
 # 管理研發/測試實驗室公式來建立 VM
@@ -142,6 +142,8 @@
 
     ![公式操作功能表](./media/devtest-lab-manage-formulas/formula-delete-confirmation.png)
 
+[AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
+
 ## 相關部落格文章
 
 - [自訂映像或公式？](https://blogs.msdn.microsoft.com/devtestlab/2016/04/06/custom-images-or-formulas/)
@@ -149,4 +151,4 @@
 ## 後續步驟
 建立要在建立 VM 時使用的公式之後，下一個步驟就是[將 VM 加入實驗室](./devtest-lab-add-vm-with-artifacts.md)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0831_2016-->

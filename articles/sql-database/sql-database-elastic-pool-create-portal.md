@@ -29,7 +29,7 @@
 
 您可以將多個集區新增至伺服器，但無法將來自不同伺服器的資料庫新增到相同的集區。若要建立集區，您至少需要一個位於 V12 伺服器的資料庫。如果沒有這樣的資料庫，請參閱[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。您可以建立只有一個資料庫的集區，但具有多個資料庫的集區才符合成本效益。請參閱[彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
 
-> [AZURE.NOTE] 集區只適用於 SQL Database V12 伺服器。如果您在 V11 伺服器上有一些資料庫，您可在 V12 伺服器上 [使用 PowerShell 指令碼將它們識別為集區的候選項目](sql-database-elastic-pool-database-assessment-powershell.md)，然後在單一步驟中[使用 PowerShell 升級至 V12 並建立集區](sql-database-upgrade-server-powershell.md)。
+> [AZURE.NOTE] 彈性集區已在所有 Azure 區域中正式運作 (GA)，但美國中北部和印度西部除外，在這些區域目前是提供預覽版。我們將儘速在這些區域提供彈性集區的 GA。此外，彈性集區目前不支援使用[記憶體內部 OLTP 或記憶體內部分析](sql-database-in-memory.md)的資料庫。
 
 ## 步驟 1：建立新的集區
 
@@ -37,7 +37,7 @@
 
 > [AZURE.NOTE] 不論您是否已經有伺服器，您也可以從 [SQL 彈性集區] 刀鋒視窗建立新的集區 (在入口網站左側的清單底下，按一下 [瀏覽] **>** [SQL 彈性集區])。按一下 [SQL 彈性集區] 刀鋒視窗上的 [+ 新增]，可提供在集區佈建工作流程期間建立新伺服器的步驟。
 
-1. 在 [Azure 入口網站](http://portal.azure.com/)左側的清單底下，按一下 [瀏覽] **>** [SQL 伺服器]，然後按一下要加入集區之資料庫所在的伺服器。
+1. 在 [Azure 入口網站](http://portal.azure.com/)左側的清單底下，按一下 [瀏覽] **>** [SQL 伺服器]，然後按一下要新增集區之資料庫所在的伺服器。
 2. 按一下 [新增集區]。
 
     ![將集區加入伺服器](./media/sql-database-elastic-pool-create-portal/new-pool.png)
@@ -48,7 +48,7 @@
 
     ![建議的集區](./media/sql-database-elastic-pool-create-portal/recommended-pool.png)
 
-    [彈性資料庫集區] 刀鋒視窗隨即出現，以供您設定集區。如果您在前一個步驟中所按的是 [新增集區]，入口網站會在 [定價層] 底下選擇 [標準集區]，並為該集區選擇唯一 [名稱] 和預設組態。如果您選擇建議的集區，則已預先為集區選擇好建議的定價層和組態，不過您仍可加以變更。
+	[彈性資料庫集區] 刀鋒視窗隨即出現，以供您設定集區。如果您在前一個步驟中所按的是 [新增集區]，入口網站會在 [定價層] 底下選擇 [標準集區]，並為該集區選擇唯一 [名稱] 和預設組態。如果您選擇建議的集區，則已預先為集區選擇好建議的定價層和組態，不過您仍可加以變更。
 
     ![設定彈性集區](./media/sql-database-elastic-pool-create-portal/configure-elastic-pool.png)
 
@@ -75,7 +75,7 @@
 
     如果您要使用的資料庫有足夠的歷史使用量遙測資料，[預估的 eDTU 和 GB 使用量] 圖形和 [實際的 eDTU 使用量] 長條圖便會更新以幫助您決定要使用的組態。此外，該服務可能會提供您建議訊息，協助您決定集區的適當大小。請參閱[動態建議](#dynamic-recommendations)。
 
-3. 使用 [設定集區] 頁面上的控制項，探索設定及設定您的集區。如需各服務層限制的詳細資訊，請參閱[彈性資料庫集區參考](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases)；如需如何決定集區適當大小的詳細指引，則請參閱[彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。如需集區設定的詳細資訊，請參閱[彈性資料庫集區屬性](sql-database-elastic-pool.md#elastic-database-pool-properties)。
+3. 使用 [設定集區] 頁面上的控制項，探索設定及設定您的集區。如需各服務層限制的詳細資訊，請參閱[彈性集區限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools-and-elastic-databases)；如需如何決定集區適當大小的詳細指引，則請參閱[彈性資料庫集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。如需集區設定的詳細資訊，請參閱[彈性資料庫集區屬性](sql-database-elastic-pool.md#elastic-database-pool-properties)。
 
 	![設定彈性集區](./media/sql-database-elastic-pool-create-portal/configure-performance.png)
 
@@ -113,4 +113,4 @@ SQL Database 服務會評估使用量的歷史資料，並為您推薦一或多�
 - [使用 C# 管理 SQL Database 彈性集區](sql-database-elastic-pool-manage-csharp.md)
 - [使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0907_2016-->

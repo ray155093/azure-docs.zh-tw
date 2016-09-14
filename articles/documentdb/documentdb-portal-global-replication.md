@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/15/2016"
+	ms.date="08/26/2016"
 	ms.author="mimig"/>
 
 # 如何使用 Azure 入口網站執行 DocumentDB 全球資料庫複寫
@@ -31,11 +31,10 @@
 
 1. 在 [Azure 入口網站](https://portal.azure.com/)的動態工具列中，按一下 [DocumentDB 帳戶]。
 2. 在 [DocumentDB 帳戶] 刀鋒視窗中，選取要修改的資料庫帳戶。
-3. 在帳戶刀鋒視窗中，按一下 [新增/移除區域]。![在 [DocumentDB 帳戶] > [新增/移除區域] 下新增區域][1]
+3. 在帳戶刀鋒視窗中，按一下功能表中的 [新增/移除區域]。
+4. 在 [新增/移除區域] 刀鋒視窗中，選取要新增或移除的區域，然後按一下 [確定]。新增區域需要費用，如需詳細資訊，請參閱[定價頁面](https://azure.microsoft.com/pricing/details/documentdb/)或[使用 DocumentDB 全球發佈資料](documentdb-distribute-data-globally.md)一文。
 
-5. 在 [新增/移除區域] 刀鋒視窗中，選取要新增或移除的區域，然後按一下 [確定]。新增區域需要費用，如需詳細資訊，請參閱[定價頁面](https://azure.microsoft.com/pricing/details/documentdb/)或[使用 DocumentDB 全球發佈資料](documentdb-distribute-data-globally.md)一文。
-
-    ![按一下地圖中的區域以新增或移除它們][2]
+    ![按一下地圖中的區域以新增或移除它們][1]
 
 ### 選取全球資料庫區域
 
@@ -54,9 +53,9 @@ While all regions associated with your DocumentDB database account can serve rea
 1. In the **DocumentDB Account** blade, select the database account to modify.
 2. In the account blade, if the **All Settings** blade is not already opened, click **All Settings**.
 3. In the **All Settings** blade, click **Write Region Priority**.
-    ![Change the write region under DocumentDB Account > Settings > Add/Remove Regions][3]
+    ![Change the write region under DocumentDB Account > Settings > Add/Remove Regions][2]
 4. Click and drag regions to order the list of regions. The first region in the list of regions is the active write region.
-    ![Change the write region by reordering the region list under DocumentDB Account > Settings > Change Write Regions][4]
+    ![Change the write region by reordering the region list under DocumentDB Account > Settings > Change Write Regions][3]
 -->
 
 ## <a id="next"></a>接續步驟
@@ -66,10 +65,9 @@ While all regions associated with your DocumentDB database account can serve rea
 有關 DocumentDB 中全球資料庫複寫的運作方式，詳細資訊請參閱[使用 DocumentDB 全球發佈資料](documentdb-distribute-data-globally.md)。如需以程式設計方式在多個區域複寫資料的相關資訊，請參閱[使用多個區域 DocumentDB 帳戶進行開發](documentdb-developing-with-multiple-regions.md)。
 
 <!--Image references-->
-[1]: ./media/documentdb-portal-global-replication/documentdb-account-blade.png
-[2]: ./media/documentdb-portal-global-replication/documentdb-add-region.png
-[3]: ./media/documentdb-portal-global-replication/documentdb_change_write_region-1.png
-[4]: ./media/documentdb-portal-global-replication/documentdb_change_write_region-2.png
+[1]: ./media/documentdb-portal-global-replication/documentdb-add-region.png
+[2]: ./media/documentdb-portal-global-replication/documentdb_change_write_region-1.png
+[3]: ./media/documentdb-portal-global-replication/documentdb_change_write_region-2.png
 
 <!--Reference style links - using these makes the source content way more readable than using inline links-->
 [bcdr]: https://azure.microsoft.com/documentation/articles/best-practices-availability-paired-regions/
@@ -77,4 +75,4 @@ While all regions associated with your DocumentDB database account can serve rea
 [azureregions]: https://azure.microsoft.com/regions/#services
 [offers]: https://azure.microsoft.com/pricing/details/documentdb/
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

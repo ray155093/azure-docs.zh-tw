@@ -15,14 +15,16 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/18/2016"
+	ms.date="08/29/2016"
 	ms.author="btardif"/>
 
 # Azure 訂用帳戶和服務限制、配額與限制
 
-## 概觀
+## Overview
 
 本文件說明一些最常見的 Microsoft Azure 限制。這目前未涵蓋所有 Azure 服務。這些限制將隨著時間擴展並更新以涵蓋更多平台。
+
+請瀏覽 [Azure 定價一覽](https://azure.microsoft.com/pricing/)以深入了解 Azure 定價。您可以在那裡使用[定價計算機](https://azure.microsoft.com/pricing/calculator/)或透過瀏覽服務 (例如，[Windows VM](https://azure.microsoft.com/pricing/details/virtual-machines/#Windows)) 的定價詳細資料頁面來估計成本。
 
 > [AZURE.NOTE] 如果您想要將限制提升到**預設限制**以上，您可以[免費提出線上客戶支援要求](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)。您無法將限制提升到高於下表中所示的**上限**值。如果沒有**上限**欄，指定的資源即沒有可調整的限制。
 
@@ -303,4 +305,4 @@
 
 [雲端服務的大小](cloud-services/cloud-services-sizes-specs.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

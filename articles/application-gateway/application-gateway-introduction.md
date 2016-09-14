@@ -72,7 +72,7 @@ Azure 應用程式閘道會自動監視後端執行個體的健康狀況。如�
 
 ## 設定和管理
 
-您可以藉由使用 REST API，以及使用 PowerShell Cmdlet 來建立和管理應用程式閘道。
+您可以藉由使用 REST API、PowerShell Cmdlet 或 [Azure 入口網站](https://portal.azure.com/)來建立和管理應用程式閘道。
 
 
 ## 後續步驟
@@ -81,4 +81,4 @@ Azure 應用程式閘道會自動監視後端執行個體的健康狀況。如�
 
 若要了解如何使用 URL 型內容路由來建立應用程式閘道，請移至[使用 URL 型路由建立應用程式閘道](application-gateway-create-url-route-arm-ps.md)以取得詳細資訊。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0831_2016-->

@@ -14,10 +14,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="08/02/2016"
+   ms.date="08/29/2016"
    ms.author="larryfr"/>
 
-#使用 PowerShell 搭配執行 Hive 查詢與 HDInsight 上的 Hadoop
+# 使用 PowerShell 搭配執行 MapReduce 工作與 HDInsight 上的 Hadoop
 
 [AZURE.INCLUDE [MapReduce 選取器](../../includes/hdinsight-selector-use-mapreduce.md)]
 
@@ -39,7 +39,7 @@ Azure PowerShell 提供 *Cmdlet*，可讓您從遠端在 HDInsight 上執行 Map
 
 在遠端 HDInsight 叢集中執行 MapReduce 工作時，會使用下列 Cmdlet。
 
-* **Login-AzureRmAccount**：驗證您 Azure 訂用帳戶的 PowerShell
+* **Login-AzureRmAccount**：向您的 Azure 訂用帳戶驗證 Azure PowerShell
 
 * **New-AzureRmHDInsightMapReduceJobDefinition**：使用指定的 MapReduce 資訊建立新的*工作定義*
 
@@ -183,4 +183,4 @@ Azure PowerShell 提供 *Cmdlet*，可讓您從遠端在 HDInsight 上執行 Map
 
 * [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0831_2016-->

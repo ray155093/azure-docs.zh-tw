@@ -15,21 +15,19 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="big-data"
-	ms.date="07/27/2016"
+	ms.date="08/30/2016"
 	ms.author="jeffstok"
 />
 
 # 串流分析 Data Lake Store 輸出
 
-串流分析工作支援數種輸出方法，其中一個是 [Azure Data Lake Store](https://azure.microsoft.com/services/data-lake-store/)。Azure 資料湖存放區是容納巨量資料分析工作負載的企業級超大規模存放庫。Data Lake Store 可讓您存放任何大小、類型和擷取速度的資料，以便進行運作和探究分析。本文涵蓋串流分析 Azure 傳統入口網站中，Azure Data Lake Store 的授權、設定以及授權更新。
-
-> [AZURE.NOTE] 目前**只有** Azure 傳統入口網站支援建立及設定 Data Lake Store 輸出。
+串流分析工作支援數種輸出方法，其中一個是 [Azure Data Lake Store](https://azure.microsoft.com/services/data-lake-store/)。Azure 資料湖存放區是容納巨量資料分析工作負載的企業級超大規模存放庫。Data Lake Store 可讓您存放任何大小、類型和擷取速度的資料，以便進行運作和探究分析。
 
 ## 授權 Data Lake Store 帳戶
 
 1.  選取 Data Lake Store 作為 Azure 管理入口網站中的輸出時，系統將會提示您授權使用您現有的 Data Lake Store，或要求透過 Azure 傳統入口網站存取 Data Lake Store Preview。
 
-    ![](media/stream-analytics-data-lake-output/stream-analytics-data-lake-output-authorization.jpg)
+    ![](media/stream-analytics-data-lake-output/stream-analytics-data-lake-output-authorization.png)
 
 2.  如果您已經可以存取 Data Lake Store，按一下 [立即授權]，很快就會出現一個頁面，指出 「正在重新導向至授權...」。此頁面將會自動關閉，而且您會看到可讓您設定 Data Lake Store 輸出的頁面。
 
@@ -90,6 +88,6 @@
 
 若要解決這個問題，請停止執行中的工作，並移至 Data Lake Store 輸出。按一下 [更新授權] 連結，很快就會出現一個頁面，指出 「正在重新導向至授權...」。此頁面將會自動關閉，而且如果成功，就會指出「已成功更新授權」。接著，您必須按一下頁面底部的 [儲存]，然後可以從上次停止的時間重新開始您的工作繼續，以避免資料遺失。
 
-![](media/stream-analytics-data-lake-output/stream-analytics-data-lake-output-renew-authorization.jpg)
+![](media/stream-analytics-data-lake-output/stream-analytics-data-lake-output-renew-authorization.png)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0831_2016-->

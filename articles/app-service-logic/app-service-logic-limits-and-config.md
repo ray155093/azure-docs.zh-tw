@@ -28,13 +28,13 @@
 
 #### 逾時
 
-|名稱|限制|注意事項|
+|Name|限制|注意事項|
 |----|----|----|
 |要求逾時|1 分鐘|[非同步模式](app-service-logic-create-api-app.md)或 [Until 迴圈](app-service-logic-loops-and-scopes.md)可以視需要抵銷|
 
 #### 訊息大小
 
-|名稱|限制|注意事項|
+|Name|限制|注意事項|
 |----|----|----|
 |訊息大小|50 MB|某些連接器和 API 可能不支援 50 MB。要求觸發程序最多可支援 25 MB|
 |運算式評估限制|131,072 個字元|`@concat()`、`@base64()` 和 `string` 的長度不能超過此限制|
@@ -63,9 +63,9 @@
 
 以下是單一邏輯應用程式的執行限制。
 
-|名稱|限制|注意事項|
+|Name|限制|注意事項|
 |----|----|----|
-|ForEach 項目|10,000|您可以視需要使用[查詢動作](../connectors/connectors-native-query.md)篩選較大的陣列|
+|ForEach 項目|5,000|您可以視需要使用[查詢動作](../connectors/connectors-native-query.md)篩選較大的陣列|
 |反覆運算之前|10,000||
 |SplitOn 項目|10,000||
 |ForEach 平行處理原則|20|您可以藉由在 `foreach` 動作新增 `"operationOptions": "Sequential"` 以設定為循序 foreach|
@@ -134,4 +134,4 @@
 - [您可以使用 Logic Apps 自動化商務程序](http://channel9.msdn.com/Events/Build/2016/T694)
 - [了解如何整合您的系統與 Logic Apps](http://channel9.msdn.com/Events/Build/2016/P462)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0831_2016-->

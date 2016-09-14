@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="如何使用 Media Encoder Standard 為資產編碼" 
+	pageTitle="使用 .NET 透過 Media Encoder Standard 為資產編碼" 
 	description="本主題說明如何使用 .NET 來使用 Media Encoder Standard 為資產編碼。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,11 +13,11 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="07/18/2016"
+ 	ms.date="08/30/2016"
 	ms.author="juliako;anilmur"/>
 
 
-#如何使用 Media Encoder Standard 為資產編碼
+# 使用 .NET 透過 Media Encoder Standard 為資產編碼
 
 編碼工作是媒體服務中最常見的處理作業。您建立編碼工作以將媒體檔案從一種編碼轉換成另一種編碼。編碼時，您可以使用媒體服務內建的 Media Encoder。您也可以使用媒體服務合作夥伴提供的編碼器；第三方編碼器可透過 Azure Marketplace 取得。
 
@@ -150,4 +150,4 @@ Media Encoder Standard 使用[這裡](http://go.microsoft.com/fwlink/?linkid=618
 
 [如何使用 Media Encoder Standard 搭配 .NET 產生縮圖](media-services-dotnet-generate-thumbnail-with-mes.md) [媒體服務編碼概觀](media-services-encode-asset.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/28/2016"
+	ms.date="08/30/2016"
 	ms.author="anhoh"/>
 
 # 使用 DocumentDB Document Explorer 檢視、編輯、建立和上傳 JSON 文件
@@ -25,29 +25,25 @@
 
 ## 啟動 Document Explorer
 
-1. 在 Azure 入口網站的動態工具列中，按一下 [DocumentDB 帳戶]。如果看不到 [DocumentDB 帳戶]，請按一下 [瀏覽]，然後按一下 [DocumentDB 帳戶]。
+1. 在 Azure 入口網站的動態工具列中，按一下 [DocumentDB (NoSQL)]。如果看不到 [DocumentDB (NoSQL)]，可依序按一下 [更多服務] 和 [DocumentDB (NoSQL)]。
 
-2. 在 [DocumentDB 帳戶] 刀鋒視窗的頂端按一下 [Document Explorer]。
+2. 在資源功能表中，按一下 [文件總管]。
  
 	![[Document Explorer] 命令的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/documentexplorercommand.png)
 
- 	>[AZURE.NOTE] [查詢總管] 也會出現在資料庫和集合刀鋒視窗。
-
     在 [文件總管] 刀鋒視窗中，會根據您在其中啟動 [文件總管] 的內容預先填入 [資料庫] 和 [集合] 下拉式清單。
-
-	![[Document Explorer] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/documentexplorerinitial.png)
 
 ## 建立文件
 
-1. [啟動 Document Explorer](#launch-document-explorer)。
+1. [啟動文件總管](#launch-document-explorer)。
 
-2. 在 [Document Explorer] 刀鋒視窗中，按一下 [建立文件]。
+2. 在 [文件總管] 刀鋒視窗中，按一下 [建立文件]。
 
     [文件] 刀鋒視窗中會提供少量的 JSON 程式碼片段。
 
 	![[Document Explorer] 建立文件體驗的螢幕擷取畫面，您可以在其中檢視 JSON 和編輯 JSON](./media/documentdb-view-json-document-explorer/createdocument.png)
 
-2. 在 [文件] 刀鋒視窗中，輸入或貼上您想要建立的 JSON 文件內容，然後按一下 [儲存] 以對 [Document Explorer] 刀鋒視窗中指定的資料庫和集合認可您的文件。
+2. 在 [文件] 刀鋒視窗中，輸入或貼上您想要建立的 JSON 文件內容，然後按一下 [儲存]，針對 [文件總管] 刀鋒視窗中指定的資料庫和集合認可您的文件。
 
 	![[Document Explorer] 儲存命令的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/savedocument1.png)
 
@@ -57,21 +53,21 @@
 
 ## 編輯文件
 
-1. [啟動 Document Explorer](#launch-document-explorer)。
+1. [啟動文件總管](#launch-document-explorer)。
 
-2. 若要編輯現有文件，請在 [Document Explorer] 刀鋒視窗中加以選取，在 [文件] 刀鋒視窗中編輯文件，然後按一下 [儲存]。
+2. 若要編輯現有文件，在 [文件總管] 刀鋒視窗中選取該文件、在 [文件] 刀鋒視窗中進行編輯，然後按一下 [儲存]。
 
     ![用來檢視 JSON 之 [Document Explorer] 編輯文件功能的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/editdocument.png)
 
-    如果您正在編輯文件，並決定您要捨棄目前這組編輯，只要按一下 [文件] 刀鋒視窗中的 [捨棄]、確認捨棄動作，然後就會重新載入文件的先前狀態。
+    如果您正在編輯文件，並決定要捨棄目前這組編輯，只需按一下 [文件] 刀鋒視窗中的 [捨棄]、確認捨棄動作，然後就會重新載入文件的先前狀態。
 
     ![[Document Explorer] 捨棄命令的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/discardedit.png)
 
 ## 刪除文件
 
-1. [啟動 Document Explorer](#launch-document-explorer)。
+1. [啟動文件總管](#launch-document-explorer)。
 
-2. 在 [Document Explorer] 中選取文件，按一下 [刪除]，然後確認刪除。確認後，系統會立即將文件從 Document Explorer 清單中移除。
+2. 在 [文件總管] 中選取文件、按一下 [刪除]，然後確認刪除。確認後，系統會立即將文件從 Document Explorer 清單中移除。
 
 	![[Document Explorer] 刪除命令的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/deletedocument.png)
 
@@ -96,17 +92,17 @@ Document Explorer 會驗證任何新的或已編輯文件是否包含有效 JSON
 
 根據預設，Document Explorer 會在選取的集合中，依照建立日期 (最早到最晚) 載入前 100 個文件。您可以選取 [Document Explorer] 刀鋒視窗底部的 [載入更多] 選項，載入其他的文件 (每批 100 個文件)。您可以透過 [篩選] 命令來選擇要載入哪些文件。
 
-1. [啟動 Document Explorer](#launch-document-explorer)。
+1. [啟動文件總管](#launch-document-explorer)。
 
-2. 在 [Document Explorer] 刀鋒視窗的頂端，按一下 [篩選]。
+2. 在 [文件總管] 刀鋒視窗的頂端，按一下 [篩選]。
 
     ![[Document Explorer 篩選設定] 的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/documentexplorerfiltersettings.png)
   
-3.  篩選設定會出現在命令列下方。在篩選設定中，提供 WHERE 子句及/或 ORDER BY 子句，然後再按一下 [篩選]。
+3.  篩選設定會出現在命令列下方。在篩選設定中，提供 WHERE 子句及/或 ORDER BY 子句，然後按一下 [篩選]。
 
 	![[Document Explorer 設定] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/documentexplorerfiltersettings2.png)
 
-	Document Explorer 會以符合篩選查詢的文件自動重新整理結果。深入了解 [SQL 查詢和 SQL 語法](documentdb-sql-query.md)一文中的 DocumentDB SQL 文法，或列印一份 [SQL 查詢小祕技](documentdb-sql-query-cheat-sheet.md)。
+	Document Explorer 會以符合篩選查詢的文件自動重新整理結果。深入了解 [SQL 查詢和 SQL 語法](documentdb-sql-query.md)一文中的 DocumentDB SQL 文法，或列印一份 [SQL 查詢速查表](documentdb-sql-query-cheat-sheet.md)。
 
     [資料庫] 和 [集合] 下拉式清單方塊可用來輕鬆地變更目前檢視文件的集合，而無需關閉並重新啟動 Document Explorer。
 
@@ -128,7 +124,7 @@ Document Explorer 會驗證任何新的或已編輯文件是否包含有效 JSON
 
 Document Explorer 支援大量擷取一或多個現有 JSON 文件，每個上傳作業最多 100 個 JSON 檔案。
 
-1. [啟動 Document Explorer](#launch-document-explorer)。
+1. [啟動文件總管](#launch-document-explorer)。
 
 2. 若要開始上傳程序，請按一下 [上傳文件]。
 
@@ -136,7 +132,7 @@ Document Explorer 支援大量擷取一或多個現有 JSON 文件，每個上�
 
     [上傳文件] 刀鋒視窗隨即開啟。
 
-2. 按一下 [瀏覽] 按鈕以開啟檔案總管視窗，選取要上傳的一或多個 JSON 文件，然後按一下 [開啟]。
+2. 按一下 [瀏覽] 按鈕以開啟檔案總管視窗、選取要上傳的一或多個 JSON 文件，然後按一下 [開啟]。
 
 	![[Document Explorer] 大量擷取程序的螢幕擷取畫面](./media/documentdb-view-json-document-explorer/uploaddocument2.png)
 
@@ -152,12 +148,20 @@ Document Explorer 支援大量擷取一或多個現有 JSON 文件，每個上�
 
 Azure 入口網站中的 Document Explorer 只是一種處理 DocumentDB 中文件的方法。您也可以使用 [REST API](https://msdn.microsoft.com/library/azure/mt489082.aspx) 或[用戶端 SDK](documentdb-sdk-dotnet.md) 處理文件。如需範例程式碼，請參閱 [.NET SDK 文件範例](documentdb-dotnet-samples.md#document-examples)和 [Node.js SDK 文件範例](documentdb-nodejs-samples.md#document-examples)。
 
-如果您需要從其他來源 (JSON 檔案、MongoDB、SQL Server、CSV 檔案、Azure 資料表儲存體、Amazon DynamoDB 或 HBase) 匯入或移轉檔案，您可以使用 DocumentDB [資料移轉工具](documentdb-import-data.md)，將您的資料快速匯入到 DocumentDB。
+如果您需要從其他來源 (JSON 檔案、MongoDB、SQL Server、CSV 檔案、Azure 表格儲存體、Amazon DynamoDB 或 HBase) 匯入或移轉檔案，您可以使用 DocumentDB [資料移轉工具](documentdb-import-data.md)，將您的資料快速匯入 DocumentDB。
+
+## 疑難排解
+
+**徵兆**︰[文件總管] 傳回 [找不到任何文件]。
+
+**解決方案**︰確定您已選取正確的訂用帳戶、資料庫，以及已插入文件的集合。此外，檢查以確定您是在輸送量配額內運作。如果您是在最大輸送量層級上運作並受到節流處理，請降低應用程式使用量，以便在集合的最大輸送量配額下運作。
+
+**說明**︰此入口網站是一個應用程式，就像所有其他應用程式一樣，可呼叫您的 DocumentDB 資料庫和集合。如果您的要求目前因為個別應用程式所進行的呼叫而受到節流處理，入口網站也可能會受到節流處理，因而導致資源不會在入口網站中顯示。若要解決此問題，請先解決導致出現高輸送使用量的原因，然後重新整理入口網站刀鋒視窗。如需如何測量並降低輸送使用量的詳細資訊，請參閱[效能祕訣](documentdb-performance-tips.md)文章的[輸送量](documentdb-performance-tips.md#throughput)一節。
 
 ## 後續步驟
 
-若要深入了解 Document Explorer 中支援的 DocumentDB SQL 文法，請參閱 [SQL 查詢和 SQL 語法](documentdb-sql-query.md)一文，或列印 [SQL 查詢小祕技](documentdb-sql-query-cheat-sheet.md)。
+若要深入了解 Document Explorer 中支援的 DocumentDB SQL 文法，請參閱 [SQL 查詢和 SQL 語法](documentdb-sql-query.md)一文，或列印 [SQL 查詢速查表](documentdb-sql-query-cheat-sheet.md)。
 
 [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)也是很實用的資源，可引導您深入了解 DocumentDB。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0831_2016-->

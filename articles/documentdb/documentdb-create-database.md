@@ -14,29 +14,29 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/15/2016" 
+	ms.date="08/25/2016" 
 	ms.author="mimig"/>
 
 # 如何使用 Azure 入口網站建立 DocumentDB 的資料庫
 
 若要使用 Microsoft Azure DocumentDB，您必須擁有 [DocumentDB 帳戶](documentdb-create-account.md)、資料庫、集合和文件。本主題說明如何在 Microsoft Azure 入口網站中建立 DocumentDB 資料庫。如需如何使用其中一個 SDK 建立資料庫的詳細資訊，請參閱[其他建立 DocumentDB 資料庫的方法](#other-ways-to-create-a-documentdb-database)。
 
-1.  在 [Azure 入口網站](https://portal.azure.com/)的動態工具列，按一下 [DocumentDB 帳戶]。如果看不到 [DocumentDB 帳戶]，可依序按一下 [更多服務] 和 [DocumentDB 帳戶]。
+1.  在 [Azure 入口網站](https://portal.azure.com/)的動態工具列中，按一下 [DocumentDB (NoSQL)]。如果看不到 [DocumentDB (NoSQL)]，可依序按一下 [更多服務] 和 [DocumentDB (NoSQL)]。
 
 
     ![示範如何建立資料庫，並反白顯示 [瀏覽] 刀鋒視窗上 [DocumentDB 帳戶] 及 [DocumentDB 帳戶] 刀鋒視窗上 DocumentDB 帳戶的螢幕擷取畫面](./media/documentdb-create-database/docdb-database-creation-1-2.png)
 
-2.  在 [DocumentDB 帳戶] 刀鋒視窗中，選取要在其中新增 DocumentDB NoSQL 資料庫的帳戶。如果您沒有任何列出的帳戶，您需要[建立 DocumentDB 帳戶](documentdb-create-account.md)。
+2.  在 [DocumentDB (NoSQL)] 刀鋒視窗中，選取要在其中新增 DocumentDB NoSQL 資料庫的帳戶。如果您沒有任何列出的帳戶，您需要[建立 DocumentDB 帳戶](documentdb-create-account.md)。
 
 3. 在 [DocumentDB 帳戶] 刀鋒視窗中，按一下 [新增資料庫]。
 
     ![示範如何建立資料庫，並反白顯示 [新增資料庫] 按鈕、[識別碼] 方塊及 [確定] 按鈕的螢幕擷取畫面](./media/documentdb-create-database/docdb-database-creation-3-5.png)
 
-4. 在 [**新增資料庫**] 刀鋒視窗中，輸入您的新資料庫識別碼。驗證名稱時，[識別碼] 方塊中會出現綠色的核取記號。
+4. 在 [**新增資料庫**] 刀鋒視窗中，輸入您的新資料庫識別碼。驗證名稱時，[識別碼] 方塊中會出現綠色的核取記號。然後按一下 [確定]。
 
-5. 按一下螢幕底部的 [**確定**]，以建立新的資料庫。
+    ![示範如何建立資料庫，並反白顯示 [新增資料庫] 按鈕、[識別碼] 方塊及 [確定] 按鈕的螢幕擷取畫面](./media/documentdb-create-database/docdb-database-creation-4.png)
 
-6. 新的資料庫現在便會出現在 [**DocumentDB 帳戶**] 刀鋒視窗上的 [**資料庫**] 鏡頭中。
+5. 新的資料庫現在便會出現在 [**DocumentDB 帳戶**] 刀鋒視窗上的 [**資料庫**] 鏡頭中。
  
 	![[DocumentDB 帳戶] 刀鋒視窗中的新資料庫螢幕擷取畫面](./media/documentdb-create-database/docdb-database-creation-6.png)
 
@@ -52,4 +52,4 @@
 
 在集合中有了文件之後，您可以使用入口網站中的[查詢總管](documentdb-query-collections-query-explorer.md)、[REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 或其中一個 [SDK](documentdb-sdk-dotnet.md)，針對文件使用 [DocumentDB SQL](documentdb-sql-query.md) 來[執行查詢](documentdb-sql-query.md#executing-sql-queries)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -13,7 +13,7 @@
   ms.topic="article"
   ms.tgt_pltfrm="na"
   ms.workload="data-services"
-  ms.date="08/17/2016"
+  ms.date="08/30/2016"
   ms.author="andrl"/>
 
 # 社群入口網站
@@ -210,7 +210,7 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 
 | 學習合作夥伴 | 說明 |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| [![Microsoft Virtual Academy](./media/documentdb-community/mva.png)](https://www.microsoftvirtualacademy.com/zh-TW/training-courses/developing-solutions-with-azure-documentdb-10554) | [**Microsoft Virtual Academy**](https://www.microsoftvirtualacademy.com/zh-TW/training-courses/developing-solutions-with-azure-documentdb-10554) 提供由協助建置 Azure DocumentDB 的菁英授課的訓練課程。 |
+| [![Microsoft Virtual Academy](./media/documentdb-community/mva.png)](https://mva.microsoft.com/zh-TW/training-courses/deploying-web-apps-to-azure-app-service-16629) | [**Microsoft Virtual Academy**](https://mva.microsoft.com/zh-TW/training-courses/deploying-web-apps-to-azure-app-service-16629) 提供由協助建置 Azure DocumentDB 的菁英授課的訓練課程。 |
 | [![Pluralsight](./media/documentdb-community/pluralsight.png)](http://www.pluralsight.com/courses/azure-documentdb-introduction) | [**Pluralsight**](http://www.pluralsight.com/courses/azure-documentdb-introduction) 是提供 Azure 訓練的主要 Microsoft 合作夥伴。如果您是 MSDN 訂閱者，請善用您存取 Microsoft Azure 訓練課程的權益。 |
 | [![OpsGility](./media/documentdb-community/opsgility.png)](https://www.opsgility.com/courses/player/introduction_to_azure_documentdb) | [**OpsGility**](https://www.opsgility.com/courses/player/introduction_to_azure_documentdb) 提供深入的 Microsoft Azure 的技術訓練。由導師現場授課，或由業界的專家指導員透過遠距教學授課。 |
 
@@ -268,4 +268,4 @@ DocumentDB 精靈是社群領導者，他們是在協助其他人充分利用他
 
 想要成為 DocumentDB 精靈？ 由於是否能成為 DocumentDB 精靈並沒有任何評斷基準，因此我們會針對部分條件來評估，包括被提名人在線上論壇 (例如 StackOverflow 和 MSDN；Wiki 和線上內容；會議和使用者群組；播客；網站；部落格和社群媒體；以及文章與書籍) 中提供之貢獻所產生的影響。如果您想提名自己或其他人，請[傳送電子郵件給我們](mailto:askdocdb@microsoft.com)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

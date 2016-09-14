@@ -13,10 +13,12 @@
       ms.topic="article"
       ms.tgt_pltfrm="na"
       ms.workload="na"
-      ms.date="01/04/2016"
+      ms.date="08/26/2016"
       ms.author="hascipio; avikova" />
 
 # 透過 CSDL 將現有的 Web 服務對應至 OData 的範例
+
+>[AZURE.IMPORTANT] 目前我們已不再針對任何新的資料服務發行者進行上架。新的 Dataservice 將不會獲得核准以列出於清單上。 如果您有想要在 AppSource 上發佈的 SaaS 商務應用程式，您可以在[這裡](https://appsource.microsoft.com/partners)找到詳細資訊。如果您有想要在 Azure Marketplace 發佈的 IaaS 應用程式或開發人員服務，您可以在[這裡](https://azure.microsoft.com/marketplace/programs/certified/)找到詳細資訊。
 
 ## 範例：使用 "POST" 傳回 "Raw" 資料的 FunctionImport
 使用 POST Raw 資料建立新的部屬並傳回其伺服器定義的 URL(location)，或更新伺服器所定義 URL 處的部分部屬。其中的部屬是串流，即非結構化，例如文字檔。請注意，POST 若沒有位置則不具等冪性。
@@ -155,4 +157,4 @@
 - 如果您有興趣學習和了解特定節點及其參數，請閱讀[資料服務 OData 對應節點](marketplace-publishing-data-service-creation-odata-mapping-nodes.md)一文，來了解定義和說明、範例，以及使用案例內容。
 - 若要返回用於將資料服務發佈至 Azure Marketplace 的指定路徑，請閱讀[資料服務發佈指南](marketplace-publishing-data-service-creation.md)一文。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0831_2016-->

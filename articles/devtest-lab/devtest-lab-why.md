@@ -44,8 +44,10 @@
 
 善用預製的外掛程式或我們的 API，直接從您偏好的持續整合 (CI) 工具、整合式開發環境 (IDE) 或自動化的發行管線來佈建研發/測試環境。您也可以使用我們全方位的命令列工具。
 
+[AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
+
 ##後續步驟
 
 [研發/測試實驗室概念](devtest-lab-concepts.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

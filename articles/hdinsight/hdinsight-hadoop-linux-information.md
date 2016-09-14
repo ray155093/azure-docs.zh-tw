@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="06/14/2016"
+   ms.date="08/30/2016"
    ms.author="larryfr"/>
 
 # 在 Linux 上使用 HDInsight 的相關資訊
@@ -96,13 +96,13 @@ HDInsight 則是使用 Azure Blob 儲存體當做預設存放區，這麼做有�
 
 由於 HDInsight 預設使用這種存放區，因此您通常不需要進行任何設定就能使用。例如，下列命令會列出 **/example/data** 資料夾中的檔案，這些檔案便是儲存在 Azure Blob 儲存體中：
 
-	hadoop fs -ls /example/data
+	hdfs dfs -ls /example/data
 
 有些命令可能需要您指定您使用的是 Blob 儲存體。對於這些命令，您可以為其加上前置詞 **wasb://** 或 **wasbs://**。
 
 HDInsight 也可讓您將多個 Blob 儲存體帳戶與叢集相關聯。若要存取非預設 Blob 儲存體帳戶上的資料，您可以使用下列格式：**wasbs://&lt;container-name>@&lt;account-name>.blob.core.windows.net/**。例如，以下命令會列出指定容器和 Blob 儲存體帳戶之 **/example/data** 目錄的內容：
 
-	hadoop fs -ls wasbs://mycontainer@mystorage.blob.core.windows.net/example/data
+	hdfs dfs -ls wasbs://mycontainer@mystorage.blob.core.windows.net/example/data
 
 ### 叢集所使用的 Blob 儲存體為何？
 
@@ -130,7 +130,7 @@ HDInsight 也可讓您將多個 Blob 儲存體帳戶與叢集相關聯。若要�
     
 2. 取得儲存體帳戶的金鑰。將 __GROUPNAME__ 取代為上一個步驟的資源群組。將 __ACCOUNTNAME__ 取代為儲存體帳戶名稱：
 
-        azure storage account keys list -g GROUPNAME ACCOUNTNAME --json | jq '.storageAccountKeys.key1'
+        azure storage account keys list -g GROUPNAME ACCOUNTNAME --json | jq '.[0].value'
 
     這會傳回帳戶的主要金鑰。
 
@@ -227,7 +227,6 @@ HDInsight 是受管理的服務，這表示如果偵測到問題，叢集中的�
 
 * [Hue](hdinsight-hadoop-hue-linux.md)
 * [Giraph](hdinsight-hadoop-giraph-install-linux.md)
-* [R](hdinsight-hadoop-r-scripts-linux.md)
 * [Solr](hdinsight-hadoop-solr-install-linux.md)
 
 如需開發您自己的指令碼動作相關資訊，請參閱[使用 HDInsight 開發指令碼動作](hdinsight-hadoop-script-actions-linux.md)。
@@ -257,4 +256,4 @@ HDInsight 是受管理的服務，這表示如果偵測到問題，叢集中的�
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0831_2016-->

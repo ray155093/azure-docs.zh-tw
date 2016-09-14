@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/23/2016"
+	ms.date="08/29/2016"
 	ms.author="markusvi;andkjell"/>
 
 
@@ -73,25 +73,15 @@ Active Directory 連接器對於輸入同步處理規則提供下列參數：
 運算子會由左至右進行評估，且具有相同的評估優先順序。也就是，不會在 - (減號) 之前評估 * (乘數)。2*(5+3) 與 2*5+3 不同。若由左至右的評估順序不適當，則可使用括弧 () 來變更評估順序。
 
 ## 多重值屬性
-
-### 多重值屬性的屬性流程
 函式可以在單一值和多重值屬性上操作。對於多重值屬性，函式會在每個值上進行操作並將相同的函式套用到每個值。
 
 例如，`Trim([proxyAddresses])` 在 proxyAddress 屬性中執行每個值的 Trim。`Word([proxyAddresses],1,"@") & "@contoso.com"` 對於含有 @ 符號的每個值，以 @contoso.com 取代網域。`IIF(InStr([proxyAddresses],"SIP:")=1,NULL,[proxyAddresses])` 尋找 SIP 位址並從各值中移除。
 
-### 合併屬性值
-在屬性流程中，有一個設定可決定是否應該從數個不同的連接器合併多重值屬性。預設值為 [Update]，表示應採用具有最高優先順序的同步處理規則。
-
-![合併類型](./media/active-directory-aadconnectsync-understanding-declarative-provisioning-expressions/mergetype.png)
-
-另外還有 **Merge** 和 **MergeCaseInsensitive**。這些選項可讓您合併來自不同來源的值。例如，它可用於合併來自數個不同樹系的成員或 proxyAddresses 屬性。當您使用此選項時，物件範圍中的所有同步處理規則必須使用相同的合併類型。您不能定義從一個連接器 [更新] 和從另一個連接器 [合併]。如果您嘗試，您會收到錯誤。
-
-[Merge] 和 [MergeCaseInsensitive] 之間的差異在於處理重複屬性值的方式。同步處理引擎可確保不會將重複的值插入目標屬性中。使用 [MergeCaseInsensitive]，就不會出現只有大小寫差異的重複值。比方說，您不會在目標屬性中同時看到 "SMTP:bob@contoso.com" 和 "smtp:bob@contoso.com"。[Merge] 只會查看只可能出現大小寫差異的確切值和多個值。
-
-[Replace] 選項與 [Update] 相同，但未使用。
-
 ## 其他資源
 
-[Azure AD Connect 同步處理︰函式參考](active-directory-aadconnectsync-functions-reference.md) [Azure AD Connect 同步處理︰自訂同步處理選項](active-directory-aadconnectsync-whatis.md) [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
+- [Azure AD Connect 同步處理：了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)
+- [Azure AD Connect 同步處理：函式參考](active-directory-aadconnectsync-functions-reference.md)
+- [Azure AD Connect 同步處理：自訂同步處理選項](active-directory-aadconnectsync-whatis.md)
+- [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -26,7 +26,7 @@
 
 >[AZURE.NOTE] 下列 Azure Resource Manager 範本可供下載和部署。
 >
->-    [建立事件中樞命名空間與事件中樞和取用者群組](service-bus-resource-manager-namespace-event-hub.md)
+>-    [建立事件中樞命名空間與事件中樞和取用者群組](../event-hubs/event-hubs-resource-manager-namespace-event-hub.md)
 >-    [建立服務匯流排命名空間與佇列](service-bus-resource-manager-namespace-queue.md)
 >-    [建立服務匯流排命名空間與主題和訂用帳戶](service-bus-resource-manager-namespace-topic.md)
 >-    [建立服務匯流排命名空間](service-bus-resource-manager-namespace.md)
@@ -177,4 +177,4 @@ azure group deployment create <my-resource-group> <my-deployment-name> --templat
   [Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../xplat-cli-azure-resource-manager.md
   [服務匯流排授權規則範本]: https://github.com/Azure/azure-quickstart-templates/blob/master/301-servicebus-create-authrule-namespace-and-queue/
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0831_2016-->

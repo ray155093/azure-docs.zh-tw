@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="08/10/2016"
+	ms.date="09/06/2016"
 	ms.author="jgao"/>
 
 
@@ -49,7 +49,7 @@ HDInsight 可以存取本機連接至計算節點的分散式檔案系統。可�
 
 Hadoop 支援預設檔案系統的概念。預設檔案系統意指預設配置和授權。也可用來解析相對路徑。HDInsight 建立過程中會指定 Azure 儲存體帳戶和該帳戶中的特定 Azure Blob 儲存容器，做為預設檔案系統。
 
-除了此儲存體帳戶，您也可以在建立過程中，從相同 Azure 訂用帳戶或不同 Azure 訂用帳戶中新增其他儲存體帳戶。如需關於新增其他儲存體帳戶的指示，請參閱[建立 HDInsight 叢集][hdinsight-creation]。
+除了此儲存體帳戶，您也可以在建立過程中或在叢集建立後，從相同或不同的 Azure 訂用帳戶中新增其他儲存體帳戶。如需關於新增其他儲存體帳戶的指示，請參閱[建立 HDInsight 叢集][hdinsight-creation]。
 
 - **儲存體帳戶中連線至叢集的容器：**因為在建立期間帳戶名稱和金鑰會與叢集相關聯，所以您對這些容器中的 Blob 具有完整存取權。
 
@@ -297,4 +297,4 @@ URI 配置提供未加密存取 (使用*wasb:* 首碼) 和 SSL 加密存取 (使
 [img-hdi-quick-create]: ./media/hdinsight-hadoop-use-blob-storage/HDI.QuickCreateCluster.png
 [img-hdi-custom-create-storage-account]: ./media/hdinsight-hadoop-use-blob-storage/HDI.CustomCreateStorageAccount.png
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0907_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="04/27/2016" 
+	ms.date="08/24/2016" 
 	ms.author="rachelap"/>
 
 # 在 Azure App Service 中管理 Web 應用程式
@@ -57,7 +57,7 @@ Azure App Service 提供了五種階層：免費、共用、基本、標準和�
 
 當 Web 應用程式執行時，您會想要確認 Web 應用程式是否可供使用，以及是否能根據使用者流量而調整。您可能也需要疑難排解錯誤。
 
-### 監控
+### 監視
 
 - 您可以透過 Azure 入口網站來[新增效能度量](web-sites-monitor.md) (如 CPU 使用率和用戶端要求數目)。
 - [調整 Web 應用程式](web-sites-scale.md)以因應流量變化。您可以根據階層來調整 VM 的數目和/或 VM 執行個體的大小。在標準和高階階層中，您還可以設定自動調整，使 Web 應用程式得以按照固定排程或根據負載自動調整。
@@ -97,4 +97,4 @@ Azure App Service 提供了五種階層：免費、共用、基本、標準和�
 
   
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0831_2016-->

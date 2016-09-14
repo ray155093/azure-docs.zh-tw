@@ -9,7 +9,7 @@
 
    	This creates a new Windows Store registration for your app.
 
-3. 在 Visual Studio 中，開啟您完成[開始使用行動服務] (英文) 教學課程時所建立的專案。
+3. 在 Visual Studio 中，開啟您完成[開始使用行動服務] \(英文) 教學課程時所建立的專案。
 
 4. 在 [方案總管] 中，以滑鼠右鍵按一下 Windows 市集應用程式專案，然後依序按一下 [市集] 和 [將應用程式與市集建立關聯...]。
 

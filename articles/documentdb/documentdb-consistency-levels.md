@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/11/2016"
+	ms.date="08/24/2016"
 	ms.author="mimig"/>
 
 # DocumentDB 中的一致性層級
@@ -83,14 +83,14 @@ Azure DocumentDB 是考量到全球發佈的全新設計。它的設計目的是
 
 ## 設定預設一致性層級
 
-1.  在 [Azure 入口網站](https://portal.azure.com/)的動態工具列中，按一下 [DocumentDB 帳戶]。
+1.  在 [Azure 入口網站](https://portal.azure.com/)的動態工具列中，按一下 [DocumentDB (NoSQL)]。
 
-2. 在 [DocumentDB 帳戶] 刀鋒視窗中，選取要修改的資料庫帳戶。
+2. 在 [DocumentDB (NoSQL)] 刀鋒視窗中，選取要修改的資料庫帳戶。
 
 3. 在帳戶刀鋒視窗中，按一下 [預設一致性]。
 
 
-4. 在 [預設一致性] 刀鋒視窗中，選取新的一致性層級，然後按一下 [確定]。
+4. 在 [預設一致性] 刀鋒視窗中，選取新的一致性層級，然後按一下 [儲存]。
 
 	![此螢幕擷取畫面反白顯示 [設定] 圖示和 [預設一致性] 項目](./media/documentdb-consistency-levels/database-consistency-level-1.png)
 
@@ -119,4 +119,4 @@ Azure DocumentDB 是考量到全球發佈的全新設計。它的設計目的是
 
 [1]: ./media/documentdb-consistency-levels/consistency-tradeoffs.png
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

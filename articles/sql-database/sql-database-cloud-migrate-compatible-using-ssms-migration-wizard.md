@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="sqldb-migrate"
-   ms.date="06/07/2016"
+   ms.date="08/24/2016"
    ms.author="carlrab"/>
 
 # 使用「將資料庫部署到 Microsoft Azure Database 精靈」將 SQL Database 移轉到 SQL Database
@@ -48,14 +48,20 @@ SQL Server Management Studio 中的「將資料庫部署至 Microsoft Azure Data
 
 	![從 [工作] 功能表部署至 Azure](./media/sql-database-cloud-migrate/MigrateUsingDeploymentWizard00.png)
 
-5.	提供資料庫名稱的 [新資料庫名稱]，設定 [Microsoft Azure SQL Database 的版本] \([服務層](sql-database-service-tiers.md))、[資料庫大小上限]、[服務目標] \(效能等級) 和精靈在移轉程序期間建立之 [BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4) 檔案的 [暫存檔名稱]。
+5.	針對此精靈在移轉程序期間建立的 [BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4) 檔案提供下列資訊：
 
-	![匯出設定](./media/sql-database-cloud-migrate/MigrateUsingDeploymentWizard02.png)
+ - **新的資料庫名稱**
+ - **Microsoft Azure SQL Database 的版本** ([服務層](sql-database-service-tiers.md))
+ - **資料庫大小上限**
+ - **服務目標** (效能層級)
+ - **暫存檔名稱**
 
-6.	完成精靈以移轉資料庫。移轉時間取決資料庫部署的大小及複雜性，可能需要數分鐘到數小時。如果此精靈偵測到相容性問題，螢幕會顯示錯誤，且不會繼續移轉。如需如何修正資料庫相容性問題的指引，請移至[修正資料庫相容性問題](sql-database-cloud-migrate-fix-compatibility-issues.md)。
+    ![匯出設定](./media/sql-database-cloud-migrate/MigrateUsingDeploymentWizard02.png)
 
-7.	使用 [物件總管] 時，請連接到 Azure SQL Database 伺服器中已移轉的資料庫。
-8.	使用 Azure 入口網站時，請檢視您的資料庫和它的屬性。
+6.	完成精靈。移轉時間取決資料庫部署的大小及複雜性，可能需要數分鐘到數小時。如果此精靈偵測到相容性問題，螢幕會顯示錯誤，且不會繼續移轉。如需如何修正資料庫相容性問題的指引，請移至[修正資料庫相容性問題](sql-database-cloud-migrate-fix-compatibility-issues.md)。
+
+7.	使用「物件總管」，連接到 Azure SQL Database 伺服器中已移轉的資料庫。
+8.	使用 Azure 入口網站，檢視您的資料庫及其屬性。
 
 ## 後續步驟
 
@@ -68,4 +74,4 @@ SQL Server Management Studio 中的「將資料庫部署至 Microsoft Azure Data
 - [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
 - [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0831_2016-->

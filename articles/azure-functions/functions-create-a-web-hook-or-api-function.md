@@ -15,14 +15,14 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="multiple"
    ms.workload="na"
-   ms.date="05/07/2016"
+   ms.date="08/30/2016"
    ms.author="glenga"/>
    
 # 建立 Webhook 或 API Azure 函式
 
 Azure Functions 是事件驅動、依需求計算的體驗，可讓您建立以各種程式設計語言實作的已排程或觸發的程式碼單位。若要深入了解 Azure Functions，請參閱 [Azure Functions 概觀](functions-overview.md)。
 
-本主題說明如何建立由 GitHub Webhook 叫用的新 Node.js 函式。新的函式是根據 Azure Functions 入口網站中的預先定義範本所建立。您也可以觀賞短片，了解如何在入口網站中執行這些步驟。
+本主題說明如何建立由 GitHub Webhook 叫用的新 Node.js 函數。新的函式是根據 Azure Functions 入口網站中的預先定義範本所建立。您也可以觀賞短片，了解如何在入口網站中執行這些步驟。
 
 ## 觀賞影片
 
@@ -84,9 +84,9 @@ Azure Functions 是事件驅動、依需求計算的體驗，可讓您建立以�
 
 + [Azure Functions 開發人員參考](functions-reference.md) 可供程式設計人員撰寫函式程式碼時參考。
 + [測試 Azure Functions](functions-test-a-function.md) 說明可用於測試函式的各種工具和技巧。
-+ [如何調整 Azure 函式](functions-scale.md)討論 Azure Functions 可用的服務方案，包括動態服務方案，以及如何選擇正確的方案。  
++ [如何調整 Azure 函式](functions-scale.md)討論 Azure Functions 可用的服務方案，包括動態服務方案，以及如何選擇正確的方案。
 
 
 [AZURE.INCLUDE [開始使用注意事項](../../includes/functions-get-help.md)]
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0907_2016-->

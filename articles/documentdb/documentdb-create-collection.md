@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/15/2016" 
+	ms.date="08/24/2016" 
 	ms.author="mimig"/>
 
 # 如何使用 Azure 入口網站建立 DocumentDB 集合
@@ -22,11 +22,11 @@
 
 不確定集合是什麼嗎？ 請參閱＜[什麼是 DocumentDB 集合？](#what-is-a-documentdb-collection)＞一節。
 
-1.  在 [Azure 入口網站](https://portal.azure.com/)的 Jumpbar 中，按一下 [DocumentDB 帳戶]，然後在 [DocumentDB 帳戶] 刀鋒視窗中，選取要新增集合的帳戶。
+1.  在 [Azure 入口網站](https://portal.azure.com/)的動態工具列中，按一下 [DocumentDB (NoSQL)]，然後在 [DocumentDB (NoSQL)] 刀鋒視窗中，選取要新增集合的帳戶。
 
     ![螢幕擷取畫面，其中在 [資料庫] 透鏡裡反白顯示動態工具列的 [DocumentDB 帳戶]、[DocumentDB 帳戶] 刀鋒視窗中的帳戶和 [DocumentDB 帳戶] 刀鋒視窗中的資料庫](./media/documentdb-create-collection/docdb-database-creation-1-2.png)
     
-    如果在 Jumpbar 中看不到 [DocumentDB 帳戶]，可依序按一下 [更多服務] 和 [DocumentDB 帳戶]。如果沒有列出任何帳戶，則您需要[建立 DocumentDB 帳戶](documentdb-create-account.md)。
+    如果在動態工具列中看不到 [DocumentDB 帳戶]，可依序按一下 [更多服務] 和 [DocumentDB (NoSQL)]。如果沒有列出任何帳戶，則您需要[建立 DocumentDB 帳戶](documentdb-create-account.md)。
 
 2. 在所選取帳戶的 [DocumentDB 帳戶] 刀鋒視窗的 [資料庫] 功能濾鏡中，選取要新增集合的資料庫。
 
@@ -91,4 +91,4 @@
 
 當集合中有文件之後，您就可以利用入口網站中的[查詢總管](documentdb-query-collections-query-explorer.md)、[REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx)，或其中一個 [SDK](documentdb-sdk-dotnet.md)，來針對文件使用 [DocumentDB SQL](documentdb-sql-query.md) 來[執行查詢](documentdb-sql-query.md#executing-queries)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -53,9 +53,9 @@
 		info:    network route-table create command OK
 
 	參數：
-	- **-g (or --resource-group)**。將會在當中建立 NSG 之資源群組的名稱。在本文案例中為 *TestRG*。
-	- **-l (或 --location)**。將要建立新 NSG 的 Azure 區域。在本文案例中為 *westus*。
-	- **-n (或 --name)**。新 NSG 的名稱。在本文案例中為 *NSG-FrontEnd*。
+	- **-g (or --resource-group)**。將會在當中建立 UDR 之資源群組的名稱。在本文案例中為 *TestRG*。
+	- **-l (或 --location)**。將要建立新 UDR 的 Azure 區域。在本文案例中為 *westus*。
+	- **-n (or --name)**。新 UDR 的名稱。在本文案例中為 *UDR-FrontEnd*。
 
 4. 執行 **`azure network route-table route create`** 命令，在上方建立的路由表中建立路由，將目的地為後端子網路 (192.168.2.0/24) 的所有流量傳送到 **FW1** VM (192.168.0.4)。
 
@@ -199,4 +199,4 @@
 
 	- **-f (或 --enable-ip-forwarding)**。*true* 或 *false*。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0831_2016-->

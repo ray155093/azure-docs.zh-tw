@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/25/2016"
+	ms.date="08/25/2016"
 	ms.author="markvi"/>
 
 #Azure Active Directory Identity Protection 
@@ -31,9 +31,13 @@ Azure Active Directory Identity Protection 目前僅適用於 [國家或區域]�
 
 ### 身分識別保護和同盟網域
 
-搭配同盟網域預覽 Azure Active Directory Identity Protection 時有下列限制︰
+搭配同盟網域使用的 Azure Active Directory Identity Protection 有下列限制︰
 
-- 只有登入風險安全性原則適用於同盟網域。目前，使用者風險安全性原則不適用於同盟網域
+- 讓使用者風險安全性原則適用於同盟網域
+
+	- 必須對同盟網域啟用[密碼回寫](active-directory-passwords-getting-started.md)，以便在雲端中變更的密碼可以寫回內部部署。
+
+	- 必須將 Azure AD Premium 授權指派給使用者。
 
 - 與 Azure Active Directory 聯盟的應用程式只會偵測到風險事件
 
@@ -50,7 +54,7 @@ Identity Protection 會使用此資料來產生報告和警示，讓您調查這
 
 ####探索 Identity Protection 的功能 
 
-偵測風險事件和有風險的帳戶：
+**偵測風險事件和有風險的帳戶：**
 
 - 使用機器學習服務和啟發式規則偵測 6 種風險事件類型
 
@@ -60,7 +64,7 @@ Identity Protection 會使用此資料來產生報告和警示，讓您調查這
 
 <br>
 
-調查風險事件：
+**調查風險事件：**
 
 - 傳送風險事件的通知
 
@@ -72,7 +76,7 @@ Identity Protection 會使用此資料來產生報告和警示，讓您調查這
 
 <br>
 
-以風險為基礎的條件式存取原則：
+**以風險為基礎的條件式存取原則：**
 
 - 此原則會藉由封鎖登入或要求 Multi-Factor Authentication 挑戰來緩和有風險的登入。
 
@@ -87,7 +91,7 @@ Identity Protection 會使用此資料來產生報告和警示，讓您調查這
 
 由 Identity Protection 標示為可疑的風險事件，表示身分識別可能已被入侵。如需風險事件的完整清單，請參閱 [Azure Active Directory Identity Protection 偵測到的風險事件類型](active-directory-identityprotection-risk-events-types.md)。
 
-有些這些風險事件已可透過 Azure 管理入口網站中的 Azure AD 異常活動報告取得。下表列出各種風險事件類型和對應的 Azure AD 異常活動報告。Microsoft 將持續投入這個領域，並且計劃持續改善現有風險事件的偵測精確度，以及持續加入新的風險事件類型。
+有些這些風險事件已可透過 Azure 管理入口網站中的 Azure AD 異常活動報告取得。下表列出各種風險事件類型和對應的 **Azure AD 異常活動報告**。Microsoft 將持續投入這個領域，並且計劃持續改善現有風險事件的偵測精確度，以及持續加入新的風險事件類型。
 
 
 
@@ -98,7 +102,7 @@ Identity Protection 會使用此資料來產生報告和警示，讓您調查這
 | 從受感染的裝置登入 | 從可能受感染的裝置登入 |
 | 從匿名 IP 位址登入 | 從不明來源登入 |
 | 從具有可疑活動的 IP 位址登入 |	從具有可疑活動的 IP 位址登入 |
-| 從不熟悉的位置登入 | - | 
+| 從不熟悉的位置登入 | - |
 | 鎖定事件 (不在公開預覽中) | - |
 
 下列 Azure AD 異常活動報告不會納入為 Azure AD Identity Protection 中的風險事件，因此不會透過 Identity Protection 提供。這些報告仍可在 Azure 管理入口網站中取得，不過將會在未來某個時候淘汰，因為它們正由 Identity Protection 中的風險事件所取代。
@@ -110,18 +114,18 @@ Identity Protection 會使用此資料來產生報告和警示，讓您調查這
 
 風險事件的風險層級可表示風險事件的嚴重性 (高、中或低)。風險層級可協助 Identity Protection 使用者排定為了降低組織風險而必須採取之行動的優先順序。風險事件的嚴重性代表身分識別入侵 (結合它通常引發的雜訊) 預測的訊號強度。
 
-- 高：高信賴度和高嚴重性風險事件。這些事件強烈指出使用者的身分識別已遭入侵，而且應該立即補救任何受影響的使用者帳戶。
+- **高**：高信賴度和高嚴重性風險事件。這些事件強烈指出使用者的身分識別已遭入侵，而且應該立即補救任何受影響的使用者帳戶。
 
-- 中：高嚴重性，但信賴度較低的風險事件，或反之亦然。這些事件具有潛在風險，而且應該補救任何受影響的使用者帳戶。
+- **中**：高嚴重性，但信賴度較低的風險事件，或反之亦然。這些事件具有潛在風險，而且應該補救任何受影響的使用者帳戶。
 
-- 低：低信賴度和低嚴重性風險事件。此事件可能不需要採取立即行動，但與其他風險事件結合時，可能強烈指出身分識別遭到入侵。
+- **低**：低信賴度和低嚴重性風險事件。此事件可能不需要採取立即行動，但與其他風險事件結合時，可能強烈指出身分識別遭到入侵。
 
 
 ![風險層級](./media/active-directory-identityprotection/01.png "風險層級")
 
  
 
-風險事件會以即時方式，或在風險事件發生後的後處理中 (離線) 識別。目前 Identity Protection 中的大部分風險事件均為離線計算，並且會在 2-4 小時內顯示於 Identity Protection。進行即時評估時，即時風險事件會在 5-10 分鐘內顯示於 Identity Protection 主控台。
+風險事件會以**即時**方式，或在風險事件發生後的後處理中 (離線) 識別。目前 Identity Protection 中的大部分風險事件均為離線計算，並且會在 2-4 小時內顯示於 Identity Protection。進行即時評估時，即時風險事件會在 5-10 分鐘內顯示於 Identity Protection 主控台。
 
 目前有數個舊版用戶端不支援即時風險事件偵測與防護。因此，無法即時偵測或預防從這些用戶端登入。
 
@@ -175,15 +179,15 @@ Identity Protection 會使用此資料來產生報告和警示，讓您調查這
 
 <br> ![動作](./media/active-directory-identityprotection/34.png "動作") <br>
 
-- 解決 - 如果在調查風險事件之後，您在 Identity Protection 外部採取適當的補救動作，而且您認為應該將風險事件視為已關閉，請將事件標示為 [已解決]。解決的事件會將風險事件的狀態設定為 [已關閉]，而此風險事件便不再算是使用者風險。
+- **解決** - 如果在調查風險事件之後，您在 Identity Protection 外部採取適當的補救動作，而且您認為應該將風險事件視為已關閉，請將事件標示為 [已解決]。解決的事件會將風險事件的狀態設定為 [已關閉]，而此風險事件便不再算是使用者風險。
 
-- 標示為誤判 - 在某些情況下，您可能會調查某個風險事件並發現該事件被誤標為有風險。您可以將風險事件標示為誤判，以減少發生這種情況。這可協助機器學習演算法未來改善類似事件的分類。誤判事件的狀態為 [已關閉]，而且不再算是使用者風險。
+- **標示為誤判** - 在某些情況下，您可能會調查某個風險事件並發現該事件被誤標為有風險。您可以將風險事件標示為誤判，以減少發生這種情況。這可協助機器學習演算法未來改善類似事件的分類。誤判事件的狀態為 [已關閉]，而且不再算是使用者風險。
 
-- 忽略 - 如果您尚未採取任何補救動作，但希望風險事件從作用中清單中移除，您可忽略風險事件，且事件狀態將會是 [已關閉]。忽略的事件不算是使用者風險。這個選項只能用於不尋常的情況下。
+- **忽略** - 如果您尚未採取任何補救動作，但希望風險事件從作用中清單中移除，您可忽略風險事件，且事件狀態將會是 [已關閉]。忽略的事件不算是使用者風險。這個選項只能用於不尋常的情況下。
 
-- 重新啟用 - 可以重新啟用已手動關閉的風險事件 (藉由選擇 [解決]、[誤判] 或 [略過])，並將事件狀態設回 [作用中]。重新啟用的風險事件會納入使用者風險層級計算。無法重新啟用透過補救 (例如重設安全的密碼) 關閉的風險事件。
+- **重新啟用** - 可以重新啟用已手動關閉的風險事件 (藉由選擇 [解決]、[誤判] 或 [略過])，並將事件狀態設回 [作用中]。重新啟用的風險事件會納入使用者風險層級計算。無法重新啟用透過補救 (例如重設安全的密碼) 關閉的風險事件。
 
-開啟相關的組態對話方塊：
+**開啟相關的組態對話方塊**：
 
 1. 在 [Azure AD Identity Protection] 刀鋒視窗上，按一下 [標示為危險的使用者]。<br><br> ![手動重設密碼](./media/active-directory-identityprotection/408.png "手動重設密碼") <br>
 
@@ -208,13 +212,13 @@ Identity Protection 會使用此資料來產生報告和警示，讓您調查這
 
 相關的對話方塊提供兩個不同的方法，可以將密碼重設為︰
 
-重設密碼 - 如果使用者已註冊 Multi-Factor Authentication，選取 [要求使用者重設密碼] 可讓使用者自行復原。在使用者下次登入期間，使用者必須成功解決 Multi-Factor Authentication 挑戰，且被迫變更密碼。如果使用者帳戶尚未註冊 Multi-Factor Authentication，則無法使用此選項。
+**重設密碼** - 如果使用者已註冊 Multi-Factor Authentication，選取 [要求使用者重設密碼] 可讓使用者自行復原。在使用者下次登入期間，使用者必須成功解決 Multi-Factor Authentication 挑戰，且被迫變更密碼。如果使用者帳戶尚未註冊 Multi-Factor Authentication，則無法使用此選項。
 
-暫時密碼 - 選取 [產生暫時密碼]，立即讓現有的密碼失效，並且為使用者建立新的暫時密碼。將新的暫時密碼傳送到使用者的備用電子郵件地址，或傳送給使用者的經理。因為此密碼是暫時的，所以會提示使用者在登入時變更密碼。
+**暫時密碼** - 選取 [產生暫時密碼]，立即讓現有的密碼失效，並且為使用者建立新的暫時密碼。將新的暫時密碼傳送到使用者的備用電子郵件地址，或傳送給使用者的經理。因為此密碼是暫時的，所以會提示使用者在登入時變更密碼。
 
 <br> ![原則](./media/active-directory-identityprotection/71.png "原則") <br>
 
-開啟相關的組態對話方塊：
+**開啟相關的組態對話方塊**：
 
 1. 在 [Azure AD Identity Protection] 刀鋒視窗上，按一下 [標示為危險的使用者]。<br><br> ![手動重設密碼](./media/active-directory-identityprotection/408.png "手動重設密碼") <br>
 
@@ -264,7 +268,7 @@ Azure AD Identity Protection 可讓您執行下列作業，以協助您管理標
 - [遭到入侵的帳戶封鎖流程](active-directory-identityprotection-flows.md#compromised-account-blocked)。
 
 
-開啟相關的組態對話方塊：
+**開啟相關的組態對話方塊**：
 
 1. 在 [Azure AD Identity Protection] 刀鋒視窗上，按一下 [設定]。<br><br> ![使用者風險原則](./media/active-directory-identityprotection/401.png "使用者風險原則") <br>
 
@@ -352,7 +356,7 @@ Identity Protection 主控台中的 [風險事件] 頁面會列出所有事件�
 
 
 
-開啟相關的組態對話方塊：
+**開啟相關的組態對話方塊**：
 
 1. 在 [Azure AD Identity Protection] 刀鋒視窗上，按一下 [設定]。<br><br> ![MFA 註冊](./media/active-directory-identityprotection/401.png "MFA 註冊") <br>
 
@@ -392,7 +396,7 @@ Azure AD Identity Protection 可讓您設定原則來執行下列作業，以協
 
 
 
-開啟相關的組態對話方塊：
+**開啟相關的組態對話方塊**：
 
 1. 在 [Azure AD Identity Protection] 刀鋒視窗上，按一下 [設定]。<br><br> ![MFA 註冊](./media/active-directory-identityprotection/401.png "MFA 註冊") <br>
 
@@ -412,4 +416,4 @@ Azure AD Identity Protection 可讓您設定原則來執行下列作業，以協
  - [Azure Active Directory Identity Protection 詞彙](active-directory-identityprotection-glossary.md)
  - [開始使用 Azure Active Directory Identity Protection 和 Microsoft Graph](active-directory-identityprotection-graph-getting-started.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -12,7 +12,7 @@
    ms.topic="article" 
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/18/2016"
+   ms.date="08/29/2016"
    ms.author="cherylmc"/>
 
 # ExpressRoute 工作流程線路佈建和線路狀態
@@ -50,7 +50,7 @@
 - 服務提供者佈建狀態
 - 狀態
 
-Status 代表 Microsoft 的佈建狀態。這個屬性可能是下列其中一種狀態：*Enabled*、*Enabling* 或 *Disabling*。ExpressRoute 線路必須處於 Enabled 狀態，才可供您使用。
+Status 代表 Microsoft 的佈建狀態。這個屬性會在您建立 Expressroute 循環時設定為 [Enabled]
 
 連線提供者佈建狀態代表連線提供者那端的狀態。可能是 *NotProvisioned*、*Provisioning* 或 *Provisioned*。ExpressRoute 線路必須處於 Provisioned 狀態，才可供您使用。
 
@@ -83,24 +83,18 @@ Status 代表 Microsoft 的佈建狀態。這個屬性可能是下列其中一�
 
 線路只能處於 Provisioned 和 Enabled 狀態下，才可供您使用。如果您使用第 2 層提供者，則只有當線路處於此狀態下，您才能設定路由。
 
-#### 如果先在 Microsoft 端起始取消佈建
+#### 當連線提供者正在取消佈建循環時
 
-執行 PowerShell Cmdlet 刪除 ExpressRoute 線路後，您很快就會看到 ExpressRoute 線路處於下列狀態。
-
-	ServiceProviderProvisioningState : Provisioned
-	Status                           : Disabling
-
-您必須連線連線提供者來取消佈建 ExpressRoute 線路。**重要事項：**Microsoft 會持續收取線路費用，直到您執行 PowerShell Cmdlet 來取消佈建線路為止。
-
-#### 如果在服務提供者那端起始取消佈建
-
-如果您要求服務提供者先取消佈建 ExpressRoute 線路，當服務提供者完成取消佈建程序後，您會看到線路設定為下列狀態。
+如果您要求服務提供者取消佈建 ExpressRoute 循環，則當服務提供者完成取消佈建程序後，您將會看到已將循環設定為下列狀態。
 
 
 	ServiceProviderProvisioningState : NotProvisioned
 	Status                           : Enabled
 
-如有需要，您可以選擇重新啟用線路，或執行 PowerShell Cmdlet 刪除線路。**重要事項：**Microsoft 會持續收取線路費用，直到您執行 PowerShell Cmdlet 來取消佈建線路為止。
+
+如有需要，您可以選擇重新啟用線路，或執行 PowerShell Cmdlet 刪除線路。
+
+>[AZURE.IMPORTANT] 如果您在 ServiceProviderProvisioningState 為 Provisioning 或 Provisioned 時執行 PowerShell Cmdlet 來刪除循環，作業將會失敗。請和您的連線提供者合作，先取消佈建 ExpressRoute 循環，然後再刪除循環。Microsoft 將持續收取循環費用，直到您執行 PowerShell Cmdlet 來取消循環為止。
 
 
 ## 路由工作階段組態狀態
@@ -122,4 +116,4 @@ BGP 佈建狀態可讓您知道 Microsoft 邊緣是否已啟用 BGP 工作階段
 	- [設定路由](expressroute-howto-routing-arm.md)
 	- [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

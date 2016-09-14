@@ -536,7 +536,8 @@ Azure 平台不會針對部署的 VM 提供像是即時移轉等功能。這表�
 如果想要建立 DBMS 部署的高可用性組態 (而不是個別使用 DBMS HA 功能)，則 DBMS VM 需要︰
 
 * 將 VM 新增至相同的「Azure 虛擬網路」(<https://azure.microsoft.com/documentation/services/virtual-network/>)
-* HA 組態的 VM 也應該位於相同的子網路中。不同子網路之間的名稱解析無法在僅限雲端的部署中運作，只有 IP 解析才能正常運作。針對跨單位部署使用站對站或 ExpressRoute 連線能力，就已經建立了至少含有一個子網路的網路。名稱解析是根據內部部署 AD 原則和網路基礎結構來完成。[註解]: <> (如果在 ARM 中仍為 true，就是 MSSedusch TODO 測試)
+* HA 組態的 VM 也應該位於相同的子網路中。不同子網路之間的名稱解析無法在僅限雲端的部署中運作，只有 IP 解析才能正常運作。針對跨單位部署使用站對站或 ExpressRoute 連線能力，就已經建立了至少含有一個子網路的網路。名稱解析是根據內部部署 AD 原則和網路基礎結構來完成。 
+[註解]: <> (如果在 ARM 中仍為 true，就是 MSSedusch TODO 測試)
 
 #### IP 位址
 強烈建議使用彈性方式來設定 HA 組態的 VM。除非使用靜態 IP 位址，否則，在 Azure 中依賴 IP 位址來處理 HA 組態內的 HA 夥伴並不可靠。Azure 中有兩種「關閉」概念︰
@@ -1135,7 +1136,8 @@ SAP 目前支援 SAP ASE 版本 16.0，可與 SAP 商務套件產品搭配使用
 針對備份 / 還原功能，利用與標準 Windows Server 作業系統和 Hyper-V 上所做的相同方式來支援 SAP BR*Tools for Oracle。Oracle 復原管理員 (RMAN) 也支援備份至磁碟，以及從磁碟還原。
 
 #### 高可用性
-[註解]: <> (連結是指 ASM) 基於高可用性和災害復原目的支援 Oracle Data Guard。如需詳細資料，請參閱[這份][virtual-machines-windows-classic-configure-oracle-data-guard]文件。
+[註解]: <> (連結是指 ASM)
+基於高可用性和災害復原目的支援 Oracle Data Guard。如需詳細資料，請參閱[這份][virtual-machines-windows-classic-configure-oracle-data-guard]文件。
 
 #### 其他
 所有其他一般主題 (例如「Azure 可用性設定組」或 SAP 監視) 也適用於使用 Oracle 資料庫來部署 VM 的情況，如本文件的前三章中所述。

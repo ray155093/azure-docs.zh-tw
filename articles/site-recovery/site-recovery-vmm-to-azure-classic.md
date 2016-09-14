@@ -206,7 +206,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 	![儲存體帳戶](./media/site-recovery-vmm-to-azure-classic/storage.png)
 
-> [AZURE.NOTE] [Migration of storage accounts]對於用於部署 Site Recovery 的儲存體帳戶，不支援橫跨相同訂用帳戶內的資源群組或橫跨資源群組 (../resource-group-move-resources.md)。
+> [AZURE.NOTE] [Migration of storage accounts](../resource-group-move-resources.md) 對於用於部署 Site Recovery 的儲存體帳戶，不支援橫跨相同訂用帳戶內的資源群組或橫跨資源群組。
 
 ## 步驟 5：安裝 Azure 復原服務代理程式
 
@@ -270,7 +270,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 請注意，如果目標網路具有多個子網路，且其中一個子網路的名稱和來源虛擬機器所在之子網路名稱相同，複本虛擬機器將會在容錯移轉之後連線到該目標子網路。如果沒有目標子網路具有相符的名稱，虛擬機器將會連線到網路中的第一個子網路。
 
-> [AZURE.NOTE] [Migration of networks]對於用於部署 Site Recovery 的網路，不支援橫跨相同訂用帳戶內的資源群組或橫跨資源群組 (../resource-group-move-resources.md)。
+> [AZURE.NOTE] [Migration of networks](../resource-group-move-resources.md) 對於用於部署 Site Recovery 的網路，不支援橫跨相同訂用帳戶內的資源群組或橫跨資源群組。
 
 ## 步驟 8：對虛擬機器啟用保護
 

@@ -13,11 +13,16 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="08/29/2016"
+	ms.date="09/07/2016"
 	ms.author="juliako"/>
 
 
 # 使用 Azure 入口網站建立 Azure 媒體服務帳戶
+
+> [AZURE.SELECTOR]
+- [入口網站](media-services-portal-create-account.md)
+- [PowerShell](media-services-manage-with-powershell.md)
+- [REST](http://msdn.microsoft.com/library/azure/dn194267.aspx)
 
 > [AZURE.NOTE] 若要完成此教學課程，您需要 Azure 帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
@@ -36,7 +41,7 @@ Azure 入口網站提供一種方法來快速建立 Azure 媒體服務 (AMS) 帳
 	AMS 現在也適用於下列資料中心：巴西南部、印度西部、印度南部和印度中部。您現在可以使用 Azure 入口網站來建立媒體服務帳戶，以及執行這裡所述的各種工作。不過，這些資料中心不會啟用即時編碼。此外，並非所有類型的編碼保留單元都可用於這些資料中心。
 	
 	- 巴西南部：只可以使用標準和基本編碼保留單元。
-	- 印度西部、印度南部：媒體檔案必須與媒體服務帳戶位於相同的地理區域中。建立媒體服務帳戶時，可以選擇相同區域中的現有儲存體帳戶，也可以在相同區域中建立新的儲存體帳戶。如果您刪除媒體服務帳戶，並不會刪除相關儲存體帳戶中的 Blob。
+	- 印度西部、印度南部：為媒體檔案提供儲存體 Blob，且儲存體帳戶必須與媒體服務帳戶位於相同的地理區域中。建立媒體服務帳戶時，可以選擇相同區域中的現有儲存體帳戶，也可以在相同區域中建立新的儲存體帳戶。如果您刪除媒體服務帳戶，並不會刪除相關儲存體帳戶中的 Blob。
 
 ## 建立 AMS 帳戶
 
@@ -98,4 +103,4 @@ Azure 入口網站提供一種方法來快速建立 Azure 媒體服務 (AMS) 帳
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

@@ -3,7 +3,7 @@
 	description="這篇文章提供使用 PowerShell 指令碼進行平台支援之資源移轉 (從傳統移轉至 Azure Resource Manager) 的逐步解說"
 	services="virtual-machines-windows"
 	documentationCenter=""
-	authors="mahthi"
+	authors="dlepow"
 	manager="timlt"
 	editor=""
 	tags="azure-resource-manager"/>
@@ -15,22 +15,22 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="05/04/2016"
-	ms.author="mahthi"/>
+	ms.author="danlep"/>
 
 # 使用 Azure PowerShell 將 IaaS 資源從傳統移轉至 Azure Resource Manager
 
-以下步驟說明如何使用 Azure PowerShell 命令，將基礎結構即服務 (IaaS) 資源從傳統部署模型移轉至 Azure Resource Manager 部署模型。這些步驟遵循填空方法來移轉您的自訂環境。您只需要採用命令並將變數 (開頭為 "$" 的行) 取代為您自己的值即可。
+以下步驟說明如何使用 Azure PowerShell 命令，將基礎結構即服務 (IaaS) 資源從傳統部署模型移轉至 Azure Resource Manager 部署模型。這些步驟遵循填空方法來移轉您的自訂環境。採用命令並將變數 (開頭為 "$" 的行) 取代為您自己的值即可。
 
 ## 步驟 1︰為移轉做準備
 
 以下是您評估將 IaaS 資源從傳統移轉至 Resource Manager 時，我們所建議的一些最佳做法：
 
-- 將[不支援的組態或功能清單](virtual-machines-windows-migration-classic-resource-manager.md)看一遍。如果您的虛擬機器使用不支援的組態或功能，建議您等到宣布支援該組態/功能之後，再進行移轉。或者，您可以移除該功能或移出該組態，以利移轉進行 (如果這麼做符合您的需求)。
+- 將[不支援的組態或功能清單](virtual-machines-windows-migration-classic-resource-manager.md)看一遍。如果您的虛擬機器使用不支援的組態或功能，建議您等到宣布支援該組態/功能之後，再進行移轉。或者，移除該功能或移出該組態以利移轉進行 (如果這麼做符合您的需求)。
 -	如果您是使用自動化指令碼來部署現今的基礎結構和應用程式，請使用這些指令碼來嘗試建立相似的測試設定以進行移轉。或者，您也可以使用 Azure 入口網站來設定範例環境。
 
 ## 步驟 2：安裝最新版的 Azure PowerShell
 
-您有下列兩個主要的安裝選項：[PowerShell 資源庫](https://www.powershellgallery.com/profiles/azure-sdk/)和 [Web Platform Installer (WebPI)](http://aka.ms/webpi-azps)。WebPI 每個月都會更新。PowerShell 資源庫將持續更新。
+您有下列兩個主要的安裝選項：[PowerShell 資源庫](https://www.powershellgallery.com/profiles/azure-sdk/)和 [Web Platform Installer (WebPI)](http://aka.ms/webpi-azps)。WebPI 接收每月更新。PowerShell 資源庫則是持續接收更新。
 
 如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
@@ -51,7 +51,7 @@
 	$subscr="<subscription name>"
 	Get-AzureRmSubscription –SubscriptionName $subscr | Select-AzureRmSubscription
 
->[AZURE.NOTE] 註冊是一次性步驟，但必須在嘗試移轉之前完成。如果不註冊，您會看到下列錯誤訊息
+>[AZURE.NOTE] 註冊是一次性步驟，但您必須在嘗試移轉之前完成。如果不註冊，您會看到下列錯誤訊息：
 
 >	*BadRequest : Subscription is not registered for migration.* 
 
@@ -78,11 +78,11 @@
 
 ## 步驟 4︰執行命令來移轉 IaaS 資源
 
->[AZURE.NOTE] 下述所有作業都是等冪的。如果您有不支援的功能或組態錯誤以外的任何問題，建議您重新嘗試準備、中止或認可作業。如此，平台就會重新嘗試該動作。
+>[AZURE.NOTE] 下述所有作業都是等冪的。如果您有不支援的功能或組態錯誤以外的任何問題，建議您重新嘗試準備、中止或認可作業。平台將會重新嘗試該動作。
 
 ### 移轉雲端服務中的虛擬機器 (不在虛擬網路中)
 
-使用下列命令來取得雲端服務清單，然後選擇您想要移轉的雲端服務。請注意，如果雲端服務中的 VM 是在虛擬網路中，或是具有 Web/背景工作角色，您將會收到錯誤訊息。
+使用下列命令來取得雲端服務清單，然後選擇您想要移轉的雲端服務。如果雲端服務中的 VM 是在虛擬網路中，或是具有 Web/背景工作角色，命令會傳回錯誤訊息。
 
 	Get-AzureService | ft Servicename
 
@@ -96,12 +96,12 @@
 
 1. 如果您想要將 VM 移轉到平台建立的虛擬網路
 
-	第一個步驟是使用下列命令來驗證您是否可以移轉雲端服務︰
+	首先，使用下列命令來驗證您是否可以移轉雲端服務︰
 
 		$validate = Move-AzureService -Validate -ServiceName $serviceName -DeploymentName $deploymentName -CreateNewVirtualNetwork
 		$validate.ValidationMessages
 
-	上述命令會顯示任何阻礙移轉的警告和錯誤。如果驗證成功，您就可以繼續進行下面的「準備」步驟。
+	上述命令會顯示封鎖移轉的任何警告及錯誤。如果驗證成功，您可以繼續進行下列準備步驟。
 
 		Move-AzureService -Prepare -ServiceName $serviceName -DeploymentName $deploymentName -CreateNewVirtualNetwork
 
@@ -111,12 +111,12 @@
 		$vnetName = "<Virtual Network Name>"
 		$subnetName = "<Subnet name>"
 
-	第一個步驟是使用下列命令來驗證您是否可以移轉雲端服務︰
+	首先，使用下列命令來驗證您是否可以移轉雲端服務︰
 
 		$validate = Move-AzureService -Validate -ServiceName $serviceName -DeploymentName $deploymentName -UseExistingVirtualNetwork -VirtualNetworkResourceGroupName $existingVnetRGName -VirtualNetworkName $vnetName -SubnetName $subnetName
 		$validate.ValidationMessages
 
-	上述命令會顯示任何阻礙移轉的警告和錯誤。如果驗證成功，您就可以繼續進行下面的「準備」步驟。
+	上述命令會顯示封鎖移轉的任何警告及錯誤。如果驗證成功，您可以繼續進行下列準備步驟。
 
 		Move-AzureService -Prepare -ServiceName $serviceName -DeploymentName $deploymentName -UseExistingVirtualNetwork -VirtualNetworkResourceGroupName $existingVnetRGName -VirtualNetworkName $vnetName -SubnetName $subnetName
 
@@ -140,13 +140,13 @@
 
 	$vnetName = "VNET-Name"
 
->[AZURE.NOTE] 如果虛擬網路包含 Web/背景工作角色，或有具備不支援之組態的 VM，您將會收到驗證錯誤訊息。
+>[AZURE.NOTE] 如果虛擬網路包含 Web/背景工作角色，或有具備不支援之組態的 VM，您會收到驗證錯誤訊息。
 
-第一個步驟是使用下列命令來驗證您是否可以移轉虛擬網路︰
+首先，使用下列命令來驗證您是否可以移轉虛擬網路︰
 
 	Move-AzureVirtualNetwork -Validate -VirtualNetworkName $vnetName
 
-上述命令會顯示任何阻礙移轉的警告和錯誤。如果驗證成功，您就可以繼續進行下面的「準備」步驟。
+上述命令會顯示封鎖移轉的任何警告及錯誤。如果驗證成功，您可以繼續進行下列準備步驟。
 	
 	Move-AzureVirtualNetwork -Prepare -VirtualNetworkName $vnetName
 
@@ -181,4 +181,4 @@
 - [平台支援的從傳統移轉至 Resource Manager 的技術深入探討](virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
 - [使用社群 PowerShell 指令碼將傳統虛擬機器複製到 Azure Resource Manager](virtual-machines-windows-migration-scripts.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

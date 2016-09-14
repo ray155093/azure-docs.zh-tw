@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="07/15/2016"
+	ms.date="08/25/2016"
 	ms.author="ryanwi"/>
 
 # 使用 PowerShell 自動化應用程式生命週期
 
-[Service Fabric 應用程式生命週期](service-fabric-application-lifecycle.md)的許多層面都可以自動化。本文示範如何使用 Powershell，自動化部署、升級、移除和測試 Azure Service Fabric 應用程式的常見工作。也可使用應用程式管理的 Managed 和 HTTP API，如需詳細資訊，請參閱[應用程式生命週期](service-fabric-application-lifecycle.md)。
+[Service Fabric 應用程式生命週期](service-fabric-application-lifecycle.md)的許多層面都可以自動化。本文示範如何使用 Powershell，自動化部署、升級、移除和測試 Azure Service Fabric 應用程式的常見工作。也可使用應用程式管理的 Managed 和 HTTP API。如需詳細資訊，請參閱[應用程式生命週期](service-fabric-application-lifecycle.md)。
 
 ## 必要條件
 在您移至本文中的工作之前，請務必︰
@@ -28,7 +28,7 @@
 + [啟用 PowerShell 指令碼執行](service-fabric-get-started.md#enable-powershell-script-execution)。
 + 啟動本機叢集。以系統管理員身分啟動新的 PowerShell 視窗，然後從 SDK 資料夾執行叢集安裝指令碼 ︰`& "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\ClusterSetup\DevClusterSetup.ps1"`
 + 在您執行本文中的任何 PowerShell 命令之前，請先使用 [Connect-ServiceFabricCluster](https://msdn.microsoft.com/library/azure/mt125938.aspx) 連接至本機 Service Fabric 叢集：`Connect-ServiceFabricCluster localhost:19000`
-+ 下列工作需要 v1 應用程式封裝才能部署，並需要 v2 應用程式封裝才能進行升級。下載 [**WordCount** 範例應用程式](http://aka.ms/servicefabricsamples) (位於快速入門範例)。在 Visual Studio 中建置並封裝此應用程式 (以滑鼠右鍵按一下方案總管中的 [WordCount]，然後選取 [封裝])。將 `C:\ServiceFabricSamples\Services\WordCount\WordCount\pkg\Debug` 中的 v1 封裝複製到 `C:\Temp\WordCount`。將 `C:\Temp\WordCount` 複製到 `C:\Temp\WordCountV2`，並建立 v2 應用程式封裝以便升級。在文字編輯器中開啟 `C:\Temp\WordCountV2\ApplicationManifest.xml`。在 **ApplicationManifest** 元素中，將 **ApplicationTypeVersion** 屬性從 "1.0.0" 變更為 "2.0.0"。即會更新應用程式的版本號碼。儲存已變更的 ApplicationManifest.xml 檔案。
++ 下列工作需要 v1 應用程式封裝才能部署，並需要 v2 應用程式封裝才能進行升級。下載 [**WordCount** 範例應用程式](http://aka.ms/servicefabricsamples) (位於快速入門範例)。在 Visual Studio 中建置並封裝此應用程式 (以滑鼠右鍵按一下方案總管中的 [WordCount]，然後選取 [封裝])。將 `C:\ServiceFabricSamples\Services\WordCount\WordCount\pkg\Debug` 中的 v1 封裝複製到 `C:\Temp\WordCount`。將 `C:\Temp\WordCount` 複製到 `C:\Temp\WordCountV2`，並建立 v2 應用程式封裝以便升級。在文字編輯器中開啟 `C:\Temp\WordCountV2\ApplicationManifest.xml`。在 **ApplicationManifest** 元素中，將 **ApplicationTypeVersion** 屬性從 "1.0.0" 變更為 "2.0.0" 以更新應用程式版本號碼。儲存已變更的 ApplicationManifest.xml 檔案。
 
 ## 工作：部署 Service Fabric 應用程式
 
@@ -42,7 +42,7 @@ Copy-ServiceFabricApplicationPackage C:\Temp\WordCount\ -ImageStoreConnectionStr
 ```
 
 ### 步驟 2：註冊應用程式類型
-註冊應用程式封裝，讓應用程式類型和應用程式資訊清單中宣告的版本可供使用。系統會讀取在步驟 1 所上傳的封裝，請確認封裝 (相當於本機執行 [**Test-ServiceFabricApplicationPackage**](https://msdn.microsoft.com/library/azure/mt125950.aspx))、處理封裝內容，然後將處理過的封裝複製至內部系統位置。執行 [**Register-ServiceFabricApplicationType**](https://msdn.microsoft.com/library/azure/mt125958.aspx) Cmdlet：
+註冊應用程式封裝，讓應用程式類型和應用程式資訊清單中宣告的版本可供使用。系統會讀取在步驟 1 所上傳的封裝，請確認封裝 (相當於在本機執行 [**Test-ServiceFabricApplicationPackage**](https://msdn.microsoft.com/library/azure/mt125950.aspx))、處理封裝內容，然後將處理過的封裝複製至內部系統位置。執行 [**Register-ServiceFabricApplicationType**](https://msdn.microsoft.com/library/azure/mt125958.aspx) Cmdlet：
 
 ```powershell
 Register-ServiceFabricApplicationType WordCount
@@ -54,13 +54,13 @@ Get-ServiceFabricApplicationType
 ```
 
 ### 步驟 3：建立應用程式執行個體
-透過 [**New-ServiceFabricApplication**](https://msdn.microsoft.com/library/azure/mt125913.aspx) 命令，應用程式可以藉由使用已成功註冊的任何應用程式類型版本來進行具現化。每個應用程式的名稱是在部署時宣告且開頭必須為 **fabric:** 配置，並且是每個應用程式執行個體的唯一名稱。應用程式類型名稱和應用程式類型版本是在應用程式封裝的 **ApplicationManifest.xml** 檔案中宣告。如果已在目標應用程式類型的應用程式資訊清單中定義預設服務，則這些服務也會一併建立。
+透過 [**New-ServiceFabricApplication**](https://msdn.microsoft.com/library/azure/mt125913.aspx) 命令，應用程式可以藉由使用已成功註冊的任何應用程式類型版本來進行具現化。每個應用程式的名稱是在部署時宣告且開頭必須為 **fabric:** 配置，並且是每個應用程式執行個體的唯一名稱。應用程式類型名稱和應用程式類型版本是在應用程式封裝的 **ApplicationManifest.xml** 檔案中宣告。如果已在目標應用程式類型的應用程式資訊清單中定義任何預設服務，則這些服務也會一併建立。
 
 ```powershell
 New-ServiceFabricApplication fabric:/WordCount WordCount 1.0.0
 ```
 
-[**Get-ServiceFabricApplication**](https://msdn.microsoft.com/library/azure/mt163515.aspx) 命令會列出所有已成功建立的應用程式執行個體及其整體狀態。[**Get-ServiceFabricService**](https://msdn.microsoft.com/library/azure/mt125889.aspx) 命令會列出所有已指定應用程式執行個體內成功建立的服務執行個體。會列出預設的服務 (若有)。
+[**Get-ServiceFabricApplication**](https://msdn.microsoft.com/library/azure/mt163515.aspx) 命令會列出所有已成功建立的應用程式執行個體及其整體狀態。[**Get-ServiceFabricService**](https://msdn.microsoft.com/library/azure/mt125889.aspx) 命令會列出所有已指定應用程式執行個體內成功建立的服務執行個體。會列出預設的服務 (若有的話)。
 
 ```powershell
 Get-ServiceFabricApplication
@@ -74,7 +74,7 @@ Get-ServiceFabricApplication | Get-ServiceFabricService
 為了簡化此範例的內容，在先決條件中建立的 WordCountV2 應用程式封裝只更新了應用程式版本號碼。有一個更真實的相關案例，其涉及更新您的服務程式碼、組態或資料檔案，然後使用已更新的版本號碼重建並封裝應用程式。
 
 ### 步驟 1：上傳已更新的應用程式封裝
-WordCount v1 應用程式已準備好進行升級。如果您以系統管理員身分開啟 PowerShell 視窗並且輸入 [**Get-ServiceFabricApplication**](https://msdn.microsoft.com/library/azure/mt163515.aspx)，您將會看到已部署 1.0.0 版的 WordCount 應用程式類型。
+WordCount v1 應用程式已準備好進行升級。如果您以系統管理員身分開啟 PowerShell 視窗並且輸入 [**Get-ServiceFabricApplication**](https://msdn.microsoft.com/library/azure/mt163515.aspx)，您會看到已部署 1.0.0 版的 WordCount 應用程式類型。
 
 現在將更新的應用程式封裝複製到 Service Fabric 映像存放區 (Service Fabric 在其中儲存應用程式封裝)。參數 **ApplicationPackagePathInImageStore** 會通知 Service Fabric 可以在哪裡找到應用程式封裝。下列命令會將應用程式封裝複製到映像存放區中的 **WordCountV2**：
 
@@ -107,7 +107,7 @@ Start-ServiceFabricApplicationUpgrade -ApplicationName fabric:/WordCount -Applic
 Get-ServiceFabricApplicationUpgrade fabric:/WordCount
 ```
 
-幾分鐘後，[Get-ServiceFabricApplicationUpgrade](https://msdn.microsoft.com/library/azure/mt125988.aspx) 指令程式將會顯示已升級所有升級網域 (完成)。
+幾分鐘後，[Get-ServiceFabricApplicationUpgrade](https://msdn.microsoft.com/library/azure/mt125988.aspx) Cmdlet 會顯示已升級 (完成) 所有升級網域。
 
 ## 工作：測試 Service Fabric 應用程式
 
@@ -148,7 +148,7 @@ Remove-ServiceFabricApplication fabric:/WordCount
 ```
 
 ### 步驟 2：取消註冊應用程式類型
-當您不再需要特定應用程式類型版本時，藉由使用 [**Unregister-ServiceFabricApplicationType**](https://msdn.microsoft.com/library/azure/mt125885.aspx) Cmdlet 來取消註冊。正在取消註冊的未使用類型，會釋放映像存放區上應用程式封裝所使用的儲存空間。只要沒有對應的應用程式進行具現化，或擱置中的應用程式升級進行參考，則應用程式類型即可取消註冊。
+當您不再需要特定應用程式類型版本時，藉由使用 [**Unregister-ServiceFabricApplicationType**](https://msdn.microsoft.com/library/azure/mt125885.aspx) Cmdlet 來取消註冊。取消註冊未使用類型，會釋放映像存放區上應用程式封裝所使用的儲存空間。只要沒有對應的應用程式進行具現化，或擱置中的應用程式升級進行參考，則應用程式類型即可取消註冊。
 
 ```powershell
 Unregister-ServiceFabricApplicationType WordCount 1.0.0
@@ -172,4 +172,4 @@ Remove-ServiceFabricApplicationPackage -ImageStoreConnectionString file:C:\SfDev
 
 [Azure Service Fabric 可測試性 Cmdlet](https://msdn.microsoft.com/library/azure/mt125844.aspx)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0831_2016-->

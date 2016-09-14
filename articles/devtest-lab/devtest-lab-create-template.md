@@ -18,7 +18,6 @@
 
 # 管理用來建立 VM 的 Azure DevTest Labs 自訂映像
 
-## Overview
 當您[建立實驗室](devtest-lab-create-lab.md)之後，就可以[將虛擬機器 (VM) 加入該實驗室](devtest-lab-add-vm-with-artifacts.md)。當您建立 VM 時，您會指定「基底」，這可以是「自訂映像」或「Marketplace 映像」。在本文中，您將了解如何[從 VHD 建立自訂映像](#create-a-custom-image-from-a-vhd)，以便隨後可以從該自訂映像建立 VM。此外，您也可以[從 VM 建立自訂映像](#create-a-custom-image-from-a-vm)以供後續快速建立 VM。
 
 ## 從 VHD 檔案建立自訂映像
@@ -99,6 +98,8 @@
 
 1. 完成時選取 [確定]，以建立自訂映像。
 
+[AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
+
 ## 相關部落格文章
 
 - [自訂映像或公式？](https://blogs.msdn.microsoft.com/devtestlab/2016/04/06/custom-images-or-formulas/)
@@ -108,4 +109,4 @@
 
 一旦新增要在建立 VM 時使用的自訂映像之後，下一個步驟就是[將 VM 加入實驗室](./devtest-lab-add-vm-with-artifacts.md)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

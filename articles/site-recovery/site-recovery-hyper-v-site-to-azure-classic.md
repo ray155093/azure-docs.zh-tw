@@ -70,7 +70,7 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 	- *.blob.core.windows.net
 	- *.store.core.windows.net
 	
-- 此外，允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)中所述的 IP 位址和 HTTPS (443) 通訊協定。您必須具有打算使用以及美國西部之 Azure 區域的白名單 IP 範圍。
+- 此外，允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)中所述的 IP 位址和 HTTPS (443) 通訊協定。您必須具有打算使用以及美國西部之 Azure 區域的允許名單 IP 範圍。
 
 
 下圖顯示 Site Recovery 為協調流程與複寫所使用的不同通訊通道與連接埠
@@ -88,7 +88,7 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 
 3. 按一下 [新建] > [快速建立]。
 
-4. 在 [名稱] 中，輸入保存庫的易記識別名稱。
+4. 在 [**名稱**] 中，輸入保存庫的易記識別名稱。
 
 5. 在 [地區] 中，選取保存庫的地理區域。若要查看支援的區域，請參閱 [Azure Site Recovery 定價詳細資料](https://azure.microsoft.com/pricing/details/site-recovery/)中的＜各地區上市情況＞。
 
@@ -138,7 +138,7 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 
 8. 安裝完成之後，請繼續設定以在保存庫中註冊伺服器。
 
-9. 在 [保存庫設定] 頁面上，按一下 [瀏覽] 來選取金鑰檔案。指定 Azure Site Recovery 訂用帳戶、保存庫名稱，以及 Hyper-V 伺服器所屬的 Hyper-V 站台。
+9. 在 [保存庫設定] 頁面上，按一下 [瀏覽] 來選取金鑰檔案。指定 Azure Site Recovery 訂用帳戶、保存庫名稱，以及 Hyper-V 伺服器所屬的 Hyper-V 網站。
 
 	![伺服器註冊](./media/site-recovery-hyper-v-site-to-azure-classic/provider8.PNG)
 
@@ -150,7 +150,7 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 
 	![伺服器註冊](./media/site-recovery-hyper-v-site-to-azure-classic/provider15.PNG)
 
-11. 註冊完成之後，Azure Site Recovery 便會抓取來自 Hyper-V 伺服器的中繼資料，而該伺服器會顯示在保存庫中 [伺服器] 頁面的 [Hyper-V 站台] 索引標籤上 。
+11. 註冊完成之後，Azure Site Recovery 便會抓取來自 Hyper-V 伺服器的中繼資料，而該伺服器會顯示在保存庫中 [伺服器] 頁面的 [Hyper-V 網站] 索引標籤上 。
 
 
 ### 從命令列安裝提供者
@@ -182,12 +182,11 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 
 ## 步驟 4：建立 Azure 儲存體帳戶 
 
-1. 在 [準備資源] 中選取 [建立儲存體帳戶]，以建立 Azure 儲存體帳戶 (如果您沒有儲存體帳戶)。此帳戶應啟用異地複寫。它應該與 Azure Site Recovery 保存庫位於相同的區域，且和同一個訂用帳戶產生關聯。
+1. 在 [準備資源] 中選取 [建立儲存體帳戶]，以建立 Azure 儲存體帳戶 (如果您沒有儲存體帳戶)。此帳戶應啟用異地複寫。它應該與 Azure Site Recovery 保存庫位於相同的區域，並與同一個訂用帳戶建立關聯。
 
 	![建立儲存體帳戶](./media/site-recovery-hyper-v-site-to-azure-classic/create-resources.png)
 
->[AZURE.NOTE] 我們不支援使用[新的 Azure 入口網站](../storage/storage-create-storage-account.md)來跨資源群組移動所建立的儲存體帳戶。
-
+>[AZURE.NOTE] 1.我們不支援使用[新的 Azure 入口網站](../storage/storage-create-storage-account.md)來跨資源群組移動所建立的儲存體帳戶。2.對於用於部署 Site Recovery 的儲存體帳戶，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶[移轉儲存體帳戶](../resource-group-move-resources.md)。
 
 ## 步驟 5：建立和設定保護群組
 
@@ -195,7 +194,7 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 
 1. 在 [建立和設定保護群組] 中，按一下 [建立保護群組]。如果有任何必要條件不符，系統就會發出訊息，您可以按一下 [檢視詳細資料] 來取得詳細資訊。
 
-2. 在 [保護群組] 索引標籤中，新增保護群組。指定名稱、來源 Hyper-V 站台、目標 **Azure**、您的 Azure Site Recovery 訂用帳戶名稱，以及 Azure 儲存體帳戶。
+2. 在 [保護群組] 索引標籤中，新增保護群組。指定名稱、來源 Hyper-V 網站、目標 **Azure**、您的 Azure Site Recovery 訂用帳戶名稱，以及 Azure 儲存體帳戶。
 
 	![保護群組](./media/site-recovery-hyper-v-site-to-azure-classic/protection-group.png)
 
@@ -215,7 +214,7 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 
 >[AZURE.NOTE] 不支援保護使用靜態 IP 位址執行 Linux 的 VM。
 
-1. 在保護群組的 [機器] 索引標籤上，按一下 [新增虛擬機器至保護群組以啟用保護]。
+1. 在保護群組的 [機器] 索引標籤上，按一下 [將虛擬機器加入保護群組以啟用保護]。
 2. 在 [啟用虛擬機器保護] 頁面上，選取要保護的虛擬機器。
 
 	![啟用虛擬機器保護](./media/site-recovery-hyper-v-site-to-azure-classic/add-vm.png)
@@ -229,7 +228,7 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 		- **大小**：要容錯移轉之虛擬機器的目標大小。
 
 		![設定虛擬機器屬性](./media/site-recovery-hyper-v-site-to-azure-classic/vm-properties.png)
-	- 在 [受保護的項目] > [保護群組] > protectiongroup\_name > [虛擬機器] virtual\_machine\_name > [設定]* 中，設定其他的虛擬機器設定，包括：
+	- 在 [受保護的項目]* > *[保護群組]* > *protectiongroup\_name * > *[虛擬機器]* > *virtual\_machine\_name* > *[設定]* 中，設定其他虛擬機器設定，包括：
 
 		- **網路介面卡**：網路介面卡的數目取決於您針對目標虛擬機器所指定的大小。查看[虛擬機器大小規格](../virtual-machines/virtual-machines-linux-sizes.md#size-tables)，了解虛擬機器大小所支援的 NIC 數目。
 
@@ -243,6 +242,8 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 		- **Azure 網路**：指定應將虛擬機器容錯移轉到其中的目標網路。如果虛擬機器具有多張網路介面卡，則所有的介面卡都應該連接到同一個 Azure 網路。
 		- **子網路**：針對虛擬機器上的每張網路介面卡，請選取 Azure 網路中的子網路，機器在容錯移轉之後應會連接到該子網路。
 		- **目標 IP 位址**：如果來源虛擬機器的網路介面卡已設定為使用靜態 IP 位址，則您可以指定目標虛擬機器的 IP 位址，以確保機器在容錯移轉後會有相同的 IP 位址。如果您未指定 IP 位址，則系統將在容錯移轉期間指派任何可用的位址。如果您指定了使用中的位址，則容錯移轉將會失敗。
+		
+        > [AZURE.NOTE] [Migration of networks]對於用於部署 Site Recovery 的網路，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶(../resource-group-move-resources.md)。
 
 		![設定虛擬機器屬性](./media/site-recovery-hyper-v-site-to-azure-classic/multiple-nic.png)
 
@@ -297,6 +298,6 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 
 ## 後續步驟
 
-在您的部署設定完成並開始執行之後，請[深入了解](site-recovery-failover.md)容錯移轉。
+在您的部署設定完成並開始執行之後，[深入了解](site-recovery-failover.md)容錯移轉。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0831_2016-->

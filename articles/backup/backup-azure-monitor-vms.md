@@ -1,6 +1,6 @@
 <properties
    pageTitle="監視 Resource Manager 部署的虛擬機器備份 | Microsoft Azure"
-   description="監視 Resource Manager 部署的虛擬機器備份中的事件和警示"
+   description="監視 Resource Manager 部署的虛擬機器備份中的事件和警示。根據警示傳送電子郵件。"
    services="backup"
    documentationCenter="dev-center-name"
    authors="markgalioto"
@@ -13,12 +13,14 @@ ms.workload="storage-backup-recovery"
 ms.tgt_pltfrm="na"
 ms.devlang="na"
 ms.topic="article"
-ms.date="08/11/2016"
+ms.date="08/25/2016"
 ms.author="trinadhk; giridham;"/>
 
 # 監視 Azure 虛擬機器備份的警示
 
-警示是來自已達到或超過事件閾值之服務的回應。了解何時出現問題，可能對於維持低商務成本很重要。警示通常不會依照排程發生，因此有助於得知何時產生警示。在保存庫儀表板中，[備份警示] 圖格會顯示嚴重和警告層級的事件。在 [備份警示] 設定中，您可以檢視所有事件。但是，如果在您處理不同問題時發生警示，您該怎麼辦？ 如果您不知道何時發生警示，可能會有點不便，或可能危及資料。若要確定正確的人員會留意警示 (當它發生時)，請設定服務以透過電子郵件傳送警示通知。如需設定電子郵件通知的詳細資訊，請參閱[設定通知](backup-azure-monitor-vms.md#configure-notifications)。
+警示是來自已達到或超過事件閾值之服務的回應。了解何時出現問題，可能對於維持低商務成本很重要。警示通常不會依照排程發生，因此在警示發生之後盡早得知將會有所幫助。例如，當備份或還原作業失敗時，警示會在失敗後五分鐘內發生。在保存庫儀表板中，[備份警示] 圖格會顯示嚴重和警告層級的事件。在 [備份警示] 設定中，您可以檢視所有事件。但是，如果在您處理不同問題時發生警示，您該怎麼辦？ 如果您不知道何時發生警示，可能會有點不便，或可能危及資料。若要確定正確的人員會留意警示 (當它發生時)，請設定服務以透過電子郵件傳送警示通知。如需設定電子郵件通知的詳細資訊，請參閱[設定通知](backup-azure-monitor-vms.md#configure-notifications)。
+
+## 如何找到警示的相關資訊？
 
 若要檢視擲回警示的事件相關資訊，您必須開啟 [備份警示] 刀鋒視窗。開啟 [備份警示] 刀鋒視窗的方法有兩種︰從保存庫儀表板中的 [備份警示] 圖格，或從 [警示和事件] 刀鋒視窗。
 
@@ -72,6 +74,15 @@ ms.author="trinadhk; giridham;"/>
 5. 在 [嚴重性] 對話方塊中，選擇您要觸發電子郵件通知的一或多個層級。
 
 6. 按一下 [儲存]。
+
+### 會有即使已設定通知卻不寄送電子郵件的情況嗎？
+
+即使已正確設定通知，仍會有不寄送警示的情況。在下列情況下，將不會寄送電子郵件通知︰
+
+- 如果通知設定為 [每小時摘要]，而且在一小時內引發警示並加以解決，
+- 作業便會取消。
+- 備份作業會觸發然後失敗，且另一個備份作業正在進行中。
+- 啟用 Resource Manager 功能之 VM 的排程備份作業會啟動，但 VM 將不再存在。
 
 ## 自訂事件的檢視
 
@@ -220,4 +231,4 @@ PS C:\> Add-AzureRmLogAlertRule -Name backupFailedAlert -Location "East US" -Res
 
 如需從復原點重新建立虛擬機器的詳細資訊，請參閱[還原 Azure VM](backup-azure-restore-vms.md)。如需保護虛擬機器的詳細資訊，請參閱[搶先目睹︰將 VM 備份至復原服務保存庫](backup-azure-vms-first-look-arm.md)。深入了解[管理 Azure 虛擬機器備份](backup-azure-manage-vms.md)一文中 VM 備份的管理工作。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

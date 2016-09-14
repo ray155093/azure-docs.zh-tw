@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/31/2016"
+   ms.date="08/25/2016"
    ms.author="spyros;sethm" />
 
 # 通知使用者從感應器或其他系統接收到的資料
@@ -44,7 +44,7 @@
 此範例中的程式碼只會說明如何監視事件中樞，以及在您想要將這項功能新增至應用程式時如何呼叫外部訊息服務。請注意，此解決方案是需要獨立完成、側重於開發人員需求的範例。它無法因應企業需求，例如在失敗時進行備援、容錯移轉、重新啟動等。如需較全面的生產解決方案，請參閱下列各項：
 
 - 透過 [Azure Logic Apps](../app-service-logic/app-service-logic-connectors-list.md) 服務，使用連接器或推播通知。
-- 依照部落格[使用 Azure 通知中樞將推播通知廣播給數百萬個行動裝置](http://weblogs.asp.net/scottgu/broadcast-push-notifications-to-millions-of-mobile-devices-using-windows-azure-notification-hubs)中的說明，使用 [Azure 通知中樞](https://msdn.microsoft.com/library/azure/jj927170.aspx)。 
+- 依照部落格[使用 Azure 通知中樞將推播通知廣播給數百萬個行動裝置](http://weblogs.asp.net/scottgu/broadcast-push-notifications-to-millions-of-mobile-devices-using-windows-azure-notification-hubs)中的說明，使用 [Azure 通知中樞](https://msdn.microsoft.com/library/azure/jj927170.aspx)。
 
 ## 後續步驟
 
@@ -83,4 +83,4 @@
 [1]: ./media/event-hubs-sensors-notify-users/event-hubs-sensor-alert.png
 [2]: ./media/event-hubs-sensors-notify-users/event-hubs-erp-alert.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0831_2016-->

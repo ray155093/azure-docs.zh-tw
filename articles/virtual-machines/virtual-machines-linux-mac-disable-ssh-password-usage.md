@@ -14,8 +14,8 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="01/29/2016"
-	ms.author="v-vlivech"/>
+	ms.date="08/26/2016"
+	ms.author="v-livech"/>
 
 # 藉由設定 SSHD 停用 Linux VM 上的 SSH 密碼
 
@@ -43,7 +43,7 @@ SSHD 是在 Linux VM 上執行的 SSH 伺服器。SSH 是從 MacBook 或 Linux �
 
 ## 必要條件
 
-- [在 Linux 和 Mac 上為 Azure 中的 Linux VM 建立 SSH 金鑰](link)
+- [在 Linux 和 Mac 上為 Azure 中的 Linux VM 建立 SSH 金鑰](virtual-machines-linux-mac-create-ssh-keys.md)
 - Azure 帳戶
   - [註冊免費試用版](https://azure.microsoft.com/pricing/free-trial/)
   - [Azure 入口網站](http://portal.azure.com)
@@ -145,4 +145,4 @@ username@macbook$ sudo service sshd restart
 
 VM 上的密碼現已停用，如此將能避免暴力破解密碼的登入嘗試。由於我們只允許 SSH 金鑰，您將可以利用更快速、更安全的方式登入。
 
-<!---HONumber=AcomDC_0323_2016-->
+<!---HONumber=AcomDC_0831_2016-->

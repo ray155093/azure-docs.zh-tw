@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/06/2016" 
+	ms.date="08/25/2016" 
 	ms.author="nitinme"/>
 
 # 追蹤和偵錯在 HDInsight Linux 中的 Apache Spark 叢集上執行的作業
@@ -27,7 +27,7 @@
 
 - Azure 訂用帳戶。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 - HDInsight Linux 上的 Apache Spark 叢集。如需指示，請參閱[在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
-- 您應該開始執行 Notebook，**[機器學習服務：使用 MLLib 對食品檢查資料進行預測分析](hdinsight-apache-spark-machine-learning-mllib-ipython.md)**。如需有關如何執行此 Notebook 的指示，請依照下列連結。  
+- 您應該開始執行 Notebook，**[機器學習服務：使用 MLLib 對食品檢查資料進行預測分析](hdinsight-apache-spark-machine-learning-mllib-ipython.md)**。如需有關如何執行此 Notebook 的指示，請依照下列連結。
 
 ## 追蹤 YARN UI 中的應用程式
 
@@ -84,7 +84,7 @@
 6. Spark UI 中的其他索引標籤也提供 Spark 執行個體的實用資訊。
 
 	* [儲存體] 索引標籤 - 如果您的應用程式建立 RDD，您可以在 [儲存體] 索引標籤中找到相關資訊。
-	* [環境]索引標籤 - 這個標籤提供關於您的 Spark 執行個體的實用資訊，例如 
+	* [環境]索引標籤 - 這個標籤提供關於您的 Spark 執行個體的實用資訊，例如
 		* Scala 版本
 		* 與叢集相關聯的事件記錄檔目錄
 		* 應用程式的執行程式核心數目
@@ -146,4 +146,4 @@
 
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0831_2016-->

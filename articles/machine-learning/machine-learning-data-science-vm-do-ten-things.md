@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/14/2016"
+	ms.date="08/29/2016"
 	ms.author="gokuma;weig;bradsev" />
 
 # 您可以在 Data Science Virtual Machine 上做的十件事
@@ -32,7 +32,7 @@ Microsoft Data Science Virtual Machine (DSVM) 是強大的資料科學開發環�
 7. 存取各種 Azure 資料和分析服務，例如 Azure Blob 儲存體，Azure 資料湖、Azure HDInsight (Hadoop)、Azure DocumentDB、Azure SQL 資料倉儲和資料庫
 8. 使用在 DSVM 上預先安裝的 Power BI Desktop 來建立報告和儀表板並雲端上加以部署
 9. 動態調整 DSVM 以符合您的專案需求
-10. 在虛擬機器上安裝其他工具   
+10. 在虛擬機器上安裝其他工具
 
 
 >[AZURE.NOTE] 額外的使用費會適用於許多在本文中列出的其他資料儲存體和分析服務。如需詳細資訊，請參閱 [Azure 價格](https://azure.microsoft.com/pricing/)頁面。
@@ -40,7 +40,7 @@ Microsoft Data Science Virtual Machine (DSVM) 是強大的資料科學開發環�
 
 **必要條件**
 
-- 您將需要 Azure 訂用帳戶。您可以[在這裡](https://azure.microsoft.com/free/)註冊免費試用。
+- 您將需要 Azure 訂用帳戶。您可以在[此處](https://azure.microsoft.com/free/)註冊免費試用。
 
 - 如需在 Azure 入口網站上佈建資料科學虛擬機器的指示，請參閱[建立虛擬機器](https://portal.azure.com/#create/microsoft-ads.standard-data-science-vmstandard-data-science-vm)。
 
@@ -62,20 +62,20 @@ Microsoft Data Science Virtual Machine (DSVM) 是強大的資料科學開發環�
 
 如需有關如何建立 Python 環境的詳細資訊，請參閱 [PTVS 文件](https://github.com/Microsoft/PTVS/wiki/Selecting-and-Installing-Python-Interpreters#hey-i-already-have-an-interpreter-on-my-machine-but-ptvs-doesnt-seem-to-know-about-it)。
 
-現在您將建立新的 Python 專案。瀏覽至 檔案] -> [新增] -> [專案] -> [Python]，然後選取您要建置的 Python 應用程式類型。您可以將目前專案的 Python 環境設為所需的版本 (Anaconda 2.7 或 3.5)：以滑鼠右鍵按一下 [Python 環境]、選取 [加入/移除 Python 環境]，然後選取要與專案相關聯的環境。您可以在[文件](https://github.com/Microsoft/PTVS/wiki)頁面找到在產品上使用 PTVS 的詳細資訊。
+現在您將建立新的 Python 專案。瀏覽至 檔案] -> [新增] -> [專案] -> [Python]，然後選取您要建置的 Python 應用程式類型。您可以將目前專案的 Python 環境設為所需的版本 (Anaconda 2.7 或 3.5)：以滑鼠右鍵按一下 [Python 環境]、選取 [新增/移除 Python 環境]，然後選取要與專案相關聯的環境。您可以在[文件](https://github.com/Microsoft/PTVS/wiki)頁面找到在產品上使用 PTVS 的詳細資訊。
 
 ## 2\.使用 Jupyter Notebook 來探索您的資料，並以 Python 或 R 進行模型分析
 
 Jupyter Notebook 是一個強大的環境，可提供以瀏覽器為基礎的 "IDE" 進行資料探索和模型分析。您可以在 Jupyter Notebook 使用 Python 2、Python 3 或 R (開放原始碼和 Microsoft R Server)。
 
-若要啟動 Jupyter Notebook，請按一下標題為 [Jupyter Notebook] 的 [開始] 功能表圖示 / 桌面圖示。在 DSVM 上，您也可以瀏覽至 "https://localhost:9999/" 以存取 Jupyter Notebook。如果其提示您輸入密碼，請使用[佈建 Microsoft 資料科學虛擬機器](machine-learning-data-science-provision-vm.md)主題之***如何在 Jupyter 筆記本伺服器上建立強式密碼***小節中所提供的指示，以建立強式密碼來存取 Jupyter 筆記本。
+若要啟動 Jupyter Notebook，請按一下標題為 [Jupyter Notebook] 的 [開始] 功能表圖示 / 桌面圖示。在 DSVM 上，您也可以瀏覽至 "https://localhost:9999/" 以存取 Jupyter Notebook。如果其提示您輸入密碼，請使用[佈建 Microsoft 資料科學虛擬機器](machine-learning-data-science-provision-vm.md)主題之**如何在 Jupyter 筆記本伺服器上建立強式密碼**小節中所提供的指示，以建立強式密碼來存取 Jupyter 筆記本。
 
 您開啟 Notebook 後，會看到一個目錄，其中包含一些已預先封裝到 DSVM 中的 Notebook 範例。現在您可以：
 
 - 按一下 Notebook，查看程式碼。
 - 按 **SHIFT-ENTER** 執行每個儲存格。
 - 按一下 [儲存格] -> [執行] 執行整個筆記本
-- 按一下 Jupyter 圖示 (左上角)，並按一下右邊的 [新增] 按鈕，然後選擇筆記本語言 (也稱為核心)，建立新的筆記本。   
+- 按一下 Jupyter 圖示 (左上角)，並按一下右邊的 [新增] 按鈕，然後選擇筆記本語言 (也稱為核心)，建立新的筆記本。
 
 
 >[AZURE.NOTE] 我們目前支援 Python 2.7、Python 3.5 和 R。R 核心支援以開放原始碼 R 以及企業可調整式 Microsoft R Server 進行程式設計。
@@ -138,7 +138,7 @@ Jupyter Notebook 是一個強大的環境，可提供以瀏覽器為基礎的 "I
 
 - 建立 settings.json 檔案 (如下所示)，以提供您的工作區 ID 和驗證權杖。
 - 針對模型的預測函數，撰寫一個包裝函式。
-- 呼叫 Azure Machine Learning 程式庫中的 ```publishWebService``` 傳入函數包裝函數。  
+- 呼叫 Azure Machine Learning 程式庫中的 ```publishWebService``` 傳入函數包裝函數。
 
 以下是可用來安裝、建置、發佈和取用模型作為 Azure Machine Learning Web 服務的程序和程式碼片段。
 
@@ -275,8 +275,7 @@ Azure blob 是可靠、划算的雲端儲存體，可存放大型和小型的資
 
 - 確認預先安裝的命令列 AzCopy 工具位於 ```C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy\azcopy.exe```。您可以將包含 azcopy.exe 的目錄加入至您的 PATH 環境變數，如此便不用在執行這項工具時輸入完整的命令路徑。如需 AzCopy 工具的詳細資訊，請參閱 [AzCopy 文件](../storage/storage-use-azcopy.md)
 
-- 從 VM 桌面上的圖示啟動 Azure 儲存體總管。您也可以在 ***C:\\Program Files (x86)\\Neudesic\\Azure Storage Explorer 6*** 目錄中找到它。
-
+- 啟動 Azure 儲存體總管工具。您可以從 [Microsoft Azure 儲存體總管](http://storageexplorer.com/)下載此工具。
 
 ![AzureStorageExplorer\_v4](./media/machine-learning-data-science-vm-do-ten-things/AzureStorageExplorer_v4.png)
 
@@ -312,13 +311,13 @@ Azure blob 是可靠、划算的雲端儲存體，可存放大型和小型的資
 
 您也可以使用 Azure 儲存體總管，從 VM 中的本機檔案上載資料：
 
-
-![](./media/machine-learning-data-science-vm-do-ten-things/AzureStorageExplorer_upload_v2.png)
+- 若要將資料上傳至容器，請選取目標容器，然後按一下 [上傳] 按鈕。![](./media/machine-learning-data-science-vm-do-ten-things/storage-accounts.png)
+- 按一下 [檔案] 方塊右邊的 [...]、從檔案系統中選取一或多個要上傳的檔案，然後按一下 [上傳]，開始上傳檔案。![](./media/machine-learning-data-science-vm-do-ten-things/upload-files-to-blob.png)
 
 
 **從 Azure Blob 讀取資料：AML 讀取器模組**
 
-您可以在 Azure Machine Learning Studio 中，使用「匯入資料模組」從 Blob 讀取資料。
+您可以在 Azure Machine Learning Studio 中，使用**匯入資料模組**從 Blob 讀取資料。
 
 
 ![AML\_ReaderBlob\_Module\_v3](./media/machine-learning-data-science-vm-do-ten-things/AML_ReaderBlob_Module_v3.png)
@@ -326,7 +325,7 @@ Azure blob 是可靠、划算的雲端儲存體，可存放大型和小型的資
 
 **從 Azure Blob 讀取資料：Python ODBC**
 
-您可以使用 **BlobService** 程式庫直接從 Jupyter 筆記本或 Python 程式的 Blob 中讀取資料。
+您可以使用 **BlobService** 程式庫，直接從 Jupyter 筆記本或 Python 程式的 Blob 中讀取資料。
 
 首先，匯入所需的封裝：
 
@@ -375,7 +374,7 @@ Azure blob 是可靠、划算的雲端儲存體，可存放大型和小型的資
 
 ### Azure 資料湖
 
-Azure 資料湖儲存體是巨量資料分析工作負載的超大規模儲存機制，與 Hadoop 分散式檔案系統 (HDFS) 相容。它適用於 Hadoop 生態系統以及 Azure 資料湖分析。我們會示範如何將資料移至 Azure 資料湖存放區，並使用 Azure 資料湖分析執行分析。
+Azure Data Lake 儲存體是巨量資料分析工作負載的超大規模儲存機制，與 Hadoop 分散式檔案系統 (HDFS) 相容。它適用於 Hadoop 生態系統以及 Azure Data Lake Analytics。我們會示範如何將資料移至 Azure 資料湖存放區，並使用 Azure 資料湖分析執行分析。
 
 **必要條件**
 
@@ -384,14 +383,14 @@ Azure 資料湖儲存體是巨量資料分析工作負載的超大規模儲存�
 ![Azure\_Data\_Lake\_Create\_v2](./media/machine-learning-data-science-vm-do-ten-things/Azure_Data_Lake_Create_v2.png)
 
 
-- 在此[連結](https://www.microsoft.com/download/details.aspx?id=49504)找到的 **Visual Studio** 中的 **Azure Data Lake Tools**，已安裝於虛擬機器上的 Visual Studio Community Edition。啟動 Visual Studio 並登入您的 Azure 訂用帳戶之後，您會在 Visual Studio 的左面板中看到 Azure 分析資料帳戶和儲存體。
+- 在此[連結](https://www.microsoft.com/download/details.aspx?id=49504)找到的 **Visual Studio** 中的 **Azure Data Lake Tools**，已安裝於虛擬機器上的 Visual Studio Community 版本。啟動 Visual Studio 並登入您的 Azure 訂用帳戶之後，您會在 Visual Studio 的左面板中看到 Azure 資料分析帳戶和儲存體。
 
 ![Azure\_Data\_Lake\_PlugIn\_v2](./media/machine-learning-data-science-vm-do-ten-things/Azure_Data_Lake_PlugIn_v2.PNG)
 
 
 **將資料從 VM 移至資料湖：Azure 資料湖總管**
 
-您可以使用 [Azure Data Lake Explorer]，將資料從虛擬機器中的本機檔案上傳至 Data Lake 儲存體。
+您可以使用 **Azure Data Lake Explorer**，將資料從虛擬機器中的本機檔案上傳至 Data Lake 儲存體。
 
 ![Azure\_Data\_Lake\_UploadData](./media/machine-learning-data-science-vm-do-ten-things/Azure_Data_Lake_UploadData.PNG)
 
@@ -399,7 +398,7 @@ Azure 資料湖儲存體是巨量資料分析工作負載的超大規模儲存�
 
 **將資料從 Azure Blob 讀取至資料湖：U-SQL**
 
-如果您的資料位於 Azure Blob 儲存體中，您可以在 U-SQL 查詢中從 Azure 儲存體 Blob 直接讀取資料。撰寫 U-SQL 查詢之前，請確定您的 Blob 儲存體帳戶已連結到您的 Azure 資料湖。移至 Azure 入口網站，尋找您的 Azure Data Lake Analytics 儀表板、按一下 [加入資料來源]、選取 [Azure 儲存體] 作為儲存體類型，並插入您的 Azure 儲存體帳戶名稱和金鑰。然後您可以參考儲存體帳戶中儲存的資料。
+如果您的資料位於 Azure Blob 儲存體中，您可以在 U-SQL 查詢中從 Azure 儲存體 Blob 直接讀取資料。撰寫 U-SQL 查詢之前，請確定您的 Blob 儲存體帳戶已連結到您的 Azure 資料湖。移至 **Azure 入口網站**、尋找您的 Azure Data Lake Analytics 儀表板、按一下 [加入資料來源]、選取 [Azure 儲存體] 做為儲存體類型，並插入您的 Azure 儲存體帳戶名稱和金鑰。然後您可以參考儲存體帳戶中儲存的資料。
 
 ![](./media/machine-learning-data-science-vm-do-ten-things/Link_Blob_to_ADLA_v2.PNG)
 
@@ -459,7 +458,7 @@ Azure 資料湖儲存體是巨量資料分析工作負載的超大規模儲存�
 
 將資料集擷取到 Azure Data Lake 之後，您可以使用 [U-SQL 語言](../data-lake-analytics/data-lake-analytics-u-sql-get-started.md)來查詢和探索資料。U-SQL 語言類似於 T-SQL，但結合了 C# 的一些功能，以便使用者撰寫自訂的模組、使用者定義的功能等。您可以在上一個步驟中使用指令碼。
 
-將查詢提交到伺服器之後，很快就可以在 [Azure Data Lake Explorer] 中找到 tripdata\_summary.CSV，以滑鼠右鍵按一下該檔案即可預覽資料。
+將查詢提交到伺服器之後，很快就可以在 **Azure Data Lake Explorer** 中找到 tripdata\_summary.CSV，以滑鼠右鍵按一下該檔案即可預覽資料。
 
 ![](./media/machine-learning-data-science-vm-do-ten-things/USQL_create_summary.png)
 
@@ -484,7 +483,7 @@ Azure HDInsight 是在雲端上的受管理 Apache Hadoop、Spark、HBase 和 St
 
 ![](./media/machine-learning-data-science-vm-do-ten-things/Create_HDI_v4.PNG)
 
-  - 建立後，您必須對叢集的前端節點啟用 [遠端存取]。請記住您在此處指定的遠端存取認證 (與建立時指定叢集的不同)：您在以下會需要該資訊。
+  - 建立後，您必須對叢集的前端節點啟用**遠端存取**。請記住您在此處指定的遠端存取認證 (與建立時指定叢集的不同)：您在以下會需要該資訊。
 
 ![](./media/machine-learning-data-science-vm-do-ten-things/Create_HDI_dashboard_v3.PNG)
 
@@ -589,15 +588,13 @@ Azure HDInsight 是在雲端上的受管理 Apache Hadoop、Spark、HBase 和 St
 		    cursor.execute(queryString)
 
 
-- 或者，您可以遵循此[逐步解說](machine-learning-data-science-process-hive-walkthrough.md)將 NYC 計程車資料上傳至 HDI 叢集。主要步驟包括：
+- 或者，您可以遵循此[逐步解說](machine-learning-data-science-process-hive-walkthrough.md)，將 NYC 計程車資料上傳至 HDI 叢集。主要步驟包括：
 
 	- AzCopy：從公用 Blob 將已壓縮的 CSV 下載到本機資料夾
 	- AzCopy：從本機資料夾將已解壓縮的 CSV 上傳至 HDI 叢集
 	- 登入 Hadoop 叢集的前端節點，並準備進行探索資料分析
 
 在資料載入至 HDI 叢集之後，您可以在 Azure 儲存體總管中檢查您的資料。而您會在 HDI 叢集中建立資料庫 nyctaxidb。
-
-![](./media/machine-learning-data-science-vm-do-ten-things/Upload_Data_to_HDI_cluster_Azure_Explorer.PNG)
 
 
 **資料探索：Python 中的 Hive 查詢**
@@ -834,7 +831,7 @@ Azure HDInsight 是在雲端上的受管理 Apache Hadoop、Spark、HBase 和 St
 
 Azure SQL 資料倉儲是彈性的資料倉儲即服務，具有企業層級的 SQL Server 體驗。
 
-您可以藉由遵循此[文章](../sql-data-warehouse/sql-data-warehouse-get-started-provision.md)中提供的指示，佈建您的 Azure SQL 資料倉儲。佈建 Azure SQL 資料倉儲之後，就可以使用這個[逐步解說](machine-learning-data-science-process-sqldw-walkthrough.md)進行資料上傳、探索以及使用 SQL 資料倉儲中的資料建立模型。
+您可以藉由遵循這篇[文章](../sql-data-warehouse/sql-data-warehouse-get-started-provision.md)中提供的指示，佈建您的 Azure SQL 資料倉儲。佈建 Azure SQL 資料倉儲之後，就可以使用這個[逐步解說](machine-learning-data-science-process-sqldw-walkthrough.md)，進行資料上傳、探索以及使用 SQL 資料倉儲中的資料建立模型。
 
 #### Azure DocumentDB
 
@@ -849,7 +846,7 @@ Azure DocumentDB 是雲端中的 NoSQL 資料庫。它可讓您使用 JSON 等�
 
 	/s:JsonFile /s.Files:https://cahandson.blob.core.windows.net/samples/volcano.json /t:DocumentDBBulk /t.ConnectionString:AccountEndpoint=https://[DocDBAccountName].documents.azure.com:443/;AccountKey=[[KEY];Database=volcano /t.Collection:volcano1
 
-一旦匯入資料，您即可移至 Jupyter 並開啟標題為 *DocumentDBSample* 且包含 python 程式碼的筆記本，以存取 DocumentDB 及進行一些基本查詢。如需深入了解 DocumentDB，請參閱服務[文件頁面](https://azure.microsoft.com/documentation/learning-paths/documentdb/)。
+一旦匯入資料之後，您即可移至 Jupyter 並開啟標題為 *DocumentDBSample* 且包含 python 程式碼的筆記本，以存取 DocumentDB 及進行一些基本查詢。如需深入了解 DocumentDB，請參閱服務[文件頁面](https://azure.microsoft.com/documentation/learning-paths/documentdb/)
 
 
 ## 8\.使用 Power BI Desktop 建立報表和儀表板
@@ -883,19 +880,19 @@ Azure DocumentDB 是雲端中的 NoSQL 資料庫。它可讓您使用 JSON 等�
 
 ![](./media/machine-learning-data-science-vm-do-ten-things/PowerBIVolcanoData.png)
 
-您可以開始使用資料模型來建立報告和視覺效果。您可以遵循此 [Power BI 文章](../documentdb/documentdb-powerbi-visualize.md#build-the-reports)中的步驟來建立報告。最後的結果會是如下所示的報告。
+您可以開始使用資料模型來建立報告和視覺效果。您可以遵循這篇 [Power BI 文章](../documentdb/documentdb-powerbi-visualize.md#build-the-reports)中的步驟來建立報告。最後的結果會是如下所示的報告。
 
 ![Power BI Desktop 報告檢視 - Power BI 連接器](./media/machine-learning-data-science-vm-do-ten-things/power_bi_connector_pbireportview2.png)
 
 ## 9\.動態調整 DSVM 以符合您的專案需求
 
-您可以相應增加和減少 DSVM 以符合您的專案需求。如果您在晚上或週末不需要使用 VM，從 [Azure 入口網站](https://portal.azure.com)就可以關閉 VM。
+您可以相應增加和減少 DSVM 以符合您的專案需求。如果您在晚上或週末不需要使用 VM，就可以從 [Azure 入口網站](https://portal.azure.com)關閉 VM。
 
 >[AZURE.NOTE]  如果您只使用 VM 上的作業系統關機按鈕，將需支付計算費用。
 
 如果您需要處理一些大規模分析，而且需要更多 CPU 和/或記憶體和/或磁碟容量，您可以找到許多符合您的計算和預算需求的 VM 大小選擇 (從 CPU 核心、記憶體容量和磁碟類型 (包括固態硬碟機) 方面來看)。[Azure 虛擬機器定價](https://azure.microsoft.com/pricing/details/virtual-machines/)頁面會提供完整 VM 清單及其每小時的計算價格。
 
-同樣地，如果您的 VM 處理容量需求降低 (例如：您將主要工作負載移至 Hadoop 或 Spark 叢集)，您可以從 [Azure 入口網站](https://portal.azure.com)移至您的 VM 執行個體設定來相應減少叢集。以下為螢幕擷取畫面。
+同樣地，如果您的 VM 處理容量需求降低 (例如：將主要工作負載移至 Hadoop 或 Spark 叢集)，您可以從 [Azure 入口網站](https://portal.azure.com)移至您的 VM 執行個體設定來相應減少叢集。以下為螢幕擷取畫面。
 
 
 ![](./media/machine-learning-data-science-vm-do-ten-things/VMScaling.PNG)
@@ -905,9 +902,9 @@ Azure DocumentDB 是雲端中的 NoSQL 資料庫。它可讓您使用 JSON 等�
 
 我們已封裝數個工具，我們相信這可以滿足許多常見的資料分析需求，並藉由避免必須逐一安裝和設定您的環境而節省您的時間，且只支付您所用的資源而節省您的成本。
 
-您可以運用本文略述的其他 Azure 資料和分析資料服務，以增強您的分析環境。我們了解，在某些情況下您的需求可能需要額外的工具，包括一些專屬的協力廠商工具。您有完整的系統管理權限可在虛擬機器上安裝您所需的新工具。您也可以在 Python 和 R 中安裝其他未預先安裝的封裝。對於 Python，您可以使用 ```conda``` 或 ```pip```。對於 R，您可以在 R 主控台中使用 ```install.packages()```，或使用 IDE 並選擇 [封裝] -> [安裝封裝]。
+您可以運用本文略述的其他 Azure 資料和分析資料服務，以增強您的分析環境。我們了解，在某些情況下您的需求可能需要額外的工具，包括一些專屬的協力廠商工具。您有完整的系統管理權限可在虛擬機器上安裝您所需的新工具。您也可以在 Python 和 R 中安裝其他未預先安裝的封裝。對於 Python，您可以使用 ```conda``` 或 ```pip```。對於 R，您可以在 R 主控台中使用 ```install.packages()```，或使用整合式開發環境 (IDE) 並選擇 [封裝] -> [安裝封裝...]。
 
 ## 摘要
 這些只是您可以在 Microsoft Data Science Virtual Machine 上可做的一些事情。您還可以做更多事情，讓它成為有效的分析環境。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0831_2016-->
