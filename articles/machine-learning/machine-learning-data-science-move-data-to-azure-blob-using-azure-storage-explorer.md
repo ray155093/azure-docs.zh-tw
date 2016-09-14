@@ -13,22 +13,19 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/14/2016"
+	ms.date="08/31/2016"
 	ms.author="bradsev" />
 
 # 使用 Azure 儲存體總管從 Azure Blob 儲存體來回移動資料
 
-Azure 儲存體總管是一個免費的 Windows 型工具，可用以檢查及更改 Azure 儲存體帳戶中的資料。本主題說明如何使用它來於 Azure Blob 儲存體中上傳及下載資料。您可以從 [Azure 儲存體總管](http://storageexplorer.com/)下載該工具。
+Azure 儲存體總管是 Microsoft 所提供的免費工具，可讓您在 Windows、MacOS 和 Linux 上使用 Azure 儲存體資料。本主題說明如何使用它來於 Azure Blob 儲存體中上傳及下載資料。您可以從 [Microsoft Azure 儲存體總管](http://storageexplorer.com/)下載此工具。
 
 以下是有關從 Azure Blob 儲存體來回移動資料所使用之技術的指引連結：
  
 [AZURE.INCLUDE [blob-storage-tool-selector](../../includes/machine-learning-blob-storage-tool-selector.md)]
- 
-&nbsp;
+
  
 > [AZURE.NOTE] 如果您是使用以 [Azure 中的資料科學虛擬機器](machine-learning-data-science-virtual-machines.md)提供的指令碼所設定的 VM，則 Azure 儲存體總管已經安裝在 VM 上。
- 
-&nbsp;
  
 > [AZURE.NOTE] 如需 Azure Blob 儲存體的完整介紹，請參閱 [Azure Blob 基本概念](../storage/storage-dotnet-how-to-use-blobs.md)和 [Azure Blob 服務](https://msdn.microsoft.com/library/azure/dd179376.aspx)。
 
@@ -37,7 +34,8 @@ Azure 儲存體總管是一個免費的 Windows 型工具，可用以檢查及�
 本文件假設您擁有 Azure 訂用帳戶、儲存體帳戶和該帳戶的對應儲存體金鑰。上傳/下載資料之前，您必須知道 Azure 儲存體帳戶名稱和帳戶金鑰。
 
 - 若要設定 Azure 訂用帳戶，請參閱[免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。
-- 如需建立儲存體帳戶的指示，以及取得帳戶和金鑰的資訊，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)。
+- 如需建立儲存體帳戶的指示，以及取得帳戶和金鑰的資訊，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)。記下儲存體帳戶的存取金鑰，因為您需要此金鑰，才能連接到具有 Azure 儲存體總管工具的帳戶。
+- 您可以從 [Microsoft Azure 儲存體總管](http://storageexplorer.com/)下載 Azure 儲存體總管工具。安裝期間請接受預設值。
 
 
 <a id="explorer"></a>
@@ -45,16 +43,14 @@ Azure 儲存體總管是一個免費的 Windows 型工具，可用以檢查及�
 
 下列步驟說明如何使用 Azure 儲存體總管上傳/下載資料。
 
-1.  啟動 Azure 儲存體總管 
-2.  如果您想要存取的儲存體帳戶尚未新增至 Azure 儲存體總管，按一下 [新增帳戶] 按鈕來新增帳戶。如果已經新增，可從 [--選取儲存體帳戶--] 下拉式清單中選取帳戶。![建立工作區][1] <br>
-3. 輸入儲存體帳戶名稱和儲存體帳戶金鑰，然後按一下 [新增儲存體帳戶]。您可以新增多個儲存體帳戶，各個帳戶將會顯示於個別的索引標籤上。此儲存體帳戶下方的容器會顯示於左面板中。選取容器，以在右面板查看容器中的 Blob。![建立工作區][2] <br> ![建立工作區][3] <br>
-4. 按一下 [上傳] 按鈕來上傳資料。從檔案系統中選取一或多個要上傳的檔案，然後按一下 [開啟]，開始上傳檔案。
-5. 選取對應容器中的 Blob，然後按一下 [下載] 按鈕來下載資料。
+1.  啟動 Microsoft Azure 儲存體總管。
+2.  若要啟動 [登入您的帳戶...] 精靈，請選取 [Azure 帳戶設定] 圖示，然後選取 [新增帳戶] 並輸入您的認證。![](./media/machine-learning-data-science-move-data-to-azure-blob-using-azure-storage-explorer/add-an-azure-store-account.png)
+3.  若要啟動 [連接到 Azure 儲存體] 精靈，請選取 [連接到 Azure 儲存體] 圖示。![](./media/machine-learning-data-science-move-data-to-azure-blob-using-azure-storage-explorer/connect-to-azure-storage-1.png)
+4. 在 [連接到 Azure 儲存體] 精靈中輸入 Azure 儲存體帳戶的存取金鑰，然後選取 [下一步]。![](./media/machine-learning-data-science-move-data-to-azure-blob-using-azure-storage-explorer/connect-to-azure-storage-2.png)
+5. 在 [帳戶名稱] 方塊中輸入儲存體帳戶名稱，然後選取 [下一步]。![](./media/machine-learning-data-science-move-data-to-azure-blob-using-azure-storage-explorer/attach-external-storage.png)
+6. 現在應該會列出新增的儲存體帳戶。若要在儲存體帳戶中建立 Blob 容器，請以滑鼠右鍵按一下該帳戶中的 [Blob 容器] 節點、選取 [建立 Blob 容器]，然後輸入名稱。
+7. 若要將資料上傳至容器，請選取目標容器，然後按一下 [上傳] 按鈕。![](./media/machine-learning-data-science-move-data-to-azure-blob-using-azure-storage-explorer/storage-accounts.png)
+8. 按一下 [檔案] 方塊右邊的 [...]、從檔案系統中選取一或多個要上傳的檔案，然後按一下 [上傳]，開始上傳檔案。![](./media/machine-learning-data-science-move-data-to-azure-blob-using-azure-storage-explorer/upload-files-to-blob.png)
+7. 若要下載資料，選取對應容器中要下載的 Blob，然後按一下 [下載]。![](./media/machine-learning-data-science-move-data-to-azure-blob-using-azure-storage-explorer/download-files-from-blob.png)
 
-<!-- Images -->
-
-[1]: ./media/machine-learning-data-science-move-azure-blob/data-science-process-uploading-data-to-blob-storage-img1.png
-[2]: ./media/machine-learning-data-science-move-azure-blob/data-science-process-uploading-data-to-blob-storage-img2.png
-[3]: ./media/machine-learning-data-science-move-azure-blob/data-science-process-uploading-data-to-blob-storage-img3.png
-
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0831_2016-->

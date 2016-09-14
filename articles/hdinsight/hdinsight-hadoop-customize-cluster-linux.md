@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/03/2016"
+	ms.date="08/25/2016"
 	ms.author="larryfr"/>
 
 # 使用指令碼動作自訂 Linux 型 HDInsight 叢集
@@ -120,7 +120,7 @@ HDInsight 提供一個稱為 [指令碼動作]的組態選項，此指令碼動�
 
 ## 在建立叢集期間使用指令碼動作
 
-本節提供您可以在建立 HDInsight 叢集時使用指令碼動作的不同方式範例 - 從 Azure 入口網站、使用 ARM 範本、使用 PowerShell Cmdlet，以及使用 .NET SDK。
+本節提供您可以在建立 HDInsight 叢集時使用指令碼動作的不同方式範例 - 從 Azure 入口網站、使用 Azure Resource Manager 範本、使用 PowerShell Cmdlet，以及使用 .NET SDK。
 
 ### 在建立叢集期間從 Azure 入口網站使用指令碼動作
 
@@ -143,19 +143,19 @@ HDInsight 提供一個稱為 [指令碼動作]的組態選項，此指令碼動�
 
 ### 從 Azure 資源管理員範本使用指令碼動作
 
-在本節中，我們使用 Azure 資源管理員 (ARM) 範本來建立 HDInsight 叢集，並且也使用指令碼動作在叢集上安裝自訂元件 (在此範例中為 R)。本節提供範例 ARM 範本以使用指令碼動作建立叢集。
+在本節中，我們使用 Azure Resource Manager 範本來建立 HDInsight 叢集，並且也使用指令碼動作在叢集上安裝自訂元件 (在此範例中為 R)。本節提供範例範本，以使用指令碼動作建立叢集。
 
-> [AZURE.NOTE] 本節中的步驟示範如何使用指令碼動作建立叢集。如需使用 HDInsight 應用程式從 ARM 範本中建立叢集的範例，請參閱[安裝自訂 HDInsight 應用程式](hdinsight-apps-install-custom-applications.md)。
+> [AZURE.NOTE] 本節中的步驟示範如何使用指令碼動作建立叢集。如需使用 HDInsight 應用程式從範本中建立叢集的範例，請參閱[安裝自訂 HDInsight 應用程式](hdinsight-apps-install-custom-applications.md)。
 
 #### 開始之前
 
 * 如需設定工作站以執行 HDInsight Powershell Cmdlet 的相關資訊，請參閱[安裝並設定 Azure PowerShell](../powershell-install-configure.md)。
-* 如需如何建立 ARM 範本的指示，請參閱[撰寫 Azure 資源管理員範本](../resource-group-authoring-templates.md)。
+* 如需如何建立範本的指示，請參閱[編寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md)。
 * 如果您之前未曾搭配使用Azure PowerShell 與資源管理員，請參閱[將 Azure PowerShell 與 Azure 資源管理員搭配使用](../powershell-azure-resource-manager.md)。
 
 #### 使用指令碼動作建立叢集
 
-1. 將下列範本複製到您的電腦上的位置。此範本會在叢集中的前端節點和背景工作角色節點上安裝 R。您也可以確認 JSON 範本是否有效。將您的範本內容貼至 [JSONLint](http://jsonlint.com/)，這是一個線上 JSON 驗證器工具。
+1. 將下列範本複製到您的電腦上的位置。此範本會前端節點上和叢集的背景工作節點上安裝 Giraph。您也可以確認 JSON 範本是否有效。將您的範本內容貼至 [JSONLint](http://jsonlint.com/)，這是一個線上 JSON 驗證器工具。
 
 			{
 		    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -252,7 +252,7 @@ HDInsight 提供一個稱為 [指令碼動作]的組態選項，此指令碼動�
 		                            "name": "[concat(parameters('clusterStorageAccountName'),'.blob.core.windows.net')]",
 		                            "isDefault": true,
 		                            "container": "[parameters('clusterStorageAccountContainer')]",
-		                            "key": "[listKeys(resourceId(parameters('clusterStorageAccountResourceGroup'), 'Microsoft.Storage/storageAccounts', parameters('clusterStorageAccountName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).key1]"
+		                            "key": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('clusterStorageAccountName')), '2015-05-01-preview').key1]"
 		                        }
 		                    ]
 		                },
@@ -272,8 +272,8 @@ HDInsight 提供一個稱為 [指令碼動作]的組態選項，此指令碼動�
 		                            },
 		                            "scriptActions": [
 		                                {
-		                                    "name": "installR",
-		                                    "uri": "https://hdiconfigactions.blob.core.windows.net/linuxrconfigactionv01/r-installer-v01.sh",
+		                                    "name": "installGiraph",
+		                                    "uri": "https://hdiconfigactions.blob.core.windows.net/linuxgiraphconfigactionv01/giraph-installer-v01.sh",
 		                                    "parameters": ""
 		                                }
 		                            ]
@@ -323,7 +323,7 @@ HDInsight 提供一個稱為 [指令碼動作]的組態選項，此指令碼動�
 
 		Select-AzureRmSubscription -SubscriptionID <YourSubscriptionId>
 
-    > [AZURE.NOTE] 您可以使用 `Get-AzureRmSubscription` 來取得與您帳戶關聯的所有訂用帳戶清單，同時也包含每個訂用帳戶的訂閱 Id。
+    > [AZURE.NOTE] 您可以使用 `Get-AzureRmSubscription` 來取得與您帳戶關聯的所有訂用帳戶清單，其中會包含每個訂用帳戶的訂用帳戶 ID。
 
 5. 如果您沒有現有資源群組，請建立新的資源群組。提供您的解決方案所需的資源群組名稱和位置。隨即傳回新資源群組的摘要。
 
@@ -367,7 +367,7 @@ HDInsight 提供一個稱為 [指令碼動作]的組態選項，此指令碼動�
 
 執行下列步驟：
 
-1. 開啟 Azure PowerShell 主控台並使用下列命令來登入您的 Azure 訂用帳戶，並宣告一些 PowerShell 變數︰
+1. 開啟 Azure PowerShell 主控台並使用下列命令來登入您的 Azure 訂用帳戶，並宣告一些 PowerShell 變數：
 
         # LOGIN TO ZURE
         Login-AzureRmAccount
@@ -390,18 +390,18 @@ HDInsight 提供一個稱為 [指令碼動作]的組態選項，此指令碼動�
 		$config.DefaultStorageAccountName="$storageAccountName.blob.core.windows.net"
 		$config.DefaultStorageAccountKey=$storageAccountKey
 
-3. 使用 **Add-AzureRmHDInsightScriptAction** Cmdlet 以叫用指令碼。下列範例使用會在叢集上安裝 R 的指令碼：
+3. 使用 **Add-AzureRmHDInsightScriptAction** Cmdlet 以叫用指令碼。下列範例使用指令碼，在叢集上安裝 Giraph：
 
 		# INVOKE THE SCRIPT USING THE SCRIPT ACTION FOR HEADNODE AND WORKERNODE
-		$config = Add-AzureRmHDInsightScriptAction -Config $config -Name "Install R"  -NodeType HeadNode -Uri https://hdiconfigactions.blob.core.windows.net/linuxrconfigactionv01/r-installer-v01.sh
-        $config = Add-AzureRmHDInsightScriptAction -Config $config -Name "Install R"  -NodeType WorkerNode -Uri https://hdiconfigactions.blob.core.windows.net/linuxrconfigactionv01/r-installer-v01.sh
+		$config = Add-AzureRmHDInsightScriptAction -Config $config -Name "Install Giraph"  -NodeType HeadNode -Uri https://hdiconfigactions.blob.core.windows.net/linuxgiraphconfigactionv01/giraph-installer-v01.sh
+        $config = Add-AzureRmHDInsightScriptAction -Config $config -Name "Install Giraph"  -NodeType WorkerNode -Uri https://hdiconfigactions.blob.core.windows.net/linuxgiraphconfigactionv01/giraph-installer-v01.sh
 
 	**Add-AzureRmHDInsightScriptAction** Cmdlet 可接受下列參數：
 
 	| 參數 | 定義 |
 	| --------- | ---------- |
 	| 設定 | 要在其中新增指令碼動作資訊的組態物件。 |
-	| 名稱 | 指令碼動作的名稱。 |
+	| Name | 指令碼動作的名稱。 |
 	| NodeType | 指定執行自訂指定碼的節點。有效值為 **HeadNode** (在前端節點上安裝)、**WorkerNode** (在所有資料節點上安裝)，或 **ZookeeperNode** (在 zookeeper 節點上安裝)。 |
 	| 參數 | 指令碼所需的參數。 |
 	| Uri | 指定所執行之指令碼的 URI。 |
@@ -452,8 +452,8 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
 
 5. 從 [新增指令碼動作] 刀鋒視窗，輸入下列資訊。
 
-    * __名稱__：要用於此指令碼動作的易記名稱。在此範例中是 `R`。
-    * __指令碼 URI__︰指令碼的 URI。在此範例中是 `https://hdiconfigactions.blob.core.windows.net/linuxrconfigactionv01/r-installer-v01.sh`
+    * __名稱__：要用於此指令碼動作的易記名稱。在此範例中是 `Giraph`。
+    * __指令碼 URI__︰指令碼的 URI。在此範例中是 `https://hdiconfigactions.blob.core.windows.net/linuxgiraphconfigactionv01/giraph-installer-v01.sh`
     * __前端__、__背景工作__及 __Zookeeper__︰勾選應該套用這個指令碼的節點。在此範例中，會勾選 [前端] 和 [背景工作]。
     * __參數__：如果指令碼接受參數，請在此處輸入參數。
     * __持續性__︰如果您想要保存指令碼，以便在相應增加叢集規模時將其套用到新的背景工作節點，請勾選此項目。
@@ -464,7 +464,7 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
 
 在繼續之前，請確認您已安裝和設定 Azure PowerShell。如需設定工作站以執行 HDInsight PowerShell Cmdlet 的相關資訊，請參閱[安裝並設定 Azure PowerShell](../powershell-install-configure.md)。
 
-1. 開啟 Azure PowerShell 主控台並使用下列命令來登入您的 Azure 訂用帳戶，並宣告一些 PowerShell 變數︰
+1. 開啟 Azure PowerShell 主控台並使用下列命令來登入您的 Azure 訂用帳戶，並宣告一些 PowerShell 變數：
 
         # LOGIN TO ZURE
         Login-AzureRmAccount
@@ -485,8 +485,8 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
 
         OperationState  : Succeeded
         ErrorMessage    :
-        Name            : R
-        Uri             : https://hdiconfigactions.blob.core.windows.net/linuxrconfigactionv01/r-installer-v01.sh
+        Name            : Giraph
+        Uri             : https://hdiconfigactions.blob.core.windows.net/linuxgiraphconfigactionv01/giraph-installer-v01.sh
         Parameters      :
         NodeTypes       : {HeadNode, WorkerNode}
 
@@ -635,7 +635,7 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
 	* **背景工作節點** - `<uniqueidentifier>AmbariDb-wn0-<generated_value>.cloudapp.net`
 	* **Zookeeper 節點** - `<uniqueidentifier>AmbariDb-zk0-<generated_value>.cloudapp.net`
 
-* 對應主機的所有 stdout 和 stderr 都會上傳至儲存體帳戶。每個指令碼動作分別有一個 **output-*.txt** 和  **errors-\*.txt** 。output-*.txt 檔案包含在主機上執行之指令碼的 URI 相關資訊。例如
+* 對應主機的所有 stdout 和 stderr 都會上傳至儲存體帳戶。每個指令碼動作分別有一個 **output-*.txt** 和 **errors-*.txt**。output-*.txt 檔案包含在主機上執行之指令碼的 URI 相關資訊。例如
 
 		'Start downloading script locally: ', u'https://hdiconfigactions.blob.core.windows.net/linuxrconfigactionv01/r-installer-v01.sh'
 
@@ -691,7 +691,6 @@ HDInsight 服務提供數種方式以使用自訂元件。無論元件如何使�
 請參閱下列項目，以取得建立和使用指令碼以自訂叢集時的資訊和範例：
 
 - [開發 HDInsight 的指令碼動作指令碼](hdinsight-hadoop-script-actions-linux.md)
-- [在 HDInsight 叢集上安裝及使用 R](hdinsight-hadoop-r-scripts-linux.md)
 - [在 HDInsight 叢集上安裝及使用 Solr](hdinsight-hadoop-solr-install-linux.md)
 - [在 HDInsight 叢集上安裝及使用 Giraph](hdinsight-hadoop-giraph-install-linux.md)
 
@@ -699,4 +698,4 @@ HDInsight 服務提供數種方式以使用自訂元件。無論元件如何使�
 
 [img-hdi-cluster-states]: ./media/hdinsight-hadoop-customize-cluster-linux/HDI-Cluster-state.png "叢集建立期間的階段"
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0831_2016-->

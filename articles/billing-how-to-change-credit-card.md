@@ -31,31 +31,36 @@
 ## 編輯現有信用卡的付款資訊
 1. 以帳戶管理員登入 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)。在 [Azure 入口網站](https://portal.azure.com)，您可以藉由選取 [訂用帳戶] > 訂用帳戶名稱 > [管理] 來存取帳戶中心。
 
-	**注意**：只有帳戶管理員有權存取帳戶中心。如需帳戶管理員的詳細資訊，請參閱[如何新增或變更 Azure 管理員角色](billing-add-change-azure-subscription-administrator.md)。
+	> [AZURE.NOTE] 只有帳戶管理員有權存取帳戶中心。如需帳戶管理員的詳細資訊，請參閱[如何新增或變更 Azure 管理員角色](billing-add-change-azure-subscription-administrator.md)。
 
 2. 在 [按一下訂用帳戶即可檢視詳細資料及使用量] 下方，選取連結至信用卡的訂用帳戶。</br> ![selectsub](./media/billing-how-to-change-credit-card/selectsub.png)
-3. 在頁面右側，選取 [變更付款方式]。</br>![changesub](./media/billing-how-to-change-credit-card/changesub.png)
-4. 在 [選擇付款方式] 頁面上，選取信用卡號碼旁邊的 [編輯]。</br> ![changesub](./media/billing-how-to-change-credit-card/editcard.png)
+3. 在頁面右側，選取 [管理付款方式]。</br>![changesub](./media/billing-how-to-change-credit-card/changesub_new.png)
+4. 在 [管理付款方式] 頁面上，選取信用卡號碼旁邊的 [編輯]。</br> ![changesub](./media/billing-how-to-change-credit-card/editcard_new.png)
 5. 在 [編輯] 頁面上，確認您已選取正確的信用卡類型與信用卡號碼。
 6. 對於信用卡詳細資料進行您需要的變更，然後選取 [下一步] 以返回 [選擇付款方式] 頁面。
 
 ## 新增新的信用卡做為付款方式
 1. 以帳戶管理員登入 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)。
 2. 在 [按一下訂用帳戶即可檢視詳細資料及使用量] 下方，選取您要新增付款方式的訂用帳戶。
-3. 在頁面右側，選取 [變更付款方式]。
-4. 在 [選擇付款方式] 頁面上，選取 "+" 以新增新的信用卡。
+3. 在頁面右側，選取 [管理付款方式]。
+4. 在 [管理付款方式] 頁面上，選取 "+" 以新增新的信用卡。
 5. 選擇信用卡類型，並提供所有必要的資訊。
-6. 選取 [下一步] 以返回 [選擇付款方式] 頁面。如果您新增的信用卡有效，它會新增至可用付款方式的清單。您可以選取信用卡旁邊的下拉式箭號，檢視所有可用的信用卡。
+6. 選取 [下一步] 以返回 [管理付款方式] 頁面。如果您新增的信用卡有效，它會新增至可用付款方式的清單。
 
 ## 變更用來支付 Azure 帳單的信用卡
 1. 以帳戶管理員登入 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)。
 2. 在 [按一下訂用帳戶即可檢視詳細資料及使用量] 下方，選取您要更新付款方式的訂用帳戶。
-3. 在頁面右側，選取 [變更付款方式]。
-4. 在 [選擇付款方式] 頁面上，依序選取信用卡旁邊的下拉式箭號、您要使用的信用卡，然後選取 ![checkbutton](./media/billing-how-to-change-credit-card/checkbutton.png) 以關閉視窗。
+3. 在頁面右側，選取 [管理付款方式]。
+4. 在 [管理付款方式] 頁面上，按一下 [改用] 來選取您要使用的信用卡。
 
 ## 從帳戶中移除信用卡
-您無法自行從帳戶中移除信用卡。若要移除不再使用於 Azure 付款方式的信用卡，您必須[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以尋求協助。
+1. 以帳戶管理員登入 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)。
+2. 在 [按一下訂用帳戶即可檢視詳細資料及使用量] 下方，選取您要更新付款方式的訂用帳戶。
+3. 在頁面右側，選取 [管理付款方式]。
+4. 在 [管理付款方式] 頁面上，按一下 [刪除] 來選取您要刪除的信用卡。
+
+	> [AZURE.NOTE] 您無法刪除與其他使用中 Microsoft 訂用帳戶相關聯的信用卡。如果您收到信用卡已使用的錯誤，請確定它已與您擁有的所有使用中 Microsoft 訂用帳戶取消關聯。
 
 > [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

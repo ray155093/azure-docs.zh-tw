@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="05/25/2016"
+	ms.date="08/30/2016"
 	ms.author="awills"/>
 
 
@@ -26,7 +26,7 @@
 
 SDK 可自動收集內送 HTTP 要求率和回應、效能計數器 (CPU、記憶體、RPS) 和未處理的例外狀況。此外，您也可以新增自訂呼叫來追蹤相依性、度量或其他事件。
 
-![範例效能監視圖表](./media/app-insights-asp-net-manual/10-perf.png)
+![範例效能監視圖表](./media/app-insights-windows-services/10-perf.png)
 
 
 #### 開始之前
@@ -40,7 +40,7 @@ SDK 可自動收集內送 HTTP 要求率和回應、效能計數器 (CPU、記�
 
 登入 [Azure 入口網站][portal]，並建立新的 Application Insights 資源。Azure 中的[資源][roles]是服務的執行個體。此資源是來自您應用程式的遙測將經過分析並呈現的地方。
 
-![按一下 [新增]，然後按一下 [Application Insights]](./media/app-insights-asp-net-manual/01-new-asp.png)
+![按一下 [新增]，然後按一下 [Application Insights]](./media/app-insights-windows-services/01-new-asp.png)
 
 選擇 [其他] 做為應用程式類型。應用程式類型的選擇會設定[計量瀏覽器][metrics]中可見的資源刀鋒視窗和屬性的預設內容。
 
@@ -48,7 +48,7 @@ SDK 可自動收集內送 HTTP 要求率和回應、效能計數器 (CPU、記�
 
 該金鑰識別資源，您很快就會將它安裝在 SDK 中，以將資源導向資料。
 
-![按一下 [屬性]，選取金鑰，然後按下 CTRL+C](./media/app-insights-asp-net-manual/02-props-asp.png)
+![按一下 [屬性]，選取金鑰，然後按下 CTRL+C](./media/app-insights-windows-services/02-props-asp.png)
 
 
 ## <a name="sdk"></a> 在應用程式中安裝 SDK
@@ -84,7 +84,7 @@ appInsights.setup("<instrumentation_key>").start();
 
 在 [概觀] 頁面中尋找資料。剛開始的時候，您只會看見一或兩個資料點。例如：
 
-![Click through to more data](./media/app-insights-asp-net-manual/12-first-perf.png)
+![Click through to more data](./media/app-insights-windows-services/12-first-perf.png)
 
 按一下任何圖表以查看詳細度量。[深入了解度量。][perf]
 
@@ -212,6 +212,10 @@ server.on("listening", () => {
 });
 ```
 
+## 後續步驟
+
+* [在入口網站中監視遙測](app-insights-dashboards.md)
+* [撰寫您的遙測的分析查詢(app-insights-analytics-tour.md)
 
 
 
@@ -224,4 +228,4 @@ server.on("listening", () => {
 [qna]: app-insights-troubleshoot-faq.md
 [roles]: app-insights-resources-roles-access-control.md
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0907_2016-->

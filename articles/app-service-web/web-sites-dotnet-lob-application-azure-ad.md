@@ -1,6 +1,6 @@
 <properties 
-	pageTitle="在 Azure 應用程式服務中建立使用 Azure Active Directory 驗證的 .NET MVC Web 應用程式" 
-	description="了解如何在 Azure 應用程式服務中建立使用 Azure Active Directory 進行驗證的 ASP.NET MVC 特定業務應用程式。" 
+	pageTitle="使用 Azure Active Directory 驗證建立企業營運 Azure 應用程式 | Microsoft Azure" 
+	description="了解如何在 Azure App Service 中建立使用 Azure Active Directory 進行驗證的 ASP.NET MVC 特定業務應用程式" 
 	services="app-service\web, active-directory" 
 	documentationCenter=".net" 
 	authors="cephalin" 
@@ -13,16 +13,14 @@
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
 	ms.workload="web" 
-	ms.date="02/29/2016" 
+	ms.date="08/31/2016" 
 	ms.author="cephalin"/>
 
-# 在 Azure 應用程式服務中建立使用 Azure Active Directory 驗證的 .NET MVC Web 應用程式 #
+# 使用 Azure Active Directory 驗證建立企業營運 Azure 應用程式 #
 
-在本文中，您將學習如何使用 [Azure Active Directory](/services/active-directory/) 作為識別提供者，在 [Azure App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714) 中建立 ASP.NET MVC 特定業務應用程式。您也將學習如何在應用程式中使用 [Azure Active Directory Graph 用戶端程式庫](http://blogs.msdn.com/b/aadgraphteam/archive/2014/06/02/azure-active-directory-graph-client-library-1-0-publish.aspx) 來查詢目錄資料。
+本文說明如何在 [Azure App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714) 中使用[驗證/授權](../app-service/app-service-authentication-overview.md)功能建立 .NET 企業營運應用程式。文中也會說明如何在應用程式中使用 [Azure Active Directory 圖形 API](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog) 來查詢目錄資料。
 
-您使用的Azure Active Directory 租用戶可以是純 Azure 目錄，或可以是與您的內部部署 Active Directory (AD) 同步處理的目錄，以便為內部部署或遠端的背景工作角色建立單一登入體驗。
-
->[AZURE.NOTE] 對於 Azure App Service Web Apps，您可以設定 Azure Active Directory 租用戶的驗證，只需按幾下按鈕即可。如需詳細資訊，請參閱[在 Azure App Service 中使用 Active Directory 進行驗證](web-sites-authentication-authorization.md)。
+您所使用的 Azure Active Directory 租用戶可以是純 Azure 目錄。或者，它可以[與內部部署 Active Directory 同步處理](../active-directory/active-directory-aadconnect.md)，以為內部部署和遠端的工作者建立單一登入體驗。本文使用 Azure 帳戶的預設目錄。
 
 <a name="bkmk_build"></a>
 ## 將建置的項目 ##
@@ -30,363 +28,361 @@
 您將在應用程式服務 Web Apps 中建置簡單的「建立/讀取/更新/刪除」(CRUD) 特定業務應用程式，它使用下列功能追蹤工作項目：
 
 - 比對 Azure Active Directory 驗證使用者
-- 實作登入和登出功能
-- 使用 `[Authorize]` 來授權使用者使用不同的 CRUD 動作
-- 使用 [Azure Active Directory 圖形 API](http://msdn.microsoft.com/library/azure/hh974476.aspx) 查詢 Azure Active Directory
-- 使用 ASP.NET 的明日之星 [Microsoft.Owin](http://www.asp.net/aspnet/overview/owin-and-katana/an-overview-of-project-katana) (而不是 Windows Identity Foundation，也就是 WIF) 進行驗證和授權的設定，會比使用 WIF 容易得多
+- 使用 [Azure Active Directory 圖形 API](http://msdn.microsoft.com/library/azure/hh974476.aspx) 查詢目錄使用者和群組
+
+如果您在 Azure 中的企業營運應用程式需要角色型存取控制 (RBAC)，請參閱[後續步驟](#next)。
 
 <a name="bkmk_need"></a>
-## 必要元件 ##
+## 您需要什麼 ##
 
 [AZURE.INCLUDE [free-trial-note](../../includes/free-trial-note.md)]
-
->[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；無需承諾。
 
 您需要下列項目完成本教學課程：
 
 - Azure Active Directory 租用戶與不同的群組中的使用者
 - 在 Azure Active Directory 租用戶建立應用程式的權限
-- Visual Studio 2013 或更新版本
-- [Azure SDK 2.8.1](http://go.microsoft.com/fwlink/p/?linkid=323510&clcid=0x409) 或更新版本
+- Visual Studio 2013 Update 4 或更新版本
+- [Azure SDK 2.8.1 或更新版本](https://azure.microsoft.com/downloads/)
 
-<a name="bkmk_sample"></a>
-## 使用特定業務範本的範例應用程式 ##
-
-在本教學課程中，範例應用程式 [WebApp-RoleClaims-DotNet](https://github.com/Azure-Samples/active-directory-dotnet-webapp-roleclaims) 是由 Azure Active Directory 團隊所建立，可以當做範本來輕鬆建立新的特定業務應用程式。它有下列內建功能：
-
-- 使用 [OpenID Connect](http://openid.net/connect/) 來驗證 Azure Active Directory
-- 包含範例 `TaskTracker` 控制站，示範如何在應用程式中為特定的動作授權不同的角色，包括 `[Authorize]` 的標準用法。 
-- 是具備您可以立即指定使用者和群組之預先定義角色的多租用戶應用程式。 
-
-<a name="bkmk_run" />
-## 執行範例應用程式 ##
-
-1.	將 [WebApp-RoleClaims-DotNet](https://github.com/Azure-Samples/active-directory-dotnet-webapp-roleclaims) 上的範例解決方案複製或下載到您的本機目錄。
-
-2.	依照[如何執行範例做為單一租用戶應用程式](https://github.com/Azure-Samples/active-directory-dotnet-webapp-roleclaims#how-to-run-the-sample-as-a-single-tenant-app)的指示設定 Azure Active Directory 應用程式和專案。
-請務必遵循所有指示以將應用程式從多租用戶轉換為單一租用戶。
-
-3.	在 [Azure 傳統入口網站](https://manage.windowsazure.com)檢視中針對您剛建立的 Azure Active Directory 應用程式，按一下 [**使用者**] 索引標籤。然後，將想要的使用者指派給想要的角色。
-
-	>[AZURE.NOTE] 如果您想要指派角色給使用者之外的群組，您必須將您的 Azure Active Directory 租用戶升級至 [Azure Active Directory Premium](/pricing/details/active-directory/)。在您應用程式的傳統入口網站 UI 中，如果您看到的是 [**使用者**] 索引標籤，而不是 [**使用者與群組] 索引標籤，您可以移至您 Azure Active Directory 租用戶的 [**授權**] 索引標籤來嘗試 Azure Active Directory Premium。
-
-3.	完成應用程式設定後，在 Visual Studio 中輸入 `F5` 以執行 ASP.NET 應用程式。
-
-4.	應用程式載入後，按一下 [**登入**]，並使用具有 Azure 傳統入口網站中「管理員」角色的使用者登入。
-
-5.	如果已適當地設定 Azure Active Directory 應用程式，並在 Web.config 設定對應的設定，您應該重新導向至登入。只要使用您在 Azure 傳統入口網站中建立 Azure Active Directory 應用程式時所使用的帳戶登入即可，因為它是 Azure Active Directory 應用程式的預設擁有者。
-	
 <a name="bkmk_deploy"></a>
-## 將範例應用程式部署到 App Service Web Apps
+## 對 Azure 建立和部署 Web 應用程式 ##
 
-在這裡，您要將應用程式發佈到 Azure 應用程式服務中的 Web 應用程式。[README.md](https://github.com/Azure-Samples/active-directory-dotnet-webapp-roleclaims/blob/master/README.md) 已包含部署至 App Service Web Apps 的指示，不過這些步驟也會使您本機偵錯環境中的設定失效。我將告訴您如何在保留偵錯設定的情況下部署。
+1. 在 Visual Studio 中，按一下 [檔案] > [新增] > [專案]。
 
-1. 以滑鼠右鍵按一下專案，然後選取 [發佈]。
+2. 選取 [ASP.NET Web 應用程式]、為專案命名，然後按一下 [確定]。
 
-	![](./media/web-sites-dotnet-lob-application-azure-ad/publish-app.png)
+3. 選取 [MVC] 範本，然後將驗證變更為 [不需要驗證]。確定已選取 [雲端中的主機]，然後按一下 [確定]。
 
-2. 選取 [Microsoft Azure Web Apps]。
+	![](./media/web-sites-dotnet-lob-application-azure-ad/1-create-mvc-no-authentication.png)
 
-3. 如果您還沒有登入 Azure，請按一下 [新增帳戶] 並使用您 Azure 訂用帳戶的 Microsoft 帳戶登入。
+4. 在 [建立 App Service] 對話方塊中，按一下 [新增帳戶] (然後是下拉式清單中的 [新增帳戶] ) 來登入 Azure 帳戶。
 
-4. 登入之後，按一下 [新增] 在 Azure 中來建立新的 Web 應用程式。
+5. 登入後，請設定 Web 應用程式。建立資源群組和新的 App Service 方案，方法是按一下各自的 [新增] 按鈕。按一下 [探索其他服務] 以繼續。
 
-5. 在 [裝載] 中，填寫所有必要欄位。
+	![](./media/web-sites-dotnet-lob-application-azure-ad/2-create-app-service.png)
 
-	![](./media/web-sites-dotnet-lob-application-azure-ad/4-create-website.png)
+6. 在 [服務] 索引標籤上，按一下 [+] 來為應用程式新增 SQL Database。
 
-5. 您必須具備資料庫連線，此應用程式才能儲存角色對應、快取的權杖及任何應用程式資料。在 [建立應用程式服務] 對話方塊中，按一下 [服務]。在 [SQL Database] 旁按一下加號，加入新的資料庫。
+	![](./media/web-sites-dotnet-lob-application-azure-ad/3-add-sql-database.png)
 
-	![](./media/web-sites-dotnet-lob-application-azure-ad/4-create-database.png)
+7. 在 [設定 SQL Database] 中，按一下 [新增] 以建立 SQL Server 執行個體。
 
-5. 在 [設定 SQL Database] 對話方塊中，選取或建立伺服器、設定名稱，然後按一下 [確定]。
+8. 在 [設定 SQL Server] 中，設定 SQL Server 執行個體。然後依序按一下 [確定]、[確定] 和 [建立]，開始在 Azure 中建立應用程式。
 
-	 ![](./media/web-sites-dotnet-lob-application-azure-ad/4-config-database.png)
+9. 在 [Azure App Service 活動] 中，當應用程式建立完成時您便會看到。按一下 [立即將 &lt;應用程式名稱> 發佈至此 Web 應用程式]，然後按一下 [發佈]。
 
-6. 按一下 [建立]。一旦建立 Web 應用程式後，會開啟 [發佈 Web] 對話方塊。
+	當 Visual Studio 完成後，它會在瀏覽器中開啟發佈應用程式。
 
-7. 在 [目的地 URL] 中，將 **http** 變更為 **https**。將完整的 URL 複製到文字編輯器。您稍後將使用它。然後按 [下一步]。
+	![](./media/web-sites-dotnet-lob-application-azure-ad/4-published-shown-in-browser.png)
 
-	![](./media/web-sites-dotnet-lob-application-azure-ad/5-change-to-https.png)
+<a name="bkmk_auth"></a>
+## 設定驗證和目錄存取
 
-8. 清除 [啟用組織驗證] 核取方塊。
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
 
-	![](./media/web-sites-dotnet-lob-application-azure-ad/6-enable-code-first-migrations.png)
+2. 從左側功能表中，按一下 [應用程式服務] > &lt;應用程式名稱> > [驗證/授權]。
 
-8. 展開 [RoleClaimContext] 並選取 [執行 Code First 移轉 (在應用程式開頭執行)]。在您稍後定義其他 Code First 資料模型時，[Code First 移轉](https://msdn.microsoft.com/data/jj591621.aspx)有助於更新應用程式在 Azure 中的資料庫結構描述。
+	![](./media/web-sites-dotnet-lob-application-azure-ad/5-app-service-authentication.png)
 
-9. 不要按一下 [發佈] 進行 Web 發佈，請按一下 [關閉]。按一下 [是] 將變更儲存至發行設定檔。
+3. 按一下 [於] > [Azure Active Directory] > [Express] > [確定] 以開啟 Azure Active Directory 驗證。
 
-2. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，前往 Azure Active Directory 租用戶，然後按一下 [應用程式] 索引標籤。
+	![](./media/web-sites-dotnet-lob-application-azure-ad/6-authentication-express.png)
 
-2. 按一下頁面底部的 [新增]。
+4. 按一下命令列中的 [儲存]。
 
-2. 按一下 [Add an application my organization is developing]。
+	![](./media/web-sites-dotnet-lob-application-azure-ad/7-authentication-save.png)
 
-3. 選取 [Web 應用程式和/或 Web API]。
+    成功儲存驗證設定後，請嘗試在瀏覽器中再次瀏覽至應用程式。預設設定會強制對整個應用程式執行驗證。如果您還未登入，系統會將您重新導向至登入畫面。登入之後，您會看到應用程式已受到 HTTPS 的保護。接著，您必須啟用目錄資料的存取權。
 
-4. 指定應用程式的名稱，並按 [下一步]。
+5. 瀏覽至[傳統入口網站](https://manage.windowsazure.com)。
 
-5. 在 [應用程式屬性] 中，將 [登入 URL] 設為您稍早儲存的 Web 應用程式 URL (例如 `https://<site-name>.azurewebsites.net/`)，並將 [APP ID URI] 設為 `https://<aad-tenanet-name>/<app-name>`。然後，按一下 [完成]。
+6. 從左側功能表中，按一下 [Active Directory] > [預設目錄] > [應用程式] > &lt;應用程式名稱>。
 
-	![](./media/web-sites-dotnet-lob-application-azure-ad/7-app-properties.png)
+	![](./media/web-sites-dotnet-lob-application-azure-ad/8-find-aad-application.png)
 
-2.	建立應用程式之後，以您稍早根據[定義應用程式角色](https://github.com/Azure-Samples/active-directory-dotnet-webapp-roleclaims#step-2-define-your-application-roles)中指示所執行的相同方式，更新應用程式資訊清單。
+	這是 App Service 為您建立以便啟用授權/驗證功能的 Azure Active Directory 應用程式。
 
-3.	在 [Azure 傳統入口網站](https://manage.windowsazure.com)檢視中，為您剛建立的 Azure Active Directory 應用程式按一下 [使用者] 索引標籤。然後，將想要的使用者指派給想要的角色。
+7. 按一下 [使用者] 和 [群組] 以確定目錄中有一些使用者和群組。如果沒有，請建立一些測試使用者和群組。
 
-6. 按一下 [設定] 索引標籤。
+	![](./media/web-sites-dotnet-lob-application-azure-ad/9-create-users-groups.png)
 
-7. 在 [索引鍵] 下，在下拉式清單中選取 [1 年] 來建立新索引鍵。
+7. 按一下 [設定] 以設定此應用程式。
 
-8. 在 [其他應用程式的權限] 下，於 [委派權限] 下拉式清單中為 [Azure Active Directory] 項目選取 [登入並讀取使用者設定檔] 和 [讀取目錄資料]。
+8. 向下捲動至 [金鑰] 區段，並選取持續時間來新增金鑰。然後按一下 [委派的權限] 並選取 [讀取目錄資料]。按一下 [儲存]。
 
-	> [AZURE.NOTE] 您在這裡需要的實際權限取決於您應用程式所需的功能。有些權限需要設定「全域管理員」角色，但本教學課程所需的權限只需要「使用者」角色。
+	![](./media/web-sites-dotnet-lob-application-azure-ad/10-configure-aad-application.png)
 
-9.  按一下 [儲存]。
+8. 設定儲存好之後，往回捲動至 [金鑰] 區段，然後按一下 [複製] 按鈕以複製用戶端金鑰。
 
-10.  離開已儲存的設定頁面之前，請將下列資訊複製到文字編輯器。
+	![](./media/web-sites-dotnet-lob-application-azure-ad/11-get-app-key.png)
 
-	-	用戶端識別碼
-	-	索引鍵 (如果離開該頁面，您將無法再看到索引鍵)
+	>[AZURE.IMPORTANT] 如果您現在離開此頁面，就無法再存取此用戶端金鑰。
 
-11. 在 Visual Studio 中，開啟專案中的 **Web.Release.config**。將下列 XML 插入 `<configuration>` 標記中，並以您為新 Azure Active Directory 應用程式儲存的資訊來取代每個索引鍵的值。
+9. 接著，您必須使用此金鑰設定 Web 應用程式。使用 Azure 帳戶登入 [Azure 資源總管](https://resources.azure.com)。
+
+10. 在頁面頂端按一下 [讀取/寫入] 以在 Azure 資源總管中進行變更。
+
+	![](./media/web-sites-dotnet-lob-application-azure-ad/12-resource-manager-writable.png)
+
+11. 尋找應用程式的驗證設定，其位置在訂用帳戶 > &lt;subscriptionname> > [resourceGroups] > &lt;resourcegroupname> > [提供者] > [Microsoft.Web] > [網站] > &lt;appname> > [設定] > [authsettings]。
+
+12. 按一下 [**編輯**]。
+
+	![](./media/web-sites-dotnet-lob-application-azure-ad/13-edit-authsettings.png)
+
+13. 在編輯窗格中，設定 `clientSecret` 和 `additionalLoginParams` 屬性，如下所示。
+
+		...
+		"clientSecret": "<client key from the Azure Active Directory application>",
+		...
+		"additionalLoginParams": ["response_type=code id_token", "resource=https://graph.windows.net"],
+		...
+
+14. 按一下頂端的 [PUT] 以提交變更。
+
+	![](./media/web-sites-dotnet-lob-application-azure-ad/14-edit-parameters.png)
+
+14. 現在，為了測試您是否有存取 Azure Active Directory 圖形 API 的授權權杖，請將 ~\\Controllers\\HomeController.cs 變更為使用下列 `Index()` 動作方法︰
 	<pre class="prettyprint">
-	&lt;appSettings>
-	   &lt;add key="ida:ClientId" value="<mark>[e.g. 82692da5-a86f-44c9-9d53-2f88d52b478b]</mark>" xdt:Transform="SetAttributes" xdt:Locator="Match(key)" />
-	   &lt;add key="ida:AppKey" value="<mark>[e.g. rZJJ9bHSi/cYnYwmQFxLYDn/6EfnrnIfKoNzv9NKgbo=]</mark>" xdt:Transform="SetAttributes" xdt:Locator="Match(key)" />
-	   &lt;add key="ida:PostLogoutRedirectUri" value="<mark>[e.g. https://mylobapp.azurewebsites.net/]</mark>" xdt:Transform="SetAttributes" xdt:Locator="Match(key)" />
-	&lt;/appSettings></pre>
+	public ActionResult Index()
+	{
+		return <mark>Content(Request.Headers["X-MS-TOKEN-AAD-ACCESS-TOKEN"]);</mark>
+	}
+	</pre>
 
-	請確定 ida:PostLogoutRedirectUri 值的結尾有一條斜線 "/"。
+15. 在專案上按一下滑鼠右鍵，然後按一下 [發佈] 以發佈變更。在對話方塊中再次按一下 [發佈]。
 
-1. 以滑鼠右鍵按一下專案，然後選取 [發佈]。
+	![](./media/web-sites-dotnet-lob-application-azure-ad/15-publish-token-code.png)
 
-2. 按一下 [發佈]，以發佈至 Azure App Service Web Apps。
+	如果應用程式的首頁現在顯示存取權杖，則應用程式可以存取 Azure Active Directory 圖形 API。您可隨意復原 ~\\Controllers\\HomeController.cs 的變更。
 
-當您完成時，您會在 Azure 傳統入口網站中設定兩個 Azure Active Directory 應用程式：一個適用於 Visual Studio 中的偵錯環境，另一個適用於 Azure 中的已發佈 Web 應用程式。在偵錯期間，Web.config 中的應用程式設定可讓您的**偵錯**設定使用 Azure Active Directory，且在發佈後 (預設會發佈「版本」組態) 會上傳轉換的 Web.config，其中包含 Web.Release.config 的應用程式設定變更。
-
-如果您想要將已發佈的 Web 應用程式附加到偵錯工具 (您必須上傳已發佈 Web 應用程式中的程式碼偵錯符號)，您可以建立偵錯組態的複本進行 Azure 偵錯，但使用其自訂的 Web.config 轉換 (例如 Web.AzureDebug.config)，從 Web.Release.config 使用 Azure Active Directory 設定。這可讓您跨不同的環境維護靜態組態。
+接下來，您會使用目錄資料進行一些有用的操作。
 
 <a name="bkmk_crud"></a>
-## 將特定業務功能功能新增至範例應用程式
+## 將企業營運功能新增至應用程式
 
-在這部分的教學課程中，您將學習如何根據範例應用程式建立所需的特定業務功能。您將建立簡單 CRUD 工作項目追蹤程式，類似於 TaskTracker 控制器，但使用標準的 CRUD 建構和設計模式。您也會使用隨附的 Scripts\\AadPickerLibrary.js，使用 Azure Active Directory Graph API 的資料豐富您的應用程式。
+現在，您可以建立簡單的 CRUD 工作項目追蹤器。
 
-5.	在 Models 資料夾中，建立稱為 WorkItem.cs 的新 [Code First](http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application) 模型，並以下列程式碼取代該程式碼：
+5.	在 ~\\Models 資料夾中，建立稱為 WorkItem.cs 的類別檔案，並以下列程式碼取代 `public class WorkItem {...}`：
 
 		using System.ComponentModel.DataAnnotations;
-		
-		namespace WebApp_RoleClaims_DotNet.Models
+
+		public class WorkItem
 		{
-		    public class WorkItem
-		    {
-		        [Key]
-		        public int ItemID { get; set; }
-		        public string AssignedToID { get; set; }
-		        public string AssignedToName { get; set; }
-		        public string Description { get; set; }
-		        public WorkItemStatus Status { get; set; }
-		    }
-		
-		    public enum WorkItemStatus
-		    {
-		        Open, 
-		        Investigating, 
-		        Resolved, 
-		        Closed
-		    }
+			[Key]
+			public int ItemID { get; set; }
+			public string AssignedToID { get; set; }
+			public string AssignedToName { get; set; }
+			public string Description { get; set; }
+			public WorkItemStatus Status { get; set; }
 		}
 
-6.	開啟 DAL\\RoleClaimContext.cs 並新增反白顯示的程式碼：
-	<pre class="prettyprint">
-	public class RoleClaimContext : DbContext
-	{
-	    public RoleClaimContext() : base("RoleClaimContext") { }
-	
-	    public DbSet&lt;Task> Tasks { get; set; }
-	    <mark>public DbSet&lt;WorkItem> WorkItems { get; set; }</mark>
-	    public DbSet&lt;TokenCacheEntry> TokenCacheEntries { get; set; }
-	}</pre>
+		public enum WorkItemStatus
+		{
+			Open,
+			Investigating,
+			Resolved,
+			Closed
+		}
 
 7.	建置專案，讓 Visual Studio 中的建構邏輯可存取新的模型。
 
-8.	將新的建構項目 `WorkItemsController` 新增至 Controllers 資料夾。若要這樣做，請以滑鼠右鍵按一下 [控制器]，指向 [新增]，然後選取 [新增建構項目]。
+8.	將新的建構項目 `WorkItemsController` 新增至 ~\\Controllers 資料夾 (以滑鼠右鍵按一下 [控制器]、指向 [新增]，然後選取 [新增建構項目])。
 
 9.	選取 [使用 Entity Framework，包含檢視的 MVC 5 控制器]，再按一下 [新增]。
 
-10.	選取您剛才建立的模型，然後按一下 [新增]。
+10.	選取您建立的模型，接著依序按一下 [+] 和 [新增] 來新增資料內容，然後按一下 [新增]。
 
-	![](./media/web-sites-dotnet-lob-application-azure-ad/8-add-scaffolded-controller.png)
+	![](./media/web-sites-dotnet-lob-application-azure-ad/16-add-scaffolded-controller.png)
 
-9.	開啟 Controllers\\WorkItemsController.cs
+9.	開啟 ~\\Controllers\\WorkItemsController.cs。
 
-11. 將反白顯示的 [Authorize] 裝飾新增至下列的相應動作。
-	<pre class="prettyprint">
-	...
-	
-	<mark>[Authorize(Roles = "Admin, Observer, Writer, Approver")]</mark>
-	public class WorkItemsController : Controller
-	{
-		...
-	
-	    <mark>[Authorize(Roles = "Admin, Writer")]</mark>
-	    public ActionResult Create()
-	    ...
-	
-	    <mark>[Authorize(Roles = "Admin, Writer")]</mark>
-	    public async Task&lt;ActionResult> Create([Bind(Include = "ItemID,AssignedToID,AssignedToName,Description,Status")] WorkItem workItem)
-	    ...
-	
-	    <mark>[Authorize(Roles = "Admin, Writer")]</mark>
-	    public async Task&lt;ActionResult> Edit(int? id)
-	    ...
-	
-	    <mark>[Authorize(Roles = "Admin, Writer")]</mark>
-	    public async Task&lt;ActionResult> Edit([Bind(Include = "ItemID,AssignedToID,AssignedToName,Description,Status")] WorkItem workItem)
-	    ...
-	
-	    <mark>[Authorize(Roles = "Admin, Writer, Approver")]</mark>
-	    public async Task&lt;ActionResult> Delete(int? id)
-	    ...
-	
-	    <mark>[Authorize(Roles = "Admin, Writer, Approver")]</mark>
-	    public async Task&lt;ActionResult> DeleteConfirmed(int id)
-	    ...
-	}</pre>
+13.	在 `Create()` 和 `Edit(int? id)` 方法的開頭新增下列程式碼，讓一些變數可在稍後供 JavaScript 使用。對每個命名解析錯誤按一下 `Ctrl`+`.` 來加以修正。
 
-	由於您負責 Azure 傳統入口網站 UI 中的角色對應，因此您只需要確定每個動作都授權適當的角色。
+		ViewData["token"] = Request.Headers["X-MS-TOKEN-AAD-ACCESS-TOKEN"];
+		ViewData["tenant"] =
+			ClaimsPrincipal.Current.Claims
+			.Where(c => c.Type == "http://schemas.microsoft.com/identity/claims/tenantid")
+			.Select(c => c.Value).SingleOrDefault();
 
 	> [AZURE.NOTE] 您可能已經注意到某些動作上的 <code>[ValidateAntiForgeryToken]</code> 裝飾。基於 [Brock Allen](https://twitter.com/BrockLAllen) 在 [MVC 4、AntiForgeryToken 和宣告](http://brockallen.com/2012/07/08/mvc-4-antiforgerytoken-and-claims/)中描述的行為，您的 HTTP POST 可能無法通過防偽權杖驗證，因為：
-	> + Azure Active Directory 不會傳送防偽權杖預設所需要的 http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider。
-	> + 如果 Azure Active Directory 目錄與 AD FS 同步處理，AD FS 信任預設也不會傳送 http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider 宣告，但您可以手動設定 AD FS 來傳送此宣告。您會在下一步這麼做。
 
-12.  在 App\_Start\\Startup.Auth.cs 中，於 `ConfigureAuth` 方法中加入下行程式碼。以滑鼠右鍵按一下每個命名的解決方案錯誤來修正這個問題。
+	> - Azure Active Directory 不會傳送防偽權杖預設所需要的 http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider。
+	> - 如果 Azure Active Directory 目錄與 AD FS 同步處理，AD FS 信任預設也不會傳送 http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider 宣告，但您可以手動設定 AD FS 來傳送此宣告。
+
+	> 您會在下一個步驟處理此問題。
+
+12.  在 ~\\Global.asax 中，於 `Application_Start()` 方法內新增下面這一行程式碼。對每個命名解析錯誤按一下 `Ctrl`+`.` 來加以修正。
 
 		AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
 	
-	`ClaimTypes.NameIdentifies` 指定宣告 `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier`，而 Azure Active Directory 確實會提供此宣告。既然您已完成授權處理 (說真的，不會太久)，您可以投入時間來執行實際的功能。
+	`ClaimTypes.NameIdentifies` 指定宣告 `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier`，而 Azure Active Directory 確實會提供此宣告。
 
-13.	在 Create () 和 Edit() 中新增下列程式碼，讓 JavaScript 稍後可以使用一些變數。以滑鼠右鍵按一下每個命名的解決方案錯誤來修正這個問題。
-
-        ViewData["token"] = AcquireToken(ClaimsPrincipal.Current.FindFirst(Globals.ObjectIdClaimType).Value);
-        ViewData["tenant"] = ConfigHelper.Tenant;
-
-13.	`AcquireToken()` 方法尚未定義，所以請立即在 `WorkItemsController` 類別中加以定義。以滑鼠右鍵按一下每個命名的解決方案錯誤來修正這個問題。
-
-        static string AcquireToken(string userObjectId)
-        {
-            ClientCredential cred = new ClientCredential(ConfigHelper.ClientId, ConfigHelper.AppKey);
-            Claim tenantIdClaim = ClaimsPrincipal.Current.FindFirst(Globals.TenantIdClaimType);
-            AuthenticationContext authContext = new AuthenticationContext(String.Format(CultureInfo.InvariantCulture, ConfigHelper.AadInstance, tenantIdClaim.Value), new TokenDbCache(userObjectId));
-            AuthenticationResult result = authContext.AcquireTokenSilent(ConfigHelper.GraphResourceId, cred, new UserIdentifier(userObjectId, UserIdentifierType.UniqueId));
-            return result.AccessToken;
-        }
-		
-14.	在 Views\\WorkItems\\Create.cshtml (自動建構的項目) 中尋找 `Html.BeginForm` Helper 方法，並如下所示修改它：
-	<pre class="prettyprint">@using (Html.BeginForm(<mark>"Create", "WorkItems", FormMethod.Post, new { id = "main-form" }</mark>))
+14.	在 ~\\Views\\WorkItems\\Create.cshtml (自動建構的項目) 中尋找 `Html.BeginForm` Helper 方法，並進行下列醒目提示的變更︰
+	<pre class="prettyprint">
+	@model WebApplication1.Models.WorkItem
+	
+	@{
+		ViewBag.Title = "Create";
+	}
+	
+	&lt;h2>Create&lt;/h2>
+	
+	@using (Html.BeginForm(<mark>"Create", "WorkItems", FormMethod.Post, new { id = "main-form" }</mark>)) 
 	{
-	    @Html.AntiForgeryToken()
+		@Html.AntiForgeryToken()
 	
-	    &lt;div class="form-horizontal">
-	        &lt;h4>WorkItem&lt;/h4>
-	        &lt;hr />
-	        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+		&lt;div class="form-horizontal">
+			&lt;h4>WorkItem&lt;/h4>
+			&lt;hr />
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+			&lt;div class="form-group">
+				@Html.LabelFor(model => model.AssignedToID, htmlAttributes: new { @class = "control-label col-md-2" })
+				&lt;div class="col-md-10">
+					@Html.EditorFor(model => model.AssignedToID, new { htmlAttributes = new { @class = "form-control"<mark>, @type = "hidden"</mark> } })
+					@Html.ValidationMessageFor(model => model.AssignedToID, "", new { @class = "text-danger" })
+				&lt;/div>
+			&lt;/div>
 	
-	        &lt;div class="form-group">
-	            &lt;div class="col-md-10">
-	                @Html.EditorFor(model => model.AssignedToID, new { htmlAttributes = new { @class = "form-control"<mark>, @type="hidden"</mark> } })
-	                @Html.ValidationMessageFor(model => model.AssignedToID, "", new { @class = "text-danger" })
-	            &lt;/div>
-	        &lt;/div>
+			&lt;div class="form-group">
+				@Html.LabelFor(model => model.AssignedToName, htmlAttributes: new { @class = "control-label col-md-2" })
+				&lt;div class="col-md-10">
+					@Html.EditorFor(model => model.AssignedToName, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.AssignedToName, "", new { @class = "text-danger" })
+				&lt;/div>
+			&lt;/div>
 	
-	        &lt;div class="form-group">
-	            @Html.LabelFor(model => model.AssignedToName, htmlAttributes: new { @class = "control-label col-md-2" })
-	            &lt;div class="col-md-10">
-	                @Html.EditorFor(model => model.AssignedToName, new { htmlAttributes = new { @class = "form-control" } })
-	                @Html.ValidationMessageFor(model => model.AssignedToName, "", new { @class = "text-danger" })
-	            &lt;/div>
-	        &lt;/div>
+			&lt;div class="form-group">
+				@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+				&lt;div class="col-md-10">
+					@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+				&lt;/div>
+			&lt;/div>
 	
-	        &lt;div class="form-group">
-	            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-	            &lt;div class="col-md-10">
-	                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-	                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-	            &lt;/div>
-	        &lt;/div>
+			&lt;div class="form-group">
+				@Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+				&lt;div class="col-md-10">
+					@Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
+					@Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+				&lt;/div>
+			&lt;/div>
 	
-	        &lt;div class="form-group">
-	            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-	            &lt;div class="col-md-10">
-	                @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
-	                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-	            &lt;/div>
-	        &lt;/div>
+			&lt;div class="form-group">
+				&lt;div class="col-md-offset-2 col-md-10">
+					&lt;input type="submit" value="Create" class="btn btn-default"<mark> id="submit-button"</mark> />
+				&lt;/div>
+			&lt;/div>
+		&lt;/div>
+	}
 	
-	        &lt;div class="form-group">
-	            &lt;div class="col-md-offset-2 col-md-10">
-	                &lt;input type="submit" value="Create" class="btn btn-default" <mark>id="submit-button"</mark> />
-	            &lt;/div>
-	        &lt;/div>
-	    &lt;/div>
+	&lt;div>
+		@Html.ActionLink("Back to List", "Index")
+	&lt;/div>
 	
-	    <mark>&lt;script>
-	            // 人員/群組選擇器程式碼
-	            var maxResultsPerPage = 14;
-	            var input = document.getElementById("AssignedToName");
-	            var token = "@ViewData["token"]";
-	            var tenant = "@ViewData["tenant"]";
+	@section Scripts {
+		@Scripts.Render("~/bundles/jqueryval")
+		<mark>&lt;script>
+			// 人員/群組選擇器程式碼
+			var maxResultsPerPage = 14;
+			var input = document.getElementById("AssignedToName");
 	
-	            var picker = new AadPicker(maxResultsPerPage, input, token, tenant);
+			var token = "@ViewData["token"]";
+			var tenant = "@ViewData["tenant"]";
 	
-	            // 送出要指派的所選使用者/群組。
-	            $("#submit-button").click({ picker: picker }, function () {
-	                if (!picker.Selected())
-	                    return;
-	                $("#main-form").get()[0].elements["AssignedToID"].value = picker.Selected().objectId;
-	            });
-	    &lt;/script></mark>
+			var picker = new AadPicker(maxResultsPerPage, input, token, tenant);
 	
-	}</pre>
+			// 送出要指派的所選使用者/群組。
+			$("#submit-button").click({ picker: picker }, function () {
+				if (!picker.Selected())
+					return;
+				$("#main-form").get()[0].elements["AssignedToID"].value = picker.Selected().objectId;
+			});
+		&lt;/script></mark>
+	}
+	</pre>
+	
+	請注意，`AadPicker` 物件會使用 `token` 和 `tenant` 來進行 Azure Active Directory 圖形 API 呼叫。您稍後會新增 `AadPicker`。
 
-	在指令碼中，AadPicker 物件會呼叫 [Azure Active Directory Graph API](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog) 以搜尋符合輸入的使用者與群組。
+15. 對 ~\\Views\\WorkItems\\Edit.cshtml 進行相同的變更。
 
-15. 開啟 [封裝管理員主控台][](http://docs.nuget.org/Consume/Package-Manager-Console) 並執行 **Enable-Migrations –EnableAutomaticMigrations**。與您將應用程式發佈至 Azure 時選取的選項類似，此命令可於您在 Visual Studio 中偵錯應用程式的資料庫結構描述時，協助在 [LocalDB](https://msdn.microsoft.com/library/hh510202.aspx) 中更新該結構描述。
+15. `AadPicker` 物件定義在您必須新增至專案的指令碼中。在 ~\\Scripts 資料夾上按一下滑鼠右鍵、指向 [新增]，然後按一下 [JavaScript 檔案]。輸入 `AadPickerLibrary` 做為檔名，然後按一下 [確定]。
 
-15. 現在請在 Visual Studio 偵錯工具中執行應用程式，或是再次發佈至 App Service Web Apps。以應用程式擁有者身分登入，並瀏覽至 `https://<webappname>.azurewebsites.net/WorkItems/Create`。您現在會看到，您可以從下拉式清單挑選 Azure Active Directory 使用者或群組，或輸入內容來篩選清單。
+16. 從[這裡](https://raw.githubusercontent.com/cephalin/active-directory-dotnet-webapp-roleclaims/master/WebApp-RoleClaims-DotNet/Scripts/AadPickerLibrary.js)將內容複製到 ~\\Scripts\\AadPickerLibrary.js。
 
-	![](./media/web-sites-dotnet-lob-application-azure-ad/9-create-workitem.png)
+	在指令碼中，`AadPicker` 物件會呼叫 [Azure Active Directory 圖形 API](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog) 以搜尋符合輸入的使用者與群組。
 
-16. 填寫表單的其餘部分，並按一下 [建立]。~/WorkItems/Index 頁面現在會顯示新建立的工作項目。您還會看到下面的螢幕擷取畫面，顯示我移除了 Views\\WorkItems\\Index.cshtml 中的 `AssignedToID` 資料行。
+17. ~\\Scripts\\AadPickerLibrary.js 也會使用 [jQuery UI 自動完成 Widget](https://jqueryui.com/autocomplete/)。因此，您需要將 jQuery UI 新增至專案。以滑鼠右鍵按一下專案，然後按一下 [管理 NuGet 套件]。
 
-	![](./media/web-sites-dotnet-lob-application-azure-ad/10-workitem-index.png)
+18. 在 NuGet 套件管理員中按一下 [瀏覽]，在搜尋列中輸入 **jquery-ui**，然後按一下 [jQuery.UI.Combined]。
 
-11.	現在，對 [編輯] 檢視做類似的變更。在 Views\\WorkItems\\Edit.cshtml 中，對 `Html.BeginForm` Helper 方法 (與上個步驟中 Views\\WorkItems\\Create.cshtml 的方法相同) 進行變更 (將上述反白顯示的程式碼中的 "Create" 取代成 "Edit")。
+	![](./media/web-sites-dotnet-lob-application-azure-ad/17-add-jquery-ui-nuget.png)
 
-就這麼簡單！
+19. 在右窗格中按一下 [安裝]，然後按一下 [確定] 繼續進行。
 
-既然您已為 WorkItems 控制器中的不同動作設定授權和特定業務功能，您可以嘗試以不同應用程式角色的使用者身分登入來查看應用程式如何回應。
+19. 開啟 ~\\App\_Start\\BundleConfig.cs，然後進行下列醒目提示的變更︰
+	<pre class="prettyprint">
+	public static void RegisterBundles(BundleCollection bundles)
+	{
+		bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+					"~/Scripts/jquery-{version}.js"<mark>,
+					"~/Scripts/jquery-ui-{version}.js",
+					"~/Scripts/AadPickerLibrary.js"</mark>));
+	
+		bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+					"~/Scripts/jquery.validate*"));
+	
+		// Use the development version of Modernizr to develop with and learn from.Then, when you're
+		// ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
+		bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
+					"~/Scripts/modernizr-*"));
+	
+		bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+					"~/Scripts/bootstrap.js",
+					"~/Scripts/respond.js"));
+	
+		bundles.Add(new StyleBundle("~/Content/css").Include(
+					"~/Content/bootstrap.css",
+					"~/Content/site.css"<mark>,
+					"~/Content/themes/base/jquery-ui.css"</mark>));
+	}
+	</pre>
 
-![](./media/web-sites-dotnet-lob-application-azure-ad/11-edit-unauthorized.png)
+	有更多高效能的方式可管理應用程式中的 JavaScript 和 CSS 檔案。不過，為了簡單起見，你只會利用載入了每個檢視的套組。
+
+20. 現在，發佈您的變更。以滑鼠右鍵按一下專案，然後按一下 [發佈]。
+
+21. 按一下 [設定]，確定其中有 SQL Database 的連接字串，選取 [更新資料庫] 以變更模型的結構描述，然後按一下 [發佈]。
+
+	![](./media/web-sites-dotnet-lob-application-azure-ad/18-publish-crud-changes.png)
+
+22. 在瀏覽器中，瀏覽至 https://&lt;*appname*>.azurewebsites.net/workitems，然後按一下 [建立新的]。
+
+23. 按一下 [AssignedToName] 方塊。現在您應該可以在下拉式清單中看到 Azure Active Directory 租用戶中的使用者和群組。您可以輸入以進行篩選，或使用 `Up` 或 `Down` 鍵，或是按一下以選取使用者或群組。
+
+	![](./media/web-sites-dotnet-lob-application-azure-ad/19-use-aadpicker.png)
+
+24. 按一下 [建立] 以儲存變更。然後，在建立的工作項目上按一下 [編輯] 來觀察相同的行為。
+
+恭喜，您現在已使用目錄存取在 Azure 中執行企業營運應用程式！ 圖形 API 還有其他更多用途。請參閱 [Azure AD 圖形 API 參考](https://msdn.microsoft.com/library/azure/ad/graph/api/api-catalog)。
+
+<a name="next"></a>
+## 後續步驟
+
+如果您在 Azure 中的企業營運應用程式需要角色型存取控制 (RBAC)，請參閱 [WebApp-RoleClaims-DotNet](https://github.com/Azure-Samples/active-directory-dotnet-webapp-roleclaims) 以取得 Azure Active Directory 團隊提供的範例。它會說明如何為 Azure Active Directory 應用程式啟用角色，然後使用 `[Authorize]` 裝飾授權使用者。
+
+如果企業營運應用程式需要存取內部部署資料，請參閱[在 Azure App Service 中使用混合式連線存取內部部署資源](web-sites-hybrid-connection-get-started.md)。
 
 <a name="bkmk_resources"></a>
 ## 進一步資源
 
-- [使用 SSL 和 Authorize 屬性保護應用程式](web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md#protect-the-application-with-ssl-and-the-authorize-attribute)
-- [在 Azure App Service 中使用 Active Directory 進行驗證](web-sites-authentication-authorization.md)
-- [在 Azure App Service 中建立使用 AD FS 驗證的 .NET MVC Web 應用程式](web-sites-dotnet-lob-application-adfs.md)
+- [Azure App Service 中的驗證與授權](../app-service/app-service-authentication-overview.md)
+- [在 Azure 應用程式中使用內部部署 Active Directory 進行驗證](web-sites-authentication-authorization.md)
+- [在 Azure 中使用 AD FS 驗證建立企業營運應用程式](web-sites-dotnet-lob-application-adfs.md)
+- [App Service 驗證和 Azure AD 圖形 API](https://cgillum.tech/2016/03/25/app-service-auth-aad-graph-api/)
 - [Microsoft Azure Active Directory 範例與文件](https://github.com/AzureADSamples)
-- [Vittorio Bertocci 的部落格](http://blogs.msdn.com/b/vbertocci/)
-- [將 VS2013 Web 專案從 WIF 移轉到 Katana](http://www.cloudidentity.com/blog/2014/09/15/MIGRATE-A-VS2013-WEB-PROJECT-FROM-WIF-TO-KATANA/)
-- [Azure 的新混合式連線不是您父執輩的 #hybridCloud](/documentation/videos/new-hybrid-connections-not-your-fathers-hybridcloud/)
-- [Active Directory 與 Azure Active Directory 之間的相似處](http://technet.microsoft.com/library/dn518177.aspx)
-- [搭配單一登入的目錄同步作業實例](http://technet.microsoft.com/library/dn441213.aspx)
 - [Azure Active Directory 支援的權杖和宣告類型](http://msdn.microsoft.com/library/azure/dn195587.aspx)
 
-[AZURE.INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
+[Protect the Application with SSL and the Authorize Attribute]: web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md#protect-the-application-with-ssl-and-the-authorize-attribute
 
-[AZURE.INCLUDE [app-service-web-try-app-service](../../includes/app-service-web-try-app-service.md)]
- 
-
-<!---HONumber=AcomDC_0302_2016-------->
+<!---HONumber=AcomDC_0831_2016-->

@@ -95,11 +95,9 @@
 
 使用 AMQP 時，目前不支援服務匯流排 .NET API 的以下功能：
 
--   交易。
+-   交易
 
--   透過傳輸目的地傳送。
-
--   擴充接收。
+-   透過傳輸目的地傳送
 
 相較於預設通訊協定，使用 AMQP 時，服務匯流排 .NET API 也有一些細微的行為差異：
 
@@ -139,4 +137,4 @@
 [適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援]: service-bus-partitioned-queues-and-topics-amqp-overview.md
 [Windows Server 服務匯流排中的 AMQP]: https://msdn.microsoft.com/library/dn574799.aspx
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

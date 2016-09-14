@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/22/2016" 
+	ms.date="08/19/2016" 
 	ms.author="bradsev;garye" />
 
 
@@ -22,7 +22,7 @@
 本主題示範如何在 Azure Machine Learning Studio 中評估模型的效能，並提供這項工作中可用度量的簡短說明。提供三種常見的受監督的學習案例：
 
 * 迴歸
-* 二進位分類 
+* 二進位分類
 * 多元分類
 
 [AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
@@ -189,4 +189,4 @@ Azure Machine Learning 支援透過其中兩種主要的機器學習服務模組
 [two-class-logistic-regression]: https://msdn.microsoft.com/library/azure/b0fd7660-eeed-43c5-9487-20d9cc79ed5d/
  
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-linux"
    ms.workload="infrastructure-services"
-   ms.date="06/07/2016"
+   ms.date="08/29/2016"
    ms.author="kyliel"/>
 
 # 建立並上傳 FreeBSD VHD 到 Azure
@@ -228,4 +228,4 @@
 
 	![Azure 中的 FreeBSD 映像](./media/virtual-machines-linux-classic-freebsd-create-upload-vhd/freebsdimageinazure.png)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0831_2016-->

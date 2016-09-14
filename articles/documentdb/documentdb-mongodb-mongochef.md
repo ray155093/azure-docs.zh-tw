@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/29/2016" 
+	ms.date="08/25/2016" 
 	ms.author="stbaro"/>
 
 # 使用 MongoChef 和具有 MongoDB 通訊協定支援的 DocumentDB 帳戶
@@ -30,7 +30,7 @@
 
 1. 使用[這裡](documentdb-connect-mongodb-account.md)的資訊，擷取具有 MongoDB 連接資訊通訊協定支援的 DocumentDB。
 
-	![[連接字串] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-connect-mongodb-account/ConnectionStringBlade.png)
+	![[連接字串] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-mongodb-mongochef/ConnectionStringBlade.png)
 
 2. 按一下 [連接] 以開啟 [連接管理員]，然後按一下 [新增連線]
 
@@ -132,4 +132,4 @@
 
  
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0831_2016-->

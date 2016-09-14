@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="03/30/2016"
+	ms.date="08/30/2016"
 	ms.author="ashwink"/>
 
 # Azure Insights PowerShell 快速入門範例
@@ -25,7 +25,7 @@
 
 ## 本文中的範例
 
-本文中的範例將說明如何使用 Azure Insights Cmdlet。您也可以在 [Azure Insights Cmdlet](https://msdn.microsoft.com/library/mt282452.aspx) 檢閱整個 Azure Insights (監視) Cmdlet 清單。
+本文中的範例將說明如何使用 Azure Insights Cmdlet。您也可以在 [Azure Insights Cmdlet](https://msdn.microsoft.com/library/azure/mt282452#40v=azure.200#41.aspx) 檢閱整個 Azure Insights (監視) PowerShell Cmdlet 清單。
 
 
 ## 登入和使用訂用帳戶
@@ -186,7 +186,7 @@ Get-AzureRmAlertRule -Name vmcpu_gt_1 -ResourceGroup myrg1 -DetailedOutput
 
 >[AZURE.NOTE] 此功能仍然處於預覽狀態。
 
-在此案例中，當我的訂用帳戶中的網站在資源群組 abhingrgtest123 中成功啟動時，您將會傳送電子郵件。
+在此案例中，當我的訂用帳戶中的網站在資源群組「abhingrgtest123」中成功啟動時，您將會傳送電子郵件。
 
 設定電子郵件規則
 
@@ -384,4 +384,4 @@ Set-AzureRmDiagnosticSetting -ResourceId /subscriptions/s1/resourceGroups/myrg1/
 Set-AzureRmDiagnosticSetting -ResourceId /subscriptions/s1/resourceGroups/insights-integration/providers/Microsoft.Network/networkSecurityGroups/viruela1 -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/sakteststorage -Categories NetworkSecurityGroupEvent -Enable $true -RetentionEnabled $true -RetentionInDays 90
 ```
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0831_2016-->

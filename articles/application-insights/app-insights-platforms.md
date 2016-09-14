@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="08/15/2016"
+	ms.date="09/01/2016"
 	ms.author="awills"/>
 
 # 開發人員分析：語言、平台和整合
@@ -22,8 +22,6 @@
 ## 語言
 
 + [C#|VB (.NET)](app-insights-asp-net.md)
-+ [C#|VB (Windows 市集)](app-insights-windows-get-started.md)
-+ [C++ (Windows 市集)](app-insights-windows-cpp.md)
 + [Java](app-insights-java-get-started.md)
 + [JavaScript web pages](app-insights-web-track-usage.md)
 + [Objective-C](https://github.com/Microsoft/ApplicationInsights-iOS)
@@ -37,7 +35,7 @@
 + [Angular](https://www.npmjs.com/package/angular-applicationinsights)
 + [ASP.NET](app-insights-asp-net.md)
 + [ASP.NET - 適用於即時應用程式](app-insights-monitor-performance-live-website-now.md)
-+ [ASP.NET 5](app-insights-asp-net-five.md)
++ [ASP.NET 5](app-insights-asp-net-core.md)
 + [Android](https://github.com/Microsoft/ApplicationInsights-Android) (HockeyApp)
 + [Azure Web Apps 和 VM](../azure-portal/insights-perf-analytics.md)
 + [Azure 雲端服務](app-insights-cloudservices.md)：同時包含 Web 與背景工作角色
@@ -47,12 +45,14 @@
 + [iOS](https://github.com/Microsoft/ApplicationInsights-iOS) (HockeyApp)
 + [J2EE](app-insights-java-get-started.md)
 + [J2EE - 適用於即時應用程式](app-insights-java-live.md)
+* [Mac OS X 應用程式](https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/hockeyapp-for-mac-os-x) (HockeyApp)
 + [Node.JS](https://www.npmjs.com/package/applicationinsights)
 + [OSX](https://github.com/Microsoft/ApplicationInsights-OSX)
 + [Spring](http://joe.blog.freemansoft.com/2015/12/enabling-microsoft-application-insight.html)
+* [通用 Windows 應用程式](https://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone/how-to-create-an-app-for-uwp) (HockeyApp)
 + [WCF](https://github.com/Microsoft/ApplicationInsights-SDK-Labs/blob/master/WCF/readme.md)
-+ [Windows 市集 C#|VB](app-insights-windows-get-started.md) (HockeyApp)
-+ [Windows 市集 C++](app-insights-windows-cpp.md) (HockeyApp)
+* [Windows Phone 8 和 8.1 應用程式](https://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone/hockeyapp-for-windows-phone-silverlight-apps-80-and-81) (HockeyApp)
+* [Windows Presentation Foundation 應用程式](https://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone/hockeyapp-for-windows-wpf-apps) (HockeyApp)
 + [Windows 桌面應用程式、服務和背景工作角色](app-insights-windows-desktop.md)
 + [任何其他項目](#projects)
 
@@ -84,4 +84,4 @@
 
 如果您的語言或平台中還沒有 SDK，您會想要建置一個嗎？ 查看 [GitHub 上之 Application Insights SDK 專案](https://github.com/Microsoft/AppInsights-Home)中列出的現有 SDK 程式碼。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0907_2016-->

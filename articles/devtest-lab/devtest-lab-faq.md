@@ -13,12 +13,22 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/05/2016"
+	ms.date="08/29/2016"
 	ms.author="tarcher"/>
 
 # DevTest Labs 常見問題集
 
 本文會回答一些關於 DevTest Labs 的最常見問題。
+
+## 如果這裡沒有解答我的問題該怎麼辦？
+如果這裡未列出您的問題，請告訴我們，我們將協助您找到答案。
+
+- 請將問題張貼在此常見問題集尾端的[討論串](#comments)，與 Azure 快取小組和其他社群成員交流此篇文章。
+- 若要觸及更多讀者，可將問題張貼在 [Azure DevTest Labs MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=AzureDevTestLabs)，與 Azure DevTest Labs 小組和社群的其他成員交流。
+- 若要提出功能要求，請將您的要求和想法提交到 [Azure DevTest Labs 使用者心聲](https://feedback.azure.com/forums/320373-azure-devtest-labs)。
+
+## 開始使用
+- [如何開始使用 DevTest Labs？](http://go.microsoft.com/fwlink/?LinkID=627034&clcid=0x409)
 
 ## 一般
 - [為何應使用 DevTest Labs？](#why-should-i-use-devtest-labs)
@@ -161,7 +171,7 @@ DevTest Labs 是一項免費服務，這表示建立實驗室和設定原則、�
 我們有[實驗室 Azure Resource Manager 範本的 Github 儲存機制](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates)。這些範本各自都有可供點按的連結，以便您在自己的 Azure 訂用帳戶下部署 DevTest Labs 實驗室。
  
 ### 為何我所有的 VM 會建立在具有任意名稱的不同資源群組中？ 我是否可以重新命名或修改這些資源群組？ 
-之所以用這種方式建立資源群組，是為了讓 DevTest Labs 管理使用者對虛擬機器的權限和存取權。我們正努力改善這個體驗以提升彈性，但您可以視需要重新命名這些資源群組。建議您不要將 VM 移動到不同資源群組，以免不小心修改到權限。
+之所以用這種方式建立資源群組，是為了讓 DevTest Labs 管理使用者對虛擬機器的權限和存取權。雖然可以將 VM 移到另一個具有您所需名稱的資源群組，但不建議這樣做。我們正致力於改善這個體驗，以增加更多彈性。
  
 ### 在相同的訂用帳戶下可建立幾個實驗室？ 
 每個訂用帳戶可以建立的實驗室數目並無特定限制，但每個訂用帳戶可使用的資源則有限制。您可以閱讀[加諸於 Azure 訂用帳戶的限制和配額](../azure-subscription-service-limits.md)和[如何增加這些限制值](https://azure.microsoft.com/blog/azure-limits-quotas-increase-requests)。
@@ -175,4 +185,4 @@ DevTest Labs 是一項免費服務，這表示建立實驗室和設定原則、�
 ### 為何我現有的虛擬網路未能正確儲存？  
 其中一個可能原因是您的虛擬網路名稱包含句點。若是這樣，請嘗試移除句號或以連字號取代，然後再試著儲存虛擬網路一次。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0831_2016-->

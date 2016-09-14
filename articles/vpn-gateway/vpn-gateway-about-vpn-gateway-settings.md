@@ -13,14 +13,14 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/17/2016"
+   ms.date="08/29/2016"
    ms.author="cherylmc" />
 
 # 關於 VPN 閘道設定
 
-VPN 閘道是用來在虛擬網路和內部部署位置之間傳送網路流量之設定的集合。您也可以使用「VPN 閘道」來傳送 Azure 內 VNet 之間的流量。本文各節將討論與 VPN 閘道相關的設定。
+VPN 閘道是用來在虛擬網路和內部部署位置之間傳送網路流量的資源集合。您也可以使用「VPN 閘道」來傳送 Azure 內 VNet 之間的流量。本文各節將討論與 VPN 閘道相關的資源和設定。
 
-有時，使用連線圖會有助於檢視可用的組態。您可以在文章的[關於 VPN 閘道連線](vpn-gateway-topology.md)一節中，找到說明如何部署每個組態的圖表。
+您可能會發現使用連線圖會有助於檢視可用的組態。您可以在[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)一文中找到說明如何部署每個組態的圖表。
 
 
 ## <a name="gwsku"></a>閘道 SKU
@@ -49,7 +49,7 @@ VPN 閘道是用來在虛擬網路和內部部署位置之間傳送網路流量�
 
 ## <a name="gwtype"></a>閘道類型
 
-閘道類型會指定閘道的連線方式，並且是 Resource Manager 部署模型的必要組態設定。請勿將閘道類型與 VPN 類型混為一談，後者所指定的是 VPN 的路由類型。`-GatewayType` 的可用值為：
+閘道類型會指定閘道的連線方式，並且是 Resource Manager 部署模型的必要組態設定。每個虛擬網路只能有一個各類型的虛擬網路閘道。`-GatewayType` 的可用值為：
 
 - Vpn
 - ExpressRoute
@@ -70,7 +70,7 @@ VPN 閘道是用來在虛擬網路和內部部署位置之間傳送網路流量�
 - ExpressRoute
 - VPNClient
 
-在下列 PowerShell 範例中，我們會建立需要 "IPsec" 連線類型的 S2S 連線。
+在下列 PowerShell 範例中，我們會建立需要 'IPsec' 連線類型的 S2S 連線。
 
 	New-AzureRmVirtualNetworkGatewayConnection -Name localtovon -ResourceGroupName testrg `
 	-Location 'West US' -VirtualNetworkGateway1 $gateway1 -LocalNetworkGateway2 $local `
@@ -133,7 +133,7 @@ VPN 閘道是用來在虛擬網路和內部部署位置之間傳送網路流量�
 
 ## 後續步驟
 
-如需有關可用連線組態的詳細資訊，請參閱 [VPN 閘道連線](vpn-gateway-topology.md)。
+如需有關可用連線組態的詳細資訊，請參閱[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)。
 
 
 
@@ -143,4 +143,4 @@ VPN 閘道是用來在虛擬網路和內部部署位置之間傳送網路流量�
 
  
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -3,7 +3,7 @@
    description="了解 Azure SQL 資料倉儲中的並行存取和工作負載管理以開發解決方案。"
    services="sql-data-warehouse"
    documentationCenter="NA"
-   authors="jrowlandjones"
+   authors="sonyam"
    manager="barbkess"
    editor=""/>
 
@@ -13,16 +13,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="08/17/2016"
-   ms.author="jrj;barbkess;sonyama"/>
+   ms.date="08/30/2016"
+   ms.author="sonyama;barbkess;jrj"/>
 
 # SQL 資料倉儲中的並行存取和工作負載管理
 
-為了大規模傳遞可預測的效能，Microsoft Azure SQL 資料倉儲可協助您控制並行存取層級以及資源配置，例如記憶體和 CPU 優先順序。本文介紹並行存取和工作負載管理的概念；說明如何實作這兩種功能，以及如何在資料倉儲中控制它們。SQL 資料倉儲工作負載管理的目的，是要幫助您支援多使用者環境。它並不適用於多租用戶工作負載。
+為了大規模傳遞可預測的效能，Microsoft Azure SQL 資料倉儲可協助您控制並行存取層級和資源配置，例如記憶體和 CPU 優先順序。本文介紹並行存取和工作負載管理的概念；說明如何實作這兩種功能，以及如何在資料倉儲中控制它們。SQL 資料倉儲工作負載管理的目的，是要幫助您支援多使用者環境。它並不適用於多租用戶工作負載。
 
 ## 並行存取限制
 
-SQL 資料倉儲最多允許 1,024 個並行存取連線。這 1,024 個連線全都可以並行提交查詢。不過，為了達到最佳輸送量，SQL 資料倉儲可能會將某些查詢排入佇列，以確保每個查詢能夠獲得最少的記憶體授與。佇列會在查詢執行時發生。藉由在到達並行存取限制時將查詢排入佇列，SQL 資料倉儲就可透過確保作用中查詢能夠取得急需的記憶體資源存取權，來增加總輸送量。
+SQL 資料倉儲最多允許 1,024 個並行存取連線。這 1,024 個連線全都可以並行提交查詢。不過，為達到最佳輸送量，SQL 資料倉儲可能會將某些查詢排入佇列，以確保每個查詢能夠獲得最少的記憶體授與。佇列會在查詢執行時發生。藉由在到達並行存取限制時將查詢排入佇列，SQL 資料倉儲就可透過確保作用中查詢能夠取得急需的記憶體資源存取權，來增加總輸送量。
 
 並行存取限制受到兩個概念所控制：「並行查詢」和「並行存取插槽」。若要執行查詢，它必須在查詢並行限制和並行存取插槽配置內執行。
 
@@ -119,7 +119,7 @@ EXEC sp_addrolemember 'largerc', 'loaduser'
 
 ## 並行存取插槽耗用量
 
-針對在更高資源類別中執行的查詢，SQL 資料倉儲會授與更多記憶體。因為記憶體是固定的資源，每個查詢所配置的記憶體越多，可支援的並行存取就越少。下表會以單一檢視重述上述所有概念，其中顯示 DWU 可用的並行存取插槽數目以及每個資源類別所取用的插槽數目。
+針對在更高資源類別中執行的查詢，SQL 資料倉儲會授與更多記憶體。因為記憶體是固定的資源，每個查詢所配置的記憶體越多，可支援的並行存取就越少。下表會以單一檢視重述上述所有概念，其中顯示 DWU 可用的並行存取插槽數目和每個資源類別所取用的插槽數目。
 
 ### 並行存取插槽的配置和耗用量
 
@@ -270,16 +270,16 @@ Removed as these two are not confirmed / supported under SQLDW
 
 ## 變更使用者資源類別的範例
 
-1. **建立登入：**開啟 SQL 資料倉儲中**主要**資料庫的連接，然後執行下列命令。
+1. **建立登入：**開啟 SQL Server 上裝載 SQL 資料倉儲資料庫的**主要**資料庫的連接，然後執行下列命令。
 
 	```sql
 	CREATE LOGIN newperson WITH PASSWORD = 'mypassword';
 	CREATE USER newperson for LOGIN newperson;
 	```
 
-	> [AZURE.NOTE] 您最好在 Azure SQL Database 和 SQL 資料倉儲建立登入主要資料庫的使用者。此層級有兩個可用的伺服器角色，需要登入才能在**主要**資料庫中擁有使用者以授與成員資格。這些角色為 `Loginmanager` 和 `dbmanager`。在 Azure SQL Database 和 SQL 資料倉儲中，這些角色會授與管理登入以及建立資料庫的權限。這與 SQL Server 不同。如需詳細資料，請參閱[管理 Azure SQL Database 中的資料庫和登入][]。
+	> [AZURE.NOTE] 在主要資料庫中建立一個使用者做為 Azure SQL 資料倉儲使用者是不錯的主意。在主要資料庫中建立使用者，使用者就能使用類似 SSMS 的工具登入而不用指定資料庫名稱。它也可讓使用者使用物件總管來檢視 SQL Server 上的所有資料庫。如需有關建立和管理使用者的詳細資訊，請參閱[保護 SQL 資料倉儲中的資料庫][]。
 
-2. **建立使用者帳戶︰**開啟 **SQL 資料倉儲**資料庫的連接，然後執行下列命令。
+2. **建立 SQL 資料倉儲使用者︰**開啟 **SQL 資料倉儲**資料庫的連接，然後執行下列命令。
 
 	```sql
 	CREATE USER newperson FOR LOGIN newperson;
@@ -311,9 +311,9 @@ Removed as these two are not confirmed / supported under SQLDW
 
 ```sql
 SELECT 	 r.[request_id]				 AS Request_ID
-	,r.[status]				 AS Request_Status
-	,r.[submit_time]			 AS Request_SubmitTime
-	,r.[start_time]				 AS Request_StartTime
+        ,r.[status]				 AS Request_Status
+        ,r.[submit_time]			 AS Request_SubmitTime
+        ,r.[start_time]				 AS Request_StartTime
         ,DATEDIFF(ms,[submit_time],[start_time]) AS Request_InitiateDuration_ms
         ,r.resource_class                         AS Request_resource_class
 FROM    sys.dm_pdw_exec_requests r;
@@ -331,8 +331,8 @@ AND     ro.[is_fixed_role]  = 0;
 下列查詢會顯示每位使用者指派給哪些角色。
 
 ```sql
-SELECT	r.name AS role_principal_name
-,		m.name AS member_principal_name
+SELECT	 r.name AS role_principal_name
+        ,m.name AS member_principal_name
 FROM	sys.database_role_members rm
 JOIN	sys.database_principals AS r			ON rm.role_principal_id		= r.principal_id
 JOIN	sys.database_principals AS m			ON rm.member_principal_id	= m.principal_id
@@ -420,12 +420,13 @@ FROM	sys.dm_pdw_wait_stats w;
 <!--Image references-->
 
 <!--Article references-->
-[保護 SQL 資料倉儲中的資料庫]: ./sql-data-warehouse-overview-manage-security.md
+[Secure a database in SQL Data Warehouse]: ./sql-data-warehouse-overview-manage-security.md
 [重建索引以提升區段品質]: ./sql-data-warehouse-tables-index.md#rebuilding-indexes-to-improve-segment-quality
+[保護 SQL 資料倉儲中的資料庫]: ./sql-data-warehouse-overview-manage-security.md
 
 <!--MSDN references-->
-[管理 Azure SQL Database 中的資料庫和登入]: https://msdn.microsoft.com/library/azure/ee336235.aspx
+[Managing Databases and Logins in Azure SQL Database]: https://msdn.microsoft.com/library/azure/ee336235.aspx
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

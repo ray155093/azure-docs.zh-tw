@@ -18,7 +18,7 @@
 
 # 從 Orchestrator 移轉到 Azure 自動化 (Beta)
 
-[System Center Orchestrator](http://technet.microsoft.com/library/hh237242.aspx) 中的 Runbook 是根據來自專為 Orchestrator 編寫的整合套件的活動，而 Azure 自動化中的 Runbook 則是根據 Windows PowerShell。Azure 自動化中的[圖形化 Runbook](automation-runbook-types#graphical-runbooks) 外觀都類似 Orchestrator Runbook，其活動代表 PowerShell Cmdlet、子 Runbook 和資產。
+[System Center Orchestrator](http://technet.microsoft.com/library/hh237242.aspx) 中的 Runbook 是根據來自專為 Orchestrator 編寫的整合套件的活動，而 Azure 自動化中的 Runbook 則是根據 Windows PowerShell。Azure 自動化中的[圖形化 Runbook](automation-runbook-types.md#graphical-runbooks) 外觀都類似 Orchestrator Runbook，其活動代表 PowerShell Cmdlet、子 Runbook 和資產。
 
 [System Center Orchestrator 遷移工具組](http://www.microsoft.com/download/details.aspx?id=47323&WT.mc_id=rss_alldownloads_all)包含工具，可協助您將 Runbook 從 Orchestrator 轉換成 Azure 自動化。除了轉換 Runbook 本身，您必須將整合模組與 Runbook 用來整合模組與 Windows PowerShell Cmdlet 的活動轉換。
 
@@ -96,7 +96,7 @@ Runbook Converter 會使用可執行轉換、稱為 **ConvertFrom-SCORunbook** �
 
 - RunbookPath - 包含要轉換之 Runbook 的匯出檔案的路徑。
 - Module - 逗號分隔的整合模組清單，其中包含 Runbook 中的活動。
-- OutputFolder - 建立所轉換圖形的 Runbook 之資料夾的路徑。 
+- OutputFolder - 建立所轉換圖形的 Runbook 之資料夾的路徑。
 
 
 下列範例命令會在名為 **MyRunbooks.ois\_export** 的匯出檔案中轉換 Runbook。這些 Runbook 使用 Active Directory 和 Data Protection Manager 整合套件。
@@ -158,6 +158,7 @@ Orchestrator 中的 Runbook 會使用**叫用 Runbook** 活動來啟動其他 Ru
 - [服務管理自動化](https://technet.microsoft.com/library/dn469260.aspx)
 - [Hybrid Runbook Worker](automation-hybrid-runbook-worker.md)
 - [Orchestrator 標準活動](http://technet.microsoft.com/library/hh403832.aspx)
+- [下載 System Center Orchestrator 遷移工具組](https://www.microsoft.com/zh-TW/download/details.aspx?id=47323)
  
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0831_2016-->

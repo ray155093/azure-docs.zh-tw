@@ -42,8 +42,8 @@ NSG 規則包含下列屬性。
 |**通訊協定**|規則要符合的通訊協定|TCP、UDP 或 *|使用 * 作為包括 ICMP (僅東西向流量) 以及 UDP 和 TCP 的通訊協定，而且可能會減少所需規則的數目<br/>同時，使用 * 可能是過於廣泛的方法，因此請確定您只在真的必要時使用|
 |**來源連接埠範圍**|規則要符合的來源連接埠範圍|1 到 65535 的單一連接埠號碼、連接埠範圍 (亦即 1-65635)，或 * (所有連接埠)|來源連接埠可以是暫時的。除非您的用戶端程式使用特定連接埠，否則請在大部分情況下使用 "*"。<br/>請嘗試儘可能使用連接埠範圍以避免需要多個規則<br/>多個連接埠或連接埠範圍不可使用逗號分組
 |**目的地連接埠範圍**|規則要符合的目的地連接埠範圍|1 到 65535 的單一連接埠號碼、連接埠範圍 (亦即 1-65535)，或 * (所有連接埠)|請嘗試儘可能使用連接埠範圍以避免需要多個規則<br/>多個連接埠或連接埠範圍不可使用逗號分組
-|**來源位址首碼**|規則要符合的來源位址首碼或標籤|單一 IP 位址 (亦即 10.10.10.10)、IP 子網路 (亦即 192.168.1.0/24)、[預設標籤](#Default-Tags)或 * (用於所有位址)|考慮使用範圍、預設標籤和 * 以降低規則的數量|
-|**Destination address prefix**|規則要符合的目的地位址首碼或標籤|單一 IP 位址 (亦即 10.10.10.10)、IP 子網路 (亦即 192.168.1.0/24)、[預設標籤](#Default-Tags)或 * (用於所有位址)|考慮使用範圍、預設標籤和 * 以降低規則的數量|
+|**來源位址首碼**|規則要符合的來源位址首碼或標籤|單一 IP 位址 (亦即 10.10.10.10)、IP 子網路 (亦即 192.168.1.0/24)、[預設標籤](#default-tags)或 * (用於所有位址)|考慮使用範圍、預設標籤和 * 以降低規則的數量|
+|**Destination address prefix**|規則要符合的目的地位址首碼或標籤|單一 IP 位址 (亦即 10.10.10.10)、IP 子網路 (亦即 192.168.1.0/24)、[預設標籤](#default-tags)或 * (用於所有位址)|考慮使用範圍、預設標籤和 * 以降低規則的數量|
 |**Direction**|規則要符合的流量方向|inbound (輸入) 或 outbound (輸出)|輸入和輸出規則會根據方向分別處理|
 |**優先順序**|系統會依照規則優先順序檢查規則，一旦套用規則，就不會再測試規則是否符合|100 和 4096 之間的數字|考慮為每個規則建立 100 的跳躍優先順序，在現有的規則之間保留空間給新規則|
 |**Access**|如果規則符合，要套用的存取類型|allow (允許) 或 deny (拒絕)|請注意，如果找不到封包的允許規則，則會捨棄封包|
@@ -124,13 +124,13 @@ NSG 包含兩組規則：輸入和輸出。規則的優先順序在每一個集�
 
 |部署工具|傳統|資源管理員|
 |---|---|---|
-|傳統入口網站|![否][red]|![否][red]|
-|Azure 入口網站|![是][green]|[](virtual-networks-create-nsg-arm-pportal.md)![是][green]|
-|PowerShell|[](virtual-networks-create-nsg-classic-ps.md)![是][green]|[](virtual-networks-create-nsg-arm-ps.md)![是][green]|
-|Azure CLI|[](virtual-networks-create-nsg-classic-cli.md)![是][green]|[](virtual-networks-create-nsg-arm-cli.md)![是][green]|
-|ARM 範本|![否][red]|[](virtual-networks-create-nsg-arm-template.md)![是][green]|
+|傳統入口網站|![否](./media/virtual-network-nsg-overview/red.png)|![否](./media/virtual-network-nsg-overview/red.png)|
+|Azure 入口網站|![是](./media/virtual-network-nsg-overview/green.png)|[![是][green]](virtual-networks-create-nsg-arm-pportal.md)|
+|PowerShell|[![是][green]](virtual-networks-create-nsg-classic-ps.md)|[![是][green]](virtual-networks-create-nsg-arm-ps.md)|
+|Azure CLI|[![是][green]](virtual-networks-create-nsg-classic-cli.md)|[![是][green]](virtual-networks-create-nsg-arm-cli.md)|
+|ARM 範本|![否](./media/virtual-network-nsg-overview/red.png)|[![是][green]](virtual-networks-create-nsg-arm-template.md)|
 
-|**Key**|![是][green] 支援。按一下文章。|![否][red] 不支援。|
+|**Key**|![是](./media/virtual-network-nsg-overview/green.png) 支援。|![否](./media/virtual-network-nsg-overview/red.png) 不支援。|
 |---|---|---|
 
 ## 規劃
@@ -282,4 +282,4 @@ NSG 包含兩組規則：輸入和輸出。規則的優先順序在每一個集�
 [yellow]: ./media/virtual-network-nsg-overview/yellow.png
 [red]: ./media/virtual-network-nsg-overview/red.png
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0907_2016-->

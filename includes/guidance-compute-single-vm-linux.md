@@ -77,7 +77,7 @@
 
 - 此公用 IP 位址可以是動態或靜態。預設值為動態。
 
-    - 如果您需要一個不會變更的固定 IP 位址 (例如，如果您需要在 DNS 中建立一個 A 記錄，或需要將 IP 位址列入白名單)，請保留一個[靜態 IP 位址][static-ip]。
+    - 如果您需要一個不會變更的固定 IP 位址 (例如，如果您需要在 DNS 中建立一個 A 記錄，或需要將 IP 位址列入允許名單)，請保留一個[靜態 IP 位址][static-ip]。
 
     - 您也可以建立 IP 位址的完整網域名稱 (FQDN)。然後您可以在 DNS 中註冊指向該 FQDN 的 [CNAME 記錄][cname-record]。如需詳細資訊，請參閱[在 Azure 入口網站中建立完整網域名稱][fqdn]。
 
@@ -133,7 +133,7 @@
 
 - 藉由使用 [OSPatching] VM 擴充功能，來自動執行作業系統更新。請在您佈建 VM 的時候安裝此擴充。您可以指定安裝修補程式的頻率，以及安裝後是否要重新開機。
 
-- 使用[角色型存取控制][rbac] \(RBAC) 來控制對您所部署 Azure 資源的存取。RBAC 可讓您指派授權角色給您 DevOps 小組的成員。例如，「讀取者」角色能檢視 Azure 資源但不能建立、管理或刪除它們。某些角色專門用於特定的 Azure 資源類型。例如，「虛擬機器參與者」角色能重新啟動或解除配置 VM、重設系統管理員密碼、建立新的 VM 等等。其他對此參考架構可能有用的[內建 RBAC 角色][rbac-roles]包括 [DevTest Lab 使用者][rbac-devtest]和[網路參與者][rbac-network]。使用者可以被指派多個角色，且您可以針對更詳細的權限建立角色。
+- 使用[角色型存取控制][rbac] (RBAC) 來控制對您所部署 Azure 資源的存取。RBAC 可讓您指派授權角色給您 DevOps 小組的成員。例如，「讀取者」角色能檢視 Azure 資源但不能建立、管理或刪除它們。某些角色專門用於特定的 Azure 資源類型。例如，「虛擬機器參與者」角色能重新啟動或解除配置 VM、重設系統管理員密碼、建立新的 VM 等等。其他對此參考架構可能有用的[內建 RBAC 角色][rbac-roles]包括 [DevTest Lab 使用者][rbac-devtest]和[網路參與者][rbac-network]。使用者可以被指派多個角色，且您可以針對更詳細的權限建立角色。
 
     > [AZURE.NOTE] RBAC 不會限制使用者登入 VM 可執行的動作。這些權限是由客體 OS上的帳戶類型來決定。
 
@@ -153,18 +153,19 @@
 
 - **[virtualNetwork.parameters.json][vnet-parameters]**。此檔案定義 VNet 設定，例如名稱、位址空間、子網路及任何必要 DNS 伺服器的位址。請注意，子網路位址必須納入 VNet 的位址空間。
 
+	<!-- source: https://github.com/mspnp/reference-architectures/blob/master/guidance-compute-single-vm/parameters/linux/virtualNetwork.parameters.json#L4-L21 -->
 	```json
   "parameters": {
     "virtualNetworkSettings": {
       "value": {
-        "name": "app1-vnet",
-        "resourceGroup": "app1-dev-rg",
+        "name": "ra-single-vm-vnet",
+        "resourceGroup": "ra-single-vm-rg",
         "addressPrefixes": [
           "172.17.0.0/16"
         ],
         "subnets": [
           {
-            "name": "app1-subnet",
+            "name": "ra-single-vm-sn",
             "addressPrefix": "172.17.0.0/24"
           }
         ],
@@ -177,24 +178,23 @@
 - **[networkSecurityGroup.parameters.json][nsg-parameters]**。此檔案包含 NSG 和 NSG 規則的定義。`virtualNetworkSettings` 區塊中的 `name` 參數可指定 NSG 要連接的 VNet。`networkSecurityGroupSettings` 區塊中的 `subnets` 參數可識別 VNet 中套用 NSG 規則的任何子網路。這些應該是 **virtualNetwork.parameters.json** 檔案中定義的項目。
 
 	範例中顯示的安全性規則可讓使用者透過 SSH 連線來連線到 VM。您可以在 `securityRules` 陣列中新增其他項目來開啟額外的連接埠 (或拒絕透過特定連接埠的存取)。
-
+	<!-- source: https://github.com/mspnp/reference-architectures/blob/master/guidance-compute-single-vm/parameters/linux/networkSecurityGroups.parameters.json#L4-L36 -->
 	```json
   "parameters": {
     "virtualNetworkSettings": {
       "value": {
-        "name": "app1-vnet",
-        "resourceGroup": "app1-dev-rg"
-      },
-      "metadata": {
-        "description": "Infrastructure Settings"
+        "name": "ra-single-vm-vnet",
+        "resourceGroup": "ra-single-vm-rg"
       }
     },
-    "networkSecurityGroupSettings": {
+    "networkSecurityGroupsSettings": {
       "value": [
         {
-          "name": "app1-nsg",
+          "name": "ra-single-vm-nsg",
           "subnets": [
-            "app1-subnet"
+            "ra-single-vm-sn"
+          ],
+          "networkInterfaces": [
           ],
           "securityRules": [
             {
@@ -223,17 +223,18 @@
 	azure vm image list westus redhat rhel
 	```
 
-	`nics` 區段中的 `subnetName` 參數可指定 VM 的子網路。同樣地，`virtualNetworkSettings` 中的 `name` 參數可識別要使用的 VNet。這些應該是 **virtualNetwork.parameters.json** 檔案中所定義子網路和 VNet 的名稱。
+	`nics` 區段中的 `subnetName` 參數可指定 VM 的子網路。同樣地，`virtualNetworkSettings` 中的 `name` 參數可識別要使用的 VNet。這些值應該是 **virtualNetwork.parameters.json** 檔案中所定義的子網路和 VNet 的名稱。
 
 	您可以透過修改 `buildingBlockSettings` 區段中的設定，建立共用儲存體帳戶或各自擁有儲存體帳戶的多個 VM。如果您建立多個 VM，您也必須在 `availabilitySet` 區段中指定要使用或建立的可用性設定組名稱。
 
+	<!-- source: https://github.com/mspnp/reference-architectures/blob/master/guidance-compute-single-vm/parameters/linux/virtualMachine.parameters.json#L4-L63 -->
 	```json
   "parameters": {
     "virtualMachinesSettings": {
       "value": {
-        "namePrefix": "app1",
+        "namePrefix": "ra-single-vm",
         "computerNamePrefix": "cn",
-        "size": "Standard_DS1",
+        "size": "Standard_DS1_v2",
         "osType": "linux",
         "adminUsername": "testuser",
         "adminPassword": "AweS0me@PW",
@@ -241,16 +242,19 @@
         "nics": [
           {
             "isPublic": "true",
-            "subnetName": "app1-subnet",
+            "subnetName": "ra-single-vm-sn",
             "privateIPAllocationMethod": "dynamic",
             "publicIPAllocationMethod": "dynamic",
+            "enableIPForwarding": false,
+            "dnsServers": [
+            ],
             "isPrimary": "true"
           }
         ],
         "imageReference": {
-          "publisher": "RedHat",
-          "offer": "RHEL",
-          "sku": "7.2",
+          "publisher": "Canonical",
+          "offer": "UbuntuServer",
+          "sku": "14.04.5-LTS",
           "version": "latest"
         },
         "dataDisks": {
@@ -264,22 +268,17 @@
         "osDisk": {
           "caching": "ReadWrite"
         },
+        "extensions": [ ],
         "availabilitySet": {
           "useExistingAvailabilitySet": "No",
           "name": ""
         }
-      },
-      "metadata": {
-        "description": "Settings for Virtual Machines"
       }
     },
     "virtualNetworkSettings": {
       "value": {
-        "name": "app1-vnet",
-        "resourceGroup": "app1-dev-rg"
-      },
-      "metadata": {
-        "description": "Infrastructure Settings"
+        "name": "ra-single-vm-vnet",
+        "resourceGroup": "ra-single-vm-rg"
       }
     },
     "buildingBlockSettings": {
@@ -287,9 +286,6 @@
         "storageAccountsCount": 1,
         "vmCount": 1,
         "vmStartIndex": 0
-      },
-      "metadata": {
-        "description": "Settings specific to the building block"
       }
     }
   }
@@ -321,8 +317,9 @@
 
 5. 編輯 [指令碼] 資料夾中的 Deploy-ReferenceArchitecture.ps1 檔案，並變更以下這一行來指定應建立或使用的資源群組，以用來保存指令碼所建立的 VM 和資源：
 
+	<!-- source: https://github.com/mspnp/reference-architectures/blob/master/guidance-compute-single-vm/Deploy-ReferenceArchitecture.ps1#L37 -->
 	```powershell
-	$resourceGroupName = "app1-dev-rg"
+	$resourceGroupName = "ra-single-vm-rg"
 	```
 6. 編輯 [範本/Linux] 資料夾中的每個 JSON 檔案，以針對虛擬網路、NSG 及 VM 設定參數，如上面的＜解決方案元件＞小節中所述。
 
@@ -387,11 +384,11 @@
 [vm-resize]: ../articles/virtual-machines/virtual-machines-linux-change-vm-size.md
 [vm-sla]: https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_0/
 [arm-templates]: https://azure.microsoft.com/documentation/articles/resource-group-authoring-templates/
-[solution-script]: https://github.com/mspnp/reference-architectures/tree/master/guidance-compute-single-vm/Scripts/Deploy-ReferenceArchitecture.ps1
+[solution-script]: https://github.com/mspnp/reference-architectures/blob/master/guidance-compute-single-vm/deploy-reference-architecture.sh
 [vnet-parameters]: https://github.com/mspnp/reference-architectures/tree/master/guidance-compute-single-vm/parameters/linux/virtualNetwork.parameters.json
-[nsg-parameters]: https://github.com/mspnp/reference-architectures/tree/master/guidance-compute-single-vm/parameters/linux/networkSecurityGroup.parameters.json
+[nsg-parameters]: https://github.com/mspnp/reference-architectures/blob/master/guidance-compute-single-vm/parameters/linux/networkSecurityGroups.parameters.json
 [vm-parameters]: https://github.com/mspnp/reference-architectures/tree/master/guidance-compute-single-vm/parameters/linux/virtualMachine.parameters.json
 [azure-powershell-download]: https://azure.microsoft.com/documentation/articles/powershell-install-configure/
 [0]: ./media/guidance-blueprints/compute-single-vm.png "Azure 中的單一 Linux VM 架構"
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

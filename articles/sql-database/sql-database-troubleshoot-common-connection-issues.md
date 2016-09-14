@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/02/2016"
+	ms.date="08/31/2016"
 	ms.author="daleche"/>
 
 # 針對 Azure SQL Database 連線問題進行疑難排解
@@ -21,7 +21,7 @@
 連線到 Azure SQL Database 失敗時，您會收到[錯誤訊息](sql-database-develop-error-messages.md)。本文是集中式主題，可協助您針對 Azure SQL Database 連線問題進行疑難排解。本文除了介紹連線問題的[常見原因](#cause)，還推薦可協助您識別問題的[疑難排解工具](#try-the-troubleshooter-for-azure-sql-database-connectivity-issues)，以及提供疑難排解步驟來解決[暫時性錯誤](#troubleshoot-transient-errors)和[持續性或非暫時性錯誤](#troubleshoot-the-persistent-errors)。最後，則是列出 [Azure SQL Database 連線問題的所有相關文章](#all-topics-for-azure-sql-database-connection-problems)。
 
 如果您遇到連線問題，請嘗試本文中所述的疑難排解步驟。
-[AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
+|[AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
 
 ## 原因
 
@@ -101,4 +101,4 @@
 - [使用 Azure SQL Database 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-database-training-learn-sql-database)
 - [使用彈性資料庫功能和工具的學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0831_2016-->

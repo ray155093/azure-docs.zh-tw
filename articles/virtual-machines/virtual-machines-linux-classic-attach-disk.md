@@ -81,14 +81,14 @@
 5. 出現提示時，輸入 **p** 以將磁碟分割設為主要磁碟分割。輸入 **1** 以將它設為第一個磁碟分割，然後按 Enter 來接受預設的磁柱值。在某些系統上，它可能會顯示第一個和最後一個磁區的預設值，而不是圓柱圖。您可以選擇接受這些預設值。
 
 
-	![建立磁碟分割](./media/virtual-machines-linux-classic-attach-disk/fdisknewpartition.png)
+	![建立磁碟分割](./media/virtual-machines-linux-classic-attach-disk/fdisknewpartdetails.png)
 
 
 
 6. 輸入 **p** 查看目前分割之磁碟的詳細資料。
 
 
-	![列出磁碟資訊](./media/virtual-machines-linux-classic-attach-disk/fdisknewpartition.png)
+	![列出磁碟資訊](./media/virtual-machines-linux-classic-attach-disk/fdiskpartitiondetails.png)
 
 
 
@@ -139,7 +139,7 @@
 
 		# sudo vi /etc/fstab
 
-	在此範例中，我們會使用先前步驟中所建立之新 **/dev/sdc1** 裝置的 UUID 值，並使用掛接點 **/datadrive**。在 **/etc/fstab** 檔案的結尾加入以下程式碼：
+	在此範例中，我們會使用先前步驟所建立之新的 **/dev/sdc1** 裝置的 UUID 值，並使用掛接點 **/datadrive**。在 **/etc/fstab** 檔案的結尾加入以下程式碼：
 
 		UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults   1   2
 
@@ -152,9 +152,9 @@
 		# sudo umount /datadrive
 		# sudo mount /datadrive
 
-	如果 `mount` 命令發生錯誤，請檢查 /etc/fstab 檔案的語法是否正確。如果還有建立其他資料磁碟機或磁碟分割，您也必須在 /etc/fstab 中分別輸入它們。
+	如果 `mount` 命令發生錯誤，請檢查 /etc/fstab 檔案的語法是否正確。如果還有建立其他資料磁碟機或磁碟分割，也請分別在 /etc/fstab 中分別輸入它們。
 
-	您必須使用下列命令將磁碟機設為可寫入：
+	使用下列命令將磁碟機設為可寫入：
 
 		# sudo chmod go+w /datadrive
 
@@ -198,4 +198,4 @@
 [Agent]: virtual-machines-linux-agent-user-guide.md
 [Logon]: virtual-machines-linux-mac-create-ssh-keys.md
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

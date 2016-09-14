@@ -33,7 +33,7 @@
 
 ## 準備來源 VM 
 
-本節說明如何將您的 Windows 虛擬機器一般化，以便當作映像使用。
+本節說明如何將您的 Windows 虛擬機器一般化，以便當作映像使用。執行 Sysprep 前，請先備份 VM。
 
 > [AZURE.WARNING] VM 一般化後，您就無法透過 RDP 登入該 VM，因為程序會移除所有的使用者帳戶。無法回復變更。
 
@@ -210,4 +210,4 @@
 
 若要使用 Azure PowerShell 管理新的虛擬機器，請參閱[使用 Azure Resource Manager 與 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -247,7 +247,7 @@
 
 當插入的記錄上未設定字串識別碼值時，行動服務會產生唯一值做為識別碼。您可以使用 `Guid.NewGuid()` 方法在用戶端上或在 .NET 行動後端服務中產生您自己的識別碼值。若要深入了解有關在 JavaScript 後端行動服務中產生 GUID 的資訊，請參閱[作法：產生唯一的識別碼值](mobile-services-how-to-use-server-scripts.md#generate-guids)。
 
-您也可以在資料表中使用整數識別碼。若要使用整數識別碼，您必須使用 `--integerId` 選項，以 `mobile table create` 命令建立資料表。此命令需要在 Azure 的命令列介面 (CLI) 中執行。如需關於使用 CLI 的詳細資訊，請參閱[使用 CLI 管理行動服務資料表](../virtual-machines-command-line-tools.md#Mobile_Tables) (英文)。
+您也可以在資料表中使用整數識別碼。若要使用整數識別碼，您必須使用 `--integerId` 選項，以 `mobile table create` 命令建立資料表。此命令需要在 Azure 的命令列介面 (CLI) 中執行。如需關於使用 CLI 的詳細資訊，請參閱[使用 CLI 管理行動服務資料表](../virtual-machines-command-line-tools.md#Mobile_Tables) \(英文)。
 
 ##<a name="modifying"></a>作法：修改行動服務中的資料
 
@@ -291,7 +291,7 @@
         .InvokeApiAsync<MarkAllResult>("completeAll",
         System.Net.Http.HttpMethod.Post, null);
 
-請注意，這是具類型的方法呼叫，它會要求定義 **MarkAllResult** 傳回類型。具類型的和不具類型的方法皆受支援。這個範例幾乎沒什麼用處，因為它是具類型的、不傳送任何裝載、沒有查詢參數，而且不會變更要求標頭。如需 [InvokeApiAsync] 更實際的範例，以及更完整的討論，請參閱 [Azure 行動服務用戶端 SDK 中的自訂 API] (英文)。
+請注意，這是具類型的方法呼叫，它會要求定義 **MarkAllResult** 傳回類型。具類型的和不具類型的方法皆受支援。這個範例幾乎沒什麼用處，因為它是具類型的、不傳送任何裝載、沒有查詢參數，而且不會變更要求標頭。如需 [InvokeApiAsync] 更實際的範例，以及更完整的討論，請參閱 [Azure 行動服務用戶端 SDK 中的自訂 API] \(英文)。
 
 ##作法：註冊推播通知
 
@@ -416,7 +416,7 @@ Windows 支援定期通知 (提取通知) 更新動態磚。透過啟用定期�
 	}
 
 
-如需為行動服務使用開放式並型存取的完整範例，請參閱[開放式並型存取教學課程] (英文)。
+如需為行動服務使用開放式並型存取的完整範例，請參閱[開放式並型存取教學課程] \(英文)。
 
 
 ##<a name="binding"></a>作法：將行動服務資料繫結至 Windows 使用者介面

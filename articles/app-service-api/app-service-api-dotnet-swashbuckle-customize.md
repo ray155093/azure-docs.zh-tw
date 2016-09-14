@@ -14,12 +14,12 @@
 	ms.tgt_pltfrm="dotnet" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="02/22/2016" 
+	ms.date="08/29/2016" 
 	ms.author="rachelap"/>
 
 # 自訂 Swashbuckle 產生的 API 定義 
 
-## 概觀
+## Overview
 
 本文將說明如何自訂 Swashbuckle 來處理您可能想改變預設行為的常見案例：
 
@@ -250,4 +250,4 @@ Swashbuckle 提供兩種方法 (使用 XML 註解或 `SwaggerResponse` 屬性) �
 本文已經示範如何自訂 Swashbuckle 產生作業識別碼和有效回應碼的方式。如需詳細資訊，請參閱 [GitHub 上的 Swashbuckle](https://github.com/domaindrivendev/Swashbuckle)。
  
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0831_2016-->

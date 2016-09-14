@@ -1,57 +1,70 @@
-<properties 
-	pageTitle="適用於 Windows 服務的 Application Insights" 
-	description="使用 Application Insights 分析 Windows 背景服務的使用情况和效能。" 
-	services="application-insights" 
-    documentationCenter="windows"
-	authors="alancameronwills" 
+<properties
+	pageTitle="適用於 Windows 服務和背景工作角色的 Application Insights | Microsoft Azure"
+	description="將 Application Insights SDK 手動新增至您的 ASP.NET 應用程式，以分析使用情況、可用性和效能。"
+	services="application-insights"
+    documentationCenter=".net"
+	authors="alancameronwills"
 	manager="douge"/>
 
-<tags 
-	ms.service="application-insights" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="ibiza" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="04/27/2016" 
+<tags
+	ms.service="application-insights"
+	ms.workload="tbd"
+	ms.tgt_pltfrm="ibiza"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="08/30/2016"
 	ms.author="awills"/>
 
-# Windows 背景服務上的 Application Insights
+
+# 為 ASP.NET 4 應用程式手動設定 Application Insights
 
 *Application Insights 目前僅供預覽。*
 
-[Visual Studio Application Insights](app-insights-get-started.md) 可讓您監視已部署的應用程式的使用情況和效能。
+[AZURE.INCLUDE [app-insights-selector-get-started](../../includes/app-insights-selector-get-started.md)]
 
-所有的 Windows 應用程式 - 包括背景服務和背景工作角色 - 都能使用 Application Insights SDK 傳送遙測至 Application Insights。您也可以將 SDK 新增至類別庫專案。
+您可以手動設定 [Visual Studio Application Insights](app-insights-overview.md)，以監視 Windows 服務、背景工作角色和其他 ASP.NET 應用程式。對於 Web 應用程式，Visual Studio 提供手動設定作為[自動設定](app-insights-asp-net.md)的替代方法。
 
-您可以選擇您想要使用哪些標準資料收集器 (例如用來監視效能計數器或相依性呼叫) 或只是使用核心 API 並撰寫您自己的遙測。
+Application Insights 會協助您診斷問題，以及監視即時應用程式的效能和使用情形。
 
-先檢查是否正在使用另一種類型的 Windows 應用程式︰
-
-* Web 應用程式︰移至 [ASP.NET 4](app-insights-asp-net.md)、[ASP.NET 5](app-insights-asp-net-five.md)。
-* [Azure 雲端服務](app-insights-cloudservices.md)
-* 傳統型應用程式︰我們建議使用 [HockeyApp](https://hockeyapp.net)。使用 HockeyApp，您可以管理發佈、即時測試和使用者意見，以及監視使用情況和當機報告。您也可以[從傳統型應用程式將遙測傳送至 Application Insights](app-insights-windows-desktop.md)。 
+![範例效能監視圖表](./media/app-insights-windows-services/10-perf.png)
 
 
-## <a name="add"></a> 建立 Application Insights 資源
+#### 開始之前
+
+您需要：
+
+* [Microsoft Azure](http://azure.com) 訂用帳戶。如果您的小組或組織擁有 Azure 訂用帳戶，擁有者就可以使用您的 [Microsoft 帳戶](http://live.com)將您加入。
+* Visual Studio 2013 或更新版本。
 
 
-1.  在 [Azure 入口網站][portal] 中，建立新的 Application Insights 資源。針對應用程式類型，選擇 ASP.NET 應用程式。 
 
-    ![按一下 [新增]，然後按一下 [Application Insights]](./media/app-insights-windows-services/01-new.png)
+## <a name="add"></a>1.建立 Application Insights 資源
 
+登入 [Azure 入口網站](https://portal.azure.com/)，並建立新的 Application Insights 資源。選擇 ASP.NET 做為應用程式類型。
 
-2.  取得檢測金鑰的副本。在您剛才建立的新資源之 [Essentials] 下拉式清單中尋找金鑰。關閉應用程式對應，或向左捲動至資源的概觀刀鋒視窗。
+![按一下 [新增]，然後按一下 [Application Insights]](./media/app-insights-windows-services/01-new-asp.png)
 
-    ![按一下 [Essentials]，選取金鑰，然後按下 CTRL+C](./media/app-insights-windows-services/10.png)
+Azure 中的[資源](app-insights-resources-roles-access-control.md)是服務的執行個體。此資源是來自您應用程式的遙測將經過分析並呈現的地方。
 
-## <a name="sdk"></a>在應用程式中安裝 SDK
+應用程式類型的選擇會設定[計量瀏覽器](app-insights-metrics-explorer.md)中可見的資源刀鋒視窗和屬性的預設內容。
 
+#### 複製檢測金鑰
 
-1. 在 Visual Studio 中，編輯 Windows 應用程式專案的 NuGet 封裝。
+該金鑰識別資源，您很快就會將它安裝在 SDK 中，以將資源導向資料。
+
+![按一下 [屬性]，選取金鑰，然後按下 CTRL+C](./media/app-insights-windows-services/02-props-asp.png)
+
+您剛才所完成用來建立新資源的步驟是開始監視任何應用程式的好方法。現在您可以將資料傳送給它。
+
+## <a name="sdk"></a>2.在應用程式中安裝 SDK
+
+安裝和設定 Application Insights SDK 會視您正在使用的平台而有所不同。對於 ASP.NET 應用程式而言，這非常輕鬆。
+
+1. 在 Visual Studio 中，編輯 Web 應用程式專案的 NuGet 封裝。
 
     ![以滑鼠右鍵按一下專案，然後選取 [管理 NuGet 封裝]](./media/app-insights-windows-services/03-nuget.png)
 
-2. 安裝 Application Insights Windows Server 封裝：Microsoft.ApplicationInsights.WindowsServer
+2. 安裝 Web Apps 適用的 Application Insights SDK。
 
     ![搜尋「Application Insights」](./media/app-insights-windows-services/04-ai-nuget.png)
 
@@ -59,201 +72,91 @@
 
     是。如果您只想要使用 API 來傳送您自己的遙測，請選擇核心 API (Microsoft.ApplicationInsights)。Windows Server 封裝會自動包含核心 API 及其他封裝，例如效能計數器收集和相依性監視。
 
+#### 若要升級至未來的 SDK 版本
 
-3. 設定您的 InstrumentationKey。
+我們隨時會發行新版的 SDK。
 
-    * 如果您只安裝核心 API 封裝 Microsoft.ApplicationInsights，您必須在程式碼中設定金鑰，例如在 main ()： 
+若要升級至[新版的 SDK](https://github.com/Microsoft/ApplicationInsights-dotnet-server/releases/)，請再次開啟 NuGet 封裝管理員，並篩選出已安裝的封裝。選取 **Microsoft.ApplicationInsights.Web** 然後選擇 [升級]。
 
-    `TelemetryConfiguration.Active.InstrumentationKey = "` *您的金鑰* `";`
-
-    如果您安裝其中一個其他封裝，您可以使用程式碼設定金鑰，或在 ApplicationInsights.config 中設定：
- 
-    `<InstrumentationKey>`*您的金鑰*`</InstrumentationKey>`
-
-    如果使用 ApplicationInsights.config，請確定其在方案總管中的屬性已設定為 [建置動作] = [內容]、[複製到輸出目錄] = [複製]。
-
-## <a name="telemetry"></a>插入遙測呼叫
-
-使用任一個 [Application Insights API][api] 來傳送遙測。如果您使用核心 API，不會自動傳送任何遙測。一般您會使用：
-
-* 在切換表單、頁面或索引標籤上的 `TrackPageView(pageName)`
-* 其他使用者動作的 `TrackEvent(eventName)`
-* 背景工作中的 `TrackMetric(name, value)`，可傳送未附加到特定事件之度量的一般報告。
-* [診斷記錄][][diagnostic] 的 `TrackTrace(logEvent)`
-* catch 子句中的 `TrackException(exception)`
-* `Flush()` 確定所有遙測在關閉應用程式之前都已傳送。只有當您只使用核心 API (Microsoft.ApplicationInsights) 時才可以使用此選項。Web SDK 會自動實作這個行為。(如果您的應用程式會在不一定有網際網路的內容中執行，請參閱[持續性通道](#persistence-channel)。)
+如果您已對 ApplicationInsights.config 進行任何的自訂，請在升級前儲存複本，並在升級後合併您的變更到新版本中。
 
 
-#### 遙測初始設定式
+## 3\.傳送遙測
 
-若要查看使用者和工作階段的計數，您可以對每個 `TelemetryClient` 執行個體設定值。或者，您可以使用遙測初始設定式來對所有用戶端執行這個加入動作：
 
-```C#
+**如果您只安裝核心 API 封裝︰**
 
-    class UserSessionInitializer : ITelemetryInitializer
-    {
-        public void Initialize(ITelemetry telemetry)
-        {
-            telemetry.Context.User.Id = Environment.UserName;
-            telemetry.Context.Session.Id = Guid.NewGuid().ToString();
-        }
-        
-    }
+* 在程式碼中設定檢測金鑰，例如在 `main()`中：
 
-    static class Program
-    {
-        ...
-        static void Main()
-        {
-            TelemetryConfiguration.Active.TelemetryInitializers.Add(
-                new UserSessionInitializer());
-            ...
+    `TelemetryConfiguration.Active.InstrumentationKey = "` 您的金鑰 `";`
 
-```
+* [使用 API 撰寫自己的遙測](app-insights-api-custom-events-metrics.md#ikey)。
+
+
+**如果您安裝了其他 Application Insights 封裝**，您可以視需要使用 .config 檔案來設定檢測金鑰︰
+
+* 編輯 ApplicationInsights.config (已由 NuGet 安裝加入)。在結尾標記前面插入此內容：
+
+    `<InstrumentationKey>` *您複製的檢測金鑰* `</InstrumentationKey>`
+
+* 確定 [方案總管] 中 ApplicationInsights.config 的屬性已設定為 [建置動作] = [內容]、[複製到輸出目錄] = [複製]。
+
 
 
 
 ## <a name="run"></a>執行專案
 
-[使用 F5 執行應用程式](http://msdn.microsoft.com/library/windows/apps/bg161304.aspx)並使用它，以產生一些遙測。
+使用 **F5** 執行應用程式並立即試用：開啟不同的頁面來產生一些遙測。
 
 在 Visual Studio 中，您可以看見已傳送到的事件計數。
 
-![](./media/app-insights-windows-services/appinsights-09eventcount.png)
+![Visual Studio 中的事件計數](./media/app-insights-windows-services/appinsights-09eventcount.png)
 
-事件也會出現在診斷和輸出視窗中。
+## <a name="monitor"></a>檢視遙測
 
-## <a name="monitor"></a>查看監視資料
-
-返回 Azure 入口網站中的應用程式分頁。
-
-第一個事件會出現在[即時計量串流](app-insights-metrics-explorer.md#live-metrics-stream)中。
+返回 [Azure 入口網站](https://portal.azure.com/)，並且瀏覽至您的 Application Insights 資源。
 
 
-## 持續性通道 
+在 [概觀] 圖表中尋找資料。剛開始的時候，您只會看見一或兩個資料點。例如：
 
-如果您的應用程式在不一定有網際網路連線或速度很慢的地方執行，請考慮使用持續性通道，而不使用預設的記憶體中通道。
+![Click through to more data](./media/app-insights-windows-services/12-first-perf.png)
 
-預設的記憶體中通道將會在應用程式關閉時遺失任何尚未傳送的遙測。雖然您可以使用 `Flush()` 嘗試傳送緩衝區中剩餘的任何資料，但如果沒有網際網路連線，或者如果在完成傳輸之前關閉了應用程式，它還是會遺失資料。
+按一下任何圖表以查看詳細度量。[深入了解度量。](app-insights-web-monitor-performance.md)
 
-相較之下，持續性通道會緩衝處理檔案中的遙測，再將它傳送至入口網站。`Flush()` 可確保資料會儲存在檔案中。如果任何資料未在應用程式關閉時傳送，它會保留在檔案中。當應用程式重新啟動時，即使沒有網際網路連線，資料也會傳送。在連線可用之前，資料都會視需求累積在檔案中。
+#### 沒有資料？
 
-### 使用持續性通道
+* 使用應用程式、開啟不同頁面，以產生一些遙測。
+* 開啟 [[搜尋](app-insights-diagnostic-search.md)] 磚來查看個別事件。有時候，事件通過計量管線所需的時間較長。
+* 請稍等片刻，然後按一下 [重新整理]。圖表會定期自行重新整理，但是如果您在等待一些要顯示的資料，您可以手動重新整理。
+* 請參閱[疑難排解](app-insights-troubleshoot-faq.md)。
 
-1. 匯入 NuGet 封裝 [Microsoft.ApplicationInsights.PersistenceChannel](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PersistenceChannel/1.2.3)。
-2. 在適當的初始化位置，將此程式碼納入您的應用程式中：
- 
-    ```C# 
+## 發佈您的應用程式
 
-      using Microsoft.ApplicationInsights.Channel;
-      using Microsoft.ApplicationInsights.Extensibility;
-      ...
+現在將應用程式部署至您的伺服器或 Azure，並觀看資料累積情形。
 
-      // Set up 
-      TelemetryConfiguration.Active.InstrumentationKey = "YOUR INSTRUMENTATION KEY";
- 
-      TelemetryConfiguration.Active.TelemetryChannel = new PersistenceChannel();
-    
-    ``` 
-3. 在您的應用程式關閉之前使用 `telemetryClient.Flush()`，以確定資料已傳送至入口網站或儲存至檔案。
+![使用 Visual Studio 來發佈您的應用程式](./media/app-insights-windows-services/15-publish.png)
 
-    請注意，flush () 對於持續性通道而言是同步的，但對其他通道而言是非同步的。
+以偵錯模式執行時，系統會透過管線迅速傳送遙測資料，因此您應該可以在幾秒內看見資料。以發行組態部署應用程式時，資料累積會較為緩慢。
 
- 
-持續性通道最適合裝置的案例，其中應用程式所產生的事件數目相對較少，而連線通常不可靠。這個通道會先將磁碟的事件寫入到可靠的儲存空間，然後嘗試傳送它。
+#### 發佈資料到伺服器之後，卻沒有資料？
 
-#### 範例
+請在您的伺服器防火牆中，開啟這些連出流量的連接埠：
 
-假設您想要監視未處理的例外狀況。您訂閱 `UnhandledException` 事件。在回呼中，您可以包含對排清的呼叫，以確定會保存遙測。
- 
-```C# 
-
-AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException; 
- 
-... 
- 
-private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) 
-{ 
-    ExceptionTelemetry excTelemetry = new ExceptionTelemetry((Exception)e.ExceptionObject); 
-    excTelemetry.SeverityLevel = SeverityLevel.Critical; 
-    excTelemetry.HandledAt = ExceptionHandledAt.Unhandled; 
- 
-    telemetryClient.TrackException(excTelemetry); 
- 
-    telemetryClient.Flush(); 
-} 
-
-``` 
-
-當應用程式關閉時，您會看到 `%LocalAppData%\Microsoft\ApplicationInsights` 中的檔案，其中包含壓縮的事件。
- 
-下次您啟動此應用程式時，通道將盡可能找出此檔案並傳送遙測至 Application Insights。
-
-#### 測試範例
-
-```C#
-
-using Microsoft.ApplicationInsights;
-using Microsoft.ApplicationInsights.Channel;
-using Microsoft.ApplicationInsights.Extensibility;
-
-namespace ConsoleApplication1
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            // Send data from the last time the app ran
-            System.Threading.Thread.Sleep(5 * 1000);
-
-            // Set up persistence channel
-
-            TelemetryConfiguration.Active.InstrumentationKey = "YOUR KEY";
-            TelemetryConfiguration.Active.TelemetryChannel = new PersistenceChannel();
-
-            // Send some data
-
-            var telemetry = new TelemetryClient();
-
-            for (var i = 0; i < 100; i++)
-            {
-                var e1 = new Microsoft.ApplicationInsights.DataContracts.EventTelemetry("persistenceTest");
-                e1.Properties["i"] = "" + i;
-                telemetry.TrackEvent(e1);
-            }
-
-            // Make sure it's persisted before we close
-            telemetry.Flush();
-        }
-    }
-}
-
-```
++ `dc.services.visualstudio.com:443`
++ `f5.services.visualstudio.com:443`
 
 
-持續性通道的程式碼位於 [github](https://github.com/Microsoft/ApplicationInsights-dotnet/tree/v1.2.3/src/TelemetryChannels/PersistenceChannel) 上。
+#### 組建伺服器發生問題？
 
+請參閱[此疑難排解項目](app-insights-asp-net-troubleshoot-no-data.md#NuGetBuild)。
 
-## <a name="usage"></a>後續步驟
-
-[追蹤應用程式的使用量][knowUsers]
-
-[擷取及搜尋診斷記錄][diagnostic]
-
-[疑難排解][qna]
+> [AZURE.NOTE] 如果您的應用程式會產生大量遙測 (且您使用的是 ASP.NET SDK 版本 2.0.0-beta3 或較新)，調適性取樣模型會自動藉由僅傳送事件代表性片段，以減少傳送到入口網站的量。不過，與同一個要求相關的事件會選取或取消選取為群組，讓您可以在相關事件之間瀏覽。[了解取樣](app-insights-sampling.md)。
 
 
 
 
-<!--Link references-->
+## 後續步驟
 
-[diagnostic]: app-insights-diagnostic-search.md
-[metrics]: app-insights-metrics-explorer.md
-[portal]: http://portal.azure.com/
-[qna]: app-insights-troubleshoot-faq.md
-[knowUsers]: app-insights-overview-usage.md
-[api]: app-insights-api-custom-events-metrics.md
-[CoreNuGet]: https://www.nuget.org/packages/Microsoft.ApplicationInsights
- 
+* [新增更多遙測](app-insights-asp-net-more.md)可取得應用程式的完整 360 度檢視。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0907_2016-->

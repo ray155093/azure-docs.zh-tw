@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/25/2016" 
+	ms.date="08/25/2016" 
 	ms.author="nitinme"/>
 
 
@@ -78,14 +78,16 @@
 	|-----------|---------------------------------|--------------|
 	| help | `%%help` | 產生所有可用 magic 的表格，其中包含範例與說明 |
 	| info | `%%info` | 輸出目前 Livy 端點的工作階段資訊 |
-	| configure | `%%configure -f`<br>`{"executorMemory": "1000M"`,<br>`"executorCores": 4`} | 設定用來建立工作階段的參數。如果已建立工作階段，而且將會卸除並重新建立該工作階段，則 force 旗標 (-f) 是必要的。如需有效參數的清單，請查看 [Livy 的 POST /sessions 要求本文](https://github.com/cloudera/livy#request-body)。參數必須以 JSON 字串傳遞，且必須在 magic 之後的下一行，如範例資料行中所示。 |
+	| 設定 | `%%configure -f`<br>`{"executorMemory": "1000M"`,<br>`"executorCores": 4`} | 設定用來建立工作階段的參數。如果已建立工作階段，而且將會卸除並重新建立該工作階段，則 force 旗標 (-f) 是必要的。如需有效參數的清單，請查看 [Livy 的 POST /sessions 要求本文](https://github.com/cloudera/livy#request-body)。參數必須以 JSON 字串傳遞，且必須在 magic 之後的下一行，如範例資料行中所示。 |
 	| sql | `%%sql -o <variable name>`<br> `SHOW TABLES` | 針對 sqlContext 執行 Hive 查詢。如果傳遞 `-o` 參數，則查詢的結果會當做 [Pandas](http://pandas.pydata.org/) 資料框架，保存在 %%local Python 內容中。 |
 	| local | `%%local`<br>`a=1` | 接下來幾行的所有程式碼將會在本機執行。程式碼必須是有效的 Python 程式碼。 |
 	| logs | `%%logs` | 輸出目前 Livy 工作階段的記錄檔。 |
 	| delete | `%%delete -f -s <session number>` | 刪除目前 Livy 端點的特定工作階段。請注意，您無法刪除針對核心本身起始的工作階段。 |
 	| cleanup | `%%cleanup -f` | 刪除目前 Livy 端點的所有工作階段，包括此 Notebook 的工作階段。force 旗標 -f 是必要的。 |
 
-3. **自動視覺化**。**Pyspark** 核心會將 Hive 和 SQL 查詢的輸出自動視覺化。您可以選擇數種不同類型的視覺效果，包括資料表、圓形圖、線條、區域、長條圖。
+	>[AZURE.NOTE] 除了 PySpark 核心所新增的 Magic，您也可以使用[內建的 IPython Magic](https://ipython.org/ipython-doc/3/interactive/magics.html#cell-magics) (包括 `%%sh`)。您可以使用 `%%sh` Magic，在叢集前端節點上執行指令碼和程式碼區塊。
+
+3. **自動視覺化**。**Pyspark** 核心會自動將 Hive 和 SQL 查詢的輸出視覺化。您可以選擇數種不同類型的視覺效果，包括資料表、圓形圖、線條、區域、長條圖。
 
 ## %%sql magic 支援的參數
 
@@ -93,11 +95,11 @@
 
 | 參數 | 範例 | 說明 |
 |-----------|---------------------------------|--------------|
-| -o | `-o <VARIABLE NAME>` | 使用此參數在 %%local Python 內容中保存查詢的結果，作為 [Pandas](http://pandas.pydata.org/) 資料框架。資料框架變數的名稱是您指定的變數名稱。 |
-| -q | `-q` | 使用此項關閉儲存格的視覺效果。如果您不想要自動視覺化儲存格的內容，而且只想要擷取它作為資料框架，請使用 `-q -o <VARIABLE>`。如果您想要關閉視覺效果，而不擷取結果 (例如，若要執行有副作用的 SQL 查詢，例如 `CREATE TABLE` 陳述式)，請只使用 `-q`，不要指定 `-o` 引數。 |
+| -o | `-o <VARIABLE NAME>` | 使用此參數，在 %%local Python 內容中保存查詢的結果，以做為 [Pandas](http://pandas.pydata.org/) 資料框架。資料框架變數的名稱是您指定的變數名稱。 |
+| -q | `-q` | 使用此項關閉儲存格的視覺效果。如果您不想自動將儲存格內容視覺化，而且只想擷取它做為資料框架，則可使用 `-q -o <VARIABLE>`。如果您想要關閉視覺化功能而不擷取結果 (例如，執行有副作用的 SQL 查詢，像是 `CREATE TABLE` 陳述式)，而不需指定 `-o` 引數，只使用 `-q`。 |
 | -m | `-m <METHOD>` | 其中 **METHOD** 是 **take** 或 **sample** (預設值是 **take**)。如果方法是 **take**，核心會從 MAXROWS 指定的結果資料集頂端挑選項目 (如此表稍後所述)。如果方法是 **sample**，核心會根據 `-r` 參數隨機取樣資料集的項目，如此表稍後所述。 |
-| -r | `-r <FRACTION>` | 在這裡，**FRACTION** 是介於 0.0 到 1.0 之間的浮點數。如果 SQL 查詢的取樣方法是 `sample`，則核心會隨機取樣為您指定的結果集項目分數；例如，如果您使用引數 `-m sample -r 0.01` 執行 SQL 查詢，則會隨機取樣結果資料列的 1%。 |
-| -n | `-n <MAXROWS>` | **MAXROWS** 是整數值。核心會將輸出資料列的數目限制為 **MAXROWS**。如果 **MAXROWS** 是負數 (例如 **-1**)，結果集中的資料列數目就不會受到限制。 |
+| -r | `-r <FRACTION>` | 這裡的 **FRACTION** 是介於 0.0 到 1.0 之間的浮點數。如果 SQL 查詢的取樣方法是 `sample`，則核心會為您隨機取樣指定的結果集項目分數；例如，如果您使用引數 `-m sample -r 0.01` 執行 SQL 查詢，則會從結果資料列中隨機取樣 1%。 |
+| -n | `-n <MAXROWS>` | **MAXROWS** 是整數值。核心會將輸出資料列的數目限制為 **MAXROWS**。如果 **MAXROWS** 是負數 (例如 **-1**)，則結果集中的資料列數目將不會受到限制。 |
 
 **範例：**
 
@@ -108,7 +110,7 @@
 
 * 從 **hivesampletable** 選取所有記錄。
 * 因為我們使用 -q，所以它會關閉自動視覺效果。
-* 因為我們使用 `-m sample -r 0.1 -n 500`，所以它會隨機取樣 hivesampletable 中資料列的 10%，並將結果集的大小限制為 500 個資料列。
+* 因為我們使用 `-m sample -r 0.1 -n 500`，所以它會從 hivesampletable 的資料列中隨機取樣 10%，並將結果集的大小限制為 500 個資料列。
 * 最後，因為我們使用 `-o query2`，所以它也會將輸出儲存成名為 **query2** 的資料框架。
 	
 
@@ -124,11 +126,11 @@
 * **PySpark** 資料夾含有使用新 **Python** 核心的範例 Notebook。
 * **Scala** 資料夾含有使用新 **Spark** 核心的範例 Notebook。
 
-您可以從 **PySpark** 或 **Spark** 資料夾開啟 **00 - [READ ME FIRST] Spark Magic Kernel Features** Notebook，以了解可用的不同 magic。您也可以使用這兩個資料夾底下提供的其他 Notebook 範例，以了解如何搭配 HDInsight Spark 叢集使用 Jupyter Notebook 完成不同的案例。
+您可以從 **PySpark** 或 **Spark** 資料夾開啟 **00 - [READ ME FIRST] Spark Magic Kernel Features** Notebook，以了解各種可用的 Magic。您也可以使用這兩個資料夾底下提供的其他 Notebook 範例，以了解如何搭配 HDInsight Spark 叢集使用 Jupyter Notebook 完成不同的案例。
 
 ## Notebook 會儲存在哪裡？
 
-Jupyter 筆記本會儲存到 **/HdiNotebooks** 資料夾下與叢集相關聯的儲存體帳戶。您從 Jupyter 內部建立的 Notebook、文字檔案和資料夾將可從 WASB 存取。例如，如果您使用 Jupyter 建立資料夾 **myfolder** 和 Notebook **myfolder/mynotebook.ipynb**，您可以在 `wasbs:///HdiNotebooks/myfolder/mynotebook.ipynb` 存取該 Notebook。反之亦然，也就是說，如果您直接將 Notebook 上傳至您在 `/HdiNotebooks/mynotebook1.ipynb` 的儲存體帳戶，Notebook 也會從 Jupyter 顯示。即使在刪除叢集之後，Notebook 仍會保留在儲存體帳戶中。
+Jupyter 筆記本會儲存到 **/HdiNotebooks** 資料夾下，與叢集相關聯的儲存體帳戶。您從 Jupyter 內部建立的 Notebook、文字檔案和資料夾將可從 WASB 存取。例如，如果您使用 Jupyter 建立資料夾 **myfolder** 和 Notebook **myfolder/mynotebook.ipynb**，您可以在 `wasbs:///HdiNotebooks/myfolder/mynotebook.ipynb` 存取該 Notebook。反之亦然，也就是說，如果您直接將 Notebook 上傳至您在 `/HdiNotebooks/mynotebook1.ipynb` 的儲存體帳戶，Notebook 也會從 Jupyter 顯示。即使在刪除叢集之後，Notebook 仍會保留在儲存體帳戶中。
 
 將 Notebook 儲存到儲存體帳戶的方式與 HDFS 相容。因此，如果對叢集執行 SSH，您可以使用檔案管理命令，如下所示︰
 
@@ -188,4 +190,4 @@ Google Chrome 上只支援針對 HDInsight Spark 叢集執行的 Jupyter Noteboo
 
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0831_2016-->

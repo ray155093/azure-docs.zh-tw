@@ -216,11 +216,13 @@
           }
         }
 
+    >[AZURE.NOTE] 進一步了解[使用者名稱和密碼需求](virtual-machines-windows-faq.md#what-are-the-username-requirements-when-creating-a-vm)。
+
 2. 儲存參數檔案。
 
 ## 步驟 3：安裝 Azure PowerShell
 
-如需了解如何安裝最新版的 Azure PowerShell、選取您想要使用的訂用帳戶，以及登入您的 Azure 帳戶，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+如需如何安裝最新版 Azure PowerShell、選取要使用的訂用帳戶，以及登入 Azure 帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
 ## 步驟 4：建立資源群組
 
@@ -284,4 +286,4 @@
 - 如果部署有問題，下一個步驟就是查看[使用 Azure 入口網站針對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)。
 - 檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)，以了解如何管理您剛建立的虛擬機器。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -12,7 +12,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/29/2016"
+   ms.date="09/07/2016"
    ms.author="cherylmc" />
 
 # ExpressRoute 合作夥伴和對等互連位置
@@ -31,7 +31,7 @@
 |---|---|---|
 |**北美洲**|美國東部、美國西部、美國東部 2、美國中部、美國中南部、美國中北部、加拿大中部、加拿大東部|亞特蘭大、芝加哥、達拉斯、拉斯維加斯、洛杉磯、紐約、西雅圖、矽谷、華盛頓特區、蒙特婁+、魁北克市+、多倫多|
 |**南美洲**|巴西南部|聖保羅|
-|**歐洲**|北歐、西歐|阿姆斯特丹、都柏林、倫敦、紐波特 (威爾斯)+、巴黎|
+|**歐洲**|北歐、西歐、英國西部、英國南部|阿姆斯特丹、都柏林、倫敦、紐波特 (威爾斯)+、巴黎|
 |**亞洲**|東亞、東南亞|香港特別行政區、新加坡|
 |**日本**|日本西部、日本東部|大阪、東京|
 |**澳大利亞**|澳洲東南部、澳洲東部|墨爾本、雪梨|
@@ -80,7 +80,7 @@
 | **Seattle** | Equinix、Level 3 Communications、Megaport |
 | **矽谷** | Aryaka Networks、AT&T NetBond、British Telecom、CenturyLink+、Comcast、Equinix、Level 3 Communications、Orange、Tata Communications、Verizon、Zayo Group |
 | **新加坡** | Aryaka Networks、AT&T NetBond、British Telecom、Equinix、InterCloud、Megaport、Orange、SingTel、Tata Communications、Verizon |
-| **雪梨** | AT&T NetBond、British Telecom、Equinix、Megaport、NEXTDC、Telstra Corporation、Verizon |
+| **雪梨** | AT&T NetBond、British Telecom、Equinix、Megaport、NEXTDC、Orange、Telstra Corporation、Verizon |
 | **東京** | Aryaka Networks、British Telecom、Colt、Equinix、Internet Initiative Japan Inc. - IIJ、NTT Communications、Softbank、Verizon |
 | **多倫多** | Cologix、Equinix、Zayo Group |
 | **華盛頓** | Aryaka Networks、AT&T NetBond、British Telecom、Comcast、Equinix、InterCloud、Level 3 Communications、Megaport、Orange、Tata Communications、Verizon、Zayo Group |
@@ -156,4 +156,4 @@
 <!--Image References-->
 [0]: ./media/expressroute-locations/expressroute-locations-map.png "位置圖"
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

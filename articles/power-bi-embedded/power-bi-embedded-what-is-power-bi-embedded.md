@@ -55,33 +55,20 @@ Power BI Embedded 是一個 **Azure 服務**，可讓 ISV 和應用程式開發�
 
 ## 應用程式權杖中的驗證與授權
 
-**Microsoft Power BI Embedded** 會延遲到您的應用程式執行所有必要的使用者驗證和授權。並沒有明確要求您的使用者必須是 Azure Active Directory (Azure AD) 的客戶。您的應用程式會透過 **應用程式驗證權杖 (應用程式權杖)** 明確授權，以將 Power BI 報表轉譯成 **Microsoft Power BI Embedded**。這些**應用程式權杖**會在您的應用程式想要轉譯報表時視需要建立。請參閱[應用程式權杖](power-bi-embedded-get-started-sample.md#key-flow)。
+**Microsoft Power BI Embedded** 會延遲到您的應用程式執行所有必要的使用者驗證和授權。並沒有明確要求您的使用者必須是 Azure Active Directory (Azure AD) 的客戶。您的應用程式會透過使用「應用程式驗證權杖」(應用程式權杖)，將轉譯 Power BI 報表的授權出示給 **Microsoft Power BI Embedded**。這些**應用程式權杖**會在您的應用程式想要轉譯報表時視需要建立。請參閱[應用程式權杖](power-bi-embedded-get-started-sample.md#key-flow)。
 
 ![](media\powerbi-embedded-whats-is\app-tokens.png)
 
-### 應用程式驗證權杖
+應用程式驗證權杖 (應用程式權杖) 是用來針對 **Microsoft Power BI Embedded** 進行驗證。應用程式權杖有三種類型：
 
-**應用程式驗證權杖 (應用程式權杖)** 是用來針對 **Microsoft Power BI Embedded** 進行驗證。**應用程式權杖**有三種類型：
-
-1.	佈建權杖 - 將新的**工作區**佈建到**工作區集合**時使用
+1.	佈建權杖 - 將新的「工作區」佈建到「工作區集合」時使用
 2.	開發權杖 - 在直接呼叫 **Power BI REST API** 時使用
 3.	內嵌權杖 - 在進行呼叫以在內嵌的 iframe 中轉譯報表時使用
 
-這些權杖會在您和 **Microsoft Power BI Embedded** 互動時的各種不同階段使用。設計權杖的目的是為了讓您從您的應用程式委派權限給 Power BI。
-
-### 產生應用程式權杖
-
-針對預覽版提供的 SDK 可讓您產生權杖。首先，請呼叫其中一個 Create\_\_\_Token() 方法。第二，使用從**工作區集合**抓取的存取金鑰呼叫 Generate() 方法。權杖的基本 Create 方法已在 Microsoft.PowerBI.Security.PowerBIToken 類別中定義，這些方法如下：
-
--	[CreateProvisionToken](https://msdn.microsoft.com/library/mt670218.aspx)
--	[CreateDevToken](https://msdn.microsoft.com/library/mt670215.aspx)
--	[CreateReportEmbedToken](https://msdn.microsoft.com/library/mt710366.aspx)
-
-如需如何使用 [CreateProvisionToken](https://msdn.microsoft.com/library/mt670218.aspx) 和 [CreateDevToken](https://msdn.microsoft.com/library/mt670215.aspx) 的範例，請參閱[開始使用 Microsoft Power BI Embedded 範例程式碼](power-bi-embedded-get-started-sample.md)。
-
+這些權杖會在您和 **Microsoft Power BI Embedded** 互動時的各種不同階段使用。設計權杖的目的是為了讓您從您的應用程式委派權限給 Power BI。如需詳細資訊，請參閱[應用程式權杖流程](power-bi-embedded-app-token-flow.md)。
 
 ## 另請參閱
 - [Microsoft Power BI Embedded 常見案例](power-bi-embedded-scenarios.md)
 - [開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0831_2016-->

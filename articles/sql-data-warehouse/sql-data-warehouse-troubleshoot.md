@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="08/16/2016"
+   ms.date="08/30/2016"
    ms.author="sonyama;barbkess"/>
 
 # 針對 Azure SQL 資料倉儲問題進行疑難排解
@@ -24,9 +24,11 @@
 
 | 問題 | 解決方案 |
 | :----------------------------------| :---------------------------------------------- |
-| CTAIP 錯誤 | 若已在 SQL Server Master 資料庫上建立登入，但未在 SQL 資料倉儲資料庫上建立，則會發生這個錯誤。如果您遇到這個錯誤，請查看[安全性概觀][]一文。這篇文章說明如何在 Master 上建立登入，接著如何在 SQL 資料倉儲資料庫上建立使用者。|
+| 使用者 'NT AUTHORITY\\ANONYMOUS LOGON' 登入失敗。(Microsoft SQL Server，錯誤：18456) | 當 AAD 使用者嘗試連線到主要資料庫，但主要資料庫中沒有使用者時，就會發生此錯誤。若要修正此問題，請在連線時指定您想要連接的 SQL 資料倉儲，或將使用者新增到主要資料庫。如需詳細資訊，請參閱[安全性概觀][]一文。|
+|伺服器主體 "MyUserName" 在目前的資訊安全內容下無法存取「主要」資料庫。無法開啟使用者預設資料庫。登入失敗。使用者 'MyUserName' 登入失敗。(Microsoft SQL Server，錯誤：916) | 當 AAD 使用者嘗試連線到主要資料庫，但主要資料庫中沒有使用者時，就會發生此錯誤。若要修正此問題，請在連線時指定您想要連接的 SQL 資料倉儲，或將使用者新增到主要資料庫。如需詳細資訊，請參閱[安全性概觀][]一文。|
+| CTAIP 錯誤 | 若已在 SQL Server Master 資料庫上建立登入，但未在 SQL 資料倉儲資料庫上建立，則會發生這個錯誤。如果您遇到這個錯誤，請查看[安全性概觀][]一文。這篇文章說明如何在主要資料庫上建立登入和使用者，接著如何在 SQL 資料倉儲資料庫上建立使用者。|
 | 遭到防火牆封鎖 |為確保只有已知的 IP 位址擁有資料庫的存取權限，Azure SQL 資料庫受到伺服器及資料庫層級的防火牆所保護。防火牆預設將會受到保護，因此您在可以連線之前，必須明確啟用單一 IP 位址或位址範圍。若要設定防火牆的存取，請遵循[佈建指示][]中[設定用戶端 IP 的伺服器防火牆存取][]的步驟。|
-| 無法與工具或驅動程式連線 | SQL 資料倉儲建議使用 [Visual Studio 2013 或 2015][] 來查詢您的資料。針對用戶端連接性，建議使用 [SQL Server Native Client 10/11 (ODBC)][]。|
+| 無法與工具或驅動程式連線 | SQL 資料倉儲建議使用 [SSMS][]、[SSDT for Visual Studio 2015][] 或 [sqlcmd][] 來查詢您的資料。如需驅動程式和連接到 SQL 資料倉儲的詳細資訊，請參閱 [Azure SQL 資料倉儲的驅動程式][]和[連接到 Azure SQL 資料倉儲][]文章。|
 
 
 ## 工具
@@ -72,7 +74,6 @@
 | 不支援 MERGE 陳述式 | 請參閱 [MERGE 因應措施][]。|
 | 預存程序限制 | 請參閱[預存程序限制][]，以了解預存程序的一些限制。|
 | UDF 不支援 SELECT 陳述式 | 這是 UDF 目前的限制。關於我們支援的語法，請參閱 [CREATE FUNCTION][]。 |
-'<--LocComment：找不到頁面 "預存程序限制" 已損壞。已嘗試修正文章參考中的連結 -->'
 
 ## 後續步驟
 
@@ -91,6 +92,10 @@
 
 <!--Article references-->
 [安全性概觀]: ./sql-data-warehouse-overview-manage-security.md
+[SSMS]: https://msdn.microsoft.com/library/mt238290.aspx
+[SSDT for Visual Studio 2015]: ./sql-data-warehouse-install-visual-studio.md
+[Azure SQL 資料倉儲的驅動程式]: ./sql-data-warehouse-connection-strings.md
+[連接到 Azure SQL 資料倉儲]: ./sql-data-warehouse-connect-overview.md
 [建立支援票證]: ./sql-data-warehouse-get-started-create-support-ticket.md
 [調整您的 SQL 資料倉儲]: ./sql-data-warehouse-manage-compute-overview.md
 [DWU]: ./sql-data-warehouse-overview-what-is.md#data-warehouse-units
@@ -98,7 +103,6 @@
 [了解如何監視查詢]: ./sql-data-warehouse-manage-monitor.md
 [佈建指示]: ./sql-data-warehouse-get-started-provision.md
 [設定用戶端 IP 的伺服器防火牆存取]: ./sql-data-warehouse-get-started-provision.md#create-a-new-azure-sql-server-level-firewall
-[Visual Studio 2013 或 2015]: ./sql-data-warehouse-query-visual-studio.md
 [SQL 資料倉儲最佳作法]: ./sql-data-warehouse-best-practices.md
 [資料表大小]: ./sql-data-warehouse-tables-overview.md#table-size-queries
 [不支援的資料表功能]: ./sql-data-warehouse-tables-overview.md#unsupported-table-features
@@ -117,14 +121,14 @@
 [UPDATE 因應措施]: ./sql-data-warehouse-develop-ctas.md#ansi-join-replacement-for-update-statements
 [DELETE 因應措施]: ./sql-data-warehouse-develop-ctas.md#ansi-join-replacement-for-delete-statements
 [MERGE 因應措施]: ./sql-data-warehouse-develop-ctas.md#replace-merge-statements
-[預存程序限制]: /sql-data-warehouse-develop-stored-procedures.md#limitations
+[預存程序限制]: ./sql-data-warehouse-develop-stored-procedures.md#limitations
 [適用於 Azure SQL 資料倉儲的驗證]: ./sql-data-warehouse-authentication.md
 [解決 PolyBase UTF-8 需求]: ./sql-data-warehouse-load-polybase-guide.md#working-around-the-polybase-utf-8-requirement
 
 <!--MSDN references-->
-[SQL Server Native Client 10/11 (ODBC)]: https://msdn.microsoft.com/library/ms131415.aspx
 [sys.database\_principals]: https://msdn.microsoft.com/library/ms187328.aspx
 [CREATE FUNCTION]: https://msdn.microsoft.com/library/mt203952.aspx
+[sqlcmd]: https://azure.microsoft.com/documentation/articles/sql-data-warehouse-get-started-connect-sqlcmd/
 
 <!--Other Web references-->
 [部落格]: https://azure.microsoft.com/blog/tag/azure-sql-data-warehouse/
@@ -135,4 +139,4 @@
 [Twitter]: https://twitter.com/hashtag/SQLDW
 [影片]: https://azure.microsoft.com/documentation/videos/index/?services=sql-data-warehouse
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

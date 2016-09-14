@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/23/2016"
+	ms.date="08/26/2016"
 	ms.author="andkjell"/>
 
 
@@ -111,7 +111,7 @@ Active Directory 中的某些屬性在結構描述中是多重值，但是在 [A
 在此運算式中，如果屬性有值，我們就取出屬性中的第一個項目 (Item)、移除開頭和結尾的空格 (Trim)，然後保留字串中的前 448 個字元 (Left)。
 
 ### 請勿傳送屬性
-如需本節案例的背景，請參閱[控制屬性流程程序](#control-the-attribute-flow-process)。
+如需本節案例的背景，請參閱[控制屬性流程程序](active-directory-aadconnectsync-understanding-declarative-provisioning.md#control-the-attribute-flow-process)。
 
 有兩種方式可防止傳送屬性。第一個可在安裝精靈中使用，而且可讓您[移除選取的屬性](active-directory-aadconnect-get-started-custom.md#azure-ad-app-and-attribute-filtering)。如果您先前不曾同步處理該屬性，則適用這個選項。不過，如果您已開始同步處理這個屬性，且稍後利用這個功能來移除它，則同步處理引擎會停止管理屬性，而現有的值會留在 Azure AD 中。
 
@@ -124,31 +124,9 @@ Active Directory 中的某些屬性在結構描述中是多重值，但是在 [A
 - 儲存同步處理規則。啟動 [同步處理服務]、尋找連接器、選取 [執行] 和 [完整同步處理]。此步驟會重新計算所有屬性流程。
 - 藉由搜尋連接器空間，來確認即將匯出所需的變更。![分段刪除](./media/active-directory-aadconnectsync-change-the-configuration/deletetobeexported.png)
 
-## 進階概念
-
-### 控制屬性流程程序
-將多個輸入同步處理規則設定為貢獻於相同的 Metaverse 屬性時，則會使用優先順序來決定獲得採用的規則。具有最高優先順序 (最小數值) 的同步處理規則將會貢獻值。輸出規則的情況一樣。具有最高優先順序的同步處理規則會獲得採用，並貢獻值給已連接的目錄。
-
-在某些情況下，同步處理規則應該判斷其他規則的行為方式，而不是貢獻值。在此情況下會使用一些特殊的常值。
-
-對於輸入同步處理規則，常值 **NULL** 可用來指出流程沒有要貢獻的值。具有較低優先順序的其他規則可以貢獻一個值。如果沒有規則提供值，則會移除 Metaverse 屬性。對於輸出規則，如果 **NULL** 是處理完所有同步處理規則後的最終值，則會在已連接的目錄中移除此值。
-
-常值 **AuthoritativeNull** 類似 **NULL**，但差別在於沒有較低優先順序的規則可以貢獻值。
-
-屬性流程也可以使用 **IgnoreThisFlow**。意思上類似於 NULL，表示沒有要貢獻的項目。差別在於它不會移除目標中已經存在的值。好像屬性流程未曾出現一樣。
-
-下列是一個範例：
-
-在 Out to AD - User Exchange hybrid 中，可以找到下列流程︰`IIF([cloudSOAExchMailbox] = True,[cloudMSExchSafeSendersHash],IgnoreThisFlow)` 此運算式的意思是︰如果使用者信箱位於 Azure AD 中，則將屬性從 Azure AD 傳送至 AD。如果並非如此，請勿將任何項目送回 Active Directory。在此情況下，它會在 AD 中保留現有的值。
-
-### ImportedValue
-函式 ImportedValue 與其他所有函式都不同，其屬性名稱必須以引號 (而非方括號) 括住：`ImportedValue("proxyAddresses")`。
-
-通常在同步處理期間，屬性會使用預期的值，即使它尚未匯出或在匯出期間 (「協定塔的頂端」) 收到錯誤。輸入同步處理會假設尚未到達已連接目錄的屬性最後還是會到達。在某些情況下，請務必只同步處理已連接目錄所確認的值 (「全像圖和差異匯入協定塔」)。
-
-在現成可用的同步處理規則 In from AD – User Common from Exchange 中可以找到此函式的範例。在混合式 Exchange 中，由 Exchange Online 新增的值只有在確認已成功匯出該值時，才能同步處理：`proxyAddresses` <- `RemoveDuplicates(Trim(ImportedValue("proxyAddresses")))`
-
 ## 後續步驟
+
+深入了解[宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)和同步處理規則中可用的選項。
 
 深入了解用於屬性流程的[宣告式佈建運算式](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md)。
 
@@ -156,4 +134,4 @@ Active Directory 中的某些屬性在結構描述中是多重值，但是在 [A
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

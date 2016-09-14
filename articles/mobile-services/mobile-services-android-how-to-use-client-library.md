@@ -179,7 +179,7 @@
 					(startsWith("text", "PRI0").or().field("duration").gt(10))
 					.execute().get();
 
-如需篩選的詳細討論與範例，請參閱[探索功能豐富的行動服務 Android 用戶端查詢模型](http://hashtagfail.com/post/46493261719/mobile-services-android-querying) (英文)。
+如需篩選的詳細討論與範例，請參閱[探索功能豐富的行動服務 Android 用戶端查詢模型](http://hashtagfail.com/post/46493261719/mobile-services-android-querying) \(英文)。
 
 ### <a name="sorting"></a>作法：排序傳回的資料
 
@@ -303,7 +303,7 @@
 
 `id` 的值必須是唯一的，且不可包含下列字元集中的字元：
 
-+ 控制字元：[0x0000-0x001F] 和 [0x007F-0x009F]。如需詳細資訊，請參閱 [ASCII 控制碼 C0 和 C1] (英文)。
++ 控制字元：[0x0000-0x001F] 和 [0x007F-0x009F]。如需詳細資訊，請參閱 [ASCII 控制碼 C0 和 C1] \(英文)。
 +  可列印的字元：**"**(0x0022)、**+** (0x002B)、**/** (0x002F)、**?** (0x003F)、**\** (0x005C)、**`** (0x0060)
 +  識別碼 "." 和 ".."
 
@@ -663,7 +663,7 @@
 
 ##<a name="authentication"></a>作法：驗證使用者
 
-行動服務支援使用各種外部識別提供者 (Facebook、Google、Microsoft 帳戶、Twitter 以及 Azure Active Directory) 來驗證與授權應用程式使用者。您可以在資料表上設定權限，以限制僅有通過驗證使用者可以存取特定操作。您也可以使用經驗證使用者的身分識別，以在後端實作授權規則。如需詳細資訊，請參閱[開始使用驗證](http://go.microsoft.com/fwlink/p/?LinkId=296316) (英文)。
+行動服務支援使用各種外部識別提供者 (Facebook、Google、Microsoft 帳戶、Twitter 以及 Azure Active Directory) 來驗證與授權應用程式使用者。您可以在資料表上設定權限，以限制僅有通過驗證使用者可以存取特定操作。您也可以使用經驗證使用者的身分識別，以在後端實作授權規則。如需詳細資訊，請參閱[開始使用驗證](http://go.microsoft.com/fwlink/p/?LinkId=296316) \(英文)。
 
 支援兩個驗證流程：伺服器流程和用戶端流程。由於伺服器流程採用提供者的 Web 驗證介面，因此所提供的驗證體驗也最為簡單。用戶端流程可支援裝置特定功能 (例如單一登入) 的深入整合，因為此流程使用的是提供者特定裝置的專用 SDK。
 
@@ -684,7 +684,7 @@
 
 您可以設定資料表的權限，以限定只有已驗證的使用者才能存取特定作業。您也可以使用已驗證的使用者 ID 來修改要求。
 
-前兩項工作可使用 [Azure 傳統理入口網站](https://manage.windowsazure.com/)來完成。如需詳細資訊，請參閱[開始使用驗證](http://go.microsoft.com/fwlink/p/?LinkId=296316) (英文)。
+前兩項工作可使用 [Azure 傳統理入口網站](https://manage.windowsazure.com/)來完成。如需詳細資訊，請參閱[開始使用驗證](http://go.microsoft.com/fwlink/p/?LinkId=296316) \(英文)。
 
 ### <a name="caching"></a>作法：將驗證碼新增至您的應用程式
 
@@ -893,7 +893,7 @@
 
 到目前為止，我們的序列化範例所示範的，都是能夠輕易序列化為 JSON 和行動服務資料表的基本類型，例如整數和字串。假設我們想要將複雜的物件新增至用戶端類型，而該物件無法自動序列化為 JSON 和資料表。例如，我們可能想要將字串陣列新增至用戶端物件。現在，要如何執行序列化，以及如何將陣列儲存到行動服務資料表中，全都可由我們指定。
 
-若要檢視執行此作業的範例，請參閱部落格貼文<a href="http://hashtagfail.com/post/44606137082/mobile-services-android-serialization-gson" target="_blank">在行動服務 Android 用戶端中使用 <a href=" http://go.microsoft.com/fwlink/p/?LinkId=290801" target="_blank">gson</a> 程式庫自訂序列化</a> (英文)。
+若要檢視執行此作業的範例，請參閱部落格貼文<a href="http://hashtagfail.com/post/44606137082/mobile-services-android-serialization-gson" target="_blank">在行動服務 Android 用戶端中使用 <a href=" http://go.microsoft.com/fwlink/p/?LinkId=290801" target="_blank">gson</a> 程式庫自訂序列化</a> \(英文)。
 
 只要有無法自動序列化為 JSON 和行動服務資料表的複雜物件出現時，我們即可使用此一般方法。
 

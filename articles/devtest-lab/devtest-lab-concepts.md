@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/22/2016"
+	ms.date="08/25/2016"
 	ms.author="tarcher"/>
 
 #研發/測試實驗室概念
@@ -70,8 +70,10 @@
 
 由於範圍是階層形式，當使用者擁有特定範圍的權限時，就會自動獲得該範圍所包含的每個較低層級範圍的權限。例如，如果有使用者指派給訂用帳戶擁有者角色，他們就可以存取訂用帳戶中的所有資源，其中包括所有虛擬機器、所有虛擬網路和所有實驗室。因此，訂用帳戶擁有者會自動繼承實驗室擁有者角色。不過，若情形顛倒過來就不成立。實驗室擁有者可存取實驗室，而實驗室是比訂用帳戶層級還低的範圍。因此，實驗室擁有者將無法看到實驗室以外的虛擬機器、虛擬網路或任何資源。
 
+[AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
+
 ##後續步驟
 
 [在研測實驗室中建立實驗室](devtest-lab-create-lab.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -3,7 +3,7 @@
 	description="了解可用來設定 API 管理的原則。" 
 	services="api-management" 
 	documentationCenter="" 
-	authors="steved0x" 
+	authors="vladvino" 
 	manager="erikre" 
 	editor=""/>
 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/09/2016" 
-	ms.author="sdanie"/>
+	ms.date="08/29/2016" 
+	ms.author="apimpm"/>
 
 # Azure API 管理原則參考文件
 
@@ -36,12 +36,14 @@
 	-	[控制流程][] - 根據布林值[運算式][]的評估結果，有條件地套用原則陳述式。
 	-	[轉寄要求][] - 將要求轉寄至後端服務。
 	-	[記錄至事件中樞][] - 將指定格式的訊息傳送至[記錄器](https://msdn.microsoft.com/library/azure/mt592020.aspx#Logger)實體所定義的訊息目標。
+	-	[重試](https://msdn.microsoft.com/zh-TW/library/dn894085.aspx#Retry) - 重試已括住的原則陳述式執行，直到符合條件為止。系統會在指定的時間間隔重複執行，直到指定的重試計數為止。
 	-	[傳回回應](https://msdn.microsoft.com/library/azure/dn894085.aspx#ReturnResponse) - 中止管線執行，並將指定的回應直接傳回呼叫者。
 	-	[傳送單向要求](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendOneWayRequest) - 將要求傳送到指定的 URL，無須等待回應。
 	-	[傳送要求](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendRequest) - 將要求傳送到指定的 URL。
 	-	[設定要求方法](https://msdn.microsoft.com/library/azure/dn894085.aspx#SetRequestMethod) - 允許您變更要求的 HTTP 方法。
 	-	[設定狀態碼](https://msdn.microsoft.com/library/azure/dn894085.aspx#SetStatus) - 將 HTTP 狀態碼變更為指定的值。
 	-	[設定變數][] - 保存具名 [context][] 變數中的值，供日後存取使用。
+	-	[追蹤](https://msdn.microsoft.com/zh-TW/library/dn894085.aspx#Trace) - 將字串加入至 [API 檢查器](../api-management/api-management-howto-api-inspector.md)輸出。
 	-	[等候](https://msdn.microsoft.com/library/azure/dn894085.aspx#Wait) - 等候括住的 Send 要求、取得快取的值或控制流程原則於完成後再繼續。
 -	[驗證原則][]
 	-	[使用基本驗證進行驗證][] - 使用基本驗證來驗證後端服務。
@@ -51,6 +53,7 @@
 	-	[儲存至快取][] - 根據指定的快取控制組態來快取回應。
 	-	[從快取取得值](https://msdn.microsoft.com/library/azure/dn894086.aspx#GetFromCacheByKey) - 依金鑰擷取快取的項目。
 	-	[儲存快取中的值](https://msdn.microsoft.com/library/azure/dn894086.aspx#StoreToCacheByKey) -依金鑰儲存快取中的項目。
+	-	[移除快取中的值](https://msdn.microsoft.com/zh-TW/library/dn894086.aspx#RemoveCacheByKey) - 依金鑰移除快取中的項目。
 -	[跨網域原則][]
 	-	[允許跨網域呼叫][] - 將 API 設為可供 Adobe Flash 和 Microsoft Silverlight 瀏覽器型用戶端存取。
 	-	[CORS][] - 將跨原始來源資源分享 (CORS) 支援加入至操作或 API，以允許來自瀏覽器型用戶端的跨網域呼叫。
@@ -119,4 +122,4 @@
 
  
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0831_2016-->

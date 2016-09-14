@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="tbd"
-	ms.date="05/22/2016"
+	ms.date="08/19/2016"
 	ms.author="garye" />
 
 
@@ -265,13 +265,13 @@ RRS 範例驗證應用程式的真確性。您可以將絕大多數應用程式�
 
 * **Input**：代表儲存批次工作輸入所在位置的 Blob 參考。
 * **GlobalParameters**：代表您可針對實驗定義的一組全域參數。Azure Machine Learning 實驗可以具有必要和選用參數，以自訂服務的執行，而呼叫者預期會提供所有必要的參數 (如果有這些參數)。這些參數會以索引鍵-值組的集合形式來指定。
-* **Outputs**：如果服務已定義一或多個輸出，則呼叫端可將任一輸出重新導向到某個 Azure Blob 位置。這麼做可讓您以可預測的名稱，將服務的輸出儲存在慣用位置，否則輸出的 Blob 名稱會隨機產生。 
+* **Outputs**：如果服務已定義一或多個輸出，則呼叫端可將任一輸出重新導向到某個 Azure Blob 位置。這麼做可讓您以可預測的名稱，將服務的輸出儲存在慣用位置，否則輸出的 Blob 名稱會隨機產生。
 
     請留意，服務會預期輸出內容 (依其類型) 已儲存為支援的格式：
   - 資料集輸出：可以儲存為 **.csv、.tsv、.arff**
   - 定型模型輸出：可以儲存為 **.ilearner**
 
-  輸出位置覆寫會指定為 *<output name  blob reference>* 組的集合，其中 *output name* 是特定輸出節點的使用者定義名稱 (也會顯示在服務的 API 說明頁面上)，而 *blob reference* 則是 Azure Blob 位置的參考，也是輸出要重新導向的位置。
+  輸出位置覆寫會指定為 <輸出名稱, Blob 參考> 組的集合，其中的「輸出名稱」是特定輸出節點的使用者定義名稱 (也會顯示在服務的 API 說明頁面上)，而「Blob 參考」則是 Azure Blob 位置的參考，也是輸出要重新導向的位置。
 
 所有這些建立工作的參數均可視您的服務性質來選擇性地使用。例如，沒有定義輸入節點的服務不需要傳入 *Input* 參數。同樣地，是否使用輸出位置覆寫功能完全可自由選擇；因為如果不使用，輸出也會儲存在您針對 Azure Machine Learning 工作區所設定的預設儲存體帳戶中。以下針對只提供輸入資訊的服務，示範傳遞至 REST API 的要求承載：
 
@@ -297,7 +297,7 @@ RRS 範例驗證應用程式的真確性。您可以將絕大多數應用程式�
 
 **2.啟動批次執行工作**
 
-建立批次工作會將它登錄在系統內，並呈現「未啟動」狀態。若要實際排程工作來執行，請呼叫服務端點 API 說明頁面上所述的 **start** API，並提供建立工作時所取得的工作 ID。
+建立批次工作會在系統內註冊它，並使其呈現「未啟動」狀態。若要實際排程工作來執行，請呼叫服務端點 API 說明頁面上所述的 **start** API，並提供建立工作時所取得的工作 ID。
 
 **3.取得批次執行工作的狀態**
 
@@ -353,7 +353,7 @@ RRS 範例驗證應用程式的真確性。您可以將絕大多數應用程式�
 
 #### 使用 BES SDK
 
-[BES SDK Nuget 封裝](http://www.nuget.org/packages/Microsoft.Azure.MachineLearning/)提供可以批次模式簡化呼叫 BES 來進行評分的功能。若要安裝 Nuget 套件，請在 Visual Studio 的 [工具] 功能表中，選取 [Nuget 套件管理員]，然後按一下 [套件管理器主控台]。
+[BES SDK Nuget 封裝](http://www.nuget.org/packages/Microsoft.Azure.MachineLearning/)提供可以批次模式簡化呼叫 BES 來進行評分的功能。若要安裝 Nuget 封裝，請在 Visual Studio 的 [工具] 功能表中，選取 [Nuget 封裝管理員]，然後按一下 [封裝管理器主控台]。
 
 Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web 服務。這表示它們預期輸入是以 Blob 位置參考的形式透過 Web 服務來呼叫。您也可以選擇不使用 Web 服務輸入模組，而改用「匯入資料」模組。在此情況下，「匯入資料」模組通常會在執行階段使用查詢從 SQL DB 讀取，來取得資料。Web 服務參數可用來動態指向其他伺服器或資料表等。SDK 支援以上兩種模式。
 
@@ -638,7 +638,7 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
 * 安裝 apache mvn (在 ubuntu 上，您可以使用 *apt-get install mvn*)
 * 前往 github 中的 swagger，並將 Swagger 專案下載為 zip 檔案
 * 解壓縮 Swagger
-* 從 Swagger 的來源目錄執行 *mvn 封裝*，以建置 Swagger 工具
+* 從 Swagger 的來源目錄執行「mvn 封裝」，以建置 Swagger 工具
 
 現在，您可以使用任何 Swagger 工具。以下是產生 Java 用戶端程式碼的指示。
 
@@ -685,4 +685,4 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
 	        "operationId": "getSwaggerDocument",
 	        
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -14,7 +14,7 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="08/17/2016"
+	ms.date="08/25/2016"
 	ms.author="markvi"/>
 
 
@@ -82,7 +82,7 @@ Azure Active Directory 中的條件式存取控制功能可提供一些簡單的
 
 - **相容裝置** - 您可以設定原則來限制只有在目錄中被管理系統標示為「相容」的裝置才能存取。此原則可確保只有符合安全性原則 (例如在裝置上強制執行檔案加密) 的裝置會獲允許存取。此原則可用來限制來自下列裝置的存取︰
 
-    - 由部署在混合式組態中的 System Center Configuration Manager 2016 所管理的「已加入網域的 Windows 裝置」。
+    - 由部署在混合式組態中的 System Center Configuration Manager (目前分支) 所管理的「已加入網域的 Windows 裝置」。
 
     - 由 Microsoft Intune 或支援的第三方「行動裝置管理」(MDM) 系統所管理的「Windows 10 行動工作或個人裝置」。
 
@@ -125,4 +125,4 @@ Azure Active Directory 中的條件式存取控制功能可提供一些簡單的
 - [條件式存取常見問題集](active-directory-conditional-faqs.md)
 - [技術參考](active-directory-conditional-access-technical-reference.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

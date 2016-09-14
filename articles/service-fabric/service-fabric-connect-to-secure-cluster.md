@@ -13,15 +13,15 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/18/2016"
+   ms.date="08/25/2016"
    ms.author="ryanwi"/>
 
 # 連線到安全的叢集
 當用戶端連線到 Service Fabric 叢集節點時，用戶端可以使用憑證安全性來接受驗證及保護已建立的通訊。這可確保只有已獲授權的使用者可以存取叢集和已部署的應用程式，以及執行管理工作。憑證安全性必須在叢集建立之時即事先在叢集上啟用。至少應使用兩個憑證保護叢集，一個是叢集和伺服器憑證，另一個用於用戶端存取。建議您也使用額外的次要憑證和用戶端存取憑證。如需有關叢集安全性案例的詳細資訊，請參閱[叢集安全性](service-fabric-cluster-security.md)。
 
-若要使用憑證安全性來保護用戶端與與叢集節點之間的通訊，您必須先取得用戶端憑證，並安裝到本機電腦上的個人 (My) 存放區或目前使用者的「個人」存放區。您也會需要伺服器憑證的指紋，讓用戶端可以驗證叢集。
+若要使用憑證安全性來保護用戶端與與叢集節點之間的通訊，您必須先取得用戶端憑證，並安裝到本機電腦上的個人 (My) 存放區或目前使用者的「個人」存放區。您也需要伺服器憑證的指紋，讓用戶端可以驗證叢集。
 
-請執行下列 PowerShell Cmdlet 以在您將用來存取叢集的電腦上設定用戶端憑證。
+請執行下列 PowerShell Cmdlet 以在您存取叢集的電腦上設定用戶端憑證。
 
 ```powershell
 Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\My `
@@ -29,7 +29,7 @@ Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\My `
         -Password (ConvertTo-SecureString -String test -AsPlainText -Force)
 ```
 
-如果是自我簽署憑證，您將必須先把它匯入您電腦的「受信任的人」存放區，才能使用此憑證來連線到安全的叢集。
+如果是自我簽署憑證，您必須先把它匯入您電腦的「受信任的人」存放區，才能使用此憑證來連線到安全的叢集。
 
 ```powershell
 Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\TrustedPeople `
@@ -50,7 +50,7 @@ Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
           -StoreLocation CurrentUser -StoreName My
 ```
 
-舉例來說，上述 PowerShell 命令應該會類似下列內容：*ServerCertThumbprint* 是安裝在叢集節點上的伺服器憑證指紋，*FindValue* 是管理員用戶端憑證指紋。
+舉例來說，上述 PowerShell 命令應該會類似下列內容。*ServerCertThumbprint* 是安裝在叢集節點上的伺服器憑證指紋，*FindValue* 是管理員用戶端憑證指紋。
 
 ```powershell
 Connect-ServiceFabricCluster -ConnectionEndpoint clustername.westus.cloudapp.azure.com:19000 `
@@ -61,7 +61,7 @@ Connect-ServiceFabricCluster -ConnectionEndpoint clustername.westus.cloudapp.azu
 ```
 
 ## 使用 FabricClient API 來連線到安全的叢集
-請參閱以下的 [FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx)。叢集中的節點必須具備有效的憑證，這些憑證在 SAN 中的通用名稱或 DNS 名稱會出現在於 [FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx) 上設定的 [RemoteCommonNames 屬性](https://msdn.microsoft.com/library/azure/system.fabric.x509credentials.remotecommonnames.aspx) 中。這可讓用戶端與叢集節點之間進行相互驗證。
+請參閱以下的 [FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx)。叢集中的節點必須具備有效的憑證，這些憑證在 SAN 中的通用名稱或 DNS 名稱會出現在於 [FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx) 上設定的 [RemoteCommonNames 屬性](https://msdn.microsoft.com/library/azure/system.fabric.x509credentials.remotecommonnames.aspx)集中，這可讓用戶端與叢集節點之間相互驗證。
 
 ```csharp
 string clientCertThumb = "71DE04467C9ED0544D021098BCD44C71E183414E";
@@ -115,4 +115,4 @@ static X509Credentials GetCredentials(string clientCertThumb, string serverCertT
 - [Service Fabric 健康情況模型簡介](service-fabric-health-introduction.md)
 - [應用程式安全性及 RunAs](service-fabric-application-runas-security.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="08/16/2016"
+   ms.date="08/25/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
 
@@ -249,7 +249,7 @@ CREATE TABLE [cso].[FactOnlineSales]       WITH (DISTRIBUTION = HASH([ProductKey
 
 ### 4\.3 追蹤載入進度
 
-您可以使用 `[sys].[dm_pdw_exec_requests]` 動態管理檢視 (DMV) 來追蹤載入進度。
+您可以使用動態管理檢視 (DMV) 來追蹤載入進度。
 
 ```sql
 -- To see all requests
@@ -257,9 +257,31 @@ SELECT * FROM sys.dm_pdw_exec_requests;
 
 -- To see a particular request identified by its label
 SELECT * FROM sys.dm_pdw_exec_requests as r;
-WHERE r.label = 'CTAS : Load [cso].[DimProduct]             '
-      OR r.label = 'CTAS : Load [cso].[FactOnlineSales]        '
+WHERE r.[label] = 'CTAS : Load [cso].[DimProduct]             '
+      OR r.[label] = 'CTAS : Load [cso].[FactOnlineSales]        '
 ;
+
+-- To track bytes and files
+SELECT
+    r.command,
+    s.request_id,
+    r.status,
+    count(distinct input_name) as nbr_files, 
+    sum(s.bytes_processed)/1024/1024 as gb_processed
+FROM
+    sys.dm_pdw_exec_requests r
+    inner join sys.dm_pdw_dms_external_work s
+        on r.request_id = s.request_id
+WHERE 
+    r.[label] = 'CTAS : Load [cso].[DimProduct]             '
+    OR r.[label] = 'CTAS : Load [cso].[FactOnlineSales]        '
+GROUP BY
+    r.command,
+    s.request_id,
+    r.status
+ORDER BY
+    nbr_files desc,
+    gb_processed desc;
 ```
 
 ## 5\.最佳化資料行存放區壓縮
@@ -343,8 +365,6 @@ JOIN    [cso].[DimProduct]      AS p ON f.[ProductKey] = p.[ProductKey]
 GROUP BY p.[BrandName]
 ```
 
-請使用 SQL 資料倉儲進行瀏覽。
-
 ## 後續步驟
 若要載入完整的 Contoso 零售資料倉儲資料，請使用指令碼。如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][]。
 
@@ -370,4 +390,4 @@ GROUP BY p.[BrandName]
 [Microsoft Download Center]: http://www.microsoft.com/download/details.aspx?id=36433
 [載入完整 Contoso 零售資料倉儲]: https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/contoso-data-warehouse/readme.md
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

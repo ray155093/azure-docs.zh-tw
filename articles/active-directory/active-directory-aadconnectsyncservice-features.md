@@ -36,12 +36,12 @@ Azure AD connect 同步處理功能有兩個元件：
 DirSyncFeature | 註解
 --- | ---
 [DuplicateProxyAddressResiliency<br/>DuplicateUPNResiliency](#duplicate-attribute-resiliency) | 如果屬性是另一個物件的複本，即會將該屬性隔離，而不會在匯出期間導致整個物件失敗。
-[EnableSoftMatchOnUpn](#userprincipalname-soft-match) | 不只主要 SMTP 位址，還允許物件加入 userPrincipalName。
+[EnableSoftMatchOnUpn](#userprincipalname-soft-match) | 不只主要 SMTP 位址，還允許物件聯結 userPrincipalName。
 [SynchronizeUpnForManagedUsers](#synchronize-userprincipalname-updates) | 可讓同步處理引擎更新受管理/授權 (非同盟) 使用者的 userPrincipalName 屬性。
 
 啟用功能後，即無法將其停用。
 
->[AZURE.NOTE] 從 2016 年 8 月 22 日起，預設會對新的 Azure AD 目錄啟用「重複屬性恢復」功能。這項功能也會在此日期前建立的目錄上推出和啟用。當您的目錄即將啟用此功能時，您會收到電子郵件通知。
+>[AZURE.NOTE] 從 2016 年 8 月 24 日起，預設會對新的 Azure AD 目錄啟用「重複屬性恢復」功能。這項功能也會在此日期前建立的目錄上推出和啟用。當您的目錄即將啟用此功能時，您會收到電子郵件通知。
 
 下列設定是由 Azure AD Connect 所設定，而且無法由 `Set-MsolDirSyncFeature` 修改：
 
@@ -98,4 +98,4 @@ Set-MsolDirSyncFeature -Feature SynchronizeUpnForManagedUsers -Enable $true
 - [Azure AD Connect 同步處理](active-directory-aadconnectsync-whatis.md)
 - [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

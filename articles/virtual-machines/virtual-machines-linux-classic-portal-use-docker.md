@@ -25,7 +25,7 @@
 
 [Docker](https://www.docker.com/) 是最常用的虛擬化方式之一，它不使用虛擬機器，而是使用 [Linux 容器](http://en.wikipedia.org/wiki/LXC)作為在共用資源上獨立資料和執行計算的方法。您可以使用 [Azure Linux 代理程式]所管理的 Docker VM 延伸模組，如此可在 Azure 上建立 Docker VM 來託管任何數量的應用程式容器。
 
-> [AZURE.NOTE] 本主題說明如何從 Azure 傳統入口網站建立 Docker VM。若要查看如何在命令列建立 Docker VM，請參閱[如何從 Azure 命令列介面 (Azure CLI) 使用 Docker VM 擴充程式]。若要查看容器及其優點的高層級討論，請參閱 [Docker 高層級白板](http://channel9.msdn.com/Blogs/Regular-IT-Guy/Docker-High-Level-Whiteboard) (英文)。
+> [AZURE.NOTE] 本主題說明如何從 Azure 傳統入口網站建立 Docker VM。若要查看如何在命令列建立 Docker VM，請參閱[如何從 Azure 命令列介面 (Azure CLI) 使用 Docker VM 擴充程式]。若要查看容器及其優點的高層級討論，請參閱 [Docker 高層級白板](http://channel9.msdn.com/Blogs/Regular-IT-Guy/Docker-High-Level-Whiteboard) \(英文)。
 
 ## 從映像庫建立新的 VM
 第一個步驟需要可支援 Docker VM 擴充程式的 Linux 映像提供 Azure VM，使用映像庫的 Ubuntu 14.04 LTS 映像作為範例伺服器映像，且 Ubuntu 14.04 Desktop 作為用戶端。在入口網站中，按一下左下角的 [新增] 以建立新的 VM 執行個體，並從可用選項或從完整映像庫中選取 Ubuntu 14.04 LTS 映像，如下所示。
@@ -36,9 +36,9 @@
 
 ## 建立 Docker 憑證
 
-在建立 VM 之後，請確定您的用戶端電腦已安裝 Docker。(如需詳細資訊，請參閱 [Docker 安裝指示](https://docs.docker.com/installation/#installation) (英文)。)
+在建立 VM 之後，請確定您的用戶端電腦已安裝 Docker。(如需詳細資訊，請參閱 [Docker 安裝指示](https://docs.docker.com/installation/#installation) \(英文)。)
 
-根據[使用 https 執行 Docker] (英文) 來建立 Docker 通訊的憑證和金鑰檔案，並將他們置於用戶端電腦上的 **`~/.docker`** 目錄。
+根據[使用 https 執行 Docker] \(英文) 來建立 Docker 通訊的憑證和金鑰檔案，並將他們置於用戶端電腦上的 **`~/.docker`** 目錄。
 
 > [AZURE.NOTE] 入口網站中的 Docker VM 延伸模組目前需要 base64 編碼的認證。
 

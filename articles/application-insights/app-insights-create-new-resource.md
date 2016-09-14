@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="建立新 Application Insights 資源" 
+	pageTitle="建立新的 Application Insights 資源 | Microsoft Azure" 
 	description="針對新的即時應用程式設定 Application Insights 監視。以 Web 為基礎的方法。" 
 	services="application-insights" 
     documentationCenter=""
@@ -12,10 +12,10 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="03/02/2016" 
+	ms.date="08/26/2016" 
 	ms.author="awills"/>
 
-# 建立新 Application Insights 資源
+# 建立 Application Insights 資源
 
 Visual Studio Application Insights 會在 Microsoft Azure *資源*中顯示您應用程式的資料。因此建立新的資源屬於[設定 Application Insights 以監視新應用程式][start]的一環。在許多情況下，這是可由 IDE 自動完成的工作，而且也建議盡量使用這種方式。但在某些情況下，您必須以手動方式建立資源。
 
@@ -40,7 +40,7 @@ Visual Studio Application Insights 會在 Microsoft Azure *資源*中顯示您�
 ![按一下 [新增]，然後按一下 [Application Insights]](./media/app-insights-create-new-resource/01-new.png)
 
 
-* **應用程式類型**會影響您在 [概觀] 刀鋒視窗中看到的內容，以及[計量瀏覽器][metrics]中提供的屬性。如果沒有看到您的應用程式類型，請針對網頁選擇其中一個 Web 類型，針對其他裝置則選擇其中一個手機類型。
+* **應用程式類型**會影響您在 [概觀] 刀鋒視窗中看到的內容，以及[計量瀏覽器][metrics]中提供的屬性。如果沒有看到您的應用程式類型，請選擇 ASP.NET。
 * **資源群組**可讓您輕鬆管理屬性，例如存取控制。如果您已經建立其他 Azure 資源，可以選擇將這個新的資源放到同一個群組。
 * **訂用帳戶**是您在 Azure 中的付款帳戶。
 * **位置**是我們保留您資料的地方。目前無法變更位置。
@@ -78,7 +78,12 @@ SDK 包含不需撰寫任何程式碼，即可傳送遙測資料的標準模組�
 
 您可以撰寫 [PowerShell 指令碼](app-insights-powershell-script-create-resource.md)來自動建立資源。
 
+## 後續步驟
 
+* [建立儀表板](app-insights-dashboards.md)
+* [診斷搜尋](app-insights-diagnostic-search.md)
+* [探索度量](app-insights-metrics-explorer.md)
+* [撰寫分析查詢](app-insights-analytics.md)
 
 
 <!--Link references-->
@@ -90,4 +95,4 @@ SDK 包含不需撰寫任何程式碼，即可傳送遙測資料的標準模組�
 
  
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0831_2016-->

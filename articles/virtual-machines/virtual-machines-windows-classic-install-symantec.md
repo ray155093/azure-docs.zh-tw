@@ -14,47 +14,28 @@
 	ms.tgt_pltfrm="vm-multiple"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/07/2016"
+	ms.date="08/24/2016"
 	ms.author="iainfou"/>
 
 # 如何在 Windows VM 上安裝和設定 Symantec Endpoint Protection
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
-本文說明如何在執行 Windows Server 的新或現有虛擬機器 (VM) 上，安裝和設定 Symantec Endpoint Protection 用戶端。這是包括服務 (例如病毒和間諜軟體防護、防火牆及入侵防禦) 的完整用戶端。
+本文說明如何在執行 Windows Server 的現有虛擬機器 (VM) 上，安裝和設定 Symantec Endpoint Protection 用戶端。這是包括服務 (例如病毒和間諜軟體防護、防火牆及入侵防禦) 的完整用戶端。透過使用 VM 代理程式，用戶端會安裝為安全性延伸模組。
 
-透過使用 VM 代理程式，用戶端會安裝為安全性延伸模組。在新的虛擬機器上，您將安裝代理程式與端點用戶端。在沒有代理程式的現有虛擬機器上，您必須先下載與安裝代理程式。本文將探討這兩種狀況。
+如果您已有 Symantec 的內部部署解決方案現有訂用帳戶，您可以用它來保護 Azure 虛擬機器的安全。如果您還不是 Symantec 客戶，您可以註冊試用訂用帳戶。如需此解決方案的詳細資訊，請參閱 [Microsoft Azure 平台上的 Symantec Endpoint Protection][Symantec] (英文)。如果您已經是 Symantec 客戶，此頁面還提供授權資訊的連結，以及安裝用戶端的指示。
 
-如果您已有 Symantec 的內部部署解決方案現有訂閱，您可以用它來保護 Azure 虛擬機器的安全。如果您還不是 Trend 的客戶，您可以註冊試用訂閱。如需此解決方案的詳細資訊，請參閱 [Microsoft Azure 平台上的 Symantec Endpoint Protection][Symantec] (英文)。如果您已經是 Symantec 客戶，此頁面還提供授權資訊的連結，以及安裝用戶端的指示。
+## 在現有 VM 上安裝 Symantec Endpoint Protection
 
-## 在新的虛擬機器上安裝 Symantec Endpoint Protection
+在開始之前，您需要下列項目：
 
-當您使用 [從資源庫] 選項來建立虛擬機器時，[Azure 傳統入口網站][Portal]可讓您安裝 VM 代理程式和 Symantec 安全性延伸模組。如果您打算建立單一虛擬機器，使用此方法可輕易地新增 Symantec 的防護。
-
-此 [From Gallery] 選項會開啟可協助您設定虛擬機器的精靈。您可以使用精靈的最後一個頁面，來安裝 VM 代理程式和 Symantec 安全性延伸模組。
-
-如需一般指示，請參閱[建立執行 Windows Server 的虛擬機器][Create] (英文)。當您進入精靈的最後一個頁面時：
-
-1.	在 VM 代理程式下，應已勾選 [安裝 VM 代理程式]。
-
-2.	在 [Security Extensions] 下，勾選 [Symantec Endpoint Protection]。
-
-
-	![Install the VM Agent and the Endpoint Protection Client](./media/virtual-machines-windows-classic-install-symantec/InstallVMAgentandSymantec.png)
-
-3.	按一下頁面底部的核取記號來建立虛擬機器。
-
-## 在現有虛擬機器上安裝 Symantec Endpoint Protection
-
-在開始之前，您將需要下列項目：
-
-- 在本機電腦上安裝 Azure PowerShell 模組 0.8.2 版或更新版本。您可以使用 **Get-Module azure | format-table version** 命令檢查已安裝的 Azure PowerShell 版本。如需最新版本的指示與連結，請參閱[如何安裝和設定 Azure PowerShell][PS]。請確定登入您的 Azure 訂用帳戶。
+- 在本機電腦上安裝 Azure PowerShell 模組 0.8.2 版或更新版本。您可以使用 **Get-Module azure | format-table version** 命令，來檢查已安裝的 Azure PowerShell 版本。如需最新版本的指示與連結，請參閱[如何安裝和設定 Azure PowerShell][PS]。使用 `Add-AzureAccount` 登入您的 Azure 訂用帳戶。
 
 - 在 Azure 虛擬機器上執行的 VM 代理程式。
 
 首先，請確認虛擬機器上已安裝 VM 代理程式。填寫雲端服務名稱和虛擬機器名稱，然後在系統管理員層級 Azure PowerShell 命令提示字元上執行下列命令。取代括弧內 (包括 < 和 > 字元) 的所有項目。
 
-> [AZURE.TIP] 如果您不知道雲端服務和虛擬機器的名稱，請執行 **Get-AzureVM** 以列出您目前訂閱中的所有虛擬機器的名稱。
+> [AZURE.TIP] 如果您不知道雲端服務和虛擬機器的名稱，請執行 **Get-AzureVM** 以列出您目前訂用帳戶中的所有虛擬機器的名稱。
 
 	$CSName = "<cloud service name>"
 	$VMName = "<virtual machine name>"
@@ -97,4 +78,4 @@
 
 [Ext]: http://go.microsoft.com/fwlink/p/?linkid=390493
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0831_2016-->

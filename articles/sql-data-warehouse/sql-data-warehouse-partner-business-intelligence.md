@@ -31,7 +31,7 @@
 | ![Jinfonet][5] |**JReport**<br>JReport 是為企業打造的可內嵌 BI 解決方案。此解決方案可讓使用者在雲端、巨量資料和交易式資料來源上建立報告、儀表板和資料分析。透過資料視覺化，您便可以執行自己的報告功能和資料探索，來進行靈活、即時的決策。| [網站][jinfonet_website]<br>[規格書][jinfonet_datasheet]<br>[Twitter][jinfonet_twitter]<br>[YouTube][jinfonet_youtube] | [![jreport 影片](./media/sql-data-warehouse-partner-business-intelligence/jinfonet_video.jpg)](https://www.youtube.com/watch?v=KYqh8TuMpds) |
 | ![LogiAnalytics][6] |**Logi Analytics**<br>Logi Analytics 與「Azure SQL 資料倉儲」結合可讓您的組織收集、分析及立即因應全世界最大且最多樣化的資料集。 | [Marketplace][logianalytics_marketplace]<br>[網站][logianalytics_website]<br>[規格書][logianalytics_datasheet]<br>[Twitter][logianalytics_twitter]<br>[YouTube][logianalytics_youtube] | [![LogiAnalytics 影片](./media/sql-data-warehouse-partner-business-intelligence/logianalytics_video.jpg)](https://www.youtube.com/watch?v=7U0Sfi3Ndpk) |
 | ![Looker][7] |**Looker BI**<br>Looker 可讓您公司中的每位使用者瀏覽和了解驅動企業運作的資料。Looker 也為資料分析人員提供一個既彈性又可重複使用的模型層，來控制和規劃資料。公司基本上都使用 Looker 做為催化劑來轉換企業文化。 | [Marketplace][looker_marketplace]<br>[網站][looker_website]<br>[規格書][looker_datasheet]<br>[Twitter][looker_twitter]<br>[YouTube][looker_youtube] | [![Looker 影片](./media/sql-data-warehouse-partner-business-intelligence/looker_video.jpg)](https://www.youtube.com/watch?v=WwO4ADK8ZfA) |
-| ![Qlik][8] |**Qlikview**<br>Qlik 在 Microsoft Azure SQL 資料倉儲上方，提供以平台為基礎的視覺化分析方法。Qlik 運用 Microsoft 靈活資料倉儲內的企業級功能，可讓整個組織信心十足地快速制定決策。Qlik 為最需要的地方帶來見解與明確性：決策點。 | [Marketplace][qlik_marketplace]<br>[網站][qlik_website]<br>[規格書][qlik_datasheet]<br>[Twitter][qlik_twitter]<br>[YouTube][qlik_youtube] | [![qlikview 影片](./media/sql-data-warehouse-partner-business-intelligence/qlik_video.jpg)](https://www.youtube.com/watch?v=sqILcEwlHSI) |
+| ![Qlik][8] |使用任何人都可以使用的資料視覺化應用程式深入了解和探索 **Qlik Sense Enterprise**<br>。使用 Qlik Sense，您組織中的所有人都可以輕鬆建立彈性、互動式的視覺效果和制訂有意義的決策。| [網站][qlik_website]<br>[Twitter][qlik_twitter]<br>[YouTube][qlik_youtube] | [![qlikview 影片](./media/sql-data-warehouse-partner-business-intelligence/qlik_video2.jpg)](https://www.youtube.com/watch?v=VJEDFE-07Hg) |
 | ![SiSense][9] |**SiSense**<br>SiSense 是全方位的「商業智慧」軟體，隨附企業進行資料分析和視覺化所需的工具：高效能分析資料庫、可結合多個來源的功能、簡易資料擷取 (ETL) 及 Web 式資料視覺化。立即使用 SiSense BI 和分析來開始分析和視覺化大型資料集。 | [Marketplace][sisense_marketplace]<br>[網站][sisense_website]<br>[規格書][sisense_datasheet]<br>[Twitter][sisense_twitter]<br>[YouTube][sisense_youtube] | [![SiSense 影片](./media/sql-data-warehouse-partner-business-intelligence/sisense_video.jpg)](https://www.youtube.com/watch?v=6N3mkTWI5R4) |
 | ![Tableau][10] |**Tableau**<br>Tableau 的自助式分析協助任何人查看和瞭解資料，從一般檔案到資料庫，資料種類包羅萬象。Tableau 有原生、最佳化的連接器連至 Microsoft Azure SQL 資料倉儲，支援即時資料和記憶體內部分析。 | [Marketplace][tableau_marketplace]<br>[網站][tableau_website]<br>[規格書][tableau_datasheet]<br>[Twitter][tableau_twitter]<br>[YouTube][tableau_youtube] | [![Tableau 影片](./media/sql-data-warehouse-partner-business-intelligence/tableau_video.jpg)](https://www.youtube.com/watch?v=TwbkI3ZzCHE) |
 | ![Targit][11] |**Targit**<br>Targit Decision Suite 提供 BI 和分析平台，以單一且一致的解決方案提供即時儀表板、自助分析、方便使用的報告、令人讚嘆的行動功能和簡單的資料探索技術。Targit 帶給企業行動的勇氣。 | [Marketplace][targit_marketplace]<br>[網站][targit_website]<br>[Twitter][targit_twitter]<br>[YouTube][targit_youtube] | [![Targit 影片](./media/sql-data-warehouse-partner-business-intelligence/targit_video.jpg)](https://www.youtube.com/watch?v=A0vET80Ker4) |
@@ -72,13 +72,14 @@
 [jinfonet_website]: http://www.jinfonet.com/product/jreport-designer
 [logianalytics_website]: http://www.logianalytics.com/
 [looker_website]: https://looker.com/partners/microsoft-azure/
-[qlik_website]: http://www.qlik.com/products/qlikview/getting-started
+[qlik_website]: http://www.qlik.com/us/products/qlik-sense/enterprise
 [sisense_website]: https://www.sisense.com/product/
 [tableau_website]: http://www.tableau.com/
 [targit_website]: https://www.targit.com/en/software/deployment/targitonazure
 [yellowfin_website]: http://www.yellowfinbi.com/
 
-<!--ebook Links-->
+<!--Get Started Links-->
+[qlik_getstarted]: http://www.qlik.com/us/products/qlik-sense/getting-started
 
 <!--Datasheet Links-->
 <!--[birst_datasheet]:-->
@@ -88,7 +89,7 @@
 [jinfonet_datasheet]: http://www.jinfonet.com/products/JReport%20Brief.pdf
 [logianalytics_datasheet]: https://www.logianalytics.com/datasheet/logi-info/
 [looker_datasheet]: https://info.looker.com/h/i/229169578-looker-for-microsoft-azure
-[qlik_datasheet]: http://www.qlik.com/en/resource-library/the-qlikview-product-family
+<!--[qlik_datasheet]:http://www.qlik.com/en/resource-library/the-qlikview-product-family-->
 [sisense_datasheet]: https://pages.sisense.com/rs/601-OXE-081/images/Product%20Highlights.pdf
 [tableau_datasheet]: http://www.tableau.com/stories/workbook/azure-sql-data
 <!--[targit_datasheet]:-->
@@ -102,7 +103,7 @@
 <!--[jinfonet_marketplace]:-->
 [logianalytics_marketplace]: https://azure.microsoft.com/marketplace/partners/logi-analytics/logi-info-11/
 [looker_marketplace]: https://azure.microsoft.com/marketplace/partners/looker/looker-analytics-platform-326/
-[qlik_marketplace]: https://azure.microsoft.com/marketplace/partners/qliktech-international-ab/qlikview/
+<!--[qlik_marketplace]:https://azure.microsoft.com/marketplace/partners/qliktech-international-ab/qlikview/ -->
 [sisense_marketplace]: https://azure.microsoft.com/marketplace/partners/sisense/sisense-byol/
 [tableau_marketplace]: https://azure.microsoft.com/marketplace/partners/tableau/tableau-server/
 [targit_marketplace]: https://azure.microsoft.com/marketplace/partners/targit/targit-decision-suite/
@@ -150,4 +151,4 @@
 [targit_twitter]: https://twitter.com/TARGIT
 [yellowfin_twitter]: https://twitter.com/YellowfinBI
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

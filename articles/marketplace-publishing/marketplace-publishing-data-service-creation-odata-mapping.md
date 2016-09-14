@@ -13,10 +13,12 @@
       ms.topic="article"
       ms.tgt_pltfrm="na"
       ms.workload="na"
-      ms.date="01/04/2016"
+      ms.date="08/26/2016"
       ms.author="hascipio; avikova" />
 
 # 透過 CSDL 將現有的 Web 服務對應至 OData
+
+>[AZURE.IMPORTANT] 目前我們已不再針對任何新的資料服務發行者進行上架。新的 Dataservice 將不會獲得核准以列出於清單上。 如果您有想要在 AppSource 上發佈的 SaaS 商務應用程式，您可以在[這裡](https://appsource.microsoft.com/partners)找到詳細資訊。如果您有想要在 Azure Marketplace 發佈的 IaaS 應用程式或開發人員服務，您可以在[這裡](https://azure.microsoft.com/marketplace/programs/certified/)找到詳細資訊。
 
 本文提供如何使用 CSDL 來將現有的服務對應至 OData 相容服務的概觀。其中將說明如何建立對應文件 (CSDL)，透過服務呼叫轉換來自用戶端的輸入要求，並透過 OData 相容的摘要將輸出 (資料) 傳輸回用戶端。Microsoft Azure Marketplace 會使用 OData 通訊協定，向使用者公開服務。內容提供者 (資料擁有者) 所公開的服務會以各種不同形式 (例如 REST、 SOAP 等) 來公開。
 
@@ -129,7 +131,7 @@ CSDL 的範例如下：(複製下列範例 CSDL 並貼至 XML 編輯器，然後
 
 **詞彙：**將 CSDL 詞彙與[發佈入口網站](https://publish.windowsazure.com) UI (PPUI) 詞彙建立關聯。
 - PPUI 中的供應項目「標題」與 MyWebOffer 相關聯
-- PPUI 中的 MyCompany 與 [Microsoft 開發人員中心](http://dev.windows.com/registration?accountprogram=azure) UI 中的 **Publisher Display Name (發行者顯示名稱)** 相關聯
+- PPUI 中的 MyCompany 與 [Microsoft 開發人員中心](http://dev.windows.com/registration?accountprogram=azure) UI 中的 [發行者顯示名稱] 相關聯
 - 您的 API 與 Web 或資料服務相關聯 (在 PPUI 中的計畫)
 
 **階層：**公司 (內容提供者) 擁有具有方案 (即服務) 的優惠，可利用 API 來排列。
@@ -308,4 +310,4 @@ CSDL 的範例如下：(複製下列範例 CSDL 並貼至 XML 編輯器，然後
 - 如果您有興趣檢閱範例，請閱讀[資料服務 OData 對應範例](marketplace-publishing-data-service-creation-odata-mapping-examples.md)一文，來查看範例程式碼，並了解程式碼語法與內容。
 - 若要返回用於將資料服務發佈至 Azure Marketplace 的指定路徑，請閱讀[資料服務發佈指南](marketplace-publishing-data-service-creation.md)一文。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0831_2016-->

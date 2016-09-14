@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-windows"
    ms.workload="infrastructure"
-   ms.date="06/06/2016"
+   ms.date="08/29/2016"
    ms.author="rasquill"/>
 
 # 使用 Azure Resource Manager 範本來部署熱門的應用程式架構
@@ -23,4 +23,4 @@
 
 [AZURE.INCLUDE [virtual-machines-common-app-frameworks](../../includes/virtual-machines-common-app-frameworks.md)]
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0831_2016-->

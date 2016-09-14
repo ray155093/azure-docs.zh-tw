@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="07/28/2016"
+	ms.date="09/01/2016"
 	ms.author="mandia"/>
 
 
@@ -35,9 +35,7 @@
 [Bing 翻譯](https://azure.microsoft.com/marketplace/partners/bing/microsofttranslator/) | 使用 Bing，將文字翻譯成其他語言。
 [HTTP](app-service-logic-connector-http.md) | HTTP 接聽程式會開啟當做 HTTP 伺服器的端點，並接聽內送的 HTTP 或 HTTPS 要求。HTTP 動作不需要 API Apps，Logic Apps 內原本就支援。
 [Microsoft Office 365](app-service-logic-connector-office365.md) | Office 365 連接器可以使用 Office 365 帳戶來傳送和接收電子郵件、管理您的行事曆及管理您的連絡人。
-[QuickBooks](app-service-logic-connector-quickbooks.md) | 您可以完成不同的工作，包括建立、更新和查詢來自 Intuit QuickBooks (如客戶、項目、發票等等) 的不同實體。
 [Slack](app-service-logic-connector-slack.md) | 連接至 Slack，並將訊息張貼至 Slack 通道。
-[等候](app-service-logic-connector-wait.md) | 您可以使用這個連接器來延遲執行應用程式。您可以將應用程式延遲一段特定期間，或延遲到特定時刻發生為止。
 
 
 ## 企業整合連接器
@@ -61,9 +59,6 @@
 [Informix](app-service-logic-connector-informix.md) | 連接至內部部署和執行 Windows 作業系統的 Azure 虛擬機器上的 IBM Informix 資料庫。可將 Web API 和 OData API 作業對應至 Informix 結構化查詢語言命令。<br/><br/>沒有觸發程序。動作包括資料表選取、插入、更新、刪除和自訂陳述式。<br/><br/>使用內部部署時，可以使用 VPN 或 Azure ExpressRoute。此連接器也包括 Microsoft Client for DRDA，用來跨 TCP/IP 網路連接至 Informix 伺服器。
 [Microsoft SQL Server](app-service-logic-connector-sql.md) | Connects to on-premises SQL Server or an Azure SQL Database.您可以建立、更新、取得和刪除 SQL 資料庫資料表上的項目。
 MQ | 連接至內部部署和執行 Windows 作業系統的 Azure 虛擬機器上的 IBM WebSphere MQ Server 第 8 版。使用內部部署時，可以使用 VPN 或 Azure ExpressRoute。此連接器也包含 Microsoft Client for MQ。<br/><br/>沒有觸發程序。沒有動作。<br/><br/>**注意** 目前無法與 Logic Apps 搭配使用。
-[Oracle 資料庫](app-service-logic-connector-oracle.md) | 連接到內部部署 Oracle 資料庫，可以建立、更新、取得和刪除資料庫資料表上的項目。
-[POP3](app-service-logic-connector-pop3.md) (郵局通訊協定)| 連接到 POP3 伺服器擷取帶有附件的電子郵件。
-[SAP](app-service-logic-connector-sap.md) | 連接到內部部署 SAP 伺服器，並且叫用 RFC、BAPI 和 tRFC，以及傳送 IDOC。
 
 ## 連接器做為觸發程序
 有數個連接器提供 Logic Apps 的觸發程序。這些觸發程序分成兩種類型：
@@ -80,4 +75,4 @@ MQ | 連接至內部部署和執行 Windows 作業系統的 Azure 虛擬機器�
 ## 連接器和 API Apps 的詳細資訊
 [什麼是連接器和 BizTalk API Apps](app-service-logic-what-are-biztalk-api-apps.md) [在 Azure App Service 中使用混合式連接管理員](app-service-logic-hybrid-connection-manager.md) [管理和監視內建 API Apps 和連接器](app-service-logic-monitor-your-connectors.md)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0907_2016-->

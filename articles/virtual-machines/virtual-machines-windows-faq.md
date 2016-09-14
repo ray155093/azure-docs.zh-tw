@@ -38,7 +38,7 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 ## 如何存取我的虛擬機器？
 
-您必須使用遠端桌面連線 (RDP) 為 Windows VM 建立遠端連線。如需指示，請參閱[如何連接和登入執行 Windows 的 Azure 虛擬機器](virtual-machines-windows-connect-logon.md)。除非將伺服器設定為遠端桌面服務工作階段主機，否則最多支援兩個並行連線。
+使用遠端桌面連線 (RDP) 為 Windows VM 建立遠端連線。如需指示，請參閱[如何連接和登入執行 Windows 的 Azure 虛擬機器](virtual-machines-windows-connect-logon.md)。除非將伺服器設定為遠端桌面服務工作階段主機，否則最多支援兩個並行連線。
 
 
 如果您在使用「遠端桌面」時遇到問題，請參閱[疑難排解以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線](virtual-machines-windows-troubleshoot-rdp-connection.md)。
@@ -47,7 +47,7 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 ## 我可以使用暫存磁碟 (預設為 D: 磁碟機) 儲存資料嗎？
 
-您不應使用暫存磁碟儲存資料。暫存磁碟僅提供暫存空間，因此您會有遺失資料且無法復原的風險。當虛擬機器移動到不同的主機時就可能發生這種情況。可能要移動虛擬機器的一些原因是調整虛擬機器的大小、更新主機，或主機上的硬體故障等等。
+請勿使用暫存磁碟來儲存資料。暫存磁碟僅提供暫存空間，因此您會有遺失資料且無法復原的風險。當虛擬機器移動到不同的主機時就可能發生資料遺失。可能要移動虛擬機器的一些原因是調整虛擬機器的大小、更新主機，或主機上的硬體故障等等。
 
 如果應用程式需要使用 D: 磁碟機代號，您可以重新指派磁碟機代號，讓暫存磁碟使用 D: 以外的代號。如需相關指示，請參閱[變更 Windows 暫存磁碟的磁碟機代號](virtual-machines-windows-classic-change-drive-letter.md)。
 
@@ -83,4 +83,62 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 
 否。新增 NIC 只能在建立期間完成。
 
-<!---HONumber=AcomDC_0817_2016-->
+## 是否有任何電腦名稱需求？
+
+是。電腦名稱的長度最多可以有 15 個字元。如需命名資源的詳細資訊，請參閱[基礎結構命名指導方針](virtual-machines-windows-infrastructure-naming-guidelines.md)。
+
+## 建立 VM 時的使用者名稱需求為何？
+
+使用者名稱長度最多為 20 個字元，而且不能以句號 (".") 結尾。
+
+不允許下列使用者名稱︰
+
+<table>
+	<tr>
+		<td style="text-align:center">administrator </td><td style="text-align:center"> admin </td><td style="text-align:center"> user </td><td style="text-align:center"> user1</td>
+	</tr>
+	<tr>
+		<td style="text-align:center">test </td><td style="text-align:center"> user2 </td><td style="text-align:center"> test1 </td><td style="text-align:center"> user3</td>
+	</tr>
+	<tr>
+		<td style="text-align:center">admin1 </td><td style="text-align:center"> 1 </td><td style="text-align:center"> 123 </td><td style="text-align:center"> a</td>
+	</tr>
+	<tr>
+		<td style="text-align:center">actuser  </td><td style="text-align:center"> adm </td><td style="text-align:center"> admin2 </td><td style="text-align:center"> aspnet</td>
+	</tr>
+	<tr>
+		<td style="text-align:center">backup </td><td style="text-align:center"> console </td><td style="text-align:center"> david </td><td style="text-align:center"> guest</td>
+	</tr>
+	<tr>
+		<td style="text-align:center">john </td><td style="text-align:center"> owner </td><td style="text-align:center"> root </td><td style="text-align:center"> 伺服器</td>
+	</tr>
+	<tr>
+		<td style="text-align:center">sql </td><td style="text-align:center"> 支援 </td><td style="text-align:center"> support_388945a0 </td><td style="text-align:center"> sys</td>
+	</tr>
+	<tr>
+		<td style="text-align:center">test2 </td><td style="text-align:center"> test3 </td><td style="text-align:center"> user4 </td><td style="text-align:center"> user5</td>
+	</tr>
+</table>
+
+## 建立 VM 時的密碼需求為何？
+
+密碼必須是長度在 8-123 之間的字元，且符合下列 4 個複雜性需求的其中 3 個：
+
+- 包含小寫字元
+- 包含大小字元
+- 包含數字
+- 包含特殊字元 (Regex match [\\W\_])
+
+不允許下列密碼︰
+
+不允許下列密碼
+<table>
+	<tr>
+		<td style="text-align:center">abc@123</td><td style="text-align:center">P@$$w0rd</td><td style="text-align:center">P@ssw0rd</td><td style="text-align:center">P@ssword123</td><td style="text-align:center">Pa$$word</td>
+	</tr>
+	<tr>
+		<td style="text-align:center">pass@word1</td><td style="text-align:center">Password!</td><td style="text-align:center">Password1</td><td style="text-align:center">Password22</td><td style="text-align:center">iloveyou!</td>
+	</tr>
+</table>
+
+<!---HONumber=AcomDC_0831_2016-->

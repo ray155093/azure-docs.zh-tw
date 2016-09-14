@@ -13,8 +13,8 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/18/2016"
-   ms.author="sonyam;barbkess;sonyama"/>
+   ms.date="09/01/2016"
+   ms.author="sonyama;barbkess"/>
 
 # 如何為 SQL 資料倉儲建立支援票證
  
@@ -38,7 +38,7 @@
 
     ![要求類型](./media/sql-data-warehouse-get-started-create-support-ticket/request-type.png)
     
-    >[AZURE.NOTE]  根據預設，每個 SQL Server (例如 myserver.database.windows.net) 的 **DTU 配額**為 45,000。此配額僅是安全限制。您可以藉由建立支援票證，並選取 [配額] 做為要求類型來增加配額。若要計算 DTU 需求，您必須知道每 100 [DWU][] 的 SQL 資料倉儲會耗用 750 DTU。因此，45,000 的預設配額最多可讓您建立 DW6000 (45,000 / 750) 或數個具有較少 DWU 的較小資料庫。例如，如果您想要在一個 SQL Server 上裝載兩個 DW6000，則應該要求 90,000 的 DTU 配額。您可以在入口網站的 [SQL Server] 刀鋒視窗中檢視目前的 DTU 耗用量。已暫停和未暫停的資料庫都會計入 DTU 配額。
+    >[AZURE.NOTE]  根據預設，每個 SQL Server (例如 myserver.database.windows.net) 的 **DTU 配額**為 45,000。此配額僅是安全限制。您可以藉由建立支援票證，並選取 [配額] 做為要求類型來增加配額。若要計算 DTU 需求，將所需的總 [DWU][] 乘以 7.5。例如，如果您想要在一個 SQL Server 上裝載兩個 DW6000，則應該要求 90,000 的 DTU 配額。您可以在入口網站的 [SQL Server] 刀鋒視窗中檢視目前的 DTU 耗用量。已暫停和未暫停的資料庫都會計入 DTU 配額。
 
 5. 選取主控您回報發生問題之資料庫的 [訂用帳戶]。
 
@@ -104,4 +104,4 @@
 [Stack Overflow]: https://stackoverflow.com/questions/tagged/azure-sqldw/
 [Azure SQL 資料倉儲 MSDN 論壇]: https://social.msdn.microsoft.com/Forums/home?forum=AzureSQLDataWarehouse/
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0907_2016-->

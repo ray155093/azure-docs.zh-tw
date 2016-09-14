@@ -181,7 +181,7 @@
 
 ## 完成並執行應用程式
 
-您現在可以在建置和執行應用程式之前，呼叫 **CreateIoTHub** 方法來完成應用程式。
+在建置和執行應用程式之前，您現在可以呼叫 **CreateIoTHub** 方法來完成應用程式。
 
 1. 在 **Main** 方法的結尾加入下列程式碼：
 
@@ -200,7 +200,7 @@
 
 ## 後續步驟
 
-現在您已經使用 Resource Manager 範本和 C# 程式部署 IoT 中樞，可以進一步探索：
+現在您已經使用 Azure Resource Manager 範本和 C# 程式部署 IoT 中樞，可以進一步探索：
 
 - 閱讀 [IoT 中樞資源提供者 REST API][lnk-rest-api] 功能的相關資訊。
 - 如需 Azure 資源管理員功能的詳細資訊，請參閱 [Azure 資源管理員概觀][lnk-azure-rm-overview]。
@@ -233,4 +233,4 @@
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

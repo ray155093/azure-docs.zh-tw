@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/23/2016"
+	ms.date="08/19/2016"
 	ms.author="mithal;garye" />
 
 # 適用於 Azure Machine Learning 預測之自動資料管線的小祕技
@@ -41,4 +41,4 @@
 
 [AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0831_2016-->

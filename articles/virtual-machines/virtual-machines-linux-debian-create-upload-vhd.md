@@ -14,14 +14,14 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/09/2016"
+	ms.date="08/24/2016"
 	ms.author="szark"/>
 
 
 
 # 準備適用於 Azure 的 Debian VHD
 
-## 先決條件
+## 必要條件
 本節假設您已使用從 [Debian 網站](https://www.debian.org/distrib/)下載的 .iso 檔案將 Debian Linux 作業系統安裝至虛擬硬碟。可建立 .vhd 檔案的工具有多種，Hyper-V 只是其中一個範例。如需 Hyper-V 的使用指示，請參閱[安裝 Hyper-V 角色及設定虛擬機器](https://technet.microsoft.com/library/hh846766.aspx)。
 
 
@@ -36,14 +36,14 @@
 
 ## 使用 Azure-Manage 建立 Debian VHD
 
-有一些工具可用來產生適用於 Azure 的 Debian VHD，例如 [credativ](http://www.credativ.com/) 中的 [azure-manage](https://gitlab.credativ.com/de/azure-manage) 指令碼。若不想從頭建立映像，建議採用此方法。例如，若要建立 Debian 8 VHD，請執行下列命令以下載 azure-manage (和相依性)，並執行 azure\_build\_image 指令碼︰
+有一些工具可用來產生適用於 Azure 的 Debian VHD，例如 [credativ](http://www.credativ.com/) 中的 [azure-manage](https://github.com/credativ/azure-manage) 指令碼。若不想從頭建立映像，建議採用此方法。例如，若要建立 Debian 8 VHD，請執行下列命令以下載 azure-manage (和相依性)，並執行 azure\_build\_image 指令碼︰
 
 	# sudo apt-get update
 	# sudo apt-get install git qemu-utils mbr kpartx debootstrap
 
 	# sudo apt-get install python3-pip
 	# sudo pip3 install azure-storage azure-servicemanagement-legacy pytest pyyaml
-	# git clone https://gitlab.credativ.com/de/azure-manage.git
+	# git clone https://github.com/credativ/azure-manage.git
 	# cd azure-manage
 	# sudo pip3 install .
 
@@ -60,7 +60,7 @@
 
 4. 依照以下方法編輯 `/etc/default/grub` 檔案及修改 **GRUB\_CMDLINE\_LINUX** 參數，以納入用於 Azure 的其他核心參數。
 
-        GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200 earlyprintk=ttyS0,115200 rootdelay=30"
+        GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200n8 earlyprintk=ttyS0,115200 rootdelay=30"
 
 5. 重建 grub，然後執行：
 
@@ -110,4 +110,4 @@
 
 您現在可以開始使用您的 Debian 虛擬硬碟在 Azure 建立新的虛擬機器。若這是您第一次將該 .vhd 檔案上傳到 Azure，請參閱[建立及上傳包含 Linux 作業系統的虛擬硬碟](virtual-machines-linux-classic-create-upload-vhd.md)中的步驟 2 和步驟 3。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0831_2016-->

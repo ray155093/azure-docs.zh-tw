@@ -3,7 +3,7 @@
    description="瞭解 PolyBase 是什麼及如何用於資料倉儲案例。"
    services="sql-data-warehouse"
    documentationCenter="NA"
-   authors="happynicolle"
+   authors="ckarst"
    manager="barbkess"
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
    ms.date="06/30/2016"
-   ms.author="nicw;barbkess;jrj;sonyama"/>
+   ms.author="cakarst;barbkess;sonyama"/>
 
 
 # 在 SQL 資料倉儲中使用 PolyBase 載入資料
@@ -285,4 +285,4 @@ CREATE STATISTICS [FiscalQuarter] on [DimDate2] ([FiscalQuarter]);
 [建立資料庫範圍認證 (Transact-SQL)]: https://msdn.microsoft.com/library/mt270260.aspx
 [DROP CREDENTIAL (Transact-SQL)]: https://msdn.microsoft.com/library/ms189450.aspx
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0907_2016-->

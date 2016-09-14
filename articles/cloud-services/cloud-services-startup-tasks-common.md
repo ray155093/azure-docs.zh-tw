@@ -175,6 +175,10 @@ Azure 會針對在角色內啟動的處理序建立防火牆規則。例如，�
 
 將此命令加入 **startup.cmd** 檔案:
 
+    @echo off
+    @echo Installing "IPv4 Address and Domain Restrictions" feature 
+    powershell -ExecutionPolicy Unrestricted -command "Install-WindowsFeature Web-IP-Security"
+    @echo Unlocking configuration for "IPv4 Address and Domain Restrictions" feature 
     %windir%\system32\inetsrv\AppCmd.exe unlock config -section:system.webServer/security/ipSecurity
 
 這可讓 **startup.cmd** 批次檔在 Web 角色每次初始化時一併執行，以確保將必要的 **ipSecurity** 區段解除鎖定。
@@ -487,4 +491,4 @@ Startup2.cmd：
 [LocalResources]: https://msdn.microsoft.com/library/azure/gg557552.aspx#LocalResources
 [RoleInstanceValue]: https://msdn.microsoft.com/library/azure/gg557552.aspx#RoleInstanceValue
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0831_2016-->

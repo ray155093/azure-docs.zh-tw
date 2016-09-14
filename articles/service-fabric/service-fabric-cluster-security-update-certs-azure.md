@@ -44,11 +44,11 @@
 
 在部署順利完成後，您就可以使用主要或次要憑證在叢集上執行管理作業。
 
-![正在進行憑證部署的螢幕擷取畫面][SecurityConfigurations\_03]
+![正在進行憑證部署的螢幕擷取畫面][SecurityConfigurations_03]
 
 以下螢幕擷取畫面顯示完成部署後的安全性刀鋒視窗外觀。
 
-![部署完成後的憑證指紋螢幕擷取畫面][SecurityConfigurations\_08]
+![部署完成後的憑證指紋螢幕擷取畫面][SecurityConfigurations_08]
 
 
 您現可使用剛剛新增的憑證來連線，並在叢集上執行作業。
@@ -208,6 +208,10 @@ Get-ServiceFabricClusterHealth
 
 
 <!--Image references-->
-[SecurityConfigurations_02]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_02.png [SecurityConfigurations_03]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_03.png [SecurityConfigurations_05]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_05.png [SecurityConfigurations_08]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_08.png
+[SecurityConfigurations_02]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_02.png
+[SecurityConfigurations_03]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_03.png
+[SecurityConfigurations_05]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_05.png
+[SecurityConfigurations_08]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_08.png
 
 <!---HONumber=AcomDC_0817_2016-->
+

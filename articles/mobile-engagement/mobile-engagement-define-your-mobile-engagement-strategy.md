@@ -124,7 +124,7 @@
 - 請瀏覽[最佳作法](mobile-engagement-getting-started-best-practices.md)以取得詳細資料。
 - 請瀏覽[遊戲應用程式案例](mobile-engagement-gaming-scenario.md)來了解如何使用範例遊戲應用程式實作 Mobile Engagement。
 - 請瀏覽[媒體應用程式案例](mobile-engagement-media-scenario.md)來了解如何使用範例媒體應用程式實作 Mobile Engagement。
-- 請瀏覽[教學課程] (英文)，進一步了解實作。
+- 請瀏覽[教學課程] \(英文)，進一步了解實作。
 
 <!-- Images. -->
 [1]: ./media/mobile-engagement-define-your-mobile-engagement-strategy/use-case1.png

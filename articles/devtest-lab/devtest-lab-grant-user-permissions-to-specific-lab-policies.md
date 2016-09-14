@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/08/2016"
+	ms.date="08/25/2016"
 	ms.author="tarcher"/>
 
 # 將特定實驗室原則的權限授與使用者
 
-## 概觀
+## Overview
 
 本文說明如何使用 PowerShell 將特定實驗室原則的權限授與使用者。這樣便可根據每個使用者的需求來套用權限。例如，您可能想要將變更 VM 原則設定 (而非成本原則) 的能力授與特定的使用者。
 
@@ -28,7 +28,7 @@
 
 在研發/測試實驗室中，原則是一種可啟用 RBAC 動作 **Microsoft.DevTestLab/labs/policySets/policies/** 的資源類型。每個實驗室原則都是「原則」資源類型中的資源，並且可被指派成某個 RBAC 角色的範圍。
 
-例如，為了將「允許的 VM 大小」原則的讀取/寫入權限授與使用者，您會建立一個與 **Microsoft.DevTestLab/labs/policySets/policies/*** 動作搭配運作的自訂角色，然後在 **Microsoft.DevTestLab/labs/policySets/policies/AllowedVmSizesInLab** 範圍中將適當的使用者指派給這個自訂角色。
+例如，為了將**允許的 VM 大小**原則的讀取/寫入權限授與使用者，您會建立一個與 **Microsoft.DevTestLab/labs/policySets/policies/*** 動作搭配運作的自訂角色，然後在 **Microsoft.DevTestLab/labs/policySets/policies/AllowedVmSizesInLab** 範圍中將適當的使用者指派給這個自訂角色。
 
 若要深入了解 RBAC 中的自訂角色，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)一文中的[在 Azure RBAC 中自訂角色](../active-directory/role-based-access-control-configure.md#custom-roles-in-azure-rbac)一節。
 
@@ -81,6 +81,8 @@
 - AllowedVmSizesInLab
 - LabVmsShutdown
 
+[AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
+
 ## 後續步驟
 
 將特定實驗室原則的權限授與使用者之後，以下是一些需要考量的後續步驟：
@@ -95,4 +97,4 @@
 
 - [將具有構件的 VM 加入實驗室](devtest-lab-add-vm-with-artifacts.md)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0831_2016-->

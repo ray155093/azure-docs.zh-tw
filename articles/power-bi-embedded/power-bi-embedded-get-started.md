@@ -3,7 +3,7 @@
    description="對於 Power BI Embedded，將互動式 Power BI 報告加入至您的商務智慧應用程式"
    services="power-bi-embedded"
    documentationCenter=""
-   authors="minewiskan"
+   authors="mgblythe"
    manager="NA"
    editor=""
    tags=""/>
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
    ms.date="07/05/2016"
-   ms.author="owend"/>
+   ms.author="mblythe"/>
 
 # 開始使用 Microsoft Power BI Embedded
 
@@ -70,7 +70,7 @@
 
 ## 建立要內嵌到應用程式中的 Power BI 資料集和報告
 
-您現已為您的應用程式建立 Power BI 執行個體，而且有 **存取金鑰**，您必須建立想要內嵌的 Power BI 資料集和報告。使用 **Power BI Desktop** 可以建立資料集和報告。您可以下載[免費的 Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)。或者，若要快速開始，您可以下載[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。若要深入了解如何使用 **Power BI Desktop**，請參閱[開始使用 Power BI Desktop](https://powerbi.microsoft.com/zh-TW/guided-learning/powerbi-learning-0-2-get-started-power-bi-desktop)。
+您現已為您的應用程式建立 Power BI 執行個體，而且有 **存取金鑰**，您必須建立想要內嵌的 Power BI 資料集和報告。使用 **Power BI Desktop** 可以建立資料集和報告。您可以下載[免費的 Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)。或者，若要快速開始，您可以下載[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。若要深入了解如何使用 **Power BI Desktop**，請參閱[開始使用 Power BI Desktop](https://powerbi.microsoft.com/en-us/guided-learning/powerbi-learning-0-2-get-started-power-bi-desktop)。
 
 透過 **Power BI Desktop**，將資料複本匯入 **Power BI Desktop** 或使用 **DirectQuery** 直接連接到資料來源，即可連接到資料來源。
 
@@ -101,4 +101,4 @@
 - [使用 Power BI Embedded 驗證和授權](power-bi-embedded-app-token-flow.md)
 - [Power BI 桌面](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0907_2016-->

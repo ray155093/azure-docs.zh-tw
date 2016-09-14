@@ -62,10 +62,11 @@
 ![Microsoft 傳送通知](./media/multi-factor-authentication-end-user-signin-app-notify/notify.png)
 
 
-- 請接聽電話並按驗證鍵。
+- 請接聽電話並按驗證鍵。如果您的公司需要 PIN，系統將會在這裡要求您提供它。
 
 ![Verify](./media/multi-factor-authentication-end-user-signin-app-notify/phone.png)
 
+![設定](./media/multi-factor-authentication-end-user-first-time-mobile-app/scan3.png)
 
 - 您現在應已登入。
 
@@ -84,6 +85,8 @@
 - 在電話上開啟 Microsoft 驗證器應用程式，並在登入的方塊中輸入驗證碼。
 
 ![取得驗證碼](./media/multi-factor-authentication-end-user-signin-app-verify/phone.png)
+
+
 
 - 您現在應已登入。
 
@@ -104,4 +107,4 @@
 
  
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

@@ -19,7 +19,9 @@
 
 # 如何使用 Java 的資料表儲存體
 
-[AZURE.INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)] <br/> [AZURE.INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-tables.md)]
+[AZURE.INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
+<br/>
+[AZURE.INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-tables.md)]
 
 ## Overview
 
@@ -563,4 +565,4 @@ Azure 儲存體用戶端會使用儲存體連接字串來儲存存取資料管�
 [Azure 儲存體團隊部落格]: http://blogs.msdn.com/b/windowsazurestorage/
 [Azure 資料表：插入和查詢投影簡介]: http://blogs.msdn.com/b/windowsazurestorage/archive/2011/09/15/windows-azure-tables-introducing-upsert-and-query-projection.aspx
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0817_2016--->

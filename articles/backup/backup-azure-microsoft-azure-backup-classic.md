@@ -14,7 +14,7 @@
   ms.tgt_pltfrm="na"
   ms.devlang="na"
   ms.topic="article"
-  ms.date="05/10/2016"
+  ms.date="08/22/2016"
   ms.author="jimpark;trinadhk;pullabhk; markgal"/>
 
 # 準備使用 Azure 備份伺服器來備份工作負載
@@ -214,4 +214,4 @@ Azure 備份伺服器需要連線至 Azure 備份服務，產品才能順利運�
 - [SharePoint 伺服器備份](backup-azure-backup-sharepoint.md)
 - [替代伺服器備份](backup-azure-alternate-dpm-server.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0831_2016-->

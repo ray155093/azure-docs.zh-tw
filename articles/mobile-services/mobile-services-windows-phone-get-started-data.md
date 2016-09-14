@@ -41,9 +41,9 @@
 
 ##<a name="download-app"></a>下載 GetStartedWithData 專案
 
-本教學課程以 [GetStartedWithData 應用程式][Developer Code Samples site] (英文) (此為一Windows Phone Silverlight 8 應用程式專案) 為基礎而建立。
+本教學課程以 [GetStartedWithData 應用程式][Developer Code Samples site] \(英文) (此為一Windows Phone Silverlight 8 應用程式專案) 為基礎而建立。
 
-1. 從 [開發人員程式碼範例網站] (英文) 下載 GetStartedWithData 範例應用程式專案。
+1. 從 [開發人員程式碼範例網站] \(英文) 下載 GetStartedWithData 範例應用程式專案。
 
 	>[AZURE.NOTE]若要建立 Windows Phone Silverlght 8.1 應用程式，只要將已下載之 Windows Phone Silverlight 8 應用程式專案的目標 OS 變更為 Windows Phone 8.1 即可。若要建立 Windows Phone 市集應用程式，請下載 GetStartedWithData 範例應用程式專案的 [Windows Phone 市集應用程式版本](http://go.microsoft.com/fwlink/p/?LinkId=397372)。
 

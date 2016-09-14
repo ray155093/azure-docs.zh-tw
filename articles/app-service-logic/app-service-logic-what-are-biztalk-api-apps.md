@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="07/28/2016" 
+	ms.date="09/01/2016" 
 	ms.author="mandia"/>
 
 # 什麼是連接器和 BizTalk API 應用程式
@@ -35,7 +35,7 @@
 
 
 ## 混合式連接器 
-混合式連接器可透過 [SAP](app-service-logic-connector-sap.md)、[Oracle](app-service-logic-connector-oracle.md)、[DB2](app-service-logic-connector-db2.md)、[Informix](app-service-logic-connector-informix.md) 和 WebSphere MQ 的連線，進一步延伸至企業中。
+混合式連接器可透過 [DB2](app-service-logic-connector-db2.md)、[Informix](app-service-logic-connector-informix.md) 和 WebSphere MQ 的連線，進一步延伸至企業中。
 
 ## EAI 和 EDI 服務
 建置業務關鍵應用程式時需要的不只是連線。以 Microsoft 領先業界的整合平台 BizTalk Server 做為基礎，BizTalk API 應用程式提供進階的整合功能，可以輕鬆地融入您的 Web、行動和邏輯應用程式中。其中某些整合功能包含[驗證](app-service-logic-xml-validator.md)、[擷取](app-service-logic-xpath-extract.md)、[轉換](app-service-logic-transform-xml-documents.md)、[編碼器](app-service-logic-connector-jsonencoder.md)、[交易夥伴管理](app-service-logic-connector-tpm.md)以及 EDI 格式 (如 [X12](app-service-logic-connector-x12.md)、[EDIFACT](app-service-logic-connector-edifact.md) 和 [AS2](app-service-logic-connector-as2.md)) 的支援。
@@ -50,4 +50,4 @@
 請參閱[連接器和 API 應用程式清單](app-service-logic-connectors-list.md)，以取得各類別內含的完整連接器和 API 應用程式清單，包括標準連接器、BizTalk EAI、高階連接器等。
  
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0907_2016-->

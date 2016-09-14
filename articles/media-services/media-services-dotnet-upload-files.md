@@ -13,14 +13,17 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="07/18/2016" 
+ 	ms.date="08/30/2016" 
 	ms.author="juliako"/>
 
 
 
-#使用 .NET 將檔案上傳至媒體服務帳戶
+# 使用 .NET 將檔案上傳至媒體服務帳戶
 
-[AZURE.INCLUDE [media-services-selector-upload-files](../../includes/media-services-selector-upload-files.md)]
+ > [AZURE.SELECTOR]
+ - [.NET](media-services-dotnet-upload-files.md)
+ - [REST](media-services-rest-upload-files.md)
+ - [入口網站](media-services-portal-upload-files.md)
 
 在媒體服務中，您可以將數位檔案上傳 (或內嵌) 到資產。**資產**實體可以包含視訊、音訊、影像、縮圖集合、文字播放軌及隱藏式字幕檔案 (以及這些檔案的相關中繼資料)。 上傳檔案之後，您的內容會安全地儲存在雲端，以進一步進行處理和串流處理。
 
@@ -28,7 +31,7 @@
 
 建立資產時，您可以指定下列加密選項。
 
-- **None** - 不使用加密。這是預設值。請注意，使用此選項時，您的內容在傳輸或儲存體中靜止時不會受到保護。如果您計劃使用漸進式下載傳遞 MP4，請使用此選項。
+- **None** - 不使用加密。這是預設值。請注意，使用這個選項時您的內容在傳輸中或在儲存體中不受保護。如果您計劃使用漸進式下載傳遞 MP4，請使用此選項。
 - **CommonEncryption** - 如果您上傳的內容已經受到一般加密或 PlayReady DRM (例如，受到 PlayReady DRM 保護的 Smooth Streaming) 的加密保護，請使用此選項。
 - **EnvelopeEncrypted** - 如果您上傳以 AES 加密的 HLS，請使用此選項。請注意，檔案必須已由 Transform Manager 編碼和加密。
 - **StorageEncrypted** - 使用 AES-256 位元加密對您的內容進行本機加密，接著上傳到已靜止加密儲存的 Azure 儲存體。以儲存體加密保護的資產會自動解除加密並在編碼前放置在加密的檔案系統中，並且會在上傳為新輸出資產之前選擇性地重新編碼。儲存體加密的主要使用案例是讓您可以使用強式加密來保護磁碟中靜止的高品質輸入媒體檔。
@@ -228,7 +231,7 @@ IngestManifestAsset 會建立資產與大量 IngestManifest 的關聯，以進�
 	    copytask.Start();
 	}
 
-下列程式碼範例顯示上傳本主題中所用範例之產資檔案的程式碼。
+下列程式碼範例顯示上傳本主題中所用範例之資產檔案的程式碼。
 	
 	UploadBlobFile(manifest.BlobStorageUriForUpload, filename1);
 	UploadBlobFile(manifest.BlobStorageUriForUpload, filename2);
@@ -310,9 +313,9 @@ IngestManifestAsset 會建立資產與大量 IngestManifest 的關聯，以進�
 
 
 ##後續步驟
-您已將資產上傳至媒體服務，現在請移至[如何取得媒體處理器][] \(英文) 主題。
+您已將資產上傳至媒體服務，現在請移至[如何取得媒體處理器][]主題。
 
 [如何取得媒體處理器]: media-services-get-media-processor.md
  
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0831_2016-->

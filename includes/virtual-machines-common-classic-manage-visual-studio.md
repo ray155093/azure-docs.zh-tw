@@ -122,7 +122,7 @@
 
 1. 如果您已在此虛擬機器上執行 Sysprep，請選取 [我已在虛擬機器上執行 Sysprep] 方塊。
 
-    Sysprep 是一個工具，可從虛擬機器的 Windows 版本中移除系統特定資料，讓其成為其他人可使用的範本。如需詳細資訊，請參閱[如何擷取 Windows 虛擬機器作為範本使用](https://azure.microsoft.com/documentation/articles/virtual-machines-capture-image-windows-server/)。
+    Sysprep 是一個工具，可從虛擬機器的 Windows 版本中移除系統特定資料，讓其成為其他人可使用的範本。如需詳細資訊，請參閱[如何擷取 Windows 虛擬機器作為範本使用](https://azure.microsoft.com/documentation/articles/virtual-machines-capture-image-windows-server/)。執行 Sysprep 前，請先備份 VM。
 
 1. 設定好擷取設定之後，選擇 [擷取] 按鈕可建立檢查點。
 
@@ -158,4 +158,4 @@
 
 若要了解建立虛擬機器的詳細資訊，請參閱[建立執行 Linux 的虛擬機器](../articles/virtual-machines/virtual-machines-linux-quick-create-cli.md)和[在 Azure Preview 入口網站中建立執行 Windows 的虛擬機器](../articles/virtual-machines/virtual-machines-windows-hero-tutorial.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0831_2016-->

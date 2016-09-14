@@ -139,10 +139,14 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 - [深入了解](../vpn-gateway/vpn-gateway-site-to-site-create.md)針對 VPN 站台間連線支援的部署方法，以及如何[設定連線](../vpn-gateway/vpn-gateway-site-to-site-create.md#create-your-virtual-network)。
 - 或者，您也可以設定 [Azure ExpressRoute](../expressroute/expressroute-introduction.md)。[深入了解](../expressroute/expressroute-howto-vnet-portal-classic.md)如何使用 ExpressRoute 來設定 Azure 網路。
 
+> [AZURE.NOTE] [Migration of networks]對於用於部署 Site Recovery 的網路，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶(../resource-group-move-resources.md)。
+
 ### 設定 Azure 儲存體帳戶
 
 - 您需要標準或進階 Azure 儲存體帳戶來保存複寫到 Azure 的資料。此帳戶必須位於與復原服務保存庫相同的區域中。視您想要針對已容錯移轉的 Azure VM 使用的資源模型而定，您將以 [ARM 模式](../storage/storage-create-storage-account.md)或[傳統模式](../storage/storage-create-storage-account-classic-portal.md)設定帳戶。
 - 如果您將進階帳戶使用於複寫的資料，則必須建立其他標準帳戶來儲存複寫記錄檔，而這類記錄檔會擷取內部部署資料的進行中變更。
+
+> [AZURE.NOTE] [Migration of storage accounts]對於用於部署 Site Recovery 的儲存體帳戶，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶(../resource-group-move-resources.md)。
 
 ### 準備帳戶以進行自動探索
 
@@ -859,4 +863,4 @@ The information in Section B is regarding Third Party Code components that are b
 
 The complete file may be found on the [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428).Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0831_2016-->

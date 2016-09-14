@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/19/2016"  
+	ms.date="08/25/2016"  
 	ms.author="xpouyat"/>
 
 #Licensing Microsoft® Smooth Streaming Client Porting Kit
 
-##概觀
+##Overview
 
 Microsoft Smooth Streaming Client Porting Kit (簡稱 **SSPK**) 是最佳化的 Smooth Streaming 用戶端實作，可協助內嵌裝置製造商、有線電視和行動業者、內容服務提供者、手持式裝置製造商、獨立軟體廠商 (ISV) 和解決方案提供者打造產品和服務，以供串流 Smooth Streaming 格式的彈性資料流內容。SSPK 是 Smooth Streaming 用戶端的裝置和平台獨立實作，可由被授權者移植到任何裝置和平台。
 
@@ -106,6 +106,7 @@ Smooth Streaming 用戶端最終產品乃根據權利金模型提供，細節如
 - SoftAtHome
 - 索尼公司
 - Tatung Technology Inc.
+- TCL Technoly Electronics (Huizhou) Co., Ltd.
 - Vestel Elektronik Sanayi ve Ticaret A.S.
 - VisualOn, Inc.
 - ZTE Corporation
@@ -129,7 +130,6 @@ Smooth Streaming 用戶端最終產品乃根據權利金模型提供，細節如
 - Fluendo S.A.
 - Gibson Innovations Limited
 - HANDAN BroadInfoCom Co., Ltd.
-- Hisense International Co., Ltd
 - Homecast Co.,Ltd
 - Hon Hai Precision Industry Co., Ltd.
 - Infomir GMBH
@@ -165,4 +165,4 @@ Smooth Streaming 用戶端最終產品乃根據權利金模型提供，細節如
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0831_2016-->

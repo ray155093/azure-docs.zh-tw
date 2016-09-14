@@ -13,7 +13,7 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="06/14/2016"
+ms.date="08/30/2016"
 ms.author="larryfr"/>
 
 # HDInsight 所使用的連接埠和 URI
@@ -64,6 +64,8 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 
 ## 非公用連接埠
 
+> [AZURE.NOTE] 部分服務只能在特定叢集類型上使用。例如，HBase 只能在 HBase 叢集類型上使用。
+
 ### HDFS 連接埠
 
 | 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
@@ -74,6 +76,7 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 | DataNode | 所有背景工作節點 | 30010 | &nbsp; | 資料傳輸 |
 | DataNode | 所有背景工作節點 | 30020 | IPC | 中繼資料作業 |
 | 次要 NameNode | 前端節點 | 50090 | HTTP | NameNode 中繼資料的檢查點 |
+
 ### YARN 連接埠
 
 | 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
@@ -133,4 +136,11 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 | 區域伺服器 | 所有背景工作節點 | 16020 | &nbsp; | &nbsp; |
 | &nbsp; | &nbsp; | 2181 | &nbsp; | 用戶端用於連接至 ZooKeeper 的連接埠 |
 
-<!---HONumber=AcomDC_0713_2016-->
+### Kafka 連接埠
+
+| 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
+| ------- | ------- | ---- | -------- | ----------- |
+| Broker | 背景工作節點 | 9092 | [Kafka Wire Protocol (Kafka 有線通訊協定)](http://kafka.apache.org/protocol.html) | 用於用戶端通訊 |
+| &nbsp; | Zookeeper 節點 | 2181 | &nbsp; | 用戶端用於連接至 ZooKeeper 的連接埠 |
+
+<!---HONumber=AcomDC_0831_2016-->

@@ -13,14 +13,18 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article"
-	ms.date="08/30/2016" 
+	ms.date="09/05/2016" 
 	ms.author="juliako"/>
 
 
 #如何使用 Azure 入口網站透過內部部署編碼器執行即時串流
 
-本教學課程將逐步引導您使用 Azure 入口網站建立針對即時通行傳遞設定的**通道**。
+> [AZURE.SELECTOR]
+- [入口網站](media-services-portal-live-passthrough-get-started.md)
+- [.NET](media-services-dotnet-live-encode-with-onpremises-encoders.md)
+- [REST](https://msdn.microsoft.com/library/azure/dn783458.aspx)
 
+本教學課程將逐步引導您使用 Azure 入口網站建立針對即時通行傳遞設定的**通道**。
 
 ##必要條件
 
@@ -79,6 +83,7 @@
 
 若要建立和變更串流保留單位數目，請執行下列動作：
 
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 1. 在 [設定] 視窗中，按一下 [串流端點]。
 
 2. 按一下預設串流端點。
@@ -87,7 +92,7 @@
 
 3. 若要指定串流單位數目，請滑動 [串流單位] 滑桿。
 
-	![串流單位](./media/media-services-portal-vod-get-started/media-services-streaming-units.png)
+	![串流單位](./media/media-services-portal-passthrough-get-started/media-services-streaming-units.png)
 
 4. 按一下 [儲存] 按鈕以儲存您的變更。
 
@@ -130,11 +135,15 @@
 	[建立新的通道] 視窗隨即出現。
 4. 提供新通道的名稱，然後按一下 [建立]。
 
-	便會使用 RTMP 內嵌通訊協定建立即時通行通道。
+	這會使用 RTMP 內嵌通訊協定建立即時通行通道。
 
-	通道也會新增、啟動及發佈預設即時事件/程式。這個事件已設定為有 8 小時的封存時間範圍。
+##建立事件
 
-	若要新增更多事件，請按 [即時事件] 按鈕。
+1. 選取您要新增事件的通道。
+2. 按下 [即時事件] 按鈕。
+
+![Event](./media/media-services-portal-passthrough-get-started/media-services-create-events.png)
+
 
 ##取得內嵌 URL
 
@@ -165,7 +174,9 @@
 
 ![Assets](./media/media-services-portal-passthrough-get-started/media-services-assets.png)
 
-##媒體服務學習路徑
+##後續步驟
+
+檢閱媒體服務學習路徑。
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
@@ -173,4 +184,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

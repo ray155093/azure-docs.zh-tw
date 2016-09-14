@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/23/2016"
+	ms.date="08/25/2016"
 	ms.author="tarcher"/>
 
 # 將擁有者和使用者加入實驗室
@@ -103,4 +103,6 @@ DevTest Labs 的存取權是由 Azure 角色型存取控制 (RBAC) 所控制。�
 
 1. [使用者] 刀鋒視窗會顯示新增的角色及使用者。
 
-<!---HONumber=AcomDC_0824_2016-->
+[AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
+
+<!---HONumber=AcomDC_0831_2016-->
