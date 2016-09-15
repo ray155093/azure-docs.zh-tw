@@ -74,4 +74,8 @@ fetch(url, { headers: headers })
 
 Fetch 可以 npm 套件的形式提供使用或從 CDNJS 使用瀏覽器下載。您也可以使用 jQuery 或另一個 AJAX API 擷取資訊。將會以 JSON 物件形式接收資料。
 
+
+<!-- URLs. -->
+[將驗證新增至您的應用程式]: app-service-mobile-cordova-get-started-users.md
+
 <!---HONumber=AcomDC_0615_2016-->
