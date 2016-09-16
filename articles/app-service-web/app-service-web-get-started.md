@@ -1,6 +1,6 @@
-<properties
-	pageTitle="在 5 分鐘內將第一個 Web 應用程式部署至 Azure 中 | Microsoft Azure"
-	description="藉由只透過幾個步驟就部署好範例應用程式，了解在 App Service 中執行 Web 應用程式有多麼簡單。在 5 分鐘內開始進行真正的開發，並立即查看結果。"
+<properties 
+	pageTitle="在 5 分鐘內將第一個 Web 應用程式部署至 Azure 中 | Microsoft Azure" 
+	description="藉由部署範例 App，了解在 App Service 中執行 Web 應用程式有多麼簡單。快速開始進行真正的開發，並立即查看結果。" 
 	services="app-service\web"
 	documentationCenter=""
 	authors="cephalin"
@@ -14,47 +14,84 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="05/12/2016"
+	ms.date="09/09/2016" 
 	ms.author="cephalin"
 />
-
+	
 # 在 5 分鐘內將第一個 Web 應用程式部署至 Azure 中
-
-[AZURE.INCLUDE [索引標籤](../../includes/app-service-web-get-started-nav-tabs.md)]
 
 本教學課程將協助您在 [Azure App Service](../app-service/app-service-value-prop-what-is.md) 中部署您的第一個 Web 應用程式。您可以使用 App Service 來建立 Web 應用程式、[行動應用程式後端](/documentation/learning-paths/appservice-mobileapps/)和 [API 應用程式](../app-service-api/app-service-api-apps-why-best-platform.md)。
 
-您只需採取一些動作，就可以︰
+您將：
 
-- 部署範例 Web 應用程式 (在 ASP.NET、PHP、Node.js、Java 或 Python 之間選擇)。
-- 在短短幾秒內看見您的應用程式即時執行。
+- 在 Azure App Service 中建立 Web 應用程式。
+- 部署範例程式碼 (在 ASP.NET、PHP、Node.js、Java 或 Python 之間選擇)。
+- 看見您的程式碼在生產環境中即時執行。
 - 以您推送 [Git](https://git-scm.com/docs/git-push) 認可的相同方式，更新 Web 應用程式。
-
-您將第一次看到 [Azure 入口網站](https://portal.azure.com)並調查可用的功能。
 
 ## 必要條件
 
-- [安裝 Git](http://www.git-scm.com/downloads)。
-- [安裝 Azure CLI](../xplat-cli-install.md)。
+- [安裝 Git](http://www.git-scm.com/downloads)。從新的 Windows 命令提示字元、PowerShell 視窗、Linux 殼層或 OS X 終端機執行 `git --version`，確認您的安裝是否成功。
 - 取得 Microsoft Azure 帳戶。如果您沒有這類帳戶，可以[申請免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)，或是[啟用自己的 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
 
->[AZURE.NOTE] 請看看作用中的 Web 應用程式。立即[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751) 並建立短期的入門應用程式 -- 不需信用卡，不需任何承諾。
+>[AZURE.NOTE] 您可以[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，而不需要 Azure 帳戶。建立入門應用程式並試用最多可達一小時。不需要信用卡，也不需簽定合約。
 
-## 部署 Web 應用程式
+<a name="create"></a>
+## 建立 Web 應用程式
 
-將 Web 應用程式部署至 Azure App Service。
+1. 使用您的 Azure 帳戶登入 [Azure 入口網站](https://portal.azure.com)。
 
-1. 開啟新的 Windows 命令提示字元、PowerShell 視窗、Linux Shell 或 OS X 終端機。執行 `git --version` 和 `azure --version`，確認電腦上已安裝 Git 和 Azure CLI。
+2. 按一下左側功能表的 [新增] > [Web + 行動] > [Web 應用程式]。
 
-    ![測試已在 Azure 中針對您的第一個 Web 應用程式安裝 CLI 工具](./media/app-service-web-get-started/1-test-tools.png)
+    ![在 Azure 中開始建立第一個 Web 應用程式](./media/app-service-web-get-started/create-web-app-portal.png)
 
-    如果您尚未安裝工具，請參閱[必要條件](#Prerequisites)以取得下載連結。
+3. 在 App 建立刀鋒視窗中，針對您新的 App 使用下列設定：
 
-1. 切換至工作目錄 (`CD`)，並如下所示複製範例應用程式︰
+    - **應用程式名稱**：輸入唯一的名稱。
+    - **資源群組**：選取 [新建] 並指定資源群組名稱。
+    - **App Service 方案/位置**：按一下以進行設定，然後按一下 [新建] 來設定 App Service 方案的名稱、位置與定價層。請放心地使用 [免費] 定價層。
+
+    完成時，App 建立刀鋒視窗應該如下所示：
+
+    ![在 Azure 中設定第一個 Web 應用程式](./media/app-service-web-get-started/create-web-app-settings.png)
+
+3. 按一下底部的 [建立]。您可以按一下頂端的通知圖示來查看進度。
+
+    ![Azure 中第一個 Web 應用程式的應用程式建立通知](./media/app-service-web-get-started/create-web-app-started.png)
+
+4. 部署完成時，您應該會看到此通知訊息。按一下訊息可開啟部署的刀鋒視窗。
+
+    ![Azure 中第一個 Web 應用程式的部署完成訊息](./media/app-service-web-get-started/create-web-app-finished.png)
+
+5. 在 [部署成功] 刀鋒視窗中，按一下 [資源] 連結以開啟新的 Web 應用程式刀鋒視窗。
+
+    ![Azure 中第一個 Web 應用程式的資源連結](./media/app-service-web-get-started/create-web-app-resource.png)
+
+## 將程式碼部署至 Web 應用程式
+
+現在，我們使用 Git 來將程式碼部署到 Azure。
+
+5. 在 Web 應用程式刀鋒視窗中，向下捲動至 [部署選項] 或搜尋「部署選項」，然後按一下它。
+
+    ![Azure 中第一個 Web 應用程式的部署選項](./media/app-service-web-get-started/deploy-web-app-deployment-options.png)
+
+6. 按一下 [選擇來源] > [本機 Git 儲存機制] > [確定]。
+
+7. 回到 Web 應用程式刀鋒視窗，按一下 [部署認證]。
+
+8. 設定您的部署認證，然後按一下 [儲存]。
+
+7. 回到 Web 應用程式刀鋒視窗，向下捲動至 [屬性] 或搜尋「屬性」，然後按一下它。按一下 [Git URL] 旁的 [複製] 按鈕。
+
+    ![Azure 中第一個 Web 應用程式的屬性刀鋒視窗](./media/app-service-web-get-started/deploy-web-app-properties.png)
+
+    您現在可以開始使用 Git 部署程式碼。
+
+1. 在命令列終端機中，變更至工作目錄 (`CD`)，並如下所示複製範例 App︰
 
         git clone <github_sample_url>
 
-    ![複製您在 Azure 中的第一個 Web 應用程式的應用程式範例程式碼](./media/app-service-web-get-started/2-clone-sample.png)
+    ![複製您在 Azure 中的第一個 Web 應用程式的應用程式範例程式碼](./media/app-service-web-get-started/html-git-clone.png)
 
     對於「&lt;github\_sample\_url>」，使用下列其中一個 URL (視您所需的架構而定)：
 
@@ -65,75 +102,46 @@
     - Java：[https://github.com/Azure-Samples/app-service-web-java-get-started.git](https://github.com/Azure-Samples/app-service-web-java-get-started.git)
     - Python (Django)：[https://github.com/Azure-Samples/app-service-web-python-get-started.git](https://github.com/Azure-Samples/app-service-web-python-get-started.git)
 
-2. 切換至範例應用程式的儲存機制。例如：
+2. 切換至範例應用程式的儲存機制。例如，
 
         cd app-service-web-html-get-started
 
-3. 如下所示，登入 Azure：
+3. 針對您的 Azure 應用程式設定 Git 遠端，其 Git URL 是您在前幾個步驟於入口網站中所複製。
 
-        azure login
+        git remote add azure <giturlfromportal>
 
-    依照說明訊息進行來繼續登入程序。
-
-    ![登入 Azure 以建立第一個 Web 應用程式](./media/app-service-web-get-started/3-azure-login.png)
-
-4. 在 Azure 中使用下一個命令，建立具有唯一應用程式名稱的 App Service 應用程式資源。出現提示時，指定所需的區域數目。
-
-        azure site create --git <app_name>
-
-    ![在 Azure 中建立第一個 Web 應用程式的 Azure 資源](./media/app-service-web-get-started/4-create-site.png)
-
-    >[AZURE.NOTE] 如果您從未設定 Azure 訂用帳戶的部署認證，系統將會提示您加以建立。App Service 只會將這些認證 (而不是您的 Azure 帳戶認證) 使用於 Git 部署與 FTP 登入。
-
-    您的應用程式現在已建立於 Azure 中。此外，您目前的目錄也已進行 Git 初始化並連接到新的 App Service 應用程式而成為 Git 遠端。您可以瀏覽至應用程式 URL (http://&lt;app_name>.azurewebsites.net) 來查看美麗的預設 HTML 網頁，但您也可以立即實際取得自己的程式碼。
-
-4. 將範例程式碼部署至新的 App Service 應用程式，如同使用 Git 推送任何程式碼一樣︰
+4. 將範例程式碼部署至 Azure 應用程式，如同使用 Git 推送任何程式碼一般︰
 
         git push azure master
 
-    ![在 Azure 中將程式碼推送至第一個 Web 應用程式](./media/app-service-web-get-started/5-push-code.png)
+    ![在 Azure 中將程式碼推送至第一個 Web 應用程式](./media/app-service-web-get-started/html-git-push.png)
 
     如果您已使用其中一個語言架構，則會看到不同的輸出。這是因為 `git push` 不只將程式碼放在 Azure 中，也會在部署引擎中觸發部署工作。如果您的專案 (儲存機制) 根目錄中有任何 package.json (Node.js) 或 requirements.txt (Python) 檔案，或您的 ASP.NET 專案中有 packages.config 檔案，則部署指令碼會為您還原必要的封裝。您也可以[啟用編輯器延伸模組](web-sites-php-mysql-deploy-use-git.md#composer)，以在 PHP 應用程式中自動處理 composer.json 檔案。
 
-恭喜，您的應用程式已部署至 Azure App Service。
-
-## 看見您的應用程式即時執行
-
-若要查看 Azure 中即時執行的應用程式，請從儲存機制中的任何目錄執行此命令︰
-
-    azure site browse
+就這麼簡單！ 您的程式碼現在正在 Azure 中即時執行。在瀏覽器中，瀏覽至 http://*&lt;appname>*.azurewebsites.net 來查看作用中的程式碼。
 
 ## 更新您的應用程式
 
-您現在可以使用 Git 隨時從您的專案 (儲存機制) 根目錄進行推送，以更新即時網站。您可以用第一次將應用程式部署至 Azure 時的相同方式來執行這項作業。例如，每次您想要推送已在本機測試的新變更時，從專案 (儲存機制) 根目錄執行下列命令︰
+您現在可以使用 Git 隨時從您的專案 (儲存機制) 根目錄進行推送，以更新即時網站。您可以使用第一次部署程式碼時的相同方式來執行這項作業。例如，每次您想要推送已在本機測試的新變更時，只需從專案 (儲存機制) 根目錄執行下列命令︰
 
     git add .
     git commit -m "<your_message>"
     git push azure master
 
-## 在 Azure 入口網站中查看您的應用程式
-
-現在，讓我們前往 Azure 入口網站，查看您所建立的項目︰
-
-1. 使用具有您的 Azure 訂用帳戶的 Microsoft 帳戶，登入 [Azure 入口網站](https://portal.azure.com)。
-
-2. 在左列上，按一下 [應用程式服務]。
-
-3. 按一下您剛建立的應用程式，以在入口網站中開啟其頁面 (稱為[刀鋒視窗](../azure-portal-overview.md))。[設定] 刀鋒視窗也已依預設開啟，方便您使用。
-
-    ![Azure 中第一個 Web 應用程式的入口網站檢視](./media/app-service-web-get-started/portal-view.png)
-
-App Service 應用程式的入口網站刀鋒視窗會呈現一組豐富的設定和工具，協助您設定、監視和保護您的應用程式，以及排解應用程式的疑難問題。請花一點時間執行一些簡單的工作，讓自己熟悉此介面。(工作數目會對應至螢幕擷取畫面中的數字)。
-
-1. 停止應用程式。
-2. 重新啟動應用程式。
-3. 按一下 [資源群組] 連結，以查看資源群組中部署的所有資源。
-4. 按一下 [設定] > [屬性]，以查看有關您的應用程式的其他資訊。
-5. 按一下 [工具] 以存取可供監視和進行疑難排解的實用工具。
-
 ## 後續步驟
 
-- 提升您的 Azure 應用程式水準。使用驗證協助保護其安全。根據需求加以調整。設定一些效能警示。全部只要點選幾下滑鼠即可完成。請參閱[在您的第一個 Web 應用程式中新增功能](app-service-web-get-started-2.md)。
-- 除了 Git 和 Azure CLI 之外，還有其他方法可在 Azure 中部署 Web 應用程式。請參閱[將您的應用程式部署至 Azure App Service](../app-service-web/web-sites-deploy.md)。請選取文章頂端的架構，為您的語言架構尋找慣用的開發和部署步驟。
+針對您的語言架構，尋找偏好的開發和部署步驟：
 
-<!---HONumber=AcomDC_0907_2016-->
+> [AZURE.SELECTOR]
+- [.NET](web-sites-dotnet-get-started.md)
+- [PHP](app-service-web-php-get-started.md)
+- [Node.js](app-service-web-nodejs-get-started.md)
+- [Python](web-sites-python-ptvs-django-mysql.md)
+- [Java](web-sites-java-get-started.md)
+
+或者，進一步運用您的第一個 Web 應用程式。例如：
+
+- 嘗試[將程式碼部署至 Azure 的其他方法](../app-service-web/web-sites-deploy.md)。例如，若要從您的其中一個 GitHub 儲存機制中部署，只需在 [部署選項] 中改為選取 [GitHub] 而不是 [本機 Git 儲存機制] 即可。
+- 提升您的 Azure 應用程式水準。驗證您的使用者。根據需求加以調整。設定一些效能警示。全部只要點選幾下滑鼠即可完成。請參閱[在您的第一個 Web 應用程式中新增功能](app-service-web-get-started-2.md)。
+
+<!---HONumber=AcomDC_0914_2016-->
