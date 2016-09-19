@@ -39,7 +39,7 @@
 - 活動記錄檔應該要傳送至何處 (儲存體帳戶或事件中樞)
 - 應該要傳送何種事件分類 (例如 Write、Delete、Action)
 - 應該要匯出哪一個區域 (Locations)
-- 活動記錄檔應該在儲存體帳戶中保留多久 – 保留期零天表示要永遠保留記錄檔。如果有設定保留原則，但將儲存體帳戶的記錄檔儲存停用 (例如，如果只選取事件中樞或 OMS 選項)，保留原則不會有任何作用。
+- 活動記錄檔應該在儲存體帳戶中保留多久 – 保留期零天表示要永遠保留記錄檔。否則，此值可以是 1 到 2147483647 之間的任意天數。如果有設定保留原則，但將儲存體帳戶的記錄檔儲存停用 (例如，如果只選取事件中樞或 OMS 選項)，保留原則不會有任何作用。
 
 這些設定可透過入口網站中 [活動記錄檔] 刀鋒視窗中的 [匯出] 選項來設定，或[使用 REST API](https://msdn.microsoft.com/library/azure/dn931927.aspx)、PowerShell Cmdlet 或 CLI 以程式設計方式設定。一個訂用帳戶只能有一個記錄檔的設定檔。
 
@@ -52,7 +52,7 @@
 2. 按一下刀鋒視窗頂端的 [匯出] 按鈕。
 
     ![入口網站中的匯出按鈕](./media/monitoring-overview-activity-logs/activity-logs-portal-export.png)
-3. 在出現的刀鋒視窗中，您可以選擇您要匯出事件的區域、您想要儲存事件的儲存體帳戶 (以及您想要在儲存體中保留這些事件的天數)、您想要在哪一個服務匯流排命名空間中建立事件中樞以便進行這些事件的串流。
+3. 在出現的刀鋒視窗中，您可以選擇您要匯出事件的區域、您想要儲存事件的儲存體帳戶 (以及您想要在儲存體中保留這些事件的天數--0 天會永遠保留記錄檔)、您想要在哪一個服務匯流排命名空間中建立事件中樞以便進行這些事件的串流。
 
     ![匯出活動記錄檔刀鋒視窗](./media/monitoring-overview-activity-logs/activity-logs-portal-export-blade.png)
 4. 按一下 [儲存] 來儲存這些設定。您的訂用帳戶時會立即套用設定。
@@ -74,7 +74,7 @@ Add-AzureRmLogProfile -Name my_log_profile -StorageAccountId /subscriptions/s1/r
 | StorageAccountId | 否 | 資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
 | serviceBusRuleId | 否 | 服務匯流排規則識別碼，您想要在其中建立事件中樞的服務匯流排命名空間。將會是此格式的字串︰`{service bus resource ID}/authorizationrules/{key name}`。 |
 | 位置 | 是 | 以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。 |
-| RetentionInDays | 是 | 事件應保留的天數。值為 0 會無限期地儲存記錄檔。 |
+| RetentionInDays | 是 | 事件應保留的天數，1 到 2147483647 之間。值為 0 會無限期地 (永遠) 儲存記錄檔。 |
 | 類別 | 否 | 以逗號分隔的類別清單，其中列出應該收集的事件類別。可能的值有 Write、Delete、Action。 |
 
 #### 移除記錄檔設定檔
@@ -103,7 +103,7 @@ azure insights logprofile add --name my_log_profile --storageId /subscriptions/s
 | storageId | 否 | 資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
 | serviceBusRuleId | 否 | 服務匯流排規則識別碼，您想要在其中建立事件中樞的服務匯流排命名空間。將會是此格式的字串︰`{service bus resource ID}/authorizationrules/{key name}`。 |
 | 位置 | 是 | 以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。 |
-| retentionInDays | 是 | 事件應保留的天數。值為 0 會無限期地儲存記錄檔。 |
+| retentionInDays | 是 | 事件應保留的天數，1 到 2147483647 之間。值為 0 會無限期地 (永遠) 儲存記錄檔。 |
 | categories | 否 | 以逗號分隔的類別清單，其中列出應該收集的事件類別。可能的值有 Write、Delete、Action。 |
 
 #### 移除記錄檔設定檔
@@ -223,4 +223,4 @@ azure insights logprofile delete --name my_log_profile
 - [深入了解活動記錄檔 (之前的稽核記錄檔)](../resource-group-audit.md)
 - [將 Azure 活動記錄檔串流至事件中樞](./monitoring-stream-activity-logs-event-hubs.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0907_2016-->

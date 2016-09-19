@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/16/2016" 
+	ms.date="09/07/2016" 
 	ms.author="sdanie"/>
 
 # 如何調整 Azure Redis 快取
 
 >[AZURE.NOTE] Azure Redis 快取調整功能目前只能預覽。
 
-Azure Redis 快取都有不同的快取提供項目，以提供選擇快取大小和功能的彈性。如果應用程式需求在建立快取之後變更，您可以使用 [Azure 入口網站](https://portal.azure.com)中的 [變更定價層] 刀鋒視窗來調整快取大小。
+Azure Redis 快取都有不同的快取提供項目，以提供選擇快取大小和功能的彈性。如果應用程式需求在建立快取之後變更，您可以使用 [Azure 入口網站](https://portal.azure.com)中的 [變更定價層] 分頁來調整快取大小。
 
 ## 調整時機
 
@@ -145,7 +145,7 @@ Azure Redis 快取都有不同的快取提供項目，以提供選擇快取大�
 
 -	**基本**快取調整為新的大小時，會遺失所有資料，且無法在調整作業期間使用快取。
 -	**基本**快取調整為**標準**快取時，通常會保留快取中的資料。
--	當**標準**快取調整為較大的大小或層，或者**進階**快取調整為較大的大小時，通常會保留所有資料。當**標準**或**進階**快取向下調整為較小大小時，根據調整時快取中與新大小相關的資料量，資料可能會遺失。如果縮小時遺失資料，則會使用 [allkeys-lru](http://redis.io/topics/lru-cache) 收回原則來收回金鑰。 
+-	當**標準**快取調整為較大的大小或層，或者**進階**快取調整為較大的大小時，通常會保留所有資料。當**標準**或**進階**快取向下調整為較小大小時，根據調整時快取中與新大小相關的資料量，資料可能會遺失。如果縮小時遺失資料，則會使用 [allkeys-lru](http://redis.io/topics/lru-cache) 收回原則來收回金鑰。
 
 ### 我的自訂資料庫設定在調整期間會受到影響嗎？
 
@@ -199,4 +199,4 @@ Azure Redis 快取都有不同的快取提供項目，以提供選擇快取大�
 
 [redis-cache-scaling]: ./media/cache-how-to-scale/redis-cache-scaling.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0907_2016-->

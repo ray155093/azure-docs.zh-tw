@@ -39,7 +39,7 @@
 * [Xamarin iOS：啟用離線同步處理]
 * [Xamarin Android：啟用離線同步處理]
 * [Xamarin.Forms：啟用離線同步處理](app-service-mobile-xamarin-forms-get-started-offline-data.md)
-* [Windows 8.1：啟用離線同步處理]
+* [通用 Windows 平台︰啟用離線同步處理]
 
 ## 什麼是同步處理資料表？
 
@@ -51,7 +51,7 @@
 
 本機存放區是用戶端裝置上的資料持續層。Azure 行動應用程式用戶端 SDK 提供預設的本機存放區實作。在 Windows、Xamarin 和 Android 它是根據 SQLite，而在 iOS 則是根據 Core Data。
 
-若要在 Windows Phone 或 Windows 市集 8.1 上使用 SQLite 為基礎的實作，您需要安裝 SQLite 擴充。如需詳細資訊，請參閱 [Windows 8.1：啟用離線同步處理]。Android 與 iOS 裝置的作業系統本身即包含 SQLite 版本，因此您不需要再參考自己的 SQLite 版本。
+若要在 Windows Phone 或 Windows 市集 8.1 上使用 SQLite 為基礎的實作，您需要安裝 SQLite 擴充。如需詳細資訊，請參閱[通用 Windows 平台︰啟用離線同步處理]。Android 與 iOS 裝置的作業系統本身即包含 SQLite 版本，因此您不需要再參考自己的 SQLite 版本。
 
 開發人員也可以實作自己的本機存放區。例如，如果您希望將資料以加密格式儲存在行動用戶端上，則您可以定義使用 SQLCipher 進行加密的本機存放區。
 
@@ -95,7 +95,7 @@
 * [iOS：啟用離線同步處理]
 * [Xamarin iOS：啟用離線同步處理]
 * [Xamarin Android：啟用離線同步處理]
-* [Windows 8.1：啟用離線同步處理]
+* [通用 Windows 平台︰啟用離線同步處理]
 
 <!-- Links -->
 [.NET 用戶端 SDK]: app-service-mobile-dotnet-how-to-use-client-library.md
@@ -103,6 +103,6 @@
 [iOS：啟用離線同步處理]: app-service-mobile-ios-get-started-offline-data.md
 [Xamarin iOS：啟用離線同步處理]: app-service-mobile-xamarin-ios-get-started-offline-data.md
 [Xamarin Android：啟用離線同步處理]: app-service-mobile-xamarin-ios-get-started-offline-data.md
-[Windows 8.1：啟用離線同步處理]: app-service-mobile-windows-store-dotnet-get-started-offline-data.md
+[通用 Windows 平台︰啟用離線同步處理]: app-service-mobile-windows-store-dotnet-get-started-offline-data.md
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0907_2016-->

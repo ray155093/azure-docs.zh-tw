@@ -21,7 +21,7 @@
 
 ## 安裝 Azure PowerShell
  
-如需如何安裝最新版 Azure PowerShell 的資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)，並選取您要使用的訂用帳戶，然後登入您的 Azure 帳戶。
+如需如何安裝最新版 Azure PowerShell、選取要使用的訂用帳戶，以及登入 Azure 帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
 ## 設定變數
 
@@ -168,7 +168,7 @@
     ---------  -------------------  ----------  ------------
                               True          OK  OK
 
-## 更新虛擬機器
+## 調整虛擬機器大小
 
 此範例示範如何更新虛擬機器的大小。
         
@@ -222,4 +222,4 @@
 
 如果部署發生問題，請查看[使用 Azure 入口網站針對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0907_2016-->

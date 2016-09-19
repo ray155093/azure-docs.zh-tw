@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="08/15/2016"
+   ms.date="09/04/2016"
    ms.author="rickbyh;barbkess;sonyama"/>
 
 # 適用於 Azure SQL 資料倉儲的驗證
@@ -37,15 +37,12 @@
 - 密碼
 - 預設資料庫 (選擇性)
 
-根據預設，您的連線會連線至主要資料庫，而非您的使用者資料庫。若要連線到您的使用者資料庫，您可以選擇執行下列兩個動作之一：
+根據預設，您的連線會連線至「主要」資料庫，而非您的使用者資料庫。若要連線到您的使用者資料庫，您可以選擇執行下列兩個動作之一：
 
-- 使用伺服器註冊 SSDT、SSMS 或應用程式連接字串中的 SQL Server 物件總管時，請指定預設資料庫。例如，藉由包含 ODBC 連線的 InitialCatalog 參數。
-- 在 SSDT 中建立工作階段之前先反白顯示使用者資料庫。
+- 使用伺服器註冊 SSDT、SSMS 或應用程式連接字串中的 SQL Server 物件總管時，請指定預設資料庫。例如，包含 ODBC 連線的 InitialCatalog 參數。
+- 在 SSDT 中建立工作階段之前，先反白顯示使用者資料庫。
 
-> [AZURE.NOTE] 如需使用 SSDT 連線到 SQL 資料倉儲的指引，請參閱[使用 Visual Studio 查詢][]文章。
-
-也請務必注意，變更連線的資料庫時，Transact-SQL 陳述式 **USE <您的資料庫>** 不受支援
-
+> [AZURE.NOTE] 變更連線的資料庫時，Transact-SQL 陳述式 **USE MyDatabase;** 不受支援。如需使用 SSDT 連線到 SQL 資料倉儲的指引，請參閱[使用 Visual Studio 查詢][]文章。
 
 ## Azure Active Directory (AAD) 驗證
 
@@ -53,21 +50,22 @@
 
 ### 優點
 
-包括以下優點：
+Azure Active Directory 的優點包括：
 
-- 它提供 SQL Server 驗證的替代方案。
+- 提供 SQL Server 驗證的替代方案。
 - 協助停止跨資料庫伺服器使用過多的使用者身分識別。
 - 允許在單一位置的密碼替換
-- 客戶可以管理使用外部 (AAD) 群組的資料庫權限。
-- 它可以藉由啟用整合式 Windows 驗證和 Azure Active Directory 支援的其他形式驗證來避免儲存密碼。
-- Azure Active Directory 驗證會使用自主資料庫使用者，在資料庫層級驗證身分。
-- Azure Active Directory 針對連線到 SQL 資料倉儲的應用程式支援權杖型驗證。
-- 設定 Azure Active Directory 驗證時，SQL Server Management Studio 會透過 Active Directory 通用驗證支援 Multi-Factor Authentication。如需 Multi-Factor Authentication 的說明，請參閱[適用於 Azure AD MFA 與 SQL Database 和 SQL 資料倉儲的 SSMS 支援](../sql-database/sql-database-ssms-mfa-authentication.md)。
+- 使用外部 (AAD) 群組管理資料庫權限。
+- 藉由啟用整合式 Windows 驗證和 Azure Active Directory 支援的其他形式驗證來避免儲存密碼。
+- 使用自主資料庫使用者，在資料庫層級驗證身分。
+- 針對連線到 SQL 資料倉儲的應用程式支援權杖型驗證。
+- 透過 SQL Server Management Studio 的 Active Directory 通用驗證支援 Multi-Factor Authentication。如需 Multi-Factor Authentication 的說明，請參閱[適用於 Azure AD MFA 與 SQL Database 和 SQL 資料倉儲的 SSMS 支援](../sql-database/sql-database-ssms-mfa-authentication.md)。
 
+> [AZURE.NOTE] Azure Active Directory 相對來說仍較新，且具有一些限制。若要確定 Azure Active Directory 適合您的環境，請參閱 [Azure AD 功能和限制][]，特別是＜其他考量＞。
 
 ### 組態步驟
 
-設定步驟包括以下設定和使用 Azure Active Directory 驗證的程序。
+請遵循下列步驟來設定 Azure Active Directory 驗證。
 
 1. 建立和填入 Azure Active Directory
 2. 選用：和目前與您的 Azure 訂用帳戶相關聯的 active directory 產生關聯並加以變更
@@ -90,5 +88,6 @@ Azure Active Directory 使用者目前不會顯示在 SSDT 物件總管中。解
 [保護 SQL 資料倉儲中的資料庫]: ./sql-data-warehouse-overview-manage-security.md
 [使用 Visual Studio 查詢]: ./sql-data-warehouse-query-visual-studio.md
 [What is Azure Active Directory]: ../active-directory/active-directory-whatis.md
+[Azure AD 功能和限制]: ../sql-database/sql-database-aad-authentication.md#azure-ad-features-and-limitations
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0907_2016-->

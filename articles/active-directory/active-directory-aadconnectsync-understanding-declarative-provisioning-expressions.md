@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/29/2016"
+	ms.date="08/31/2016"
 	ms.author="markusvi;andkjell"/>
 
 
@@ -77,11 +77,19 @@ Active Directory 連接器對於輸入同步處理規則提供下列參數：
 
 例如，`Trim([proxyAddresses])` 在 proxyAddress 屬性中執行每個值的 Trim。`Word([proxyAddresses],1,"@") & "@contoso.com"` 對於含有 @ 符號的每個值，以 @contoso.com 取代網域。`IIF(InStr([proxyAddresses],"SIP:")=1,NULL,[proxyAddresses])` 尋找 SIP 位址並從各值中移除。
 
-## 其他資源
+## 後續步驟
 
-- [Azure AD Connect 同步處理：了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)
-- [Azure AD Connect 同步處理：函式參考](active-directory-aadconnectsync-functions-reference.md)
-- [Azure AD Connect 同步處理：自訂同步處理選項](active-directory-aadconnectsync-whatis.md)
+- 如需組態模型的詳細資訊，請參閱[了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)。
+- 如需了解如何立即使用宣告式佈建，請參閱[了解預設組態](active-directory-aadconnectsync-understanding-default-configuration.md)。
+- 如需了解如何使用宣告式佈建進行實際變更，請參閱[如何變更預設組態](active-directory-aadconnectsync-change-the-configuration.md)。
+
+**概觀主題**
+
+- [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
 - [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+**參考主題**
+
+- [Azure AD Connect 同步處理：函式參考](active-directory-aadconnectsync-functions-reference.md)
+
+<!---HONumber=AcomDC_0907_2016-->

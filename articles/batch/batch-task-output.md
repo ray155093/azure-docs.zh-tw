@@ -13,22 +13,22 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows"
 	ms.workload="big-compute"
-	ms.date="08/06/2016"
+	ms.date="09/07/2016"
 	ms.author="marsma" />
 
 # 保存 Azure Batch 作業和工作輸出
 
 您在 Batch 中執行的工作通常會產生必須儲存的輸出，並在後續由作業中的其他工作、執行該作業的用戶端應用程式 (或兩者) 擷取。此輸出可能是透過處理與工作執行相關的輸入資料或記錄檔，而建立的檔案。本文將介紹一個 .NET 類別庫，它使用以慣例為基礎的技術將工作輸出保存在 Azure Blob 儲存體，即使您刪除集區、作業和計算節點之後，仍然可以存取這些輸出。
 
-藉由使用本文中的技術，您將能夠在 [Azure 入口網站][portal]內的 [已儲存的輸出檔案] 和 [已儲存的記錄檔] 中檢視您的工作輸出。
+藉由使用本文中的技術，您也可以在 [Azure 入口網站][portal]內的 [已儲存的輸出檔案] 和 [已儲存的記錄檔] 中檢視您的工作輸出。
 
 ![入口網站中的 [已儲存的輸出檔案] 和 [已儲存的記錄檔] 選取器][1]
 
->[AZURE.NOTE] 這裡所討論的檔案儲存體和擷取方法所提供的功能，類似「批次應用程式」(現已過時) 管理其工作輸出的方式。
+>[AZURE.NOTE] 本文所討論的 [Azure Batch 檔案慣例][nuget_package] .NET 類別庫目前僅供預覽。在公開上市之前，此處所述的某些功能可能會變更。
 
 ## 工作輸出的考量
 
-設計 Batch 解決方案的時候，您必須考慮作業和工作輸出相關的幾項因素。
+設計 Batch 方案的時候，您必須考慮與作業和工作輸出相關的幾項因素。
 
 * **計算節點存留期**：計算節點通常是過渡性的，尤其是在啟用自動調整的集區中。只有當節點存在時，才能取得在該節點上執行的工作輸出，且僅能在您針對該工作所設定的保留期內才能取得。為了確保工作輸出的保存，您的工作必須將其輸出檔案上傳到永久性存放區 (如 Azure 儲存體)。
 
@@ -109,11 +109,11 @@ await taskOutputStorage.SaveAsync(TaskOutputKind.TaskOutput, "frame_full_res.jpg
 await taskOutputStorage.SaveAsync(TaskOutputKind.TaskPreview, "frame_low_res.jpg");
 ```
 
-"output kind" (輸出類型) 參數會用來分類保存的檔案。一共有四種預先定義的 [TaskOutputKind][net_taskoutputkind] 類型："TaskOutput"、"TaskPreview"、"TaskLog" 和 "TaskIntermediate"。您也可以自行定義對您的工作流程有幫助的自訂類型。
+"output kind" (輸出類型) 參數會用來分類保存的檔案。一共有四種預先定義的 [TaskOutputKind][net_taskoutputkind] 類型："TaskOutput"、"TaskPreview"、"TaskLog" 和 "TaskIntermediate"。 您也可以自行定義對您的工作流程有幫助的自訂類型。
 
 這些輸出類型可供您在稍後針對特定工作的保存輸出查詢 Batch 時，指定要列出的輸出類型。換句話說，當您列出某個工作的輸出時，可以根據其中一個輸出類型來篩選清單。例如，「給我工作 *109* 的 *preview* 輸出」。 本文稍後的[擷取輸出](#retrieve-output)會提供列出和擷取輸出的詳細資訊。
 
->[AZURE.TIP] 輸出類型也會指定特定檔案出現在 Azure 入口網站的位置：*TaskOutput* 類的檔案會出現在 [工作輸出檔案] 中，而 *TaskLog* 檔案會出現在 [工作記錄] 中。
+>[AZURE.TIP] 輸出類型也會指定特定檔案出現在 Azure 入口網站的位置：「TaskOutput」類的檔案會出現在 [工作輸出檔案] 中，而「TaskLog」檔案會出現在 [工作記錄] 中。
 
 ### 儲存工作輸出
 
@@ -129,7 +129,7 @@ await jobOutputStorage.SaveAsync(JobOutputKind.JobOutput, "mymovie.mp4");
 await jobOutputStorage.SaveAsync(JobOutputKind.JobPreview, "mymovie_preview.mp4");
 ```
 
-如同工作輸出的 TaskOutputKind，您會使用 [JobOutputKind][net_joboutputkind] 參數來分類作業的保存檔案。這可讓您在稍後查詢 (列出) 特定的輸出類型。JobOutputKind 包含了輸出和預覽類型，且支援建立自訂類型。
+如同工作輸出的 TaskOutputKind，您會使用 [JobOutputKind][net_joboutputkind] 參數來分類作業的保存檔案。此參數可讓您在稍後查詢 (列出) 特定的輸出類型。JobOutputKind 包含了輸出和預覽類型，且支援建立自訂類型。
 
 ### 儲存工作記錄檔
 
@@ -138,29 +138,39 @@ await jobOutputStorage.SaveAsync(JobOutputKind.JobPreview, "mymovie_preview.mp4"
 在下列程式碼片段中，我們使用 [SaveTrackedAsync][net_savetrackedasync]，於工作執行期間每 15 秒更新一次 Azure 儲存體中的 `stdout.txt`：
 
 ```csharp
+TimeSpan stdoutFlushDelay = TimeSpan.FromSeconds(3);
 string logFilePath = Path.Combine(
 	Environment.GetEnvironmentVariable("AZ_BATCH_TASK_DIR"), "stdout.txt");
 
+// The primary task logic is wrapped in a using statement that sends updates to
+// the stdout.txt blob in Storage every 15 seconds while the task code runs.
 using (ITrackedSaveOperation stdout =
-		taskStorage.SaveTrackedAsync(
+		await taskStorage.SaveTrackedAsync(
 		TaskOutputKind.TaskLog,
 		logFilePath,
 		"stdout.txt",
 		TimeSpan.FromSeconds(15)))
 {
 	/* Code to process data and produce output file(s) */
+
+	// We are tracking the disk file to save our standard output, but the
+	// node agent may take up to 3 seconds to flush the stdout stream to
+	// disk. So give the file a moment to catch up.
+ 	await Task.Delay(stdoutFlushDelay);
 }
 ```
 
-`Code to process data and produce output file(s)` 為您的工作正常會執行的程式碼預留位置。例如，您可能有程式碼會從 Azure 儲存體下載資料，並對這些資料執行某些轉換或計算。此程式碼片段的重點，在於示範如何將這樣的程式碼用 `using` 區塊包裝，以透過 [SaveTrackedAsync][net_savetrackedasync] 定期更新檔案。
+`Code to process data and produce output file(s)` 為您的工作正常會執行的程式碼預留位置。例如，您可能有程式碼會從 Azure 儲存體下載資料，並對這些資料執行轉換或計算。此程式碼片段的重點，在於示範如何將這樣的程式碼用 `using` 區塊包裝，以透過 [SaveTrackedAsync][net_savetrackedasync] 定期更新檔案。
 
->[AZURE.NOTE] 當您使用 SaveTrackedAsync 啟用檔案追蹤時，只有對已追蹤檔案「附加」的資料會保存到 Azure 儲存體。您只應將此方法用於追蹤非輪替記錄檔，或其他所附加的檔案 (也就是說，資料只有在更新時才會附加到檔案結尾)。
+`Task.Delay` 必須位於此 `using` 區塊的結尾，以確保節點代理程式有時間將標準輸出的內容排清至節點上的 stdout.txt 檔案 (節點代理程式是在集區中的每個節點上執行，並在節點和 Batch 服務之間提供命令和控制介面的程式)。若沒有此延遲，就可能會遺漏輸出的最後幾秒。此延遲可能並非所有檔案都需要。
+
+>[AZURE.NOTE] 當您使用 SaveTrackedAsync 啟用檔案追蹤時，只有對已追蹤檔案「附加」的資料會保存到 Azure 儲存體。請只將此方法用於追蹤非輪替記錄檔，或其他所附加的檔案 (也就是說，資料只有在更新時才會附加到檔案結尾)。
 
 ## 擷取輸出
 
 當您使用 Azure Batch 檔案慣例庫擷取保存的輸出時，您是以工作和作業為主的方式進行。您可以要求指定工作或作業的輸出，而不需要知道它在 Blob 儲存體中的位置，甚至連檔案名稱也不需要。您可以直接說：「給我工作 *109* 的輸出檔案」。
 
-以下程式碼片段會逐一查看作業的所有工作，並顯示該工作輸出檔案的相關資訊，然後從儲存體下載該工作的檔案。
+下列程式碼片段會逐一查看作業的所有工作，並顯示該工作輸出檔案的相關資訊，然後從儲存體下載該工作的檔案。
 
 ```csharp
 foreach (CloudTask task in myJob.ListTasks())
@@ -201,9 +211,9 @@ Azure 入口網站會顯示使用 [Azure Batch 檔案慣例讀我檔案][github_
 
 1. 在 **Visual Studio 2015** 中開啟專案。
 2. 將您 Batch 和儲存體的「帳戶認證」新增到 Microsoft.Azure.Batch.Samples.Common 專案中的 **AccountSettings.settings**。
-3. [建置]\(但不要執行) 該解決方案。如果出現提示，請還原任何 NuGet 封裝。
+3. [建置] \(但不要執行) 該解決方案。如果出現提示，請還原任何 NuGet 封裝。
 4. 使用 Azure 入口網站來為 **PersistOutputsTask** 上傳[應用程式封裝](batch-application-packages.md)。將 `PersistOutputsTask.exe` 及其相依性組件包含在 .zip 封裝中，將應用程式識別碼和應用程式封裝版本分別設為 "PersistOutputsTask" 和 "1.0"。
-5. [啟動]\(執行) **PersistOutputs** 專案。
+5. [啟動] \(執行) **PersistOutputs** 專案。
 
 ## 後續步驟
 
@@ -213,7 +223,7 @@ Batch 的[應用程式封裝](batch-application-packages.md)功能提供了簡�
 
 ### 安裝應用程式和預備資料
 
-請查看 Azure Batch 論壇中的 [ Installing applications and staging data on Batch compute nodes (在 Batch 計算節點安裝應用程式和預備資料)][forum_post] 文章，以取得準備節點以執行工作的各種方法概觀。這篇文章是由 Azure Batch 小組的其中一名成員所撰寫，非常適合做為入門指南，以讓您了解將檔案 (包括應用程式和工作的輸入資料) 放到計算節點的不同方法，以及每個方法所應納入的一些特殊考量。
+請查看 Azure Batch 論壇中的 [ Installing applications and staging data on Batch compute nodes (在 Batch 計算節點安裝應用程式和預備資料)][forum_post] 文章，以取得準備節點以執行工作的各種方法概觀。這篇文章是由 Azure Batch 小組的其中一名成員所撰寫，非常適合做為入門指南，以讓您了解將檔案 (包括應用程式和工作的輸入資料) 放到計算節點的不同方法，以及每個方法的一些特殊考量。
 
 [forum_post]: https://social.msdn.microsoft.com/Forums/zh-TW/87b19671-1bdf-427a-972c-2af7e5ba82d9/installing-applications-and-staging-data-on-batch-compute-nodes?forum=azurebatch
 [github_file_conventions]: https://github.com/Azure/azure-sdk-for-net/tree/AutoRest/src/Batch/FileConventions
@@ -242,4 +252,4 @@ Batch 的[應用程式封裝](batch-application-packages.md)功能提供了簡�
 [1]: ./media/batch-task-output/task-output-01.png "入口網站中的 [已儲存的輸出檔案] 和 [已儲存的記錄檔] 選取器"
 [2]: ./media/batch-task-output/task-output-02.png "Azure 入口網站中的 [工作輸出] 刀鋒視窗"
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0907_2016-->

@@ -224,7 +224,7 @@ Azure 通知中樞需要在開發人員應用程式的內容中自行驗證，�
 [10]: ./media/notification-hubs-diagnosing/VSTestNotification.png
  
 <!-- LINKS -->
-[通知中樞概觀]: notification-hubs-overview.md
+[通知中樞概觀]: notification-hubs-push-notification-overview.md
 [使用者入門教學課程]: notification-hubs-windows-store-dotnet-get-started.md
 [範本指引]: https://msdn.microsoft.com/library/dn530748.aspx
 [APNS 指引]: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW4
@@ -241,4 +241,4 @@ Azure 通知中樞需要在開發人員應用程式的內容中自行驗證，�
 
  
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0907_2016-->

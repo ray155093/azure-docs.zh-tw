@@ -61,7 +61,7 @@ Linux 資料科學虛擬機器可以大幅減輕這樣的負擔。使用它可�
 建立 Linux 資料科學虛擬機器執行個體的步驟如下：
 
 1.	瀏覽至 [Azure 入口網站](https://portal.azure.com/#create/microsoft-ads.linux-data-science-vmlinuxdsvm)上的虛擬機器清單。
-2.	 按一下 [建立] \(在底部) 以進入精靈。![configure-data-science-vm](./media/machine-learning-data-science-linux-dsvm-intro/configure-linux-data-science-virtual-machine.png)
+2.	 按一下 [建立] (在底部) 以進入精靈。![configure-data-science-vm](./media/machine-learning-data-science-linux-dsvm-intro/configure-linux-data-science-virtual-machine.png)
 3.	 下列各節提供精靈中每個步驟 (列舉於上圖的右邊) 的輸入，可用來建立 Microsoft 資料科學虛擬機器。以下是設定每個步驟所需的輸入：
 
   a.**基本**：
@@ -247,7 +247,7 @@ VM 隨附一些已預先編譯且預先安裝在本機上的機器學習工具�
 * **CNTK** (來自 Microsoft Research 的運算網路工具組)：深層學習工具組。
 * **Vowpal Wabbit**：快速線上學習演算法。
 * **xgboost**：提供最佳化推進式決策樹演算法的工具。
-* **Python**：Anaconda Python 會與含有像是 Scikit-learn 的程式庫的機器學習演算法進行配套。您可以執行 pip install 來安裝其他程式庫。
+* **Python**：Anaconda Python 會與含有像是 Scikit-learn 的程式庫的機器學習演算法進行配套。您可以使用 `pip install`程式庫。
 * **R**：有豐富的機器學習函式程式庫可供 R 使用。lm、glm、randomForest、rpart 是一些預先安裝的程式庫。您可以執行下列命令來安裝其他程式庫：
 
 		install.packages(<lib name>)
@@ -344,4 +344,4 @@ Rattle (**R** **A**nalytical **T**ool **T**o **L**earn **E**asily) 會使用 GUI
 * 了解如何使用 [Team Data Science Process](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)，以系統化方式建置端對端分析方案。
 * 請造訪 [Cortana Analytics Gallery](http://gallery.cortanaanalytics.com)，以取得使用 Cortana Analytics Suite 的機器學習和資料分析範例。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

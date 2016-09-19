@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/16/2016" 
+	ms.date="09/06/2016" 
 	ms.author="spelluru"/>
 
 
@@ -22,20 +22,33 @@
 - [使用 Azure 入口網站/Azure PowerShell](data-factory-monitor-manage-pipelines.md)
 - [使用監視及管理應用程式](data-factory-monitor-manage-app.md)
 
-Data Factory 服務提供一個可靠且完整的儲存、處理和資料移動服務檢視。它可協助您快速評估端對端資料管線健康情況、指出問題所在，並視需要採取修正動作。您也可以透過視覺化方式追蹤跨任何來源的資料之間的資料歷程和關聯，並從單一監視儀表板查看工作執行、系統健全狀況和相依性的完整歷程記錄處理。
+Data Factory 服務提供一個可靠且完整的儲存、處理和資料移動服務檢視。此服務可提供您監視儀表板說明供您執行下列作業︰
+
+- 快速評估端對端資料管線健全狀態。
+- 指出問題所在，並視需要採取修正動作。
+- 追蹤資料歷程。
+- 在您的任何來源間追蹤資料之間的關聯性。
+- 檢視作業執行、系統健全狀態和相依性的完整歷程記錄。
 
 本文描述如何監視、管理和偵錯您的管線。同時也會提供如何建立警示和取得失敗通知的詳細資訊。
 
 ## 了解管線和活動狀態
-您可使用 Azure 入口網站，以圖表檢視您的 Data Factory、檢視管線中的活動、檢視輸入與輸出資料集等。本節也提供配量從某個狀態轉換至另一個狀態的方法。
+您可以使用 Azure 入口網站執行下列操作：
+
+- 以圖表形式檢視 Data Factory
+- 檢視管線中的活動
+- 檢視輸入和輸出資料集
+- 不勝枚舉。
+
+本節也提供配量從某個狀態轉換至另一個狀態的方法。
 
 ### 瀏覽至您的 Data Factory
-1.	登入 [[Azure 入口網站](https://portal.azure.com)]。
+1.	登入 [Azure 入口網站](https://portal.azure.com)。
 2.	按一下 [全部瀏覽]，選取 [資料處理站]。
 	
 	![全部瀏覽 -> 資料處理站](./media/data-factory-monitor-manage-pipelines/browseall-data-factories.png)
 
-	您應該會在 [Data Factory] 刀鋒視窗中看到所有 Data Factory。 
+	您應該會在 [Data Factory] 刀鋒視窗中看到所有 Data Factory。
 4. 在 Data Factory 刀鋒視窗中，選取您感興趣的 Data Factory，接著您應該會看到該 Data Factory 的首頁 (**Data Factory** 刀鋒視窗)。
 
 	![Data Factory 刀鋒視窗](./media/data-factory-monitor-manage-pipelines/data-factory-blade.png)
@@ -43,20 +56,20 @@ Data Factory 服務提供一個可靠且完整的儲存、處理和資料移動�
 #### Data Factory 的圖表檢視
 Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data Factory 及其資產。
 
-按一下上述之 Data Factory 首頁上的 [**圖表**]，就能看到 Data Factory 的圖表檢視。
+若要查看 Data Factory 的圖表檢視，請按一下 Data Factory 首頁上的 [圖表]。
 
 ![圖表檢視](./media/data-factory-monitor-manage-pipelines/diagram-view.png)
 
-您可以將圖表配置放大、縮小、縮放至適當比例、放大到 100% 和鎖定，以及自動定位管線和資料表，並顯示歷程 (顯示所選取項目的上游和下游項目)。
+您可以將圖表配置放大、縮小、縮放至適當比例、放大到 100% 和鎖定，以及自動定位管線和資料表。您也可以查看資料歷程資訊 (顯示所選取項目的上游和下游項目)。
  
 
 ### 管線中的活動 
-1. 在管線上按一下滑鼠右鍵，然後按一下 [**開啟管線**]，就能查看所有管線中的活動，以及活動的輸入和輸出資料集。當您的管線有超過 1 個以上的活動且您想了解單一管線的作業歷程時，這個功能會非常有用。
+1. 在管線上按一下滑鼠右鍵，然後按一下 [開啟管線]，就能查看所有管線中的活動，以及活動的輸入和輸出資料集。當您的管線有超過一個的活動且您想了解單一管線的作業歷程時，這個功能會非常有用。
 
-	![開啟管線功能表](./media/data-factory-monitor-manage-pipelines/open-pipeline-menu.png)	 
-2. 在下列範例中，您會看到管線中的兩個活動及其輸入和輸出。本管線範例內的兩個活動名為 **JoinData** HDInsight Hive 活動類型和 **EgressDataAzure** 複製活動類型。 
+	![開啟管線功能表](./media/data-factory-monitor-manage-pipelines/open-pipeline-menu.png)
+2. 在下列範例中，您會看到管線中的兩個活動及其輸入和輸出。本管線範例內的兩個活動名為 **JoinData** HDInsight Hive 活動類型和 **EgressDataAzure** 複製活動類型。
 	
-	![管線中的活動](./media/data-factory-monitor-manage-pipelines/activities-inside-pipeline.png) 
+	![管線中的活動](./media/data-factory-monitor-manage-pipelines/activities-inside-pipeline.png)
 3. 您可以按一下左上角階層連結中的 Data Factory 連結，瀏覽回 Data Factory 首頁。
 
 	![瀏覽回到 Data Factory](./media/data-factory-monitor-manage-pipelines/navigate-back-to-data-factory.png)
@@ -68,13 +81,13 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 
 ![管線的狀態](./media/data-factory-monitor-manage-pipelines/state-of-pipeline.png)
 
-按兩次圖表檢視中的 **PartitionedProductsUsageTable**，會展示管線中各種不同的活動執行時所產生的所有配量。您可以看到 **BlobPartitionHiveActivity** 過去 8 個月來每個月都執行成功，所產生的配量都處於**就緒**狀態。
+按兩次圖表檢視中的 **PartitionedProductsUsageTable**，會展示管線中各種不同的活動執行時所產生的所有配量。您可以看到 **BlobPartitionHiveActivity** 過去八個月來每個月都執行成功，所產生的配量都處於**就緒**狀態。
 
 Data Factory 中的資料集配量可以有下列狀態之一：
 
 <table>
 <tr>
-	<th align="left">狀況</th><th align="left">子狀態</th><th align="left">說明</th>
+	<th align="left">State</th><th align="left">子狀態</th><th align="left">說明</th>
 </tr>
 <tr>
 	<td rowspan="8">等候</td><td>ScheduleTime</td><td>尚未到達執行配量的時間。</td>
@@ -92,7 +105,7 @@ Data Factory 中的資料集配量可以有下列狀態之一：
 <td>ActivityResume</td><td>活動已暫停，要繼續之後才能執行配量。</td>
 </tr>
 <tr>
-<td>Retry</td><td>將重試活動執行。</td>
+<td>Retry</td><td>會重試活動執行。</td>
 </tr>
 <tr>
 <td>驗證</td><td>驗證尚未啟動。</td>
@@ -119,7 +132,7 @@ Data Factory 中的資料集配量可以有下列狀態之一：
 <tr>
 <td></td><td>無法產生和/或驗證配量。</td>
 </tr>
-<td>Ready</td><td></td><td>配量已就緒，可供取用。</td>
+<td>就緒</td><td></td><td>配量已就緒，可供取用。</td>
 </tr>
 <tr>
 <td>Skipped</td><td></td><td>未處理配量。</td>
@@ -135,15 +148,15 @@ Data Factory 中的資料集配量可以有下列狀態之一：
 
 ![配量的詳細資料](./media/data-factory-monitor-manage-pipelines/slice-details.png)
  
-若已多次執行配量，則您會在 [**活動執行**] 清單中看到多個資料列。
+若已多次執行配量，則您會在 [活動執行] 清單中看到多個資料列。
 
 ![配量的活動執行](./media/data-factory-monitor-manage-pipelines/activity-runs-for-a-slice.png)
 
-您可按一下 [**活動執行**] 清單中的執行項目，檢視有關活動執行的詳細資訊。這會展示所有記錄檔，且如果有錯誤訊息的話，也會一併展示。這個方法非常實用，您可以檢視和偵錯記錄檔而不必離開您的 Data Factory。
+您可按一下 [**活動執行**] 清單中的執行項目，檢視有關活動執行的詳細資訊。此清單會顯示所有記錄檔，且如果有錯誤訊息的話，也會一併展示。這個功能非常實用，您可以檢視和偵錯記錄檔而不必離開您的 Data Factory。
 
 ![活動執行詳細資料](./media/data-factory-monitor-manage-pipelines/activity-run-details.png)
 
-若配量不是處於 [**就緒**] 狀態，您可以在 [**未就緒的上游配量**] 清單中看到未就緒且阻礙目前配量執行的上游配量。當您的配量處於 [**等候**] 狀態且您想要了解配量等候的上游相依項目時，此做法相當有用。
+若配量不是處於 [**就緒**] 狀態，您可以在 [**未就緒的上游配量**] 清單中看到未就緒且阻礙目前配量執行的上游配量。當您的配量處於 [等候] 狀態且您想要了解配量等候的上游相依項目時，此功能相當有用。
 
 ![尚未就緒的上游配量](./media/data-factory-monitor-manage-pipelines/upstream-slices-not-ready.png)
 
@@ -154,22 +167,22 @@ Data Factory 中的資料集配量可以有下列狀態之一：
 
 Data Factory 內的資料集狀態轉換流程有下列階段：等候中 -> 進行中/進行中 (驗證中) -> 就緒/失敗
 
-處於 [**等候**] 狀態的配量在執行前，會先開始進行符合前置條件的動作。接著活動開始執行，配量進入 [**進行中**] 狀態。活動執行可能成功或失敗，配量會根據成功與否進入 [**就緒**] 或 [**失敗**] 狀態。
+處於 [**等候**] 狀態的配量在執行前，會先開始進行符合前置條件的動作。接著活動開始執行，配量進入 [進行中] 狀態。活動執行可能成功或失敗。根據執行的結果，配量會標示為 [就緒] 或 [失敗]。
 
-使用者可重設配量，以從 [**就緒**] 或 [**失敗**] 狀態返回 [**等候**] 狀態。使用者也可以將配量狀態標記為 [**略過**]，這會防止活動執行且不會處理該配量。
+您可以重設配量，以從 [就緒] 或 [失敗] 狀態返回 [等候] 狀態。您也可以將配量狀態標記為 [略過]，這會防止活動執行且不會處理該配量。
 
 
 ## 管理管線
 您可以使用 Azure Powershell 管理您的管線。例如，您可以執行 Azure PowerShell Cmdlet 來暫停和繼續執行管線。
 
 ### 暫停及繼續管線
-您可以使用 **Suspend-AzureRmDataFactoryPipeline** Powershell Cmdlet 來暫停/暫止管線。如果您已經了解資料的問題所在，且在問題解決前不想再執行管線來處理資料，此做法相當有用。
+您可以使用 **Suspend-AzureRmDataFactoryPipeline** Powershell Cmdlet 來暫停/暫止管線。若您在問題獲得解決之前不想執行管線，此 Cmdlet 非常有用。
 
-例如：在以下螢幕擷取畫面中，**productrecgamalbox1dev** Data Factory 內的 **PartitionProductsUsagePipeline** 發現問題，因此我們想暫止管線。
+例如：在下列螢幕擷取畫面中，**productrecgamalbox1dev** Data Factory 內的 **PartitionProductsUsagePipeline** 發現問題，因此我們想暫止管線。
 
 ![暫止的管線](./media/data-factory-monitor-manage-pipelines/pipeline-to-be-suspended.png)
 
-執行下列 PowerShell 命令來暫止 **PartitionProductsUsagePipeline**。
+若要暫停管線，請執行下列 PowerShell 命令。
 
 	Suspend-AzureRmDataFactoryPipeline [-ResourceGroupName] <String> [-DataFactoryName] <String> [-Name] <String>
 
@@ -194,13 +207,13 @@ Azure Data Factory 透過 Azure 入口網站和 Azure PowerShell 提供許多功
 
 #### 使用 Azure 入口網站偵錯錯誤：
 
-1.	在資料處理站首頁的**資料集**磚上按一下 [**發生錯誤**]。
+1.	在 Data Factory 首頁，按一下 [**資料集**] 磚上的 [**發生錯誤**]。
 	
 	![發生錯誤的資料集磚](./media/data-factory-monitor-manage-pipelines/datasets-tile-with-errors.png)
 2.	在 [**出現錯誤的資料集**] 刀鋒視窗中，按一下您感興趣的資料表。
 
 	![[發生錯誤的資料集] 刀鋒視窗](./media/data-factory-monitor-manage-pipelines/datasets-with-errors-blade.png)
-3.	在 [**資料表**] 刀鋒視窗中，按一下 [**狀態**] 設為 [**失敗**] 的問題配量。
+3.	在 [資料表] 刀鋒視窗中，按一下 [狀態] 設為 [失敗] 的問題配量。
 
 	![含有問題配量的資料表刀鋒視窗](./media/data-factory-monitor-manage-pipelines/table-blade-with-error.png)
 4.	在 [**資料配量**] 刀鋒視窗中，按一下失敗的活動執行。
@@ -258,7 +271,7 @@ Azure Data Factory 透過 Azure 入口網站和 Azure PowerShell 提供許多功
 		Type                	:
 	
 	
-6. 	您可以使用在上述輸出中看見的 ID 值，執行 **Save-AzureRmDataFactoryLog** Cmdlet，並在 Cmdlet 中使用 **-DownloadLogsoption** 來下載記錄檔。
+6. 	您可以使用在輸出中看見的 ID 值執行 **Save-AzureRmDataFactoryLog** Cmdlet，並在 Cmdlet 中使用 **-DownloadLogsoption** 來下載記錄檔。
 
 	Save-AzureRmDataFactoryLog -ResourceGroupName "ADF" -DataFactoryName "LogProcessingFactory" -Id "841b77c9-d56c-48d1-99a3-8c16c3e77d39" -DownloadLogs -Output "C:\\Test"
 
@@ -267,7 +280,7 @@ Azure Data Factory 透過 Azure 入口網站和 Azure PowerShell 提供許多功
 
 ### 使用 Azure 入口網站
 
-一旦您疑難排解和偵錯管線中的失敗，您可以瀏覽到錯誤配量並按一下命令列上的 [**執行**] 按鈕，重新執行失敗。
+一旦您對管線中的失敗進行疑難排解和偵錯，您可以瀏覽到錯誤配量並按一下命令列上的 [執行] 按鈕，重新執行失敗。
 
 ![重新執行失敗的配量](./media/data-factory-monitor-manage-pipelines/rerun-slice.png)
 
@@ -277,9 +290,9 @@ Azure Data Factory 透過 Azure 入口網站和 Azure PowerShell 提供許多功
 
 您可以使用 Set-AzureRmDataFactorySliceStatus Cmdlet 來重新執行失敗。如需該 Cmdlet 的語法及其他詳細資料，請參閱 [Set-AzureRmDataFactorySliceStatus](https://msdn.microsoft.com/library/mt603522.aspx) 主題。
 
-範例：下列範例把 Azure Data Factory 'WikiADF' 中 'DAWikiAggregatedData' 資料表的所有配量狀態都設為 'Waiting'。
+**範例：**下列範例把 Azure Data Factory 'WikiADF' 中 'DAWikiAggregatedData' 資料表的所有配量狀態都設為 'Waiting'。
 
-注意：UpdateType 已設為 UpstreamInPipeline，這代表資料表中每個配量的狀態，以及作為管線中活動之輸入資料表的所有相依 (上游) 資料表狀態，都設為 "Waiting"。此參數的另一個可能值為 "Individual"。
+UpdateType 已設為 UpstreamInPipeline，這代表資料表中每個配量的狀態以及所有相依 (上游) 資料表的狀態都設為 "Waiting"。 此參數的另一個可能值為 "Individual"。
 
 	Set-AzureRmDataFactorySliceStatus -ResourceGroupName ADF -DataFactoryName WikiADF -TableName DAWikiAggregatedData -Status Waiting -UpdateType UpstreamInPipeline -StartDateTime 2014-05-21T16:00:00 -EndDateTime 2014-05-21T20:00:00
 
@@ -292,11 +305,11 @@ Azure 事件可讓您深入了解 Azure 資源的情況。當建立、更新或�
 
 - 建立/更新/刪除 Azure Data Factory。
 - 資料處理 (稱為「回合」) 開始/完成。
-- 建立和移除隨選 HDInsight 叢集時。
+- 建立和移除隨選 HDInsight 叢集。
 
-您可以針對這些使用者事件建立警示，並設定它們傳送電子郵件通知給訂用帳戶的管理員和共同管理員。此外，您還可以指定使用者的其他電子郵件地址，當條件符合時，這些使用者需要收到電子郵件通知。這在您想要取得有關失敗的通知且不想要持續監視您的 Data Factory 時會非常有用。
+您可以針對這些使用者事件建立警示，並設定它們傳送電子郵件通知給訂用帳戶的管理員和共同管理員。此外，您還可以指定使用者的其他電子郵件地址，當條件符合時，這些使用者需要收到電子郵件通知。此功能在您想要取得有關失敗的通知且不想要持續監視您的 Data Factory 時會非常有用。
 
-> [AZURE.NOTE] 入口網站目前無法顯示事件警示。請使用[監視及管理應用程式](data-factory-monitor-manage-app.md)來查看所有警示。
+> [AZURE.NOTE] 入口網站目前無法顯示事件警示。使用[監視及管理應用程式](data-factory-monitor-manage-app.md)來查看所有警示。
 
 #### 指定警示定義：
 若要指定警示定義，您需要建立 JSON 檔案來描述您想要接獲通知的作業。在下列範例中，警示會針對 RunFinished 作業傳送電子郵件通知。具體而言，當 Data Factory 中完成一個回合，而且執行失敗時 (Status = FailedExecution)，就會傳送電子郵件通知。
@@ -338,9 +351,9 @@ Azure 事件可讓您深入了解 Azure 資源的情況。當建立、更新或�
 	    ]
 	}
 
-在上述 JSON 定義中，如果不想接獲特定失敗的通知，您可以移除 **subStatus**。
+在 JSON 定義中，如果不想接獲特定失敗的通知，您可以移除 **subStatus**。
 
-上述範例會為您的訂用帳戶中所有 Data Factory 設定警示。如果您想要為特定 Data Factory 設定警示，可以在 **dataSource** 區塊指定 Data Factory 的 **resourceUri**，如下所示：
+此範例會為您的訂用帳戶中所有 Data Factory 設定警示。如果您想要為特定 Data Factory 設定警示，可以在 **dataSource** 指定 Data Factory 的 **resourceUri**：
 
 	"resourceUri" : "/SUBSCRIPTIONS/<subscriptionId>/RESOURCEGROUPS/<resourceGroupName>/PROVIDERS/MICROSOFT.DATAFACTORY/DATAFACTORIES/<dataFactoryName>"
 
@@ -354,10 +367,10 @@ OnDemandClusterCreateStarted | 已啟動
 OnDemandClusterCreateSuccessful | Succeeded
 OnDemandClusterDeleted | Succeeded
 
-如需上述範例中所使用之 JSON 元素的詳細資料，請參閱[建立警示規則](https://msdn.microsoft.com/library/azure/dn510366.aspx)。
+如需範例中所使用之 JSON 元素的詳細資料，請參閱[建立警示規則](https://msdn.microsoft.com/library/azure/dn510366.aspx)。
 
 #### 部署警示 
-如果要部署警示，請依照下列範例所示，使用 Azure PowerShell Cmdlet：New-AzureRmResourceGroupDeployment：
+如果要部署警示，請使用 Azure PowerShell Cmdlet：**New-AzureRmResourceGroupDeployment**，如下列範例所示：
 
 	New-AzureRmResourceGroupDeployment -ResourceGroupName adf -TemplateFile .\ADFAlertFailedSlice.json  
 
@@ -378,7 +391,7 @@ OnDemandClusterDeleted | Succeeded
 	Parameters        :
 	Outputs           :
 
-> [AZURE.NOTE] 您可以使用[建立警示規則](https://msdn.microsoft.com/library/azure/dn510366.aspx) REST API 來建立警示規則。JSON 承載類似上述的 JSON 範例。
+> [AZURE.NOTE] 您可以使用[建立警示規則](https://msdn.microsoft.com/library/azure/dn510366.aspx) REST API 來建立警示規則。JSON 承載類似於 JSON 範例。
 
 #### 擷取 Azure 資源群組部署的清單
 如果要擷取已部署的 Azure 資源群組部署清單，請使用 Cmdlet：**Get-AzureRmResourceGroupDeployment**，如下列範例所示：
@@ -398,9 +411,9 @@ OnDemandClusterDeleted | Succeeded
 #### 使用者事件疑難排解
 
 
-- 您可以看到按一下 [**作業**] 磚後所產生的所有事件，而且也可以在 [**事件**] 刀鋒視窗中針對這些作業設定顯示警示：
+- 您可以看到按一下 [作業] 圖格後所產生的所有事件，而且也可以在 [事件] 刀鋒視窗中針對這些作業設定顯示警示：
 
-	![作業](./media/data-factory-monitor-manage-pipelines/operations.png)
+	![Operations](./media/data-factory-monitor-manage-pipelines/operations.png)
 
 
 - 如需可用於新增/取得/移除警示的 PowerShell Cmdlet 資訊，請參閱 [Azure Insight Cmdlet](https://msdn.microsoft.com/library/mt282452.aspx) 一文。以下是一些關於使用 **Get AlertRule** Cmdlet 的範例：
@@ -468,7 +481,7 @@ Data Factory 可讓您擷取各種度量並建立度量警示。您可以針對�
 - 失敗的執行
 - 成功的執行
 
-這些度量會很有幫助，並且可讓使用者在其 Data Factory 取得整體失敗和成功執行的概觀。每次有配量執行時就會發出度量。整點時，這些度量會彙總並推送至儲存體帳戶。因此，若要啟用度量，您必須設定儲存體帳戶。
+這些度量很有幫助，並且可讓您在其 Data Factory 取得整體失敗和成功執行的概觀。每次有配量執行時就會發出度量。整點時，這些度量會彙總並推送至儲存體帳戶。因此，若要啟用度量，請設定儲存體帳戶。
 
 #### 啟用度量：
 若要啟用度量，請從 Data Factory 的刀鋒視窗按一下下列選項：
@@ -486,7 +499,7 @@ Data Factory 可讓您擷取各種度量並建立度量警示。您可以針對�
 
 若要設定度量警示，請從 Data Factory 刀鋒視窗按一下下列選項：[監視] -> [度量] -> [新增警示] -> [新增警示規則]。
 
-填入警示規則的詳細資料、指定電子郵件並按一下 [**確定**]。
+填入警示規則的詳細資料、指定電子郵件並按一下 [確定]。
 
 
 ![設定度量警示](./media/data-factory-monitor-manage-pipelines/setting-up-alerts-on-metrics.png)
@@ -498,9 +511,9 @@ Data Factory 可讓您擷取各種度量並建立度量警示。您可以針對�
 恭喜！ 您已設定您的第一個度量警示。現在開始，每次警示規則在指定的時間間隔內進行比對時，您應該就會收到通知。
 
 ### 警示通知：
-一旦設定的規則與條件相符，您應該會收到警示啟用的電子郵件。一旦問題獲得解決且警示條件不再符合任何規則，您就會收到警示已解決的電子郵件。
+一旦警示規則與條件相符，您應該會收到警示啟用的電子郵件。一旦問題獲得解決且警示條件不再符合任何規則，您就會收到警示已解決的電子郵件。
 
-此行為不同於事件會針對警示規則相符的每個失敗傳送通知。
+此行為不同於事件，其會針對警示規則相符的每個失敗傳送通知。
 
 ### 使用 PowerShell 部署警示
 您可以使用部署事件警示的方法來部署度量警示。
@@ -545,9 +558,9 @@ Data Factory 可讓您擷取各種度量並建立度量警示。您可以針對�
 	    ]
 	}
  
-以適當的值取代上述範例中的 subscriptionId、resourceGroupName、和 dataFactoryName。
+以適當的值取代範例中的 subscriptionId、resourceGroupName、和 dataFactoryName。
 
-metricName 目前支援 2 個值︰
+metricName 目前支援兩個值︰
 - FailedRuns
 - SuccessfulRuns
 
@@ -585,4 +598,4 @@ metricName 目前支援 2 個值︰
 
 ![移動資源對話方塊](./media/data-factory-monitor-manage-pipelines/MoveResources.png)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0907_2016-->

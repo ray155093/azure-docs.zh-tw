@@ -13,17 +13,17 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="07/01/2016"
+   ms.date="09/02/2016"
    ms.author="kgremban"/>
 
 # 如何在 Azure AD Privileged Identity Management 中開始存取權檢閱
 
-當使用者擁有不再需要的特殊存取權時，角色指派就會變成「過時」。為了降低與這些過時的角色指派相關聯的風險，特殊權限角色管理員應該定期檢閱使用者獲授與的角色。本文件涵蓋在 Azure AD Privileged Identity Management (PIM) 中開始安全性檢閱的步驟。
+當使用者擁有不再需要的特殊存取權時，角色指派就會變成「過時」。為了降低與這些過時的角色指派相關聯的風險，特殊權限角色管理員應該定期檢閱使用者獲授與的角色。本文件涵蓋在 Azure AD Privileged Identity Management (PIM) 中開始存取權檢閱的步驟。
 
-## 開始安全性檢閱
+## 開始存取權檢閱
 > [AZURE.NOTE] 如果您尚未在 Azure 入口網站的儀表板中加入 PIM 應用程式，請參閱[開始使用 Azure AD Privileged Identity Management](active-directory-privileged-identity-management-getting-started.md) 中的步驟。
 
-在 PIM 應用程式的主頁面，有三種方式可以開始安全性檢閱︰
+在 PIM 應用程式的主頁面，有三種方式可以開始存取權檢閱︰
 
 - [存取權檢閱] > [加入]
 - [角色] > [檢閱] 按鈕
@@ -53,13 +53,14 @@
 
 ### 決定將由誰執行檢閱
 
-有兩個可執行檢閱的選項。您可以自己執行檢閱、核准或拒絕角色中所有使用者的存取權。或是讓每個使用者檢閱自己的存取權。
+執行檢閱的選項有三個。您可以將檢閱指派給其他人來完成、可以自行進行檢閱，或者可以讓每個使用者檢閱自己的存取權。
 
 1. 瀏覽至 [選取檢閱者]
 
     ![選取檢閱者 - 螢幕擷取畫面][4]
 
 2. 選擇其中一個選項：
+    - **選取檢閱者**︰如果您不知道誰需要存取權，請使用此選項。使用此選項，您可以指派資源擁有者或群組管理員完成檢閱。
     - **我**︰如果您想要預覽存取權檢閱如何運作，或是想要代表無法檢閱的人員執行檢閱，此選項會相當有用。
     - **成員自我檢閱**：若要讓使用者檢閱自己的角色指派，請使用此選項。
 
@@ -87,4 +88,4 @@
 [3]: ./media/active-directory-privileged-identity-management-how-to-start-security-review/PIM_review_role.png
 [4]: ./media/active-directory-privileged-identity-management-how-to-start-security-review/PIM_review_reviewers.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0907_2016-->

@@ -18,9 +18,12 @@
 	ms.author="spelluru"/>
 
 # 使用 Azure Data Factory 從 Azure Blob 來回移動資料
-本文說明如何使用 Azure Data Factory 中的複製活動，透過從其他資料存放區獲得 Blob 資料在 Azure Blob 中來回移動資料。本文是根據資料移動活動一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
+本文說明如何使用 Azure Data Factory 中的複製活動，透過從其他資料存放區獲得 Blob 資料在 Azure Blob 中來回移動資料。本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
 
-> [AZURE.NOTE] 此 Azure Blob 連接器目前僅支援在區塊 Blob 來回複製。並同時支援一般用途的 Azure 儲存體和經常性/非經常性 Blob 儲存體。
+> [AZURE.NOTE]
+複製活動支援在一般用途的 Azure 儲存體帳戶以及經常性存取/非經常性存取 Blob 儲存體來回複製資料。
+> 
+> 此活動支援從區塊、附加或分頁 Blob 讀取，但只支援寫入至區塊 Blob。
 
 ## 複製資料精靈
 要建立將資料複製到 Azure Blob 儲存體，或複製 Azure Blob 儲存體資料的管線，最簡單的方法是使用複製資料精靈。如需使用複製資料精靈建立管線的快速逐步解說，請參閱[教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md)。
@@ -449,18 +452,18 @@ Azure Data Factory 支援兩種類型的 Azure 儲存體連結服務：**AzureSt
 | -------- | ----------- | -------------- | -------- |
 | copyBehavior | 當來源為 BlobSource 或 FileSystem 時，定義複製行為。 | **PreserveHierarchy：**在目標資料夾中保留檔案階層架構。來源檔案至來源資料夾的相對路徑，與目標檔案至目標資料夾的相對路徑完全相同。<br/><br/>**FlattenHierarchy：**來源資料夾的所有檔案會位於目標資料夾的第一層。目標檔案會有自動產生的名稱。<br/><br/>**MergeFiles：(預設值)** 將來源資料夾的所有檔案合併為一個檔案。如果已指定檔案/Blob 名稱，合併檔案名稱會是指定的名稱；否則，就會是自動產生的檔案名稱。 | 否 |
 
-**BlobSource** 也支援這兩個即將被取代的屬性。
+**BlobSource** 也支援這兩個屬性以提供回溯相容性。
 
 - **treatEmptyAsNull**：指定是否將 null 或空字串視為 null 值。
 - **skipHeaderLineCount** - 指定需略過多少行。僅適用於輸入資料集使用 TextFormat 時。
 
-同樣地，**BlobSink** 支援下列即將被取代的屬性。
+同樣地，**BlobSink** 支援下列屬性以提供回溯相容性。
 
 - **blobWriterAddHeader**︰指定是否要在寫入至輸出資料集時新增資料行定義的標頭。
 
 資料集現在支援下列會實作相同功能的屬性︰**treatEmptyAsNull**、**skipLineCount**、**firstRowAsHeader**。
 
-下表提供有關使用新的資料集屬性來取代即將被取代之 Blob 來源/接收屬性的指引。
+下表提供有關使用新的資料集屬性來取代這些 Blob 來源/接收屬性的指引。
 
 | 複製活動屬性 | 資料集屬性 |
 | :---------------------- | :---------------- | 
@@ -494,4 +497,4 @@ false | mergeFiles | 對於有下列結構的來源資料夾 Folder1：<br/><br/
 ## 效能和微調  
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

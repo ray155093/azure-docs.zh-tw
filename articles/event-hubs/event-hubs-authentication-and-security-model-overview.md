@@ -101,57 +101,17 @@ SharedAccessSignature sr=contoso&sig=nPzdNN%2Gli0ifrfJwaK4mkK0RqAB%2byJUlt%2bGFm
 
 由於個別取用者群組的 SAS 驗證不存在，因此您可以使用 SAS 金鑰來保護所有使用相同金鑰的取用者群組。這個方法能讓應用程式取用來自事件中樞之任何取用者群組的資料。
 
-### 在 ACS 中建立服務身分識別、信賴憑證者及規則
-
-ACS 支援以多種方法來建立服務身分識別、信賴憑證者及規則，不過最簡單的方法是使用 [SBAZTool](http://code.msdn.microsoft.com/Authorization-SBAzTool-6fd76d93)。例如：
-
-1. 建立 **EventHubSender** 的服務身分識別。這個作業會傳回所建立之服務身分識別的名稱和它的金鑰：
-
-	```
-	sbaztool.exe exe -n <namespace> -k <key>  makeid eventhubsender
-	```
-
-2. 將事件中樞的「傳送宣告」授與 **EventHubSender**：
-
-	```
-	sbaztool.exe -n <namespace> -k <key> grant Send /AuthTestEventHub eventhubsender
-	```
-
-3. 為 Consumer Group 1 的接收者建立服務身分識別：
-
-	```
-	sbaztool.exe exe -n <namespace> -k <key> makeid consumergroup1receiver
-	```
-
-4. 將 **ConsumerGroup1** 的「聆聽宣告」授與 `consumergroup1receiver`：
-
-	```
-	sbaztool.exe -n <namespace> -k <key> grant Listen /AuthTestEventHub/ConsumerGroup1 consumergroup1receiver
-	```
-
-5. 為 **Consumer Group 2** 的接收者建立服務身分識別：
-
-	```
-	sbaztool.exe exe -n <namespace> -k <key>  makeid consumergroup2receiver
-	```
-
-6. 將 **ConsumerGroup2** 的「聆聽宣告」授與 `consumergroup2receiver`：
-
-	```
-	sbaztool.exe -n <namespace> -k <key> grant Listen /AuthTestEventHub/ConsumerGroup2 consumergroup2receiver
-	```
-
 ## 後續步驟
 
 若要深入了解事件中樞，請造訪下列主題：
 
 - [事件中心概觀]
-- [使用事件中樞的完整範例應用程式]。
 - 使用服務匯流排佇列的[佇列訊息解決方案]。
+- [使用事件中樞的完整範例應用程式]。
 
 [事件中心概觀]: event-hubs-overview.md
 [使用事件中樞的完整範例應用程式]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
 [佇列訊息解決方案]: ../service-bus/service-bus-dotnet-multi-tier-app-using-service-bus-queues.md
  
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0907_2016-->

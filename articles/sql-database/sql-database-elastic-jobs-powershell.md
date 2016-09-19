@@ -25,16 +25,16 @@
 適用於**彈性資料庫工作** (預覽版) 的 PowerShell API 可讓您定義一組資料庫，然後針對這組資料庫執行指令碼。本文將說明如何使用 Powershell Cmdlet 建立和管理**彈性資料庫工作**。請參閱[彈性工作概觀](sql-database-elastic-jobs-overview.md)。
 
 ## 必要條件
-* Azure 訂閱。如需免費試用，請參閱[免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。
+* Azure 訂用帳戶。如需免費試用，請參閱[免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。
 * 一組使用彈性資料庫工具所建立的資料庫。請參閱[開始使用彈性資料庫工具](sql-database-elastic-scale-get-started.md)。
 * Azure PowerShell。如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 * **彈性資料庫工作** PowerShell 封裝：請參閱[安裝彈性資料庫工作](sql-database-elastic-jobs-service-installation.md)
 
 ### 選取您的 Azure 訂用帳戶
 
-若要選取所需的訂用帳戶，您必須提供訂用帳戶 ID (**-SubscriptionId**) 或訂用帳戶名稱 (**-SubscriptionName**)。如果您有多個訂用帳戶，則可以執行 **Get-AzureSubscription** Cmdlet，然後從結果集複製所需的訂用帳戶資訊。一旦您具有訂用帳戶資訊，請執行下列 commandlet 將此訂用帳戶設定為預設值，也就是建立和管理工作的目標：
+若要選取所需的訂用帳戶，您必須提供訂用帳戶 ID (**-SubscriptionId**) 或訂用帳戶名稱 (**-SubscriptionName**)。如果您有多個訂用帳戶，則可以執行 **Get-AzureRmSubscription** Cmdlet，然後從結果集複製所需的訂用帳戶資訊。一旦您具有訂用帳戶資訊，請執行下列 commandlet 將此訂用帳戶設定為預設值，也就是建立和管理工作的目標：
 
-	Select-AzureSubscription -SubscriptionId {SubscriptionID}
+	Select-AzureRmSubscription -SubscriptionId {SubscriptionID}
 
 建議使用 [PowerShell ISE](https://technet.microsoft.com/library/dd315244.aspx) 以針對彈性資料庫工作開發和執行 PowerShell 指令碼。
 
@@ -116,7 +116,7 @@
   </tr>
 
 <tr>
-    <td>Job</td>
+    <td>工作 (Job)</td>
     <td>
 	<p>工作的參數的定義，可用來觸發執行或完成排程。</p>
 	</td>
@@ -680,4 +680,4 @@
 [2]: ./media/sql-database-elastic-jobs-powershell/portal.png
 <!--anchors-->
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0907_2016-->

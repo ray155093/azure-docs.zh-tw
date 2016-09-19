@@ -19,7 +19,7 @@
 
 [Visual Studio Application Insights](app-insights-overview.md) 可讓您監視 Web 應用程式的可用性、效能和使用情形。當您取得有關應用程式在現實世界的效能和效率的意見反應時，您可以在每個開發生命週期中針對設計方向做出明智的抉擇。
 
-![範例](./media/app-insights-asp-net-five/sample.png)
+![範例](./media/app-insights-asp-net-core/sample.png)
 
 您需要 [Microsoft Azure](http://azure.com) 的訂用帳戶。使用 Microsoft 帳戶登入，可能是針對 Windows、XBox Live 或其他 Microsoft 雲端服務具備的帳戶。您的小組可能已有 Azuare 組織訂用帳戶：請洽詢擁有者將您的 Microsoft 帳戶新增至其中。
 
@@ -60,4 +60,4 @@
 
 [讀取和貢獻程式碼](https://github.com/Microsoft/ApplicationInsights-aspnetcore#recent-updates)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

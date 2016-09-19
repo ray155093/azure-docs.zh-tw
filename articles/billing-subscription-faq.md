@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/17/2016"
+	ms.date="09/07/2016"
 	ms.author="genli"/>
 
 #  Azure 計費及訂用帳戶常見問題集
@@ -34,6 +34,7 @@
 
 - [如何取得我的發票副本？](#how-do-i-get-a-copy-of-my-invoice)
 - [我沒有看見上期的發票。原因為何？](#i-do-not-see-an-invoice-for-the-last-billing-period-why)
+- [我要如何進行付款？](#how-do-i-make-a-payment)
 
 ## 免費試用
 
@@ -314,4 +315,10 @@ Azure 免費試用訂用帳戶是為任何新客戶提供的為期一個月的�
 
 > [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
-<!---HONumber=AcomDC_0824_2016-->
+### 我要如何進行付款？
+
+如果您設定信用卡或金融卡作為付款方法，系統將會自動扣款。
+
+如果您設定為使用[發票付款方法](https://azure.microsoft.com/pricing/invoicing/)，請將您的付款交付至您發票底部所列的位置。如需詳細說明，請[連絡支援服務](billing-how-to-create-billing-support-ticket.md)。
+
+<!---HONumber=AcomDC_0907_2016-->

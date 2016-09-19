@@ -14,14 +14,14 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="07/15/2016"
+	ms.date="09/07/2016"
 	ms.author="jroth" />
 
-# Azure 虛擬機器中的 SQL Server 效能最佳作法
+# Azure 虛擬機器中的 SQL Server 效能最佳做法
 
-## 概觀
+## Overview
 
-本主題提供將 Microsoft Azure 虛擬機器中 SQL Server 的效能最佳化的最佳作法。在 Azure 虛擬機器中執行 SQL Server 時，我們建議您繼續使用相同的資料庫效能微調選項，這些選項適用於內部部署伺服器環境中的 SQL Server。不過，公用雲端中關聯式資料庫的效能優劣取決於許多因素，例如虛擬機器的大小和資料磁碟的組態。
+本主題提供將「Microsoft Azure 虛擬機器」中的 SQL Server 效能最佳化的最佳做法。在 Azure 虛擬機器中執行 SQL Server 時，我們建議您繼續使用相同的資料庫效能微調選項，這些選項適用於內部部署伺服器環境中的 SQL Server。不過，公用雲端中關聯式資料庫的效能優劣取決於許多因素，例如虛擬機器的大小和資料磁碟的組態。
 
 建立 SQL Server 映像時，[請考慮在 Azure 入口網站中佈建 VM](virtual-machines-windows-portal-sql-server-provision.md)。使用 Resource Manager 在入口網站中佈建的 SQL Server VM 會實作所有這些最佳作法，包括儲存體設定。
 
@@ -37,11 +37,11 @@
 |---|---|
 |[VM 大小](#vm-size-guidance)|[DS3](virtual-machines-windows-sizes.md#standard-tier-ds-series) 或更高版本適用於 SQL Enterprise 版。<br/><br/>[DS2](virtual-machines-windows-sizes.md#standard-tier-ds-series) 或更高版本適用於 SQL Standard 和 Web 版。|
 |[儲存體](#storage-guidance)|使用[進階儲存體](../storage/storage-premium-storage.md)。僅建議將標準儲存體用於開發/測試。<br/><br/>將[儲存體帳戶](../storage/storage-create-storage-account.md)和 SQL Server VM 保留在相同的區域中。<br/><br/>在儲存體帳戶上停用 Azure [異地備援儲存體](../storage/storage-redundancy.md) (異地複寫)。|
-|[磁碟](#disks-guidance)|使用至少 2 個 [P30 磁碟](../storage/storage-premium-storage.md#scalability-and-performance-targets-whzh-TWing-premium-storage) (一個用於記錄檔，另一個用於資料檔案和 TempDB)。<br/><br/>避免使用作業系統或暫存磁碟進行資料儲存或記錄。<br/><br/>在裝載資料檔案和 TempDB 的磁碟上啟用讀取快取。<br/><br/>不要在裝載記錄檔的磁碟上啟用快取。<br/><br/>分割多個 Azure 資料磁碟，以提高 IO 輸送量。<br/><br/>以文件上記載的配置大小格式化。|
+|[磁碟](#disks-guidance)|使用至少 2 個 [P30 磁碟](../storage/storage-premium-storage.md#scalability-and-performance-targets-whzh-TWing-premium-storage) (一個用於記錄檔，另一個用於資料檔和 TempDB)。<br/><br/>避免使用作業系統或暫存磁碟進行資料庫儲存或記錄。<br/><br/>在裝載資料檔和 TempDB 的磁碟上啟用讀取快取。<br/><br/>不要在裝載記錄檔的磁碟上啟用快取。<br/><br/>重要：變更 Azure VM 磁碟的快取設定時，請停止 SQL Server 服務。<br/><br/>分割多個 Azure 資料磁碟，以提高 IO 輸送量。<br/><br/>以文件上記載的配置大小格式化。|
 |[I/O](#io-guidance)|啟用資料庫頁面壓縮。<br/><br/>啟用資料檔案的立即檔案初始化。<br/><br/>限制或停用資料庫的自動成長。<br/><br/>停用資料庫的自動壓縮。<br/><br/>將所有資料庫移至資料磁碟，包括系統資料庫。<br/><br/>將 SQL Server 錯誤記錄檔和追蹤檔案目錄移至資料磁碟。<br/><br/>設定預設備份和資料庫檔案位置。<br/><br/>啟用鎖定的頁面。<br/><br/>套用 SQL Server 效能修正程式。|
 |[特定功能](#feature-specific-guidance)|直接備份至 Blob 儲存體。|
 
-如需有關如何和為何進行這些最佳化的詳細資訊，請檢閱下列各節提供的詳細資料與指引。
+如需有關「如何」和「為何」進行這些最佳化的詳細資訊，請檢閱下列各節提供的詳細資料與指引。
 
 ## VM 大小指引
 
@@ -64,9 +64,9 @@ DS 系列 (以及 DSv2 系列和 GS 系列) VM 支援[進階儲存體](../storag
 
 Azure VM 上有三種主要的磁碟類型︰
 
-- **作業系統磁碟**：建立 Azure 虛擬機器時，該平台會至少將一個磁碟 (標示為 **C** 磁碟機) 連接至 VM 做為作業系統磁碟。此磁碟是以分頁 Blob 的形式儲存於儲存體的 VHD。
-- **暫存磁碟**：Azure 虛擬機器包含另一個稱為暫存磁碟的磁碟 (標示為 **D**︰磁碟機)。此磁碟位於可用於塗銷空間的節點上。
-- **資料磁碟**：您也可以將其他磁碟連接至虛擬機器作為資料磁碟，這些磁碟將會以分頁 Blob 形式儲存於儲存體。
+- **OS 磁碟**：建立「Azure 虛擬機器」時，平台會至少將一個磁碟 (標示為 **C** 磁碟機) 連接至 VM 作為您的作業系統磁碟。此磁碟是以分頁 Blob 的形式儲存於儲存體的 VHD。
+- **暫存磁碟**：「Azure 虛擬機器」包含另一個稱為暫存磁碟的磁碟 (標示為 **D**: 磁碟機)。此磁碟位於可用於塗銷空間的節點上。
+- **資料磁碟**：您也可以將其他磁碟連接至虛擬機器作為資料磁碟，這些磁碟將會以分頁 Blob 形式儲存於儲存體中。
 
 下列各節說明使用這些不同磁碟的建議。
 
@@ -80,15 +80,15 @@ Azure VM 上有三種主要的磁碟類型︰
 
 標示為 **D**: 磁碟機的暫存磁碟機不會保存至 Azure blob 儲存體。請勿將使用者資料庫檔案或使用者交易記錄檔儲存在 **D**: 磁碟機。
 
-D 系列、Dv2 系列和 G 系列 VM 的暫存磁碟機皆為 SSD 式。如果您的工作負載大量使用 TempDB (例如暫存物件或複雜的聯結)，將 TempDB 儲存在 **D** 磁碟機可能會導致較高的 TempDB 輸送量和較低的 TempDB 延遲。
+D 系列、Dv2 系列和 G 系列 VM 的暫存磁碟機皆為 SSD 式。如果您的工作負載大量使用 TempDB (例如用於暫存物件或複雜的聯結)，將 TempDB 儲存在 **D** 磁碟機可能會產生較高的 TempDB 輸送量和較低的 TempDB 延遲。
 
-對於支援進階儲存體的 VM (DS 系列、DSv2 系列與 GS 系列)，建議您將 TempDB 及/或緩衝集區延伸模組儲存在支援進階儲存體且啟用讀取快取的磁碟上。這項建議有一個例外狀況，如果 TempDB 使用量是密集寫入，您可以將 TempDB 儲存在本機的 **D** 磁碟機上以達到更高的效能，其針對機器大小也是 SSD 式。
+對於支援進階儲存體的 VM (DS 系列、DSv2 系列與 GS 系列)，建議您將 TempDB 及/或緩衝集區延伸模組儲存在支援進階儲存體且啟用讀取快取的磁碟上。這項建議有一個例外，如果 TempDB 使用方式是密集寫入，您可以將 TempDB 儲存在本機的 **D** 磁碟機 (在這些機器大小上也是 SSD 型) 上以達到更高的效能。
 
 ### 資料磁碟
 
-- **將資料磁碟用於資料和記錄檔案**：至少使用 2 個進階儲存體 [P30 磁碟](../storage/storage-premium-storage.md#scalability-and-performance-targets-whzh-TWing-premium-storage)，一個儲存記錄檔案，另一個儲存資料檔案和存放 TempDB。
+- **將資料磁碟用於資料檔和記錄檔**：至少使用 2 個「進階儲存體」[P30 磁碟](../storage/storage-premium-storage.md#scalability-and-performance-targets-whzh-TWing-premium-storage)，一個儲存記錄檔，另一個儲存資料檔和 TempDB。
 
-- **磁碟串接**︰如需更多的輸送量，您可以新增其他資料磁碟，並使用磁碟串接。若要判斷需要的資料磁碟數量，您需要分析資料和記錄磁碟可用的 IOPS 數量。這項資訊的詳細資訊請參閱根據 [VM 大小](virtual-machines-windows-sizes.md)分類的 IOPS 表格，以及下列[針對磁碟使用進階儲存體](../storage/storage-premium-storage.md)文章中的磁碟大小。使用下列指引︰
+- **磁碟等量分割**︰如需更多的輸送量，您可以新增其他資料磁碟，並使用「磁碟等量分割」。若要判斷需要的資料磁碟數量，您需要分析資料和記錄磁碟可用的 IOPS 數量。這項資訊的詳細資訊請參閱根據 [VM 大小](virtual-machines-windows-sizes.md)分類的 IOPS 表格，以及下列[針對磁碟使用進階儲存體](../storage/storage-premium-storage.md)文章中的磁碟大小。使用下列指引︰
 
 	- 若為 Windows 8/Windows Server 2012 以上版本，請參閱[儲存空間](https://technet.microsoft.com/library/hh831739.aspx)。將 OLTP 工作負載的等量磁碟區大小設為 64 KB，資料倉儲的工作負載則設為 256 KB，以避免分割對齊錯誤影響效能。此外，設定資料行計數 = 實體磁碟數量。若要設定磁碟超過 8 個的儲存空間，您必須使用 PowerShell (非伺服器管理員 UI)，以明確地將資料行計數設定為符合磁碟的數量。如需設定[儲存空間](https://technet.microsoft.com/library/hh831739.aspx)的詳細資訊，請參閱 [Windows PowerShell 中的儲存空間 Cmdlet](https://technet.microsoft.com/library/jj851254.aspx)
 
@@ -96,11 +96,17 @@ D 系列、Dv2 系列和 G 系列 VM 的暫存磁碟機皆為 SSD 式。如果�
 
 	- 如果您的工作負載不需大量記錄及，且不需專屬於 IOP，您可以只設定一個儲存體集區。否則，請建立兩個儲存體集區，一個用於儲存記錄檔案，另一個用於儲存資料檔案和存放 TempDB。請根據您預期的負載量，決定與每個儲存體集區相關聯的磁碟數量。請注意，各 VM 大小所允許連接的資料磁碟數量皆不同。如需相關資訊，請參閱[虛擬機器的大小](virtual-machines-windows-sizes.md)。
 
-	- 如果您並非使用進階儲存體 (開發/測試案例)，建議您新增 [VM 大小](virtual-machines-windows-sizes.md)所支援的資料磁碟上限，並使用磁碟分割。
+	- 如果您不是使用「進階儲存體」(開發/測試案例)，建議您新增您 [VM 大小](virtual-machines-windows-sizes.md)所支援的最大數目資料磁碟，並使用「磁碟等量分割」。
 
-- **快取原則**：若為進階儲存體資料磁碟，僅在裝載資料檔案和 TempDB 的資料磁碟上啟用讀取快取。如果您並非使用進階儲存體，請勿啟用任何資料磁碟上的任何快取功能。如需有關設定磁碟快取功能的指示，請參閱下列主題：[Set-AzureOSDisk](https://msdn.microsoft.com/library/azure/jj152847) 和 [Set-AzureDataDisk](https://msdn.microsoft.com/library/azure/jj152851.aspx)。
+- **快取原則**：針對「進階儲存體」資料磁碟，請只在裝載資料檔和 TempDB 的資料磁碟上啟用讀取快取。如果您並非使用進階儲存體，請勿啟用任何資料磁碟上的任何快取功能。如需有關設定磁碟快取功能的指示，請參閱下列主題：[Set-AzureOSDisk](https://msdn.microsoft.com/library/azure/jj152847) 和 [Set-AzureDataDisk](https://msdn.microsoft.com/library/azure/jj152851.aspx)。
+
+	>[AZURE.WARNING] 變更 Azure VM 磁碟的快取設定時，請停止 SQL Server 服務，以避免任何發生資料庫損毀的可能性。
 
 - **NTFS 配置單位大小**：格式化資料磁碟時，建議您針對資料/記錄檔案和 TempDB，採用 64 KB 的配置單位大小。
+
+- **磁碟管理最佳做法**︰移除資料磁碟或變更其快取類型時，請於變更期間停止 SQL Server 服務。當 OS 磁碟上的快取設定發生變更時，Azure 會停止 VM、變更快取類型，然後重新啟動 VM。當資料磁碟的快取設定發生變更時，系統不會停止 VM，但在變更期間會從 VM 卸離資料磁碟，然後再重新連接。
+
+	>[AZURE.WARNING] 如果在這些作業期間無法停止 SQL Server 服務，可能就會造成資料庫損毀。
 
 ## I/O 指引
 
@@ -116,15 +122,15 @@ D 系列、Dv2 系列和 G 系列 VM 的暫存磁碟機皆為 SSD 式。如果�
 
 - 將所有的資料庫 (包括系統資料庫) 移到資料磁碟。如需詳細資訊，請參閱[移動系統資料庫](https://msdn.microsoft.com/library/ms345408.aspx)。
 
-- 將 SQL Server 的錯誤記錄檔和追蹤檔案目錄移至資料磁碟。在 SQL Server 組態管理員中，以滑鼠右鍵按一下您的 SQL Server 執行個體並選取內容，即可完成。錯誤記錄和追蹤檔案設定可以在 [啟動參數] 索引標籤中變更。在 [進階] 索引標籤中指定傾印目錄。下列螢幕擷取畫面顯示錯誤記錄啟動參數的位置。
+- 將 SQL Server 的錯誤記錄檔和追蹤檔案目錄移至資料磁碟。在 SQL Server 組態管理員中，以滑鼠右鍵按一下您的 SQL Server 執行個體並選取內容，即可完成。您可以在 [啟動參數] 索引標籤中變更錯誤記錄和追蹤檔案設定。若要指定「傾印目錄」，則是在 [進階] 索引標籤中指定。下列螢幕擷取畫面顯示錯誤記錄啟動參數的位置。
 
 	![SQL ErrorLog 螢幕擷取畫面](./media/virtual-machines-windows-sql-performance/sql_server_error_log_location.png)
 
-- 設定預設備份和資料庫檔案位置。使用本主題中的建議，並在 [伺服器屬性] 視窗中進行變更。如需指示，請參閱[檢視或變更資料和記錄檔的預設位置 (SQL Server Management Studio)](https://msdn.microsoft.com/library/dd206993.aspx)。下列螢幕擷取畫面示範進行這些變更的位置。
+- 設定預設備份和資料庫檔案位置。請使用本主題中的建議，並在 [伺服器屬性] 視窗中進行變更。如需指示，請參閱[檢視或變更資料及記錄檔的預設位置 (SQL Server Management Studio)](https://msdn.microsoft.com/library/dd206993.aspx)。下列螢幕擷取畫面示範進行這些變更的位置。
 
 	![SQL 資料記錄和備份檔案](./media/virtual-machines-windows-sql-performance/sql_server_default_data_log_backup_locations.png)
 
-- 起用鎖定的頁面，以減少 IO 和任何分頁活動。如需詳細資訊，請參閱[啟用在記憶體中鎖定頁面選項 (Windows)](https://msdn.microsoft.com/library/ms190730.aspx)。
+- 起用鎖定的頁面，以減少 IO 和任何分頁活動。如需詳細資訊，請參閱[啟用鎖定記憶體分頁選項 (Windows)](https://msdn.microsoft.com/library/ms190730.aspx)。
 
 - 如果您執行的是 SQL Server 2012，請安裝 Service Pack 1 累計更新 10。此更新包含一個修正程式，可修正在 SQL Server 2012 中執行 select into 暫存資料表陳述式時，I/O 效能不佳的狀況。如需相關資訊，請參閱此[知識庫文章](http://support.microsoft.com/kb/2958012)。
 
@@ -146,6 +152,6 @@ D 系列、Dv2 系列和 G 系列 VM 的暫存磁碟機皆為 SSD 式。如果�
 
 如需安全性的最佳作法，請參閱 [Azure 虛擬機器中的 SQL Server 安全性考量](virtual-machines-windows-sql-security.md)。
 
-請檢閱 [Azure 虛擬機器上 SQL Server 的概觀](virtual-machines-windows-sql-server-iaas-overview.md)中的其他 SQL Server 虛擬機器主題。
+請檢閱 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)中的其他「SQL Server 虛擬機器」主題。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0907_2016-->

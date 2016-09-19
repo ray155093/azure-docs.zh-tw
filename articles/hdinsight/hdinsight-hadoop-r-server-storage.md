@@ -81,7 +81,7 @@ HDInsight (預覽) 中的 Microsoft R 伺服器具有 Azure Blob 和 [Azure Data
 
   定義 Spark 計算內容：
 
-    mySparkCluster <- RxSpark(consoleOutput=TRUE)
+    mySparkCluster <- RxSpark(consoleOutput=TRUE, nameNode=myNameNode, port=myPort)
 
   設定計算內容：
 
@@ -125,7 +125,7 @@ HDInsight (預覽) 中的 Microsoft R 伺服器具有 Azure Blob 和 [Azure Data
 ![建立 Data Lake Store 服務主體 2](./media/hdinsight-hadoop-r-server-storage/hdinsight-hadoop-r-server-storage-adls-sp2.png)
 
 ## 搭配 R 伺服器使用 Data Lake Store
-一旦您獲得 Data Lake Store 的存取權，就可以在 HDInsight 上的 R 伺服器中使用 Data Lake Store，其方式就和使用次要 Azure 儲存體帳戶一樣。唯一的差別在於前置詞 **wasb://** **會變更為 adl://**，如下所示：
+一旦您獲得 Data Lake Store 的存取權，就可以在 HDInsight 上的 R 伺服器中使用 Data Lake Store，其方式就和使用次要 Azure 儲存體帳戶一樣。唯一的差別在於前置詞 **wasb://**** 會變更為 adl://**，如下所示：
 
 ````
 # Point to the ADL store (e.g. ADLtest)
@@ -136,7 +136,7 @@ myPort <- 0
 bigDataDirRoot <- "/share"  
 
 # Define Spark compute context
-mySparkCluster <- RxSpark(consoleOutput=TRUE)
+mySparkCluster <- RxSpark(consoleOutput=TRUE, nameNode=myNameNode, port=myPort)
 
 # Set compute context
 rxSetComputeContext(mySparkCluster)
@@ -190,4 +190,4 @@ Azure 檔案的主要優點是，只要是擁有受支援作業系統 (例如 Wi
 - [將 RStudio 伺服器新增至 HDInsight Premium](hdinsight-hadoop-r-server-install-r-studio.md)
 - [適用於 HDInsight 中 R 伺服器的計算內容選項](hdinsight-hadoop-r-server-compute-contexts.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

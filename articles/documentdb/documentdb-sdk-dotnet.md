@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="08/24/2016" 
+	ms.date="09/01/2016" 
 	ms.author="rnagpal"/>
 
 # DocumentDB API 和 SDK 
@@ -40,6 +40,11 @@
 ## 版本資訊
 
 > [AZURE.IMPORTANT] 查詢分割集合時，您可能會收到 System.NotSupportedException。若要避免這個錯誤，請在 [建置] 索引標籤上取消選取專案屬性視窗中的 [建議使用 32 位元] 選項。
+
+### <a name="1.9.5"/>[1\.9.5](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.9.5)
+
+  - 將造成下列 NotFoundException 的問題修正︰讀取工作階段不適用於輸入工作階段權杖。查詢異地分散帳戶讀取區域時，在某些情況下發生此例外狀況。
+  - 公開 ResourceResponse 類別中的 ResponseStream 屬性，可讓您直接從回應存取基礎資料流。
 
 ### <a name="1.9.4"/>[1\.9.4](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.9.4)
 
@@ -169,11 +174,11 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
  
 | 版本 | 發行日期 | 停用日期 
 | ---	  | ---	         | ---
+| [1\.9.5](#1.9.5) | 2016 年 9 月 1 日 |--- 
 | [1\.9.4](#1.9.4) | 2016 年 8 月 24 日 |--- 
 | [1\.9.3](#1.9.3) | 2016 年 8 月 15 日 |--- 
 | [1\.9.2](#1.9.2) | 2016 年 7 月 23 日 |--- 
-| 1.9.1 | 已過時 |--- 
-| 1.9.0 | 已過時 |--- 
+| 1.9.1 | 已過時 |--- | 1.9.0 | 已過時 |--- 
 | [1\.8.0](#1.8.0) | 2016 年 6 月 14 日 |--- 
 | [1\.7.1](#1.7.1) | 2016 年 5 月 6 日 |--- 
 | [1\.7.0](#1.7.0) | 2016 年 4 月 26 日 |--- 
@@ -201,4 +206,4 @@ Microsoft 至少會在停用 SDK 的 **12 個月**之前提供通知，以供順
 
 若要深入了解 DocumentDB，請參閱 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 服務頁面。
 
-<!----HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0907_2016-->

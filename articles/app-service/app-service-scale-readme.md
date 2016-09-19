@@ -34,8 +34,8 @@
 3. 了解及正確運用裝載您的應用程式的平台。
 	* 為了達到我的規模的目標，應該利用哪些功能？
 
-本節將有助您了解所有因素，並協助您衍生可利用必要的 App Service 功能的策略，以達到延展性目標。
+本節將有助您了解所有因素，並協助您設計可利用必要的 App Service 功能的策略，以達到延展性目標。
 
 [AZURE.INCLUDE [app-service-blueprint-scaling-app-service-applications](../../includes/app-service-blueprint-scaling-app-service-applications.md)]
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0907_2016-->

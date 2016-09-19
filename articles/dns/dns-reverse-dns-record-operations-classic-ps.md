@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="03/09/2016"
+   ms.date="09/05/2016"
    ms.author="smalone" />
 
 # 如何使用 PowerShell 管理服務 (傳統) 的反向 DNS 記錄
@@ -38,7 +38,7 @@
 
 	PS C:\> Set-AzureService –ServiceName “contosoapp1” –Description “App1 with Reverse DNS” –ReverseDnsFqdn “contosoapp1.cloudapp.net.”
 
-## 建立具有反向 DNS 的雲端服務  
+## 建立具有反向 DNS 的雲端服務
 您可以使用 "Set-AzureService" Cmdlet，建立指定了反向 DNS 屬性的新雲端服務：
 
 	PS C:\> New-AzureService –ServiceName “contosoapp1” –Location “West US” –Description “App1 with Reverse DNS” –ReverseDnsFqdn “contosoapp1.cloudapp.net.”
@@ -55,4 +55,4 @@
 
 [AZURE.INCLUDE [常見問題集](../../includes/dns-reverse-dns-record-operations-faq-asm-include.md)]
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0907_2016-->

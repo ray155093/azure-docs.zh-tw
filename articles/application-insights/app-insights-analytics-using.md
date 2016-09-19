@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/26/2016" 
+	ms.date="09/06/2016" 
 	ms.author="danha"/>
 
 
@@ -125,11 +125,14 @@
 
 ## 釘選到儀表板
 
-您可以將圖表釘選至您的其中一個[共用儀表板](app-insights-dashboards.md) - 只要按一下 [釘選]。(您可能需要[升級應用程式的資費套餐](app-insights-pricing.md)才能開啟此功能。)
+您可以將圖表或資料表釘選至您的其中一個[共用儀表板](app-insights-dashboards.md) - 只要按一下 [釘選]。(您可能需要[升級應用程式的資費套餐](app-insights-pricing.md)才能開啟此功能。)
 
 ![按一下 [釘選]](./media/app-insights-analytics-using/pin-01.png)
 
 這表示，當您組建出儀表板來協助您監控 Web 服務的效能或使用量時，您可以在其中加入相當複雜的分析以及其他度量。
+
+如果資料表有四個或更少的資料行，即可將該資料表釘選到儀表板。只會顯示前七個資料列。
+
 
 #### 儀表板重新整理
 
@@ -183,4 +186,4 @@
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0907_2016-->

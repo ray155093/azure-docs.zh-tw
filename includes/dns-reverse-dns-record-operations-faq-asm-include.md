@@ -14,5 +14,7 @@ FQDN 是以正向順序指定，且必須以點結束 (例如，"app1.contoso.co
 Azure 網站不支援反向 DNS。Azure PaaS 角色與 IaaS 虛擬機器則支援反向 DNS。
 ### 我可以針對我的「雲端服務」設定多個反向 DNS 記錄嗎？
 不行。Azure 針對每個 Azure 雲端服務支援單一反向 DNS 記錄。不過，每個 Azure 雲端服務可以有自己的反向 DNS 記錄。
+### 我可以從我的 Azure 計算服務將電子郵件傳送至外部網域嗎？
+不行。根據[這裡](https://blogs.msdn.microsoft.com/mast/2016/04/04/sending-e-mail-from-azure-compute-resource-to-external-domains/)所述，Azure 計算服務不支援將電子郵件傳送至外部網域。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0907_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/11/2016"
+   ms.date="09/02/2016"
    ms.author="tomfitz"/>
 
 # 透過 Azure Resource Manager 使用連結的範本
@@ -29,7 +29,7 @@
     "resources": [ 
       { 
          "apiVersion": "2015-01-01", 
-         "name": "nestedTemplate", 
+         "name": "linkedTemplate", 
          "type": "Microsoft.Resources/deployments", 
          "properties": { 
            "mode": "incremental", 
@@ -53,7 +53,7 @@ Azure Resource Manager 服務必須能夠存取連結的範本。您無法為連
 
 雖然連結的範本必須可從外部存取，但它不必供大眾存取。您可以將您的範本新增至只有儲存體帳戶擁有者可以存取的私人儲存體帳戶。接著，在部署期間建立共用存取簽章 (SAS) Token 來啟用存取權。您會將該 SAS Token 加入連結範本的 URI。如需在儲存體帳戶中設定範本並產生 SAS Token 的步驟，請參閱[使用 Resource Manager 範本與 Azure PowerShell 部署資源](resource-group-template-deploy.md)或 [Deploy resources with Resource Manager templates and Azure CLI (使用 Resource Manager 範本和 Azure CLI 部署資源)](resource-group-template-deploy-cli.md)。
 
-以下範例顯示連結到其他範本的父範本。巢狀範本是透過以參數傳遞的 SAS Token 來存取。
+以下範例顯示連結到其他範本的父範本。連結的範本是透過以參數傳遞的 SAS Token 來存取。
 
     "parameters": {
         "sasToken": { "type": "securestring" }
@@ -61,7 +61,7 @@ Azure Resource Manager 服務必須能夠存取連結的範本。您無法為連
     "resources": [
         {
             "apiVersion": "2015-01-01",
-            "name": "nestedTemplate",
+            "name": "linkedTemplate",
             "type": "Microsoft.Resources/deployments",
             "properties": {
               "mode": "incremental",
@@ -82,7 +82,7 @@ Azure Resource Manager 服務必須能夠存取連結的範本。您無法為連
     "resources": [ 
       { 
          "apiVersion": "2015-01-01", 
-         "name": "nestedTemplate", 
+         "name": "linkedTemplate", 
          "type": "Microsoft.Resources/deployments", 
          "properties": { 
            "mode": "incremental", 
@@ -161,7 +161,7 @@ Azure Resource Manager 服務必須能夠存取連結的範本。您無法為連
     "resources": [
         {
             "apiVersion": "2015-01-01",
-            "name": "nestedTemplate",
+            "name": "linkedTemplate",
             "type": "Microsoft.Resources/deployments",
             "properties": {
                 "mode": "incremental",
@@ -200,7 +200,7 @@ URI 會決定範本命名為 **existingStorageAccount.json** 或 **newStorageAcc
       }
     }
 
-下一個範例顯示的是 **newStorageAccount.json** 範本。請注意，就像現有儲存體帳戶範本所示，儲存體帳戶物件會傳回輸出中。主範本搭配任一巢狀範本都能運作。
+下一個範例顯示的是 **newStorageAccount.json** 範本。請注意，就像現有儲存體帳戶範本所示，儲存體帳戶物件會傳回輸出中。主範本搭配任一連結範本都能運作。
 
     {
       "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -247,7 +247,7 @@ URI 會決定範本命名為 **existingStorageAccount.json** 或 **newStorageAcc
       "resources": [
         {
           "apiVersion": "2015-01-01",
-          "name": "nestedTemplate",
+          "name": "linkedTemplate",
           "type": "Microsoft.Resources/deployments",
           "properties": {
             "mode": "incremental",
@@ -261,7 +261,7 @@ URI 會決定範本命名為 **existingStorageAccount.json** 或 **newStorageAcc
       "outputs": {
         "result": {
           "type": "object",
-          "value": "[reference('nestedTemplate').outputs.result]"
+          "value": "[reference('linkedTemplate').outputs.result]"
         }
       }
     }
@@ -300,4 +300,4 @@ URI 會決定範本命名為 **existingStorageAccount.json** 或 **newStorageAcc
 - 若要了解如何定義您資源的部署順序，請參閱[定義 Azure Resource Manager 範本中的相依性](resource-group-define-dependencies.md)
 - 若要了解如何定義一個資源，但建立它的多個執行個體，請參閱[在 Azure Resource Manager 中建立資源的多個執行個體](resource-group-create-multiple.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0907_2016-->

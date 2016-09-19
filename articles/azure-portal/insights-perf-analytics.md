@@ -12,20 +12,27 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/28/2016"
+	ms.date="09/01/2016"
 	ms.author="awills"/>
 
 # 監視 Azure Web 應用程式效能
 
-在 [Azure 入口網站](https://portal.azure.com) 中，您可以設定監視功能，使其收集 [Azure Web 應用程式](../app-service-web/app-service-web-overview.md)或[虛擬機器](../virtual-machines/virtual-machines-linux-about.md)中應用程式相依性的統計資料和詳細資料。
+在 [Azure 入口網站](https://portal.azure.com)中，您可以為 [Azure Web 應用程式](../app-service-web/app-service-web-overview.md)或[虛擬機器](../virtual-machines/virtual-machines-linux-about.md)設定應用程式效能監視。效能監視方案會檢測您的應用程式以傳送其活動的相關遙測。所產生的度量和遙測可用於協助診斷問題、改善效能，以及評估使用方式。
 
-Azure 運用擴充功能支援應用程式效能監視功能 (APM)。這些擴充功能已安裝在應用程式中，可收集資料並回報給監視服務。
+## 執行階段或建置階段
 
-**Application Insights** 和 **New Relic** 是兩個可用的效能監視延伸模組。若要使用這些模組，您需要在執行階段安裝代理程式。藉由 Application Insights，還有可用 SDK 建置程式碼的選項。SDK 可讓您撰寫程式碼來監視應用程式的詳細使用狀況和效能。
+您可以用任一種方式檢測應用程式，進而設定監視︰
 
-## Application Insights
+* **執行階段** - 您可以在 Web 應用程式已經上線時，選取效能監視延伸模組。不需要重建或重新安裝您的應用程式。您會取得一組標準封裝，用以監視回應時間、成功率、例外狀況、相依性等。
 
-### (選擇性) 使用 SDK 重建應用程式...
+    **Application Insights** 和 **New Relic** 是兩個可用的執行階段效能監視延伸模組。
+ 
+* **建置階段** - 您可以在開發應用程式中安裝封裝。此選項比較靈活。除了相同的標準封裝以外，您可以撰寫程式碼以自訂遙測，或傳送自己的遙測。您可以根據您的應用程式網域，記錄特定活動或記錄事件。
+
+    **Application Insights** 會提供建置階段封裝。
+
+
+## 使用 Application Insights 封裝建置應用程式...
 
 Application Insights 可以提供更詳細的遙測，方法是將 SDK 安裝至您的 App。
 
@@ -46,7 +53,7 @@ SDK 會提供 API 供您[撰寫自訂遙測](../application-insights/app-insight
 
 ### ...或手動設定資源
 
-如果您未在 Visual Studio 中新增 SDK，則必須在 Azure 中設定 Application Insights 資源，這是存放、分析和顯示遙測資料的位置。
+如果您未在 Visual Studio 中新增 SDK，則必須在 Azure 中設定 Application Insights 資源，以便在其中存放、分析和顯示遙測。
 
 ![按一下 [加入]、[開發人員服務]、[Application Insights]。選擇 ASP.NET 應用程式類型。](./media/insights-perf-analytics/01-new.png)
 
@@ -92,7 +99,7 @@ SDK 會提供 API 供您[撰寫自訂遙測](../application-insights/app-insight
 
 如何變更為將資料傳送至不同的 Application Insights 資源？
 
-* 如果您已在 Visual Studio 中將 Application Insights 加入至程式碼：在專案上按一下滑鼠右鍵，選擇 [Application Insights] > [設定] 並選擇您想要的資源。您可取得建立新資源的選項。重建並重新部署。
+* 如果您已在 Visual Studio 中將 Application Insights 新增至程式碼：在專案上按一下滑鼠右鍵，選擇 [Application Insights] > [設定] 並選擇您想要的資源。您可取得建立新資源的選項。重建並重新部署。
 * 否則︰在 Azure 中，開啟 Web 應用程式控制刀鋒視窗，並開啟 [工具] > [延伸模組]。刪除 Application Insights 延伸模組。然後開啟 [工具] > [效能]、按這裡、選擇 Application Insights，然後選擇您想要的資源。(如果您想要建立新的 Application Insights 資源，請先行建立)。
 
 
@@ -104,4 +111,4 @@ SDK 會提供 API 供您[撰寫自訂遙測](../application-insights/app-insight
 * 使用 [JavaScript 應用程式和網頁適用的 Application Insights](../application-insights/app-insights-web-track-usage.md)，以從造訪網頁的瀏覽器取得用戶端遙測。
 * [設定可用性 Web 測試](../application-insights/app-insights-monitor-web-app-availability.md)，以在您的網站關閉時發出警示。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0907_2016-->

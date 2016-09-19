@@ -34,7 +34,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | [BizTalk 參與者](#biztalk-contributor) | 可以管理 BizTalk 服務 |
 | [ClearDB MySQL DB 參與者](#cleardb-mysql-db-contributor) | 可以管理 ClearDB MySQL 資料庫 |
 | [參與者](#contributor) | 可以管理存取以外的所有內容。 |
-| [Data Factory 參與者](#data-factory-contributor) | 可以管理資料處理站 |
+| [Data Factory 參與者](#data-factory-contributor) | 可以建立和管理 Data Factory 以及其中的子資源。 |
 | [DevTest Labs 使用者](#devtest-labs-user) | 可以檢視所有項目，並連接、啟動、重新啟動和關閉虛擬機器 |
 | [DocumentDB 帳戶參與者](#documentdb-account-contributor) | 可以管理 DocumentDB 帳戶 |
 | [Intelligent Systems 帳戶參與者](#intelligent-systems-account-contributor) | 可以管理 Intelligent Systems 帳戶 |
@@ -151,12 +151,12 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Authorization/*/Write | 無法建立角色和角色指派 |
 
 ### Data Factory 參與者
-可以管理資料處理站
+建立和管理 Data Factory 以及其中的子資源。
 
 | **動作** ||
 | ------- | ------ |
 | Microsoft.Authorization/*/read | 讀取角色和角色指派 |
-| Microsoft.DataFactory/dataFactories/* | 管理 Data Factory |
+| Microsoft.DataFactory/dataFactories/* | 建立和管理 Data Factory 以及其中的子資源。 |
 | Microsoft.Insights/alertRules/* | 建立及管理警示規則 |
 | Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
@@ -534,4 +534,4 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 - [建立存取權變更歷程記錄報告](role-based-access-control-access-change-history-report.md)︰記錄 RBAC 中的角色指派變更。
 - [角色型存取控制疑難排解](role-based-access-control-troubleshooting.md)︰取得修正常見問題的建議。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0907_2016-->

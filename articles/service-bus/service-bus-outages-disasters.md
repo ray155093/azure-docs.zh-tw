@@ -12,7 +12,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="na"
-    ms.date="05/06/2016"
+    ms.date="09/02/2016"
     ms.author="sethm" />
 
 # 將應用程式與服務匯流排中斷和災難隔絕的最佳做法
@@ -85,14 +85,6 @@
 
 [搭配服務匯流排代理訊息的異地複寫][]範例示範訊息實體的被動複寫。
 
-## 持續用戶端佇列
-
-如果應用程式可以容忍服務匯流排實體無法使用，但不能遺失訊息，傳送者可以採用持續用戶端佇列，此佇列會在本機儲存所有無法傳送至服務匯流排的訊息。一旦服務匯流排實體再度可以使用，所有緩衝的訊息都會傳送至該實體。[持續訊息傳送者][]範例會藉由 MSMQ 的幫助實作這類佇列。或者，訊息可以寫入至本機磁碟。
-
-持續用戶端佇列會保留訊息順序，並在服務匯流排實體無法使用時保護用戶端應用程式免於發生例外狀況。它可以搭配簡單和分散式交易使用。
-
-> [AZURE.NOTE] 此範例適用於基礎結構即服務 (IaaS) 案例，其中本機磁碟或 MSMQ 的磁碟會對應至儲存體帳戶，並使用 MSMQ 可靠地儲存訊息。這不適用於平台即服務 (PaaS) 案例，例如雲端服務和 Web 應用程式。
-
 ## 後續步驟
 
 若要深入了解災害復原，請參閱這些文章：
@@ -102,13 +94,12 @@
 
   [服務匯流排驗證]: service-bus-authentication-and-authorization.md
   [分割的傳訊實體]: service-bus-partitioning.md
-  [非同步傳訊模式和高可用性]: service-bus-async-messaging.md
+  [非同步傳訊模式和高可用性]: service-bus-async-messaging.md#failure-of-service-bus-within-an-azure-datacenter
   [搭配服務匯流排轉送訊息的異地複寫]: http://code.msdn.microsoft.com/Geo-replication-with-16dbfecd
   [BrokeredMessage.MessageId]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.messageid.aspx
   [BrokeredMessage.Label]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.label.aspx
   [搭配服務匯流排代理訊息的異地複寫]: http://code.msdn.microsoft.com/Geo-replication-with-f5688664
-  [持續訊息傳送者]: http://code.msdn.microsoft.com/Service-Bus-Durable-Sender-0763230d
   [Azure SQL Database 商務持續性]: ../sql-database/sql-database-business-continuity.md
   [Azure 復原技術指導]: ../resiliency/resiliency-technical-guidance.md
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0907_2016-->

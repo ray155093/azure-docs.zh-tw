@@ -14,7 +14,7 @@
    	ms.topic="article"
    	ms.tgt_pltfrm="na"
    	ms.workload="big-data"
-   	ms.date="06/07/2016"
+   	ms.date="09/02/2016"
    	ms.author="jgao"/>
 
 #在 HDInsight 中使用 .NET SDK 建立以 Linux 為基礎的叢集
@@ -394,4 +394,4 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
 - [使用 .NET SDK 在 HDInsight 中執行 Sqoop 工作](hdinsight-hadoop-use-sqoop-dotnet-sdk.md)
 - [在 HDInsight 中執行 Oozie 工作](hdinsight-use-oozie.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0907_2016-->

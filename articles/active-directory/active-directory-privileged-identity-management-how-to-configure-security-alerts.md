@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="08/17/2016"
+   ms.date="09/02/2016"
    ms.author="kgremban"/>
 
 # Azure AD Privileged Identity Management：如何設定安全性警示
@@ -30,7 +30,7 @@
 | **在 PIM 外指派角色** | 在 PIM 介面外將系統管理員永久指派給了某個角色。 | 請檢閱新的角色指派。由於其他服務只能指派永久系統管理員，因此請視需要將它變更成合格指派。 |
 | **啟用角色的次數太頻繁** | 在設定所允許的時間內，重複啟用相同角色的次數過多。 | 請連絡使用者以了解他們啟用角色這麼多次的原因。可能是時間限制太短以致於他們無法完成其工作，或可能是他們使用指令碼來自動啟用角色。 |
 | **角色不需要多重要素驗證來進行啟用** | 設定中有一些未啟用 MFA 功能的角色。 | 針對特殊權限最高的角色，我們要求必須啟用 MFA，但強烈建議您針對所有角色的啟用都啟用 MFA。 |
-| **系統管理員未使用其特殊權限角色** | 有暫時性的系統管理員最近尚未啟用其角色。 | 請開始存取權檢閱，以判斷出不再需要存取權的使用者。 |
+| **系統管理員未使用其特殊權限角色** | 有合格的系統管理員最近尚未啟用其角色。 | 請開始存取權檢閱，以判斷出不再需要存取權的使用者。 |
 | **全域管理員太多** | 全域管理員的數目超過建議的數目。 | 如果您有大量的全域管理員，使用者可能會取得超過其所需的權限。請將使用者移至特殊權限較低的角色，或將部分使用者設為符合該角色資格，而不是永久指派。 |
 
 ## 設定安全性警示設定
@@ -75,4 +75,4 @@
 [1]: ./media/active-directory-privileged-identity-management-how-to-configure-security-alerts/PIM_security_dash.png
 [2]: ./media/active-directory-privileged-identity-management-how-to-configure-security-alerts/PIM_security_settings.png
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0907_2016-->

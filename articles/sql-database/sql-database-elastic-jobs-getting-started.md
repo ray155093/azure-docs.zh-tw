@@ -12,14 +12,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/23/2016"
+	ms.date="09/06/2016"
 	ms.author="ddove" />
 
 # 開始使用彈性資料庫工作
 
 Azure SQL database 的彈性資料庫工作 (預覽) 可讓您跨越多個資料庫可靠地執行 T-SQL 指令碼，同時自動重試並提供最終完成保證。如需有關彈性資料庫工作功能的詳細資訊，請參閱[功能概觀頁](sql-database-elastic-jobs-overview.md)。
 
-本主題會延伸[彈性資料庫工具入門](sql-database-elastic-scale-get-started.md)中可找到的範例。完成時，您將會：了解如何建立和管理工作，該工作管理一組相關資料庫。
+本主題會延伸[彈性資料庫工具入門](sql-database-elastic-scale-get-started.md)中可找到的範例。完成時，您將會：了解如何建立和管理工作，該工作管理一組相關資料庫。您不需要使用「彈性延展」工具，就能善用彈性工作的優點。
 
 ## 必要條件
 
@@ -238,7 +238,7 @@ JobTaskExecution 物件包括作業生命週期的屬性和訊息屬性。如果
 * 工作逾時：彈性資料庫工作取消工作之前的總時間。
 * 初始重試間隔：第一次重試之前等候的間隔。
 * 最大重試間隔：要使用的重試間隔端點。
-* 重試間隔輪詢係數：用來計算重試之間下一個間隔的係數。使用下列公式：(初始重試間隔) * Math.pow ((間隔輪詢係數), (重試次數) -2)。 
+* 重試間隔輪詢係數：用來計算重試之間下一個間隔的係數。使用下列公式：(初始重試間隔) * Math.pow ((間隔輪詢係數), (重試次數) -2)。
 * 嘗試上限：工作內執行的重試嘗試數目上限。
 
 預設的執行原則會使用下列值：
@@ -447,4 +447,4 @@ JobTaskExecution 物件包括作業生命週期的屬性和訊息屬性。如果
 [5]: ./media/sql-database-elastic-query-getting-started/exel-sources.png
 <!--anchors-->
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0907_2016-->

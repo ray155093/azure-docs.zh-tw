@@ -51,7 +51,7 @@ Office 365 ProPlus 可提供[共用電腦啟用](https://technet.microsoft.com/l
 
 ## 我可以搭配 Office 365 和 Azure RemoteApp 使用哪些 Office 應用程式？
 
-您可以使用 Office 365 ProPlus 訂閱共用 Office 2013 和 Office 2016 (發行之後)。Azure RemoteApp 不支援舊版的 Office。
+您可以使用 Office 365 ProPlus 訂用帳戶來共用 Office 2013。Azure RemoteApp 不支援舊版的 Office。
 
 ## 那是否支援 Visio Pro 或 Project Pro ？
 
@@ -126,4 +126,4 @@ RemoteApp 訂用帳戶中的 Office 365 ProPlus 映像包含 Visio Pro 和 Proje
 - [使用 Office 部署工具部署及更新 Office 365 ProPlus](https://channel9.msdn.com/Events/Ignite/2015/BRK3168) (影片)
 - [設定 Office 365 ProPlus 的更新設定](https://technet.microsoft.com/library/dn761708.aspx)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0907_2016-->

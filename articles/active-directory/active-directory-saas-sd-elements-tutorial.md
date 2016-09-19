@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/06/2016"
+	ms.date="09/01/2016"
 	ms.author="jeedes"/>
 
 
@@ -23,12 +23,12 @@
 
 - 您可以在 Azure AD 中控制可存取 SD Elements 的人員
 - 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 SD Elements (單一登入)
-- 您可以在 Azure Active Directory 集中管理您的帳戶 
+- 您可以在 Azure Active Directory 集中管理您的帳戶
 
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
-## 先決條件
+## 必要條件
 
 若要設定 Azure AD 與 SD Elements 的整合，您需要下列項目：
 
@@ -57,7 +57,7 @@
 
 **若要從資源庫新增 SD Elements，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![Active Directory][1]
 
@@ -71,7 +71,7 @@
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫新增應用程式]。
 
 	![應用程式][4]
 
@@ -162,7 +162,7 @@ SD Elements 應用程式需要特定格式的 SAML 判斷提示，因此您必�
 
     d.按一下 [儲存]。
 
-6. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步]。
+6. 在 Azure 傳統入口網站中，選取單一登入設定確認，然後按 [下一步]。
 
 	![Azure AD 單一登入][10]
 
@@ -201,7 +201,7 @@ SD Elements 應用程式需要特定格式的 SAML 判斷提示，因此您必�
 	![設定單一登入][24]
 
 ### 建立 Azure AD 測試使用者
-本節目標是在 Azure 傳統入口網站中建立名為 Britta Simon 的測試使用者。
+本節的目標是要在 Azure 傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
 
@@ -213,11 +213,11 @@ SD Elements 應用程式需要特定格式的 SAML 判斷提示，因此您必�
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-sd-elements-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-sd-elements-tutorial/create_aaduser_04.png)
 
@@ -231,7 +231,7 @@ SD Elements 應用程式需要特定格式的 SAML 判斷提示，因此您必�
 
     c.按 [下一步]。
 
-6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
+6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-sd-elements-tutorial/create_aaduser_06.png)
 
@@ -322,7 +322,7 @@ SD Elements 應用程式需要特定格式的 SAML 判斷提示，因此您必�
 
 ### 測試單一登入
 
-本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。當您在存取面板中按一下 [SD Elements] 磚時，應該會自動登入您的 SD Elements 應用程式。
+本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。當您在存取面板中按一下 [SD Elements] 圖格時，應該會自動登入您的 SD Elements 應用程式。
 
 
 ## 其他資源
@@ -355,4 +355,4 @@ SD Elements 應用程式需要特定格式的 SAML 判斷提示，因此您必�
 [204]: ./media/active-directory-saas-sd-elements-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-sd-elements-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0907_2016-->

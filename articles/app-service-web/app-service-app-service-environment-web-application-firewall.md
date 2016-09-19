@@ -28,6 +28,8 @@
 
 ![架構][Architecture]
 
+> 注意︰藉由引進 [App Service 環境的 ILB 支援](app-service-environment-with-internal-load-balancer.md)，您可以設定讓 ASE 無法從 DMZ 供人存取，並僅可供私人網路使用。
+
 ## 設定 App Service 環境 ##
 若要設定 App Service 環境，請參閱有關本主題的[文件](app-service-web-how-to-create-an-app-service-environment.md)。建立 App Service 環境之後，即可在此環境中建立 [Web Apps](app-service-web-overview.md)、[API Apps](../app-service-api/app-service-api-apps-why-best-platform.md) 和 [Mobile Apps](../app-service-mobile/app-service-mobile-value-prop.md)，而這些都是由下一節中所設定的 WAF 所保護。
 
@@ -99,4 +101,4 @@ Barracuda WAF 使用 TCP 連接埠 8000，以透過其管理入口網站進行�
 [ConfigureTrafficManager]: ./media/app-service-app-service-environment-web-application-firewall/ConfigureTrafficManager.png
 [WebsiteTranslations]: ./media/app-service-app-service-environment-web-application-firewall/WebsiteTranslations.png
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0907_2016-->

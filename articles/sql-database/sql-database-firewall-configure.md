@@ -15,7 +15,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="06/22/2016"
+   ms.date="09/06/2016"
    ms.author="rickbyh"/>
 
 # 設定 Azure SQL Database 防火牆規則 - 概觀
@@ -34,7 +34,7 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 若要設定您的防火牆，您可以建立防火牆規則，指定可接受的 IP 位址範圍。您可以在伺服器和資料庫層級建立防火牆規則。
 
 - **伺服器層級防火牆規則：**這些規則可讓用戶端存取整個 Azure SQL Server，也就是相同邏輯伺服器內的所有資料庫。這些規則會儲存在 **master** 資料庫。使用入口網站或使用 Transact-SQL 陳述式即可設定伺服器層級防火牆規則。
-- **資料庫層級防火牆規則：**這些規則可讓用戶端存取 Azure SQL Database 伺服器內的個別資料庫。這些規則會針對每個資料庫建立，並且儲存在個別的資料庫 (包括 **master**)。這些規則能協助您限制相同邏輯伺服器內的某些 (安全) 資料庫存取。僅可使用 Transact-SQL 陳述式來設定資料庫層級防火牆規則。
+- **資料庫層級防火牆規則：**這些規則可讓用戶端存取 Azure SQL Database 伺服器內的個別資料庫。您可以針對每個資料庫建立這些規則，它們會儲存在個別的資料庫中。(您可以為**主要**資料庫建立資料庫層級防火牆規則。) 這些規則能協助您限制相同邏輯伺服器內的某些 (安全) 資料庫存取。僅可使用 Transact-SQL 陳述式來設定資料庫層級防火牆規則。
 
 **建議：**Microsoft 建議在可行時使用資料庫層級防火牆規則來增強安全性，並且讓您的資料庫更具有可攜性。當您有多個資料庫具有相同存取需求，且不想花時間個別設定每個資料庫時，請對系統管理員使用伺服器層級的防火牆規則。
 
@@ -43,7 +43,7 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 
 一開始，防火牆會封鎖對您的 Azure SQL Server 的所有 Transact-SQL 存取。若要開始使用 Azure SQL Server，您必須移至 Azure 入口網站並指定一或多個伺服器層級防火牆規則，啟用您的 Azure SQL Server 的存取。使用防火牆規則來指定允許網際網路的哪些 IP 位址範圍，以及 Azure 應用程式是否可以嘗試連接到 Azure SQL Server。
 
-不過，如果您想要選擇性地只將存取權授與您的 Azure SQL Server 的其中一個資料庫，您必須使用伺服器層級防火牆規則中指定的 IP 位址範圍以外的 IP 位址範圍，為必要的資料庫建立資料庫層級規則，並且確保用戶端的 IP 位址落在資料庫層級規則中指定的範圍內。
+若只要選擇性地授與 Azure SQL 伺服器上其中一個資料庫的存取權，您必須為所需的資料庫建立資料庫層級規則。請為資料庫防火牆規則指定一個 IP 位址範圍，該範圍需在伺服器層級防火牆規則中指定的範圍之外，並確認用戶端的 IP 位址在資料庫層級規則中指定的範圍之內。
 
 來自網際網路和 Azure 的連線嘗試必須先通過防火牆，才能到達您的 Azure SQL Server 或 SQL Database，如下圖所示。
 
@@ -51,7 +51,7 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 
 ## 從網際網路連線
 
-當電腦嘗試從網際網路連線到您的資料庫伺服器時，防火牆會根據整組伺服器層級和 (如有必要) 資料庫層級防火牆規則，檢查要求的原始 IP 位址：
+當電腦嘗試從網際網路連線到您的資料庫伺服器時，防火牆會先對照整組防火牆規則來檢查要求的原始 IP 位址：
 
 - 如果要求的 IP 位址在伺服器層級防火牆規則中指定的其中一個範圍內，就會允許連線至您的 Azure SQL Database 伺服器。
 
@@ -158,4 +158,4 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 <!--Image references-->
 [1]: ./media/sql-database-firewall-configure/sqldb-firewall-1.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0907_2016-->

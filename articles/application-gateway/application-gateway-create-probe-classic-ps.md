@@ -26,7 +26,7 @@
 
 <BR>
 
-[AZURE.INCLUDE [azure-probe-intro-include](../../includes/application-gateway-create-probe-intro-include.md)]。
+[AZURE.INCLUDE [azure-probe-intro-include](../../includes/application-gateway-create-probe-intro-include.md)]
 
 [AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](application-gateway-create-probe-ps.md)。
 
@@ -47,35 +47,13 @@
 
 下列範例會使用名為 "testvnet1" 的虛擬網路和名為 "subnet-1" 的子網路來建立應用程式閘道。
 
-
-	PS C:\> New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
-
-	VERBOSE: 4:31:35 PM - Begin Operation: New-AzureApplicationGateway
-	VERBOSE: 4:32:37 PM - Completed Operation: New-AzureApplicationGateway
-	Name       HTTP Status Code     Operation ID                             Error
-	----       ----------------     ------------                             ----
-	Successful OK                   55ef0460-825d-2981-ad20-b9a8af41b399
-
-
- *Description*、*InstanceCount* 和 *GatewaySize* 為選用參數。
-
+	New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
 
 若要驗證是否已建立閘道，您可以使用 **Get-AzureApplicationGateway** Cmdlet。
 
-
-	PS C:\> Get-AzureApplicationGateway AppGwTest
-	Name          : AppGwTest
-	Description   :
-	VnetName      : testvnet1
-	Subnets       : {Subnet-1}
-	InstanceCount : 2
-	GatewaySize   : Medium
-	State         : Stopped
-	VirtualIPs    : {}
-	DnsName       :
+	Get-AzureApplicationGateway AppGwTest
 
 >[AZURE.NOTE]  InstanceCount 的預設值是 2，最大值是 10。GatewaySize 的預設值是 Medium。您可以選擇 Small、Medium 和 Large。
-
 
  因為尚未啟動閘道，所以 *VirtualIPs* 和 *DnsName* 會顯示為空白。閘道處於執行中狀態之後，就會建立這些項目。
 
@@ -87,10 +65,9 @@
 
 在下列範例中，您將使用 XML 檔案來設定所有應用程式閘道設定，並將它們認可到應用程式閘道資源。
 
-### 步驟 1  
+### 步驟 1
 
 將下列文字複製到 [記事本]。
-
 
 	<ApplicationGatewayConfiguration xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/windowsazure">
     <FrontendIPConfigurations>
@@ -161,7 +138,6 @@
 
 >[AZURE.IMPORTANT] 通訊協定項目 Http 或 Https 會區分大小寫。
 
-
 已新增用來設定自訂探查的新組態項目 <Probe>。
 
 組態參數如下：
@@ -183,7 +159,7 @@
 
 使用 get-AzureApplicationGatewayConfig 取得 XML 檔案。這會匯出要修改的組態 XML 以新增探查設定。
 
-	get-AzureApplicationGatewayConfig -Name <application gateway name> -Exporttofile "<path to file>"
+	Get-AzureApplicationGatewayConfig -Name "<application gateway name>" -Exporttofile "<path to file>"
 
 
 ### 步驟 2
@@ -200,6 +176,7 @@
             <Timeout>15</Timeout>
             <UnhealthyThreshold>5</UnhealthyThreshold>
         </Probe>
+    </Probes>
 
 在 XML 的 backendHttpSettings 區段中，如下列範例所示，新增探查名稱：
 
@@ -214,12 +191,11 @@
 
 儲存 XML 檔案。
 
-
 ### 步驟 3
 
 使用 **Set-AzureApplicationGatewayConfig** 以新的 XML 檔案更新應用程式閘道組態。這會以新組態更新您的應用程式閘道。
 
-	set-AzureApplicationGatewayConfig -Name <application gateway name> -Configfile "<path to file>"
+	Set-AzureApplicationGatewayConfig -Name "<application gateway name>" -Configfile "<path to file>"
 
 
 ## 後續步驟
@@ -228,4 +204,4 @@
 
 如果您想要設定要與內部負載平衡器搭配使用的應用程式閘道，請參閱[建立具有內部負載平衡器 (ILB) 的應用程式閘道](application-gateway-ilb.md)。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0907_2016-->

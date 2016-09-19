@@ -1,4 +1,4 @@
-無法啟動或連接到 Azure 虛擬機器 (VM) 上執行的應用程式時，可能有各種原因，例如，應用程式未執行或未接聽預期連接埠、接聽封鎖的連接埠、或網路規則未將流量正確地傳遞到應用程式。本文說明條理式方法，以找出並更正問題。
+有各種原因會造成無法啟動或連接至在 Azure 虛擬機器 (VM) 上執行的應用程式。原因包括應用程式並未執行，或未在預期的連接埠上接聽，接聽連接埠遭到封鎖，或網路規則未正確將流量傳遞至應用程式。本文說明條理式方法，以找出並更正問題。
 
 如果您在使用 RDP 或 SSH 連接到 VM 時發生問題，請先參閱下列其中一篇文章︰
 
@@ -7,11 +7,11 @@
 
 > [AZURE.NOTE] Azure 建立和處理資源的部署模型有二種：[資源管理員和傳統](../articles/resource-manager-deployment-model.md)。本文將說明如何使用這兩個模型，但 Microsoft 建議大多數新的部署請使用資源管理員模型。
 
-如果在本文章中有任何需要協助的地方，您可以連絡 [MSDN Azure 和堆疊溢位論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專員。或者，您也可以提出 Azure 支援事件。請移至 [Azure 支援網站](https://azure.microsoft.com/support/options/)，然後選取 [取得支援]。
+如果在本文章中有任何需要協助的地方，您可以連絡 [MSDN Azure 和 Stack Overflow 論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專家。或者，您也可以提出 Azure 支援事件。請移至 [Azure 支援網站](https://azure.microsoft.com/support/options/)，然後選取 [取得支援]。
 
 ## 快速開始為端點連線能力問題進行疑難排解
 
-如果您在連接到應用程式時發生問題，請嘗試下列一般疑難排解步驟。每個步驟之後，請嘗試重新連接到您的應用程式︰
+如果您在連接到應用程式時發生問題，請嘗試下列一般疑難排解步驟。請在每個步驟之後，嘗試重新連接到您的應用程式︰
 
 - 重新啟動虛擬機器
 - 重新建立端點/防火牆規則/網路安全性群組 (NSG) 規則
@@ -118,4 +118,4 @@
 
 [疑難排解以 Linux 為基礎之 Azure 虛擬機器的安全殼層 (SSH) 連線](../articles/virtual-machines/virtual-machines-linux-troubleshoot-ssh-connection.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0907_2016-->

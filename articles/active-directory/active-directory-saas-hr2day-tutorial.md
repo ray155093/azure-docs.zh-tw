@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/06/2016"
+	ms.date="09/01/2016"
 	ms.author="jeedes"/>
 
 
@@ -56,7 +56,7 @@
 
 **若要從資源庫新增 HR2day by Merces，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![Active Directory][1]
 
@@ -70,7 +70,7 @@
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫新增應用程式]。
 
 	![應用程式][4]
 
@@ -107,7 +107,7 @@ HR2day by Merces 應用程式會預期要有特定格式的 SAML 判斷提示，
 
 **若要搭配 HR2day by Merces 來設定 Azure AD 單一登入，請執行下列步驟：**
 
-1. 在 Azure 傳統入口網站中的 [HR2day by Merces] 應用程式整合頁面中，按一下頂端功能表中的 [屬性] 來開啟 [SAML Token 屬性] 對話方塊。 
+1. 在 Azure 傳統入口網站中的 [HR2day by Merces] 應用程式整合頁面中，按一下頂端功能表中的 [屬性] 來開啟 [SAML Token 屬性] 對話方塊。
 
 	![設定單一登入](./media/active-directory-saas-hr2day-tutorial/tutorial_hr2day_06.png)
 
@@ -148,7 +148,7 @@ HR2day by Merces 應用程式會預期要有特定格式的 SAML 判斷提示，
 
 	![設定單一登入](./media/active-directory-saas-hr2day-tutorial/tutorial_hr2day_03.png)
 
-3. 在 [設定 App 設定] 對話方塊頁面執行下列步驟：
+3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟：
 
 	![設定單一登入](./media/active-directory-saas-hr2day-tutorial/tutorial_hr2day_04.png)
 
@@ -184,7 +184,7 @@ HR2day by Merces 應用程式會預期要有特定格式的 SAML 判斷提示，
 
 
 ### 建立 Azure AD 測試使用者
-本節目標是在 Azure 傳統入口網站中建立名為 Britta Simon 的測試使用者。
+本節的目標是要在 Azure 傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
 
@@ -196,11 +196,11 @@ HR2day by Merces 應用程式會預期要有特定格式的 SAML 判斷提示，
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-hr2day-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-hr2day-tutorial/create_aaduser_04.png)
 
@@ -214,7 +214,7 @@ HR2day by Merces 應用程式會預期要有特定格式的 SAML 判斷提示，
 
     c.按 [下一步]。
 
-6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
+6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-hr2day-tutorial/create_aaduser_06.png)
 
@@ -272,7 +272,7 @@ HR2day by Merces 應用程式會預期要有特定格式的 SAML 判斷提示，
 
 1. 在 [使用者] 清單中，選取 [Britta Simon]。
 
-2. 在底部工具列中，按一下 [指派]。
+2. 在底部的工具列中，按一下 [指派]。
 
 	![指派使用者][205]
 
@@ -280,7 +280,7 @@ HR2day by Merces 應用程式會預期要有特定格式的 SAML 判斷提示，
 
 ### 測試單一登入
 
-本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。當您在「存取面板」中按一下 HR2day by Merces 磚時，應該會自動登入您的 HR2day by Merces 應用程式。
+本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。當您在存取面板中按一下 [HR2day by Merces] 圖格時，應該會自動登入您的 HR2day by Merces 應用程式。
 
 
 ## 其他資源
@@ -307,4 +307,4 @@ HR2day by Merces 應用程式會預期要有特定格式的 SAML 判斷提示，
 [204]: ./media/active-directory-saas-hr2day-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-hr2day-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0907_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/14/2016"
+	ms.date="09/01/2016"
 	ms.author="iainfou"/>
 
 # 建立及上傳包含 Linux 作業系統的虛擬硬碟
@@ -38,7 +38,7 @@
 <a id="prepimage"> </a>
 ## 步驟 1：準備要上傳的映像
 
-Azure 支援各種 Linux 散發套件 (請參閱[背書的散發套件](virtual-machines-linux-endorsed-distros.md))。下列文章會逐步引導您了解如何準備 Azure 上支援的各種 Linux 散發套件：完成下列指南中的步驟後，請回到這裡，您將會有一個已準備好可以上傳到 Azure 的 VHD 檔案：
+Azure 支援各種 Linux 散發套件 (請參閱[背書的散發套件](virtual-machines-linux-endorsed-distros.md))。下列文章會逐步引導您了解如何準備 Azure 上支援的各種 Linux 散發套件：完成下列指南中的步驟並已有一個準備好可上傳到 Azure 的 VHD 檔案之後，請回到這裡：
 
 - **[CentOS 型散發套件](virtual-machines-linux-create-upload-centos.md)**
 - **[Debian Linux](virtual-machines-linux-debian-create-upload-vhd.md)**
@@ -71,7 +71,9 @@ azure login
 使用 Azure CLI 上傳映像，方法是使用下列命令：
 
 ```bash
-azure vm image create <ImageName> --blob-url <BlobStorageURL>/<YourImagesFolder>/<VHDName> --os Linux <PathToVHDFile>
+azure vm image create <ImageName> `
+	--blob-url <BlobStorageURL>/<YourImagesFolder>/<VHDName> `
+	--os Linux <PathToVHDFile>
 ```
 
 在上述範例中︰
@@ -84,14 +86,17 @@ azure vm image create <ImageName> --blob-url <BlobStorageURL>/<YourImagesFolder>
 以下顯示完整的範例：
 
 ```bash
-azure vm image create UbuntuLTS --blob-url https://teststorage.blob.core.windows.net/vhds/UbuntuLTS.vhd --os Linux /home/ahmet/UbuntuLTS.vhd
+azure vm image create UbuntuLTS `
+	--blob-url https://teststorage.blob.core.windows.net/vhds/UbuntuLTS.vhd `
+	--os Linux /home/ahmet/UbuntuLTS.vhd
 ```
 
 ## 步驟 4：從映像建立 VM
 您使用 `azure vm create` 以和一般 VM 相同的方式建立 VM。指定您在前一個步驟中提供給映像的名稱。在下列範例中，我們會使用在前一個步驟中提供的 **UbuntuLTS** 映像名稱：
 
 ```bash
-azure vm create --userName ops --password P@ssw0rd! --vm-size Small --ssh --location "West US" "DeployedUbuntu" UbuntuLTS
+azure vm create --userName ops --password P@ssw0rd! --vm-size Small --ssh `
+	--location "West US" "DeployedUbuntu" UbuntuLTS
 ```
 
 若要建立您自己的 VM，請提供您自己的使用者名稱 + 密碼、位置、DNS 名稱，以及映像名稱。
@@ -104,4 +109,4 @@ azure vm create --userName ops --password P@ssw0rd! --vm-size Small --ssh --loca
 [Step 2: Prepare the connection to Azure]: #connect
 [Step 3: Upload the image to Azure]: #upload
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0907_2016-->

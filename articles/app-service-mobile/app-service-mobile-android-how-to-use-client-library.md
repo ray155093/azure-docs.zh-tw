@@ -75,10 +75,10 @@ Mobile Services SDK for Android 支援 Android 2.2 版或更新版本，但建�
 
 ###<a name="data-object"></a>定義用戶端資料類別
 
-若要存取 SQL Azure 資料表的資料，您可定義對應至行動應用程式後端中資料表的用戶端資料類別。本主題中的範例採用名為 ToDoItem 的資料表，其中包含下列資料行：
+若要存取 SQL Azure 資料表的資料，您可定義對應至行動應用程式後端中資料表的用戶端資料類別。本主題中的範例採用名為「ToDoItem」的資料表，其中包含下列資料行：
 
 - id
-- text
+- 文字
 - 完成
 
 對應的型別用戶端物件如下：
@@ -612,11 +612,11 @@ App Service 支援使用各種外部識別提供者 (Facebook、Google、Microso
 
 * 以您佈建應用程式的租用戶名稱取代 **INSERT-AUTHORITY-HERE**。格式應該是 https://login.windows.net/contoso.onmicrosoft.com。此值可從 [Azure 傳統入口網站] 複製到 Azure Active Directory 的 [網域] 索引標籤以外。
 
-* 以您行動應用程式後端的用戶端識別碼取代 **INSERT-RESOURCE-ID-HERE**。您可以從入口網站中 [Azure Active Directory 設定] 底下的 [進階] 索引標籤取得這項資訊。
+* 以您行動應用程式後端的用戶端識別碼取代 INSERT-RESOURCE-ID-HERE。您可以從入口網站中 [Azure Active Directory 設定] 底下的 [進階] 索引標籤取得這項資訊。
 
-* 以您從原生用戶端應用程式中複製的用戶端識別碼取代 **INSERT-CLIENT-ID-HERE**。
+* 以您從原生用戶端應用程式中複製的用戶端識別碼取代 INSERT-CLIENT-ID-HERE。
 
-* 使用 HTTPS 配置，以您網站的「/.auth/login/done」端點取代 **INSERT-REDIRECT-URI-HERE**。此值應與 \_https://contoso.azurewebsites.net/.auth/login/done_ 類似。
+* 使用 HTTPS 配置，以您網站的 _/.auth/login/done_ 端點取代 **INSERT-REDIRECT-URI-HERE**。此值應與 \_https://contoso.azurewebsites.net/.auth/login/done_ 類似。
 
 		private AuthenticationContext mContext;
 		private void authenticate() {
@@ -678,7 +678,7 @@ App Service 支援使用各種外部識別提供者 (Facebook、Google、Microso
 
 ## 如何：將推播通知新增至您的應用程式
 
-您可以[閱讀概觀](../notification-hubs/notification-hubs-overview.md#integration-with-app-service-mobile-apps)，它描述 Microsoft Azure 通知中樞如何支援各種推播通知。
+您可以[閱讀概觀](../notification-hubs/notification-hubs-push-notification-overview.md#integration-with-app-service-mobile-apps)，它描述 Microsoft Azure 通知中樞如何支援各種推播通知。
 
 在[本教學課程](app-service-mobile-android-get-started-push.md)中，每次插入記錄時，就會傳送推播通知。
 
@@ -836,4 +836,4 @@ Quickstart 教學課程包含可實作離線同步處理的程式碼。尋找前
 [Azure 入口網站]: https://portal.azure.com
 [開始使用驗證]: app-service-mobile-android-get-started-users.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0907_2016-->

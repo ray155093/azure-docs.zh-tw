@@ -58,8 +58,26 @@
 
 	azure config mode asm
 
+## 步驟 3︰確定您目前的部署或 VNET 的 Azure 區域中有足夠的 Azure Resource Manager 虛擬機器核心
 
-## 步驟 3：選項 1 - 移轉雲端服務中的虛擬機器 
+針對這個步驟，您將需要切換到 `arm` 模式。請使用下列命令來執行此操作。
+
+```
+azure config mode arm
+```
+
+您可以使用下列 CLI 命令來檢查您目前在 Azure Resource Manager 中擁有的核心數量。若要深入了解核心配額，請參閱[限制和 Azure Resource Manager](../articles/azure-subscription-service-limits.md#limits-and-the-azure-resource-manager)
+
+```
+azure vm list-usage -l "<Your VNET or Deployment's Azure region"
+```
+
+完成這個步驟的確認之後，您可以切換回 `asm` 模式。
+
+	azure config mode asm
+
+
+## 步驟 4：選項 1 - 移轉雲端服務中的虛擬機器 
 
 使用下列命令來取得雲端服務清單，然後選擇您想要移轉的雲端服務。請注意，如果雲端服務中的 VM 是在虛擬網路中，或是具有 Web/背景工作角色，您將會收到錯誤訊息。
 
@@ -93,7 +111,7 @@
 
 
 	
-## 步驟 3：選項 2 - 移轉虛擬網路中的虛擬機器
+## 步驟 4：選項 2 - 移轉虛擬網路中的虛擬機器
 
 選取您想要移轉的虛擬網路。請注意，如果虛擬網路包含 Web/背景工作角色，或有具備不支援之組態的 VM，您將會收到驗證錯誤訊息。
 
@@ -119,7 +137,7 @@
 
 	azure network vnet commit-migration <virtualNetworkName>
 
-## 步驟 4：移轉儲存體帳戶
+## 步驟 5：移轉儲存體帳戶
 
 完成虛擬機器移轉之後，我們建議您將移轉儲存體帳戶。
 
@@ -140,4 +158,4 @@
 - [平台支援的 IaaS 資源移轉 (從傳統移轉至 Resource Manager)](virtual-machines-windows-migration-classic-resource-manager.md)
 - [平台支援的從傳統移轉至 Resource Manager 的技術深入探討](virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0907_2016-->

@@ -662,6 +662,6 @@ _圖 6.根據分析和儲存體需求分割資料_
 - [如何使用服務匯流排佇列](./service-bus/service-bus-dotnet-get-started-with-queues.md)
 - [Azure 虛擬機器中的 SQL Server Business Intelligence](./virtual-machines/virtual-machines-windows-classic-ps-sql-bi.md)
 - [接收警示通知](./azure-portal/insights-receive-alert-notifications.md)和[追蹤服務健全狀況](./azure-portal/insights-service-health.md)
-- [Application Insights](./application-insights/app-insights-get-started.md)
+- [Application Insights](./application-insights/app-insights-overview.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0907_2016-->

@@ -24,14 +24,8 @@
 
 如需完整的範本，請參閱 GitHub 上的[事件中樞和取用者群組範本][]。
 
->[AZURE.NOTE] 下列 Azure Resource Manager 範本可供下載和部署。
->
->-    [建立服務匯流排命名空間與佇列和授權規則](service-bus-resource-manager-namespace-auth-rule.md)
->-    [建立服務匯流排命名空間與佇列](service-bus-resource-manager-namespace-queue.md)
->-    [建立服務匯流排命名空間與主題和訂用帳戶](service-bus-resource-manager-namespace-topic.md)
->-    [建立服務匯流排命名空間](service-bus-resource-manager-namespace.md)
->
->若要檢查最新的範本，請造訪 [Azure 快速入門範本][]資源庫並搜尋事件中樞。
+>[AZURE.NOTE]
+若要檢查最新的範本，請造訪 [Azure 快速入門範本][]資源庫並搜尋事件中樞。
 
 ## 您將部署什麼？
 
@@ -156,14 +150,12 @@ azure group deployment create <my-resource-group> <my-deployment-name> --templat
 
 現在您已使用 Azure Resource Manager 建立並部署資源，請檢視這些文件，了解如何管理這些資源︰
 
-- [使用 Azure 自動化管理 Azure 服務匯流排](service-bus-automation-manage.md)
-- [使用 PowerShell 管理事件中樞](service-bus-powershell-how-to-provision.md)
 - [使用服務匯流排總管管理事件中樞](https://code.msdn.microsoft.com/Service-Bus-Explorer-f2abca5a)
 
   [編寫 Azure Resource Manager 範本]: ../resource-group-authoring-templates.md
-  [Azure 快速入門範本]: https://azure.microsoft.com/documentation/templates/?term=service+bus
+  [Azure 快速入門範本]: https://azure.microsoft.com/documentation/templates/?term=event+hubs
   [Using Azure PowerShell with Azure Resource Manager]: ../powershell-azure-resource-manager.md
   [Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../xplat-cli-azure-resource-manager.md
   [事件中樞和取用者群組範本]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-event-hubs-create-event-hub-and-consumer-group/
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

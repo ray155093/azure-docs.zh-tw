@@ -35,11 +35,11 @@ ms.service="virtual-machines-linux"
 
 * **Azure CLI 指令碼** - 如本文稍後所示，請使用 [Azure 命令列介面](../xplat-cli-install.md) (CLI) 來處理 A8 或 A9 大小之 Linux VM 叢集的部署指令碼。「服務管理」模式下的 CLI 會以傳統部署模型循序建立叢集節點，因此如果部署許多計算節點，可能需要花費數分鐘的時間。在傳統部署模型中，A8 或 A9 VM 必須部署在相同的雲端服務中，才能透過 RDMA 網路連接。
 
-* **Azure Resource Manager 範本** - 使用 Resource Manager 部署模型，在利用 RDMA 網路來執行 MPI 工作負載的計算叢集中，部署多個 A8 和 A9 Linux VM。您可以[建立自己的範本](../resource-group-authoring-templates.md)，或檢查 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)，取得由 Microsoft 或社群貢獻的範本以部署想要的方案。Resource Manager 範本可提供一個既快速又可靠的方式來部署 Linux 叢集。在 Resource Manager 部署模型中，A8 或 A9 VM 必須部署在相同的可用性設定組中，才能透過 RDMA 網路連接。
+* **Azure Resource Manager 範本** - 使用 Resource Manager 部署模型來部署 A8 和 A9 VM 叢集，以連線到 RDMA 網路來執行 MPI 工作負載。您可以[建立自己的範本](../resource-group-authoring-templates.md)，或檢查 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)，取得由 Microsoft 或社群貢獻的範本以部署想要的方案。Resource Manager 範本可提供一個既快速又可靠的方式來部署 Linux 叢集。在 Resource Manager 部署模型中，A8 或 A9 VM 必須部署在相同的可用性設定組中，才能透過 RDMA 網路連接。
 
 ## 傳統模型中的範例部署
 
-下列步驟說明如何使用 Azure CLI 從 Azure Marketplace 部署 SUSE Linux Enterprise Server (SLES) 12 HPC VM、安裝 Intel MPI Library 和其他自訂項目，以及建立自訂的 VM 映像。然後，使用映像來處理 A8 或 A9 VM 叢集的部署指令碼。
+下列步驟示範如何使用 Azure CLI 從 Azure Marketplace 部署 SUSE Linux Enterprise Server (SLES) 12 HPC VM、安裝 Intel MPI Library，以及建立自訂 VM 映像。然後，使用映像來處理 A8 或 A9 VM 叢集的部署指令碼。
 
 >[AZURE.TIP]  請使用類似的步驟，根據 Azure Marketplace 中的 CentOS 型 6.5 或 7.1 HPC 映像部署 A8 或 A9 VM 的叢集。步驟中註明差異。例如，由於 CentOS 型 HPC 映像包括 Intel MPI，您不需要在從這些映像建立的 VM 上個別安裝 Intel MPI。
 
@@ -107,7 +107,7 @@ VM 完成佈建之後，使用 VM 的外部 IP 位址 (或 DNS 名稱) 以及您
     >
     >在來自 Marketplace 的 CentOS 型 HPC 映像上，核心更新已在 **yum** 組態檔中停用。由於 Linux RDMA 驅動程式是以 RPM 套件的形式散發，因此如果更新核心，驅動程式更新可能會無法運作。
 
-* **Linux RDMA 驅動程式更新** - 如果您部署了 SLES 12 HPC VM，您將需要更新 RDMA 驅動程式。如需詳細資料，請參閱[關於 A8、A9、A10 和 A11 計算密集型執行個體](virtual-machines-linux-a8-a9-a10-a11.md#Linux-RDMA-driver-updates-for-SLES-12)。
+* **Linux RDMA 驅動程式更新** - 如果您部署了 SLES 12 HPC VM，您將需要更新 RDMA 驅動程式。如需詳細資料，請參閱[關於 A8、A9、A10 和 A11 計算密集型執行個體](virtual-machines-linux-a8-a9-a10-a11-specs.md#rdma-driver-updates-for-sles-12)。
 
 * **Intel MPI** - 如果您部署 SLES 12 HPC VM，請藉由執行與下列內容相似的命令，從 Intel.com 網站下載並安裝 Intel MPI Library 5 執行階段。如果您部署 CentOS 型 6.5 或 7.1 HPC VM，就不一定需要這個步驟。
 
@@ -129,7 +129,7 @@ VM 完成佈建之後，使用 VM 的外部 IP 位址 (或 DNS 名稱) 以及您
 
     >[AZURE.NOTE]基於測試目的，您也可以將 memlock 設定為無限制。例如：`<使用者或群組名稱> hard memlock unlimited。
 
-* **SLES 12 VM 的 SSH 金鑰** - 產生 SSH 金鑰以在執行 MPI 工作時，於 SLES 12 HPC 叢集的所有計算節點之中建立使用者帳戶的信任。(如果您部署 CentOS 型 HPC VM，請勿遵循此步驟。請參閱本文稍後的指示，在您擷取映像並部署叢集之後，設定叢集節點間的無密碼 SSH 信任。)
+* **SLES 12 VM 的 SSH 金鑰** - 產生 SSH 金鑰以在執行 MPI 工作時，於 SLES 12 HPC 叢集的計算節點之中建立使用者帳戶的信任。(如果您部署 CentOS 型 HPC VM，請勿遵循此步驟。請參閱本文稍後的指示，在您擷取映像並部署叢集之後，設定叢集節點間的無密碼 SSH 信任。)
 
     執行以下命令建立 SSH 金鑰。出現輸入提示時，只要按 Enter 即可在預設位置產生金鑰，而不需要設定複雜密碼。
 
@@ -398,4 +398,4 @@ mpirun -hosts <host1>,<host2> -ppn 1 -n 2 -env I_MPI_FABRICS=dapl -env I_MPI_DAP
 
 * 請嘗試[快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/intel-lustre-clients-on-centos)以使用 CentOS 型 HPC 映像建立 Intel Lustre 叢集。如需詳細資料，請參閱這篇[部落格文章](https://blogs.msdn.microsoft.com/arsen/2015/10/29/deploying-intel-cloud-edition-for-lustre-on-microsoft-azure/)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0907_2016-->

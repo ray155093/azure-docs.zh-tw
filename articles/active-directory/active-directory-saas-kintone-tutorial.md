@@ -11,7 +11,7 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="06/09/2016" 
+    ms.date="09/01/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Kintone 整合
@@ -51,9 +51,9 @@
 
     ![新增應用程式](./media/active-directory-saas-kintone-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫新增應用程式]。
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-kintone-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![從資源庫新增應用程式](./media/active-directory-saas-kintone-tutorial/IC749322.png "從資源庫新增應用程式")
 
 6.  在 [搜尋方塊] 中，輸入 **Kintone**。
 
@@ -76,7 +76,7 @@
 
     ![設定單一登入](./media/active-directory-saas-kintone-tutorial/IC785873.png "設定單一登入")
 
-3.  在 [設定應用程式 URL] 頁面的 [Kintone 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："**https://company.kintone.com*"，然後按一下 [下一步]。
+3.  在 [設定應用程式 URL] 頁面的 [Kintone 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："https://company.kintone.com*"，然後按 [下一步]*。
 
     ![設定應用程式 URL](./media/active-directory-saas-kintone-tutorial/IC785875.png "設定應用程式 URL")
 
@@ -86,9 +86,9 @@
 
 5.  在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 **Kintone** 公司網站。
 
-6.  按一下 [設定]
+6.  按一下 [設定]。
 
-    ![設定](./media/active-directory-saas-kintone-tutorial/IC785879.png "設定")
+    ![Settings](./media/active-directory-saas-kintone-tutorial/IC785879.png "Settings")
 
 7.  按一下 [使用者與系統管理]。
 
@@ -124,7 +124,7 @@
 
 2.  按一下 [設定]。
 
-    ![設定](./media/active-directory-saas-kintone-tutorial/IC785879.png "設定")
+    ![Settings](./media/active-directory-saas-kintone-tutorial/IC785879.png "Settings")
 
 3.  按一下 [使用者與系統管理]。
 
@@ -149,7 +149,7 @@
 
 ##指派使用者
   
-若要測試您的設定，您需要指派使用者，授予存取權給您想要允許其使用您的應用程式存取設定的 Azure AD 使用者。
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
 ###若要指派使用者給 Kintone，請執行下列步驟：
 
@@ -165,4 +165,4 @@
   
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0907_2016-->

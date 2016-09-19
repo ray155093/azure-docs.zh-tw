@@ -3,7 +3,7 @@
    description="對於 Power BI Embedded，使用 SDK 將互動式 Power BI 報告加入您的商務智慧應用程式中"
    services="power-bi-embedded"
    documentationCenter=""
-   authors="minewiskan"
+   authors="mgblythe"
    manager="NA"
    editor=""
    tags=""/>
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
    ms.date="07/14/2016"
-   ms.author="owend"/>
+   ms.author="mblythe"/>
 
 # 開始使用 Power BI Embedded 範例
 
@@ -245,4 +245,4 @@ $filter={tableName/fieldName}%20eq%20'{fieldValue}'
 - [Microsoft Power BI Embedded 常見案例](power-bi-embedded-scenarios.md)
 - [在 Power BI Embedded 中驗證和授權](power-bi-embedded-app-token-flow.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

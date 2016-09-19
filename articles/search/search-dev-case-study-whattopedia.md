@@ -12,7 +12,7 @@
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
 	ms.workload="search" 
-	ms.date="05/17/2016" 
+	ms.date="08/29/2016" 
 	ms.author="heidist"/>
 
 # Azure 搜尋開發人員案例研究
@@ -117,8 +117,8 @@ Azure 搜尋服務為我們的專案帶來重大突破。在 Azure 搜尋服務�
 **開發搜尋索引子工作 – Windows 主控台**
 
 1. 從資料庫讀取所有轉銷商。
-2. 呼叫 Azure 搜尋服務 API 來逐一上傳轉銷商 (請參閱：http://msdn.microsoft.com/library/azure/dn798930.aspx))。
-3. 在編製索引轉銷商以增量索引的資料庫中設定屬性。我們加入「索引子」欄位，這會儲存每個設定檔的索引狀態 (無論是否已編製索引)，來完成這動作。 
+2. 呼叫 Azure 搜尋服務 API 來逐一上傳轉銷商 (請參閱：http://msdn.microsoft.com/library/azure/dn798930.aspx)。
+3. 在編製索引轉銷商以增量索引的資料庫中設定屬性。我們加入「索引子」欄位，這會儲存每個設定檔的索引狀態 (無論是否已編製索引)，來完成這動作。
 
 請參閱建置索引子工作之程式碼片段的附錄。
 
@@ -421,4 +421,4 @@ Azure 搜尋服務並不是唯一的驚喜。與我們先前的方式相比，�
 [Link 3 to another azure.microsoft.com documentation topic]: ../storage-whatis-account.md
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0907_2016-->

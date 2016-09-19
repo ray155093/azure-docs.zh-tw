@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/20/2016" 
+	ms.date="09/06/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Azure Data Factory 從內部部署的 HDFS 移動資料
@@ -23,9 +23,9 @@ Data Factory 目前只支援將資料從內部部署 HDFS 移動到其他資料�
 
 
 ## 啟用連線
-Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS。請參閱[在內部部署位置與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文來了解資料管理閘道器和設定閘道器的逐步指示。即使 HDFS 裝載於 Azure IaaS VM 中，您還是需要運用閘道器與其連接。
+Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS。請參閱[在內部部署位置與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文來了解資料管理閘道和設定閘道的逐步指示。即使 HDFS 裝載於 Azure IaaS VM 中，仍請使用閘道器與其連接。
 
-雖然您可以在與 HDFS 相同的內部部署機器或 Azure VM 上安裝閘道器，仍建議您在個別的機器或 Azure IaaS VM 上安裝，以避免資源爭用，並且具有更佳的效能。當您在不同機器上安裝閘道器時，機器應該能夠存取具有 HDFS 的機器。
+雖然您可以在與 HDFS 相同的內部部署機器或 Azure VM 上安裝閘道器，仍建議您在個別的機器/Azure IaaS VM 上安裝。在個別機器上安裝閘道器可減少資源爭用並改善效能。當您在不同機器上安裝閘道器時，機器應該能夠存取具有 HDFS 的機器。
 
 
 ## 複製資料精靈
@@ -45,9 +45,9 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 4.	[AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
 4.	具有使用 [FileSystemSource](#hdfs-copy-activity-type-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
-此範例會每個小時將資料從內部部署 HDFS 中的查詢結果複製到 Blob。範例後面的各節會說明這些範例中使用的 JSON 屬性。
+此範例會每個小時將資料從內部部署 HDFS 複製到 Azure Blob。範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
-在第一個步驟中，請根據[在內部部署位置與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文中的指示，設定資料管理閘道器。
+第一步是設定資料管理閘道。如需相關指示，請參閱[在內部部署位置和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)。
 
 **HDFS 連結服務** 此範例會使用 Windows 驗證。請參閱 [HDFS 連結服務](#hdfs-linked-service-properties)章節以了解您可以使用的各種不同類型的驗證。
 
@@ -79,9 +79,9 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 	  }
 	}
 
-**HDFS 輸入資料集** 此資料集是指 HDFS 資料夾 DataTransfer/UnitTest/。管線會將其資料夾中的所有檔案複製到目的地。
+**HDFS 輸入資料集** 此資料集是指 HDFS 資料夾 DataTransfer/UnitTest/。管線會將此資料夾中的所有檔案複製到目的地。
 
-設定 “external”: ”true” 和指定 externalData 原則 (選擇性) 即可通知 Data Factory 服務：這是 Data Factory 外部的資料表而且不是由 Data Factory 中的活動所產生。
+設定 “external”: ”true” 會通知 Data Factory 服務：這是 Data Factory 外部的資料集而且不是由 Data Factory 中的活動所產生。
 	
 	{
 	    "name": "InputDataset",
@@ -164,7 +164,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
 **具有複製活動的管線**
 
-此管線包含複製活動，該活動已設定為使用上述輸入和輸出資料集並排定為每小時執行。在管線 JSON 定義中，**source** 類型設為 **FileSystemSource**，而 **sink** 類型設為 **BlobSink**。針對 **query** 屬性指定的 SQL 查詢會選取過去一小時內要複製的資料。
+此管線包含「複製活動」，該活動已設定為使用這些輸入和輸出資料集，並且排定為每小時執行。在管線 JSON 定義中，**source** 類型設為 **FileSystemSource**，而 **sink** 類型設為 **BlobSink**。針對 **query** 屬性指定的 SQL 查詢會選取過去一小時內要複製的資料。
 	
 	{
 	    "name": "pipeline",
@@ -266,22 +266,22 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
 屬性 | 說明 | 必要
 -------- | ----------- | --------
-folderPath | 資料夾的路徑。範例：myfolder<br/><br/>使用逸出字元 ‘ \\ ’ 當做字串中的特殊字元。例如：folder\\subfolder 指定 folder\\\subfolder，d:\\samplefolder 指定 d:\\\samplefolder。<br/><br/>您可以將其與 **partitionBy** 結合，使資料夾路徑以配量的開始/結束日期時間為基礎。 | 是
+folderPath | 資料夾的路徑。範例：myfolder<br/><br/>使用逸出字元 ‘ \\ ’ 當做字串中的特殊字元。例如：folder\\subfolder 指定 folder\\\subfolder，d:\\samplefolder 指定 d:\\\samplefolder。<br/><br/>您可以將此屬性與 **partitionBy** 結合，使資料夾路徑以配量的開始/結束日期時間為基礎。 | 是
 fileName | 如果您想要資料表參考資料夾中的特定檔案，請指定 **folderPath** 中的檔案名稱。如果您未指定此屬性的任何值，資料表會指向資料夾中的所有檔案。<br/><br/>沒有為輸出資料集指定 fileName 時，所產生的檔案名稱會是下列格式：<br/><br/>Data.<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt | 否
-partitionedBy | partitionedBy 可以用來指定時間序列資料的動態 folderPath 和 filename。例如，folderPath 可針對每小時的資料進行參數化。 | 否
+partitionedBy | partitionedBy 可以用來指定時間序列資料的動態 folderPath 和 filename。範例：folderPath 可針對每小時的資料進行參數化。 | 否
 fileFilter | 指定要用來在 folderPath (而不是所有檔案) 中選取檔案子集的篩選器。<br/><br/>允許的值為：(多個字元) 和 ? (單一字元)。<br/><br/>範例 1："fileFilter": ".log"<br/>範例 2："fileFilter": 2014-1-?.txt"<br/><br/>**注意**：fileFilter 適用於輸入 FileShare 資料集 | 否
-| compression | 指定此資料的壓縮類型和層級。支援的類型為：**GZip**、**Deflate** 和 **BZip2**，而支援的層級為：**最佳**和**最快**。請注意，**AvroFormat** 或 **OrcFormat** 格式的資料，目前不支援壓縮設定。如需詳細資訊，請參閱[壓縮支援](#compression-support)一節。 | 否 |
-| format | 支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat**、**OrcFormat**。您必須將格式下的 **type** 屬性設定為這些值其中之一。如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat) 及[指定 OrcFormat](#specifying-orcformat) 各節。如果您想要在以檔案為基礎的存放區之間依原樣複製檔案 (二進位複本)，您可以在輸入和輸出資料集定義中略過格式區段。 | 否 
+| compression | 指定此資料的壓縮類型和層級。支援的類型為：**GZip**、**Deflate** 及 **BZip2**，而支援的層級為：**最佳**和**最快**。**AvroFormat** 或 **OrcFormat** 格式的資料目前不支援壓縮設定。如需詳細資訊，請參閱[壓縮支援](#compression-support)一節。 | 否 |
+| format | 支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat**、**OrcFormat**。將格式下的 **type** 屬性設定為這些值其中之一。如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat) 及[指定 OrcFormat](#specifying-orcformat) 各節。如果您想要在以檔案為基礎的存放區之間依原樣複製檔案 (二進位複本)，您可以在輸入和輸出資料集定義中略過格式區段。 | 否 
 
 
 > [AZURE.NOTE] 無法同時使用檔名和 fileFilter。
 
 
-### 運用 partionedBy 屬性
+### 使用 partionedBy 屬性
 
-如上所述，您可以利用 partitionedBy 指定時間序列資料的動態 folderPath 和 filename。您可以使用 Data Factory 巨集和系統變數以及可指出給定資料配量的邏輯時間週期的 SliceStart、SliceEnd 來這麼做。
+如上一節所述，您可以利用 partitionedBy 指定時間序列資料的動態 folderPath 和 filename。您可以使用 Data Factory 巨集和系統變數以及可指出給定資料配量的邏輯時間週期的 SliceStart、SliceEnd 來這麼做。
 
-請參閱「[建立資料集](data-factory-create-datasets.md)」、「[排程和執行](data-factory-scheduling-and-execution.md)」以及「[建立管線](data-factory-create-pipelines.md)」等文章，以進一步了解時間序列資料集、排程和配量。
+若要進一步了解時間序列資料集、排程和配量，請參閱[建立資料集](data-factory-create-datasets.md)、[排程和執行](data-factory-scheduling-and-execution.md)以及[建立管線](data-factory-create-pipelines.md)等文章。
 
 #### 範例 1：
 
@@ -291,7 +291,7 @@ fileFilter | 指定要用來在 folderPath (而不是所有檔案) 中選取檔�
 	    { "name": "Slice", "value": { "type": "DateTime", "date": "SliceStart", "format": "yyyyMMddHH" } },
 	],
 
-在上述範例中，{Slice} 會取代成 Data Factory 系統變數 SliceStart 的值 (使用指定的格式 (YYYYMMDDHH))。SliceStart 是指配量的開始時間。每個配量的 folderPath 都不同。例如：wikidatagateway/wikisampledataout/2014100103 或 wikidatagateway/wikisampledataout/2014100104。
+在此範例中，{Slice} 會取代成 Data Factory 系統變數 SliceStart 的值 (使用指定的格式 (YYYYMMDDHH))。SliceStart 是指配量的開始時間。每個配量的 folderPath 都不同。例如：wikidatagateway/wikisampledataout/2014100103 或 wikidatagateway/wikisampledataout/2014100104。
 
 #### 範例 2：
 
@@ -305,18 +305,18 @@ fileFilter | 指定要用來在 folderPath (而不是所有檔案) 中選取檔�
 	    { "name": "Hour", "value": { "type": "DateTime", "date": "SliceStart", "format": "hh" } } 
 	],
 
-在上述範例中，SliceStart 的年、月、日和時間會擷取到 folderPath 和 fileName 屬性所使用的個別變數。
+在此範例中，SliceStart 的年、月、日和時間會擷取到 folderPath 和 fileName 屬性所使用的個別變數。
 
 [AZURE.INCLUDE [data-factory-file-format](../../includes/data-factory-file-format.md)]  
 [AZURE.INCLUDE [data-factory-compression](../../includes/data-factory-compression.md)]
 
 ## HDFS 複製活動類型屬性
 
-如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。名稱、描述、輸入和輸出資料表、各種原則等屬性都適用於所有活動類型。
+如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
 
-另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同，而在複製活動的案例中，可用的屬性會根據來源與接收的類型而有所不同。
+另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
 
-在「複製活動」案例中，如果來源的類型為 **FileSystemSource**，則 typeProperties 區段會有下列可用屬性：
+在複製活動中，如果來源的類型為 **FileSystemSource**，則 typeProperties 區段會有下列可用屬性：
 
 **FileSystemSource** 支援下列屬性：
 
@@ -331,4 +331,4 @@ fileFilter | 指定要用來在 folderPath (而不是所有檔案) 中選取檔�
 ## 效能和微調  
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0907_2016-->

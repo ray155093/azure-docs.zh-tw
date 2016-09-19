@@ -13,7 +13,7 @@
      ms.topic="article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="05/17/2016"
+     ms.date="09/06/2016"
      ms.author="obloch"/>
 
 # Microsoft Azure IoT 裝置 SDK (適用於 C) – 深入了解序列化程式
@@ -572,7 +572,7 @@ WITH_DATA(int, MyData)
 );
 ```
 
-如先前所述，**DECLARE\_MODEL** 只是一個 C 巨集。模型的名稱和 **WITH\_DATA** 陳述式 (另一個巨集) 是 **DECLARE\_MODEL** 的參數。**nMacroParameters** 會定義 **DECLARE\_MODEL** 中包含多少參數。實際上，這定義的是您所能擁有的資料事件和動作宣告數目。因此，使用預設限制 124 時，表示您可以定義由大約 60 個動作和事件資料所組成的模型。如果您嘗試超過這個限制，您會收到看起來像這樣的編譯器錯誤：
+如先前所述，**DECLARE\_MODEL** 只是一個 C 巨集。模型的名稱和 **WITH\_DATA** 陳述式 (另一個巨集) 是 **DECLARE\_MODEL** 的參數。**nMacroParameters** 會定義 **DECLARE\_MODEL** 中可以包含多少參數。實際上，這定義的是您所能擁有的資料事件和動作宣告數目。因此，使用預設限制 124 時，表示您可以定義由大約 60 個動作和事件資料所組成的模型。如果您嘗試超過這個限制，您會收到看起來像這樣的編譯器錯誤：
 
   ![](media/iot-hub-device-sdk-c-serializer/02-nMacroParametersCompilerErrors.PNG)
 
@@ -602,7 +602,7 @@ WITH_DATA(int, MyData)
 
 ## 較低層級的 API
 
-本文著重的範例應用程式是 **simplesample\_amqp**。這個範例使用較高層級 (非 "LL") API 來傳送事件和接收訊息。如果您使用這些 API，將會執行背景執行緒來處理事件傳送和訊息接收。不過，您可以使用較低層級 (LL) API 來消除這個背景執行緒，並掌握傳送事件或從雲端接收訊息時的明確控制權。
+本文著重的範例應用程式是 **simplesample\_amqp**。這個範例使用較高層級 (非 "LL") API 來傳送事件和接收訊息。如果您使用這些 API，將會執行背景執行緒來處理事件傳送和訊息接收。不過，您可以使用較低層級 (LL) API 來消除這個背景執行緒，並明確掌控傳送事件或從雲端接收訊息的時機。
 
 如[前一篇文章](iot-hub-device-sdk-c-iothubclient.md)所述，有一組由較高層級 API 組成的函式：
 
@@ -628,11 +628,11 @@ WITH_DATA(int, MyData)
 
 請注意，較低層級 API 的運作方式與先前文章中所述的完全相同。如果您想要背景執行緒以處理事件傳送和訊息接收，您可以使用第一組 API。如果您想要掌握與 IoT 中樞之間傳送和接收資料時的明確控制權，您可以使用第二組 API。任何一組 API 使用**序列化程式**程式庫的效果都相同。
 
-如需有關如何將較低層級 API 與**序列化程式**程式庫搭配使用的範例，請參考 **simplesample\_http** 應用程式。
+如需有關如何將較低層級 API 與「序列化程式」程式庫搭配使用的範例，請參考 **simplesample\_http** 應用程式。
 
 ## 其他主題
 
-值得一提的其他幾個主題包括屬性處理、使用替代裝置認證和組態選項。這些都是[先前的文章](iot-hub-device-sdk-c-iothubclient.md)中所涵蓋的主題。重點在於，所有這些功能不論是與**序列化程式**程式庫搭配，還是與 **IoTHubClient** 程式庫搭配，其運作方式均相同。例如，如果您想要從模型將屬性附加至事件，您需透過前述的相同方式，使用 **IoTHubMessage\_Properties** 和 **Map**\_**AddorUpdate**：
+幾個其他值得再次一提的主題包括屬性處理、使用替代裝置認證及組態選項。這些都是[先前的文章](iot-hub-device-sdk-c-iothubclient.md)中所涵蓋的主題。重點在於，所有這些功能不論是與**序列化程式**程式庫搭配，還是與 **IoTHubClient** 程式庫搭配，其運作方式均相同。例如，如果您想要從模型將屬性附加至事件，您需透過前述的相同方式，使用 **IoTHubMessage\_Properties** 和 **Map**\_**AddorUpdate**：
 
 ```
 MAP_HANDLE propMap = IoTHubMessage_Properties(message.messageHandle);
@@ -660,7 +660,7 @@ serializer_init(NULL);
 serializer_deinit();
 ```
 
-除此之外，上面列出的所有其他功能在**序列化程式**程式庫中的運作方式，皆與在 **IoTHubClient** 程式庫中的運作方式相同。如需有關任何這些主題的詳細資料，請參閱本系列中的[前一篇文章](iot-hub-device-sdk-c-iothubclient.md)。
+除此之外，上面列出的所有其他功能在**序列化程式**程式庫中的運作方式，皆與在 **IoTHubClient** 程式庫中的運作方式相同。如需有關任何這些主題的詳細資訊，請參閱本系列中的[前一篇文章](iot-hub-device-sdk-c-iothubclient.md)。
 
 ## 後續步驟
 
@@ -685,4 +685,4 @@ serializer_deinit();
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0907_2016-->

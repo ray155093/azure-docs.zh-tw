@@ -19,11 +19,11 @@
 # 如何透過 Python 使用通知中樞
 [AZURE.INCLUDE [notification-hubs-backend-how-to-selector](../../includes/notification-hubs-backend-how-to-selector.md)]
 		
-您可以透過 Java/PHP/Python/Ruby 後端使用通知中樞 REST 介面來存取所有通知中樞功能，如 MSDN 主題[通知中樞 REST API](http://msdn.microsoft.com/library/dn223264.aspx) 所述。
+您可以使用通知中樞 REST 介面，透過 Java/PHP/Python/Ruby 後端來存取所有通知中樞功能，如 MSDN 主題[通知中樞 REST API](http://msdn.microsoft.com/library/dn223264.aspx) 所述。
 
 > [AZURE.NOTE] 這是在 Python 實作通知傳送的範例參考實作，並非正式支援的通知中樞 Python SDK。
-
-> [AZURE.NOTE] 這個範例是使用 Python 3.4 撰寫的。
+>
+> 這個範例是使用 Python 3.4 撰寫的。
 
 在本主題中，我們將說明如何：
 
@@ -391,4 +391,4 @@
 [5]: ./media/notification-hubs-python-backend-how-to/TemplatedNotification.png
  
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0907_2016-->

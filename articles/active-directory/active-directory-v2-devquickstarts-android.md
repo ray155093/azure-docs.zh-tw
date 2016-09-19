@@ -49,7 +49,8 @@ git@github.com:Azure-Samples/active-directory-android-native-oidcandroidlib-v2.g
 
 - 複製所指派給您的「應用程式識別碼」，因為您很快就會用到。
 - 為您的應用程式新增**行動**平台。
-- 複製入口網站的「重新導向 URI」。您必須使用 `https://login.microsoftonline.com/common/oauth2/nativeclient` 的預設值。
+
+> 注意︰應用程式註冊入口網站會提供 [重新導向 URI] 值。不過，在此範例中，您必須使用 `https://login.microsoftonline.com/common/oauth2/nativeclient` 的預設值。
 
 
 ## 下載 NXOAuth2 協力廠商程式庫並建立工作區
@@ -196,4 +197,4 @@ Azure Active Directory 目前不支援 `userInfoEndpoint` 和 `revocationEndpoin
 
 我們鼓勵您造訪[安全性 TechCenter](https://technet.microsoft.com/security/dd252948) 並訂閱資訊安全摘要報告警示，以收到有關安全性事件的通知。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0907_2016-->

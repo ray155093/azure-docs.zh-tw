@@ -3,7 +3,7 @@
    description="Power BI Embedded 可讓您將 Power BI 報表整合到 Web 或行動應用程式中，您就不需要建立自訂解決方案來為您的使用者將資料視覺化"
    services="power-bi-embedded"
    documentationCenter=""
-   authors="minewiskan"
+   authors="mgblythe"
    manager="mblythe"
    editor=""
    tags=""/>
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
    ms.date="07/05/2016"
-   ms.author="owend"/>
+   ms.author="mblythe"/>
 
 # 何謂 Microsoft Power BI Embedded？
 
@@ -71,4 +71,4 @@ Power BI Embedded 是一個 **Azure 服務**，可讓 ISV 和應用程式開發�
 - [Microsoft Power BI Embedded 常見案例](power-bi-embedded-scenarios.md)
 - [開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

@@ -13,26 +13,23 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
- 	ms.date="07/26/2016"
+ 	ms.date="09/01/2016"
 	ms.author="juliako;milangada;gtrifonov"/>
 
 
 #如何使用 .NET SDK 調整編碼
 
-
 > [AZURE.SELECTOR]
-- [入口網站](media-services-portal-encoding-units.md)
+- [入口網站](media-services-portal-scale-media-processing.md)
 - [.NET](media-services-dotnet-encoding-units.md)
 - [REST](https://msdn.microsoft.com/library/azure/dn859236.aspx)
 - [Java](https://github.com/southworkscom/azure-sdk-for-media-services-java-samples)
 - [PHP](https://github.com/Azure/azure-sdk-for-php/tree/master/examples/MediaServices)
 
-##概觀
+##Overview
 
-媒體服務帳戶是與可決定編碼工作處理速度的保留單元類型相關聯。您可以選擇下列保留單元類型：S1、S2 或 S3。例如，在執行相同編碼工作的前提下，使用 Standard 保留單元類型的速度會比 Basic 類型快。如需詳細資訊，請參閱 [Milan Gada](https://azure.microsoft.com/blog/high-speed-encoding-with-azure-media-services/) 撰寫的部落格「編碼保留單元類型」。
-
-除了指定保留單元類型之外，您還可以指定使用編碼保留單元來佈建帳戶。佈建的編碼保留單元數目可決定給定帳戶中可同時處理的媒體工作數目。例如，如果帳戶有 5 個保留單元，則只要有工作需要處理，就會同時執行 5 個媒體工作。剩餘的工作會在佇列中等待，且隨著執行中的工作完成，就立即循序地挑選來開始處理。如果帳戶未佈建任何保留單元，則會循序地挑選工作。在此情況下，一件工作完成與下一件工作開始之間的等待時間，視系統中的資源可用性而定。
-
+>[AZURE.IMPORTANT] 請務必檢閱[概觀](media-services-scale-media-processing-overview.md)主題，以取得調整媒體處理主題的詳細資訊。
+ 
 若要使用 .NET SDK　變更保留單元類型以及編碼保留單元數目，請執行下列動作：
 
 	IEncodingReservedUnit encodingS1ReservedUnit = _context.EncodingReservedUnits.FirstOrDefault();
@@ -55,7 +52,7 @@
 
 1. 按一下[取得支援](https://manage.windowsazure.com/?getsupport=true)。如果您未登入，系統會提示您輸入認證。
 
-1. 選取您的訂閱。
+1. 選取您的訂用帳戶。
 
 1. 在支援類型下，選取 [技術]。
 
@@ -81,4 +78,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0907_2016-->
