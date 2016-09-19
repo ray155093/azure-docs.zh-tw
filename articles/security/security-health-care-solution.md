@@ -28,4 +28,4 @@
 
 希望[在 Microsoft Azure 中設計安全的醫療保健解決方案的實用指南](https://aka.ms/azureindustrysecurity)能對您有所幫助，如果您有任何疑問或建議，請在下面留下意見以讓我們知道。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

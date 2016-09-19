@@ -90,4 +90,4 @@ Azure Active Directory 使用者目前不會顯示在 SSDT 物件總管中。解
 [What is Azure Active Directory]: ../active-directory/active-directory-whatis.md
 [Azure AD 功能和限制]: ../sql-database/sql-database-aad-authentication.md#azure-ad-features-and-limitations
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

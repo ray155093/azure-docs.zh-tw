@@ -92,4 +92,4 @@ HockeyApp 也會以下列形式收集效能和使用資料︰
 * [Windows Phone 8 和 8.1 App](https://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone/hockeyapp-for-windows-phone-silverlight-apps-80-and-81)
 * [Windows Presentation Foundation App](https://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone/hockeyapp-for-windows-wpf-apps)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

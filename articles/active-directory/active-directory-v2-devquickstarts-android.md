@@ -197,4 +197,4 @@ Azure Active Directory 目前不支援 `userInfoEndpoint` 和 `revocationEndpoin
 
 我們鼓勵您造訪[安全性 TechCenter](https://technet.microsoft.com/security/dd252948) 並訂閱資訊安全摘要報告警示，以收到有關安全性事件的通知。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

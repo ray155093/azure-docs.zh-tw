@@ -185,4 +185,4 @@ Azure Data Lake Store 可讓您進一步在網路層級鎖定資料存放區的�
 - [使用 .NET SDK 開始使用資料湖存放區](data-lake-store-get-started-net-sdk.md)
 - [存取 Data Lake Store 的診斷記錄](data-lake-store-diagnostic-logs.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -183,4 +183,4 @@ RHEL 7.2 虛擬機器已佈建在 Azure 中。下一個工作是從遠端連線�
 
 - [Red Hat Enterprise Linux 7 - Windows 整合指南](https://access.redhat.com/documentation/zh-TW/Red_Hat_Enterprise_Linux/7/html/Windows_Integration_Guide/index.html)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

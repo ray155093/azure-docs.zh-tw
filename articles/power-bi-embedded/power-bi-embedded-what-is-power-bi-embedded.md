@@ -71,4 +71,4 @@ Power BI Embedded 是一個 **Azure 服務**，可讓 ISV 和應用程式開發�
 - [Microsoft Power BI Embedded 常見案例](power-bi-embedded-scenarios.md)
 - [開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

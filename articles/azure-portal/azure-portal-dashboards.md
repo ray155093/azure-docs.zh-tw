@@ -102,4 +102,4 @@
 - 若要管理資源，請參閱[透過入口網站管理 Azure 資源](resource-group-portal.md)。
 - 若要部署資源，請參閱[使用 Resource Manager 範本與 Azure 入口網站來部署資源](../resource-group-template-deploy-portal.md)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

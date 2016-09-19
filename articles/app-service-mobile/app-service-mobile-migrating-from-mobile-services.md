@@ -409,4 +409,4 @@ Azure App Service 通常會停用 [診斷記錄]。若要啟用診斷記錄：
 [WebJob]: ../app-service-web/websites-webjobs-resources.md
 [XDT 轉換範例]: https://github.com/projectkudu/kudu/wiki/Xdt-transform-samples
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

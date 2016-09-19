@@ -138,4 +138,4 @@ Azure Resource Manager 範本提供宣告式方法來定義可重複的部署。
 - 了解如何[為您的 DevTest Labs VM 建立自訂構件](devtest-lab-artifact-author.md)。
 - 瀏覽 [DevTest Labs ARM 快速入門範本資源庫](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

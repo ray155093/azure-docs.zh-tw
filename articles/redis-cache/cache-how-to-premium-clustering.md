@@ -164,4 +164,4 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 
 [redis-cache-redis-cluster-size]: ./media/cache-how-to-premium-clustering/redis-cache-redis-cluster-size.png
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

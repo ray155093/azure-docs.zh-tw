@@ -223,4 +223,4 @@ azure insights logprofile delete --name my_log_profile
 - [深入了解活動記錄檔 (之前的稽核記錄檔)](../resource-group-audit.md)
 - [將 Azure 活動記錄檔串流至事件中樞](./monitoring-stream-activity-logs-event-hubs.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

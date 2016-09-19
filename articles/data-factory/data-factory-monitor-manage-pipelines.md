@@ -598,4 +598,4 @@ metricName 目前支援兩個值︰
 
 ![移動資源對話方塊](./media/data-factory-monitor-manage-pipelines/MoveResources.png)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

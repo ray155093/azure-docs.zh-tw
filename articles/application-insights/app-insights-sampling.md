@@ -378,4 +378,4 @@ Application Insights SDK for ASP.NET v 2.0.0-beta3 及更新版本提供調適�
 
 * [篩選](app-insights-api-filtering-sampling.md)可以對您的 SDK 所傳送的內容，提供更嚴格的控制。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

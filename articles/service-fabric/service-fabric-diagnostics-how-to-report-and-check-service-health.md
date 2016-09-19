@@ -156,4 +156,4 @@ activationContext.ReportApplicationHealth(healthInformation);
 ## 後續步驟
 [深入了解 Service Fabric 健康情況](service-fabric-health-introduction.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

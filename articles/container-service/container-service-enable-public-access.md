@@ -95,4 +95,4 @@ ACS [公用代理程式集區](container-service-mesos-marathon-ui.md#deploy-a-d
 
 深入了解[管理 DC/OS 容器](container-service-mesos-marathon-ui.md)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

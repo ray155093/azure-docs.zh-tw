@@ -30,4 +30,4 @@ Azure Load Balancer 和應用程式閘道會將網路流量路由傳送到端點
 | SSL 卸載 | 不支援 | 支援 | 
   
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

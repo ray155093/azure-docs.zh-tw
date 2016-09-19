@@ -40,4 +40,4 @@ DC/OS Azure Container Service 會將代理程式分割成公用或私用集區�
 
 了解如何[開啟 Azure 所提供的防火牆](container-service-enable-public-access.md)以允許對 DC/OS 容器進行公用存取。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

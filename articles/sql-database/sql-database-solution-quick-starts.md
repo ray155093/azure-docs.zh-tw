@@ -71,4 +71,4 @@ Code First 能讓您使用 C# 或 Visual Basic .NET 類別定義您的模型。�
 
 [探索 Azure SQL Database 教學課程](sql-database-explore-tutorials.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

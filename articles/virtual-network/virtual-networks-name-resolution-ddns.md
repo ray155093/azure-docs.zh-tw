@@ -66,4 +66,4 @@ Linux 用戶端通常不會在啟動時向 DNS 伺服器自行登錄，其假設
 
         supersede domain-name <required-dns-suffix>;
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

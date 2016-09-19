@@ -242,4 +242,4 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。此位置
 
 請瀏覽[設定 SSL 卸載](application-gateway-ssl-arm.md)，以了解如何設定 SSL 卸載
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

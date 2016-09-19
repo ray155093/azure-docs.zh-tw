@@ -104,4 +104,4 @@
 
 您現在可以使用上傳的映像來[建立自訂的 VM](virtual-machines-windows-classic-createportal.md)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -137,4 +137,4 @@
 - 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)。
 - 若要深入了解新的主要伺服器和資料庫的驗證需求，請參閱[災害復原後的 SQL Database 安全性](sql-database-geo-replication-security-config.md)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

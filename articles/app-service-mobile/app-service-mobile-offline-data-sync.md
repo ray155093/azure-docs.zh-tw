@@ -105,4 +105,4 @@
 [Xamarin Android：啟用離線同步處理]: app-service-mobile-xamarin-ios-get-started-offline-data.md
 [通用 Windows 平台︰啟用離線同步處理]: app-service-mobile-windows-store-dotnet-get-started-offline-data.md
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

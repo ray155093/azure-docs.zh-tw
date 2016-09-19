@@ -59,4 +59,4 @@ IoT 中樞內對其他管理端點的存取權，也是透過一組權限來控�
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-tokens]: iot-hub-sas-tokens.md
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

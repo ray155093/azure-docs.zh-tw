@@ -228,4 +228,4 @@
 
 [12]: ./media/service-bus-event-hubs-get-started-receive-storm/create-storm1.png
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

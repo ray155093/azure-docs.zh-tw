@@ -300,4 +300,4 @@ URI 會決定範本命名為 **existingStorageAccount.json** 或 **newStorageAcc
 - 若要了解如何定義您資源的部署順序，請參閱[定義 Azure Resource Manager 範本中的相依性](resource-group-define-dependencies.md)
 - 若要了解如何定義一個資源，但建立它的多個執行個體，請參閱[在 Azure Resource Manager 中建立資源的多個執行個體](resource-group-create-multiple.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

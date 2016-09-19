@@ -57,4 +57,4 @@ Packer 和 Terraform 也支援 Azure Resource Manager，因此您也可以「以
 
 [這裡](https://github.com/gbowerman/vmsstools)提供一個 Python 指令碼範例，可一次自動更新一個更新網域的「VM 擴展集」。(注意︰與其說是已準備好用於生產環境的確定解決方案，倒不如說是一種概念證明 – 您可以新增一些錯誤檢查等)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -114,4 +114,4 @@
 
 一旦新增要在建立 VM 時使用的自訂映像之後，下一個步驟就是[將 VM 加入實驗室](./devtest-lab-add-vm-with-artifacts.md)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

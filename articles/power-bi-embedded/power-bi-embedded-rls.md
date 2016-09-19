@@ -102,4 +102,4 @@ RLS 是在 Power BI Desktop 中撰寫。當開啟資料集和報告時，我們�
 ## 另請參閱
 [資料列層級安全性 (RLS) 與 Power](https://powerbi.microsoft.com/zh-TW/documentation/powerbi-admin-rls/)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

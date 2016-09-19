@@ -1414,4 +1414,4 @@ SAP 快取伺服器是一個額外的伺服器架構元件，可提供在本機�
 
 另請參閱 [適用於 Azure 上 SAP 的一般 SQL Server 摘要][dbms-guide-5.8]。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

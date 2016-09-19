@@ -64,4 +64,4 @@ Azure Data Factory 是許多服務之一，可用來實作解決方案加速器�
 
   
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

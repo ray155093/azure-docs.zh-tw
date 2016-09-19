@@ -160,4 +160,4 @@ API 管理使用[效能流量路由方法](../traffic-manager/traffic-manager-ro
 
 可以！ 請遵循[本文](../resource-group-move-resources.md)的指示：
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

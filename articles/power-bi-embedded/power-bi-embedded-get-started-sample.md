@@ -245,4 +245,4 @@ $filter={tableName/fieldName}%20eq%20'{fieldValue}'
 - [Microsoft Power BI Embedded 常見案例](power-bi-embedded-scenarios.md)
 - [在 Power BI Embedded 中驗證和授權](power-bi-embedded-app-token-flow.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

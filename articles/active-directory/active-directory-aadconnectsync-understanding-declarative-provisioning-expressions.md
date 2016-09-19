@@ -92,4 +92,4 @@ Active Directory 連接器對於輸入同步處理規則提供下列參數：
 
 - [Azure AD Connect 同步處理：函式參考](active-directory-aadconnectsync-functions-reference.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

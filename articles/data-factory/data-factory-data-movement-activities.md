@@ -192,4 +192,4 @@ JSON 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) �
 - 若要深入了解複製活動，請參閱[將資料從 Azure Blob 儲存體複製到 Azure SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
 - 若要了解如何將資料從內部部署資料存放區移到雲端資料存放區，請參閱[將資料從內部部署資料存放區移到雲端資料存放區](data-factory-move-data-between-onprem-and-cloud.md)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

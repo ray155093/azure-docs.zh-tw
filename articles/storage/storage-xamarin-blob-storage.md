@@ -217,4 +217,4 @@ Xamarin 可讓開發人員使用共用的 C# 程式碼基底，使用其原生�
 
 [AZURE.INCLUDE [storage-try-azure-tools-blobs](../../includes/storage-try-azure-tools-blobs.md)]
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -129,4 +129,4 @@ await myActorServiceProxy.DeleteActorAsync(actorToDelete, cancellationToken)
 <!--Image references-->
 [1]: ./media/service-fabric-reliable-actors-lifecycle/garbage-collection.png
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

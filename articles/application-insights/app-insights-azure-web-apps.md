@@ -111,4 +111,4 @@ SDK 會提供 API 供您[撰寫自訂遙測](../application-insights/app-insight
 * 使用 [JavaScript 應用程式和網頁適用的 Application Insights](app-insights-web-track-usage.md)，以從造訪網頁的瀏覽器取得用戶端遙測。
 * [設定可用性 Web 測試](app-insights-monitor-web-app-availability.md)，以在您的網站關閉時發出警示。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->
