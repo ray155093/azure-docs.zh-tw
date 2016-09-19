@@ -578,7 +578,7 @@ App Service 支援使用各種外部識別提供者 (Facebook、Google、Microso
 
 您可以在資料表上設定權限，以限制僅有通過驗證使用者可以存取特定操作。您也可以使用已驗證的使用者 SID 來修改要求。
 
-前兩項工作可使用 [Azure 入口網站](https://portal.azure.com/)來完成。如需詳細資訊，請參閱[開始使用驗證] (英文)。
+前兩項工作可使用 [Azure 入口網站](https://portal.azure.com/)來完成。如需詳細資訊，請參閱[開始使用驗證] \(英文)。
 
 ### <a name="caching"></a>作法：將驗證碼新增至您的應用程式
 

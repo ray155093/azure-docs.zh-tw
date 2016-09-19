@@ -690,7 +690,8 @@ Azure 中的每個虛擬機器都必須連線到虛擬網路。
 #### 多站台 VPN
 Azure 現在也可讓您為一個 Azure 訂用帳戶建立「多站台 VPN」連線能力。之前，單一訂用帳戶僅限於一個站對站 VPN 連線。此限制在單一訂用帳戶可以有「多站台 VPN」連線之後已不存在。您可以透過「跨單位」組態，針對特定訂用帳戶使用多個「Azure 區域」。
 
-如需詳細說明，請參閱[這篇文章][vpn-gateway-create-site-to-site-rm-powershell] [註解]: <> (MShermannd TODO 找不到任何 ARM 文件連結)
+如需詳細說明，請參閱[這篇文章][vpn-gateway-create-site-to-site-rm-powershell] 
+[註解]: <> (MShermannd TODO 找不到任何 ARM 文件連結)
 
 #### VNet 對 VNet 連線
 使用多網站 VPN 時，您必須在每個區域中設定不同的 Azure 虛擬網路。不過，您通常必須讓不同區域中的軟體元件能夠彼此通訊。在理想情況下，此通訊應該從一個 Azure 區域路由傳送至內部部署，再由此路由傳送至其他 Azure 區域。簡而言之，Azure 可讓您設定從某個區域中的一個 Azure 虛擬網路到裝載於另一個區域中之另一個 Azure 虛擬網路的連線。此功能稱為 VNet 對 VNet 連線。如需有關此功能的更多詳細資料，請參閱：<https://azure.microsoft.com/documentation/articles/vpn-gateway-vnet-vnet-rm-ps/>。
@@ -820,7 +821,11 @@ ___
 
 > ![Windows][Logo_Windows] Windows
 >
-> Windows 設定 (例如 Windows SID 和主機名稱) 必須透過 sysprep 命令在內部部署 VM 抽象化/一般化。[註解]: <> (MSSedusch > 如需詳細資訊，請參閱：) [註解]: <> (MShermannd TODO 第一個連結與傳統模型相關。找不到 Azure 文件文章) [註解]: <> (MSSedusch > <https://azure.microsoft.com/documentation/articles/virtual-machines-create-upload-vhd-windows-server/>) [註解]: <> (MSSedusch > <http://blogs.technet.com/b/blainbar/archive/2014/09/12/modernizing-your-infrastructure-with-hybrid-cloud-using-custom-vm-images-and-resource-groups-in-microsoft-azure-part-21-blain-barton.aspx>)
+> Windows 設定 (例如 Windows SID 和主機名稱) 必須透過 sysprep 命令在內部部署 VM 抽象化/一般化。
+[註解]: <> (MSSedusch > 如需詳細資訊，請參閱：) 
+[註解]: <> (MShermannd TODO 第一個連結與傳統模型相關。找不到 Azure 文件文章) 
+[註解]: <> (MSSedusch > <https://azure.microsoft.com/documentation/articles/virtual-machines-create-upload-vhd-windows-server/>) 
+[註解]: <> (MSSedusch > <http://blogs.technet.com/b/blainbar/archive/2014/09/12/modernizing-your-infrastructure-with-hybrid-cloud-using-custom-vm-images-and-resource-groups-in-microsoft-azure-part-21-blain-barton.aspx>)
 >
 > ![Linux][Logo_Linux] Linux
 >
@@ -841,7 +846,8 @@ ___
 
 準備您自己的 Azure VM 磁碟時的需求如下︰
 
-* 含有作業系統的 VHD 原本可能只有 127GB 的大小上限。這項限制已在 2015 年 3 月底排除。現在，含有作業系統的 VHD 可以有高達 1TB 的大小，任何其他 Azure 儲存體裝載的 VHD 也是一樣。[註解]: <> (MShermannd TODO 必須檢查 CLI 是否也轉換成靜態)
+* 含有作業系統的 VHD 原本可能只有 127GB 的大小上限。這項限制已在 2015 年 3 月底排除。現在，含有作業系統的 VHD 可以有高達 1TB 的大小，任何其他 Azure 儲存體裝載的 VHD 也是一樣。
+[註解]: <> (MShermannd TODO 必須檢查 CLI 是否也轉換成靜態)
 * 它必須是固定 VHD 格式。Azure 尚未支援動態 VHD 或 VHDx 格式的 VHD。當您使用 PowerShell Commandlet 或 CLI 上傳 VHD 時，動態 VHD 會轉換成靜態 VHD
 * 掛接到 VM 並應該在 Azure 中再次掛接到 VM 的 VHD 也必須是固定 VHD 格式。OS 磁碟的相同大小限制也適用於資料磁碟。VHD 可以有 1TB 的大小上限。當您使用 PowerShell Commandlet 或 CLI 上傳 VHD 時，動態 VHD 會轉換成靜態 VHD
 * 使用系統管理員權限新增另一個本機帳戶，此帳戶可供 Microsoft 支援服務使用，或指派為服務和應用程式執行所在的內容，直到部署 VM 並可使用更適當的使用者為止。
@@ -866,7 +872,8 @@ ___
 
 準備您自己的 Azure VM 映像時的需求包括︰
 
-* 含有作業系統的 VHD 原本可能只有 127GB 的大小上限。這項限制已在 2015 年 3 月底排除。現在，含有作業系統的 VHD 可以有高達 1TB 的大小，任何其他 Azure 儲存體裝載的 VHD 也是一樣。[註解]: <> (MShermannd TODO 必須檢查 CLI 是否也轉換成靜態)
+* 含有作業系統的 VHD 原本可能只有 127GB 的大小上限。這項限制已在 2015 年 3 月底排除。現在，含有作業系統的 VHD 可以有高達 1TB 的大小，任何其他 Azure 儲存體裝載的 VHD 也是一樣。
+[註解]: <> (MShermannd TODO 必須檢查 CLI 是否也轉換成靜態)
 * 它必須是固定 VHD 格式。Azure 尚未支援動態 VHD 或 VHDx 格式的 VHD。當您使用 PowerShell Commandlet 或 CLI 上傳 VHD 時，動態 VHD 會轉換成靜態 VHD
 * 掛接到 VM 並應該在 Azure 中再次掛接到 VM 的 VHD 也必須是固定 VHD 格式。OS 磁碟的相同大小限制也適用於資料磁碟。VHD 可以有 1TB 的大小上限。當您使用 PowerShell Commandlet 或 CLI 上傳 VHD 時，動態 VHD 會轉換成靜態 VHD
 * 由於所有在 VM 中註冊為使用者的網域使用者在「僅限雲端」案例中都將不存在 (請參閱本文件的[僅限雲端 - 將虛擬機器部署到 Azure，無須倚賴內部部署客戶網路][planning-guide-2.1]一章)，因此一旦在 Azure 中部署映像，使用這類網域帳戶的服務可能就無法運作。特別是使用帳戶來執行 DBMS 或 SAP 應用程式等的服務時。因此，您必須以 VM 本機帳戶取代這類網域帳戶，並刪除 VM 中的內部部署網域帳戶。在以「跨單位」方式部署 VM 的情況下 (如本文件的[跨單位 - 將單一或多個 SAP VM 部署到 Azure，必須完全整合到內部部署網路][planning-guide-2.2]一章所述)，在 VM 映像中保留內部部署網域使用者可能就不構成問題。
@@ -1598,8 +1605,8 @@ ___
 
 作法：
 
-* 在本例中，我們決定內部部署 QAS 系統將成為 CTS 網域控制站。呼叫交易 STMS。[TMS] 對話方塊隨即顯示。[Configure Transport Domain] (設定傳輸網域) 對話方塊隨即顯示(只有在您尚未設定傳輸網域時，才會顯示此對話方塊)。
-* 確定自動建立的使用者 TMSADM 已獲得授權 ([SM59] -> [ABAP Connection] (ABAP 連線) -> [TMSADM@E61.DOMAIN\_E61] -> [Details] (詳細資料) -> [Utilities(M)] (公用程式(M)) -> [Authorization Test] (授權測試))。交易 STMS 的初始畫面應該顯示此 SAP 系統現在會作為傳輸網域的控制站，如下所示：
+* 在本例中，我們決定內部部署 QAS 系統將成為 CTS 網域控制站。呼叫交易 STMS。[TMS] 對話方塊隨即顯示。[Configure Transport Domain] \(設定傳輸網域) 對話方塊隨即顯示(只有在您尚未設定傳輸網域時，才會顯示此對話方塊)。
+* 確定自動建立的使用者 TMSADM 已獲得授權 ([SM59] -> [ABAP Connection] \(ABAP 連線) -> [TMSADM@E61.DOMAIN\_E61] -> [Details] \(詳細資料) -> [Utilities(M)] \(公用程式(M)) -> [Authorization Test] \(授權測試))。交易 STMS 的初始畫面應該顯示此 SAP 系統現在會作為傳輸網域的控制站，如下所示：
  
 ![網域控制站上的交易 STMS 初始畫面][planning-guide-figure-2300]
 
@@ -1607,7 +1614,7 @@ ___
 
 將 SAP 系統加入傳輸網域的順序如下所示︰
 
-* 在 Azure 的 DEV 系統上，移至傳輸系統 (用戶端 000) 並呼叫交易 STMS。從對話方塊選擇 [Other Configuration] (其他組態)，並繼續進行 [Include System in Domain] (將系統加入網域)。將「網域控制站」指定為目標主機 ([Including SAP Systems in the Transport Domain (將 SAP 系統加入傳輸網域)](http://help.sap.com/erp2005_ehp_04/helpdata/en/44/b4a0c17acc11d1899e0000e829fbbd/content.htm?frameset=/en/44/b4a0b47acc11d1899e0000e829fbbd/frameset.htm))。系統正在等候加入傳輸網域。
+* 在 Azure 的 DEV 系統上，移至傳輸系統 (用戶端 000) 並呼叫交易 STMS。從對話方塊選擇 [Other Configuration] \(其他組態)，並繼續進行 [Include System in Domain] \(將系統加入網域)。將「網域控制站」指定為目標主機 ([Including SAP Systems in the Transport Domain (將 SAP 系統加入傳輸網域)](http://help.sap.com/erp2005_ehp_04/helpdata/en/44/b4a0c17acc11d1899e0000e829fbbd/content.htm?frameset=/en/44/b4a0b47acc11d1899e0000e829fbbd/frameset.htm))。系統正在等候加入傳輸網域。
 * 基於安全性理由，您必須接著回到網域控制站確認您的要求。針對等候中系統，選擇 [系統概觀] 和 [核准]。然後確認提示，設定會隨即發佈。
 
 此 SAP 系統現在包含有關傳輸網域中所有其他 SAP 系統的必要資訊。同時會將新 SAP 系統的位址資料傳送至所有其他 SAP 系統，並在傳輸控制程式的傳輸設定檔中輸入 SAP 系統。檢查網域之傳輸目錄的 RFC 和存取是否運作正常。
@@ -1618,7 +1625,7 @@ ___
 
 * 確定您在內部部署的 STMS 已正確設定。
 * 確定您在 Azure 上的虛擬機器可解析傳輸網域控制站的主機名稱，反之亦然。
-* 呼叫交易 STMS -> [Other Configuration] (其他組態) -> [Include System in Domain] (將系統加入網域)。
+* 呼叫交易 STMS -> [Other Configuration] \(其他組態) -> [Include System in Domain] \(將系統加入網域)。
 * 確認內部部署 TMS 系統已連線。
 * 像往常一樣，設定傳輸路由、群組和層級。
 

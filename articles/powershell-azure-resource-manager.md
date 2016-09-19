@@ -67,7 +67,7 @@ Azure Resource Manager 會對 Azure 資源的生命週期控制實作現代化�
 	Get-AzureRmADGroupMember               Get a group members.
 	...
 
-To get full help for a cmdlet, type a command with the format:
+若要取得完整的 cmdlet，請輸入以下格式的命令：
 
     Get-Help <cmdlet-name> -Full
   

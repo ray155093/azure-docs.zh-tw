@@ -77,7 +77,7 @@
 ### 您可以取得什麼？
 
 * 您可以撰寫 JavaScript 來[從您的網頁傳送自訂遙測](app-insights-api-custom-events-metrics.md)，例如追蹤按一下按鈕的動作。
-* 在 [分析][](app-insights-analytics.md) 中，是使用 `pageViews` 來取得資料，以及使用 `dependencies` 來取得 AJAX 資料。
+* 在 [分析](app-insights-analytics.md) 中，是使用 `pageViews` 來取得資料，以及使用 `dependencies` 來取得 AJAX 資料。
 * 瀏覽器刀鋒視窗中的[用戶端效能與使用狀況資料](app-insights-javascript.md)。
 
 ![在 Azure 中擴充](./media/app-insights-asp-net-more/090.png)
