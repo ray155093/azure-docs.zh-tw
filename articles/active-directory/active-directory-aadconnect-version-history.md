@@ -30,6 +30,27 @@ Azure Active Directory 團隊會定期以新的特性和功能更新 Azure AD Co
 所需的權限 | 如需套用更新所需權限的詳細資訊，請參閱[帳戶和權限](active-directory-aadconnect-accounts-permissions.md#upgrade)
 下載| [下載 Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771)
 
+## 1\.1.281.0
+發行日期：2016 年 8 月
+
+**已修正的問題：**
+
+- 直到下一個同步週期完成後，才會進行同步間隔的變更。
+- Azure AD Connect 精靈不接受使用者名稱以底線 (\_) 開頭的 Azure AD 帳戶。
+- 如果帳戶密碼包含太多特殊字元，Azure AD Connect 精靈便無法驗證所提供的 Azure AD 帳戶。此時會傳回「無法驗證認證。已發生未預期的錯誤。」錯誤訊息。
+- 解除安裝預備伺服器會使 Azure AD 租用戶的密碼同步處理停用，並導致作用中伺服器的密碼同步處理失敗。
+- 在使用者未儲存任何密碼雜湊的罕見情況下，密碼同步處理會失敗。
+- 當 Azure AD Connect 伺服器啟用預備模式時，不會暫時停用密碼回寫。
+- 當伺服器處於預備模式時，Azure AD Connect 精靈不會顯示實際的密碼同步處理和密碼回寫組態。這些一律會顯示為停用。
+- 伺服器處於預備模式時，Azure AD Connect 精靈不會保存密碼同步處理和密碼回寫的組態變更。
+
+**改進：**
+
+- 已更新 Start-ADSyncSyncCycle Cmdlet，可指出是否能夠順利啟動新的同步處理週期。
+- 已新增 Stop-ADSyncSyncCycle Cmdlet，可終止目前正在進行中的同步處理週期和作業。
+- 已更新 Stop-ADSyncScheduler Cmdlet，可終止目前正在進行中的同步處理週期和作業。
+- 在 Azure AD Connect 精靈中設定[目錄擴充](active-directory-aadconnectsync-feature-directory-extensions.md)時，現在可以選取「Teletex 字串」類型的 AD 屬性。
+
 ## 1\.1.189.0
 發行日期：2016 年 6 月
 
@@ -103,7 +124,7 @@ Azure Active Directory 團隊會定期以新的特性和功能更新 Azure AD Co
 
 **新的預覽功能：**
 
-- 新的預設同步處理循環間隔為 30 分鐘。過去所有舊版本都是 3 小時。已新增對變更[排程器](active-directory-aadconnectsync-feature-scheduler.md)行為的支援。
+- 新的預設同步處理週期間隔為 30 分鐘。過去所有舊版本都是 3 小時。已新增對變更[排程器](active-directory-aadconnectsync-feature-scheduler.md)行為的支援。
 
 **已修正的問題：**
 
@@ -293,4 +314,4 @@ AD 帳戶必須獲得其他權限，才能讀取來自 AD 的密碼雜湊。要�
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0907_2016-->

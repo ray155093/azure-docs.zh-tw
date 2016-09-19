@@ -44,9 +44,9 @@
 
 ### 使用 firstRowAsHeader 和 skipLineCount 的案例
 
-- 您正從非檔案來源複製到文字檔，並想要加入標頭行，其中包含結構描述中繼資料 (例如︰SQL 結構描述)。針對此案例，請在輸出資料集中將 firstRowAsHeader 指定為 true。
-- 您正從包含標頭行的文字檔複製到非檔案接收器，並想要刪除那一行。請在輸入資料集中將 firstRowAsHeader 指定為 true。
-- 您正從文字檔複製，並想略過非資料或標頭的開頭幾行。指定 skipLineCount 以指示要略過的行數。如果其餘的檔案包含標頭行，您也可以指定 firstRowAsHeader。如果指定 skipLineCount 和 firstRowAsHeader，則會先略過程式碼行，再從輸入檔讀取標頭資訊。
+- 您正從非檔案來源複製到文字檔，並想要加入標頭行，其中包含結構描述中繼資料 (例如︰SQL 結構描述)。針對此案例，請在輸出資料集中將 **firstRowAsHeader** 指定為 true。
+- 您正從包含標頭行的文字檔複製到非檔案接收器，並想要刪除那一行。請在輸入資料集中將 **firstRowAsHeader** 指定為 true。
+- 您正從文字檔複製，並想略過非資料或標頭的開頭幾行。指定 **skipLineCount** 以指示要略過的行數。如果其餘的檔案包含標頭行，您也可以指定 **firstRowAsHeader**。如果指定 **skipLineCount** 和 **firstRowAsHeader**，則會先略過程式碼行，再從輸入檔讀取標頭資訊。
 
 ### 指定 AvroFormat
 如果格式設為 AvroFormat，您不需要在 typeProperties 區段內的 Format 區段中指定任何屬性。範例：
@@ -251,4 +251,4 @@ JsonFormat 類型的輸入資料集的定義如下：(僅含有相關組件的�
 -	不支援複雜資料類型 (STRUCT、MAP、LIST、UNION)
 -	ORC 檔案有 3 種[壓縮相關選項](http://hortonworks.com/blog/orcfile-in-hdp-2-better-compression-better-performance/)︰NONE、ZLIB、SNAPPY。Data Factory 支援以這些壓縮格式的任一項從 ORC 檔案讀取資料。它會使用中繼資料裡的壓縮轉碼器來讀取資料。不過，寫入 ORC 檔案時，Data Factory 會選擇 ZLIB，這是 ORC 的預設值。目前沒有任何選項可覆寫這個行為。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

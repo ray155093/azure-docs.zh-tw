@@ -18,7 +18,7 @@
 
 # 搭配使用 Azure PowerShell 與 Azure 資源管理員
 
-Azure 資源管理員介紹一種看待 Azure 資源的嶄新方式。與其建立並管理個別資源，您首先想像整個解決方案，例如，部落格、相片庫、SharePoint 入口網站或 Wiki。使用範本 (解決方案的宣告式呈現) 建立包含支援解決方案所需所有資源的資源群組。然後，以邏輯單元的方式來管理與部署該資源群組。
+Azure Resource Manager 會對 Azure 資源的生命週期控制實作現代化方法。與其建立並管理個別資源，您首先想像整個解決方案，例如，部落格、相片庫、SharePoint 入口網站或 Wiki。使用範本 (解決方案的宣告式呈現) 定義包含支援解決方案所需所有資源的資源群組。然後，以邏輯單元的方式來部署與管理該資源群組。
 
 在本教學課程中，您將了解如何搭配使用 Azure PowerShell 與 Azure 資源管理員。它會逐步引導您完成部署解決方案，以及使用該解決方案的程序。您將使用 Azure PowerShell 和資源管理員範本來部署︰
 
@@ -376,4 +376,4 @@ cmdlet 會提示您 Azure 帳戶的登入認證。登入之後，它會下載您
 - 如需部署專案的詳細範例，請參閱[透過可預測方式在 Azure 中部署微服務](app-service-web/app-service-deploy-complex-application-predictably.md)。
 - 若要了解如何疑難排解失敗的部署，請參閱[在 Azure 中疑難排解資源群組部署](./resource-manager-troubleshoot-deployments-powershell.md)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0907_2016-->

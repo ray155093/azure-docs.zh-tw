@@ -23,7 +23,7 @@
 
 本指引中的某些主題正在討論中，未來可能有所變更。歡迎您提供的意見反應！
 
-## 概觀
+## Overview
 仔細設計的 RESTful Web API 可定義資源、關係以及用戶端應用程式可存取的導覽配置。當您實作和部署 Web API 時，您應該考慮裝載 Web API 之環境的實際需求，以及 Web API 的建構方式 (而非資料的邏輯結構)。本指引著重於實作 Web API 和加以發佈以供用戶端應用程式使用的最佳作法。安全性考量會在＜API 安全性指引＞文件中個別說明。您可以在＜API 設計指引＞文件中找到有關 Web API 設計的詳細資訊。
 
 ## 實作 RESTful Web API 的考量
@@ -1068,7 +1068,7 @@ Azure 提供 [API 管理服務](https://azure.microsoft.com/documentation/servic
 建構用戶端應用程式的開發人員通常需要有關如何存取 Web API 的資訊，以及有關參數、資料類型、傳回型別和傳回碼 (描述 Web 服務與用戶端應用程式間的不同要求和回應) 的文件。
 
 ### 記載 Web API 的 REST 作業
-Azure API 管理服務包括可描述 Web API 所公開之 REST 作業的開發人員入口網站。產品發佈後就會顯示在此入口網站上。開發人員可以使用此入口網站來註冊存取權；系統管理員即可核准或拒絕此要求。如果開發人員獲得核准，就會指派訂用帳戶金鑰給他們，以便用來驗證來自他們所開發的用戶端應用程式的呼叫。此金鑰必須隨著每個 Web API 呼叫提供，否則會遭到拒絕。
+Azure API 管理服務包括可描述 Web API 所公開之 REST 作業的開發人員入口網站。產品發佈後就會顯示在此入口網站上。開發人員可以使用此入口網站來註冊存取權；系統管理員即可核准或拒絕此要求。如果開發人員獲得核准，就會指派訂用帳戶金鑰給他們，以便用來驗證來自他們所開發的用戶端應用程式呼叫。此金鑰必須隨著每個 Web API 呼叫提供，否則會遭到拒絕。
 
 此入口網站也提供：
 
@@ -1110,7 +1110,7 @@ Azure 管理入口網站可讓您自訂開發人員入口網站來變更樣式�
 
 您可以從 Azure 管理入口網站即時檢視此資料。您也可以建立用以監控 Web API 健全狀況的 Web 測試。Web 測試會傳送定期要求至 Web API 中指定的 URI，並擷取回應。您可以指定成功回應 (例如 HTTP 狀態碼 200) 的定義，而如果要求未傳回此回應，您可以安排要傳送給系統管理員的警示。必要時，系統管理員可以重新啟動裝載 Web API 的伺服器 (如果失敗的話)。
 
-Microsoft 網站上的 [Application Insights - 開始監控應用程式的健全狀況和使用量](../articles/application-insights/app-insights-start-monitoring-app-health-usage.md)頁面會提供詳細資訊。
+Microsoft 網站上的 [Application Insights - 開始使用 ASP.NET](../articles/application-insights/app-insights-asp-net.md) 頁面會提供詳細資訊。
 
 ### 透過 API 管理服務監控 Web API
 
@@ -1147,8 +1147,8 @@ Microsoft 網站上的 [Application Insights - 開始監控應用程式的健全
 - Microsoft 網站上的 [API 管理](https://azure.microsoft.com/services/api-management/)頁面說明如何發佈產品，以提供受控制且安全的 Web API 存取。
 - Microsoft 網站上的 [Azure API 管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn776326.aspx)頁面說明如何使用 API 管理 REST API 來建置自訂管理應用程式。
 - Microsoft 網站上的[流量管理員路由方法](../articles/traffic-manager/traffic-manager-routing-methods.md)頁面摘要說明 Azure 流量管理員如何用來平衡裝載 Web API 的網站上多個執行個體的要求負載。
-- Microsoft 網站上的 [Application Insights - 開始監控應用程式的健全狀況和使用量](../articles/application-insights/app-insights-start-monitoring-app-health-usage.md)頁面提供有關在 ASP.NET Web API 專案中安裝和設定 Application Insights 的詳細資訊。
+- Microsoft 網站上的 [Application Insights - 開始使用 ASP.NET](../articles/application-insights/app-insights-asp-net.md) 頁面提供有關在 ASP.NET Web API 專案中安裝和設定 Application Insights 的詳細資訊。
 - Microsoft 網站上的[驗證使用單位測試的程式碼](https://msdn.microsoft.com/library/dd264975.aspx)頁面提供有關使用 Visual Studio 建立和管理單位測試的詳細資訊。
 - Microsoft 網站上的[在發行前執行應用程式的效能測試](https://msdn.microsoft.com/library/dn250793.aspx)頁面說明如何使用 Visual Studio Ultimate 建立 Web 效能和負載測試專案。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0907_2016-->

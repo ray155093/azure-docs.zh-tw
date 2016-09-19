@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="andkjell"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/26/2016"
+	ms.date="08/31/2016"
 	ms.author="andkjell"/>
 
 
@@ -55,7 +55,7 @@
 	- 標籤︰保留空白。只有 Microsoft 提供的現成可用規則應該在此方塊中填入值。
 3. 在 [範圍篩選器] 頁面上，輸入 **givenName ISNOTNULL**。![輸入規則範圍篩選器](./media/active-directory-aadconnectsync-change-the-configuration/scopingfilter.png) 此區段用來定義應套用規則的物件。如果保留空白，規則會套用到所有的使用者物件。但會包括會議室、服務帳戶，以及其他非人員的使用者物件。
 4. 在 [聯結規則] 上，將它保留空白。
-5. 在 [轉換] 頁面上，將 FlowType 變更為 [運算式]。選取目標屬性 **giveName**，並在 [來源] 中輸入 `PCase([givenName])`。![輸入規則轉換](./media/active-directory-aadconnectsync-change-the-configuration/transformations.png) 同步處理引擎會區分函式名稱和屬性名稱的大小寫。如果您輸入錯誤，您會在新增規則時看到警告。編輯器可讓您儲存並繼續進行，因此您必須重新開啟規則並予以更正。
+5. 在 [轉換] 頁面上，將 FlowType 變更為 [運算式]。選取目標屬性 **givenName**，並在 [來源] 中輸入 `PCase([givenName])`。![輸入規則轉換](./media/active-directory-aadconnectsync-change-the-configuration/transformations.png) 同步處理引擎會區分函式名稱和屬性名稱的大小寫。如果您輸入錯誤，您會在新增規則時看到警告。編輯器可讓您儲存並繼續進行，因此您必須重新開啟規則並予以更正。
 6. 按一下 [新增] 以儲存規則。
 
 新的自訂規則應與其他同步處理規則一起顯示在系統中。
@@ -126,12 +126,12 @@ Active Directory 中的某些屬性在結構描述中是多重值，但是在 [A
 
 ## 後續步驟
 
-深入了解[宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)和同步處理規則中可用的選項。
+- 如需組態模型的詳細資訊，請參閱[了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)。
+- 如需運算式語言的詳細資訊，請參閱[了解宣告式佈建運算式](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md)。
 
-深入了解用於屬性流程的[宣告式佈建運算式](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md)。
+**概觀主題**
 
-深入了解 [Azure AD Connect 同步](active-directory-aadconnectsync-whatis.md)組態。
+- [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
+- [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
-
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

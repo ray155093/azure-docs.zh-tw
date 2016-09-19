@@ -94,7 +94,7 @@
     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
     ```
 
-3. 新增下列程式碼至 **CreateIoTHub** 方法，以描述 IoT 中樞來建立並產生 JSON 表示法：
+3. 將下列程式碼新增到 **CreateIoTHub** 方法中來描述 IoT 中樞，以建立並產生 JSON 表示法 (如需目前支援「IoT 中樞」的位置清單，請參閱 [Azure 狀態][lnk-status])：
 
     ```
     var description = new
@@ -173,7 +173,7 @@
 現在您已經使用 REST API 部署 IoT 中樞，您可以進一步探索：
 
 - 閱讀 [IoT 中樞資源提供者 REST API][lnk-rest-api] 功能的相關資訊。
-- 如需 Azure Resource Manager 功能的詳細資訊，請參閱 [Azure Resource Manager 概觀][lnk-azure-rm-overview]。
+- 如需 Azure 資源管理員功能的詳細資訊，請參閱 [Azure 資源管理員概觀][lnk-azure-rm-overview]。
 
 若要深入了解如何開發 IoT 中樞，請參閱以下內容︰
 
@@ -190,6 +190,7 @@
 <!-- Links -->
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/
 [lnk-azure-portal]: https://portal.azure.com/
+[lnk-status]: https://azure.microsoft.com/status/
 [lnk-powershell-install]: ../powershell-install-configure.md
 [lnk-rest-api]: https://msdn.microsoft.com/library/mt589014.aspx
 [lnk-azure-rm-overview]: ../resource-group-overview.md
@@ -202,4 +203,4 @@
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0907_2016-->

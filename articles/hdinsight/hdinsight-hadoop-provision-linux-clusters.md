@@ -14,7 +14,7 @@
    	ms.topic="article"
    	ms.tgt_pltfrm="na"
    	ms.workload="big-data"
-   	ms.date="07/08/2016"
+   	ms.date="09/06/2016"
    	ms.author="jgao"/>
 
 
@@ -153,7 +153,7 @@ HDInsight 叢集與其預設儲存體帳戶必須並存於相同的 Azure 位置
 
 ![Azure 區域](./media/hdinsight-provision-clusters/Azure.regions.png)
 
-如需支援的地區清單，請按一下 [HDInsight 定價](https://go.microsoft.com/fwLink/?LinkID=282635&clcid=0x409)中的 [地區] 下拉式清單。
+如需支援的區域清單，請按一下 [HDInsight 價格](https://go.microsoft.com/fwLink/?LinkID=282635&clcid=0x409)中的 [區域] 下拉式清單。
 
 ### 節點定價層###
 
@@ -215,6 +215,8 @@ HDInsight 叢集與其預設儲存體帳戶必須並存於相同的 Azure 位置
 ## 使用其他儲存體
 
 在某些情況下，您可能想要將更多儲存體加入至叢集。例如，您可能有多個 Azure 儲存體帳戶用於不同的地理區域或不同的服務，但您想要全部透過 HDInsight 來分析。
+
+當您建立 HDInsight 叢集時，或在建立叢集之後，您可以新增儲存體帳戶。請參閱[使用指令碼動作自訂 Linux 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
 
 如需有關次要 Blob 儲存體的詳細資訊，請參閱[使用 Azure Blob 儲存體搭配 HDInsight](hdinsight-hadoop-use-blob-storage.md)。如需次要 Data Lake Store 的詳細資訊，請參閱[使用 Azure 入口網站建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
 
@@ -297,4 +299,4 @@ HBase 叢集類型無法使用中繼存放區組態。
 | [.NET SDK](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md) | &nbsp; | &nbsp; | &nbsp; | ✔ | ✔ | ✔ |
 | [Azure Resource Manager 範本](hdinsight-hadoop-create-linux-clusters-arm-templates.md) | &nbsp; | ✔ | &nbsp; | &nbsp; | ✔ | ✔ |
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0907_2016-->

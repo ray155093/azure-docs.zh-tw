@@ -23,7 +23,7 @@
 在開始之前，您需要[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)，以便將診斷記錄封存至此。我們強烈建議您不要使用已儲存了其他非監視資料的現有儲存體帳戶，這樣您對監視資料才能有更好的存取控制。不過，如果您也要封存活動記錄和診斷度量至儲存體帳戶，則將同一儲存體帳戶用於診斷記錄合情合理，因為可以將所有監視資料集中在一個位置。您使用的儲存體帳戶必須是一般用途的儲存體帳戶，不可以是 blob 儲存體帳戶。
 
 ## 診斷設定
-若要使用下列任何方法封存診斷記錄，您必須為特定資源設定**診斷設定**。資源的診斷設定會定義所儲存或串流的記錄類別以及輸出 — 儲存體帳戶及/或事件中樞。它也會定義儲存在儲存體帳戶中每個記錄類別之事件的保留原則 (保留的天數)。如果保留原則設定為零，則會無限期地儲存該記錄類別的事件。[您可以在此深入了解診斷設定](monitoring-overview-of-diagnostic-logs.md#diagnostic-settings)。
+若要使用下列任何方法封存診斷記錄，您必須為特定資源設定**診斷設定**。資源的診斷設定會定義所儲存或串流的記錄類別以及輸出 — 儲存體帳戶及/或事件中樞。它也會定義儲存在儲存體帳戶中每個記錄類別之事件的保留原則 (保留的天數)。如果保留原則設定為零，則會無限期地 (亦即永遠) 儲存該記錄類別的事件。否則，保留原則可以是 1 到 2147483647 之間的任何天數。[您可以在此深入了解診斷設定](monitoring-overview-of-diagnostic-logs.md#diagnostic-settings)。
 
 ## 使用入口網站封存診斷記錄
 
@@ -51,7 +51,7 @@ Set-AzureRmDiagnosticSetting -ResourceId /subscriptions/s1id1234-5679-0123-4567-
 | 類別 | 否 | 要啟用之記錄類別的逗號分隔清單。 |
 | 已啟用 | 是 | 布林值，表示要對資源啟用還是停用診斷。 |
 | RetentionEnabled | 否 | 布林值，表示此資源是否啟用保留原則。 |
-| RetentionInDays | 否 | 事件應保留的天數。值為 0 會無限期地儲存記錄檔。 |
+| RetentionInDays | 否 | 事件應保留的天數，1 到 2147483647 之間。值為 0 會無限期地儲存記錄檔。 |
 
 ## 透過跨平台 CLI 封存活動記錄
 
@@ -124,4 +124,4 @@ azure insights diagnostic set --resourceId /subscriptions/s1id1234-5679-0123-456
 - [將診斷記錄串流至事件中樞](monitoring-stream-diagnostic-logs-to-event-hubs.md)
 - [深入了解診斷記錄](monitoring-overview-of-diagnostic-logs.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

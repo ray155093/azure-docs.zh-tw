@@ -76,7 +76,15 @@
 	$subscr="<subscription name>"
 	Get-AzureSubscription –SubscriptionName $subscr | Select-AzureSubscription
 
-## 步驟 4︰執行命令來移轉 IaaS 資源
+## 步驟 4︰確定您目前的部署或 VNET 的 Azure 區域中有足夠的 Azure Resource Manager 虛擬機器核心
+
+您可以使用下列 PowerShell 命令來檢查您目前在 Azure Resource Manager 中擁有的核心數量。若要深入了解核心配額，請參閱[限制和 Azure Resource Manager](../azure-subscription-service-limits.md#limits-and-the-azure-resource-manager)
+
+```
+Get-AzureRmVMUsage -Location "<Your VNET or Deployment's Azure region"
+```
+
+## 步驟 5︰執行命令來移轉 IaaS 資源
 
 >[AZURE.NOTE] 下述所有作業都是等冪的。如果您有不支援的功能或組態錯誤以外的任何問題，建議您重新嘗試準備、中止或認可作業。平台將會重新嘗試該動作。
 
@@ -181,4 +189,4 @@
 - [平台支援的從傳統移轉至 Resource Manager 的技術深入探討](virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
 - [使用社群 PowerShell 指令碼將傳統虛擬機器複製到 Azure Resource Manager](virtual-machines-windows-migration-scripts.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

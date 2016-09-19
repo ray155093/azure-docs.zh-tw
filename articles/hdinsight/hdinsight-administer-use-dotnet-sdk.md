@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/07/2016"
+	ms.date="09/02/2016"
 	ms.author="jgao"/>
 
 # 使用 .NET SDK 管理 HDInsight 中的 Hadoop 叢集
@@ -39,7 +39,7 @@
     Install-Package Microsoft.Azure.Management.ResourceManager -Pre
 	Install-Package Microsoft.Azure.Management.HDInsight
 
-下列程式碼範例示範如何先連接至 Azure，才能透過 Azure 訂用帳戶管理 HDInsight 叢集。
+下列程式碼範例示範如何先連接至 Azure，然後才透過 Azure 訂用帳戶管理 HDInsight 叢集。
 
     using System;
     using Microsoft.Azure;
@@ -289,4 +289,4 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 [hdinsight-upload-data]: hdinsight-upload-data.md
 [hdinsight-flight]: hdinsight-analyze-flight-delay-data.md
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0907_2016-->

@@ -1,6 +1,6 @@
 <properties
-	pageTitle="資料轉換輸出：儲存體的選項、分析 |Microsoft Azure"
-	description="了解將串流分析資料轉換輸出的目標，設為資料儲存體選項。還有，為分析結果使用 Power BI。"
+	pageTitle="串流分析輸出︰儲存體、分析的選項 | Microsoft Azure"
+	description="深入了解串流分析資料輸出的選項 (包括使用於分析結果的 Power BI)。"
 	keywords="資料轉換, 分析結果, 資料儲存體選項"
 	services="stream-analytics,documentdb,sql-database,event-hubs,service-bus,storage"
 	documentationCenter="" 
@@ -14,18 +14,28 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-services"
-	ms.date="07/27/2016"
+	ms.date="08/29/2016"
 	ms.author="jeffstok"/>
 
-# 將串流分析資料轉換輸出的目標，設為分析工具及資料儲存體選項
+# 串流分析輸出︰儲存體、分析的選項
 
-當您在編寫串流分析工作時，請考慮資料轉換輸出的取用方式。您要如何檢視串流分析工作的結果？ 您要使用哪些工具來顯示資料分析的結果？ 資料儲存體選項是必要的嗎？
+當您在編寫串流分析工作時，請考慮產生資料的取用方式。您要如何檢視串流分析工作的結果，並將儲存於何處？
 
 為了要啟用各種應用程式模式，Azure 串流分析針對儲存輸出及檢視分析結果提供了數種不同的選項。這讓您能輕鬆地檢視工作輸出，還讓您對於資料倉儲和其他用途之工作輸出的取用及儲存方式更有彈性。任何在工作中設定的輸出，都必須在工作開始之前，以及在事件開始運作之前就已經存在。例如，如果您把 Blob 儲存體當做輸出來使用，工作就不會自動建立儲存體帳戶。使用者必須在 Azure 串流分析工作開始之前建立儲存體帳戶。
 
-## Azure 資料湖存放區
+## Azure Data Lake Store
 
 串流分析支援 [Azure Data Lake Store](https://azure.microsoft.com/services/data-lake-store/)。此儲存體可讓您存放任何大小、類型和擷取速度的資料，以便進行運作和探究分析。目前只有 Azure 傳統入口網站支援建立及設定 Data Lake Store 輸出。此外，串流分析需要經過授權，才能存取 Data Lake Store。如需有關授權，以及如何註冊 Data Lake Store 預覽 (如有需要) 的詳細資料，請參閱 [Data Lake 輸出文章](stream-analytics-data-lake-output.md)。
+
+### 授權 Azure Data Lake Store
+
+在 Azure 管理入口網站中選取 Data Lake Storage 做為輸出時，系統會提示您授權與現有 Data Lake Store 的連接。
+
+![授權 Data Lake Store](./media/stream-analytics-define-outputs/06-stream-analytics-define-outputs.png)
+
+接著請填寫 Data Lake Store 輸出的屬性，如下所示︰
+
+![授權 Data Lake Store](./media/stream-analytics-define-outputs/07-stream-analytics-define-outputs.png)
 
 下表列出建立 Data Lake Store 輸出所需的屬性名稱及其描述。
 
@@ -40,8 +50,8 @@
 <td>此為易記名稱，用於在查詢中將查詢輸出指向這個 Data Lake Store。</td>
 </tr>
 <tr>
-<td>Data Lake Store 帳戶</td>
-<td>您傳送輸出的儲存體帳戶名稱。您將看到 Data Lake Store 帳戶的下拉式清單，登入入口網站的使用者可存取該下拉式清單。</td>
+<td>帳戶名稱</td>
+<td>您傳送輸出的 Data Lake Storage 帳戶名稱。您將看到 Data Lake Store 帳戶的下拉式清單，登入入口網站的使用者可存取該下拉式清單。</td>
 </tr>
 <tr>
 <td>路徑前置詞模式 [<I>選用</I>]</td>
@@ -73,6 +83,13 @@
 </tr>
 </tbody>
 </table>
+
+### 更新 Data Lake Store 授權
+
+如果您在建立工作之後或上次驗證過後變更了密碼，則需要重新驗證您的 Data Lake Store 帳戶。
+
+![授權 Data Lake Store](./media/stream-analytics-define-outputs/08-stream-analytics-define-outputs.png)
+
 
 ## SQL Database
 
@@ -190,9 +207,9 @@
 | 屬性名稱 | 說明 |
 |---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 輸出別名 | 此為易記名稱，用於在查詢中將查詢輸出指向這個 Power BI 輸出。 |
+| 群組工作區 | 若要與其他 Power BI 使用者共用資料，您可以選取 Power BI 帳戶內的群組，若您不希望寫入群組，請選擇「我的工作區」。更新現有的群組需要更新 Power BI 驗證。 | 
 | 資料集名稱 | 提供 Power BI 輸出需要使用的資料集名稱 |
 | 資料表名稱 | 提供 Power BI 輸出資料集的資料表名稱。目前，串流分析工作的 Power BI 輸出中，一個資料集只能有一個資料表 |
-| 群組名稱 | 若要啟用與其他 Power BI 使用者共用資料，請將資料寫入群組。如果您不想寫入群組，您可以選取 Power BI 帳戶內的群組或選擇「我的工作區」。更新現有的群組需要更新 Power BI 驗證。 |
 
 如需設定 Power BI 輸出和儀表板的逐步解說，請參閱 [Azure 串流分析與 Power BI](stream-analytics-power-bi-dashboard.md) 一文。
 
@@ -318,4 +335,4 @@
 [stream.analytics.query.language.reference]: http://go.microsoft.com/fwlink/?LinkID=513299
 [stream.analytics.rest.api.reference]: http://go.microsoft.com/fwlink/?LinkId=517301
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0907_2016-->

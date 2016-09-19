@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="06/07/2016"
+   ms.date="08/29/2016"
    ms.author="rortloff;barbkess;sonyama"/>
 
 # 開始使用透明資料加密 (TDE)
@@ -54,6 +54,8 @@ ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 ALTER DATABASE [AdventureWorks] SET ENCRYPTION OFF;
 ```
 
+附註︰變更 TDE 設定之前，必須先恢復暫停的 SQL 資料倉儲。
+
 ##確認加密
 
 若要確認 SQL 資料倉儲的加密狀態，請遵循下列步驟：
@@ -86,4 +88,4 @@ FROM
 
 <!--Link references-->
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0907_2016-->

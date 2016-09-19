@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="sqldb-quickstart"
-   ms.date="06/22/2016"
+   ms.date="09/06/2016"
    ms.author="carlrab"/>
 
 # 探索 Azure SQL Database 解決方案快速入門
@@ -27,7 +27,7 @@
 
 ## 收集和監視多個集區的資源使用狀況資料
 
-[Solution Quick Start: Elastic Pool Telemetry using PowerShell (解決方案快速入門：使用 PowerShell 進行彈性集區遙測)](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools) 提供收集和監視訂用帳戶中多個集區的 SQL Database 資源使用狀況的解決方案。當訂用帳戶中有大量資料庫時，將會難以分別監視每個彈性集區。
+[解決方案快速入門：使用 PowerShell 進行彈性集區遙測](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools)提供收集和監視訂用帳戶中多個集區的 SQL Database 資源使用狀況的解決方案。當訂用帳戶中有大量資料庫時，將會難以分別監視每個彈性集區。
 
 若要解決這個難題，您可以結合 SQL Database PowerShell Cmdlet 和 T-SQL 查詢，從多個集區及其資料庫收集資源使用狀況資料。這可以協助您更有效地監視並分析資源使用狀況。
 
@@ -71,4 +71,4 @@ Code First 能讓您使用 C# 或 Visual Basic .NET 類別定義您的模型。�
 
 [探索 Azure SQL Database 教學課程](sql-database-explore-tutorials.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0907_2016-->

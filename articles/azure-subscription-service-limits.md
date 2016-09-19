@@ -63,6 +63,7 @@
 - [媒體服務](#media-services-limits)
 - [Mobile Engagement](#mobile-engagement-limits)
 - [行動服務](#mobile-services-limits)
+- [監視](#monitoring-limits)
 - [Multi-Factor Authentication](#multi-factor-authentication)
 - [網路功能](#networking-limits)
 - [通知中樞服務](#notification-hub-service-limits)
@@ -219,6 +220,10 @@
 
 [AZURE.INCLUDE [mobile-services-limits](../includes/mobile-services-limits.md)]
 
+### 監視限制
+
+[AZURE.INCLUDE [monitoring-limits](../includes/monitoring-limits.md)]
+
 ### 通知中樞服務限制
 
 [AZURE.INCLUDE [notification-hub-limits](../includes/notification-hub-limits.md)]
@@ -305,4 +310,4 @@
 
 [雲端服務的大小](cloud-services/cloud-services-sizes-specs.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

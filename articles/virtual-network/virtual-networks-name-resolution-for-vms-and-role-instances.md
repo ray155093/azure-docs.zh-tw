@@ -1,6 +1,6 @@
 <properties 
    pageTitle="VM 與角色執行個體的解析"
-   description="Azure IaaS、混合式解決方案、不同雲端服務之間、Active Directory 以及使用專屬 DNS 伺服器的名稱解析案例"
+   description="Azure IaaS、混合式解決方案、不同雲端服務之間、Active Directory 以及使用專屬 DNS 伺服器的名稱解析案例 "
    services="virtual-network"
    documentationCenter="na"
    authors="GarethBradshawMSFT"
@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="06/03/2016"
+   ms.date="08/31/2016"
    ms.author="telmos" />
 
 # VM 與角色執行個體的名稱解析
@@ -89,9 +89,9 @@
 - Ubuntu (使用 resolvconf)：
 	- 只安裝 dnsmasq 封裝 (“sudo apt-get install dnsmasq”)。
 - SUSE (使用 netconf)：
-	- 安裝 dnsmasq 封裝 (“sudo zypper install dnsmasq”) 
-	- 啟用 dnsmasq 服務 (“systemctl enable dnsmasq.service”) 
-	- 啟動 dnsmasq 服務 (“systemctl start dnsmasq.service”) 
+	- 安裝 dnsmasq 封裝 (“sudo zypper install dnsmasq”)
+	- 啟用 dnsmasq 服務 (“systemctl enable dnsmasq.service”)
+	- 啟動 dnsmasq 服務 (“systemctl start dnsmasq.service”)
 	- 編輯 “/etc/sysconfig/network/config” 並將 NETCONFIG\_DNS\_FORWARDER="" 變更為 ”dnsmasq”
 	- 更新 resolv.conf ("netconfig update") 來設定快取做為本機 DNS 解析程式
 - OpenLogic (使用 NetworkManager)：
@@ -107,8 +107,8 @@
 
 DNS 主要是 UDP 通訊協定。因為 UDP 通訊協定並不保證訊息傳遞，所以重試邏輯會在 DNS 通訊協定本身處理。每個 DNS 用戶端 (作業系統) 可以展現不同的重試邏輯，根據建立者喜好設定而定：
 
- - Windows 作業系統會在 1 秒後重試，然後再依序隔 2、4、4 秒後重試。 
- - 預設 Linux 安裝程式會在 5 秒之後重試。建議您變更為以 1 秒的間隔重試 5 次。  
+ - Windows 作業系統會在 1 秒後重試，然後再依序隔 2、4、4 秒後重試。
+ - 預設 Linux 安裝程式會在 5 秒之後重試。建議您變更為以 1 秒的間隔重試 5 次。
 
 檢查 Linux VM 上目前的設定，'cat /etc/resolv.conf' 並查看 [選項] 行，例如：
 
@@ -117,13 +117,13 @@ DNS 主要是 UDP 通訊協定。因為 UDP 通訊協定並不保證訊息傳遞
 resolv.conf 檔案通常是自動產生的，且不可編輯。新增 [選項] 行的特定步驟會因散發版本而有所不同：
 
 - Ubuntu (使用 resolvconf)：
-	- 將選項行新增至 '/etc/resolveconf/resolv.conf.d/head' 
+	- 將選項行新增至 '/etc/resolveconf/resolv.conf.d/head'
 	- 執行 'resolvconf -u' 以進行更新
 - SUSE (使用 netconf)：
-	- 將 'timeout:1 attempts:5' 新增至 '/etc/sysconfig/network/config' 中的 NETCONFIG\_DNS\_RESOLVER\_OPTIONS="" 參數 
+	- 將 'timeout:1 attempts:5' 新增至 '/etc/sysconfig/network/config' 中的 NETCONFIG\_DNS\_RESOLVER\_OPTIONS="" 參數
 	- 執行 'netconfig update' 以進行更新
 - OpenLogic (使用 NetworkManager)：
-	- 將 'echo "options timeout:1 attempts:5"' 新增至 '/etc/NetworkManager/dispatcher.d/11-dhclient' 
+	- 將 'echo "options timeout:1 attempts:5"' 新增至 '/etc/NetworkManager/dispatcher.d/11-dhclient'
 	- 執行 'service network restart' 以進行更新
 
 ## 使用專屬 DNS 伺服器的名稱解析
@@ -139,13 +139,13 @@ DNS 轉送也實現 vnet 之間的 DNS 解析，並使內部部署電腦能夠�
 
 如有需要，可以使用 PowerShell 或 API 來確定內部 DNS 尾碼︰
 
--  針對 Resource Manager 部署模型中的虛擬網路，您可以透過[網路介面卡](https://msdn.microsoft.com/library/azure/mt163668.aspx)資源或 [Get-AzureRmNetworkInterface](https://msdn.microsoft.com/library/mt619434.aspx) Cmdlet 來取得尾碼。    
+-  針對 Resource Manager 部署模型中的虛擬網路，您可以透過[網路介面卡](https://msdn.microsoft.com/library/azure/mt163668.aspx)資源或 [Get-AzureRmNetworkInterface](https://msdn.microsoft.com/library/mt619434.aspx) Cmdlet 來取得尾碼。
 -  在傳統部署模型中，可以透過[取得部署 API](https://msdn.microsoft.com/library/azure/ee460804.aspx) 呼叫或 [Get-AzureVM -Debug](https://msdn.microsoft.com/library/azure/dn495236.aspx) Cmdlet 來取得尾碼。
 
 
 如果將查詢轉送到 Azure 不符合您的需求，您會需要提供專屬的 DNS 解決方案。您的 DNS 解決方案將需要：
 
--  提供適當的主機名稱解析，例如透過 [DDNS](virtual-networks-name-resolution-ddns.md)。請注意，如果使用 DDNS，您可能需要停用 DNS 記錄清除功能，因為 Azure 的 DHCP 租用期很長，所以 DNS 記錄可能會提前被清除。 
+-  提供適當的主機名稱解析，例如透過 [DDNS](virtual-networks-name-resolution-ddns.md)。請注意，如果使用 DDNS，您可能需要停用 DNS 記錄清除功能，因為 Azure 的 DHCP 租用期很長，所以 DNS 記錄可能會提前被清除。
 -  提供適當的遞迴解析來允許外部網域名稱的解析。
 -  可從其服務的用戶端存取 (連接埠 53 上的 TCP 和 UDP)，且能夠存取網際網路。
 -  受保護以防止來自網際網路的存取，降低外部代理程式的威脅。
@@ -181,6 +181,6 @@ DNS 轉送也實現 vnet 之間的 DNS 解析，並使內部部署電腦能夠�
 
 - [Azure 服務組態結構描述](https://msdn.microsoft.com/library/azure/ee758710)
 - [虛擬網路組態結構描述](https://msdn.microsoft.com/library/azure/jj157100)
-- [使用網路組態檔設定虛擬網路](virtual-networks-using-network-configuration-file.md) 
+- [使用網路組態檔設定虛擬網路](virtual-networks-using-network-configuration-file.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0907_2016-->

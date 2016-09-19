@@ -20,5 +20,7 @@ Azure 網站不支援反向 DNS。Azure 虛擬機器支援反向 DNS。
 不行。Azure 不支援向外委派 ARPA 區域。Azure 會針對所有可用的 IP 裝載 ARPA 區域，並讓客戶在這些 ARPA 區域內建立反向 DNS 記錄。
 ### 我可以在 Azure DNS 上，為 ISP 指派的 IP 區塊裝載 ARPA 區域嗎？
 不行。Azure DNS 目前不支援客戶 DNS 區域中的反向 DNS 記錄。
+### 我可以從我的 Azure 計算服務將電子郵件傳送至外部網域嗎？
+不行。根據[這裡](https://blogs.msdn.microsoft.com/mast/2016/04/04/sending-e-mail-from-azure-compute-resource-to-external-domains/)所述，Azure 計算服務不支援將電子郵件傳送至外部網域。
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0907_2016-->

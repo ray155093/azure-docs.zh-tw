@@ -19,7 +19,7 @@
 
 [AZURE.INCLUDE [storage-selector-blob-include](../../includes/storage-selector-blob-include.md)] <br/> [AZURE.INCLUDE [storage-try-azure-tools-blobs](../../includes/storage-try-azure-tools-blobs.md)]
 
-## 概觀
+## Overview
 
 本文將示範如何使用 Microsoft Azure Blob 儲存體執行一般案例。這些範例均以 Objective-C 撰寫，並使用 [Azure Storage Client Library for iOS](https://github.com/Azure/azure-storage-ios)。所涵蓋的案例包括「上傳」、「列出」、「下載」及「刪除」Blob。如需 Blob 的詳細資訊，請參閱[後續步驟](#next-steps)一節。您也可以下載[範例應用程式](https://github.com/Azure/azure-storage-ios/tree/master/BlobSample)，以快速查看在 iOS 應用程式中使用 Azure 儲存體的方法。
 
@@ -82,50 +82,7 @@
     // Include the following import statement to use blob APIs.
     #import <AZSClient/AZSClient.h>
 
-## 設定您的應用程式以存取 Blob 儲存體
-
-有兩種方式可驗證您的應用程式對儲存體服務的存取權：
-
-- 共用金鑰：使用僅供測試用途的共用金鑰
-- 共用存取簽章 (SAS)：使用適用於生產應用程式的 SAS
-
-### 共用金鑰
-共用金鑰驗證表示您的應用程式會使用您的帳戶名稱和帳戶金鑰來存取儲存體服務。為了快速示範如何從 iOS 使用 Blob 儲存體，我們將在此快速入門中使用共用金鑰驗證。
-
-> [AZURE.WARNING (Only use Shared Key authentication for testing purposes!) ] 您的帳戶名稱和帳戶金鑰 (會提供對相關儲存體帳戶的完整讀取/寫入權限) 將會分送給下載您的應用程式的每個人。這並**不是**的實作方式，因為您的金鑰有可能遭到不受信任的用戶端破壞。
-
-使用共用金鑰驗證時，您將會建立連接字串。連接字串包含：
-
-- **DefaultEndpointsProtocol** - 您可以選擇 HTTP 或 HTTPS。不過，強烈建議您使用 HTTPS。
-- **帳戶名稱** - 您儲存體帳戶的名稱。
-- **帳戶金鑰** - 如果您正在使用 [Azure 入口網站](https://portal.azure.com)，請瀏覽至儲存體帳戶並按一下 [金鑰] 圖示來找出這項資訊。如果您正在使用 [Azure 傳統入口網站](https://manage.windowsazure.com)，請在入口網站中瀏覽至儲存體帳戶，然後按一下 [管理存取金鑰]。
-
-它您的應用程式中會呈現如下：
-
-    // Create a storage account object from a connection string.
-    AZSCloudStorageAccount *account = [AZSCloudStorageAccount accountFromConnectionString:@"DefaultEndpointsProtocol=https;AccountName=your_account_name_here;AccountKey=your_account_key_here" error:&accountCreationError];
-
-### 共用存取簽章 (SAS)
-對於 IOS 應用程式，對 Blob 儲存體驗證用戶端之要求的建議方法是使用共用存取簽章 (SAS)。SAS 可讓您授與對資源的用戶端存取權一段指定的時間，且限定於指定的權限集。身為儲存體帳戶擁有者，您必須產生 SAS 供您的 iOS 用戶端取用。為了產生 SAS，您可能會想要撰寫個別的服務，以產生會分送給用戶端的 SAS。針對測試目的，您可以使用 Microsoft Azure 儲存體總管來產生 SAS。當您建立 SAS 時，您可以指定 SAS 有效的時間間隔，和 SAS 授與給用戶端的權限。
-
-下列範例示範如何使用 Microsoft Azure 儲存體總管來產生 SAS。
-
-1. 如果您還沒有這麼做，[請安裝 Microsoft Azure 儲存體總管](http://storageexplorer.com)
-
-2. 連線至您的訂閱。
-
-3. 按一下 [儲存體帳戶]，並按一下左下方的 [動作] 索引標籤。按一下 [取得共用存取簽章]，以產生您 SAS 的連接字串。
-
-4. 以下是 SAS 連接字串的範例，會針對儲存體帳戶的 Blob 服務，授予對服務、容器和物件層級的讀取與寫入權限。
-
-        SharedAccessSignature=sv=2015-04-05&ss=b&srt=sco&sp=rw&se=2016-07-21T18%3A00%3A00Z&sig=3ABdLOJZosCp0o491T%2BqZGKIhafF1nlM3MzESDDD3Gg%3D;BlobEndpoint=https://youraccount.blob.core.windows.net
-
-6. 在您的 iOS 應用程式中，您現在可以透過以下列方式使用連接字串取得您帳戶的參照：
-
-		// Get a reference to your Storage account
-    	AZSCloudStorageAccount *account = [AZSCloudStorageAccount accountFromConnectionString:@"SharedAccessSignature=sv=2015-04-05&ss=b&srt=sco&sp=rw&se=2016-07-21T18%3A00%3A00Z&sig=3ABdLOJZosCp0o491T%2BqZGKIhafF1nlM3MzESDDD3Gg%3D;BlobEndpoint=https://youraccount.blob.core.windows.net" error:&accountCreationError];
-
-如您所見，使用 SAS 時，您並不會在 iOS 應用程式中公開您的帳戶名稱和帳戶金鑰。您可以參閱[共用存取簽章：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)，以進一步了解 SAS。
+[AZURE.INCLUDE [storage-mobile-authentication-guidance](../../includes/storage-mobile-authentication-guidance.md)]
 
 ## 非同步作業
 > [AZURE.NOTE] 所有對服務執行要求的方法，都是非同步作業。在程式碼範例中，您會發現這些方法具有完成處理常式。完成處理常式內的程式碼會在要求完成**之後**執行。完成處理常式後面的程式碼會在進行要求**期間**執行。
@@ -412,4 +369,4 @@
 
 如果您有關於此程式庫的問題，歡迎您貼文到我們的 [MSDN Azure 論壇](http://social.msdn.microsoft.com/Forums/windowsazure/home?forum=windowsazuredata)或[堆疊溢位](http://stackoverflow.com/questions/tagged/windows-azure-storage+or+windows-azure-storage+or+azure-storage-blobs+or+azure-storage-tables+or+azure-table-storage+or+windows-azure-queues+or+azure-storage-queues+or+azure-storage-emulator+or+azure-storage-files)。如果您有 Azure 儲存體功能方面的建議，請貼文到 [Azure 儲存體意見反應](https://feedback.azure.com/forums/217298-storage/)。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0907_2016-->

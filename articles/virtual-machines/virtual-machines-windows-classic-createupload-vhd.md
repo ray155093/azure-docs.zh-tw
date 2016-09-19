@@ -95,7 +95,7 @@
 
 ## 步驟 4：將映像新增到您的自訂映像清單
 
-使用 [Add-AzureVMImage])(https://msdn.microsoft.com/library/mt589167.aspx) Cmdlet，將映像新增到您的自訂映像清單。
+使用 [Add-AzureVMImage](https://msdn.microsoft.com/library/mt589167.aspx) Cmdlet 將映像新增到您的自訂映像清單。
 
 		Add-AzureVMImage -ImageName <ImageName> -MediaLocation "https://<StorageAccountName>.blob.core.windows.net/<ContainerName>/<vhdName>.vhd" -OS "Windows"
 
@@ -104,4 +104,4 @@
 
 您現在可以使用上傳的映像來[建立自訂的 VM](virtual-machines-windows-classic-createportal.md)。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

@@ -381,17 +381,17 @@ Azure App Service 通常會停用 [診斷記錄]。若要啟用診斷記錄：
 [2]: ./media/app-service-mobile-migrating-from-mobile-services/triggering-job-with-postman.png
 
 <!-- Links -->
-[App Service 價格]: https://azure.microsoft.com/pricing/details/app-service/
+[App Service 價格]: https://azure.microsoft.com/zh-TW/pricing/details/app-service/
 [Application Insights]: ../application-insights/app-insights-overview.md
 [自動調整]: ../app-service-web/web-sites-scale.md
 [Azure App Service]: ../app-service/app-service-value-prop-what-is.md
 [Azure App Service 部署文件]: ../app-service-web/web-sites-deploy.md
 [Azure 傳統入口網站]: https://manage.windowsazure.com
 [Azure 入口網站]: https://portal.azure.com
-[Azure 區域]: https://azure.microsoft.com/regions/
+[Azure 區域]: https://azure.microsoft.com/zh-TW/regions/
 [Azure 排程器方案]: ../scheduler/scheduler-plans-billing.md
 [連續部署]: ../app-service-web/app-service-continuous-deployment.md
-[轉換混合式命名空間]: https://azure.microsoft.com/blog/updates-from-notification-hubs-independent-nuget-installation-model-pmt-and-more/
+[轉換混合式命名空間]: https://azure.microsoft.com/zh-TW/blog/updates-from-notification-hubs-independent-nuget-installation-model-pmt-and-more/
 [curl]: http://curl.haxx.se/
 [自訂網域名稱]: ../app-service-web/web-sites-custom-domain-name.md
 [Fiddler]: http://www.telerik.com/fiddler
@@ -400,7 +400,7 @@ Azure App Service 通常會停用 [診斷記錄]。若要啟用診斷記錄：
 [記錄]: ../app-service-web/web-sites-enable-diagnostic-log.md
 [Mobile Apps Node.js SDK]: https://github.com/azure/azure-mobile-apps-node
 [比較行動服務與App Service]: app-service-mobile-value-prop-migration-from-mobile-services.md
-[通知中樞]: ../notification-hubs/notification-hubs-overview.md
+[通知中樞]: ../notification-hubs/notification-hubs-push-notification-overview.md
 [效能監視]: ../app-service-web/web-sites-monitor.md
 [Postman]: http://www.getpostman.com/
 [備份您的行動服務]: ../mobile-services/mobile-services-disaster-recovery.md
@@ -409,4 +409,4 @@ Azure App Service 通常會停用 [診斷記錄]。若要啟用診斷記錄：
 [WebJob]: ../app-service-web/websites-webjobs-resources.md
 [XDT 轉換範例]: https://github.com/projectkudu/kudu/wiki/Xdt-transform-samples
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0907_2016-->

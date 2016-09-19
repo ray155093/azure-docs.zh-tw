@@ -35,33 +35,35 @@
 
 
 
-## 安裝 npm 封裝
+## 選項 1。安裝 npm 封裝
 
 若要從 npm 套件安裝 CLI，您的系統上將需要安裝最新的 Node.js 和 npm。接著，請執行下列命令來安裝 Azure CLI 套件。(在 Linux 散發套件上，您可能需要使用 **sudo**，才能順利執行 __npm__ 命令)。
 
 	npm install azure-cli -g
 
-> [AZURE.NOTE]如果您需要安裝或更新您作業系統的 Node.js 和 npm，請參閱 [Nodejs.org](https://nodejs.org/en/download/package-manager/) 上的文件。建議您安裝最新的 Node.js LTS 版本 (4.x)。如果您使用較舊的版本，可能會發生安裝錯誤。
+> [AZURE.NOTE]如果您需要安裝或更新您作業系統的 Node.js 和 npm，請參閱 [Nodejs.org](https://nodejs.org/en/download/package-manager/) 上的文件。建議您安裝最新的 Node.js LTS 版本 (4.x)。如果您使用較舊的版本，可能會發生安裝錯誤。npm 的詳細資訊位於 [npmjs.com](https://www.npmjs.com/)。
 
-## 使用安裝程式
+## 選項 2。使用安裝程式
 
 下列 CLI 安裝程式套件也可供下載：
 
 
-* [OS X 安裝程式][mac-installer]
+* [Mac OS X 安裝程式][mac-installer]
 
 * [Windows 安裝程式][windows-installer]
 
-* [Linux tar 檔案][linux-installer] \(需要 Node.js 和 npm) - 透過執行 `sudo npm install -g <path to downloaded tar file>` 來安裝
+* [Linux tar 檔案][linux-installer] (需要 Node.js 和 npm) - 透過執行 `sudo npm install -g <path to downloaded tar file>` 來安裝
 
 
-## 使用 Docker 容器
+## 選項 3。使用 Docker 容器
 
-在 Docker主機中，執行：
+如果您已設定 Docker 主機，您可以在 Docker 容器中執行 Azure CLI。請執行：
 
 ```
 docker run -it microsoft/azure-cli
 ```
+
+Docker 的詳細資訊位於 [docker.com](https://docs.docker.com/engine/understanding-docker/)。
 
 ## 執行 Azure CLI 命令
 安裝好 Azure CLI 之後，從命令列使用者介面 (Bash、終端機及命令提示字元等) 中執行 **azure** 命令。例如，若要執行 [說明] 命令，請輸入下列命令：
@@ -83,7 +85,7 @@ azure --version
 
 您現在已經準備就緒！ 若要存取所有 CLI 命令以與您自己的資源搭配使用，請[從 Azure CLI 連接到您的 Azure 訂用帳戶](xplat-cli-connect.md)。
 
->[AZURE.NOTE] 當您第一次使用 Azure CLI 版本 0.9.20 或更新版本時，會看到一則訊息，詢問您是否要允許 Microsoft 收集您如何使用 CLI 的相關資訊。參與為自願性質。如果您選擇參與，只要執行 `azure telemetry --disable` 即可隨時停止參與。只要執行 `azure telemetry --enable` 即可隨時啟用參與。
+>[AZURE.NOTE] 當您第一次使用 Azure CLI 時會看到一則訊息，詢問您是否要允許 Microsoft 收集您如何使用 CLI 的相關資訊。參與為自願性質。如果您選擇參與，只要執行 `azure telemetry --disable` 即可隨時停止參與。只要執行 `azure telemetry --enable` 即可隨時啟用參與。
 
 
 ## 更新 CLI
@@ -128,4 +130,4 @@ echo 'source ~/azure.completion.sh' >> ~/.bash_profile
 [cliasm]: virtual-machines-command-line-tools.md
 [cliarm]: ./virtual-machines/azure-cli-arm-commands.md
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0907_2016-->

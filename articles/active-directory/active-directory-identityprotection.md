@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/25/2016"
+	ms.date="09/07/2016"
 	ms.author="markvi"/>
 
 #Azure Active Directory Identity Protection 
@@ -24,9 +24,6 @@ Azure Active Directory Identity Protection 是一項安全性服務，可供整�
 ## 目前的預覽限制
 本節列出適用於 Azure Active Directory Identity Protection 的目前預覽限制。
 
-### 國家或區域限制
-
-Azure Active Directory Identity Protection 目前僅適用於 [國家或區域]值為 [美國]的目錄。<br><br> ![補救](./media/active-directory-identityprotection/222.png "補救")
 
 
 ### 身分識別保護和同盟網域
@@ -102,8 +99,7 @@ Identity Protection 會使用此資料來產生報告和警示，讓您調查這
 | 從受感染的裝置登入 | 從可能受感染的裝置登入 |
 | 從匿名 IP 位址登入 | 從不明來源登入 |
 | 從具有可疑活動的 IP 位址登入 |	從具有可疑活動的 IP 位址登入 |
-| 從不熟悉的位置登入 | - |
-| 鎖定事件 (不在公開預覽中) | - |
+| 從不熟悉的位置登入 | - | | 鎖定事件 (不在公開預覽中) | - |
 
 下列 Azure AD 異常活動報告不會納入為 Azure AD Identity Protection 中的風險事件，因此不會透過 Identity Protection 提供。這些報告仍可在 Azure 管理入口網站中取得，不過將會在未來某個時候淘汰，因為它們正由 Identity Protection 中的風險事件所取代。
 
@@ -416,4 +412,4 @@ Azure AD Identity Protection 可讓您設定原則來執行下列作業，以協
  - [Azure Active Directory Identity Protection 詞彙](active-directory-identityprotection-glossary.md)
  - [開始使用 Azure Active Directory Identity Protection 和 Microsoft Graph](active-directory-identityprotection-graph-getting-started.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

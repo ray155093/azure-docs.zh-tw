@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/06/2016"
+	ms.date="08/31/2016"
 	ms.author="maheshu"/>
 
 # Azure AD 網域服務 (預覽)
@@ -27,7 +27,7 @@
 
 - **每個 Azure AD 目錄都有一個網域執行個體：**您可以針對每個 Azure AD 目錄建立單一 Active Directory 網域。
 
-- **建立含有自訂名稱的網域：**您可以使用 Azure AD 網域服務，來建立含有自訂名稱的網域 (例如 contoso.local) 。這包括已驗證以及未驗證的網域名稱。您也可以選擇性地使用 Azure AD 目錄提供的內建網域尾碼 (亦即 *.onmicrosoft.com) 來建立網域。
+- **建立含有自訂名稱的網域：**您可以使用 Azure AD 網域服務，來建立含有自訂名稱的網域 (例如 'contoso100.com')。這包括已驗證以及未驗證的網域名稱。您也可以選擇性地使用 Azure AD 目錄提供的內建網域尾碼 (亦即 *.onmicrosoft.com) 來建立網域。
 
 - **與 Azure AD 整合：**您不需要設定或管理對 Azure AD 網域服務的複寫。Azure AD 網域服務中會自動提供來自 Azure AD 目錄的使用者帳戶、群組成員資格和使用者認證 (密碼)。新使用者、群組，或是在 Azure AD 租用戶或內部部署目錄中發生的屬性變更，都會自動同步處理到 Azure AD 網域服務。
 
@@ -51,4 +51,4 @@
 
 - **使用熟悉的管理工具：**您可以使用 Active Directory 管理中心或 PowerShell 的 Active Directory 等熟悉的 Windows Server Active Directory 管理工具，來管理 Azure AD 網域服務所提供的網域。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0907_2016-->

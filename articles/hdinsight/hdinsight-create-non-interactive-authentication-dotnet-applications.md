@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/13/2016"
+	ms.date="09/02/2016"
 	ms.author="jgao"/>
 
 # 建立非互動式驗證 .NET HDInsight 應用程式
@@ -25,7 +25,7 @@
 
 - 您的 Azure 訂用帳戶租用戶識別碼
 - Azure Directory 應用程式用戶端識別碼
-- Azure Directory 應用程式秘密金鑰  
+- Azure Directory 應用程式秘密金鑰
 
 此主要程序包含下列步驟：
 
@@ -36,7 +36,7 @@
 
 ##必要條件
 
-- HDInsight 叢集。您可以使用[開始使用教學課程](hdinsight-hadoop-linux-tutorial-get-started.md#create-cluster)中的指示建立。 
+- HDInsight 叢集。您可以使用[開始使用教學課程](hdinsight-hadoop-linux-tutorial-get-started.md#create-cluster)中的指示建立。
 
 
 
@@ -122,4 +122,4 @@
 - [使用 Azure Resource Manager 驗證服務主體](../resource-group-authenticate-service-principal.md)
 - [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0907_2016-->

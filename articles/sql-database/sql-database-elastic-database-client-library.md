@@ -13,14 +13,14 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="05/24/2016"
+    ms.date="09/06/2016"
     ms.author="ddove"/>
 
 # 建置可調整的雲端資料庫
 
-使用 Azure SQL Database 的可調整工具和功能，可以輕鬆地相應放大資料庫。特別是，您可以使用**彈性資料庫用戶端程式庫**來建立和管理相應放大的資料庫。這項功能可讓您使用成百上千個 Azure SQL 資料庫，輕鬆地開發分區化應用程式。
+使用 Azure SQL Database 的可調整工具和功能，可以輕鬆地相應放大資料庫。特別是，您可以使用**彈性資料庫用戶端程式庫**來建立和管理相應放大的資料庫。這項功能可讓您使用成百上千個 Azure SQL 資料庫，輕鬆地開發分區化應用程式。[彈性工作](sql-database-elastic-jobs-powershell.md)則可用來協助簡化管理這些資料庫。
 
-若要安裝程式庫，請瀏覽 [Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)。
+若要安裝程式庫，請移至 [Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)。
 
 ## 文件
 1. [開始使用彈性資料庫工具](sql-database-elastic-scale-get-started.md)
@@ -73,4 +73,4 @@
 <!--Image references-->
 [1]: ./media/sql-database-elastic-database-client-library/glossary.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0907_2016-->

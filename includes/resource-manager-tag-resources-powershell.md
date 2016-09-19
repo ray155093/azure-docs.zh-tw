@@ -1,20 +1,22 @@
 ### 最新版 PowerShell 中的標記 Cmdlet 變更
 
-2016 年 8 月發行的 Azure PowerShell 在使用標記的方式上有重大變更。在繼續之前，請先檢查您的 AzureRm.Resources 模組版本。
+2016 年 8 月發行的 [Azure PowerShell 2.0][powershell] 在使用標記的方式上有重大變更。在繼續之前，請先檢查您的 AzureRm.Resources 模組版本。
 
-    (Get-Module -ListAvailable | Where-Object{ $_.Name -eq 'AzureRm.Resources' }) | Select Version, Name | Format-List
+    Get-Module -ListAvailable -Name AzureRm.Resources | Select Version
 
 如果您上次更新 Azure PowerShell 是在 2016 年 8 月之前，您的結果應該會顯示 3.0 以下的版本。
 
-    Version : 2.0.2
-    Name    : AzureRM.Resources
+    Version
+    -------
+    2.0.2
 
 如果您在 2016 年 8 月之後已更新過 Azure PowerShell，您的結果應該會顯示 3.0 版。
 
-    Version : 3.0.1
-    Name    : AzureRM.Resources
-
-如果您的模組版本是 3.0.1 或更新版本，則您有可搭配標記使用的最新 Cmdlet。如果您的版本比 3.0.1 舊，您可以繼續使用該版本，但您可以考慮更新至最新版本。最新版本包括一些變更，可讓您更輕鬆地使用標記。本主題中會展示這兩種方法。
+    Version
+    -------
+    3.0.1
+    
+如果您的模組版本是 3.0.1 或更新版本，則您有可搭配標記使用的最新 Cmdlet。當您使用 PowerShell 資源庫、PowerShellGet 或 Web Platform Installer 來安裝或升級 Azure PowerShell 時，會自動安裝此版本的 Azure 資源模組。如果您的版本比 3.0.1 舊，您可以繼續使用該版本，但您可以考慮更新至最新版本。最新版本包括一些變更，可讓您更輕鬆地使用標記。本主題中會展示這兩種方法。
 
 ### 針對最新版本的變更更新您的指令碼 
 
@@ -228,4 +230,7 @@
 
 使用 **New-AzureRmTag** Cmdlet 將新的標記加入分類法。這些標記會加入到自動完成中，即使它們尚未套用至任何資源或資源群組也一樣。若要移除標記名稱/值，請先從任何可能用到這個標記的資源中移除標記，再使用 **Remove-AzureRmTag** Cmdlet 從分類法中移除它。
 
-<!---HONumber=AcomDC_0817_2016-->
+
+[powershell]: https://msdn.microsoft.com/library/mt619274(v=azure.200).aspx
+
+<!---HONumber=AcomDC_0907_2016-->

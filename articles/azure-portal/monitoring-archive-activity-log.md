@@ -23,7 +23,7 @@
 在開始之前，您需要[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)，以便將活動記錄檔封存至此。我們強烈建議您不要使用已儲存了其他非監視資料的現有儲存體帳戶，這樣您對監視資料才能有更好的存取控制。不過，如果您也要封存診斷記錄檔和度量至儲存體帳戶，則將同一儲存體帳戶用於活動記錄檔合情合理，因為可以將所有監視資料集中在一個位置。您使用的儲存體帳戶必須是一般用途的儲存體帳戶，不可以是 blob 儲存體帳戶。
 
 ## 記錄檔設定檔
-若要使用下列任一方法封存活動記錄檔，請設定訂用帳戶的**記錄檔設定檔**。記錄檔的設定檔定義了要儲存或串流的事件類型以及輸出 — 儲存體帳戶和/或事件中樞。它也定義事件儲存在儲存體帳戶中的保留原則 (保留的天數)。如果保留原則設定為零，則會無限期地儲存事件。[您可以至此處閱讀記錄檔設定檔的相關資訊](monitoring-overview-activity-logs.md#export-the-activity-log-with-log-profiles)。
+若要使用下列任一方法封存活動記錄檔，請設定訂用帳戶的**記錄檔設定檔**。記錄檔的設定檔定義了要儲存或串流的事件類型以及輸出 — 儲存體帳戶和/或事件中樞。它也定義事件儲存在儲存體帳戶中的保留原則 (保留的天數)。如果保留原則設定為零，則會無限期地儲存事件。否則，這可以設為介於 1 到 2147483647 之間的任何值。[您可以至此處閱讀記錄檔設定檔的相關資訊](monitoring-overview-activity-logs.md#export-the-activity-log-with-log-profiles)。
 
 ## 使用入口網站封存活動記錄檔
 1. 在入口網站中，按一下左側導覽中的 [活動記錄檔] 連結。如果您沒有看到活動記錄檔的連結，先按一下 [更多服務] 連結。
@@ -46,8 +46,8 @@ Add-AzureRmLogProfile -Name my_log_profile -StorageAccountId /subscriptions/s1/r
 | 屬性 | 必要 | 說明 |
 |------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | StorageAccountId | 否 | 資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
-| 位置 | 是 | 以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。您要檢視所有地區的清單，可以[瀏覽此頁面](https://azure.microsoft.com/regions)或使用 [Azure 管理 REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx)。 |
-| RetentionInDays | 是 | 事件應保留的天數。值為 0 會無限期地儲存記錄檔。 |
+| 位置 | 是 | 以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。您要檢視所有地區的清單，可以[瀏覽此頁面](https://azure.microsoft.com/zh-TW/regions)或使用 [Azure 管理 REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx)。 |
+| RetentionInDays | 是 | 事件應保留的天數，1 到 2147483647 之間。值為 0 會無限期地 (永遠) 儲存記錄檔。 |
 | 類別 | 是 | 以逗號分隔的類別清單，其中列出應該收集的事件類別。可能的值有 Write、Delete、Action。 |
 ## 透過 CLI 封存活動記錄檔
 ```
@@ -58,8 +58,8 @@ azure insights logprofile add --name my_log_profile --storageId /subscriptions/s
 |-----------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 名稱 | 是 | 記錄檔設定檔的名稱。 |
 | storageId | 否 | 資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
-| 位置 | 是 | 以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。您要檢視所有地區的清單，可以[瀏覽此頁面](https://azure.microsoft.com/regions)或使用 [Azure 管理 REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx)。 |
-| retentionInDays | 是 | 事件應保留的天數。值為 0 會無限期地儲存記錄檔。 |
+| 位置 | 是 | 以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。您要檢視所有地區的清單，可以[瀏覽此頁面](https://azure.microsoft.com/zh-TW/regions)或使用 [Azure 管理 REST API](https://msdn.microsoft.com/library/azure/gg441293.aspx)。 |
+| retentionInDays | 是 | 事件應保留的天數，1 到 2147483647 之間。值為 0 會無限期地 (永遠) 儲存記錄檔。 |
 | categories | 是 | 以逗號分隔的類別清單，其中列出應該收集的事件類別。可能的值有 Write、Delete、Action。 |
 
 ## 活動記錄檔的儲存體結構描述
@@ -156,4 +156,4 @@ azure insights logprofile add --name my_log_profile --storageId /subscriptions/s
 - [將活動記錄檔串流至事件中樞](monitoring-stream-activity-logs-event-hubs.md)
 - [深入了解活動記錄檔](monitoring-overview-activity-logs.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0907_2016-->

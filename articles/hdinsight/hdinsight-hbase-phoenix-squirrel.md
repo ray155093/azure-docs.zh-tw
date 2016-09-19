@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="05/27/2016"
+   ms.date="09/02/2016"
    ms.author="jgao"/>
 
 # 在 HDinsight 中搭配以 Windows 為基礎的 HBase 叢集使用 Apache Phoenix 和 SQuirreL  
@@ -91,15 +91,15 @@
 
 遵循程序之前，您必須具備下列項目：
 
-- 將 HBase 叢集部署至具備 DNS 虛擬機器的 Azure 虛擬網路。如需相關指示，請參閱 [在 Azure 虛擬網路上佈建 HBase 叢集][hdinsight-hbase-provision-vnet]。 
+- 將 HBase 叢集部署至具備 DNS 虛擬機器的 Azure 虛擬網路。如需相關指示，請參閱 [在 Azure 虛擬網路上佈建 HBase 叢集][hdinsight-hbase-provision-vnet]。
 
 	>[AZURE.IMPORTANT] 您必須將 DNS 伺服器安裝到虛擬網路。如需相關指示，請參閱[設定兩個 Azure 虛擬網路之間的 DNS](hdinsight-hbase-geo-replication-configure-DNS.md)
 
 - 取得 HBase 叢集的連線專用 DNS 尾碼。若要取得該尾碼，請 RDP 到叢集，然後執行 IPConfig。DNS 尾碼會類似於：
 
 		myhbase.b7.internal.cloudapp.net
-- 在您的工作站上下載並安裝 [Microsoft Visual Studio Express 2013 for Windows Desktop](https://www.visualstudio.com/products/visual-studio-express-vs.aspx)。您將需要封裝的 makecert 以建立您的憑證。  
-- 在您的工作站上下載並安裝 [Java Runtime Environment](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html)。SQuirreL SQL 用戶端 3.0 版和更新版本需要 JRE 1.6 版或更新版本。  
+- 在您的工作站上下載並安裝 [Microsoft Visual Studio Express 2013 for Windows Desktop](https://www.visualstudio.com/products/visual-studio-express-vs.aspx)。您將需要封裝的 makecert 以建立您的憑證。
+- 在您的工作站上下載並安裝 [Java Runtime Environment](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html)。SQuirreL SQL 用戶端 3.0 版和更新版本需要 JRE 1.6 版或更新版本。
 
 
 ###設定點對站 VPN 連線到 Azure 虛擬網路
@@ -122,7 +122,7 @@
 2. 在左側按一下 [**網路**]。
 3. 按一下您已建立的虛擬網路 (請參閱[在 Azure 虛擬網路上佈建 HBase 叢集][hdinsight-hbase-provision-vnet])。
 4. 按一下頂端的 [**設定**]。
-5. 在 [**點對站連線**] 區段中，選取 [**設定點對站連線**]。 
+5. 在 [**點對站連線**] 區段中，選取 [**設定點對站連線**]。
 6. 設定 **起始 IP** 和 **CIDR** 來指定您的 VPN 用戶端在連線時接收 IP 位址的 IP 位址範圍。此範圍不能與任何位於內部部署網路及您將連線之 Azure 虛擬網路的範圍重疊。例如，如果您選取 10.0.0.0/20 做為虛擬網路，您可以選取 10.1.0.0/24 做為用戶端的位址空間。如需詳細資訊，請參閱 [[點對站連線][vnet-point-to-site-connectivity]] 頁面。
 7. 在 [虛擬網路位址空間] 區段中，按一下 [**新增閘道子網路**]。
 7. 按一下頁面底部的 [**儲存**]。
@@ -148,8 +148,8 @@
 **建立自我簽署根憑證**
 
 1. 從您的工作站，開啟命令提示字元視窗。
-2. 瀏覽至 [Visual Studio 工具] 資料夾。 
-3. 下面範例中的下列命令將在您工作站上的個人憑證存放區中建立與安裝根憑證，並建立您稍後將上傳至 Azure 傳統入口網站的相對應 .cer 檔案。 
+2. 瀏覽至 [Visual Studio 工具] 資料夾。
+3. 下面範例中的下列命令將在您工作站上的個人憑證存放區中建立與安裝根憑證，並建立您稍後將上傳至 Azure 傳統入口網站的相對應 .cer 檔案。
 
 		makecert -sky exchange -r -n "CN=HBaseVnetVPNRootCertificate" -pe -a sha1 -len 2048 -ss My "C:\Users\JohnDole\Desktop\HBaseVNetVPNRootCertificate.cer"
 
@@ -262,7 +262,7 @@ Phoenix 驅動程式 jar 檔案位於 HBase 叢集上。此路徑根據版本與
 	- **密碼**：可以是任何文字。
 
 	![HDInsight HBase Phoenix SQuirreL 驅動程式][img-squirrel-alias]
-4. 按一下 [**測試**]。 
+4. 按一下 [**測試**]。
 5. 按一下 [連接]。當它建立連線時，SQuirreL 如下所示：
 
 	![HBase Phoenix SQuirrel][img-squirrel]
@@ -284,7 +284,7 @@ Phoenix 驅動程式 jar 檔案位於 HBase 叢集上。此路徑根據版本與
 
 - [HDInsight HBase 概觀][hdinsight-hbase-overview]：HBase 是建置於 Hadoop 上的 Apache 開放原始碼 NoSQL 資料庫，可針對大量非結構化及半結構化資料，提供隨機存取功能和強大一致性。
 - [在 Azure 虛擬網路上佈建 HBase 叢集][hdinsight-hbase-provision-vnet]：由於 HBase 叢集已與虛擬網路整合，因此能夠部署到和應用程式相同的虛擬網路，讓應用程式得以和 HBase 直接通訊。
-- [設定 HDInsight 中的 HBase 複寫](hdinsight-hbase-geo-replication.md)：了解如何跨兩個 Azure 資料中心設定 HBase 複寫。 
+- [設定 HDInsight 中的 HBase 複寫](hdinsight-hbase-geo-replication.md)：了解如何跨兩個 Azure 資料中心設定 HBase 複寫。
 - [利用 HDInsight 中的 HBase 分析 Twitter 情緒][hbase-twitter-sentiment]：了解如何使用 HDInsight 之 Hadoop 叢集中的 HBase，執行巨量資料的即時[情緒分析](http://en.wikipedia.org/wiki/Sentiment_analysis)。
 
 [azure-portal]: https://portal.azure.com
@@ -308,4 +308,4 @@ Phoenix 驅動程式 jar 檔案位於 HBase 叢集上。此路徑根據版本與
 
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0907_2016-->

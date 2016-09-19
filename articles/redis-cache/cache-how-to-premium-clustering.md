@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016" 
+	ms.date="09/09/2016" 
 	ms.author="sdanie"/>
 
 # 如何設定進階 Azure Redis 快取的 Redis 叢集
@@ -26,10 +26,10 @@ Azure Redis 快取進階層包括叢集、永續性及虛擬網路支援。本�
 ## Redis 叢集是什麼？
 Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://redis.io/topics/cluster-tutorial) 一樣。使用 Redis 叢集可以獲得下列好處：
 
--	能夠自動分割您在多個節點之間的資料集。 
--	當節點的子集發生故障或無法與叢集的其餘部分通訊時，可以繼續作業。 
--	更多輸送量：當您增加分區數目時，輸送量會呈線性增加。 
--	更多記憶體大小：當您增加分區數目時，會呈線性增加。  
+-	能夠自動分割您在多個節點之間的資料集。
+-	當節點的子集發生故障或無法與叢集的其餘部分通訊時，可以繼續作業。
+-	更多輸送量：當您增加分區數目時，輸送量會呈線性增加。
+-	更多記憶體大小：當您增加分區數目時，會呈線性增加。
 
 如需進階快取的大小、輸送量和頻寬等方面的詳細資訊，請參閱 [Azure Redis Cache 常見問題集](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)。
 
@@ -164,4 +164,4 @@ Azure Redis 快取提供 Redis 叢集的方式，就像[實作於 Redis](http://
 
 [redis-cache-redis-cluster-size]: ./media/cache-how-to-premium-clustering/redis-cache-redis-cluster-size.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0907_2016-->

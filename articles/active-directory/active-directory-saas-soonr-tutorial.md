@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/29/2016"
+	ms.date="09/01/2016"
 	ms.author="jeedes"/>
 
 
@@ -32,8 +32,8 @@
 
 若要設定 Azure AD 與 Soonr Workplace 整合，您需要下列項目：
 
-- 一個 Azure AD 訂用帳戶
-- 一個已啟用 Soonr Workplace 單一登入功能的訂用帳戶
+- Azure AD 訂用帳戶
+- 已啟用 Soonr Workplace 單一登入功能的訂用帳戶
 
 
 > [AZURE.NOTE] 若要測試本教學課程中的步驟，我們不建議使用生產環境。
@@ -71,7 +71,7 @@
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫新增應用程式]。
  
 	![應用程式][4]
 
@@ -145,7 +145,7 @@
 
 
 ### 建立 Azure AD 測試使用者
-本節目標是在 Azure 傳統入口網站中建立名為 Britta Simon 的測試使用者。
+本節的目標是要在 Azure 傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
 
@@ -175,7 +175,7 @@
 
     c.按 [下一步]。
 
-6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
+6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-soonr-tutorial/create_aaduser_06.png)
 
@@ -241,7 +241,7 @@
 
 ### 測試單一登入
 
-本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。當您在「存取面板」中按一下 [Soonr Workplace] 磚時，應該會自動登入您的 Soonr Workplace 應用程式。
+本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。當您在存取面板中按一下 [Soonr Workplace] 圖格時，應該會自動登入您的 Soonr Workplace 應用程式。
 
 
 ## 其他資源
@@ -268,4 +268,4 @@
 [204]: ./media/active-directory-saas-soonr-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-soonr-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0907_2016-->

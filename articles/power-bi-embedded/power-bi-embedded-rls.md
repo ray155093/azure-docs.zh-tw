@@ -3,7 +3,7 @@
    description="資料列層級安全性與 Power BI Embedded 的詳細資料"
    services="power-bi-embedded"
    documentationCenter=""
-   authors="minewiskan"
+   authors="mgblythe"
    manager="NA"
    editor=""
    tags=""/>
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
    ms.date="07/05/2016"
-   ms.author="owend"/>
+   ms.author="mblythe"/>
 
 # Power BI Embedded 的資料列層級安全性
 
@@ -102,4 +102,4 @@ RLS 是在 Power BI Desktop 中撰寫。當開啟資料集和報告時，我們�
 ## 另請參閱
 [資料列層級安全性 (RLS) 與 Power](https://powerbi.microsoft.com/zh-TW/documentation/powerbi-admin-rls/)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0907_2016-->

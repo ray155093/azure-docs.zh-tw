@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="andkjell"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/27/2016"
+	ms.date="09/07/2016"
 	ms.author="andkjell"/>
 
 
@@ -24,7 +24,7 @@
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/mvsearch.png)
 
-疑難排解資料相關的問題時，[Metaverse 搜尋] 索引標籤相當有用。您可以在上半部中，根據屬性組合建立查詢。當您滿意查詢時，按一下 [搜尋]。結果將顯示於底部方格中。您可以利用 [資料行設定]，來選取應顯示哪些資料行。
+排解資料相關的疑難問題時，[Metaverse 搜尋] 索引標籤相當有用。您可以在上半部中，根據屬性組合建立查詢。當您滿意查詢時，按一下 [搜尋]。結果會顯示於底部格線中。您可以利用 [資料行設定]，來選取應顯示哪些資料行。
 
 在搜尋結果中，選取物件再選取 [屬性]來查看 [metaverse 物件屬性](active-directory-aadconnectsync-service-manager-ui-connectors.md#metaverse-object-properties)。
 
@@ -33,4 +33,4 @@
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0907_2016-->

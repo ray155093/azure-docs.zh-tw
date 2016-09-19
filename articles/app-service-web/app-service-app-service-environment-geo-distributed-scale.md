@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/21/2016" 
+	ms.date="09/07/2016" 
 	ms.author="stefsch"/>
 
 # App Service 環境的異地分散調整
 
-## 概觀 ##
+## Overview ##
 需要極高延展性的應用程式案例，可能會超過單一應用程式部署可用的運算資源容量。例如，投票應用程式、體育活動及電視娛樂活動，都屬於需要極高延展性的案例。只要對單一區域內和跨區域的多個應用程式部署進行應用程式的水平相應放大，即可達到高延展性需求，以處理極高的負載需求。
 
 App Service 環境是水平相應放大的理想平台。在選取可支援已知要求率的 App Service 環境組態後，開發人員即可透過「千篇一律」的方式部署其他 App Service 環境，以獲得所需的尖峰負載容量。
@@ -52,7 +52,7 @@ App Service 環境是水平相應放大的理想平台。在選取可支援已�
 - **webfrontend2.fe2ase.p.azurewebsites.net：**部署在第二個 App Service 環境上的範例應用程式執行個體。
 - **webfrontend3.fe3ase.p.azurewebsites.net：**部署在第三個 App Service 環境上的範例應用程式執行個體。
 
-要註冊多個 Azure App Service 端點 (全都執行於**相同的** Azure 區域中)，最簡單的方式是使用預覽 Powershell [Azure 資源管理員 (ARM) 流量管理員支援][ARMTrafficManager]。
+要註冊多個 Azure App Service 端點 (全都執行於**相同的** Azure 區域中)，最簡單的方式是使用 Powershell [Azure Resource Manager 流量管理員支援][ARMTrafficManager]。
 
 第一個步驟是建立 Azure 流量管理員設定檔。下列程式碼說明如何為範例應用程式建立設定檔：
 
@@ -62,19 +62,24 @@ App Service 環境是水平相應放大的理想平台。在選取可支援已�
 
 *TrafficRoutingMethod* 參數會定義負載平衡原則，供流量管理員用來判斷如何將客戶負載分散到所有可用的端點。此範例中選擇了 [加權] 方法。這會使客戶要求根據與每個端點相關聯的相對加權，分散到所有已註冊的應用程式端點間。
 
-在建立設定檔後，每個應用程式執行個體都會新增至設定檔做為*外部端點*。下列程式碼說明新增至設定檔的三個應用程式執行個體的 URL。
+在建立設定檔後，每個應用程式執行個體都會新增至設定檔做為原生 Azure 端點。下列程式碼會擷取每個前端 Web 應用程式的參考，然後透過「TargetResourceId」參數將每個應用程式新增為流量管理員端點。
 
-    Add-AzureTrafficManagerEndpointConfig –EndpointName webfrontend1 –TrafficManagerProfile $profile –Type ExternalEndpoints –Target webfrontend1.fe1ase.p.azurewebsites.net –EndpointStatus Enabled –Weight 10
-    Add-AzureTrafficManagerEndpointConfig –EndpointName webfrontend2 –TrafficManagerProfile $profile –Type ExternalEndpoints –Target webfrontend2.fe2ase.p.azurewebsites.net –EndpointStatus Enabled –Weight 10
-    Add-AzureTrafficManagerEndpointConfig –EndpointName webfrontend3 –TrafficManagerProfile $profile –Type ExternalEndpoints –Target webfrontend3.fe3ase.p.azurewebsites.net –EndpointStatus Enabled –Weight 10
+
+    $webapp1 = Get-AzureRMWebApp -Name webfrontend1
+    Add-AzureTrafficManagerEndpointConfig –EndpointName webfrontend1 –TrafficManagerProfile $profile –Type AzureEndpoints -TargetResourceId $webapp1.Id –EndpointStatus Enabled –Weight 10
+
+    $webapp2 = Get-AzureRMWebApp -Name webfrontend2
+    Add-AzureTrafficManagerEndpointConfig –EndpointName webfrontend2 –TrafficManagerProfile $profile –Type AzureEndpoints -TargetResourceId $webapp2.Id –EndpointStatus Enabled –Weight 10
+
+    $webapp3 = Get-AzureRMWebApp -Name webfrontend3
+    Add-AzureTrafficManagerEndpointConfig –EndpointName webfrontend3 –TrafficManagerProfile $profile –Type AzureEndpoints -TargetResourceId $webapp3.Id –EndpointStatus Enabled –Weight 10
     
     Set-AzureTrafficManagerProfile –TrafficManagerProfile $profile
-
-請留意，對於每個應用程式執行個體分別會有一個 *Add-AzureTrafficManagerEndpointConfig* 呼叫。每個 Powershell 命令中的 *Target* 參數，會分別指向三個已部署的應用程式執行個體的完整網域名稱 (FQDN)。不同的 FQDN，分別是將會用來導向 *scalable-ase-demo.trafficmanager.net* 之 DNS CNAME 鏈結的值，以將流量負載分散到所有在流量管理員設定檔中註冊的端點。
+    
+請留意，對於每個應用程式執行個體分別會有一個 *Add-AzureTrafficManagerEndpointConfig* 呼叫。每個 Powershell 命令的「TargetResourceId」參數會參考三個已部署的應用程式執行個體的其中一個。流量管理員設定檔會將負載分散在設定檔中所註冊的所有三個端點上。
 
 三個端點都會使用相同的值 (10) 做為 *Weight* 參數。這會使流量管理員將客戶要求較平均地分散在所有的三個應用程式執行個體間。
 
-*附註：*由於 ARM 流量管理員支援目前仍處於預覽階段，因此 Azure App Service 端點必須將 *Type* 參數設為 *ExternalEndpoints*。Azure App Service 端點日後將會以端點類型的形式受到 ARM 變異流量管理員的原生支援。
 
 ## 將應用程式的自訂網域指向流量管理員網域 ##
 最後一個必要步驟是將應用程式的自訂網域指向流量管理員網域。就範例應用程式而言，這意味著將 *www.scalableasedemo.com* 指向 *scalable-ase-demo.trafficmanager.net*。此步驟必須以管理自訂網域的網域註冊機構來完成。
@@ -98,8 +103,8 @@ App Service 環境是水平相應放大的理想平台。在選取可支援已�
 2. 網域註冊機構上的 CNAME 項目使 DNS 查閱重新導向至 Azure 流量管理員。
 3. 對其中一個 Azure 流量管理員 DNS 伺服器執行 *scalable-ase-demo.trafficmanager.net* 的 DNS 查閱。
 4. 根據負載平衡原則 (稍早建立流量管理員設定檔時所使用的 *TrafficRoutingMethod* 參數)，流量管理員會選取其中一個已設定的端點，並將該端點的 FQDN 傳回至瀏覽器或裝置。
-5.  由於端點的 FQDN 是在 App Service 環境上執行的應用程式執行個體的 URL，因此瀏覽器或裝置會要求 Microsoft Azure DNS 伺服器將 FQDN 解析為 IP 位址。 
-6. 瀏覽器或裝置會將 HTTP/S 要求傳送至此 IP 位址。  
+5.  由於端點的 FQDN 是在 App Service 環境上執行的應用程式執行個體的 URL，因此瀏覽器或裝置會要求 Microsoft Azure DNS 伺服器將 FQDN 解析為 IP 位址。
+6. 瀏覽器或裝置會將 HTTP/S 要求傳送至此 IP 位址。
 7. 要求會送達在其中一個 App Service 環境上執行的應用程式執行個體之一。
 
 下列主控台圖片顯示範例應用程式自訂網域的 DNS 查閱；該網域已成功解析為在三個範例 App Service 環境之一 (在此案例中圍三個 App Service 環境中的第二個) 上執行的應用程式執行個體：
@@ -107,9 +112,9 @@ App Service 環境是水平相應放大的理想平台。在選取可支援已�
 ![DNS 查閱][DNSLookup]
 
 ## 其他連結和資訊 ##
-您可以在[應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
+您可以在 [應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
 
-預覽 Powershell 的相關文件：[Azure 資源管理員 (ARM) 流量管理員支援][ARMTrafficManager]。
+Powershell 的相關文件：[Azure Resource Manager 流量管理員支援][ARMTrafficManager]。
 
 [AZURE.INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 
@@ -118,7 +123,7 @@ App Service 環境是水平相應放大的理想平台。在選取可支援已�
 <!-- LINKS -->
 [AzureTrafficManagerProfile]: https://azure.microsoft.com/documentation/articles/traffic-manager-manage-profiles/
 [ARMTrafficManager]: https://azure.microsoft.com/documentation/articles/traffic-manager-powershell-arm/
-[RegisterCustomDomain]: https://azure.microsoft.com/documentation/articles/web-sites-custom-domain-name/
+[RegisterCustomDomain]: https://azure.microsoft.com/zh-TW/documentation/articles/web-sites-custom-domain-name/
 
 
 <!-- IMAGES -->
@@ -127,4 +132,4 @@ App Service 環境是水平相應放大的理想平台。在選取可支援已�
 [DNSLookup]: ./media/app-service-app-service-environment-geo-distributed-scale/DNSLookup-1.png
 [CustomDomain]: ./media/app-service-app-service-environment-geo-distributed-scale/CustomDomain-1.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0907_2016-->

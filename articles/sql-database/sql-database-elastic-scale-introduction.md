@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="05/27/2016"
+    ms.date="09/06/2016"
     ms.author="ddove"/>
 
 # 使用 Azure SQL Database 相應放大
@@ -33,10 +33,10 @@
 1. 一組 **Azure SQL 資料庫**使用分區化架構裝載於 Azure 中。
 2. **彈性資料庫用戶端程式庫**用來管理分區集。
 3. 一個資料庫子集放入**彈性資料庫集區**中。(請參閱[何謂集區？](sql-database-elastic-pool.md))。
-4. **彈性資料庫工作**針對所有資料庫執行 T-SQL 指令碼。
+4. **彈性資料庫工作**會針對所有資料庫執行排定的或 ad-hoc T-SQL 指令碼。
 5. **分割合併工具**用來將資料移到另一個的分區。
 6. **彈性資料庫查詢**可讓您撰寫一個跨分區集所有資料庫的查詢。
-7. **彈性交易**可讓您多個資料庫執行交易。 
+7. **彈性交易**可讓您多個資料庫執行交易。
 
 
 ![彈性資料庫工具][1]
@@ -109,4 +109,4 @@
 [3]: ./media/sql-database-elastic-scale-introduction/overview.png
 [4]: ./media/sql-database-elastic-scale-introduction/single_v_multi_tenant.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0907_2016-->

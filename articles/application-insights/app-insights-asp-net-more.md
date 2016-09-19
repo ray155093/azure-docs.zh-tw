@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="充分利用 Application Insights" 
+	pageTitle="充分利用 Application Insights | Microsoft Azure" 
 	description="開始使用 Application Insights 之後，以下是您可以瀏覽的功能摘要。" 
 	services="application-insights" 
     documentationCenter=".net"
@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/10/2016" 
+	ms.date="08/30/2016" 
 	ms.author="awills"/>
 
 # 更多來自 Application Insights 的遙測
@@ -60,10 +60,11 @@
 
 (即使您沒有在 Visual Studio 中檢測您的應用程式，也可以使用這個方法[在執行階段啟用效能監視](app-insights-monitor-performance-live-website-now.md)。)
 
+## 用戶端監視
 
-## 瀏覽器效能
+您已安裝會從應用程式的伺服器 (後端) 傳送遙測資料的 SDK。現在您可以加入用戶端監視。這可提供有關在瀏覽器中發生的使用者、工作階段、頁面檢視和任何例外狀況或損毀的相關資料。您也可以撰寫自己的程式碼，來追蹤您的使用者如何使用您的應用程式，徹底得知詳細的點按和按鍵層級。
 
-將 Application Insights JavaScript 程式碼片段新增到您的網頁，以從用戶端瀏覽器取得遙測。
+將 Application Insights JavaScript 程式碼片段新增到每個網頁，以從用戶端瀏覽器取得遙測。
 
 1. 在 Azure 中，為您的應用程式開啟 Application Insights 資源。
 2. 開啟 [快速入門]、[監視用戶端]，然後複製程式碼片段。
@@ -71,19 +72,42 @@
 
 ![在 Azure 中擴充](./media/app-insights-asp-net-more/100.png)
 
+請注意，此程式碼包含可識別您的應用程式資源的檢測金鑰。
+
 ### 您可以取得什麼？
 
 * 您可以撰寫 JavaScript 來[從您的網頁傳送自訂遙測](app-insights-api-custom-events-metrics.md)，例如追蹤按一下按鈕的動作。
-* 在 [分析](app-insights-analytics.md) 中，是使用 `pageViews` 來取得資料，以及使用 `dependencies` 來取得 AJAX 資料。
+* 在 [分析][](app-insights-analytics.md) 中，是使用 `pageViews` 來取得資料，以及使用 `dependencies` 來取得 AJAX 資料。
 * 瀏覽器刀鋒視窗中的[用戶端效能與使用狀況資料](app-insights-javascript.md)。
 
 ![在 Azure 中擴充](./media/app-insights-asp-net-more/090.png)
+
+
+[深入了解網頁追蹤。](app-insights-web-track-usage.md)
+
+
+
+## 追蹤應用程式版本
+
+請確定 `buildinfo.config` 是藉由您的 MSBuild 處理序所產生。在您的 .csproj 檔案中加入：
+
+```XML
+
+    <PropertyGroup>
+      <GenerateBuildInfoConfigFile>true</GenerateBuildInfoConfigFile>    <IncludeServerNameInBuildInfo>true</IncludeServerNameInBuildInfo>
+    </PropertyGroup> 
+```
+
+當它有組建資訊時，Application Insights Web 模組會自動新增**應用程式版本**，做為每個遙測項目的屬性。如此可讓您在執行[診斷搜尋](app-insights-diagnostic-search.md)或在[探索度量](app-insights-metrics-explorer.md)時，依據版本來篩選。
+
+但請注意，組建版本號碼只能由 MS 組建產生，不是 Visual Studio 中的開發人員組建產生。
+
 
 ## 可用性 Web 測試
 
 定期從世界各地傳送您的 Web 應用程式 HTTP 要求。如果回應太慢或不可靠，我們會通知您。
 
-在您應用程式的 Application Insights 資源中，按一下 [可用性] 磚來新增、編輯及檢視 Web 測試。
+在您應用程式的 Application Insights 資源中，按一下 [可用性] 圖格來新增、編輯及檢視 Web 測試。
 
 您可以新增在多個位置執行的多個測試。
 
@@ -121,4 +145,4 @@
 |**資料存取 API**<br/>即將推出。|
 |[**取樣**](app-insights-sampling.md)<br/>縮短資料速率，並協助您維持在您定價層的限制內。|![取樣圖格](./media/app-insights-asp-net-more/030.png)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0907_2016-->

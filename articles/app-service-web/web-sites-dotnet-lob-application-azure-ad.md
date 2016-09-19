@@ -13,7 +13,7 @@
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
 	ms.workload="web" 
-	ms.date="08/31/2016" 
+	ms.date="09/01/2016" 
 	ms.author="cephalin"/>
 
 # 使用 Azure Active Directory 驗證建立企業營運 Azure 應用程式 #
@@ -29,6 +29,7 @@
 
 - 比對 Azure Active Directory 驗證使用者
 - 使用 [Azure Active Directory 圖形 API](http://msdn.microsoft.com/library/azure/hh974476.aspx) 查詢目錄使用者和群組
+- 使用 ASP.NET MVC 的「不需要驗證」範本
 
 如果您在 Azure 中的企業營運應用程式需要角色型存取控制 (RBAC)，請參閱[後續步驟](#next)。
 
@@ -142,19 +143,11 @@
 
 	![](./media/web-sites-dotnet-lob-application-azure-ad/14-edit-parameters.png)
 
-14. 現在，為了測試您是否有存取 Azure Active Directory 圖形 API 的授權權杖，請將 ~\\Controllers\\HomeController.cs 變更為使用下列 `Index()` 動作方法︰
-	<pre class="prettyprint">
-	public ActionResult Index()
-	{
-		return <mark>Content(Request.Headers["X-MS-TOKEN-AAD-ACCESS-TOKEN"]);</mark>
-	}
-	</pre>
+14. 現在，若要測試是否有可供存取 Azure Active Directory 圖形 API 的授權權杖，請直接在瀏覽器中瀏覽到 **https://&lt;*appname*>.azurewebsites.net/.auth/me**。如果一切設定皆正確，您應該會在 JSON 回應中看到 `access_token`屬性。
 
-15. 在專案上按一下滑鼠右鍵，然後按一下 [發佈] 以發佈變更。在對話方塊中再次按一下 [發佈]。
+	`~/.auth/me` URL 路徑由 App Service 驗證/授權進行管理，以提供您與驗證的工作階段相關的所有資訊。如需詳細資訊，請參閱 [Azure App Service 中的驗證與授權](../app-service/app-service-authentication-overview.md)。
 
-	![](./media/web-sites-dotnet-lob-application-azure-ad/15-publish-token-code.png)
-
-	如果應用程式的首頁現在顯示存取權杖，則應用程式可以存取 Azure Active Directory 圖形 API。您可隨意復原 ~\\Controllers\\HomeController.cs 的變更。
+	>[AZURE.NOTE] `access_token` 具有到期期間。不過，App Service 驗證/授權會以 `~/.auth/refresh` 提供權杖重新整理功能。如需其使用方式的詳細資訊，請參閱 [App Service 權杖存放區](https://cgillum.tech/2016/03/07/app-service-token-store/)。
 
 接下來，您會使用目錄資料進行一些有用的操作。
 
@@ -194,29 +187,6 @@
 10.	選取您建立的模型，接著依序按一下 [+] 和 [新增] 來新增資料內容，然後按一下 [新增]。
 
 	![](./media/web-sites-dotnet-lob-application-azure-ad/16-add-scaffolded-controller.png)
-
-9.	開啟 ~\\Controllers\\WorkItemsController.cs。
-
-13.	在 `Create()` 和 `Edit(int? id)` 方法的開頭新增下列程式碼，讓一些變數可在稍後供 JavaScript 使用。對每個命名解析錯誤按一下 `Ctrl`+`.` 來加以修正。
-
-		ViewData["token"] = Request.Headers["X-MS-TOKEN-AAD-ACCESS-TOKEN"];
-		ViewData["tenant"] =
-			ClaimsPrincipal.Current.Claims
-			.Where(c => c.Type == "http://schemas.microsoft.com/identity/claims/tenantid")
-			.Select(c => c.Value).SingleOrDefault();
-
-	> [AZURE.NOTE] 您可能已經注意到某些動作上的 <code>[ValidateAntiForgeryToken]</code> 裝飾。基於 [Brock Allen](https://twitter.com/BrockLAllen) 在 [MVC 4、AntiForgeryToken 和宣告](http://brockallen.com/2012/07/08/mvc-4-antiforgerytoken-and-claims/)中描述的行為，您的 HTTP POST 可能無法通過防偽權杖驗證，因為：
-
-	> - Azure Active Directory 不會傳送防偽權杖預設所需要的 http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider。
-	> - 如果 Azure Active Directory 目錄與 AD FS 同步處理，AD FS 信任預設也不會傳送 http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider 宣告，但您可以手動設定 AD FS 來傳送此宣告。
-
-	> 您會在下一個步驟處理此問題。
-
-12.  在 ~\\Global.asax 中，於 `Application_Start()` 方法內新增下面這一行程式碼。對每個命名解析錯誤按一下 `Ctrl`+`.` 來加以修正。
-
-		AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
-	
-	`ClaimTypes.NameIdentifies` 指定宣告 `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier`，而 Azure Active Directory 確實會提供此宣告。
 
 14.	在 ~\\Views\\WorkItems\\Create.cshtml (自動建構的項目) 中尋找 `Html.BeginForm` Helper 方法，並進行下列醒目提示的變更︰
 	<pre class="prettyprint">
@@ -287,8 +257,11 @@
 			var maxResultsPerPage = 14;
 			var input = document.getElementById("AssignedToName");
 	
-			var token = "@ViewData["token"]";
-			var tenant = "@ViewData["tenant"]";
+			// 從要求標頭存取權杖，並從宣告身分識別存取 tenantID
+			var token = "@Request.Headers["X-MS-TOKEN-AAD-ACCESS-TOKEN"]";
+			var tenant ="@(System.Security.Claims.ClaimsPrincipal.Current.Claims
+							.Where(c => c.Type == "http://schemas.microsoft.com/identity/claims/tenantid")
+							.Select(c => c.Value).SingleOrDefault())";
 	
 			var picker = new AadPicker(maxResultsPerPage, input, token, tenant);
 	
@@ -303,7 +276,20 @@
 	</pre>
 	
 	請注意，`AadPicker` 物件會使用 `token` 和 `tenant` 來進行 Azure Active Directory 圖形 API 呼叫。您稍後會新增 `AadPicker`。
-
+	
+	>[AZURE.NOTE] 您也可以使用 `~/.auth/me`直接用戶端取得 `token` 和 `tenant`，但這會是額外的伺服器呼叫。例如：
+	>  
+    >     $.ajax({
+    >         dataType: "json",
+    >         url: "/.auth/me",
+    >         success: function (data) {
+    >             var token = data[0].access_token;
+    >             var tenant = data[0].user_claims
+    >                             .find(c => c.typ === 'http://schemas.microsoft.com/identity/claims/tenantid')
+    >                             .val;
+    >         }
+    >     });
+	
 15. 對 ~\\Views\\WorkItems\\Edit.cshtml 進行相同的變更。
 
 15. `AadPicker` 物件定義在您必須新增至專案的指令碼中。在 ~\\Scripts 資料夾上按一下滑鼠右鍵、指向 [新增]，然後按一下 [JavaScript 檔案]。輸入 `AadPickerLibrary` 做為檔名，然後按一下 [確定]。
@@ -350,6 +336,17 @@
 
 	有更多高效能的方式可管理應用程式中的 JavaScript 和 CSS 檔案。不過，為了簡單起見，你只會利用載入了每個檢視的套組。
 
+12. 最後，在 ~\\Global.asax 中，於 `Application_Start()` 方法內新增下面這一行程式碼。對每個命名解析錯誤按一下 `Ctrl`+`.` 來加以修正。
+
+		AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
+	
+	> [AZURE.NOTE] 您需要這行程式碼，因為預設的 MVC 範本會在某些動作上使用 <code>[ValidateAntiForgeryToken]</code> 裝飾。基於 [Brock Allen](https://twitter.com/BrockLAllen) 在 [MVC 4、AntiForgeryToken 和宣告](http://brockallen.com/2012/07/08/mvc-4-antiforgerytoken-and-claims/)中描述的行為，您的 HTTP POST 可能無法通過防偽權杖驗證，因為：
+
+	> - Azure Active Directory 不會傳送防偽權杖預設所需要的 http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider。
+	> - 如果 Azure Active Directory 目錄與 AD FS 同步處理，AD FS 信任預設也不會傳送 http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider 宣告，但您可以手動設定 AD FS 來傳送此宣告。
+
+	> `ClaimTypes.NameIdentifies` 指定宣告 `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier`，而 Azure Active Directory 確實會提供此宣告。
+
 20. 現在，發佈您的變更。以滑鼠右鍵按一下專案，然後按一下 [發佈]。
 
 21. 按一下 [設定]，確定其中有 SQL Database 的連接字串，選取 [更新資料庫] 以變更模型的結構描述，然後按一下 [發佈]。
@@ -385,4 +382,4 @@
 
 [Protect the Application with SSL and the Authorize Attribute]: web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md#protect-the-application-with-ssl-and-the-authorize-attribute
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

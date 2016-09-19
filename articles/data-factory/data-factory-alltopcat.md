@@ -44,7 +44,7 @@
 | &nbsp; | 文章 | 更新的文字、程式碼片段 |
 | --: | :-- | :-- |
 | 8 | [使用 Data Factory .NET SDK 來建立、監視及管理 Azure Data Factory](data-factory-create-data-factories-programmatically.md) | **不使用快顯對話方塊來登入** 上述範例程式碼會啟動一個對話方塊供您輸入 Azure 認證。如果您需要以程式設計的方式登入，而不使用對話方塊，請參閱使用 Azure Resource Manager 驗證服務主體 (resource-group-authenticate-service-principal.md authenticate-service-principal-with-certificate---powershell)。**範例** 建立 GetAuthorizationHeaderNoPopup 方法，如下所示︰public static string GetAuthorizationHeaderNoPopup() { var authority = new Uri(new Uri("https://login.windows.net"), ConfigurationManager.AppSettings "ActiveDirectoryTenantId" ); var context = new AuthenticationContext(authority.AbsoluteUri); var credential = new ClientCredential(ConfigurationManager.AppSettings "AdfClientId" , ConfigurationManager.AppSettings "AdfClientSecret" ); AuthenticationResult result = context.AcquireTokenAsync(ConfigurationManager.AppSettings "WindowsManagementUri" , credential).Result; |
-| 9 | [使用複製活動移動資料](data-factory-data-movement-activities.md) | **支援的檔案格式** 複製活動可以在兩個檔案型資料存放區 (例如 Azure Blob、檔案系統和 Hadoop 分散式檔案系統 (HDFS)) 之間原封不動地複製檔案。若要這樣做，您可以在輸入和輸出資料集定義中同時略過格式化區段 (data-factory-create-datasets.md)，如此一來，就不必進行任何序列化/還原序列化作業，而可以有效率地複製資料。複製活動也會以指定格式讀取和寫入檔案︰文字、Avro、ORC 和 JSON。以下是您可以實現的一些複製活動範例︰/ 從 Azure Blob 複製文字 (CSV) 格式的資料並寫入至 Azure SQL / 從檔案系統內部部署環境複製文字 (CSV) 格式的檔案並以 Avro 格式寫入至 Azure Blob / 複製 Azure SQL Database 中的資料並以 ORC 格式寫入至 HDFS 內部部署環境 ** .a name="global"../a.全域可用的資料移動** 即使 Azure Data Factory 本身可用，但是服務支援的複製活動可供下列區域和地理位置全域使用 |
+| 9 | [使用複製活動移動資料](data-factory-data-movement-activities.md) | **支援的檔案格式** 複製活動可以在兩個檔案型資料存放區 (例如 Azure Blob、檔案系統和 Hadoop 分散式檔案系統 (HDFS)) 之間原封不動地複製檔案。若要這樣做，您可以在輸入和輸出資料集定義中同時略過格式化區段 (data-factory-create-datasets.md)，如此一來，就不必進行任何序列化/還原序列化作業，而可以有效率地複製資料。複製活動也會以指定格式讀取和寫入檔案︰文字、Avro、ORC 和 JSON。以下是您可以實現的一些複製活動範例︰/ 從 Azure Blob 複製文字 (CSV) 格式的資料並寫入至 Azure SQL / 從檔案系統內部部署環境複製文字 (CSV) 格式的檔案並以 Avro 格式寫入至 Azure Blob / 複製 Azure SQL Database 中的資料並以 ORC 格式寫入至 HDFS 內部部署環境 ** .a name="global"../a.全域可用的資料移動** 雖然 Azure Data Factory 僅供在美國西部、美國東部及北歐地區使用，但是為「複製活動」提供技術支援的服務則是在下列區域和地理位置全域可供使用。|
 | 10 | [使用 Azure Data Factory 來移動 OData 來源的資料](data-factory-odata-connector.md) | **使用存取內部部署 OData 來源的 Windows 驗證** { "name": "inputLinkedService", "properties": { "type": "OData", "typeProperties": { "url": ".endpoint of on-premises OData source e.g. Dynamics CRM.", "authenticationType": "Windows", "username": "domain\\user", "password": "password", "gatewayName": "mygateway" } } } |
 
 
@@ -162,4 +162,4 @@
 | 66 | [Azure Data Factory - 命名規則](data-factory-naming-rules.md) | 描述 Data Factory 實體的命名規則。 |
 | 67 | [對 Data Factory 問題進行疑難排解](data-factory-troubleshoot.md) | 了解如何使用 Azure Data Factory 進行問題的疑難排解。 |
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0907_2016-->

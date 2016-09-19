@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/09/2016"
+   ms.date="09/06/2016"
    ms.author="gwallace" />
 
 # 使用 Azure 資源管理員的 PowerShell 建立 Azure 應用程式閘道的自訂探查
@@ -23,8 +23,6 @@
 - [Azure 入口網站](application-gateway-create-probe-portal.md)
 - [Azure Resource Manager PowerShell](application-gateway-create-probe-ps.md)
 - [Azure 傳統 PowerShell](application-gateway-create-probe-classic-ps.md)
-
-<BR>
 
 [AZURE.INCLUDE [azure-probe-intro-include](../../includes/application-gateway-create-probe-intro-include.md)]
 
@@ -45,25 +43,23 @@
 
 檢查帳戶的訂用帳戶。
 
-		get-AzureRmSubscription
-
-系統會提示您使用您的認證進行驗證。<BR>
+	Get-AzureRmSubscription
 
 ### 步驟 3
 
 選擇其中一個要使用的 Azure 訂用帳戶。<BR>
 
 
-		Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
+	Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
 
 
 ### 步驟 4
 
-建立新的資源群組 (若使用現有的資源群組，請略過此步驟)。
+建立資源群組 (若使用現有的資源群組，請略過此步驟)。
 
     New-AzureRmResourceGroup -Name appgw-rg -location "West US"
 
-Azure 資源管理員需要所有的資源群組指定一個位置。這用來作為該資源群組中資源的預設位置。請確定所有用來建立應用程式閘道的命令都使用同一個資源群組。
+Azure Resource Manager 需要所有的資源群組指定一個位置。此位置用來作為該資源群組中資源的預設位置。請確定所有用來建立應用程式閘道的命令都使用同一個資源群組。
 
 在上述範例中，我們建立名為 "appgw-RG" 的資源群組，且位置為美國西部 ("West US")。
 
@@ -89,7 +85,7 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 
 針對建立應用程式閘道的後續步驟，指派子網路變數。
 
-	$subnet=$vnet.Subnets[0]
+	$subnet = $vnet.Subnets[0]
 
 ## 建立前端組態的公用 IP 位址
 
@@ -101,8 +97,7 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 
 ## 使用自訂探查建立應用程式閘道組態物件
 
-您必須先設定所有組態項目，再建立應用程式閘道。下列步驟會建立應用程式閘道資源所需的組態項目。
-
+您先設定所有組態項目，再建立應用程式閘道。下列步驟會建立應用程式閘道資源所需的組態項目。
 
 ### 步驟 1
 
@@ -114,7 +109,7 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 ### 步驟 2
 
 
-設定名為 "pool01" 的後端 IP 位址集區，其 IP 位址有 "134.170.185.46, 134.170.188.221,134.170.185.50"。這些 IP 位址會接收來自前端 IP 端點的網路流量。您需取代上述 IP 位址來新增自己的應用程式 IP 位址端點。
+設定名為 "pool01" 的後端 IP 位址集區，其 IP 位址有 "134.170.185.46, 134.170.188.221,134.170.185.50"。這些值為 IP 位址，可接收來自前端 IP 端點的網路流量。您需取代上述 IP 位址來新增自己的應用程式 IP 位址端點。
 
 	$pool = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 134.170.185.46, 134.170.188.221,134.170.185.50
 
@@ -126,22 +121,20 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 
 所使用的參數如下：
 
-- **-Interval** - 以秒為單位設定探查間隔檢查。
-- **-Timeout** - 定義 HTTP 回應檢查的探查逾時。
-- **-Hostname 和 -path** -「應用程式閘道」所叫用以判斷執行個體健康狀態的完整 URL 路徑。例如，若您擁有網站 http://contoso.com/，則可以為 "http://contoso.com/path/custompath.htm" 設定自訂探查，以便讓探查檢查有成功的 HTTP 回應。
-- **-UnhealthyThreshold** - 要將後端執行個體標記為「狀況不良」所需的失敗 HTTP 回應次數。
+- **Interval** - 以秒為單位設定探查間隔檢查。
+- **Timeout** - 定義 HTTP 回應檢查的探查逾時。
+- **-Hostname 和 path** -「應用程式閘道」所叫用以判斷執行個體健全狀態的完整 URL 路徑。例如，若您擁有網站 http://contoso.com/，則可以為 "http://contoso.com/path/custompath.htm" 設定自訂探查，以便讓探查檢查有成功的 HTTP 回應。
+- **UnhealthyThreshold** - 要將後端執行個體標記為「狀況不良」所需的失敗 HTTP 回應次數。
 
 <BR>
 
 	$probe = New-AzureRmApplicationGatewayProbeConfig -Name probe01 -Protocol Http -HostName "contoso.com" -Path "/path/path.htm" -Interval 30 -Timeout 120 -UnhealthyThreshold 8
 
-
 ### 步驟 4
 
-設定後端集區中流量的應用程式閘道設定 "poolsetting01"。此步驟中也有適用於應用程式閘道要求之後端集區回應的逾時組態。當後端回應達到逾時限制時，「應用程式閘道」就會取消要求。這與僅適用於探查檢查之後端回應的探查逾時不同。
+設定後端集區中流量的應用程式閘道設定 "poolsetting01"。此步驟中也有適用於應用程式閘道要求之後端集區回應的逾時組態。當後端回應達到逾時限制時，「應用程式閘道」就會取消要求。這個值與僅適用於探查檢查之後端回應的探查逾時不同。
 
 	$poolSetting = New-AzureRmApplicationGatewayBackendHttpSettings -Name poolsetting01 -Port 80 -Protocol Http -CookieBasedAffinity Disabled -Probe $probe -RequestTimeout 80
-
 
 ### 步驟 5
 
@@ -213,7 +206,7 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 
 使用 **Set-AzureRmApplicationGateway** 將組態儲存至應用程式閘道。
 
-	Set-AzureRmApplicationGateway -ApplicationGateway $getgw -verbose
+	Set-AzureRmApplicationGateway -ApplicationGateway $getgw
 
 ## 從現有應用程式閘道中移除探查
 
@@ -237,12 +230,16 @@ Azure 資源管理員需要所有的資源群組指定一個位置。這用來�
 使用 **-Set-AzureRmApplicationGatewayBackendHttpSettings** 來更新後端集區設定，以將探查與逾時設定移除。
 
 
-	 $getgw=Set-AzureRmApplicationGatewayBackendHttpSettings -ApplicationGateway $getgw -Name $getgw.BackendHttpSettingsCollection.name -Port 80 -Protocol http -CookieBasedAffinity Disabled
+	 $getgw = Set-AzureRmApplicationGatewayBackendHttpSettings -ApplicationGateway $getgw -Name $getgw.BackendHttpSettingsCollection.name -Port 80 -Protocol http -CookieBasedAffinity Disabled
 
 ### 步驟 4
 
 使用 **Set-AzureRmApplicationGateway** 將組態儲存至應用程式閘道。
 
-	Set-AzureRmApplicationGateway -ApplicationGateway $getgw -verbose
+	Set-AzureRmApplicationGateway -ApplicationGateway $getgw
 
-<!---HONumber=AcomDC_0810_2016------>
+## 後續步驟
+
+請瀏覽[設定 SSL 卸載](application-gateway-ssl-arm.md)，以了解如何設定 SSL 卸載
+
+<!---HONumber=AcomDC_0907_2016-->

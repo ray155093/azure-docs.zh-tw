@@ -17,7 +17,7 @@
  
 # Application Insights - 簡介
 
-[Visual Studio Application Insights](app-insights-get-started.md) 是一項可延伸分析服務，會監視您的即時 Web 應用程式。您可以透過該服務來偵測並診斷效能問題，並了解實際上使用者如何運用您的應用程式。它是針對開發人員所設計，可協助您持續改善效能和可用性。它適用於各種不同平台上的應用程式，包括裝載在內部部署或雲端的 .NET、Node.js 和 J2EE。
+Visual Studio Application Insights 是一項可延伸分析服務，可監視您的即時 Web 應用程式。您可以透過該服務來偵測並診斷效能問題，並了解實際上使用者如何運用您的應用程式。它是針對開發人員所設計，可協助您持續改善效能和可用性。它適用於各種不同平台上的應用程式，包括裝載在內部部署或雲端的 .NET、Node.js 和 J2EE。
 
 ![製作使用者活動統計資料的圖表，或深入特定事件。](./media/app-insights-overview/00-sample.png)
 
@@ -140,15 +140,15 @@ Application Insights 是 Microsoft Azure 中裝載的多項服務之一，而遙
  
 ![建立工作項目](./media/app-insights-overview/09.png)
 
-## Analytics
+## 分析
 
-[分析](app-insights-analytics.md)是更強大的搜尋和分析功能，您可以在其中對您的遙測資料撰寫類似 SQL 的查詢，或尋找特定問題，或編譯統計資訊。
+[分析](app-insights-analytics.md)是更強大的搜尋和分析功能，您可以在其中對您的遙測資料撰寫類似 SQL 的查詢，以便尋找特定問題或編譯統計資訊。
 
-![Analytics](./media/app-insights-overview/10.png)
+![分析](./media/app-insights-overview/10.png)
 
 開啟教學課程視窗，請查看並執行對您的資料的查詢範例，或讀取較長的[教學課程逐步解說](app-insights-analytics-tour.md)。Intellisense 會提示您可以使用的查詢，而且有[完整語言參考](app-insights-analytics-reference.md)。
 
-查詢通常會以遙測串流的名稱開頭，例如要求、例外狀況或相依性。在左邊快速開啟結構描述列，以查看可用的遙測串流清單。查詢是[查詢作業](app-insights-analytics-reference.md#queries-and-operators)的管線，例如 `where` (布林值篩選器) 或 `project` (可計算新的屬性)。`summarize` 會[彙總執行個體](app-insights-analytics-tour.md#aggregate-groups-of-rows)、依您定義的函式進行分組，然後將彙總函式套用於已分組的資料。
+查詢通常會以遙測串流的名稱開頭，例如要求、例外狀況或相依性。在左邊快速開啟結構描述列，以查看可用的遙測串流清單。查詢是[查詢作業](app-insights-analytics-reference.md#queries-and-operators)的管線，例如 `where` (布林值篩選器) 或 `project` (可計算新的屬性)。`summarize` 會[彙總執行個體](app-insights-analytics-tour.md#aggregate-groups-of-rows)、依您定義的函數進行分組，然後將彙總函式套用於已分組的資料。
 
 結果會[以表格或各種類型的圖表呈現](app-insights-analytics-tour.md#charting-the-results)。
 
@@ -169,7 +169,7 @@ Application Insights 是 Microsoft Azure 中裝載的多項服務之一，而遙
 
 然後我們可以將自訂事件計數繪製成圖表，並依照事件名稱加以區隔︰
 
-![Analytics](./media/app-insights-overview/11.png)
+![分析](./media/app-insights-overview/11.png)
 
 ### 記錄追蹤
 
@@ -284,7 +284,7 @@ Application Insights 是 Microsoft Azure 中裝載的多項服務之一，而遙
 
 Application Insights 會提供三種類型的警示 (透過電子郵件傳送)。
 
-### 主動診斷 
+### 主動式診斷 
 
 [主動式診斷](app-insights-nrt-proactive-diagnostics.md)** 會自動設定 - 您不需要進行設定。假設您的網站有足夠的流量，如果一天當中某個時間的失敗要求或要求率不尋常增加，您就會收到一封電子郵件。警示包含診斷資訊。
 
@@ -383,8 +383,7 @@ Application Insights 的使用方式有所限制，在某個程度上這取決�
 [portal]: http://portal.azure.com/
 [qna]: app-insights-troubleshoot-faq.md
 [redfield]: app-insights-monitor-performance-live-website-now.md
-[windows]: app-insights-windows-get-started.md
 
  
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0907_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/06/2016"
+	ms.date="08/31/2016"
 	ms.author="maheshu"/>
 
 # 將 Windows Server 虛擬機器加入受管理的網域
@@ -28,9 +28,9 @@
 
 
 ## 步驟 1︰建立 Windows Server 虛擬機器
-請依照[在 Azure 傳統入口網站中建立執行 Windows 的虛擬機器](../virtual-machines/virtual-machines-windows-classic-tutorial.md)教學課程中所述的指示進行。務必要確實將此新建立的虛擬機器加入已在其中啟用 Azure AD 網域服務的相同虛擬網路。請注意，[快速建立] 選項無法讓您將虛擬機器加入虛擬網路。因此，您必須使用 [從資源庫] 選項來建立虛擬機器。
+請依照[在 Azure 傳統入口網站中建立執行 Windows 的虛擬機器](../virtual-machines/virtual-machines-windows-classic-tutorial.md)教學課程中所述的指示進行。務必要確實將此新建立的虛擬機器加入已在其中啟用 Azure AD 網域服務的相同虛擬網路。[快速建立] 選項無法讓您將虛擬機器加入虛擬網路。因此，您必須使用 [從資源庫] 選項來建立虛擬機器。
 
-執行下列步驟以建立 Windows 虛擬機器，並將其加入已在其中啟用 Azure AD 網域服務的虛擬網路。
+執行下列步驟，以建立 Windows 虛擬機器，並將其加入已在其中啟用 Azure AD 網域服務的虛擬網路。
 
 1. 在 Azure 傳統入口網站中，按一下視窗底部命令列上的 [新增]。
 
@@ -40,7 +40,7 @@
 
     ![選取映像](./media/active-directory-domain-services-admin-guide/create-windows-vm-select-image.png)
 
-4. 第二個畫面可讓您挑選電腦名稱、大小，及系統管理使用者名稱和密碼。使用執行應用程式或工作負載所需的層次和大小。在此選擇的使用者名稱應該是機器上的本機系統管理員使用者。請勿在此輸入網域使用者帳戶的認證。
+4. 第二個畫面可讓您挑選電腦名稱、大小，及系統管理使用者名稱和密碼。使用執行應用程式或工作負載所需的層次和大小。您在此挑選的使用者名稱會是機器上的本機系統管理員使用者。請勿在此輸入網域使用者帳戶的認證。
 
     ![設定虛擬機器](./media/active-directory-domain-services-admin-guide/create-windows-vm-config.png)
 
@@ -49,7 +49,7 @@
     ![選取虛擬機器的虛擬網路](./media/active-directory-domain-services-admin-guide/create-windows-vm-select-vnet.png)
 
     > [AZURE.WARNING]
-    請確實將虛擬機器加入已在其中啟用 Azure AD 網域服務的相同虛擬網路。這可確保虛擬機器可以「看到」網域並執行加入網域之類的工作。如果您選擇在不同虛擬網路中建立虛擬機器，請確保該虛擬網路已連線至您已在其中啟用 Azure AD 網域服務的虛擬網路。
+    請確實將虛擬機器加入已在其中啟用 Azure AD 網域服務的相同虛擬網路。因此，虛擬機器可以「看到」網域並執行加入網域之類的工作。如果您選擇在不同虛擬網路中建立虛擬機器，請確保該虛擬網路已連線至您已在其中啟用 Azure AD 網域服務的虛擬網路。
 
 6. 第四個畫面可讓您安裝 VM 代理程式及設定部分可用延伸模組。
 
@@ -61,25 +61,25 @@
 
 
 ## 步驟 2︰使用本機系統管理員帳戶連線到 Windows Server 虛擬機器
-現在，我們要連線到新建立的 Windows Server 虛擬機器，以便將其加入網域。使用建立虛擬機器時所指定的本機系統管理員認證，以便與其連線。
+現在，我們會連線到新建立的 Windows Server 虛擬機器，以便將其加入網域。使用建立虛擬機器時所指定的本機系統管理員認證，以便與其連線。
 
 執行下列步驟以連線到虛擬機器。
 
-1. 在傳統入口網站中瀏覽至 [虛擬機器] 節點。選取您剛建立的虛擬機器，然後按一下視窗底部命令列上的 [連線]。
+1. 在傳統入口網站中瀏覽至 [虛擬機器] 節點。選取您在步驟 1 建立的虛擬機器，然後按一下視窗底部命令列上的 [連線]。
 
     ![連線至 Windows 虛擬機器](./media/active-directory-domain-services-admin-guide/connect-windows-vm.png)
 
-2. 傳統入口網站會提示您開啟或儲存 .rdp 檔案，其可供用來連線到虛擬機器。.rdp 檔案下載完成時請對其按一下。
+2. 傳統入口網站會提示您開啟或儲存副檔名為 '.rdp' 的檔案，其可供用來連線到虛擬機器。在檔案下載完成時按一下加以開啟。
 
-3. 在登入提示中，輸入您在建立虛擬機器時所指定的 [本機系統管理員認證]。例如上述範例中的 'localhost\\mahesh'。
+3. 在登入提示中，輸入您在建立虛擬機器時所指定的 [本機系統管理員認證]。例如，我們在此範例中使用 'localhost\\mahesh'。
 
 此時，您應該已使用本機系統管理員認證登入到新建立的 Windows 虛擬機器。下一個步驟是將虛擬機器加入網域。
 
 
 ## 步驟 3︰將 Windows Server 虛擬機器加入 AAD-DS 受管理網域
-請執行下列步驟以將 Windows Server 虛擬機器加入 AAD-DS 受管理網域。
+請執行下列步驟，以將 Windows Server 虛擬機器加入 AAD-DS 受管理網域。
 
-1. 如上面的步驟 2 所示連線到 Windows Server。在 [開始] 畫面中開啟 [伺服器管理員]。
+1. 如步驟 2 所示連線到 Windows Server。在 [開始] 畫面中開啟 [伺服器管理員]。
 
 2. 按一下 [伺服器管理員] 視窗之左窗格中的 [本機伺服器]。
 
@@ -95,7 +95,7 @@
 
 5. 系統會提示您輸入認證以便加入網域。請確定您是**指定屬於 AAD DC 系統管理員群組之使用者的認證**。只有此群組的成員才有權限可以將機器加入受管理的網域。
 
-    ![指定用來加入網域的認證](./media/active-directory-domain-services-admin-guide/join-domain-system-properties-specify-credentials.png)
+    ![指定用於加入網域的認證](./media/active-directory-domain-services-admin-guide/join-domain-system-properties-specify-credentials.png)
 
 6. 您可以透過下列任一方式指定認證︰
 
@@ -103,7 +103,7 @@
 
     - SAMAccountName 格式︰您可以使用 SAMAccountName 格式指定帳戶名稱。在此範例中，使用者 'bob' 必須輸入 'CONTOSO100\\bob'。請注意，如果您的 Azure AD 租用戶中有多個使用者擁有相同的 UPN 前置詞 (例如 'bob')，則它們會在使用 SAMAccountName 格式登入網域時遇到問題。在這些情況下，您可以使用 UPN 格式可靠地登入網域。
 
-7. 順利加入網域後，您會看到下列訊息歡迎您加入網域。您必須重新啟動虛擬機器，以便讓加入網域的作業完成。
+7. 順利加入網域後，您會看到下列訊息歡迎您加入網域。重新啟動虛擬機器，以便完成加入網域作業。
 
     ![歡迎加入網域](./media/active-directory-domain-services-admin-guide/join-domain-done.png)
 
@@ -112,7 +112,7 @@
 ### 連線能力問題
 如果虛擬機器找不到網域，請參閱下列疑難排解步驟︰
 
-- 確定虛擬機器已連線到您已在其中啟用網域服務的相同虛擬網路。如果沒有連線，虛擬機器將無法連線到網域，進而無法加入網域。
+- 確定虛擬機器已連線到您已在其中啟用網域服務的相同虛擬網路。若非如此，虛擬機器便無法連線到網域，因此無法加入網域。
 
 - 如果虛擬機器連線到其他虛擬網路，請確定此虛擬網路已連線到您已在其中啟用網域服務的虛擬網路。
 
@@ -123,7 +123,7 @@
 如果您看到對話方塊要求您提供認證以加入網域，則表示您沒有連線問題。
 
 
-### 認證相關問題
+### 與認證相關的問題
 如果您的認證有問題因而無法加入網域，請參閱下列步驟。
 
 - 確定您是使用屬於「AAD DC 系統管理員」群組之使用者帳戶的認證。不屬於此群組的使用者無法將機器加入受管理的網域。
@@ -134,4 +134,11 @@
 
 - 確定您已如《入門指南》中所指定的等候夠久的時間以讓密碼同步處理完成。
 
-<!---HONumber=AcomDC_0706_2016-->
+
+## 相關內容
+
+- [Azure AD 網域服務 - 開始使用](./active-directory-ds-getting-started.md)
+
+- [Administer an Azure AD Domain Services managed domain (管理 Azure AD 網域服務受管理的網域)](./active-directory-ds-admin-guide-administer-domain.md)
+
+<!---HONumber=AcomDC_0907_2016-->

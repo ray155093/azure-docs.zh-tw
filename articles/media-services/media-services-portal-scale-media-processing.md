@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/29/2016"
+	ms.date="09/01/2016"
 	ms.author="juliako"/>
 
 # 變更保留單元類型
@@ -27,7 +27,7 @@
 
 ## Overview
 
-若要取得有關調整媒體處理的詳細資訊，請參閱此[概觀](media-services-scale-media-processing-overview.md)主題。
+>[AZURE.IMPORTANT] 請務必檢閱[概觀](media-services-scale-media-processing-overview.md)主題，以取得調整媒體處理主題的詳細資訊。
 
 ## 調整媒體處理
 
@@ -57,4 +57,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0907_2016-->

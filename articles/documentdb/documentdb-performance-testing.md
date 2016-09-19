@@ -88,7 +88,7 @@
 	DocumentDBBenchmark completed successfully.
 
 
-**步驟 4 (如有必要)：**從工具回報的輸送量 (RU/秒) 應該等於或大於佈建的集合輸送量。如果情況並非如此，向上微調 DegreeOfParallelism 可協助您達到該限制。如果來自用戶端應用程式的輸送量達持平狀態，在相同或不同機器上啟動多個應用程式執行個體將可協助您在各個不同的執行個體達到所佈建的限制。如果您需要這個步驟的相關協助，請透過 [Ask DocumentDB](askdocdb@microsoft.com) 或提出支援票證來與我們連絡。
+**步驟 4 (如有必要)：**從工具回報的輸送量 (RU/秒) 應該等於或大於佈建的集合輸送量。如果情況並非如此，向上微調 DegreeOfParallelism 可協助您達到該限制。如果來自用戶端應用程式的輸送量達持平狀態，在相同或不同機器上啟動多個應用程式執行個體將可協助您在各個不同的執行個體達到所佈建的限制。如果您需要協助進行這個步驟，請撰寫電子郵件給 askdocdb@microsoft.com 或填寫支援票證。
 
 讓應用程式處於執行狀態之後，您便可以嘗試不同的[索引編製原則](documentdb-indexing-policies.md)和[一致性層級](documentdb-consistency-levels.md)，以了解它們對輸送量和延遲的影響。您也可以檢閱原始程式碼，然後對自己的測試套件或實際執行應用程式實作類似的組態。
 
@@ -103,4 +103,4 @@
 * [DocumentDB .NET 範例](https://github.com/Azure/azure-documentdb-net)
 * [有關效能秘訣的 DocumentDB 部落格](https://azure.microsoft.com/blog/2015/01/20/performance-tips-for-azure-documentdb-part-1-2/)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0907_2016-->

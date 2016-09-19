@@ -126,7 +126,7 @@ A 記錄應該設定如下 (@ 通常代表根網域)︰
   </tr>
 </table>
 
-額外的 TXT 記錄會採用從 &lt;*subdomain*>.&lt;*rootdomain*> 對應至 &lt;*subdomain*>.azurewebsites.net 的慣例。TXT 記錄應該設定如下︰
+額外的 TXT 記錄會採用從 &lt;subdomain>.&lt;rootdomain> 對應至 &lt;appname>.azurewebsites.net 的慣例。TXT 記錄應該設定如下︰
 
 <table cellspacing="0" border="1">
   <tr>
@@ -197,11 +197,37 @@ CNAME 記錄應該設定如下 (@ 通常代表根網域)︰
 
 5.  按一下 [驗證]。
 
-6.  按一下 [驗證] 後，Azure 便會開始進行網域驗證工作流程。此流程將會檢查網域擁有權及主機名稱可用性，並回報成功與否。在發生錯誤的情況下，系統將會提供錯誤詳細資料，以及錯誤修復方式的規範指引。
+6.  按一下 [驗證] 後，Azure 便會開始進行網域驗證工作流程。此流程將會檢查網域擁有權及主機名稱可用性，並回報成功與否。在發生錯誤的情況下，將會提供錯誤詳細資料，以及錯誤修復方式的規範指引。
 
 7.  成功驗證後，[新增主機名稱] 按鈕將會變成作用中，使您可以指派主機名稱。現在請在瀏覽器中瀏覽到您的自訂網域名稱。您現在應會看到您應用程式正在使用您的自訂網域名稱執行。
 
 8.  Azure 完成設定新的自訂網域名稱後，請在瀏覽器中瀏覽至您的自訂網域名稱。瀏覽器應會開啟 Azure 應用程式，這表示您的自訂網域名稱已正確設定。
+
+> [AZURE.NOTE] 如果 DNS 記錄已在使用中 (提供流量案例的使用中網域)，而且您需要事先將 Web 應用程式與其繫結以驗證網域，則只要如下表所示範例建立 TXT 記錄。額外的 TXT 記錄會採用從 &lt;subdomain>.&lt;rootdomain> 對應至 &lt;appname>.azurewebsites.net 的慣例。
+> <table cellspacing="0" border="1">
+>   <tr>
+>     <th>FQDN 範例</th>
+>     <th>TXT 主機</th>
+>     <th>TXT 值</th>
+>   </tr>
+>   <tr>
+>     <td>contoso.com (根網域)</td>
+>     <td>awverify.contoso.com</td>
+>     <td>&lt;<i>appname</i>>.azurewebsites.net</td>
+>   </tr>
+>   <tr>
+>     <td>www.contoso.com (子網域)</td>
+>     <td>awverify.www.contoso.com</td>
+>     <td>&lt;<i>appname</i>>.azurewebsites.net</td>
+>   </tr>
+>     <tr>
+>     <td>*.contoso.com (子網域)</td>
+>     <td>awverify.*.contoso.com</td>
+>     <td>&lt;<i>appname</i>>.azurewebsites.net</td>
+>   </tr>
+> </table>
+建立此 DNS 記錄之後，請回到 Azure 入口網站，並將您的自訂網域名稱新增至 Web 應用程式。
+ 
 
 <a name="verify"></a>
 ## 確認 DNS 傳播
@@ -223,4 +249,4 @@ CNAME 記錄應該設定如下 (@ 通常代表根網域)︰
 <!-- Images -->
 [subdomain]: media/web-sites-custom-domain-name/azurewebsites-subdomain.png
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0907_2016-->

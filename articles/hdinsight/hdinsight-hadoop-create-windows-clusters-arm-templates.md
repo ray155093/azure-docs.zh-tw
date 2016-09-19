@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 ARM 範本在 HDInsight 中建立 Windows 型 Hadoop 叢集 | Microsoft Azure"
-   	description="了解如何使用 Azure ARM 範本建立 Azure HDInsight 的叢集。"
+   pageTitle="使用 Azure Resource Manager 範本在 HDInsight 中建立 Windows 型 Hadoop 叢集 | Microsoft Azure"
+   	description="了解如何使用 Azure Resource Manager 範本建立 Azure HDInsight 的叢集。"
    services="hdinsight"
    documentationCenter=""
    tags="azure-portal"
@@ -17,11 +17,11 @@
    ms.date="07/25/2016"
    ms.author="jgao"/>
 
-# 使用 ARM 範本在 HDInsight 中建立 Windows 型 Hadoop 叢集
+# 使用 Azure Resource Manager 範本在 HDInsight 中建立 Windows 型 Hadoop 叢集
 
 [AZURE.INCLUDE [選取器](../../includes/hdinsight-selector-create-clusters.md)]
 
-了解如何使用 Azure 資源管理員 (ARM) 範本建立 HDInsight 叢集。如需詳細資訊，請參閱[使用 Azure 資源管理員範本部署應用程式](../resource-group-template-deploy.md)。如需其他叢集建立工具和功能的資訊，請按一下此頁面頂端的索引標籤，或參閱[叢集建立方法](hdinsight-provision-clusters.md#cluster-creation-methods)。
+了解如何使用 Azure Resource Manager 範本建立 HDInsight 叢集。如需詳細資訊，請參閱[使用 Azure 資源管理員範本部署應用程式](../resource-group-template-deploy.md)。如需其他叢集建立工具和功能的資訊，請按一下此頁面頂端的索引標籤，或參閱[叢集建立方法](hdinsight-provision-clusters.md#cluster-creation-methods)。
 
 ##必要條件：
 
@@ -35,13 +35,13 @@
 
     [AZURE.INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-powershell-and-cli.md)]
 
-## ARM 範本
+## Resource Manager 範本
 
-ARM 範本可讓您在單一的協調作業中，輕鬆地為您的應用程式建立 HDInsight 叢集、其依存的資源 (例如預設儲存體帳戶) 和其他資源 (例如使用 Apache Sqoop 所需的 Azure SQL Database)。在範本中，您會定義應用程式所需的資源，並指定部署參數以針對不同的環境輸入值。範本由 JSON 與運算式所組成，可讓您用來為部署建構值。
+Resource Manager 範本可讓您在單一的協調作業中，輕鬆地為您的應用程式建立 HDInsight 叢集、其依存的資源 (例如預設儲存體帳戶) 和其他資源 (例如使用 Apache Sqoop 所需的 Azure SQL Database)。在範本中，您會定義應用程式所需的資源，並指定部署參數以針對不同的環境輸入值。範本由 JSON 與運算式所組成，可讓您用來為部署建構值。
 
-您可在[附錄 A](#appx-a-arm-template) 中找到用來建立 HDInsight 叢集和相依 Azure 儲存體帳戶的 ARM 範本。請使用文字編輯器將範本儲存至工作站上的檔案中。您將了解如何使用各種工具呼叫此範本。
+您可在[附錄 A](#appx-a-arm-template) 中找到用來建立 HDInsight 叢集和相依 Azure 儲存體帳戶的 Resource Manager 範本。請使用文字編輯器將範本儲存至工作站上的檔案中。您將了解如何使用各種工具呼叫此範本。
 
-如需 ARM 範本的詳細資訊，請參閱
+如需 Resource Manager 範本的相關詳細資訊，請參閱
 
 - [編寫 Azure 資源管理員範本](../resource-group-authoring-templates.md)
 - [使用 Azure 資源管理員範本部署應用程式](../resource-group-template-deploy.md)
@@ -51,7 +51,7 @@ ARM 範本可讓您在單一的協調作業中，輕鬆地為您的應用程式�
 
 以下程序會建立 HDInsight 叢集。
 
-**使用 ARM 範本部署叢集**
+**使用 Resource Manager 範本部署叢集**
 
 1. 將[附錄 A](#appx-a-arm-template) 的 JSON 檔案儲存到您的工作站。
 2. 視需要設定參數。
@@ -136,15 +136,15 @@ ARM 範本可讓您在單一的協調作業中，輕鬆地為您的應用程式�
 在本文中，您學到幾種建立 HDInsight 叢集的方法。若要深入了解，請參閱下列文章：
 
 
-- 如需透過 .NET 用戶端程式庫部署資源的範例，請參閱[使用 .NET 程式庫和範本部署資源](../virtual-machines/virtual-machines-windows-csharp-template.md)。
+- 如需透過 .NET 用戶端程式庫部署資源的範例，請參閱[使用 .NET 程式庫與範本部署資源](../virtual-machines/virtual-machines-windows-csharp-template.md)。
 - 如需部署應用程式的深入範例，請參閱[透過可預測方式在 Azure 中佈建和部署微服務](../app-service-web/app-service-deploy-complex-application-predictably.md)。
 - 如需將您的方案部署到不同環境的指引，請參閱 [Microsoft Azure 中的開發和測試環境](../solution-dev-test-environments.md)。
-- 如要了解 Azure Resource Manager 範本的區段，請參閱[編寫範本](../resource-group-authoring-templates.md)。
+- 若要了解 Azure Resource Manager 範本的區段，請參閱[編寫範本](../resource-group-authoring-templates.md)。
 - 如需可在 Azure Resource Manager 範本中使用的函式清單，請參閱[範本函式](../resource-group-template-functions.md)。
 
 
 
-##附錄 A：ARM 範本
+##附錄 A：Resource Manager 範本
 
 下列 Azure 資源管理員範本會建立 Windows 型 Hadoop 叢集與相依的 Azure 儲存體帳戶。
 
@@ -294,4 +294,4 @@ ARM 範本可讓您在單一的協調作業中，輕鬆地為您的應用程式�
         }
     }
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0907_2016-->
