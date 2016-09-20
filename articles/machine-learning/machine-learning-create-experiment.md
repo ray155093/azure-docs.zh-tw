@@ -5,7 +5,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="garyericson"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -23,7 +23,7 @@
 
 *預測性分析* 是一種使用目前的資料來預測未來結果的資料科學 。如需預測性分析的簡單範例，請看適用於初學者的資料科學影片 4：[以簡易模型預測答案](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md) (執行階段︰7:42)。
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## Machine Learning Studio 如何協助您？
 
@@ -177,7 +177,7 @@ Machine Learning Studio 隨附多個範例資料集供您選擇，而且您可�
 
 現在已完成使用百分之 75 資料模型的訓練，我們可以用它來為其他百分之 25 的資料評分，以了解模型的運作是否理想。
 
-1. 尋找 [[評分模型][score-model]] 模組，並將其拖曳至實驗畫布，然後將左側的輸入連接埠連接到 [[訓練模型][train-model]] 模組的輸出。將右側的輸入連接埠連接到[分割資料][split]模組的測試資料輸出 (右側連接埠)。  
+1. 尋找 [[評分模型][score-model]] 模組，並將其拖曳至實驗畫布，然後將左側的輸入連接埠連接到 [[訓練模型][train-model]] 模組的輸出。將右側的輸入連接埠連接到[分割資料][split]模組的測試資料輸出 (右側連接埠)。
 
 	![Score Model module][screen8a]
 
@@ -246,4 +246,4 @@ Machine Learning Studio 隨附多個範例資料集供您選擇，而且您可�
 [split]: https://msdn.microsoft.com/library/azure/70530644-c97a-4ab6-85f7-88bf30a8be5f/
 [train-model]: https://msdn.microsoft.com/library/azure/5cc7053e-aa30-450d-96c0-dae4be720977/
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

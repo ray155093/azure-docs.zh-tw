@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="andkjell"
-	manager="stevenpo"
+	manager="femila"
 	editor="curtand"/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="06/27/2016"
+	ms.date="09/13/2016"
 	ms.author="billmath;andkjell"/>
 
 # 使用快速設定開始使用 Azure AD Connect
@@ -34,7 +34,7 @@
 6. 在 [連接到 AD DS] 畫面上輸入企業系統管理員帳戶的使用者名稱和密碼。您可以用 NetBios 或 FQDN 格式輸入網域部分，也就是 FABRIKAM\\administrator 或 fabrikam.com\\administrator。按 [下一步]。![連線到 AD DS](./media/active-directory-aadconnect-get-started-express/connectad.png)
 7. 只有在未完成[必要條件](active-directory-aadconnect-prerequisites.md)中的[驗證網域](active-directory-add-domain.md)時，才會顯示 [[Azure AD 登入組態](active-directory-aadconnect-user-signin.md#azure-ad-sign-in-configuration)] 頁面。![未驗證的網域](./media/active-directory-aadconnect-get-started-express/unverifieddomain.png) 如果您看到此頁面，請檢閱每一個標示為**未新增**和**未驗證**的網域。確定您所使用的網域皆已在 Azure AD 中完成驗證。驗證好網域時，按一下 [重新整理] 符號。
 8. 在 [準備好設定] 畫面中，按一下 [安裝]。
-	- 在 [準備設定] 頁面上，您可以取消選取 [設定一完成，即開始同步處理程序] 核取方塊。如果您想要進行其他設定 (例如[篩選](active-directory-aadconnectsync-configure-filtering.md))，應該取消選取此核取方塊。若您取消選取此選項，精靈會設定同步處理，但是會讓排程器保持停用。在您[重新執行安裝精靈](active-directory-aadconnectsync-installation-wizard.md)以手動啟用排程器之前，排程器將不會執行。
+	- 在 [準備設定] 頁面上，您可以取消選取 [設定一完成，即開始同步處理程序] 核取方塊。如果您想要進行其他設定 (例如[篩選](active-directory-aadconnectsync-configure-filtering.md))，應該取消選取此核取方塊。若您取消選取此選項，精靈會設定同步處理，但是會讓排程器保持停用。直到您[重新執行安裝精靈](active-directory-aadconnectsync-installation-wizard.md)以手動方式加以啟用時，才會執行排程器。
 	- 如果您的內部部署 Active Directory 中有 Exchange，則您也可以選擇啟用 [**Exchange 混合式部署**](https://technet.microsoft.com/library/jj200581.aspx)。如果您打算在雲端和內部部署均設置 Exchange 信箱，請啟用此選項。![準備設定 Azure AD Connect](./media/active-directory-aadconnect-get-started-express/readytoconfigure.png)
 9. 當安裝完成時，按一下 [結束]。
 10. 安裝完成之後，請先登出再重新登入，才能使用 Synchronization Service Manager 或同步處理規則編輯器。
@@ -63,4 +63,4 @@ Azure AD Connect 概觀 | [整合內部部署身分識別與 Azure Active Direct
 從 DirSync 升級 | [從 Azure AD 同步作業工具 (DirSync) 升級](active-directory-aadconnect-dirsync-upgrade-get-started.md)
 用於安裝的帳戶 | [Azure AD Connect 帳戶與權限的詳細資訊](active-directory-aadconnect-accounts-permissions.md)
 
-<!----HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0914_2016-->

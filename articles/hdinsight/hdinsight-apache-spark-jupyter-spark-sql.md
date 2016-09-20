@@ -4,7 +4,7 @@
 	services="hdinsight"
 	documentationCenter=""
 	authors="nitinme"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -54,8 +54,8 @@
 2. 從 [參數] 刀鋒視窗，輸入下列項目：
 
     - **ClusterName**：輸入您將建立的 Hadoop 叢集的名稱。
-    - **叢集登入名稱和密碼**：預設登入名稱是 admin。
-    - **SSH 使用者名稱和密碼**。
+    - 叢集登入名稱和密碼：預設登入名稱是 admin。
+    - SSH 使用者名稱和密碼。
     
     請記下這些值。稍後在教學課程中需要這些資訊。
 
@@ -214,4 +214,4 @@
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0914_2016-->

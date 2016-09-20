@@ -1,7 +1,7 @@
 <properties
    pageTitle="將資料從 CSV 檔案載入 Azure SQL 資料倉儲 (bcp) | Microsoft Azure"
    description="對於較小的資料大小，請使用 bcp 將資料匯入 Azure SQL Database。"
-   services="sql-data-warehouse"
+   services="sql-database"
    documentationCenter="NA"
    authors="CarlRabeler"
    manager="jhubbard"
@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="06/30/2016"
+   ms.date="09/13/2016"
    ms.author="carlrab"/>
 
 
@@ -37,12 +37,9 @@
 
 如果您使用您自己的資料嘗試本教學課程，您的資料必須使用 ASCII 或 UTF-16 編碼，因為 bcp 不支援 UFT-8。
 
-PolyBase 支援 UTF-8，但尚未支援 UTF-16。請注意，如果您想要結合 bcp 與 PolyBase，從 SQL Server 匯出資料後，您必須將資料轉換為 UTF-8。
-
-
 ## 1\.建立目的資料表
 
-在 SQL 資料倉儲中定義將成為載入目的地資料表的資料表。資料表中的資料行必須對應到資料檔的每一個資料列中的資料。
+在 SQL Database 中定義做為目的地資料表的資料表。資料表中的資料行必須對應到資料檔的每一個資料列中的資料。
 
 若要建立資料表，請開啟命令提示字元並使用 sqlcmd.exe 執行下列命令︰
 
@@ -127,4 +124,4 @@ DateId |CalendarQuarter |FiscalQuarter
 <!--Other Web references-->
 [Microsoft 下載中心]: https://www.microsoft.com/download/details.aspx?id=36433
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0914_2016-->

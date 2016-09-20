@@ -13,7 +13,7 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="big-compute"
-	ms.date="08/22/2016"
+	ms.date="09/08/2016"
 	ms.author="marsma"/>
 
 # 適用於開發人員的 Batch 功能概觀
@@ -81,8 +81,6 @@ Batch 中的所有計算節點也包括︰
 - 設定用以控制存取的**防火牆**設定。
 - [遠端存取](#connecting-to-compute-nodes) Windows (遠端桌面通訊協定 (RDP)) 和 Linux (安全殼層 (SSH)) 節點。
 
-> [AZURE.NOTE] Batch 中的 Linux 支援目前為預覽狀態。如需詳細資訊，請參閱[在 Azure Batch 集區中佈建 Linux 計算節點](batch-linux-nodes.md)。
-
 ## 集區
 
 集區是應用程式執行所在的一群節點。集區可以由您手動建立，或當您指定要完成的工作時，由 Batch 服務自動建立。您可以建立和管理符合應用程式資源需求的集區。集區只能由建立它的 Batch 帳戶使用。批次帳戶可以有多個集區。
@@ -102,7 +100,7 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。這些集區可�
 	**雲端服務組態**只提供 Windows 計算節點。雲端服務組態集區可用的作業系統列於 [Azure 客體 OS 版次與 SDK 相容性矩陣](../cloud-services/cloud-services-guestos-update-matrix.md)。建立包含雲端服務節點的集區時，您只需指定節點大小及其「作業系統系列」。建立 Windows 計算節點集區時，最常使用的是雲端服務。
 
     - 「OS 系列」也會決定哪些版本的.NET 會與作業系統一起安裝。
-	- 如同雲端服務內的背景工作角色，您可以指定 [OS 版本]\(如需背景工作角色的詳細資訊，請參閱[雲端服務概觀](../cloud-services/cloud-services-choose-me.md)中的[我想了解雲端服務](../cloud-services/cloud-services-choose-me.md#tell-me-about-cloud-services)一節)。
+	- 如同雲端服務內的背景工作角色，您可以指定 [OS 版本] \(如需背景工作角色的詳細資訊，請參閱[雲端服務概觀](../cloud-services/cloud-services-choose-me.md)中的[我想了解雲端服務](../cloud-services/cloud-services-choose-me.md#tell-me-about-cloud-services)一節)。
     - 如同背景工作角色，建議為 [OS 版本]指定 `*`，以便自動升級節點，而且不需為了因應新發行的版本而執行工作。選取特定 OS 版本的主要使用案例是為了確保應用程式相容性，以允許在更新版本之前執行回溯相容性測試。通過驗證之後，即可更新集區的 [OS 版本] 並安裝新的 OS 映像，如此將會中斷任何執行中的工作並重新排入佇列。
 
 - **節點的大小**
@@ -145,7 +143,7 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。這些集區可�
 
 - **應用程式封裝**
 
-	您可以指定要部署至集區中計算節點的[應用程式封裝](#application-packages)。應用程式封裝會提供您的工作執行之應用程式的簡化部署和版本控制。您針對集區指定的應用程式封裝會安裝於加入該集區的每個節點，以及在節點重新啟動或重新安裝映像時安裝。
+	您可以指定要部署至集區中計算節點的[應用程式封裝](#application-packages)。應用程式封裝會提供您的工作執行之應用程式的簡化部署和版本控制。您針對集區指定的應用程式封裝會安裝於加入該集區的每個節點，以及在節點重新啟動或重新安裝映像時安裝。Linux 計算節點上目前不支援應用程式套件。
 
 - **網路組態**
 
@@ -367,7 +365,7 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 
 - **資源度量**是以 CPU 使用量、頻寬使用量、記憶體使用量和節點的數目為基礎。
 
-- **工作度量**是以工作狀態為基礎，例如 [作用中]\(已排入佇列)、[執行中] 或 [已完成]。
+- **工作度量**是以工作狀態為基礎，例如 [作用中] \(已排入佇列)、[執行中] 或 [已完成]。
 
 當自動調整減少集區中的計算節點數目時，您必須考量如何處理在減少作業時正在執行的工作。為了配合這一點，Batch 會提供您可以納入公式中的「節點解除配置選項」。例如，您可以指定執行中的工作立即停止，立即停止而後重新排入佇列以便在另一個節點上執行，或允許先完成再從集區中移除節點。
 
@@ -468,7 +466,7 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 [1]: ./media/batch-api-basics/node-folder-structure.png
 
 [azure_storage]: https://azure.microsoft.com/services/storage/
-[batch_forum]: https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=azurebatch
+[batch_forum]: https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurebatch
 [cloud_service_sizes]: ../cloud-services/cloud-services-sizes-specs.md
 [msmpi]: https://msdn.microsoft.com/library/bb524831.aspx
 [github_samples]: https://github.com/Azure/azure-batch-samples
@@ -518,4 +516,4 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 
 [vm_marketplace]: https://azure.microsoft.com/marketplace/virtual-machines/
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->
