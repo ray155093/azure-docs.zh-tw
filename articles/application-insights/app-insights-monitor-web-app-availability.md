@@ -72,7 +72,7 @@ Web 測試可分為兩種：
 
 ## <a name="monitor"></a>3.查看 Web 測試結果
 
-1-2 分鐘後，結果會出現在
+1-2 分鐘後，結果會出現在 [Web 測試] 刀鋒視窗中。
 
 ![Summary results on the home blade](./media/app-insights-monitor-web-app-availability/14-availSummary.png)
 
@@ -323,4 +323,4 @@ Web 測試外掛程式提供將時間參數化的方法。
 [qna]: app-insights-troubleshoot-faq.md
 [start]: app-insights-overview.md
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

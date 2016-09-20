@@ -24,7 +24,7 @@
 ## 必要條件
 
  - Visual Studio 2013 或 2015
- - [Python Tools for Visual Studio][] \(PTVS)
+ - [Python Tools for Visual Studio][] (PTVS)
  - [Azure SDK Tools for VS 2013][] 或 [Azure SDK Tools for VS 2015][]
  - [Python 2.7 32 位元][]或 [Python 3.5 32 位元][]
 
@@ -34,7 +34,7 @@
 
 Azure 提供三種運算模型來執行應用程式：[Azure App Service 中的 Web Apps 功能][execution model-web sites]、[Azure 虛擬機器][execution model-vms]和 [Azure 雲端服務][execution model-cloud services]。這三種模型都支援 Python。雲端服務 (包含 Web 和背景工作角色) 可提供*平台即服務 (PaaS)*。在雲端服務中，Web 角色應用程式會提供專用的 Internet Information Services (IIS) Web 伺服器，用以代管前端 Web 應用程式，而背景工作角色則可執行獨立於使用者互動或輸入以外的非同步、長時間執行或持續性工作。
 
-如需詳細資訊，請參閱[什麼是雲端服務？] \(英文)。
+如需詳細資訊，請參閱[什麼是雲端服務？] (英文)。
 
 > [AZURE.NOTE] *尋求建置簡單的網站？* 如果您的案例只需要簡單的網站前端，請考慮使用 Azure App Service 中的輕量型 Web Apps 功能。隨著網站擴大，以及需求改變，您可以很輕易地升級到雲端服務。請參閱 <a href="/develop/python/">Python 開發人員中心</a>，尋找 Azure App Service 中的 Web Apps 功能開發的相關文章。<br />
 
@@ -240,6 +240,8 @@ if (-not $is_emulated){
 
 #### 修改 LaunchWorker.ps1
 
+>[AZURE.NOTE] 如果是**背景工作角色**專案，則需要 **LauncherWorker.ps1** 檔案才能執行啟動檔。在 **Web 角色**專案中，啟動檔已定義於專案屬性中。
+
 最初建立 **Bin\\LaunchWorker.ps1** 是為了進行許多準備工作，但它未真正發生作用。以下列指令碼取代該檔案中的內容。
 
 此指令碼會從 python 專案呼叫 **worker.py** 檔。如果 **PYTHON2** 環境變數設定為 [on]，則會使用 Python 2.7，否則會使用 Python 3.5。
@@ -364,4 +366,4 @@ if not exist "%DiagnosticStore%\LogFiles" mkdir "%DiagnosticStore%\LogFiles"
 [Python 2.7 32 位元]: https://www.python.org/downloads/
 [Python 3.5 32 位元]: https://www.python.org/downloads/
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

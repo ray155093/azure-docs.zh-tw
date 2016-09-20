@@ -15,7 +15,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/16/2016"
+   ms.date="09/13/2016"
    ms.author="rogardle"/>
 
 # 部署 Azure 容器服務叢集
@@ -115,8 +115,6 @@ azure config mode arm
 > [AZURE.NOTE] 當您執行此命令時，殼層會提示您輸入部署參數值。
 
 ```bash
-# sample deployment
-
 azure group create -n RESOURCE_GROUP DEPLOYMENT_NAME -l LOCATION --template-uri TEMPLATE_URI
 ```
 
@@ -125,18 +123,14 @@ azure group create -n RESOURCE_GROUP DEPLOYMENT_NAME -l LOCATION --template-uri 
 此版本的命令需要您以互動方式定義參數。如果您想要提供參數 (例如 JSON 格式的字串)，您可以使用 `-p` 參數來這樣做。例如：
 
  ```bash
- # sample deployment
-
 azure group deployment create RESOURCE_GROUP DEPLOYMENT_NAME --template-uri TEMPLATE_URI -p '{ "param1": "value1" … }'
- ```
+```
 
 或者，您也可以使用 `-e` 參數來提供 JSON 格式的參數檔案：
 
- ```bash
- # sample deployment
-
+```bash
 azure group deployment create RESOURCE_GROUP DEPLOYMENT_NAME --template-uri TEMPLATE_URI -e PATH/FILE.JSON
- ```
+```
 
 若要查看名為 `azuredeploy.parameters.json` 的範例參數檔，請在 GitHub 的 Azure 容器服務範本中尋找。
 
@@ -170,10 +164,8 @@ New-AzureRmResourceGroup -Name GROUP_NAME -Location REGION
 建立資源群組後，您就可以使用下列命令來建立叢集。`-TemplateUri` 參數指定所需範本的 URI。當您執行此命令時，PowerShell 會提示您輸入部署參數值。
 
 ```powershell
-# sample deployment
-
 New-AzureRmResourceGroupDeployment -Name DEPLOYMENT_NAME -ResourceGroupName RESOURCE_GROUP_NAME -TemplateUri TEMPLATE_URI
- ```
+```
 
 ### 提供範本參數
 
@@ -182,8 +174,6 @@ New-AzureRmResourceGroupDeployment -Name DEPLOYMENT_NAME -ResourceGroupName RESO
 以下是包含參數的完整命令。您可以對資源名稱提供您自己的值。
 
 ```powershell
-# sample deployment
-
 New-AzureRmResourceGroupDeployment -ResourceGroupName RESOURCE_GROUP_NAME-TemplateURI TEMPLATE_URI -adminuser value1 -adminpassword value2 ....
 ```
 
@@ -195,4 +185,4 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName RESOURCE_GROUP_NAME-Templa
 - [使用 Azure 容器服務和 DC/OS](container-service-mesos-marathon-rest.md)
 - [使用 Azure 容器服務和 Docker Swarm](container-service-docker-swarm.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -93,4 +93,4 @@
 -	[DocumentDB 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)
 -	[DocumentDB 階層式資源模型和概念](documentdb-resources.md)
 
-<!---HONumber=AcomDC_0914_2016--->
+<!---HONumber=AcomDC_0914_2016-->

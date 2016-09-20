@@ -1,10 +1,10 @@
 <properties 
    pageTitle="關於 Azure 虛擬網路的站對站 VPN 閘道連線的 VPN 裝置 | Microsoft Azure"
-   description="深入了解 VPN 裝置和 S2S VPN 閘道連線的 IPsec 參數。站對站連線可以用於混合式組態。本文包含適用於 VPN 閘道裝置的組態指示和範本。"
+   description="本文討論適用於 S2S VPN 閘道連線的 VPN 裝置和 IPsec 參數，並且包含組態指示和範本的連結。"
    services="vpn-gateway"
    documentationCenter="na"
-   authors="cherylmc"
-   manager="carmonm"
+   authors="yushwang"
+   manager="rossort"
    editor=""
   tags="azure-resource-manager, azure-service-management"/>
 <tags 
@@ -13,12 +13,14 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/10/2016"
-   ms.author="cherylmc" />
+   ms.date="09/13/2016"
+   ms.author="yushwang;cherylmc" />
 
 # 關於站對站 VPN 閘道連線的 VPN 裝置
 
-設定站對站 (S2S) VPN 連線需要 VPN 裝置。站對站連線可以用來建立混合式解決方案，或者用於您想要在內部部署網路與虛擬網路之間建立安全連線之時。這篇文章討論相容的 VPN 裝置和組態參數。請注意，設定站對站連線時，您的 VPN 裝置需要公開的 IPv4 IP 位址。
+設定站對站 (S2S) VPN 連線需要 VPN 裝置。站對站連線可以用來建立混合式解決方案，或者用於您想要在內部部署網路與虛擬網路之間建立安全連線之時。這篇文章討論相容的 VPN 裝置和組態參數。
+
+>[AZURE.NOTE] 設定站對站連線時，您的 VPN 裝置需要公開的 IPv4 IP 位址。
 
 如果您的裝置未出現在[已經驗證的 VPN 裝置](#devicetable)表格中，請參閱本文的[未經驗證的 VPN 裝置](#additionaldevices)一節。您的裝置可能仍然可以與 Azure 搭配使用。如需 VPN 裝置的支援，請連絡裝置製造商。
 
@@ -34,7 +36,7 @@
 
 我們已與裝置廠商合作驗證一組標準 VPN 裝置。在以下清單所含的裝置系列中，所有裝置應該都能與 Azure VPN 閘道搭配運作。請參閱[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)，以確認您需要為欲設定之解決方案所建立的閘道類型。
 
-為了協助設定您的 VPN 裝置，請參閱對應到適當裝置系列的連結。
+為了協助設定您的 VPN 裝置，請參閱對應到適當裝置系列的連結。如需 VPN 裝置的支援，請連絡裝置製造商。
 
 
 
@@ -48,9 +50,9 @@
 | Cisco | ASA | 8\.3 | [Cisco 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ASA) | 不相容 |
 | Cisco | ASR | IOS 15.1 (原則式)、IOS 15.2 (路由式) | [Cisco 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ASR) | [Cisco 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ASR) |
 | Cisco | ISR | IOS 15.0 (原則式)、IOS 15.1 (路由式*) | [Cisco 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ISR) | [Cisco 範例*](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ISR) |
-| Citrix | NetScaler MPX、SDX、VPX |10\.1 和更新版本 | [整合指示](https://docs.citrix.com/zh-TW/netscaler/11-1/system/cloudbridge-connector-introduction/cloudbridge-connector-azure.html) | 不相容 |
+| Citrix | NetScaler MPX、SDX、VPX |10\.1 和更新版本 | [整合指示](https://docs.citrix.com/en-us/netscaler/11-1/system/cloudbridge-connector-introduction/cloudbridge-connector-azure.html) | 不相容 |
 | Dell SonicWALL | TZ 系列、NSA 系列、SuperMassive 系列、E 級 NSA 系列 | SonicOS 5.8.x、[SonicOS 5.9.x](http://documents.software.dell.com/sonicos/5.9/microsoft-azure-configuration-guide/supported-platforms?ParentProduct=850)、[SonicOS 6.x](http://documents.software.dell.com/sonicos/6.2/microsoft-azure-configuration-guide/supported-platforms?ParentProduct=646) | [指示 - SonicOS 6.2](http://documents.software.dell.com/sonicos/6.2/microsoft-azure-configuration-guide?ParentProduct=646) [指示 - SonicOS 5.9](http://documents.software.dell.com/sonicos/5.9/microsoft-azure-configuration-guide?ParentProduct=850) | [指示 - SonicOS 6.2](http://documents.software.dell.com/sonicos/6.2/microsoft-azure-configuration-guide?ParentProduct=646) [指示 - SonicOS 5.9](http://documents.software.dell.com/sonicos/5.9/microsoft-azure-configuration-guide?ParentProduct=850) |
-| F5 | BIG-IP 系列 | N/A | [組態指示](https://devcentral.f5.com/articles/connecting-to-windows-azure-with-the-big-ip) | 不相容 |
+| F5 | BIG-IP 系列 | 12\.0 | [組態指示](https://devcentral.f5.com/articles/connecting-to-windows-azure-with-the-big-ip) | [組態指示](https://devcentral.f5.com/articles/big-ip-to-azure-dynamic-ipsec-tunneling) |
 | Fortinet | FortiGate | FortiOS 5.2.7 | [組態指示](http://docs.fortinet.com/d/fortigate-configuring-ipsec-vpn-between-a-fortigate-and-microsoft-azure) | [組態指示](http://docs.fortinet.com/d/fortigate-configuring-ipsec-vpn-between-a-fortigate-and-microsoft-azure) |
 | Internet Initiative Japan (IIJ) | SEIL 系列 | SEIL/X 4.60、SEIL/B1 4.60、SEIL/x86 3.20 | [組態指示](http://www.iij.ad.jp/biz/seil/ConfigAzureSEILVPN.pdf) | 不相容 |
 | Juniper | SRX | JunOS 10.2 (原則式)、JunOS 11.4 (路由式) | [Juniper 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/SRX) | [Juniper 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/SRX) |
@@ -58,7 +60,7 @@
 | Juniper | ISG | ScreenOS 6.3 (原則式和路由式) | [Juniper 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/ISG) | [Juniper 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/ISG) |
 | Juniper | SSG | ScreenOS 6.2 (原則式和路由式) | [Juniper 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/SSG) | [Juniper 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/SSG) |
 | Microsoft | 路由及遠端存取服務 | Windows Server 2012 | 不相容 | [Microsoft 範例](http://go.microsoft.com/fwlink/p/?LinkId=717761) |
-| 開啟系統 AG | 任務控制安全性閘道 | N/A | [快速安裝指南](https://www.open.ch/_pdf/Azure/AzureVPNSetup_Installation_Guide.pdf) | [快速安裝指南](https://www.open.ch/_pdf/Azure/AzureVPNSetup_Installation_Guide.pdf) |
+| 開啟系統 AG | 任務控制安全性閘道 | N/A | [安裝指南](https://www.open.ch/_pdf/Azure/AzureVPNSetup_Installation_Guide.pdf) | [安裝指南](https://www.open.ch/_pdf/Azure/AzureVPNSetup_Installation_Guide.pdf) |
 | Openswan | Openswan | 2\.6.32 | (敬請期待) | 不相容 |
 | Palo Alto Networks | 所有執行 PAN-OS 的裝置 | PAN-OS 6.1.5 或更新版本 (原則式)、PAN-OS 7.0.5 或更新版本 (路由式) | [組態指示](https://live.paloaltonetworks.com/t5/Configuration-Articles/How-to-Configure-VPN-Tunnel-Between-a-Palo-Alto-Networks/ta-p/59065) | [組態指示](https://live.paloaltonetworks.com/t5/Integration-Articles/Configuring-IKEv2-VPN-for-Microsoft-Azure-Environment/ta-p/60340) |
 | Watchguard | 全部 | Fireware XTM v11.x | [組態指示](http://customers.watchguard.com/articles/Article/Configure-a-VPN-connection-to-a-Windows-Azure-virtual-network/) | 不相容 |
@@ -67,7 +69,7 @@
 
 ## <a name="additionaldevices"></a>未經驗證的 VPN 裝置
 
-如果沒有看到您的裝置列在「已經驗證的 VPN 裝置」表格 (上方) 中，它仍然可能可以與站對站連線搭配使用。確認您的 VPN 裝置符合[關於 VPN 閘道](vpn-gateway-about-vpngateways.md#gateway-requirements)文章中＜閘道需求＞一節所述的最低需求。符合最低需求的裝置應該也適合使用 VPN 閘道。如需額外支援和設定指示，請連絡裝置製造商。
+如果沒有看到您的裝置列在「已經驗證的 VPN 裝置」表格中，它仍然可能可以與站對站連線搭配使用。確認您的 VPN 裝置符合[關於 VPN 閘道](vpn-gateway-about-vpngateways.md#gateway-requirements)文章中＜閘道需求＞一節所述的最低需求。符合最低需求的裝置應該也適合使用 VPN 閘道。如需額外支援和設定指示，請連絡裝置製造商。
 
 
 ## 編輯裝置組態範本
@@ -118,10 +120,9 @@
 | IKE 版本 | IKEv1 | IKEv2 |
 | 雜湊演算法 | SHA1(SHA128) | SHA1(SHA128) |
 | 階段 2 安全性關聯 (SA) 存留期 (時間) | 3,600 秒 | 3,600 秒 |
-| 階段 2 安全性關聯 (SA) 存留期 (輸送量) | 102,400,000 KB | - |
-| IPsec SA 加密及驗證提供項目 (依喜好順序) | 1.ESP-AES256 2.ESP-AES128 3.ESP-3DES 4.N/A | 請參閱＜路由式閘道 IPsec安全性關聯 (SA) 提供項目＞ (下方)|
-| 完整轉寄密碼 (PFS) | 否 | 是 (DH Group1、2、5、14、24) |
-| 停用的對等互連偵測 (DPD) | 不支援 | 支援 |
+| 階段 2 安全性關聯 (SA) 存留期 (輸送量) | 102,400,000 KB | - | | IPsec SA 加密及驗證提供項目 (依喜好順序) | 1.ESP-AES256 2.ESP-AES128 3.ESP-3DES 4.N/A | 請參閱＜路由式閘道 IPsec安全性關聯 (SA) 提供項目＞ (下方)| | 完整轉寄密碼 (PFS) | 否 | 否 (*) | | 停用的對等偵測 | 不支援 | 支援 |
+
+(*) 身為 IKE 回應者的 Azure 閘道器可以接受 PFS DH 群組 1、2、5、14、24。
 
 ### 路由式閘道 IPsec 安全性關聯 (SA) 提供項目
 
@@ -145,12 +146,11 @@
 | 14 | AH MD5 與 ESP DES null HMAC，未提議存留期 | AH MD5 與 ESP DES MD5，無存留期 |
 | 15 | AH SHA1與 ESP DES SHA1，無存留期 | ESP SHA，無存留期 |
 | 16 | AH MD5 與 ESP DES MD5，無存留期 | ESP MD5，無存留期 |
-| 17 | - | AH SHA，無存留期 |
-| 18 | - | AH MD5，無存留期 |
+| 17 | - | AH SHA，無存留期 | | 18 | - | AH MD5，無存留期 |
 
 
-- 您可以使用路由式和高效能 VPN 閘道指定 IPsec ESP NULL 加密。以 Null 為基礎的加密不提供傳輸中資料的保護，應該只用於時需要最大輸送量和最小延遲時。用戶端可能會選擇在 vnet 對 vnet 通訊案例中，或當加密套用至解決方案中的其他地方時，使用此功能。
+- 您可以使用路由式和高效能 VPN 閘道指定 IPsec ESP NULL 加密。以 Null 為基礎的加密不提供傳輸中資料的保護，應該只用於時需要最大輸送量和最小延遲時。用戶端可能會選擇在 VNet 對 VNet 通訊案例中，或當加密套用至解決方案中的其他地方時，使用此功能。
 
 - 透過網際網路的跨單位連線，請使用含有加密和雜湊演算法的預設 Azure VPN 閘道設定 (如上表所列)，以確保重要通訊的安全性。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0914_2016-->

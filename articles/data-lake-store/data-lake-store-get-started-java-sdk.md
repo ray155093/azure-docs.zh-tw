@@ -4,7 +4,7 @@
    services="data-lake-store"
    documentationCenter=""
    authors="nitinme"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="08/18/2016"
+   ms.date="09/13/2016"
    ms.author="nitinme"/>
 
 # 使用 Java 開始使用 Azure Data Lake Store
@@ -41,7 +41,6 @@
 * Java Development Kit (JDK) 8 (使用 Java 1.8 版)。
 * IntelliJ 或其他合適的 Java 開發環境。此為選用步驟，但建議執行。以下指示使用 IntelliJ。
 * **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-* **啟用您的 Azure 訂用帳戶**以使用 Data Lake Store 公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
 * **建立 Azure Active Directory 應用程式**。有兩種方式可使用 Azure Active Directory 來進行驗證 - **互動式**和**非互動式**。根據您要進行驗證的方式，會有不同的必要條件。
 	* **針對互動式驗證** - 在 Azure Active Directory 中，您必須建立**原生用戶端應用程式**。一旦您建立應用程式，請擷取與下列應用程式相關的值。
 		- 取得應用程式的**用戶端識別碼**和**重新導向 URI**
@@ -64,7 +63,7 @@
 
 1. 開啟 IntelliJ，並使用**命令列應用程式**範本建立新的 Java 專案。完成精靈以建立專案。
 
-2. 開啟 [檔案] -> [專案結構] -> [模組]\(在 [專案設定] 之下) -> [相依性] -> [+] -> [程式庫] -> [從 Maven]。
+2. 開啟 [檔案] -> [專案結構] -> [模組] (在 [專案設定] 之下) -> [相依性] -> [+] -> [程式庫] -> [從 Maven]。
 
 3. 搜尋下列 Maven 封裝並將它們加入您的專案︰
 
@@ -280,4 +279,4 @@
 - [搭配 Data Lake Store 使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 - [搭配 Data Lake Store 使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

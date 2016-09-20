@@ -18,7 +18,11 @@
 
 # 新增來自 Azure Active Directory 中其他目錄或合作夥伴公司的使用者
 
-本文說明如何新增 Azure Active Directory 中其他目錄的使用者或新增合作夥伴公司的使用者。如需新增您的組織內之使用者以及新增具有 Microsoft 帳戶之使用者的相關資訊，請參閱[將新的使用者加入 Azure Active Directory](active-directory-create-users.md)。新增的使用者預設不會有系統管理員權限，但是您可以隨時指派角色給他們。
+> [AZURE.SELECTOR]
+- [Azure 入口網站](active-directory-create-users-external-azure-portal.md)
+- [Azure 傳統入口網站](active-directory-create-users-external.md)
+
+本文說明如何新增 Azure Active Directory 中其他目錄的使用者或新增合作夥伴公司的使用者。如需新增您的組織內之使用者以及新增具有 Microsoft 帳戶之使用者的相關資訊，請參閱[將新的使用者新增到 Azure Active Directory](active-directory-create-users.md)。新增的使用者預設不會有系統管理員權限，但是您可以隨時指派角色給他們。
 
 ## 新增使用者
 
@@ -30,7 +34,7 @@
 
 4. 在 [告訴我們這位使用者] 頁面上，於 [使用者類型] 底下選取下列其中一項：
 
-	- **另一個 Azure AD 目錄中的使用者** – 將源自另一個 Azure AD 目錄的使用者帳戶加入至您的目錄。只有在您也是另一個目錄的成員時，才能選取該目錄中的使用者。
+	- **另一個 Azure AD 目錄中的使用者** – 將源自另一個 Azure AD 目錄的使用者帳戶新增至您的目錄。只有在您也是另一個目錄的成員時，才能選取該目錄中的使用者。
 	- **合作夥伴公司中的使用者** - 邀請並授權合作夥伴公司使用者使用您的目錄 ([請參閱 Azure Active Directory B2B 共同作業](active-directory-b2b-what-is-azure-ad-b2b.md))。您將需要[上傳指定電子郵件地址的 CSV 檔案](active-directory-b2b-references-csv-file-format.md)。
 
 6. 在 [使用者設定檔] 頁面上，提供姓氏和名字、使用者易記名稱，並從 [角色] 清單中選擇使用者角色。如需有關使用者和系統管理員角色的詳細資訊，請參閱[在 Azure AD 中指派系統管理員角色](active-directory-assign-admin-roles.md)。指定是否為使用者**啟用 Multi-Factor Authentication**。
@@ -77,11 +81,11 @@
 - 對於 Azure AD PowerShell，外部使用者會登入其主目錄，因此無法管理其身分為外部使用者的目錄
 
 
-## 接下來
+## 後續步驟
 
 - [將新的使用者加入 Azure Active Directory](active-directory-create-users.md)
 - [管理 Azure AD](active-directory-administer.md)
 - [在 Azure AD 中管理密碼](active-directory-manage-passwords.md)
 - [在 Azure AD 中管理群組](active-directory-manage-groups.md)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0914_2016-->

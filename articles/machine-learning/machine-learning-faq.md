@@ -5,7 +5,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="garyericson"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -49,7 +49,7 @@ Machine Learning API 服務可讓您將預測模型 (例如 Machine Learning Stu
 
 **什麼是 Azure ML Web 服務？**
 
-使用 Azure Machine Learning Web 服務，外部應用程式會即時與機器學習服務工作流程計分模型通訊。機器學習 Web 服務呼叫會將預測結果傳回外部應用程式。若要進行機器學習服務 Web 服務呼叫，您可以傳遞部署 Web 服務時所建立的 API 金鑰。機器學習服務 Web 服務以 REST 為基礎，這是一種常見的 Web 程式設計專案架構。
+使用 Azure Machine Learning Web 服務，外部應用程式會即時與機器學習服務工作流程計分模型通訊。機器學習 Web 服務呼叫會將預測結果傳回外部應用程式。若要進行機器學習 Web 服務呼叫，您可以傳遞部署 Web 服務時所建立的 API 金鑰。機器學習服務 Web 服務以 REST 為基礎，這是一種常見的 Web 程式設計專案架構。
 
 Azure Machine Learning 有兩種類型的服務：
 
@@ -361,7 +361,7 @@ Azure Machine Learning 服務有兩個元件。Machine Learning Studio 與 Machi
 
 **機器學習服務是否有免費試用版？**
 
- Azure Machine Learning 有免費的訂用帳戶選項 (請參閱[機器學習服務價格](https://azure.microsoft.com/pricing/details/machine-learning/)以取得詳細資訊)，Machine Learning Studio 則有 8 小時的快速評估試用可供使用 (登入 [Machine Learning Studio](https://studio.azureml.net/?selectAccess=true&o=2) 以取得此試用)。
+ Azure Machine Learning 有免費的訂用帳戶選項 (請參閱[機器學習服務價格](https://azure.microsoft.com/pricing/details/machine-learning/)以取得詳細資訊)，Machine Learning Studio 則有 8 小時的快速評估試用版可供使用 (登入 [Machine Learning Studio](https://studio.azureml.net/?selectAccess=true&o=2) 以取得此試用)。
  
  此外，註冊 Azure 免費試用版後，您可以試用任何 Azure 服務一個月。若要深入了解 Azure 免費試用版，請造訪 [Azure 免費試用常見問題集](/pricing/free-trial-faq/)。
 
@@ -524,7 +524,7 @@ Azure ML API 服務會根據它是傳統 Web 服務還是新的 Web 服務來收
 
 **要如何註冊 Azure ML 標準層？**
 
-您必須先取得 Azure 訂用帳戶的存取權，才能建立標準 ML 工作區。您可以註冊 30 天的免費試用 Azure 訂用帳戶，之後再升級為付費 Azure 訂用帳戶，或是直接購買付費的 Azure 訂用帳戶。您可以在取得訂用帳戶的存取權後，從 Microsoft Azure 傳統入口網站建立機器學習服務工作區。請檢視[逐步指示](https://azure.microsoft.com/trial/get-started-machine-learning-b/)。
+您必須先取得 Azure 訂用帳戶的存取權，才能建立標準 ML 工作區。您可以註冊 30 天的免費試用 Azure 訂用帳戶，之後再升級為付費 Azure 訂用帳戶，或是直接購買付費的 Azure 訂用帳戶。您可以在取得訂用帳戶的存取權後，從 Microsoft Azure 傳統入口網站建立 Machine Learning 工作區。請檢視[逐步指示](https://azure.microsoft.com/trial/get-started-machine-learning-b/)。
 
 或者，您也可以受到標準 ML 工作區擁有者的邀請，存取擁有者的工作區。
 
@@ -582,4 +582,4 @@ Azure ML API 服務會根據它是傳統 Web 服務還是新的 Web 服務來收
 [python]: https://msdn.microsoft.com/library/azure/CDB56F95-7F4C-404D-BDE7-5BB972E6F232
 [counts]: https://msdn.microsoft.com/library/azure/dn913056.aspx
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

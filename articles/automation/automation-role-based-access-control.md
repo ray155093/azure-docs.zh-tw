@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="06/20/2016"
+   ms.date="09/12/2016"
    ms.author="magoedte;sngun"/>
 
 # Azure 自動化中的角色型存取控制
@@ -127,7 +127,7 @@
 
 ## 使用 Azure 入口網站為您的自動化帳戶設定 RBAC
 
-1.	登入 [Azure 入口網站](https://portal.azure.com/)，並從 [自動化帳戶] 刀鋒視窗開啟您的自動化帳戶。  
+1.	登入 [Azure 入口網站](https://portal.azure.com/)，並從 [自動化帳戶] 刀鋒視窗開啟您的自動化帳戶。
 
 2.	按一下右上角的 [存取] 控制項。這會開啟 [使用者] 刀鋒視窗，您可以在其中加入新使用者、群組及應用程式來管理您的自動化帳戶，並檢視可以為自動化帳戶設定的現有角色。
 
@@ -137,7 +137,7 @@
 
 ### 加入新使用者並指派角色
 
-1.	從 [使用者] 刀鋒視窗中，按一下 [加入] 以開啟 [加入存取] 刀鋒視窗，您可以在其中加入使用者、群組或應用程式，並將角色指派給他們。  
+1.	從 [使用者] 刀鋒視窗中，按一下 [加入] 以開啟 [加入存取] 刀鋒視窗，您可以在其中加入使用者、群組或應用程式，並將角色指派給他們。
 
     ![新增使用者](media/automation-role-based-access-control/automation-02-add-user.png)
 
@@ -145,7 +145,7 @@
 
     ![選取角色](media/automation-role-based-access-control/automation-03-select-role.png)
 
-3.	按一下 [加入使用者] 以開啟 [加入使用者] 刀鋒視窗。如果您已加入任何使用者、群組或應用程式以管理您的訂用帳戶，則會列出這些使用者，您可以選取他們來加入存取權。如果沒有列出任何使用者，或未列出您有興趣加入的使用者，請按一下 [邀請] 開啟 [邀請來賓] 刀鋒視窗；您可以在此邀請具有有效 Microsoft 帳戶電子郵件地址 (例如 Outlook.com、OneDrive 或 Xbox Live ID) 的使用者。輸入了使用者的電子郵件地址之後，按一下 [選取] 以加入使用者，然後按一下 [確定]。
+3.	按一下 [加入使用者] 以開啟 [加入使用者] 刀鋒視窗。如果您已新增任何使用者、群組或應用程式以管理您的訂用帳戶，則會列出這些使用者，您可以選取他們以新增存取權。如果沒有列出任何使用者，或未列出您有興趣加入的使用者，請按一下 [邀請] 開啟 [邀請來賓] 刀鋒視窗；您可以在此邀請具有有效 Microsoft 帳戶電子郵件地址 (例如 Outlook.com、OneDrive 或 Xbox Live ID) 的使用者。輸入了使用者的電子郵件地址之後，按一下 [選取] 以加入使用者，然後按一下 [確定]。
 
     ![新增使用者](media/automation-role-based-access-control/automation-04-add-users.png)
  
@@ -231,4 +231,4 @@
 - 如需以不同方式啟動 Runbook 的詳細資訊，請參閱[啟動 Runbook](automation-starting-a-runbook.md)
 - 如需不同 Runbook 類型的詳細資訊，請參閱 [Azure 自動化 Runbook 類型](automation-runbook-types.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

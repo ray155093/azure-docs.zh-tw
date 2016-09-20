@@ -1,6 +1,6 @@
 <properties
-	pageTitle="在研測實驗室中建立實驗室 | Microsoft Azure"
-	description="在研測實驗室中為虛擬機器建立新的實驗室"
+	pageTitle="在 Azure DevTest Labs 中建立實驗室 | Microsoft Azure"
+	description="在 Azure DevTest Labs 中為虛擬機器建立實驗室"
 	services="devtest-lab,virtual-machines"
 	documentationCenter="na"
 	authors="tomarcher"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="08/25/2016"
+	ms.date="09/12/2016"
 	ms.author="tarcher"/>
 
 # 在 Azure 研測實驗室中建立實驗室
@@ -23,15 +23,14 @@
 若要建立實驗室，您需要：
 
 - Azure 訂用帳戶。若要深入了解 Azure 購買選項，請參閱[如何購買 Azure](https://azure.microsoft.com/pricing/purchase-options/) 或[免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。您必須是訂用帳戶的擁有者才能建立實驗室。
-- 實驗室的 Azure 資源群組。請參閱 [Azure 資源管理員概觀](../resource-group-overview.md)和 [Azure 角色存取控制](../active-directory/role-based-access-control-configure.md)。
 
-## 建立實驗室
+## 在 Azure DevTest Labs 中建立實驗室的步驟
+
+下列步驟說明如何使用 Azure 入口網站在 Azure DevTest Labs 中建立實驗室。
 
 1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
-1. 選取 [瀏覽]。
-
-1. 從清單中選取 [DevTest Labs]。
+1. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
 
 1. 在 [DevTest Labs] 刀鋒視窗上，選取 [加入]。
 
@@ -40,9 +39,16 @@
 1. 在 [建立 DevTest 實驗室] 刀鋒視窗上：
 
     1. 輸入新實驗室的**實驗室名稱**。
-    1. 選取要與實驗室關聯的**訂用帳戶**。
-    1. 選取用來儲存實驗室的 [位置]。
-    1. 選取 [**建立**]。
+    
+	1. 選取要與實驗室關聯的**訂用帳戶**。
+    
+	1. 選取用來儲存實驗室的 [位置]。
+    
+	1. 選取 [自動關機] 來指定是否要啟用所有實驗室 VM 的自動關閉，以及定義其參數。
+	
+	1. 選取 [儲存體類型]，指出實驗室 VM 的儲存體磁碟類型。
+    
+	1. 選取 [**建立**]。
 
     ![建立實驗室刀鋒視窗](./media/devtest-lab-create-lab/create-devtestlab-blade.png)
 
@@ -62,4 +68,4 @@
 
 - [將具有構件的 VM 加入實驗室](devtest-lab-add-vm-with-artifacts.md)。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

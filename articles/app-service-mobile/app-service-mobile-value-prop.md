@@ -37,7 +37,7 @@ Azure App Service 是完全受管理的[平台即服務](https://azure.microsoft
 
   深入探索我們的[驗證功能]。
 
-- **資料存取** -Azure Mobile Apps 提供了已連結至 SQL Azure 或內部部署 SQL Server 且適合行動用途的 OData v3 資料來源。這項服務以 Entity Framework 為基礎，可讓您輕鬆地與其他 NoSQL 和 SQL 資料提供者整合，包括 [Azure 資料表儲存體]、MongoDB、[DocumentDB] 和 SaaS API 提供者 (如 Office 365 和 Salesforce.com)。
+- **資料存取** - Azure Mobile Apps 提供了已連結至 SQL Azure 或內部部署 SQL Server 且適合行動用途的 OData v3 資料來源。這項服務以 Entity Framework 為基礎，可讓您輕鬆地與其他 NoSQL 和 SQL 資料提供者整合，包括 [Azure 資料表儲存體]、MongoDB、[DocumentDB] 和 SaaS API 提供者 (如 Office 365 和 Salesforce.com)。
 - **離線同步處理** - 我們的用戶端 SDK 可讓您輕鬆地建置強大和回應靈敏的行動應用程式，而這類應用程式利用可與後端資料自動同步處理的離線資料集運作 (包括衝突解決支援)。
 
   深入探索我們的[資料功能]。
@@ -103,4 +103,4 @@ Azure App Service 是完全受管理的[平台即服務](https://azure.microsoft
 [App Service 環境]: ../app-service-web/app-service-app-service-environment-intro.md
 [學習地圖]: https://azure.microsoft.com/en-us/documentation/learning-paths/appservice-mobileapps/
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

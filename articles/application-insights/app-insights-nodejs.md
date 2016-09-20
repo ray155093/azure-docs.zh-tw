@@ -215,7 +215,7 @@ server.on("listening", () => {
 ## 後續步驟
 
 * [在入口網站中監視遙測](app-insights-dashboards.md)
-* [撰寫您的遙測的分析查詢(app-insights-analytics-tour.md)
+* [[寫您的遙測的分析查詢](app-insights-analytics-tour.md)
 
 
 
@@ -228,4 +228,4 @@ server.on("listening", () => {
 [qna]: app-insights-troubleshoot-faq.md
 [roles]: app-insights-resources-roles-access-control.md
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

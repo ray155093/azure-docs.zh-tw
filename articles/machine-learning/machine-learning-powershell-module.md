@@ -5,7 +5,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="hning86"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -55,4 +55,4 @@ Machine Learning PowerShell 模組是以 .NET 為基礎的 DLL 模組，它能�
 
 在此預覽期間內，我們將會持續改善及擴充 PowerShell 模組。如需更多新聞和資訊，敬請關注 [Cortana Intelligence 和 Machine Learning 部落格](https://blogs.technet.microsoft.com/machinelearning/)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -5,7 +5,7 @@
 	services="hdinsight"
 	documentationCenter=""
 	authors="cjgronlund"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -268,4 +268,4 @@ HDInsight 提供兩種類型的巨量資料雲端提供項目：Standard 和 Pre
 [component-versioning]: hdinsight-component-versioning.md
 [zookeeper]: http://zookeeper.apache.org/
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

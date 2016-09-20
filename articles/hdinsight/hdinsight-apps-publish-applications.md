@@ -4,7 +4,7 @@
    	services="hdinsight"
    	documentationCenter=""
    	authors="mumian"
-   	manager="paulettm"
+   	manager="jhubbard"
    	editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -71,11 +71,11 @@ HDInsight 應用程式採用「自備授權 (BYOL)」 模型，其中的應用�
 		
 	>請注意，指令碼名稱有三個部分︰
 		
-	>	1. 指令碼名稱前置應該包含應用程式名稱或與該應用程式相關的名稱。
-	>	2. "-" 以方便閱讀。
-	>	3. 唯一的字串函數，並以應用程式名稱做為參數。
+	>	1. A script name prefix, which shall include either the application name or a name relevant to the application.
+	>	2. A "-" for readability.
+	>	3. A unique string function with the application name as the parameter.
 
-	>	範例如上，結果為在保存的指令碼動作清單中的 hue-install-v0-4wkahss55hlas。如需 JSON 承載的範例，請參閱 [https://raw.githubusercontent.com/hdinsight/Iaas-Applications/master/Hue/azuredeploy.json](https://raw.githubusercontent.com/hdinsight/Iaas-Applications/master/Hue/azuredeploy.json)。
+	>	An example is the above ends up becoming: hue-install-v0-4wkahss55hlas in the persisted script action list. For a sample JSON payload, see [https://raw.githubusercontent.com/hdinsight/Iaas-Applications/master/Hue/azuredeploy.json](https://raw.githubusercontent.com/hdinsight/Iaas-Applications/master/Hue/azuredeploy.json).
 
 - 所有必要的指令碼。
 
@@ -88,9 +88,9 @@ HDInsight 應用程式採用「自備授權 (BYOL)」 模型，其中的應用�
 1. 登入 [Azure 發佈入口網站](https://publish.windowsazure.com/)。
 2. 按一下 [方案範本] 來建立新的方案範本。
 3. 按一下 [建立開發人員中心帳戶並加入 Azure 方案] 以註冊您的公司 (如果尚未這麼做)。請參閱[建立 Microsoft 開發人員帳戶](../marketplace-publishing/marketplace-publishing-accounts-creation-registration.md)。
-4. 按一下 [定義一些拓撲以便開始使用]。解決方案範本是所有其拓撲的「父項」。您可以在一個供應項目/解決方案範本中定義多個拓撲。當供應項目進入預備環境時，它的所有拓撲也會一起進入。 
+4. 按一下 [定義一些拓撲以便開始使用]。解決方案範本是所有其拓撲的「父項」。您可以在一個供應項目/解決方案範本中定義多個拓撲。當供應項目進入預備環境時，它的所有拓撲也會一起進入。
 5. 加入新的版本。
-6. 上傳在[封裝應用程式](#package-application)中準備的 zip 檔案。  
+6. 上傳在[封裝應用程式](#package-application)中準備的 zip 檔案。
 7. 按一下 [要求認證]。Microsoft 認證團隊會檢閱檔案並認證拓撲。
 
 ## 後續步驟
@@ -99,5 +99,6 @@ HDInsight 應用程式採用「自備授權 (BYOL)」 模型，其中的應用�
 - [安裝自訂 HDInsight 應用程式](hdinsight-apps-install-custom-applications.md)︰了解如何將未發佈的 HDInsight 應用程式部署到 HDInsight。
 - [使用指令碼動作自訂以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)：了解如何使用指令碼動作來安裝其他應用程式。
 - [使用 Azure Resource Manager 範本在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)︰了解如何呼叫 Resource Manager 範本來建立 HDInsight 叢集。
+- [在 HDInsight 中使用空白邊緣節點](hdinsight-apps-use-edge-node.md)︰了解如何使用空白邊緣節點來存取 HDInsight 叢集、測試 HDInsight 應用程式，以及裝載 HDInsight 應用程式。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -17,43 +17,39 @@
 	ms.date="08/16/2016"
 	ms.author="spelluru"/>
 
-# 使用 Azure PowerShell 建置您的第一個 Azure Data Factory
+# 教學課程：使用 Azure PowerShell 建置您的第一個 Azure Data Factory
 > [AZURE.SELECTOR]
-- [教學課程概觀](data-factory-build-your-first-pipeline.md)
-- [使用 Data Factory 編輯器](data-factory-build-your-first-pipeline-using-editor.md)
-- [使用 PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
-- [使用 Visual Studio](data-factory-build-your-first-pipeline-using-vs.md)
-- [使用 Resource Manager 範本](data-factory-build-your-first-pipeline-using-arm.md)
-- [使用 REST API](data-factory-build-your-first-pipeline-using-rest-api.md)
+- [Azure 入口網站](data-factory-build-your-first-pipeline-using-editor.md)
+- [Visual Studio](data-factory-build-your-first-pipeline-using-vs.md)
+- [PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
+- [Resource Manager 範本](data-factory-build-your-first-pipeline-using-arm.md)
+- [REST API](data-factory-build-your-first-pipeline-using-rest-api.md)
 
 
-在本文中，您會了解如何使用 Azure PowerShell 來建立您的第一個 Azure Data Factory。
+[AZURE.INCLUDE [data-factory-tutorial-prerequisites](../../includes/data-factory-tutorial-prerequisites.md)]
 
-
-## 必要條件
+## 其他必要條件
 除了「教學課程概觀」主題中所列的必要條件，您還需要安裝下列項目：
 
-- 您**必須**詳讀[教學課程概觀](data-factory-build-your-first-pipeline.md)一文，並完成必要的步驟，再進一步繼續。
 - **Azure PowerShell** (英文)。按照[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 一文中的指示，在您的電腦上安裝最新版的 Azure PowerShell。
 - (選用) 這篇文章並未涵蓋所有的 Data Factory Cmdlet。如需 Data Factory Cmdlet 的完整文件，請參閱 [Data Factory Cmdlet 參考](https://msdn.microsoft.com/library/dn820234.aspx)。
 
 若您使用 **1.0 版本之前**的 Azure PowerShell，您必須使用[這裡](https://msdn.microsoft.com/library/azure/dn820234.aspx)所記載的 Cmdlet。您也必須在使用 Data Factory Cmdlet 之前，先執行下列命令：
  
 1. 啟動 Azure PowerShell 並執行下列命令。將 Azure PowerShell 維持在開啟狀態，直到本教學課程結束為止。如果您關閉並重新開啟，則需要再次執行這些命令。
-	1. 執行 **Add-AzureAccount**，並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
-	2. 執行 **Get-AzureSubscription** 以檢視此帳戶的所有訂用帳戶。
-	3. 執行 **Get-AzureRmSubscription -SubscriptionName NameOfAzureSubscription| Set-AzureRmContext** to select the subscription that you want to work with. Replace **NameOfAzureSubscription** with the name of your Azure subscription.
-4. 切換至 Azure Resource Manager 模式，因為 Azure Data Factory Cmdlet 可在此模式中使用：**Switch-AzureMode AzureResourceManager**。
-
+	1. 執行 `Add-AzureAccount`，並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
+	2. 執行 `Get-AzureSubscription` 以檢視此帳戶的所有訂用帳戶。
+	3. 執行 `Get-AzureRmSubscription -SubscriptionName NameOfAzureSubscription | Set-AzureRmContext` 以選取您要使用的訂用帳戶。以您的 Azure 訂用帳戶名稱取代 **NameOfAzureSubscription**。
+4. 切換至 Azure Resource Manager 模式，因為 Azure Data Factory Cmdlet 可在此模式中使用：`Switch-AzureMode AzureResourceManager`。
 
 ## 建立 Data Factory
 
-在此步驟中，您會使用 Azure PowerShell 建立名為 **FirstDataFactoryPSH** 的 Azure Data Factory。資料處理站可以有一或多個管線。其中的管線可以有一或多個活動。例如，「複製活動」會從來源複製資料到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼轉換輸入資料以產生輸出資料。讓我們在這個步驟中開始建立 Data Factory。
+在此步驟中，您會使用 Azure PowerShell 建立名為 **FirstDataFactoryPSH** 的 Azure Data Factory。資料處理站可以有一或多個管線。其中的管線可以有一或多個活動。例如，「複製活動」會從來源複製資料到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼來轉換輸入資料。讓我們在這個步驟中開始建立 Data Factory。
 
 1. 啟動 Azure PowerShell 並執行下列命令。將 Azure PowerShell 維持在開啟狀態，直到本教學課程結束為止。如果您關閉並重新開啟，則需要再次執行這些命令。
-	- 執行 **Login-AzureRmAccount**，並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
-	- 執行 **Get-AzureRmSubscription** 以檢視此帳戶的所有訂用帳戶。
-	- 執行 **Select-AzureRmSubscription <訂用帳戶名稱>** 以選取您想要使用的訂用帳戶。此訂用帳戶應該與您在 Azure 入口網站中使用的相同。
+	- 執行 `Login-AzureRmAccount`，並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
+	- 執行 `Get-AzureRmSubscription` 以檢視此帳戶的所有訂用帳戶。
+	- 執行 `Select-AzureRmSubscription <Name of the subscription>` 以選取您要使用的訂用帳戶。此訂用帳戶應該與您在 Azure 入口網站中使用的相同。
 3. 執行以下命令，建立名為 **ADFTutorialResourceGroup** 的 Azure 資源群組。
 
 		New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
@@ -78,15 +74,15 @@
 		您可以執行下列命令來確認已註冊 Data Factory 提供者。
 	
 			Get-AzureRmResourceProvider
-	- 使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)並瀏覽至 [Data Factory] 刀鋒視窗 (或) 在 Azure 入口網站中建立 Data Factory。這會自動為您註冊提供者。
+	- 使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)並瀏覽至 [Data Factory] 刀鋒視窗 (或) 在 Azure 入口網站中建立 Data Factory。此動作會自動為您註冊提供者。
 
-建立管線之前，您必須先建立一些 Data Factory 項目。首先，您要先建立連結的服務，以便將資料存放區/電腦連結到您的資料存放區；並定義輸入和輸出資料集，表示資料位於連結的資料存放區中，再建立具有使用這些資料集的活動之管線。
+建立管線之前，您必須先建立一些 Data Factory 項目。首先，您要先建立連結的服務，以便將資料存放區/電腦連結到您的資料存放區；並定義輸入和輸出資料集，表示位於連結的資料存放區中的輸入/輸出資料，然後建立具有使用這些資料集的活動之管線。
 
 ## 建立連結服務 
-在此步驟中，您會將您的 Azure 儲存體帳戶和隨選 Azure HDInsight 叢集連結到您的 Data Factory。Azure 儲存體帳戶會保留此範例中管線的輸入和輸出資料。HDInsight 連結服務會用來執行此範例中管線活動指定的 Hive 指令碼。您必須識別案例中使用的資料存放區/計算服務，並建立連結的服務將這些服務連結到 Data Factory。
+在此步驟中，您會將您的 Azure 儲存體帳戶和隨選 Azure HDInsight 叢集連結到您的 Data Factory。Azure 儲存體帳戶會保留此範例中管線的輸入和輸出資料。HDInsight 連結服務會用來執行此範例中管線活動指定的 Hive 指令碼。識別案例中使用的資料存放區/計算服務，並建立連結的服務將這些服務連結到 Data Factory。
 
 ### 建立 Azure 儲存體連結服務
-在此步驟中，您會將您的 Azure 儲存體帳戶連結到您的 Data Factory。在本教學課程中，您會使用相同的 Azure 儲存體帳戶來存放輸入/輸出資料及 HQL 指令碼檔案。
+在此步驟中，您會將您的 Azure 儲存體帳戶連結到您的 Data Factory。您會使用相同的 Azure 儲存體帳戶來存放輸入/輸出資料及 HQL 指令碼檔案。
 
 1. 在 C:\\ADFGetStarted 資料夾中，使用以下內容建立名為 StorageLinkedService.json 的 JSON 檔案。如果不存在，請建立 ADFGetStarted 資料夾。
 
@@ -141,20 +137,20 @@
 	| 屬性 | 說明 |
 	| :------- | :---------- |
 	| 版本 | 指定所建立的 HDInsight 版本為 3.2。 | 
-	| ClusterSize | 建立一個單一節點的 HDInsight 叢集。 | 
+	| ClusterSize | 指定 HDInsight 叢集的大小。 | 
 	| TimeToLive | 指定 HDInsight 叢集在被刪除之前的閒置時間。 |
 	| linkedServiceName | 指定用來儲存 HDInsight 產生之記錄檔的儲存體帳戶 |
 
 	請注意：
 	
-	- Data Factory 會以上述 JSON 為您建立「以 Windows 為基礎的」HDInsight 叢集。您也可以讓它建立**以 Linux 為基礎的** HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
+	- Data Factory 會使用 JSON 為您建立「以 Windows 為基礎的」HDInsight 叢集。您也可以讓它建立**以 Linux 為基礎的** HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
 	- 您可以使用**自己的 HDInsight 叢集**，不必使用隨選的 HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 連結服務](data-factory-compute-linked-services.md#azure-hdinsight-linked-service)。
-	- HDInsight 叢集會在您於 JSON 中指定的 Blob 儲存體 (**linkedServiceName**) 建立**預設容器**。HDInsight 不會在刪除叢集時刪除此容器。原先的設計就是如此。使用 HDInsight 隨選連結服務時，除非有現有的即時叢集 (**timeToLive**)，否則每當需要處理配量時，就會建立 HDInsight 叢集，並在處理完成時予以刪除。
+	- HDInsight 叢集會在您於 JSON 中指定的 Blob 儲存體 (**linkedServiceName**) 建立**預設容器**。HDInsight 不會在刪除叢集時刪除此容器。這是設計的行為。在使用 HDInsight 隨選連結服務時，除非有現有的即時叢集 (**timeToLive**)，否則每次處理配量時，就會建立 HDInsight 叢集。此叢集會在處理完成時自動刪除。
 	
 		隨著處理的配量越來越多，您會在 Azure Blob 儲存體中看到許多容器。如果在疑難排解作業時不需要這些容器，建議您加以刪除以降低儲存成本。這些容器的名稱遵循下列模式："adf**yourdatafactoryname**-**linkedservicename**-datetimestamp"。請使用 [Microsoft 儲存體總管](http://storageexplorer.com/)之類的工具，來刪除 Azure Blob 儲存體中的容器。
 
 	如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
-2. 執行 **New-AzureRmDataFactoryLinkedService** Cmdlet 建立名為 HDInsightOnDemandLinkedServiceHDInsightOnDemandLinkedService 的連結服務。
+2. 執行 **New-AzureRmDataFactoryLinkedService** Cmdlet，建立名為 HDInsightOnDemandLinkedService 的連結服務。
 
 		New-AzureRmDataFactoryLinkedService $df -File .\HDInsightOnDemandLinkedService.json
 
@@ -187,7 +183,7 @@
 		    }
 		} 
 
-	上述 JSON 會定義名為 **AzureBlobInput** 的資料集，以表示管線中活動的輸入資料。此外，它也會指定將輸入資料放在名為 **adfgetstarted** 的 Blob 容器及名為 **inputdata** 的資料夾中。
+	JSON 會定義名為 **AzureBlobInput** 的資料集，以表示管線中活動的輸入資料。此外，它也會指定將輸入資料放在名為 **adfgetstarted** 的 Blob 容器及名為 **inputdata** 的資料夾中。
 
 	下表提供程式碼片段中所使用之 JSON 屬性的描述：
 
@@ -229,14 +225,14 @@
 		  }
 		}
 
-	上述 JSON 會定義名為 **AzureBlobOutput** 的資料集，以表示管線中活動的輸出資料。此外，它也會指定將結果儲存在名為 **adfgetstarted** 的 Blob 容器及名為 **partitioneddata** 的資料夾中。**availability** 區段指定每個月產生一次輸出資料集。
+	JSON 會定義名為 **AzureBlobOutput** 的資料集，以表示管線中活動的輸出資料。此外，它也會指定將結果儲存在名為 **adfgetstarted** 的 Blob 容器及名為 **partitioneddata** 的資料夾中。**availability** 區段指定每個月產生一次輸出資料集。
 
 2. 在 Azure PowerShell 中執行以下命令來建立 Data Factory 資料集。
 
 		New-AzureRmDataFactoryDataset $df -File .\OutputTable.json
 
 ## 建立管線
-在此步驟中，您會建立第一個具有 **HDInsightHive** 活動的管線。您每個月都可取得輸入配量資訊 (頻率：每月，間隔：1)，輸出配量則是每用產生，而活動的排程器屬性也設為每用 (如下所示)。輸出資料集設定及活動排程器必須相符。目前，輸出資料集會影響排程，因此即使活動並未產生任何輸出，您都必須建立輸出資料集。如果活動沒有任何輸入，您可以略過建立輸入資料集。本節結尾會說明下列 JSON 中使用的屬性。
+在此步驟中，您會建立第一個具有 **HDInsightHive** 活動的管線。您每個月都可取得輸入配量資訊 (頻率：每月，間隔：1)，輸出配量則是每用產生，而活動的排程器屬性也設為每月。輸出資料集設定及活動排程器必須相符。目前，輸出資料集會影響排程，因此即使活動並未產生任何輸出，您都必須建立輸出資料集。如果活動沒有任何輸入，您可以略過建立輸入資料集。本節結尾會說明下列 JSON 中使用的屬性。
 
 
 1. 在 C:\\ADFGetStarted 資料夾中，使用下列內容建立名為 MyFirstPipelinePSH.json 的 JSON 檔案：
@@ -296,7 +292,7 @@
 
 	在活動 JSON 中，您會指定 Hive 指令碼要在透過 **linkedServiceName** – **HDInsightOnDemandLinkedService** 指定的計算上執行。
 
-	> [ACOM.NOTE] 如需上述範例中使用的 JSON 屬性的詳細資訊，請參閱[管線的剖析](data-factory-create-pipelines.md#anatomy-of-a-pipeline)。
+	> [ACOM.NOTE] 如需範例中使用的 JSON 屬性的詳細資訊，請參閱[管線的剖析](data-factory-create-pipelines.md#anatomy-of-a-pipeline)。
 2.  確認您在 Azure Blob 儲存體的 **adfgetstarted/inputdata** 資料夾中看到了**input.log** 檔案，並執行下列命令以部署管線。由於 **start** 和 **end** 時間設定在過去，且 **isPaused** 設為 false，管線 (管線中的活動) 會在部署之後立即執行。
 
 		New-AzureRmDataFactoryPipeline $df -File .\MyFirstPipelinePSH.json
@@ -382,4 +378,4 @@
 | [使用 Azure 入口網站刀鋒視窗監視及管理管線](data-factory-monitor-manage-pipelines.md) | 本文描述如何使用 Azure 入口網站刀鋒視窗來監視、管理和偵錯您的管線。 |
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0914_2016-->

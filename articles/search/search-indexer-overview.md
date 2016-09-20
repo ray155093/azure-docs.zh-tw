@@ -4,7 +4,7 @@
 	services="search"
 	documentationCenter=""
 	authors="HeidiSteen"
-	manager="paulettm"
+	manager="jhubbard"
 	editor=""
     tags="azure-portal"/>
 
@@ -63,7 +63,7 @@ Azure 搜尋服務中的**索引子**是一種編目程式，其可從外部資�
 
 ### 步驟 3：建立和排程索引子
 
-索引子定義是指定索引、資料來源和排程的結構。索引子可以參考另一個服務的資料來源，只要該資料來源來自相同訂閱即可。如需建構索引的詳細資訊，請參閱[建立索引子 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/azure/dn946899.aspx)。
+索引子定義是指定索引、資料來源和排程的結構。索引子可以參考另一個服務的資料來源，只要該資料來源來自相同訂用帳戶即可。如需建構索引的詳細資訊，請參閱[建立索引子 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/azure/dn946899.aspx)。
 
 ## 後續步驟
 
@@ -76,4 +76,4 @@ Azure 搜尋服務中的**索引子**是一種編目程式，其可從外部資�
 - [使用 Azure 搜尋服務 Blob 索引子編製索引 CSV Blob (預覽)](search-howto-index-csv-blobs.md)
 - [使用 Azure 搜尋服務 Blob 索引子編製索引 JSON Blob (預覽)](search-howto-index-json-blobs.md)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0914_2016-->

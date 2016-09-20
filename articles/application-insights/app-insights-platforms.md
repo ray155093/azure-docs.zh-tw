@@ -37,7 +37,7 @@
 + [ASP.NET - 適用於即時應用程式](app-insights-monitor-performance-live-website-now.md)
 + [ASP.NET 5](app-insights-asp-net-core.md)
 + [Android](https://github.com/Microsoft/ApplicationInsights-Android) (HockeyApp)
-+ [Azure Web Apps 和 VM](../azure-portal/insights-perf-analytics.md)
++ [Azure Web Apps 和 VM](app-insights-azure-web-apps.md)
 + [Azure 雲端服務](app-insights-cloudservices.md)：同時包含 Web 與背景工作角色
 + [Microsoft Dynamics 的 CRM Online](app-insights-sample-mscrm.md)
 + [Docker](app-insights-docker.md)
@@ -84,4 +84,4 @@
 
 如果您的語言或平台中還沒有 SDK，您會想要建置一個嗎？ 查看 [GitHub 上之 Application Insights SDK 專案](https://github.com/Microsoft/AppInsights-Home)中列出的現有 SDK 程式碼。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

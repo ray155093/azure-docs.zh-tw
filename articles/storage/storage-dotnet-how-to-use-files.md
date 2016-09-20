@@ -19,7 +19,7 @@
 
 [AZURE.INCLUDE [storage-selector-file-include](../../includes/storage-selector-file-include.md)] <br/> [AZURE.INCLUDE [storage-try-azure-tools-files](../../includes/storage-try-azure-tools-files.md)]
 
-## 概觀
+## Overview
 
 Azure 檔案儲存體是使用標準[伺服器訊息區塊 (SMB) 通訊協定](https://msdn.microsoft.com/library/windows/desktop/aa365233.aspx)，在雲端中提供檔案共用功能的服務。SMB 2.1 和 SMB 3.0 皆受到支援。使用 Azure 檔案儲存體時，您可以快速地將依賴檔案共用功能的舊式應用程式移轉至 Azure，而不必浪費成本來重新撰寫程式。在 Azure 虛擬機器、雲端服務或內部部署中執行的應用程式，可掛接雲端中的檔案共用，就像桌面應用程式掛接一般 SMB 共用一樣。可同時掛接和存取檔案儲存體共用的應用程式元件數量沒有限制。
 
@@ -422,7 +422,7 @@ Windows 現在便可在虛擬機器重新開機時重新連線到檔案共用。
         Console.WriteLine(fileSas.DownloadText());
     }
 
-如需建立與使用共用存取簽章的詳細資訊，請參閱[共用存取簽章：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)和[透過 Blob 儲存體建立與使用 SAS](storage-dotnet-shared-access-signature-part-2.md)。
+如需建立與使用共用存取簽章的詳細資訊，請參閱[共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)和[透過 Blob 儲存體建立與使用 SAS](storage-dotnet-shared-access-signature-part-2.md)。
 
 ### 複製檔案
 
@@ -634,7 +634,7 @@ Azure 儲存體分析現在支援檔案儲存體的度量。利用度量資料�
 
 13. **已發行修補程式來修正 Azure 檔案的效能下滑問題**
 
-	Windows 小組最近發行了修補程式，以修正當客戶從 Windows 8.1 或 Windows Server 2012 R2 存取 Azure 檔案儲存體時所發生的效能下滑問題。如需詳細資訊，請查看相關聯的知識庫文件：[當您從 Windows 8.1 或 Server 2012 R2 存取 Azure 檔案儲存體時效能變慢](https://support.microsoft.com/zh-TW/kb/3114025)。
+	Windows 小組最近發行了修補程式，以修正當客戶從 Windows 8.1 或 Windows Server 2012 R2 存取 Azure 檔案儲存體時所發生的效能下滑問題。如需詳細資訊，請查看相關聯的知識庫文件：[當您從 Windows 8.1 或 Server 2012 R2 存取 Azure 檔案儲存體時效能變慢](https://support.microsoft.com/en-us/kb/3114025)。
 
 14. **搭配 IBM MQ 使用 Azure 檔案儲存體**
 
@@ -667,4 +667,4 @@ Azure 儲存體分析現在支援檔案儲存體的度量。利用度量資料�
 - [Microsoft Azure 檔案服務簡介](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx)
 - [保留與 Microsoft Azure 檔案的連線](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->
