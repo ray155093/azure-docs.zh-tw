@@ -74,4 +74,4 @@
 [在 Storm 和 HDInsight 上使用 SCP.NET 和 C# 開發串流資料處理應用程式]: ../hdinsight/hdinsight-storm-develop-csharp-visual-studio-topology.md
  
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

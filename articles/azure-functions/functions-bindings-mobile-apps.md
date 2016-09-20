@@ -169,4 +169,4 @@ function.json 範例：
 
 [AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

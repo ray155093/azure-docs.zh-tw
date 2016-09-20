@@ -201,4 +201,4 @@ Azure 入口網站會公開大部分的叢集屬性。使用 Azure Resource Mana
 * [Spark 和機器學習：使用 HDInsight 中的 Spark 來預測食物檢查結果](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Spark 串流：使用 HDInsight 中的 Spark 來建置即時串流應用程式](hdinsight-apache-spark-eventhub-streaming.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

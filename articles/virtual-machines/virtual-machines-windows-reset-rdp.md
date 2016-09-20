@@ -143,4 +143,4 @@ b. `Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Serv
 
 [疑難排解以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線](virtual-machines-windows-troubleshoot-rdp-connection.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

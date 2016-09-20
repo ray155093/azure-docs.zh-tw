@@ -373,4 +373,4 @@ PS C:\> Restore-DPMRecoverableItem -RecoverableItem $RecoveryPoints[0] -Recovery
 
 - 如需 DPM 至 Azure 備份的詳細資訊，請參閱 [DPM 備份簡介](backup-azure-dpm-introduction.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

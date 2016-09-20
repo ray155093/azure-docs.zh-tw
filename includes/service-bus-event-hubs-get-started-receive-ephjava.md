@@ -198,4 +198,4 @@ EventProcessorHost 是一個 Java 類別，透過管理持續檢查點以及來�
 [11]: ./media/service-bus-event-hubs-get-started-receive-ephjava/create-eph-csharp2.png
 [12]: ./media/service-bus-event-hubs-get-started-receive-ephjava/create-eph-csharp3.png
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

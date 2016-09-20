@@ -139,4 +139,4 @@
 - [使用 Insights REST API 變更診斷設定](https://msdn.microsoft.com/library/azure/dn931931.aspx)
 - [以 OMS Log Analytics 分析記錄檔](../log-analytics/log-analytics-azure-storage-json.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

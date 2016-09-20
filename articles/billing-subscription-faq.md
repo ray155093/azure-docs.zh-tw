@@ -321,4 +321,4 @@ Azure 免費試用訂用帳戶是為任何新客戶提供的為期一個月的�
 
 如果您設定為使用[發票付款方法](https://azure.microsoft.com/pricing/invoicing/)，請將您的付款交付至您發票底部所列的位置。如需詳細說明，請[連絡支援服務](billing-how-to-create-billing-support-ticket.md)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

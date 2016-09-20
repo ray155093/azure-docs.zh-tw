@@ -121,4 +121,4 @@ Azure Insights 自動調整僅適用於
 - [自動調整 REST API](https://msdn.microsoft.com/library/dn931953.aspx) -　請參閱每個欄位和值的完整 API 和意義
 - [排解虛擬機器擴展集自動調整的問題](../virtual-machine-scale-sets/virtual-machine-scale-sets-troubleshoot.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

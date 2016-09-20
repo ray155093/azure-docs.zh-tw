@@ -52,4 +52,4 @@ DevTest Labs 支援根據 Azure Marketplace 映像來建立 VM，而這取決於
 
 一旦您設定在建立 VM 時允許使用 Azure Marketplace 映像的方式之後，下一個步驟就是[將 VM 加入您的實驗室](./devtest-lab-add-vm-with-artifacts.md)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

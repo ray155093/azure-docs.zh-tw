@@ -270,4 +270,4 @@
 [204]: ./media/active-directory-saas-sciquest-spend-director/tutorial_general_19.png
 [205]: ./media/active-directory-saas-sciquest-spend-director/tutorial_general_20.png
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

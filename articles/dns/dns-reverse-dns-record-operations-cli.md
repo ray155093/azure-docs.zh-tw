@@ -60,4 +60,4 @@
 
 [AZURE.INCLUDE [常見問題集](../../includes/dns-reverse-dns-record-operations-faq-arm-include.md)]
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

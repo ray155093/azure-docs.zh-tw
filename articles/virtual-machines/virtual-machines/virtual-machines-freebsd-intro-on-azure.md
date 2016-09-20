@@ -67,4 +67,4 @@ FreeBSD VM 中支援的 VM 擴充功能如下。
 - 前往 [Azure Marketplace](https://azure.microsoft.com/marketplace/partners/microsoft/freebsd103/) 以建立 FreeBSD VM。
 - 如果您想要將自己的 FreeBSD 攜至 Azure，請參閱[建立並上傳 FreeBSD VHD 到 Azure](../virtual-machines-linux-classic-freebsd-create-upload-vhd.md)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

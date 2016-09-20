@@ -390,4 +390,4 @@ GROUP BY p.[BrandName]
 [Microsoft Download Center]: http://www.microsoft.com/download/details.aspx?id=36433
 [載入完整 Contoso 零售資料倉儲]: https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/contoso-data-warehouse/readme.md
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

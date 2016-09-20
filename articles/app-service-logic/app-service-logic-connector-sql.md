@@ -155,4 +155,4 @@ App Service 使用混合式組態管理員來安全地連線到內部部署系�
 [11]: ./media/app-service-logic-connector-sql/LogicApp7.png
 [12]: ./media/app-service-logic-connector-sql/LogicApp8.png
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

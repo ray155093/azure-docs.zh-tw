@@ -289,4 +289,4 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 [hdinsight-upload-data]: hdinsight-upload-data.md
 [hdinsight-flight]: hdinsight-analyze-flight-delay-data.md
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

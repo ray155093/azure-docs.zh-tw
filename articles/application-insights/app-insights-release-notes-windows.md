@@ -82,4 +82,4 @@ Application Insights SDK 傳送有關您作用中的應用程式遙測到 [Appli
 
 沒有可用於較舊版本的版本資訊。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

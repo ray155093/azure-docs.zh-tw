@@ -78,4 +78,4 @@ ev.GameScoreUpdated(Id.GetGuidId(), score);
  - [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
  - [範例程式碼](https://github.com/Azure/servicefabric-samples)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -109,4 +109,4 @@ azure vm create --userName ops --password P@ssw0rd! --vm-size Small --ssh `
 [Step 2: Prepare the connection to Azure]: #connect
 [Step 3: Upload the image to Azure]: #upload
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

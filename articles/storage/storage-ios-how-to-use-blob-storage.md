@@ -369,4 +369,4 @@
 
 如果您有關於此程式庫的問題，歡迎您貼文到我們的 [MSDN Azure 論壇](http://social.msdn.microsoft.com/Forums/windowsazure/home?forum=windowsazuredata)或[堆疊溢位](http://stackoverflow.com/questions/tagged/windows-azure-storage+or+windows-azure-storage+or+azure-storage-blobs+or+azure-storage-tables+or+azure-table-storage+or+windows-azure-queues+or+azure-storage-queues+or+azure-storage-emulator+or+azure-storage-files)。如果您有 Azure 儲存體功能方面的建議，請貼文到 [Azure 儲存體意見反應](https://feedback.azure.com/forums/217298-storage/)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -95,4 +95,4 @@ Azure 會將映像儲存在 [映像] 底下，連同您已上傳的任何映像�
 [How to Attach a Data Disk to a Virtual Machine]: virtual-machines-windows-classic-attach-disk.md
 [如何建立 Linux 虛擬機器]: virtual-machines-linux-classic-create-custom.md
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

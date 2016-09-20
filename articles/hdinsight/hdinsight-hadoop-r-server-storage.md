@@ -190,4 +190,4 @@ Azure 檔案的主要優點是，只要是擁有受支援作業系統 (例如 Wi
 - [將 RStudio 伺服器新增至 HDInsight Premium](hdinsight-hadoop-r-server-install-r-studio.md)
 - [適用於 HDInsight 中 R 伺服器的計算內容選項](hdinsight-hadoop-r-server-compute-contexts.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

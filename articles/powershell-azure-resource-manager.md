@@ -376,4 +376,4 @@ cmdlet 會提示您 Azure 帳戶的登入認證。登入之後，它會下載您
 - 如需部署專案的詳細範例，請參閱[透過可預測方式在 Azure 中部署微服務](app-service-web/app-service-deploy-complex-application-predictably.md)。
 - 若要了解如何疑難排解失敗的部署，請參閱[在 Azure 中疑難排解資源群組部署](./resource-manager-troubleshoot-deployments-powershell.md)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

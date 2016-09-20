@@ -482,4 +482,4 @@ MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 B
 [solution_explorer01]: ./media/batch-visual-studio-templates/solution_explorer01.png
 [solution_explorer02]: ./media/batch-visual-studio-templates/solution_explorer02.png
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

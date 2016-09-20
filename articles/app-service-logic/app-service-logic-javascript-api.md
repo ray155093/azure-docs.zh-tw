@@ -99,4 +99,4 @@ return Attachments.map(function(obj){var a = obj.Content; a.FileName = obj.Name;
 <!--Links -->
 [Creating a Logic app]: app-service-logic-create-a-logic-app.md
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

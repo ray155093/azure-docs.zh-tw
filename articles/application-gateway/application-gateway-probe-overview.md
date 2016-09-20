@@ -68,4 +68,4 @@ Azure 應用程式閘道預設會監視其後端集區中所有資源的健康�
 
 [1]: ./media/application-gateway-probe-overview/appgatewayprobe.png
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

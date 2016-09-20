@@ -102,4 +102,4 @@
   [Azure SQL Database 商務持續性]: ../sql-database/sql-database-business-continuity.md
   [Azure 復原技術指導]: ../resiliency/resiliency-technical-guidance.md
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

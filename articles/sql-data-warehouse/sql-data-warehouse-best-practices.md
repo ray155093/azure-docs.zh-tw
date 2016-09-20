@@ -183,4 +183,4 @@ SQL 資料倉儲有數個 DMV 可用來監視查詢的執行。下列的監視�
 [Azure SQL 資料倉儲 Stack Overflow 論壇]: http://stackoverflow.com/questions/tagged/azure-sqldw
 [Azure SQL 資料倉儲載入模式和策略]: https://blogs.msdn.microsoft.com/sqlcat/2016/02/06/azure-sql-data-warehouse-loading-patterns-and-strategies
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

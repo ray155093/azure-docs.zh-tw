@@ -189,4 +189,4 @@ Get-AzureRmVMUsage -Location "<Your VNET or Deployment's Azure region"
 - [平台支援的從傳統移轉至 Resource Manager 的技術深入探討](virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
 - [使用社群 PowerShell 指令碼將傳統虛擬機器複製到 Azure Resource Manager](virtual-machines-windows-migration-scripts.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -451,4 +451,4 @@ RequestId: d4099022-405b-49d3-b3b7-3c60cf675958
 ## 另請參閱
 - [在 Power BI Embedded 中驗證和授權](power-bi-embedded-app-token-flow.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

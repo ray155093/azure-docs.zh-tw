@@ -146,4 +146,4 @@ Azure 診斷會將資料儲存至 Azure 儲存體資料表。不過，您也可�
 * [使用 PowerShell 將 Azure 診斷傳送至 Application Insights](app-insights-powershell-azure-diagnostics.md)
 * [Azure 診斷組態檔](https://msdn.microsoft.com/library/azure/dn782207.aspx)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -93,4 +93,4 @@ Power BI Embedded 服務是使用**金鑰**和**應用程式權杖**進行驗證
 - [Microsoft Power BI Embedded 常見案例](power-bi-embedded-scenarios.md)
 - [開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

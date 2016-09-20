@@ -61,4 +61,4 @@ Azure IoT 中心的主要使用案例之一是從裝置收集遙測。因此，�
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

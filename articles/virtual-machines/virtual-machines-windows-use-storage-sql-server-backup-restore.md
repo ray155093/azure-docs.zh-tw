@@ -78,4 +78,4 @@ SQL Server 2016 導入了新功能；您可以使用[檔案快照集備份](http
 
 如需其他 SQL Server 備份與還原選項，請參閱 [Azure 虛擬機器中的 SQL Server 備份和還原](../virtual-machines/virtual-machines-windows-sql-backup-recovery.md)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

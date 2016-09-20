@@ -391,4 +391,4 @@
 [5]: ./media/notification-hubs-python-backend-how-to/TemplatedNotification.png
  
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

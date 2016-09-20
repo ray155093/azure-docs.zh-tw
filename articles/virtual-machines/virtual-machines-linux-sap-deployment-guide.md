@@ -981,4 +981,4 @@ Deamon 會收集 Azure 上的效能度量。如果未執行 Deamon，則根本�
 
 如果使用 SAP 附註 [1999351] 進行排解疑難沒有任何幫助，請重新執行組態指令碼 Set-AzureRmVMAEMExtension (如[設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 一章所述)。因為儲存體分析或診斷計數器在啟用後可能未立即建立，所以您可能必須等待一個小時的時間。如果問題仍然存在，請在元件 BC-OP-NT-AZR (適用於 Windows) 或 BC-OP-LNX-AZR (適用於 Linux 虛擬機器) 上開啟 SAP 客戶支援訊息。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -251,4 +251,4 @@ JsonFormat 類型的輸入資料集的定義如下：(僅含有相關組件的�
 -	不支援複雜資料類型 (STRUCT、MAP、LIST、UNION)
 -	ORC 檔案有 3 種[壓縮相關選項](http://hortonworks.com/blog/orcfile-in-hdp-2-better-compression-better-performance/)︰NONE、ZLIB、SNAPPY。Data Factory 支援以這些壓縮格式的任一項從 ORC 檔案讀取資料。它會使用中繼資料裡的壓縮轉碼器來讀取資料。不過，寫入 ORC 檔案時，Data Factory 會選擇 ZLIB，這是 ORC 的預設值。目前沒有任何選項可覆寫這個行為。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

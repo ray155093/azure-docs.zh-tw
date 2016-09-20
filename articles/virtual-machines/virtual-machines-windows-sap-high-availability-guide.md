@@ -1431,4 +1431,4 @@ _**SAP WAC**_ 叢集群組在叢集節點 A 上執行，例如在 _**ascsha-clna
 
 **圖 62：**SIOS DataKeeper︰將本機磁碟區從叢集節點 B 複寫到叢集節點 A
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

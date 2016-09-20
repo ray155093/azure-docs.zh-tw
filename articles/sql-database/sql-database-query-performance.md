@@ -241,4 +241,4 @@
 [8]: ./media/sql-database-query-performance/qds-off.png
 [9]: ./media/sql-database-query-performance/qds-button.png
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

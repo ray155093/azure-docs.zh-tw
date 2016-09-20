@@ -78,4 +78,4 @@
 - [建立 B2B 合約](./app-service-logic-enterprise-integration-agreements.md)
 - [深入了解金鑰保存庫](../key-vault/key-vault-get-started.md "了解金鑰保存庫")
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

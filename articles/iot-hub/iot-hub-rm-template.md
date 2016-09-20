@@ -234,4 +234,4 @@
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

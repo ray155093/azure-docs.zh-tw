@@ -283,4 +283,4 @@ ADP GlobalView 應用程式需要特定格式的 SAML 判斷提示，要求您�
 [204]: ./media/active-directory-saas-adpglobalview-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-adpglobalview-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

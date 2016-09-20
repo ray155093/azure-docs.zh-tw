@@ -14,4 +14,4 @@
 - [Windows | .NET SDK](hdinsight-hadoop-create-windows-clusters-dotnet-sdk.md)
 - [Windows | Resource Manager 範本](hdinsight-hadoop-create-windows-clusters-arm-templates.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

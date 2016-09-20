@@ -38,4 +38,4 @@
 
 如您所見，使用 SAS 時，您並不會在應用程式中公開您的帳戶金鑰。您可以參閱[共用存取簽章：了解 SAS 模型](../articles/storage/storage-dotnet-shared-access-signature-part-1.md)，以進一步了解 SAS 與使用 SAS 的最佳做法。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

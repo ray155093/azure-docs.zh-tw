@@ -100,4 +100,4 @@ Machine Learning Studio 和 Microsoft Azure Machine Learning Web 服務入口網
 
 Azure Machine Learning Web 服務是 RESTful API。您可以從 .NET、Python、R、Java 等各種平台使用這些 API。在 [Microsoft Azure Machine Learning Web 服務入口網站](https://services.azureml.net)上，您的 Web 服務的 [取用] 頁面有提供範例程式碼，可協助您開始使用。如需詳細資料，請參閱[如何使用已從機器學習實驗部署的 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

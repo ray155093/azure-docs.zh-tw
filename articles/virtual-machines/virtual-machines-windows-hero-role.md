@@ -126,4 +126,4 @@
 
 - 您也可以體驗[附加資料磁碟](virtual-machines-windows-attach-disk-portal.md)至虛擬機器。資料磁碟可為虛擬機器提供更多的儲存空間。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

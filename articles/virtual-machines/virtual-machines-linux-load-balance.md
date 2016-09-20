@@ -22,4 +22,4 @@
 
 [AZURE.INCLUDE [virtual-machines-common-load-balance](../../includes/virtual-machines-common-load-balance.md)]
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

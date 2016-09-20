@@ -228,4 +228,4 @@ Azure Active Directory 提供數個報告和警示，以協助您監視組織對
 
 [Azure Multi-Factor Authentication](https://azure.microsoft.com/services/multi-factor-authentication/)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

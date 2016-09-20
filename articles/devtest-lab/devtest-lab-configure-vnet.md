@@ -67,4 +67,4 @@
 
 一旦您在實驗室中加入所需的虛擬網路之後，下一個步驟就是[將 VM 加入至實驗室](devtest-lab-add-vm-with-artifacts.md)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

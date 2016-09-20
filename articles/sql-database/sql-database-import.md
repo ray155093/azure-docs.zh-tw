@@ -103,4 +103,4 @@ BACPAC 是一種包含資料庫結構描述和資料的 .bacpac 檔案。資料�
 [5]: ./media/sql-database-import/import-history.png
 [6]: ./media/sql-database-import/import-status.png
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

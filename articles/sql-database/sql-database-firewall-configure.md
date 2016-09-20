@@ -158,4 +158,4 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 <!--Image references-->
 [1]: ./media/sql-database-firewall-configure/sqldb-firewall-1.png
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

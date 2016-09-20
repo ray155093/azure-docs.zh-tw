@@ -117,4 +117,4 @@ Power BI Embedded 服務是使用應用程式權杖進行驗證和授權，而�
 - [何謂 Microsoft Power BI Embedded](power-bi-embedded-what-is-power-bi-embedded.md)
 - [開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

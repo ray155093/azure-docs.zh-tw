@@ -760,4 +760,4 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 [lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/java-devbox-setup.md
 [lnk-create-an-iot-hub]: iot-hub-java-java-getstarted.md#create-an-iot-hub
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

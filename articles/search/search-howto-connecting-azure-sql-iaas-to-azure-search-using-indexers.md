@@ -62,4 +62,4 @@ SQL Server 組態管理員無法在 [憑證] 下拉式清單中顯示 FQDN SSL �
 
 解決上述組態需求之後，您現在就可以在 Azure VM 指定 SQL Server 作為 Azure 搜尋服務索引子的資料來源。如需詳細資訊，請參閱[使用索引子將 Azure SQL Database 連接至 Azure 搜尋服務](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers-2015-02-28.md)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

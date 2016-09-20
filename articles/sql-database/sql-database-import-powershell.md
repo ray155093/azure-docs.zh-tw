@@ -111,4 +111,4 @@ Blob 名稱是您想要用來建立資料庫之現有的 BACPAC 檔案名稱。�
 
 - 若要了解如何連接並查詢匯入的 SQL Database，請參閱[使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

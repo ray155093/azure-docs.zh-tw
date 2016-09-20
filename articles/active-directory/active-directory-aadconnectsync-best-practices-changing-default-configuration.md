@@ -64,4 +64,4 @@ Azure AD Connect 同步處理會使用安裝精靈所建立的服務帳戶執行
 - [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
 - [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

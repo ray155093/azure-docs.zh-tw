@@ -62,4 +62,4 @@ Microsoft Azure SQL Database 提供的備份儲存體可高達 200% 的最大可
 - 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)
 - 如需商務持續性概觀，請參閱[商務持續性概觀](sql-database-business-continuity.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

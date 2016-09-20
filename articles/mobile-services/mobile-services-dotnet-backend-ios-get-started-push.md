@@ -132,4 +132,4 @@
 [Send broadcast notifications to subscribers]: ../notification-hubs-ios-send-breaking-news.md
 [Send template-based notifications to subscribers]: ../notification-hubs-ios-xplat-localized-apns-push-notification.md
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

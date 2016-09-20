@@ -172,4 +172,4 @@ NRT 主動式診斷與其他相似但不同的 Application Insights 功能互補
 * [手動設定的度量警示](app-insights-alerts.md)
 * [可用性 Web 測試](app-insights-monitor-web-app-availability.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

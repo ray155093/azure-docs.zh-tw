@@ -534,4 +534,4 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 - [建立存取權變更歷程記錄報告](role-based-access-control-access-change-history-report.md)︰記錄 RBAC 中的角色指派變更。
 - [角色型存取控制疑難排解](role-based-access-control-troubleshooting.md)︰取得修正常見問題的建議。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

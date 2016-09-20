@@ -108,4 +108,4 @@
 [Microsoft Azure Storage SDK for Python]: https://github.com/Azure/azure-storage-python
 [Microsoft Azure Storage SDK for Python (適用於 Python 的 Microsoft Azure 儲存體 SDK)]: https://github.com/Azure/azure-storage-python
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

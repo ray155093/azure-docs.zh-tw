@@ -230,4 +230,4 @@ Azure PowerShell 可用來設定擴展集的自動調整。使用 PowerShell 建
 - 在[使用自動調整動作在 Azure Insights 中傳送電子郵件和 Webhook 警示通知](../azure-portal/insights-autoscale-to-webhook-email.md)和[使用稽核記錄在 Azure Insights 中傳送電子郵件和 Webhook 警示通知](../azure-portal/insights-auditlog-to-webhook-email.md)中深入了解通知功能
 - 深入了解[進階自動調整案例](./virtual-machine-scale-sets-advanced-autoscale.md)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

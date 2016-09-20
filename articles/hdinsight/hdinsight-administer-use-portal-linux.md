@@ -333,4 +333,4 @@ HDInsight 叢集刀鋒視窗的 [使用量] 區段會顯示以下資訊：訂用
 [azure-portal]: https://portal.azure.com
 [image-hadoopcommandline]: ./media/hdinsight-administer-use-portal-linux/hdinsight-hadoop-command-line.png "Hadoop 命令列"
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

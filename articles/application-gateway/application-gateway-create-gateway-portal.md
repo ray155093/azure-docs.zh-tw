@@ -157,4 +157,4 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 [10]: ./media/application-gateway-create-gateway-portal/figure10.png
 [scenario]: ./media/application-gateway-create-gateway-portal/scenario.png
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

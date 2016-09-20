@@ -75,4 +75,4 @@ Azure 應用程式閘道會透過基本或自訂健全狀態探測，自動監�
 
 若要了解如何使用 URL 型內容路由來建立應用程式閘道，請移至[使用 URL 型路由建立應用程式閘道](application-gateway-create-url-route-arm-ps.md)以取得詳細資訊。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

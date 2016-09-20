@@ -132,4 +132,4 @@ Powershell 的相關文件：[Azure Resource Manager 流量管理員支援][ARMT
 [DNSLookup]: ./media/app-service-app-service-environment-geo-distributed-scale/DNSLookup-1.png
 [CustomDomain]: ./media/app-service-app-service-environment-geo-distributed-scale/CustomDomain-1.png
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

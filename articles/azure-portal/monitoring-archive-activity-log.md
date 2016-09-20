@@ -156,4 +156,4 @@ azure insights logprofile add --name my_log_profile --storageId /subscriptions/s
 - [將活動記錄檔串流至事件中樞](monitoring-stream-activity-logs-event-hubs.md)
 - [深入了解活動記錄檔](monitoring-overview-activity-logs.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

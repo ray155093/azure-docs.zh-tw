@@ -836,4 +836,4 @@ Quickstart 教學課程包含可實作離線同步處理的程式碼。尋找前
 [Azure 入口網站]: https://portal.azure.com
 [開始使用驗證]: app-service-mobile-android-get-started-users.md
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

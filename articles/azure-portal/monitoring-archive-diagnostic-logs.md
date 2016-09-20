@@ -124,4 +124,4 @@ azure insights diagnostic set --resourceId /subscriptions/s1id1234-5679-0123-456
 - [將診斷記錄串流至事件中樞](monitoring-stream-diagnostic-logs-to-event-hubs.md)
 - [深入了解診斷記錄](monitoring-overview-of-diagnostic-logs.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

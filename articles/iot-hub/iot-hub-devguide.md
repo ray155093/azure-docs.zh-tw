@@ -643,4 +643,4 @@ SKU 也會決定 IoT 中樞在所有作業上強制執行的節流限制。
 [lnk-portal]: iot-hub-manage-through-portal.md
 [lnk-securing]: iot-hub-security-ground-up.md
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -51,4 +51,4 @@
 
 - **使用熟悉的管理工具：**您可以使用 Active Directory 管理中心或 PowerShell 的 Active Directory 等熟悉的 Windows Server Active Directory 管理工具，來管理 Azure AD 網域服務所提供的網域。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->

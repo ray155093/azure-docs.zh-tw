@@ -141,4 +141,4 @@ Message: The maximum entity size has been reached or exceeded for Topic: ‘xxx-
 - [服務匯流排基本概念](service-bus-fundamentals-hybrid-solutions.md)
 - [服務匯流排架構](service-bus-architecture.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!----HONumber=AcomDC_0907_2016-->
