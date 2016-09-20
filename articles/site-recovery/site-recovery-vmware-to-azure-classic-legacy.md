@@ -75,7 +75,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 	![新增帳戶](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration3.png)
 
-	> [AZURE.NOTE] [Migration of storage accounts]對於用於部署 Site Recovery 的儲存體帳戶，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶(../resource-group-move-resources.md)。
+	> [AZURE.NOTE] [Migration of storage accounts](../resource-group-move-resources.md) 對於用於部署 Site Recovery 的儲存體帳戶，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶。
 
 10. 在 [指定帳戶] 中，選取您為處理伺服器建立來存取機器以推送新行動服務版本的帳戶。
 
@@ -732,7 +732,7 @@ Site Recovery 元件會不定時更新。當有新的更新可用時，您應該
 1. 在機器具有**受保護**狀態之後，您可以設定其容錯移轉屬性。在保護群組詳細資料中，選取機器並開啟 [設定] 索引標籤。
 2. 在容錯移轉和 Azure 虛擬機器大小調整之後，您可以修改要提供給 Azure 中機器的名稱。您也可以選取機器要在容錯移轉之後要連結的 Azure 網路。
 
-	> [AZURE.NOTE] [Migration of networks]對於用於部署 Site Recovery 的網路，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶(../resource-group-move-resources.md)。
+	> [AZURE.NOTE] [Migration of networks](../resource-group-move-resources.md) 對於用於部署 Site Recovery 的網路，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶。
 
 	![設定虛擬機器屬性](./media/site-recovery-vmware-to-azure-classic-legacy/vm-props.png)
 
@@ -826,4 +826,4 @@ The information in Section B is regarding Third Party Code components that are b
 
 The complete file may be found on the [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428).Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
 
-<!---HONumber=AcomDC_0831_2016-->
+<!----HONumber=AcomDC_0831_2016-->

@@ -246,7 +246,7 @@ Azure Active Directory 驗證需要建立資料庫使用者做為自主資料庫
 
 如果您已使用 Azure Active Directory 認證從同盟網域登入 Windows，請使用這個方法。
 
-1. 啟動 Management Studio 或 Data Tools，並在 [連接到伺服器] (或 [連接到 Database Engine]) 對話方塊的 [驗證] 方塊中，選取 [Active Directory 整合式驗證]。不需要密碼或沒有密碼可輸入，因為現有的認證將會在連接時出現。
+1. 啟動 Management Studio 或 Data Tools，並在 [連接到伺服器]\(或 [連接到 Database Engine]) 對話方塊的 [驗證] 方塊中，選取 [Active Directory 整合式驗證]。不需要密碼或沒有密碼可輸入，因為現有的認證將會在連接時出現。
 
 	![選取 AD 整合式驗證][11]
 
@@ -388,4 +388,4 @@ sqlcmd -S Target_DB_or_DW.testsrv.database.windows.net -U bob@contoso.com -P MyA
 [12]: ./media/sql-database-aad-authentication/12connect-using-pw-auth.png
 [13]: ./media/sql-database-aad-authentication/13connect-to-db.png
 
-<!---HONumber=AcomDC_0831_2016-->
+<!-----HONumber=AcomDC_0831_2016-->
