@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/18/2016" 
+	ms.date="08/26/2016" 
 	ms.author="luisca"/>
 
 #設定和使用 Machine Learning Recommendations API 的常見問題集
@@ -21,9 +21,13 @@
 
 **什麼是 RECOMMENDATIONS？**
 
+> 這是資料市場中舊建議 API 的文件，將於 2016 年 12 月 31 日作廢。您現在應該繼續使用[建議 API Cognitive Service](https://www.microsoft.com/cognitive-services/zh-TW/recommendations-api)。
+
+
+
 對於依賴建議對客戶進行交叉銷售和向上銷售產品和服務的組織和企業，Azure Machine Learning 的 RECOMMENDATIONS 可提供自助建議引擎。它是協同篩選的實作，其使用矩陣分解作為核心演算法。應用程式開發人員可以使用 REST API 來存取 RECOMMENDATIONS。
 
-[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
 
 **我可以用 RECOMMENDATIONS 來做什麼？**
 
@@ -55,16 +59,16 @@ Recommendations 是一項以訂用帳戶為基礎的服務。收費是根據每�
 
 **Recommendations 何時會計費？**
 
-付費的訂閱就是任何按月計價的訂閱。當您購買付費的訂用帳戶時，我們會立即向您收取第一個月的使用費用。您需支付訂用帳戶頁面上提供項目旁邊顯示的相關金額 (加上適用稅額)。這筆每月費用會每個月在與您原先購買相同的行事曆日期收取，直到您取消訂閱為止。
+付費的訂用帳戶就是任何按月計價的訂用帳戶。當您購買付費的訂用帳戶時，我們會立即向您收取第一個月的使用費用。您需支付訂用帳戶頁面上提供項目旁邊顯示的相關金額 (加上適用稅額)。這筆每月費用會每個月在與您原先購買相同的行事曆日期收取，直到您取消訂用帳戶為止。
 
 **如何升級至較高層的服務？**
 
 您可以在 Microsoft Azure Marketplace 上透過[提供項目頁面](https://datamarket.azure.com/dataset/amla/recommendations)頁面來購買或更新您的訂用帳戶。
 
-當您升級訂閱時：
+當您升級訂用帳戶時：
 
-* 舊訂用帳戶剩餘的交易不會加至新的訂用帳戶。 
-* 即使您的舊訂閱有未使用的交易，仍需支付新訂閱的完整價格。
+* 舊訂用帳戶剩餘的交易不會加至新的訂用帳戶。
+* 即使您的舊訂用帳戶有未使用的交易，仍需支付新訂用帳戶的完整價格。
 
 升級訂用帳戶的程序：
 
@@ -77,11 +81,11 @@ Recommendations 是一項以訂用帳戶為基礎的服務。收費是根據每�
 
 **我的 Recommendations 訂用帳戶何時會結束？**
 
-您的訂閱會在您取消時結束。如果您想要取消您的訂用帳戶，請參閱下列指示。
+您的訂用帳戶會在您取消時結束。如果您想要取消您的訂用帳戶，請參閱下列指示。
 
 **如何取消我的 Recommendations 訂用帳戶？**
 
-若要取消您的訂用帳戶，請使用下列步驟。如果您目前的訂閱是付費的訂閱，則您的訂閱會持續有效，直到目前的計費期間結束為止。如果您需要取消立即生效，請透過 [Microsoft 支援](https://support.microsoft.com/oas/default.aspx?gprid=17024&st=1&wfxredirect=1&sd=gn)與我們連絡。
+若要取消您的訂用帳戶，請使用下列步驟。如果您目前的訂用帳戶是付費的訂用帳戶，則您的訂用帳戶會持續有效，直到目前的計費期間結束為止。如果您需要取消立即生效，請透過 [Microsoft 支援](https://support.microsoft.com/oas/default.aspx?gprid=17024&st=1&wfxredirect=1&sd=gn)與我們連絡。
 
 **附註**：如果您在計費期間結束前取消，或對於計費期間內未使用的交易，均不會提供退款。
 
@@ -121,7 +125,7 @@ API 文件是 [Azure Machine Learning Recommendations - 快速入門指南](mach
 
 **我可以有多大的資料集？**
 
-每個資料集可包含多達 100000 個目錄項目以及高達 2048 MB 的使用資料。此外，一個訂閱最多可包含 10 個資料集 (模型)。
+每個資料集可包含多達 100000 個目錄項目以及高達 2048 MB 的使用資料。此外，一個訂用帳戶最多可包含 10 個資料集 (模型)。
 
 **哪裡可以取得 Recommendations 的技術支援？**
 
@@ -135,4 +139,4 @@ API 文件是 [Azure Machine Learning Recommendations - 快速入門指南](mach
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!----HONumber=AcomDC_0907_2016-->

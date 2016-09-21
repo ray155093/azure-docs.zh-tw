@@ -4,7 +4,7 @@
    services="data-lake-analytics"
    documentationCenter=""
    authors="edmacauley"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"/>
 
 <tags
@@ -132,8 +132,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
     - **展開 *資料行**
 
-        按一下 * 的右邊，您應該會看到 * 下方的藍色底線。將滑鼠游標移到藍色底線上，然後按一下向下箭號。  
-    	![展開 Data Lake Visual Studio 工具 *](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-expand-asterisk.png)
+        按一下 * 的右邊，您應該會看到 * 下方的藍色底線。將滑鼠游標移到藍色底線上，然後按一下向下箭號。![展開 Data Lake Visual Studio 工具 *](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-expand-asterisk.png)
 
         按一下 [展開資料行]，然後工具將會用資料行名稱取代 *。
 
@@ -363,4 +362,4 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
     Get-AzureRmDataLakeStoreChildItem -Account $dataLakeStoreName -Path  "/Samples/Data/"
     #endregion
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -19,13 +19,13 @@
 # 使用 ASP.NET 來註冊目前使用者以取得推播通知
 
 > [AZURE.SELECTOR]
-- [iOS](notification-hubs-ios-aspnet-register-user-push-notifications.md)
+- [iOS](notification-hubs-ios-aspnet-register-user-from-backend-to-push-notification.md)
 
 
 
-##概觀
+##Overview
 
-本主題將說明以 ASP.NET Web API 執行註冊時，應如何向 Azure 通知中心要求推播通知註冊。這是[使用通知中心來通知使用者]教學課程的延伸主題。您必須已完成該教學課程中的必要步驟，才能建立已驗證的行動服務。如需通知使用者案例的詳細資訊，請參閱[使用通知中心來通知使用者]。
+本主題將說明以 ASP.NET Web API 執行註冊時，應如何向 Azure 通知中樞要求推播通知註冊。這是[使用通知中樞來通知使用者]教學課程的延伸主題。您必須已完成該教學課程中的必要步驟，才能建立已驗證的行動服務。如需通知使用者案例的詳細資訊，請參閱[使用通知中心來通知使用者]。
 
 ##更新應用程式  
 
@@ -233,7 +233,8 @@
 
 <!-- URLs. -->
 [使用通知中心來通知使用者]: /manage/services/notification-hubs/notify-users-aspnet
+[使用通知中樞來通知使用者]: /manage/services/notification-hubs/notify-users-aspnet
 
 [開始使用通知中心]: /manage/services/notification-hubs/get-started-notification-hubs-ios
 
-<!---HONumber=AcomDC_0706_2016-->
+<!----HONumber=AcomDC_0907_2016-->

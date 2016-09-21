@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="andkjell"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -28,7 +28,7 @@ Azure AD Connect 同步處理會使用安裝精靈所建立的服務帳戶執行
 - 它**不支援**變更或重設服務帳戶的密碼。這麼做會損毀加密金鑰，而服務無法存取資料庫且無法啟動。
 
 ## 排程器的變更
-從組建 1.1 (2016 年 2 月) 的版本開始，您可以將[排程器](active-directory-aadconnectsync-feature-scheduler.md)的同步處理循環設定為預設值 30 分鐘以外的值。
+從組建 1.1 (2016 年 2 月) 的版本開始，您可以將[排程器](active-directory-aadconnectsync-feature-scheduler.md)的同步處理週期設定為預設值 30 分鐘以外的值。
 
 ## 同步處理規則的變更
 安裝精靈所提供的組態應該適用於最常見的案例。萬一您需要對組態進行變更，則您必須遵循這些規則，以便仍能具備支援的組態。
@@ -58,8 +58,10 @@ Azure AD Connect 同步處理會使用安裝精靈所建立的服務帳戶執行
 在這個複製的規則上，對範圍、聯結和轉換進行任何必要變更。
 
 ## 後續步驟
-深入了解 [Azure AD Connect 同步](active-directory-aadconnectsync-whatis.md)組態。
 
-深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
+**概觀主題**
 
-<!---HONumber=AcomDC_0824_2016-->
+- [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
+- [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
+
+<!----HONumber=AcomDC_0907_2016-->

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="允許使用入口網站從外部存取 VM | Microsoft Azure"
-   description="了解如何開啟連接埠 / 使用「Azure 入口網站」中的 Resource Manager 部署模型來建立允許存取您 VM 的端點"
+   pageTitle="使用 Azure 入口網站對 VM 開啟連接埠 |Microsoft Azure"
+   description="了解如何在 Azure 入口網站中使用 Resource Manager 部署模型對 Windows VM 開啟連接埠 / 建立端點"
    services="virtual-machines-windows"
    documentationCenter=""
    authors="iainfoulds"
@@ -16,7 +16,7 @@
    ms.date="08/08/2016"
    ms.author="iainfou"/>
 
-# 允許使用 Azure 入口網站從外部存取您的 VM
+# 使用 Azure 入口網站對 Azure 中的 VM 開啟連接埠
 [AZURE.INCLUDE [virtual-machines-common-nsg-quickstart](../../includes/virtual-machines-common-nsg-quickstart.md)]
 
 ## 快速命令
@@ -34,7 +34,7 @@
 
 ![新增輸入規則](./media/virtual-machines-windows-nsg-quickstart-portal/add-inbound-rule.png)
 
-提供新規則的名稱。請注意，預設已經輸入連接埠 80。這是您將其他規則新增到「網路安全性群組」時，用來變更來源、通訊協定及目的地的地方︰
+提供新規則的名稱。預設已輸入連接埠 80。此刀鋒視窗是您將其他規則新增到「網路安全性群組」時，用來變更來源、通訊協定及目的地的地方：
 
 ![建立輸入規則](./media/virtual-machines-windows-nsg-quickstart-portal/create-inbound-rule.png)
 
@@ -46,7 +46,7 @@
 
 ![將網路安全性群組與虛擬網路功能建立關聯](./media/virtual-machines-windows-nsg-quickstart-portal/select-vnet-subnet.png)
 
-您現在已建立「網路安全性群組」、已建立允許連接埠 80 上流量的輸入規則，並且已將它與子網路建立關聯。透過連接埠 80 將可連線到您連接到子網路的所有 VM。
+您現在已建立「網路安全性群組」、已建立允許連接埠 80 上流量的輸入規則，並且已將它與子網路建立關聯。透過連接埠 80 可連線到您連接到該子網路的所有 VM。
 
 
 ## 網路安全性群組的詳細資訊
@@ -54,7 +54,7 @@
 
 您可以在 Azure Resource Manager 範本中定義網路安全性群組和 ACL 規則。深入了解[使用範本建立網路安全性群組](../virtual-network/virtual-networks-create-nsg-arm-template.md)。
 
-如果您需要使用連接埠轉送，以將唯一的外部連接埠對應至您 VM 上的內部連接埠，您將需要使用負載平衡器和「網路位址轉譯」(NAT) 規則。例如，您可能會想要對外公開 TCP 連接埠 8080，然後讓流量導向到 VM 上的 TCP 連接埠 80。您可以深入了解[建立網際網路面向的負載平衡器](../load-balancer/load-balancer-get-started-internet-arm-ps.md)。
+如果您需要使用連接埠轉送來將唯一的外部連接埠對應至您 VM 上的內部連接埠，請使用負載平衡器和「網路位址轉譯」(NAT) 規則。例如，您可能會想要對外公開 TCP 連接埠 8080，然後讓流量導向到 VM 上的 TCP 連接埠 80。您可以深入了解[建立網際網路面向的負載平衡器](../load-balancer/load-balancer-get-started-internet-arm-ps.md)。
 
 ## 後續步驟
 在此範例中，您建立了簡單的規則來允許 HTTP 流量。您可以從下列文章中，找到有關建立更詳細環境的資訊︰
@@ -63,4 +63,4 @@
 - [什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)
 - [負載平衡器的 Azure Resource Manager 概觀](../load-balancer/load-balancer-arm.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!----HONumber=AcomDC_0907_2016-->

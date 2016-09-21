@@ -23,7 +23,7 @@
 ## 常見問題集
 
 -	[如何向 API 管理小組詢問問題？](#how-can-i-ask-a-question-to-the-api-management-team)
--	[功能「預覽中」是什麼意思？](#what-does-it-mean-if-a-feature-is-in-preview)
+-	[功能「預覽中」是什麼意思？](#what-does-it-mean-when-a-feature-is-in-preview)
 -	[保護 API 管理閘道和後端服務之間連線安全的支援選項有哪些？](#what-are-the-supported-options-to-secure-the-connection-between-the-api-management-gateway-and-my-backend-services)
 -	[我要如何將 API 管理執行個體複製到新的執行個體？](#how-can-i-copy-an-api-management-instance-to-a-new-instance)
 -	[我可以透過程式設計方式管理我的 API 管理執行個體嗎？](#can-i-manage-my-api-management-instance-programmatically)
@@ -39,6 +39,7 @@
 -	[是否可以對後端使用自我簽署 SSL 憑證？](#can-i-use-a-self-signed-ssl-certificate-for-a-backend)
 -	[為什麼我在嘗試複製 GIT 儲存機制時發生驗證失敗？](#why-am-i-getting-authentication-failure-when-i-try-to-clone-the-git-repository)
 -	[API 管理是否能搭配 Express Route 運作？](#does-api-management-work-with-express-route)
+-	[我可以將 API 管理執行個體從某一個訂用帳戶移至另一個嗎？](#can-i-move-api-management-instance-from-one-subscription-to-another)
 
 
 ### 如何向 API 管理小組詢問問題？
@@ -57,7 +58,7 @@
 
 1. 使用 HTTP 基本驗證。如需詳細資訊，請參閱[設定 API 設定](api-management-howto-create-apis.md#configure-api-settings)。
 2. 使用 SSL 相互驗證，如[如何使用 Azure API 管理中的用戶端憑證驗證保護後端服務](api-management-howto-mutual-certificates.md)中所述。
-3. 在您的後端服務上使用 IP 允許清單。如果您有標準或高階層 API 管理執行個體，閘道的 IP 位址會保持不變，而您可以設定您的允許清單，以允許此 IP 位址。您可以在 Azure 傳統入口網站中的**儀表板**上擷取API 管理執行個體的 IP 位址。
+3. 在您的後端服務上使用 IP 允許清單。如果您有標準或高階層 API 管理執行個體，閘道的 IP 位址會保持不變，而您可以設定您的允許清單來允許此 IP 位址。您可以在 Azure 傳統入口網站中的**儀表板**上擷取API 管理執行個體的 IP 位址。
 4. 您可以將您的 API 管理執行個體連線至 Azure 虛擬網路 (傳統)。如需詳細資訊，請參閱[如何在 Azure API 管理中設定 VPN 連線](api-management-howto-setup-vpn.md)。
 
 ### 我要如何將 API 管理執行個體複製到新的執行個體？
@@ -74,7 +75,7 @@
 
 ### 我要如何新增使用者至系統管理員群組？
 
-透過下列步驟即可實現︰
+遵循下列步驟即可實現︰
 
 1. 登入新的 [Azure 入口網站](https://portal.azure.com)
 2. 瀏覽至包含所需 API 管理執行個體的資源群組
@@ -84,8 +85,8 @@
 
 1. 使用 `Login-AzureRmAccount` Cmdlet 來登入
 2. 使用 `Set-AzureRmContext -SubscriptionID <subscriptionGUID>` 將內容設定為包含服務的訂用帳戶
-3. 使用 `Get-AzureRmApiManagementSsoToken -ResourceGroupName <rgName> -Name <serviceName>` 取得 SSO 權杖
-4. 在瀏覽器中複製貼上 URL，且使用者應該要有系統管理員入口網站存取權
+3. 使用 `Get-AzureRmApiManagementSsoToken -ResourceGroupName <rgName> -Name <serviceName>`單一登入 URL
+4. 使用 URL 來存取系統管理入口網站
 
 
 ### 為什麼原則編輯器中我想要加入的原則沒有啟用？
@@ -101,16 +102,16 @@
 
 ### 如何設定多個 API 環境，例如沙箱和生產環境？
 
-此時，您的選項如下︰
+您目前的選項如下：
 
 -	您可以在同一個租用戶上裝載不同 API
 -	您可以在不同租用戶上裝載相同的 API
 
 ### API 管理中支援 SOAP 嗎？
 
-目前，我們對於 Azure API 管理內的 SOAP 提供有限的支援，們目前正在調查此功能。我們很有興趣從您的客戶得到任何範例 WSDL，以及他們所需功能的一些描述，這可以協助我們形成我們的想法。請使用[如何向 API 管理團隊詢問問題？](#how-can-i-ask-a-question-to-the-api-management-team)中參考的連絡人資訊與我們連絡
+目前，我們對於 Azure API 管理內的 SOAP 提供有限的支援。我們目前正在調查此功能。我們很樂意取得您的 WSDL 文件的範例，因為這可協助我們驗證我們的想法。請使用[如何向 API 管理團隊詢問問題？](#how-can-i-ask-a-question-to-the-api-management-team)中參考的連絡人資訊與我們連絡
 
-如果您需要讓它運作，我們有一些社群中有些建議的解決方案，請參閱 [Azure API 管理 - APIM，透過 HTTP 使用 SOAP WCF 服務](http://mostlydotnetdev.blogspot.com/2015/03/azure-api-management-apim-consuming.html)。
+如果您需要讓它運作，我們有一些社群成員建議了一些解決方案，請參閱 [Azure API 管理 - APIM，透過 HTTP 使用 SOAP WCF 服務](http://mostlydotnetdev.blogspot.com/2015/03/azure-api-management-apim-consuming.html)。
 
 以此方式實作解決方案需要對原則進行一些手動設定，不支援 WSDL 匯入/匯出，且使用者必須形成使用開發人員入口網站中的測試主控台所做的要求主體。
 
@@ -118,7 +119,7 @@
 
 在標準和進階層中，API 管理租用戶的公用 IP 位址 (VIP) 在租用戶的存留期內是靜態的，但有下面所列的幾個例外狀況。請注意，針對多重區域部署設定的進階層租用戶，每個區域會被指派一個公用 IP 位址。
 
-在下列情況下，將變更 IP 位址︰
+在下列情況下，IP 位址會變更︰
 
 -	服務遭到刪除並重新建立
 -	服務訂用帳戶遭到停用 (例如因為未付款) 並恢復
@@ -155,4 +156,8 @@ API 管理使用[效能流量路由方法](../traffic-manager/traffic-manager-ro
 
 可以！
 
-<!---HONumber=AcomDC_0831_2016-->
+### 我可以將 API 管理執行個體從某一個訂用帳戶移至另一個嗎？
+
+可以！ 請遵循[本文](../resource-group-move-resources.md)的指示：
+
+<!----HONumber=AcomDC_0907_2016-->

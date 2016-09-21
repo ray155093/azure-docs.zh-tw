@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/27/2016"
+	ms.date="09/02/2016"
 	ms.author="jgao"/>
 
 #在 HDInsight 上將 Sqoop 與 Hadoop 搭配使用
@@ -44,14 +44,14 @@ HDInsight 叢集附有某些範例資料。您將用到以下兩個範例：
 
     | 欄位 | 資料類型 |
     | ----- | --------- |
-    | clientid | 字串 |
-    | querytime | 字串 |
-    | market | 字串 |
-    | deviceplatform | 字串 |
-    | devicemake | 字串 |
-    | devicemodel | 字串 |
-    | state | 字串 |
-    | country | 字串 |
+    | clientid | string |
+    | querytime | string |
+    | market | string |
+    | deviceplatform | string |
+    | devicemake | string |
+    | devicemodel | string |
+    | state | string |
+    | country | string |
     | querydwelltime | double |
     | sessionid | bigint |
     | sessionpagevieworder | bigint |
@@ -62,15 +62,15 @@ HDInsight 叢集附有某些範例資料。您將用到以下兩個範例：
 
 ## 建立叢集與 SQL Database
 
-本節說明如何建立叢集和 SQL 資料庫結構描述，以使用 Azure 入口網站和 ARM 範本來執行本教學課程。如果您偏好使用 Azure PowerShell，請參閱[附錄 A](#appendix-a---a-powershell-sample)。
+本節說明如何建立叢集和 SQL 資料庫結構描述，以使用 Azure 入口網站和 Azure Resource Manager 範本來執行本教學課程。如果您偏好使用 Azure PowerShell，請參閱[附錄 A](#appendix-a---a-powershell-sample)。
 
-1. 按一下以下影像，以在 Azure 入口網站中開啟 ARM 範本。
+1. 按一下以下影像，以在 Azure 入口網站中開啟 Resource Manager 範本。
 
     <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fusesqoop%2Fcreate-linux-based-hadoop-cluster-in-hdinsight-and-sql-database.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
     
-    ARM 範本位於公用 Blob 容器 *https://hditutorialdata.blob.core.windows.net/usesqoop/create-linux-based-hadoop-cluster-in-hdinsight-and-sql-database.json* 中。
+    Resource Manager 範本位於公用 Blob 容器中，*https://hditutorialdata.blob.core.windows.net/usesqoop/create-linux-based-hadoop-cluster-in-hdinsight-and-sql-database.json*。
     
-    ARM 範本會呼叫 Bacpac 封裝，以將資料表結構描述部署到 SQL Database。Bacpac 套件也位於公用 Blob 容器 https://hditutorialdata.blob.core.windows.net/usesqoop/SqoopTutorial-2016-2-23-11-2.bacpac 中。如果您想要針對 Bacpac 檔案使用私用容器，請在範本中使用下列值︰
+    Resource Manager 範本會呼叫 Bacpac 封裝，以將資料表結構描述部署到 SQL Database。Bacpac 套件也位於公用 Blob 容器 https://hditutorialdata.blob.core.windows.net/usesqoop/SqoopTutorial-2016-2-23-11-2.bacpac 中。如果您想要針對 Bacpac 檔案使用私用容器，請在範本中使用下列值︰
     
         "storageKeyType": "Primary",
         "storageKey": "<TheAzureStorageAccountKey>",
@@ -78,7 +78,7 @@ HDInsight 叢集附有某些範例資料。您將用到以下兩個範例：
 2. 從 [參數] 刀鋒視窗，輸入下列項目：
 
     - **ClusterName**：輸入您將建立的 Hadoop 叢集的名稱。
-    - **叢集登入名稱和密碼**：預設登入名稱是 admin。
+    - 叢集登入名稱和密碼：預設登入名稱是 admin。
     - **SSH 使用者名稱和密碼**。
     - **SQL Database 伺服器登入名稱和密碼**。
 
@@ -629,4 +629,4 @@ HDInsight 可以使用各種方法執行 Sqoop 工作。請使用下表決定適
 
 [sqoop-user-guide-1.4.4]: https://sqoop.apache.org/docs/1.4.4/SqoopUserGuide.html
 
-<!---HONumber=AcomDC_0720_2016-->
+<!----HONumber=AcomDC_0907_2016-->

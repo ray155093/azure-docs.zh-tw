@@ -154,7 +154,7 @@ Windows 個人裝置如果在目錄中被 Microsoft Intune 或與 Azure AD 整�
 選取 [適用於瀏覽器與原生應用程式] 會在下列項目存取應用程式時強制執行原則︰
 
 - 瀏覽器 (例如 Windows 10 中的 Edge、iOS 中的 Safari 等)
-- 在任何平台中使用「Active Directory 應用程式庫」(ADAL) 或在 Windows 10 中使用「Web 帳戶管理員」(WAM) API 的應用程式
+- 在任何平台中使用 Active Directory 驗證程式庫 (ADAL) 或在 Windows 10 中使用 Web 帳戶管理員 (WAM) API 的應用程式
 
 >[AZURE.NOTE] 如需有關瀏覽器支援及其他針對存取裝置型受 CA 保護應用程式之使用者的考量，請參閱 [Azure Active Directory 條件式存取](active-directory-conditional-access.md)。
 
@@ -173,4 +173,4 @@ Windows 個人裝置如果在目錄中被 Microsoft Intune 或與 Azure AD 整�
 
 - [Azure Active Directory 條件式存取](active-directory-conditional-access.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!----HONumber=AcomDC_0907_2016-->

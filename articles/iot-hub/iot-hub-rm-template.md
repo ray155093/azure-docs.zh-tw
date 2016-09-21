@@ -75,7 +75,7 @@
 
 1. 在 [方案總管] 中，以滑鼠右鍵按一下專案，按一下 [加入]，然後按一下 [新增項目]。新增名為 **template.json** 的 JSON 檔案，並將其加入您的專案中。
 
-2. 以下列資源定義取代 **template.json** 的內容，為**美國東部**區域加入新的標準 IoT 中樞：
+2. 使用下列資源定義來取代 **template.json** 的內容，為「美國東部」區域新增標準 IoT 中樞 (如需目前支援「IoT 中樞」的區域清單，請參閱 [Azure 狀態][lnk-status])：
 
     ```
     {
@@ -220,6 +220,7 @@
 <!-- Links -->
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/
 [lnk-azure-portal]: https://portal.azure.com/
+[lnk-status]: https://azure.microsoft.com/status/
 [lnk-powershell-install]: ../powershell-install-configure.md
 [lnk-rest-api]: https://msdn.microsoft.com/library/mt589014.aspx
 [lnk-azure-rm-overview]: ../resource-group-overview.md
@@ -233,4 +234,4 @@
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0831_2016-->
+<!----HONumber=AcomDC_0907_2016-->

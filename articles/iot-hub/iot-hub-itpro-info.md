@@ -26,10 +26,10 @@
 
 | 通訊協定 | 連接埠 |
 | -------- | ------- |
-| HTTPS | 443 |
+| MQTT | 8883 |
 | AMQP | 5671 |
 | 透過 WebSockets 的 AMQP | 443 |
-| MQTT | 8883 |
+| HTTPS | 443 |
 | LWM2M (裝置管理) | 5684 |
 
 當您在 Azure 區域中建立 IoT 中樞後，中樞將在該中樞的存留期間保留相同的 IP 位址。不過，為了維護服務品質，如果 Microsoft 將 IoT 中樞移至不同的縮放單位，則它會獲派新的 IP 位址。
@@ -59,4 +59,4 @@ IoT 中樞內對其他管理端點的存取權，也是透過一組權限來控�
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-tokens]: iot-hub-sas-tokens.md
 
-<!---HONumber=AcomDC_0824_2016-->
+<!----HONumber=AcomDC_0907_2016-->

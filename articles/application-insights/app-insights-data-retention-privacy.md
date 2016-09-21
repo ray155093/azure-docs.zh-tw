@@ -26,7 +26,7 @@
 
 * 「現成可用」的標準遙測模組不太可能將敏感資料傳送至服務。遙測會考量負載、效能和使用度量、例外狀況報告和其他診斷資料。診斷報告中顯示的主要使用者資料的 URL；但是，您的應用程式在任何情況下都應該不會將敏感資料以純文字形式放在 URL 中。
 * 您可以撰寫會傳送其他自訂遙測的程式碼，以利診斷與監視使用情形。(此擴充性是 Application Insights 的絕佳功能之一)。 在撰寫使程式碼時有可能會不慎包含個人資料和其他敏感資料。如果您的應用程式會使用這類資料，您應對您撰寫的程式碼採用嚴密的檢閱程序。
-* 在開發及測試您的應用程式時，可以輕易地檢查由 SDK 傳送的內容。資料會出現在 IDE 和瀏覽器的偵錯輸出視窗中。 
+* 在開發及測試您的應用程式時，可以輕易地檢查由 SDK 傳送的內容。資料會出現在 IDE 和瀏覽器的偵錯輸出視窗中。
 * 資料會保存在美國的 [Microsoft Azure](http://azure.com) 伺服器中。(但是您的 App 可以在任何地方執行)。 Azure 有[嚴密的安全性程序，並符合各種法規標準](https://azure.microsoft.com/support/trust-center/)。只有您和您指定的小組可以存取您的資料。Microsoft 工作人員只有在您知情的特定有限情況下，才具有其限定存取權。它在傳輸時會加密，但在伺服器中不會加密。
 
 本文的其餘部分將詳細說明上述問題的答案。本文設計為自助式，以便您可以將其顯示給不屬於您直屬小組的同事。
@@ -67,7 +67,7 @@ Application Insights SDK 可用於多種應用程式類型：裝載於您自己�
 * [網頁](app-insights-javascript.md) - 頁面、使用者和工作階段計數。頁面載入時間。例外狀況。Ajax 呼叫。
 * 效能計數器 - 記憶體、CPU、IO、網路佔用量。
 * 用戶端和伺服器內容 - OS、地區設定、裝置類型、瀏覽器和螢幕解析度。
-* [例外狀況](app-insights-asp-net-exceptions.md)和當機 - **堆疊傾印**、組建識別碼、CPU 類型。 
+* [例外狀況](app-insights-asp-net-exceptions.md)和當機 - **堆疊傾印**、組建識別碼、CPU 類型。
 * [相依性](app-insights-asp-net-dependencies.md) - 對外部服務的呼叫，例如 REST、SQL、AJAX。URI 或連接字串、持續時間、成功、命令。
 * [可用性測試](app-insights-monitor-web-app-availability.md) - 測試的持續時間、步驟、回應。
 * [追蹤記錄檔](app-insights-search-diagnostic-logs.md)和[自訂遙測](app-insights-api-custom-events-metrics.md) - **任何以程式碼撰寫到記錄檔或遙測中的項目**。
@@ -112,11 +112,11 @@ Microsoft 只會使用這項資料，以將服務提供給您。
 
 ## 資料存放在哪裡？ 
 
-* 在美國。 
+* 在美國。
 
 #### 可以儲存在其他某個地方 (例如歐洲) 嗎？ 
 
-* 目前尚未。 
+* 目前尚未。
 
 #### 這表示我的 App 必須裝載於美國嗎？
 
@@ -196,7 +196,6 @@ Application Insights 不會篩選或刪除資料。您應該適當地管理資�
 [在 IIS 上安裝狀態監視器][redfield]|相依性<br/>ServerContext<br/>推斷<br/>效能計數器
 [將 Application Insights SDK 新增至 Java Web 應用程式][java]|ServerContext<br/>推斷<br/>要求<br/>工作階段<br/>使用者
 [將 JavaScript SDK 新增至網頁][client]|ClientContext <br/>推斷<br/>頁面<br/>ClientPerf<br/>Ajax
-[將 SDK 新增至 Windows 市集應用程式][windows]|DeviceContext<br/>使用者<br/>損毀資料
 [定義預設屬性][apiproperties]|所有標準和自訂事件上的**屬性**
 [呼叫 TrackMetric][api]|數值<br/>**屬性**
 [呼叫追蹤*][api]|事件名稱<br/>**屬性**
@@ -235,7 +234,7 @@ SDK 診斷 | 追蹤訊息或例外狀況
 您可以[編輯 ApplicationInsights.config 來關閉某些資料][config]
 
 
-## 感謝
+## 學分
 
 此產品包含由 MaxMind 建立的 GeoLite2 資料，可從 [http://www.maxmind.com](http://www.maxmind.com) 取得。
 
@@ -264,8 +263,7 @@ SDK 診斷 | 追蹤訊息或例外狀況
 [pricing]: http://azure.microsoft.com/pricing/details/application-insights/
 [redfield]: app-insights-monitor-performance-live-website-now.md
 [start]: app-insights-overview.md
-[windows]: app-insights-windows-get-started.md
 
  
 
-<!---HONumber=AcomDC_0525_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="05/27/2016"
+   ms.date="09/02/2016"
    ms.author="jgao"/>
 
 # 使用 Azure CLI 在 HDInsight 中建立 Windows 型 Hadoop 叢集
@@ -92,7 +92,7 @@
 
 - **(選擇性) 預設 Blob 容器**：如果容器不存在，**azure hdinsight cluster create** 命令會建立容器。如果您選擇預先建立容器，您可以使用下列命令：
 
-	azure storage container create --account-name "<Storage Account Name>" --account-key <Storage Account Key> [ContainerName]
+	azure storage container create --account-name "<儲存體帳戶名稱>" --account-key <儲存體帳戶金鑰> [ContainerName]
 
 在儲存體帳戶就緒後，您即可建立叢集：
 
@@ -139,4 +139,4 @@
 - [使用 Azure CLI 管理 HDInsight 中的 Hadoop 叢集](hdinsight-administer-use-command-line.md)
 - [使用適用於 Mac、Linux 和 Windows 的 Azure CLI 搭配 Azure 服務管理](../virtual-machines-command-line-tools.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!----HONumber=AcomDC_0907_2016-->

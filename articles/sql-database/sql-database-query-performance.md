@@ -22,10 +22,7 @@
 管理和調整關聯式資料庫效能是一項具挑戰性的工作，需要投入大量的專業知識和時間。「查詢效能深入解析」提供了下列各項，讓您得以花費較少時間來對資料庫效能進行疑難排解：
 
 - 更深入的資料庫資源 (DTU) 取用分析。
-- 排名最前面的 CPU 取用查詢，進行微調有可能會改善效能。
-  - CPU
-  - 持續時間
-  - 執行計數
+- 依 CPU/持續時間/執行計數排名最前面的查詢，進行微調有可能會改善效能。
 - 能夠向下鑽研查詢的詳細資料，以檢視其文字和資源使用量的歷程記錄。
 - 效能微調註解，可顯示 [SQL Azure Database 建議程式](sql-database-advisor.md)所執行的動作
 
@@ -244,4 +241,4 @@
 [8]: ./media/sql-database-query-performance/qds-off.png
 [9]: ./media/sql-database-query-performance/qds-button.png
 
-<!---HONumber=AcomDC_0817_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -15,7 +15,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/16/2016"
+   ms.date="09/13/2016"
    ms.author="nepeters"/>
 
 # 透過 REST API 進行容器管理
@@ -74,8 +74,6 @@ curl localhost/marathon/v2/apps
 若要部署 Docker 格式化容器，請建立您自己的 JSON 檔案，或使用 [Azure 容器服務示範](https://raw.githubusercontent.com/rgardler/AzureDevTestDeploy/master/marathon/marathon.json)所提供的範例。將它儲存在可存取的位置。接下來，若要部署容器，請執行下列命令。指定 JSON 檔案的名稱。
 
 ```
-# deploy container
-
 curl -X POST http://localhost/marathon/v2/apps -d @marathon.json -H "Content-type: application/json"
 ```
 
@@ -104,8 +102,6 @@ curl localhost/marathon/v2/apps
 >[AZURE.NOTE] URI 將是 http://localhost/marathon/v2/apps/，加上要調整的應用程式的識別碼。如果您是使用這裡提供的 Nginx 範例，則 URI 會是 http://localhost/marathon/v2/apps/nginx。
 
 ```json
-# scale container
-
 curl http://localhost/marathon/v2/apps/nginx -H "Content-type: application/json" -X PUT -d @scale.json
 ```
 
@@ -149,8 +145,6 @@ Invoke-WebRequest -Uri http://localhost/mesos/master/slaves
 建立您自己的 JSON 檔案，或使用 [Azure 容器服務示範](https://raw.githubusercontent.com/rgardler/AzureDevTestDeploy/master/marathon/marathon.json)所提供的範例。將它儲存在可存取的位置。接下來，若要部署容器，請執行下列命令。指定 JSON 檔案的名稱。
 
 ```powershell
-# deploy container
-
 Invoke-WebRequest -Method Post -Uri http://localhost/marathon/v2/apps -ContentType application/json -InFile 'c:\marathon.json'
 ```
 
@@ -165,8 +159,6 @@ Invoke-WebRequest -Method Post -Uri http://localhost/marathon/v2/apps -ContentTy
 > [AZURE.NOTE] URI 將是 http://localhost/marathon/v2/apps/，加上要調整的應用程式的識別碼。如果您是使用這裡提供的 Nginx 範例，則 URI 會是 http://localhost/marathon/v2/apps/nginx。
 
 ```powershell
-# scale container
-
 Invoke-WebRequest -Method Put -Uri http://localhost/marathon/v2/apps/nginx -ContentType application/json -InFile 'c:\scale.json'
 ```
 
@@ -175,4 +167,4 @@ Invoke-WebRequest -Method Put -Uri http://localhost/marathon/v2/apps/nginx -Cont
 - [深入了解 Mesos HTTP 端點](http://mesos.apache.org/documentation/latest/endpoints/)。
 - [深入了解 Marathon REST API](https://mesosphere.github.io/marathon/docs/rest-api.html)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0914_2016-->

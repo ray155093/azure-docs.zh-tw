@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article" 
-	ms.date="06/17/2016"
+	ms.date="09/06/2016"
 	ms.author="spelluru"/>
 
 # 教學課程︰使用 Hadoop 叢集建置您的第一個管線來處理資料 
@@ -30,19 +30,17 @@
 
 本文提供教學課程的**概觀**和符合教學課程**先決條件**的逐步指示。完成先決條件步驟之後，您會使用下列其中一項來進行教學課程︰Azure 入口網站中的 Data Factory Editor、Visual Studio、Azure PowerShell 和 Azure Resource Manager 範本。
 
-請注意，本文不提供 Azure Data Factory 的概念性概觀。如需有關服務的概念性概觀，請參閱 [Azure Data Factory 簡介](data-factory-introduction.md)。
+本文不提供 Azure Data Factory 的概念性概觀。如需有關服務的概念性概觀，請參閱 [Azure Data Factory 簡介](data-factory-introduction.md)。
 
 ## 本教學課程涵蓋哪些內容？	
-**Azure Data Factory** 可讓您以資料驅動型工作流程 (也稱為資料管線) 的方式，撰寫資料**移動**和資料**處理**工作。您會學習如何使用資料處理 (或資料轉換) 工作建置您的第一個資料管線，這項工作會使用 Azure HDInsight 叢集來轉換和分析 Web 記錄，並排程每月執行管線。
+**Azure Data Factory** 可讓您以資料驅動型工作流程 (也稱為資料管線) 的方式，撰寫資料**移動**和資料**處理**工作。您了解如何使用資料處理 (或資料轉換) 工作建置您的第一個資料管線。此工作會使用 Azure HDInsight 叢集來轉換和分析 Web 記錄。
 
 在本教學課程中，您會執行下列步驟：
 
 1.	建立 **Data Factory**。Data Factory 可以包含一或多個資料管線，可移動和處理資料。
 2.	建立**連結的服務**。您會建立一個連結的服務，以將資料存放區或計算服務連結到 Data Factory。像是 Azure 儲存體的資料存放區會保留管線中的活動輸入/輸出資料。計算服務 (例如 Azure HDInsight 處理/轉換資料)。
 3.	建立輸入和輸出**資料集**。輸入資料集表示管線中的活動輸入，而輸出資料集表示活動的輸出。
-3.	建立**管線**。管線可以有一或多個活動 (例如「複製活動」)，以便從來源將資料複製到目的地 (或) HDInsight Hive 活動，並使用 Hive 指令碼轉換輸入資料以產生輸出資料。本範例使用執行 Hive 指令碼的 HDInsight Hive 活動。指令碼首先會建立一個參照儲存在 Azure Blob 儲存體中的原始 Web 記錄資料的外部資料表，再依年份或月份分割原始資料。
-
-您的第一個管線名為 **MyFirstPipeline**，使用 Hive 活動來轉換並分析您上傳到 Azure Blob 儲存體中 **adfgetstarted** 容器 (adfgetstarted/inputdata) 中 **inputdata** 資料夾的 Web 記錄檔。
+3.	建立**管線**。管線可以有一或多個活動 (範例︰複製活動、HDInsight Hive 活動)。本範例使用執行 Hive 指令碼的 HDInsight Hive 活動。指令碼首先會建立一個參照儲存在 Azure Blob 儲存體中的原始 Web 記錄資料的外部資料表，再依年份或月份分割原始資料。
  
 ![Data Factory 教學課程中的圖表檢視](./media/data-factory-build-your-first-pipeline/data-factory-tutorial-diagram-view.png)
 
@@ -160,7 +158,7 @@
 		  month(date)
 		FROM WebLogsRaw
 
-在執行階段時，Data Factory 管線中的 Hive 活動會傳送 inputtable 和 partitionedtable 參數的值 (如下所示)，其中的 storageaccountname 是您 Azure 儲存體帳戶的名稱︰
+在執行階段時，Data Factory 管線中的 Hive 活動會傳送 inputtable 和 partitionedtable 參數的值，如下列程式碼片段所示。storageaccountname 是您的 Azure 儲存體帳戶名稱。
 
 		"inputtable": "wasb://adfgetstarted@<storageaccountname>.blob.core.windows.net/inputdata",
 		"partitionedtable": "wasb://adfgetstarted@<storageaccountname>.blob.core.windows.net/partitioneddata"
@@ -196,15 +194,15 @@
 	 
 2. 為教學課程準備 Azure 儲存體：
 	1. 下載[最新版本的 **AzCopy**](http://aka.ms/downloadazcopy)，或[最新預覽版本](http://aka.ms/downloadazcopypr)。請參閱[如何使用 AzCopy](../storage/storage-use-azcopy.md) 一文以取得使用公用程式的指示。
-	2. AzCopy 安裝之後，您可以在命令提示字元中執行下列命令，將其新增到系統路徑。
+	2. AzCopy 安裝之後，請在命令提示字元中執行下列命令，將其新增到系統路徑。
 	
 			set path=%path%;C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy
 
-	3. 瀏覽至 c:\\adfgetstarted 資料夾，然後執行下列命令將 **input.log** 檔案上傳到儲存體帳戶 (**adfgetstarted** 容器和 **inputdata** 資料夾)。使用您的儲存體帳戶名稱取代 StorageAccountName，並使用儲存體帳戶金鑰取代儲存體金鑰。
+	3. 瀏覽至 c:\\adfgetstarted 資料夾中，然後執行下列命令。此命令會將 **input.log** 檔案上傳至儲存體帳戶 (**adfgetstarted** 容器和 **inputdata** 資料夾)。使用您的儲存體帳戶名稱取代 StorageAccountName，並使用儲存體帳戶金鑰取代儲存體金鑰。
 
 			AzCopy /Source:. /Dest:https://<storageaccountname>.blob.core.windows.net/adfgetstarted/inputdata /DestKey:<storagekey>  /Pattern:input.log
 
-		> [AZURE.NOTE] 上述命令會在您的 Azure Blob 儲存體建立名為 **adfgetstarted** 的容器，並從您的本機磁碟將 **input.log** 檔案複製到該容器中的 **inputdata** 資料夾。
+		> [AZURE.NOTE] 此命令會在您的 Azure Blob 儲存體建立名為 **adfgetstarted** 的容器，並從您的本機磁碟將 **input.log** 檔案複製到該容器中的 **inputdata** 資料夾。
 	
 	5. 檔案成功上傳之後，您會看見來自 AzCopy 的輸出，如下所示。
 	
@@ -228,4 +226,4 @@
 - [使用 PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
 - [使用資源管理員範本](data-factory-build-your-first-pipeline-using-arm.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!----HONumber=AcomDC_0907_2016-->

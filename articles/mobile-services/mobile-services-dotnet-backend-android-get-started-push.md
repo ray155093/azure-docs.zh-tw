@@ -24,7 +24,7 @@
 
 [AZURE.INCLUDE [mobile-services-selector-get-started-push](../../includes/mobile-services-selector-get-started-push.md)]
 
-本主題說明如何使用 Azure 行動服務傳送推播通知至 Android 應用程式。在本教學課程中，您會使用 Google 雲端通訊 (GCM) 將推播通知新增至快速入門專案。完成後，行動服務就會在每次插入記錄時傳送推播通知。
+本主題說明如何使用 Azure 行動服務將推播通知傳送至 Android 應用程式。在本教學課程中，您會使用 Google 雲端通訊 (GCM) 將推播通知新增至快速入門專案。完成後，行動服務就會在每次插入記錄時傳送推播通知。
 
 本教學課程會以行動服務快速入門為基礎。開始本教學課程之前，您必須先完成[開始使用行動服務]，將專案連接到行動服務。同樣地，本教學課程也需要 Visual Studio 2013。
 
@@ -82,7 +82,7 @@
 
 + [將範本型通知傳送給訂閱者] <br/>了解如何使用範本，從行動服務傳送推播通知，但不必在後端製作平台特定的裝載。
 
-在下列主題中深入了解行動服務和通知中心：
+在下列主題中深入了解行動服務和通知中樞：
 
 * [什麼是通知中樞？] <br/>深入了解通知中心如何跨所有主要用戶端平台將通知傳遞到您的應用程式。
 
@@ -114,6 +114,6 @@
 
 [什麼是通知中樞？]: ../notification-hubs-overview.md
 [將廣播通知傳送給訂閱者]: ../notification-hubs-windows-store-dotnet-send-breaking-news.md
-[將範本型通知傳送給訂閱者]: ../notification-hubs-windows-store-dotnet-send-localized-breaking-news.md
+[將範本型通知傳送給訂閱者]: ../notification-hubs-windows-store-dotnet-xplat-localized-wns-push-notification.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!----HONumber=AcomDC_0907_2016-->

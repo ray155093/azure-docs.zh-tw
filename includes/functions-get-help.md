@@ -4,4 +4,4 @@
 
 以關鍵字 `azure-functions` 標示問題。 - [瀏覽 Stack Overflow](http://stackoverflow.com/questions/tagged/azure-functions)
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0912_2016-->

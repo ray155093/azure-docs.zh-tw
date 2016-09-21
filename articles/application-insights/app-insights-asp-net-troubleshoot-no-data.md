@@ -19,9 +19,9 @@
 
 ## 我遺失了部分遙測
 
-在 Application Insights 中，我只會看到我的應用程式所產生的一小部分事件。
+*在 Application Insights 中，我只會看到我的應用程式所產生的一小部分事件。*
 
-* 如果您持續看到同一個部分，可能是因為調適性[取樣](app-insights-sampling.md)所導致。若要確認這一點，開啟 [搜尋] \(從 [概觀] 刀鋒視窗)，並查看要求或其他事件的執行個體。按一下 [屬性] 區段底部的 [...]，以取得完整的屬性詳細資料。如果要求計數 > 1，則表示取樣正在運作中。
+* 如果您持續看到同一個部分，可能是因為調適性[取樣](app-insights-sampling.md)所導致。若要確認這一點，開啟 [搜尋] (從 [概觀] 刀鋒視窗)，並查看要求或其他事件的執行個體。按一下 [屬性] 區段底部的 [...]，以取得完整的屬性詳細資料。如果要求計數 > 1，則表示取樣正在運作中。
 * 否則，有可能是您已達到定價方案的[資料速率限制](app-insights-pricing.md#limits-summary)。每分鐘都會套用這些限制。
 
 ## 沒有來自我的伺服器的資料
@@ -60,7 +60,7 @@
 + 請檢查您為正確的 Azure 帳戶提供登入認證。
 + 在瀏覽器中，檢查您是否可以存取 [Azure 入口網站](https://portal.azure.com)。開啟 [設定] 並查看是否有任何限制。
 + [將 Application Insights 加入至您現有的專案](app-insights-asp-net.md)：在 [方案總管] 中以滑鼠右鍵按一下您的專案，並選擇 [加入 Application Insights]。
-+ 如果仍然無法運作，請依照下列[手動程序](app-insights-asp-net-manual.md)，在入口網站中加入資源，然後將 SDK 加入至您的專案。
++ 如果仍然無法運作，請依照下列[手動程序](app-insights-windows-services.md)，在入口網站中加入資源，然後將 SDK 加入至您的專案。
 
 ## <a name="emptykey"></a>我收到「檢測金鑰不能是空白」的錯誤
 
@@ -215,4 +215,4 @@ ApplicationInsights.config 中的檢測金鑰會控制遙測傳送的位置。�
 
 * [Application Insights 論壇](https://social.msdn.microsoft.com/Forums/vstudio/zh-TW/home?forum=ApplicationInsights)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!----HONumber=AcomDC_0907_2016-->

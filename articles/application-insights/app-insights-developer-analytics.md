@@ -40,9 +40,9 @@ Visual Studio 和開發人員分析工具提供良好的 devOps 體驗。例如�
 ![Web 應用程式 DevOps 週期](./media/app-insights-developer-analytics/040.png)
 
 * 開發人員會簽入程式碼儲存機制，或合併到主要分支。儲存機制是此圖中的 Git，但它也可以是 [Team Foundation 版本控制](https://www.visualstudio.com/docs/tfvc/overview)。
-* 變更會觸發組建和單元測試。組建服務可以位於 [Visual Studio Team Services 或其內部部署對應 Team Foundation Server](https://www.visualstudio.com/docs/vsts-tfs-overview) 中。 
-* 成功的建置和單元測試可以[觸發自動部署](https://www.visualstudio.com/docs/release/author-release-definition/more-release-definition)。Web 應用程式主機可以是您自己的 Web 伺服器或 Microsoft Azure。 
-* 來自即時 App 的遙測會傳送至 [Application Insights](app-insights-overview.md)，包括來自伺服器和[來自用戶端瀏覽器](app-insights-javascript.md)。您可以在該處分析 App 和使用模式的效能。功能強大的[搜尋工具](app-insights-analytics.md)可協助您診斷任何問題。[警示](app-insights-alerts.md)可確保您會在問題發生時立即得知相關資訊。 
+* 變更會觸發組建和單元測試。組建服務可以位於 [Visual Studio Team Services 或其內部部署對應 Team Foundation Server](https://www.visualstudio.com/docs/vsts-tfs-overview) 中。
+* 成功的建置和單元測試可以[觸發自動部署](https://www.visualstudio.com/docs/release/author-release-definition/more-release-definition)。Web 應用程式主機可以是您自己的 Web 伺服器或 Microsoft Azure。
+* 來自即時 App 的遙測會傳送至 [Application Insights](app-insights-overview.md)，包括來自伺服器和[來自用戶端瀏覽器](app-insights-javascript.md)。您可以在該處分析 App 和使用模式的效能。功能強大的[搜尋工具](app-insights-analytics.md)可協助您診斷任何問題。[警示](app-insights-alerts.md)可確保您會在問題發生時立即得知相關資訊。
 * 您的下一個開發週期是透過您的即時遙測分析來通知。
 
 ### 裝置和傳統型應用程式
@@ -71,10 +71,18 @@ HockeyApp 也會以下列形式收集效能和使用資料︰
 3. 針對裝置應用程式：
  * 將偵錯組建上傳至 HockeyApp。您可以從該處將它散發給測試使用者小組。每當您上傳後續的組建之後，該小組將會收到通知。
  * 當您設定持續建置服務時，請建立發行定義，使用外掛程式步驟來上傳至 HockeyApp。
+
+### 分析和匯出 HockeyApp 遙測
+
+您可以[設定橋接器](app-insights-hockeyapp-bridge-app.md)，以使用 Application Insights 的分析和連續匯出功能來調查 HockeyApp 自訂和記錄遙測。
+
+
+
+## 後續步驟
  
 以下是適用於不同 App 類型的詳細指示︰
 
-* [ASP.NET Web 應用程式](app-insights-asp-net.md) 
+* [ASP.NET Web 應用程式](app-insights-asp-net.md)
 * [Java Web 應用程式](app-insights-java-get-started.md)
 * [Node.js Web 應用程式](https://github.com/Microsoft/ApplicationInsights-node.js)
 * [iOS App](https://support.hockeyapp.net/kb/client-integration-ios-mac-os-x-tvos/hockeyapp-for-ios)
@@ -84,4 +92,4 @@ HockeyApp 也會以下列形式收集效能和使用資料︰
 * [Windows Phone 8 和 8.1 App](https://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone/hockeyapp-for-windows-phone-silverlight-apps-80-and-81)
 * [Windows Presentation Foundation App](https://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone/hockeyapp-for-windows-wpf-apps)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!----HONumber=AcomDC_0907_2016-->

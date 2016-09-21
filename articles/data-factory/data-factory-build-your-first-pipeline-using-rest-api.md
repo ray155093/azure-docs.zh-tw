@@ -17,20 +17,17 @@
 	ms.date="08/16/2016"
 	ms.author="spelluru"/>
 
-# 使用 Data Factory REST API 建置您的第一個 Azure Data Factory
+# 教學課程：使用 Data Factory REST API 建置您的第一個 Azure Data Factory
 > [AZURE.SELECTOR]
-- [教學課程概觀](data-factory-build-your-first-pipeline.md)
-- [使用 Data Factory 編輯器](data-factory-build-your-first-pipeline-using-editor.md)
-- [使用 PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
-- [使用 Visual Studio](data-factory-build-your-first-pipeline-using-vs.md)
-- [使用 Resource Manager 範本](data-factory-build-your-first-pipeline-using-arm.md)
-- [使用 REST API](data-factory-build-your-first-pipeline-using-rest-api.md)
+- [Azure 入口網站](data-factory-build-your-first-pipeline-using-editor.md)
+- [Visual Studio](data-factory-build-your-first-pipeline-using-vs.md)
+- [PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
+- [Resource Manager 範本](data-factory-build-your-first-pipeline-using-arm.md)
+- [REST API](data-factory-build-your-first-pipeline-using-rest-api.md)
 
-在本文中，您會了解如何使用 Data Factory REST API 來建立您的第一個 Azure Data Factory。
+[AZURE.INCLUDE [data-factory-tutorial-prerequisites](../../includes/data-factory-tutorial-prerequisites.md)]
 
-## 必要條件
-
-- 詳閱[教學課程概觀](data-factory-build-your-first-pipeline.md)一文。本文協助您了解 Azure Data Factory 的基本概念。
+## 其他必要條件
 - 在您的電腦上安裝 [Curl](https://curl.haxx.se/dlwiz/)。您可搭配使用 CURL 工具與 REST 命令來建立 Data Factory。
 - 請依照[本文](../resource-group-create-service-principal-portal.md)的指示：
 	1. 在 Azure Active Directory 中建立名為 **ADFGetStartedApp** 的 Web 應用程式。
@@ -405,4 +402,4 @@ Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (�
 | [使用 Azure 入口網站刀鋒視窗監視及管理管線](data-factory-monitor-manage-pipelines.md) | 本文描述如何使用 Azure 入口網站刀鋒視窗來監視、管理和偵錯您的管線。 |
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

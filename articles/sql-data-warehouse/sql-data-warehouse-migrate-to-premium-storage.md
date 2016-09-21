@@ -206,4 +206,4 @@ go
 [進階儲存體，以獲得更高的效能可預測性]: https://azure.microsoft.com/blog/azure-sql-data-warehouse-introduces-premium-storage-for-greater-performance/
 [Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0831_2016--->

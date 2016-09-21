@@ -14,12 +14,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/09/2016"
+   ms.date="09/06/2016"
    ms.author="gwallace" />
 
 # 使用入口網站建立應用程式閘道
 
-Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。應用程式閘道具有下列應用程式傳遞功能：HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、「安全通訊端層」(SSL) 卸載、自訂健康狀態探查，以及多站台支援。
+Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。應用程式提供許多應用程式傳遞控制器 (ADC) 功能，包括 HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、安全通訊端層 (SSL) 卸載、自訂健全狀態探查、多網站支援，以及許多其他功能。若要尋找完整的支援功能清單，請瀏覽[應用程式閘道概觀](application-gateway-introduction.md)
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](application-gateway-create-gateway-portal.md)
@@ -27,10 +27,6 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 - [Azure 傳統 PowerShell](application-gateway-create-gateway.md)
 - [Azure Resource Manager 範本](application-gateway-create-gateway-arm-template.md)
 - [Azure CLI](application-gateway-create-gateway-cli.md)
-
-<BR>
-
-
 
 ## 案例
 
@@ -75,7 +71,6 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 
 >[AZURE.NOTE] 若要進行測試，可以選擇執行個體計數 1。請務必了解 SLA 不涵蓋任何低於兩個執行個體的執行個體計數，因此不建議使用。小型閘道適用於開發測試，不適合在生產環境中使用。
 
-
 ### 步驟 3
 
 定義基本設定之後，下一步是定義要使用的虛擬網路。虛擬網路會裝載應用程式閘道為其進行負載平衡的應用程式。
@@ -88,7 +83,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 
 在 [選擇虛擬網路] 刀鋒視窗中，按一下 [建立新項目]。
 
-*雖然此案例中未說明，但是您可以在此時選取現有的「虛擬網路」*
+雖然此案例中未說明，但是您可以在此時選取現有的「虛擬網路」。如果使用現有的虛擬網路，請務必了解虛擬網路需要空的子網路或僅限應用程式閘道資源的子網路，才能加以使用。
 
 ![[選擇虛擬網路] 刀鋒視窗][4]
 
@@ -147,7 +142,7 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 
 參閱[建立自訂健康狀態探查](application-gateway-create-probe-portal.md)，以了解如何建立自訂健康狀態探查
 
-參閱[設定 SSL 卸載](application-gateway-ssl-arm.md)，以了解如何設定「SSL 卸載」並將耗費資源的 SSL 解密從您的 Web 伺服器中移除
+參閱[設定 SSL 卸載](application-gateway-ssl-portal.md)，以了解如何設定「SSL 卸載」並將耗費資源的 SSL 解密從您的 Web 伺服器中移除
 
 <!--Image references-->
 [1]: ./media/application-gateway-create-gateway-portal/figure1.png
@@ -162,4 +157,4 @@ Azure 應用程式閘道是第 7 層負載平衡器。不論是在雲端或內�
 [10]: ./media/application-gateway-create-gateway-portal/figure10.png
 [scenario]: ./media/application-gateway-create-gateway-portal/scenario.png
 
-<!---HONumber=AcomDC_0831_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/14/2016"
+	ms.date="09/02/2016"
 	ms.author="micurd"/>
 
 # 使用 AzCopy 命令列公用程式傳輸資料
 
-## 概觀
+## Overview
 
 AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率地將資料複製到和複製出 Microsoft Azure Blob、檔案和表格儲存體所設計。您可以從儲存體帳戶內或是在儲存體帳戶之間，從一個物件複製資料到另一個物件。
 
@@ -40,7 +40,7 @@ AzCopy 命令的基本語法是：
 
 	AzCopy /Source:<source> /Dest:<destination> [Options]
 
-開啟命令視窗，並瀏覽至電腦上的 AzCopy 安裝目錄，也就是 `AzCopy.exe` 可執行檔的位置。若有需要，您可以在您的系統路徑中加入 AzCopy 安裝位置。根據預設，AzCopy 會安裝到 `%ProgramFiles(x86)%\Microsoft SDKs\Azure\AzCopy` (64 位元 Windows) 或 `%ProgramFiles%\Microsoft SDKs\Azure\AzCopy` (32 位元 Windows)。
+開啟命令視窗，並瀏覽至電腦上的 AzCopy 安裝目錄，也就是 `AzCopy.exe` 可執行檔的位置。若有需要，您可以在您的系統路徑中加入 AzCopy 安裝位置。根據預設，AzCopy 會安裝到 `%ProgramFiles(x86)%\Microsoft SDKs\Azure\AzCopy` 或 `%ProgramFiles%\Microsoft SDKs\Azure\AzCopy`。
 
 下列範例會示範各種不同的 Microsoft Azure Blob、檔案和資料表資料複製案例。如需每個範例中所使用參數的詳細說明，請參閱 [AzCopy 參數](#azcopy-parameters)一節。
 
@@ -866,4 +866,4 @@ AzCopy 設計為充分利用電腦資源來加速資料傳輸，建議您在一�
 - [AzCopy: 使用跨帳戶複製 Blob](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/04/01/azcopy-using-cross-account-copy-blob.aspx)
 - [AzCopy: 上傳/下載 Azure Blob 的檔案](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/12/03/azcopy-uploading-downloading-files-for-windows-azure-blobs.aspx)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!----HONumber=AcomDC_0907_2016-->

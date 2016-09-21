@@ -25,7 +25,7 @@
 
 ## 取得 Application Insights 資源
 
-為了達到最佳的體驗，[將 Application Insights SDK 新增至雲端服務應用程式的每個角色](app-insights-cloudservices.md)，或[您將在您的 VM 中執行的任何應用程式](app-insights-get-started.md)。然後您就可以傳送要分析的診斷資料，並且顯示相同的 Application Insights 資源。
+為了達到最佳的體驗，[將 Application Insights SDK 新增至雲端服務應用程式的每個角色](app-insights-cloudservices.md)，或[您將在您的 VM 中執行的任何應用程式](app-insights-overview.md)。然後您就可以傳送要分析的診斷資料，並且顯示相同的 Application Insights 資源。
 
 或者，如果不想使用 SDK - 例如，如果應用程式已經處於線上狀態 - 您只能在 Azure 入口網站中[建立新的 Application Insights 資源](app-insights-create-new-resource.md)。選擇 **Azure 診斷**做為應用程式類型。
 
@@ -146,4 +146,4 @@ Azure 診斷會將資料儲存至 Azure 儲存體資料表。不過，您也可�
 * [使用 PowerShell 將 Azure 診斷傳送至 Application Insights](app-insights-powershell-azure-diagnostics.md)
 * [Azure 診斷組態檔](https://msdn.microsoft.com/library/azure/dn782207.aspx)
 
-<!---HONumber=AcomDC_0504_2016-->
+<!----HONumber=AcomDC_0907_2016-->

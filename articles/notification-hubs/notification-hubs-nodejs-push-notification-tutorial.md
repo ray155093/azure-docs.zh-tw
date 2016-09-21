@@ -20,7 +20,7 @@
 # 使用 Azure 通知中樞和 Node.js 傳送推播通知
 [AZURE.INCLUDE [notification-hubs-backend-how-to-selector](../../includes/notification-hubs-backend-how-to-selector.md)]
 
-##概觀
+##Overview
 
 > [AZURE.IMPORTANT] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdocumentation%2Farticles%2Fnotification-hubs-nodejs-how-to-use-notification-hubs)。
 
@@ -31,7 +31,7 @@
 * Android
 * iOS
 * Windows Phone
-* 通用 Windows 平台 
+* 通用 Windows 平台
 
 如需通知中心的詳細資訊，請參閱[後續步驟](#next)一節。
 
@@ -41,7 +41,7 @@ Azure 通知中樞提供易用、多平台、可調整的基礎結構，用以�
 
 ##建立 Node.js 應用程式
 
-本教學課程的第一個步驟是建立新的空白 Node.js 應用程式。如需有關建立 Node.js 應用程式的指示，請參閱[建立 Node.js 應用程式並將其部署到 Azure 網站][nodejswebsite]、[Node.js 雲端服務][Node.js Cloud Service] \ (使用 Windows PowerShell) 或[使用 WebMatrix 的網站]。
+本教學課程的第一個步驟是建立新的空白 Node.js 應用程式。如需有關建立 Node.js 應用程式的指示，請參閱[建立 Node.js 應用程式並將其部署到 Azure 網站][nodejswebsite]、使用 Windows PowerShell 的 [Node.js 雲端服務][Node.js Cloud Service]，或[使用 WebMatrix 的網站]。
 
 ##將應用程式設為使用通知中樞
 
@@ -75,7 +75,7 @@ Azure 通知中樞提供易用、多平台、可調整的基礎結構，用以�
 
 2. 選取 [通知中樞]，然後尋找您要用於範例的中樞。如果您需要建立新通知中樞的說明，您可以參考 [Windows 市集開始使用教學課程](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md)。
 
-3. 選取 [Settings] \ (設定)。
+3. 選取 [Settings] (設定)。
 
 4. 按一下 [存取原則]。您會看到兩個共用和完整存取連接字串。
 
@@ -218,4 +218,4 @@ Azure 通知中樞提供易用、多平台、可調整的基礎結構，用以�
   [Node.js Web Application with Storage]: /develop/nodejs/tutorials/web-site-with-storage/
   [Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0622_2016-->
+<!----HONumber=AcomDC_0907_2016-->

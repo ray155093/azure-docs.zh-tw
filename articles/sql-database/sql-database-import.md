@@ -1,6 +1,6 @@
 <properties
-	pageTitle="匯入 BACPAC 檔案以建立新的 Azure SQL Database | Microsoft Azure"
-	description="匯入現有的 BACPAC 檔案以建立新的 Azure SQL Database。"
+	pageTitle="匯入 BACPAC 檔案以建立 Azure SQL Database | Microsoft Azure"
+	description="匯入現有的 BACPAC 檔案以建立 Azure SQL Database。"
 	services="sql-database"
 	documentationCenter=""
 	authors="stevestein"
@@ -10,14 +10,14 @@
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="07/09/2016"
+	ms.date="08/31/2016"
 	ms.author="sstein"
 	ms.workload="data-management"
 	ms.topic="article"
 	ms.tgt_pltfrm="NA"/>
 
 
-# 匯入 BACPAC 檔案以建立新的 Azure SQL Database
+# 匯入 BACPAC 檔案以建立 Azure SQL Database
 
 
 **單一資料庫**
@@ -28,7 +28,7 @@
 - [SSMS](sql-database-cloud-migrate-compatible-import-bacpac-ssms.md)
 - [SqlPackage](sql-database-cloud-migrate-compatible-import-bacpac-sqlpackage.md)
 
-本文提供使用 [Azure 入口網站](https://portal.azure.com) 自 BACPAC 檔案建立新的 Azure SQL Database 的說明。
+本文提供使用 [Azure 入口網站](https://portal.azure.com) 自 BACPAC 檔案建立 Azure SQL Database 的說明。
 
 BACPAC 是一種包含資料庫結構描述和資料的 .bacpac 檔案。資料庫是透過由 Azure 儲存體 Blob 容器匯入的 BACPAC 來建立。如果您的 Azure 儲存體沒有 .bacpac 檔案，可依照[建立和匯出 Azure SQL Database 的 BACPAC](sql-database-export.md) 中的步驟，加以建立。
 
@@ -42,10 +42,10 @@ BACPAC 是一種包含資料庫結構描述和資料的 .bacpac 檔案。資料�
 - Azure SQL Database V12 伺服器。如果沒有 V12 伺服器，請遵循本文中以下的步驟：[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
 - 您想要匯入 [Azure 儲存體帳戶 (標準)](../storage/storage-create-storage-account.md) Blob 容器之資料庫的 .bacpac 檔案。
 
-***重要：***從 Azure Blob 儲存體匯入 BACPAC 時，請使用標準儲存體。不支援從進階儲存體匯入 BACPAC。
+> [AZURE.IMPORTANT] 從 Azure Blob 儲存體匯入 BACPAC 時，請使用標準儲存體。不支援從進階儲存體匯入 BACPAC。
 
 
-## 選取將包含資料庫的伺服器
+## 選取要裝載資料庫的伺服器
 
 開啟 SQL Server 刀鋒視窗：
 
@@ -103,4 +103,4 @@ BACPAC 是一種包含資料庫結構描述和資料的 .bacpac 檔案。資料�
 [5]: ./media/sql-database-import/import-history.png
 [6]: ./media/sql-database-import/import-status.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!----HONumber=AcomDC_0907_2016-->

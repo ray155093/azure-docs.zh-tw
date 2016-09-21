@@ -21,7 +21,7 @@
 [AZURE.INCLUDE [notification-hubs-selector-breaking-news](../../includes/notification-hubs-selector-breaking-news.md)]
 
 
-##概觀
+##Overview
 
 本主題將說明如何使用 Azure 通知中樞，將即時新聞通知廣播至 Windows Phone 8.0/8.1 Silverlight 應用程式。如果您的目標是 Windows Store 或 Windows Phone 8.1 應用程式，請參閱 [Windows Universal](notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md) 版本。完成時，您便能夠註冊您所感興趣的即時新聞類別，並僅接收這些類別的推播通知。此情況是許多應用程式的共同模式，這些應用程式必須將通知傳送給先前宣告對通知有興趣的使用者群組，例如，RSS 閱讀程式、供樂迷使用的應用程式等等。
 
@@ -29,7 +29,7 @@
 
 ##必要條件
 
-本主題會以您在[開始使用通知中心]中所建立的應用程式為基礎。開始本教學課程之前，您必須已完成[開始使用通知中心]。
+本主題會以您在[開始使用通知中樞]中所建立的應用程式為基礎。開始本教學課程之前，您必須已完成[開始使用通知中心]。
 
 ##在應用程式中新增類別選項
 
@@ -187,7 +187,7 @@
         }
 
 
-    本類別使用獨立儲存體，來儲存此裝置接收的新聞類別。它也包含使用[範本](notification-hubs-templates.md)通知來註冊這些類別的方法。
+    本類別使用獨立儲存體，來儲存此裝置接收的新聞類別。它也包含使用[範本](notification-hubs-templates-cross-platform-push-messages.md)通知來註冊這些類別的方法。
 
 
 4. 在 App.xaml.cs 專案檔案中，對 **App** 類別加入下列屬性：以您的通知中樞名稱與先前取得的 *DefaultListenSharedAccessSignature* 連接字串，取代 `<hub name>` 與 `<connection string with listen access>` 預留位置。
@@ -280,7 +280,7 @@
 
 	![][2]
 
-3. 收到確認已完成您各項類別的訂閱之後，執行主控台應用程式，傳送每種類別的通知。請確認您只會收到所訂閱類別的通知。
+3. 收到確認已完成您各項類別的訂用帳戶之後，執行主控台應用程式，傳送每種類別的通知。請確認您只會收到所訂閱類別的通知。
 
 	![][3]
 
@@ -322,4 +322,4 @@ In this tutorial we learned how to broadcast breaking news by category. Consider
 [Notification Hubs Guidance]: http://msdn.microsoft.com/library/jj927170.aspx
 [Notification Hubs How-To for Windows Phone]: ??
 
-<!---HONumber=AcomDC_0706_2016-->
+<!----HONumber=AcomDC_0907_2016-->

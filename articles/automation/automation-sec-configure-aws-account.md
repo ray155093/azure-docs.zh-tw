@@ -13,7 +13,7 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="get-started-article"
-   ms.date="08/17/2016"
+   ms.date="09/12/2016"
    ms.author="magoedte"/>
 
 # 使用 Amazon Web Services 驗證 Runbook
@@ -36,4 +36,4 @@
 
 - 檢閱[在 Amazon Web Services 中自動部署 VM](../automation/automation-scenario-aws-deployment.md) 解決方案文章以了解如何建立 Runbook 以在 AWS 中自動執行工作。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0914_2016-->

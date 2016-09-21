@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="05/27/2016"
+   ms.date="09/02/2016"
    ms.author="jgao"/>
 
 # 在 Azure 虛擬網路上佈建 HBase 叢集
@@ -44,7 +44,7 @@
 
 		Add-AzureAccount
 
-	如果您有多個 Azure 訂用帳戶，請使用下列 Cmdlet 設定目前的訂用帳戶：
+	如果您有多個 Azure 訂閱，請使用下列 Cmdlet 設定目前的訂閱：
 
 		Select-AzureSubscription <AzureSubscriptionName>
 
@@ -88,7 +88,7 @@ DNS 伺服器是選擇性的，但在某些案例中為必要。程序已記錄�
 
 > [AZURE.NOTE] HDInsight 叢集使用 Azure Blob 儲存體來儲存資料。如需詳細資訊，請參閱[在 HDInsight 中搭配使用 Azure Blob 儲存體和 Hadoop](hdinsight-hadoop-use-blob-storage.md) (英文)。您將會需要儲存體帳戶和 Blob 儲存體容器。儲存體帳戶的位置必須符合虛擬網路位置和叢集位置。
 
-像其他 HDInsight 叢集一樣，HBase 叢集需要 Azure 儲存體帳戶和 Blob 儲存體容器做為預設檔案系統。儲存體帳戶的位置必須符合虛擬網路位置和叢集位置。如需詳細資訊，請參閱[在 HDInsight 中搭配使用 Azure Blob 儲存體和 Hadoop][hdinsight-storage] \(英文)。當您佈建 HBase 叢集時，可以選擇建立新叢集或使用現有叢集。此程序顯示如何使用 Azure 傳統入口網站建立儲存體帳戶和 Blob 儲存體容器。
+像其他 HDInsight 叢集一樣，HBase 叢集需要 Azure 儲存體帳戶和 Blob 儲存體容器做為預設檔案系統。儲存體帳戶的位置必須符合虛擬網路位置和叢集位置。如需詳細資訊，請參閱[在 HDInsight 中搭配使用 Azure Blob 儲存體和 Hadoop][hdinsight-storage] (英文)。當您佈建 HBase 叢集時，可以選擇建立新叢集或使用現有叢集。此程序顯示如何使用 Azure 傳統入口網站建立儲存體帳戶和 Blob 儲存體容器。
 
 1. 登入 [Azure 傳統入口網站][azure-portal]。
 2. 按一下左下角的 [新增]，並指向 [資料服務]，接著指向 [儲存體]，然後按一下 [快速建立]。
@@ -106,7 +106,7 @@ DNS 伺服器是選擇性的，但在某些案例中為必要。程序已記錄�
 8. 請記下儲存體帳戶名稱及主要存取金鑰 (或次要存取金鑰，兩者皆可)。稍後在教學課程中需要這些資訊。
 9. 按一下頁面頂端的 [容器]。
 10. 按一下頁面底部的 [新增]。
-11. 輸入容器名稱。此容器會用來作為 HBase 叢集的預設容器。依預設，預設的容器名稱會符合叢集名稱。保持 [存取] 欄位為 [私用]。  
+11. 輸入容器名稱。此容器會用來作為 HBase 叢集的預設容器。依預設，預設的容器名稱會符合叢集名稱。保持 [存取] 欄位為 [私用]。
 12. 按一下核取記號以建立容器。
 
 **使用 Azure 傳統入口網站佈建 HBase 叢集**
@@ -137,7 +137,7 @@ DNS 伺服器是選擇性的，但在某些案例中為必要。程序已記錄�
 		<tr><td>Zookeeper 大小</td><td><p>選取 Zookeeper 節點的 VM 大小。</p></td></tr>
 	</table>
 
-	>[AZURE.NOTE] 根據選擇的 VM ，您的成本可能會有所不同。HDInsight 針對叢集節點會使用所有標準層 VM。如需 VM 大小對您價格影響的相關資訊，請參閱 <a href="http://azure.microsoft.com/pricing/details/hdinsight/" target="_blank">HDInsight 定價</a>。
+	>[AZURE.NOTE] 根據選擇的 VM，您的成本可能會有所不同。HDInsight 針對叢集節點會使用所有標準層 VM。如需 VM 大小對您價格影響的相關資訊，請參閱 <a href="http://azure.microsoft.com/pricing/details/hdinsight/" target="_blank">HDInsight 定價</a>。
 
 	按一下向右按鈕。
 
@@ -166,7 +166,7 @@ DNS 伺服器是選擇性的，但在某些案例中為必要。程序已記錄�
 			<ul>
 				<li><strong>使用現有的儲存體</strong></li>
 				<li><strong>建立新的儲存體</strong></li>
-				<li><strong>使用其他訂用帳戶的儲存體</strong></li>
+				<li><strong>使用其他訂閱的儲存體</strong></li>
 			</ul>
 			</td></tr>
 		<tr><td>帳戶名稱</td>
@@ -178,7 +178,7 @@ DNS 伺服器是選擇性的，但在某些案例中為必要。程序已記錄�
 			<td>如果選擇 [從另一個訂用帳戶使用儲存體]<strong></strong> 選項，請指定該儲存體帳戶的帳戶金鑰。</td></tr>
 		<tr><td>預設容器</td>
 			<td><p>指定儲存體帳戶上的預設容器做為 HDInsight 叢集的預設檔案系統。如果您在 [儲存體帳戶] <strong></strong>欄位中選擇了 [使用現有的儲存體] <strong></strong>，且該帳戶中沒有現有的容器，根據預設，將使用叢集名稱建立名稱相同的容器。如果已有使用叢集名稱的容器存在，則會為容器名稱加上序號。例如 mycontainer1、mycontainer2，依此類推。然而，如果現有儲存體帳戶已有容器存在，且其名稱與您指定的叢集名稱不同，您仍可以使用該容器。</p>
-	        <p>如果選擇建立新儲存體或從另一個 Azure 訂用帳戶使用儲存體，則必須指定預設容器名稱。</p>
+	        <p>如果選擇建立新儲存體或使用其他 Azure 訂用帳戶的儲存體，您必須指定預設容器名稱。</p>
 	    </td></tr>
 		<tr><td>其他儲存體帳戶</td>
 			<td>視需要指定叢集的其他儲存體帳戶。HDInsight 支援多個儲存體帳戶。叢集可使用的其他儲存體帳戶沒有數量上的限制。但如果您使用 Azure 傳統入口網站建立叢集，則會因為 UI 的限制而只能使用最多七個儲存體帳戶。您所指定的每個其他儲存體帳戶都會在精靈上另外加入一個 [儲存體帳戶]<strong></strong> 頁面，您可在此指定帳戶資訊。以上面的螢幕擷取畫面為例，其未選取其他儲存體帳戶，因此沒有在精靈上加入額外頁面。</td></tr>
@@ -436,4 +436,4 @@ DNS 伺服器是選擇性的，但在某些案例中為必要。程序已記錄�
 [img-provision-cluster-page1]: ./media/hdinsight-hbase-provision-vnet/hbasewizard1.png "佈建新 HBase 叢集的詳細資料"
 [img-provision-cluster-page5]: ./media/hdinsight-hbase-provision-vnet/hbasewizard5.png "使用指令碼動作以自訂 HBase 叢集"
 
-<!---HONumber=AcomDC_0601_2016-->
+<!----HONumber=AcomDC_0907_2016-->

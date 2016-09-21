@@ -35,11 +35,12 @@ Azure 會將您的角色執行個體組織成名為升級網域 (UD) 的邏輯�
 本主題涵蓋下列有關 Azure 更新的資訊：
 
 -   [在更新期間允許的服務變更](#AllowedChanges)
+-   [如何繼續進行升級](#howanupgradeproceeds)
 -   [復原更新](#RollbackofanUpdate)
 -   [在進行中的部署上起始多項變更作業](#multiplemutatingoperations)
 -   [將角色散發於升級網域](#distributiondfroles)
--   [如何繼續進行升級](#howanupgradeproceeds)
 
+<a name="AllowedChanges"></a>
 ## 在更新期間允許的服務變更
 下表顯示在更新期間允許的服務變更：
 
@@ -72,6 +73,7 @@ Azure 會將您的角色執行個體組織成名為升級網域 (UD) 的邏輯�
 
 如果您對服務的定義進行其他更新 (例如降低本機資源的大小)，則必須改為執行 VIP 交換更新。如需詳細資訊，請參閱[交換部署](https://msdn.microsoft.com/library/azure/ee460814.aspx)。
 
+<a name="howanupgradeproceeds"></a>
 ## 如何繼續進行升級
 您可以決定要更新服務中的所有角色或更新服務中的單一角色。在任一情況下，正在升級且屬於第一個升級網域的每個角色的所有執行個體都會停止、升級並重新上線。一旦重新上線，第二個升級網域中的執行個體會停止、升級並重新上線。雲端服務一次最多可有一個作用中的升級。升級作業一律針對最新版本的雲端服務執行。
 
@@ -124,6 +126,7 @@ Azure 會將您的角色執行個體組織成名為升級網域 (UD) 的邏輯�
 ### 角色執行個體啟動逾時
 網狀架構控制器會等待 30 分鐘，讓每個角色執行個體達到啟動狀態。當逾時期間過去後，網狀架構控制器會繼續前進到下一個角色執行個體。
 
+<a name="RollbackofanUpdate"></a>
 ## 復原更新
 Azure 讓您在 Azure 網狀架構控制器接受初始更新要求後，於服務上起始其他作業，以提供在更新期間管理服務的彈性。只有當部署上的更新 (組態變更) 或升級處於**進行中**狀態時，才能執行復原。只要服務有至少一個執行個體尚未更新為新版本，更新或升級就會被視為進行中。若要測試是否允許復原，請檢查[取得部署](https://msdn.microsoft.com/library/azure/ee460804.aspx)和[取得雲端服務屬性](https://msdn.microsoft.com/library/azure/ee460806.aspx)作業所傳回的 RollbackAllowed 旗標值是否設定為 true。
 
@@ -153,6 +156,7 @@ Azure 讓您在 Azure 網狀架構控制器接受初始更新要求後，於服�
 
 在升級推展期間，您會在手動模式中呼叫[升級部署](https://msdn.microsoft.com/library/azure/ee460793.aspx)並開始處理升級網域。如果在某個時間點，當您監視升級時，您注意到您檢查的第一個升級網域中有某些角色執行個體變得沒有回應，您可以在部署上呼叫[復原更新或升級](https://msdn.microsoft.com/library/azure/hh403977.aspx)作業，讓尚未升級的執行個體維持不變，而讓已升級的執行個體復原為先前的服務封裝和組態。
 
+<a name="multiplemutatingoperations"></a>
 ## 在進行中的部署上起始多項變更作業
 在某些情況下，您可能想要在進行中的部署上起始多項同時變更作業。例如，您可能執行服務更新，而當該更新推展於您的服務時，您想要進行一些變更，例如復原更新、套用不同的更新，或甚至刪除部署。如果服務升級包含會使已升級的角色執行個體反覆損毀的不良程式碼，則可能必須這麼做。在此情況下，Azure 網狀架構控制器將無法繼續套用該升級，因為已升級網域中的執行個體數目不足屬於正常狀況。此狀態稱為「停滯部署」。復原更新或在失敗的更新之上套用全新的更新，即可脫離停滯部署狀態。
 
@@ -166,6 +170,7 @@ Azure 讓您在 Azure 網狀架構控制器接受初始更新要求後，於服�
 
 若要呼叫可傳回 Locked 旗標的這些方法的版本，您必須將要求標頭設定為 “x-ms-version: 2011-10-01” 或更新版本。如需標頭版本控制的詳細資訊，請參閱[服務管理版本控制](https://msdn.microsoft.com/library/azure/gg592580.aspx)。
 
+<a name="distributiondfroles"></a>
 ## 將角色散發於升級網域
 Azure 會將角色的執行個體平均分散於一組升級網域，而升級網域可設定為服務定義 (.csdef) 檔案的一部分。升級網域數目上限為 20，其預設值為 5。如需如何修改服務定義檔的詳細資訊，請參閱 [Azure 服務定義結構描述 (.csdef 檔)](cloud-services-model-and-package.md#csdef)。
 
@@ -182,4 +187,4 @@ Azure 會將角色的執行個體平均分散於一組升級網域，而升級�
 ## 後續步驟
 [如何管理雲端服務](cloud-services-how-to-manage.md) [如何監視雲端服務](cloud-services-how-to-monitor.md) [如何設定雲端服務](cloud-services-how-to-configure.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!----HONumber=AcomDC_0907_2016-->

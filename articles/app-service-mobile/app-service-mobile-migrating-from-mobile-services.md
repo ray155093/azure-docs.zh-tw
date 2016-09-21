@@ -400,7 +400,7 @@ Azure App Service 通常會停用 [診斷記錄]。若要啟用診斷記錄：
 [記錄]: ../app-service-web/web-sites-enable-diagnostic-log.md
 [Mobile Apps Node.js SDK]: https://github.com/azure/azure-mobile-apps-node
 [比較行動服務與App Service]: app-service-mobile-value-prop-migration-from-mobile-services.md
-[通知中樞]: ../notification-hubs/notification-hubs-overview.md
+[通知中樞]: ../notification-hubs/notification-hubs-push-notification-overview.md
 [效能監視]: ../app-service-web/web-sites-monitor.md
 [Postman]: http://www.getpostman.com/
 [備份您的行動服務]: ../mobile-services/mobile-services-disaster-recovery.md
@@ -409,4 +409,4 @@ Azure App Service 通常會停用 [診斷記錄]。若要啟用診斷記錄：
 [WebJob]: ../app-service-web/websites-webjobs-resources.md
 [XDT 轉換範例]: https://github.com/projectkudu/kudu/wiki/Xdt-transform-samples
 
-<!---HONumber=AcomDC_0803_2016-->
+<!----HONumber=AcomDC_0907_2016-->

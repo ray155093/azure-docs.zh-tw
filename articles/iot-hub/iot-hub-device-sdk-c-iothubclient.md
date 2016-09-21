@@ -13,7 +13,7 @@
      ms.topic="article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="05/17/2016"
+     ms.date="09/06/2016"
      ms.author="obloch"/>
 
 # 適用於 C 的 Microsoft Azure IoT 裝置 SDK - 深入了解 IoTHubClient
@@ -22,7 +22,7 @@
 
 前一篇文章描述如何使用 **IoTHubClient** 程式庫傳送事件到 IoT 中樞及接收訊息。本文將向您介紹**較低層級 API**，以說明如何更精確地管理傳送和接收資料的「時機」來擴大討論範圍。我們也將說明如何使用 **IoTHubClient** 程式庫中的屬性處理功能，將屬性附加到事件 (並從訊息將其擷取)。最後，我們將提供其他說明，以不同的方式來處理從 IoT 中樞接收的訊息。
 
-本文藉由涵蓋數個其他主題，包括裝置認證的詳細資料以及如何透過組態選項變更 **IoTHubClient** 的行為，來進行總結。
+本文以涵蓋幾個其他主題 (包括更多有關裝置認證及如何透過組態選項變更 **IoTHubClient** 行為的資訊) 做總結。
 
 我們將使用 **IoTHubClient** SDK 範例來說明這些主題。如果您想要遵循執行，請參閱適用於 C 的 Azure IoT 裝置 SDK 中隨附的 **iothub\_client\_sample\_http** 和 **iothub\_client\_sample\_amqp** 應用程式。下列各節所述的所有內容都會在這些範例中加以示範。
 
@@ -69,7 +69,7 @@ IoTHubClient_Destroy(iotHubClientHandle);
 
 這些函式的 API 名稱中都包含 "LL"。除此之外，這其中每個函式的參數都會與其非 LL 的對應項目相同。不過，這些函式的行為有一個重要的差異。
 
-當您呼叫 **IoTHubClient\_CreateFromConnectionString** 時，基礎程式庫會建立要在背景中執行的新執行緒。此執行緒會將事件傳送到 IoT 中樞以及接收其訊息。使用 "LL" API 時不會建立這類執行緒。背景執行緒的建立是為了方便開發人員。您完全不必擔心要明確地將事件傳送到 IoT 中樞以及從中接收訊息 -- 此動作會在背景中自動進行。相對地，"LL" API 會在您需要時，讓您能夠明確控制與 IoT 中樞的通訊。
+當您呼叫 **IoTHubClient\_CreateFromConnectionString** 時，基礎程式庫會建立要在背景中執行的新執行緒。此執行緒會將事件傳送到 IoT 中樞以及接收其訊息。使用 "LL" API 時不會建立這類執行緒。背景執行緒的建立是為了方便開發人員。您完全不必擔心要明確地將事件傳送到 IoT 中樞以及從中接收訊息 -- 此動作會在背景中自動進行。相對地，"LL" API 可讓您明確控制與「IoT 中樞」的通訊 (如果您需要的話)。
 
 若要更深入了解，讓我們看看一個範例：
 
@@ -79,7 +79,7 @@ IoTHubClient_Destroy(iotHubClientHandle);
 
 "LL" API 不會建立背景執行緒。而是必須呼叫新的 API 明確地與 IoT 中樞之間傳送和接收資料。下列範例就將此進行示範。
 
-SDK 中隨附的 **Iothub\_client\_sample\_http** 應用程式會示範較低層級的 API。在該範例中，我們使用如下的程式碼，將事件傳送到 IoT 中樞：
+SDK 中隨附的 **Iothub\_client\_sample\_http** 應用程式會示範較低層級的 API。在該範例中，我們會使用類似以下的程式碼，將事件傳送給「IoT 中樞」︰
 
 ```
 EVENT_INSTANCE message;
@@ -117,7 +117,7 @@ while ((IoTHubClient_LL_GetSendStatus(iotHubClientHandle, &status) == IOTHUB_CLI
 }
 ```
 
-此程式碼會呼叫 **IoTHubClient\_LL\_DoWork**，直到緩衝區中的所有事件都傳送至 IoT 中樞為止。請注意，這也不意味著已接收所有已加入佇列的訊息。部分原因是因為檢查「所有」訊息的決定性並不如動作一般。如果您擷取「所有」訊息，但另一個訊息又隨即傳送至裝置，會發生什麼事？ 更好的處理方法是利用程式化的逾時。例如，每次叫用訊息回呼函式時，它可以重設計時器。如果最後 *X* 秒都沒有收到任何訊息，您可以接著撰寫邏輯來繼續處理。
+此程式碼會呼叫 **IoTHubClient\_LL\_DoWork**，直到緩衝區中的所有事件都傳送至 IoT 中樞為止。請注意，這並未一併暗示已收到所有佇列的訊息。部分原因是因為檢查「所有」訊息的決定性並不如動作一般。如果您擷取「所有」訊息，但另一個訊息又隨即傳送至裝置，會發生什麼事？ 更好的處理方法是利用程式化的逾時。例如，每次叫用訊息回呼函式時，它可以重設計時器。如果最後 *X* 秒都沒有收到任何訊息，您可以接著撰寫邏輯來繼續處理。
 
 當您完成輸入事件和接收訊息時，請務必呼叫相對應的函式來清除資源。
 
@@ -125,9 +125,9 @@ while ((IoTHubClient_LL_GetSendStatus(iotHubClientHandle, &status) == IOTHUB_CLI
 IoTHubClient_LL_Destroy(iotHubClientHandle);
 ```
 
-基本上，只有一組 API 會利用背景執行緒來傳送和接收資料，另一組 API 不會利用背景執行緒來執行相同的動作。許多開發人員可能會偏好非 LL API，但是當開發人員想要明確控制網路傳輸時，較低層級 API 會很實用。例如，有些裝置會隨時間收集資料，並且只在指定的時間間隔輸入事件 (例如，每小時一次或一天一次)。較低層級 API 可在您與 IoT 中樞之間傳送和接收資料時，提供您明確控制的功能。其他人純粹偏好較低層級 API 提供的簡單性一切動作都發生在主執行緒上，而不是有些工作會在背景中發生。
+基本上，只有一組 API 會利用背景執行緒來傳送和接收資料，另一組 API 不會利用背景執行緒來執行相同的動作。許多開發人員可能會偏好非 LL API，但是如果開發人員想要明確控制網路傳輸，則較低層級的 API 會相當有用。例如，有些裝置會隨時間收集資料，並且只在指定的時間間隔輸入事件 (例如，每小時一次或一天一次)。較低層級 API 可在您與 IoT 中樞之間傳送和接收資料時，提供您明確控制的功能。其他人則會單純地偏好較低層級 API 所提供的簡單性。一切動作都發生在主執行緒上，而不是有些工作會在背景中發生。
 
-無論您選擇哪種模型，請務必與您使用的 API 一致。如果您是從呼叫 **IoTHubClient\_LL\_CreateFromConnectionString** 開始，請務必只使用任何後續工作的相對應較低層級 API：
+無論您選擇哪種模型，請務必與您使用的 API 一致。如果您是透過呼叫 **IoTHubClient\_LL\_CreateFromConnectionString** 來開始著手，請務必只使用對應的較低層級 API 來進行任何追蹤工作：
 
 -   IoTHubClient\_LL\_SendEventAsync
 
@@ -139,7 +139,7 @@ IoTHubClient_LL_Destroy(iotHubClientHandle);
 
 相反的情況也成立。如果您從 **IoTHubClient\_CreateFromConnectionString** 著手，則使用非 LL API 進行任何其他處理程序。
 
-在適用於 C 的 Azure IoT 裝置 SDK 中，查看 **iothub\_client\_sample\_http** 應用程式是否有較低層級 API 的完整範例。如需非 LL API 的完整範例，請參考 **Iothub\_client\_sample\_amqp** 應用程式。
+在適用於 C 的 Azure IoT 裝置 SDK 中，如需較低層級 API 的完整範例，請參閱 **iothub\_client\_sample\_http** 應用程式。如需非 LL API 的完整範例，請參考 **Iothub\_client\_sample\_amqp** 應用程式。
 
 ## 屬性處理
 
@@ -296,4 +296,4 @@ IoTHubClient_LL_SetOption(iotHubClientHandle, "timeout", &timeout);
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0713_2016-->
+<!----HONumber=AcomDC_0907_2016-->

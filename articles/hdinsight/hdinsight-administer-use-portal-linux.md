@@ -64,7 +64,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。如需已驗證和所支�
 	
 	- **設定**和**所有設定**：顯示該叢集的 [設定] 刀鋒視窗，可讓您存取該叢集的詳細組態資訊。
 	- **儀表板**、**叢集儀表板**和 **URL：這些是存取叢集儀表板 (也就是適用於 Linux 型叢集的 Ambari Web) 的所有方法。
-    - **安全殼層**︰顯示使用安全殼層 (SSH) 連線連接到叢集的指示。
+	- **安全殼層**︰顯示使用安全殼層 (SSH) 連線連接到叢集的指示。
 	- **調整叢集**：可讓您變更此叢集的背景工作節點數目。
 	- **刪除**：刪除叢集。
 	- **快速入門** (![雲和雷電圖示 = 快速入門](./media/hdinsight-administer-use-portal-linux/quickstart.png))：顯示可協助您開始使用 HDInsight 的資訊。
@@ -86,7 +86,6 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。如需已驗證和所支�
 
 	- **稽核記錄檔**：
     - **快速啟動**：顯示可協助您開始使用 HDInsight 的資訊。
-	- **叢集登入**：變更叢集 HTTP 使用者名稱和密碼。
 	- **調整叢集**：增加和減少叢集背景工作角色節點的數目。
     - **安全殼層**︰顯示使用安全殼層 (SSH) 連線連接到叢集的指示。
     - **HDInsight 合作夥伴**︰新增/移除目前的 HDInsight 合作夥伴。
@@ -201,6 +200,8 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。如需已驗證和所支�
 HDInsight 叢集可以有兩個使用者帳戶。HDInsight 叢集使用者帳戶 (A.K.A.HTTP 使用者帳戶) 以及 SSH 使用者帳戶都會在建立程序期間建立。您可以使用 Ambari Web UI 來變更叢集使用者帳戶的使用者名稱、密碼，以及用於變更 SSH 使用者帳戶的指令碼動作。
 
 ###變更叢集使用者密碼
+
+您可以使用 Ambari Web UI 來變更叢集使用者密碼。若要登入 Ambari，您必須使用現有的叢集使用者名稱和密碼。
 
 > [AZURE.NOTE] 如果您變更叢集使用者 (管理員) 密碼，可能會造成針對此叢集執行的指令碼動作失敗。如果您有任何以背景工作節點為目標的持續性指令碼動作，當您透過調整大小作業新增節點到叢集，這些指令碼動作可能會失敗。如需指令碼動作的詳細資訊，請參閱[使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
 
@@ -332,4 +333,4 @@ HDInsight 叢集刀鋒視窗的 [使用量] 區段會顯示以下資訊：訂用
 [azure-portal]: https://portal.azure.com
 [image-hadoopcommandline]: ./media/hdinsight-administer-use-portal-linux/hdinsight-hadoop-command-line.png "Hadoop 命令列"
 
-<!---HONumber=AcomDC_0817_2016-->
+<!----HONumber=AcomDC_0907_2016-->

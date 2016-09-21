@@ -34,7 +34,7 @@ Azure 入口網站是 Web 架構的管理工具，可用來管理裝載於 Micro
 
 ##建立叢集
 
-Azure 入口網站會公開大部分的叢集屬性。使用 Azure ARM 範本，您可以隱藏許多詳細資料。如需詳細資訊，請參閱[使用 ARM 範本在 HDInsight 中建立 Linux 型 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)。
+Azure 入口網站會公開大部分的叢集屬性。使用 Azure Resource Manager 範本，您可以隱藏許多詳細資料。如需詳細資訊，請參閱[使用 Azure Resource Manager 範本在 HDInsight 中建立 Linux 型的 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 
@@ -103,7 +103,7 @@ Azure 入口網站會公開大部分的叢集屬性。使用 Azure ARM 範本，
 
 		![虛擬網路刀鋒視窗](./media/hdinsight-hadoop-create-linux-cluster-portal/HDI.CreateCluster.6.png "指定虛擬網路詳細資料")
 
-    	如需搭配虛擬網路使用 HDInsight 的詳細資訊 (包含虛擬網路的特定組態需求)，請參閱[使用 Azure 虛擬網路延伸 HDInsight 功能](hdinsight-extend-hadoop-virtual-network.md)。
+    	如需搭配虛擬網路使用 HDInsight 的資訊 (包含虛擬網路的特定組態需求)，請參閱[使用 Azure 虛擬網路延伸 HDInsight 功能](hdinsight-extend-hadoop-virtual-network.md)。
 
 	* 按一下 [外部中繼存放區] 來指定您想要用來儲存與叢集相關聯之 Hive 和 Oozie 中繼資料的 SQL 資料庫。
     
@@ -127,11 +127,13 @@ Azure 入口網站會公開大部分的叢集屬性。使用 Azure ARM 範本，
 
 		![其他儲存體刀鋒視窗](./media/hdinsight-hadoop-create-linux-cluster-portal/HDI.CreateCluster.9.png "指定其他儲存體帳戶")
 
+		在建立叢集之後，您也可以新增其他儲存體帳戶。請參閱[使用指令碼動作自訂 Linux 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
+
 		按一下 [選取]，直到您回到 [新的 HDInsight 叢集] 刀鋒視窗。
         
         除了 Blob 儲存體帳戶，您也可以連結 Azure Data Lake Store。您可以透過從您設定儲存體帳戶和預設容器的資料來源設定 AAD 來完成此組態。
 
-10. 在 [新的 HDInsight 叢集] 刀鋒視窗中，確認已選取 [釘選到「開始面板」]，然後按一下 [建立]。這將會建立叢集，並將該叢集磚加入到您 Azure 入口網站的「開始面板」。該圖示可表示該叢集正在佈建，並將在佈建完成後變更為 HDInsight 圖示。
+10. 在 [新的 HDInsight 叢集] 刀鋒視窗中，確認已選取 [釘選到開始面板]，然後按一下 [建立]。這將會建立叢集，並將該叢集磚加入到您 Azure 入口網站的「開始面板」。該圖示可表示該叢集正在佈建，並將在佈建完成後變更為 HDInsight 圖示。
 
 	| 佈建期間 | 佈建完成 |
 	| ------------------ | --------------------- |
@@ -139,7 +141,7 @@ Azure 入口網站會公開大部分的叢集屬性。使用 Azure ARM 範本，
 
 	> [AZURE.NOTE] 建立叢集需要一些時間，通常約 15 分鐘左右。使用 [「開始面板」] 上的磚，或頁面左邊的 [通知] 項目，以檢查佈建進度。
 
-11. 佈建完成後，在「開始面板」按一下該叢集磚，以啟動叢集刀鋒視窗。此叢集刀鋒視窗提供該叢集的基本資訊，如名稱、其所屬的資源群組、位置、作業系統、叢集儀表板 URL 等。
+11. 建立程序完成後，在「開始面板」按一下該叢集磚，以啟動叢集刀鋒視窗。此叢集刀鋒視窗提供該叢集的基本資訊，如名稱、其所屬的資源群組、位置、作業系統、叢集儀表板 URL 等。
 
 	![叢集刀鋒視窗](./media/hdinsight-hadoop-create-linux-cluster-portal/HDI.Cluster.Blade.png "叢集屬性")
 
@@ -155,11 +157,11 @@ Azure 入口網站會公開大部分的叢集屬性。使用 Azure ARM 範本，
 
 	* **快速入門** (![雲和雷電圖示 = 快速入門](./media/hdinsight-hadoop-create-linux-cluster-portal/quickstart.png))：顯示可協助您開始使用 HDInsight 的資訊。
 
-	* **使用者** (![使用者圖示](./media/hdinsight-hadoop-create-linux-cluster-portal/users.png))：可讓您設定 Azure 訂用帳戶上其他使用者對此叢集的「入口網站管理」權限。
+	* **使用者 (![使用者圖示](./media/hdinsight-hadoop-create-linux-cluster-portal/users.png))**：可讓您為自己 Azure 訂用帳戶的其他使用者設定針對此叢集的「入口網站管理」權限。
 
 		> [AZURE.IMPORTANT] 這「只會」影響在 Azure 入口網站對此叢集的存取和權限，對於連線到 HDInsight 叢集或將工作提交到 HDInsight 叢集的使用者沒有影響。
 
-	* **標記** (![標記圖示](./media/hdinsight-hadoop-create-linux-cluster-portal/tags.png))：標記可讓您設定索引鍵/值組，以定義雲端服務的自訂分類。例如，您可建立名為 __project__ 的索引鍵，然後使用與特定專案相關聯之所有服務的通用值。
+	* **標記** (![標記圖示](./media/hdinsight-hadoop-create-linux-cluster-portal/tags.png))：標記可讓您設定索引鍵/值組，以定義雲端服務的自訂分類。例如，您可以建立名為 __project__ 的索引鍵，然後使用與特定專案相關聯之所有服務的通用值。
 
 ##自訂叢集
 
@@ -199,4 +201,4 @@ Azure 入口網站會公開大部分的叢集屬性。使用 Azure ARM 範本，
 * [Spark 和機器學習：使用 HDInsight 中的 Spark 來預測食物檢查結果](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Spark 串流：使用 HDInsight 中的 Spark 來建置即時串流應用程式](hdinsight-apache-spark-eventhub-streaming.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!----HONumber=AcomDC_0907_2016-->

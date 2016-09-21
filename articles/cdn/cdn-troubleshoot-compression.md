@@ -13,18 +13,22 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/28/2016"
+	ms.date="09/01/2016"
 	ms.author="casoper"/>
     
 # CDN 檔案壓縮疑難排解
 
 這篇文章可協助您針對 [CDN 檔案壓縮](cdn-improve-performance.md)的問題進行疑難排解。
 
-若您對本文中的任何步驟有需要進一步協助的地方，請連絡 [MSDN Azure 和堆疊溢位論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專家。或者，您也可以提出 Azure 支援事件。請移至 [Azure 支援網站](https://azure.microsoft.com/support/options/)，然後按一下 [取得支援]。
+如果在本文章中有任何需要協助的地方，您可以連絡 [MSDN Azure 和 Stack Overflow 論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專家。或者，您也可以提出 Azure 支援事件。請移至 [Azure 支援網站](https://azure.microsoft.com/support/options/)，然後按一下 [取得支援]。
 
 ## 徵狀
 
 已為您的端點啟用壓縮，但會傳回未壓縮的檔案。
+
+>[AZURE.TIP] 若要檢查傳回的檔案是否會壓縮，您需要使用 [Fiddler](http://www.telerik.com/fiddler) 之類的工具或您瀏覽器的[開發人員工具](https://developer.microsoft.com/microsoft-edge/platform/documentation/f12-devtools-guide/)。檢查隨快取的 CDN 內容傳回的 HTTP 回應標頭。如果名為 `Content-Encoding` 的標頭有 **gzip**、**bzip2** 或 **deflate** 值，內容會進行壓縮。
+>
+>![Content-Encoding 標頭](./media/cdn-troubleshoot-compression/cdn-content-header.png)
 
 ## 原因
 
@@ -36,7 +40,7 @@
 
 ## 疑難排解步驟
 
-> [AZURE.TIP] 隨著新端點的部署，CDN 組態變更會需要一些時間才能傳播至整個網路。在大部分情況下，變更會在 90 分鐘內套用完成。如果這是您第一次設定 CDN 端點壓縮，您應該考慮先等候 1-2 小時，確定壓縮設定已傳播至 POP。
+> [AZURE.TIP] 隨著新端點的部署，CDN 組態變更會需要一些時間才能傳播至整個網路。變更通常會在 90 分鐘內套用。如果這是您第一次設定 CDN 端點壓縮，您應該考慮先等候 1-2 小時，確定壓縮設定已傳播至 POP。
 
 ### 驗證要求
 
@@ -64,7 +68,7 @@
 
 > [AZURE.NOTE] 如果您的 CDN 設定檔是**來自 Verizon 的 Azure CDN 進階**設定檔，才能套用此步驟。
 
-在 [Azure 入口網站](https://portal.azure.com)中瀏覽至您的端點，然後按一下 [管理] 按鈕。即會開啟補充入口網站。將滑鼠移至 [**HTTP 大型**] 索引標籤上，然後將滑鼠移至 [**快取設定**] 飛出視窗上。按一下 [**壓縮**]。
+在 [Azure 入口網站](https://portal.azure.com)中瀏覽至您的端點，然後按一下 [管理] 按鈕。即會開啟補充入口網站。將滑鼠移至 [**HTTP 大型**] 索引標籤上，然後將滑鼠移至 [**快取設定**] 飛出視窗上。按一下 [壓縮]。
 
 - 驗證已啟用壓縮。
 - 驗證 [檔案類型] 清單包含以逗號分隔 (無空格) 的 MIME 類型清單。
@@ -78,7 +82,7 @@
 
 使用您瀏覽器的開發人員工具，檢查回應標頭以確保檔案會快取在要求它的區域中。
 
-- 檢查 **Server** 回應標頭。標頭應該具有格式 **平台 (POP/伺服器識別碼)**，如以下範例所示。
+- 檢查 **Server** 回應標頭。標頭應該具有格式**平台 (POP/伺服器識別碼)**，如下列範例所示。
 - 檢查 **X-Cache** 回應標頭。標頭應為 **HIT**。
 
 ![CDN 回應標頭](./media/cdn-troubleshoot-compression/cdn-response-headers.png)
@@ -99,4 +103,4 @@
 - **IIS 6**：[在 IIS Metabase 屬性中設定 HcNoCompressionForProxies="FALSE"](https://msdn.microsoft.com/library/ms525390.aspx)
 - **IIS 7 和更新版本**：[在伺服器組態中將 **noCompressionForHttp10** 和 **noCompressionForProxies** 設定為 False](http://www.iis.net/configreference/system.webserver/httpcompression)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -26,7 +26,6 @@ description="了解如何在 Windows 電腦上產生並使用 SSH 金鑰來連�
 
 本主題描述如何在 Windows 上建立和使用 **ssh-rsa** 和 **.pem** 格式的公用和私密金鑰檔案，您可以使用這些檔案，在 Azure 上以 **ssh** 命令連接至 Linux VM。如果您已經建立 **.pem** 檔案，您可以使用這些檔案來建立 Linux VM (可以使用 **ssh** 來連接)。其他數個命令使用 **SSH** 通訊協定和金鑰檔案安全地執行工作，值得注意的是 **scp** 或[安全複製](https://en.wikipedia.org/wiki/Secure_copy)，可以安全地將檔案複製到支援 **SSH** 連線的電腦，或從中複製。
 
-> [AZURE.NOTE] 若能耽擱您一些時間，請透過回答這個針對您經驗的[簡短問卷](https://aka.ms/linuxdocsurvey)，來協助我們改善 Azure Linux VM 文件。每個答案都有助於我們協助您完成工作。
 
 ## 您需要哪些 SSH 和金鑰建立程式？
 
@@ -168,4 +167,4 @@ Azure 的基本 SSH 安裝程式包含 2048 位元的 **ssh-rsa** 公用和私�
 5.	按一下 [開啟] 以連線到虛擬機器。
  
 
-<!---HONumber=AcomDC_0831_2016-->
+<!----HONumber=AcomDC_0907_2016-->

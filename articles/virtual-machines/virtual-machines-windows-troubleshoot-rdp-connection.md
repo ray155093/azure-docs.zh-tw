@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="support-article"
-	ms.date="06/14/2016"
+	ms.date="09/01/2016"
 	ms.author="iainfou"/>
 
 # 疑難排解執行 Windows 之 Azure 虛擬機器的遠端桌面連線
@@ -65,13 +65,13 @@
 		-VMName "myVM" -Name "myVMAccess" -Location Westus
 	```
 
-	> [AZURE.NOTE] 在前面的範例中，`myVMAccessExtension` 或 `MyVMAccess` 是您為要在程序中安裝的新擴充功能指定的名稱。這通常會設定為 VM 的名稱。如果您先前使用了 VMAccessAgent，則可以使用 `Get-AzureRmVM -ResourceGroupName "myRG" -Name "myVM"` 來檢查 VM 的屬性，以取得現有擴充功能的名稱。然後在輸出的「擴充功能」區段下尋找。由於一部 VM 上只能有一個 VMAccessAgent，因此使用 `Set-AzureRmVMExtension` 來重新註冊代理程式時，您也需要新增 `-ForceReRun` 參數。
+	> [AZURE.NOTE] 在前面的範例中，`myVMAccessExtension` 或 `MyVMAccess` 是您為要在程序中安裝的新擴充功能指定的名稱。這通常會設定為 VM 的名稱。如果您先前使用了 VMAccessAgent，則可以使用 `Get-AzureRmVM -ResourceGroupName "myRG" -Name "myVM"` 來檢查 VM 的屬性，以取得現有擴充功能的名稱。查看輸出的 'Extensions' 區段底下來檢視名稱。由於一部 VM 上只能有一個 VMAccessAgent，因此使用 `Set-AzureRmVMExtension` 來重新註冊代理程式時，您也需要新增 `-ForceReRun True` 參數。
 
 2. 重新啟動您的 VM 以處理其他啟動問題。選取 [瀏覽] > [虛擬機器] >「您的 VM」> [重新啟動]。
 
 3. [將 VM 重新部署到新的 Azure 節點](virtual-machines-windows-redeploy-to-new-node.md)。
 
-	此作業完成之後，暫時磁碟機資料會遺失，且將會更新與虛擬機器相關聯的動態 IP 位址。
+	此作業完成之後，會遺失暫時磁碟資料，並且會更新與虛擬機器關聯的動態 IP 位址。
 	
 4. 確認您的[網路安全性群組規則](../virtual-network/virtual-networks-nsg.md)允許 RDP 流量 (TCP 連接埠 3389)。
 
@@ -92,7 +92,7 @@
 
 3. [將 VM 重新部署到新的 Azure 節點](virtual-machines-windows-redeploy-to-new-node.md)。
 
-	此作業完成之後，暫時磁碟機資料將會遺失，且將會更新與虛擬機器相關聯的動態 IP 位址。
+	此作業完成之後，會遺失暫時磁碟資料，並且會更新與虛擬機器關聯的動態 IP 位址。
 	
 4. 確認您的[雲端服務端點允許 RDP 流量](../cloud-services/cloud-services-role-enable-remote-desktop.md)。
 
@@ -210,4 +210,4 @@
 
 [疑難排解存取在 Azure 虛擬機器上執行的應用程式](virtual-machines-linux-troubleshoot-app-connection.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!----HONumber=AcomDC_0907_2016-->

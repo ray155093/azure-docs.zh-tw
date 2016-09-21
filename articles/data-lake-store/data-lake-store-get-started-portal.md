@@ -4,7 +4,7 @@
    services="data-lake-store" 
    documentationCenter="" 
    authors="nitinme" 
-   manager="paulettm" 
+   manager="jhubbard" 
    editor="cgronlun"/>
  
 <tags
@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="08/02/2016"
+   ms.date="09/13/2016"
    ms.author="nitinme"/>
 
 # 使用 Azure 入口網站開始使用 Azure 資料湖分析
@@ -35,16 +35,6 @@
 
 - **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-## <a name="signup"></a>啟用您的 Azure 訂用帳戶以使用資料湖存放區公開預覽版
-
-您必須先要求啟用您的 Azure 訂用帳戶以使用資料湖存放區公開預覽版。依照下列步驟執行。
-
-1. 登入新的 [Azure 入口網站](https://portal.azure.com)。
-2. 按一下 [新增]，然後依序按一下 [資料 + 儲存體] 和 [Azure 資料湖存放區]。
-3. 在 [新增資料湖存放區] 刀鋒視窗中，按一下 [註冊使用預覽版]。閱讀資訊，然後按一下 [**確定**]。您的訂用帳戶已啟用公開預覽版之後，您會收到一封電子郵件。
-
-	![註冊以取得公開預覽版](./media/data-lake-store-get-started-portal/preview-signup.png "建立新的 Azure 資料湖帳戶")
-
 ## 使用影片快速學習？
 
 請觀看下列影片以開始使用 Data Lake Store。
@@ -62,7 +52,7 @@
 
 	![建立新的 Azure 資料湖存放區帳戶](./media/data-lake-store-get-started-portal/ADL.Create.New.Account.png "建立新的 Azure 資料湖帳戶")
 
-	- **訂用帳戶**。選取您想要建立新資料湖存放區帳戶所在的訂用帳戶。
+	- **訂用帳戶**。選取您想要建立新 Data Lake Store 帳戶所在的訂用帳戶。
 	- **資源群組**。選取現有的資源群組，或按一下 [建立資源群組] 來建立。資源群組是保留應用程式相關資源的容器。如需詳細資訊，請參閱 [Azure 中的資源群組](resource-group-overview.md#resource-groups)。
 	- **位置**：選取您要建立資料湖存放區帳戶的位置。
 
@@ -133,9 +123,9 @@
 
 ## 後續步驟
 
-- [保護資料湖存放區中的資料](data-lake-store-secure-data.md)
-- [搭配資料湖存放區使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
+- [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
+- [搭配 Data Lake Store 使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 - [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 - [存取 Data Lake Store 的診斷記錄](data-lake-store-diagnostic-logs.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0914_2016-->

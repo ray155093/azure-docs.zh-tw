@@ -52,8 +52,9 @@
 
     在瀏覽器中瀏覽至 <http://localhost:3000> 以確定您可以看到 Express 首頁。一旦您確認應用程式正確執行，請使用 `Ctrl-C` 來停止它。
     
-1. 如下所示登入 Azure (為此您需要 [Azure CLI](#prereq))：
+1. 變更為 ASM 模式並登入 Azure (為此您需要 [Azure CLI](#prereq))：
 
+        azure config mode asm
         azure login
 
     依照提示，在瀏覽器中繼續使用具有 Azure 訂用帳戶的 Microsoft 帳戶進行登入。
@@ -236,4 +237,4 @@ Kudu 部署引擎會依下列順序決定要使用哪個 Node.js 引擎︰
 [iislog-kudu-console-open]: ./media/app-service-web-nodejs-get-started/iislog-kudu-console-open.png
 [iislog-kudu-console-read]: ./media/app-service-web-nodejs-get-started/iislog-kudu-console-read.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0914_2016-->

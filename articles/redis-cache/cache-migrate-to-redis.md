@@ -12,7 +12,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="cache-redis"
     ms.workload="tbd"
-    ms.date="06/09/2016"
+    ms.date="09/07/2016"
     ms.author="sdanie" />
 
 # 從受管理的快取服務移轉至 Azure Redis 快取
@@ -33,7 +33,7 @@
 	-	使用 ConnectionMultiplexer 類別連接到快取
 	-	存取快取中的基本資料型別
 	-	使用快取中的 .NET 物件
--	將 ASP.NET 工作階段狀態和輸出快取移轉至 Azure Redis 快取 
+-	將 ASP.NET 工作階段狀態和輸出快取移轉至 Azure Redis 快取
 
 ## 將受管理的快取服務功能對應至 Azure Redis 快取
 
@@ -59,7 +59,7 @@ Microsoft Azure Redis 快取有下列階層：
 -	**標準** – 兩個節點 (主要/從屬)。多種大小，最高為 53 GB。99.9% SLA。
 -	**進階** – 兩個節點的主要/從屬，最多具有 10 個分區。從 6 GB 到 530 GB 的多種大小 (如需詳細資訊，請與我們連絡)。所有「標準」層級的功能以及更多功能，可支援 [Redis 叢集](cache-how-to-premium-clustering.md)、[Redis 持續性](cache-how-to-premium-persistence.md)和 [Azure 虛擬網路](cache-how-to-premium-vnet.md)。99.9% SLA。
 
-每一個階層都有不同的功能和定價。本指南稍後將探討這些功能，如需定價的詳細資訊，請參閱[快取定價詳細資料](https://azure.microsoft.com/pricing/details/cache/)。
+每一個階層都有不同的功能和價格。本指南稍後將探討這些功能，如需定價的詳細資訊，請參閱[快取定價詳細資料](https://azure.microsoft.com/pricing/details/cache/)。
 
 移轉作業的第一步是挑選符合先前受管理的快取服務快取大小的容量，然後再依據應用程式的需求擴大或縮小規模。如須選擇合適的 Azure Redis 快取服務的詳細指引，請參閱[應該使用哪個 Redis 快取服務和大小？](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)。
 
@@ -78,9 +78,9 @@ Microsoft Azure Redis 快取有下列階層：
 
 要將用戶端應用程式設定為使用 Azure Redis 快取，必須先解除安裝受管理的快取服務 NuGet 封裝，以便移除現有受管理的快取服務的設定和組件參考。
 
-若要解除安裝受管理的快取服務 NuGet 封裝，請在 [方案總管] 中的用戶端專案上按一下滑鼠右鍵，然後選擇 [管理 NuGet 封裝]。選取 [已安裝的封裝] 節點，然後在 [搜尋已安裝的封裝] 方塊中輸入 W**indowsAzure.Caching**。選取 [Microsoft Azure 快取 (Microsoft Azure Cache)] \(或 [Microsoft Azure 快取 (Microsoft Azure Caching)]，視 NuGet 封裝的版本而定)，按一下 [解除安裝]，然後按一下 [關閉]。
+若要解除安裝受管理的快取服務 NuGet 封裝，請在 [方案總管] 中的用戶端專案上按一下滑鼠右鍵，然後選擇 [管理 NuGet 封裝]。選取 [已安裝的封裝] 節點，然後在 [搜尋已安裝的封裝] 方塊中輸入 **WindowsAzure.Caching**。選取 [Microsoft Azure 快取 (Microsoft Azure Cache)] \(或 [Microsoft Azure 快取 (Microsoft Azure Caching)]，視 NuGet 封裝的版本而定)，按一下 [解除安裝]，然後按一下 [關閉]。
 
-![解除安裝 Azure 受管理的快取服務 NuGet 封裝](./media/cache-migrate-to-redis/IC757666.jpg)
+![解除安裝 Azure 受管理的快取服務 NuGet 套件](./media/cache-migrate-to-redis/IC757666.jpg)
 
 解除安裝受管理的快取服務 NuGet 封裝，會移除用戶端應用程式的 app.config 或 web.config 中的受管理的快取服務組件和受管理的快取服務項目。解除安裝 NuGet 封裝時可能不會移除部分自訂的設定，因此請開啟 web.config 或 app.config，確定已徹底移除下列項目。
 
@@ -179,4 +179,4 @@ Azure Redis 快取有適用於 ASP.NET 工作階段狀態和頁面輸出快取�
 
 瀏覽 [Azure Redis 快取文件](https://azure.microsoft.com/documentation/services/cache/)中的教學課程、範例、影片及其他資訊。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!----HONumber=AcomDC_0907_2016-->

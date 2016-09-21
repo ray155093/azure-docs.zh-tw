@@ -18,7 +18,7 @@
 
 # 在 Azure App Service 中針對 Web 應用程式啟用診斷記錄功能。
 
-## 概觀
+## Overview
 
 Azure 提供內建診斷功能，可協助對 [App Service Web 應用程式](http://go.microsoft.com/fwlink/?LinkId=529714)進行偵錯。本文將說明如何啟用診斷記錄，並在您的應用程式中加入檢測設備，以及如何存取 Azure 所記錄的資訊。
 
@@ -111,7 +111,7 @@ App Service Web 應用程式會針對來自 Web 伺服器和 Web 應用程式的
 
 此舉會將 **-Name** 參數所指定的 Web 應用程式記錄儲存到目前目錄中名為 **logs.zip** 的檔案中。
 
-> [AZURE.NOTE] 如果您尚未安裝 Azure PowerShell，或尚未將其設定為使用 Azure 訂閱，請參閱[如何使用 Azure PowerShell](/develop/nodejs/how-to-guides/powershell-cmdlets/) (英文)。
+> [AZURE.NOTE] 如果您尚未安裝 Azure PowerShell，或是尚未將其設定為使用您的 Azure 訂閱，請參閱[如何使用 Azure PowerShell](/develop/nodejs/how-to-guides/powershell-cmdlets/) (英文)。
 
 ### 使用 Azure 命列列介面來下載
 
@@ -128,7 +128,7 @@ App Service Web 應用程式會針對來自 Web 伺服器和 Web 應用程式的
 Visual Studio Application Insights 提供篩選與搜尋記錄的工具，以及將記錄與要求及其他事件建立相互關聯的工具。
 
 1. 在 Visual Studio 中將 Application Insights SDK 加入至專案。
- * 在 [方案總管] 中，以滑鼠右鍵按一下專案，然後選擇 [加入 Application Insights]。系統將指導您完成包括建立 Application Insights 資源在內的所有步驟。[深入了解](../application-insights/app-insights-start-monitoring-app-health-usage.md)
+ * 在 [方案總管] 中，以滑鼠右鍵按一下專案，然後選擇 [加入 Application Insights]。系統將指導您完成包括建立 Application Insights 資源在內的所有步驟。[深入了解](../application-insights/app-insights-asp-net.md)
 2. 將追蹤接聽項封裝新增至專案。
  * 以滑鼠右鍵按一下專案，然後選擇 [管理 NuGet 封裝]。選取 `Microsoft.ApplicationInsights.TraceListener` [深入了解](../application-insights/app-insights-asp-net-trace-logs.md)
 3. 上傳您的專案並執行，以產生記錄資料。
@@ -162,7 +162,7 @@ Visual Studio Application Insights 提供篩選與搜尋記錄的工具，以及
 
 若要檢視可用的路徑清單，請使用 -ListPath 參數。
 
-> [AZURE.NOTE] 如果您尚未安裝 Azure PowerShell，或尚未將其設定為使用 Azure 訂閱，請參閱[如何使用 Azure PowerShell](/develop/nodejs/how-to-guides/powershell-cmdlets/) (英文)。
+> [AZURE.NOTE] 如果您尚未安裝 Azure PowerShell，或是尚未將其設定為使用您的 Azure 訂閱，請參閱[如何使用 Azure PowerShell](/develop/nodejs/how-to-guides/powershell-cmdlets/) (英文)。
 
 ### 使用 Azure 命令列介面來串流
 
@@ -224,8 +224,8 @@ __Blob 儲存體__
 
 屬性名稱|值/格式
 ---|---
-Date|事件發生的日期與時間
-Level|事件層級 (例如，錯誤、警告、資訊)
+日期|事件發生的日期與時間
+等級|事件層級 (例如，錯誤、警告、資訊)
 ApplicationName|Web 應用程式名稱
 InstanceId|發生事件的 Web 應用程式執行個體
 EventTickCount|事件發生的日期與時間 (刻度格式，精準度更高)
@@ -270,4 +270,4 @@ Web 伺服器記錄使用 [W3C 擴充記錄檔案格式](http://msdn.microsoft.c
 * 如需從舊的入口網站變更為新入口網站的指南，請參閱：[瀏覽 Azure 入口網站的參考](http://go.microsoft.com/fwlink/?LinkId=529715)
  
 
-<!---HONumber=AcomDC_0615_2016-->
+<!----HONumber=AcomDC_0907_2016-->

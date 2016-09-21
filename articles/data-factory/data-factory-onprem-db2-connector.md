@@ -13,21 +13,28 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/16/2016" 
+	ms.date="09/06/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Azure Data Factory 從 DB2 移動資料
 本文將概述如何使用 Azure 資料處理站中的複製活動將資料從 DB2 移動到另一個資料存放區。本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
 
-資料處理站支援使用資料管理閘道器連接至內部部署 DB2 來源。請參閱[在內部部署位置與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文來了解資料管理閘道器和設定閘道器的逐步指示。
+資料處理站支援使用資料管理閘道器連接至內部部署 DB2 來源。請參閱[在內部部署位置與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文來了解資料管理閘道和設定閘道的逐步指示。
 
-**請注意：**即使 DB2 裝載於 Azure IaaS VM 中，您還是需要運用閘道器與其連接。如果您正嘗試連接到裝載於雲端中的 DB2 執行個體，您也可以在 IaaS VM 中安裝閘道器執行個體。
+> [AZURE.NOTE]
+即使 DB2 裝載於 Azure IaaS VM 中，仍請使用閘道器與其連接。如果您正嘗試連接到裝載於雲端中的 DB2 執行個體，您也可以在 IaaS VM 中安裝閘道器執行個體。
 
 資料處理站目前只支援將資料從 DB2 移至其他資料存放區，而不支援從其他資料存放區移至 DB2
 
 ## 安裝 
 
-為使資料管理閘道器連接到 DB2 資料庫，自閘道器 2.1 版起，Azure Data Factory 提供包含 DB2 支援 (SQLAM 9 / 10 / 11) 的內建驅動程式，包括 DB2 for LUW (Linux、Unix、Windows)、DB2 for z/OS 和 DB2 for i (也稱為 AS/400)，因此，從 DB2 複製資料時，您不再需要手動安裝驅動程式。
+資料管理閘道提供的內建 DB2 驅動程式可支援下列各項︰
+
+- SQLAM 9/10/11
+- DB2 for LUW (Linux、Unix、Windows)
+- DB2 for z/OS 和 DB2 for i (也稱為 AS/400)
+
+因此，從 DB2 複製資料時，您不再需要手動安裝驅動程式。
 
 > [AZURE.NOTE] 如需連接/閘道器相關問題的疑難排解秘訣，請參閱[針對閘道問題進行疑難排解](data-factory-data-management-gateway.md#troubleshoot-gateway-issues)。
 
@@ -48,9 +55,9 @@
 4.	[AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
 5.	具有使用 [RelationalSource](data-factory-onprem-db2-connector.md#db2-copy-activity-type-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
-此範例會每個小時將資料從 DB2 資料庫中的查詢結果複製到 Blob。範例後面的各節會說明這些範例中使用的 JSON 屬性。
+此範例會每個小時將資料從 DB2 資料庫中的查詢結果複製到 Azure Blob。範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
-在第一個步驟中，請根據[在內部部署位置與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文中的指示，設定資料管理閘道器。
+第一個步驟是安裝和設定資料管理閘道。如需相關指示，請參閱[在內部部署位置和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)。
 
 **DB2 連結服務：**
 
@@ -87,7 +94,7 @@
 
 此範例假設您已在 DB2 中建立資料表 "MyTable"，其中包含時間序列資料的資料行 (名稱為 "timestamp")。
 
-設定 “external”: true 和指定 externalData 原則即可通知 Azure Data Factory：這是 Data Factory 外部的資料表而且不是由 Data Factory 中的活動所產生。請注意，**類型**需設為 **RelationalTable**。
+設定 “external”: true 可讓 Data Factory 服務知道此資料集是在 Data Factory 外部，而不是由 Data Factory 中的活動所產生。請注意，**類型**需設為 **RelationalTable**。
 
 	{
 	    "name": "Db2DataSet",
@@ -171,7 +178,7 @@
 
 **具有複製活動的管線：**
 
-此管線包含複製活動，該活動已設定為使用上述輸入和輸出資料集並排定為每小時執行。在管線 JSON 定義中，**source** 類型設為 **RelationalSource**，而 **sink** 類型設為 **BlobSink**。針對 **query** 屬性指定的 SQL 查詢會從 Orders 資料表選取資料。
+此管線包含複製活動，該活動已設定為使用輸入和輸出資料集並排定為每小時執行。在管線 JSON 定義中，**source** 類型設為 **RelationalSource**，而 **sink** 類型設為 **BlobSink**。針對 **query** 屬性指定的 SQL 查詢會從 Orders 資料表選取資料。
 
 	{
 	    "name": "CopyDb2ToBlob",
@@ -246,33 +253,33 @@
 
 ## DB2 複製活動類型屬性
 
-如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。名稱、描述、輸入和輸出資料表、各種原則等屬性都適用於所有活動類型。
+如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
 
-另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同，而在複製活動的案例中，可用的屬性會根據來源與接收的類型而有所不同。
+另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
 
-在複製活動的案例中，如果來源類型為 **RelationalSource** (包含 DB2)，則 typeProperties 區段可使用下列屬性：
+在複製活動中，如果來源類型為 **RelationalSource** (包含 DB2)，則 typeProperties 區段可使用下列屬性：
 
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | -------- | ----------- | -------- | -------------- |
-| query | 使用自訂查詢來讀取資料。 | SQL 查詢字串。例如："query": "select * from "MySchema"."MyTable""。 | 否 (如果已指定 **dataset** 的 **tableName**)|
+| query | 使用自訂查詢來讀取資料。 | SQL 查詢字串。例如：`"query": "select * from "MySchema"."MyTable""`。 | 否 (如果已指定 **dataset** 的 **tableName**)|
 
-> [AZURE.NOTE] 結構描述和資料表名稱會區分大小寫，而且必須在查詢中以 "" (雙引號) 括住。
+> [AZURE.NOTE] 結構描述和資料表名稱會區分大小寫。在查詢中以 "" (雙引號) 括住名稱。
 
 **範例：**
 
- "query": "select * from "DB2ADMIN"."Customers""
+	"query": "select * from "DB2ADMIN"."Customers""
 
 
 [AZURE.INCLUDE [data-factory-structure-for-rectangualr-datasets](../../includes/data-factory-structure-for-rectangualr-datasets.md)]
 
 ## DB2 的類型對應
-如同[資料移動活動](data-factory-data-movement-activities.md)一文所述，複製活動會使用下列 2 個步驟的方法，執行自動類型轉換，將來源類型轉換成接收類型：
+如同[資料移動活動](data-factory-data-movement-activities.md)一文所述，「複製活動」會藉由含有下列 2 個步驟的方法，執行從來源類型轉換成接收類型的自動類型轉換：
 
 1. 從原生來源類型轉換成 .NET 類型
 2. 從 .NET 類型轉換成原生接收類型
 
-將資料移到 DB2 時，下列對應將用於從 DB2 類型.NET 類型。
+將資料移到 DB2 時，從 DB2 類型到 .NET 類型會使用下列對應。
 
 DB2 資料庫類型 | .NET Framework 類型 
 ----------------- | ------------------- 
@@ -326,4 +333,4 @@ Char | String
 ## 效能和微調  
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!----HONumber=AcomDC_0907_2016-->

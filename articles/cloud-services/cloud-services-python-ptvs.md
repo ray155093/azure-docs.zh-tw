@@ -240,6 +240,8 @@ if (-not $is_emulated){
 
 #### 修改 LaunchWorker.ps1
 
+>[AZURE.NOTE] 如果是**背景工作角色**專案，則需要 **LauncherWorker.ps1** 檔案才能執行啟動檔。在 **Web 角色**專案中，啟動檔已定義於專案屬性中。
+
 最初建立 **Bin\\LaunchWorker.ps1** 是為了進行許多準備工作，但它未真正發生作用。以下列指令碼取代該檔案中的內容。
 
 此指令碼會從 python 專案呼叫 **worker.py** 檔。如果 **PYTHON2** 環境變數設定為 [on]，則會使用 Python 2.7，否則會使用 Python 3.5。
@@ -364,4 +366,4 @@ if not exist "%DiagnosticStore%\LogFiles" mkdir "%DiagnosticStore%\LogFiles"
 [Python 2.7 32 位元]: https://www.python.org/downloads/
 [Python 3.5 32 位元]: https://www.python.org/downloads/
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

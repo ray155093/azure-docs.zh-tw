@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="andkjell"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -34,11 +34,11 @@ Azure Active Directory Connect 同步處理服務 (Azure AD Connect 同步處理
 [Azure AD Connect 的拓撲](active-directory-aadconnect-topologies.md) | 說明同步處理引擎支援的各種拓撲和案例。
 **自訂組態** |
 [再次執行安裝精靈](active-directory-aadconnectsync-installation-wizard.md) | 說明當您再次執行 Azure AD Connect 安裝精靈時可以使用哪些選項。
+[了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)| 說明稱為宣告式佈建的組態模型。
+[了解宣告式佈建運算式](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md) | 說明宣告式佈建中所用運算式語言的語法。
 [了解預設組態](active-directory-aadconnectsync-understanding-default-configuration.md)| 說明現成可用的規則和預設組態還說明規則如何一起運作，以供現成可用的案例使用。
 [了解使用者和連絡人](active-directory-aadconnectsync-understanding-users-and-contacts.md) | 延續前一個主題，並說明使用者和連絡人的組態如何一起運作 (特別是在多樹系的環境中)。
 [如何變更預設組態](active-directory-aadconnectsync-change-the-configuration.md) | 逐步說明如何對屬性流程進行一般組態變更。
-[了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)| 說明稱為宣告式佈建的組態模型。
-[了解宣告式佈建運算式](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md) | 說明宣告式佈建中所用運算式語言的語法。
 [變更預設組態的最佳作法](active-directory-aadconnectsync-best-practices-changing-default-configuration.md) | 支援限制以及對現成可用的組態進行變更。
 [設定篩選](active-directory-aadconnectsync-configure-filtering.md) | 說明如何限制哪些物件正同步處理至 Azure AD 的各種選項，以及逐步說明如何設定這些選項。
 **功能和案例** |
@@ -64,4 +64,4 @@ Azure Active Directory Connect 同步處理服務 (Azure AD Connect 同步處理
 
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!----HONumber=AcomDC_0907_2016-->

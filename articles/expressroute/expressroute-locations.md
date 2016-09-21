@@ -29,7 +29,7 @@
 
 |**地緣政治區域**|**Azure 區域**|**ExpressRoute 位置**|
 |---|---|---|
-|**北美洲**|美國東部、美國西部、美國東部 2、美國中部、美國中南部、美國中北部、加拿大中部、加拿大東部|亞特蘭大、芝加哥、達拉斯、拉斯維加斯+、洛杉磯、紐約、西雅圖、矽谷、華盛頓特區、蒙特婁+、魁北克市+、多倫多|
+|**北美洲**|美國東部、美國西部、美國東部 2、美國中部、美國中南部、美國中北部、加拿大中部、加拿大東部|亞特蘭大、芝加哥、達拉斯、拉斯維加斯、洛杉磯、紐約、西雅圖、矽谷、華盛頓特區、蒙特婁+、魁北克市+、多倫多|
 |**南美洲**|巴西南部|聖保羅|
 |**歐洲**|北歐、西歐、英國西部、英國南部|阿姆斯特丹、都柏林、倫敦、紐波特 (威爾斯)+、巴黎|
 |**亞洲**|東亞、東南亞|香港特別行政區、新加坡|
@@ -43,9 +43,9 @@
 
 |**地緣政治區域**|**Azure 區域**|**ExpressRoute 位置**|
 |---|---|---|---|
-|**美國政府雲端**|美國政府愛荷華州、美國政府維吉尼亞州|芝加哥、達拉斯+、紐約、華盛頓特區|
+|**美國政府雲端**|美國政府愛荷華州、美國政府維吉尼亞州|芝加哥、達拉斯、紐約、華盛頓特區|
 |**中國**|中國北部、中國東部|北京、上海|
-|**德國**|德國中部、德國東部|柏林、法蘭克福|
+|**德國**|德國中部、德國東部|柏林+、法蘭克福|
 
 
 標準 ExpressRoute SKU 不支援跨地緣政治區域的連線。您必須啟用 ExpressRoute 進階附加元件，以支援全球連線。不支援連線至國家雲端環境。如果有需要的話，您可以聯絡您的連線提供者。
@@ -88,7 +88,7 @@
 | **[SingTel](http://info.singtel.com/about-us/news-releases/singtel-provide-secure-private-access-microsoft-azure-public-cloud)** | 支援 | 支援 | 新加坡 |
 | **Softbank** | 支援 | 支援 | 大阪、東京 | 
 | **[Tata Communications](http://www.tatacommunications.com/lp/izo/azure/azure_index.html)** | 支援 | 支援 | 阿姆斯特丹、辰內、香港、倫敦、孟買、矽谷、新加坡、華盛頓特區 |
-| **[TeleCity Group](http://www.telecitygroup.com/investor-centre/news_details.htm?locid=03100500400b00d&xml)** | 支援 | 支援 | 阿姆斯特丹、倫敦 |
+| **[TeleCity Group](http://www.telecitygroup.com/investor-centre/news_details.htm?locid=03100500400b00d&xml)** | 支援 | 支援 | 阿姆斯特丹、都柏林、倫敦 |
 | **Telefonica** | 支援 | 敬請期待 | 聖保羅 |
 | **Telenor** | 支援 | 支援 | 阿姆斯特丹、倫敦 |
 | **[Telstra Corporation](http://www.telstra.com.au/business-enterprise/network-services/networks/cloud-direct-connect/)** | 支援 | 敬請期待 | 墨爾本、雪梨 |
@@ -105,7 +105,7 @@
 | **服務提供者** |**Microsoft Azure** | **Office 365** | **位置** |
 |-----------------------|--------------------|----------------|---------------|
 | **[AT&T NetBond](https://www.synaptic.att.com/clouduser/html/productdetail/ATT_NetBond.htm)** | 支援 | 支援 | 芝加哥、華盛頓特區 |
-| **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** | 支援 | 支援 | 芝加哥、達拉斯+、紐約、華盛頓特區 |
+| **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** | 支援 | 支援 | 芝加哥、達拉斯、紐約、華盛頓特區 |
 | **[Level 3 Communications](http://your.level3.com/LP=882?WT.tsrc=02192014LP882AzureVanityAzureText)** | 支援 | 支援 | 芝加哥、紐約+、華盛頓特區 |
 | **[Verizon](http://news.verizonenterprise.com/2014/04/secure-cloud-interconnect-solutions-enterprise/)** | 支援 | 支援 | 芝加哥、達拉斯+、紐約、華盛頓特區 |
 
@@ -171,4 +171,4 @@
 <!--Image References-->
 [0]: ./media/expressroute-locations/expressroute-locations-map.png "位置圖"
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

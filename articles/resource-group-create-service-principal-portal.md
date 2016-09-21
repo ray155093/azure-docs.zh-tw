@@ -118,7 +118,7 @@
 
 1. 選取 [新增應用程式]。
 
-2. 在清單中選取 [Azure 服務管理 API]。然後，選取 [完成] 圖示。
+2. 在清單中選取 [Windows Azure 服務管理 API]。然後，選取 [完成] 圖示。
 
       ![選取應用程式](./media/resource-group-create-service-principal-portal/select-app.png)
 
@@ -208,4 +208,4 @@
 - 如要了解如何指定安全性原則，請參閱[Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
 - 若要取得這些步驟的示範影片，請參閱[利用 Azure Active Directory 啟用 Azure 資源的程式化管理](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Enabling-Programmatic-Management-of-an-Azure-Resource-with-Azure-Active-Directory)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -97,7 +97,7 @@
 
 3. 在相同的檔案中，覆寫 **RegisteredForRemoteNotifications** 事件。透過此程式碼，您將註冊能夠在伺服器所支援的所有平台間傳送的簡單範本通知。
 
-	如需有關通知中樞範本的詳細資訊，請參閱[範本](../notification-hubs/notification-hubs-templates.md)。
+	如需有關通知中樞範本的詳細資訊，請參閱[範本](../notification-hubs/notification-hubs-templates-cross-platform-push-messages.md)。
 
 
         public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken)
@@ -156,4 +156,4 @@
 
 <!-- URLs. -->
 
-<!---HONumber=AcomDC_0824_2016-->
+<!----HONumber=AcomDC_0907_2016-->

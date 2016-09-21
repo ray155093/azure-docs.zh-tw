@@ -21,12 +21,10 @@
 > [AZURE.SELECTOR]
 - [安全性概觀](sql-data-warehouse-overview-manage-security.md)
 - [威脅偵測](sql-data-warehouse-security-threat-detection.md)
-- [加密 (入口網站)](sql-data-warehouse-encryption-tde.md)
-- [加密 (T-SQL)](sql-data-warehouse-encryption-tde-tsql.md)
 - [稽核概觀](sql-data-warehouse-auditing-overview.md)
 - [稽核下層用戶端](sql-data-warehouse-auditing-downlevel-clients.md)
-
-
+- [透明資料加密 (入口網站)](sql-data-warehouse-encryption-tde.md)
+- [透明資料加密 (T-SQL)](sql-data-warehouse-encryption-tde-tsql.md)
 
 本文逐步解說保護 Azure SQL 資料倉儲資料庫的基本概念。本文尤其著重於協助您開始利用資源，在資料庫上限制存取、保護資料，以及監視活動。
 
@@ -34,10 +32,9 @@
 
 「連線安全性」是指如何使用防火牆規則和連線加密，限制和保護資料庫的連線。
 
-伺服器和資料庫兩者都可使用防火牆規則，拒絕來自未明確設為允許清單的 IP 位址的連線嘗試。若要允許來自應用程式或用戶端機器的公用 IP 位址的連接，您必須先使用 Azure 傳統入口網站、REST API 或 PowerShell 建立伺服器層級的防火牆規則。最好的作法是，您應該盡可能限制允許穿透您伺服器防火牆的 IP 位址範圍。若要從您的本機電腦存取 Azure SQL 資料倉儲，請確定您的網路和本機電腦上的防火牆允許 TCP 連接埠 1433 上的傳出通訊。如需詳細資訊，請參閱 [Azure SQL Database 防火牆][]、[sp\_set\_firewall\_rule][] 和 [sp\_set\_database\_firewall\_rule][]。
+伺服器和資料庫兩者都可使用防火牆規則，拒絕來自未明確設為允許清單的 IP 位址的連線嘗試。若要允許來自應用程式或用戶端機器的公用 IP 位址的連接，您必須先使用 Azure 入口網站、REST API 或 PowerShell 建立伺服器層級的防火牆規則。最好的作法是，您應該盡可能限制允許穿透您伺服器防火牆的 IP 位址範圍。若要從您的本機電腦存取 Azure SQL 資料倉儲，請確定您的網路和本機電腦上的防火牆允許 TCP 連接埠 1433 上的傳出通訊。如需詳細資訊，請參閱 [Azure SQL Database 防火牆][]、[sp\_set\_firewall\_rule][] 和 [sp\_set\_database\_firewall\_rule][]。
 
-與您的 SQL 資料倉儲的連接可以透過在連接字串中設定加密模式來加密。開啟連接的加密的語法因通訊協定而異。為了協助您設定連接字串，請瀏覽至您在 Azure 入口網站上的資料庫。按一下 [基本資訊] 下的 [顯示資料庫連接字串]。
-
+預設會加密與 SQL 資料倉儲的連線。停用加密的修改連線設定會被忽略。
 
 ## 驗證
 
@@ -125,4 +122,4 @@ ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 <!--Other Web references-->
 [Azure 入口網站中的角色型存取控制]: https://azure.microsoft.com/documentation/articles/role-based-access-control-configure
 
-<!---HONumber=AcomDC_0831_2016-->
+<!----HONumber=AcomDC_0907_2016-->

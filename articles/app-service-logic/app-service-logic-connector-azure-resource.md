@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration"
-   ms.date="05/31/2016"
+   ms.date="09/01/2016"
    ms.author="stepsic"/>
 
 # 開始使用 Azure 資源連接器並將它加入您的邏輯應用程式
@@ -98,4 +98,4 @@ David Ebbo 寫了[一篇很棒的部落格文章](http://blog.davidebbo.com/2014
 <!--Links -->
 [Creating a Logic app]: app-service-logic-create-a-logic-app.md
 
-<!---HONumber=AcomDC_0803_2016-->
+<!----HONumber=AcomDC_0907_2016-->

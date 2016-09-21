@@ -21,7 +21,7 @@
 [AZURE.INCLUDE [notification-hubs-selector-aspnet-backend-notify-users](../../includes/notification-hubs-selector-aspnet-backend-notify-users.md)]
 
 
-##概觀
+##Overview
 
 Azure 中的推播通知支援可讓您存取易於使用、多重平台的大規模推播基礎結構，而大幅簡化消費者和企業應用程式在行動平台上的推播通知實作。本教學課程將示範如何使用 Azure 通知中心，來將推播通知傳送到特定裝置上的特定應用程式使用者。ASP.NET WebAPI 後端是用來驗證用戶端。使用驗證的用戶端使用者，後端就會自動將標記新增通知註冊。後端會傳送此標記，以產生特定使用者的通知。如需使用應用程式後端註冊通知的詳細資訊，請參閱指引主題[從應用程式後端註冊](http://msdn.microsoft.com/library/dn743807.aspx)。本教學課程會以您在[開始使用通知中樞]教學課程中所建立的通知中樞和專案為基礎。
 
@@ -347,7 +347,7 @@ Azure 中的推播通知支援可讓您存取易於使用、多重平台的大�
 
 1. 在 Windows 8.1 和 Windows Phone 8.1 上啟動應用程式。對於 Windows Phone 8.1，您可以在模擬器或實際裝置中執行執行個體。
 
-2. 在應用程式的 Windows 8.1 執行個體中，輸入 [使用者名稱] 和 [密碼] \(如下列畫面所示)。它應該與您在 Windows Phone 上輸入的使用者名稱和密碼不同。
+2. 在應用程式的 Windows 8.1 執行個體中，輸入 [使用者名稱] 和 [密碼] (如下列畫面所示)。它應該與您在 Windows Phone 上輸入的使用者名稱和密碼不同。
 
 
 3. 按一下 [登入並註冊]，並確認顯示您已登入的對話方塊。這也會啟用 [傳送推播] 按鈕。
@@ -383,8 +383,8 @@ Azure 中的推播通知支援可讓您存取易於使用、多重平台的大�
 
 <!-- URLs. -->
 [開始使用通知中樞]: notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
-[安全推播]: notification-hubs-aspnet-backend-windows-dotnet-secure-push.md
+[安全推播]: notification-hubs-aspnet-backend-windows-dotnet-wns-secure-push-notification.md
 [使用通知中心傳送即時新聞]: notification-hubs-windows-store-dotnet-send-breaking-news.md
 [通知中心指引]: http://msdn.microsoft.com/library/jj927170.aspx
 
-<!---HONumber=AcomDC_0706_2016-->
+<!----HONumber=AcomDC_0907_2016-->

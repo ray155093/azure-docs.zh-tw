@@ -3,7 +3,7 @@
    description="Power BI Embedded 常見問題集"
    services="power-bi-embedded"
    documentationCenter=""
-   authors="minewiskan"
+   authors="mgblythe"
    manager="NA"
    editor=""
    tags=""/>
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
    ms.date="07/05/2016"
-   ms.author="owend"/>
+   ms.author="mblythe"/>
 
 # Power BI Embedded 常見問題集
 
@@ -44,7 +44,7 @@ Power BI Embedded 的提供對象是您提供給協力廠商使用的應用程�
 
 ## 能否使用 Power BI Embedded 建立內部應用程式？
 
-不行，Power BI Embedded 僅供外部使用者使用，不應該在內部商務應用程式內使用。若要將 Power BI 內容內嵌為供內部商務應用程式使用，則您應該使用 Power BI 服務，而使用該內容的所有使用者皆必須具備有效的 Power BI Free 或 Power BI Pro 使用者訂閱授權。如需如何使用 Power BI 服務整合內部應用程式的詳細資訊，請前往 [https://dev.powerbi.com](https://dev.powerbi.com)。
+不行，Power BI Embedded 僅供外部使用者使用，不應該在內部商務應用程式內使用。若要將 Power BI 內容內嵌為供內部商務應用程式使用，則您應該使用 Power BI 服務，而使用該內容的所有使用者皆必須具備有效的 Power BI Free 或 Power BI Pro 使用者訂用帳戶授權。如需如何使用 Power BI 服務整合內部應用程式的詳細資訊，請前往 [https://dev.powerbi.com](https://dev.powerbi.com)。
 
 ## 這是全球都可使用的服務嗎？
 
@@ -76,7 +76,7 @@ Azure 入口網站將針對您的訂用帳戶提供已經執行多少轉譯/報�
 
 ## 是否需要有 Power BI 訂用帳戶，才能使用 Power BI Embedded 來開發應用程式？ 如何開始使用？
 
-身為應用程式開發人員，您不需要有 Power BI 訂用帳戶就能夠建立您想要在應用程式中使用的報表與視覺效果。您將需要 Microsoft Azure 訂用帳戶和免費的 Power BI Desktop 應用程式
+身為應用程式開發人員，您不需要有 Power BI 訂用帳戶就能夠建立您想要在應用程式中使用的報表與視覺效果。您將需要 Microsoft Azure 訂用帳戶和免費的 Power BI Desktop 應用程式。
 
 請參閱我們的服務文件了解如何使用 Power BI Embedded 服務的相關資訊。
 
@@ -86,7 +86,7 @@ Azure 入口網站將針對您的訂用帳戶提供已經執行多少轉譯/報�
 
 ## 我的應用程式的使用者是否需要 Power BI 授權？
 
-不用。您的應用程式的使用者不需要購買個別的 Power BI 訂用帳戶就能夠存取應用程式內資料視覺效果。在 Power BI Embedded 模型中，應用程式提供者將透過 Azure 使用量計量表來為服務計費。請參閱[價格和授權頁面](http://go.microsoft.com/fwlink/?LinkId=760527)。
+不用。您的應用程式的使用者不需要購買個別的 Power BI 訂用帳戶，就能夠存取應用程式內資料視覺效果。在 Power BI Embedded 模型中，應用程式提供者將透過 Azure 使用量計量表來為服務計費。請參閱[價格和授權頁面](http://go.microsoft.com/fwlink/?LinkId=760527)。
 
 ## 如何使用 Power BI Embedded 執行使用者驗證工作？
 
@@ -117,4 +117,4 @@ Power BI Embedded 服務是使用應用程式權杖進行驗證和授權，而�
 - [何謂 Microsoft Power BI Embedded](power-bi-embedded-what-is-power-bi-embedded.md)
 - [開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/09/2016"
+	ms.date="09/04/2016"
 	ms.author="juliako"/>
 
 
 #利用 PowerShell 管理 Azure Media Services 帳戶
 
 > [AZURE.SELECTOR]
-- [入口網站](media-services-create-account.md)
+- [入口網站](media-services-portal-create-account.md)
 - [PowerShell](media-services-manage-with-powershell.md)
 - [REST](http://msdn.microsoft.com/library/azure/dn194267.aspx)
 
@@ -504,4 +504,4 @@
 
  
 
-<!---HONumber=AcomDC_0810_2016------>
+<!----HONumber=AcomDC_0907_2016-->

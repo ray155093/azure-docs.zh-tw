@@ -1,6 +1,6 @@
 <properties
 	pageTitle="建置您的第一個 Data Factory (Resource Manager 範本) | Microsoft Azure"
-	description="在本教學課程中，您將使用 Azure Resource Manager 範本，來建立範例 Azure Data Factory 管線。"
+	description="在本教學課程中，您會使用 Azure Resource Manager 範本來建立範例 Azure Data Factory 管線。"
 	services="data-factory"
 	documentationCenter=""
 	authors="spelluru"
@@ -18,27 +18,20 @@
 
 # 教學課程：使用 Azure Resource Manager 範本建置您的第一個 Azure Data Factory
 > [AZURE.SELECTOR]
-- [教學課程概觀](data-factory-build-your-first-pipeline.md)
-- [使用 Data Factory 編輯器](data-factory-build-your-first-pipeline-using-editor.md)
-- [使用 PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
-- [使用 Visual Studio](data-factory-build-your-first-pipeline-using-vs.md)
-- [使用 Resource Manager 範本](data-factory-build-your-first-pipeline-using-arm.md)
-- [使用 REST API](data-factory-build-your-first-pipeline-using-rest-api.md)
+- [Azure 入口網站](data-factory-build-your-first-pipeline-using-editor.md)
+- [Visual Studio](data-factory-build-your-first-pipeline-using-vs.md)
+- [PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
+- [Resource Manager 範本](data-factory-build-your-first-pipeline-using-arm.md)
+- [REST API](data-factory-build-your-first-pipeline-using-rest-api.md)
 
 
-在本文中，您會解如何使用 Azure Resource Manager 範本來建立您的第一個 Azure Data Factory。
+[AZURE.INCLUDE [data-factory-tutorial-prerequisites](../../includes/data-factory-tutorial-prerequisites.md)]
 
+## 其他必要條件
+除了前面必要條件一節所列的必要條件以外，您還需要安裝下列項目：
 
-## 必要條件
-除了「教學課程概觀」主題中所列的必要條件，您還需要安裝下列項目：
-
-- 詳讀[教學課程概觀](data-factory-build-your-first-pipeline.md)一文並完成必要的步驟，再進一步繼續。
 - **安裝 Azure PowerShell**。按照[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 一文中的指示，在您的電腦上安裝最新版的 Azure PowerShell。
-- 本文不提供 Azure Data Factory 服務的概念性概觀。如需有關服務的詳細概觀，請詳讀 [Azure Data Factory 簡介](data-factory-introduction.md)。
 - 若要了解 Azure Resource Manager 範本，請參閱[撰寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md)。
-
-> [AZURE.IMPORTANT]
-完成[教學課程概觀](data-factory-build-your-first-pipeline.md)中的先決條件步驟中，才可以在本文中進行逐步解說。
 
 ## 建立 Resource Manager 範本
 
@@ -46,8 +39,8 @@
 
 範本允許您建立以下 Data Factory 項目。
 
-1. 名為 **TutorialDataFactoryARM** 的 **ata Factory**。資料處理站可以有一或多個管線。其中的管線可以有一或多個活動。例如，「複製活動」會從來源複製資料到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼轉換輸入資料以產生輸出資料。
-2. 兩個**連結的服務**：**StorageLinkedService** 和 **HDInsightOnDemandLinkedService**。這些連結的服務會將您的 Azure 儲存體帳戶和 Azure HDInsight 叢集連結到您的 Data Factory。Azure 儲存體帳戶會保留此範例中管線的輸入和輸出資料。HDInsight 連結服務會用來執行此範例中管線活動指定的 Hive 指令碼。您必須識別案例中使用的資料存放區/計算服務，並建立連結的服務將這些服務連結到 Data Factory。
+1. 名為 **TutorialDataFactoryARM** 的 **ata Factory**。資料處理站可以有一或多個管線。其中的管線可以有一或多個活動。例如，「複製活動」會從來源複製資料到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼來轉換輸入資料。
+2. 兩個**連結的服務**：**StorageLinkedService** 和 **HDInsightOnDemandLinkedService**。這些連結的服務會將您的 Azure 儲存體帳戶和 Azure HDInsight 叢集連結到您的 Data Factory。Azure 儲存體帳戶會保留此範例中管線的輸入和輸出資料。HDInsight 連結服務會用來執行此範例中管線活動指定的 Hive 指令碼。識別案例中使用的資料存放區/計算服務，並建立連結的服務將這些服務連結到 Data Factory。
 3. 兩個 (輸入/輸出) **資料集**：**AzureBlobInput** 和 **AzureBlobOutput**。這些資料集代表 Hive 處理的輸入和輸出資料。這些資料集是您稍早在本教學課程中建立的 **StorageLinkedService**。連結的服務會指向 Azure 儲存體帳戶，而資料集則會指定保留輸入和輸出資料儲存體中的容器、資料夾和檔案名稱。
 
 按一下 [使用 Data Factory 編輯器] 索引標籤，切換到詳細說明此範本中使用的 JSON 屬性的文章。
@@ -221,11 +214,11 @@
 
 請注意：
 
-- Data Factory 會以上述 JSON 為您建立**以 Windows 為基礎的** HDInsight 叢集。您也可以讓它建立**以 Linux 為基礎的** HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
+- Data Factory 會以上述 JSON 為您建立「以 Windows 為基礎的」HDInsight 叢集。您也可以讓它建立**以 Linux 為基礎的** HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
 - 您可以使用**自己的 HDInsight 叢集**，不必使用隨選的 HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 連結服務](data-factory-compute-linked-services.md#azure-hdinsight-linked-service)。
 - HDInsight 叢集會在您於 JSON 中指定的 Blob 儲存體 (**linkedServiceName**) 建立**預設容器**。HDInsight 不會在刪除叢集時刪除此容器。這是設計的行為。在使用 HDInsight 隨選連結服務時，除非有現有的即時叢集 (**timeToLive**)，否則每當需要處理配量時，就會建立 HDInsight 叢集，並在處理完成時予以刪除。
 
-	隨著處理的配量越來越多，您會在 Azure Blob 儲存體中看到許多容器。如果在疑難排解作業時不需要這些容器，建議您加以刪除以降低儲存成本。這些容器的名稱遵循下列模式："adf**yourdatafactoryname**-**linkedservicename**-datetimestamp"。請使用 [Microsoft 儲存體總管](http://storageexplorer.com/)之類的工具刪除 Azure Blob 儲存體中的容器。
+	隨著處理的配量越來越多，您會在 Azure Blob 儲存體中看到許多容器。如果在疑難排解作業時不需要這些容器，建議您加以刪除以降低儲存成本。這些容器的名稱遵循下列模式："adf**yourdatafactoryname**-**linkedservicename**-datetimestamp"。請使用 [Microsoft 儲存體總管](http://storageexplorer.com/)之類的工具，來刪除 Azure Blob 儲存體中的容器。
 
 如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
 
@@ -263,7 +256,7 @@
 > [AZURE.IMPORTANT] 配量處理成功時就會刪除輸入檔案。因此，如果您想要重新執行配量或再次進行本教學課程，請將輸入檔案 (input.log) 上傳至 adfgetstarted 容器的 inputdata 資料夾。
 
 ## 可供建立閘道的 Resource Manager 範本
-以下是可供在後端建立邏輯閘道的範例 Resource Manager 範本。您需要在內部部署電腦或 Azure IaaS VM 上安裝閘道，並使用金鑰向 Data Factory 服務註冊此閘道。如需詳細資訊，請參閱[在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)。
+以下是可供在後端建立邏輯閘道的範例 Resource Manager 範本。在內部部署電腦或 Azure IaaS VM 上安裝閘道，並使用金鑰向 Data Factory 服務註冊此閘道。如需詳細資訊，請參閱[在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)。
 
 	{
 	    "contentVersion": "1.0.0.0",
@@ -309,4 +302,4 @@
 
   
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0914_2016-->

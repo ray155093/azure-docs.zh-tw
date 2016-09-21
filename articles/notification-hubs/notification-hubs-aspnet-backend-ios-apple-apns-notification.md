@@ -20,7 +20,7 @@
 
 [AZURE.INCLUDE [notification-hubs-selector-aspnet-backend-notify-users](../../includes/notification-hubs-selector-aspnet-backend-notify-users.md)]
 
-##概觀
+##Overview
 
 Azure 中的推播通知支援可讓您存取易於使用、多重平台的大規模推播基礎結構，而大幅簡化消費者和企業應用程式在行動平台上的推播通知實作。本教學課程將示範如何使用 Azure 通知中心，來將推播通知傳送到特定裝置上的特定應用程式使用者。ASP.NET WebAPI 後端可用來驗證用戶端並產生通知，如指引主題[從您的應用程式後端註冊](notification-hubs-registration-management.md#registration-management-from-a-backend)中所示。
 
@@ -44,7 +44,7 @@ Azure 中的推播通知支援可讓您存取易於使用、多重平台的大�
 	+ **密碼**：含有預留位置文字 (*輸入密碼*) 的 UITextField，位於使用者名稱文字欄位正下方且受到左右邊界限制並位於使用者文字欄位正下方。勾選 [*傳回金鑰*] 底下屬性偵測器中的 [**安全文字輸入**] 選項。
 	+ **登入**：密碼文字欄位正下方標記的 UIButton，並取消勾選 [*控制項內容*] 底下屬性偵測器中的 [**啟用**] 選項。
 	+ **WNS**：當中樞中已設定 Windows 通知服務時，用來啟用傳送通知功能的標籤與開關。請參閱 [Windows 入門](notification-hubs-windows-store-dotnet-get-started.md)教學課程。
-	+ **GCM**：當中樞中已設定 Google Cloud Messaging 時，用來啟用傳送通知功能的標籤與開關。請參閱 [Android 入門](notification-hubs-android-get-started.md)教學課程。
+	+ **GCM**：當中樞中已設定 Google Cloud Messaging 時，用來啟用傳送通知功能的標籤與開關。請參閱 [Android 入門](notification-hubs-android-push-notification-google-gcm-get-started.md)教學課程。
 	+ **APNS**：啟用傳送通知給 Apple 平台通知服務之功能的標籤與開關。
 	+ **收件者使用者名稱**：含有預留位置文字 (*收件者使用者名稱標記*) 的 UITextField，位於 GCM 標籤正下方且受到左右邊界限制並位於 GCM 正下方。
 
@@ -262,7 +262,7 @@ Azure 中的推播通知支援可讓您存取易於使用、多重平台的大�
 
 		@end
 
-	上面的程式碼會實作指引文章[從您的應用程式後端註冊](notification-hubs-registration-management.md#registration-management-from-a-backend)中所說明的邏輯，方法是使用 NSURLSession 來對您的應用程式後端執行 REST 呼叫，然後使用 NSUserDefaults 來本機儲存通知中心傳回的 registrationId。
+	上面的程式碼會實作指引文章[從您的應用程式後端註冊](notification-hubs-push-notification-registration-management.md#registration-management-from-a-backend)中所說明的邏輯，方法是使用 NSURLSession 來對您的應用程式後端執行 REST 呼叫，然後使用 NSUserDefaults 來本機儲存通知中心傳回的 registrationId。
 
 	請注意，此類別需要設定 **authorizationHeader** 屬性，才能正常運作。您可以在登入後，透過 **ViewController** 類別設定此屬性。
 
@@ -465,4 +465,4 @@ Azure 中的推播通知支援可讓您存取易於使用、多重平台的大�
 [3]: ./media/notification-hubs-aspnet-backend-ios-notify-users/notification-hubs-ios-notify-users-registered.png
 [4]: ./media/notification-hubs-aspnet-backend-ios-notify-users/notification-hubs-ios-notify-users-enter-msg.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!----HONumber=AcomDC_0907_2016-->

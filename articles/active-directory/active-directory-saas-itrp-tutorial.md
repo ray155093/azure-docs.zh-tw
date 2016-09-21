@@ -11,7 +11,7 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="06/17/2016" 
+    ms.date="09/07/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 ITRP 整合
@@ -51,9 +51,9 @@
 
     ![新增應用程式](./media/active-directory-saas-itrp-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫新增應用程式]。
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-itrp-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![從資源庫新增應用程式](./media/active-directory-saas-itrp-tutorial/IC749322.png "從資源庫新增應用程式")
 
 6.  在搜尋方塊中，輸入 **ITRP**。
 
@@ -103,7 +103,7 @@
     1.  按一下 [啟用]。
     2.  在 Azure 傳統入口網站中的 [設定在 ITRP 單一登入] 對話方塊頁面上， 複製 [遠端登出 URL] 值，然後將它貼至 [遠端登出] 文字方塊中。
     3.  在 Azure 傳統入口網站中的 [設定在 ITRP 單一登入] 對話方塊頁面上， 複製 [SAML SSO URL] 值，然後將它貼至 [SAML SSO URL] 文字方塊中。
-    4.  從匯出的憑證複製 [指紋] 值，然後將它貼入 [憑證指紋] 文字方塊。
+    4.  從匯出的憑證複製**指紋**值，然後將它貼入 [憑證指紋] 文字方塊。
         
 		>[AZURE.TIP]如需詳細資訊，請參閱[如何擷取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
 
@@ -128,13 +128,13 @@
 
     ![人員](./media/active-directory-saas-itrp-tutorial/IC775587.png "人員")
 
-4.  按一下 [新增人員] \ (“+”)。
+4.  按一下 [新增人員] (“+”)。
 
     ![Admin](./media/active-directory-saas-itrp-tutorial/IC775576.png "Admin")
 
 5.  在 [新增人員] 對話方塊上，執行下列步驟：
 
-    ![使用者](./media/active-directory-saas-itrp-tutorial/IC775577.png "使用者")
+    ![User](./media/active-directory-saas-itrp-tutorial/IC775577.png "User")
 
     1.  輸入您想要佈建之有效 AAD 帳戶的 [名稱]、[電子郵件]。
     2.  按一下 [儲存]。
@@ -143,7 +143,7 @@
 
 ##指派使用者
   
-若要測試您的設定，您需要指派使用者，授予存取權給您想要允許其使用您的應用程式存取設定的 Azure AD 使用者。
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
 ###若要指派使用者給 ITRP，請執行下列步驟：
 
@@ -159,4 +159,4 @@
   
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!----HONumber=AcomDC_0907_2016-->

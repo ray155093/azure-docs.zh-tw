@@ -16,28 +16,15 @@
  
 # 適用於 Windows Phone 和市集的 Application Insights 版本資訊
 
-[Application Insights SDK](app-insights-windows-get-started.md) 傳送有關您作用中的應用程式遙測到 [Application Insights](https://azure.microsoft.com/services/application-insights/)，您可以在此分析它的使用情況與效能。
+Application Insights SDK 傳送有關您作用中的應用程式遙測到 [Application Insights](https://azure.microsoft.com/services/application-insights/)，您可以在此分析它的使用情況與效能。
 
-
-#### 若要在應用程式中安裝 SDK
-
-請參閱[開始使用適用於 Windows Phone 和市集應用程式的 Application Insights](app-insights-windows-get-started.md)。
-
-#### 升級至最新的 SDK 
-
-* 請取得一份 ApplicationInsights.config 的複本，以保留您所做的任何自訂。
-* 在 [方案總管] 中，以滑鼠右鍵按一下您的專案並選擇 [管理 NuGet 封裝]。
-* 設定篩選器來顯示已安裝的封裝。 
-* 選取已安裝的 Application Insights 封裝並選擇升級。
-* 比較舊版和新版的 ApplicationInsights.config。將任何您在舊版中所做的自訂合併回來。
-* 重建您的方案。
 
 ## 1\.1.1 版
 
 ### Windows SDK
 
-- 修正在使用 Windows Phone 的 Silverlight SDK 時，於損毀期間發生停止回應。發生此變更之後，呼叫 WindowsAppInitialier.InitializeAsync(...) 2 秒之後所發生的任何損毀，皆會保存到磁碟，且會在下一次啟動應用程式時傳送。如果在呼叫後的前 2 秒內發生當機，則將會忽略。  
-- 將 NuGet 的相依性設為特定版本的核心與 Microsoft.ApplicationInsights.PersistenceChannel (v1.2.3)。   
+- 修正在使用 Windows Phone 的 Silverlight SDK 時，於損毀期間發生停止回應。發生此變更之後，呼叫 WindowsAppInitialier.InitializeAsync(...) 2 秒之後所發生的任何損毀，皆會保存到磁碟，且會在下一次啟動應用程式時傳送。如果在呼叫後的前 2 秒內發生當機，則將會忽略。
+- 將 NuGet 的相依性設為特定版本的核心與 Microsoft.ApplicationInsights.PersistenceChannel (v1.2.3)。
 
 ### 核心 SDK
 
@@ -95,4 +82,4 @@
 
 沒有可用於較舊版本的版本資訊。
 
-<!---HONumber=AcomDC_0218_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -15,7 +15,7 @@
     ms.workload="search"
     ms.topic="article"
     ms.tgt_pltfrm="na"
-    ms.date="05/17/2016"
+    ms.date="08/29/2016"
     ms.author="liamca"
 />
 
@@ -38,7 +38,7 @@
 
 此查詢會從工作索引傳回文件 (在沙箱服務上載入)
 
-在新的瀏覽器視窗中，您會看到 JavaScript 來源和 HTML 輸出並排顯示。指令碼會參考查詢，本文中的指令碼由範例 URL 提供。例如，在**範例 1** 中，基礎查詢如下所示︰
+在新的瀏覽器視窗中，您會看到 JavaScript 來源和 HTML 輸出並排顯示。指令碼會參考查詢，本文中的指令碼由範例 URL 提供。例如，在「範例 1」中，基礎查詢如下所示︰
 
     http://fiddle.jshell.net/liamca/gkvfLe6s/1/?index=nycjobs&apikey=252044BE3886FE4A8E3BAA4F595114BB&query=api-version=2015-02-28-Preview%26searchFields=business_title%26$select=business_title%26queryType=full%26search=*
 
@@ -129,4 +129,4 @@
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!----HONumber=AcomDC_0907_2016-->
