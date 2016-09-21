@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="tbd"
-   ms.date="06/03/2016"
+   ms.date="09/02/2016"
    ms.author="v-six" />
 
 # 對無法啟動的雲端服務角色進行疑難排解
@@ -103,7 +103,7 @@
 
 若要讓這種診斷方法獲得最佳結果，您應該使用具有 Windows 全新安裝的電腦或虛擬機器。若要達到模擬 Azure 環境的最佳效果，請使用 Windows Server 2008 R2 x64。
 
-1. 安裝獨立版的 [Azure SDK](https://azure.microsoft.com/downloads/)
+1. 安裝獨立版的 [Azure SDK](https://azure.microsoft.com/downloads/)。
 
 2. 在開發電腦上建置雲端服務專案。
 
@@ -163,4 +163,4 @@
 
 若要了解如何利用 Azure PaaS 電腦診斷資料對雲端服務角色問題進行疑難排解，請參閱 [Kevin Williamson 的部落格系列](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!----HONumber=AcomDC_0907_2016-->

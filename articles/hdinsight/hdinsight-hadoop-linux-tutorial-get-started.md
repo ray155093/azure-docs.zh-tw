@@ -4,7 +4,7 @@
    	services="hdinsight"
    	documentationCenter=""
    	authors="mumian"
-   	manager="paulettm"
+   	manager="jhubbard"
    	editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -14,7 +14,7 @@
    	ms.topic="hero-article"
    	ms.tgt_pltfrm="na"
    	ms.workload="big-data"
-   	ms.date="06/13/2016"
+   	ms.date="09/14/2016"
    	ms.author="jgao"/>
 
 # Hadoop 教學課程：開始在 HDInsight 中使用以 Linux 為基礎的 Hadoop
@@ -31,23 +31,23 @@
 
 開始進行本教學課程之前，您必須具備：
 
-- Azure 訂用帳戶︰若要建立一個月的免費試用帳戶，請瀏覽至 [azure.microsoft.com/free](https://azure.microsoft.com/free)。
+- **Azure 訂用帳戶**︰若要建立一個月的免費試用帳戶，請瀏覽至 [azure.microsoft.com/free](https://azure.microsoft.com/free)。
 
 ## 建立叢集
 
-大部分 Hadoop 作業都是批次作業。您會建立叢集、執行一些工作，然後刪除叢集。在本節中，您將在 HDInsight 中使用 [Azure ARM 範本](../resource-group-template-deploy.md)來建立以 Linux 為基礎的 Hadoop 叢集。您可以完全自訂 ARM 範本，讓您能夠輕鬆地建立 Azure 資源 (例如 HDInsight)。進行本教學課程並不需要具備 Azure ARM 範本經驗。如需其他叢集建立方法及了解本教學課程中使用的屬性，請參閱[建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。本教學課程中使用的 ARM 範本位於公用 Blob 容器中，[https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-hadoop-cluster-in-hdinsight.json](https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-hadoop-cluster-in-hdinsight.json)。
+大部分 Hadoop 作業都是批次作業。您會建立叢集、執行一些工作，然後刪除叢集。在本節中，您將在 HDInsight 中使用 [Azure Resource Manager 範本](../resource-group-template-deploy.md)來建立以 Linux 為基礎的 Hadoop 叢集。您可以完全自訂 Resource Manager 範本，讓您能夠輕鬆地建立 Azure 資源 (例如 HDInsight)。進行本教學課程並不需要具備 Resource Manager 範本經驗。如需其他叢集建立方法及了解本教學課程中使用的屬性，請參閱[建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。本教學課程中使用的 Resource Manager 範本位於公用 Blob 容器中，[https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-hadoop-cluster-in-hdinsight.json](https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-hadoop-cluster-in-hdinsight.json)。
 
-1. 按一下以下影像，在 Azure 入口網站中登入 Azure 並開啟 ARM 範本。 
+1. 按一下以下影像，在 Azure 入口網站中登入 Azure 並開啟 Resource Manager 範本。
 
     <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-hadoop-cluster-in-hdinsight.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
 2. 從 [參數] 刀鋒視窗，輸入下列資料：
 
-    ![入口網站上 HDInsight Linux 開始使用的 arm 範本](./media/hdinsight-hadoop-linux-tutorial-get-started/hdinsight-linux-get-started-arm-template-on-portal.png)。
+    ![入口網站上 HDInsight Linux 開始使用的 Resource Manager 範本](./media/hdinsight-hadoop-linux-tutorial-get-started/hdinsight-linux-get-started-arm-template-on-portal.png)。
 
     - ClusterName：輸入您將建立的 Hadoop 叢集名稱。
     - 叢集登入名稱和密碼：預設登入名稱是 admin。
-    - SSH 使用者名稱和密碼：預設使用者名稱是 sshuser。您可以將它重新命名。 
+    - SSH 使用者名稱和密碼：預設使用者名稱是 sshuser。您可以將它重新命名。
     
     其他參數都是進行本教學課程的選擇性參數。您可以將它們維持不變。
     
@@ -56,8 +56,8 @@
 3. 按一下 [確定] 儲存參數。
 4. 在 [自訂部署] 刀鋒視窗中，按一下 [新增資源群組名稱] 來建立新的資源群組。資源群組是聚集叢集、相依儲存體帳戶和其他資源的容器。資源群組位置可以和叢集位置不同。
 5. 按一下 [法律條款]，然後按一下 [建立]。
-6. 確認已選取 [釘選到儀表板] 核取方塊，然後按一下 [建立]。您將會看到標題為 [進行範本部署] 的新圖格。大約需要 20 分鐘的時間來建立叢集。 
-7.  建立叢集後，此圖格的標題會變更為您指定的資源群組名稱。而入口網站會自動開啟包含叢集和叢集設定的兩個刀鋒視窗。 
+6. 確認已選取 [釘選到儀表板] 核取方塊，然後按一下 [建立]。您將會看到標題為 [進行範本部署] 的新圖格。大約需要 20 分鐘的時間來建立叢集。
+7.  建立叢集後，此圖格的標題會變更為您指定的資源群組名稱。而入口網站會自動開啟包含叢集和叢集設定的兩個刀鋒視窗。
 
     ![HDInsight Linux 開始使用的叢集設定](./media/hdinsight-hadoop-linux-tutorial-get-started/hdinsight-linux-get-started-cluster-settings.png)。
 
@@ -71,7 +71,7 @@
 2. 輸入您在上一節指定的 Hadoop 使用者名稱和密碼。預設的使用者名稱為 **admin**。
 3. 開啟 [Hive 檢視]，如下列螢幕擷取畫面所示：
 
-    ![選取 ambari 檢視](./media/hdinsight-hadoop-linux-tutorial-get-started/selecthiveview.png)。
+    ![選取 Ambari 檢視](./media/hdinsight-hadoop-linux-tutorial-get-started/selecthiveview.png)。
 4. 在頁面的 [查詢編輯器] 區段中，將下列 HiveQL 陳述式貼到工作表中：
 
 		SHOW TABLES;
@@ -108,7 +108,7 @@
 
 ## 後續步驟
 
-在本教學課程中，您已經學會如何使用 ARM 範本建立以 Linux 為基礎的 HDInsight 叢集，以及如何執行基本的 Hive 查詢。
+在本教學課程中，您已經學會如何使用 Resource Manager 範本建立以 Linux 為基礎的 HDInsight 叢集，以及如何執行基本的 Hive 查詢。
 
 若要深入了解如何使用 HDInsight 分析資料，請參閱下列主題：
 
@@ -161,4 +161,4 @@
 [image-hdi-gettingstarted-powerquery-importdata]: ./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.GettingStarted.PowerQuery.ImportData.png
 [image-hdi-gettingstarted-powerquery-importdata2]: ./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.GettingStarted.PowerQuery.ImportData2.png
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0914_2016-->

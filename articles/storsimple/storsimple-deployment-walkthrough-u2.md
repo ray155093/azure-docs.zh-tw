@@ -12,7 +12,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="04/20/2016"
+   ms.date="08/16/2016"
    ms.author="alkohli" />
 
 # 部署您的內部部署 StorSimple 裝置 (Update 2)
@@ -22,7 +22,7 @@
 - [Update 1](../articles/storsimple/storsimple-deployment-walkthrough-u1.md)
 - [GA 版本](../articles/storsimple/storsimple-deployment-walkthrough.md)
 
-## 概觀
+## Overview
 
 歡迎使用 Microsoft Azure StorSimple 裝置部署。這些部署教學課程適用於 StorSimple 8000 Series Update 2。這一系列的教學課程包含 StorSimple 裝置的設定檢查清單、設定必要條件，以及詳細的設定步驟。
 
@@ -113,7 +113,7 @@ StorSimple Manager 服務可以管理多個 StorSimple 裝置。請執行下列�
 
 > [AZURE.IMPORTANT] 如果您並未啟用服務自動建立儲存體帳戶，您將必須在成功建立服務後，至少建立一個儲存體帳戶。當您建立磁碟區容器時，將會使用此儲存體帳戶。
 >
-> * 如果您未自動建立儲存體帳戶，請移至[針對服務設定新的儲存體帳戶](#configure-a-new-storage-account-for-the-service)以取得詳細指示。 
+> * 如果您未自動建立儲存體帳戶，請移至[針對服務設定新的儲存體帳戶](#configure-a-new-storage-account-for-the-service)以取得詳細指示。
 > * 如果您已啟用自動建立儲存體帳戶，請移至[步驟 2：取得服務註冊金鑰](#step-2-get-the-service-registration-key)。
 
 ## 步驟 2：取得服務註冊金鑰
@@ -213,7 +213,7 @@ StorSimple Manager 服務可以管理多個 StorSimple 裝置。請執行下列�
 
 #### 若要更新裝置
 
-1.	在裝置的 [快速入門] 頁面上，按一下 [裝置]。選取實體裝置，按一下 [維護]，然後按一下 [掃描更新]。  
+1.	在裝置的 [快速入門] 頁面上，按一下 [裝置]。選取實體裝置，按一下 [維護]，然後按一下 [掃描更新]。
 
 2.	系統會建立掃描可用更新的工作。如果有可用的更新，[掃描更新] 會變更為 [安裝更新]。按一下 [安裝更新]。
 
@@ -245,4 +245,4 @@ StorSimple Manager 服務可以管理多個 StorSimple 裝置。請執行下列�
 - 使用 [StorSimple Manager 服務](storsimple-manager-service-administration.md)以管理 StorSimple 裝置。
  
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0914_2016-->

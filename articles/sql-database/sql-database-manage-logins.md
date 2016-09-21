@@ -15,7 +15,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="08/24/2016"
+   ms.date="09/01/2016"
    ms.author="rickbyh"/>
 
 # SQL Database 驗證和授權：授與存取 
@@ -40,7 +40,7 @@
 一個 Azure Active Directory 帳戶也可以設定為系統管理員。此帳戶可以是個別的 Azure AD 使用者，或可以是包含數個 Azure AD 使用者的 Azure AD 群組。選擇性地設定 Azure AD 系統管理員，但是如果您想要使用 Azure AD 帳戶的 Windows 驗證來連接到 SQL Database，則必須設定 Azure AD 系統管理員。如需有關設定 Azure Active Directory 存取權的詳細資訊，請參閱[使用 Azure Active Directory 驗證連線到 SQL Database 或 SQL 資料倉儲](sql-database-aad-authentication.md)和[適用於與 SQL Database 和 SQL 資料倉儲搭配使用之 Azure AD MFA 的 SSMS 支援](sql-database-ssms-mfa-authentication.md)。
 
 ### 設定防火牆
-已設定伺服器層級防火牆時，「Azure SQL Database 訂閱者帳戶」和 Azure Active Directory 帳戶能夠連接到虛擬 master 資料庫和所有使用者資料庫。伺服器層級防火牆可以透過入口網站來設定。建立連線之後，也可以藉由使用 [sp\_set\_firewall\_rule](https://msdn.microsoft.com/library/dn270017.aspx) Transact-SQL 陳述式來設定其他伺服器層級防火牆規則。如需有關設定防火牆的詳細資訊，請參閱 [做法：使用 Azure 入口網站設定 Azure SQL Database 防火牆](sql-database-configure-firewall-settings.md)。
+已設定伺服器層級防火牆時，「Azure SQL Database 訂閱者帳戶」和 Azure Active Directory 帳戶能夠連接到主要資料庫和所有使用者資料庫。伺服器層級防火牆可以透過入口網站來設定。建立連線之後，也可以藉由使用 [sp\_set\_firewall\_rule](https://msdn.microsoft.com/library/dn270017.aspx) Transact-SQL 陳述式來設定其他伺服器層級防火牆規則。如需有關設定防火牆的詳細資訊，請參閱 [做法：使用 Azure 入口網站設定 Azure SQL Database 防火牆](sql-database-configure-firewall-settings.md)。
 
 ### 系統管理員存取路徑
 
@@ -161,4 +161,4 @@ GRANT ALTER ANY USER TO Mary;
 
 [SQL Server Database Engine 和 Azure SQL Database 的資訊安全中心](https://msdn.microsoft.com/library/bb510589.aspx)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/20/2016"
-	ms.author="markvi;liviodlc"/>
+	ms.date="09/02/2016"
+	ms.author="markvi"/>
 
 #Azure Active Directory 中應用程式管理的文章索引
 
@@ -70,7 +70,7 @@
 | :---: | --- |
 | 密碼型 SSO 運作方式的簡介以及簡要的技術概觀 | [使用 Azure AD 進行密碼型單一登入](active-directory-appssoaccess-whatis.md#password-based-single-sign-on) |
 | 與共用帳戶相關的案例以及 Azure AD 如何解決這些問題的摘要 | [使用 Azure AD 共用帳戶](active-directory-sharing-accounts.md) |
-| 自動定期變更特定應用程式的密碼 | [自動密碼變換 (預覽)](http://blogs.technet.com/b/ad/archive/2015/02/20/azure-ad-automated-password-roll-over-for-facebook-twitter-and-linkedin-now-in-preview.aspx0) |
+| 自動定期變更特定應用程式的密碼 | [自動密碼變換 (預覽)](https://blogs.technet.microsoft.com/enterprisemobility/2015/02/20/azure-ad-automated-password-roll-over-for-facebook-twitter-and-linkedin-now-in-preview/) |
 | Internet Explorer 版本的 Azure AD 密碼管理擴充功能的部署和疑難排解指南 | [如何使用群組原則部署 Internet Explorer 的存取面板延伸模組](active-directory-saas-ie-group-policy.md)<br /><br />[疑難排解 Internet Explorer 的存取面板延伸模組](active-directory-saas-ie-troubleshooting.md) |
 
 密碼型單一登入適用於所有版本的 Azure AD，每個使用者最多十個應用程式。[Azure AD Premium](https://azure.microsoft.com/pricing/details/active-directory/) 支援無限多個應用程式。如果您的組織具有 [Azure AD Basic](https://azure.microsoft.com/pricing/details/active-directory/) 或 [Azure AD Premium](https://azure.microsoft.com/pricing/details/active-directory/)，您就可以[使用群組來指派對應用程式的存取權](#managing-access-to-applications)。自動密碼變換是一項 [Azure AD Premium](https://azure.microsoft.com/pricing/details/active-directory/) 功能。
@@ -228,4 +228,4 @@ Azure Active Directory 提供數個報告和警示，以協助您監視組織對
 
 [Azure Multi-Factor Authentication](https://azure.microsoft.com/services/multi-factor-authentication/)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!----HONumber=AcomDC_0907_2016-->

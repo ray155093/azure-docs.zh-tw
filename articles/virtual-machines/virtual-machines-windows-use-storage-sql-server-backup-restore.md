@@ -3,7 +3,7 @@
 	description="了解如何將 SQL Server 備份到「Azure 儲存體」。說明將 SQL 資料庫備份到「Azure 儲存體」的好處。"
 	services="virtual-machines-windows"
 	documentationCenter=""
-	authors="rothja"
+	authors="MikeRayMSFT"
 	manager="jhubbard"
 	tags="azure-service-management"/>
 
@@ -14,11 +14,11 @@
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
 	ms.date="07/22/2016"
-	ms.author="jroth"/>
+	ms.author="mikeray"/>
 
 # 使用 Azure 儲存體進行 SQL Server 備份與還原
 
-## 概觀
+## Overview
 
 從 SQL Server 2012 SP1 CU2 開始，您現在已可以將 SQL Server 備份直接寫入 Azure Blob 儲存體服務中。您可以使用此功能，搭配內部部署 SQL Server 資料庫或 Azure 虛擬機器中的 SQL Server 資料庫，從 Azure Blob 服務備份或還原。備份至雲端提供的好處包括可用性、無限制的地理區域備援異地儲存體，以及輕鬆地與雲端之間來回移轉資料。您可以使用 Transact-SQL 或 SMO 發出 BACKUP 或 RESTORE 陳述式。
 
@@ -78,4 +78,4 @@ SQL Server 2016 導入了新功能；您可以使用[檔案快照集備份](http
 
 如需其他 SQL Server 備份與還原選項，請參閱 [Azure 虛擬機器中的 SQL Server 備份和還原](../virtual-machines/virtual-machines-windows-sql-backup-recovery.md)。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!----HONumber=AcomDC_0907_2016-->

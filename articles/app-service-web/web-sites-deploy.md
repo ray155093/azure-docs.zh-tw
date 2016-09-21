@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/21/2016"
+	ms.date="09/06/2016"
 	ms.author="cephalin;dariac"/>
     
 # 將您的應用程式部署至 Azure App Service
@@ -234,4 +234,4 @@ Microsoft 可讓您透過[適用於 Eclipse 的 Azure 工具組](../azure-toolki
 
  
 
-<!---HONumber=AcomDC_0803_2016-->
+<!----HONumber=AcomDC_0907_2016-->

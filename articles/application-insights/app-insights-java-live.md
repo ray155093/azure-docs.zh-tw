@@ -107,9 +107,9 @@
 
 您可能需要[設定防火牆例外狀況以傳送輸出資料](app-insights-ip-addresses.md)。
 
-## 5\.重新啟動您的 Web 應用程式
+## 6\.重新啟動您的 Web 應用程式
 
-## 6\.在 Application Insights 中檢視遙測
+## 7\.在 Application Insights 中檢視遙測
 
 返回 [Microsoft Azure 入口網站](https://portal.azure.com) 中的 Application Insights 資源。
 
@@ -143,4 +143,4 @@
 
  
 
-<!---HONumber=AcomDC_0824_2016-->
+<!----HONumber=AcomDC_0907_2016-->

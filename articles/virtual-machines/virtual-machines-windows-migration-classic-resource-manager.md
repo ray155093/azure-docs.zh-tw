@@ -97,13 +97,14 @@ Resource Manager | 傳統資源的「角色型存取控制」(RBAC) | 由於資�
 計算 | 與 VM 關聯的多個子網路 | 將子網路組態更新為只參考子網路。
 計算 | 隸屬於虛擬網路但未獲指派明確子網路的虛擬機器。 | 您可以選擇刪除此 VM。
 計算 | 具有警示、自動調整原則的虛擬機器 | 移轉會進行到完成，但會捨棄這些設定。強烈建議您在執行移轉前先評估您的環境。或者，您也可以在移轉完成之後重新設定警示設定。
-計算 | XML VM 擴充功能 (Visual Studio 偵錯工具、Web Deploy 及遠端偵錯) | 不支援此做法。建議您從虛擬機器中移除這些擴充功能以繼續進行移轉。
+計算 | XML VM 擴充功能 (BGInfo 1.*、Visual Studio Debugger、Web Deploy 及遠端偵錯) | 不支援此做法。建議您從虛擬機器中移除這些擴充功能以繼續進行移轉，否則系統會在移轉過程中自動卸除它們。
 計算 | 使用進階儲存體進行開機診斷 | 先停用 VM 的「開機診斷」功能，再繼續進行移轉。您可以在移轉完成之後，於 Resource Manager 堆疊中重新啟用開機診斷。此外，應該將用於快照和序列記錄檔的 Blob 刪除，這樣您就不再需要支付這些 Blob 的費用。
 計算 | 包含 Web 角色/背景工作角色的雲端服務 | 目前不支援。
 網路 | 包含虛擬機器和 Web 角色/背景工作角色的虛擬網路 | 目前不支援。
 Azure App Service | 包含 App Service 環境的虛擬網路 | 目前不支援。
 Azure HDInsight | 包含 HDInsight 服務的虛擬網路 | 目前不支援。
 Microsoft Dynamics 週期服務 | 包含「Dynamics 週期服務」所管理之虛擬機器的虛擬網路 | 目前不支援。
+計算 | 與 VNET 搭配使用的「Azure 資訊安全中心」擴充功能，其中該 VNET 具有與內部部署 DNS 伺服器搭配使用的 VPN 閘道或 ER 閘道 | 「Azure 資訊安全中心」會自動在「虛擬機器」上安裝擴充功能，以監視其安全性並引發警示。如果已在訂用帳戶上啟用「Azure 資訊安全中心」原則，通常就會自動安裝這些擴充功能。由於目前不支援閘道移轉而必須在繼續認可移轉之前先刪除閘道，因此在刪除閘道後，將會無法透過網際網路存取 VM 儲存體帳戶。發生這種情況時，將不會繼續進行移轉，因為無法填入客體代理程式狀態 Blob。建議您先將訂用帳戶上的「Azure 資訊安全中心」原則停用 3 小時，然後再繼續進行移轉。
 
 ## 移轉體驗
 
@@ -205,7 +206,7 @@ Microsoft Dynamics 週期服務 | 包含「Dynamics 週期服務」所管理之�
 
 **如果我目前使用 Azure Site Recovery 或 Azure 備份，該怎麼辦？**
 
-最近已針對 Resource Manager 下的 VM 新增 Azure Site Recovery 及「備份」支援。我們也正在努力啟用可支援將 VM 移轉至 Resource Manager 的功能。如果您使用這些功能，目前則建議您不要執行移轉。
+若要移轉能夠進行備份的「虛擬機器」，請參閱[我已在備份保存庫中備份傳統 VM。我現在想要將 VM 從傳統模式移轉至 Resource Manager 模式。如何才能在復原服務保存庫中備份它們？](../backup/backup-azure-backup-ibiza-faq.md#i-have-backed-up-my-classic-vms-in-backup-vault-now-i-want-to-migrate-my-vms-from-classic-mode-to-resource-manager-mode-how-can-i-backup-them-in-recovery-services-vault)
 
 **我是否可以驗證訂用帳戶或資源，以查看是否能夠移轉它們？**
 
@@ -227,6 +228,7 @@ Microsoft Dynamics 週期服務 | 包含「Dynamics 週期服務」所管理之�
 
 當 VM 無法連出到網際網路時，就會收到此訊息。VM 代理程式會使用連出連線來連接到 Azure 儲存體帳戶，來每隔 5 分鐘更新一次代理程式狀態。
 
+
 ## 後續步驟
 既然您已了解如何將傳統 IaaS 資源移轉至 Resource Manager，您便可以開始移轉資源。
 
@@ -235,4 +237,4 @@ Microsoft Dynamics 週期服務 | 包含「Dynamics 週期服務」所管理之�
 - [使用 CLI 將 IaaS 資源從傳統移轉至 Azure Resource Manager](virtual-machines-linux-cli-migration-classic-resource-manager.md)
 - [使用社群 PowerShell 指令碼將傳統虛擬機器複製到 Azure Resource Manager](virtual-machines-windows-migration-scripts.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!----HONumber=AcomDC_0907_2016-->

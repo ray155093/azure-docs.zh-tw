@@ -14,33 +14,26 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="07/01/2016" 
+	ms.date="09/13/2016" 
 	ms.author="mimig"/>
 
 # DocumentDB 簡介：其為一種 NoSQL JSON 資料庫
 
-Azure DocumentDB 是完全受管理的 NoSQL 資料庫服務，其建置目的是為了獲得快速且可預測的效能、高可用性、自動調整、全球發佈以及方便開發。其擁有彈性的資料模型、一致的低延遲和豐富的查詢功能，因此非常適合用於需要能夠順暢調整的 Web、行動、遊戲和 IoT 等應用程式。
+##什麼是 DocumentDB？
 
-若要快速了解此 JSON 資料庫並實際觀看其運作方式，請遵循這三個步驟：
+DocumentDB 是完全受管理的 NoSQL 資料庫服務，其建置目的是為了獲得快速且可預測的效能、高可用性、彈性調整、全球發佈以及方便開發。做為無結構描述的 NoSQL 資料庫，DocumentDB 會對 JSON 資料提供豐富且熟悉的 SQL 查詢功能 (一致的低延遲) - 確保在 10 毫秒以內提供 99%的讀取，且在 15 毫秒以內提供 99% 的寫入。這些獨特優點讓 DocumentDB 非常適合用於需要能夠順暢調整和全域複寫的 Web、行動、遊戲和 IoT 等許多其他應用程式。
+
+## 如何了解 DocumentDB？ 
+
+若要快速了解 DocumentDB 與觀看其運作方式，請遵循這三個步驟：
 
 1. 請觀看兩分鐘的[什麼是 DocumentDB？](https://azure.microsoft.com/documentation/videos/what-is-azure-documentdb/)影片，當中會介紹使用 DocumentDB 的優點。
 2. 請觀看三分鐘的[在 Azure 上建立 DocumentDB](https://azure.microsoft.com/documentation/videos/create-documentdb-on-azure/) 影片，當中會重點說明如何透過 Azure 入口網站開始使用 DocumentDB。
 3. 請瀏覽[查詢遊樂場](http://www.documentdb.com/sql/demo)，您可以在其中逐步執行不同的活動，以了解 DocumentDB 中可用的豐富查詢功能。接著，請前往 [沙箱] 索引標籤，執行您自訂的 SQL 查詢並實驗 DocumentDB。
 
-然後，回到這篇文章，我們將進行深入探討，讓您在此找到下列問題的答案：
+然後，回到這篇文章，我們將更進一步了解。
 
--	[什麼是 DocumentDB，它為新式應用程式提供什麼價值？](#what-is-azure-documentdb)
--	[在 DocumentDB 中是如何管理資料，以及要如何存取它？](#data-management)
--	[如何使用 DocumentDB 來開發應用程式？](#develop)
--	[建置 DocumentDB 應用程式的後續步驟是什麼？](#next-steps)
-
-## 什麼是 Azure DocumentDB？  
-
-新式應用程式會快速地產生、使用和回應非常大量的資料。不僅這些應用程式發展地極為快速，基礎資料結構描述也是如此。因此，開發人員越來越常選擇無結構描述的 NoSQL 資料庫，做為簡單、快速、可調整的方案來儲存和處理資料，同時還保有快速逐一查看應用程式資料模型和非結構化資料摘要的能力。不過，許多無結構描述資料庫都不允許複雜的查詢和交易式處理，以致於很難進行進階資料管理。這就是 DocumentDB 的切入點。Microsoft 開發了 DocumentDB，以滿足管理現今應用程式資料的這些需求。
-
-DocumentDB 是確實針對新式的行動、Web、遊戲和 IoT 應用程式設計的無結構描述 NoSQL 資料庫服務。DocumentDB 可確保在 10 毫秒內提供 99% 的讀取，而在 15 毫秒內提供 99% 的寫入。此外，還提供結構描述彈性，以及依需求輕鬆擴大和縮小資料庫的能力。它不會假設或不需要 JSON 文件的任何結構描述。根據預設，它會自動為資料庫中的所有文件編制索引，且不預期或需要任何結構描述或建立次要索引。DocumentDB 使用 SQL 語言來提供複雜的特定查詢、支援定義完善的一致性層級，以及使用預存程序、觸發程序和 UDF 的常見程式設計模型提供 JavaScript 語言整合式多文件交易處理。
-
-做為 JSON 資料庫的 DocumentDB 可原生支援 JSON 文件以便輕鬆反覆運算應用程式結構描述，以及支援需要索引鍵-值、文件或表格式資料模型的應用程式。DocumentDB 採用廣為使用的 JSON 和 JavaScript，以消除應用程式定義物件與資料庫結構描述之間的不相符。JavaScript 的深入整合也讓開發人員能夠在資料庫交易中，於資料庫引擎內既直接又有效率地執行應用程式邏輯。
+## DocumentDB 提供哪些功能和主要功能？  
 
 Azure DocumentDB 提供下列重要功能和優點：
 
@@ -58,10 +51,11 @@ Azure DocumentDB 提供下列重要功能和優點：
 
 -	**開放式設計：**使用現有技能和工具讓您快速上手。針對 DocumentDB 進行程式設計十分簡單、容易達成，而且不需要採用新工具或符合 JSON 或 JavaScript 的自訂擴充功能。您可以透過簡單的 RESTful HTTP 介面來存取所有資料庫功能，包括 CRUD、查詢和 JavaScript 處理。DocumentDB 既採用現有的格式、語言和標準，同時又能提供凌駕於它們之上的高價值資料庫功能。
 
-您可以使用 DocumentDB 來儲存需要查詢抓取和交易式處理的彈性資料集。應用程式案例可能包括互動式 Web、行動和遊戲應用程式的使用者資料，以及儲存、擷取和處理 IoT 裝置產生的 JSON 資料。資料庫可以儲存任意數量的 JSON 文件，因為 DocumentDB 相當適用於在網際網路上依規模執行的應用程式。
+-	**自動編製索引**：根據預設，DocumentDB 會自動為資料庫中的所有文件[編制索引](documentdb-indexing.md)，且不預期或需要任何結構描述或建立次要索引。不想要編製所有項目的索引嗎？ 別擔心，您也可以[選擇退出 JSON 檔案中的路徑](documentdb-indexing-policies.md)。
 
-##<a name="data-management"></a>Azure DocumentDB 資源
-Azure DocumentDB 透過定義完善的資料庫資源管理資料。這些資源會進行複寫來達到高可用性，並且會透過其邏輯 URI 來進行唯一定址。DocumentDB 針對所有資源提供簡單的 HTTP 式 RESTful 程式設計模型。
+##<a name="data-management"></a>DocumentDB 如何管理資料？
+
+Azure DocumentDB 透過定義完善的資料庫資源管理 JSON 資料。這些資源會進行複寫來達到高可用性，並且會透過其邏輯 URI 來進行唯一定址。DocumentDB 針對所有資源提供簡單的 HTTP 式 RESTful 程式設計模型。
 
 DocumentDB 資料庫帳戶是可讓您存取 Azure DocumentDB 的唯一命名空間。在建立資料庫帳戶之前，您必須先擁有 Azure 訂用帳戶，此帳戶可讓您存取各種 Azure 服務。
 
@@ -73,7 +67,8 @@ DocumentDB 內的所有資源都會被建立模型，並儲存為 JSON 文件。
 
 資料庫帳戶是由一組資料庫所組成，每個資料庫都包含多個集合，而集合可包含預存程序、觸發程序、UDF、文件和相關附件。資料庫也有相關聯的使用者，每個使用者都有一組可存取其他各種集合、預存程序、觸發程序、UDF、文件或附件的權限。資料庫、使用者、權限和集合是系統所定義、具有已知結構描述的資源，而文件、預存程序、觸發程序、UDF 和附件則包含使用者定義的任意 JSON 內容。
 
-##<a name="develop"></a>使用 Azure DocumentDB 進行開發
+##<a name="develop"></a> 如何使用 DocumentDB 開發應用程式？
+
 Azure DocumentDB 公開資源的方式是透過 REST API，此 API 可供任何能發出 HTTP/HTTPS 要求的語言呼叫。另外，DocumentDB 還提供了幾種熱門語言的程式設計程式庫。這些程式庫可透過處理詳細資料 (例如位址快取、例外狀況管理、自動重試等) 來簡化使用 Azure DocumentDB 的各個層面。程式庫目前適用於下列語言和平台：
 
 下載 | 文件
@@ -100,12 +95,12 @@ DocumentDB 可讓您將應用程式邏輯撰寫成完全以 JavaScript 撰寫的
 在 DocumentDB 內執行 JavaScript 的作法是仿造自關聯式資料庫系統所支援的概念，以 JavaScript 做為 Transact-SQL 的新式取代項目。所有 JavaScript 邏輯都是以隔離的快照在環境 ACID 交易內執行。在執行期間，如果 JavaScript 擲回例外狀況，則會中止整個交易。
 
 ## 後續步驟
-如果您已經有 Azure 帳戶，就可以透過[建立 DocumentDB 資料庫帳戶](documentdb-create-account.md)，開始在 [Azure 入口網站](https://portal.azure.com/#gallery/Microsoft.DocumentDB)中使用 DocumentDB。
+已經有 Azure 帳戶嗎？ 您可以接著透過[建立 DocumentDB 資料庫帳戶](documentdb-create-account.md)，開始在 [Azure 入口網站](https://portal.azure.com/#gallery/Microsoft.DocumentDB)中使用 DocumentDB。
 
-若您沒有 Azure 帳戶，您可以：
+還沒有 Azure 帳戶嗎？ 您可以：
 
 - 註冊 [Azure 免費試用](https://azure.microsoft.com/free/)，您可獲得 30 天的免費試用資格及美金 200 元的信用額度，來讓您試用所有 Azure 服務。
-- 如果您有 MSDN 訂用帳戶，就有資格獲得[每個月美金 150 元的免費 Azure 信用額度](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)，可讓您用在任何 Azure 服務上。
+- 如果您有 MSDN 訂用帳戶，就可以享有[免費的 Azure 信用額度每月美金 150 元](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)，可用於所有 Azure 服務。
 
 然後，當您準備好深入了解時，請前往我們的[學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)來瀏覽所有您可用的學習資源。
 
@@ -113,4 +108,4 @@ DocumentDB 可讓您將應用程式邏輯撰寫成完全以 JavaScript 撰寫的
 [1]: ./media/documentdb-introduction/json-database-resources1.png
  
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0914_2016-->

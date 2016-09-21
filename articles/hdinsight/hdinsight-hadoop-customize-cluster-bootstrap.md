@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/09/2016"
+	ms.date="09/02/2016"
 	ms.author="jgao"/>
 
 # 使用 Bootstrap 自訂 HDInsight 叢集
@@ -46,7 +46,7 @@
     [AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
     
 - 使用 .NET SDK
-- 使用 ARM 範本
+- 使用 Azure Resource Manager 範本
 
 如需於建立期間在 HDInsight 叢集上安裝其他元件的相關資訊，請參閱：
 
@@ -114,9 +114,9 @@
 
 請參閱[在 HDInsight 中使用 .NET SDK 建立以 Linux 為基礎的叢集](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md#use-bootstrap)。
 
-## 使用 Azure ARM 範本
+## 使用 Resource Manager 範本
 
-您可以使用 ARM 範本中的 Bootstrap：
+Resource Manager 範本中，您可以使用啟動程序︰
 
     "configurations": {
         …
@@ -128,7 +128,7 @@
     }
 
 
-![hdinsight hadoop customize cluster bootstrap arm template](./media/hdinsight-hadoop-customize-cluster-bootstrap/hdinsight-customize-cluster-bootstrap-arm.png)
+![hdinsight hadoop 自訂叢集 bootstrap azure resource manager 範本](./media/hdinsight-hadoop-customize-cluster-bootstrap/hdinsight-customize-cluster-bootstrap-arm.png)
 
 
 
@@ -261,4 +261,4 @@
 
     #endregion
 
-<!---HONumber=AcomDC_0615_2016-->
+<!----HONumber=AcomDC_0907_2016-->

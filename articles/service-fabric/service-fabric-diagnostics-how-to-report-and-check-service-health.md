@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="06/07/2016"
+   ms.date="09/06/2016"
    ms.author="toddabel"/>
 
 # 回報和檢查服務健康情況
@@ -156,4 +156,4 @@ activationContext.ReportApplicationHealth(healthInformation);
 ## 後續步驟
 [深入了解 Service Fabric 健康情況](service-fabric-health-introduction.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!----HONumber=AcomDC_0907_2016-->

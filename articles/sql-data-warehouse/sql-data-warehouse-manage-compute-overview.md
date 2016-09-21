@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/01/2016"
+   ms.date="09/03/2016"
    ms.author="barbkess;sonyama"/>
 
 # 管理 Azure SQL 資料倉儲中的計算能力 (概觀)
@@ -98,6 +98,10 @@ DWU 調整時機的建議︰
 - [使用 PowerShell 繼續計算][]
 - [使用 REST API 繼續計算][]
 
+## 權限
+
+調整資料庫需要 [ALTER DATABASE][] 所述的權限。暫停和繼續需要 [SQL DB 參與者][]權限，特別是 Microsoft.Sql/servers/databases/action。
+
 <a name="next-steps-bk"></a>
 
 ## 後續步驟
@@ -140,9 +144,12 @@ DWU 調整時機的建議︰
 [最佳作法]: ./sql-data-warehouse-best-practices.md
 [development overview]: ./sql-data-warehouse-overview-develop.md
 
+[SQL DB 參與者]: ../active-directory/role-based-access-built-in-roles.md#sql-db-contributor
+
 <!--MSDN references-->
+[ALTER DATABASE]: https://msdn.microsoft.com/library/mt204042.aspx
 
 <!--Other Web references-->
 [Azure portal]: http://portal.azure.com/
 
-<!---HONumber=AcomDC_0706_2016-->
+<!----HONumber=AcomDC_0907_2016-->

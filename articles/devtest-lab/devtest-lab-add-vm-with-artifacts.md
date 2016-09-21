@@ -1,6 +1,6 @@
 <properties
-	pageTitle="將具有構件的 VM 加入實驗室 | Microsoft Azure"
-	description="了解如何將具有構件的 VM 加入實驗室"
+	pageTitle="將具有構件的 VM 加入 Azure DevTest Labs 中的實驗室 | Microsoft Azure"
+	description="了解如何將具有構件的 VM 加入 Azure DevTest Labs"
 	services="devtest-lab,virtual-machines"
 	documentationCenter="na"
 	authors="tomarcher"
@@ -13,14 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/25/2016"
+	ms.date="08/30/2016"
 	ms.author="tarcher"/>
 
-# 將具有構件的 VM 加入實驗室
+# 將具有構件的 VM 加入 Azure DevTest Labs 中的實驗室
 
 > [AZURE.VIDEO how-to-create-vms-with-artifacts-in-a-devtest-lab]
-
-## 概觀
 
 您會在實驗室中，從一個「基底」([自訂映像](./devtest-lab-create-template.md)、[公式](./devtest-lab-manage-formulas.md)或 [Marketplace 映像](./devtest-lab-configure-marketplace-images.md)) 建立 VM。
 
@@ -36,33 +34,31 @@
 
 1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
-1. 選取 [瀏覽]，然後從清單中選取 [DevTest Labs]。
+1. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
 
-1. 從實驗室清單中，選取您想要在其中建立新 VM 的實驗室。
+1. 從實驗室清單中，選取您想要在其中建立 VM 的實驗室。
 
-1. 在實驗室的刀鋒視窗上，選取 [+ 實驗室 VM]，如下圖所示。![新增 [實驗室 VM] 按鈕](./media/devtest-lab-add-vm-with-artifacts/devtestlab-home-blade-add-vm.png)
+1. 在實驗室的 [概觀] 刀鋒視窗中，選取 [+ 虛擬機器]。![加入 VM 按鈕](./media/devtest-lab-add-vm-with-artifacts/devtestlab-home-blade-add-vm.png)
 
 1. 在 [選擇基底] 刀鋒視窗中，選取 VM 的基底。
 
-1. 在 [實驗室 VM] 刀鋒視窗的 [實驗室 VM 名稱] 文字方塊中，輸入新虛擬機器的名稱。
+1. 在 [虛擬機器] 刀鋒視窗的 [虛擬機器名稱] 文字方塊中，輸入新虛擬機器的名稱。
 
 	![實驗室 VM 刀鋒視窗](./media/devtest-lab-add-vm-with-artifacts/devtestlab-lab-vm-blade.png)
 
 1. 輸入**使用者名稱**，此名稱將被授與虛擬機器上的系統管理員權限。
 
-1. 如果所選基底的作業系統類型為 Linux，請將驗證類型指定為「密碼」或「SSH 公開金鑰」。
-
-1. 依據指定的驗證類型，輸入密碼或 SSH 公開金鑰。
-
-1. 選取 [VM 大小]，然後選取其中一個預先定義的項目，這些項目可以指定處理器核心、RAM 大小，以及要建立之 VM 的硬碟大小。
+1. 如果您想使用儲存在「密碼存放區」的密碼，請選取 [使用密碼存放區中的密碼]，並指定對應您的密碼的金鑰值。否則，請在標示為 [輸入值] 的文字欄位中輸入密碼。
+ 
+1. 選取 [虛擬機器大小]，然後選取其中一個預先定義的項目，這些項目可以指定處理器核心、RAM 大小，以及要建立的 VM 的硬碟大小。
 
 1. 選取 [虛擬網路]，然後選取所需的虛擬網路。
 
 1. 選取 [子網路]，然後選取子網路。
 
-1. 如果將實驗室原則設定為允許所選子網路的公用 IP 位址，請選取 [是] 或 [否]，來指定您是否想要讓 IP 位址成為公用的。否則，這個選項會停用並選取為 [否]。
+1. 如果將實驗室原則設定為允許所選子網路的公用 IP 位址，請選取 [是] 或 [否]，來指定您是否想要讓 IP 位址成為公用的位址。否則，這個選項會停用並選取為 [否]。
 
-1. 選取 [構件]，從構件清單中選取並設定您想要加入基本映像的構件。**附註：**如果您剛接觸到研發/測試實驗室或設定構件，請先跳到[將現有的構件加入至 VM](#add-an-existing-artifact-to-a-vm) 一節，完成該節之後再返回此處。
+1. 選取 [構件]，從構件清單中選取並設定您想要加入至基本映像的構件。**附註：**如果您剛接觸到研發/測試實驗室或設定構件，請先跳到[將現有的構件加入至 VM](#add-an-existing-artifact-to-a-vm) 一節，完成該節之後再返回此處。
 
 1. 如果您想要檢視或複製 Azure Resource Manager 範本，請跳至[儲存 Azure Resource Manager 範本](#save-arm-template)一節，然後在完成時回到這裡。
 
@@ -76,11 +72,11 @@
 
 建立 VM 時，您可以加入現有的構件。每個實驗室都會包括來自公用研發/測試實驗室構件儲存機制的構件，以及您已建立並加入至您自己之構件儲存機制的構件。若要了解如何建立構件，請參閱[了解如何撰寫您自己的構件以用於研發/測試實驗室](devtest-lab-artifact-author.md)文章。
 
-1. 在 [實驗室 VM] 刀鋒視窗中，選取 [構件]。
+1. 在 [虛擬機器] 刀鋒視窗中，選取 [構件]。
 
 1. 在 [加入構件] 刀鋒視窗中，選取所需的構件。
 
-![加入構件刀鋒視窗](./media/devtest-lab-add-vm-with-artifacts/devtestlab-add-artifact-blade.png)
+	![加入構件刀鋒視窗](./media/devtest-lab-add-vm-with-artifacts/devtestlab-add-artifact-blade.png)
 
 1. 輸入必要的參數值以及任何您所需的選用參數。
 
@@ -98,7 +94,7 @@
 
     ![新增至 VM 的構件數目](./media/devtest-lab-add-vm-with-artifacts/devtestlab-add-artifacts-blade-selected-artifacts.png)
 
-1. 拖放清單中的構件以反映所需的順序。**附註︰**如果您在拖曳構件時發生問題，請確定您是從構件左側進行拖曳。
+1. 若要指定構件執行的順序，請將構件拖放到預期的順序。**附註︰**如果您在拖曳構件時發生問題，請確定您是從構件左側進行拖曳。
 
 1. 完成時選取 [確定]。
 
@@ -120,9 +116,9 @@
 
 Azure Resource Manager 範本提供宣告式方法來定義可重複的部署。下列步驟說明如何為建立的 VM 儲存 Azure Resource Manager 範本。儲存之後，您可以使用 Azure Resource Manager 範本[透過 Azure PowerShell 部署新的 VM](../resource-group-overview.md#template-deployment)。
 
-1. 在 [實驗室 VM] 刀鋒視窗中，選取 [檢視 ARM 範本]。
+1. 在 [虛擬機器] 刀鋒視窗中，選取 [檢視 ARM 範本]。
 
-1. 在 [檢視 Azure Resource Manager 範本] 刀鋒視窗中，選取所有的範本文字。
+1. 在 [檢視 Azure Resource Manager 範本] 刀鋒視窗中，選取範本文字。
 
 1. 將選取的文字複製到剪貼簿。
 
@@ -142,4 +138,4 @@ Azure Resource Manager 範本提供宣告式方法來定義可重複的部署。
 - 了解如何[為您的 DevTest Labs VM 建立自訂構件](devtest-lab-artifact-author.md)。
 - 瀏覽 [DevTest Labs ARM 快速入門範本資源庫](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -19,7 +19,9 @@
 
 # SQL Database 選項和效能：了解每個服務層中可用的項目
 
-[Azure SQL Database](sql-database-technical-overview.md) 有多個服務層可處理不同的工作負載。您可以在應用程式停機時間最短 (通常平均少於四秒) 的情況下，隨時[變更服務層](sql-database-scale-up.md)。您也可以使用已定義的特性和價格[建立單一資料庫](sql-database-get-started.md)。或者，您可以藉由[建立彈性資料庫集區](sql-database-elastic-pool-create-portal.md)來管理多個資料庫。在這兩種情況下，服務層包含**基本**、**標準**和**進階**。這些層中的資料庫選項類似於獨立資料庫和彈性集區，但彈性集區有其他考量。本文會提供獨立資料庫和彈性資料庫的服務層詳細資料。
+[Azure SQL Database](sql-database-technical-overview.md) 提供三個服務層以及多個效能等級來處理不同的工作負載。每個效能等級都提供越來越多的資源集，旨在提供愈來愈高的輸送量。您可以在資料庫自己的[服務層](sql-database-service-tiers.md#standalone-database-service-tiers-and-performance-levels)及自己的效能等級管理每個資料庫。您也可以在具有一組共用資源的[彈性集區](sql-database-service-tiers.md#elastic-pool-service-tiers-and-performance-in-edtus)中管理多個資料庫。獨立資料庫可用的資源會以資料庫交易單位 (DTU) 表示，而彈性集區可用的資源則會以彈性 DTU 或 eDTU 表示。如需 DTU 和 eDTU 的詳細資訊，請參閱[何謂 DTU](sql-database-what-is-a-DTU.md)。
+
+在這兩種情況下，服務層包含[基本]、[標準] 和 [高階]。這些層中的資料庫選項類似於獨立資料庫和彈性集區，但彈性集區有其他考量。本文會提供獨立資料庫和彈性資料庫的服務層詳細資料。
 
 ## 服務層和資料庫選項
 基本、標準和高階服務層都具備 99.99% 的執行時間 SLA，並且提供可預測的效能、彈性的商務持續性選項、安全性功能，以及小時計費。下表提供最適用於不同應用程式工作負載的服務層範例。
@@ -39,8 +41,6 @@
 
 [AZURE.INCLUDE [SQL DB 服務層資料表](../../includes/sql-database-service-tiers-table.md)]
 
-若要進一步了解 DTU，請參閱本主題中的 [DTU 區段](#understanding-dtus)。
-
 >[AZURE.NOTE] 如需此服務層資料表中所有其他資料列的詳細說明，請參閱[服務層功能和限制](sql-database-performance-guidance.md#service-tier-capabilities-and-limits)。
 
 ## eDTU 中的彈性集區服務層和效能
@@ -53,10 +53,6 @@
 [AZURE.INCLUDE [彈性資料庫的 SQL DB 服務層資料表](../../includes/sql-database-service-tiers-table-elastic-db-pools.md)]
 
 集區中的每個資料庫也會符合該服務層的獨立資料庫特性。例如，「標準」集區的工作階段數上限為每個集區 4800 - 28800 個，但該集區中的個別資料庫的資料庫限制為 300 個工作階段。
-
-## 了解 DTU
-
-[AZURE.INCLUDE [SQL DB DTU 說明](../../includes/sql-database-understanding-dtus.md)]
 
 ## 選擇服務層
 
@@ -92,4 +88,4 @@
 
 如需多租用戶型軟體即服務 (SaaS) 資料庫應用程式的常見資料架構模式的資訊，請參閱 [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0914_2016-->

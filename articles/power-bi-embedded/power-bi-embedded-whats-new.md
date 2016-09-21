@@ -3,7 +3,7 @@
    description="取得 Power BI Embedded 新功能的最新資訊"
    services="power-bi-embedded"
    documentationCenter=""
-   authors="minewiskan"
+   authors="mgblythe"
    manager="mblythe"
    editor=""
    tags=""/>
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
    ms.date="07/06/2016"
-   ms.author="owend"/>
+   ms.author="mblythe"/>
 
 # Power BI Embedded 新功能
 
@@ -41,4 +41,4 @@
 -    使用者可以將視覺效果資料匯出到 **.csv**。
 -    Power BI Embedded 現在受到與 Microsoft Azure 相同的所有語言/地區設定的支援。若要深入了解，請參閱 [Azure - 語言](http://social.technet.microsoft.com/wiki/contents/articles/4234.windows-azure-extent-of-localization.aspx)。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!----HONumber=AcomDC_0907_2016-->

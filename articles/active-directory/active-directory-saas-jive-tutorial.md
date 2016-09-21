@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/07/2016"
+	ms.date="09/01/2016"
 	ms.author="jeedes"/>
 
 
@@ -73,7 +73,7 @@ Jive 與 Azure AD 整合提供下列優點：
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫新增應用程式]。
 
 	![應用程式][4]
 
@@ -115,7 +115,7 @@ Jive 與 Azure AD 整合提供下列優點：
 
 	![設定單一登入](./media/active-directory-saas-jive-tutorial/tutorial_jive_03.png)
 
-3. 在 [設定 App 設定] 對話方塊頁面執行下列步驟：
+3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟：
 
 	![設定單一登入](./media/active-directory-saas-jive-tutorial/tutorial_jive_04.png)
 
@@ -179,15 +179,15 @@ Jive 與 Azure AD 整合提供下列優點：
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-jive-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-jive-tutorial/create_aaduser_04.png)
 
-5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行以下步驟：![建立 Azure AD 測試使用者](./media/active-directory-saas-jive-tutorial/create_aaduser_05.png)
+5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟：![建立 Azure AD 測試使用者](./media/active-directory-saas-jive-tutorial/create_aaduser_05.png)
 
     a.針對 [使用者類型]，選取 [您組織中的新使用者]。
 
@@ -261,7 +261,7 @@ Jive 與 Azure AD 整合提供下列優點：
 
 ### 指派 Azure AD 測試使用者
 
-在本節中，您會把 Jive 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
+在本節中，您會將 Jive 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
 ![指派使用者][200]
 
@@ -317,4 +317,4 @@ Jive 與 Azure AD 整合提供下列優點：
 [204]: ./media/active-directory-saas-jive-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-jive-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -43,9 +43,9 @@
 
 |**地緣政治區域**|**Azure 區域**|**ExpressRoute 位置**|
 |---|---|---|---|
-|**美國政府雲端**|美國政府愛荷華州、美國政府維吉尼亞州|芝加哥、達拉斯+、紐約、華盛頓特區|
+|**美國政府雲端**|美國政府愛荷華州、美國政府維吉尼亞州|芝加哥、達拉斯、紐約、華盛頓特區|
 |**中國**|中國北部、中國東部|北京、上海|
-|**德國**|德國中部、德國東部|柏林、法蘭克福|
+|**德國**|德國中部、德國東部|柏林+、法蘭克福|
 
 
 標準 ExpressRoute SKU 不支援跨地緣政治區域的連線。您必須啟用 ExpressRoute 進階附加元件，以支援全球連線。不支援連線至國家雲端環境。如果有需要的話，您可以聯絡您的連線提供者。
@@ -65,7 +65,7 @@
 | **辰內** | Tata Communications |
 | **芝加哥** | AT&T NetBond、Comcast、Equinix、Level 3 Communications、Zayo Group |
 | **達拉斯** | AT&T NetBond、Equinix、Level 3 Communications、Megaport |
-| **都柏林** | Colt |
+| **都柏林** | Colt、Telecity Group |
 | **香港** | British Telecom、China Telecom Global、Equinix、Megaport、Orange、PCCW Global Limited、Tata Communications、Verizon |
 | **倫敦** | AT&T NetBond、British Telecom、Colt、Equinix、InterCloud、Internet Solutions - Cloud Connect、Interxion、Jisc+、Level 3 Communications、MTN、NTT Communications、Orange、Tata Communications、Telecity Group、Telenor、Verizon、Vodafone |
 | **拉斯維加斯** | Level 3 Communications+、Megaport
@@ -94,7 +94,7 @@
 | **位置** |**服務提供者** |
 |---------------|--------------------|
 | **芝加哥** | AT&T NetBond、Equinix、Level 3 Communications、Verizon |
-| **達拉斯** | Equinix+、Verizon+ |
+| **達拉斯** | Equinix、Verizon+ |
 | **紐約** | Equinix、Level 3 Communications+、Verizon |
 | **華盛頓** | AT&T NetBond、Equinix、Level 3 Communications、Verizon |
 
@@ -156,4 +156,4 @@
 <!--Image References-->
 [0]: ./media/expressroute-locations/expressroute-locations-map.png "位置圖"
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

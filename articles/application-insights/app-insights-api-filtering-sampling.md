@@ -1,6 +1,6 @@
 <properties 
-	pageTitle="在 Application Insights SDK 中取樣、篩選及前置處理" 
-	description="撰寫 SDK 的外掛程式來篩選、取樣或將屬性加入資料，再將遙測傳送至 Application Insights 入口網站。" 
+	pageTitle="在 Application Insights SDK 中篩選及前置處理 | Microsoft Azure" 
+	description="撰寫 SDK 的遙測處理器和遙測初始設定式來篩選屬性或將屬性新增至資料，再將遙測傳送至 Application Insights 入口網站。" 
 	services="application-insights"
     documentationCenter="" 
 	authors="beckylino" 
@@ -12,10 +12,10 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="multiple" 
 	ms.topic="article" 
-	ms.date="05/19/2016" 
+	ms.date="08/30/2016" 
 	ms.author="borooji"/>
 
-# 在 Application Insights SDK 中取樣、篩選及前置處理遙測
+# 在 Application Insights SDK 中篩選及前置處理遙測
 
 *Application Insights 目前僅供預覽。*
 
@@ -23,58 +23,16 @@
 
 目前這些功能適用於 ASP.NET SDK。
 
-* [取樣](#sampling)可減少遙測的量而不會影響統計資料。它可將相關資料點寶持放在一起，因此您診斷問題時，能夠在資料點之間瀏覽。在入口網站中將乘以總計數，以補償取樣。
-* [篩選](#filtering)可讓您先在 SDK 中選取或修改遙測，再將遙測傳送到伺服器。例如，您可以從傀儡程式中排除要求來減少遙測量。和取樣相比，這是減少流量更基本的方法。它可讓您更充分掌握傳輸內容，但是您必須注意，它會影響統計資料 (例如，若您要篩選所有成功的要求)。
-* [加入屬性](#add-properties)至從應用程式傳送出來的任何遙測，包括從標準模組傳送出來的遙測。例如，您可以新增計算好的值，或是用來在入口網站中篩選資料的版本號碼。
+* [取樣](app-insights-sampling.md)可減少遙測的量而不會影響統計資料。它可將相關資料點寶持放在一起，因此您診斷問題時，能夠在資料點之間瀏覽。在入口網站中將乘以總計數，以補償取樣。
+* [使用遙測處理器進行篩選](#filtering)可讓您先在 SDK 中選取或修改遙測，再將遙測傳送到伺服器。例如，您可以從傀儡程式中排除要求來減少遙測量。但和取樣相比，篩選是減少流量更基本的方法。它可讓您更充分掌握傳輸內容，但是您必須注意，它會影響統計資料 (例如，若您要篩選所有成功的要求)。
+* [遙測初始設定式會新增屬性](#add-properties)至任何從應用程式傳送出來的遙測，包括從標準模組傳送出來的遙測。例如，您可以新增計算好的值，或是用來在入口網站中篩選資料的版本號碼。
 * [SDK API](app-insights-api-custom-events-metrics.md) 可用來傳送自訂事件和計量。
+
 
 開始之前：
 
-* 在應用程式中安裝 [ASP.NET v2 的 Application Insights SDK](app-insights-asp-net.md)。 
+* 在應用程式中安裝 [ASP.NET v2 的 Application Insights SDK](app-insights-asp-net.md)。
 
-
-## 取樣
-
-[取樣](app-insights-sampling.md)是減少流量同時保留準確的統計資料所建議的方式。篩選器會選取相關的項目，使得您可以瀏覽診斷中的項目。事件計數會在計量瀏覽器中調整，以補償所篩選的項目。
-
-* 建議使用調適性取樣。它會自動調整取樣百分比，以達到特定的要求量。目前僅供 ASP.NET 伺服器端遙測使用。 
-* [固定取樣率](app-insights-sampling.md)也可供使用。由您指定取樣百分比。可供 ASP.NET Web 應用程式程式碼和 JavaScript Web 頁面使用。用戶端和伺服器會同步處理它們的取樣，讓您可以在 [搜尋] 終於相關的頁面檢視和要求之間瀏覽。
-* 在 Application Insights 入口網站中收到遙測時會進行擷取取樣，所以無論使用何種 SDK 都可運用它。它不會減少網路上的遙測流量，但卻會降低 Application Insights 中處理與儲存的數量。只有保留的遙測會計入您的每月配額中。 
-
-### 啟用擷取取樣
-
-從 [設定] 列中，開啟 [配額和價格] 刀鋒視窗。按一下 [取樣]，並選取取樣比率。
-
-如果 SDK 執行固定或自適性取樣，則不執行擷取。當 SDK 的取樣率小於 100% 時，即忽略擷取取樣設定。
-
-### 啟用調適性取樣
-
-**更新專案的 NuGet** 套件至最新的 Application Insights *預先發行*版本：以滑鼠右鍵按一下方案總管中的專案，選擇 [管理 NuGet 封裝]，然後核取 [包含發行前版本] 並搜尋 Microsoft.ApplicationInsights.Web。
-
-您可以針對下列項目，在 [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) 中調整演算法所針對最大的遙測率：
-
-    <MaxTelemetryItemsPerSecond>5</MaxTelemetryItemsPerSecond>
-
-### 用戶端端取樣
-
-若要取得源自網頁固定取樣率的資料，請在您插入 (通常是如 \_Layout.cshtml 的主要頁面) 的 [Application Insights 程式碼片段](app-insights-javascript.md)中放置額外的程式碼行：
-
-*JavaScript*
-
-```JavaScript
-
-	}({ 
-
-	samplingPercentage: 10.0, 
-
-	instrumentationKey:...
-	}); 
-```
-
-* 設定等於 100/N 的百分比 (在這個範例中為 10)，其中 N 是整數，例如 50 (=100/2)、33.33 (=100/3)、25 (=100/4) 或 10 (=100/10)。 
-* 如果您在伺服器端啟用[固定取樣率](app-insights-sampling.md)，用戶端和伺服器會同步處理它們的取樣，讓您可以在 [搜尋] 終於相關的頁面檢視和要求之間瀏覽。
-
-[深入了解取樣](app-insights-sampling.md)。
 
 <a name="filtering"></a>
 ## 篩選︰ITelemetryProcessor
@@ -85,7 +43,7 @@
 
 > [AZURE.WARNING] 篩選傳送自使用處理器的 SDK 的遙測可能會曲解您在入口網站中看到的統計資料，並且難以追蹤相關的項目。
 > 
-> 請考慮改用[取樣](#sampling)。
+> 請考慮改用[取樣](app-insights-sampling.md)。
 
 ### 建立遙測處理器
 
@@ -140,7 +98,7 @@
     
 
     ```
-2. 在 ApplicationInsights.config 中插入： 
+2. 在 ApplicationInsights.config 中插入：
 
 ```XML
 
@@ -153,7 +111,7 @@
 
 ```
 
-(請注意，這是您用來初始化取樣篩選器的相同區段)。
+(這是您用來初始化取樣篩選器的相同區段)。
 
 您可以在類別中提供公開具名屬性，以從 .config 檔案傳遞字串值。
 
@@ -380,6 +338,112 @@ public void Process(ITelemetry item)
 * TelemetryProcessors 可讓您完全取代或捨棄遙測項目。
 * TelemetryProcessors 不會處理效能計數器遙測。
 
+
+
+## 持續性通道 
+
+如果您的應用程式在不一定有網際網路連線或速度很慢的地方執行，請考慮使用持續性通道，而不使用預設的記憶體中通道。
+
+預設的記憶體中通道將會在應用程式關閉時遺失任何尚未傳送的遙測。雖然您可以使用 `Flush()` 嘗試傳送緩衝區中剩餘的任何資料，但如果沒有網際網路連線，或者如果在完成傳輸之前關閉了應用程式，它還是會遺失資料。
+
+相較之下，持續性通道會緩衝處理檔案中的遙測，再將它傳送至入口網站。`Flush()` 可確保資料會儲存在檔案中。如果任何資料未在應用程式關閉時傳送，它會保留在檔案中。當應用程式重新啟動時，即使沒有網際網路連線，資料也會傳送。在連線可用之前，資料會視需求累積在檔案中。
+
+### 使用持續性通道
+
+1. 匯入 NuGet 封裝 [Microsoft.ApplicationInsights.PersistenceChannel](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PersistenceChannel/1.2.3)。
+2. 在適當的初始化位置，將此程式碼納入您的應用程式中：
+ 
+    ```C# 
+
+      using Microsoft.ApplicationInsights.Channel;
+      using Microsoft.ApplicationInsights.Extensibility;
+      ...
+
+      // Set up 
+      TelemetryConfiguration.Active.InstrumentationKey = "YOUR INSTRUMENTATION KEY";
+ 
+      TelemetryConfiguration.Active.TelemetryChannel = new PersistenceChannel();
+    
+    ``` 
+3. 在您的應用程式關閉之前使用 `telemetryClient.Flush()`，以確定資料已傳送至入口網站或儲存至檔案。
+
+    請注意，flush () 對於持續性通道而言是同步的，但對其他通道而言是非同步的。
+
+ 
+持續性通道最適合裝置的案例，其中應用程式所產生的事件數目相對較少，而連線通常不可靠。這個通道會先將磁碟的事件寫入到可靠的儲存空間，然後嘗試傳送它。
+
+#### 範例
+
+假設您想要監視未處理的例外狀況。您訂閱 `UnhandledException` 事件。在回呼中，您可以包含對排清的呼叫，以確定會保存遙測。
+ 
+```C# 
+
+AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException; 
+ 
+... 
+ 
+private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) 
+{ 
+    ExceptionTelemetry excTelemetry = new ExceptionTelemetry((Exception)e.ExceptionObject); 
+    excTelemetry.SeverityLevel = SeverityLevel.Critical; 
+    excTelemetry.HandledAt = ExceptionHandledAt.Unhandled; 
+ 
+    telemetryClient.TrackException(excTelemetry); 
+ 
+    telemetryClient.Flush(); 
+} 
+
+``` 
+
+當應用程式關閉時，您會看到 `%LocalAppData%\Microsoft\ApplicationInsights` 中的檔案，其中包含壓縮的事件。
+ 
+下次您啟動此應用程式時，通道將盡可能找出此檔案並傳送遙測至 Application Insights。
+
+#### 測試範例
+
+```C#
+
+using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.Channel;
+using Microsoft.ApplicationInsights.Extensibility;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Send data from the last time the app ran
+            System.Threading.Thread.Sleep(5 * 1000);
+
+            // Set up persistence channel
+
+            TelemetryConfiguration.Active.InstrumentationKey = "YOUR KEY";
+            TelemetryConfiguration.Active.TelemetryChannel = new PersistenceChannel();
+
+            // Send some data
+
+            var telemetry = new TelemetryClient();
+
+            for (var i = 0; i < 100; i++)
+            {
+                var e1 = new Microsoft.ApplicationInsights.DataContracts.EventTelemetry("persistenceTest");
+                e1.Properties["i"] = "" + i;
+                telemetry.TrackEvent(e1);
+            }
+
+            // Make sure it's persisted before we close
+            telemetry.Flush();
+        }
+    }
+}
+
+```
+
+
+持續性通道的程式碼位於 [github](https://github.com/Microsoft/ApplicationInsights-dotnet/tree/v1.2.3/src/TelemetryChannels/PersistenceChannel) 上。
+
+
 ## 參考文件
 
 * [API 概觀](app-insights-api-custom-events-metrics.md)
@@ -397,11 +461,9 @@ public void Process(ITelemetry item)
 ## <a name="next"></a>接續步驟
 
 
-[搜尋事件和記錄檔][diagnostic]
-
-[範例和逐步解說](app-insights-code-samples.md)
-
-[疑難排解][qna]
+* [搜尋事件和記錄檔][diagnostic]
+* [取樣](app-insights-sampling.md)
+* [疑難排解][qna]
 
 
 <!--Link references-->
@@ -421,4 +483,4 @@ public void Process(ITelemetry item)
 
  
 
-<!---HONumber=AcomDC_0525_2016-->
+<!----HONumber=AcomDC_0907_2016-->

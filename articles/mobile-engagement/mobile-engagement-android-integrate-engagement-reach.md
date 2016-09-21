@@ -249,7 +249,7 @@ Engagement Reach SDK 會自動偵測到通知配置已包含在此活動中，�
 
 若要登記通知的類別處理常式，您需要在應用程式初始化時加入呼叫。
 
-> [AZURE.IMPORTANT] 請閱讀＜如何在 Android 上整合 Engagement＞主題中關於 android:process attribute <android-sdk-engagement-process> 的警告，然後再繼續。
+> [AZURE.IMPORTANT] 請閱讀＜如何在 Android 上整合 Engagement＞主題中關於 android:process attribute \<android-sdk-engagement-process\> 的警告，然後再繼續。
 
 下列範例假設您已知悉先前的警告，並使用 `EngagementApplication` 的子類別：
 

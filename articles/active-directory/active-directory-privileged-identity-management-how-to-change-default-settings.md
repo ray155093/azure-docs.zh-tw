@@ -23,8 +23,8 @@
 ## 管理角色啟用設定
 
 1. 移至 [Azure 入口網站](https://portal.azure.com)，在儀表板上選取 [Azure AD Privileged Identity Management] 應用程式。
-2. 從角色資料表中選取您想要管理的角色。
-3. 按一下 [設定]。
+2. 選取 [管理特殊權限角色] > [設定] > [特殊權限角色]。
+3. 選擇您想要管理其設定的角色。
 
 在每個角色的設定頁面上，有一些您可以設定的設定。這些設定只會影響身為合格系統管理員 (而不是永久系統管理員) 的使用者。
 
@@ -40,19 +40,24 @@
 
 - 您無法將 Azure AD 和 Office365 中高特殊權限角色的 MFA 停用。這是一項安全功能，因為這些角色應該嚴密地受到保護：
 
-    - 全域管理員
-    - 特殊權限角色管理員
-    - 使用者帳戶管理員
+    - 應用程式管理員
+    - 應用程式 Proxy 伺服器管理員
+    - 計費管理員
+    - 規範管理員
+    - CRM 服務管理員
+    - 客戶 LockBox 存取核准者
     - 目錄寫入器
+    - Exchange 系統管理員
+    - 全域管理員
+    - Intune 服務管理員
+    - 信箱管理員
     - 合作夥伴第 1 層支援
     - 合作夥伴第 2 層支援
-    - 計費管理員
+    - 特殊權限角色管理員
     - 安全性系統管理員
-    - Exchange 系統管理員
-    - 信箱管理員
-    - 商務用 Skype 的管理員
     - SharePoint 管理員
-    - 規範管理員
+    - 商務用 Skype 的管理員
+    - 使用者帳戶管理員
 
 如需關於搭配 PIM 使用 MFA 的詳細資訊，請參閱[如何要求 MFA](active-directory-privileged-identity-management-how-to-require-mfa.md)。
 
@@ -62,4 +67,4 @@
 ## 後續步驟
 [AZURE.INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 
-<!---HONumber=AcomDC_0706_2016-->
+<!----HONumber=AcomDC_0907_2016-->

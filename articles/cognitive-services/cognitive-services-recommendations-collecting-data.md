@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/31/2016"
+	ms.date="09/06/2016"
 	ms.author="luisca"/>
 
 #  收集資料以訓練您的模型 #
@@ -45,9 +45,9 @@
 
 具有功能：
 
-    AAA04294,Office Language Pack Online DwnLd,Office, softwaretype=productivity, compatibility=Windows
-    BAB04303,Minecraft DwnLd,Games, softwaretype=gaming, compatibility=iOS, agegroup=all
-    C9F00168,Kiruna Flip Cover,Accessories, compatibility=lumia, hardwaretype=mobile
+    AAA04294,Office Language Pack Online DwnLd,Office,, softwaretype=productivity, compatibility=Windows
+    BAB04303,Minecraft DwnLd,Games, softwaretype=gaming,, compatibility=iOS, agegroup=all
+    C9F00168,Kiruna Flip Cover,Accessories, compatibility=lumia,, hardwaretype=mobile
 
 #### 格式詳細資料
 
@@ -78,6 +78,25 @@
 
 匯入功能做為目錄資料的一部分，然後在排名組建完成時建立與其排名 (或模型中功能的重要性) 的關聯。功能排名可根據使用狀況資料和項目類型而變更。但是對於一致的使用量/項目，排名只能有小幅的起伏。功能的排名為非負數的數字。編號 0 表示未排名功能 (如果您在第一個排名組建完成之前叫用這個 API，就會發生這個情形)。配置排名的日期稱為分數有效時間。
 
+
+###功能具有類別性質
+
+這表示您應該建立類似於類別的功能。例如，price=9.34 不是類別功能。另一方面，priceRange=Under5Dollars 之類的功能則是類別功能。另一個常見錯誤是使用項目名稱做為功能。這會導致項目名稱具有唯一性，因此不會描述類別。請確定功能代表項目的類別。
+
+
+###應該使用多少功能以及哪些功能？
+
+
+Recommendations 組建最終會支援建置具有最多 20 個功能的模型。您可以對目錄中的項目指派超過 20 個功能，但您應該進行排名組建，並只挑選高排名的功能 (排名 2.0 以上的功能是真的可使用的好功能)。
+
+
+###何時會實際使用功能？
+
+當沒有足夠的交易資料可單獨提供有關交易資訊的建議時，模型就會使用功能。因此功能對「冷項目」具有最大影響 (冷項目是只具有少數交易的項目)。如果所有項目都有足夠的交易資訊，您可能就不需要使用功能來擴充模型。
+
+
+###使用產品功能
+
 若要使用功能做為組建的一部分，您需要：
 
 1. 當您上傳目錄時，確定您的目錄具有功能。
@@ -85,6 +104,9 @@
 2. 觸發排名組建。這將會針對功能的重要性/排名進行分析。
 
 3. 觸發建議組建，設定下列組建參數︰將 useFeaturesInModel 設為 true、將 allowColdItemPlacement 設為 true，並且應將 modelingFeatureList 設為以逗號分隔的功能清單，而您想要使用此清單來增強您的模組。如需詳細資訊，請參閱[建議組建類型參數](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d0)。
+
+
+
 
 
 ## 使用狀況資料 ##
@@ -129,4 +151,4 @@
 
 一旦建立模型之後，就可以執行[離線評估](cognitive-services-recommendations-buildtypes.md)來檢查您的模型可能執行的程度。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!----HONumber=AcomDC_0907_2016-->

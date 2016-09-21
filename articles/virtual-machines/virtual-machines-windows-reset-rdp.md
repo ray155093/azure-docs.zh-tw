@@ -1,6 +1,6 @@
 <properties
-	pageTitle="在 Windows VM 上重設密碼或遠端桌面 | Microsoft Azure"
-	description="在使用 Resource Manager 部署模型建立的 Windows VM 上，重設管理員密碼或遠端桌面服務。"
+	pageTitle="重設 Windows VM 上的密碼或遠端桌面組態 |Microsoft Azure"
+	description="了解如何使用 Azure 入口網站或 Azure PowerShell 來重設 Windows VM 上的帳戶密碼或「遠端桌面」服務。"
 	services="virtual-machines-windows"
 	documentationCenter=""
 	authors="iainfoulds"
@@ -14,25 +14,25 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/10/2016"
+	ms.date="09/01/2016"
 	ms.author="iainfou"/>
 
 # 如何在 Windows VM 中重設遠端桌面服務或其登入密碼
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-如果您因為忘記密碼或遠端桌面服務組態有問題，而無法連線至 Windows 虛擬機器，可以重設本機系統管理員密碼，或重設遠端桌面服務組態。您可以使用 Azure 入口網站或 Azure PowerShell 中的 VM 存取延伸模組來重設密碼。如果您使用 PowerShell，請務必在工作電腦上安裝最新的 PowerShell 模組，並登入您的 Azure 訂用帳戶。如需詳細步驟，請閱讀[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+如果您無法連線倒 Windows 虛擬機器，您可以重設本機系統管理員密碼或重設「遠端桌面」服務組態。您可以使用 Azure 入口網站或 Azure PowerShell 中的 VM 存取延伸模組來重設密碼。如果您使用的是 PowerShell，請確定您已在工作電腦上安裝最新的 PowerShell 模組，並已登入您的 Azure 訂用帳戶。如需詳細步驟，請閱讀[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
 > [AZURE.TIP] 您可以使用 `Import-Module Azure, AzureRM; Get-Module Azure, AzureRM | Format-Table Name, Version` 來檢查已安裝的 PowerShell 版本
 
 ## Resource Manager 部署模型中的 Windows VM
 
 ### Azure 入口網站
-依序按一下 [瀏覽] > [虛擬機器] > 您的 Windows 虛擬機器 > [所有設定] > [重設密碼]，以選取您的 VM。密碼重設刀鋒視窗會如下所示︰
+依序按一下 [瀏覽] > [虛擬機器] > 您的 Windows 虛擬機器 > [所有設定] > [重設密碼]，以選取您的 VM。將會顯示 [密碼重設] 刀鋒視窗︰
 
 ![密碼重設頁面](./media/virtual-machines-windows-reset-rdp/Portal-RM-PW-Reset-Windows.png)
 
-輸入使用者名稱和新的密碼，然後按一下 [儲存]。嘗試再次連接到您的 VM。
+輸入使用者名稱和新密碼，然後按一下 [儲存]。嘗試再次連接到您的 VM。
 
 ### VMAccess 延伸模組和 PowerShell
 
@@ -55,7 +55,7 @@
 		-Password $cred.GetNetworkCredential().Password -typeHandlerVersion "2.0"
 
 
-使用和您的設定相關的值取代 `myRG`、`myVM`、`myVMAccess` 和 Location。
+使用與您設定相關的值來取代 `myRG`、`myVM`、`myVMAccess` 及位置。
 
 
 #### **重設遠端桌面服務組態**
@@ -93,7 +93,7 @@
 
 ### VMAccess 延伸模組和 PowerShell
 
-確認已在虛擬機器上安裝 VM 代理程式。只要可以使用 VM 代理程式，您不需要先安裝 VMAccess 延伸模組即可使用。使用以下命令確認已在虛擬機器上安裝 VM 代理程式。(分別將 "myCloudService" 和 "myVM" 取代為雲端服務和 VM 的名稱。若要了解這些項目，您可以在不搭配任何參數的情況下執行 `Get-AzureVM`。
+確認已在虛擬機器上安裝 VM 代理程式。只要可以使用 VM 代理程式，您不需要先安裝 VMAccess 延伸模組即可使用。使用以下命令確認已在虛擬機器上安裝 VM 代理程式。(分別將 "myCloudService" 和 "myVM" 取代為雲端服務和 VM 的名稱。您可以執行不搭配任何參數的 `Get-AzureVM` 來知道這些名稱)。
 
 	$vm = Get-AzureVM -ServiceName "myCloudService" -Name "myVM"
 	write-host $vm.VM.ProvisionGuestAgent
@@ -143,4 +143,4 @@ b. `Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Serv
 
 [疑難排解以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線](virtual-machines-windows-troubleshoot-rdp-connection.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!----HONumber=AcomDC_0907_2016-->

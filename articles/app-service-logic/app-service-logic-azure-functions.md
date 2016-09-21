@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration"
-   ms.date="05/14/2016"
+   ms.date="09/01/2016"
    ms.author="jehollan"/>
 
 # 搭配使用 Azure Functions 與 Logic Apps
@@ -26,7 +26,7 @@
 
 ## 建立 Logic Apps 的函數
 
-建議您在 Azure Functions 入口網站使用**一般節點 Webhook** 或**一般 C# Webhook** 範本來建立新的 Azure Functions。這將會自動填入可接受來自邏輯應用程式之 `application/json` 的範本。將會自動探索使用這些範本的函數，並列於 [我的區域中的 Azure Functions] 下方的 Logic Apps 設計工具中。
+建議您在 Azure Functions 入口網站使用**一般 Webhook - 節點**或**一般 Webhook - C#** 範本來建立新的 Azure Functions。這將會自動填入可接受來自邏輯應用程式之 `application/json` 的範本。將會自動探索使用這些範本的函數，並列於 [我的區域中的 Azure Functions] 下方的 Logic Apps 設計工具中。
 
 Webhook 函數會接受要求，並透過 `data` 變數將它傳入方法。您可以使用點標記法 (例如 `data.foo`) 來存取承載的屬性。例如，將日期時間值轉換為日期字串的簡單 JavaScript 函數看起來如以下範例︰
 
@@ -70,4 +70,4 @@ function start(req, res){
 [1]: ./media/app-service-logic-azure-functions/callFunction.png
 [2]: ./media/app-service-logic-azure-functions/createFunction.png
 
-<!---HONumber=AcomDC_0803_2016-->
+<!----HONumber=AcomDC_0907_2016-->

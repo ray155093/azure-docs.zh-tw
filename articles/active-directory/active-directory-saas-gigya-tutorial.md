@@ -11,7 +11,7 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="06/09/2016" 
+    ms.date="09/01/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Gigya 整合
@@ -51,9 +51,9 @@
 
     ![新增應用程式](./media/active-directory-saas-gigya-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫新增應用程式]。
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-gigya-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![從資源庫新增應用程式](./media/active-directory-saas-gigya-tutorial/IC749322.png "從資源庫新增應用程式")
 
 6.  在**搜尋方塊**中，輸入 **Gigya**。
 
@@ -64,7 +64,7 @@
     ![Gigya](./media/active-directory-saas-gigya-tutorial/IC789527.png "Gigya")
 ##設定單一登入
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證至 Gigya。在此程序中，您必須建立 base-64 編碼的憑證檔案。如果您不熟悉這個程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證至 Gigya。在此程序中，您必須建立 Base-64 編碼的憑證檔案。如果您不熟悉此程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
 
 ###若要設定單一登入，請執行下列步驟：
 
@@ -76,7 +76,7 @@
 
     ![設定單一登入](./media/active-directory-saas-gigya-tutorial/IC789529.png "設定單一登入")
 
-3.  在 [設定應用程式 URL] 頁面的 [Gigya 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："**http://company.gigya.com*"，然後按 [下一步]。
+3.  在 [設定應用程式 URL] 頁面的 [Gigya 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："http://company.gigya.com*"，然後按 [下一步]*。
 
     ![設定應用程式 URL](./media/active-directory-saas-gigya-tutorial/IC789530.png "設定應用程式 URL")
 
@@ -98,9 +98,9 @@
     2.  在 Azure 傳統入口網站的 [設定在 Gigya 單一登入] 對話方塊頁面上，複製 [簽發者 URL] 值，然後貼至 [簽發者] 文字方塊中。
     3.  在 Azure 傳統入口網站中的 [設定在 Gigya 單一登入] 對話頁面上，複製**單一登入服務 URL** 值，然後將它貼至 [單一登入服務 URL] 文字方塊中。
     4.  在 Azure 傳統入口網站中的 [設定在 Gigya 單一登入] 對話頁面上，複製**名稱識別碼格式**值，然後將它貼至 [名稱識別碼格式] 文字方塊中。
-    5.  從您下載的憑證建立 **base-64 編碼**檔案。
+    5.  從您下載的憑證建立「Base-64 編碼」檔案。
         
-		>[AZURE.TIP]如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
+		>[AZURE.TIP]如需詳細資料，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
 
     6.  在記事本中開啟您的 base-64 編碼的憑證，將它的內容複製到您的剪貼簿，然後貼到 [X.509 憑證] 文字方塊中。
     7.  按一下 [儲存設定]。
@@ -149,4 +149,4 @@
   
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!----HONumber=AcomDC_0907_2016-->

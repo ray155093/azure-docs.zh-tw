@@ -13,10 +13,10 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data" 
-   ms.date="05/27/2016"
+   ms.date="09/02/2016"
    ms.author="jgao"/>
 
-# 在 HDinsight 中搭配 Linux 型 HBase 叢集使用 Apache Phoenix  
+# 在 HDInsight 中搭配 Linux 型 HBase 叢集使用 Apache Phoenix  
 
 了解如何在 HDInsight 中使用 [Apache Phoenix](http://phoenix.apache.org/)，以及如何使用 SQLLine。如需有關 Phoenix 的詳細資訊，請參閱 [15 分鐘內了解 Phoenix](http://phoenix.apache.org/Phoenix-in-15-minutes-or-less.html)。如需 Phoenix 文法，請參閱 [Phoenix 文法](http://phoenix.apache.org/language/index.html)。
 
@@ -36,14 +36,14 @@
 
 **找出 Zookeeper 主機名稱**
 
-1. 瀏覽至 **https://<ClusterName>.azurehdinsight.net** 來開啟 Ambari。
+1. 瀏覽至 **https://<ClusterName>.azurehdinsight.net**，來開啟 Ambari。
 2. 輸入 HTTP (叢集) 使用者名稱和密碼來登入。
 3. 在左側功能表中，按一下 [ZooKeeper]。您應該會看到列出了 3 台「ZooKeeper 伺服器」。
 4. 按一下其中一台列出的「ZooKeeper 伺服器」。在 [摘要] 窗格中，找到 [主機名稱]。它類似 *zk1-jdolehb.3lnng4rcvp5uzokyktxs4a5dhd.bx.internal.cloudapp.net*。
 
 **使用 SQLLine**
 
-1. 使用 SSH 連線到叢集。如需指示，請根據您用戶端電腦的作業系統而定，來參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md) 或[從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)。
+1. 使用 SSH 連線到叢集。如需指示，請根據您用戶端電腦的作業系統而定，來參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與 Linux 型的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md) 或[從 Windows 在 HDInsight 上搭配使用 SSH 與 Linux 型的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)。
 
 2. 從 SSH，執行下列命令以執行 SQLLine：
 
@@ -71,7 +71,7 @@
 
 - [HDInsight HBase 概觀][hdinsight-hbase-overview]：HBase 是建置於 Hadoop 上的 Apache 開放原始碼 NoSQL 資料庫，可針對大量非結構化及半結構化資料，提供隨機存取功能和強大一致性。
 - [在 Azure 虛擬網路上佈建 HBase 叢集][hdinsight-hbase-provision-vnet]：由於 HBase 叢集已與虛擬網路整合，因此能夠部署到和應用程式相同的虛擬網路，讓應用程式得以和 HBase 直接通訊。
-- [設定 HDInsight 中的 HBase 複寫](hdinsight-hbase-geo-replication.md)：了解如何跨兩個 Azure 資料中心設定 HBase 複寫。 
+- [設定 HDInsight 中的 HBase 複寫](hdinsight-hbase-geo-replication.md)：了解如何跨兩個 Azure 資料中心設定 HBase 複寫。
 - [利用 HDInsight 中的 HBase 分析 Twitter 情緒][hbase-twitter-sentiment]：了解如何使用 HDInsight 之 Hadoop 叢集中的 HBase，執行巨量資料的即時[情緒分析](http://en.wikipedia.org/wiki/Sentiment_analysis)。
 
 [azure-portal]: https://portal.azure.com
@@ -95,4 +95,4 @@
 
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/31/2016"
+	ms.date="09/01/2016"
 	ms.author="rajram"/>
 
 # 開始使用檔案連接器並將它加入您的邏輯應用程式
@@ -27,8 +27,10 @@
 若要使用檔案連接器，您必須先建立檔案連接器 API 應用程式的執行個體。以下步驟可以達到此目的：
 
 1.	使用 Azure 入口網站左邊的 [+新增] 選項開啟 Azure Marketplace。
-2.	瀏覽至 [Marketplace] > [API Apps式]，並搜尋「檔案連接器」。
-3.	設定檔案連接器，如下所示：![][1]
+2.	搜尋「檔案連接器」。
+3.	從搜尋結果選取 [檔案連接器 (預覽版)]。
+4.	選取 [建立] 按鈕
+5.	設定檔案連接器，如下所示：![][1]
 
 	- **名稱** - 提供檔案連接器的名稱
 	- **封裝設定**
@@ -37,7 +39,7 @@
 	- **App Service 方案** - 選取或建立 App Service 方案
 	- **定價層** - 選擇連接器的定價層
 	- **資源群組** - 選取或建立連接器所在的資源群組
-	- **訂閱** - 選擇您要建立此連接器的訂閱
+	- **訂用帳戶** - 選擇您要建立此連接器的訂用帳戶
 	- **位置** - 選擇您要部署連接器的地理位置
 
 4. 按一下 [建立]。將建立新的檔案連接器
@@ -70,7 +72,7 @@ API 應用程式執行個體建立之後，瀏覽至其儀表板。作法是按�
 ## 進一步運用您的連接器
 現在已建立連接器，您可以將它加入到使用邏輯應用程式的商務工作流程。請參閱[什麼是 Logic Apps？](app-service-logic-what-are-logic-apps.md)。
 
->[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至[試用 Logic Apps](https://tryappservice.azure.com/?appservice=logic)，即可在 App Service 中立即建立短期入門 Logic Apps。不需要信用卡；沒有承諾。
+>[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至[試用邏輯應用程式](https://tryappservice.azure.com/?appservice=logic)，即可在 App Service 中立即建立短期入門邏輯應用程式。不需要信用卡；沒有承諾。
 
 檢視位於[連接器和 API Apps 參考](http://go.microsoft.com/fwlink/p/?LinkId=529766)的 Swagger REST API 參考。
 
@@ -87,4 +89,4 @@ API 應用程式執行個體建立之後，瀏覽至其儀表板。作法是按�
 [檔案連接器 API 定義]: https://msdn.microsoft.com/library/dn936296.aspx
 [使用混合式連線管理員]: app-service-logic-hybrid-connection-manager.md
 
-<!---HONumber=AcomDC_0803_2016-->
+<!----HONumber=AcomDC_0907_2016-->

@@ -18,7 +18,7 @@
 
 # 使用 IoT 中樞安全性權杖和 X.509 憑證
 
-IoT 中樞使用安全性權杖來驗證裝置和服務，以避免透過線路傳送金鑰。此外，安全性權杖有時效性和範圍的限制。[Azure IoT 中樞 SDK][lnk-apis-sdks] 能在不需要任何特殊組態的情況下自動產生權杖。不過在某些案例中，使用者必須直接產生及使用安全性權杖。這些案例包括直接使用 AMQP、MQTT 或 HTTP 介面或實作權杖服務模式，如 [IoT 中心指引][lnk-guidance-security]所述。
+IoT 中樞使用安全性權杖來驗證裝置和服務，以避免透過線路傳送金鑰。此外，安全性權杖有時效性和範圍的限制。[Azure IoT 中樞 SDK][lnk-apis-sdks] 能在不需要任何特殊組態的情況下自動產生權杖。不過在某些案例中，使用者必須直接產生及使用安全性權杖。這些案例包括直接使用 MQTT、AMQP 或 HTTP 介面，或是實作權杖服務模式，如 [IoT 中樞指引][lnk-guidance-security]所述。
 
 「IoT 中樞」也可允許裝置使用 X.509 憑證向「IoT 中樞」進行驗證。「IoT 中樞」針對透過 AMQP、透過 WebSocket 的 AMQP 及 HTTP 通訊協定的裝置，支援 X.509 型驗證。
 
@@ -265,4 +265,4 @@ var deviceClient = DeviceClient.Create("<IotHub DNS HostName>", authMethod);
 [lnk-service-sdk]: https://github.com/Azure/azure-iot-sdks/tree/master/csharp/service
 [lnk-client-sdk]: https://github.com/Azure/azure-iot-sdks/tree/master/csharp/device
 
-<!---HONumber=AcomDC_0817_2016-->
+<!----HONumber=AcomDC_0907_2016-->

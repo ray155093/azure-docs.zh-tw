@@ -30,4 +30,4 @@ Azure 訂用帳戶中的 Data Factory | 50 | [請連絡支援人員](https://azu
 
 Azure 資源管理員有 API 呼叫限制。您可使用 [Azure 資源管理員 API 限制](../azure-subscription-service-limits.md#resource-group-limits)內的速率進行 API 呼叫。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!----HONumber=AcomDC_0907_2016-->

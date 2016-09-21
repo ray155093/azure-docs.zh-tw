@@ -19,7 +19,7 @@
     
 #使用 Azure 流量管理員在 Azure 中部署高可用性跨地區 AD FS
 
-[Azure 中的 AD FS 部署](.\active-directory-aadconnect-azure-adfs.md)提供有關如何在 Azure 中為您的組織部署簡單 AD FS 基礎結構的逐步指導方針。本文會提供後續的步驟，以使用 [Azure 流量管理員](../traffic-manager/traffic-manager-overview.md)在 Azure 中建立跨地區的 AD FS 部署。Azure 流量管理員會使用各種可用的路由方法來順應基礎結構的不同需求，而有助於為您的組織建立分散各地的高可用性和高效能 AD FS 基礎結構。
+[Azure 中的 AD FS 部署](active-directory-aadconnect-azure-adfs.md)提供有關如何在 Azure 中為您的組織部署簡單 AD FS 基礎結構的逐步指導方針。本文會提供後續的步驟，以使用 [Azure 流量管理員](../traffic-manager/traffic-manager-overview.md)在 Azure 中建立跨地區的 AD FS 部署。Azure 流量管理員會使用各種可用的路由方法來順應基礎結構的不同需求，而有助於為您的組織建立分散各地的高可用性和高效能 AD FS 基礎結構。
 
 高可用性的跨地區 AD FS基礎結構能夠︰
 
@@ -49,7 +49,7 @@
 ##整合 Azure 流量管理員的步驟
 
 ###在新的地理區域中部署 AD FS
-請依照 [Azure 中的 AD FS 部署](.\active-directory-aadconnect-azure-adfs.md)中的步驟和指導方針，在新的地理區域中部署相同的拓樸。
+請依照 [Azure 中的 AD FS 部署](active-directory-aadconnect-azure-adfs.md)中的步驟和指導方針，在新的地理區域中部署相同的拓樸。
 
 ###網際網路對向 (公用) 負載平衡器中公用 IP 位址的 DNS 標籤
 如上所述，Azure 流量管理員只可以將 DNS 標籤當作端點參考，因此務必為外部負載平衡器的公用 IP 位址建立 DNS 標籤。以下螢幕擷取畫面顯示如何設定公用 IP 位址的 DNS 標籤。
@@ -131,4 +131,4 @@
 * [管理 Azure 流量管理員設定檔](../traffic-manager/traffic-manager-manage-profiles.md)
 * [加入、停用、啟用或刪除端點](../traffic-manager/traffic-manager-endpoints.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

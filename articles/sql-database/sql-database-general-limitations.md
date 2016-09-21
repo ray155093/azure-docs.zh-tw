@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="06/21/2016"
+   ms.date="09/06/2016"
    ms.author="carlrab" />
 
 # Azure SQL Database 一般限制與方針
@@ -63,4 +63,4 @@ Microsoft Azure SQL Database 使用的預設資料庫定序是 **SQL\_LATIN1\_GE
 
 - 如需驅動程式的可用性和 SQL Database 支援的相關資訊，請參閱＜[SQL Database 與 SQL Server 的連線庫](sql-database-libraries.md)＞。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!----HONumber=AcomDC_0907_2016-->

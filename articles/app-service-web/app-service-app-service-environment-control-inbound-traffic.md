@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/19/2016" 
+	ms.date="09/02/2016" 
 	ms.author="stefsch"/>
 
 # 如何控制 App Service 環境的輸入流量
 
-## 概觀 ##
+## Overview ##
 App Service 環境可以在 Azure Resource Manager 虛擬網路或傳統式部署模型[虛擬網路][virtualnetwork]其中之一中建立。建立 APP Service 環境時，可以定義新的虛擬網路和新的子網路。或者亦可在先前既存的虛擬網路和既存的子網路中建立 APP Service 環境。在 2016 年 6 月所進行的最新變更之後，ASE 現在可以部署到使用公用位址範圍或 RFC1918 位址空間 (也就是私人位址) 的虛擬網路。如需建立 App Service 環境的詳細資訊，請參閱[如何建立 App Service 環境][HowToCreateAnAppServiceEnvironment]。
 
 App Service 環境必須一律建立於子網路中，因為子網路可提供網路界限以便用來鎖定上游裝置和服務背後的輸入流量，因此只接受來自特定上游 IP 位址的 HTTP 和 HTTPS 流量。
@@ -39,6 +39,7 @@ App Service 環境必須一律建立於子網路中，因為子網路可提供�
 - 80：對於在 App Service 環境的 App Service 方案中執行的應用程式，其輸入 HTTP 流量的預設連接埠。在啟用 ILB 的 ASE 上，此連接埠繫結至 ASE 的 ILB 位址。
 - 443：對於在 App Service 環境的 App Service 方案中執行的應用程式，其輸入 SSL 流量的預設連接埠。在啟用 ILB 的 ASE 上，此連接埠繫結至 ASE 的 ILB 位址。
 - 21：FTP 的控制通道。如果未使用 FTP，就可以安全地封鎖此連接埠。在啟用 ILB 的 ASE 上，此連接埠可以繫結至 ASE 的 ILB 位址。
+- 990：FTPS 的控制通道。如果未使用 FTPS，就可以安全地封鎖此連接埠。在啟用 ILB 的 ASE 上，此連接埠可以繫結至 ASE 的 ILB 位址。
 - 10001-10020：FTP 的資料通道。如同控制通道，若未使用 FTP，即可安全地封鎖這些連接埠。在啟用 ILB 的 ASE 上，此連接埠可以繫結至 ASE 的 ILB 位址。
 - 4016：用於 Visual Studio 2012 的遠端偵錯。如果未使用此功能，就可以安全地封鎖此連接埠。在啟用 ILB 的 ASE 上，此連接埠繫結至 ASE 的 ILB 位址。
 - 4018：用於 Visual Studio 2013 的遠端偵錯。如果未使用此功能，就可以安全地封鎖此連接埠。在啟用 ILB 的 ASE 上，此連接埠繫結至 ASE 的 ILB 位址。
@@ -140,4 +141,4 @@ App Service 環境需要針對虛擬網路設定的有效 DNS 基礎結構。如
 <!-- IMAGES -->
  
 
-<!---HONumber=AcomDC_0720_2016-->
+<!----HONumber=AcomDC_0907_2016-->

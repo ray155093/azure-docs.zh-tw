@@ -13,7 +13,7 @@
 	ms.workload="search" 
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
-	ms.date="06/08/2016" 
+	ms.date="08/08/2016" 
 	ms.author="heidist"/>
 
 # 開始使用 Azure 搜尋管理 REST API
@@ -136,10 +136,10 @@ Azure 資源管理員需要 Azure Active Directory 服務做為其身分識別�
 	![][9]
 
 5. 提供 `TenantID.`。
-	- 返回 Active Directory |SearchTutorial (服務)。 
-	- 按一下頂端列中的 [**應用程式**]。 
-	- 按一下頁面底部的 [**檢視端點**]。 
-	- 複製清單底部的 OAUTH 2.0 授權端點。 
+	- 返回 Active Directory |SearchTutorial (服務)。
+	- 按一下頂端列中的 [**應用程式**]。
+	- 按一下頁面底部的 [**檢視端點**]。
+	- 複製清單底部的 OAUTH 2.0 授權端點。
 	- 將此端點貼到 TenantID 中，並修剪租用戶識別碼以外所有 URI 參數的值。
 
     假設 "https://login.windows.net/55e324c7-1656-4afe-8dc3-43efcd4ffa50/oauth2/authorize?api-version=1.0"，請刪除 "55e324c7-1656-4afe-8dc3-43efcd4ffa50" 以外的項目。
@@ -158,15 +158,15 @@ Azure 資源管理員需要 Azure Active Directory 服務做為其身分識別�
 
 在第一個方法呼叫加入中斷點，以便逐步執行程式。按 **F5** 執行應用程式，然後按 **F11** 逐步執行程式碼。
 
-範例應用程式會為現有的 Azure 訂用帳戶建立免費的 Azure Search 服務。如果您的訂用帳戶已經有免費服務，則範例應用程式將會失敗。每個訂用帳戶只能有一項免費 Search 服務。
+範例應用程式會為現有的 Azure 訂閱建立免費的 Azure Search 服務。如果您的訂閱已經有免費服務，則範例應用程式將會失敗。每個訂閱只能有一項免費 Search 服務。
 
-1. 在 [方案總管] 中開啟 Program.cs ，然後移至 Main(string void) 函數。 
+1. 在 [方案總管] 中開啟 Program.cs ，然後移至 Main(string void) 函數。
  
 3. 請注意，**ExecuteArmRequest** 用來執行對 Azure 資源管理員端點 (指定之 `subscriptionID` 的 `https://management.azure.com/subscriptions`) 的要求。此方法在整個程式中使用，利用 Azure 資源管理員 API 或 Search 管理 API 來執行作業。
 
 3. 對 Azure 資源管理員的要求必須經過驗證和授權。使用出自[驗證 Azure 資源管理員要求](http://msdn.microsoft.com/library/azure/dn790557.aspx)的 **GetAuthorizationHeader** 方法 (由 **ExecuteArmRequest** 方法呼叫)，即可達到此目的。請注意，**GetAuthorizationHeader** 會呼叫 `https://management.core.windows.net` 以取得存取權杖。
 
-4. 系統會提示您以適用於您訂用帳戶的使用者名稱和密碼進行登入。
+4. 系統會提示您以適用於您訂閱的使用者名稱和密碼進行登入。
 
 5. 接著，會向 Azure 資源管理員提供者註冊新的 Azure Search 服務。再次使用 **ExecuteArmRequest** 方法，透過 `providers/Microsoft.Search/register` 在 Azure 上為您的訂用帳戶建立搜尋服務。
 
@@ -208,4 +208,4 @@ Azure 資源管理員需要 Azure Active Directory 服務做為其身分識別�
 
  
 
-<!---HONumber=AcomDC_0608_2016-->
+<!----HONumber=AcomDC_0907_2016-->

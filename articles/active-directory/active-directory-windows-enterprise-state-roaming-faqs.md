@@ -122,6 +122,7 @@ Windows 10 用戶端 SKU 支援「企業狀態漫遊」，但伺服器 SKU 則�
 
 - 如果您嘗試使用智慧卡或虛擬智慧卡來登入您的 Windows 裝置，設定同步處理將會停止運作。Windows 10 未來的更新可能會解決此問題。
 - 您將需要適用於 Windows 10 的 7 月份累積更新 (組建 10586.494 或更新版本)，才能進行 Internet Explorer 我的最愛同步處理。
+- 利用 Windows Information Protection 保護的資料不會透過企業狀態漫遊同步。此外，已啟用 Windows Information Protection 的電腦不會發生佈景主題同步處理。
 - 在某些情況下，如果設定了 Azure Multi-Factor Authentication，「企業狀態漫遊」可能會無法同步處理資料。
     - 如果您的裝置已設定為在 Azure Active Directory 入口網站上需要 [Multi-Factor Authentication](multi-factor-authentication.md)，則使用密碼登入 Windows 10 裝置時，可能無法同步處理設定。這類型的 Multi-Factor Authentication 組態是用來保護 Azure 系統管理員帳戶。系統管理員使用者仍然能夠藉由使用 [Microsoft Passport for Work](active-directory-azureadjoin-passport.md) PIN 登入他們的 Windows 10 裝置，或藉由在存取其他 Azure 服務 (例如 Office 365) 時完成 Multi-Factor Authentication，來進行同步處理。
     - 如果系統管理員設定 Active Directory Federation Services Multi-Factor Authentication 條件式存取原則，而裝置上的存取權杖到期，則同步處理可能會失敗。請確定您是使用 [Microsoft Passport for Work](active-directory-azureadjoin-passport.md) PIN 來登入和登出，或在存取其他 Azure 服務 (例如 Office 365) 時完成 Multi-Factor Authentication。
@@ -135,4 +136,4 @@ Windows 10 用戶端 SKU 支援「企業狀態漫遊」，但伺服器 SKU 則�
 - [設定同步處理的群組原則和 MDM 設定](active-directory-windows-enterprise-state-roaming-group-policy-settings.md)
 - [Windows 10 漫遊設定參考](active-directory-windows-enterprise-state-roaming-windows-settings-reference.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!----HONumber=AcomDC_0907_2016-->

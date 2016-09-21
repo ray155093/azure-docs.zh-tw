@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/25/2016"
+	ms.date="09/06/2016"
 	ms.author="larryfr"/>
 
 # 使用指令碼動作自訂 Linux 型 HDInsight 叢集
@@ -112,6 +112,7 @@ HDInsight 提供一個稱為 [指令碼動作]的組態選項，此指令碼動�
 
 名稱 | 指令碼
 ----- | -----
+**新增 Azure 儲存體帳戶** | https://hdiconfigactions.blob.core.windows.net/linuxaddstorageaccountv01/add-storage-account-v01.sh。請參閱[將指令碼動作套用到執行中的叢集](#apply-a-script-action-to-a-running-cluster)。
 **安裝色調** | https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-hue-uber-v02.sh。請參閱[在 HDInsight 叢集上安裝及使用色調](hdinsight-hadoop-hue-linux.md)。
 **安裝 R** | https://hdiconfigactions.blob.core.windows.net/linuxrconfigactionv01/r-installer-v01.sh。請參閱[在 HDInsight 叢集上安裝及使用 R](hdinsight-hadoop-r-scripts-linux.md)。
 **安裝 Solr** | https://hdiconfigactions.blob.core.windows.net/linuxsolrconfigactionv01/solr-installer-v01.sh。請參閱[在 HDInsight 叢集上安裝及使用 Solr](hdinsight-hadoop-solr-install-linux.md)。
@@ -434,7 +435,7 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
 
 ## 將指令碼動作套用到執行中的叢集
 
-本節提供您可以將指令碼動作套用到執行中 HDInsight 叢集的不同方式範例 - 從 Azure 入口網站、使用 PowerShell Cmdlet、使用跨平台 Azure CLI，以及使用 .NET SDK。
+本節提供您可以將指令碼動作套用到執行中 HDInsight 叢集的不同方式範例 - 從 Azure 入口網站、使用 PowerShell Cmdlet、使用跨平台 Azure CLI，以及使用 .NET SDK。本節中使用的持續性指令碼動作會將現有的 Azure 儲存體帳戶加入執行中的叢集。您也可以使用其他指令碼動作，請參閱[範例指令碼動作指令碼](#example-script-action-scripts)。
 
 ### 從 Azure 入口網站將指令碼動作套用到執行中的叢集
 
@@ -452,10 +453,14 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
 
 5. 從 [新增指令碼動作] 刀鋒視窗，輸入下列資訊。
 
-    * __名稱__：要用於此指令碼動作的易記名稱。在此範例中是 `Giraph`。
-    * __指令碼 URI__︰指令碼的 URI。在此範例中是 `https://hdiconfigactions.blob.core.windows.net/linuxgiraphconfigactionv01/giraph-installer-v01.sh`
-    * __前端__、__背景工作__及 __Zookeeper__︰勾選應該套用這個指令碼的節點。在此範例中，會勾選 [前端] 和 [背景工作]。
-    * __參數__：如果指令碼接受參數，請在此處輸入參數。
+    * __名稱__：要用於此指令碼動作的易記名稱。在此範例中是 `Add Storage account`。
+    * __指令碼 URI__︰指令碼的 URI。在此範例中是 `https://hdiconfigactions.blob.core.windows.net/linuxaddstorageaccountv01/add-storage-account-v01.sh`
+    * __前端__、__背景工作__及 __Zookeeper__︰勾選應該套用這個指令碼的節點。在此範例中，會勾選 [前端]、[背景工作] 及 [Zookeeper]。
+    * __參數__：如果指令碼接受參數，請在此處輸入參數。在此範例中，輸入儲存體帳戶名稱和儲存體帳戶金鑰︰
+
+		![執行中叢集的 hdinsight 持續性指令碼動作帳戶儲存體帳戶](./media/hdinsight-hadoop-customize-cluster-linux/hdinsight-persisted-script-action-add-storage-account.png)
+
+		螢幕擷取畫面上的 `contosodata` 是現有的 Azure 儲存體帳戶，第二行則是儲存體帳戶金鑰。
     * __持續性__︰如果您想要保存指令碼，以便在相應增加叢集規模時將其套用到新的背景工作節點，請勾選此項目。
 
 6. 最後，使用 [建立] 按鈕將指令碼套用到叢集。
@@ -524,6 +529,9 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
         data:    Operation ID:  b707b10e-e633-45c0-baa9-8aed3d348c13
         info:    hdinsight script-action create command OK
 
+### 使用 REST API 將指令碼動作套用到執行中的叢集
+
+請參閱[在執行中的叢集執行指令碼動作](https://msdn.microsoft.com/library/azure/mt668441.aspx)。
 ### 從 HDInsight .NET SDK 將指令碼動作套用到執行中的叢集
 
 如需使用 .NET SDK 將指令碼套用到叢集的範例，請參閱 [https://github.com/Azure-Samples/hdinsight-dotnet-script-action](https://github.com/Azure-Samples/hdinsight-dotnet-script-action)。
@@ -590,7 +598,7 @@ HDInsight .NET SDK 提供用戶端程式庫，讓您輕鬆地從 .NET 應用程�
 | `azure hdinsight script-action persisted list <clustername>` | 擷取保存的指令碼動作清單 |
 | `azure hdinsight script-action persisted show <clustername> <scriptname>` | 擷取特定的保存指令碼動作資訊 |
 | `azure hdinsight script-action history list <clustername>` | 擷取已套用到叢集的指令碼動作歷程記錄 |
-| `azure hdinsight script-action history show <clustername> <scriptname>` | 擷取特定的指令碼動作資訊 |
+| `azure hdinsight script-action history show <clustername> <scriptname>` | 擷取特定指令碼動作的資訊 |
 | `azure hdinsight script action persisted set <clustername> <scriptexecutionid>` | 將臨時性指令碼動作升級為持續性指令碼動作 |
 | `azure hdinsight script-action persisted delete <clustername> <scriptname>` | 將持續性指令碼動作降級為臨時性指令碼動作 |
 
@@ -698,4 +706,4 @@ HDInsight 服務提供數種方式以使用自訂元件。無論元件如何使�
 
 [img-hdi-cluster-states]: ./media/hdinsight-hadoop-customize-cluster-linux/HDI-Cluster-state.png "叢集建立期間的階段"
 
-<!---HONumber=AcomDC_0831_2016-->
+<!----HONumber=AcomDC_0907_2016-->

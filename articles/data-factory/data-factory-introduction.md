@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="什麼是 Data Factory？ 資料整合服務 | Microsoft Azure" 
+	pageTitle="Data Factory (資料整合服務) 簡介 | Microsoft Azure" 
 	description="了解 Azure Data Factory 是什麼：一項雲端資料整合服務，用來協調以及自動移動和轉換資料。" 
 	keywords="資料整合、雲端資料整合、azure data factory 是什麼"
 	services="data-factory" 
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="07/12/2016" 
+	ms.date="09/08/2016" 
 	ms.author="spelluru"/>
 
 # Azure Data Factory 服務 (雲端中的資料整合服務) 簡介
@@ -26,7 +26,7 @@ Data Factory 會在內部部署、雲端資料來源和 SaaS 之間運作，以�
 
 ![圖表︰Data Factory 概觀 (資料整合服務)](./media/data-factory-introduction/what-is-azure-data-factory.png)
 
-**圖 1。** 從許多不同的內部部署資料來源收集資料、擷取和準備資料，透過各種轉換來組織並分析資料，然後發行隨時可用的資料以供使用。
+**圖 1。** 從許多不同的內部部署資料來源收集資料、擷取、準備、轉換及分析資料，然後發佈隨時可用的資料以供使用。
 
 您可以視需求隨時使用 Data Factory，在可靠的排程下收集各種外型和大小的資料，並加以轉換和發行，以便得到深入的了解。Data Factory 用來建立高度可用的資料流管線，適用於不同產業中的許多案例並滿足其分析管的需求。線上零售商根據客戶瀏覽行為利用它來產生個人化[產品建議](data-factory-product-reco-usecase.md)。遊戲工作室利用它來了解[其行銷活動的效率](data-factory-customer-profiling-usecase.md)。藉由檢閱[客戶個案研究](data-factory-customer-case-studies.md)，直接向我們的客戶了解他們使用 Data Factory 的方法和原因。
 
@@ -34,18 +34,17 @@ Data Factory 會在內部部署、雲端資料來源和 SaaS 之間運作，以�
 
 ## 重要概念
 
-Azure Data Factory 有幾個主要實體會共同運作，來定義輸入和輸出資料、處理事件以及執行指定之資料流程所需的排程和資源。
+Data Factory 有幾個主要實體會共同運作，來定義輸入和輸出資料、處理事件以及執行指定之資料流程所需的排程和資源。
 
 ![圖表︰Data Factory 概觀 (雲端資料整合服務) - 重要概念](./media/data-factory-introduction/data-integration-service-key-concepts.png)
 
 **圖 2.** 資料集、活動、管線和連結服務之間的關聯性。
 
+### 管線
+[管線](data-factory-create-pipelines.md)是活動的邏輯性群組。可用來將活動群組成一個單位，共同執行任務。比方說，清除記錄檔資料可能需要照順序進行數個轉換活動。此順序可能會有複雜的排程和相依性，需要加以協調流程並自動化。這些活動全都可以群組成名為 “CleanLogFiles” 的單一管線。接著 “CleanLogFiles” 就能夠以單一單位來進行部署、排程或刪除，而不需要一一管理各個活動。
 
 ### 活動
 活動會定義在您資料上執行的動作。每個活動會取得零或多個[資料集](data-factory-create-datasets.md)做為輸入，並產生一或多個資料集做為輸出。活動代表 Azure Data Factory 中的協調流程單位。例如，您可能會使用[複製活動](data-factory-data-movement-activities.md)來協調從一個資料集複製資料到另一個資料集的流程。同樣地，您可能會使用在 Azure HDInsight 叢集上執行 Hive 查詢的 [Hive 活動](data-factory-data-transformation-activities.md)，來轉換或分析您的資料。Azure Data Factory 提供大量的資料轉換、分析和資料移動活動。
-
-### 管線
-[管線](data-factory-create-pipelines.md)是活動的邏輯性群組。可用來將活動群組成一個單位，共同執行任務。比方說，清除記錄檔資料可能需要照順序進行數個轉換活動。此順序可能會有複雜的排程和相依性，需要加以協調流程並自動化。這些活動全都可以群組成名為 “CleanLogFiles” 的單一管線。接著 “CleanLogFiles” 就能夠以單一單位來進行部署、排程或刪除，而不需要一一管理各個活動。
 
 ### 資料集
 [資料集](data-factory-create-datasets.md)是具名的參考/指標，指向您要用來當做活動輸入或輸出的資料。資料集會在包括資料表、檔案、資料夾和文件在內的各種資料存放區中，識別資料結構。
@@ -53,29 +52,29 @@ Azure Data Factory 有幾個主要實體會共同運作，來定義輸入和輸�
 ### 連結的服務
 連結的服務會定義 Data Factory 所需的資訊，以便連接到外部資源。Data Factory 中的連結服務，有兩個用途：
 
-- 用來代表資料存放區，其中包含 (但不限於) 內部部署 SQL Server、Oracle DB、檔案共用或 Azure Blob Storage 帳戶。如前所述，資料集代表透過連結服務連接到 Data Factory 之資料存放區中的架構。
+- 用來代表資料存放區，其中包含 (但不限於) 內部部署 SQL Server、Oracle DB、檔案共用或 Azure Blob 儲存體帳戶。如前所述，資料集代表透過連結服務連接到 Data Factory 的資料存放區內的資料架構。
 - 用來代表可裝載活動執行的計算資源。例如，“HDInsightHive Activity” 會在 HDInsight Hadoop 叢集上執行。
 
-有了資料集、活動、管線和連結的服務這四個簡單的概念之後，您隨時可以開始使用！ 您可以從頭開始[建置您的第一個管線](data-factory-build-your-first-pipeline.md)，或是依照我們 [Data Factory 範例](data-factory-samples.md)文章中的指示，部署現成的樣本。
+有了資料集、活動、管線和連結的服務這四個簡單的概念之後，您隨時可以開始使用！ 您可以[建置您的第一個管線](data-factory-build-your-first-pipeline.md)，或是依照我們 [Data Factory 範例](data-factory-samples.md)文章中的指示，部署現成的樣本。
 
 ## 支援的區域
-目前您可以在 [美國西部]、[美國東部] 和 [北歐] 區域建立 Data Factory。不過，Data Factory 可以存取其他 Azure 區域的資料存放區和計算資料，以在資料存放區之間移動資料或使用計算服務處理資料。
+您目前可以在 [美國西部]、[美國東部] 和 [北歐] 區域建立 Data Factory。不過，Data Factory 可以存取其他 Azure 區域的資料存放區和計算資料，以在資料存放區之間移動資料或使用計算服務處理資料。
 
 Azure Data Factory 本身不會儲存任何資料。它可讓您建立資料驅動的流程，以協調[所支援資料存放區](data-factory-data-movement-activities.md#supported-data-stores)之間的資料移動，以及使用[計算服務](data-factory-compute-linked-services.md)在其他區域或內部部署環境中處理資料。它也可讓您使用程式設計方式和 UI 機制[監視和管理工作流程](data-factory-monitor-manage-pipelines.md)。
 
-請注意，即使 Azure Data Factory 只能在 [美國西部]、[美國東部] 和 [北歐] 區域使用，但 Data Factory 中支援資料移動的服務可在[全球](data-factory-data-movement-activities.md#global)好幾個區域中使用。如果資料存放區位於防火牆後面，則會改由內部部署環境中所安裝的[資料管理閘道](data-factory-move-data-between-onprem-and-cloud.md)移動資料。
+即使 Azure Data Factory 只能在 [美國西部]、[美國東部] 和 [北歐] 區域使用，但 Data Factory 中支援資料移動的服務可在[全球](data-factory-data-movement-activities.md#global)好幾個區域中使用。如果資料存放區位於防火牆後面，則會改由內部部署環境中所安裝的[資料管理閘道](data-factory-move-data-between-onprem-and-cloud.md)移動資料。
 
-如需範例，讓我們假設您的計算環境 (例如 Azure HDInsight 叢集和 Azure 機器學習服務) 即將用盡西歐區域的資源。您可以在北歐建立和運用 Azure Data Factory 執行個體，並用它排程您在西歐區域之計算環境上的工作。只要幾毫秒的時間，Data Factory 服務就能觸發計算環境上的作業，但執行計算環境上作業所需的時間則不會改變。
+如需範例，讓我們假設您的計算環境 (例如 Azure HDInsight 叢集和 Azure 機器學習服務) 即將用盡西歐區域的資源。您可以在北歐建立和利用 Azure Data Factory 執行個體，並用它排程您在西歐區域之計算環境上的工作。只要幾毫秒的時間，Data Factory 就能觸發計算環境上的作業，但執行計算環境上作業所需的時間則不會改變。
 
 未來我們計畫讓 Azure 在每個地理位置都能支援 Azure Data Factory。
   
 ## 後續步驟
-請遵循下列教學課程中的逐步指示，以了解如何建置具有資料管線的 Data Factory。
+若要了解如何建置具有資料管線的 Data Factory，請遵循下列教學課程中的逐步指示。
 
 教學課程 | 說明
 -------- | -----------
-[使用 Hadoop 叢集建置處理資料的資料管線](data-factory-build-your-first-pipeline.md) | 在本教學課程中，您將會在 Azure HDInsight (Hadoop) 叢集上執行 Hive 指令碼，以建立您的第一個 Azure Data Factory 與用來**處理資料**的資料管線。 |
-[建置資料管線以在兩個雲端資料存放區之間移動資料](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) | 在本教學課程中，您將建立具有管線的 Data Factory，以從 Blob 儲存體**移動資料**至 SQL Database。
-[建置資料管線，以使用資料管理閘道在內部部署資料存放區與雲端資料存放區之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) | 在本教學課程中，您將建置具有管線的 Data Factory，以從**內部部署** SQL Server 資料庫**移動資料**至 Azure Blob。在逐步解說中，您將在您的電腦上安裝及設定資料管理閘道。 
+[使用 Hadoop 叢集建置處理資料的資料管線](data-factory-build-your-first-pipeline.md) | 在本教學課程中，您會在 Azure HDInsight (Hadoop) 叢集上執行 Hive 指令碼，以建立您的第一個 Azure Data Factory 與用來**處理資料**的資料管線。 |
+[建置資料管線以在兩個雲端資料存放區之間移動資料](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) | 在本教學課程中，您會建立具有管線的 Data Factory，以從 Blob 儲存體**移動資料**至 SQL Database。
+[建置資料管線，以使用資料管理閘道在內部部署資料存放區與雲端資料存放區之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) | 在本教學課程中，您會建置具有管線的 Data Factory，以從**內部部署** SQL Server 資料庫**移動資料**至 Azure Blob。在逐步解說中，您會在電腦上安裝及設定資料管理閘道。 
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0914_2016-->

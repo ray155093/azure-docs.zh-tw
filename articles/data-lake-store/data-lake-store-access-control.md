@@ -4,7 +4,7 @@
    services="data-lake-store"
    documentationCenter=""
    authors="nitinme"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"/>
 
 <tags
@@ -224,7 +224,9 @@ Data Lake Store 實作的存取控制模型依序衍生自 HDFS 和 POSIX 存取
 
 | 使用者群組 | 設定 | 對新的子項目的存取 ACL 的影響 |
 |------------ |---------|---------------------------------------|
-| 擁有使用者 |--- | 沒有影響 | | 擁有群組 |--- | 沒有影響 | | 其他 | RWX |移除讀取 + 寫入 + 執行 |
+| 擁有使用者 |--- | 沒有影響 |
+| 擁有群組 |--- | 沒有影響 |
+| 其他 | RWX |移除讀取 + 寫入 + 執行 |
 
 下圖顯示此 umask 作用中。實質效果是移除**其他**使用者的 [讀取 + 寫入 + 執行]。由於 umask 未指定**擁有使用者**和**擁有群組**的位元，因此不會轉換這些權限。
 
@@ -304,4 +306,4 @@ Data Lake Store 實作的存取控制模型依序衍生自 HDFS 和 POSIX 存取
 
 * [開始使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

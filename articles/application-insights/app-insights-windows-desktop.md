@@ -19,7 +19,7 @@
 
 *Application Insights 目前僅供預覽。*
 
-[Visual Studio Application Insights](app-insights-get-started.md) 和 [HockeyApp](https://hockeyapp.net) 可讓您監視已部署的應用程式的使用情況和效能。
+[Visual Studio Application Insights](app-insights-overview.md) 和 [HockeyApp](https://hockeyapp.net) 可讓您監視已部署的應用程式的使用情況和效能。
 
 > [AZURE.IMPORTANT] 我們建議使用 [HockeyApp](https://hockeyapp.net) 來發佈和監視傳統型應用程式和裝置應用程式。使用 HockeyApp，您可以管理發佈、即時測試和使用者意見，以及監視使用情況和當機報告。您也可以[使用分析匯出及查詢遙測](app-insights-hockeyapp-bridge-app.md)。
 
@@ -89,4 +89,4 @@
 * [撰寫分析查詢](app-insights-analytics.md)
  
 
-<!---HONumber=AcomDC_0831_2016-->
+<!----HONumber=AcomDC_0907_2016-->
