@@ -14,20 +14,20 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="09/09/2016" 
+	ms.date="09/16/2016" 
 	ms.author="cephalin"
 />
 	
 # 在 5 分鐘內，將您的第一個 Web 應用程式部署到 Azure
 
-本教學課程將協助您部署您的第一個 Web 應用程式至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。您可以使用 App Service 來建立 Web 應用程式、[行動應用程式後端](/documentation/learning-paths/appservice-mobileapps/)和 [API 應用程式](../app-service-api/app-service-api-apps-why-best-platform.md)。
+本教學課程將協助您部署一個簡單的 HTML+CSS Web 應用程式至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。您可以使用 App Service 來建立 Web 應用程式、[行動應用程式後端](/documentation/learning-paths/appservice-mobileapps/)和 [API 應用程式](../app-service-api/app-service-api-apps-why-best-platform.md)。
 
 您將：
 
 - 在 Azure App Service 中建立 Web 應用程式。
-- 部署範例程式碼 (在 ASP.NET、PHP、Node.js、Java 或 Python 之間選擇)。
-- 看見您的程式碼在生產環境中即時執行。
-- 以您[推送 Git 認可](https://git-scm.com/docs/git-push)的相同方式，更新 Web 應用程式。
+- 將 HTML 和 CSS 部署到其中。
+- 看見您的頁面在生產環境中即時執行。
+- 以與[推送 Git 認可](https://git-scm.com/docs/git-push)相同的方式來更新內容。
 
 ## 必要條件
 
@@ -43,7 +43,7 @@
 
 2. 按一下左側功能表的 [新增] > [Web + 行動] > [Web 應用程式]。
 
-    ![開始建立您在 Azure 中的第一個 Web 應用程式](./media/app-service-web-get-started/create-web-app-portal.png)
+    ![](./media/app-service-web-get-started-languages/create-web-app-portal.png)
 
 3. 在 App 建立刀鋒視窗中，針對您新的 App 使用下列設定：
 
@@ -53,27 +53,27 @@
 
     完成時，App 建立刀鋒視窗應該如下所示：
 
-    ![設定您在 Azure 中的第一個 Web 應用程式](./media/app-service-web-get-started/create-web-app-settings.png)
+    ![](./media/app-service-web-get-started-languages/create-web-app-settings.png)
 
 3. 按一下底部的 [建立]。您可以按一下頂端的通知圖示來查看進度。
 
-    ![您在 Azure 中第一個 Web 應用程式的 App 建立通知](./media/app-service-web-get-started/create-web-app-started.png)
+    ![](./media/app-service-web-get-started-languages/create-web-app-started.png)
 
 4. 部署完成時，您應該會看到此通知訊息。按一下訊息可開啟部署的刀鋒視窗。
 
-    ![您在 Azure 中第一個 Web 應用程式的部署完成訊息](./media/app-service-web-get-started/create-web-app-finished.png)
+    ![](./media/app-service-web-get-started-languages/create-web-app-finished.png)
 
 5. 在 [部署成功] 刀鋒視窗中，按一下 [資源] 連結以開啟新的 Web 應用程式刀鋒視窗。
 
-    ![您在 Azure 中第一個 Web 應用程式的資源連結](./media/app-service-web-get-started/create-web-app-resource.png)
+    ![](./media/app-service-web-get-started-languages/create-web-app-resource.png)
 
-## 將程式碼部署至 Web 應用程式
+## 將內容部署至 Web 應用程式
 
-現在，我們使用 Git 來將程式碼部署到 Azure。
+現在，我們使用 Git 來將內容部署到 Azure。
 
 5. 在 Web 應用程式刀鋒視窗中，向下捲動至 [部署選項] 或搜尋「部署選項」，然後按一下它。
 
-    ![您在 Azure 中第一個 Web 應用程式的部署選項](./media/app-service-web-get-started/deploy-web-app-deployment-options.png)
+    ![](./media/app-service-web-get-started-languages/deploy-web-app-deployment-options.png)
 
 6. 按一下 [選擇來源] > [本機 Git 儲存機制] > [確定]。
 
@@ -83,24 +83,15 @@
 
 7. 回到 Web 應用程式刀鋒視窗，向下捲動至 [屬性] 或搜尋「屬性」，然後按一下它。按一下 [Git URL] 旁的 [複製] 按鈕。
 
-    ![您在 Azure 中第一個 Web 應用程式的屬性刀鋒視窗](./media/app-service-web-get-started/deploy-web-app-properties.png)
+    ![](./media/app-service-web-get-started-languages/deploy-web-app-properties.png)
 
-    您現在可以開始使用 Git 部署程式碼。
+    您現在可以開始使用 Git 部署內容。
 
 1. 在命令列終端機中，變更至工作目錄 (`CD`)，並如下所示複製範例 App︰
 
-        git clone <github_sample_url>
+        git clone https://github.com/Azure-Samples/app-service-web-html-get-started.git
 
-    ![複製 App 範例程式碼，用於您在 Azure 中的第一個 Web 應用程式](./media/app-service-web-get-started/html-git-clone.png)
-
-    對於 &lt;github\_sample\_url>，使用下列其中一個 URL (視您所需的架構而定)：
-
-    - HTML+CSS+JS：[https://github.com/Azure-Samples/app-service-web-html-get-started.git](https://github.com/Azure-Samples/app-service-web-html-get-started.git)
-    - ASP.NET：[https://github.com/Azure-Samples/app-service-web-dotnet-get-started.git](https://github.com/Azure-Samples/app-service-web-dotnet-get-started.git)
-    - PHP (CodeIgniter)：[https://github.com/Azure-Samples/app-service-web-php-get-started.git](https://github.com/Azure-Samples/app-service-web-php-get-started.git)
-    - Node.js (Express)：[https://github.com/Azure-Samples/app-service-web-nodejs-get-started.git](https://github.com/Azure-Samples/app-service-web-nodejs-get-started.git)
-    - Java：[https://github.com/Azure-Samples/app-service-web-java-get-started.git](https://github.com/Azure-Samples/app-service-web-java-get-started.git)
-    - Python (Django)：[https://github.com/Azure-Samples/app-service-web-python-get-started.git](https://github.com/Azure-Samples/app-service-web-python-get-started.git)
+    ![複製 App 範例程式碼，用於您在 Azure 中的第一個 Web 應用程式](./media/app-service-web-get-started-languages/html-git-clone.png)
 
 2. 切換至範例 App 的儲存機制。例如，
 
@@ -114,15 +105,13 @@
 
         git push azure master
 
-    ![將程式碼推送至您在 Azure 中的第一個 Web 應用程式](./media/app-service-web-get-started/html-git-push.png)
-
-    如果您已使用其中一個語言架構，則會看到不同的輸出。這是因為 `git push` 不僅會將程式碼放在 Azure 中，也會在部署引擎中觸發部署工作。如果您的專案 (儲存機制) 根目錄中有任何 package.json (Node.js) 或 requirements.txt (Python) 檔案，或您的 ASP.NET 專案中有 packages.config 檔案，則部署指令碼會為您還原必要的封裝。您也可以[啟用編輯器延伸模組](web-sites-php-mysql-deploy-use-git.md#composer)，以在 PHP 應用程式中自動處理 composer.json 檔案。
+    ![將程式碼推送至您在 Azure 中的第一個 Web 應用程式](./media/app-service-web-get-started-languages/html-git-push.png)
 
 就這麼簡單！ 您的程式碼現在正在 Azure 中即時執行。在瀏覽器中，瀏覽至 http://*&lt;appname>*.azurewebsites.net 來查看其實際運作。
 
 ## 更新您的 App
 
-您現在可以使用 Git 隨時從您的專案 (儲存機制) 根目錄進行推送，以更新即時網站。您可以使用第一次部署程式碼時的相同方式來執行這項作業。例如，每次您想要推送已在本機測試的新變更時，只需從專案 (儲存機制) 根目錄執行下列命令︰
+您現在可以使用 Git 隨時從您的專案 (儲存機制) 根目錄進行推送，以更新即時網站。您可以使用第一次部署內容時的相同方式來執行這項作業。例如，每次您想要推送已在本機測試的新變更時，只需從專案 (儲存機制) 根目錄執行下列命令︰
 
     git add .
     git commit -m "<your_message>"
