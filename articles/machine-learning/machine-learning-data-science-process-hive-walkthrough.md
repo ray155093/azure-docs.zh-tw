@@ -4,7 +4,7 @@
 	services="machine-learning,hdinsight"
 	documentationCenter=""
 	authors="bradsev"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun" />
 
 <tags
@@ -97,7 +97,7 @@
 
 我們在這裡說明如何使用 AzCopy 來傳輸含有資料的檔案。若要下載並安裝 AzCopy，請遵循[開始使用 AzCopy 命令列公用程式](../storage/storage-use-azcopy.md)的指示。
 
-1. 從命令提示字元視窗中發出下列 AzCopy 命令，以所需的目的地取代 *<path_to_data_folder>*：
+1. 從命令提示字元視窗中發出下列 AzCopy 命令，以所需的目的地取代*<path\_to\_data\_folder>*：
 
 
 		"C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy\azcopy" /Source:https://nyctaxitrips.blob.core.windows.net/data /Dest:<path_to_data_folder> /S
@@ -111,7 +111,7 @@
 
 在下列 AzCopy 命令中，以建立 Hadoop 叢集和解壓縮資料檔案時指定的實際值取代下列參數。
 
-* ***&#60;path\_to\_data\_folder>***：在包含未解壓縮資料檔案之電腦上的目錄 (以及路徑)  
+* ***&#60;path\_to\_data\_folder>***：在包含未解壓縮資料檔案之電腦上的目錄 (以及路徑)
 * ***&#60;storage account name of Hadoop cluster>***：HDInsight 叢集所關聯的儲存體帳戶
 * ***&#60;default container of Hadoop cluster>***：您的叢集所使用的預設容器。請注意，預設容器的名稱通常與叢集本身的名稱相同。例如，如果叢集稱為 "abc123.azurehdinsight.net"，預設容器即為 abc123。
 * ***&#60;storage account key>***：您的叢集所使用的儲存體帳戶金鑰
@@ -454,7 +454,7 @@ NYC 計程車資料集中的 medallion 會識別唯一的計程車。我們可�
 
 對於[預測工作的範例](machine-learning-data-science-process-hive-walkthrough.md#mltasks)一節中所述的二元分類問題而言，了解是否已指定小費會很有幫助。小費是二元分佈：
 
-* 指定小費 (類別 1，tip\_amount > 美金 $0 元)  
+* 指定小費 (類別 1，tip\_amount > 美金 $0 元)
 * 沒有小費 (類別 0、 tip\_amount = 美金 $0 元)。
 
 以下顯示的 *Sample\_hive\_tipped\_frequencies.hql* 檔案會執行這項作業。
@@ -543,7 +543,7 @@ NYC 計程車資料集中的 medallion 會識別唯一的計程車。我們可�
 
 **警告：**對於大型檔案，`copyToLocal` 可能會很慢，因此不建議使用。
 
-將這份資料放在 Azure Blob 中的主要優點是，我們可以使用[匯入資料][import-data]模組來探索 Azure Machine Learning 中的資料。
+將此資料放在 Azure Blob 中的主要優點是，我們可以使用[匯入資料][import-data]模組來探索 Azure Machine Learning 中的資料。
 
 
 ## <a name="#downsample"></a>在 Azure Machine Learning 中縮小取樣和建置模型
@@ -689,13 +689,13 @@ NYC 計程車資料集中的 medallion 會識別唯一的計程車。我們可�
 
 	hive -f "C:\temp\sample_hive_prepare_for_aml_full.hql"
 
-我們現在有內部資料表 "nyctaxidb.nyctaxi\_downsampled\_dataset"，使用 Azure Machine Learning 中的[匯入資料][import-data]模組即可存取此資料表。此外，我們可能使用這個資料集來建置機器學習服務模型。
+我們現在有內部資料表 "nyctaxidb.nyctaxi\_downsampled\_dataset"，使用 Azure Machine Learning 中的[匯入資料][import-data]模組，即可存取此資料表。此外，我們可能使用這個資料集來建置機器學習服務模型。
 
 ### 使用 Azure Machine Learning 中的「匯入資料」模組來存取縮小取樣的資料
 
 若要在 Azure Machine Learning 的[匯入資料][import-data]模組中發出 Hive 查詢，先決條件是要能夠存取 Azure Machine Learning 工作區，以及要能夠存取叢集及其相關儲存體帳戶的認證。
 
-以下是[匯入資料][import-data]模組及所要輸入之參數的一些詳細資料：
+以下是[匯入資料][import-data]模組及要輸入之參數的一些詳細資料：
 
 **HCatalog 伺服器 URI**：如果叢集名稱是 abc123，則為：https://abc123.azurehdinsight.net
 
@@ -733,7 +733,7 @@ NYC 計程車資料集中的 medallion 會識別唯一的計程車。我們可�
 
 **已使用學習者：**二元羅吉斯迴歸
 
-a.對於這個問題，我們的目標 (或類別) 標籤是 "tipped"。縮小取樣的原始資料集有幾個資料行會顯示這個分類實驗目標。特別是 tip\_class、tip\_amount 和 total\_amount，可揭示測試時不會提供之目標標籤的相關資訊。我們會使用[選取資料集中的資料行][select-columns]模組將這些資料行自考量範圍中移除。
+a.對於這個問題，我們的目標 (或類別) 標籤是 "tipped"。縮小取樣的原始資料集有幾個資料行會顯示這個分類實驗目標。特別是 tip\_class、tip\_amount 和 total\_amount，可揭示測試時不會提供之目標標籤的相關資訊。我們會使用[選取資料集中的資料行][select-columns]模組，從考量範圍中移除這些資料行。
 
 以下快照顯示我們的實驗，目的是預測是否會支付指定車程的小費。
 
@@ -794,9 +794,7 @@ b.對於迴歸問題，我們會藉由查看預測中的平方誤差、決定係
 
 ## 參考
 
-•	[Andrés Monroy NYC 計程車車程下載頁面](http://www.andresmh.com/nyctaxitrips/) (Andrés Monroy NYC Taxi Trips Download Page)  
-•	[FOIL NYC 的計程車車程資料 (作者為 Chris Whong)](http://chriswhong.com/open-data/foil_nyc_taxi/) (FOILing NYC’s Taxi Trip Data by Chris Whong)   
-•	[NYC 計程車和禮車委託研究和統計資料](https://www1.nyc.gov/html/tlc/html/about/statistics.shtml) (NYC Taxi and Limousine Commission Research and Statistics)
+• [Andrés Monroy NYC 計程車車程下載頁面](http://www.andresmh.com/nyctaxitrips/) (Andrés Monroy NYC Taxi Trips Download Page) • [FOIL NYC 的計程車車程資料 (作者為 Chris Whong)](http://chriswhong.com/open-data/foil_nyc_taxi/) (FOILing NYC’s Taxi Trip Data by Chris Whong) • [NYC 計程車和禮車委託研究和統計資料](https://www1.nyc.gov/html/tlc/html/about/statistics.shtml) (NYC Taxi and Limousine Commission Research and Statistics)
 
 
 [2]: ./media/machine-learning-data-science-process-hive-walkthrough/output-hive-results-3.png
@@ -810,4 +808,4 @@ b.對於迴歸問題，我們會藉由查看預測中的平方誤差、決定係
 [select-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 [import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="garyericson"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/10/2016"
+	ms.date="09/09/2016"
 	ms.author="garye"/>
 
 # 在 Azure Machine Learning Studio 中管理實驗逐一查看
 
 開發預測分析模型是一種逐一查看過程 - 您修改實驗的各種函數及參數，結果會不斷收斂，直到您對已訓練的有效模型感到滿意為止。此程序的關鍵是追蹤實驗參數和組態的各種逐一查看。
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 您可以隨時檢閱先前的實驗執行，以挑戰、重新瀏覽及最終確認或調整先前的假設。當您執行實驗時，Machine Learning Studio 會保留執行歷程記錄，包括資料集、模組及連接埠連接和參數。此歷程記錄也會擷取結果、執行階段資訊，例如開始和停止時間、記錄訊息及執行狀態。您可以隨時回顧任何執行，以檢閱實驗和中繼結果的年表。您甚至可以使用上一次的實驗執行，啟動到新的階段，在您的路徑上查詢和探索，以建立簡單、複雜或甚至集成模型解決方案。
 
@@ -84,4 +84,4 @@ Machine Learning Studio 中 [實驗] 索引標籤的實驗清單一律會顯示�
 <!-- Module References -->
 [linear-regression]: https://msdn.microsoft.com/library/azure/31960a6f-789b-4cf7-88d6-2e1152c0bd1a/
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0914_2016-->

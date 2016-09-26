@@ -1,9 +1,9 @@
 <properties
 	pageTitle="Azure Active Directory 版本 | Microsoft Azure"
-	description="說明 Azure Active Directory 免費和付費版本選擇的主題。Azure Active Directory Basic 是免費版本，而 Azure Active Directory Premium 是付費版本。"
+	description="說明 Azure Active Directory 免費和付費版本選項的主題。Azure Active Directory Basic、Azure Active Directory Premium P1 及 Azure Active Directory Premium P2 為付費版本。"
 	services="active-directory"
 	documentationCenter=""
-	authors="MarkusVi"
+	authors="curtand"
 	manager="femila"
 	editor=""/>
 
@@ -13,38 +13,37 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/10/2016"
-	ms.author="markvi"/>
+	ms.date="09/09/2016"
+	ms.author="curtand"/>
 
 # Azure Active Directory 版本
 
-所有 Microsoft Online 商務服務都依賴 Azure Active Directory 進行登入和其他身分識別需求。如果您訂用帳戶任何 Microsoft Online 商務服務 (例如 Office 365、Microsoft Azure 等)，您會取得 Azure Active Directory (Azure AD) 並可存取所有免費的功能，如下所述。
-
+所有 Microsoft Online 商務服務都依賴 Azure Active Directory (Azure AD) 來進行登入和其他身分識別需求。如果您訂閱任何 Microsoft Online 商務服務 (例如 Office 365、Microsoft Azure)，您就會取得 Azure AD 並可存取所有免費的功能，如下所述。
 
 Azure Active Directory 是一項可在雲端中為您的員工、合作夥伴和客戶提供完整身分識別和存取管理功能的服務。它結合了開發人員適用的目錄服務、進階身分識別控管、豐富標準架構平台，以及您自己的和數以千計的任何預先整合的應用程式的應用程式存取管理。利用 Azure Active Directory 免費版，您可以管理使用者和群組、與內部部署目錄同步處理、取得 Azure、Office 365 和數千個熱門 SaaS 應用程式 (像是 Salesforce、Workday、Concur、DocuSign、Google Apps、Box、ServiceNow、Dropbox 等) 之間的單一登入。若要深入了解 Azure Active Directory，請閱讀[什麼是 Azure AD](active-directory-whatis.md)。
 
-
-
-若要增強您的 Azure Active Directory，您可以使用 Azure Active Directory Basic 和 Premium 版本加入付費功能。付費版本的 Azure Active Directory 是建立在您現有的免費目錄上，提供的企業級功能跨越自助、增強的監視、安全性報告、Multi-Factor Authentication (MFA) 及您的行動工作力的安全存取。
+若要增強您的 Azure Active Directory，您可以使用 Azure Active Directory Basic、Premium P1 及 Premium P2 版本來新增付費功能。付費版本的 Azure Active Directory 是建立在您現有的免費目錄上，提供的企業級功能跨越自助、增強的監視、安全性報告、Multi-Factor Authentication (MFA) 及您的行動工作力的安全存取。
 
 Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比較表中說明。
 
 
-> [AZURE.NOTE] 這兩種版本的詳細價格請參閱 [Azure Active Directory 價格](https://azure.microsoft.com/pricing/details/active-directory/)。目前在中國不支援 Azure Active Directory Premium 和 Azure Active Directory Basic。請透過 Azure Active Directory 論壇與我們連絡以取得詳細資訊
+> [AZURE.NOTE] 這兩種版本的詳細價格請參閱 [Azure Active Directory 價格](https://azure.microsoft.com/pricing/details/active-directory/)。目前在中國不支援 Premium P1、Premium P2 及 Azure Active Directory Basic。如需詳細資訊，請透過 Azure Active Directory 論壇與我們連絡。
 
 
 - **Azure Active Directory Basic** - 針對具有雲端優先需求的任務背景工作角色設計，此版本提供以雲端為中心的應用程式存取和自助身分識別管理解決方案。有了 Azure Active Directory 的 Basic 版本，您可獲得生產力增強和成本節約功能，例如：群組式存取管理、雲端應用程式的自助式密碼重設、Azure Active Directory 應用程式 Proxy (以使用 Azure Active Directory 發佈內部部署 Web 應用程式)，全都由可獲得 99.9% 運作時間的企業級 SLA 支援。
- 
-- **Azure Active Directory Premium** - 設計目的是為了幫助更要求身分識別和存取管理需求的組織，Azure Active Directory Premium 版本加入了功能豐富的企業級身分識別管理功能，並使得混合式使用者能夠順暢地存取內部部署和雲端功能。此版本包含資訊背景工作角色和混合環境中身分識別管理員對於應用程式存取、自助身分識別和存取管理 (IAM)、雲端中的身分識別保護和安全性所需的一切。它支援進階管理和委派資源，例如：動態群組和自助群組管理。它包含 Microsoft Identity Manager (一項內部部署及身分識別和存取管理套件)，並提供可為您的內部部署使用者啟用自助密碼重設之類解決方案的雲端回寫功能。
+
+- **Azure Active Directory Premium P1** - Azure Active Directory Premium 版本的設計目的是要協助在身分識別及存取管理需求上有更嚴格要求的組織，此版本除了新增功能豐富的企業級身分識別管理功能之外，也可讓混合式使用者順暢地存取內部部署和雲端功能。此版本包含資訊背景工作角色和混合環境中身分識別管理員對於應用程式存取、自助身分識別和存取管理 (IAM)、雲端中的身分識別保護和安全性所需的一切。它支援進階管理和委派資源，例如：動態群組和自助群組管理。它包含 Microsoft Identity Manager (一項內部部署及身分識別和存取管理套件)，並提供可為您的內部部署使用者啟用自助密碼重設之類解決方案的雲端回寫功能。
+
+- **Azure Active Directory Premium P2** - 這個新方案採用了為所有使用者和系統管理員提供進階保護的設計，此方案不僅包括 Azure AD Premium P1 中的所有功能，也包括新的 Identity Protection 與 Privileged Identity Management。Azure Active Directory Identity Protection 利用數十億個訊號，針對應用程式及重要公司資料提供以風險為基礎的條件式存取。此外，我們還使用 Azure Active Directory Privileged Identity Management 來協助您管理及保護授權帳戶，讓您能夠探索、限制和監視系統管理員及他們對資源的存取，並在需要時，提供及時的存取權。
 
 若要註冊並立即開始使用 Active Directory Premium，請參閱[開始使用 Azure Active Directory Premium](active-directory-get-started-premium.md)。
 
 
-> [AZURE.NOTE] 
+> [AZURE.NOTE]
 許多 Azure Active Directory 功能是透過「隨用隨付」版本提供：
 >
 >- Active Directory B2C 是面向消費者應用程式適用的身分識別和存取管理解決方案。如需詳細資料，請參閱：[Azure Active Directory B2C](https://azure.microsoft.com/documentation/services/active-directory-b2c/)
- 
+
 >-	Azure Multi-Factor Authentication 可透過每一使用者或每一驗證提供者方式使用。如需詳細資訊，請參閱[什麼是 Azure Multi-Factor Authentication？](../multi-factor-authentication/multi-factor-authentication.md)
 
 
@@ -84,7 +83,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 - [SLA 99.9%](#sla-999)
 
 
-**進階功能**
+**Premium P1 功能**
 
 - [自助式群組和應用程式管理/自助式應用程式新增/動態群組](#self-service-group-and-app-managementself-service-application-additions-dynamic-groups)
 
@@ -100,6 +99,11 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 - [群組帳戶的自動密碼變換](#automatic-password-rollover-for-group-accounts)
 
+**Premium P2 功能**
+
+- [身分識別保護](active-directory-identityprotection.md)
+
+- [Privileged Identity Management](active-directory-privileged-identity-management-configure.md)
 
 **Azure Active Directory Join – 僅適用於 Windows 10 的相關功能**
 
@@ -108,12 +112,8 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 - [MDM 自動註冊、自助式 Bitlocker 復原、Windows 10 裝置透過 Azure AD Join 取得的其他本機系統管理員](#mdm-auto-enrolment-self-service-bitlocker-recovery-additional-local-administrators-to-windows-10-devices-via-azure-ad-join)
 
 
-
-
-
-
 ## 常用功能
-#### 目錄物件 
+#### 目錄物件
 
 **類型：**常用功能
 
@@ -122,7 +122,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | 最多 500,000 個物件| 沒有物件數目限制| 沒有物件數目限制| Office 365 使用者帳戶沒有物件數目限制|
 
@@ -135,7 +135,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 **可用性：**
 
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | ![勾選][12]| ![勾選][12]| ![勾選][12]| ![勾選][12]|
 
@@ -154,7 +154,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | 每位使用者 10 個應用程式 (1) | 每位使用者 10 個應用程式 (1) | 沒有限制 (2) | 每位使用者 10 個應用程式 (1)|
 
@@ -174,7 +174,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | ![勾選][12]| ![勾選][12]| ![勾選][12]| ![勾選][12]|
 
@@ -185,14 +185,14 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 
 
-#### Connect (可將內部部署目錄延伸至 Azure Active Directory 的同步處理引擎) 
+#### Connect (可將內部部署目錄延伸至 Azure Active Directory 的同步處理引擎)
 
 **類型：**常用功能
 
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | ![勾選][12]| ![勾選][12]| ![勾選][12]| ![勾選][12]|
 
@@ -209,7 +209,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | 3 個基本報告| 3 個基本報告| 進階報告| 3 個基本報告|
 
@@ -228,7 +228,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | | ![勾選][12]| ![勾選][12]| |
 
@@ -245,7 +245,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | | ![勾選][12]| ![勾選][12]| ![勾選][12]|
 
@@ -262,7 +262,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | | ![勾選][12]| ![勾選][12]| ![勾選][12]|
 
@@ -279,7 +279,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | | ![勾選][12]| ![勾選][12]| |
 
@@ -296,7 +296,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | | ![勾選][12]| ![勾選][12]| ![勾選][12]|
 
@@ -315,14 +315,14 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | | | ![勾選][12]| |
 
 
 
 
-         
+
 #### 使用內部部署回寫來進行的自助式密碼重設/變更/解除鎖定
 
 **類型：**進階功能
@@ -330,7 +330,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | | | ![勾選][12]| |
 
@@ -345,7 +345,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | | | ![勾選][12]| 針對 Office 365 應用程式限定於雲端|
 
@@ -355,7 +355,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 
 
-#### MIM CAL + MIM 伺服器 
+#### MIM CAL + MIM 伺服器
 
 Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 (任何版本) 一起授與。由於 Microsoft Identity Manager 在 Windows Server OS 上執行，只要該伺服器正在執行有效且已授權的 Windows Server 複本，Microsoft Identity Manager 便可以在該伺服器上安裝並使用。Microsoft Identity Manager Server 不需要其他個別授權。
 
@@ -364,7 +364,7 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | | | ![勾選][12]| |
 
@@ -372,14 +372,14 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 
 
 
-#### Cloud App Discovery 
+#### Cloud App Discovery
 
 **類型：**進階功能
 
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | | | ![勾選][12]| |
 
@@ -389,14 +389,14 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 
 
 
-#### Connect Health
+#### Azure AD Connect Health
 
 **類型：**進階功能
 
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | | | ![勾選][12]| |
 
@@ -413,11 +413,27 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | | | ![勾選][12]| |
 
 
+#### 身分識別保護
+
+**類型：**進階功能
+
+| 免費版| 基本版| Premium P2 版 | 僅 Office 365 應用程式 |
+| :-: | :-: | :-: | :-: |
+| | | ![勾選][12]| |
+
+
+#### Privileged Identity Management
+
+**類型：**進階功能
+
+| 免費版| 基本版| Premium P2 版 | 僅 Office 365 應用程式 |
+| :-: | :-: | :-: | :-: |
+| | | ![勾選][12]| |
 
 
 ## Azure Active Directory Join – 僅適用於 Windows 10 的相關功能
@@ -428,7 +444,7 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | ![勾選][12]| ![勾選][12]| ![勾選][12]| ![勾選][12]|
 
@@ -442,7 +458,7 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | | | ![勾選][12]| |
 
@@ -454,7 +470,7 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 
 **可用性：**
 
-| 免費版| 基本版| Premium Edition| 僅 Office 365 應用程式 |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
 | | | ![勾選][12]| |
 
@@ -464,18 +480,16 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 
 
 ## Azure AD 預覽功能
-除了免費、基本和 Premium Edition 的正式推出功能，Azure AD 也提供您預覽功能的集合。您可以使用預覽功能獲得不久的將來可用的功能的印象，並判斷這些功能是否可協助改善您的環境。
+除了 Free、Basic 及 Premium (P1 和 P2) 版的正式運作功能之外，Azure AD 也提供您一組預覽功能。您可以使用預覽功能獲得不久的將來可用的功能的印象，並判斷這些功能是否可協助改善您的環境。
 
 **可用的預覽功能：**
 
 - [B2B 共同作業](active-directory-b2b-collaboration-overview.md)
 - [管理單位](active-directory-administrative-units-management.md)
-- Privileged Identity Management
 - [HR 應用程式整合](active-directory-saas-workday-inbound-tutorial.md)
-- [Azure Active Directory Identity Protection](active-directory-identityprotection.md)
 - [iOS 上的憑證式驗證](active-directory-certificate-based-authentication-ios.md)
 - [Android 上的憑證式驗證](active-directory-certificate-based-authentication-android.md)
- 
+
 
 
 
@@ -490,4 +504,4 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 <!--Image references-->
 [12]: ./media/active-directory-editions/ic195031.png
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0914_2016-->

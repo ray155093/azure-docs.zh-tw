@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="garyericson"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -28,7 +28,7 @@
 - 管理工作區中建立的 Web 服務
 - 刪除工作區
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 此外，儀表板索引標籤會提供工作區使用方式的概觀和工作區資訊的快速概覽。
 
@@ -68,7 +68,7 @@
 
 - 按一下 [拒絕] 來擱置對機器學習服務工作區的存取。使用者將不再能在 Machine Learning Studio 中開啟工作區。若要還原存取，請按一下 [允許]。
 
-若要管理可以存取 Machine Learning Studio 中工作區的其他帳戶，請按一下 [儀表板] 索引標籤中的 [登入 ML Studip] \(請參閱上述有關**登入 ML Studio**的附註)。這會在 Machine Learning Studio 中開啟工作區。從這裡按一下 [**設定**] 索引標籤，然後按一下 [**使用者**]。您可以按一下 [**邀請使用者**]，讓使用者存取工作區，或選取使用者，並按一下 [**移除**]。
+若要管理可以存取 Machine Learning Studio 中工作區的其他帳戶，請按一下 [儀表板] 索引標籤中的 [登入 ML Studip] (請參閱上述有關**登入 ML Studio**的附註)。這會在 Machine Learning Studio 中開啟工作區。從這裡按一下 [**設定**] 索引標籤，然後按一下 [**使用者**]。您可以按一下 [**邀請使用者**]，讓使用者存取工作區，或選取使用者，並按一下 [**移除**]。
 
 
 ## 管理此工作區中的 Web 服務
@@ -96,4 +96,4 @@ Web 服務可能會有一個或多個定義的端點。
 [consume]: machine-learning-consume-web-services.md
 [marketplace]: machine-learning-publish-web-service-to-azure-marketplace.md
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0914_2016-->

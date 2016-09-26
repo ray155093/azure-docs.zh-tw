@@ -4,7 +4,7 @@
    services="hdinsight,virtual-network" 
    documentationCenter="" 
    authors="mumian" 
-   manager="paulettm" 
+   manager="jhubbard" 
    editor="cgronlun"/>
 
 <tags
@@ -44,11 +44,11 @@
 
 - **具有 Azure PowerShell 的工作站**。
 
-	執行 PowerShell 指令碼之前，請確定您已使用下列 Cmdlet 連接到 Azure 訂用帳戶：
+	執行 PowerShell 指令碼之前，請確定您已使用下列 Cmdlet 連接到 Azure 訂閱：
 
 		Add-AzureAccount
 
-	如果您有多個 Azure 訂用帳戶，請使用下列 Cmdlet 設定目前的訂用帳戶：
+	如果您有多個 Azure 訂閱，請使用下列 Cmdlet 設定目前的訂閱：
 
 		Select-AzureSubscription <AzureSubscriptionName>
 		
@@ -222,4 +222,4 @@ DNS 伺服器需要靜態 IP 位址。此步驟無法在 Azure 傳統入口網�
 
 [img-vnet-diagram]: ./media/hdinsight-hbase-geo-replication-configure-DNS/HDInsight.HBase.VPN.diagram.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0914_2016-->

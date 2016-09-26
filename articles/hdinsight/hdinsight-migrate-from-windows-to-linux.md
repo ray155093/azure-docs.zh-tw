@@ -4,7 +4,7 @@ description="了解如何從以 Windows 為基礎的 HDInsight 叢集移轉至�
 services="hdinsight"
 documentationCenter=""
 authors="Blackmist"
-manager="paulettm"
+manager="jhubbard"
 editor="cgronlun"/>
 
 <tags
@@ -134,7 +134,7 @@ ms.author="larryfr"/>
 
 ### 虛擬網路
 
-以 Windows 為基礎的 HDInsight 僅支援傳統虛擬網路，而以 Linux 為基礎的 HDInsight 則需要資源管理員虛擬網路。如果資源位於傳統虛擬網路中，但以 Linux 為基礎的 HDInsight 叢集必須連接到該資源時，請參閱[將傳統虛擬網路連接到 Resource Manager 虛擬網路](../virtual-network/virtual-networks-arm-asm-s2s.md)。
+以 Windows 為基礎的 HDInsight 僅支援傳統虛擬網路，而以 Linux 為基礎的 HDInsight 則需要資源管理員虛擬網路。如果資源位於傳統虛擬網路中，且以 Linux 為基礎的 HDInsight 叢集必須連接到這類資源時，請參閱[將傳統虛擬網路連接到 Resource Manager 虛擬網路](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md)。
 
 如需搭配 HDInsight 使用 Azure 虛擬網路之設定需求的詳細資訊，請參閱[使用虛擬網路延伸 HDInsight 功能](hdinsight-extend-hadoop-virtual-network.md)。
 
@@ -254,4 +254,4 @@ Azure Data Factory 自訂 .NET 活動目前並不受以 Linux 為基礎的 HDIns
 
 -   [使用 Ambari 管理以 Linux 為基礎的叢集](hdinsight-hadoop-manage-ambari.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

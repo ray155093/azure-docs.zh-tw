@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/03/2016"
+	ms.date="09/07/2016"
 	ms.author="tamram"/>
 
 # 設定 Azure 儲存體連接字串
@@ -72,7 +72,7 @@
 
 雖然連接字串必須包含至少一個服務端點，但是每個服務端點都是選用的。
 
-建議最好搭配使用 HTTPS 與 SAS。如需共用存取簽章的詳細資訊，請參閱[共用存取簽章：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)。
+建議最好搭配使用 HTTPS 與 SAS。如需共用存取簽章的詳細資訊，請參閱[使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)。
 
 >[AZURE.NOTE] 如果您在組態檔的連接字串中指定 SAS，則可能需要編碼 URL 中的特殊字元。
 
@@ -163,4 +163,4 @@
 - [使用 Azure 儲存體模擬器進行開發和測試](storage-use-emulator.md)
 - [Azure 儲存體總管](storage-explorers.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0914_2016-->

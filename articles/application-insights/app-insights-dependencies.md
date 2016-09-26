@@ -48,10 +48,10 @@
 
 為主機伺服器安裝適當的代理程式。
 
-平台 | 安裝
+平台 | Install
 ---|---
 IIS 伺服器 | [在您的伺服器上安裝狀態監視器](app-insights-monitor-performance-live-website-now.md)或[將您的應用程式升級到 .NET Framework 4.6 或更新版本](http://go.microsoft.com/fwlink/?LinkId=528259)，並在應用程式上安裝 [Application Insights SDK](app-insights-asp-net.md)。
-Azure Web 應用程式 | [Application Insights 延伸模組](../azure-portal/insights-perf-analytics.md)
+Azure Web 應用程式 | [Application Insights 延伸模組](app-insights-azure-web-apps.md)
 Java Web 伺服器 | [Java Web 應用程式](app-insights-java-agent.md)
 網頁 | [JavaScript 監視](app-insights-javascript.md) (沒有網頁監視以外的其他設定)
 Azure 雲端服務 | [使用啟動工作](app-insights-cloudservices.md#dependencies)或[安裝 .NET Framework 4.6+](../cloud-services/cloud-services-dotnet-install-dotnet.md)  
@@ -154,4 +154,4 @@ IIS 伺服器的狀態監視器不需要您使用 Application Insights SDK 重�
 
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -4,7 +4,7 @@
  services="hdinsight"
  documentationCenter=""
  authors="Blackmist"
- manager="paulettm"
+ manager="jhubbard"
  editor="cgronlun"
  tags="azure-portal"/>
 
@@ -151,7 +151,7 @@
 
 4.  儲存屬性，然後建置專案。
 
-5.	在 [**方案總管**] 中，於專案上按一下滑鼠右鍵，然後選取 [**提交至 Storm on HDInsight**]。如果出現提示，請輸入您的 Azure 訂閱的認證。
+5.	在 [**方案總管**] 中，於專案上按一下滑鼠右鍵，然後選取 [**提交至 Storm on HDInsight**]。如果出現提示，請輸入您 Azure 訂用帳戶的認證。
 
 	![提交至 Storm 功能表項目的影像](./media/hdinsight-storm-correlation-topology/submittostorm.png)
 
@@ -204,4 +204,4 @@
 如需更多 Storm 範例，請參閱 [Storm on HDInsight 上的範例拓撲](hdinsight-storm-example-topology.md)。
  
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0914_2016-->

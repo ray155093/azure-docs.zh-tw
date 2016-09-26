@@ -3,8 +3,8 @@
 	description="以 Azure Machine Learning 建置之 Microsoft RECOMMENDATIONS API 的常見問題集" 
 	services="machine-learning" 
 	documentationCenter="" 
-	authors="luisca" 
-	manager="paulettm" 
+	authors="LuisCabrer" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/26/2016" 
+	ms.date="09/08/2016" 
 	ms.author="luisca"/>
 
 #設定和使用 Machine Learning Recommendations API 的常見問題集
@@ -21,9 +21,7 @@
 
 **什麼是 RECOMMENDATIONS？**
 
-> 這是資料市場中舊建議 API 的文件，將於 2016 年 12 月 31 日作廢。您現在應該繼續使用[建議 API Cognitive Service](https://www.microsoft.com/cognitive-services/zh-TW/recommendations-api)。
-
-
+>[AZURE.NOTE] 您應該開始使用 Recommendations API 的 Cognitive Service，而不是此版本。Recommendations 的 Cognitive Service 將會取代這個服務，而所有的新特徵都會在其中進行開發。它會提供新功能，例如，批次支援、更好的 API 總管、更簡潔的 API 介面、更一致的註冊/計費體驗等。深入了解[移轉到新的 Cognitive Service](http://aka.ms/recomigrate)
 
 對於依賴建議對客戶進行交叉銷售和向上銷售產品和服務的組織和企業，Azure Machine Learning 的 RECOMMENDATIONS 可提供自助建議引擎。它是協同篩選的實作，其使用矩陣分解作為核心演算法。應用程式開發人員可以使用 REST API 來存取 RECOMMENDATIONS。
 
@@ -139,4 +137,4 @@ API 文件是 [Azure Machine Learning Recommendations - 快速入門指南](mach
 
  
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

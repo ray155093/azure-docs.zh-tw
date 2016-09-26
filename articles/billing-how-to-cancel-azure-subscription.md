@@ -22,7 +22,7 @@
 
 >[AZURE.NOTE] Azure 支援方案為 6 個月期，而 Microsoft 要求您對該期的期間履行貨幣承諾量。在期限到期前解約並不會免除剩餘的承諾量，亦不會針對任何預付金額進行退款。如果您不小心取消訂用帳戶並需要重新啟用，您可以[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以尋求協助。
 
-如果您取消訂用帳戶，將會立即刪除您所有的服務。取消前，請務必先備份您要儲存的資料。
+如果您取消訂用帳戶，根據 [Microsoft 的保留原則](http://www.microsoftvolumelicensing.com/DocumentSearch.aspx?Mode=3&DocumentTypeId=31)，您的資料將會儲存 90 天。深入了解 [Microsoft 信任中心](https://www.microsoft.com/zh-TW/TrustCenter/Privacy/You-are-in-control-of-your-data)。
 
 1. 以帳戶管理員登入 [Azure 帳戶中心](https://account.windowsazure.com/subscriptions)。
 
@@ -40,6 +40,8 @@
 
 5. 按一下 ![checkbutton](./media/billing-how-to-cancel-azure-subscription/checkbutton.png) 關閉對話視窗並返回您的訂用帳戶頁面。
 
+	> [AZURE.NOTE] 如果您不小心取消了「隨用隨付」訂用帳戶，您可以依照[這裡](https://azure.microsoft.com/zh-TW/documentation/articles/billing-subscription-become-disable/)所述的指示來重新啟用它。
+
 > [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="06/24/2016"
+   ms.date="09/12/2016"
    ms.author="bwren" />
 
 # 了解 Windows PowerShell 工作流程
@@ -276,4 +276,4 @@ Windows PowerShell 工作流程的優點之一是可平行執行一組命令，�
 
 - 若要開始使用 PowerShell 工作流程 Runbook，請參閱[我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0914_2016-->

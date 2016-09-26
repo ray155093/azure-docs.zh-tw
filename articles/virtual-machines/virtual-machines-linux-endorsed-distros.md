@@ -22,6 +22,8 @@
 
 #經 Azure 背書之配送映像上的 Linux
 
+> [AZURE.NOTE] 若能耽擱您一些時間，請透過回答這個針對您經驗的[簡短問卷](https://aka.ms/linuxdocsurvey)，來協助我們改善 Azure Linux VM 文件。每個答案都有助於我們協助您完成工作。
+
 Azure 映像庫或 Marketplace 中的 Linux 映像是由許多合作夥伴所提供，而我們仍繼續與不同的 Linux 社群合作，為經過背書的散發套件清單新增更多標註。同時，針對映像庫中未提供的散發套件，您可以隨時依照[本頁](virtual-machines-linux-classic-create-upload-vhd.md)上的方針，自備您自己的 Linux。
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
@@ -89,4 +91,4 @@ Canonical 對工程與開放社群的治理推動了 Ubuntu 在用戶端、伺�
 
 Canonical 在全球各地皆有開發人員和工程中心，此獨特的地位使其能和硬體製造商、內容供應商和軟體開發商合作，將 Ubuntu 解決方案帶到從電腦、伺服器到掌上型裝置等等的市場。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

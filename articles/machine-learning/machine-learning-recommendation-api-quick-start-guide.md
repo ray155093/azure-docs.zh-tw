@@ -4,7 +4,7 @@
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="LuisCabrer" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -13,13 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/17/2016" 
+	ms.date="09/08/2016" 
 	ms.author="luisca"/>
 
 # Machine Learning Recommendations API 的快速入門指南
 
-> 這是資料市場中舊建議 API 的文件，將於 2016 年 12 月 31 日作廢。您現在應該繼續使用[建議 API Cognitive Service](https://www.microsoft.com/cognitive-services/zh-TW/recommendations-api)。
-
+>[AZURE.NOTE] 您應該開始使用 Recommendations API 的 Cognitive Service，而不是此版本。Recommendations 的 Cognitive Service 將會取代這個服務，而所有的新特徵都會在其中進行開發。它會提供新功能，例如，批次支援、更好的 API 總管、更簡潔的 API 介面、更一致的註冊/計費體驗等。深入了解[移轉到新的 Cognitive Service](http://aka.ms/recomigrate)
 
 
 本文說明如何準備您的服務或應用程式來開始使用 Microsoft Azure Machine Learning 建議。您可於[資源庫](http://gallery.cortanaanalytics.com/MachineLearningAPI/Recommendations-2)中找到有關建議 API 更詳細的資料。
@@ -679,8 +678,7 @@ OData XML
 	</feed>
 
 ###更新模型
-您可以更新模型描述或作用中組建識別碼。
-*作用中組建識別碼* - 每個模型的每個組建都有組建識別碼。作用中組建識別碼是每個新模型的第一個成功組建。一旦您有作用中組建識別碼，而且您執行相同模型的其他組建，您必須是需要將它明確設為預設組建識別碼。當您取用建議時，如果您未指定想要使用的組建識別碼，則會自動使用預設值。
+您可以更新模型描述或作用中組建識別碼。*作用中組建識別碼* - 每個模型的每個組建都有組建識別碼。作用中組建識別碼是每個新模型的第一個成功組建。一旦您有作用中組建識別碼，而且您執行相同模型的其他組建，您必須是需要將它明確設為預設組建識別碼。當您取用建議時，如果您未指定想要使用的組建識別碼，則會自動使用預設值。
 
 此機制可讓您在生產環境中有建議模型時建置新模型，並先加以測試，再將其提升至生產環境。
 
@@ -712,10 +710,7 @@ OData XML
 	</feed>
 
 ##法律
-這份文件依「現狀」提供。本文件中說明的資訊與畫面 (包括 URL 及其他網際網路網站參考資料) 如有變更，恕不另行通知。
-此處描述的一些範例僅供說明之用，純屬虛構。並未影射或關聯任何真實的人、事、物。本文件未提供給您任何 Microsoft 產品中任何智慧財產的任何法定權利。
-您可以複製並使用這份文件，供內部參考之用。
-© 2014 Microsoft.著作權所有，並保留一切權利。
+這份文件依「現狀」提供。本文件中說明的資訊與畫面 (包括 URL 及其他網際網路網站參考資料) 如有變更，恕不另行通知。此處描述的一些範例僅供說明之用，純屬虛構。並未影射或關聯任何真實的人、事、物。本文件未提供給您任何 Microsoft 產品中任何智慧財產的任何法定權利。您可以複製並使用這份文件，供內部參考之用。© 2014 Microsoft.著作權所有，並保留一切權利。
  
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

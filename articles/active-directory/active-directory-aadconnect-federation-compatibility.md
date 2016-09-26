@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/08/2016"
+	ms.date="09/12/2016"
 	ms.author="billmath"/>
 
 # Azure AD 同盟相容性清單
@@ -22,8 +22,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 對於已經投資非 Microsoft 同盟方案的組織，此主題包含使用來自下面「Azure Active Directory 同盟相容性清單」中的非 Microsoft 識別提供者，為其 Windows Server Active Directory 使用者在 Microsoft 線上服務設定單一登入的指引。
 
 
-![](./media/active-directory-aadconnect-federation-compatibility/oxford2.jpg) 
-[Oxford Computer Group](http://oxfordcomputergroup.com/) 這家代表 Microsoft 的協力廠商已使用非 Microsoft 識別提供者，針對一組常見的 Azure Active Directory 使用案例測試這些單一登入體驗。
+![](./media/active-directory-aadconnect-federation-compatibility/oxford2.jpg) [Oxford Computer Group](http://oxfordcomputergroup.com/) 這家代表 Microsoft 的協力廠商已使用非 Microsoft 識別提供者，針對一組常見的 Azure Active Directory 使用案例測試這些單一登入體驗。
 
 如需如何取得此處所列的協力廠商識別提供者資訊，請與 Oxford Computer Group 連絡：[idp@oxfordcomputergroup.com](mailto:idp@oxfordcomputergroup.com)。
 
@@ -41,7 +40,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 - [Centrify](#centrify)
 - [IBM Tivoli Federated Identity Manager 6.2.2](#ibm-tivoli-federated-identity-manager-622)
 - [SecureAuth IdP 7.2.0](#secureauth-idp-720)
-- [CA SiteMinder 12.52](#ca-siteminder-1252)
+- [CA SiteMinder 12.52](#ca-siteminder-1252-sp1-cumulative-release-4)
 - [RadiantOne CFS 3.0](#radiantone-cfs-30)
 - [Okta](#okta)
 - [OneLogin](#onelogin)
@@ -173,15 +172,15 @@ SecureAuth IdP 7.2.0 可實作廣泛使用的 WS 同盟/WS-Trust 身分識別標
 
 如需 SecureAuth 的相關詳細資訊，請參閱 [SecureAuth IdP](http://go.microsoft.com/?linkid=9845293)。
 
-## CA SiteMinder 12.52 
+## CA SiteMinder 12.52 SP1 累計版本 4
 CA SiteMinder Federation 12.52 可實作廣泛使用的 WS 同盟/WS-Trust 身分識別標準，以提供單一登入和屬性交換架構。
 
 以下是支援此單一登入體驗之矩陣的案例：
 
 | 用戶端 |支援 |例外狀況|
 | --------- | --------- |--------- |
-| Web 用戶端，例如 Exchange Web Access 和 SharePoint Online | 支援 |整合式 Windows 驗證|
-| 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |整合式 Windows 驗證|
+| Web 用戶端，例如 Exchange Web Access 和 SharePoint Online | 支援 |None|
+| 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM | 支援 |None|
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync | 支援 |None|
 
 如需 CA SiteMinder 的相關詳細資訊，請參閱 [CA SiteMinder Federation](http://www.ca.com/us/products/ca-single-sign-on.html)。
@@ -339,4 +338,4 @@ AuthAnvil Single Sign On 4.5 可實作廣泛使用的 WS 同盟/WS-Trust 身分�
 
 如需詳細資訊，請參閱 [AuthAnvil 單一登入](https://help.scorpionsoft.com/entries/26538603-How-can-I-Configure-Single-Sign-On-for-Office-365-)。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0914_2016-->

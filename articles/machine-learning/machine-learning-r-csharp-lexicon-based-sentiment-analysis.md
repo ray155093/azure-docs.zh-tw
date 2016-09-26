@@ -4,7 +4,7 @@
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="pengxia" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -23,11 +23,11 @@
 如何測量使用者在線上社交網路中 (例如 Facebook 文章、推文、評論等)，針對品牌或主題的意見和態度？ 情感分析提供分析這類問題的方法。
 
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 情感分析通常有兩個方法。其中一個方法使用監督式學習演算法，而另一個方法可視為非監督式學習。監督式學習演算法通常會在大型註解主體上建置分類模型。其精確度主要會視註解的品質而定，且定型程序通常需要很長的時間。除此之外，當我們將演算法套用到另一個網域時，效果通常不是很好。相較於監督式學習，語彙型非監督式學習使用情感字典，由於不需要儲存大型資料主體和定型，因此可加快整個程序的速度。
 
-我們的[服務](https://datamarket.azure.com/dataset/aml_labs/lexicon_based_sentiment_analysis)以 MPQA 詞典 (http://mpqa.cs.pitt.edu/lexicons/subj_lexicon/)) 為建置基礎，這是其中一個最常用的主觀性詞典。MPQA 中有 5,097 個否定字和 2,533 個肯定字。而且所有這些字都會加上強極性或弱極性的註解。整個主體會位於 [GNU 通用公共授權] 下方。Web 服務可以套用至任何簡短的句子，例如推文和 Facebook 文章。
+我們的[服務](https://datamarket.azure.com/dataset/aml_labs/lexicon_based_sentiment_analysis)以 MPQA 詞典 (http://mpqa.cs.pitt.edu/lexicons/subj_lexicon/) 為建置基礎，這是最常用的主觀性詞典之一。MPQA 中有 5,097 個否定字和 2,533 個肯定字。而且所有這些字都會加上強極性或弱極性的註解。整個主體會位於 [GNU 通用公共授權] 下方。Web 服務可以套用至任何簡短的句子，例如推文和 Facebook 文章。
 
 >使用者可透過行動裝置應用程式、網站，甚至是本機電腦，來取用這項 Web 服務。不過，該 Web 服務也可用來示範如何使用 Azure Machine Learning，來建立採用 R 程式碼的 Web 服務。只需幾行 R 程式碼並在 Azure Machine Learning Studio 中的按鈕上按幾下，就可以建立採用 R 程式碼的實驗，並將其發佈為 Web 服務。接著可將 Web 服務發佈至 Azure Marketplace，以供世界各地的使用者和裝置取用，而不需要 Web 服務的作者設定基礎結構。
 
@@ -153,4 +153,4 @@ Azure Machine Learning 中已建立新的空白實驗。下圖說明語彙型情
 
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

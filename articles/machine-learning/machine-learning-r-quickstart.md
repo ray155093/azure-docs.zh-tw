@@ -5,7 +5,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="Blackmist"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -27,7 +27,7 @@ Stephen F Elston 博士
 
 Microsoft Azure Machine Learning 包含許多功能強大的機器學習和資料操作模組。功能強大的 R 語言被描述為分析通用語言。好消息是，在 Azure Machine Learning 中，分析和資料操作皆可藉由使用 R 來加以擴充。這個組合利用 R 的彈性和深入分析，讓 Azure Machine Learning 更具延展性且更易於部署。
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 
 ###預測和資料集
@@ -1296,13 +1296,13 @@ RStudio 已經有相當充分的說明，因此在本附錄中，我將提供一
 
 此 R 程式設計教學課程涵蓋您搭配 Azure Machine Learning Studio 使用 R 語言時所需的基本知識。如果您不熟悉 R，CRAN 有提供兩本簡介：
 
-- Emmanuel Paradis 所著的《R for Beginners》是初學者的首選，網址為 http://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf。  
+- Emmanuel Paradis 所著的《R for Beginners》是初學者的首選，網址為 http://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf。
 
 - W. N. Venables et. al. 所著的《An Introduction to R》提供略為深入的探討，網址為 http://cran.r-project.org/doc/manuals/R-intro.html。
 
 有許多 R 的相關書籍可以協助您輕鬆上手。以下是一些我認為實用的書籍：
 
-- Norman Matloff 所著的《The Art of R Programming: A Tour of Statistical Software Design》是一本使用 R 進行程式設計的出色簡介。  
+- Norman Matloff 所著的《The Art of R Programming: A Tour of Statistical Software Design》是一本使用 R 進行程式設計的出色簡介。
 
 - Paul Teetor 所著的《R Cookbook》提供關於使用 R 的問題與解決方法。
 
@@ -1318,7 +1318,7 @@ Paul Cowpertwait 與 Andrew Metcalfe 所著的 《Introductory Time Series with 
 
 一些絕佳的網際網路資源：
 
-- DataCamp：DataCamp 利用視訊課程和程式碼撰寫練習在瀏覽器中輕鬆教導 R。最新 R 技巧和封裝均有互動式教學課程。取得免費的互動式 R 教學課程，網址為 https://www.datacamp.com/courses/introduction-to-r  
+- DataCamp：DataCamp 利用視訊課程和程式碼撰寫練習在瀏覽器中輕鬆教導 R。最新 R 技巧和封裝均有互動式教學課程。取得免費的互動式 R 教學課程，網址為 https://www.datacamp.com/courses/introduction-to-r
 
 - Clarkson 大學 Kelly Black 提供的快速 R 教學課程：http://www.cyclismo.org/tutorial/R/
 
@@ -1358,4 +1358,4 @@ Paul Cowpertwait 與 Andrew Metcalfe 所著的 《Introductory Time Series with 
 <!-- Module References -->
 [execute-r-script]: https://msdn.microsoft.com/library/azure/30806023-392b-42e0-94d6-6b775a6e0fd5/
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0914_2016-->

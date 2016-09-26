@@ -224,7 +224,7 @@ Azure 儲存體內容是 PowerShell 中用以封裝儲存體認證的物件。�
     	$sasToken = New-AzureStorageContainerSASToken -Container abc -Permission rl
     	$Ctx = New-AzureStorageContext -StorageAccountName $StorageAccountName -SasToken $sasToken
 
-	如需詳細資訊，請參閱 [New-AzureStorageContainerSASToken](http://msdn.microsoft.com/library/azure/dn806416.aspx) 和[共用存取簽章，第 1 部分：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)。
+	如需詳細資訊，請參閱 [New-AzureStorageContainerSASToken](http://msdn.microsoft.com/library/azure/dn806416.aspx) 和[使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)。
 
 - 在某些情況下，您可能想要在建立新的儲存體內容時指定服務端點。當您向 Blob 服務註冊儲存體帳戶的自訂網域名稱，或想要使用共用存取簽章存取儲存體資源時，這可能是必要作業。在連接字串中設定服務端點，並用來建立新的儲存體內容，如下所示：
 
@@ -393,7 +393,7 @@ Azure 可讓您建立 Blob 的快照集。快照集是在某個點時間取得�
 ## 如何管理 Azure 資料表和資料表實體
 Azure 資料表儲存體服務是 NoSQL 資料存放區，您可以用來儲存和查詢龐大的結構化、非關聯式資料集。服務的主要元件是資料表、實體和屬性。資料表是一組實體。實體是一組屬性。每個實體最多可有 252 個屬性，也就是所有的名稱/值組。本節假設您已熟悉 Azure 資料表儲存體服務概念。如需詳細資訊，請參閱[了解表格服務資料模型](http://msdn.microsoft.com/library/azure/dd179338.aspx)和[以 .NET 開始使用 Azure 資料表儲存體](storage-dotnet-how-to-use-tables.md)。
 
-在下列小節中，您將學習如何使用 Azure PowerShell 管理 Azure 資料表儲存體服務。涵蓋的狀況包括 **建立** 、**刪除** 和 **擷取** **資料表**，以及 **新增** 、**查詢** 和 **刪除資料表實體**。
+在下列小節中，您將學習如何使用 Azure PowerShell 管理 Azure 資料表儲存體服務。涵蓋的狀況包括**建立**、**刪除**和**擷取****資料表**，以及**新增**、**查詢**和**刪除資料表實體**。
 
 ### 如何建立資料表
 每個資料表必須位於 Azure 儲存體帳戶中。下列範例示範如何在 Azure 儲存體中建立資料表。此範例會先使用儲存體帳戶內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。接著再使用 [New-AzureStorageTable](http://msdn.microsoft.com/library/azure/dn806417.aspx) Cmdlet 在 Azure 儲存體中建立資料表。
@@ -632,7 +632,7 @@ Azure 檔案儲存體為使用標準 SMB 通訊協定的應用程式提供共用
 - **臨機操作 SAS**：當您建立臨機操作的 SAS 時，SAS 的開始時間、到期時間和權限全都標示在 SAS URI 上。您可以在容器、Blob、資料表或佇列上建立此類型的 SAS，而且無法撤銷它。
 - **具有預存存取原則的 SAS**：預存存取原則是在資源容器、Blob 容器、資料表或佇列中定義，且可用來管理一或多個共用存取簽章的條件約束。當您將 SAS 與預存存取原則建立關聯時，SAS 會繼承為該預存存取原則所定義的限制 (開始時間、過期時間和權限)。這種類型的 SAS 是可撤銷的。
 
-如需詳細資訊，請參閱[共用存取簽章：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)和[管理對容器與 Blob 的匿名讀取權限](storage-manage-access-to-resources.md)。
+如需詳細資訊，請參閱[使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md) 和[管理對容器與 Blob 的匿名讀取權限](storage-manage-access-to-resources.md)。
 
 在下一節中，您將了解如何為 Azure 資料表建立共用存取簽章權杖和預存的存取原則。Azure PowerShell 也會為容器、Blob 和佇列提供類似的 Cmdlet。若要執行本節中的指令碼，請下載 [Azure PowerShell 0.8.14 版](http://go.microsoft.com/?linkid=9811175&clcid=0x409)或更高版本。
 
@@ -752,4 +752,4 @@ Azure 環境是 Microsoft Azure 的獨立部署，例如[適用於美國政府�
 [How to use Azure Storage for U.S. government and Azure China]: #gov
 [Next Steps]: #next
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0914_2016-->

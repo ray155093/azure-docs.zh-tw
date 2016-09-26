@@ -4,7 +4,7 @@
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="ireiter" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -35,17 +35,17 @@
 ###二項分配分位數計算機
 這項服務可接受 4 個常態分配的引數，並計算相關聯的分位數。輸入引數包括：
 
-- p - 多個試験的單一彙總機率。  
+- p - 多個試験的單一彙總機率。
 - size - 試驗的次數。
 - prob - 試驗中的成功機率。
-- Side - L 代表分配的下限，U 代表分配的上限。 
+- Side - L 代表分配的下限，U 代表分配的上限。
 
 服務的輸出是計算與指定機率相關聯的分位數。
 
 ###二項分配機率計算機
 這項服務可接受 4 個二項分配的引數，並計算相關聯的機率。輸入引數包括：
 
-- q - 二項分配事件的單一分位數。 
+- q - 二項分配事件的單一分位數。
 - size - 試驗的次數。
 - prob - 試驗中的成功機率。
 - side - L 代表分配的下限，U 代表分配的上限，或 E 等於成功的單一數目。
@@ -55,7 +55,7 @@
 ###二項分配產生器
 這項服務可接受 3 個二項分配的引數，並產生已二項分配的隨機序號。要求中應提供下列引數：
 
-- n - 觀察的次數。 
+- n - 觀察的次數。
 - size - 試驗的次數。
 - prob - 成功的機率。
 
@@ -290,4 +290,4 @@
 [6]: ./media/machine-learning-r-csharp-binomial-distribution/binomial_6.png
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

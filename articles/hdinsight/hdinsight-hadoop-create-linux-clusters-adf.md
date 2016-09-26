@@ -5,7 +5,7 @@
    documentationCenter=""
    tags="azure-portal"
    authors="mumian"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"/>
 
 <tags
@@ -322,7 +322,7 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
 
 1. 按一下以下影像，在 Azure 入口網站中登入 Azure 並開啟 Resource Managertemplate。此範本位於 https://hditutorialdata.blob.core.windows.net/adfhiveactivity/data-factory-hdinsight-on-demand.json。
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fadfhiveactivity%2Fdata-factory-hdinsight-on-demand.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fadfhiveactivity%2Fdata-factory-hdinsight-on-demand.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/zh-TW/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
 2. 為您在上一節中建立的帳戶輸入 [DATAFACTORYNAME]、[STORAGEACCOUNTNAME] 和 [STORAGEACCOUNTKEY]，然後按一下 [確定]。[Data Factory 名稱] 必須是全域唯一的。
 3. 在 [資源群組] 中，選取您在上一節中使用的相同資源群組。
@@ -338,7 +338,7 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
 9. 按兩下 [AzureBlobOutput]。
 10. 在 [最近更新的配量] 上，您應該會看到一個配量。如果狀態為 [進行中]，請等到其變更為 [就緒]。
 
-檢查 Data Factory 輸出
+**檢查 Data Factory 輸出**
 
 1. 使用最後一個工作階段中的相同程序來檢查 adfgetstarted 容器的內容。除了 adfgetsarted，有兩個新容器：
 
@@ -438,4 +438,4 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
 - [HDInsight 文件](https://azure.microsoft.com/documentation/services/hdinsight/)
 - [Data Factory 文件](https://azure.microsoft.com/documentation/services/data-factory/)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0914_2016-->

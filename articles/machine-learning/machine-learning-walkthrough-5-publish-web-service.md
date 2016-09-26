@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="garyericson"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -48,7 +48,7 @@
 
 - [二元支援向量機器][two-class-support-vector-machine]
 - 連接到這個模組的[定型模型][train-model]和[計分模型][score-model]模組
-- [標準化資料][normalize-data] \(兩者)
+- [標準化資料][normalize-data] (兩者)
 - [評估模型][evaluate-model]
 
 只要選取模組然後按 Delete 鍵，或用右鍵按一下模組並選取 [刪除]。
@@ -63,7 +63,7 @@
 2. 精簡實驗，移除只有定型才需要的模組
 3. 定義 Web 服務接受輸入的位置和產生輸出的位置
 
-幸好上述三個步驟只要按一下實驗畫布底部的 [設定 Web 服務] \(選取 [預測 Web 服務] 選項)，即可完成。
+幸好上述三個步驟只要按一下實驗畫布底部的 [設定 Web 服務] (選取 [預測 Web 服務] 選項)，即可完成。
 
 當您按一下 [設定 Web 服務]，會發生幾件事：
 
@@ -200,4 +200,4 @@
 [two-class-support-vector-machine]: https://msdn.microsoft.com/library/azure/12d8479b-74b4-4e67-b8de-d32867380e20/
 [project-columns]: https://msdn.microsoft.com/zh-TW/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

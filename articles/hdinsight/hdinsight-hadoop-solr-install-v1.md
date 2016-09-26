@@ -4,7 +4,7 @@
 	services="hdinsight" 
 	documentationCenter="" 
 	authors="nitinme" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -45,7 +45,7 @@
 
 * [在 HDInsight 叢集上安裝 Solr](hdinsight-hadoop-solr-install.md)
 
-1. 使用 [自訂建立] 選項，依[在 HDInsight 建立 Hadoop 叢集](hdinsight-provision-clusters.md#portal)中的描述開始建立叢集。 
+1. 使用 [自訂建立] 選項，依[在 HDInsight 建立 Hadoop 叢集](hdinsight-provision-clusters.md#portal)中的描述開始建立叢集。
 2. 在精靈的 [**指令碼動作**] 頁面上，按一下 [**加入指令碼動作**] 以提供有關指令碼動作的詳細資料，如下所示：
 
 	![使用指令碼動作以自訂叢集](./media/hdinsight-hadoop-solr-install-v1/hdi-script-action-solr.png "使用指令碼動作以自訂叢集")
@@ -86,7 +86,7 @@
 
 	post.jar 公用程式使用 **solr.xml** 和 **monitor.xml** 這兩個範例文件對 Solr 編製索引。您可以在 Solr 安裝內取得 post.jar 公用程式和範例文件。
 
-3. **使用 Solr 儀表板在已編製索引的文件內執行搜尋**。在連往 HDInsight 叢集的 RDP 工作階段內，開啟 Internet Explorer，然後在 **http://headnodehost:8983/solr/#/** 啟動 Solr 儀表板。在左窗格的 [**核心選取器**] 下拉式清單中，選取 [**collection1**]，然後在其中按一下 [**查詢**]。舉例來說，若要選取並傳回 Solr 中的所有文件，請提供下列值：
+3. **使用 Solr 儀表板在已編製索引的文件內執行搜尋**。在連往 HDInsight 叢集的 RDP 工作階段內，開啟 Internet Explorer，然後在 **http://headnodehost:8983/solr/#/** 啟動 Solr 儀表板。在左窗格的 [核心選取器]** 下拉式清單中，選取 [collection1]，然後在其中按一下 [查詢]**。舉例來說，若要選取並傳回 Solr 中的所有文件，請提供下列值：
 	1. 在 [**q**] 文字方塊中輸入 ***:***。如此便會傳回已在 Solr 中編製索引的所有文件。如果您想要搜尋文件內的特定字串，您可以在此輸入該字串。
 	2. 在 [**wt**] 文字方塊中，選取輸出格式。預設值是 [**json**]。按一下 [**執行查詢**]。
 
@@ -198,4 +198,4 @@
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster.md
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0914_2016-->

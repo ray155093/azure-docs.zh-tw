@@ -1,6 +1,6 @@
 <properties
-	pageTitle="將擁有者和使用者加入實驗室 | Microsoft Azure"
-	description="將不在訂用帳戶內的使用者安全地新增至 Azure DevTest Labs"
+	pageTitle="在 Azure DevTest Labs 中新增擁有者和使用者 | Microsoft Azure"
+	description="使用 Azure 入口網站或 PowerShell 在 Azure DevTest Labs 中新增擁有者和使用者"
 	services="devtest-lab,virtual-machines"
 	documentationCenter="na"
 	authors="tomarcher"
@@ -13,41 +13,117 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/25/2016"
+	ms.date="09/12/2016"
 	ms.author="tarcher"/>
 
-# 將擁有者和使用者加入實驗室
+# 在 Azure DevTest Labs 中新增擁有者和使用者
 
 > [AZURE.VIDEO how-to-set-security-in-your-devtest-lab]
 
-## 概觀
-DevTest Labs 的存取權是由 Azure 角色型存取控制 (RBAC) 所控制。若要深入了解，可在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)中搜尋[角色型存取控制 (RBAC)](https://azure.microsoft.com/search/?q=role%20based%20access%20control)。
+Azure DevTest Labs 的存取權是由 [Azure 角色型存取控制 (RBAC)](../active-directory/role-based-access-control-what-is.md) 所控制。RBAC 可讓您將小組內的職責區隔為「角色」，而僅授與使用者執行作業所需的存取權數量。這些 RBAC 角色的其中三個分別是「擁有者」、「DevTest Labs 使用者」和「參與者」。在本文中，您會了解三個主要 RBAC 角色中各自可執行哪些動作。從中您將會了解如何透過入口網站和透過 PowerShell 指令碼將使用者新增至實驗室，以及如何在訂用帳戶層級新增使用者。
 
+## 可在每個角色執行的動作
 
-您可以透過下列兩個角色，將存取權授與實驗室：
+您可以對使用者指派三個主要角色︰
 
-- **擁有者**：已在實驗室層級指派給 [擁有者] 角色的使用者具備實驗室的完整存取權 (包括管理和監視功能)。在實驗室層級指派的 [擁有者] 角色不會授與使用者權限來存取實驗室範圍之外的訂用帳戶資源。在 Azure 訂用帳戶層級指派給 [擁有者] 角色的使用者，會自動擁有在該訂用帳戶中建立的任何資源的 [擁有者] 權限，包括實驗室和 VM。
+- 擁有者
+- DevTest Labs 使用者
+- 參與者
 
--  **DevTest Labs 使用者**︰指派給 **DevTest Labs 使用者**角色的使用者，可以在指定實驗室中建立 VM 以及檢視所有實驗室資源，例如 VM、原則或虛擬網路。使用者可以是「內部」(訂用帳戶的 Azure Active Directory 成員) 或「外部」(不屬於 Azure AD 成員的使用者，例如合作夥伴組織的成員)。
-	-  **研發/測試實驗室使用者**角色必須透過實驗室的 [新增使用者] 磚來指派。
-	-  **研發/測試實驗室使用者**角色中的使用者只能在指派他們的實驗室內部執行這些作業。例如，**研發/測試實驗室使用者**無法使用訂用帳戶的虛擬機器服務來建立虛擬機器。只允許從研發/測試實驗室帳戶建立虛擬機器。
-	- 「外部」使用者是使用 Microsoft 帳戶 (MSA) 的使用者。
- 
-一旦建立了 VM，建立它的使用者就會自動指派給所建立 VM 上的**擁有者**角色，使其能夠執行實驗室所提供的所有動作。
+下表說明使用者可在每個角色中執行的動作︰
 
-## 將擁有者加入您的實驗室
+| **此角色中的使用者可以執行的動作** | **DevTest Labs 使用者** | **擁有者** | **參與者** |
+|---|---|---|---|
+| **實驗室工作** | | | |
+| 將使用者新增至實驗室 | 否 | 是 | 否 |
+| 更新成本設定 | 否 | 是 | 是 |
+| **VM 的基本工作** | | | |
+| 新增和移除自訂映像 | 否 | 是 | 是 |
+| 新增、更新和刪除公式 | 是 | 是 | 是 |
+| 將 Azure Marketplace 映像加入白名單 | 否 | 是 | 是 |
+| **VM 工作** | | | |
+| 建立 VM | 是 | 是 | 是 |
+| 啟動、停止和刪除 VM | 僅限使用者所建立的 VM | 是 | 是 |
+| 更新 VM 原則 | 否 | 是 | 是 |
+| 在 VM 中新增/移除資料磁碟 | 僅限使用者所建立的 VM | 是 | 是 |
+| **構件工作** | | | |
+| 新增和移除構件儲存機制 | 否 | 是 | 是 |
+| 套用構件 | 是 | 是 | 是 |
 
-由於權限在 Azure 中從父範圍傳播到子範圍的方式，包含實驗室之 Azure 訂用帳戶的擁有者會自動成為這些實驗室的擁有者，以及實驗室使用者和研發/測試實驗室服務所建立的所有 VM 和其他資源的擁有者。雖然您可以在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)中，透過實驗室的刀鋒視窗對實驗室新增其他擁有者，但因為他們不會擁有 DevTest Labs 服務在訂用帳戶中所建立的某些資源的完整存取權，他們的管理範圍將會比訂用帳戶擁有者的範圍更小。
+> [AZURE.NOTE] 當使用者建立 VM 時，該使用者會自動指派給所建立 VM 的**擁有者**角色。
 
-若要將擁有者新增至您已在其中建立實驗室或將在其中建立新實驗室的 Azure 訂用帳戶，請遵循下列步驟：
+## 在實驗室層級新增擁有者或使用者
+
+可透過 Azure 入口網站在實驗室層級新增擁有者和使用者。這包括擁有有效 [Microsoft 帳戶 (MSA)](devtest-lab-faq.md#what-is-a-microsoft-account) 的外部使用者。下列步驟會引導您進行在 Azure DevTest Labs 新增擁有者或使用者至實驗室的程序︰
 
 1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
-1. 在左側導覽中，選取 [訂用帳戶]。
+1. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
 
-	![訂用帳戶連結](./media/devtest-lab-add-devtest-user/subscriptions.png)
+1. 從實驗室清單中，選取所需的實驗室。
+
+1. 在實驗室的刀鋒視窗上，選取 [組態]。
+
+1. 在 [組態] 刀鋒視窗上，選取 [使用者]。
+
+1. 在 [使用者] 刀鋒視窗上，選取 [+ 新增]。
+
+	![新增使用者](./media/devtest-lab-add-devtest-user/devtest-users-blade.png)
+
+1. 在 [選取角色] 刀鋒視窗上，選取所需的角色。[可在每個角色執行的動作](#actions-that-can-be-performed-in-each-role)一節列出使用者可在擁有者、DevTest 使用者和參與者角色中執行的各種動作。
+
+1. 在 [新增使用者] 刀鋒視窗上，輸入您想要在指定角色中新增之使用者的電子郵件地址或名稱。如果找不到該使用者，會出現錯誤訊息來說明問題。如果有找到使用者，則會列出並選取該使用者。
+
+1. 選取 [選取]。
+
+1. 選取 [確定]，以關閉 [新增存取] 刀鋒視窗。
+
+1. 當您返回 [使用者] 刀鋒視窗時，該使用者已新增。
+
+## 使用 PowerShell 將外部使用者新增至實驗室
+
+除了在 Azure 入口網站新增使用者，您還可以使用 PowerShell 指令碼將外部使用者新增至實驗室。在下列範例中，直接修改 **Values to change** 註解底下的值。您可以從 Azure 入口網站中的 [實驗室] 刀鋒視窗擷取 `subscriptionId`、`labResourceGroup` 及 `labName`。
+
+> [AZURE.NOTE]
+範例指令碼假設指定的使用者已做為來賓新增至 Active Directory 中，如果並非如此則會失敗。若要將不在 Active Directory 中的使用者新增至實驗室，請如[在實驗室層級新增擁有者或使用者](#add-an-owner-or-user-at-the-lab-level)一節所述使用 Azure 入口網站將使用者指派給角色。
+
+	# Add an external user in DevTest Labs user role to a lab
+	# Ensure that guest users can be added to the Azure Active directory:
+	# https://azure.microsoft.com/zh-TW/documentation/articles/active-directory-create-users/#set-guest-user-access-policies
+
+	# Values to change
+	$subscriptionId = "<Enter Azure subscription ID here>"
+	$labResourceGroup = "<Enter lab's resource name here>"
+	$labName = "<Enter lab name here>"
+	$userDisplayName = "<Enter user's display name here>"
+
+	# Log into your Azure account
+	Login-AzureRmAccount
 	
-1. 選取將包含實驗室的訂用帳戶。
+	# Select the Azure subscription that contains the lab. 
+	# This step is optional if you have only one subscription.
+	Select-AzureRmSubscription -SubscriptionId $subscriptionId
+	
+	# Retrieve the user object
+	$adObject = Get-AzureRmADUser -SearchString $userDisplayName
+	
+	# Create the role assignment. 
+	$labId = ('subscriptions/' + $subscriptionId + '/resourceGroups/' + $labResourceGroup + '/providers/Microsoft.DevTestLab/labs/' + $labName)
+	New-AzureRmRoleAssignment -ObjectId $adObject.Id -RoleDefinitionName 'DevTest Labs User' -Scope $labId
+
+## 在訂用帳戶層級新增擁有者或使用者
+
+在 Azure 中，Azure 權限會從父範圍傳播至子範圍。因此，包含實驗室之 Azure 訂用帳戶的擁有者會自動成為這些實驗室的擁有者。他們也擁有實驗室使用者和 Azure DevTest Labs 服務所建立的 VM 和其他資源。
+
+您可以在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)中透過實驗室的刀鋒視窗對實驗室新增其他擁有者。不過，所新增擁有者的管理範圍小於訂用帳戶擁有者的範圍。例如，新增的擁有者沒有 DevTest Labs 服務在訂用帳戶中所建立之某些資源的完整存取權。
+
+若要對 Azure 訂用帳戶新增擁有者，請遵循下列步驟︰
+
+1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
+
+1. 選取 [更多服務]，然後從清單中選取 [訂用帳戶]。
+
+1. 選取所需的訂用帳戶。
 
 1. 選取 [存取] 圖示。
 
@@ -59,7 +135,7 @@ DevTest Labs 的存取權是由 Azure 角色型存取控制 (RBAC) 所控制。�
 
 1. 在 [選取角色] 刀鋒視窗中，選取 [擁有者]。
 
-1. 在 [使用者] 文字方塊中，輸入您想要新增為擁有者之使用者的電子郵件。如果找不到該使用者，您將會收到錯誤訊息來說明問題。如果找到使用者，該使用者將會列示於 [使用者] 文字方塊。
+1. 在 [新增使用者] 刀鋒視窗上，輸入您想要新增為擁有者之使用者的電子郵件地址或名稱。如果找不到該使用者，您會收到錯誤訊息來說明問題。如果有找到使用者，該使用者會列在 [使用者] 文字方塊底下。
 
 1. 選取找到的使用者名稱。
 
@@ -67,42 +143,8 @@ DevTest Labs 的存取權是由 Azure 角色型存取控制 (RBAC) 所控制。�
 
 1. 選取 [確定]，以關閉 [新增存取] 刀鋒視窗。
 
-1. 當您返回 [使用者] 刀鋒視窗時，您將會看到已將該使用者新增為擁有者。這位人員現在將是此訂用帳戶下方建立之所有實驗室的擁有者，因而能夠執行擁有者工作。
-
-## 將研發/測試實驗室使用者加入您的實驗室
-
-若要將研發/測試實驗室使用者加入您的實驗室，請遵循下列步驟：
-
-1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
-
-1. 選取 [瀏覽]。
-
-1. 選取 [DevTest Labs]。
-
-1. 從實驗室清單中，選取所需的實驗室。
-
-1. 選取 [存取] 圖示。
-
-	![使用者存取](./media/devtest-lab-add-devtest-user/devtest-lab-home-blade.png)
-
-1. 在 [使用者] 刀鋒視窗上，選取 [新增]。
-
-	![加入使用者](./media/devtest-lab-add-devtest-user/devtest-users-blade.png)
-
-1. 在 [選取角色] 刀鋒視窗中，選取 [DevTest Labs 使用者]
-
-1. 在 [新增使用者] 刀鋒視窗中：
-
-	1. [新增使用者] 刀鋒視窗將會顯示內建的使用者清單。如果所需的使用者已在清單中，您只需選取該使用者列來選取它。使用者左側出現核取記號表示已選取該使用者。若要選取多位使用者，請按住 **&lt;Ctrl>** 鍵，同時選取每位使用者。若要取消選取使用者，請按住 **&lt;Ctrl>** 鍵，同時選取該使用者。刀鋒視窗底部的計數器表示所選取的使用者數目。
-
-	1. 如果所需的使用者不在清單中，請在 [使用者] 文字方塊中輸入有效的 Microsoft 電子郵件帳戶。如果電子郵件地址有效，使用者將會顯示在 [使用者] 文字方塊下方。
-
-	1. 一旦您已選取想要新增到實驗室的使用者之後，請選取 [選取]。
-
-	1. 選取 [確定]，以關閉 [新增存取] 刀鋒視窗。
-
-1. [使用者] 刀鋒視窗會顯示新增的角色及使用者。
+1. 當您返回 [使用者] 刀鋒視窗時，該使用者已新增為擁有者。此使用者現在是在此訂用帳戶下建立之所有實驗室的擁有者，因而能夠執行擁有者工作。
 
 [AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

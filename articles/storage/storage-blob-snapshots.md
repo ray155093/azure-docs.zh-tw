@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/03/2016"
+	ms.date="09/07/2016"
 	ms.author="tamram"/>
 
 # 建立 Blob 快照集
@@ -174,4 +174,4 @@ Blob 可包含任意數目的快照集。系統會保存快照集，直到您將
 
 如需使用 Blob 儲存體的其他範例，請參閱 [Azure 程式碼範例](https://azure.microsoft.com/documentation/samples/?service=storage&term=blob)。您可以下載範例應用程式並加以執行，或瀏覽 GitHub 上的程式碼。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0914_2016-->

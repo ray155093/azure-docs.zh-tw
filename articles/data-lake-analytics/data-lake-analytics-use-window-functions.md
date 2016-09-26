@@ -4,7 +4,7 @@
    services="data-lake-analytics" 
    documentationCenter="" 
    authors="edmacauley" 
-   manager="paulettm" 
+   manager="jhubbard" 
    editor="cgronlun"/>
  
 <tags
@@ -44,7 +44,7 @@
 
 本教學課程使用兩個資料集：
 
-- QueryLog 
+- QueryLog
 
     QueryLog 代表人員在搜尋引擎中搜尋的項目清單。每個查詢記錄檔包含：
     
@@ -166,7 +166,7 @@ SalaryByDept 資料行的總和為 $165000，符合最後一個指令碼中的�
  
 在這兩個案例中，輸出資料列的數字都少於輸入資料列：
  
-- 未使用 GROUP BY 時，彙總會將所有資料列摺疊成單一資料列。 
+- 未使用 GROUP BY 時，彙總會將所有資料列摺疊成單一資料列。
 - 使用 GROUP BY 時會有 N 個輸出資料列，其中，N 是出現在資料中的相異值。在此情況下，輸出中將會有 4 個資料列。
 
 ###  使用視窗函式
@@ -328,7 +328,7 @@ SalaryByDept 資料行的總和為 $165000，符合最後一個指令碼中的�
 支援的排名函式如下：
 
 - RANK
-- DENSE\_RANK 
+- DENSE\_RANK
 - NTILE
 - ROW\_NUMBER
 
@@ -341,7 +341,7 @@ SalaryByDept 資料行的總和為 $165000，符合最後一個指令碼中的�
 	) AS <alias>
 
 - ORDER BY 子句對於排名函式是選擇性的。如果已指定 ORDER BY，它將會決定排名的順序。如果未指定 ORDER BY，U-SQL 將會根據它會讀取記錄的順序來指派值。因此，在未指定 ORDER BY 子句的情況下，會導致資料列號碼、排名或密度排名的值不具決定性。
-- NTILE 需要評估為正整數的運算式。此數字會指定每個分割必須劃分成的群組數目。此識別碼只會與 NTILE 排名函式一起使用。 
+- NTILE 需要評估為正整數的運算式。此數字會指定每個分割必須劃分成的群組數目。此識別碼只會與 NTILE 排名函式一起使用。
 
 如需 OVER 子句的詳細資訊，請參閱 [U-SQL 參考]()。
 
@@ -431,8 +431,8 @@ Web 垂直有 6 個資料列，兩個額外的資料列會分配到前兩個群�
 
 NTILE 會使用參數 ("numgroups")。Numgroups 是一個正整數或長常數運算式，會指定每個分割必須劃分成的群組數目。
 
-- 如果分割中的資料列數目可由 numgroups 整除，則群組會有相同的大小。 
-- 如果分割中的資料列數目無法由 numgroups 整除，這會使群組出現相差一碼的兩個大小。在 OVER 子句所指定的順序中，較大的群組會排在較小的群組前面。 
+- 如果分割中的資料列數目可由 numgroups 整除，則群組會有相同的大小。
+- 如果分割中的資料列數目無法由 numgroups 整除，這會使群組出現相差一碼的兩個大小。在 OVER 子句所指定的順序中，較大的群組會排在較小的群組前面。
 
 例如：
 
@@ -561,7 +561,7 @@ NTILE 會使用參數 ("numgroups")。Numgroups 是一個正整數或長常數�
 
 **支援的分析視窗函式**
 
-- CUME\_DIST 
+- CUME\_DIST
 - PERCENT\_RANK
 - PERCENTILE\_CONT
 - PERCENTILE\_DISC
@@ -606,7 +606,7 @@ CUME\_DIST 會計算指定的值在值群組中的相對位置。它會計算延
 - 有 5 個資料列的值等於或小於 400，因此 CUME\_DIST 等於 5/6=0.83
 - 有 4 個資料列的值等於或小於 300，因此 CUME\_DIST 等於 4/6=0.66
 - 有 3 個資料列的值等於或小於 200，因此 CUME\_DIST 等於 3/6=0.5。有兩個資料列具有相同的延遲值。
-- 有 1 個資料列的值等於或小於 100，因此 CUME\_DIST 等於 1/6=0.16。 
+- 有 1 個資料列的值等於或小於 100，因此 CUME\_DIST 等於 1/6=0.16。
 
 
 **使用注意事項：**
@@ -636,7 +636,7 @@ PERCENT\_RANK 會計算資料列群組內某資料列的相對排名。PERCENT\_
 - 任何集合中第一個資料列的 PERCENT\_RANK 皆為 0。
 - NULL 值會被視為最低的可能值。
 - 您必須指定 ORDER BY 子句來計算 PERCENT\_RANK。
-- CUME\_DIST 類似於 PERCENT\_RANK 函式 
+- CUME\_DIST 類似於 PERCENT\_RANK 函式
 
 
 下列範例使用 PERCENT\_RANK 函式來計算垂直中每個查詢的延遲百分位數。
@@ -678,9 +678,9 @@ PERCENT\_RANK 函式所傳回的值代表查詢在垂直內的延遲排名 (以�
 
 **numeric\_literal** - 要計算的百分位數。此值必須介於 0.0 到 1.0 的範圍內。
 
-WITHIN GROUP ( ORDER BY <identifier> [ ASC | DESC ]) - 指定用來排序和計算百分位數的數值清單。僅允許一個資料行識別碼。運算式必須評估為數值類型。不允許其他資料類型。預設排序順序為遞增。
+WITHIN GROUP ( ORDER BY <識別碼> [ ASC | DESC ]) - 指定用來排序和計算百分位數的數值清單。僅允許一個資料行識別碼。運算式必須評估為數值類型。不允許其他資料類型。預設排序順序為遞增。
 
-OVER ([ PARTITION BY <identifier,>…[n] ] ) - 根據套用百分位數函式的分割索引鍵，將輸入資料列集分成多個分割。如需詳細資訊，請參閱本文的「排名」一節。附註：資料集中的任何 null 值都會被忽略。
+OVER ([ PARTITION BY <識別碼,>…[n] ] ) - 根據套用百分位數函式的分割索引鍵，將輸入資料列集分成多個分割。如需詳細資訊，請參閱本文的「排名」一節。附註：資料集中的任何 null 值都會被忽略。
 
 **PERCENTILE\_CONT** 會根據資料行值的連續分佈來計算百分位數。其結果會以內插值取代，且可能不會等於資料行中的任何特定值。
 
@@ -743,4 +743,4 @@ PERCENTILE\_DISC 不會插補值，因此 Web 的中間值是 200 - 也就是在
 - [使用 Azure PowerShell 管理 Azure 資料湖分析](data-lake-analytics-manage-use-powershell.md)
 - [使用 Azure 入口網站監視和疑難排解 Azure 資料湖分析作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -1,6 +1,6 @@
 <properties
 	pageTitle="Batch 服務配額和限制 | Microsoft Azure"
-	description="深入了解使用 Azure Batch 服務的配額、限制及條件約束"
+	description="了解預設的 Azure Batch 配額、限制和條件約束，以及如何要求增加配額"
 	services="batch"
 	documentationCenter=""
 	authors="mmacy"
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/10/2016"
+	ms.date="09/10/2016"
 	ms.author="marsma"/>
 
 # Azure Batch 服務的配額和限制
@@ -46,13 +46,13 @@ Batch 帳戶 (每一區域的每一訂用帳戶) | 1 | 50
 
 在 [Azure 入口網站][portal]中檢視您的 Batch 帳戶配額。
 
-1. 在入口網站中按一下 [Batch 帳戶]，然後按一下您的 Batch 帳戶的名稱。
+1. 在入口網站中選取 [Batch 帳戶]，然後選取您感興趣的 Batch 帳戶。
 
-2. 在帳戶刀鋒視窗中，按一下 [所有設定] > [屬性]。
+2. 在 Batch 帳戶的功能表刀鋒視窗上選取 [屬性]
+
+3. [屬性] 刀鋒視窗會顯示目前套用至 Batch 帳戶的「配額」
 
 	![Batch 帳戶配額][account_quotas]
-
-3. [屬性] 刀鋒視窗會顯示目前套用至 Batch 帳戶的配額。
 
 ## 增加配額
 
@@ -106,4 +106,4 @@ Batch 帳戶 (每一區域的每一訂用帳戶) | 1 | 50
 
 [account_quotas]: ./media/batch-quota-limit/accountquota_portal.PNG
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

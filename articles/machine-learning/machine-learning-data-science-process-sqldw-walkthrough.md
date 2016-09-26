@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="bradsev,hangzh-msft,wguo123"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun" />
 
 <tags
@@ -93,7 +93,7 @@
 
 **使用 Visual Studio 連接到 Azure SQL DW。** 如需指示，請參閱[使用 Visual Studio 連接到 Azure SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-connect-overview.md)中的步驟 1 和 2。
 
->[AZURE.NOTE] 在您於 SQL 資料倉儲中建立的資料庫上執行下列 SQL 查詢 (而不是連接主題的步驟 3 中所提供的查詢) 以**建立主要金鑰**。
+>[AZURE.NOTE] 在您於 SQL 資料倉儲中建立的資料庫上執行下列 SQL 查詢 (而不是連接主題的步驟 3 中所提供的查詢)，以**建立主要金鑰**。
 
 	BEGIN TRY
 	       --Try to create the master key
@@ -969,4 +969,4 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。特
 [select-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 [import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0914_2016-->

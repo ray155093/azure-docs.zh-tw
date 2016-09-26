@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="jeannt"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -18,7 +18,7 @@
 
 # 使用 Azure Machine Learning 分析客戶流失
 
-##概觀
+##Overview
 本主題提供使用 Azure Machine Learning Studio 建置客戶流失分析專案的參考實作。其中將討論關聯的一般模型，可全面性地解決產業客戶流失的問題。對於以機器學習建立的模型，我們也衡量其正確性，同時評估進一步開發的方向。
 
 ### 通知
@@ -28,7 +28,7 @@
 >[AZURE.NOTE] 這項實驗中使用的資料無法公開使用。如需如何建置客戶流失分析的機器學習模型範例，請參閱︰[Cortana Intelligence Gallery (Cortana Intelligence 資源庫)](http://gallery.cortanaintelligence.com/) 中的[電信公司客戶流失模型範本](http://gallery.cortanaintelligence.com/Experiment/Telco-Customer-Churn-5)
 
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ##客戶流失的問題
 消費者市場和所有企業產業中的公司都必須處理客戶流失的問題。有時，客戶流失太多會影響政策決定。傳統的解決方案是預測流失傾向較高的客戶，透過特別禮遇、行銷活動或給予特殊待遇，滿足他們的需求。這些作法隨著產業而不同，甚至在同一產業的不同消費群之間也會不同 (例如電信業)。
@@ -51,7 +51,7 @@
 
 1.	風險模型可讓您考量動作如何影響機率和風險。
 2.	介入模型讓您考量介入程度如何影響客戶流失機率和顧客終身價值 (CLV) 的數量。
-3.	此分析本身會形成定性分析，再逐步發展成以客戶族群為目標的積極行銷活動，以提供最佳服務。  
+3.	此分析本身會形成定性分析，再逐步發展成以客戶族群為目標的積極行銷活動，以提供最佳服務。
 
 ![][1]
 
@@ -82,7 +82,7 @@
 以下幾節提供我們使用 Machine Learning Studio 實作的原型評分模型的詳細資料。
 
 ###選擇和準備資料
-用來建立模型和給客戶評分的資料取自於一個 CRM 垂直解決方案，為了保護客戶隱私，資料皆經過模糊處理。資料包含美國 8000 份訂閱的相關資訊，而且它結合了三個來源：佈建資料 (訂閱中繼資料)、活動資料 (系統的使用方式)，以及客戶支援資料。資料不包含客戶的任何業務相關資訊；例如，不含忠誠度中繼資料或信用分數。
+用來建立模型和給客戶評分的資料取自於一個 CRM 垂直解決方案，為了保護客戶隱私，資料皆經過模糊處理。資料包含美國 8,000 個訂用帳戶的相關資訊，並結合了三個來源：佈建資料 (訂用帳戶中繼資料)、活動資料 (系統的使用方式)，以及客戶支援資料。資料不包含客戶的任何業務相關資訊；例如，不含忠誠度中繼資料或信用分數。
 
 為了簡單起見，ETL 和資料淨化處理不在討論範圍內，因為我們假設資料準備已在別處完成。
 
@@ -101,7 +101,7 @@
 ![][5]
 
 
-*圖 7：從資料來源擷取的特徵*
+*圖 7：從資料來源擷取的特徵*  
 > 請注意，這項資料為私人所有，因此不能分享模型和資料。如需使用公開可用資料的類似模型，請參閱此 [Cortana Intelligence Gallery (Cortana Intelligence 資源庫)](http://gallery.cortanaintelligence.com/) 中的實驗範例：[Telco Customer Churn (電信公司客戶流失)](http://gallery.cortanaintelligence.com/Experiment/31c19425ee874f628c847f7e2d93e383)。
 > 
 > 若要深入了解如何使用 Cortana Intelligence Suite 實作客戶流失分析模型，我們也推薦資深程式經理 Wee Hyong Tok 的[這段影片](https://info.microsoft.com/Webinar-Harness-Predictive-Customer-Churn-Model.html)。
@@ -114,7 +114,7 @@
 1.	邏輯式迴歸 (LR)
 2.	推進式決策樹 (BT)
 3.	平均感知器 (AP)
-4.	支援向量機器 (SVM)  
+4.	支援向量機器 (SVM)
 
 
 下圖顯示實驗設計介面的一部分，指出模型的建立順序：
@@ -148,10 +148,10 @@
 AUC 通常用來判斷不同演算法 (或不同系統) 是否有用處，因為它可根據 AUC 值來比較模型。這在如氣象和生物科學等領域是常用的方法。因此，AUC 是一種評估分類器表現的普遍工具。
 
 ###比較分類誤判率
-我們使用大約 8,000 份訂閱的 CRM 資料，在相關資料集上比較分類誤判率。
+我們使用大約 8,000 個訂用帳戶的 CRM 資料，在相關資料集上比較分類誤判率。
 
 -	SAS 分類誤判率為 10-15%。
--	Machine Learning Studio 對排名前 200-300 位流失客戶的分類誤判率為 15-20%。  
+-	Machine Learning Studio 對排名前 200-300 位流失客戶的分類誤判率為 15-20%。
 
 在電信業中，只提供特別禮遇或其他特殊待遇給最可能流失的客戶是很重要的。在這方面，Machine Learning Studio 實作所獲得的成果與 SAS 模型旗鼓相當。
 
@@ -188,11 +188,11 @@ AUC 通常用來判斷不同演算法 (或不同系統) 是否有用處，因為
 在電信業中，已出現許多作法來分析客戶流失，包括：
 
 -	導出四個基本類別的度量：
-	-	**實體 (例如訂閱)**。提供訂閱及/或客戶 (客源流失主題的對象) 的基本資訊。
+	-	**實體 (例如訂用帳戶)**。提供訂用帳戶及/或客戶 (客源流失主題的對象) 的基本資訊。
 	-	**活動**。取得與實體相關的所有可能使用資訊，例如登入數目。
-	-	**客戶支援**。從客戶支援記錄中取得資訊，指出訂閱是否有問題或曾經與客戶支援的互動。
+	-	**客戶支援**。從客戶支援記錄中取得資訊，指出訂用帳戶是否有問題或曾經與客戶支援的互動。
 	-	**競爭性和商務資料**.取得與客戶有關的任何可能資訊 (例如可能無法取得或難以追蹤)。
--	使用重要性來引導特徵選擇。這意味著推進式決策樹模型一定是可行的方法。  
+-	使用重要性來引導特徵選擇。這意味著推進式決策樹模型一定是可行的方法。
 
 使用這四個類別製造出一種假象，讓人誤以為簡單的「確定性」分析方法 (根據在每個類別的合理因素上形成的跡象) 就足以發現有流失風險的客戶。可惜，雖然這種想法看似可行，但卻是一種誤解。原因在於客戶流失是一種短暫效應，而造成客戶流失的因素通常是暫時狀態。今天導致客戶想要離開的原因，到了明天可能就不一樣，且六個月之後一定不同。因此，有必要使用「機率」模型。
 
@@ -202,7 +202,7 @@ AUC 通常用來判斷不同演算法 (或不同系統) 是否有用處，因為
 
 Azure Machine Learning 中另一項吸引人的功能是可以將自訂模組加入既有預先定義之模組的儲存機制中。這項功能基本上讓人有機會針對垂直市場選取程式庫和建立範本。這是 Azure Machine Learning 在市場中脫穎而出的一項重要利器。
 
-我們希望未來繼續探討這個主題，特別是關於巨量分析。
+我們希望未來繼續探討這個主題，特別是關於巨量資料分析。  
 ##結論
 本文說明一套實用的方法，採取通用的架構來處理客戶流失這個普遍的問題。我們採用原型來給模型評分，並使用 Azure Machine Learning 來實作。最後，我們依據 SAS 中可比較的演算法，評估原型解決方案的正確性和表現。
 
@@ -211,21 +211,21 @@ Azure Machine Learning 中另一項吸引人的功能是可以將自訂模組加
 本文對您有幫助嗎？ 請提供意見給我們。請以 1 (非常差) 到 5 (非常好) 來評分，告訴我們您對本文有何評價，以及為何這樣評分？ 例如：
 
 -	您給予較高評價是因為範例良好、螢幕擷取畫面精美、文章論述清楚，還是別有原因？
--	您給予較低評價是因為範例不當、螢幕擷取畫面模糊，還是文章論述含糊不清？  
+-	您給予較低評價是因為範例不當、螢幕擷取畫面模糊，還是文章論述含糊不清？
 
 這些意見將有助於改善我們所發表的白皮書品質。
 
-[傳送意見](mailto:sqlfback@microsoft.com)。
+[傳送意見](mailto:sqlfback@microsoft.com)。 
 ##參考
 [1] Predictive Analytics: Beyond the Predictions (預測性分析：超出預測)，W. McKnight，資訊管理，2011 年 7 月/8 月，第 18-20 頁。
 
 [2] 維基百科文章：[Accuracy and precision (正確性與準確度)](http://en.wikipedia.org/wiki/Accuracy_and_precision)
 
-\[3] [CRISP-DM 1.0：資料採礦逐步指南](http://www.the-modeling-agency.com/crisp-dm.pdf)
+[3] [CRISP-DM 1.0：資料採礦逐步指南] (http://www.the-modeling-agency.com/crisp-dm.pdf)
 
-\[4] [Big Data Marketing: Engage Your Customers More Effectively and Drive Value (巨量資料行銷：更有效地吸引您的客戶和促進價值)](http://www.amazon.com/Big-Data-Marketing-Customers-Effectively/dp/1118733894/ref=sr_1_12?ie=UTF8&qid=1387541531&sr=8-12&keywords=customer+churn)
+[4] [Big Data Marketing: Engage Your Customers More Effectively and Drive Value (巨量資料行銷：更有效地吸引您的客戶和促進價值)](http://www.amazon.com/Big-Data-Marketing-Customers-Effectively/dp/1118733894/ref=sr_1_12?ie=UTF8&qid=1387541531&sr=8-12&keywords=customer+churn)
 
-\[5] [Cortana Intelligence Gallery (Cortana Intelligence 資源庫)](http://gallery.cortanaintelligence.com/) 中的 [電信公司客戶流失模型範本](http://gallery.cortanaintelligence.com/Experiment/Telco-Customer-Churn-5)
+[5] [Cortana Intelligence Gallery (Cortana Intelligence 資源庫)](http://gallery.cortanaintelligence.com/) 中的 [電信公司客戶流失模型範本](http://gallery.cortanaintelligence.com/Experiment/Telco-Customer-Churn-5)  
 ##附錄
 
 ![][10]
@@ -244,4 +244,4 @@ Azure Machine Learning 中另一項吸引人的功能是可以將自訂模組加
 [9]: ./media/machine-learning-azure-ml-customer-churn-scenario/churn-9.png
 [10]: ./media/machine-learning-azure-ml-customer-churn-scenario/churn-10.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -4,7 +4,7 @@
 	services="hdinsight" 
 	documentationCenter="" 
 	authors="nitinme" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/25/2016" 
+	ms.date="09/14/2016" 
 	ms.author="nitinme"/>
 
 
@@ -33,7 +33,7 @@
 
 在開始建置應用程式之前，我們先來了解資料的結構，以及要針對資料執行哪種分析。
 
-在本文中，我們會使用所有 HDInsight 叢集預設提供的範例 **HVAC.csv** 資料檔案 (位於 **\\HdiSamples\\HdiSamples\\SensorSampleData\\hvac**)。下載及開啟 CSV 檔案，以取得資料的快照。
+在本文中，我們使用的範例是 **HVAC.csv** 資料檔案，您可以在與 HDInsight 叢集相關聯的 Azure 儲存體帳戶中取得此檔案。在儲存體帳戶中，檔案位於 **\\HdiSamples\\HdiSamples\\SensorSampleData\\hvac**。下載及開啟 CSV 檔案，以取得資料的快照。
 
 ![HVAC 資料快照](./media/hdinsight-apache-spark-ipython-notebook-machine-learning/hdispark.ml.show.data.png "HVAC 資料的快照")
 
@@ -53,7 +53,7 @@
 	>
 	> `https://CLUSTERNAME.azurehdinsight.net/jupyter`
 
-2. 建立新的 Notebook。按一下 [**新建**]，然後按一下 [**PySpark**]。
+2. 建立新的 Notebook。按一下 [新建]，然後按一下 [PySpark]。
 
 	![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-ipython-notebook-machine-learning/hdispark.note.jupyter.createnotebook.png "建立新的 Jupyter Notebook")
 
@@ -262,4 +262,4 @@ HDInsight 上的 Apache Spark 叢集包含 Anaconda 程式庫。其中也包含�
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

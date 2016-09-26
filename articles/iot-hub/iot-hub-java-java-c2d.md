@@ -13,7 +13,7 @@
      ms.topic="article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="06/23/2016"
+     ms.date="09/13/2016"
      ms.author="dobett"/>
 
 # 教學課程：如何使用 IoT 中樞和 Java 傳送雲端到裝置訊息
@@ -32,7 +32,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
 您可以在 [IoT 中心開發人員指南][IoT Hub Developer Guide - C2D]中，找到有關雲端到裝置訊息的詳細資訊。
 
-在本教學課程結尾，您將會執行兩個 Java 主控台應用程式：
+在本教學課程結尾，您將執行兩個 Java 主控台應用程式：
 
 * **simulated-device**：在[開始使用 IoT 中樞]中建立的應用程式修改版本，可連接到您的「IoT 中樞」並接收雲端到裝置訊息。
 * **send-c2d-messages**：會將雲端到裝置訊息透過「IoT 中樞」傳送到模擬的裝置，然後接收其傳遞通知。
@@ -49,7 +49,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
 ## 在模擬裝置上接收訊息
 
-在本節中，您會修改在[開始使用 IoT 中樞]中建立的模擬裝置應用程式，以接收來自 IoT 中樞的雲端對裝置訊息。
+在本節中，您會修改在[開始使用 IoT 中樞]中建立的模擬裝置應用程式，以接收來自 IoT 中樞的雲端到裝置訊息。
 
 1. 使用文字編輯器開啟 simulated-device\\src\\main\\java\\com\\mycompany\\app\\App.java 檔案。
 
@@ -81,9 +81,9 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
 ## 傳送雲端到裝置訊息
 
-在本節中，您會建立 Java 主控台應用程式，將雲端到裝置訊息傳送至模擬裝置應用程式。您需要在[開始使用 IoT 中樞]教學課程中新增裝置的裝置識別碼，以及您 IoT 中樞的連接字串 (可在 [Azure 入口網站]中找到)。
+在本節中，您會建立 Java 主控台應用程式，以將雲端到裝置訊息傳送給模擬裝置應用程式。您需要您在[開始使用 IoT 中樞]教學課程中所新增裝置的裝置識別碼。您也需要 IoT 中樞的連接字串 (可在 [Azure 入口網站]中找到)。
 
-1. 在命令提示字元中使用下列命令建立名為 **send-c2d-messages** 的新 Maven 專案。請注意，這是一個非常長的命令：
+1. 在命令提示字元中使用下列命令建立名為 **send-c2d-messages** 的 Maven 專案。注意，這是一個單一且非常長的命令：
 
     ```
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=send-c2d-messages -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
@@ -91,7 +91,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
 2. 在命令提示字元中，瀏覽到新的 send-c2d-messages 資料夾。
 
-3. 使用文字編輯器，在 send-c2d-messages 資料夾中開啟 pom.xml 檔案，並對 [相依性] 節點新增下列相依性。這可讓您使用應用程式中的 **iothub-java-service-client** 套件與 IoT 中樞服務通訊：
+3. 使用文字編輯器，在 send-c2d-messages 資料夾中開啟 pom.xml 檔案，並對 [相依性] 節點新增下列相依性。新增相依性可讓您在應用程式中使用 **iothub-java-service-client** 套件與 IoT 中樞服務進行通訊：
 
     ```
     <dependency>
@@ -159,7 +159,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
 現在您已經準備好執行應用程式。
 
-1. 在 simulated-device 資料夾的命令提示字元中，執行下列命令以開始將遙測資料傳送至 IoT 中樞，並接聽從 IoT 中樞送出的雲端到裝置訊息：
+1. 在命令提示字元下，於 [simulated-device] 資料夾中執行下列命令，以開始將遙測資料傳送給 IoT 中樞，並接聽從 IoT 中樞傳送的雲端到裝置訊息：
 
     ```
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App" 
@@ -173,7 +173,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
     ```
 
-    ![執行命令以傳送 c2d 訊息][img-send-command]
+    ![執行命令以傳送雲端到裝置訊息][img-send-command]
 
 ## 後續步驟
 
@@ -200,4 +200,4 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 [Azure 入口網站]: https://portal.azure.com
 [Azure IoT 套件]: https://azure.microsoft.com/documentation/suites/iot-suite/
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

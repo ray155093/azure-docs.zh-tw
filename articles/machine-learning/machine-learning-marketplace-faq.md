@@ -4,7 +4,7 @@
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="bharaths" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/06/2016" 
+	ms.date="09/11/2016" 
 	ms.author="bharaths"/>
 
 #在 Azure Marketplace 中發佈和使用 Machine Learning 應用程式：常見問題集
@@ -28,7 +28,7 @@
 您的輸入參數可能不符合特定 Web 服務所需的格式。請參閱對應的文件連結，來尋找輸入參數的正確格式以及此 Web 服務的限制。
 
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 **2.如果我將 [探索這個資料集] 頁面上顯示之 Web 服務的 API 連結，複製並貼到另一個瀏覽器視窗中，我應該使用哪些認證來存取結果，又該如何查看這些結果？**
 
@@ -77,4 +77,4 @@ Marketplace Web 服務目前不支援批次輸入模式。
 
  
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="onewth"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -21,7 +21,7 @@
 
 >[AZURE.NOTE] 本指南適用於第 1 版的 API。關於第 2 版，[**請參閱本文件**](../cognitive-services/cognitive-services-text-analytics-quick-start.md)。現在建議使用此 API 的第 2 版。
 
-## 概觀
+## Overview
 
 文字分析 API 是一套以 Azure Machine Learning 服務建置的文字分析 [Web 服務](https://datamarket.azure.com/dataset/amla/text-analytics)。此 API 可用來分析工作的非結構化文字，例如情感分析、關鍵片語擷取、語言偵測及主題偵測。使用此 API 不需要任何訓練資料，只要將文字資料帶入即可。此 API 使用進階的自然語言處理技術來提供最佳預測。
 
@@ -95,7 +95,7 @@ API 會傳回輸入文字中代表說話重點的字串清單。我們採用的�
 
 **範例要求**
 
-在下面的呼叫中，我們要求 "這是很棒的旅館，裝潢獨樹一幟，工作人員服務態度甚佳" 這段文字中找到的關鍵片語：
+在下面的呼叫中，我們要求 "It was a wonderful hotel to stay at, with unique decor and friendly staff" 這段文字中找到的關鍵片語：
 
 	GET https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/GetKeyPhrases?
 	Text=It+was+a+wonderful+hotel+to+stay+at,+with+unique+decor+and+friendly+staff
@@ -276,7 +276,7 @@ API 會傳回輸入文字中代表說話重點的字串清單。我們採用的�
 這個 API 至少需要提交 100 筆文字記錄，但其設計可偵測數百至數千筆記錄的主題。
 
 
-### 主題 – 提交工作
+### 主題 – 提交作業
 
 **URL**
 
@@ -309,7 +309,7 @@ API 會傳回輸入文字中代表說話重點的字串清單。我們採用的�
 
 不應當做主題傳回的單字或多字片語的清單。可用來篩選出相當廣泛的主題。例如，在飯店業評論的相關資料集中，"hotel" 和 "hostel" 可能是合理的停止片語。
 
-### 主題 – 輪詢工作結果
+### 主題 – 輪詢作業結果
 
 **URL**
 
@@ -385,4 +385,4 @@ API 會以下列格式傳回 JSON 格式的輸出：
 | TopicId | 已獲指派記錄的主題識別碼。 |
 | Distance | 記錄屬於主題的信賴度。Distance 越接近零，表示信賴度越高。 |
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0914_2016-->

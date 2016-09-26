@@ -45,7 +45,7 @@
 
 ## 在開發電腦上建立 PHP (Laravel) 應用程式
 
-1. 開啟新的 Windows 命令提示字元、PowerShell 視窗、Linux Shell 或 OS X 終端機。執行下列命令來確認您的電腦上正確安裝所需的工具。 
+1. 開啟新的 Windows 命令提示字元、PowerShell 視窗、Linux Shell 或 OS X 終端機。執行下列命令來確認您的電腦上正確安裝所需的工具。
 
         php --version
         composer --version
@@ -82,8 +82,9 @@
 
 透過 Azure CLI，只要一行程式碼就可以在 Azure App Service 中建立 Web 應用程式並設定來進行 Git 部署。讓我們開始吧！
 
-3. 如下所示，登入 Azure：
+1. 變更為 ASM 模式並登入 Azure：
 
+        azure config mode asm
         azure login
     
     依照說明訊息進行來繼續登入程序。
@@ -105,7 +106,7 @@
 
 為了讓 Laravel 應用程式在 Azure 中運作，您必須注意幾件事。您將對您所選擇的 PHP 架構進行此類似的練習。
 
-- 設定 PHP 5.5.9 或更高版本。如需得完整的伺服器需求清單，請參閱[最新的 Laravel 5.2 伺服器需求](https://laravel.com/docs/5.2#server-requirements)。清單的其餘部分是 Azure 的 PHP 安裝已啟用的擴充功能。 
+- 設定 PHP 5.5.9 或更高版本。如需得完整的伺服器需求清單，請參閱[最新的 Laravel 5.2 伺服器需求](https://laravel.com/docs/5.2#server-requirements)。清單的其餘部分是 Azure 的 PHP 安裝已啟用的擴充功能。
 - 設定應用程式需要的環境變數。Laravel 使用 `.env` 檔案來輕鬆設定環境變數。不過，因為不會認可到原始檔控制 (請參閱 [Laravel 環境組態](https://laravel.com/docs/5.2/configuration#environment-configuration)，您將改以設定 Azure Web 應用程式的應用程式設定。
 - 請確定最先載入 Laravel 應用程式的進入點：`public/index.php`。請參閱 [Laravel 生命週期概觀](https://laravel.com/docs/5.2/lifecycle#lifecycle-overview)。換句話說，您必須設定 Web 應用程式的根目錄 URL 以指向 `public` 目錄。
 - 由於您有 composer.json，請在 Azure 中啟用編輯器擴充。如此一來，當您使用 `git push` 部署時，編輯器會替您取得所需的封裝。這樣比較方便。如果您未啟用編輯器自動化，則只需要從 `.gitignore` 檔案中移除 `/vendor`，在認可及部署程式碼時，Git 就會包含 ("un-ignores") `vendor` 目錄中的所有項目。
@@ -145,7 +146,7 @@
     
 4. 按一下 [擴充功能] > [新增]，新增擴充功能。
 
-4. 在 [選擇擴充功能] [刀鋒視窗](../azure-portal-overview.md)中，選取 [編輯器] \(刀鋒視窗︰水平開啟的入口網站頁面)。
+4. 在 [選擇擴充功能] [刀鋒視窗](../azure-portal-overview.md)中，選取 [編輯器] (刀鋒視窗︰水平開啟的入口網站頁面)。
 
 4. 在 [接受法律條款] 刀鋒視窗中按一下 [確定]。
 
@@ -248,4 +249,4 @@
 - [在 Azure App Service 中將 WordPress 轉換成多站台](web-sites-php-convert-wordpress-multisite.md)
 - [Azure App Service 上的企業級 WordPress](web-sites-php-enterprise-wordpress.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0914_2016-->

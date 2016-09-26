@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="06/23/2016"
+   ms.date="09/12/2016"
    ms.author="tomfitz"/>
 
 # 定義 Azure 資源管理員範本中的相依性
@@ -24,9 +24,9 @@
 
 ## dependsOn
 
-在您的範本中，dependsOn 元素可讓您將一個資源定義為與一個或多個資源相依。它的值可以是資源名稱的逗號分隔清單。
+在您的範本內，dependsOn 元素可讓您定義一個資源作為一或多個資源的相依項目。其值可以是以逗號分隔的資源名稱清單。
 
-下列範例示範虛擬機器擴展集，其相依於負載平衡器、虛擬網路，以及建立多個儲存體帳戶的迴圈。這些其他資源不會顯示在下面，但它們需要存在於範本的其他位置。
+下列範例示範一個虛擬機器擴展集，此擴展集依存於負載平衡器、虛擬網路，以及會建立多個儲存體帳戶的迴圈。這些其他資源不會顯示在下列範例中，但是必須存在於範本中其他的位置。
 
     {
       "type": "Microsoft.Compute/virtualMachineScaleSets",
@@ -44,13 +44,13 @@
       ...
     }
 
-如果您需要定義某項資源和透過複製迴圈所建立之資源之間的相依性 (如上所示)，可以將 dependsOn 元素設定為迴圈的名稱。例如，請參閱[在 Azure 資源管理員中建立多個資源的執行個體](resource-group-create-multiple.md)。
+若要定義某項資源與透過複製迴圈所建立之資源之間的相依性，請將 dependsOn 元素設定為迴圈的名稱。例如，請參閱[在 Azure 資源管理員中建立多個資源的執行個體](resource-group-create-multiple.md)。
 
-雖然您可能比較傾向於使用 dependsOn 對應您的資源之間的相依性，但是請務必了解為什麼您要這麼做，因為這可能會影響您部署的效能。例如，如果您這麼做是因為您想要記載資源互連的方式，則 dependsOn 並不是適當的方法。dependsOn 的生命週期只能用於部署，而且不適用於後續部署。一旦部署之後，就沒有任何方法可以查詢這些相依性。使用 dependsOn，表示您冒著影響效能的風險，可能會讓您不小心讓部署引擎轉為使用它可能會有的平行處理原則。若要記載資源之間的關聯性並提供查詢功能，您應該改用[連結資源](resource-group-link-resources.md)。
+雖然您可能比較傾向於使用 dependsOn 來對應資源之間的關聯性，但是請務必了解為什麼您要這麼做，因為這可能會影響您部署的效能。例如，若是要記載資源互連的方式，dependsOn 並不是適當的方法。在部署之後，您便無法查詢 dependsOn 元素中定義了哪些資源。使用 dependsOn 可能會影響部署時間，因為 Resource Manager 不會平行部署具有相依性的兩個資源。若要記載資源之間的關聯性，請改用[資源連結](resource-group-link-resources.md)。
 
 ## 子資源
 
-resources 屬性可讓您指定與所定義的資源相關的子資源。子資源僅能定義為 5 個層級的深度。請務必注意，在子資源與父資源之間並不會建立隱含的相依性。如果您需要在父資源之後部署子資源，您必須使用 dependsOn 屬性明確地敘述該相依性。
+resources 屬性可讓您指定與所定義的資源相關的子資源。定義子資源時，深度只能有 5 層。請務必注意，在子資源與父資源之間並不會建立隱含的相依性。如果您需要在父資源之後部署子資源，您必須使用 dependsOn 屬性明確地敘述該相依性。
 
 每個父資源只接受特定的資源類型做為子資源。可接受的資源類型是在父資源的[範本結構描述](https://github.com/Azure/azure-resource-manager-schemas)中指定。子資源類型的名稱包含父資源類型的名稱，例如 **Microsoft.Web/sites/config** 和 **Microsoft.Web/sites/extensions** 兩者皆為 **Microsoft.Web/sites** 的子資源。
 
@@ -95,11 +95,11 @@ resources 屬性可讓您指定與所定義的資源相關的子資源。子資�
 
 ## reference 函式
 
-reference 函式可讓運算式從其他 JSON 名稱和值組或執行階段資源衍生其值。reference 運算式會隱含地宣告某個資源相依於另一個資源。以下 **propertyPath** 所代表的屬性是選擇性的，如果未指定，則參考資源。
+[reference 函式](resource-group-template-functions.md#reference)可讓運算式從其他 JSON 名稱和值組或執行階段資源衍生其值。reference 運算式會隱含地宣告某個資源相依於另一個資源。
 
     reference('resourceName').propertyPath
 
-您可以使用此元素或 dependsOn 元素指定相依性，但是您不需要針對相同的相依資源使用兩者。本指導方針是使用隱含的參考以避免不小心讓不必要的 dependsOn 元素防止部署引擎以平行方式進行部署的風險。
+您可以使用此元素或 dependsOn 元素指定相依性，但是您不需要針對相同的相依資源使用兩者。請儘量使用隱含的參考，以避免不小心新增不必要的相依性。
 
 若要深入了解，請參閱 [reference 函數](resource-group-template-functions.md#reference)。
 
@@ -108,4 +108,4 @@ reference 函式可讓運算式從其他 JSON 名稱和值組或執行階段資�
 - 若要了解如何建立 Azure 資源管理員範本，請參閱[撰寫範本](resource-group-authoring-templates.md)。
 - 如需在範本中可用函式的清單，請參閱[範本函式](resource-group-template-functions.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0914_2016-->

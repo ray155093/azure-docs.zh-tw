@@ -4,7 +4,7 @@
 	services="hdinsight"
 	documentationCenter=""
 	authors="Blackmist"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -115,7 +115,7 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
 
 3. 展開 [**Azure**]，然後展開 [**HDInsight**]。
 
-4. 如果出現提示，請輸入您的 Azure 訂用帳戶認證，然後按一下 [**登入**]。
+4. 如果出現提示，請輸入您的 Azure 訂用帳戶認證，然後按一下 [登入]。
 
 5. 展開您要部署此應用程式的 HDInsight 叢集，然後展開 [**預設儲存體帳戶**]。
 
@@ -241,4 +241,4 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
 
 * [〈搭配 HDInsight 使用 MapReduce〉](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

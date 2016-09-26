@@ -2,7 +2,7 @@
 	pageTitle="建立非互動式驗證 .NET HDInsight 應用程式 | Microsoft Azure"
 	description="了解如何建立非互動式驗證 .NET HDInsight 應用程式。"
 	editor="cgronlun"
-	manager="paulettm"
+	manager="jhubbard"
 	services="hdinsight"
 	documentationCenter=""
 	tags="azure-portal"
@@ -122,4 +122,4 @@
 - [使用 Azure Resource Manager 驗證服務主體](../resource-group-authenticate-service-principal.md)
 - [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

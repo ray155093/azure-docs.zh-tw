@@ -5,7 +5,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="bradsev"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -22,17 +22,17 @@
 
 若要在 Machine Learning Studio 中使用您自己的資料來開發和訓練預測性分析方案，您可以：
 
-- 事先從硬碟從**本機檔案**上傳資料，在工作區中建立資料集模組。  
-- 使用[匯入資料][import-data]模組，在實驗進行時，從數個「線上資料來源」其中之一存取資料。 
-- 使用來自另一個 Azure Machine Learning 實驗並儲存為 **dataset** 的資料。 
+- 事先從硬碟從**本機檔案**上傳資料，在工作區中建立資料集模組。
+- 使用[匯入資料][import-data]模組，在實驗進行時，從數個「線上資料來源」其中之一存取資料。
+- 使用來自另一個 Azure Machine Learning 實驗並儲存為 **dataset** 的資料。
 
 [AZURE.INCLUDE [import-data-into-aml-studio-selector](../../includes/machine-learning-import-data-into-aml-studio.md)]
 
-每個選項都在上方選單的其中一個主題裡說明。這些主題會示範如何從各種資料來源匯入資料以用於 Machine Learning Studio。
+這其中的每個選項都會在上方功能表的某一個主題內加以說明。這些主題會示範如何從各種資料來源匯入資料以用於 Machine Learning Studio。
 
 > [AZURE.NOTE] Machine Learning Studio 中有一些可用於此目的範例資料集。如需這些資訊，請參閱 [在 Azure Machine Learning Studio 中使用範例資料集](machine-learning-use-sample-datasets.md)。
 
-這個簡介主題也會示範如何備妥資料以在 Machine Learning Studio 中使用，並描述支援的資料格式和資料類型。
+這個簡介主題也會示範如何備妥資料，以便在 Machine Learning Studio 中使用，並描述支援的資料格式和資料類型。
 
 > [AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
 
@@ -89,4 +89,4 @@ Machine Learning Studio 使用名為***資料表格***的內部資料類型以�
 [edit-metadata]: https://msdn.microsoft.com/library/azure/370b6676-c11c-486f-bf73-35349f842a66/
 [import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -13,17 +13,13 @@ articles/sql-database/sql-database-get-started-tutorial.md
 在 Azure 入口網站中使用下列步驟，建立 Azure SQL Database 邏輯伺服器。
 
 1. 如果目前未連線，請連線到 [Azure 入口網站](http://portal.azure.com)。
-2. 按一下 [新增]，輸入 [SQL Database]，然後按一下 [SQL Database (新邏輯伺服器)]。
+2. 依序按一下 [新增] 和 [資料 + 儲存體]，然後找出 [SQL Database]。
 
-      ![新邏輯伺服器](./media/sql-database-create-new-server-portal/sql-database-create-new-server-portal-1.png)
+      ![SQL Database 1](./media/sql-database-get-started/sql-database-new-database-1.png)
 
-3. 按一下 [SQL Database (新邏輯伺服器)]。
+3. 按一下 [SQL Database] 來開啟 [SQL Database] 刀鋒視窗。
 
-      ![新邏輯伺服器](./media/sql-database-create-new-server-portal/sql-database-create-new-server-portal-2.png)
-
-4. 按一下 [建立] 來開啟範本，以建立可裝載單一資料庫和彈性資料庫集區的空邏輯伺服器。
-
-      ![新邏輯伺服器](./media/sql-database-create-new-server-portal/sql-database-create-new-server-portal-3.png)
+      ![新邏輯伺服器](./media/sql-database-get-started/sql-database-new-database-2.png)
 
 5. 提供下列伺服器屬性的值：
 
@@ -44,4 +40,4 @@ articles/sql-database/sql-database-get-started-tutorial.md
 
        ![新邏輯伺服器](./media/sql-database-create-new-server-portal/sql-database-create-new-server-portal-6.png)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

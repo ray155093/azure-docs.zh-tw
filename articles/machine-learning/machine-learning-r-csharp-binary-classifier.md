@@ -4,7 +4,7 @@
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="jaymathe" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -23,7 +23,7 @@
 假設您有一個資料集，並想要根據獨立變更來預測二元相依變數。「羅吉斯迴歸」是適用於此類預測的普遍統計技術。這裡的相依變數是二元或二分類變數，而 p 是感興趣特性的存在機率。
 
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 一個簡單的案例是研究人員嘗試根據資訊 (高中的 GPA、家庭收入、居住地、性別)，來預測未來學生是否有可能接受大學的入學許可。預測的結果是未來學生接受入學許可的機率。這項 [Web 服務](https://datamarket.azure.com/dataset/aml_labs/log_regression)會將資料套入羅吉斯迴歸模型，並為資料中的每個觀察輸出機率值 (y)。
   
@@ -121,4 +121,4 @@ Azure Machine Learning 中已建立新的空白實驗，並將兩個[執行 R �
 [execute-r-script]: https://msdn.microsoft.com/library/azure/30806023-392b-42e0-94d6-6b775a6e0fd5/
  
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

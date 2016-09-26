@@ -93,39 +93,7 @@
 
 執行範例之前，您需要確認 Edison 面板可連接到 SensorTag 裝置。
 
-您必須先在 Edison 上更新 BlueZ 軟體的版本。請注意，即使您已經安裝版本 5.37，還是應該完成下列步驟，以確保安裝完成︰
-
-1. 停止目前正在執行的藍牙精靈。
-    
-    ```
-    systemctl stop bluetooth
-    ```
-
-2. 下載並解壓縮適用於 BlueZ 版本 5.37 的 [原始程式碼](http://www.kernel.org/pub/linux/bluetooth/bluez-5.37.tar.xz)。
-    
-    ```
-    wget http://www.kernel.org/pub/linux/bluetooth/bluez-5.37.tar.xz
-    tar -xvf bluez-5.37.tar.xz
-    cd bluez-5.37
-    ```
-
-3. 建置和安裝 BlueZ。
-    
-    ```
-    ./configure --disable-udev --disable-systemd --enable-experimental
-    make
-    make install
-    ```
-
-4. 藉由編輯檔案 **/lib/systemd/system/bluetooth.service**，來變更藍牙的 *systemd* 服務組態，以使其指向新的藍牙精靈。取代 **ExecStart** 屬性的值，讓它看起來像這樣︰
-    
-    ```
-    ExecStart=/usr/local/libexec/bluetooth/bluetoothd -E
-    ```
-
-5. 重新啟動您的 Edison。
-
-接著，您需要確認 Edison 可以連接到 SensorTag 裝置。
+首先，您需要確認 Edison 可以連接到 SensorTag 裝置。
 
 1. 將 Edison 上的藍牙解除封鎖，並檢查版本號碼為 **5.37**。
     
@@ -134,20 +102,22 @@
     bluetoothctl --version
     ```
 
-2. 執行 **bluetoothctl** 命令。您應該會看到如下的輸出：
+2. 執行 **bluetoothctl** 命令。現在您已處於互動式藍芽介面中。
+
+3. 輸入 **power on** 命令來開啟藍牙控制器電源。您應該會看到如下的輸出：
     
     ```
     [NEW] Controller 98:4F:EE:04:1F:DF edison [default]
     ```
 
-3. 現在您已處於互動式藍芽介面中。輸入 **scan on** 命令以掃描藍牙裝置。您應該會看到如下的輸出：
+4. 在仍位於互動式藍牙殼層中的狀態下，輸入 **scan on** 命令以掃描藍牙裝置。您應該會看到如下的輸出：
     
     ```
     Discovery started
     [CHG] Controller 98:4F:EE:04:1F:DF Discovering: yes
     ```
 
-4. 按下小按鈕 (綠色 LED 應該會閃爍)，以使 SensorTag 裝置變成可探索的。Edison 應該會探索 SensorTag 裝置︰
+5. 按下小按鈕 (綠色 LED 應該會閃爍)，以使 SensorTag 裝置變成可探索的。Edison 應該會探索 SensorTag 裝置︰
     
     ```
     [NEW] Device A0:E6:F8:B5:F6:00 CC2650 SensorTag
@@ -157,14 +127,14 @@
     
     在此範例中，您可以看到 SensorTag 裝置的 MAC 位址是 **A0:E6:F8:B5:F6:00**。
 
-5. 輸入 **scan off** 命令來關閉掃描。
+6. 輸入 **scan off** 命令來關閉掃描。
     
     ```
     [CHG] Controller 98:4F:EE:04:1F:DF Discovering: no
     Discovery stopped
     ```
 
-6. 輸入 **connect <MAC 位址>**，使用裝置的 MAC 位址連接到 SensorTag 裝置。請注意以下為簡略的範例輸出︰
+7. 輸入 **connect <MAC 位址>**，使用裝置的 MAC 位址連接到 SensorTag 裝置。請注意以下為簡略的範例輸出︰
     
     ```
     Attempting to connect to A0:E6:F8:B5:F6:00
@@ -185,7 +155,7 @@
     
     附註︰您可以使用 **list-attributes** 命令，再次列出裝置的 GATT 特性。
 
-7. 您現在可以使用 **disconnect** 命令來中斷連接，然後使用 **quit** 命令來從藍牙介面結束︰
+8. 您現在可以使用 **disconnect** 命令來中斷連接，然後使用 **quit** 命令來從藍牙介面結束︰
     
     ```
     Attempting to disconnect from A0:E6:F8:B5:F6:00
@@ -458,4 +428,4 @@ BLE 模組也支援從 Azure IoT 中樞傳送指示給裝置。您可以使用 [
 [lnk-dmui]: iot-hub-device-management-ui-sample.md
 [lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0914_2016-->

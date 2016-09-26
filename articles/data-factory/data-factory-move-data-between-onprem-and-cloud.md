@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/08/2016" 
+	ms.date="09/12/2016" 
 	ms.author="spelluru"/>
 
 # 利用資料管理閘道在內部部署來源和雲端之間移動資料
@@ -23,7 +23,7 @@
 ## 資料管理閘道
 若要將資料移入/移出內部部署資料存放區，您必須在內部部署機器上安裝資料管理閘道。您可以將閘道安裝在與資料存放區相同或相異的電腦上，只要閘道可以連接資料存放區即可。如需資料管理閘道的所有詳細資料，請參閱[資料管理閘道](data-factory-data-management-gateway.md)一文。
 
-以下逐步解說將示範如何使用將資料從內部部署 SQL Server 資料庫移至 Azure Blob 的管線來建立 Data Factory。在逐步解說中，您將在電腦上安裝及設定資料管理閘道。
+以下逐步解說將示範如何使用將資料從內部部署 SQL Server 資料庫移至 Azure Blob 的管線來建立 Data Factory。在逐步解說中，您會在電腦上安裝及設定資料管理閘道。
 
 ## 逐步解說︰將內部部署資料複製到雲端
   
@@ -36,11 +36,11 @@
   
 6. 在 [**新增 Data Factory**] 刀鋒視窗中：
 	1. 輸入 **ADFTutorialOnPremDF** 做為名稱。
-	2. 按一下 [**資源群組名稱**] 並選取 **ADFTutorialResourceGroup**。您可以選取現有的資源群組，或建立一個新的群組。若要建立新的資源群組：
+	2. 按一下 [**資源群組名稱**] 並選取 **ADFTutorialResourceGroup**。您可以選取現有的資源群組，或建立一個群組。若要建立資源群組︰
 		1. 按一下 [建立新的資源群組]。
 		2. 在 [**建立資源群組**] 刀鋒視窗中，輸入資源群組的 [**名稱**]，然後按一下 [**確定**]。
 
-7. 請注意，[**新增 Data Factory**] 刀鋒視窗上已核取 [**新增至開始面板**]。
+7. 請注意，[新增 Data Factory] 刀鋒視窗上已核取 [新增至開始面板]。
 
 	![新增至儀表板](./media/data-factory-move-data-between-onprem-and-cloud/OnPremNewDataFactoryAddToStartboard.png)
 
@@ -52,7 +52,7 @@
 
 	![通知中樞](./media/data-factory-move-data-between-onprem-and-cloud/OnPremNotificationsHub.png)
 
-11. 建立完成之後，您會看到 **Data Factory** 刀鋒視窗，如下所示：
+11. 建立完成之後，您會看到 [Data Factory] 刀鋒視窗，如下圖所示：
 
 	![Data Factory 首頁](./media/data-factory-move-data-between-onprem-and-cloud/OnPremDataFactoryHomePage.png)
 
@@ -67,18 +67,18 @@
 
 	![[建立閘道器] 刀鋒視窗](./media/data-factory-move-data-between-onprem-and-cloud/OnPremCreateGatewayBlade.png)
 
-3. 在 [**設定**] 分頁中，按一下 [**直接安裝在此電腦上**]。這會下載閘道的安裝套件、在電腦上安裝、設定和註冊閘道。
+3. 在 [**設定**] 分頁中，按一下 [**直接安裝在此電腦上**]。此動作會下載閘道的安裝套件、在電腦上安裝、設定和註冊閘道。
 
 	> [AZURE.NOTE] 
-	請使用 Internet Explorer 或 Microsoft ClickOnce 相容的 Web 瀏覽器。
+	使用 Internet Explorer 或 Microsoft ClickOnce 相容的 Web 瀏覽器。
 	> 
 	> 如果您使用 Chrome，請移至 [Chrome 線上應用程式商店](https://chrome.google.com/webstore/)，使用關鍵字 "ClickOnce" 進行搜尋，選擇其中一個 ClickOnce 擴充功能並安裝。
 	>  
-	> 您需要針對 Firefox 進行相同動作 (安裝附加元件)。按一下工具列上的 [開啟功能表] 按鈕 (右上角的**三條水平線**)，按一下 [附加元件]，以「ClickOnce」關鍵字進行搜尋，選擇其中一個 ClickOnce 延伸模組並安裝。
+	> 針對 Firefox 進行相同的操作 (安裝附加元件)。按一下工具列上的 [開啟功能表] 按鈕 (右上角的**三條水平線**)，按一下 [附加元件]，以「ClickOnce」關鍵字進行搜尋，選擇其中一個 ClickOnce 延伸模組並安裝。
 
 	![閘道器 - [設定] 刀鋒視窗](./media/data-factory-move-data-between-onprem-and-cloud/OnPremGatewayConfigureBlade.png)
 
-	這是最簡單的方式 (一鍵)，透過單一步驟即可下載、安裝、設定和註冊閘道。您可以看到「Microsoft 資料管理閘道組態管理員」應用程式已安裝在電腦上。您也可以在此資料夾中找到執行檔 **ConfigManager.exe**：**C:\\Program Files\\Microsoft Data Management Gateway\\1.0\\Shared**。
+	這是最簡單的方式 (一鍵)，透過單一步驟即可下載、安裝、設定和註冊閘道。您可以看到「Microsoft 資料管理閘道組態管理員」應用程式已安裝在電腦上。您也可以在資料夾 **C:\\Program Files\\Microsoft Data Management Gateway\\2.0\\Shared** 中找到可執行檔 **ConfigManager.exe**。
 
 	您也可以使用此刀鋒視窗中的連結手動下載與安裝閘道器，並使用 [新金鑰] 文字方塊中顯示的金鑰來加以註冊。
 	
@@ -86,17 +86,17 @@
 
 	>[AZURE.NOTE] 您必須是本機電腦上的系統管理員，才能成功安裝和設定「資料管理閘道」。您可以將其他使用者加入至資料管理閘道使用者本機 Windows 群組。此群組的成員可以使用「資料管理閘道組態管理員」工具來設定閘道器。
 
-5. 請等候幾分鐘，然後在電腦上啟動 [資料管理閘道器組態管理員] 應用程式。在 [搜尋] 視窗中，輸入**資料管理閘道器**以存取這個公用程式。您也可以在資料夾 **C:\\Program Files\\Microsoft Data Management Gateway\\1.0\\Shared** 中找到可執行檔 **ConfigManager.exe**
+5. 請等候幾分鐘，然後在電腦上啟動 [資料管理閘道器組態管理員] 應用程式。在 [搜尋] 視窗中，輸入**資料管理閘道器**以存取這個公用程式。您也可以在資料夾 **C:\\Program Files\\Microsoft Data Management Gateway\\2.0\\Shared** 中找到可執行檔 **ConfigManager.exe**
 
 	![閘道器組態管理員](./media/data-factory-move-data-between-onprem-and-cloud/OnPremDMGConfigurationManager.png)
 
-6. 請稍候，待這些值設定完成，如下所示：
+6. 等候直到︰
 	2. [閘道器名稱] 設定為 **adftutorialgateway**。
 	4. 底部的狀態列會顯示 [已連接到雲端服務] 和一個綠色的核取記號。
 
 	您也可以在 [首頁] 索引標籤上執行以下操作：- 透過 [註冊] 按鈕使用來自 Azure 入口網站的金鑰**註冊**閘道。- **停止**在閘道電腦上執行的資料管理閘道主機服務。- 將更新安裝作業**排程**在一天當中的指定時間。- 檢視閘道的**上次更新**時間。
 
-8. 切換到 [設定] 索引標籤。在 [憑證] 區段中指定的憑證，可用來加密/解密在入口網站指定的內部部署資料存放區認證 (對本教學課程的目的來說為選擇性操作)。按一下 [變更] 以改用您自己的憑證。根據預設，閘道器會使用由 Data Factory 服務自動產生的憑證。
+8. 切換到 [設定] 索引標籤。在 [憑證] 區段中指定的憑證，可用來加密/解密在入口網站指定的內部部署資料存放區認證 (選擇性)。按一下 [變更] 以改用您自己的憑證。根據預設，閘道器會使用由 Data Factory 服務自動產生的憑證。
 
 	![閘道器憑證組態](./media/data-factory-move-data-between-onprem-and-cloud/gateway-certificate.png)
 
@@ -109,13 +109,13 @@
 	
 	- 使用**測試連線**一節來對使用閘道器的內部部署資料來源。
 	- 按一下 [檢視記錄檔] 以查看 [事件檢視器] 視窗中的資料管理閘道記錄檔。
-	- 按一下 [傳送記錄檔] 將含有過去 7 天記錄檔的 zip 檔案上傳到 Microsoft，以幫助針對問題進行疑難排解。
+	- 按一下 [傳送記錄檔] 將含有過去七天記錄檔的 zip 檔案上傳到 Microsoft，以幫助針對問題進行疑難排解。
 10. 在 Azure 入口網站中，依序在 [設定] 刀鋒視窗和 [新增資料閘道] 刀鋒視窗中，按一下 [確定]。
-6. 左側的樹狀檢視中，[**資料閘道**] 下方應該會顯示 **adftutorialgateway**。如果按一下，應該會看到相關聯的 JSON。
+6. 左側的樹狀檢視中，[資料閘道器] 下方應該會顯示 **adftutorialgateway**。如果按一下，應該會看到相關聯的 JSON。
 	
 
 ## 建立連結服務 
-在此步驟中，您將建立兩個連結服務：**AzureStorageLinkedService** 和 **SqlServerLinkedService**。**SqlServerLinkedService** 會連結內部部署 SQL Server 資料庫，而 **AzureStorageLinkedService** 連結服務則會將 Azure Blob 存放區連結至 Data Factory。稍後在本逐步解說中，您將建立可將內部部署 SQL Server 資料庫的資料複製到 Azure Blob 存放區的管線。
+在此步驟中，您會建立兩個連結服務：**AzureStorageLinkedService** 和 **SqlServerLinkedService**。**SqlServerLinkedService** 會連結內部部署 SQL Server 資料庫，而 **AzureStorageLinkedService** 連結服務則會將 Azure Blob 存放區連結至 Data Factory。稍後在本逐步解說中，您會建立可將內部部署 SQL Server 資料庫的資料複製到 Azure Blob 存放區的管線。
 
 #### 在內部部署 SQL Server 資料庫中新增連結服務
 1.	在 [Data Factory 編輯器] 中，按一下工具列上的 [新增資料存放區]，然後選取 [SQL Server]。
@@ -124,10 +124,7 @@
 3.	在 [JSON 編輯器] 中，執行下列動作：
 	1. 為 **gatewayName** 指定 **adftutorialgateway**。
 	2. 如果您使用 Windows 驗證：
-		1. 在 **connectionString** 中：
-			1. 將 **Integrated Security** 設定為 **true**。
-			2. 指定資料庫的**伺服器名稱**和**資料庫名稱**。
-			2. 移除 **User ID** 和 **Password**。
+		1. 在 [connectionString] 中，將 [整合式安全性] 設為 [true]，指定資料庫**伺服器名稱**和**資料庫名稱**，並移除**使用者識別碼**和**密碼**。
 		3. 為 **userName** 和 **password** 屬性指定使用者名稱和密碼。
 		
 				"typeProperties": {
@@ -140,14 +137,14 @@
 	4. 如果您使用 SQL 驗證：
 		1. 在 **connectionString** 中指定資料庫的**伺服器名稱**、**資料庫名稱**、**User ID** 和 **Password**。
 		2. 從 JSON 中移除最後兩個 JSON 屬性：**userName** 和 **password**。
-		3. 移除位於行尾的尾端 **, (逗號)**，其指定 **gatewayName** 屬性值。
+		3. 移除位於行尾的尾端 `,` (逗號)，其指定 **gatewayName** 屬性值。
 
 				"typeProperties": {
             		"connectionString": "Data Source=<servername>;Initial Catalog=<databasename>;Integrated Security=False;User ID=<username>;Password=<password>;",
 	           		"gatewayName": "<Name of the gateway that the Data Factory service should use to connect to the on-premises SQL Server database>"
     		    }
 	
-		認證將以 Data Factory 服務所擁有的憑證**加密**。如果您想要改用與「資料管理閘道」關聯的憑證，請參閱[安全地設定認證](#set-credentials-and-security)。
+		認證會以 Data Factory 服務所擁有的憑證**加密**。如果您想要改用與「資料管理閘道」關聯的憑證，請參閱[安全地設定認證](#set-credentials-and-security)。
     
 2.	按一下命令列上的 [部署]，部署 SQL Server 連結服務。
 
@@ -256,14 +253,14 @@
 	
 	- **type** 設定為 **AzureBlob**。
 	- **linkedServiceName** 是設定為 **AzureStorageLinkedService** (您已在步驟 2 中建立此連結服務)。
-	- **folderPath** 設定為 **adftutorial/outfromonpremdf**，其中 outfromonpremdf 是 adftutorial 容器中的資料夾。您只需要建立 **adftutorial** 容器。
-	- **availability** 設定為**每小時**，且 (**frequency** 設定為**小時**，**interval** 設定為 **1**)。Data Factory 服務會每小時在 Azure SQL Database 的 **emp** 資料表中產生輸出資料配量。
+	- **folderPath** 設定為 **adftutorial/outfromonpremdf**，其中 outfromonpremdf 是 adftutorial 容器中的資料夾。建立 **adftutorial** 容器 (如果尚未存在)。
+	- **availability** 設定為**每小時**，且 (**frequency** 設定為**小時**，**interval** 設定為 **1**)。Data Factory 服務會每隔一小時在 Azure SQL Database 的 **emp** 資料表中產生輸出資料配量。
 
 	如果您沒有指定**輸入資料表**的 **fileName**，則輸入資料夾 (**folderPath**) 中的所有檔案/Blob 都會視為輸入。如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。如需範例，請參閱 [教學課程][adf-tutorial] 中的範例檔案。
  
 	如果您未指定**輸出資料表**的 **fileName**，**folderPath** 中產生的檔案會依照下列格式命名：Data.<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt)。
 
-	若要根據 **SliceStart** 時間動態地設定 **folderPath** 和 **fileName**，請使用 partitionedBy 屬性。在下列範例中，folderPath 使用 SliceStart (處理配量的開始時間) 中的年、月和日，fileName 使用 SliceStart 中的小時。例如，如果配量產生於 2014-10-20T08:00:00，folderName 設定為 wikidatagateway/wikisampledataout/2014/10/20，而 fileName 設定為 08.csv。
+	若要根據 **SliceStart** 時間動態地設定 **folderPath** 和 **fileName**，請使用 partitionedBy 屬性。在下列範例中，folderPath 使用 SliceStart (所處理配量的開始時間) 中的年、月和日，fileName 使用 SliceStart 中的小時。例如，如果配量產生於 2014-10-20T08:00:00，folderName 設定為 wikidatagateway/wikisampledataout/2014/10/20，而 fileName 設定為 08.csv。
 
 	  	"folderPath": "wikidatagateway/wikisampledataout/{Year}/{Month}/{Day}",
         "fileName": "{Hour}.csv",
@@ -288,67 +285,67 @@
 1.	在 **DATA FACTORY** 刀鋒視窗中，按一下 [**製作和部署**] 磚來啟動 Data Factory 的 [**編輯器**]。
 
 	![[製作和部署] 磚](./media/data-factory-move-data-between-onprem-and-cloud/author-deploy-tile.png)
-2.	按一下命令列的 [新增管線]。如果沒看到此按鈕，請按一下 [...] \(省略符號) 展開命令列。
+2.	按一下命令列的 [新增管線]。如果沒看到此按鈕，請按一下 [...] (省略符號) 展開命令列。
 2.	使用下列文字取代右窗格中的 JSON：
-
-
-		{
-		  "name": "ADFTutorialPipelineOnPrem",
-		  "properties": {
-		    "description": "This pipeline has one Copy activity that copies data from an on-prem SQL to Azure blob",
-		    "activities": [
-		      {
-		        "name": "CopyFromSQLtoBlob",
-		        "description": "Copy data from on-prem SQL server to blob",
-		        "type": "Copy",
-		        "inputs": [
-		          {
-		            "name": "EmpOnPremSQLTable"
-		          }
-		        ],
-		        "outputs": [
-		          {
-		            "name": "OutputBlobTable"
-		          }
-		        ],
-		        "typeProperties": {
-		          "source": {
-		            "type": "SqlSource",
-		            "sqlReaderQuery": "select * from emp"
-		          },
-		          "sink": {
-		            "type": "BlobSink"
-		          }
-		        },
-		        "Policy": {
-		          "concurrency": 1,
-		          "executionPriorityOrder": "NewestFirst",
-		          "style": "StartOfInterval",
-		          "retry": 0,
-		          "timeout": "01:00:00"
-		        }
-		      }
-		    ],
-		    "start": "2016-07-05T00:00:00Z",
-		    "end": "2016-07-06T00:00:00Z",
-		    "isPaused": false
-		  }
-		}
+	
+			{
+				"name": "ADFTutorialPipelineOnPrem",
+				"properties": {
+		    	"description": "This pipeline has one Copy activity that copies data from an on-prem SQL to Azure blob",
+		    	"activities": [
+		      	{
+		        	"name": "CopyFromSQLtoBlob",
+			        "description": "Copy data from on-prem SQL server to blob",
+		        	"type": "Copy",
+		        	"inputs": [
+		          	{
+		            	"name": "EmpOnPremSQLTable"
+		          	}
+		        	],
+		        	"outputs": [
+		          	{
+			            "name": "OutputBlobTable"
+			          }
+			        ],
+			        "typeProperties": {
+			          "source": {
+			            "type": "SqlSource",
+			            "sqlReaderQuery": "select * from emp"
+			          },
+			          "sink": {
+			            "type": "BlobSink"
+			          }
+			        },
+			        "Policy": {
+			          "concurrency": 1,
+			          "executionPriorityOrder": "NewestFirst",
+			          "style": "StartOfInterval",
+			          "retry": 0,
+			          "timeout": "01:00:00"
+			        }
+			      }
+			    ],
+			    "start": "2016-07-05T00:00:00Z",
+			    "end": "2016-07-06T00:00:00Z",
+			    "isPaused": false
+			  }
+			}
 
 	請注意：
  
 	- 在 activities 區段中，只會有 **type** 設定為 **Copy** 的活動。
 	- 活動的**輸入**設定為 **EmpOnPremSQLTable**，活動的**輸出**則設定為 **OutputBlobTable**。
 	- 在 **transformation** 區段中，將 **SqlSource** 指定為**來源類型**，並將 **BlobSink** 指定為**接收類型**。
-	- SqlSource** 的 **sqlReaderQuery** 屬性會指定 SQL 查詢 ***select from emp**。
+	- SQL 查詢 `select * from emp` 會指定用於 **SqlSource** 的 **sqlReaderQuery** 屬性。
 
-	將 **start** 屬性的值取代為目前日期，並將 **end** 值取代為隔天的日期。開始和結束日期時間都必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。例如：2014-10-14T16:32:41Z。**end** 時間為選擇性項目，但在本教學課程中會用到。
+	將 **start** 屬性的值替換為目前日期，並將 **end** 值替換為隔天的日期。開始和結束日期時間都必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。例如：2014-10-14T16:32:41Z。**end** 時間為選擇性項目，但在本教學課程中會用到。
 	
 	如果您未指定 **end** 屬性的值，則會以「**start + 48 小時**」計算。若要無限期地執行管線，請指定 **9/9/9999** 做為 **end** 屬性的值。
 	
-	您定義將根據為每個 Azure Data Factory 資料表定義的 **Availability** 屬性來處理資料配量的持續時間。
+	您定義會根據為每個 Azure Data Factory 資料表定義的 **Availability** 屬性來處理資料配量的持續時間。
 	
-	在上述範例中，由於每小時即產生一個資料配量，共會有 24 個資料配量。
+	在此範例中，由於每小時即產生一個資料配量，共會有 24 個資料配量。
+
 	
 2. 按一下命令列的 [部署]，以部署資料集 (資料表是矩形的資料集)。確認您在標題列看到 [已成功部署管線] 訊息。
 5. 現在，按一下 **X** 關閉 [**編輯器**] 刀鋒視窗。再按一次 **X**，關閉內含工具列和樹狀檢視的 [ADFTutorialDataFactory] 刀鋒視窗。如果您看到 [將捨棄未儲存的編輯] 訊息，請按一下 [確定]。
@@ -357,7 +354,7 @@
 **恭喜！** 您已成功建立 Azure Data Factory、連結服務、資料表和管線，以及排定的管線。
 
 #### 在圖表檢視中檢視 Data Factory 
-1. 在 **Azure 入口網站**中，按一下 **ADFTutorialOnPremDF** Data Factory 首頁上的 [圖表] 磚：
+1. 在 **Azure 入口網站**中，按一下 **ADFTutorialOnPremDF** Data Factory 首頁上的 [圖表] 圖格：
 
 	![圖表連結](./media/data-factory-move-data-between-onprem-and-cloud/OnPremDiagramLink.png)
 
@@ -368,7 +365,7 @@
 	您可以將管線和資料表放大、縮小、放大到 100%、縮放至適當比例和自動定位，以及顯示歷程資訊 (反白顯示所選取項目的上游和下游項目)。您可以按兩下物件 (輸入/輸出資料表或管線) 查看其屬性。
 
 ## 監視管線
-在此步驟中，您將使用 Azure 入口網站來監視 Azure Data Factory 的運作情形。您也可以使用 PowerShell Cmdlet 來監視資料集和管線。如需監視的詳細資料，請參閱[監視和管理管線](data-factory-monitor-manage-pipelines.md)。
+在此步驟中，您會使用 Azure 入口網站來監視 Azure Data Factory 的運作情形。您也可以使用 PowerShell Cmdlet 來監視資料集和管線。如需監視的詳細資料，請參閱[監視和管理管線](data-factory-monitor-manage-pipelines.md)。
 
 1. 巡覽至 **Azure 入口網站** (如果您已關閉它)
 2. 如果 [**ADFTutorialOnPremDF**] 刀鋒視窗尚未開啟，請按一下**開始面板**上的 [**ADFTutorialOnPremDF**] 以開啟此刀鋒視窗。
@@ -381,23 +378,21 @@
 	![EmpOnPremSQLTable 配量](./media/data-factory-move-data-between-onprem-and-cloud/OnPremSQLTableSlicesBlade.png)
 
 6. 請注意，到目前為止已經產生資料配量，且它們的狀態為 [**就緒**]。這是因為您已將資料插入 SQL Server 資料庫中，而資料一直留存於其中。確認下方的 [問題配量] 區段中沒有顯示任何配量。
-
-
-	[最近更新的配量] 和 [最近失敗的配量] 清單都依照 [上次更新時間] 排序。在下列情況中，配量的更新時間會變更。
-    
-
-	-  您以手動方式更新配量的狀態，例如，使用 **Set-AzureRmDataFactorySliceStatus** (或) 在配量的 [配量] 刀鋒視窗上按一下 [執行]。
-	-  配量因為執行而變更狀態 (例如，開始執行、執行結束但失敗、執行結束且成功等)。
- 
-	按一下清單的標題或 **...** (省略符號)，查看更長的配量清單。按一下工具列上的 [篩選] 以篩選配量。
 	
-	若要改成依配量開始/結束時間來檢視資料配量，請按一下 [資料配量 (依配量時間)] 磚。
+	[最近更新的配量] 和 [最近失敗的配量] 清單都依照 [上次更新時間] 排序。在下列情況中，配量的更新時間會變更。
 
+	您以手動方式更新配量的狀態，例如，使用 **Set-AzureRmDataFactorySliceStatus** (或) 在配量的 [配量] 刀鋒視窗上按一下 [執行]。
+	
+	配量因為執行而變更狀態 (例如，開始執行、執行結束但失敗、執行結束且成功等)。
+
+	按一下清單的標題或 **...** (省略符號)，查看更長的配量清單。按一下工具列上的 [篩選] 以篩選配量。
+
+	若要改成依配量開始/結束時間來檢視資料配量，請按一下 [資料配量 (依配量時間)] 磚。
 7. 現在，在 [**資料集**] 刀鋒視窗中，按一下 [**OutputBlobTable**]。
 
-	![OputputBlobTable slices][image-data-factory-output-blobtable-slices]
-8. 確認到目前為止的配量已產生，且狀態為 [就緒]。等待到目前為止的配量的狀態設為 [就緒]。
-9. 按一下清單中的任何資料配量，您應該會看到 [**資料配量**] 刀鋒視窗。
+	![OputputBlobTable 配量](./media/data-factory-move-data-between-onprem-and-cloud/OutputBlobTableSlicesBlade.png)
+8. 確認已看到目前為止的配量已產生，且狀態為 [就緒]。等待到目前為止的配量的狀態設為 [就緒]。
+9. 按一下清單中的任何資料配量，您應該會看到 [資料配量] 刀鋒視窗。
 
 	![資料配量刀鋒視窗](./media/data-factory-move-data-between-onprem-and-cloud/DataSlice.png)
 
@@ -405,7 +400,7 @@
 
 10. 按一下底部清單中的 [活動執行]，可查看 [活動執行詳細資料]。
 
-	![活動執行詳細資料刀鋒視窗][image-data-factory-activity-run-details]
+	![[活動執行詳細資料] 刀鋒視窗](./media/data-factory-move-data-between-onprem-and-cloud/ActivityRunDetailsBlade.png)
 
 11. 按一下 **X** 關閉所有刀鋒視窗，直到您
 12. 回到 **ADFTutorialOnPremDF** 的起始刀鋒視窗為止。
@@ -417,6 +412,6 @@
 ## 後續步驟
 
 - 如需資料管理閘道的所有詳細資料，請參閱[資料管理閘道](data-factory-data-management-gateway.md)一文。
-- 若要了解如何使用複製活動將資料從來源資料存放區移動到一般接收資料存放區，請參閱[從 Azure Blob 複製資料到 Azure SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
+- 若要了解如何使用複製活動將資料從來源資料存放區移動到接收資料存放區，請參閱[從 Azure Blob 複製資料到 Azure SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

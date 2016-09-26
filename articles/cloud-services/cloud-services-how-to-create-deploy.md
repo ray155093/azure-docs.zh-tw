@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/05/2016"
+	ms.date="09/06/2016"
 	ms.author="adegeo"/>
 
 
@@ -27,21 +27,18 @@
 
 Azure 傳統入口網站提供兩種方法讓您建立和部署雲端服務：「快速建立」和「自訂建立」。
 
-本主題說明如何使用「快速建立」方法建立新的雲端服務，然後使用 [上傳] 上傳雲端服務封裝並在 Azure 中部署。當您使用這個方法時，Azure 傳統入口網站會在過程中提供便利的連結，讓您完成所有要求。如果您準備在建立雲端服務時加以部署，可以同時使用**自訂建立**進行這兩項作業。
+本主題說明如何使用「快速建立」方法建立新的雲端服務，然後使用 [上傳] 來上傳雲端服務封裝並在 Azure 中加以部署。當您使用這個方法時，Azure 傳統入口網站會在過程中提供便利的連結，讓您完成所有要求。如果您準備在建立雲端服務時加以部署，可以同時使用**自訂建立**進行這兩項作業。
 
 > [AZURE.NOTE] 如果您計劃從 Visual Studio Team Services (VSTS) 發佈您的雲端服務，請使用 [快速建立]，然後從 [**快速啟動**] 或儀表板設定 VSTS 發佈。如需詳細資訊，請參閱[使用 Visual Studio Team Services 連續傳遞][TFSTutorialForCloudService]，或 [**快速啟動**] 頁面的說明。
 
 ## 概念
 需要三個元件才能部署應用程式成為 Azure 中的雲端服務：
 
-- **服務定義**
- 雲端服務定義檔 (.csdef) 定義服務模型，包括角色數目。
+- **服務定義** 雲端服務定義檔 (.csdef) 定義服務模型，包括角色數目。
 
-- **服務組態**
- 雲端服務組態檔 (.cscfg) 提供雲端服務和個別角色的組態設定，包括角色執行個體數。
+- **服務組態** 雲端服務組態檔 (.cscfg) 提供雲端服務和個別角色的組態設定，包括角色執行個體數。
 
-- **服務封裝**
- 服務封裝 (.cspkg) 包含應用程式程式碼和組態以及服務定義檔。
+- **服務封裝** 服務封裝 (.cspkg) 包含應用程式程式碼和組態以及服務定義檔。
   
 您可以在[這裡](cloud-services-model-and-package.md)深入了解這些內容，以及如何建立封裝。
 
@@ -101,7 +98,7 @@ Azure 傳統入口網站提供兩種方法讓您建立和部署雲端服務：�
 
 4. 在 [密碼] 中，輸入憑證的私密金鑰。
 
-5. 按一下 [確定] \(勾選記號)。
+5. 按一下 [確定] (勾選記號)。
 
 	![CloudServices\_AddaCertificate](./media/cloud-services-how-to-create-deploy/CloudServices_AddaCertificate.png)
 
@@ -125,7 +122,7 @@ Azure 傳統入口網站提供兩種方法讓您建立和部署雲端服務：�
 
     如果每個角色至少有兩個執行個體，Azure 只能保證在維護和服務更新期間存取雲端服務的成功率為 99.95%。若有需要，您可以在部署雲端服務後，在 [Scale] 頁面上新增其他角色執行個體。如需詳細資訊，請參閱[服務等級協定](https://azure.microsoft.com/support/legal/sla/)。
 
-6. 按一下 [確定] \(核取記號) 開始雲端服務部署。
+6. 按一下 [確定] (核取記號) 開始雲端服務部署。
 
 	![CloudServices\_UploadaPackage](./media/cloud-services-how-to-create-deploy/CloudServices_UploadaPackage.png)
 
@@ -144,7 +141,7 @@ Azure 傳統入口網站提供兩種方法讓您建立和部署雲端服務：�
     ![CloudServices\_QuickGlance](./media/cloud-services-how-to-create-deploy/CloudServices_QuickGlance.png)
 
 
-[TFSTutorialForCloudService]: http://go.microsoft.com/fwlink/?LinkID=251796
+[TFSTutorialForCloudService]: cloud-services-continuous-delivery-use-vso.md
  
 ## 後續步驟
 
@@ -153,4 +150,4 @@ Azure 傳統入口網站提供兩種方法讓您建立和部署雲端服務：�
 * [管理您的雲端服務](cloud-services-how-to-manage.md)。
 * 設定 [SSL 憑證](cloud-services-configure-ssl-certificate.md)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0914_2016-->

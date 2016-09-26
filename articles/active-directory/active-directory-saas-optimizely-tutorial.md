@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="jeevansd"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/25/2016"
+	ms.date="09/11/2016"
 	ms.author="jeedes"/>
 
 
@@ -33,8 +33,8 @@ Optimizely 與 Azure AD 整合提供下列優點：
 
 若要設定 Optimizely 與 Azure AD 的整合作業，需要下列項目：
 
-- 一個 Azure AD 訂用帳戶
-- 啟用 **Optimizely** 單一登入功能的訂用帳戶
+- Azure AD 訂用帳戶
+- 已啟用 **Optimizely** 單一登入功能的訂用帳戶
 
 
 > [AZURE.NOTE] 若要測試本教學課程中的步驟，我們不建議使用生產環境。
@@ -109,7 +109,7 @@ Optimizely 應用程式預期 SAML 判斷提示會包含名為 "email" 的屬性
 
 **若要設定與 Optimizely 搭配運作的 Azure AD 單一登入，請執行下列步驟：**
 
-1. 在 Azure 傳統入口網站中的 [Optimizely] 應用程式整合頁面上，按一下頂端功能表中的 [屬性]。
+1. 在 Azure 傳統入口網站的 [Optimizely] 應用程式整合頁面上，按一下頂端功能表中的 [屬性]。
      
     ![設定單一登入][5]
 
@@ -124,10 +124,10 @@ Optimizely 應用程式預期 SAML 判斷提示會包含名為 "email" 的屬性
 	c.從 [屬性值] 清單中選取屬性值 "userprincipalname"，或任何包含 Azure AD 與 Optimizely 可辨識電子郵件的值。
 
 	d.按一下 [完成]。
-3. 在頂端的功能表中，按一下 [快速啟動]。
+3. 按一下頂端功能表中的 [快速啟動]。
 
 	![設定單一登入][6]
-4. 在傳統入口網站的 [Optimizely] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+4. 在傳統入口網站的 [Optimizely] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
 
 	![設定單一登入][7]
 
@@ -135,7 +135,7 @@ Optimizely 應用程式預期 SAML 判斷提示會包含名為 "email" 的屬性
  	
 	![設定單一登入](./media/active-directory-saas-optimizely-tutorial/tutorial_optimizely_06.png)
 
-6. 在 [設定 App 設定] 對話方塊頁面執行下列步驟：
+6. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟：
 
 	![設定單一登入](./media/active-directory-saas-optimizely-tutorial/tutorial_optimizely_07.png)
 
@@ -208,11 +208,11 @@ Optimizely 應用程式預期 SAML 判斷提示會包含名為 "email" 的屬性
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請在頂端的功能表中，按一下 [使用者]。
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
 	
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-optimizely-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列上的 [加入使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-optimizely-tutorial/create_aaduser_04.png)
 
@@ -226,7 +226,7 @@ Optimizely 應用程式預期 SAML 判斷提示會包含名為 "email" 的屬性
 
     c.按 [下一步]。
 
-6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
+6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-optimizely-tutorial/create_aaduser_06.png)
 
@@ -258,8 +258,8 @@ Optimizely 應用程式預期 SAML 判斷提示會包含名為 "email" 的屬性
 
 在本節中，您會在 Optimizely 中建立名為 Britta Simon 的使用者。
 
-1. 在首頁上，選取 [Collaborators]\(共同作業者) 索引標籤
-2. 按一下 [New Collaborator]\(新增共同作業者)，來將新的共同作業者加入專案。
+1. 在首頁上，選取 [Collaborators] (共同作業者) 索引標籤
+2. 按一下 [New Collaborator] (新增共同作業者)，來將新的共同作業者加入專案。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-optimizely-tutorial/create_aaduser_10.png)
 
@@ -332,4 +332,4 @@ Optimizely 應用程式預期 SAML 判斷提示會包含名為 "email" 的屬性
 [204]: ./media/active-directory-saas-optimizely-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-optimizely-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -11,14 +11,14 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="06/21/2016" 
+    ms.date="09/11/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 TalentLMS 整合
   
 本教學課程的目的是要示範 Azure 與 TalentLMS 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
--   有效的 Azure 訂閱
+-   有效的 Azure 訂用帳戶
 -   TalentLMS 租用戶
   
 完成本教學課程之後，您指派給 TalentLMS 的 Azure AD 使用者就能夠從您的 TalentLMS 公司網站 (服務提供者起始登入)，或使用[存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
@@ -54,7 +54,7 @@
 
 5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-talentlms-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![從資源庫新增應用程式](./media/active-directory-saas-talentlms-tutorial/IC749322.png "從資源庫新增應用程式")
 
 6.  在 [搜尋方塊] 中，輸入 **TalentLMS**。
 
@@ -66,11 +66,11 @@
 
 ##設定單一登入
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶驗證至 TalentLMS。設定 TalentLMS 的單一登入需要您從憑證擷取指紋值。如果您不熟悉這個程序，請參閱[如何擷取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶驗證至 TalentLMS。設定 TalentLMS 的單一登入需要您從憑證擷取指紋值。如果您不熟悉這個程序，請參閱[如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure 傳統入口網站的 [TalentLMS] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [TalentLMS] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-talentlms-tutorial/IC777292.png "設定單一登入")
 
@@ -82,7 +82,7 @@
 
     ![登入 URL](./media/active-directory-saas-talentlms-tutorial/IC777294.png "登入 URL")
 
-4.  於 [在 TalentLMS 設定單一登入] 頁面上，按 [下載憑證] 以下載您的憑證，然後在本機電腦上將憑證檔案儲存為 **c:\\TalentLMS.cer**。
+4.  在 [設定在 TalentLMS 單一登入] 頁面上，若要下載您的憑證，請按一下 [下載憑證]，然後將憑證檔案以 **c:\\TalentLMS.cer** 方式儲存在本機。
 
     ![設定單一登入](./media/active-directory-saas-talentlms-tutorial/IC777295.png "設定單一登入")
 
@@ -99,18 +99,18 @@
     ![單一登入](./media/active-directory-saas-talentlms-tutorial/IC777297.png "單一登入")
 
     1.  從 [SSO 整合類型] 清單中，選取 [SAML 2.0]。
-    2.  在 Azure 傳統入口網站中的 [在 TalentLMS 設定單一登入] 對話頁面上，複製 [識別提供者識別碼] 值，然後將它貼至 [識別提供者 (IdP)] 文字方塊中。
+    2.  在 Azure 傳統入口網站的 [設定在 TalentLMS 單一登入] 對話方塊頁面上，複製 [識別提供者 ID] 值，然後將它貼到 [識別提供者 (IdP)] 文字方塊中。
     3.  從匯出的憑證複製**指紋**值，然後將它貼入 [憑證指紋] 文字方塊。
 
-        >[AZURE.TIP] 如需詳細資訊，請參閱[如何擷取憑證的指紋值](http://youtu.be/YKQF266SAxI)
+        >[AZURE.TIP] 如需詳細資訊，請參閱[如何擷取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
 
-    4.  在 Azure 傳統入口網站中的 [在 TalentLMS 設定單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後將它貼至 [遠端登入 URL] 文字方塊中。
-    5.  在 Azure 傳統入口網站中的 [在 TalentLMS 設定單一登入] 對話頁面上，複製 [遠端登出 URL] 值，然後將它貼至 [遠端登出 URL] 文字方塊中。
+    4.  在 Azure 傳統入口網站的 [設定在 TalentLMS 單一登入] 對話方塊頁面上，複製 [遠端登入 URL] 值，然後將它貼到 [遠端登入 URL] 文字方塊中。
+    5.  在 Azure 傳統入口網站的 [設定在 TalentLMS 單一登入] 對話方塊頁面上，複製 [遠端登出 URL] 值，然後將它貼到 [遠端登出 URL] 文字方塊中。
     6.  在 [TargetedID] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name**。
-7.  在 [名字] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname**。
-8.  在 [姓氏] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname**。
-9.  在 [電子郵件] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**
-10. 按一下 [儲存]。
+    7.  在 [名字] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname**。
+    8.  在 [姓氏] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname**。
+    9.  在 [電子郵件] 文字方塊中，輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**
+    10. 按一下 [儲存]。
 
 9.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
@@ -151,6 +151,6 @@
 
     ![是](./media/active-directory-saas-talentlms-tutorial/IC767830.png "是")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -4,7 +4,7 @@
 	services="search, sql-database,  storage, web-sites" 
 	documentationCenter="" 
 	authors="HeidiSteen" 
-	manager="paulettm"/>
+	manager="jhubbard"/>
 
 <tags 
 	ms.service="search" 
@@ -421,4 +421,4 @@ Azure 搜尋服務並不是唯一的驚喜。與我們先前的方式相比，�
 [Link 3 to another azure.microsoft.com documentation topic]: ../storage-whatis-account.md
  
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

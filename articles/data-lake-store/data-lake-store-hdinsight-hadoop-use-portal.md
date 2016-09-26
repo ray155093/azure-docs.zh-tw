@@ -4,7 +4,7 @@
    services="data-lake-store,hdinsight" 
    documentationCenter=""
    authors="nitinme"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"/>
 
 <tags
@@ -349,7 +349,7 @@
 
 ### 使用 Data Lake Store 做為 HBase 叢集的預設儲存體時的考量
 
-* 您可以針對多個 HBase 叢集使用相同的 Data Lake Store 帳戶。不過，您為叢集提供的 [HBase 根資料夾]\(上述螢幕擷取畫面中的步驟 # 4) 必須是唯一的。您「不得」跨兩個不同的 HBase 叢集使用相同的根資料夾。
+* 您可以針對多個 HBase 叢集使用相同的 Data Lake Store 帳戶。不過，您為叢集提供的 [HBase 根資料夾] (上述螢幕擷取畫面中的步驟 # 4) 必須是唯一的。您「不得」跨兩個不同的 HBase 叢集使用相同的根資料夾。
 * 雖然您可以使用 Data Lake Store 帳戶做為預設儲存體，但是 HBase 叢集記錄檔仍會儲存於與叢集相關聯的 Azure 儲存體 Blob (WASB) 中。這是上述螢幕擷取畫面中以藍色方塊反白顯示的項目。
 
 
@@ -361,4 +361,4 @@
 [makecert]: https://msdn.microsoft.com/library/windows/desktop/ff548309(v=vs.85).aspx
 [pvk2pfx]: https://msdn.microsoft.com/library/windows/desktop/ff550672(v=vs.85).aspx
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

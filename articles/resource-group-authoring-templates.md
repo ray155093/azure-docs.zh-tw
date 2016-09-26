@@ -48,7 +48,7 @@
 | 資源 | 是 | 在資源群組中部署或更新的資源類型。
 | 輸出 | 否 | 部署後傳回的值。
 
-本主題稍後處將會檢視範本的區段。現在，我們將檢視組成範本的一些語法。
+我們將在本主題稍後更詳細探討範本的各個區段。現在，我們將檢視組成範本的一些語法。
 
 ## 運算式和函式
 
@@ -112,7 +112,7 @@
 
 若要將參數指定為選用，請提供 defaultValue (可為空字串)。
 
-如果您指定的參數名稱與範本部署命令中的某個參數相同 (例如範本中包含名為 **ResourceGroupName** 的參數，而該名稱與 [New-AzureRmResourceGroupDeployment](https://msdn.microsoft.com/library/azure/mt679003.aspx) Cmdlet 中的 **ResourceGroupName** 參數相同)，則系統會提示您為後置詞是 **FromTemplate** 的參數 (例如 **ResourceGroupNameFromTemplate**) 提供一個值。一般而言，在為參數命名時，請勿使用與部署作業所用參數相同的名稱，以避免發生這種混淆的情形。
+如果您指定的參數名稱與範本部署命令中的某個參數相同 (例如範本中包含名為 **ResourceGroupName** 的參數，而該名稱與 [New-AzureRmResourceGroupDeployment][deployment2cmdlet] Cmdlet 中的 **ResourceGroupName** 參數相同)，則系統會提示您為參數提供一個後置詞為 **FromTemplate** 的值 (例如 **ResourceGroupNameFromTemplate**)。一般而言，在為參數命名時，請勿使用與部署作業所用參數相同的名稱，以避免發生這種混淆的情形。
 
 >[AZURE.NOTE] 所有密碼、金鑰和其他密碼都應該使用 **secureString** 類型。部署資源後，無法讀取類型為 secureString 的範本參數。
 
@@ -364,4 +364,7 @@ resources 區段包含要部署的資源陣列。在每個資源內，您也可�
 - 若要依指定的次數重複建立資源類型，請參閱[在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
 - 您可能需要使用不同資源群組內的資源。這常見於使用多個資源群組之間所共用的儲存體帳戶或虛擬網路時。如需詳細資訊，請參閱 [resourceId 函式](resource-group-template-functions.md#resourceid)。
 
-<!---HONumber=AcomDC_0803_2016-->
+
+[deployment2cmdlet]: https://msdn.microsoft.com/library/mt740620(v=azure.200).aspx
+
+<!---HONumber=AcomDC_0914_2016-->

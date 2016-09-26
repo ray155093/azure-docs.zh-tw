@@ -4,7 +4,7 @@
 	services="machine-learning,storage" 
 	documentationCenter="" 
 	authors="bradsev" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun" />
 
 <tags 
@@ -13,28 +13,28 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/14/2016" 
-	ms.author="fashah;garye;bradsev" />
+	ms.date="09/13/2016" 
+	ms.author="bradsev" />
 
 #使用 Pandas 瀏覽 Azure blob 儲存體中的資料
 
 本文件涵蓋如何使用 [Pandas](http://pandas.pydata.org/) Python 封裝瀏覽儲存在 Azure blob 容器的資料。
 
-以下**功能表**連結至其他主題，說明如何使用工具來瀏覽各種儲存體環境中的資料。此工作是 Cortana 分析程序 (CAP) 中的一個步驟。
+下列**功能表**所連結的主題會說明如何從各種不同的儲存體環境使用工具來瀏覽資料。此工作是[資料科學程序]()中的一個步驟。
 
 [AZURE.INCLUDE [cap-explore-data-selector](../../includes/cap-explore-data-selector.md)]
 
 
 ## 必要條件
-本文假設您已經：
+本文假設您擁有：
 
-* 建立 Azure 儲存體帳戶。如需指示，請參閱[建立 Azure 儲存體帳戶](../hdinsight-get-started.md#storage)
-* 將您的資料儲存在 Azure blob 儲存體帳戶。
+* 建立 Azure 儲存體帳戶。如需指示，請參閱[建立 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)
+* 將您的資料儲存在 Azure blob 儲存體帳戶。如需指示，請參閱[從 Azure 儲存體來回移動資料](../storage/storage-moving-data.md)
 
-## 將資料載入至 Pandas 資料框架
-若要進行探索和操作資料集，必須從 Blob 來源將資料集下載至本機檔案，然後將其載入 Pandas 資料框架中。以下是此程序的遵循步驟：
+## 將資料載入 Pandas 資料框架
+若要探索和操作資料集，必須先從 Blob 來源將資料集下載至本機檔案，然後將其載入 Pandas 資料框架。以下是此程序的遵循步驟：
 
-1. 使用 blob 服務，透過下列 Python 程式碼範例，從 Azure blob 下載資料。使用您的特定值來取代下列程式碼中的變數： 
+1. 使用 blob 服務，透過下列 Python 程式碼範例，從 Azure blob 下載資料。使用您的特定值來取代下列程式碼中的變數：
 
 	    from azure.storage.blob import BlobService
     	import tables
@@ -64,11 +64,11 @@
 
 以下是數個可使用 Pandas 探索資料的範例方式：
 
-1. 檢查**資料列和資料行的數目** 
+1. 檢查**資料列和資料行的數目**
 
 		print 'the size of the data is: %d rows and  %d columns' % dataframe_blobdata.shape
 
-2. **檢查**資料集中的前幾個或最後幾個**資料列**，如下所示：
+2. **檢查**資料集中的前幾個或最後幾個**資料列**：
 
 		dataframe_blobdata.head(10)
 		
@@ -115,4 +115,4 @@
 		#correlation between column_a and column_b
 		dataframe_blobdata[['<column_a>', '<column_b>']].corr()
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

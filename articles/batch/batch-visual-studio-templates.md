@@ -92,7 +92,7 @@ Batch 的**作業管理員**和**工作處理器 Visual Studio 範本**提供了
 
 3. 在 [Visual C#] 底下按一下 [雲端]，然後按一下 [具有作業分割器的 Azure Batch 作業管理員]。
 
-4. 輸入可描述應用程式並將此專案識別為作業管理員的名稱 (例如「LitwareJobManager」)。
+4. 輸入可描述應用程式並將此專案識別為作業管理員的名稱 (例如"LitwareJobManager")。
 
 5. 若要建立專案，按一下 [確定]。
 
@@ -280,7 +280,7 @@ job.JobManagerTask.EnvironmentSettings = new [] {
 
 3. 在 [Visual C#] 底下按一下 [雲端]，然後按一下 [Azure Batch 工作處理器]。
 
-4. 輸入可描述應用程式並將此專案識別為工作處理器的名稱 (例如「LitwareTaskProcessor」)。
+4. 輸入可描述應用程式並將此專案識別為工作處理器的名稱 (例如"LitwareTaskProcessor")。
 
 5. 若要建立專案，按一下 [確定]。
 
@@ -382,9 +382,9 @@ Run() 方法負責啟動命令列、啟動一或多個處理序、等候所有�
 
 Run() 實作具有下列項目的存取權︰
 
-* 工作參數，透過 \_parameters 欄位。
-* 作業和工作識別碼，透過 \_jobId 和 \_taskId 欄位。
-* 工作組態，透過 \_configuration 欄位。
+* 工作參數，透過 `_parameters` 欄位。
+* 作業和工作識別碼，透過 `_jobId` 和 `_taskId` 欄位。
+* 工作組態，透過 `_configuration` 欄位。
 
 **工作失敗**
 
@@ -427,7 +427,7 @@ job.CommonEnvironmentSettings = new [] {
 
 建議用戶端或作業管理員工作先建立工作所需的任何容器，再將工作新增至作業。如果您使用具有 SAS 的容器 URL 就必須這麼做，因為這樣的 URL 並未包含建立容器的權限。即使您傳遞的是儲存體帳戶認證仍建議您這麼做，因為它會儲存每一項必須在容器上呼叫 CloudBlobContainer.CreateIfNotExistsAsync 的工作。
 
-## 從用戶端程式碼傳遞參數和環境變數
+## 傳遞參數和環境變數
 
 ### 傳遞環境設定
 
@@ -449,9 +449,9 @@ Batch 服務具有簡單的機制，可在 [Microsoft.Azure.Batch.JobManagerTask
 
 ### 將參數傳遞給工作處理器範本
 
-您也可以使用工作處理器範本將參數傳遞至所實作的個別工作。和作業管理員範本的情形一樣，工作處理器範本也會尋找名為 parameters.json 的資源檔，並在找到時載入做為參數字典。
+您也可以使用工作處理器範本將參數傳遞至所實作的個別工作。就像使用作業管理員範本一樣，工作處理器範本會尋找名為
 
-有幾個選項可用來將參數傳遞給工作處理器工作︰
+parameters.json 的資源檔案，如果找到，即會將它載入以做為參數字典。有幾個選項可用來將參數傳遞給工作處理器工作︰
 
 * 重複使用作業參數 JSON。這適用於唯一的參數都是全作業參數時 (例如轉譯高度和寬度)。若要這樣做，請於在作業分割器中建立 CloudTask 時，從作業管理員工作的 ResourceFiles (`JobSplitter._jobManagerTask.ResourceFiles`) 將 parameters.json 資源檔物件的參考新增至 CloudTask 的 ResourceFiles 集合。
 
@@ -482,4 +482,4 @@ MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 B
 [solution_explorer01]: ./media/batch-visual-studio-templates/solution_explorer01.png
 [solution_explorer02]: ./media/batch-visual-studio-templates/solution_explorer02.png
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

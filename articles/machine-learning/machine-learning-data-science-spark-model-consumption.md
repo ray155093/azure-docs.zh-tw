@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="bradsev,deguhath,gokuma"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun" />
 
 <tags
@@ -20,12 +20,12 @@
 
 [AZURE.INCLUDE [machine-learning-spark-modeling](../../includes/machine-learning-spark-modeling.md)]
 
-本主題說明如何載入已使用 Spark MLlib 所建立、並儲存在 Azure Blob 儲存體 (WASB) 的機器學習服務 (ML) 模型，以及如何使用已儲存在 WASB 的資料集加以評分。它會顯示如何前置處理輸入資料、使用 MLlib 工具組中的索引和編碼函式來轉換功能，以及如何建立可做為輸入的標示點資料物件，以便使用 ML 模型加以評分。用於評分的模型包含線性迴歸、羅吉斯迴歸、隨機樹系模型和漸層停駐提升樹狀結構模型。
+本主題說明如何載入已使用 Spark MLlib 建立並儲存於 Azure Blob 儲存體 (WASB) 的機器學習服務 (ML) 模型，以及如何使用已儲存在 WASB 的資料集加以評分。它會顯示如何前置處理輸入資料、使用 MLlib 工具組中的索引和編碼函式來轉換功能，以及如何建立可做為輸入的標示點資料物件，以便使用 ML 模型加以評分。用於評分的模型包含線性迴歸、羅吉斯迴歸、隨機樹系模型和漸層停駐提升樹狀結構模型。
 
 
 ## 必要條件
 
-1. 您需要 Azure 帳戶和 HDInsight Spark 叢集。您需要 HDInsight 3.4 Spark 1.6 叢集才能開始這個逐步解說。請參閱[使用 Azure HDInsight 上的 Spark 的資料科學概觀](machine-learning-data-science-spark-overview.md)以取得這些需求、這裡使用的 NYC 2013 計程車資料的描述，以及如何從 Spark 叢集的 Jupyter Notebook 執行程式碼的指示。**machine-learning-data-science-spark-data-exploration-modeling.ipynb** Notebook，其中包含本主題中的程式碼範例 (位於 [Github](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark))。
+1. 您需要 Azure 帳戶和 HDInsight Spark 叢集。您需要 HDInsight 3.4 Spark 1.6 叢集才能開始這個逐步解說。請參閱[使用 Azure HDInsight 上的 Spark 的資料科學概觀](machine-learning-data-science-spark-overview.md)以取得這些需求、這裡使用的 NYC 2013 計程車資料的描述，以及如何從 Spark 叢集的 Jupyter Notebook 執行程式碼的指示。您可以在 [Github](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark) 上取得 **machine-learning-data-science-spark-data-exploration-modeling.ipynb** Notebook，其中包含本主題中的程式碼範例。
 
 2. 您也必須透過[使用 Spark 資料探索和模型化](machine-learning-data-science-spark-data-exploration-modeling.md)主題運作，在這裡建立要評分的機器學習服務模型。
 
@@ -104,16 +104,16 @@ datetime.datetime(2016, 4, 25, 23, 56, 19, 229403)
 
 使用和 Jupyter Notebook 一併提供的 PySpark 核心時，已具備預設內容，所以您不需要先明確地設定 Spark 或 Hive 內容，即可開始使用您開發的應用程式；這些都是預設可供您使用的項目。這些內容包括：
 
-- sc - 代表 Spark 
+- sc - 代表 Spark
 - sqlContext - 代表 Hive
 
 PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 呼叫的特殊命令。在這些程式碼範例中，就使用了兩個此類型的命令。
 
 - **%%local** 會指定後續行所列的程式碼，將在本機執行。程式碼必須是有效的 Python 程式碼。
-- **%%sql -o <variable name>** 會針對 sqlContext 執行 Hive 查詢。如果傳遞 -o 參數，則查詢的結果會當做 Pandas 資料框架，保存在 %%local Python 內容中。
+- **%%sql -o <variable name>** 針對 sqlContext 執行 Hive 查詢。如果傳遞 -o 參數，則查詢的結果會當做 Pandas 資料框架，保存在 %%local Python 內容中。
  
 
-如需關於 Jupyter Notebook 核心，以及其所提供的名稱包含 %% 之預先定義「magic」(例如：%%local) 的詳細資訊，請參閱 [HDInsight 上的 HDInsight Spark Linux 叢集可供 Jupyter Notebook 使用的核心](../hdinsight/hdinsight-apache-spark-jupyter-notebook-kernels.md)。
+如需關於 Jupyter Notebook 核心，以及其所提供的名稱包含 %% 之預先定義 "Magic" (例如：%%local) 的詳細資訊，請參閱 [HDInsight 上的 HDInsight Spark Linux 叢集可供 Jupyter Notebook 使用的核心](../hdinsight/hdinsight-apache-spark-jupyter-notebook-kernels.md)。
 
 
 ## 擷取資料並建立已清除的資料框架
@@ -191,11 +191,11 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 ### 功能轉換：索引並編碼分類功能以輸入至模型進行評分。 
 
-本節說明如何使用 `StringIndexer` 以索引分類資料，並將 `OneHotEncoder` 輸入模型中以編碼功能。
+本節說明如何使用 `StringIndexer` 來為分類資料編製索引，並利用 `OneHotEncoder` 輸入將特徵編碼至模組中。
 
 [StringIndexer](http://spark.apache.org/docs/latest/ml-features.html#stringindexer) 會將標籤的字串資料行編碼至標籤索引的資料行。索引是按標籤頻率排序。
 
-[OneHotEncoder](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder) 會將標籤索引資料行對應到二進位向量資料行 (最多有一個單一值)。這種編碼方式允許將預期連續值功能的演算法 (例如羅吉斯迴歸) 套用至分類功能。
+[OneHotEncoder](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder) 會將標籤索引資料行對應到二元向量資料行 (最多有一個單一值)。這種編碼方式允許將預期連續值功能的演算法 (例如羅吉斯迴歸) 套用至分類功能。
 	
 	#INDEX AND ONE-HOT ENCODE CATEGORICAL FEATURES
 
@@ -262,9 +262,9 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 ### 使用功能陣列建立 RDD 物件以輸入至模型
 
-本節包含程式碼，示範如何將分類的文字資料索引為 RDD 物件並加以單次編碼，以用來訓練及測試 MLlib 羅吉斯迴歸和樹狀結構型模型。索引的資料是儲存在[彈性分散式資料集 (RDD)](http://spark.apache.org/docs/latest/api/java/org/apache/spark/rdd/RDD.html) 物件中。這些是 Spark 中的基本抽象概念。RDD 物件代表不可變、資料分割、可與 Spark 平行操作的元素集合。
+本節包含程式碼，示範如何將分類的文字資料索引為 RDD 物件並加以單次編碼，以用來訓練及測試 MLlib 羅吉斯迴歸和樹狀結構型模型。已編製索引的資料是儲存在[彈性分散式資料集 (RDD)](http://spark.apache.org/docs/latest/api/java/org/apache/spark/rdd/RDD.html) 物件中。這些是 Spark 中的基本抽象概念。RDD 物件代表不可變、資料分割、可與 Spark 平行操作的元素集合。
 
-它也包含程式碼，顯示如何使用 MLlib 提供的 `StandardScalar` 來調整資料 (用於使用隨機梯度下降 (SGD) 的線性迴歸)，為訓練廣泛的機器學習服務模型的常用演算法。[StandardScaler](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.feature.StandardScaler) 是用來調整單位變異數的功能。調整功能，也稱為資料正規化，以確保具廣泛分散值的功能在目標函式中沒有過多權重。
+它也包含程式碼，顯示如何使用 MLlib 提供的 `StandardScalar` 來調整資料，用於使用隨機梯度下降法 (SGD) 的線性迴歸，此為訓練廣泛的機器學習服務模型的常用演算法。[StandardScaler](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.feature.StandardScaler) 是用來調整單位變異數的特徵。調整功能，也稱為資料正規化，以確保具廣泛分散值的功能在目標函式中沒有過多權重。
 
 
 	# CREATE RDD OBJECTS WITH FEATURE ARRAYS FOR INPUT INTO MODELS
@@ -373,7 +373,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 ## 評分線性迴歸模型
 
-我們搭配使用 [LinearRegressionWithSGD](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.regression.LinearRegressionWithSGD) 與隨機梯度下降 (SGD) 來訓練線性迴歸模型，以最佳化的方式預測支付的小費金額。
+我們搭配使用 [LinearRegressionWithSGD](https://spark.apache.org/docs/latest/api/python/pyspark.mllib.html#pyspark.mllib.regression.LinearRegressionWithSGD) 與隨機梯度下降法 (SGD) 來訓練線性迴歸模型，以最佳化的方式預測支付的小費金額。
 
 本節的程式碼示範如何從 Azure blob 儲存體載入線性迴歸模型、使用調整變數評分，然後將結果存回 blob。
 
@@ -385,7 +385,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 	#LOAD LIBRARIES​
 	from pyspark.mllib.regression import LinearRegressionWithSGD, LinearRegressionModel
 	
-	# LOAD MODEL AND SCORE USING **SCALED VARIABLES**
+	# LOAD MODEL AND SCORE USING ** SCALED VARIABLES **
 	savedModel = LinearRegressionModel.load(sc, linearRegFileLoc)
 	predictions = oneHotTESTregScaled.map(lambda features: (float(savedModel.predict(features))))
 	
@@ -412,7 +412,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 [隨機樹系](http://spark.apache.org/docs/latest/mllib-ensembles.html#Random-Forests)是整體的決策樹。其結合許多決策樹以降低風險過度膨脹。隨機樹系可處理分類功能、擴充至多類別分類設定、不需要調整功能，而且能夠擷取非線性和功能互動。隨機樹系是其中一個最成功的分類和迴歸的機器學習模型。
 
-[spark.mllib](http://spark.apache.org/mllib/) 使用連續和分類功能來支援二進位和多類別分類和迴歸的隨機樹系。
+[spark.mllib](http://spark.apache.org/mllib/) 使用連續和分類特徵來支援二元和多元分類和迴歸的隨機樹系。
 
 	# SCORE RANDOM FOREST MODELS FOR CLASSIFICATION AND REGRESSION
 
@@ -458,7 +458,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 本節的程式碼示範如何從 Azure blob 儲存體載入分類和迴歸的漸層停駐提升樹狀結構模型、使用標準分類器和迴歸措施來評分其效能，然後將結果存回 blob 儲存體。
 
-**spark.mllib** 使用連續和分類功能來支援二進位分類和迴歸的 GBT。
+**spark.mllib** 使用連續和分類特徵來支援二元分類和迴歸的 GBT。
 
 [漸層停駐提升樹狀結構](http://spark.apache.org/docs/latest/ml-classification-regression.html#gradient-boosted-trees-gbts) (GBT) 是整體的決策樹。GBT 反覆地訓練決策樹以盡可能降低遺失函式。GBT 可處理分類功能、不需要調整功能，而且能夠擷取非線性和功能互動。它們也可用於多類別分類設定。
 
@@ -529,17 +529,17 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 
 **輸出：**
 
-logisticRegFileLoc: LogisticRegressionWithLBFGS\_2016-05-0317\_22\_38.953814.txt
+logisticRegFileLoc: LogisticRegressionWithLBFGS_2016-05-0317_22\_38.953814.txt
 
-linearRegFileLoc: LinearRegressionWithSGD\_2016-05-0317\_22\_58.878949
+linearRegFileLoc: LinearRegressionWithSGD_2016-05-0317_22\_58.878949
 
-randomForestClassificationFileLoc: RandomForestClassification\_2016-05-0317\_23\_15.939247.txt
+randomForestClassificationFileLoc: RandomForestClassification_2016-05-0317_23\_15.939247.txt
 
-randomForestRegFileLoc: RandomForestRegression\_2016-05-0317\_23\_31.459140.txt
+randomForestRegFileLoc: RandomForestRegression_2016-05-0317_23\_31.459140.txt
 
-BoostedTreeClassificationFileLoc: GradientBoostingTreeClassification\_2016-05-0317\_23\_49.648334.txt
+BoostedTreeClassificationFileLoc: GradientBoostingTreeClassification_2016-05-0317_23\_49.648334.txt
 
-BoostedTreeRegressionFileLoc: GradientBoostingTreeRegression\_2016-05-0317\_23\_56.860740.txt
+BoostedTreeRegressionFileLoc: GradientBoostingTreeRegression_2016-05-0317_23\_56.860740.txt
 
 
 
@@ -547,7 +547,7 @@ BoostedTreeRegressionFileLoc: GradientBoostingTreeRegression\_2016-05-0317\_23\_
 
 Spark 提供一個機制，透過 REST 介面 (包含稱為 Livy 的元件) 從遠端提交批次工作或互動式查詢。Livy 預設在 HDInsight Spark 叢集上啟用。如需 Livy 的詳細資訊，請參閱[使用 Livy 遠端提交 Spark 作業](../hdinsight/hdinsight-apache-spark-livy-rest-interface.md)。
 
-您可以使用 Livy 從遠端提交作業，其批次批分儲存在 Azure blob 中的檔案，然後將結果寫入另一個 blob。若要這樣做，需要將 Python 指令碼從 [Github](https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/Spark/Python/ConsumeGBNYCReg.py) 上傳至 Spark 叢集的 blob。您可以使用類似 **Microsoft Azure 儲存體總管**或 **AzCopy** 的工具，將指令碼複製到叢集 blob。在本例中，我們會將指令碼上傳至 **wasb:///example/python/ConsumeGBNYCReg.py***。
+您可以使用 Livy 從遠端提交作業，其批次批分儲存在 Azure blob 中的檔案，然後將結果寫入另一個 blob。若要這樣做，需要將 Python 指令碼從 [Github](https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/Spark/Python/ConsumeGBNYCReg.py) 上傳至 Spark 叢集的 blob。您可以使用類似 **Microsoft Azure 儲存體總管**或 **AzCopy** 的工具，將指令碼複製到叢集 blob。在本例中，我們會將指令碼上傳至 ***wasb:///example/python/ConsumeGBNYCReg.py***。
 
 
 >[AZURE.NOTE] 您可在入口網站上，為 Spark 叢集關聯的儲存體帳戶尋找需要的存取金鑰。
@@ -597,9 +597,9 @@ Spark 提供一個機制，透過 REST 介面 (包含稱為 Livy 的元件) 從�
 
 您也可以將此 Python 程式碼新增至 [Azure Functions](https://azure.microsoft.com/documentation/services/functions/) 以觸發 Spark 作業提交，以根據各種事件 (像是計時器、建立或更新 blob) 來評分 blob。
 
-如果您偏好程式碼可用的用戶端體驗，請使用 [Azure Logic Apps](https://azure.microsoft.com/documentation/services/app-service/logic/) 來叫用 Spark 批次評分，方法是在 [Logic Apps Designer] 上定義 HTTP 動作並設定它的參數。
+如果您偏好程式碼可用的用戶端體驗，請使用 [Azure Logic Apps](https://azure.microsoft.com/documentation/services/app-service/logic/) 來叫用 Spark 批次評分，方法是在 **Logic Apps Designer** 上定義 HTTP 動作並設定它的參數。
 
-- 從 Azure 入口網站中，選取 [+ 新增] -> [ Web + 行動 ] -> [邏輯應用程式] 來建立新的邏輯應用程式。 
+- 從 Azure 入口網站中，選取 [+ 新增] -> [ Web + 行動 ] -> [邏輯應用程式] 來建立新的邏輯應用程式。
 - 輸入邏輯應用程式和 App Service 方案的名稱來引進 **Logic Apps Designer**。
 - 選取 HTTP 動作，然後輸入下圖顯示的參數︰
 
@@ -608,6 +608,6 @@ Spark 提供一個機制，透過 REST 介面 (包含稱為 Livy 的元件) 從�
 
 ## 後續步驟 
 
-**交叉驗證和超參數清除**：請參閱[使用 Spark 進階資料探索和模型化](machine-learning-data-science-spark-advanced-data-exploration-modeling.md)有關如何使用交叉驗證和超參數清除訓練模型。
+**交叉驗證和超參數掃掠**：如需如何使用交叉驗證和超參數掃掠訓練模型的相關資訊，請參閱[使用 Spark 進階資料探索和模型化](machine-learning-data-science-spark-advanced-data-exploration-modeling.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

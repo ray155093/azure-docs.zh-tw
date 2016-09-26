@@ -5,7 +5,7 @@
    services="machine-learning"
    documentationCenter="na"
    authors="brohrer-ms"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cjgronlund"/>
 
 <tags
@@ -79,9 +79,9 @@
 
 「多少？」或「有多少？」這類問題會預測數量。我們使用「迴歸演算法」來回答問題。
 
-為了解我們如何轉換這些問題，讓我們看看下列問題：「這位編輯對哪一個新聞報導最感興趣？」 它要求從多個可能性中預測單一選擇 (換句話說，就是「這是 A 或 B 或 C 或 D？」)，並會使用分類演算法。
+為了解我們如何轉換這些問題，讓我們看看下列問題：「這位讀者對哪一個新聞報導最感興趣？」 它要求從多個可能性中預測單一選擇 (換句話說，就是「這是 A 或 B 或 C 或 D？」)，並會使用分類演算法。
 
-但是，如果您將它重寫為「這位編輯對於此清單上每篇報導的感興趣程度有多少？」，則這個問題可能比較容易回答。 現在您可以為每篇文章提供一個數值的分數，然後很容易就能找出分數最高的文章。這會將分類問題改換措辭，使用迴歸問題或「多少？」來表述。
+但是，如果您將它重寫為「這位讀者對於此清單上每篇報導的感興趣程度有多少？」，則這個問題可能比較容易回答。 現在您可以為每篇文章提供一個數值的分數，然後很容易就能找出分數最高的文章。這會將分類問題改換措辭，使用迴歸問題或「多少？」來表述。
 
 ![重新制訂您的問題。分類問題與迴歸問題。](./media/machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data/machine-learning-data-science-classification-question-vs-regression-question.png)
 
@@ -89,7 +89,7 @@
 
 您將會發現特定系列的演算法 (就像我們新聞報導範例中的演算法) 會密切相關。您可以重新制訂問題，使用演算法來提供最實用的答案。
 
-但是，最重要的是，詢問明確的問題 - 您可以使用資料回答的問題。同時確定有正確的資料可回答問題。
+但最重要的是，詢問明確的問題 - 您可以使用資料回答的問題。同時確定有正確的資料可回答問題。
 
 我們談論了一些基本原則，讓您在詢問可使用資料回答的問題時使用。
 
@@ -101,4 +101,4 @@
   * [嘗試使用 Azure Machine Learning 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
   * [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

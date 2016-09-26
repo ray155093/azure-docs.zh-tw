@@ -4,7 +4,7 @@ description="深入了解使用共用存取簽章限制 HDInsight 對儲存在 A
 services="hdinsight"
 documentationCenter=""
 authors="Blackmist"
-manager="paulettm"
+manager="jhubbard"
 editor="cgronlun"/>
 
 <tags
@@ -157,9 +157,9 @@ HDInsight 會使用 Azure 儲存體 Blob 來儲存資料。HDInsight 必須具�
 
         Login-AzureRmAccount
     
-    出現提示時，請用您的 Azure 訂用帳戶登入。
+    出現提示時，請以適用於您 Azure 訂用帳戶的帳戶登入。
     
-    如果您的登入與多個 Azure 訂用帳戶相關聯，您可能需要使用 `Select-AzureRmSubscription` 來選取您想要使用的訂用帳戶。
+    如果您的登入會與多個 Azure 訂用帳戶相關聯，您可能需要使用 `Select-AzureRmSubscription` 來選取您想要使用的訂用帳戶。
 
 2. 從提示字元中，將目錄變更至包含 HDInsightSAS.ps1 檔案的 `CreateCluster` 目錄。然後使用下列命令以執行指令碼
         
@@ -290,4 +290,4 @@ __解決方案__：使用符合下列準則的密碼：
 
 [powershell]: ../powershell-install-configure.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

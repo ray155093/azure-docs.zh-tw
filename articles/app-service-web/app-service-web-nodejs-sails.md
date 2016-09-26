@@ -49,13 +49,15 @@
 
 接下來，建立 App Service 應用程式資源。您稍後要將 Sails.js 應用程式部署到其中。
 
-1. 在同一個終端機上登入 Azure，如下所示：
+1. 如下所示，登入 Azure：
+1. 在相同的終端機中，變更為 ASM 模式並登入 Azure：
 
+        azure config mode asm
         azure login
 
     依照提示，在瀏覽器中繼續使用具有 Azure 訂用帳戶的 Microsoft 帳戶進行登入。
 
-2. 確定您仍在 Sails.js 專案的根目錄中。在 Azure 中以下一個命令建立具有唯一應用程式名稱的 App Service 應用程式資源。您的 Web 應用程式的 URL 是 http://&lt;appname>.azurewebsites.net。
+2. 確定您仍在 Sails.js 專案的根目錄中。在 Azure 中以下一個命令建立具有唯一應用程式名稱的 App Service 應用程式資源。您的 Web 應用程式 URL 是 http://&lt;appname>.azurewebsites.net。
 
         azure site create --git <appname>
 
@@ -113,7 +115,7 @@
             "sails-sqlserver": "<leave-as-is>"
         },
 
-6. 儲存變更並測試變更，以確定您的應用程式仍在本機執行。若要這樣做，請刪除 `node_modules` 資料夾，然後執行︰
+6. 儲存變更並測試變更，以確定您的應用程式仍在本機執行。若要這樣做，請刪除 `node_modules` 資料夾，然後執行：
 
         npm install
         sails lift
@@ -206,21 +208,21 @@
             migrate: 'safe'
         },
 
-4. 開啟 config/env/development.js 來設定您的開發環境，並加入下列 `models` 物件︰
+4. 開啟 config/env/development.js 來設定您的開發環境，並加入下列 `models` 物件：
 
         models: {
             connection: 'sqlserver',
             migrate: 'alter'
         },
 
-    `migrate: 'alter'` 可讓您使用資料庫移轉功能，在 Azure SQL Database 中輕鬆地建立和更新資料庫資料表。不過，`migrate: 'safe'` 用於您的 Azure (生產) 環境，因為 Sails.js 不允許您在生產環境中使用 `migrate: 'alter'` (請參閱 [Sails.js 文件](http://sailsjs.org/documentation/concepts/models-and-orm/model-settings))。
+    `migrate: 'alter'` 可讓您使用資料庫移轉功能，在 Azure SQL Database 中輕鬆地建立和更新資料庫資料表。不過，要針對您的 Azure (生產) 環境使用 `migrate: 'safe'`，因為 Sails.js 不允許您在生產環境中使用 `migrate: 'alter'` (請參閱 [Sails.js 文件](http://sailsjs.org/documentation/concepts/models-and-orm/model-settings))。
 
-4. 從終端機，[產生](http://sailsjs.org/documentation/reference/command-line-interface/sails-generate) Sails.js [藍圖 API](http://sailsjs.org/documentation/concepts/blueprints) (就像您平常所做的一樣)，然後執行 `sails lift` 以使用 Sails.js 資料庫移轉建立資料庫。例如：
+4. 從終端機中，[產生](http://sailsjs.org/documentation/reference/command-line-interface/sails-generate) Sails.js [藍圖 API](http://sailsjs.org/documentation/concepts/blueprints) (就像您平常所做的一樣)，然後執行 `sails lift` 以使用 Sails.js 資料庫移轉來建立資料庫。例如：
 
          sails generate api mywidget
          sails lift
 
-    此命令所產生的 `mywidget` 模型是空的，但我們可以用它來顯示我們有資料庫連線能力。當您執行 `sails lift` 時，它會針對您的應用程式使用的模型，建立遺漏資料表。
+    此命令所產生的 `mywidget` 模型是空的，但我們可以用它來顯示我們有資料庫連線能力。當您執行 `sails lift` 時，它會針對應用程式所使用的模型建立遺漏的資料表。
 
 6. 存取您剛剛在瀏覽器中建立的藍圖 API。例如：
 
@@ -248,4 +250,4 @@
 - [在 Azure App Service 中開始使用 Node.js Web 應用程式](app-service-web-nodejs-get-started.md)
 - [使用 Node.js 模組與 Azure 應用程式搭配](../nodejs-use-node-modules-azure-apps.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

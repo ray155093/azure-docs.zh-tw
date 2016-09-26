@@ -2,7 +2,7 @@
 	pageTitle="在 HDInsight 上提交 Hadoop 工作 | Microsoft Azure"
 	description="了解如何將 Hadoop 工作提交至 Azure HDInsight Hadoop。"
 	editor="cgronlun"
-	manager="paulettm"
+	manager="jhubbard"
 	services="hdinsight"
 	documentationCenter=""
 	tags="azure-portal"
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/28/2016"
+	ms.date="09/14/2016"
 	ms.author="jgao"/>
 
 # 在 HDInsight 上提交 Hadoop 工作
@@ -26,4 +26,4 @@
 - [在 HDInsight 中使用 Sqoop](hdinsight-use-sqoop.md)
 - [在 HDInsight 中使用 Oozie](hdinsight-use-oozie.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="garyericson"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -200,4 +200,4 @@ Cortana Intelligence 資源庫可讓您只要按一個按鍵，就可以輕鬆�
 
 **[帶領我到資源庫 >>](http://gallery.cortanaintelligence.com)**
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0914_2016-->

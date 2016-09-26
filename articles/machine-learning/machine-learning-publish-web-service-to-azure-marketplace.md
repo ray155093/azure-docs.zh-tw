@@ -3,8 +3,8 @@
 	description="如何將 Azure Machine Learning Web 服務發佈至 Azure Marketplace" 
 	services="machine-learning" 
 	documentationCenter="" 
-	authors="LuisCabrer" 
-	manager="paulettm" 
+	authors="BharathS" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/31/2016" 
+	ms.date="09/08/2016" 
 	ms.author="bharaths"/>
 
 # 將 Azure Machine Learning Web 服務發佈至 Azure Marketplace 
@@ -21,7 +21,7 @@
 Azure Marketplace 可讓您發行 Azure Machine Learning Web 服務，作為供外部客戶付費或免費使用的服務。本文章將提供該程序的概觀，以及入門使用的指引連結。透過此程序，您將可讓您的 Web 服務成為可供其他開發人員運用在其應用程式中的服務。
 
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## 發行程序概觀 
 
@@ -29,15 +29,15 @@ Azure Marketplace 可讓您發行 Azure Machine Learning Web 服務，作為供�
 
 1. 建立及發佈機器學習服務要求-回應服務 (RRS)
 2. 將服務部署至實際執行環境中，並取得 API 金鑰與 OData 端點資訊。
-3. 使用已發行之 Web 服務的 URL，發行至 [Azure Marketplace (Data Market)](https://publish.windowsazure.com/workspace/)。 
-4. 您的產品在提交之後必須經過審閱和核准，才可供客戶購買。發行程序可能需要數個工作天。 
+3. 使用已發行之 Web 服務的 URL，發行至 [Azure Marketplace (Data Market)](https://publish.windowsazure.com/workspace/)。
+4. 您的產品在提交之後必須經過審閱和核准，才可供客戶購買。發行程序可能需要數個工作天。
 
 ## 逐步解說
 ###步驟 1：建立及發佈機器學習服務要求-回應服務 (RRS)###
  如果您尚未這樣做，請查看這個[逐步解說](machine-learning-walkthrough-5-publish-web-service.md)。
 
 ###步驟 2：將服務部署至實際執行環境中，並取得 API 金鑰與 OData 端點資訊###
-1. 從 [Azure 傳統入口網站](http://manage.windowsazure.com)，從左側的導覽列中選取 [機器學習服務] 選項，並選取您的工作區。 
+1. 從 [Azure 傳統入口網站](http://manage.windowsazure.com)，從左側的導覽列中選取 [機器學習服務] 選項，並選取您的工作區。
 
 2. 按一下 [**Web 服務**] 索引標籤，並選取您想要發佈到 Marketplace 的 Web 服務。
 
@@ -64,10 +64,10 @@ Azure Marketplace 可讓您發行 Azure Machine Learning Web 服務，作為供�
 
 ###步驟 3：使用已發行之 Web 服務的 URL，發行至 Azure Marketplace (資料市場)###
 
-1.  瀏覽至 [Azure Marketplace (資料市場)](http://datamarket.azure.com/home) 
+1.  瀏覽至 [Azure Marketplace (資料市場)](http://datamarket.azure.com/home)
 2.  按一下頁面頂端的 [**發佈**] 連結。這帶您前往 [Microsoft Azure 發佈入口網站](https://publish.windowsazure.com)
 3.  按一下 [**發行者**] 區段，以註冊為發行者。
-4.	建立新產品時，請選取 [資料服務]，然後按一下 [建立新的資料服務]。 
+4.	建立新產品時，請選取 [資料服務]，然後按一下 [建立新的資料服務]。
  
 	![Azure Marketplace][image1]
 
@@ -109,4 +109,4 @@ Azure Marketplace 可讓您發行 Azure Machine Learning Web 服務，作為供�
 [odata]: ./media/machine-learning-publish-web-service-to-azure-marketplace/odata.png
  
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0914_2016-->

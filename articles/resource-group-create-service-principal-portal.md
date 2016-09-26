@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/18/2016"
+   ms.date="09/07/2016"
    ms.author="tomfitz"/>
 
 # 使用入口網站來建立可存取資源的 Active Directory 應用程式和服務主體
@@ -148,9 +148,23 @@
 
      如果您沒有授與應用程式存取權的正確權限，您必須要求您的訂用帳戶系統管理員將您新增至「使用者存取系統管理員」角色，或要求系統管理員授與您應用程式的存取權。
 
-1. 瀏覽至您想要讓應用程式指派至的範圍層級。因應本主題，您可以瀏覽至某個資源群組，然後選取 [資源群組] 刀鋒視窗上的 [存取控制]。
+1. 瀏覽至您想要讓應用程式指派至的範圍層級。若要指派訂用帳戶範圍的角色，請選取 [訂用帳戶]。
+
+     ![選取訂用帳戶](./media/resource-group-create-service-principal-portal/select-subscription.png)
+
+     選取指派應用程式時作為對象的特定訂用帳戶。
+
+     ![選取要指派的訂用帳戶](./media/resource-group-create-service-principal-portal/select-one-subscription.png)
+
+     選取右上角的 [存取] 圖示。
+
+     ![選取存取](./media/resource-group-create-service-principal-portal/select-access.png)
+     
+     或者，若要指派資源群組範圍的角色，請瀏覽至資源群組。從 [資源群組] 刀鋒視窗中，選取 [存取控制]。
 
      ![選取使用者](./media/resource-group-create-service-principal-portal/select-users.png)
+
+     以下是就所有範圍而言都相同的步驟。
 
 2. 選取 [新增]。
 
@@ -208,4 +222,4 @@
 - 如要了解如何指定安全性原則，請參閱[Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
 - 若要取得這些步驟的示範影片，請參閱[利用 Azure Active Directory 啟用 Azure 資源的程式化管理](https://channel9.msdn.com/Series/Azure-Active-Directory-Videos-Demos/Enabling-Programmatic-Management-of-an-Azure-Resource-with-Azure-Active-Directory)。
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

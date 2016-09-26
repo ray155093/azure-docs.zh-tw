@@ -121,7 +121,7 @@ azure network lb rule create -g TestRG -l TestLB -n WebRule -p tcp -f 80 -b 80 \
 建立負載平衡器健全狀況探查：
 
 ```bash
-azure network lb probe create -g TestRG -l TestLB -n HealthProbe -p "http" -f healthprobe.aspx -i 15 -c 4
+azure network lb probe create -g TestRG -l TestLB -n HealthProbe -p "tcp" -i 15 -c 4
 ```
 
 使用 JSON 剖析器來確認負載平衡器、IP 集區及 NAT 規則：
@@ -788,7 +788,7 @@ info:    network lb rule create command OK
 健全狀況探查會定期檢查受負載平衡器保護的 VM，以確定它們依定義的方式運作及回應要求。否則，就從將它們從作業中移除，以確保不會將使用者導向到它們。您可以定義健全狀況探查的自訂檢查，以及間隔和逾時值。如需有關健全狀況探查的詳細資訊，請參閱[負載平衡器探查](../load-balancer/load-balancer-custom-probe-overview.md)。
 
 ```bash
-azure network lb probe create -g TestRG -l TestLB -n HealthProbe -p "http" -f healthprobe.aspx -i 15 -c 4
+azure network lb probe create -g TestRG -l TestLB -n HealthProbe -p "tcp" -i 15 -c 4
 ```
 
 輸出：
@@ -800,7 +800,7 @@ warn:    Using default probe port: 80
 + Updating load balancer "TestLB"
 data:    Name                            : HealthProbe
 data:    Provisioning state              : Succeeded
-data:    Protocol                        : Http
+data:    Protocol                        : Tcp
 data:    Port                            : 80
 data:    Interval in seconds             : 15
 data:    Number of probes                : 4
@@ -928,14 +928,13 @@ azure network lb show -g TestRG -n TestLB --json | jq '.'
   "probes": [
     {
       "etag": "W/"62a7c8e7-859c-48d3-8e76-5e078c5e4a02"",
-      "id": "/subscriptions/guid/resourceGroups/TestRG/providers/Microsoft.Network/loadBalancers/TestLB/probes/HealthProbe",
-      "protocol": "Http",
-      "port": 80,
-      "intervalInSeconds": 15,
-      "numberOfProbes": 4,
-      "requestPath": "healthprobe.aspx",
+      "name": "HealthProbe",
       "provisioningState": "Succeeded",
-      "name": "HealthProbe"
+      "numberOfProbes": 4,
+      "intervalInSeconds": 15,
+      "port": 80,
+      "protocol": "Tcp",
+      "id": "/subscriptions/guid/resourceGroups/TestRG/providers/Microsoft.Network/loadBalancers/TestLB/probes/HealthProbe"
     }
   ]
 }
@@ -1273,4 +1272,4 @@ azure group deployment create -f TestRG.json -g NewRGFromTemplate
 
 現在您已準備好開始使用多個網路元件和 VM。您可以利用這裡介紹的核心元件，使用這個範例環境來建置您的應用程式。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

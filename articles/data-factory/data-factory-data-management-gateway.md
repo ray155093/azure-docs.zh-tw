@@ -80,7 +80,7 @@
 1. 瀏覽至 [Microsoft 資料管理閘道下載頁面](https://www.microsoft.com/download/details.aspx?id=39717)。
 2. 按一下 [下載]，選取適當的版本 (**32 位元**與**64 位元**)，然後按 [下一步]。
 3. 直接執行 **MSI** 或將其儲存至您的硬碟並執行。
-4. 在 [歡迎] 頁面上，選取 [語言]，按 [下一步]。
+4. 在 [歡迎] 頁面上，選取一個「語言」，然後按 [下一步]。
 5. **接受**使用者授權合約，然後按 [下一步]。
 6. 選取要安裝閘道的**資料夾**，然後按 [下一步]。
 7. 在 [準備安裝] 頁面上，按一下 [安裝]。
@@ -153,7 +153,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 
 ![在註冊期間設定 Proxy](media/data-factory-data-management-gateway/SetProxyDuringRegistration.png)
 
-閘道會使用 Proxy 伺服器來連線到雲端服務。按一下初始設定期間的 [變更] 連結以啟動 Proxy 設定對話方塊。
+閘道會使用 Proxy 伺服器來連線到雲端服務。進行初始設定時，按一下 [變更] 連結。您會看到 [Proxy 設定] 對話方塊。
 
 ![使用組態管理員來設定 Proxy](media/data-factory-data-management-gateway/SetProxySettings.png)
 
@@ -181,7 +181,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 ### 在 diahost.exe.config 中設定 Proxy 伺服器設定
 如果您為 HTTP Proxy 選取 [使用系統 Proxy] 設定，閘道就會使用 diahost.exe.config 中的 Proxy 設定。如果 diahost.exe.config 中未指定任何 Proxy，閘道就會直接連線到雲端服務而不經由 Proxy。下列程序說明如何更新組態檔。
 
-1.	在「檔案總管」中，建立一份 C:\\Program Files\\Microsoft Data Management Gateway\\1.0\\Shared\\diahost.exe.config 的安全複本來備份原始檔案。
+1.	在「檔案總管」中，建立一份 C:\\Program Files\\Microsoft Data Management Gateway\\2.0\\Shared\\diahost.exe.config 的安全複本來備份原始檔案。
 2.	以系統管理員身分啟動 Notepad.exe，並開啟文字檔 C:\\Program Files\\Microsoft Data Management Gateway\\2.0\\Shared\\diahost.exe.config。您會看見 system.net 的預設標籤，如下所示：
 
 			<system.net>
@@ -205,7 +205,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 除了這幾點以外，您也必須確定 Microsoft Azure 包含在公司的允許清單中。如需有效的 Microsoft Azure IP 位址清單，可從 [Microsoft 下載中心](https://www.microsoft.com/download/details.aspx?id=41653)下載。
 
 #### 防火牆和 Proxy 伺服器相關問題的可能徵兆
-如果發生如以下的錯誤，有可能是因為防火牆或 Proxy 伺服器的組態不正確，使得閘道無法連線到 Data Factory 來進行自我驗證。請參閱上一節，以確保您的防火牆和 Proxy 伺服器的設定皆正確。
+如果發生類似以下的錯誤，有可能是因為防火牆或 Proxy 伺服器的組態不正確，使得閘道無法連線到 Data Factory 來進行自我驗證。請參閱上一節，以確保您的防火牆和 Proxy 伺服器的設定皆正確。
 
 1.	當您嘗試註冊閘道器時，您會收到下列錯誤：「無法註冊閘道器金鑰。再次嘗試註冊閘道器金鑰之前，請確認資料管理閘道已處於連線狀態，且已啟動資料管理閘道主機服務。」
 2.	當您開啟「組態管理員」時，您會看到「已中斷連線」或「正在連接」狀態。 檢視 Windows 事件記錄檔時，在 [事件檢視器] > [應用程式和服務記錄檔] > [資料管理閘道] 底下，您會看到如以下的錯誤訊息：`Unable to connect to the remote server` `A component of Data Management Gateway has become unresponsive and restarts automatically. Component name: Gateway.`
@@ -217,7 +217,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 
 	msiexec /q /i DataManagementGateway.msi NOFIREWALL=1
 
-如果您選擇不在閘道機器上開啟連接埠 8050，則若要設定內部部署連結服務，請使用「設定認證」應用程式以外的機制來設定資料存放區認證。例如，您可以使用 [New-AzureRmDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) PowerShell Cmdlet。如需了解如何設定資料存放區認證，請參閱[設定認證和安全性](#set-credentials-and-securityy)一節。
+如果您選擇不開啟閘道機器上的連接埠 8050，則請使用「設定認證」應用程式以外的機制來設定資料存放區認證。例如，您可以使用 [New-AzureRmDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) PowerShell Cmdlet。如需了解如何設定資料存放區認證，請參閱[設定認證和安全性](#set-credentials-and-securityy)一節。
 
 ## 更新 
 根據預設，資料管理閘道會在有更新版本的閘道時自動進行更新。在所有排定的工作完成前，閘道不會進行更新。更新作業完成後，閘道才會處理後續的工作。如果更新失敗，閘道會回復為舊版本。
@@ -246,7 +246,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 您可以執行下列動作來停用/啟用自動更新功能：
 
 1. 在閘道電腦上啟動 Windows PowerShell。
-2. 切換至 C:\\Program Files\\Microsoft Data Management Gateway\\1.0\\PowerShellScript 資料夾。
+2. 切換至 C:\\Program Files\\Microsoft Data Management Gateway\\2.0\\PowerShellScript 資料夾。
 3. 執行下列命令，將自動更新功能關閉 (停用)。
 
 		.\GatewayAutoUpdateToggle.ps1  -off
@@ -259,7 +259,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 安裝閘道後，您可以用下列方式啟動 [資料管理閘道組態管理員]：
 
 - 在 [搜尋] 視窗中，輸入**資料管理閘道**以存取這個公用程式。
-- 在資料夾 **C:\\Program Files\\Microsoft Data Management Gateway\\1.0\\Shared** 中執行 **ConfigManager.exe**
+- 執行下列資料夾中的 **ConfigManager.exe** 可執行檔：**C:\\Program Files\\Microsoft Data Management Gateway\\2.0\\Shared**
  
 ### 首頁
 首頁可讓您執行下列作業︰
@@ -340,6 +340,32 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 
 ![資料管理閘道 - 封存記錄檔](media/data-factory-data-management-gateway/data-management-gateway-archive-logs.png)
 
+### 閘道在線上但功能受限 
+基於下列其中一個原因，您會看到閘道的狀態為 [在線上但功能受限]。
+
+- 閘道無法透過服務匯流排連線到雲端服務。
+- 雲端服務無法透過服務匯流排連線到閘道。
+
+當閘道在線上但功能受限時，您可能無法使用「Data Factory 複製精靈」來建立資料管線，以將資料複製到內部部署資料存放區，或從該資料存放區複製資料。
+
+此問題 (在線上但功能受限) 的解決方式/因應措施取決於是閘道無法連線到雲端服務，還是雲端服務無法連線到閘道。下列各節將提供這些因應措施。
+
+#### 閘道無法透過服務匯流排連線到雲端服務
+請依照下列步驟操作，讓閘道回到線上：
+
+1. 啟用閘道機器「Windows 防火牆」上及「公司防火牆」上的輸出連接埠 9350-9354。如需詳細資料，請參閱[連接埠和防火牆](#ports-and-firewall)一節。
+2. 設定閘道上的 Proxy 設定。如需詳細資料，請參閱 [Proxy 伺服器考量](#proxy-server-considerations)一節。
+
+您可以使用 Azure 入口網站中的「Data Factory 編輯器」(或) Visual Studio (或) Azure PowerShell 作為因應措施。
+
+#### 錯誤：雲端服務無法透過服務匯流排連線到閘道。
+請依照下列步驟操作，讓閘道回到線上：
+ 
+1. 啟用閘道機器「Windows 防火牆」上及「公司防火牆」上的輸出連接埠 5671 和 9350-9354。如需詳細資料，請參閱[連接埠和防火牆](#ports-and-firewall)一節。
+2. 設定閘道上的 Proxy 設定。如需詳細資料，請參閱 [Proxy 伺服器考量](#proxy-server-considerations)一節。
+3. 移除 Proxy 伺服器上的靜態 IP 限制。
+
+您可以使用 Azure 入口網站中的「Data Factory 編輯器」(或) Visual Studio (或) Azure PowerShell 作為因應措施。
  
 ## 在電腦之間移動閘道
 本節提供將閘道器用戶端從一台電腦移至另一台電腦的步驟。
@@ -406,7 +432,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 
 當您使用「設定認證」應用程式時，入口網站會使用在閘道機器上「閘道組態管理員」的 [憑證] 索引標籤中指定的憑證來加密認證。
 
-如果您要尋找以 API 為基礎的方法來加密認證，可以使用 [New-AzureRmDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) PowerShell Cmdlet 來加密認證。此 cmdlet 會使用閘道器設定用來加密認證的憑證。您需將已加密的認證新增到 JSON 檔案中 **connectionString** 的 **EncryptedCredential** 元素中，此 JSON 檔案是您搭配 [New-AzureRmDataFactoryLinkedService](https://msdn.microsoft.com/library/mt603647.aspx) Cmdlet 使用或在「Data Factory 編輯器」的 JSON 程式碼片段中使用的檔案。
+如果您要尋找以 API 為基礎的方法來加密認證，可以使用 [New-AzureRmDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) PowerShell Cmdlet 來加密認證。此 cmdlet 會使用閘道器設定用來加密認證的憑證。您需將加密認證新增到 JSON 中 **connectionString** 的 **EncryptedCredential** 元素中。您需搭配 [New-AzureRmDataFactoryLinkedService](https://msdn.microsoft.com/library/mt603647.aspx) Cmdlet 或在「Data Factory 編輯器」中使用 JSON。
 
 	"connectionString": "Data Source=<servername>;Initial Catalog=<databasename>;Integrated Security=True;EncryptedCredential=<encrypted credential>",
 
@@ -442,7 +468,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 		Key               : ADF#00000000-0000-4fb8-a867-947877aef6cb@fda06d87-f446-43b1-9485-78af26b8bab0@4707262b-dc25-4fe5-881c-c8a7c3c569fe@wu#nfU4aBlq/heRyYFZ2Xt/CD+7i73PEO521Sj2AFOCmiI
 
 	
-4. 在 Azure PowerShell 中，切換到下列資料夾：**C:\\Program Files\\Microsoft Data Management Gateway\\1.0\\PowerShellScript**。執行與本機變數 **$Key** 關聯的 **RegisterGateway.ps1**，如下列命令所示。此指令碼會向您稍早建立的邏輯閘道註冊您機器上安裝的用戶端代理程式。
+4. 在 Azure PowerShell 中，切換到下列資料夾：**C:\\Program Files\\Microsoft Data Management Gateway\\2.0\\PowerShellScript**。執行與本機變數 **$Key** 關聯的 **RegisterGateway.ps1**，如下列命令所示。此指令碼會向您稍早建立的邏輯閘道註冊您機器上安裝的用戶端代理程式。
 
 		PS C:\> .\RegisterGateway.ps1 $MyDMG.Key
 		
@@ -470,4 +496,4 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 ## 後續步驟
 - 如需閘道的詳細資訊，請參閱[資料管理閘道](data-factory-data-management-gateway.md)文章。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

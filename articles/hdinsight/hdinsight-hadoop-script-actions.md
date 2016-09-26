@@ -5,7 +5,7 @@
 	documentationCenter=""
 	tags="azure-portal"
 	authors="mumian"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -254,7 +254,7 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝其他元件：
 
 1. 開啟 Visual Studio。
 2. 按一下 [檢視]，然後按一下 [伺服器總管]。
-3. 以滑鼠右鍵按一下 ["Azure"]、按一下 [連線到 Microsoft Azure 訂用帳戶]，然後輸入您的認證。
+3. 以滑鼠右鍵按一下 [Azure]、按一下 [連接到 Microsoft Azure 訂用帳戶]，然後輸入您的認證。
 4. 依序展開**儲存體**、做為預設檔案系統的 Azure 儲存體帳戶及**資料表**，然後按兩下資料表名稱。
 
 
@@ -320,4 +320,4 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝其他元件：
 <!--Reference links in article-->
 [1]: https://msdn.microsoft.com/library/96xafkes(v=vs.110).aspx
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

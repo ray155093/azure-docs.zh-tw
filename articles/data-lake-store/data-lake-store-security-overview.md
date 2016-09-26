@@ -4,7 +4,7 @@
    services="data-lake-store"
    documentationCenter=""
    authors="nitinme"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"/>
 
 <tags
@@ -123,4 +123,4 @@ Data Lake Store 是 Hadoop 分散式檔案系統 (HDFS) 之類的階層式檔案
 - [開始使用 Data Lake Store](data-lake-store-get-started-portal.md)
 - [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0914_2016-->

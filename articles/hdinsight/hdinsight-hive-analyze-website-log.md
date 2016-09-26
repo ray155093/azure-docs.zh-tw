@@ -4,7 +4,7 @@
 	services="hdinsight" 
 	documentationCenter="" 
 	authors="nitinme" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -32,14 +32,14 @@
 
 ##必要條件
 
-- 您必須已在 Azure HDInsight 上佈建 Hadoop 叢集。如需指示，請參閱＜[佈建 HDInsight 叢集][hdinsight-provision]＞。 
+- 您必須已在 Azure HDInsight 上佈建 Hadoop 叢集。如需指示，請參閱＜[佈建 HDInsight 叢集][hdinsight-provision]＞。
 - 您必須已安裝 Microsoft Excel 2013 或 Excel 2010。
 - 您必須有 [Microsoft Hive ODBC 驅動程式](http://www.microsoft.com/download/details.aspx?id=40886)，才能從 Hive 將資料匯入 Excel 中。
 
 
 ##執行範例
 
-1. 從 [Azure 入口網站](https://portal.azure.com/)的 [「開始面板」]\(若您已在該處釘選叢集)，按一下您要在其中執行範例的叢集磚。
+1. 從 [Azure 入口網站](https://portal.azure.com/)的 [「開始面板」] (若您已在該處釘選叢集)，按一下您要在其中執行範例的叢集磚。
 
 2. 在叢集刀鋒視窗的 [快速連結] 之下，按一下 [叢集儀表板]，然後從 [叢集儀表板] 刀鋒視窗按一下 [HDInsight 叢集儀表板]。或者，您也可以使用下列 URL 直接開啟儀表板：
 
@@ -61,4 +61,4 @@
 [img-hdi-weblogs-sample]: ./media/hdinsight-hive-analyze-website-log/hdinsight-weblogs-sample.png
  
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -4,7 +4,7 @@
    services="data-lake-store,stream-analytics" 
    documentationCenter=""
    authors="nitinme"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"/>
 
 <tags
@@ -28,7 +28,7 @@
 
 - **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-- **啟用您的 Azure 訂用帳戶**以使用資料湖存放區公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
+- **啟用您的 Azure 訂用帳戶**以使用「Data Lake Store 公開預覽版」。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
 
 - **Azure 儲存體帳戶**您將使用來自此帳戶的 Blob 容器來輸入串流分析作業的資料。本教學課程中，假設您建立名為 **datalakestoreasa** 的儲存體帳戶，並在該帳戶中建立名為 **datalakestoreasacontainer** 的容器。一旦您已建立容器，請將範例資料檔案上傳給容器。您可以從 [Azure Data Lake Git 儲存機制](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData/Drivers.txt)取得範例資料檔案。您可以使用各種用戶端，例如：[Azure 儲存體總管](http://storageexplorer.com/)，將資料上傳至 Blob 容器。
 
@@ -129,4 +129,4 @@
 
 * [建立 HDInsight 叢集以使用 Data Lake Store](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0914_2016-->

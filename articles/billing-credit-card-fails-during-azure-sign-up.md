@@ -15,30 +15,36 @@
 	ms.tgt_pltfrm="ibiza"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/30/2016"
+	ms.date="08/31/2016"
 	ms.author="cjiang"/>
 
 # 如果註冊時信用卡或金融卡遭到拒絕
 
+> [AZURE.NOTE] 如果您要嘗試變更或移除現有的卡片，請了解如何[管理您的付款資訊](billing-how-to-change-credit-card.md)。
+
+> 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+
 如果當您嘗試註冊 Azure 時，您的信用卡或金融卡遭到拒絕，則問題原因可能是下列其中之一。
 
-- 您使用的是虛擬卡或預付卡。虛擬卡、預付信用卡或金融卡不被視為有效的付費選項。
-
-- [根據您的國家/地區而定，接受的信用卡和轉帳卡提供者有所不同](#credit-or-debit-card-details)。在選擇信用卡的下拉式清單中，您將只會看到在您所選國家中有效的選項。
+- [接受的信用卡和轉帳卡提供者會依據您的國家/地區而有所不同，因此您可能需要使用國際卡](#credit-or-debit-card-details)。在選擇信用卡的下拉式清單中，您將只會看到在您所選國家中有效的選項。
 
 - [您的信用卡或金融卡資訊不正確或不完整](#credit-or-debit-card-details)。您必須更新付款資訊才能繼續。
 
 - [您在嘗試啟用第二個免費試用](#azure-free-trial)；每位使用者只能取得一個 Azure 免費試用優惠。
 
-- 如果您確實使用有效的信用卡或金融卡，請確定卡片可正常使用且您的銀行不會因為其安全性原則而封鎖線上交易。請連絡您的銀行以解決此問題。
+- 您使用的是虛擬卡或預付卡。虛擬卡、預付信用卡或金融卡不被視為有效的付費選項。
 
-> [AZURE.NOTE] 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+- 您的卡可能已失效或被鎖卡。如果您確實使用有效的信用卡或金融卡，請確定卡片可正常使用且您的銀行不會因為其安全性原則而封鎖線上交易。請連絡您的銀行以解決此問題。
 
 ## 信用卡或金融卡詳細資料
 
 請依照下列步驟，確定您的信用卡或金融卡資訊是有效的︰
 
-- 您使用的信用卡或轉帳卡應該會列示在您選擇之國家/地區的下拉式清單中。如果未列出，表示它不是您所在國家/地區的可用選項。請參閱[支援的國家/地區與貨幣](billing-countries-and-currencies.md)。
+- 您使用的信用卡或轉帳卡應該會列示在您選擇之國家/地區的下拉式清單中。
+	
+	- 在某些情況下，雖然您是以本地/慣用貨幣支付 Azure 服務，但卻是透過非本地 Microsoft 實體購買服務，而處理您信用卡的銀行並非本地銀行。如果您的信用卡具備國際交易功能，請連絡您的銀行或發卡機構來進行確認。
+	
+	- 請參閱[支援的國家/地區與貨幣](billing-countries-and-currencies.md)。
 
 - 您輸入的名字必須完全符合信用卡/轉帳卡上壓印的名字，不含任何額外的符號/字元。
 
@@ -64,8 +70,8 @@
 
 ### 更新您的信用卡或金融卡資訊
 
-如果您的信用卡或金融卡資訊已過期，您可以[更新付款資訊](billing-how-to-change-credit-card.md)。
+如果您想要更新信用卡詳細資料、變更或移除卡片，請了解如何[管理您的付款資訊](billing-how-to-change-credit-card.md)。
 
 > [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->
