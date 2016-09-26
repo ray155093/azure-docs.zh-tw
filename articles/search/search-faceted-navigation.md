@@ -129,7 +129,8 @@ Azure 搜尋服務中的多面向導覽實作在建置要求的應用程式程�
 <a name="buildindex"></a>
 ##建置索引
 
-多面向的功能是透過索引中各欄位的 `"Facetable": true` 索引屬性來啟用。根據預設，所有可能用於多面向導覽的欄位類型為 `Facetable`。這類欄位類型包括 `Edm.String`、`Edm.DateTimeOffset`，以及所有數值欄位類型 (基本上所有欄位類型都可用於多面向導覽，除了 `Edm.GeographyPoint`)。
+多面向的功能是透過索引中各欄位的 `"Facetable": true` 索引屬性來啟用。  
+根據預設，所有可能用於多面向導覽的欄位類型為 `Facetable`。這類欄位類型包括 `Edm.String`、`Edm.DateTimeOffset`，以及所有數值欄位類型 (基本上所有欄位類型都可用於多面向導覽，除了 `Edm.GeographyPoint`)。
 
 在建置索引時，多面向導覽的最佳作法是關閉不應做為面向之欄位的多面向功能。尤其是單一值的字串欄位 (例如識別碼或產品名稱)，應該將它們設為 `"Facetable": false` 以防止意外被用於多面向導覽。
 

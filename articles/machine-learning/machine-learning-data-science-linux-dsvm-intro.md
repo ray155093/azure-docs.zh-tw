@@ -61,7 +61,7 @@ Linux 資料科學虛擬機器可以大幅減輕這樣的負擔。使用它可�
 建立 Linux 資料科學虛擬機器執行個體的步驟如下：
 
 1.	瀏覽至 [Azure 入口網站](https://portal.azure.com/#create/microsoft-ads.linux-data-science-vmlinuxdsvm)上的虛擬機器清單。
-2.	 按一下 [建立] (在底部) 以進入精靈。![configure-data-science-vm](./media/machine-learning-data-science-linux-dsvm-intro/configure-linux-data-science-virtual-machine.png)
+2.	 按一下 [建立]\(在底部) 以進入精靈。![configure-data-science-vm](./media/machine-learning-data-science-linux-dsvm-intro/configure-linux-data-science-virtual-machine.png)
 3.	 下列各節提供精靈中每個步驟 (列舉於上圖的右邊) 的輸入，可用來建立 Microsoft 資料科學虛擬機器。以下是設定每個步驟所需的輸入：
 
   a.**基本**：
