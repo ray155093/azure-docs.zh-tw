@@ -128,7 +128,7 @@
 
     ![人員](./media/active-directory-saas-itrp-tutorial/IC775587.png "人員")
 
-4.  按一下 [新增人員] (“+”)。
+4.  按一下 [新增人員]\(“+”)。
 
     ![Admin](./media/active-directory-saas-itrp-tutorial/IC775576.png "Admin")
 

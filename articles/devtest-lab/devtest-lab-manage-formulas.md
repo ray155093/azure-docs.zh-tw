@@ -48,7 +48,7 @@ Azure DevTest Labs 中的公式是用來建立虛擬機器 (VM) 的預設屬性�
 
     ![公式功能表](./media/devtest-lab-manage-formulas/lab-settings-formulas.png)
 
-1. 在 [Lab formulas] (實驗室公式) 刀鋒視窗上，選取 [+ 加入]。
+1. 在 [Lab formulas]\(實驗室公式) 刀鋒視窗上，選取 [+ 加入]。
 
     ![加入公式](./media/devtest-lab-manage-formulas/add-formula.png)
 
@@ -114,9 +114,9 @@ Azure DevTest Labs 中的公式是用來建立虛擬機器 (VM) 的預設屬性�
 
     ![公式功能表](./media/devtest-lab-manage-formulas/lab-settings-formulas.png)
 
-1. 在 [Lab formulas] (實驗室公式) 刀鋒視窗上，選取您想要修改的公式。
+1. 在 [Lab formulas]\(實驗室公式) 刀鋒視窗上，選取您想要修改的公式。
 
-1. 在 [Update formula] (更新公式) 刀鋒視窗上，進行所需的編輯，然後選取 [更新]。
+1. 在 [Update formula]\(更新公式) 刀鋒視窗上，進行所需的編輯，然後選取 [更新]。
 
 ## 刪除公式 
 若要刪除公式，請遵循下列步驟︰
@@ -131,7 +131,7 @@ Azure DevTest Labs 中的公式是用來建立虛擬機器 (VM) 的預設屬性�
 
     ![公式功能表](./media/devtest-lab-manage-formulas/lab-settings-formulas.png)
 
-1. 在 [Lab formulas] (實驗室公式) 刀鋒視窗上，選取您想要刪除之公式右邊的省略符號。
+1. 在 [Lab formulas]\(實驗室公式) 刀鋒視窗上，選取您想要刪除之公式右邊的省略符號。
 
     ![公式功能表](./media/devtest-lab-manage-formulas/lab-formulas-blade.png)
 
