@@ -187,7 +187,12 @@ Azure ML Recommendations 事件程式庫會建立並使用 Cookie，以識別來
 
 參數：
 * event (字串) – “userlogin”
-* user (字串) - 使用者的唯一識別。<script> if (typeof AzureMLRecommendationsEvent=="undefined") { AzureMLRecommendationsEvent = ; } AzureMLRecommendationsEvent.push({event: "userlogin", user: “ABCD10AA” }); </script>
+* user (字串) - 使用者的唯一識別。
+
+		<script>
+			if ( typeof AzureMLRecommendationsEvent == "undefined"){ AzureMLRecommendationsEvent = []; }
+			AzureMLRecommendationsEvent.push({ event: "purchase", items: [{ item: "33", count: "1", price: "10" }, { item: "34", count: "2" }, { item: "35", count: "1", price: "210" }] });
+		</script>
 
 ##4\.透過 JavaScript 取用建議
 取用建議的程式碼是由用戶端網頁的某些 JavaScript 事件所觸發。建議回應包含建議項目識別碼、其名稱及評等。最好只有在以清單顯示建議的項目時，才使用這個選項 – 較複雜的處理 (例如，新增項目的中繼資料) 應該在伺服器端整合完成。
@@ -225,4 +230,4 @@ Azure ML Recommendations 事件程式庫會建立並使用 Cookie，以識別來
 [3]: ./media/machine-learning-recommendation-api-javascript-integration/Drawing3.png
  
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0914_2016--->
