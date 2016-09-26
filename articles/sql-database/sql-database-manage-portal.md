@@ -157,7 +157,7 @@
 
 ## 如何還原已刪除的 SQL Database？
 
-若要還原已刪除的 SQL Database，請按一下 [SQL Server] 刀鋒視窗上的 [已刪除的資料庫] (內含已刪除資料庫的 SQL Server)。如需詳細資訊，請參閱[使用 Azure 入口網站還原已刪除的 Azure SQL Database](sql-database-restore-deleted-database-portal.md)。
+若要還原已刪除的 SQL Database，請按一下 [SQL Server] 刀鋒視窗上的 [已刪除的資料庫] \(內含已刪除資料庫的 SQL Server)。如需詳細資訊，請參閱[使用 Azure 入口網站還原已刪除的 Azure SQL Database](sql-database-restore-deleted-database-portal.md)。
 
 ## 如何刪除 SQL Database？
 

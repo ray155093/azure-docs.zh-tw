@@ -19,7 +19,7 @@
 
 # Azure 入口網站中的 Azure Active Directory 管理體驗預覽
 
-Azure 入口網站目前提供預覽版的 Azure Active Directory (Azure AD) 管理體驗。您可以用您目錄的全域管理員身分登入 [Azure 入口網站](https://portal.azure.com)來試試這項體驗。然後，從服務清單中選取 [Azure Active Directory] (如果可以看到的話)，或是選取 [更多服務] 來檢視所有服務的清單。您不需要有 Azure 訂用帳戶，即可使用 Azure 入口網站中的 Azure AD 管理體驗。
+Azure 入口網站目前提供預覽版的 Azure Active Directory (Azure AD) 管理體驗。您可以用您目錄的全域管理員身分登入 [Azure 入口網站](https://portal.azure.com)來試試這項體驗。然後，從服務清單中選取 [Azure Active Directory] \(如果可以看到的話)，或是選取 [更多服務] 來檢視所有服務的清單。您不需要有 Azure 訂用帳戶，即可使用 Azure 入口網站中的 Azure AD 管理體驗。
 
 
 ## 預覽版體驗的功能

@@ -19,7 +19,9 @@
 
 *Application Insights 目前僅供預覽。*
 
-在您的應用程式中插入幾行程式碼，以了解使用者對它進行的動作或協助診斷問題。您可以從裝置和桌面應用程式、Web 用戶端以及 Web 伺服器傳送遙測。[Visual Studio Application Insights](app-insights-overview.md) 核心遙測 API 可讓您傳送自訂的事件和度量，以及您自己的標準遙測版本。這個 API 與標準 Application Insights 資料收集器所使用的 API 相同。
+在您的應用程式中插入幾行程式碼，以了解使用者對它進行的動作或協助診斷問題。您可以從裝置和桌面應用程式、Web 用戶端以及 Web 伺服器傳送遙測。
+
+[Visual Studio Application Insights](app-insights-overview.md) 核心遙測 API 可讓您傳送自訂的事件和度量，以及您自己的標準遙測版本。這個 API 與標準 Application Insights 資料收集器所使用的 API 相同。
 
 ## API summary
 

@@ -385,7 +385,7 @@ PySpark 核心提供一些預先定義的「magic」，這是您可以使用 %% 
 	#LOAD LIBRARIES​
 	from pyspark.mllib.regression import LinearRegressionWithSGD, LinearRegressionModel
 	
-	# LOAD MODEL AND SCORE USING ** SCALED VARIABLES **
+	# LOAD MODEL AND SCORE USING **SCALED VARIABLES **
 	savedModel = LinearRegressionModel.load(sc, linearRegFileLoc)
 	predictions = oneHotTESTregScaled.map(lambda features: (float(savedModel.predict(features))))
 	

@@ -56,7 +56,7 @@
 
 	![](./media/web-sites-dotnet-lob-application-azure-ad/1-create-mvc-no-authentication.png)
 
-4. 在 [建立 App Service] 對話方塊中，按一下 [新增帳戶] (然後是下拉式清單中的 [新增帳戶] ) 來登入 Azure 帳戶。
+4. 在 [建立 App Service] 對話方塊中，按一下 [新增帳戶]\(然後是下拉式清單中的 [新增帳戶] ) 來登入 Azure 帳戶。
 
 5. 登入後，請設定 Web 應用程式。建立資源群組和新的 App Service 方案，方法是按一下各自的 [新增] 按鈕。按一下 [瀏覽其他 Azure 服務] 以繼續。
 

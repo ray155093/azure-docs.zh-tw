@@ -34,7 +34,7 @@
 
 3.  在 [使用者和群組] 刀鋒視窗上，選取 [使用者]，然後選取 [新增]。
 
-    ![選取 [新增] 命令](./media/ management](./media/active-directory-users-create-external-azure-portal/create-users-add-command.png)
+    ![選取 [新增] 命令](./media/active-directory-users-create-external-azure-portal/create-users-add-command.png)
 
 4. 在 [使用者] 刀鋒視窗中，於 [名稱] 中提供顯示名稱，並於 [使用者名稱] 中提供使用者的登入名稱。
 
@@ -42,15 +42,15 @@
 
 6. (選擇性) 選取 [設定檔] 來新增使用者的名字和姓氏、職稱，以及部門名稱。
 
-		![Opening the user profile](./media/ management](./media/active-directory-users-create-external-azure-portal/create-users-user-profile.png)
+		![Opening the user profile](./media/active-directory-users-create-external-azure-portal/create-users-user-profile.png)
 
 	- 選取 [群組] 以將使用者新增到一個或多個群組中。
 
-		![將使用者新增到群組中](./media/ management](./media/active-directory-users-create-external-azure-portal/create-users-user-groups.png)
+		![將使用者新增到群組中](./media/active-directory-users-create-external-azure-portal/create-users-user-groups.png)
 
 	- 選取 [組織角色] 以將使用者指派給 [角色] 清單中的角色。如需有關使用者和系統管理員角色的詳細資訊，請參閱[在 Azure AD 中指派系統管理員角色](active-directory-assign-admin-roles.md)。
 
-		![將使用者指派給角色](./media/ management](./media/active-directory-users-create-external-azure-portal/create-users-assign-role.png)
+		![將使用者指派給角色](./media/active-directory-users-create-external-azure-portal/create-users-assign-role.png)
 
 7. 選取 [建立]。
 

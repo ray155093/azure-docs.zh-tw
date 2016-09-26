@@ -16,7 +16,8 @@
 
 #教學課程：Azure Directory 與 TOPdesk - Public 整合
 
-本教學課程的目的是要示範 Azure 與 TOPdesk - Public 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+本教學課程的目的是要示範 Azure 與 TOPdesk - Public 的整合。  
+本教學課程中說明的案例假設您已經具有下列項目：
 
 -   有效的 Azure 訂用帳戶
 -   已啟用 TOPdesk - Public 單一登入功能的訂用帳戶
@@ -66,7 +67,8 @@
 
 ##設定單一登入
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶驗證至 TOPdesk - Public。設定 TOPdesk - Public 的單一登入需要您上傳標誌的圖示檔。若要取得圖示檔，請連絡 TOPdesk 支援小組。
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶驗證至 TOPdesk - Public。  
+設定 TOPdesk - Public 的單一登入需要您上傳標誌的圖示檔。若要取得圖示檔，請連絡 TOPdesk 支援小組。
 
 ###若要設定單一登入，請執行下列步驟：
 
@@ -89,8 +91,9 @@
     ![技術設定](./media/active-directory-saas-topdesk-public-tutorial/IC790601.png "技術設定")
 
     1.  按 [下載] 來下載公用中繼資料檔案，然後再將它儲存在本機電腦上。
-    2.  開啟此中繼資料檔案，然後找到 **AssertionConsumerService** 節點。![AssertionConsumerService](./media/active-directory-saas-topdesk-public-tutorial/IC790619.png "AssertionConsumerService")
-    3.  複製 **AssertionConsumerService** 值。
+    2.  開啟此中繼資料檔案，然後找到 **AssertionConsumerService** 節點。
+    	![AssertionConsumerService](./media/active-directory-saas-topdesk-public-tutorial/IC790619.png "AssertionConsumerService")
+    3.  複製 **AssertionConsumerService** 值。  
 
         >[AZURE.NOTE] 在本教學課程稍後的＜**設定應用程式 URL**＞一節中，您將需要這個值。
 
@@ -158,7 +161,8 @@
 
 ##設定使用者佈建
   
-若要讓 Azure AD 使用者可以登入 TOPdesk - Public，則必須將他們佈建到 TOPdesk - Public。TOPdesk - Public 需以手動的方式佈建。
+若要讓 Azure AD 使用者可以登入 TOPdesk - Public，則必須將他們佈建到 TOPdesk - Public。  
+TOPdesk - Public 需以手動的方式佈建。
 
 ###若要設定使用者佈建，請執行下列步驟：
 
@@ -177,7 +181,7 @@
     3.  選取該帳戶的**網站**。
     4.  按一下 [儲存]。
 
->[AZURE.NOTE] 您可以使用任何其他的 TOPdesk - Public 使用者帳戶建立工具或 TOPdesk - Public 提供的 API 來佈建 AAD 使用者帳戶。
+>[AZURE.NOTE]您可以使用任何其他的 TOPdesk - Public 使用者帳戶建立工具或 TOPdesk - Public 提供的 API 來佈建 AAD 使用者帳戶。
 
 ##指派使用者
   

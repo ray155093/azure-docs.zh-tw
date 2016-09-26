@@ -40,7 +40,7 @@
 
 5. 按一下 ![checkbutton](./media/billing-how-to-cancel-azure-subscription/checkbutton.png) 關閉對話視窗並返回您的訂用帳戶頁面。
 
-	> [AZURE.NOTE] 如果您不小心取消了「隨用隨付」訂用帳戶，您可以依照[這裡](https://azure.microsoft.com/zh-TW/documentation/articles/billing-subscription-become-disable/)所述的指示來重新啟用它。
+	> [AZURE.NOTE] 如果您不小心取消了「隨用隨付」訂用帳戶，您可以依照[這裡](https://azure.microsoft.com/documentation/articles/billing-subscription-become-disable/)所述的指示來重新啟用它。
 
 > [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 

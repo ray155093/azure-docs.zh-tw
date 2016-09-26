@@ -71,7 +71,7 @@
 
 **檢視屬性**
 
-	You can view the properties of the circuit by selecting it. On this blade, note the service key for the circuit. You must copy the circuit key for your circuit and pass it down to the service provider to complete the provisioning process. The circuit key is specific to your circuit.
+	選取循環，即可檢視該循環的屬性。在此刀鋒視窗上，記下循環的服務金鑰。您必須複製您循環的循環金鑰，並將其傳遞給服務提供者以完成佈建程序。循環金鑰為您循環所專用。
 
 ![檢視屬性](./media/expressroute-howto-circuit-portal-resource-manager/listproperties1.png)
 

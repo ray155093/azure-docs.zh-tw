@@ -19,7 +19,7 @@
 
 [AZURE.INCLUDE [storsimple-version-selector-deploy-gov](../../includes/storsimple-version-selector-deploy-gov.md)]
 
-## Overview
+## 概觀
 
 歡迎使用 Microsoft Azure StorSimple 裝置部署。這些部署教學課程適用於 Azure Government 入口網站中執行 Update 2 軟體的 StorSimple 8000 系列。這一系列的教學課程包含 StorSimple 裝置的設定檢查清單、設定必要條件的清單，以及詳細的設定步驟。
 
@@ -46,7 +46,7 @@
 | **逐步部署** | 需要執行這些步驟，才能在生產環境中部署您的 StorSimple 裝置。 |
 | [步驟 1：建立新的服務](#step-1-create-a-new-service) | 設定雲端管理和 StorSimple 裝置的儲存體。*如果您現在已經有針對其他 StorSimple 裝置的服務，請略過此步驟*。 |
 | [步驟 2：取得服務註冊金鑰](#step-2-get-the-service-registration-key) | 使用此金鑰註冊並將 StorSimple 裝置與管理服務連接。 |
-| [步驟 3：透過 Windows PowerShell for StorSimple 設定和註冊裝置] (step 3-configure-and-register-the-device-through-windows-powershell-for-storsimple) | 使用管理服務將裝置連線到您的網路並使用 Azure 註冊以完成設定。 |
+| [步驟 3：透過 Windows PowerShell for StorSimple 設定和註冊裝置] \(step 3-configure-and-register-the-device-through-windows-powershell-for-storsimple) | 使用管理服務將裝置連線到您的網路並使用 Azure 註冊以完成設定。 |
 | [步驟 4：完成最小量的裝置設定](#step-4-complete-the-minimum-device-setup)</br>選用：更新您的 StorSimple 裝置。 | 使用管理服務來完成裝置設定並啟用裝置以提供儲存體。 |
 | [步驟 5：建立磁碟區容器](#step-5-create-a-volume-container) | 建立容器以佈建磁碟區。磁碟區容器具有其中所含之所有磁碟區的儲存體帳戶、頻寬及加密設定。 |
 | [步驟 6：建立磁碟區](#step-6-create-a-volume) | 在您伺服器的 StorSimple 裝置上佈建儲存體磁碟區。 |
@@ -111,7 +111,7 @@ StorSimple Manager 服務可以管理多個 StorSimple 裝置。請執行下列�
 
 > [AZURE.IMPORTANT] 如果您並未啟用服務自動建立儲存體帳戶，您將必須在成功建立服務後，至少建立一個儲存體帳戶。當您建立磁碟區容器時，將會使用此儲存體帳戶。
 >
-> * 如果您未自動建立儲存體帳戶，請移至[針對服務設定新的儲存體帳戶](#configure-a-new-storage-account-for-the-service)以取得詳細指示。
+> * 如果您未自動建立儲存體帳戶，請移至[針對服務設定新的儲存體帳戶](#configure-a-new-storage-account-for-the-service)以取得詳細指示。 
 > * 如果您已啟用自動建立儲存體帳戶，請移至[步驟 2：取得服務註冊金鑰](#step-2-get-the-service-registration-key)。
 
 ## 步驟 2：取得服務註冊金鑰
@@ -208,8 +208,8 @@ StorSimple Manager 服務可以管理多個 StorSimple 裝置。請執行下列�
 
 #### 若要更新裝置
 
-1.	在裝置的 [快速入門] 頁面上，按一下 [裝置]。選取實體裝置，按一下 [維護]，然後按一下 [掃描更新]。
-2.	系統會建立掃描可用更新的工作。如果有可用的更新，[掃描更新] 會變更為 [安裝更新]。按一下 [安裝更新]。
+1.	在裝置的 [快速入門] 頁面上，按一下 [裝置]。選取實體裝置，按一下 [維護]，然後按一下 [掃描更新]。  
+2.	系統會建立掃描可用更新的工作。如果有可用的更新，[掃描更新] 會變更為 [安裝更新]。按一下 [安裝更新]。 
 3.	更新工作將會建立。巡覽至 [工作] 以監視更新的狀態。
 
 	> [AZURE.NOTE] 當更新工作啟動時，狀態會立即顯示為 50 %。只有在更新工作完成之後，狀態才會變更為 100%。更新程序沒有即時狀態。

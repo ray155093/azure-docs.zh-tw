@@ -46,7 +46,7 @@ Azure 資源管理員可讓您使用宣告式範本佈建應用程式。在單�
 
 [深入了解網路資源](../virtual-network/resource-groups-networking.md)
 
-您可以在 [GitHub 儲存機制](https://github.com/Azure/azure-quickstart-templates) (裝載了一組社群產生的範本) 中找到使用 Azure Load Balancer 的快速入門範本。
+您可以在 [GitHub 儲存機制](https://github.com/Azure/azure-quickstart-templates) \(裝載了一組社群產生的範本) 中找到使用 Azure Load Balancer 的快速入門範本。
 
 範本的範例：
 

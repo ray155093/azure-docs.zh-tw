@@ -37,7 +37,7 @@ Azure 會防止您移除使用中的憑證。您必須刪除使用憑證的部�
 
 只要憑證不在使用中，您就可以使用 [Remove-AzureCertificate](https://msdn.microsoft.com/library/azure/mt589145.aspx) PowerShell Cmdlet 來移除憑證。
 
-### 我有名為 Windows Azure Service Management for Extensions 的已過期憑證
+### 我有名為 Microsoft Azure Service Management for Extensions 的已過期憑證
 
 每當有擴充功能新增至雲端服務 (例如遠端桌面擴充功能)，就會建立這些憑證。這些憑證只會用於加密和解密擴充功能的私用組態。這些憑證是否過期並不重要。系統不會檢查到期日期。
 

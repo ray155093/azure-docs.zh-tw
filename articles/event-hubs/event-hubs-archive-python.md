@@ -187,7 +187,7 @@
 [Azure 入口網站]: https://portal.azure.com/
 [事件中樞封存概觀]: event-hubs-archive-overview.md
 [1]: ./media/event-hubs-archive-python/event-hubs-python1.png
-[About Azure storage accounts]: https://azure.microsoft.com/zh-TW/documentation/articles/storage-create-storage-account/
+[About Azure storage accounts]: https://azure.microsoft.com/documentation/articles/storage-create-storage-account/
 [Visual Studio 程式碼]: https://code.visualstudio.com/
 [事件中心概觀]: event-hubs-overview.md
 [使用事件中樞的完整範例應用程式]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097

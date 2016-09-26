@@ -97,7 +97,7 @@ Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Az
 
 1. 使用隸屬於 **ADSyncAdmins** 安全性群組的帳戶，登入執行 Azure AD Connect 同步處理的伺服器。
 2. 從 [開始] 功能表啟動 [同步處理服務]。
-3. 選取 [連接器]，然後在 [連接器] 清單中選取類型為 [Active Directory 網域服務] 的連接器。從 [動作] 中選取 [屬性]。![連接器屬性](./media/active-directory-aadconnectsync-configure-filtering/connectorproperties.png)
+3. 選取 [連接器]，然後在 [連接器] 清單中選取類型為 [Active Directory 網域服務] 的連接器。從 [動作] 中選取 [屬性]。![連接器屬性](./media/active-directory-aadconnectsync-configure-filtering/connectorproperties.png)  
 4. 按一下 [設定目錄分割]。
 5. 在 [選取目錄分割] 清單中，視需要選取和取消選取網域。確認只選取了您想要同步處理的分割。![分割數](./media/active-directory-aadconnectsync-configure-filtering/connectorpartitions.png) 如果您變更了內部部署 AD 基礎結構並在樹系中新增或移除網域，則請按一下 [重新整理] 按鈕以取得更新後的清單。當您重新整理時，系統會要求您提供認證。請提供具有內部部署 Active Directory 讀取權限的任何認證。您不一定要使用對話方塊中預先填入的使用者。![需要重新整理](./media/active-directory-aadconnectsync-configure-filtering/refreshneeded.png)
 6. 當您完成時，請按一下 [確定] 以關閉 [屬性] 對話方塊。如果您已移除樹系中的網域，畫面上將會出現快顯訊息，指出已移除網域且將會清除組態。
@@ -106,7 +106,7 @@ Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Az
 ### 更新執行設定檔
 如果您已更新網域篩選，則也需更新執行設定檔。
 
-1. 在 [連接器] 清單中，確定已選取在上一個步驟中所變更的連接器。從 [動作] 中選取 [設定執行設定檔]。![連接器執行設定檔](./media/active-directory-aadconnectsync-configure-filtering/connectorrunprofiles1.png)
+1. 在 [連接器] 清單中，確定已選取在上一個步驟中所變更的連接器。從 [動作] 中選取 [設定執行設定檔]。![連接器執行設定檔](./media/active-directory-aadconnectsync-configure-filtering/connectorrunprofiles1.png)  
 
 您需要調整下列設定檔：
 
@@ -119,14 +119,14 @@ Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Az
 針對上述五個設定檔，請為每個**新增的**網域執行下列步驟：
 
 1. 選取執行設定檔，然後按一下 [新增步驟]。
-2. 在 [設定步驟] 頁面的 [類型] 下拉式清單中，選取與所要設定之設定檔同名的步驟類型。然後按 [下一步]。![連接器執行設定檔](./media/active-directory-aadconnectsync-configure-filtering/runprofilesnewstep1.png)
-3. 在 [連接器組態] 頁面的 [分割] 下拉式清單中，選取您已新增至網域篩選的網域名稱。![連接器執行設定檔](./media/active-directory-aadconnectsync-configure-filtering/runprofilesnewstep2.png)
+2. 在 [設定步驟] 頁面的 [類型] 下拉式清單中，選取與所要設定之設定檔同名的步驟類型。然後按 [下一步]。![連接器執行設定檔](./media/active-directory-aadconnectsync-configure-filtering/runprofilesnewstep1.png)  
+3. 在 [連接器組態] 頁面的 [分割] 下拉式清單中，選取您已新增至網域篩選的網域名稱。![連接器執行設定檔](./media/active-directory-aadconnectsync-configure-filtering/runprofilesnewstep2.png)  
 4. 若要關閉 [設定執行設定檔] 對話方塊，可按一下 [完成]。
 
 針對上述五個設定檔，請為每個**移除的**網域執行下列步驟：
 
 1. 選取執行設定檔。
-2. 如果 [分割] 屬性的 [值] 是 GUID，請選取執行步驟，然後按一下 [刪除步驟]。![連接器執行設定檔](./media/active-directory-aadconnectsync-configure-filtering/runprofilesdeletestep.png)
+2. 如果 [分割] 屬性的 [值] 是 GUID，請選取執行步驟，然後按一下 [刪除步驟]。![連接器執行設定檔](./media/active-directory-aadconnectsync-configure-filtering/runprofilesdeletestep.png)  
 
 結果應該是，想要同步處理的每個網域應該皆已列為每個執行設定檔中的步驟。
 
@@ -143,10 +143,10 @@ Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Az
 
 1. 使用隸屬於 **ADSyncAdmins** 安全性群組的帳戶，登入執行 Azure AD Connect 同步處理的伺服器。
 2. 從 [開始] 功能表啟動 [同步處理服務]。
-3. 選取 [連接器]，然後在 [連接器] 清單中選取類型為 [Active Directory 網域服務] 的連接器。從 [動作] 中選取 [屬性]。![連接器屬性](./media/active-directory-aadconnectsync-configure-filtering/connectorproperties.png)
+3. 選取 [連接器]，然後在 [連接器] 清單中選取類型為 [Active Directory 網域服務] 的連接器。從 [動作] 中選取 [屬性]。![連接器屬性](./media/active-directory-aadconnectsync-configure-filtering/connectorproperties.png)  
 4. 按一下 [設定目錄分割]、選取要設定的網域，然後按一下 [容器]。
 5. 出現提示時，請提供具有內部部署 Active Directory 讀取權限的任何認證。您不一定要使用對話方塊中預先填入的使用者。
-6. 在 [選取容器] 對話方塊中，取消選取您不想與雲端目錄同步處理的 OU，然後按一下 [確定]。![OU](./media/active-directory-aadconnectsync-configure-filtering/ou.png)
+6. 在 [選取容器] 對話方塊中，取消選取您不想與雲端目錄同步處理的 OU，然後按一下 [確定]。![OU](./media/active-directory-aadconnectsync-configure-filtering/ou.png)  
   - 應該選取 [電腦] 容器，這樣您的 Windows 10 電腦才能順利同步處理至 Azure AD。如果加入網域的電腦位於其他組織單位，請確定已選取這些電腦。
   - 如果您有多個信任的樹系，則應該選取 [ForeignSecurityPrincipals] 容器。這個容器允許解析跨樹系安全性群組成員資格。
   - 如果您已啟用裝置回寫功能，則應該選取 [RegisteredDevices] OU。如果您使用另一個回寫功能，例如群組回寫，請確定已選取這些位置。
@@ -179,7 +179,7 @@ Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Az
 2. 從 [開始] 功能表啟動 [同步處理規則編輯器]。
 3. 確定已選取 [輸入]，然後按一下 [新增規則]。
 4. 為規則提供一個描述性名稱，例如 "*In from AD – User DoNotSyncFilter*"。選取正確的樹系，亦即選取 [使用者] 做為 [CS 物件類型]，以及選取 [人員] 做為 [MV 物件類型]。在 [連結類型] 中選取 [聯結]，然後在優先順序中，輸入目前沒有被其他同步處理規則使用的值 (例如 500)，然後按 [下一步]。![輸入 1 描述](./media/active-directory-aadconnectsync-configure-filtering/inbound1.png)
-5. 在 [範圍設定篩選] 中，依序按一下 [新增群組] 和 [新增子句]，然後在屬性中選取 [ExtensionAttribute15]。確定已將 [運算子] 設為 [EQUAL]，然後在 [值] 方塊中輸入值 **NoSync**。按 [下一步]。![輸入 2 範圍](./media/active-directory-aadconnectsync-configure-filtering/inbound2.png)
+5. 在 [範圍設定篩選] 中，依序按一下 [新增群組] 和 [新增子句]，然後在屬性中選取 [ExtensionAttribute15]。確定已將 [運算子] 設為 [EQUAL]，然後在 [值] 方塊中輸入值 **NoSync**。按 [下一步]。![輸入 2 範圍](./media/active-directory-aadconnectsync-configure-filtering/inbound2.png)  
 6. 讓 [聯結] 規則保留空白，然後按 [下一步]。
 7. 按一下 [新增轉換]、在 [FlowType] 中選取 [常數]、在 [目標屬性] 中選取 [cloudFiltered]，然後在 [來源] 文字方塊中輸入 **True**。按一下 [新增] 以儲存規則。![輸入 3 轉換](./media/active-directory-aadconnectsync-configure-filtering/inbound3.png)
 8. 若要完成組態設定，請[套用並驗證變更](#apply-and-verify-changes)。
@@ -195,7 +195,7 @@ Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Az
 2. 從 [開始] 功能表啟動 [同步處理規則編輯器]。
 3. 確定已選取 [輸入]，然後按一下 [新增規則]。
 4. 為規則提供一個描述性名稱，例如 "*In from AD – User Sales sync*"。選取正確的樹系，亦即選取 [使用者] 做為 [CS 物件類型]，以及選取 [人員] 做為 [MV 物件類型]。在 [連結類型] 中選取 [聯結]，然後在優先順序中，輸入目前沒有被其他同步處理規則使用的值 (例如 501)，然後按 [下一步]。![輸入 4 描述](./media/active-directory-aadconnectsync-configure-filtering/inbound4.png)
-5. 在 [範圍設定篩選] 中，依序按一下 [新增群組] 和 [新增子句]，然後在屬性中選取 [department]。確定已將 [運算子] 設為 [EQUAL]，然後在 [值] 方塊中輸入值 **Sales**。按 [下一步]。![輸入 5 範圍](./media/active-directory-aadconnectsync-configure-filtering/inbound5.png)
+5. 在 [範圍設定篩選] 中，依序按一下 [新增群組] 和 [新增子句]，然後在屬性中選取 [department]。確定已將 [運算子] 設為 [EQUAL]，然後在 [值] 方塊中輸入值 **Sales**。按 [下一步]。![輸入 5 範圍](./media/active-directory-aadconnectsync-configure-filtering/inbound5.png)  
 6. 讓 [聯結] 規則保留空白，然後按 [下一步]。
 7. 按一下 [新增轉換]、在 [FlowType] 中選取 [常數]、在 [目標屬性] 中選取 [cloudFiltered]，然後在 [來源] 文字方塊中輸入 **False**。按一下 [新增] 以儲存規則。![輸入 6 轉換](./media/active-directory-aadconnectsync-configure-filtering/inbound6.png) 這是一個特殊案例，在此您會將 cloudFiltered 明確設定為 False。
 
@@ -204,7 +204,7 @@ Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Az
 8. 為規則提供一個描述性名稱，例如 "*In from AD – User Catch-all filter*"。選取正確的樹系，亦即選取 [使用者] 做為 [CS 物件類型]，以及選取 [人員] 做為 [MV 物件類型]。在 [連結類型] 中選取 [聯結]，然後在優先順序中，輸入目前沒有被其他同步處理規則使用的值 (例如：600)。您選取了高於先前同步處理規則的優先順序值 (較低優先順序)，但同時也預留了一些空間，以便可以在稍後想要開始同步處理其他部門時，新增其他篩選同步處理規則。按 [下一步]。![輸入 7 描述](./media/active-directory-aadconnectsync-configure-filtering/inbound7.png)
 9. 將 [範圍篩選器] 保留空白，然後按 [下一步]。空白篩選器表示規則應套用至所有物件。
 10. 讓 [聯結] 規則保留空白，然後按 [下一步]。
-11. 按一下 [新增轉換]、在 [FlowType] 中選取 [常數]、在 [目標屬性] 中選取 [cloudFiltered]，然後在 [來源] 文字方塊中輸入 **True**。按一下 [新增] 以儲存規則。![輸入 3 轉換](./media/active-directory-aadconnectsync-configure-filtering/inbound3.png)
+11. 按一下 [新增轉換]、在 [FlowType] 中選取 [常數]、在 [目標屬性] 中選取 [cloudFiltered]，然後在 [來源] 文字方塊中輸入 **True**。按一下 [新增] 以儲存規則。![輸入 3 轉換](./media/active-directory-aadconnectsync-configure-filtering/inbound3.png)  
 12. 若要完成組態設定，請[套用並驗證變更](#apply-and-verify-changes)。
 
 如有需要，您可以建立更多第一種類型的規則，以在同步處理作業中納入更多物件。
@@ -234,7 +234,7 @@ Azure AD Connect 只會刪除其曾經認為是在範圍內的物件。如果 Az
 請執行下列步驟：
 
 1. 從 [開始] 功能表啟動 [同步處理服務]。
-2. 選取 [連接器]，然後在 [連接器] 清單中選取稍早進行組態變更的連接器。從 [動作] 中選取 [執行]。![連接器執行](./media/active-directory-aadconnectsync-configure-filtering/connectorrun.png)
+2. 選取 [連接器]，然後在 [連接器] 清單中選取稍早進行組態變更的連接器。從 [動作] 中選取 [執行]。![連接器執行](./media/active-directory-aadconnectsync-configure-filtering/connectorrun.png)  
 3. 在 [執行設定檔] 中，選取上一節中提到的作業。如果您需要執行兩個動作，請在執行完第一個動作之後 (所選連接器的 [狀態] 欄為 [閒置])，再執行第二個動作。
 
 在進行過同步處理後，所有變更會進入匯出階段。實際在 Azure AD 中進行變更之前，您會想要先驗證所有變更是否正確。

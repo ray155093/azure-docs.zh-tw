@@ -51,7 +51,7 @@ Azure SDK for Python 內含的元件可讓您開發、部署及管理適用於 A
 
 ## Windows、Linux 及 MacOS 上的 SDK 安裝 (僅限用戶端程式庫)
 
-如果您已經安裝 Python，您可以使用 PIP 在現有的 Python 2.7 或 Python 3.3+ 環境中，安裝所有用戶端程式的組合。此作業會從 [Python 套件索引][] (PyPI) 下載封裝。
+如果您已經安裝 Python，您可以使用 PIP 在現有的 Python 2.7 或 Python 3.3+ 環境中，安裝所有用戶端程式的組合。此作業會從 [Python 套件索引][] \(PyPI) 下載封裝。
 
 您可能需要系統管理員權限：
 
@@ -88,12 +88,12 @@ Azure SDK for Python 內含的元件可讓您開發、部署及管理適用於 A
 
 ## 取得更多封裝
 
-[Python 套件索引][] (PyPI) 具有選擇性豐富的 Python 程式庫。如果您選擇了安裝散發版本，則您將已擁有從 Web 開發到「工程運算」的各種案例中大多數令人關注的部分。
+[Python 套件索引][] \(PyPI) 具有選擇性豐富的 Python 程式庫。如果您選擇了安裝散發版本，則您將已擁有從 Web 開發到「工程運算」的各種案例中大多數令人關注的部分。
 
 
 ## Python Tools for Visual Studio
 
-[Python Tools for Visual Studio][] (PTVS) 是 Microsoft 提供的免費/OSS 外掛程式，它能將 VS 轉變為成熟的 Python IDE：
+[Python Tools for Visual Studio][] \(PTVS) 是 Microsoft 提供的免費/OSS 外掛程式，它能將 VS 轉變為成熟的 Python IDE：
 
 ![how-to-install-python-ptvs](./media/python-how-to-install/how-to-install-python-ptvs.png)
 

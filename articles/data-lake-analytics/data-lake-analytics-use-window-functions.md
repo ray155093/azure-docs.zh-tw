@@ -672,7 +672,7 @@ PERCENT\_RANK 函式所傳回的值代表查詢在垂直內的延遲排名 (以�
 
 **語法**
 
-    [PERCENTILE_CONT | PERCENTILE_DISC] ( numeric_literal ) 
+    [PERCENTILE_CONT | PERCENTILE_DISC] \( numeric_literal ) 
         WITHIN GROUP ( ORDER BY <identifier> [ ASC | DESC ] )
         OVER ( [ PARTITION BY <identifier,>…[n] ] ) AS <alias>
 

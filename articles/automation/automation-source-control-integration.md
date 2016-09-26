@@ -33,7 +33,7 @@
 
 ## 步驟 2 – 設定 Azure 自動化中的原始檔控制
 
-1. 從 Azure 入口網站中的 [自動化帳戶] 刀鋒視窗，按一下 [**設定原始檔控制**]。
+1. 從 Azure 入口網站中的 [自動化帳戶] 刀鋒視窗，按一下 [**設定原始檔控制**]。 
  
     ![設定原始檔控制](media/automation-source-control-integration/automation_01_SetUpSourceControl.png)
 
@@ -52,7 +52,7 @@
 
     1. 若要從**儲存機制**同步處理 Runbook，則 Runbook 資料夾路徑為 */*
     2. 若要從 **RootFolder** 同步處理 Runbook，則 Runbook 資料夾路徑為 */RootFolder*
-    3. 若要從 **SubFolder** 同步處理 Runbook，則 Runbook 資料夾路徑為 */RootFolder/SubFolder*。
+    3. 若要從 **SubFolder** 同步處理 Runbook，則 Runbook 資料夾路徑為 */RootFolder/SubFolder* 。
   
 
 4. 設定參數之後，它們會顯示在 [設定原始檔控制] 刀鋒視窗上。
@@ -66,7 +66,7 @@
 
 6. 設定原始檔控制之後，將會在您的自動化帳戶中建立下列自動化資源：已建立兩個[變數資產](automation-variables.md)。
       
-    * **Microsoft.Azure.Automation.SourceControl.Connection** 變數包含連接字串的值，如下所示。
+    * **Microsoft.Azure.Automation.SourceControl.Connection** 變數包含連接字串的值，如下所示。  
 
     |**參數** |**值** |
     |:---|:---|
@@ -75,7 +75,7 @@
     | 值 | {"Branch":<*您的分支名稱*>,"RunbookFolderPath":<*Runbook 資料夾路徑*>,"ProviderType":<*GitHub 的值為 1*>,"Repository":<*您的儲存機制名稱*>,"Username":<*您的 GitHub 使用者名稱*>} | <br>
 
 
-    * **Microsoft.Azure.Automation.SourceControl.OauthToken** 變數包含 OAuthToken 的安全加密值。
+    * **Microsoft.Azure.Automation.SourceControl.OauthToken** 變數包含 OAuthToken 的安全加密值。  
 
     |**參數** |**值** |
     |:---|:---|
@@ -85,7 +85,7 @@
 
     ![變數](media/automation-source-control-integration/automation_04_Variables.png)
 
-    * **自動化原始檔控制**已做為已授權的應用程式加入至您的 GitHub 帳戶。若要檢視應用程式：從 GitHub 首頁，瀏覽至您的 [設定檔] > [設定] > [應用程式]。此應用程式可讓 Azure 自動化將 GitHub 儲存機制同步至自動化帳戶。
+    * **自動化原始檔控制**已做為已授權的應用程式加入至您的 GitHub 帳戶。若要檢視應用程式：從 GitHub 首頁，瀏覽至您的 [設定檔] > [設定] > [應用程式]。此應用程式可讓 Azure 自動化將 GitHub 儲存機制同步至自動化帳戶。  
 
     ![Git 應用程式](media/automation-source-control-integration/automation_05_GitApplication.png)
 
@@ -97,7 +97,7 @@
 
 Runbook 簽入可讓您將對 Azure 自動化中的 Runbook 所做的變更推送至原始檔控制儲存機制。以下是簽入 Runbook 的步驟：
 
-1. 從您的自動化帳戶，[建立新的文字 Runbook](automation-first-runbook-textual.md)，或[編輯現有的文字 Runbook](automation-edit-textual-runbook.md)。此 Runbook 可以是 PowerShell 工作流程或 PowerShell 指令碼 Runbook。
+1. 從您的自動化帳戶，[建立新的文字 Runbook](automation-first-runbook-textual.md)，或[編輯現有的文字 Runbook](automation-edit-textual-runbook.md)。此 Runbook 可以是 PowerShell 工作流程或 PowerShell 指令碼 Runbook。  
 
 2. 編輯 Runbook 之後，加以儲存並按一下 [編輯] 刀鋒視窗中的 [簽入]。
 
@@ -120,7 +120,7 @@ Runbook 簽入可讓您將對 Azure 自動化中的 Runbook 所做的變更推�
 
     ![簽入輸入](media/automation-source-control-integration/automation_09_CheckinInput.png)
 
-6. 在工作完成時重新整理您的 GitHub 儲存機制，即可檢視變更。您的儲存機制中應有一項認可，其認可訊息為：**已在 Azure 自動化中更新 *Runbook 名稱*。**
+6. 在工作完成時重新整理您的 GitHub 儲存機制，即可檢視變更。您的儲存機制中應有一項認可，其認可訊息為：**已在 Azure 自動化中更新 *Runbook 名稱* 。**
 
 
 
@@ -128,7 +128,7 @@ Runbook 簽入可讓您將對 Azure 自動化中的 Runbook 所做的變更推�
 
 [儲存機制同步處理] 刀鋒視窗上的 [同步處理] 按鈕可讓您將儲存機制的 Runbook 資料夾路徑中的所有 Runbook 提取至您的自動化帳戶。相同的儲存機制可以同步處理至多個自動化帳戶。以下是同步處理 Runbook 的步驟：
 
-1. 從您設定原始檔控制的自動化帳戶，開啟 [原始檔控制整合/儲存機制同步處理] 刀鋒視窗並按一下 [同步處理]，然後在顯示一則確認訊息時，請按一下 [是] 繼續進行。
+1. 從您設定原始檔控制的自動化帳戶，開啟 [原始檔控制整合/儲存機制同步處理] 刀鋒視窗並按一下 [同步處理]，然後在顯示一則確認訊息時，請按一下 [是] 繼續進行。  
 
     ![同步處理按鈕](media/automation-source-control-integration/automation_10_SyncButtonwithMessage.png)
 

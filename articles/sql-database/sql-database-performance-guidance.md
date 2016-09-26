@@ -306,7 +306,7 @@ Azure SQL Database 包含協助提示資料庫管理員如何尋找和修正常�
 
 在此範例中，建議使用下列索引。
 
-	CREATE INDEX missing_index_5006_5005 ON [dbo].[missingindex] ([col2])  
+	CREATE INDEX missing_index_5006_5005 ON [dbo].[missingindex] \([col2])  
 
 一旦建立之後，同一個 SELECT 陳述式現在會挑選不同的計劃，使用搜尋而不是掃描，更有效率地執行，如同下列查詢計劃所示。
 

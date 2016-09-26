@@ -66,7 +66,8 @@
 
 ##設定單一登入
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶驗證至 TOPdesk - Secure。設定 TOPdesk - Secure 的單一登入需要您上傳標誌的圖示檔。若要取得圖示檔，請連絡 TOPdesk 支援小組。
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶驗證至 TOPdesk - Secure。
+設定 TOPdesk - Secure 的單一登入需要您上傳標誌的圖示檔。若要取得圖示檔，請連絡 TOPdesk 支援小組。
 
 ###若要設定單一登入，請執行下列步驟：
 
@@ -89,7 +90,10 @@
     ![技術設定](./media/active-directory-saas-topdesk-secure-tutorial/IC790855.png "技術設定")
 
     1.  按 [下載] 來下載公用中繼資料檔案，然後再將它儲存在本機電腦上。
-    2.  開啟此中繼資料檔案，然後找到 **AssertionConsumerService** 節點。![判斷提示取用者服務](./media/active-directory-saas-topdesk-secure-tutorial/IC790856.png "判斷提示取用者服務")
+    2.  開啟此中繼資料檔案，然後找到 **AssertionConsumerService** 節點。
+    
+    	![判斷提示取用者服務](./media/active-directory-saas-topdesk-secure-tutorial/IC790856.png "判斷提示取用者服務")
+    
     3.  複製 **AssertionConsumerService** 值。
 
         >[AZURE.NOTE] 在本教學課程稍後的＜**設定應用程式 URL**＞一節中，您將需要這個值。
@@ -158,7 +162,8 @@
 
 ##設定使用者佈建
   
-若要讓 Azure AD 使用者可以登入 TOPdesk - Secure，則必須將他們佈建到 TOPdesk - Secure。TOPdesk - Secure 需以手動的方式佈建。
+若要讓 Azure AD 使用者可以登入 TOPdesk - Secure，則必須將他們佈建到 TOPdesk - Secure。
+TOPdesk - Secure 需以手動的方式佈建。
 
 ###若要設定使用者佈建，請執行下列步驟：
 

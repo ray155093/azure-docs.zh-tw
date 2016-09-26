@@ -30,7 +30,7 @@
 
 3.  在 [使用者和群組] 刀鋒視窗上，選取 [所有使用者]。
 
-    ![開啟 [所有使用者] 刀鋒視窗](./media/active-directory-users-assign-role-azure-portal/create-users-opzh-TWers-blade.png)
+    ![開啟 [所有使用者] 刀鋒視窗](./media/active-directory-users-assign-role-azure-portal/create-users-open-users-blade.png)
 
 4. 在 [使用者和群組 - 所有使用者] 刀鋒視窗上，從清單中選取一個使用者。
 

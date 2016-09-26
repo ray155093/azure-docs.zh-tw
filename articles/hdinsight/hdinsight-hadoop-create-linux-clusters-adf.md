@@ -322,7 +322,7 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
 
 1. 按一下以下影像，在 Azure 入口網站中登入 Azure 並開啟 Resource Managertemplate。此範本位於 https://hditutorialdata.blob.core.windows.net/adfhiveactivity/data-factory-hdinsight-on-demand.json。
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fadfhiveactivity%2Fdata-factory-hdinsight-on-demand.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/zh-TW/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fadfhiveactivity%2Fdata-factory-hdinsight-on-demand.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
 2. 為您在上一節中建立的帳戶輸入 [DATAFACTORYNAME]、[STORAGEACCOUNTNAME] 和 [STORAGEACCOUNTKEY]，然後按一下 [確定]。[Data Factory 名稱] 必須是全域唯一的。
 3. 在 [資源群組] 中，選取您在上一節中使用的相同資源群組。

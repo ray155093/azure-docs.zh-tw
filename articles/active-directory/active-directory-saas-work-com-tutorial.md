@@ -16,7 +16,8 @@
 
 #教學課程：Azure Active Directory 與 Work.com 整合
   
-本教學課程的目的是要示範 Azure 與 Work.com 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+本教學課程的目的是要示範 Azure 與 Work.com 的整合。
+本教學課程中說明的案例假設您已經具有下列項目：
 
 -   有效的 Azure 訂用帳戶
 -   已啟用 Work.com 單一登入功能的訂用帳戶
@@ -66,7 +67,8 @@
 
 ##設定單一登入
   
-本節的目的是概述如何依據 SAML 通訊協定來使用同盟，讓使用者能夠以自己的 Azure AD 帳戶在 Work.com 中進行驗證。您必須將憑證上傳至 Work.com.com，這是程序的一部分。
+本節的目的是概述如何依據 SAML 通訊協定來使用同盟，讓使用者能夠以自己的 Azure AD 帳戶在 Work.com 中進行驗證。
+您必須將憑證上傳至 Work.com.com，這是程序的一部分。
 
 >[AZURE.NOTE] 若要設定單一登入，您還需要設定自訂的 Work.com 網域名稱。您至少需要定義一個網域名稱、測試網域名稱，並將它部署到整個組織。
 
@@ -125,7 +127,7 @@
 
     ![SAML 單一登入設定](./media/active-directory-saas-work-com-tutorial/IC794114.png "SAML 單一登入設定")
 
-    1.  在 [名稱] 文字方塊中，輸入您的組態名稱。
+    1.  在 [名稱] 文字方塊中，輸入您的組態名稱。  
 
         >[AZURE.NOTE] 提供 [名稱] 的值，[API 名稱] 文字方塊就會自動填入內容。
 
@@ -157,7 +159,8 @@
 
 ##設定使用者佈建
   
-Azure Active Directory 使用者必須先佈建到 Work.com，才可以登入。Work.com 需以手動方式佈建。
+Azure Active Directory 使用者必須先佈建到 Work.com，才可以登入。
+Work.com 需以手動方式佈建。
 
 ###若要設定使用者佈建，請執行下列步驟：
 
@@ -181,7 +184,7 @@ Azure Active Directory 使用者必須先佈建到 Work.com，才可以登入。
 
     1.  輸入要佈建到相關文字方塊的有效 Azure Active Directory 帳戶的 [姓氏]、[別名]、[電子郵件]、[使用者名稱] 和 [暱稱] 屬性。
     2.  選取 [角色]、[使用者授權] 和 [設定檔]。
-    3.  按一下 [儲存]。
+    3.  按一下 [儲存]。  
 
         >[AZURE.NOTE] Azure Active Directory 帳戶的持有者會收到一封包含連結的電子郵件，以便在帳戶啟用前加以確認。
 

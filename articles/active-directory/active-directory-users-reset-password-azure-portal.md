@@ -34,7 +34,7 @@
 
 3.  在 [使用者和群組] 刀鋒視窗上，選取 [使用者]。
 
-    ![開啟 [使用者] 刀鋒視窗](./media/active-directory-users-reset-password-azure-portal/create-users-opzh-TWers-blade.png)
+    ![開啟 [使用者] 刀鋒視窗](./media/active-directory-users-reset-password-azure-portal/create-users-open-users-blade.png)
 
 4. 在 [使用者和群組 - 使用者] 刀鋒視窗上，從清單中選取一個使用者。
 

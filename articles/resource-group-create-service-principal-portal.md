@@ -118,7 +118,7 @@
 
 1. 選取 [新增應用程式]。
 
-2. 在清單中選取 [Windows Azure 服務管理 API]。然後，選取 [完成] 圖示。
+2. 在清單中選取 [Microsoft Azure 服務管理 API]。然後，選取 [完成] 圖示。
 
       ![選取應用程式](./media/resource-group-create-service-principal-portal/select-app.png)
 
