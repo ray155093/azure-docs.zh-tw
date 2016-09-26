@@ -4,7 +4,7 @@
    	services="hdinsight"
    	documentationCenter=""
    	authors="mumian"
-   	manager="paulettm"
+   	manager="jhubbard"
    	editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -122,7 +122,7 @@ HDInsight 叢集可以建立在下列兩個作業系統的其中之一上：
 
 使用 HDInsight 叢集，您可以在建立叢集期間設定兩個使用者帳戶：
 
-- HTTP 使用者。預設使用者名稱是在 Azure 入口網站上使用基本組態的 *admin*。有時稱之為「叢集使用者」。
+- HTTP 使用者。預設的使用者名稱是在 Azure 入口網站上使用基本組態的 admin。有時稱之為「叢集使用者」。
 - SSH 使用者 (Linux 叢集)。這用來連線到使用 SSH 的叢集。當您依照[從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md) 或[從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md) 中的步驟建立叢集之後，即可建立其他 SSH 使用者帳戶。
 
     >[AZURE.NOTE] 對於以 Windows 為基礎的叢集，您可以建立 RDP 使用者，以連接到使用 RDP 的叢集。
@@ -218,7 +218,7 @@ HDInsight 叢集與其預設儲存體帳戶必須並存於相同的 Azure 位置
 
 當您建立 HDInsight 叢集時，或在建立叢集之後，您可以新增儲存體帳戶。請參閱[使用指令碼動作自訂 Linux 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
 
-如需有關次要 Blob 儲存體的詳細資訊，請參閱[使用 Azure Blob 儲存體搭配 HDInsight](hdinsight-hadoop-use-blob-storage.md)。如需次要 Data Lake Store 的詳細資訊，請參閱[使用 Azure 入口網站建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
+如需有關次要 Blob 儲存體的詳細資訊，請參閱[使用 Azure Blob 儲存體搭配 HDInsight](hdinsight-hadoop-use-blob-storage.md)。如需次要 Data Lake 儲存體的詳細資訊，請參閱[使用 Azure 入口網站建立 HDInsight 叢集與 Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
 
 
 ## 使用 Hive/Oozie 中繼存放區
@@ -285,6 +285,10 @@ HBase 叢集類型無法使用中繼存放區組態。
 
 > Cascading 不受 HDInsight 支援，而且不符合「Microsoft 支援」的資格。如需所支援元件的清單，請參閱 [HDInsight 所提供叢集版本的新功能](hdinsight-component-versioning.md)。
 
+## 使用邊緣節點
+
+ 空白的邊緣節點是一部 Linux 虛擬機器，其中已安裝及設定和前端節點相同的用戶端工具。您可以使用邊緣節點來存取叢集、測試用戶端應用程式，以及裝載用戶端應用程式。如需詳細資訊，請參閱 [Use empty edge nodes in HDInsight (在 HDInsight 中使用空白的邊緣節點)](hdinsight-apps-use-edge-node.md)。
+ 
 ## 叢集建立方法
 
 在本文中，您已了解建立以 Linux 為基礎的 HDInsight 叢集的基本資訊。請利用下表，尋找如何使用最符合需求的方法建立叢集的具體資訊。
@@ -299,4 +303,4 @@ HBase 叢集類型無法使用中繼存放區組態。
 | [.NET SDK](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md) | &nbsp; | &nbsp; | &nbsp; | ✔ | ✔ | ✔ |
 | [Azure Resource Manager 範本](hdinsight-hadoop-create-linux-clusters-arm-templates.md) | &nbsp; | ✔ | &nbsp; | &nbsp; | ✔ | ✔ |
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

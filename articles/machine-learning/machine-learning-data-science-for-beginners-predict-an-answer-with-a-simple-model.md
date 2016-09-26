@@ -5,7 +5,7 @@
    services="machine-learning"
    documentationCenter="na"
    authors="brohrer-ms"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cjgronlund"/>
 
 <tags
@@ -32,7 +32,7 @@
 「適用於初學者的資料科學」是一個資料科學的快速簡介，包含五個簡短影片。
 
   * 影片 1：[資料科學可以回答的 5 個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) (5 分 14 秒)
-  * 影片 2：[您的資料已經可以進行資料科學了嗎？](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md) (4 分 56 秒)
+  * 影片 2：[您的資料已經可以進行資料科學了嗎？](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md) *(4 分 56 秒)*
   * 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md) (4 分 17 秒)
   * 影片 4：利用簡單模型預測答案
   * 影片 5：[複製其他人的工作進行資料科學](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) (3 分 18 秒)
@@ -141,4 +141,4 @@
   * [嘗試使用 Azure Machine Learning 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
   * [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

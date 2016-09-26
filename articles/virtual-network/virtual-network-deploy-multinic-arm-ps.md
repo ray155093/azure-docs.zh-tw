@@ -27,7 +27,7 @@
 
 [AZURE.INCLUDE [virtual-network-deploy-multinic-scenario-include.md](../../includes/virtual-network-deploy-multinic-scenario-include.md)]
 
-目前，在相同的資源群組中，您不能有具有單一 NIC 的 VM 和具有多個 NIC 的 VM。因此，您需要在與所有其他元件不同的資源群組中實作後端伺服器。下列步驟中是使用名為 *IaaSStory* 的資源群組做為主要資員群組，以及使用 *IaaSStory-BackEnd* 做為後端伺服器。
+目前，在相同的可用性設定組中，不能同時存在具有單一 NIC 的 VM 和具有多個 NIC 的 VM。因此，您需要在與所有其他元件不同的資源群組中實作後端伺服器。下列步驟中是使用名為 *IaaSStory* 的資源群組做為主要資員群組，以及使用 *IaaSStory-BackEnd* 做為後端伺服器。
 
 ## 必要條件
 
@@ -309,4 +309,4 @@
 		RequestId           : xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 		StatusCode          : OK
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0914_2016-->

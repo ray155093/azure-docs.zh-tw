@@ -14,14 +14,14 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/24/2016"
+	ms.date="09/08/2016"
 	ms.author="iainfou"/>
 
 # 範例 Azure 基礎結構逐步解說
 
 [AZURE.INCLUDE [virtual-machines-linux-infrastructure-guidelines-intro](../../includes/virtual-machines-linux-infrastructure-guidelines-intro.md)]
 
-本文將逐步解說建置範例應用程式基礎結構的方法。我們將會詳述設計簡單線上商店基礎結構的方式，此線上商店將能把所有命名慣例、可用性設定組、虛擬網路及負載平衡器的指導方針和決定集合再一起，並能夠實際部署您的虛擬機器 (VM)。
+本文將逐步解說建置範例應用程式基礎結構的方法。我們會詳述設計簡單線上商店基礎結構的方式，此線上商店能將所有命名慣例、可用性設定組、虛擬網路及負載平衡器的指導方針和決定集合在一起，並實際部署您的虛擬機器 (VM)。
 
 
 ## 範例工作負載
@@ -33,12 +33,12 @@ Adventure Works Cycles 想要在 Azure 中建置一個線上商店，該商店�
 - 兩個做為在資料庫層級中儲存產品資料及訂單的共用叢集一部分的 MongoDB 伺服器
 - 兩個在驗證層級中針對客戶帳戶及供應商的 Active Directory 網域控制站
 - 所有伺服器皆位於兩個子網路中：
-	- 一個針對網頁伺服器的前端子網路
-	- 一個針對應用程式伺服器、MongoDB 叢集，以及網域控制站的後端子網路
+	- 一個適用於網頁伺服器的前端子網路
+	- 一個適用於應用程式伺服器、MongoDB 叢集及網域控制站的後端子網路
 
 ![不同應用程式基礎結構層級的圖表](./media/virtual-machines-common-infrastructure-service-guidelines/example-tiers.png)
 
-連入的安全網路流量需要在客戶瀏覽線上商店時，於網頁伺服器之間達成負載平衡。來自網頁伺服器的 HTTP 要求形式處理訂單流量，需要在應用程式伺服器之間達成負載平衡。此外，基礎結構必須設計為高可用性。
+連入的安全網路流量必須在客戶瀏覽線上商店時，於網頁伺服器之間達成負載平衡。以來自網頁伺服器的 HTTP 要求形式處理訂單流量，必須在應用程式伺服器之間達成負載平衡。此外，基礎結構必須設計為高可用性。
 
 所產生的設計必須包含下列各項：
 
@@ -49,12 +49,12 @@ Adventure Works Cycles 想要在 Azure 中建置一個線上商店，該商店�
 - 適用於具備類似角色之 VM 的可用性設定組
 - 虛擬機器
 
-以上各項將遵循下列命名慣例：
+以上各項會遵循下列命名慣例：
 
 - Adventure Works Cycles 使用 **[IT workload]-[location]-[Azure resource]** 做為首碼
 	- 針對此範例，"**azos**" (Azure 線上商店) 是 IT 工作負載名稱，而 "**use**" (美國東部 2) 是位置
 - 儲存體帳戶使用 adventureazosusesa**[description]**
-	- 請注意，已將 'adventure’ 新增為首碼來提供唯一性，而儲存體帳戶名稱不支援使用連字號。
+	- 已將 'adventure’ 新增為首碼來提供唯一性，而儲存體帳戶名稱不支援使用連字號。
 - 虛擬網路會使用 AZOS-USE-VN**[number]**
 - 可用性設定組會使用 azos-use-as-**[role]**
 - 虛擬機器名稱會使用 azos-use-vm-**[vmname]**
@@ -62,7 +62,7 @@ Adventure Works Cycles 想要在 Azure 中建置一個線上商店，該商店�
 
 ## Azure 訂用帳戶與帳戶
 
-Adventure Works Cycles 正在使用名稱為 Adventure Works Enterprise Subscription 的企業訂用帳戶來提供這個 IT 工作負載的計費。
+Adventure Works Cycles 正在使用名稱為 Adventure Works Enterprise Subscription 的企業訂用帳戶，來提供這個 IT 工作負載的計費。
 
 
 ## 儲存體帳戶
@@ -132,4 +132,4 @@ Adventure Works Cycles 決定為其 Azure VM 使用下列名稱：
 
 [AZURE.INCLUDE [virtual-machines-linux-infrastructure-guidelines-next-steps](../../includes/virtual-machines-linux-infrastructure-guidelines-next-steps.md)]
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0914_2016-->

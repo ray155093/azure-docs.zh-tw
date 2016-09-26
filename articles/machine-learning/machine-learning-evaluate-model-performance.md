@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter="" 
 	authors="garyericson" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -189,4 +189,4 @@ Azure Machine Learning 支援透過其中兩種主要的機器學習服務模組
 [two-class-logistic-regression]: https://msdn.microsoft.com/library/azure/b0fd7660-eeed-43c5-9487-20d9cc79ed5d/
  
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

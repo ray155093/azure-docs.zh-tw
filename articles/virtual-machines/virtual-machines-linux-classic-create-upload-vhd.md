@@ -23,6 +23,7 @@
 
 本文說明如何建立及上傳虛擬硬碟 (VHD)，以便用它做為您自己的映像，在 Azure 中建立虛擬機器。了解如何準備作業系統，以便使用它根據該映像建立多部虛擬機器。
 
+>  [AZURE.NOTE] 若能耽擱您一些時間，請透過回答這個針對您經驗的[簡短問卷](https://aka.ms/linuxdocsurvey)，來協助我們改善 Azure Linux VM 文件。每個答案都有助於我們協助您完成工作。
 
 ## 必要條件
 本文假設您具有下列項目：
@@ -109,4 +110,4 @@ azure vm create --userName ops --password P@ssw0rd! --vm-size Small --ssh `
 [Step 2: Prepare the connection to Azure]: #connect
 [Step 3: Upload the image to Azure]: #upload
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -4,7 +4,7 @@
    services="data-lake-store" 
    documentationCenter=""
    authors="nitinme"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"/>
 
 <tags
@@ -26,7 +26,7 @@
 
 - **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-- **啟用您的 Azure 訂用帳戶**以使用資料湖存放區公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
+- **啟用您的 Azure 訂用帳戶**以使用「Data Lake Store 公開預覽版」。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
 
 - **Azure Data Lake Store 帳戶**。遵循[使用 Azure 入口網站開始使用 Azure 資料湖存放區](data-lake-store-get-started-portal.md)的指示。本文假設您已經建立稱為 **mybidatalakestore** 的 Data Lake Store 帳戶，並將範例資料檔案 (**Drivers.txt**) 上傳到其中。此範例檔案可從 [Azure Data Lake Git 儲存機制](https://github.com/Azure/usql/tree/master/Examples/Samples/Data/AmbulanceData/Drivers.txt)進行下載。
 
@@ -125,4 +125,4 @@
 
 * [使用 Data Lake Analytics 分析 Data Lake Store 中的資料](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

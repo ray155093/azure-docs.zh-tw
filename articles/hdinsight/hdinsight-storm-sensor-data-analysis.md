@@ -4,7 +4,7 @@
    services="hdinsight"
    documentationCenter=""
    authors="Blackmist"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"/>
 
 <tags
@@ -26,7 +26,7 @@
 
 ## 必要條件
 
-* Azure 訂閱。請參閱[取得 Azure 免費試用](http://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+* Azure 訂用帳戶。請參閱[取得 Azure 免費試用](http://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 
     > [AZURE.IMPORTANT] 您不需要現有的 HDInsight 叢集；本文件中的步驟將會建立下列資源︰
     >
@@ -104,7 +104,7 @@
 
 ### 設定事件中樞
 
-事件中樞是此範例的資料來源。請使用下列步驟建立新的事件中樞。
+事件中樞是此範例的資料來源。請使用下列步驟建立新的事件中心。
 
 1. 從 [Azure 傳統入口網站](https://manage.windowsazure.com)選取 [新增]| Service Bus | Event Hub | Custom Create**.
 
@@ -477,4 +477,4 @@
 
 [azure-portal]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0914_2016-->

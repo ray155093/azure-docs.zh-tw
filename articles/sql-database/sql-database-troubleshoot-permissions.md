@@ -14,11 +14,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/06/2016"
+	ms.date="09/13/2016"
 	ms.author="v-shysun"/>
 
 # 如何在 Azure SQL Database 中執行重設管理密碼等一般管理工作
-使用本主題中的步驟即可快速授與或移除 Azure SQL Database 的存取權。如需更完整的資訊，請參閱：
+使用本主題中的步驟即可快速授與或移除對 Azure SQL Database 的存取權。如需更完整的資訊，請參閱：
 
 - [管理 Azure SQL Database 的資料庫和登入](sql-database-manage-logins.md)
 - [保護您的 SQL Database](sql-database-security.md)
@@ -43,4 +43,4 @@
 ## 若要在虛擬 master 資料庫中建立高權限使用者的其他登入
 - 使用 [CREATE LOGIN](https://msdn.microsoft.com/library/ms189751.aspx) 陳述式，並參閱[管理 Azure SQL Database 的資料庫和登入](sql-database-manage-logins.md)的＜管理登入＞一節以獲得詳細資訊。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0914_2016-->

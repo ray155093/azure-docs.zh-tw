@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="garyericson"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun" />
 
 <tags
@@ -685,4 +685,4 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
 	        "operationId": "getSwaggerDocument",
 	        
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

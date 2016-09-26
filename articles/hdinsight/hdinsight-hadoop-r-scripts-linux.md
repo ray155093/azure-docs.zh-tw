@@ -4,7 +4,7 @@
 	services="hdinsight"
 	documentationCenter=""
 	authors="Blackmist"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -136,14 +136,14 @@ R 指令碼可以在 HDInsight 中的 Hadoop 叢集上執行，這些叢集是�
 
 ## 後續步驟
 
-- [在 HDInsight 叢集上安裝及使用色調](hdinsight-hadoop-hue-linux.md)。色調是 Web UI，可讓您更輕鬆地建立、執行及儲存 Pig 和 Hive 工作，以及瀏覽您的 HDInsight 叢集的預設儲存體。
+- [在 HDInsight 叢集上安裝及使用色調](hdinsight-hadoop-hue-linux.md)。Hue 是 Web UI，可讓您更輕鬆地建立、執行及儲存 Pig 和 Hive 工作，以及瀏覽您的 HDInsight 叢集的預設儲存體。
 
 - [在 HDInsight 叢集上安裝 Giraph](hdinsight-hadoop-giraph-install.md)。在 HDInsight Hadoop 叢集上使用叢集自訂安裝 Giraph。Giraph 可讓您利用 Hadoop 執行圖形處理，且可以搭配 Azure HDInsight 一起使用。
 
 - [在 HDInsight 叢集上安裝 Solr](hdinsight-hadoop-solr-install.md)。在 HDInsight Hadoop 叢集上使用叢集自訂安裝 Solr。Solr 可讓您對儲存的資料執行功能強大的搜尋作業。
 
-- [在 HDInsight 叢集上安裝色調](hdinsight-hadoop-hue-linux.md)。在 HDInsight Hadoop 叢集上使用叢集自訂安裝色調。色調是一組 Web 應用程式，用來與 Hadoop 叢集互動。
+- [在 HDInsight 叢集上安裝色調](hdinsight-hadoop-hue-linux.md)。在 HDInsight Hadoop 叢集上使用叢集自訂安裝 Hue。Hue 是一組 Web 應用程式，用來與 Hadoop 叢集互動。
 
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster-linux.md
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0914_2016-->

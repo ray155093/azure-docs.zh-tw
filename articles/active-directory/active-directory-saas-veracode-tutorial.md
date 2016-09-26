@@ -11,15 +11,15 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="06/21/2016" 
+    ms.date="09/11/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Veracode 整合
   
 本教學課程的目的是要示範 Azure 與 Veracode 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
--   有效的 Azure 訂閱
--   啟用 Veracode 單一登入的訂用帳戶
+-   有效的 Azure 訂用帳戶
+-   已啟用 Veracode 單一登入功能的訂用帳戶
   
 完成本教學課程之後，您指派給 Veracode 的 Azure AD 使用者就能夠從您的 Veracode 公司網站 (服務提供者起始登入)，或使用[存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
   
@@ -54,7 +54,7 @@
 
 5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-veracode-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![從資源庫新增應用程式](./media/active-directory-saas-veracode-tutorial/IC749322.png "從資源庫新增應用程式")
 
 6.  在 [搜尋方塊] 中，輸入 **Veracode**。
 
@@ -72,7 +72,7 @@
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure 傳統入口網站的 [Veracode] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [Veracode] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-veracode-tutorial/IC802907.png "設定單一登入")
 
@@ -84,7 +84,7 @@
 
     ![設定 App 設定](./media/active-directory-saas-veracode-tutorial/IC802909.png "設定 App 設定")
 
-4.  在 [設定在 Veracode 單一登入] 頁面上，按 [下載憑證] 以下載您的憑證，然後在本機電腦上儲存憑證檔案。
+4.  在 [設定在 Veracode 單一登入] 頁面上，若要下載您的憑證，請按一下 [下載憑證]，然後將憑證檔案儲存在本機電腦上。
 
     ![設定單一登入](./media/active-directory-saas-veracode-tutorial/IC802910.png "設定單一登入")
 
@@ -100,7 +100,7 @@
 
     ![系統管理](./media/active-directory-saas-veracode-tutorial/IC802912.png "系統管理")
 
-    1.  在 Azure 傳統入口網站中的 [設定在 Veracode 單一登入] 對話頁面上，複製 [簽發者 URL] 值，然後將它貼至 [簽發者] 文字方塊中
+    1.  在 Azure 傳統入口網站的 [設定在 Veracode 單一登入] 對話方塊頁面上，複製 [簽發者 URL] 值，然後將它貼到 [簽發者] 文字方塊中
     2.  若要上傳您下載的憑證，請按一下 [選擇檔案]。
     3.  選取 [啟用自動註冊]。
 
@@ -174,6 +174,6 @@
 
     ![是](./media/active-directory-saas-veracode-tutorial/IC767830.png "是")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

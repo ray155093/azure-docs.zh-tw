@@ -23,6 +23,7 @@
 - 公開憑證，必須先向憑證授權單位 (CA) 購買
 - 私人憑證，您可以自行核發。這些憑證有時也稱為自我簽署憑證。
 
+
 ## 什麼是憑證？
 憑證是數位文件，可用來驗證電子通訊參與者的身分識別，同時還能保護電子通訊的安全。
 
@@ -36,7 +37,7 @@
 ### 公開憑證
 若要在具備 B2B 功能的 Logic Apps 中使用**公開憑證**，您必須先將它上傳到整合帳戶。另一方面，若要使用**自我簽署憑證**，必須先將它上傳到[金鑰保存庫](../key-vault/key-vault-get-started.md "了解金鑰保存庫")。
 
-上傳憑證之後，當您在自己建立的[合約](./app-service-logic-enterprise-integration-agreements.md)中定義 B2B 訊息的屬性時，就能使用它來保護這些訊息的安全。
+上傳憑證之後，當您在[合約](./app-service-logic-enterprise-integration-agreements.md)中定義 B2B 訊息的屬性時，就能使用它來保護這些訊息的安全。
 
 以下是您登入 Azure 入口網站後，將公開憑證上傳到整合帳戶的詳細步驟：
 1. 選取 [瀏覽] ![](./media/app-service-logic-enterprise-integration-overview/overview-1.png)
@@ -49,6 +50,7 @@
 8. 選取 [憑證] 圖格。頁面重新整理之後，您應該會看到新增的憑證︰![](./media/app-service-logic-enterprise-integration-certificates/certificate-4.png)
 
 ### 私人憑證
+
 您也可以執行下列步驟將私人憑證上傳到整合帳戶：
 
 1. [將您的私人金鑰上傳到金鑰保存庫](../key-vault/key-vault-get-started.md "了解金鑰保存庫")
@@ -61,6 +63,7 @@
 完成上述步驟之後，您就可以使用私人憑證來建立合約。
 
 以下是您登入 Azure 入口網站後，將私人憑證上傳到整合帳戶的詳細步驟：
+   
 1. 選取 [瀏覽] ![](./media/app-service-logic-enterprise-integration-overview/overview-1.png)
 2. 在篩選搜尋方塊中輸入**整合**，然後從結果清單中選取 [整合帳戶] ![](./media/app-service-logic-enterprise-integration-overview/overview-2.png)
 3. 選取您將新增憑證的**整合帳戶** ![](./media/app-service-logic-enterprise-integration-overview/overview-3.png)
@@ -78,4 +81,4 @@
 - [建立 B2B 合約](./app-service-logic-enterprise-integration-agreements.md)
 - [深入了解金鑰保存庫](../key-vault/key-vault-get-started.md "了解金鑰保存庫")
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

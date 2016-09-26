@@ -4,7 +4,7 @@ description="了解在以 Windows 為基礎的 HDInsight 上如何使用 Tez UI 
 services="hdinsight"
 documentationCenter=""
 authors="Blackmist"
-manager="paulettm"
+manager="jhubbard"
 editor="cgronlun"/>
 
 <tags
@@ -147,4 +147,4 @@ Tez UI 只包含正在或曾經使用 Tez 引擎來執行之作業的資料。�
 
 如需 Tez 的詳細技術資訊，請參閱 [Hortonworks 的 Tez 頁面](http://hortonworks.com/hadoop/tez/)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

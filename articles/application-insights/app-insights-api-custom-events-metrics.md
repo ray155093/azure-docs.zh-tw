@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="ibiza" 
 	ms.devlang="multiple" 
 	ms.topic="article" 
-	ms.date="09/01/2016" 
+	ms.date="09/11/2016" 
 	ms.author="awills"/>
 
 # 自訂事件和度量的 Application Insights API 
@@ -21,7 +21,7 @@
 
 在您的應用程式中插入幾行程式碼，以了解使用者對它進行的動作或協助診斷問題。您可以從裝置和桌面應用程式、Web 用戶端以及 Web 伺服器傳送遙測。
 
-Application Insights 資料收集器會使用此 API 傳送標準遙測，例如頁面檢視和例外狀況報告，但是您也可以使用它來傳送您自己自訂的遙測。
+[Visual Studio Application Insights](app-insights-overview.md) 核心遙測 API 可讓您傳送自訂的事件和度量，以及您自己的標準遙測版本。這個 API 與標準 Application Insights 資料收集器所使用的 API 相同。
 
 ## API summary
 
@@ -103,7 +103,8 @@ TelemetryClient 具備執行緒安全。
 
     telemetry.trackEvent("WinGame");
 
-這裡的 "WinGame" 是出現在 Application Insights 入口網站的名稱。
+
+### 在 Azure 入口網站中檢視您的事件
 
 若要查看事件計數，請開啟 [[計量瀏覽器](app-insights-metrics-explorer.md)] 刀鋒視窗、新增圖表，然後再選取 [事件]。
 
@@ -243,6 +244,36 @@ TelemetryClient 具備執行緒安全。
        stopwatch.Elapsed, 
        "200", true);  // Response code, success
 
+
+
+## 作業內容
+
+您可藉由為遙測項目附加通用的作業識別碼，讓它們能夠關聯在一起。標準的要求追蹤模組會針對在處理 HTTP 要求時傳送的例外狀況和其他事件執行此動作。在[搜尋](app-insights-diagnostic-search.md)和[分析](app-insights-analytics.md)中，您可以使用此識別碼，輕易地找出與要求相關聯的任何事件。
+
+設定此識別碼的最簡單方式是使用下列模式來設定作業內容：
+
+    // Establish an operation context and associated telemetry item:
+    using (var operation = telemetry.StartOperation<RequestTelemetry>("operationName"))
+    {
+        // Telemetry sent in here will use the same operation ID.
+        ...
+        telemetry.TrackEvent(...); // or other Track* calls
+        ...
+        // Set properties of containing telemetry item - for example:
+        operation.Telemetry.ResponseCode = "200";
+        
+        // Optional: explicitly send telemetry item:
+        telemetry.StopOperation(operation);
+
+    } // When operation is disposed, telemetry item is sent.
+
+除了設定作業內容以外，`StartOperation` 會建立採用您指定類型的遙測項目，並在處置作業或在您明確地呼叫 `StopOperation` 時傳送它。如果您使用 `RequestTelemetry` 為遙測類型，則其 [持續時間] 會設定為開始與停止之間的時間間隔。
+
+作業內容不可為巢狀。如果已經有作業內容，則其識別碼會與所有內含項目 (包括使用 StartOperation 建立的項目) 相關聯。
+
+在搜尋中，會使用作業內容來建立 [相關項目] 清單：
+
+![相關項目](./media/app-insights-api-custom-events-metrics/21.png)
 
 
 ## 追蹤例外狀況
@@ -517,32 +548,6 @@ SDK 將自動攔截許多例外狀況，所以您不一定需要明確呼叫 Tra
 
 > [AZURE.WARNING] 不要重複使用相同的遙測項目執行個體 (此範例中的 `event`) 來呼叫 Track*() 多次。這可能會讓遙測隨著不正確的組態傳送。
 
-## 作業內容
-
-當 Web 應用程式收到 HTTP 要求時，Application Insights 要求追蹤模組會指派要求的識別碼，並將相同的值設定為目前的作業識別碼。傳送要求的回應時，會清除作業識別碼。在作業期間進行的任何追蹤呼叫會被指派相同的作業識別碼 (前提是它們使用預設 TelemetryContext)。這可讓您在入口網站中檢查相關事件時，讓相關事件與特定要求相互關聯。
-
-![相關項目](./media/app-insights-api-custom-events-metrics/21.png)
-
-如果您要監視與 HTTP 要求不相關的事件，或如果您未使用要求追蹤模組 (比方說，您正在監視後端處理序) - 則您可以使用以下模式設定自己的作業內容︰
-
-    // Establish an operation context and associated telemetry item:
-    using (var operation = telemetry.StartOperation<RequestTelemetry>("operationName"))
-    {
-        // Telemetry sent in here will use the same operation ID.
-        ...
-        telemetry.TrackEvent(...); // or other Track* calls
-        ...
-        // Set properties of containing telemetry item - for example:
-        operation.Telemetry.ResponseCode = "200";
-        
-        // Optional: explicitly send telemetry item:
-        telemetry.StopOperation(operation);
-
-    } // When operation is disposed, telemetry item is sent.
-
-除了設定作業內容以外，`StartOperation` 會建立採用您指定類型的遙測項目，並在處置作業或在您明確地呼叫 `StopOperation` 時傳送它。如果您使用 `RequestTelemetry` 為遙測類型，則其 [持續時間] 會設定為開始與停止之間的時間間隔。
-
-作業內容不可為巢狀。如果已經有作業內容，則其識別碼會與所有內含項目 (包括使用 StartOperation 建立的項目) 相關聯。
 
 
 ## <a name="timed"></a>計時事件
@@ -788,4 +793,4 @@ TelemetryClient 具有內容屬性，其中包含與所有遙測資料一起傳�
 
  
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

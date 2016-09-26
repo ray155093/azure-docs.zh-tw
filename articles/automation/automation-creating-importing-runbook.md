@@ -12,7 +12,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="infrastructure-services"
-	ms.date="05/31/2016"
+	ms.date="09/12/2016"
 	ms.author="magoedte;bwren" />
 
 # 在 Azure 自動化中建立或匯入 Runbook
@@ -123,7 +123,7 @@
 
 您可以使用 [Publish-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603705.aspx) Cmdlet，利用 Windows PowerShell 發佈 Runbook。下列範例命令顯示如何發佈範例 Runbook。
 
-	$automationAccountName =  "AutomationAccount"
+	$automationAccountName =  AutomationAccount"
     $runbookName = "Sample_TestRunbook"
     $RGName = "ResourceGroup"
 
@@ -136,4 +136,4 @@
 - 若要深入了解使用文字編輯器編輯 PowerShell 和 PowerShell 工作流程 Runbook，請參閱[在 Azure 自動化中編輯文字式 Runbook](automation-edit-textual-runbook.md)
 - 若要深入了解如何編寫圖形化 Runbook，請參閱 [Azure 自動化中的圖形化編寫](automation-graphical-authoring-intro.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0914_2016-->

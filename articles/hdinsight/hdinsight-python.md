@@ -4,7 +4,7 @@
 	services="hdinsight"
 	documentationCenter=""
 	authors="Blackmist"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="python"
 	ms.topic="article"
-	ms.date="07/25/2016" 
+	ms.date="09/07/2016" 
 	ms.author="larryfr"/>
 
 #在 HDInsight 中搭配 Hive 與 Pig 來使用 Python
@@ -33,9 +33,9 @@ Hive 與 Pig 很適合在 HDInsight 中處理資料，但您有時需要更通�
 
 HDInsight 3.0 及更新版本的叢集上預設為已安裝 Python2.7。Hive 可以搭配此版本的 Python 來進行串流處理 (Hive 與 Python 之間使用 STDOUT/STDIN 傳遞資料)。
 
-HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。Pig 知道如何與 Jython 互動，而不必依賴串流，所以使用 Pig 時很適合。
+HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。Pig 知道如何與 Jython 互動，而不必依賴串流，所以使用 Pig 時很適合。不過，您也可以使用標準的 Python (C Python) 來搭配 Pig。
 
-###<a name="hivepython"></a>Hive 與 Python
+##<a name="hivepython"></a>Hive 與 Python
 
 從 Hive 中，透過 HiveQL **TRANSFORM** 陳述式，可將 Python 當做 UDF 使用。例如，下列 HiveQL 會叫用儲存在 **streaming.py** 檔案中的 Python 指令碼。
 
@@ -103,38 +103,53 @@ HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。Pig 知道如何
 
 請參閱[執行範例](#running)，以了解如何在 HDInsight 叢集上執行此範例。
 
-###<a name="pigpython"></a>Pig 與 Python
+##<a name="pigpython"></a>Pig 與 Python
 
-從 Pig 中，透過 **GENERATE** 陳述式，可將 Python 指令碼當做 UDF 使用。例如，下列範例使用儲存在 **jython.py** 檔案中的 Python 指令碼。
+從 Pig 中，透過 **GENERATE** 陳述式，可將 Python 指令碼當做 UDF 使用。有兩種方式可以達到此目的；使用 Jython (在 Java 虛擬機器上實作的 Python) 和 C Python (一般 Python)。
 
-	Register 'wasbs:///jython.py' using jython as myfuncs;
+兩者之間的主要差異在於，Jython 是在 JVM 上執行，而且可以從 Pig (也在 JVM 上執行) 原生呼叫。 C Python 是外部處理序 (以 C 撰寫)。 因此 JVM 上的 Pig 所提供的資料會外送到 Python 處理序中執行的指令碼，然後其輸出會送回 Pig。
+
+若要判斷 Pig 是使用 Jython 還是 C Python 來執行指令碼，請在從 Pig Latin 參考 Python 指令碼時使用 [註冊]。這會告知 Pig 要使用的解譯器，以及要為指令碼建立什麼別名。下列範例使用 Pig 將指令碼註冊為 __myfuncs__：
+
+* __若要使用 Jython__：`register '/path/to/pig_python.py' using jython as myfuncs;`
+* __若要使用 C Python__：`register '/path/to/pig_python.py' using streaming_python as myfuncs;`
+
+> [AZURE.IMPORTANT] 在使用 Jython 時，pig\_jython 檔案的路徑可以是本機路徑或 WASB:// 路徑。不過，在使用 C Python 時，您必須參考您用來提交 Pig 作業之節點的本機檔案系統上的檔案。
+
+通過註冊之後，此範例針對兩者的 Pig Latin 是相同的︰
+
     LOGS = LOAD 'wasbs:///example/data/sample.log' as (LINE:chararray);
     LOG = FILTER LOGS by LINE is not null;
     DETAILS = FOREACH LOG GENERATE myfuncs.create_structure(LINE);
     DUMP DETAILS;
 
-以下是此範例的運作情形：
+以下是此範例所執行的動作：
 
-1. 使用 **Jython** 來註冊含有 Python 指令碼 (**jython.py**) 的檔案，然後以 **myfuncs** 公開給 Pig。Jython 是以 Java 撰寫的 Python 實作，在與 Pig 相同的 Java 虛擬機器中執行。這樣可讓我們將 Python 指令碼視同傳統的函數呼叫，而不是 Hive 使用的串流方法。
+1. 第一行將範例資料檔 **sample.log** 載入 **LOGS** 中。因為此記錄檔沒有一致的結構描述，所以也將每一筆記錄 (此案例中的 **LINE**) 定義為 **chararray**。Chararray 基本上就是字串。
 
-2. 下一行將範例資料檔 **sample.log** 載入 **LOGS** 中。因為此記錄檔沒有一致的結構描述，所以也將每一筆記錄 (此案例中的 **LINE**) 定義為 **chararray**。Chararray 基本上就是字串。
+2. 下一行會濾除任何 null 值，然後將操作的結果儲存至 **LOG**。
 
-3. 第三行濾除任何 null 值，然後將操作的結果儲存至 **LOG**。
+3. 接下來，逐一查看 **LOG** 中的記錄，並使用 **GENERATE** 叫用以 **myfuncs** 載入的 Python/Jython 指令碼所包含的 **create\_structure** 方法。**LINE** 用來將目前的記錄傳給函數。
 
-4. 接下來，逐一查看 **LOG** 中的記錄，並使用 **GENERATE** 叫用以 **myfuncs** 載入的 **jython.py** 指令碼所包含的 **create\_structure** 方法。**LINE** 用來將目前的記錄傳給函數。
+4. 最後，使用 **DUMP** 指令將輸出傾印至 STDOUT。這只是為了在操作完成之後立即顯示結果，在實際的指令碼中，通常是將資料 **STORE** (儲存) 到新檔案中。
 
-5. 最後，使用 **DUMP** 指令將輸出傾印至 STDOUT。這只是為了在操作完成之後立即顯示結果，在實際的指令碼中，通常是將資料 **STORE** (儲存) 到新檔案中。
+C Python 與 Jython 的實際 Python 指令碼檔案也很類似，唯一的真正差異在於，使用 C Python 時您必須從 __pig\_util__ 匯入。以下是 __pig\_python.py__ 指令碼︰
 
-<a name="jythonpy"></a>以下是 Pig 範例使用的 **jython.py** 檔案：
+<a name="streamingpy"></a>
 
-	@outputSchema("log: {(date:chararray, time:chararray, classname:chararray, level:chararray, detail:chararray)}")
-	def create_structure(input):
-	  if (input.startswith('java.lang.Exception')):
-	    input = input[21:len(input)] + ' - java.lang.Exception'
-	  date, time, classname, level, detail = input.split(' ', 4)
-	  return date, time, classname, level, detail
+    # Uncomment the following if using C Python
+    #from pig_util import outputSchema
 
-先前，我們因為輸入沒有一致的結構描述而將 **LINE** 輸入定義為 chararray，記得嗎？ **jython.py** 的用途就是將資料轉換成一致的結構描述，以便輸出。運作方式如下：
+    @outputSchema("log: {(date:chararray, time:chararray, classname:chararray, level:chararray, detail:chararray)}")
+    def create_structure(input):
+    if (input.startswith('java.lang.Exception')):
+        input = input[21:len(input)] + ' - java.lang.Exception'
+    date, time, classname, level, detail = input.split(' ', 4)
+    return date, time, classname, level, detail
+
+> [AZURE.NOTE] 'pig\_util' 不是您應該擔心的安裝項目；它會自動提供給指令碼。
+
+先前，我們因為輸入沒有一致的結構描述而將 **LINE** 輸入定義為 chararray，記得嗎？ Python 指令碼的用途就是將資料轉換成一致的結構描述，以便輸出。運作方式如下：
 
 1. **@outputSchema** 陳述式定義將傳回給 Pig 的資料格式。在此案例中，這是一個 **data bag** (一種 Pig 資料類型)。Bag 包含下列欄位，全部都是 chararray (字串)：
 
@@ -162,11 +177,11 @@ HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。Pig 知道如何
 
 如需使用 SSH 的詳細資訊，請參閱<a href="../hdinsight-hadoop-linux-use-ssh-unix/" target="_blank">從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop</a> 或<a href="../hdinsight-hadoop-linux-use-ssh-windows/" target="_blank">從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop</a>
 
-1. 使用 Python 範例 [streaming.py](#streamingpy) 和 [jython.py](#jythonpy)，在開發機器上建立檔案的本機複本。
+1. 使用 Python 範例 [streaming.py](#streamingpy) 和 [pig\_python.py](#jythonpy)，在開發機器上建立檔案的本機複本。
 
 2. 使用 `scp` 將檔案複製到您的 HDInsight 叢集。例如，下列會將檔案複製到名為 **mycluster** 的叢集。
 
-		scp streaming.py jython.py myuser@mycluster-ssh.azurehdinsight.net:
+		scp streaming.py pig_python.py myuser@mycluster-ssh.azurehdinsight.net:
 
 3. 使用 SSH 連接到叢集。例如，下列會以使用者 **myuser** 的身分，連接到名為 **mycluster** 的叢集。
 
@@ -175,7 +190,7 @@ HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。Pig 知道如何
 4. 從 SSH 工作階段，將先前上傳的 python 檔案加入叢集的 WASB 儲存體。
 
 		hdfs dfs -put streaming.py /streaming.py
-		hdfs dfs -put jython.py /jython.py
+		hdfs dfs -put pig_python.py /pig_python.py
 
 上傳檔案之後，請使用下列步驟執行 Hive 和 Pig 工作。
 
@@ -204,9 +219,9 @@ HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。Pig 知道如何
 
 1. 使用 `pig` 命令啟動 Shell。在 Shell 載入完成時，您應會看到 `grunt>` 提示。
 
-2. 在出現 `grunt>` 提示時輸入下列陳述式。
+2. 在 `grunt>` 提示字元中輸入下列陳述式，以使用 Jython 解譯器執行 Python 指令碼。
 
-		Register wasbs:///jython.py using jython as myfuncs;
+		Register wasbs:///pig_python.py using jython as myfuncs;
 	    LOGS = LOAD 'wasbs:///example/data/sample.log' as (LINE:chararray);
 	    LOG = FILTER LOGS by LINE is not null;
 	    DETAILS = foreach LOG generate myfuncs.create_structure(LINE);
@@ -220,19 +235,39 @@ HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。Pig 知道如何
 		((2012-02-03,20:11:56,SampleClass3,[TRACE],verbose detail for id 1718828806))
 		((2012-02-03,20:11:56,SampleClass3,[INFO],everything normal for id 530537821))
 
+4. 使用 `quit` 結束 Grunt shell，然後使用下列命令編輯本機檔案系統上的 pig\_python.py 檔案︰
+
+    nano pig\_python.py
+
+5. 進入編輯器後，移除行首的 `#` 字元將以下這行取消註解：
+
+        #from pig_util import outputSchema
+
+    完成變更後，使用 Ctrl + X 結束編輯器。選取 [Y]，然後按 Enter 儲存變更。
+
+6. 使用 `pig` 命令再次啟動 Shell。進入 `grunt>`提示字元後，使用下列命令以使用 C Python 解譯器執行 Python 指令碼。
+
+        Register 'pig_python.py' using streaming_python as myfuncs;
+	    LOGS = LOAD 'wasbs:///example/data/sample.log' as (LINE:chararray);
+	    LOG = FILTER LOGS by LINE is not null;
+	    DETAILS = foreach LOG generate myfuncs.create_structure(LINE);
+	    DUMP DETAILS;
+
+    此作業完成後，您應該會看到和先前使用 Jython 執行指令碼時所得到的相同輸出。
+
 ###PowerShell
 
 這些步驟使用 Azure PowerShell。如果尚未在開發機器上安裝和設定此元件，則使用下列步驟之前，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
 [AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
-1. 使用 Python 範例 [streaming.py](#streamingpy) 和 [jython.py](#jythonpy)，在開發機器上建立檔案的本機複本。
+1. 使用 Python 範例 [streaming.py](#streamingpy) 和 [pig\_python.py](#jythonpy)，在開發機器上建立檔案的本機複本。
 
-2. 使用下列 PowerShell 指令碼，將 **streaming.py** 和 **jython.py** 檔案上傳至伺服器。在指令碼的前三行，替換您的 Azure HDInsight 叢集的名稱及 **streaming.py** 和 **jython.py** 檔案的路徑。
+2. 使用下列 PowerShell 指令碼，將 **streaming.py** 和 **pig\_python.py** 檔案上傳至伺服器。在指令碼的前三行，替換您的 Azure HDInsight 叢集的名稱及 **streaming.py** 和 **pig\_python.py** 檔案的路徑。
 
 		$clusterName = YourHDIClusterName
 		$pathToStreamingFile = "C:\path\to\streaming.py"
-		$pathToJythonFile = "C:\path\to\jython.py"
+		$pathToJythonFile = "C:\path\to\pig_python.py"
 
 		$clusterInfo = Get-AzureRmHDInsightCluster -ClusterName $clusterName
         $resourceGroup = $clusterInfo.ResourceGroup
@@ -255,7 +290,7 @@ HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。Pig 知道如何
 		
         Set-AzureStorageBlobContent `
             -File $pathToJythonFile `
-            -Blob "jython.py" `
+            -Blob "pig_python.py" `
             -Container $container `
             -Context $context
 
@@ -284,10 +319,12 @@ HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。Pig 知道如何
     $context = New-AzureStorageContext `
         -StorageAccountName $storageAccountName `
         -StorageAccountKey $storageAccountKey
-            
+    
+    # If using a Windows-based HDInsight cluster, change the USING statement to:
+    # "USING 'D:\Python27\python.exe streaming.py' AS " +
 	$HiveQuery = "add file wasbs:///streaming.py;" +
 	             "SELECT TRANSFORM (clientid, devicemake, devicemodel) " +
-	               "USING 'D:\Python27\python.exe streaming.py' AS " +
+	               "USING 'python streaming.py' AS " +
 	               "(clientid string, phoneLabel string, phoneHash string) " +
 	             "FROM hivesampletable " +
 	             "ORDER BY clientid LIMIT 50;"
@@ -330,9 +367,11 @@ HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。Pig 知道如何
 	100042	Apple iPhone 4.2.x	375ad9a0ddc4351536804f1d5d0ea9b9
 	100042	Apple iPhone 4.2.x	375ad9a0ddc4351536804f1d5d0ea9b9
 
-####Pig
+####Pig (Jython)
 
-接著會使用 __jython.py__ 指令碼。執行前，會提示您輸入 HDInsight 叢集的 HTTPs/系統管理資訊。
+下面會使用 Jython 解譯器來使用 __pig\_python.py__ 指令碼。執行前，會提示您輸入 HDInsight 叢集的 HTTPs/系統管理資訊。
+
+> [AZURE.NOTE] 使用 PowerShell 遠端提交作業時，無法使用 C Python 做為解譯器。
 
 	# Replace 'YourHDIClusterName' with the name of your cluster
 	$clusterName = YourHDIClusterName
@@ -444,4 +483,4 @@ Pig|/PigPython/stderr<p>/PigPython/stdout
 
 * [〈搭配 HDInsight 使用 MapReduce〉](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

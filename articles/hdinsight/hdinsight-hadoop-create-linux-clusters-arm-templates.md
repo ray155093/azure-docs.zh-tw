@@ -5,7 +5,7 @@
    documentationCenter=""
    tags="azure-portal"
    authors="mumian"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"/>
 
 <tags
@@ -144,7 +144,7 @@ Resource Manager 範本可讓您在單一的協調作業中，輕鬆地為您的
 
 - 如需透過 .NET 用戶端程式庫部署資源的範例，請參閱[使用 .NET 程式庫與範本部署資源](../virtual-machines/virtual-machines-windows-csharp-template.md)。
 - 如需部署應用程式的深入範例，請參閱[透過可預測方式在 Azure 中佈建和部署微服務](../app-service-web/app-service-deploy-complex-application-predictably.md)。
-- 如需如何將解決方案部署到不同環境的指南，請參閱[Microsoft Azure 中開發和測試環境](../solution-dev-test-environments.md)。
+- 如需將您的方案部署到不同環境的指引，請參閱 [Microsoft Azure 中的開發和測試環境](../solution-dev-test-environments.md)。
 - 若要了解 Azure Resource Manager 範本的區段，請參閱[編寫範本](../resource-group-authoring-templates.md)。
 - 如需可在 Azure Resource Manager 範本中使用的函式清單，請參閱[範本函式](../resource-group-template-functions.md)。
 
@@ -353,4 +353,4 @@ Resource Manager 範本可讓您在單一的協調作業中，輕鬆地為您的
     }
     }
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

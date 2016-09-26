@@ -4,7 +4,7 @@
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="bradsev"
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun" />
 
 <tags 
@@ -56,4 +56,4 @@
 
 如需能引導您完成在 Azure 中構成資料科學程序之工作的主題概觀，請參閱[資料科學程序](http://aka.ms/datascienceprocess)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0914_2016-->

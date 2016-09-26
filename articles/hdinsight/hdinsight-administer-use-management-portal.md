@@ -5,7 +5,7 @@
 	documentationCenter=""
 	tags="azure-portal"
 	authors="mumian"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -14,10 +14,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-    ms.date="06/28/2016"
+    ms.date="09/14/2016"
 	ms.author="jgao"/>
 
-# 使用 Azure 入口網站管理 HDInsight 中的 Hadoop 叢集
+# 使用 Azure 入口網站管理 HDInsight 上的 Hadoop 叢集
 
 [AZURE.INCLUDE [選取器](../../includes/hdinsight-portal-management-selector.md)]
 
@@ -86,8 +86,8 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。如需已驗證和所支�
 	- **快速入門** (![雲和雷電圖示 = 快速入門](./media/hdinsight-administer-use-portal-linux/quickstart.png))：顯示可協助您開始使用 HDInsight 的資訊。
 	- **使用者 (![使用者圖示](./media/hdinsight-administer-use-portal-linux/users.png))**：可讓您設定 Azure 訂用帳戶上其他使用者對此叢集的「入口網站管理」權限。
 	
-		> [AZURE.IMPORTANT] 這「只」會影響在 Azure 入口網站對此叢集的存取和權限，對於連線到 HDInsight 叢集或將工作提交到 HDInsight 叢集的使用者沒有影響。
-	- **標記 (![標記圖示](./media/hdinsight-administer-use-portal-linux/tags.png))**：標記可讓您設定索引鍵/值組，以定義雲端服務的自訂分類。例如，您可建立名為 __project__ 的索引鍵，然後使用與特定專案相關聯之所有服務的通用值。
+		> [AZURE.IMPORTANT] 這「只會」影響在 Azure 入口網站對此叢集的存取和權限，對於連線到 HDInsight 叢集或將工作提交到 HDInsight 叢集的使用者沒有影響。
+	- **標記 (![標記圖示](./media/hdinsight-administer-use-portal-linux/tags.png))**：標記可讓您設定索引鍵/值組，以定義雲端服務的自訂分類。例如，您可以建立名為 __project__ 的索引鍵，然後使用與特定專案相關聯之所有服務的通用值。
 	- **Ambari 檢視**：Ambari Web 的連結。
 	
 	> [AZURE.IMPORTANT] 若要管理 HDInsight 叢集所提供的服務，您必須使用 Ambari Web 或 Ambari REST API。如需使用 Ambari 的詳細資訊，請參閱[使用 Ambari 管理 HDInsight 叢集](hdinsight-hadoop-manage-ambari.md)。
@@ -134,7 +134,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。如需已驗證和所支�
 刪除叢集時，並不會刪除預設的儲存體帳戶或任何連結的儲存體帳戶。您可以使用相同的儲存體帳戶和相同的中繼存放區重新建立叢集。
 
 1. 登入[入口網站][azure-portal]。
-2. 依序按一下左側功能表的 [瀏覽全部]、[HDInsight 叢集] 及您的叢集名稱。
+2. 依序按一下左側功能表中的 [瀏覽全部]、[HDInsight 叢集] 及您的叢集名稱。
 3. 按一下頂端功能表中的 [刪除]，然後依照指示執行。
 
 另請參閱[暫停/關閉叢集](#pauseshut-down-clusters)。
@@ -188,7 +188,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。如需已驗證和所支�
 **調整叢集**
 
 1. 登入[入口網站][azure-portal]。
-2. 依序按一下左側功能表的 [瀏覽全部]、[HDInsight 叢集] 及您的叢集名稱。
+2. 依序按一下左側功能表中的 [瀏覽全部]、[HDInsight 叢集] 及您的叢集名稱。
 3. 在頂端功能表按一下 [設定]，然後按一下 [調整叢集]。
 4. 輸入**背景工作節點的數目**。叢集節點的數目限制會因 Azure 訂用帳戶而有所不同。請連絡帳務支援提高限制。成本資訊會反映您對節點數目所做的變更。
 
@@ -252,12 +252,12 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 
 ##尋找預設的儲存體帳戶
 
-每個 HDInsight 叢集都有預設的儲存體帳戶。叢集的預設儲存體帳戶與其金鑰會顯示在 [設定]/[屬性]/[Azure 儲存體金鑰] 之下。請參閱[列出和顯示叢集](#list-and-show-clusters)。
+每個 HDInsight 叢集都有預設的儲存體帳戶。叢集的預設儲存體帳戶與其金鑰會顯示在 [設定] / [屬性] / [Azure 儲存體金鑰] 之下。請參閱[列出和顯示叢集](#list-and-show-clusters)。
 
 	
 ##尋找資源群組 
 
-在 ARM 模式中，每個 HDInsight 叢集是隨著 Azure 資源群組一起建立。叢集所屬的 Azure 資源群組會出現於：
+在 Azure Resource Manager 模式中，每個 HDInsight 叢集是隨著 Azure 資源群組一起建立。叢集所屬的 Azure 資源群組會出現於：
 
 - 叢集清單含有 [資源群組] 資料行。
 - 叢集 [基本資料] 磚。
@@ -385,4 +385,4 @@ HDInsight 叢集刀鋒視窗的 [使用量] 區段會顯示以下資訊：訂用
 [azure-portal]: https://portal.azure.com
 [image-hadoopcommandline]: ./media/hdinsight-administer-use-management-portal/hdinsight-hadoop-command-line.png "Hadoop 命令列"
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0914_2016-->

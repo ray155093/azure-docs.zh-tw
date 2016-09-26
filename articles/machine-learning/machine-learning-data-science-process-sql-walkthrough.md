@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="bradsev"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun" />
 
 <tags
@@ -81,7 +81,7 @@
 3. [佈建資料科學虛擬機器](machine-learning-data-science-setup-sql-server-virtual-machine.md)，這將做為 SQL Server 和 IPython Notebook 伺服器使用。
 
 	> [AZURE.NOTE] 指令碼範例和 IPython Notebook 將在安裝過程中下載到您的資料科學虛擬機器上。當 VM 後續安裝指令碼完成之後，範例將位於您的 VM 文件庫上。
-	> - 指令碼範例：`C:\Users<user_name>\Documents\Data Science Scripts`  
+	> - 指令碼範例：`C:\Users<user_name>\Documents\Data Science Scripts`
 	> - IPython Notebook 範例：`C:\Users<user_name>\Documents\IPython Notebooks\DataScienceSamples`，其中 `<user_name>` 是 VM 的 Windows 登入名稱。我們會將範例資料夾稱為「**指令碼範例**」和「**IPython Notebook 範例**」。
 
 
@@ -97,7 +97,7 @@
 
 2. 在 VM 的資料磁碟中建立新的目錄 (注意：請勿使用 VM 隨附的「暫存磁碟」做為資料磁碟)。
 
-3. 在 [命令提示字元] 視窗中，執行下列 AzCopy 命令列，使用您在 (2) 中建立的 [資料] 資料夾來取代 <path_to_data_folder>：
+3. 在 [命令提示字元] 視窗中，執行下列 AzCopy 命令列，使用您在 (2) 中建立的 [資料] 資料夾來取代 <path\_to\_data\_folder>：
 
 		"C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy\azcopy" /Source:https://nyctaxitrips.blob.core.windows.net/data /Dest:<path_to_data_folder> /S
 
@@ -144,7 +144,7 @@
 7. [**指令碼範例**] 資料夾提供兩個 PowerShell 指令碼範例，可用來示範將資料平行大量匯入 SQL Server 資料表的方式。
 
 	- **bcp\_parallel\_generic.ps1** 是將資料平行大量匯入資料表的泛型指令碼。修改此指令碼來設定輸入與目標變數，如指令碼的註解行中所示。
-	- **bcp\_parallel\_nyctaxi.ps1** 是預先設定的泛型指令碼版本，可用來同時載入適用於「NYC 計程車車程」資料的兩種資料表。  
+	- **bcp\_parallel\_nyctaxi.ps1** 是預先設定的泛型指令碼版本，可用來同時載入適用於「NYC 計程車車程」資料的兩種資料表。
 
 8. 以滑鼠右鍵按一下名稱為 **bcp\_parallel\_nyctaxi.ps1** 的指令碼，再按一下 [**編輯**] 利用 PowerShell 開啟。檢閱預設的變數，並根據您選取的資料庫名稱、輸入資料資料夾、目標記錄資料夾，以及格式檔案範例 **nyctaxi\_trip.xml** 和 **nyctaxi\_fare.xml** (位於 [**指令碼範例**]資料夾) 的路徑進行修改。
 
@@ -298,7 +298,7 @@
 
 準備好繼續進行 Azure Machine Learning 時，您可以：
 
-1. 儲存最後一個 SQL 查詢以對資料進行擷取和取樣，然後複製該查詢並直接貼到 Azure Machine Learning 中的[匯入資料][import-data]模組。＜[在 Azure Machine Learning 中建置模型](#mlmodel)＞一節中示範了此方法的執行方式。    
+1. 儲存最後一個 SQL 查詢以對資料進行擷取和取樣，然後複製該查詢並直接貼到 Azure Machine Learning 中的[匯入資料][import-data]模組。＜[在 Azure Machine Learning 中建置模型](#mlmodel)＞一節中示範了此方法的執行方式。
 2. 將您計畫用來建置模型的取樣和工程設計資料保存在新資料庫資料表中，然後在[匯入資料][import-data]模組中使用該新資料表。
 
 以下是數個資料探索、資料視覺化及功能工程範例。如需其他範例，請參考 [**IPython Notebooks 範例**] 資料夾中的 SQL IPython Notebook 範例。
@@ -334,7 +334,7 @@
 
 	print 'Total number of columns = %d' % ncols.iloc[0,0]
 
-- 資料列總數 = 173179759  
+- 資料列總數 = 173179759
 - 資料行總數 = 14
 
 #### 從 SQL Server 資料庫讀入小型資料取樣
@@ -419,7 +419,7 @@
 
 ### 針對 SQL 中的資料進行次取樣
 
-當準備在 [Azure Machine Learning Studio](https://studio.azureml.net) 中建置模型所需的資料時，您可以決定**要直接在「匯入資料」模組中使用的 SQL 查詢**，或將工程設計和取樣資料保存在新的資料表中，您只要利用簡單的 **SELECT * FROM <your\_new\_table\_name>**，即可在[匯入資料][import-data]模組中使用此資料表。
+準備在 [Azure Machine Learning Studio](https://studio.azureml.net) 中建置模型所需的資料時，您可以決定**要直接在「匯入資料」模組中使用的 SQL 查詢**，或將工程設計和取樣資料保存在新的資料表中，您只要利用簡單的 **SELECT * FROM <your\_new\_table\_name>**，即可在[匯入資料][import-data]模組中使用此資料表。
 
 在本節中，我們將建立新的資料表來保留取樣與工程資料。＜[SQL Server 中的資料探索和功能工程](#dbexplore)＞一節中提供了可用來建置模型的直接 SQL 查詢範例。
 
@@ -631,7 +631,7 @@
 
 在這個練習中，我們已經探索了 SQL Server 中的資料並進行工程 (步驟 1-4)，並且決定了要在 Azure ML 中擷取的取樣大小。建置一或多個我們所決定的預測模型：
 
-1. 使用[匯入資料][import-data]模組 (可從＜資料輸入和輸出＞一節取得) 將資料匯入 Azure ML 中。如需詳細資訊，請參閱[匯入資料][import-data]模組參考頁面。
+1. 使用[匯入資料][import-data]模組 (可從**資料輸入和輸出**一節取得)，將資料匯入 Azure ML。如需詳細資訊，請參閱[匯入資料][import-data]模組參考頁面。
 
 	![Azure ML 匯入資料][17]
 
@@ -641,7 +641,7 @@
 
 4. 在對應欄位中輸入**資料庫名稱**。
 
-5. 在**伺服器使用者帳戶名稱中輸入**SQL 使用者名稱**，並在 [**伺服器使用者帳戶密碼**] 中輸入密碼。
+5. 在 [伺服器使用者帳戶名稱] 中輸入**SQL 使用者名稱**，並在 [伺服器使用者帳戶密碼]** 中輸入密碼。
 
 6. 選取 [**接受任何伺服器憑證**] 選項。
 
@@ -674,7 +674,7 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。特
 2. 識別邏輯**輸入連接埠**，表示預期的輸入資料結構描述。
 3. 識別邏輯**輸出連接埠**，表示預期的 Web 服務輸出結構描述。
 
-建立計分實驗時，請檢閱它，並視需要進行調整。典型的調整是使用某一個會排除標籤欄位的輸入資料集和 (或) 查詢來取代它們，因為在呼叫服務時將無法使用這些欄位。若要將輸入資料集和 (或) 查詢的大小縮減為只有幾筆足以表示輸入結構描述的記錄，這也是個很好的練習。針對輸出連接埠，通常會使用[選取資料集中的資料行][select-columns]模組在輸出中排除所有輸入欄位，而只包含「計分標籤」和「計分機率」。
+建立計分實驗時，請檢閱它，並視需要進行調整。典型的調整是使用某一個會排除標籤欄位的輸入資料集和 (或) 查詢來取代它們，因為在呼叫服務時將無法使用這些欄位。若要將輸入資料集和 (或) 查詢的大小縮減為只有幾筆足以表示輸入結構描述的記錄，這也是個很好的練習。針對輸出連接埠，通常會使用[選取資料集中的資料行][select-columns]模組在輸出中排除所有輸入欄位，只包含**計分標籤**和**計分機率**。
 
 下圖為計分實驗範例。準備部署時，請按下方動作列中的 [發佈 Web 服務] 按鈕。
 
@@ -716,4 +716,4 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。特
 [select-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 [import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

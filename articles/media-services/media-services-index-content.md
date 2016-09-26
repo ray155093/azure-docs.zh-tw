@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="06/22/2016"   
+	ms.date="09/12/2016"   
 	ms.author="adsolank;juliako;johndeu"/>
 
 
@@ -46,7 +46,7 @@ Azure Media Indexer 讓您能將媒體檔案的內容變成可搜尋，並產生
 
 您也可以使用資訊清單檔，一次處理多個媒體檔案。
 
-如需詳細資訊，請參閱 [Azure Media Indexer 的工作預設](#)。
+如需詳細資訊，請參閱 [Azure Media Indexer 的工作預設](https://msdn.microsoft.com/library/dn783454.aspx)。
 
 ## 編製資產索引
 
@@ -162,7 +162,7 @@ __JobResult.txt__ |包含下列資訊的輸出資訊清單 (只會在編製多�
 
 下列方法會將多個媒體檔案上傳為資產，並建立工作來批次編製這些檔案的索引。
 
-會建立 .lst 副檔名的資訊清單檔，並上傳到資產。資訊清單檔案包含所有資產檔案的清單。如需詳細資訊，請參閱 [Azure Media Indexer 的工作預設](https://msdn.microsoft.com/library/azure/dn783454.aspx)。
+會建立 .lst 副檔名的資訊清單檔，並上傳到資產。資訊清單檔案包含所有資產檔案的清單。如需詳細資訊，請參閱 [Azure Media Indexer 的工作預設](https://msdn.microsoft.com/library/dn783454.aspx)。
 
 	static bool RunBatchIndexingJob(string[] inputMediaFiles, string outputFolder)
 	{
@@ -294,4 +294,4 @@ __功能__ <br /><br /> 在 1.2 版中新增。目前唯一支援的功能是語
 
 [使用 Azure Media Indexer 2 Preview 編製媒體檔案索引](media-services-process-content-with-indexer2.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -4,7 +4,7 @@
    services="data-lake-analytics" 
    documentationCenter="" 
    authors="edmacauley" 
-   manager="paulettm" 
+   manager="jhubbard" 
    editor="cgronlun"/>
  
 <tags
@@ -56,7 +56,7 @@ select 子句內部是型別系統和運算式語言，在這裡面述詞等項�
 - **資料列集變數**：每個會產生資料列集的查詢運算式都可以指派給變數。U-SQL 遵循 T-SQL 的變數命名模式，例如指令碼中的 **@searchlog**。請注意，U-SQL 不會強制執行指派工作。它只是命名運算式，並讓您能夠建置更複雜的運算式。
 - **EXTRACT** 讓您能夠定義「讀取時的結構描述」。結構描述是透過每個資料行的資料行名稱和 C# 型別名稱配對來加以指定。它會使用所謂的**擷取器** (例如 **Extractors.Tsv()**) 來擷取 tsv 檔案。您可以開發自訂擷取器。
 - **OUTPUT** 會抓取資料列集並將其序列化。Outputters.Csv() 會將逗號分隔檔輸出到指定的位置。您也可以開發自訂輸出器。
-- 請注意，指令碼中的兩個路徑是相對路徑。您也可以使用絕對路徑。例如 
+- 請注意，指令碼中的兩個路徑是相對路徑。您也可以使用絕對路徑。例如
     
         adl://<ADLStorageAccountName>.azuredatalakestore.net:443/Samples/Data/SearchLog.tsv
         
@@ -402,7 +402,7 @@ U-SQL 與關聯式資料庫資料表類似，可讓您使用預先定義的結�
 - 以 C# 開發使用者定義的運算子，例如擷取器、輸出器、處理器、使用者定義的彙總器。
 - 使用 U-SQL 視窗函式。
 - 使用檢視、資料表值函式和預存程序管理 U-SQL 程式碼。
-- 在您的處理節點上執行任意的自訂程式碼。 
+- 在您的處理節點上執行任意的自訂程式碼。
 - 連接到 Azure SQL Database 並同盟這些資料庫和 U-SQL 與 Azure 資料湖資料的查詢。
 
 ## 另請參閱 
@@ -419,4 +419,4 @@ U-SQL 與關聯式資料庫資料表類似，可讓您使用預先定義的結�
 - [在論壇上取得協助](http://aka.ms/adlaforums)
 - [提供關於 U-SQL 的意見反應](http://aka.ms/usqldiscuss)
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0914_2016-->

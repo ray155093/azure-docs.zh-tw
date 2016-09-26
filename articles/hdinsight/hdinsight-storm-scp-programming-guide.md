@@ -4,8 +4,8 @@ pageTitle="SCP.NET 程式設計指南 | Azure"
 description="了解如何使用 SCP.NET 建立以 .NET 為基礎的 Storm 拓撲並用於 HDInsight 上的 Storm。"
 services="hdinsight"
 documentationCenter=""
-authors="rperi"
-manager="paulettm"
+authors="raviperi"
+manager="jhubbard"
 editor="cgronlun"/>
 
 <tags
@@ -688,4 +688,4 @@ SCP.NET 增加一個自訂的分組方法，它會使用 byte 的內容來執行
 * [從 Azure 事件中樞擷取、轉換及載入 (ETL) 至 HBase](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/RealTimeETLExample)
 * [在 HDInsight 上使用 Storm 和 HBase 讓事件相互關聯](hdinsight-storm-correlation-topology.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0914_2016-->

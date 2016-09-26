@@ -4,7 +4,7 @@
     services="hdinsight"
     documentationCenter=""
     authors="Blackmist"
-    manager="paulettm"
+    manager="jhubbard"
     editor="cgronlun"/>
 
 <tags
@@ -268,4 +268,4 @@ _解決方式_：將檔案儲存為 ASCII，或不具有 BOM 的 UTF-8。您也�
 
 * 使用 [HDInsight REST API](https://msdn.microsoft.com/library/azure/mt622197.aspx)，以了解如何使用 REST 在 HDInsight 叢集上執行管理動作。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0914_2016-->

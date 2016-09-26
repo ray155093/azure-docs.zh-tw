@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="vDonGlover"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -28,16 +28,16 @@
 - 刪除 Web 服務。
 - 建立、刪除或更新計費方案。
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 > [AZURE.TIP] 在 Azure Machine Learning Studio 中，您可以在 [**Web 服務**] 索引標籤上加入、更新或刪除 Machine Learning Web 服務。
 
 管理您的 Web 服務：
 
-1.	使用您的 Microsoft Azure 帳戶登入 [Microsoft Azure Machine Learning Web Services 入口網站](https://services.azureml.net/quickstart) - 使用與 Azure 訂用帳戶相關聯的帳戶。
+1.	使用您的 Microsoft Azure 帳戶登入 [Microsoft Azure Machine Learning Web 服務入口網站](https://services.azureml.net/quickstart) - 使用與 Azure 訂用帳戶相關聯的帳戶。
 2.	在功能表上，按一下 [Web 服務]。
 
-這會針對您的訂用帳戶顯示一份部署的 Web 服務清單。若要管理 Web 服務，請按一下清單中的名稱以開啟 Web 服務頁面。
+這會針對您的訂用帳戶顯示一份已部署的 Web 服務清單。若要管理 Web 服務，請按一下清單中的名稱以開啟 Web 服務頁面。
 
 您可以從 [Web 服務] 頁面上︰
 
@@ -97,4 +97,4 @@
 * **依呼叫數的前幾名 Web 服務**顯示依方案計費進行呼叫的前四個 Web 服務。
 * **依計算時數的前幾名 Web 服務**顯示依方案計費使用計算資源的前四個 Web 服務。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

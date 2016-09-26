@@ -3,7 +3,7 @@
 	description="了解如何開發 Java MapReduce 程式，並將這些程式部署到以 Linux 為基礎的 HDInsight。"
 	services="hdinsight"
 	editor="cgronlun"
-	manager="paulettm"
+	manager="jhubbard"
 	authors="Blackmist"
 	documentationCenter=""
 	tags="azure-portal"/>
@@ -288,4 +288,4 @@
 
 [powershell-PSCredential]: http://social.technet.microsoft.com/wiki/contents/articles/4546.working-with-passwords-secure-strings-and-credentials-in-windows-powershell.aspx
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

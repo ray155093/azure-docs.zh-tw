@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/21/2016"
+	ms.date="09/06/2016"
 	ms.author="rclaus"/>
 
 # 在 Azure 上最佳化 Linux VM
@@ -24,15 +24,15 @@
 
 ## 必要條件
 
-本主題假設您已有有效的 Azure 訂用帳戶 ([註冊免費試用版](https://azure.microsoft.com/pricing/free-trial/))、[已安裝 Azure CLI](../xplat-cli-install.md) 並已在 Azure 訂用帳戶中佈建 VM。在開始操作 Azure 之前，您必須驗證訂用帳戶帳戶。若要使用 Azure CLI 進行驗證，只要輸入 `azure login` 啟動互動式程序即可。
+本主題假設您已具備有效的 Azure 訂用帳戶 ([註冊免費試用版](https://azure.microsoft.com/pricing/free-trial/))、[已安裝 Azure CLI](../xplat-cli-install.md)，並且已在 Azure 訂用帳戶中佈建 VM。開始操作 Azure 之前，您必須驗證訂用帳戶。若要使用 Azure CLI 進行驗證，只要輸入 `azure login` 啟動互動式程序即可。
 
 ## Azure 作業系統磁碟
 
-在 Azure 中建立 Linux VM 後，它有兩個相關聯的磁碟。/dev/sda 是作業系統磁碟，/dev/sdb 是暫存磁碟。請勿將主要作業系統磁碟 (/dev/sda) 用於作業系統以外的用途，因為它已針對快速開啟 VM 最佳化，無法為工作負載提供良好的效能。若要取得具永續性且經過最佳化的資料儲存空間，建議您將一或多個磁碟附加至 VM。
+在 Azure 中建立 Linux VM 後，它有兩個相關聯的磁碟。/dev/sda 是作業系統磁碟，/dev/sdb 是暫存磁碟。請勿將主要作業系統磁碟 (/dev/sda) 用於作業系統以外的用途，因為它已針對快速開啟 VM 進行最佳化，無法為工作負載提供良好的效能。您會想要將一或多個磁碟連接至 VM，以取得具永續性且經過最佳化的資料儲存空間。
 
 ## 加入磁碟以達成大小和效能目標 
 
-根據您選擇的 VM 大小，您可以在 A 系列機器上附加最多 16 個額外的磁碟、在 D 系列上附加 32 個、在 G 系列上附加 64 個，且每個磁碟的大小達 1 TB。建議您根據空間和 IOps 需求加入額外的磁碟。標準儲存體每個磁碟的效能目標為 500 IOps，而進階儲存體每個磁碟的效能目標最高為 5000 IOps。如需進階儲存體磁碟的詳細資訊，請參閱[進階儲存體：Azure VM 的高效能儲存體](../storage/storage-premium-storage.md)。
+根據 VM 大小，您可以在 A 系列機器上連接最多 16 個額外的磁碟、在 D 系列上連接 32 個、在 G 系列上連接 64 個，且每個磁碟的大小高達 1 TB。您可以根據空間和 IOps 需求加入額外的磁碟。標準儲存體每個磁碟的效能目標為 500 IOps，而進階儲存體每個磁碟的效能目標最高為 5000 IOps。如需進階儲存體磁碟的詳細資訊，請參閱[進階儲存體：Azure VM 的高效能儲存體](../storage/storage-premium-storage.md)。
 
 對於快取設定為 "ReadOnly" 或 "None" 的進階儲存體磁碟，若要達到最高 IOps，您必須在 Linux 中掛接檔案系統時停用 "barrier" (阻礙)。您不需要阻礙，因為這些快取設定的進階儲存體磁碟寫入都是持久的。
 
@@ -44,11 +44,11 @@
 
 在 Azure 中建立 Linux VM 時，請務必從區域與 VM 相同的儲存體帳戶附加磁碟，以確保高度鄰近性及降低網路延遲。每個標準儲存體帳戶都有最高 20k 的 IOps 和 500 TB 大小的容量。這大約等同於 40 個頻繁使用的磁碟，包括 OS 磁碟和您建立的任何資料磁碟。進階儲存體帳戶沒有 IOps 上限，不過有 32 TB 的大小限制。
 
-在處理 IOps 極高的工作負載，且您已選擇標準儲存體磁碟時，可能需要將磁碟分割到多個儲存體帳戶，才能避免達到標準儲存體帳戶 20,000 IOps 的限制。VM 可以混搭來自不同儲存體帳戶和不同儲存體帳戶類型的磁碟，以達到最佳組態。
+在處理 IOps 極高的工作負載，且您已為磁碟選擇標準儲存體時，可能需要將磁碟分割到多個儲存體帳戶，才能避免達到標準儲存體帳戶 20,000 IOps 的限制。VM 可以混搭來自不同儲存體帳戶和不同儲存體帳戶類型的磁碟，以達到最佳組態。
 
 ## VM 暫存磁碟機
 
-根據預設，當您建立新 VM 時，Azure 會提供作業系統磁碟 (/dev/sda) 和暫存磁碟 (/dev/sdb)。您加入的所有額外磁碟會顯示為 /dev/sdc、/dev/sdd、/dev/sde，依此類推。暫存磁碟 (/dev/sdb) 上的所有資料均不具持久性，因此當 VM 調整大小、重新部署或維護等特定事件發生迫使 VM 重新啟動時，資料可能會遺失。暫存磁碟的類型和大小與您在部署時所選擇的 VM 大小相關。對於任何進階大小的 VM (DS、G 及 DS\_V2 系列)，暫存磁碟機均有本機 SSD 提供支援，因此可以產生最高 48k IOps 的額外效能。
+根據預設，當您建立 VM 時，Azure 會提供作業系統磁碟 (/dev/sda) 和暫存磁碟 (/dev/sdb)。您加入的所有額外磁碟會顯示為 /dev/sdc、/dev/sdd、/dev/sde，依此類推。暫存磁碟 (/dev/sdb) 上的所有資料均不具持久性，因此當 VM 調整大小、重新部署或維護等特定事件發生迫使 VM 重新啟動時，資料可能會遺失。暫存磁碟的類型和大小與您在部署時所選擇的 VM 大小相關。對於任何進階大小的 VM (DS、G 及 DS\_V2 系列)，暫存磁碟機均有本機 SSD 提供支援，因此可以產生最高 48k IOps 的額外效能。
 
 ## Linux 交換檔
 
@@ -56,7 +56,7 @@
 
 找出並修改 **/etc/waagent.conf** 檔案中的兩個項目。它們控制專用交換檔案的存在和交換檔的大小。您要修改的參數是 `ResourceDisk.EnableSwap=N` 和 `ResourceDisk.SwapSizeMB=0`。
 
-您必須如下變更它們：
+您必須以如下方式變更它們：
 
 * ResourceDisk.EnableSwap=Y
 * ResourceDisk.SwapSizeMB={符合您需求的大小 (MB)}
@@ -112,7 +112,7 @@
 
 ## 使用軟體 RAID 來達到更高的 I/Ops
 
-如果工作負載所需的 IOps 超過單一磁碟的極限，您便需要使用由多個磁碟組成的軟體 RAID 組態。因為 Azure 已在本機網狀架構層級執行磁碟恢復功能，因此您可以從 RAID-0 等量組態獲得最高層級的效能。您將需要在 Azure 環境中佈建及建立新磁碟、將它們附加至 Linux VM，然後再進行分割、格式化及掛接磁碟機。如需在 Azure 中針對 Linux VM 配置軟體 RAID 設定的詳細資訊，請參閱**[在 Linux 上設定軟體 RAID](virtual-machines-linux-configure-raid.md)** 文件。
+如果工作負載所需的 IOps 超過單一磁碟可提供的極限，您便需要使用由多個磁碟組成的軟體 RAID 組態。因為 Azure 已在本機網狀架構層級執行磁碟恢復功能，因此您可以從 RAID-0 等量組態獲得最高層級的效能。您需要在 Azure 環境中佈建及建立新磁碟、將它們連接至 Linux VM，然後進行分割、格式化及掛接磁碟機。如需在 Azure 中針對 Linux VM 配置軟體 RAID 設定的詳細資訊，請參閱**[在 Linux 上設定軟體 RAID](virtual-machines-linux-configure-raid.md)** 文件。
 
 
 ## 後續步驟
@@ -126,4 +126,4 @@
 - [在 Azure Linux VM 上最佳化 MySQL 效能](virtual-machines-linux-classic-optimize-mysql.md)
 - [在 Linux 上設定軟體 RAID](virtual-machines-linux-configure-raid.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0914_2016-->

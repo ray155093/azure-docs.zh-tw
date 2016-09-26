@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/30/2016"
+	ms.date="09/08/2016"
 	ms.author="iainfou"/>
 
 # 虛擬機器指導方針
@@ -31,7 +31,7 @@
 
 工作：
 
-- 定義應用程式的工作負載，以及 VM 將會需要的資源。
+- 定義應用程式的工作負載，以及 VM 所需的資源。
 - 以適當的 VM 大小和儲存體類型，對齊每個 VM 的資源需求。
 - 針對基礎結構的不同層級和元件定義您的資源群組。
 - 定義您的 VM 命名慣例。
@@ -39,11 +39,11 @@
 
 ## 虛擬機器
 
-您 Azure 環境內的其中一個主件將很有可能是 VM。這是您執行應用程式、資料庫、驗證服務等的位置。
+您 Azure 環境內的其中一個主要元件很可能是 VM。這是您執行應用程式、資料庫、驗證服務等項目的位置。
 
-請務必了解[不同的 VM 大小](virtual-machines-windows-sizes.md)，以根據效能和成本觀點正確評估您環境的大小。如果您的 VM 沒有足夠的 CPU 核心數或記憶體，無論您應用程式設計及開發得多好，它的效能都會受到影響。做為開始，請檢閱每個 VM 系列的建議工作負載，並決定在基礎結構中要用於每個元件的 VM 大小。您可以在部署後[變更 VM 的大小](https://azure.microsoft.com/blog/resize-virtual-machines/)。
+請務必了解[不同的 VM 大小](virtual-machines-windows-sizes.md)，以根據效能和成本觀點正確評估您環境的大小。如果您的 VM 沒有足夠的 CPU 核心數或記憶體，無論您的應用程式設計及開發得多好，它的效能都會受到影響。做為開始，請檢閱每個 VM 系列的建議工作負載，並決定在基礎結構中要用於每個元件的 VM 大小。您可以在部署後[變更 VM 的大小](https://azure.microsoft.com/blog/resize-virtual-machines/)。
 
-儲存體在 VM 效能中扮演重要的角色。您可以選擇使用一般旋轉磁碟的標準儲存體，或是選擇使用 SSD 磁碟的進階儲存體，以取得高 I/O 工作負載和尖端效能。針對 VM 大小，您在選取儲存媒體時必須做出成本的考量。您可以閱讀[儲存體基礎結構指導方針](virtual-machines-windows-infrastructure-storage-solutions-guidelines.md)一文，以了解針對 VM 的最佳效能設計適當儲存體的方式。
+儲存體在 VM 效能中扮演重要的角色。您可以選擇使用一般旋轉磁碟的標準儲存體，或是選擇使用 SSD 磁碟的進階儲存體，以取得高 I/O 工作負載和尖端效能。針對 VM 大小，有一些選取儲存媒體的成本考量。您可以閱讀[儲存體基礎結構指導方針](virtual-machines-windows-infrastructure-storage-solutions-guidelines.md)一文，以了解針對 VM 的最佳效能設計適當儲存體的方式。
 
 
 ## 資源群組
@@ -57,4 +57,4 @@ VM 之類的元件會以邏輯方式分組在一起，以方便使用 [Azure 資
 ## 後續步驟
 [AZURE.INCLUDE [virtual-machines-windows-infrastructure-guidelines-next-steps](../../includes/virtual-machines-windows-infrastructure-guidelines-next-steps.md)]
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0914_2016-->

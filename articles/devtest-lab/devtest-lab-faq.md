@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="09/01/2016"
+	ms.date="09/13/2016"
 	ms.author="tarcher"/>
 
 # Azure DevTest Labs 常見問題集
@@ -45,6 +45,7 @@
 - [如何將現有 Azure VM 移到 Azure DevTest Labs 實驗室？](#how-do-i-move-my-existing-azure-vms-into-my-azure-devtest-labs-lab)
 - [是否可以在 VM 連接多個磁碟？](#can-i-attach-multiple-disks-to-my-vms)
 - [如何自動執行上傳 VHD 檔案的程序以建立自訂映像？](#how-do-i-automate-the-process-of-uploading-vhd-files-to-create-custom-images)
+- [如何將刪除我實驗室中所有 VM 的程序自動化？](#how-can-i-automate-the-process-of-deleting-all-the-vms-in-my-lab)
  
 ## 構件 
  
@@ -56,6 +57,8 @@
 - [為何我的 VM 會建立在具有任意名稱的不同資源群組中？ 我是否可以重新命名或修改這些資源群組？](#why-are-my-vms-created-in-different-resource-groups-with-arbitrary-names-can-i-rename-or-modify-these-resource-groups)
 - [在相同的訂用帳戶下可建立幾個實驗室？](#how-many-labs-can-i-create-under-the-same-subscription)
 - [每個實驗室可以建立幾個 VM？](#how-many-vms-can-i-create-per-lab)
+- [如何共用我實驗室的直接連結？](#how-do-i-share-a-direct-link-to-my-lab)
+- [什麼是 Microsoft 帳戶？](#what-is-a-microsoft-account)
  
 ## 疑難排解 
  
@@ -168,11 +171,48 @@ Azure DevTest Labs 是一項免費服務，這表示建立實驗室和設定原�
 1. 在清單中尋找要上傳的項目。如果不存在任何項目，請返回步驟 4，然後嘗試另一個儲存體帳戶。
 1. 在 AzCopy 命令中使用 [URL] 做為目的地。
 
+
+### 如何將刪除我實驗室中所有 VM 的程序自動化？
+
+除了在 Azure 入口網站中將您實驗室中的 VM 刪除之外，您也可以使用 PowerShell 指令碼將您實驗室中的所有 VM 刪除。在下列範例中，直接修改 **Values to change** 註解底下的值。您可以從 Azure 入口網站中的 [實驗室] 刀鋒視窗擷取 `subscriptionId`、`labResourceGroup` 及 `labName`。
+
+
+	# Delete all the VMs in a lab
+	
+	# Values to change
+	$subscriptionId = "<Enter Azure subscription ID here>"
+	$labResourceGroup = "<Enter lab's resource group here>"
+	$labName = "<Enter lab name here>"
+
+	# Login to your Azure account
+	Login-AzureRmAccount
+	
+	# Select the Azure subscription that contains the lab. This step is optional
+	# if you have only one subscription.
+	Select-AzureRmSubscription -SubscriptionId $subscriptionId
+	
+	# Get the lab that contains the VMs to delete.
+	$lab = Get-AzureRmResource -ResourceId ('subscriptions/' + $subscriptionId + '/resourceGroups/' + $labResourceGroup + '/providers/Microsoft.DevTestLab/labs/' + $labName)
+	
+	# Get the VMs from that lab.
+	$labVMs = Get-AzureRmResource | Where-Object { 
+	          $_.ResourceType -eq 'microsoft.devtestlab/labs/virtualmachines' -and
+	          $_.ResourceName -like "$($lab.ResourceName)/*"}
+	
+	# Delete the VMs.
+	foreach($labVM in $labVMs)
+	{
+	    Remove-AzureRmResource -ResourceId $labVM.ResourceId -Force
+	}
+
+
+
+
 ### 何謂構件？ 
 構件是可用來在 VM 中部署最新版本或開發工具的可自訂項目。只要按幾下滑鼠，構件就會在 VM 建立期間與其連接，而在 VM 佈建好之後，構件就會部署並設定 VM。我們的[公用 Github 儲存機制](https://github.com/Azure/azure-devtestlab/tree/master/Artifacts)中有許多既存構件，但您也可以輕易地[撰寫自己的構件](devtest-lab-artifact-author.md)。
 
 ### 如何從 Azure Resource Manager 範本建立實驗室？ 
-我們有[實驗室 Azure Resource Manager 範本的 Github 儲存機制](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates)。這些範本各自都有可供點按的連結，以便您在自己的 Azure 訂用帳戶下部署 Azure DevTest Labs 實驗室。
+我們已提供一個[實驗室 Azure Resource Manager 範本的 Github 儲存機制](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates)，您可以依原狀部署，或是加以修改來為您的實驗室建立自訂範本。這些範本都各有可供點按的連結，可讓您在自己的 Azure 訂用帳戶下依原狀部署實驗室，或者您也可以自訂範本並[使用 PowerShell 或 Azure CLI 進行部署](../resource-group-template-deploy.md)。
  
 ### 為何我的 VM 會建立在具有任意名稱的不同資源群組中？ 我是否可以重新命名或修改這些資源群組？ 
 之所以用這種方式建立資源群組，是為了讓 Azure DevTest Labs 管理使用者對虛擬機器的權限和存取權。雖然可以將 VM 移到另一個具有您所需名稱的資源群組，但不建議這樣做。我們正致力於改善這個體驗，以增加更多彈性。
@@ -182,6 +222,21 @@ Azure DevTest Labs 是一項免費服務，這表示建立實驗室和設定原�
  
 ### 每個實驗室可以建立幾個 VM？ 
 每個實驗室可以建立的 VM 數目並無特定限制，但實驗室目前可支援的 VM 數目為：標準儲存體只支援同時執行大約 40 個 VM，進階儲存體只支援並行執行大約 25 個 VM。我們目前正在努力增加這些限制值。
+
+### 如何共用我實驗室的直接連結？
+
+若要與您的實驗室使用者共用直接連結，您可以執行下列程序。
+
+1. 瀏覽至 Azure 入口網站中的實驗室。
+2. 從瀏覽器複製實驗室 URL，然後與您的實驗室使用者共用。
+
+>[AZURE.NOTE] 如果您的實驗室使用者是具有 [MSA 帳戶](#what-is-a-microsoft-account) 的外部使用者，而不屬於貴公司的 Active directory，則當他們瀏覽至所提供的連結時，可能會收到錯誤。如果他們收到錯誤，請指示他們按一下他們在 Azure 入口網站中右上角的名稱，然後從功能表的 [目錄] 區段中選取實驗室所在的目錄。
+
+### 什麼是 Microsoft 帳戶？
+
+Microsoft 帳戶是您使用 Microsoft 裝置和服務來執行幾乎所有作業時所使用的帳戶。它是您用來登入 Skype、Outlook.com、OneDrive、Windows Phone 及 Xbox LIVE 的電子郵件地址和密碼 – 而這意謂著您的檔案、相片、連絡人及設定都會隨著您一起到任何裝置。
+
+>[AZURE.NOTE] Microsoft 帳戶以前稱為 "Windows Live ID"。
  
 ### 在建立 VM 時，我的構件失敗了。我該如何進行疑難排解？ 
 若要了解如何取得失敗構件的相關記錄檔，請參閱我們的其中一位 MVP 所撰寫的部落格文章[如何在 AzureDevTestLabs 針對失敗的構件進行疑難排解](http://www.visualstudiogeeks.com/blog/DevOps/How-to-troubleshoot-failing-artifacts-in-AzureDevTestLabs)。
@@ -189,4 +244,4 @@ Azure DevTest Labs 是一項免費服務，這表示建立實驗室和設定原�
 ### 為何我現有的虛擬網路未能正確儲存？  
 其中一個可能原因是您的虛擬網路名稱包含句點。若是這樣，請嘗試移除句號或以連字號取代，然後再試著儲存虛擬網路一次。
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -59,6 +59,7 @@
 
 	![設定 SKU 層和資料計量](./media/expressroute-howto-circuit-portal-resource-manager/createcircuit2.png)
 
+>[AZURE.IMPORTANT] 請留意「對等位置」表示您與 Microsoft 對等互連的[實體位置](expressroute-locations.md)。這**不會**連結到「位置」屬性，這是指 Azure 網路資源提供者所在的地理位置。儘管它們並無關聯，但最好還是選擇地理位置靠近線路對等位置的網路資源提供者。
 
 ### 3\.檢視線路和屬性
 
@@ -70,7 +71,7 @@
 
 **檢視屬性**
 
-	You can view the properties of the circuit by selecting it. On this blade, note the service key for the circuit. You must copy the circuit key for your circuit and pass it down to the service provider to complete the provisioning process. The circuit key is specific to your circuit.
+	選取循環，即可檢視該循環的屬性。在此刀鋒視窗上，記下循環的服務金鑰。您必須複製您循環的循環金鑰，並將其傳遞給服務提供者以完成佈建程序。循環金鑰為您循環所專用。
 
 ![檢視屬性](./media/expressroute-howto-circuit-portal-resource-manager/listproperties1.png)
 
@@ -153,4 +154,4 @@
 - [建立和修改 ExpressRoute 線路的路由](expressroute-howto-routing-portal-resource-manager.md)
 - [將虛擬網路連結至 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

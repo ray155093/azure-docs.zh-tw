@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="05/23/2016"
+	ms.date="09/07/2016"
 	ms.author="tamram"/>
 
 # Azure 儲存體服務的跨原始資源共用 (CORS) 支援
@@ -169,7 +169,7 @@ CORS 規則的評估，如下所示：
 
 要求|帳戶設定和規則評估的結果|||Response|||
 ---|---|---|---|---|---|---|---|---
-**要求上存在的 Origin 標頭** | **針對此服務指定的 CORS 規則** | **有允許所有原始網域的比對規則存在 (*)** | **有完全符合原始網域的比對規則存在** | **回應包含已設為 Origin 的 Vary 標頭** | **回應包含 Access-Control-Allowed-Origin：“*”** | **回應包含 Access-Control-Exposed-Headers**
+**要求上存在的 Origin 標頭** | **針對此服務指定的 CORS 規則** | *有允許所有原始網域的比對規則存在 (*)** | **有完全符合原始網域的比對規則存在** | **回應包含已設為 Origin 的 Vary 標頭** | *回應包含 Access-Control-Allowed-Origin："*"** | **回應包含 Access-Control-Exposed-Headers**
 否|否|否|否|否|否|否
 否|是|否|否|是|否|否
 否|是|是|否|否|是|是
@@ -195,4 +195,4 @@ CORS 規則的評估，如下所示：
 
 [W3C 跨原始資源共用規格](http://www.w3.org/TR/cors/)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0914_2016-->

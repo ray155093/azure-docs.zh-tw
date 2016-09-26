@@ -12,13 +12,13 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows"
 	ms.workload="infrastructure-services"
-	ms.date="05/17/2016"
+	ms.date="09/06/2016"
 	ms.author="rclaus" />
 
 #設定適用於 Azure 的 Oracle Data Guard
 
 
-本教學課程示範如何在 Azure 虛擬機器環境中設定和實作 Oracle Data Guard，以取得高可用性並進行嚴重損壞修復 。本教學課程著重於非 RAC Oracle 資料庫的單向複寫。
+本教學課程示範如何在 Azure 虛擬機器環境中設定和實作 Oracle Data Guard，以取得高可用性並進行災害復原。本教學課程著重於非 RAC Oracle 資料庫的單向複寫。
 
 Oracle Data Guard 支援 Oracle 資料庫的資料保護和嚴重損壞修復。它是簡單、高效能且直接的解決方案，適用於整個 Oracle 資料庫的嚴重損壞修復、資料保護和高可用性。
 
@@ -26,10 +26,10 @@ Oracle Data Guard 支援 Oracle 資料庫的資料保護和嚴重損壞修復。
 
 此外，本教學課程假設您已經實作下列必要條件：
 
-- 您已經檢閱過 [Oracle 虛擬機器映像 - 其他考量](virtual-machines-windows-classic-oracle-considerations.md)主題中的＜高可用性和嚴重損壞修復考量＞一節。請注意，Azure 支援獨立的 Oracle 資料庫執行個體，但目前不支援 Oracle Real Application Cluster (Oracle RAC)。
+- 您已經檢閱過 [Oracle 虛擬機器映像 - 其他考量](virtual-machines-windows-classic-oracle-considerations.md)主題中的＜高可用性和災害復原考量＞一節。Azure 支援獨立的 Oracle 資料庫執行個體，但目前不支援 Oracle Real Application Cluster (Oracle RAC)。
 
 
-- 您已經使用相同的平台提供 Oracle Enterprise Edition 映像，在 Azure 中建立兩部「虛擬機器」(VM)。請確定虛擬機器都位於[相同的雲端服務](virtual-machines-windows-load-balance.md)和相同的[虛擬網路](azure.microsoft.com/documentation/services/virtual-network/)中，以確保它們可以透過永續的私人 IP 位址互相存取。此外，建議您將 VM 放在相同的[可用性設定組](virtual-machines-windows-manage-availability.md)中，讓 Azure 可將其放置於不同的容錯網域和升級網域。請注意，Oracle Data Guard 僅適用於 Oracle Database Enterprise Edition。每部機器必須至少有 2 GB 的記憶體和 5 GB 的磁碟空間。如需平台上所提供 VM 大小的最新資訊，請參閱[適用於 Azure 的虛擬機器大小](virtual-machines-windows-sizes.md)。如果您的 VM 需要額外的磁碟區，則可連接其他磁碟。如需相關資訊，請參閱[如何將資料磁碟連接至虛擬機器](virtual-machines-windows-classic-attach-disk.md)。
+- 您已經使用相同的平台提供 Oracle Enterprise Edition 映像，在 Azure 中建立兩部「虛擬機器」(VM)。請確定虛擬機器都位於[相同的雲端服務](virtual-machines-windows-load-balance.md)和相同的虛擬網路中，以確保它們可以透過永續的私人 IP 位址互相存取。此外，建議您將 VM 放在相同的[可用性設定組](virtual-machines-windows-manage-availability.md)中，讓 Azure 可將其放置於不同的容錯網域和升級網域。Oracle Data Guard 僅適用於 Oracle Database Enterprise Edition。每部機器必須至少有 2 GB 的記憶體和 5 GB 的磁碟空間。如需平台上所提供 VM 大小的最新資訊，請參閱[適用於 Azure 的虛擬機器大小](virtual-machines-windows-sizes.md)。如果您的 VM 需要額外的磁碟區，則可連接其他磁碟。如需相關資訊，請參閱[如何將資料磁碟連接至虛擬機器](virtual-machines-windows-classic-attach-disk.md)。
 
 
 
@@ -65,7 +65,7 @@ Oracle Data Guard 支援 Oracle 資料庫的資料保護和嚴重損壞修復。
 
 	1. 在這兩部伺服器上設定 listener.ora，以保存這兩個資料庫的項目
 
-	2. 在主要和待命虛擬機器上設定 tnsnames.ora，以保存主要和待命資料庫的項目
+	2. 若要保存適用於主要和待命資料庫的項目，可在主要和待命虛擬機器上設定 tnsnames.ora。
 
 	3. 啟動接聽程式，並檢查已在這兩部虛擬機器上對這兩個服務進行 tnsping。
 
@@ -77,7 +77,7 @@ Oracle Data Guard 支援 Oracle 資料庫的資料保護和嚴重損壞修復。
 
 6. 驗證實體的待命資料庫
 
-> [AZURE.IMPORTANT] 本教學課程已根據下列硬體和軟體設定進行設定和測試：
+> [AZURE.IMPORTANT] 本教學課程已根據下列硬體和軟體組態進行設定和測試：
 >
 >| | **主要資料庫** | **待命資料庫** |
 >|----------------------|-------------------------------------------|-------------------------------------------|
@@ -94,7 +94,7 @@ Oracle Data Guard 支援 Oracle 資料庫的資料保護和嚴重損壞修復。
 ### 1\.建立主要資料庫
 
 - 在主要虛擬機器中建立主要資料庫 "TEST"。如需相關資訊，請參閱＜建立和設定 Oracle 資料庫＞。
-- 在 SQL*Plus 命令提示字元中，使用 SYSDBA 角色，以 SYS 使用者身分來連接您的資料庫，並執行下列陳述式來查看您的資料庫名稱：
+- 若要查看您的資料庫名稱，請在 SQL*Plus 命令提示字元中，使用 SYSDBA 角色，以 SYS 使用者身分來連接您的資料庫，並執行下列陳述式：
 
 		SQL> select name from v$database;
 
@@ -126,7 +126,7 @@ Oracle Data Guard 支援 Oracle 資料庫的資料保護和嚴重損壞修復。
 
 #### 啟用強制記錄
 
-為了實作待命資料庫，我們必須在主要資料庫中啟用「強制記錄」。此選項可確保即使是在已完成 'nologging' 操作的事件中，強制記錄都具有最高的優先順序，而所有的操作都會記錄到重做記錄中。因此，我們確定主要資料庫中的每項操作都會記錄下來，而且複寫到待命資料庫時會包含主要資料庫中的所有操作。執行 alter database 陳述式來啟用強制記錄：
+為了實作待命資料庫，我們必須在主要資料庫中啟用「強制記錄」。此選項可確保即使已完成 'nologging' 操作，強制記錄都具有最高的優先順序，而所有的操作都會記錄到重做記錄中。因此，我們確定主要資料庫中的每項操作都會記錄下來，而且複寫到待命資料庫時會包含主要資料庫中的所有操作。若要啟用強制記錄，請執行 alter database 陳述式：
 
 	SQL> ALTER DATABASE FORCE LOGGING;
 
@@ -138,7 +138,7 @@ Oracle Data Guard 支援 Oracle 資料庫的資料保護和嚴重損壞修復。
 
 >[AZURE.IMPORTANT] 使用 Oracle Database 12c 時，會有一個新的使用者 **SYSDG**，可用來管理 Oracle Data Guard。如需詳細資訊，請參閱 [Oracle Database 12c 版本中的變更](http://docs.oracle.com/database/121/UNXAR/release_changes.htm#UNXAR404)。
 
-此外，請確定已經在 Machine1 中定義 ORACLE\_HOME 環境。如果沒有，可使用 [環境變數] 對話方塊，將其定義為環境變數。若要存取此對話方塊，可在 [控制台] 中按兩下 [系統] 圖示，來啟動 [系統] 公用程式；然後按一下 [進階] 索引標籤並選擇 [環境變數]。按一下 [系統變數] 底下的 [新增] 按鈕來設定環境變數。設定環境變數之後，關閉現有的 Windows 命令提示字元，然後開啟新的命令提示字元。
+此外，請確定已經在 Machine1 中定義 ORACLE\_HOME 環境。如果沒有，可使用 [環境變數] 對話方塊，將其定義為環境變數。若要存取此對話方塊，可在 [控制台] 中按兩下 [系統] 圖示，來啟動 [系統] 公用程式；然後按一下 [進階] 索引標籤並選擇 [環境變數]。若要設定環境變數，按一下 [系統變數] 底下的 [新增] 按鈕。設定環境變數之後，關閉現有的 Windows 命令提示字元，然後開啟新的命令提示字元。
 
 執行下列陳述式以切換到 Oracle\_Home 目錄，例如 C:\\OracleDatabase\\product\\11.2.0\\dbhome\_1\\database。
 
@@ -243,7 +243,7 @@ Oracle Data Guard 支援 Oracle 資料庫的資料保護和嚴重損壞修復。
 	SQL> create pfile from spfile;
 	File created.
 
-接著，您需要編輯 pfile 來新增待命參數。若要這樣做，請開啟 %ORACLE\_HOME%\\database 位置中的 INITTEST.ORA 檔案。接著，將下列陳述式附加至 INITTEST.ora 檔案。請注意，INIT.ORA 檔案的命名慣例是 INIT<YourDatabaseName>.ORA。
+接著，您需要編輯 pfile 來新增待命參數。若要這樣做，請開啟 %ORACLE\_HOME%\\database 位置中的 INITTEST.ORA 檔案。接著，將下列陳述式附加至 INITTEST.ora 檔案。INIT.ORA 檔案的命名慣例是 INIT<YourDatabaseName>.ORA。
 
 	db_name='TEST'
 	db_unique_name='TEST'
@@ -320,7 +320,7 @@ Oracle Data Guard 支援 Oracle 資料庫的資料保護和嚴重損壞修復。
 
 首先，您需要透過 Azure 傳統入口網站，使用遠端桌面功能連至 Machine2。
 
-然後，在待命伺服器 (Machine2) 上，建立待命資料庫所需的所有資料夾，例如 C:\\<YourLocalFolder>\\TEST。遵循此教學課程的同時，請確定資料夾結構符合 Machine1 上的資料夾結構，以保留所有必要的檔案，例如 controlfile、datafiles、redologfiles、udump、bdump 和 cdump 檔案。此外，在 Machine2 中定義 ORACLE\_HOME 和 ORACLE\_BASE 環境變數。如果沒有，可使用 [環境變數] 對話方塊，將其定義為環境變數。若要存取此對話方塊，可在 [控制台] 中按兩下 [系統] 圖示，來啟動 [系統] 公用程式；然後按一下 [進階] 索引標籤並選擇 [環境變數]。按一下 [系統變數] 底下的 [新增] 按鈕來設定環境變數。設定環境變數之後，您需要關閉現有的 Windows 命令提示字元，然後開啟新的命令提示字元來查看變更。
+然後，在待命伺服器 (Machine2) 上，建立待命資料庫所需的所有資料夾，例如 C:\\<YourLocalFolder>\\TEST。遵循此教學課程的同時，請確定資料夾結構符合 Machine1 上的資料夾結構，以保留所有必要的檔案，例如 controlfile、datafiles、redologfiles、udump、bdump 和 cdump 檔案。此外，在 Machine2 中定義 ORACLE\_HOME 和 ORACLE\_BASE 環境變數。如果沒有，可使用 [環境變數] 對話方塊，將其定義為環境變數。若要存取此對話方塊，可在 [控制台] 中按兩下 [系統] 圖示，來啟動 [系統] 公用程式；然後按一下 [進階] 索引標籤並選擇 [環境變數]。若要設定環境變數，按一下 [系統變數] 底下的 [新增] 按鈕。設定環境變數之後，您需要關閉現有的 Windows 命令提示字元，然後開啟新的命令提示字元來查看變更。
 
 接著，遵循下列步驟：
 
@@ -368,11 +368,11 @@ Oracle Data Guard 支援 Oracle 資料庫的資料保護和嚴重損壞修復。
 -	***.LOG\_ARCHIVE\_DEST\_1：**您需要在 Machine2 中手動建立 c:\\OracleDatabase\\TEST\_STBY\\archives 資料夾。
 -	***.LOG\_ARCHIVE\_DEST\_2：** 這是選擇性步驟。當主要機器處於維護模式且待命機器成為主要資料庫時，您可以視需要來設定這個步驟。
 
-接著，需要啟動待命執行個體。在待命資料庫伺服器的 Windows 命令提示字元中，輸入下列命令，藉由建立新的 Windows 服務來建立 Oracle 執行個體：
+接著，需要啟動待命執行個體。在待命資料庫伺服器的 Windows 命令提示字元中，輸入下列命令，藉由建立 Windows 服務來建立 Oracle 執行個體：
 
 	oradim -NEW -SID TEST\_STBY -STARTMODE MANUAL
 
-請注意，**Oradim** 命令會建立 Oracle 執行個體，但不會啟動它。您可以在 C:\\OracleDatabase\\product\\11.2.0\\dbhome\_1\\BIN 目錄中找到它。
+**Oradim** 命令會建立 Oracle 執行個體，但不會啟動它。您可以在 C:\\OracleDatabase\\product\\11.2.0\\dbhome\_1\\BIN 目錄中找到它。
 
 ##設定接聽程式和 tnsnames，以支援主要和待命機器上的資料庫
 建立待命資料庫之前，您必須確定在您的設定中主要和待命資料庫可以彼此通訊。若要這樣做，您需要手動或使用網路設定公用程式 NETCA 來設定接聽程式和 TNSNames。當您使用復原管理員公用程式 (RMAN) 時，這是必要的工作。
@@ -502,7 +502,7 @@ Oracle Data Guard 支援 Oracle 資料庫的資料保護和嚴重損壞修復。
 
 
 ##以 NoMount 狀態啟動待命執行個體
-您需要設定環境，以支援待命虛擬機器 (MACHINE2) 上的待命資料庫。
+設定環境，以支援待命虛擬機器 (MACHINE2) 上的待命資料庫。
 
 首先，手動將密碼檔案從主要機器 (Machine1) 複製到待命機器 (Machine2)。請務必讓這兩部機器上的 **sys** 密碼完全相同。
 
@@ -630,4 +630,4 @@ Oracle Data Guard 支援 Oracle 資料庫的資料保護和嚴重損壞修復。
 ##其他資源
 [適用於 Azure 的 Oracle 虛擬機器映像](virtual-machines-windows-classic-oracle-images.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0914_2016-->

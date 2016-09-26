@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-linux" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/21/2016" 
+	ms.date="09/06/2016" 
 	ms.author="rclaus"/>
 
 
@@ -24,7 +24,7 @@
 
 
 ## 連接資料磁碟
-設定 RAID 裝置通常需要兩個以上的空白資料磁碟。建立 RAID 裝置的主要原因是要提升磁碟 IO 效能。根據 IO 需求，您可以選擇連接儲存在標準儲存體且一個磁碟最多具有 500 IO/ps 的磁碟，或進階儲存體且一個磁碟最多具有 5000 IO/ps 的磁碟。本文將不會詳細說明如何佈建資料磁碟以及將其連接至 Linux 虛擬機器。請參閱 Microsoft Azure 文章[連接磁碟](virtual-machines-linux-add-disk.md)，取得如何在 Azure 上將空白資料磁碟連接至 Linux 虛擬機器的詳細指示。
+設定 RAID 裝置需要兩個以上的空白資料磁碟。建立 RAID 裝置的主要原因是要提升磁碟 IO 效能。根據 IO 需求，您可以選擇連接儲存在標準儲存體且一個磁碟最多具有 500 IO/ps 的磁碟，或進階儲存體且一個磁碟最多具有 5000 IO/ps 的磁碟。本文不會詳細說明如何佈建資料磁碟以及將其連接至 Linux 虛擬機器。請參閱 Microsoft Azure 文章[連接磁碟](virtual-machines-linux-add-disk.md)，取得如何在 Azure 上將空白資料磁碟連接至 Linux 虛擬機器的詳細指示。
 
 
 ## 安裝 mdadm 公用程式
@@ -44,7 +44,7 @@
 
 
 ## 建立磁碟分割
-在本範例中，我們將在 /dev/sdc 上建立單一磁碟分割。新磁碟分割的名稱會是 /dev/sdc1。
+在本範例中，我們會在 /dev/sdc 上建立單一磁碟分割。新磁碟分割的名稱會是 /dev/sdc1。
 
 1. 啟動 fdisk 開始建立磁碟分割
 
@@ -96,7 +96,7 @@
 
 ## 建立 RAID 陣列
 
-1. 下列範例將「分割」(RAID 層級 0) 位於三個不同資料磁碟 (sdc1、sdd1、sde1) 的三個磁碟分割。執行此命令之後，將會建立一個名為 **/dev/md127** 的新 RAID 裝置。同時請注意，如果這些資料磁碟先前是另一個無用 RAID 陣列的一部分，則您可能需要在 `mdadm` 命令中加上 `--force` 參數：
+1. 下列範例將「分割」(RAID 層級 0) 位於三個不同資料磁碟 (sdc1、sdd1、sde1) 的三個磁碟分割。執行此命令之後，即會建立一個名為 **/dev/md127** 的新 RAID 裝置。同時請注意，如果這些資料磁碟先前是另一個無用 RAID 陣列的一部分，則您可能需要在 `mdadm` 命令中加上 `--force` 參數：
 
 		# sudo mdadm --create /dev/md127 --level 0 --raid-devices 3 \
 		  /dev/sdc1 /dev/sdd1 /dev/sde1
@@ -147,7 +147,7 @@
 
 		# sudo mount -a
 
-	如果此命令產生一則錯誤訊息，請檢查 /etc/fstab 檔案中的語法。
+	如果此命令會產生錯誤訊息，請檢查 /etc/fstab 檔案中的語法。
 
 	接下來，執行 `mount` 命令，以確保已掛接檔案系統：
 
@@ -159,7 +159,7 @@
 
 	**fstab 組態**
 
-	許多散發套件包含 `nobootwait` 或 `nofail` 掛接參數，可加入至 /etc/fstab 檔案。這些參數容許發生掛接特定檔案系統失敗，並容許 Linux 系統繼續開機，即使它無法正確地掛接 RAID 檔案系統。請查閱散發套件的文件，以取得這些參數的相關資訊。
+	許多散發套件包含 `nobootwait` 或 `nofail` 掛接參數，可加入至 /etc/fstab 檔案。這些參數容許發生掛接特定檔案系統失敗，並容許 Linux 系統繼續開機，即使它無法正確地掛接 RAID 檔案系統。請參閱散發套件的文件，以取得這些參數的相關資訊。
 
 	範例 (Ubuntu)：
 
@@ -171,4 +171,4 @@
 
 	請參閱散發套件的文件，以取得如何正確編輯核心參數的相關資訊。例如，在許多散發套件 (CentOS、Oracle Linux、SLES 11) 中，可手動將這些參數加入至 "`/boot/grub/menu.lst`" 檔案。在 Ubuntu 上，可將此參數加入至 "/etc/default/grub" 上的 `GRUB_CMDLINE_LINUX_DEFAULT` 變數。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0914_2016-->

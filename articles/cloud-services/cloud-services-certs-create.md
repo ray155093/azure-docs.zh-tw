@@ -67,6 +67,9 @@ $password = ConvertTo-SecureString -String "your-password" -Force -AsPlainText
 Export-PfxCertificate -Cert $cert -FilePath ".\my-cert-file.pfx" -Password $password
 ```
 
+>[AZURE.NOTE] 如果您想要搭配 IP 位址 (而不是網域) 來使用憑證，請在 -DnsName 參數中使用 IP 位址。
+
+
 如果您想要使用這個[憑證搭配管理入口網站](../azure-api-management-certs.md)，請將它匯出至 **.cer** 檔案：
 
 ```powershell
@@ -91,4 +94,4 @@ Export-Certificate -Type CERT -Cert $cert -FilePath .\my-cert-file.cer
 
 >[AZURE.NOTE] Azure 入口網站不會使用管理憑證存取 API，但是會使用使用者帳戶。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

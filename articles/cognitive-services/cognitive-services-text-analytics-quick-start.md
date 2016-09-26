@@ -4,7 +4,7 @@
 	services="cognitive-services"
 	documentationCenter=""
 	authors="onewth"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -297,4 +297,4 @@
 
 若要查看如何將文字分析功能 (如情感) 當做 Bot 的一部分，請參閱 Bot Framework 網站上的[有情感的 Bot](http://docs.botframework.com/zh-TW/bot-intelligence/language/#example-emotional-bot) 範例。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0914_2016-->

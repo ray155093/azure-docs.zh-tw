@@ -55,14 +55,25 @@
 
 ## 帳單超出您的信用卡額度
 
-若要解決這個問題，請使用下列方法之一：
+若要解決這個問題，請使用下列其中一個方法：
 
 - [如何變更用來支付 Azure 訂用帳戶的信用卡](billing-how-to-change-credit-card.md)。
 - 如果您是企業用戶，請參閱 [Azure 發票](https://azure.microsoft.com/pricing/invoicing/)。
 
-## 如何重新啟用訂用帳戶
+## 訂用帳戶已被帳戶管理員取消
 
-若要重新啟用已停用的訂用帳戶，您必須建立支援票證︰登入 [Azure 入口網站](https://portal.azure.com/)，然後選取 [說明 + 支援] > [新增支援要求]。
+>[AZURE.NOTE] 這個方法目前僅適用於「隨用隨付」訂用帳戶。針對其他訂用帳戶類型，您將必須[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
+
+如果您是帳戶管理員，您可以依照下列步驟來重新啟用您的「隨用隨付」訂用帳戶︰
+
+- 選取已取消的訂用帳戶。
+- 按一下 [訂用帳戶詳細資料] 頁面上的其中一個 [重新啟用] 連結。
+
+![reactivate-sub](./media/billing-how-to-cancel-azure-subscription/reactivate-sub.png)
+
+## 如何重新啟用非隨用隨付訂用帳戶︰
+
+若要重新啟用已停用的訂用帳戶，您必須建立支援票證︰請登入 [Azure 入口網站](https://portal.azure.com/)，然後選取 [說明 + 支援] > [新增支援要求]。
 
 ![helpandsupportbutton](./media/billing-how-to-create-billing-support-ticket/helpandsupport.png)
 
@@ -75,4 +86,4 @@
 
 > [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

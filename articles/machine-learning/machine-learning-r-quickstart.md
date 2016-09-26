@@ -5,7 +5,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="Blackmist"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -27,7 +27,7 @@ Stephen F Elston 博士
 
 Microsoft Azure Machine Learning 包含許多功能強大的機器學習和資料操作模組。功能強大的 R 語言被描述為分析通用語言。好消息是，在 Azure Machine Learning 中，分析和資料操作皆可藉由使用 R 來加以擴充。這個組合利用 R 的彈性和深入分析，讓 Azure Machine Learning 更具延展性且更易於部署。
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 
 ###預測和資料集
@@ -1358,4 +1358,4 @@ Paul Cowpertwait 與 Andrew Metcalfe 所著的 《Introductory Time Series with 
 <!-- Module References -->
 [execute-r-script]: https://msdn.microsoft.com/library/azure/30806023-392b-42e0-94d6-6b775a6e0fd5/
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0914_2016-->

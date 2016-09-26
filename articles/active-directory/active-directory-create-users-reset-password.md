@@ -18,6 +18,10 @@
 
 # 重設使用者的密碼
 
+> [AZURE.SELECTOR]
+- [Azure 入口網站](active-directory-users-reset-password-azure-portal.md)
+- [Azure 傳統入口網站](active-directory-create-users-reset-password.md)
+
 無論您是在鎖定後回應使用者重設密碼的要求，還是只參加例行的安全性維護，有時就是需要重設使用者的密碼。Azure Active Directory (Azure AD) 讓這項作業變得輕鬆簡單。
 
   1. 開啟您的目錄。
@@ -35,4 +39,4 @@
 - [在 Azure AD 中管理密碼](active-directory-manage-passwords.md)
 - [在 Azure AD 中管理群組](active-directory-manage-groups.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

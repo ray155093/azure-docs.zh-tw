@@ -1,0 +1,57 @@
+<properties
+	pageTitle="啟用 Azure Active Directory Identity Protection | Microsoft Azure"
+	description="了解如何啟用 Azure Active Directory Identity Protection。"
+	services="active-directory"
+	keywords="azure active directory identity protection, cloud app discovery, 管理應用程式, 安全性, 風險, 風險層級, 弱點, 安全性原則"
+	documentationCenter=""
+	authors="markusvi"
+	manager="femila"
+	editor=""/>
+
+<tags
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/07/2016"
+	ms.author="markvi"/>
+
+# 啟用 Azure Active Directory Identity Protection 
+
+Azure Active Directory Identity Protection 是一項新功能，可針對可疑的登入活動和潛在弱點提供整合檢視，並提供通知、補救建議及以風險為基礎的原則，來協助保護您的企業。
+
+此服務會根據跡象 (例如暴力密碼破解攻擊、認證外洩，以及來自不明位置或受感染裝置的登入) 偵測使用者和特殊權限 (系統管理員) 身分識別的可疑活動，。更重要的是，根據這些可疑的活動，便可計算使用者風險嚴重度，以及設定以風險為基礎的原則並自動保護貴組織的身分識別。如需詳細資料，請參閱 [Azure Active Directory Identity Protection](active-directory-identityprotection.md)。
+
+
+本主題說明如何啟用 Azure Active Directory Identity Protection。
+
+## 啟用 Azure Active Directory Identity Protection 的步驟 
+
+
+1. 以系統管理員身分[登入](https://ms.portal.azure.com/) Azure 入口網站。
+
+1. 在 Azure 入口網站中，按一下 [Marketplace]。
+
+	![建立](./media/active-directory-identityprotection-enable/01.png "建立")
+
+1. 在應用程式清單中，按一下 [安全性 + 身分識別]。
+
+	![建立](./media/active-directory-identityprotection-enable/02.png "建立")
+
+1. 按一下 [Azure AD Identity Protection]。
+
+	![建立](./media/active-directory-identityprotection-enable/03.png "建立")
+
+1. 在 [Azure AD Identity Protection] 刀鋒視窗上，按一下 [建立]。
+
+	![建立](./media/active-directory-identityprotection-enable/04.png "建立")
+
+
+
+## 後續步驟
+
+ - [Azure Active Directory Identity Protection](active-directory-identityprotection.md)
+ 
+
+<!---HONumber=AcomDC_0914_2016-->

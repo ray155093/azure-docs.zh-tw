@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="garyericson"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -36,7 +36,7 @@
 此 Web 服務是一個使用 REST API，有兩種方式來接收和傳回資料的 Azure Web 服務：
 
 -	**要求/回應** - 使用者以 HTTP 通訊協定，將一或多列的信用資料傳送給服務，然後服務回應一或多組結果。
--	**批次執行** - 使用者在 Azure Blob 中儲存一或多列信用資料，然後將 Blob 位置傳送給服務。服務會給輸入 Blob 中的所有資料列評分，將結果儲存在另一個 Blob 中，再傳回該容器的 URL。  
+-	**批次執行** - 使用者在 Azure Blob 中儲存一或多列信用資料，然後將 Blob 位置傳送給服務。服務會給輸入 Blob 中的所有資料列評分，將結果儲存在另一個 Blob 中，再傳回該容器的 URL。
 
 最簡單快速存取 Web 服務的方式是透過 [Azure Web 應用程式 Marketplace](https://azure.microsoft.com/marketplace/web-applications/all/) 中提供的 Web 應用程式範本。這些 Web 應用程式範本可以建立自訂的 Web 應用程式，該應用程式知道您的 Web 服務輸入資料和將傳回的內容。您所需要做的就是提供 Web 服務和資料的存取權限，範本會執行其餘部分。
 
@@ -44,4 +44,4 @@
 
 您也可以使用以 R、C# 和 Python 程式語言為您提供的起始程式碼來開發自訂應用程式以存取 Web 服務。您可以在[如何使用已從機器學習實驗發佈的 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)找到完整詳細資料。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0914_2016-->

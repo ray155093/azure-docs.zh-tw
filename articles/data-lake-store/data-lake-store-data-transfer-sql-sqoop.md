@@ -4,7 +4,7 @@
    services="data-lake-store" 
    documentationCenter="" 
    authors="nitinme" 
-   manager="paulettm" 
+   manager="jhubbard" 
    editor="cgronlun"/>
  
 <tags
@@ -28,12 +28,12 @@
 [Apache Sqoop](https://sqoop.apache.org/docs/1.4.4/SqoopUserGuide.html) 是一個專門設計來在關聯式資料庫和巨量資料儲存機制 (例如資料湖存放區) 之間傳送資料的工具。您可以使用它從像是 Azure SQL Database 這類的關聯式資料庫管理系統 (RDBMS)，匯入資料至資料湖存放區。您可以使用巨量資料工作負載來轉換和分析資料，然後重新將資料匯出到 RDBMS。在本教學課程中，您會使用 Azure SQL Database 做為匯入/匯出之來源關聯式資料庫。
  
 
-## 先決條件
+## 必要條件
 
 開始閱讀本文之前，您必須符合下列必要條件：
 
 - **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-- **啟用您的 Azure 訂用帳戶**以使用資料湖存放區公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
+- **啟用您的 Azure 訂用帳戶**以使用 Data Lake Store 公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
 - 可存取資料湖存放區帳戶的 **Azure HDInsight 叢集**。請參閱[建立具有資料湖存放區的 HDInsight 叢集](data-lake-store-hdinsight-hadoop-use-portal.md)。本文假設您已使用資料湖存放區存取 HDInsight Linux 叢集。
 - **Azure SQL Database**。如需建立方式的指示，請參閱[建立 Azure SQL Database](../sql-database/sql-database-get-started.md)
 
@@ -153,7 +153,7 @@ HDInsight 叢集已有可用的 Sqoop 套件。如果您已設定 HDInsight 叢�
 
 - [將資料從 Azure 儲存體 Blob 複製到資料湖存放區](data-lake-store-copy-data-azure-storage-blob.md)
 - [保護資料湖存放區中的資料](data-lake-store-secure-data.md)
-- [搭配資料湖存放區使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
+- [搭配 Data Lake Store 使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 - [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0914_2016-->

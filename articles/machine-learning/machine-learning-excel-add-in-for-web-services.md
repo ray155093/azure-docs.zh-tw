@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="tedway"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"
     tags=""/>
 
@@ -89,4 +89,4 @@ Excel 可以讓您直接輕鬆呼叫 Web 服務，而不需要撰寫任何程式
 [05]: ./media/machine-learning-excel-add-in-for-web-services/image5.png
 [06]: ./media/machine-learning-excel-add-in-for-web-services/image6.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

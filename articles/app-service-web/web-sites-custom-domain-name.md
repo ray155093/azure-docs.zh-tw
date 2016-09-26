@@ -21,7 +21,7 @@
 
 [AZURE.INCLUDE [web-selector](../../includes/websites-custom-domain-selector.md)]
 
-這篇文章說明如何在 [Azure App Service](../app-service/app-service-value-prop-what-is.md) 中將自訂網域名稱對應至您的 Web 應用程式、行動應用程式後端或 API 應用程式。
+這篇文章說明如何在 [Azure App Service](../app-service/app-service-value-prop-what-is.md) 中將自訂網域名稱對應至您的 Web 應用程式、行動裝置應用程式後端或 API 應用程式。
 
 您的應用程式已隨附唯一的 azurewebsites.net 子網域。例如，如果您的應用程式名稱為 **contoso**，則其網域名稱為 **contoso.azurewebsites.net**。不過，您可以將自訂網域名稱對應至應用程式，以便其 URL (例如 `www.contoso.com`) 反映出您的品牌。
 
@@ -154,7 +154,7 @@ A 記錄應該設定如下 (@ 通常代表根網域)︰
 <a name="cname"></a>
 ### 建立 CNAME 記錄
 
-如果您使用 CNAME 記錄對應至 Azure 應用程式的預設網域名稱，則不需要像您處理 A 記錄時的額外 CNAME 記錄。
+如果您使用 CNAME 記錄對應至 Azure 應用程式的預設網域名稱，則不需要像您處理 A 記錄時的額外 TXT 記錄。
 
 >[AZURE.IMPORTANT] 請勿建立根網域的 CNAME 記錄 (也就是「根記錄」)。如需詳細資訊，請參閱[為什麼無法在根網域使用 CNAME 記錄](http://serverfault.com/questions/613829/why-cant-a-cname-record-be-used-at-the-apex-aka-root-of-a-domain)。若要將根網域對應至 Azure 應用程式，請改用 [A 記錄](#a)。
 
@@ -249,4 +249,4 @@ CNAME 記錄應該設定如下 (@ 通常代表根網域)︰
 <!-- Images -->
 [subdomain]: media/web-sites-custom-domain-name/azurewebsites-subdomain.png
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

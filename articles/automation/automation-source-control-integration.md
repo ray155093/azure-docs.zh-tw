@@ -1,5 +1,5 @@
 <properties 
-    pageTitle="Azure 自動化中的原始檔控制整合 | Microsoft Azure"
+    pageTitle=" Azure 自動化中的原始檔控制整合 | Microsoft Azure"
     description="本文說明在 Azure 自動化中與 GitHub 的原始檔控制整合。"
     services="automation"
     documentationCenter=""
@@ -12,7 +12,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="infrastructure-services"
-    ms.date="05/23/2016"
+    ms.date="09/12/2016"
     ms.author="magoedte;sngun" />
 
 # Azure 自動化中的原始檔控制整合
@@ -157,8 +157,8 @@ Runbook 簽入可讓您將對 Azure 自動化中的 Runbook 所做的變更推�
 ## 後續步驟
 
 如需原始檔控制整合的詳細資訊，請參閱下列資源：
-- [Azure 自動化：Azure 自動化中的原始檔控制整合](https://azure.microsoft.com/blog/azure-automation-source-control-13/)  
-- [票選您最喜愛的原始檔控制系統](https://www.surveymonkey.com/r/?sm=2dVjdcrCPFdT0dFFI8nUdQ%3d%3d)  
-- [Azure 自動化：使用 Visual Studio Team Services 整合 Runbook 原始檔控制](https://azure.microsoft.com/blog/azure-automation-integrating-runbook-source-control-using-visual-studio-online/)  
+- [Azure 自動化：Azure 自動化中的原始檔控制整合](https://azure.microsoft.com/blog/azure-automation-source-control-13/)
+- [票選您最喜愛的原始檔控制系統](https://www.surveymonkey.com/r/?sm=2dVjdcrCPFdT0dFFI8nUdQ%3d%3d)
+- [Azure 自動化：使用 Visual Studio Team Services 整合 Runbook 原始檔控制](https://azure.microsoft.com/blog/azure-automation-integrating-runbook-source-control-using-visual-studio-online/)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0914_2016-->

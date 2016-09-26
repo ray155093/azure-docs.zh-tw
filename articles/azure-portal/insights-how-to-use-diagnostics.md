@@ -66,8 +66,8 @@
 * 每當發生操作事件或計量超過臨界值時，[接收警示通知](insights-receive-alert-notifications.md)。
 * [監視服務計量](insights-how-to-customize-monitoring.md)以確保您的服務可用且可回應。
 * [自動調整執行個體計數](insights-how-to-scale.md)以確保您的服務可根據需求進行調整。
-* 如果您想要了解您的程式碼如何在雲端中執行，可以[監視應用程式效能](insights-perf-analytics.md)。
+* 如果您想要了解您的程式碼如何在雲端中執行，可以[監視應用程式效能](../application-insights/app-insights-azure-web-apps.md)。
 * [檢視事件和稽核記錄檔](insights-debugging-with-events.md)以了解在您服務內發生的所有內容。
 * [追蹤服務健康狀況](insights-service-health.md)可以找出 Azure 何時遭遇效能降低或服務中斷。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0914_2016-->

@@ -13,16 +13,16 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/23/2016"
+	ms.date="09/07/2016"
 	ms.author="tamram"/>
 
 # 設定與擷取屬性和中繼資料 #
 
-## 概觀
+## Overview
 
 除了所包含之資料外，在 Azure 儲存體支援系統屬性和使用者定義中繼資料中的物件：
 
-*   **系統屬性。** 系統屬性存在於每個儲存體資源上。其中有些系統屬性可以讀取或設定，有些則是唯讀的。實際上，有些系統屬性會對應至特定的標準 HTTP 標頭。Azure 儲存體用戶端程式庫會為您維護這些 HTTP 標頭。  
+*   **系統屬性。** 系統屬性存在於每個儲存體資源上。其中有些系統屬性可以讀取或設定，有些則是唯讀的。實際上，有些系統屬性會對應至特定的標準 HTTP 標頭。Azure 儲存體用戶端程式庫會為您維護這些 HTTP 標頭。
 
 *   **使用者定義的中繼資料。** 使用者定義的中繼資料是您針對給定的資源，以名稱/值組的形式指定的中繼資料。您可以使用中繼資料將額外的值與儲存體資源一同儲存。這些值僅供自己的用途使用，不會影響資源的運作方式。
 
@@ -95,6 +95,6 @@
 ## 另請參閱  
 
 - [適用於 .NET 的 Azure 儲存體用戶端程式庫參考資料](http://msdn.microsoft.com/library/azure/wa_storage_30_reference_home.aspx)
-- [適用於 .NET 的 Azure 儲存體用戶端程式庫封裝](https://www.nuget.org/packages/WindowsAzure.Storage/) 
+- [適用於 .NET 的 Azure 儲存體用戶端程式庫封裝](https://www.nuget.org/packages/WindowsAzure.Storage/)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0914_2016-->

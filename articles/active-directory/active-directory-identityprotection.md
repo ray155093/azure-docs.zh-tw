@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="09/07/2016"
+	ms.date="09/11/2016"
 	ms.author="markvi"/>
 
 #Azure Active Directory Identity Protection 
@@ -22,11 +22,6 @@
 Azure Active Directory Identity Protection 是一項安全性服務，可供整合檢視會影響組織身分識別的風險事件和潛在弱點。十多年來，Microsoft 一直保護雲端架構身分識別的安全，並透過 Azure AD Identity Protection 持續為企業客戶提供相同的保護系統。Identity Protection 利用現有 Azure AD 的異常偵測功能 (可透過 Azure AD 的異常活動報告取得)，並引進可即時偵測異常的新風險事件類型。
 
 ## 目前的預覽限制
-本節列出適用於 Azure Active Directory Identity Protection 的目前預覽限制。
-
-
-
-### 身分識別保護和同盟網域
 
 搭配同盟網域使用的 Azure Active Directory Identity Protection 有下列限制︰
 
@@ -99,7 +94,7 @@ Identity Protection 會使用此資料來產生報告和警示，讓您調查這
 | 從受感染的裝置登入 | 從可能受感染的裝置登入 |
 | 從匿名 IP 位址登入 | 從不明來源登入 |
 | 從具有可疑活動的 IP 位址登入 |	從具有可疑活動的 IP 位址登入 |
-| 從不熟悉的位置登入 | - | 
+| 從不熟悉的位置登入 | - |
 | 鎖定事件 (不在公開預覽中) | - |
 
 下列 Azure AD 異常活動報告不會納入為 Azure AD Identity Protection 中的風險事件，因此不會透過 Identity Protection 提供。這些報告仍可在 Azure 管理入口網站中取得，不過將會在未來某個時候淘汰，因為它們正由 Identity Protection 中的風險事件所取代。
@@ -405,6 +400,7 @@ Azure AD Identity Protection 可讓您設定原則來執行下列作業，以協
 ## 另請參閱
 
  - [第 9 頻道：Azure AD 和身分識別展示：Identity Protection 預覽](https://channel9.msdn.com/Series/Azure-AD-Identity/Azure-AD-and-Identity-Show-Identity-Protection-Preview)
+ - [啟用 Azure Active Directory Identity Protection](active-directory-identityprotection-enable.md)
  - [Azure Active Directory Identity Protection 偵測到的風險事件類型](active-directory-identityprotection-risk-events-types.md)
  - [Azure Active Directory Identity Protection 偵測到的弱點](active-directory-identityprotection-vulnerabilities.md)
  - [Azure Active Directory Identity Protection 通知](active-directory-identityprotection-notifications.md)
@@ -413,4 +409,4 @@ Azure AD Identity Protection 可讓您設定原則來執行下列作業，以協
  - [Azure Active Directory Identity Protection 詞彙](active-directory-identityprotection-glossary.md)
  - [開始使用 Azure Active Directory Identity Protection 和 Microsoft Graph](active-directory-identityprotection-graph-getting-started.md)
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="bradsev"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun" />
 
 <tags
@@ -19,9 +19,9 @@
 
 # 使用 Azure Data Factory 從內部部署的 SQL Server 移動資料至 SQL Azure
 
-本主題說明如何使用 Azure Data Factory (ADF)，透過 Azure Blob 儲存體從內部部署的 SQL Server 資料庫移動資料至 SQL Azure Database。
+本主題說明如何使用 Azure Data Factory (ADF)，透過 Azure Blob 儲存體，將資料從內部部署的 SQL Server 資料庫移動至 SQL Azure Database。
 
-以下**功能表**所連結的主題說明如何將資料內嵌至其他目標環境，以在 Team Data Science Process (TDSP) 期間儲存和處理該資料。
+以下**功能表**所連結的主題會說明如何將資料內嵌至其他目標環境，以在 Team Data Science Process (TDSP) 期間儲存和處理該資料。
 
 [AZURE.INCLUDE [cap-ingest-data-selector](../../includes/cap-ingest-data-selector.md)]
 
@@ -94,7 +94,7 @@ Azure Data Factory 是完全受管理的雲端架構資料整合服務，用來�
 若要為 Azure Blob 儲存體帳戶建立連結服務，請在 Azure 傳統入口網站的 ADF 登陸頁面上，按一下 [資料存放區]，選取 [Azure 儲存體帳戶]，然後輸入 Azure Blob 儲存體帳戶的金鑰和容器名稱。將連結服務命名為 *adfds*。
 
 ###<a name="adf-linked-service-azure-sql"></a>Azure SQL Database 的連結服務
-若要為 Azure SQL Database 建立連結服務，請在 Azure 傳統入口網站的 ADF 登陸頁面上，按一下 [資料存放區]，選取 [Azure SQL]，然後輸入 Azure SQL Database 的「使用者名稱」和「密碼」認證。使用者名稱必須指定為 **user@servername*。
+若要為 Azure SQL Database 建立連結服務，請在 Azure 傳統入口網站的 ADF 登陸頁面上，按一下 [資料存放區]，選取 [Azure SQL]，然後輸入 Azure SQL Database 的「使用者名稱」和「密碼」認證。*username* 必須指定為 *user@servername*。
 
 
 ##<a name="adf-tables"></a>定義和建立資料表以指定存取資料集的方式
@@ -106,7 +106,7 @@ Azure Data Factory 是完全受管理的雲端架構資料整合服務，用來�
 資料表中的 JSON 型定義使用下列名稱：
 
 * 內部部署的 SQL Server 中的「資料表名稱」為 *nyctaxi\_data*
-* Azure Blob 儲存體帳戶中的「容器名稱」為 *containername*  
+* Azure Blob 儲存體帳戶中的「容器名稱」為 *containername*
 
 此 ADF 管線所需的三個資料表定義為：
 
@@ -310,4 +310,4 @@ SQL Azure 輸出的資料表定義如下 (此結構描述會對應來自 Blob �
 
 請注意，我們尚未運用 ADF 提供的功能，以遞增方式輸送資料。如需關於如何執行此功能和 ADF 提供之其他功能的詳細資料，請參閱 [ADF 文件](https://azure.microsoft.com/services/data-factory/)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

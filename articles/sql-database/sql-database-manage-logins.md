@@ -15,7 +15,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="09/01/2016"
+   ms.date="09/14/2016"
    ms.author="rickbyh"/>
 
 # SQL Database 驗證和授權：授與存取 
@@ -69,6 +69,8 @@ SQL Database 在虛擬 master 資料庫中提供兩個限制的系統管理角�
      ```
 
      > [AZURE.NOTE] 建立登入或自主資料庫使用者時，請使用強式密碼。如需詳細資訊，請參閱[增強式密碼](https://msdn.microsoft.com/library/ms161962.aspx)。
+
+    為了改進效能，系統會暫時在資料庫層級快取登入 (伺服器層級主體)。若要重新整理驗證快取，請參閱 [DBCC FLUSHAUTHCACHE](https://msdn.microsoft.com/library/mt627793.aspx)。
 
 3.	在虛擬 master 資料庫中，藉由使用 [CREATE USER](https://msdn.microsoft.com/library/ms173463.aspx) 陳述式來建立使用者。使用者可以是 Azure Active Directory 驗證自主資料庫使用者 (如果您已針對 Azure AD 驗證設定您的環境)，或 SQL Server 驗證自主資料庫使用者，或根據 SQL Server 驗證登入 (在上一個步驟中建立) 的 SQL Server 驗證使用者。 範例陳述式︰
 
@@ -161,4 +163,4 @@ GRANT ALTER ANY USER TO Mary;
 
 [SQL Server Database Engine 和 Azure SQL Database 的資訊安全中心](https://msdn.microsoft.com/library/bb510589.aspx)
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

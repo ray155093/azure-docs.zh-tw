@@ -4,7 +4,7 @@
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="LuisCabrer" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -13,13 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="javascript" 
 	ms.topic="article" 
-	ms.date="08/24/2016" 
+	ms.date="09/08/2016" 
 	ms.author="luisca"/>
 
 # Azure Machine Learning Recommendations - JavaScript 整合
 
-> 這是資料市場中舊建議 API 的文件，將於 2016 年 12 月 31 日作廢。
-> 您現在應該繼續使用[建議 API Cognitive Service](https://www.microsoft.com/cognitive-services/zh-TW/recommendations-api)。
+>[AZURE.NOTE] 您應該開始使用 Recommendations API 的 Cognitive Service，而不是此版本。Recommendations 的 Cognitive Service 將會取代這個服務，而所有的新特徵都會在其中進行開發。它會提供新功能，例如，批次支援、更好的 API 總管、更簡潔的 API 介面、更一致的註冊/計費體驗等。深入了解[移轉到新的 Cognitive Service](http://aka.ms/recomigrate)
 
 
 本文件說明如何使用 JavaScript 整合您的網站。JavaScript 可讓您傳送資料擷取事件，並在建立建議模型之後取用建議。透過 JS 完成的所有操作也能從伺服器端完成。
@@ -63,7 +62,7 @@
 1.	在程式碼中納入 JQuery 程式庫。您可以利用下列 URL 來從 nuget 下載。
 
 		http://www.nuget.org/packages/jQuery/1.8.2
-2.	從下列 URL 納入 Recommendations Java Script 程式庫：http://1drv.ms/1Aoa1Zp
+2.	從下列 URL 納入 Recommendations Java Script 程式庫：http://aka.ms/RecoJSLib1
 
 3.	使用適當參數初始化 Azure ML Recommendations 程式庫。
 
@@ -169,8 +168,7 @@
 
 參數：
 * event (字串) – “purchase”
-* items (已購買項目) - 陣列會為購買的每個項目保留一個項目。<br><br>
-已購買項目的格式︰
+* items (已購買項目) - 陣列會為購買的每個項目保留一個項目。<br><br> 已購買項目的格式︰
 	* item (字串) – 項目的唯一識別碼。
 	* count (整數或字串) – 已購買的項目數。
 	* price (浮點數或字串) – 選擇性欄位 – 項目的價格。
@@ -190,9 +188,10 @@ Azure ML Recommendations 事件程式庫會建立並使用 Cookie，以識別來
 參數：
 * event (字串) – “userlogin”
 * user (字串) - 使用者的唯一識別。
+
 		<script>
-			if (typeof AzureMLRecommendationsEvent=="undefined") { AzureMLRecommendationsEvent = ; }
-			AzureMLRecommendationsEvent.push({event: "userlogin", user: “ABCD10AA” });
+			if ( typeof AzureMLRecommendationsEvent == "undefined"){ AzureMLRecommendationsEvent = []; }
+			AzureMLRecommendationsEvent.push({ event: "purchase", items: [{ item: "33", count: "1", price: "10" }, { item: "34", count: "2" }, { item: "35", count: "1", price: "210" }] });
 		</script>
 
 ##4\.透過 JavaScript 取用建議
@@ -231,4 +230,4 @@ Azure ML Recommendations 事件程式庫會建立並使用 Cookie，以識別來
 [3]: ./media/machine-learning-recommendation-api-javascript-integration/Drawing3.png
  
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016--->

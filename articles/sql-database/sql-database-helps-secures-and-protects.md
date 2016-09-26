@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management"
-   ms.date="06/23/2016"
+   ms.date="09/13/2016"
    ms.author="carlrab"/>
    
 # Azure SQL Database 安全防護
@@ -51,8 +51,8 @@ SQL Database 提供多個資料保護層。您的資料會在靜止時、移動�
 
 ## 其他資源
 
-瀏覽所有 [SQL Database 的能力](https://azure.microsoft.com/services/sql-database/)。
+瀏覽 [SQL Database 的所有功能](https://azure.microsoft.com/services/sql-database/)。
  
 檢閱 [SQL Database 的技術概觀](sql-database-technical-overview.md)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -4,7 +4,7 @@
 	services="hdinsight"
 	documentationCenter=""
 	authors="nitinme"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/26/2016"
+	ms.date="09/09/2016"
 	ms.author="nitinme"/>
 
 
@@ -43,6 +43,8 @@
 * IntelliJ IDEA。本文章使用 15.0.1 版。您可以從[這裡](https://www.jetbrains.com/idea/download/)加以安裝。
  
 * 適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具。適用於 IntelliJ 的 HDInsight 工具是適用於 IntelliJ 的 Azure 工具組的一部分。如需有關如何安裝 Azure 工具組的指示，請參閱[安裝 Azure Toolkit for IntelliJ](../azure-toolkit-for-intellij-installation.md)。
+
+* 從 IntelliJ IDEA 登入您的 Azure 訂用帳戶。請遵循[這裡](hdinsight-apache-spark-intellij-tool-plugin.md#log-into-your-azure-subscription)的指示。
  
 * 在 Windows 電腦上執行 Spark Scala 應用程式以進行遠端偵錯時，可能會發生 [SPARK-2356](https://issues.apache.org/jira/browse/SPARK-2356) 中所述的例外狀況，此例外狀況發生的原因是因為 Windows 上缺少 WinUtils.exe。若要解決這個錯誤，您必須[從這裡下載可執行檔](http://public-repo-1.hortonworks.com/hdp-win-alpha/winutils.exe)並將其放至 **C:\\WinUtils\\bin** 之類的位置。然後，您必須新增環境變數 **HADOOP\_HOME**，並將變數的值設為 **C\\WinUtils**。
 
@@ -128,9 +130,9 @@
 
 		![建立 JAR](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely/default-artifact.png)
 
-	您也可以建立自己的構件，方法是按一下 [+] 圖示，在上方映像中反白顯示。
+	您也可以建立自己的構件，方法是按一下上圖中強調顯示的 [+] 圖示。
 
-4. 在 [Project Structure (專案結構)] 對話方塊中，按一下 [Project (專案)]。如果 [Project SDK (專案 SDK)] 設定為 1.8，請確定 [Project language level (專案語言層級)]設為 [7 - Diamonds, ARM, multi-catch, etc (7 - Diamonds、ARM、Multi-Catch 等)]。
+4. 在 [專案結構] 對話方塊中，按一下 [專案]。如果 [Project SDK (專案 SDK)] 設定為 1.8，請確定 [Project language level (專案語言層級)]設為 [7 - Diamonds, ARM, multi-catch, etc (7 - Diamonds、ARM、Multi-Catch 等)]。
 
 	![設定專案語言層級](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely/set-project-language-level.png)
 
@@ -186,7 +188,7 @@
 
 	![新增原始程式碼](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely/hdi-spark-scala-code.png)
 
-8. 在 [Create New Scala Class (建立新的 Scala 類別)] 對話方塊中，提供一個名稱，並針對 [Kind (種類)] 選取 [Object (物件)]，然後按一下 [確定]。
+8. 在 [建立新的 Scala 類別] 對話方塊中，提供一個名稱，並針對 [種類] 選取 [物件]，然後按一下 [確定]。
 
 	![新增原始程式碼](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely/hdi-spark-scala-code-object.png)
 
@@ -346,4 +348,4 @@
 
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

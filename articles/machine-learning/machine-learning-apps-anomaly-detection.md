@@ -4,7 +4,7 @@
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="alokkirpal" 
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun" />
 
 <tags 
@@ -19,7 +19,7 @@
 
 # 機器學習異常偵測服務#
 
-##概觀
+##Overview
 
 「異常偵測 API」是一個搭配 Azure Machine Learning 建置的範例，此 API 使用固定時間間隔的數值，偵測時間序列資料中的異常狀況。
 
@@ -39,7 +39,7 @@
 
 * [範例程式碼](http://adresultparser.codeplex.com/)示範如何使用 C#，以程式設計方式存取 API 並剖析結果。
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 
 ##API 定義
@@ -211,4 +211,4 @@ API 會對您的時間序列資料執行所有偵測器，然後傳回每個時�
 
  
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

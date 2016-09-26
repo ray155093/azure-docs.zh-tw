@@ -4,7 +4,7 @@
    services="hdinsight"
    documentationCenter=""
    authors="Blackmist"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -129,7 +129,7 @@ HDInsight Tools 可以用來將 C# 或混合式拓撲提交至 Storm 叢集。�
 
 1. 在**方案總管**中，於專案上按一下滑鼠右鍵，然後選取 [提交至 Storm on HDInsight]。
 
-	> [AZURE.NOTE] 如果出現提示，請輸入您 Azure 訂用帳戶的登入認證。如果您有多個訂用帳戶，請登入包含 Storm on HDInsight 叢集的訂用帳戶。
+	> [AZURE.NOTE] 如果出現提示，請輸入您 Azure 訂閱的登入認證。如果您有多個訂用帳戶，請登入包含 Storm on HDInsight 叢集的訂用帳戶。
 
 2. 從 [Storm 叢集] 下拉式清單中選取 Storm on HDInsight 叢集，然後選取 [提交]。您可以使用 [輸出] 視窗監視提交是否成功。
 
@@ -181,4 +181,4 @@ REST API 的要求必須使用**基本驗證**，因此請使用 HDInsight 叢�
 [storm-dashboard-submit]: ./media/hdinsight-storm-deploy-monitor-topology/submit.png
 [storm-dashboard-ui]: ./media/hdinsight-storm-deploy-monitor-topology/storm-ui-summary.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -4,7 +4,7 @@ description="了解如何從 HDInsight 上的 Apache Storm 拓撲將資料寫入
 services="hdinsight"
 documentationCenter="na"
 authors="Blackmist"
-manager="paulettm"
+manager="jhubbard"
 editor="cgronlun"/>
 
 <tags
@@ -13,7 +13,7 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="06/17/2016"
+ms.date="09/06/2016"
 ms.author="larryfr"/>
 
 #搭配使用 Azure Data Lake Store 與 HDInsight 上的 Apache Storm
@@ -27,7 +27,7 @@ Azure Data Lake Store 是 HDFS 相容的雲端儲存體服務，可為資料提�
 * [Java JDK 1.7](https://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) 或更新版本
 * [Maven 3.x](https://maven.apache.org/download.cgi)
 * Azure 訂用帳戶
-* Storm on HDInsight 叢集 3.2 版。若要建立新的 Storm on HDInsight 叢集，請使用[使用 Azure 來搭配使用 HDInsight 與 Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md) 文件中的步驟。本文件中的步驟將逐步引導您建立新的 HDInsight 叢集和 Azure Data Lake Store。  
+* Storm on HDInsight 叢集 3.2 版。若要建立新的 Storm on HDInsight 叢集，請使用[使用 Azure 來搭配使用 HDInsight 與 Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md) 文件中的步驟。本文件中的步驟將逐步引導您建立新的 HDInsight 叢集和 Azure Data Lake Store。
 
     > [AZURE.IMPORTANT] 當您建立 HDInsight 叢集時，必須選取 __Storm__ 做為叢集類型，以及選取 __3.2__ 做為版本。作業系統可以是 Windows 或 Linux。
 
@@ -221,4 +221,4 @@ __如果是以 Windows 為基礎的 HDInsight__：
 
 現在，您已了解如何使用 Storm 來寫入至 Azure Data Lake Store，接下來請探索其他 [HDInsight 的 Storm 範例](hdinsight-storm-example-topology.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -18,7 +18,7 @@
 
 # 了解如何使用企業整合套件的 B2B 功能接收資料#
 
-## 概觀 ##
+## Overview ##
 
 這份文件是 Logic Apps 企業整合套件的一部分。查看概觀以便深入了解[企業整合套件的功能](./app-service-logic-enterprise-integration-overview.md)。
 
@@ -46,10 +46,10 @@
 8. 新增 AS2 所需的**標頭**。這些項目將位於 HTTP 要求標頭中。在此範例中，選取觸發邏輯應用程式的 HTTP 要求標頭。
 9. 現在，再次選取 [新增動作] 來新增 [將 X12 訊息解碼] 動作 ![](./media/app-service-logic-enterprise-integration-b2b/b2b-9.png)
 10. 在搜尋方塊中輸入 **x12** 文字，篩選所有動作以取得您想要使用的動作 ![](./media/app-service-logic-enterprise-integration-b2b/b2b-10.png)
-11. 選取 [X12 - 將 X12 解碼訊息] 動作，以將它新增到邏輯應用程式 ![](./media/app-service-logic-enterprise-integration-b2b/b2b-11.png)
+11. 選取 [X12 - 將 X12 解碼訊息] 動作，以將它新增到邏輯應用程式 ![](./media/app-service-logic-enterprise-integration-b2b/b2b-as2message.png)
 12. 現在，您需要指定此動作的輸入將會是上述 AS2 動作的輸出。實際訊息內容是在 JSON 物件中，並以 base64 編碼。您因而需要指定運算式做為輸入，因此，請在 [要解碼的 X12 一般檔案訊息] 輸入欄位中輸入下列運算式
 
-    @base64ToString(body('Decode\_AS2\_message')?['Message']?['Content'])
+    @base64ToString(body('Decode\_AS2\_message')?['AS2Message']?['Content'])
 
 13. 此步驟會將交易夥伴所傳送的 X12 資料解碼，並將輸出 JSON 物件中的一些項目。為了讓夥伴得知資料回條，您可以回送一個回應，在 HTTP 回應動作中包含 AS2 訊息處置通知 (MDN)
 14. 選取 [新增動作] 來新增 [回應] 動作 ![](./media/app-service-logic-enterprise-integration-b2b/b2b-14.png)
@@ -75,4 +75,4 @@
 
 [深入了解企業整合套件](./app-service-logic-enterprise-integration-overview.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0914_2016-->

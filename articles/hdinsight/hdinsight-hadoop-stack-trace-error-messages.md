@@ -5,7 +5,7 @@
 	services="hdinsight"
 	documentationCenter="NA"
 	authors="mumian"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -38,4 +38,4 @@
 * [在以 Linux 為基礎的 HDInsight 上啟用 Hadoop 服務的堆積傾印](hdinsight-hadoop-collect-debug-heap-dump-linux.md)
 * [Azure HDInsight 上 Hadoop 元件的版本資訊](hdinsight-release-notes.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

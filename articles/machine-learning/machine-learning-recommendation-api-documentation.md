@@ -4,7 +4,7 @@
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="LuisCabrer" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -13,18 +13,17 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/17/2016" 
+	ms.date="09/08/2016" 
 	ms.author="LuisCa"/>
 
 #Azure Machine Learning 建議 API 文件
 
-本文件說明透過 Marketplace 公開的 Microsoft Azure Machine Learning 建議 API。
+>[AZURE.NOTE] 您應該開始使用 Recommendations API 的 Cognitive Service，而不是此版本。Recommendations 的 Cognitive Service 將會取代這個服務，而所有的新特徵都會在其中進行開發。它會提供新功能，例如，批次支援、更好的 API 總管、更簡潔的 API 介面、更一致的註冊/計費體驗等。深入了解[移轉到新的 Cognitive Service](http://aka.ms/recomigrate)
+
+本文件說明 Microsoft Azure Machine Learning 建議 API。
 
 
-> 這是資料市場中舊建議 API 的文件，將於 2016 年 12 月 31 日作廢。您現在應該繼續使用[建議 API Cognitive Service](https://www.microsoft.com/cognitive-services/zh-TW/recommendations-api)。
-
-
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ##1\.一般概觀
 本文件是 API 參考。您應該從＜Azure Machine Learning 建議 – 快速入門＞文件開始。
@@ -1431,7 +1430,7 @@ OData XML
           	</m:properties>
 		</content>
 	</entry>
-</feed>
+</摘要>
 
 ###9\.3.取得使用狀況統計資料
 取得使用狀況統計資料。
@@ -1735,7 +1734,7 @@ OData XML
 		</m:properties>
 		</content>
 	</entry>
-</feed>
+</摘要>
 
 
 ###10\.2.取得功能資訊 (適用於特定排名組建)
@@ -3001,7 +3000,7 @@ OData XML
 			</m:properties>
 		</content>
 	</entry>
-</feed>
+</摘要>
 
 ##14\.通知
 Azure Machine Learning 建議會在系統中持續發生錯誤時建立通知。有 3 種類型的通知：
@@ -3109,4 +3108,4 @@ HTTP 狀態碼：200
 © 2015 Microsoft.著作權所有，並保留一切權利。
  
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/20/2016"
+	ms.date="09/09/2016"
 	ms.author="jeedes"/>
 
 
@@ -21,9 +21,9 @@
 
 本教學課程旨在說明如何整合 Kindling 與 Azure Active Directory (Azure AD)。Kindling 與 Azure AD 整合提供下列優點：
 
-- 您可以在 Azure AD 中管控可存取 Kindling 的人員 
+- 您可以在 Azure AD 中管控可存取 Kindling 的人員
 - 您可以讓使用者透過其 Azure AD 帳戶自動登入 Kindling (單一登入)
-- 您可以在 Azure 傳統入口網站中集中管理您的帳戶 
+- 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
@@ -42,13 +42,13 @@
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 - 除非必要，否則您不應使用生產環境，。
-- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。 
+- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
  
 ## 案例描述
 此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。本教學課程中說明的案例由二個主要建置組塊組成：
 
-1. 從資源庫加入 Kindling 
+1. 從資源庫加入 Kindling
 2. 設定並測試 Azure AD 單一登入
 
 
@@ -106,7 +106,7 @@
 
 **若要使用 Kindling 設定 Azure AD 單一登入，請執行下列步驟：**
 
-1. 在 Azure 傳統入口網站的 **Kindling** 應用程式整合頁面中，按一下 [設定單一登入] 開啟 [設定單一登入] 對話方塊。
+1. 在 Azure 傳統入口網站的 **Kindling** 應用程式整合頁面中，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
 
 	![設定單一登入][6]
 
@@ -114,12 +114,12 @@
 
 	![設定單一登入](./media/active-directory-saas-kindling-tutorial/tutorial_kindling_03.png)
 
-3. 在 [設定 App 設定] 對話方塊頁面執行下列步驟：
+3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟：
 
 	![設定單一登入](./media/active-directory-saas-kindling-tutorial/tutorial_kindling_04.png)
 
 
-    a.在 [登入 URL] 文字方塊中，使用以下模式輸入使用者登入您的 Kindling 應用程式時所使用的 URL：`https://<company name>.kindlingapp.com/`
+    a.在 [登入 URL] 文字方塊中，使用以下模式輸入使用者用來登入 Kindling 應用程式的 URL：`https://<company name>.kindlingapp.com/`
 
     b.請透過 [support@kindlingapp.com](mailto:support@kindlingapp.com) 連絡您的 Kindling 支援小組，以取得 [簽發者] 和 [回覆 URL] 值。
 
@@ -144,8 +144,8 @@
 
 	- 下載的憑證
 	- **簽發者 URL** 值，對應至 Kindling 的**實體識別碼**
-	- **單一登入服務 URL**，對應至 Kindling 的 **SSO 登入 URL** 
-	- **單一登出服務 URL**，對應至 Kindling 的 **SSO 登出 URL**。 
+	- **單一登入服務 URL**，對應至 Kindling 的 **SSO 登入 URL**
+	- **單一登出服務 URL**，對應至 Kindling 的 **SSO 登出 URL**。
 
 6. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步]。
 
@@ -159,7 +159,7 @@
 
 
 ### 建立 Azure AD 測試使用者
-本節目標是在 Azure 傳統入口網站中建立名為 Britta Simon 的測試使用者。
+本節的目標是要在 Azure 傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
 
@@ -171,11 +171,11 @@
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-kindling-tutorial/create_aaduser_03.png)
  
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-kindling-tutorial/create_aaduser_04.png)
 
@@ -189,7 +189,7 @@
 
     c.按 [下一步]。
 
-6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
+6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-kindling-tutorial/create_aaduser_06.png)
  
@@ -281,4 +281,4 @@
 [204]: ./media/active-directory-saas-kindling-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-kindling-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

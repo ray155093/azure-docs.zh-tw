@@ -23,7 +23,7 @@
 
 藉由使用 [Visual Studio Application Insights][start] 監視您的應用程式，就可以在用戶端和伺服器端讓失敗的要求與例外狀況和其他事件相互關聯，如此您就可以快速地診斷原因。
 
-若要監視 ASP.NET 應用程式，您必須在應用程式中[加入 Application Insights SDK][greenbrown]，或[在 IIS 伺服器上安裝狀態監視器][redfield]，或者，如果您的應用程式是 Azure Web 應用程式，加入 [Application Insights 延伸模組][azure]。
+若要監視 ASP.NET 應用程式，您必須在應用程式中[加入 Application Insights SDK][greenbrown]，或[在 IIS 伺服器上安裝狀態監視器][redfield]，或者，如果您的應用程式是 Azure Web 應用程式，加入 [Application Insights 延伸模組](app-insights-azure-web-apps.md)。
 
 ## 使用 Visual Studio 診斷例外狀況
 
@@ -76,7 +76,7 @@
 
 *相依性*是您的應用程式呼叫的服務，通常透過 REST API 或資料庫連線。[Application Insights 狀態監視器][redfield]會自動監視各種類型的相依性呼叫，測量呼叫持續時間及成功或失敗。
 
-若要取得相依性資料，您必須在 IIS 伺服器上[安裝狀態監視器][redfield]，或者，如果您的應用程式是 Azure Web 應用程式，則使用 [Application Insights 延伸模組][azure]。
+若要取得相依性資料，您必須在 IIS 伺服器上[安裝狀態監視器][redfield]，或者，如果您的應用程式是 Azure Web 應用程式，則使用 [Application Insights 延伸模組](app-insights-azure-web-apps.md)。
 
 失敗的相依性呼叫列在 [失敗] 刀鋒視窗，您也可以在要求詳細資料和例外狀況詳細資料中的 [相關項目] 底下找到它們。
 
@@ -109,7 +109,7 @@
 
 * 在應用程式專案中[安裝 SDK][greenbrown]。
 * 將程式碼插入您的應用程式以呼叫 [Microsoft.ApplicationInsights.TrackTrace()][api]。在訊息參數中傳送 POST 資料。允許的大小有限制，所以您應該嘗試只傳送基本的資料。
-* 當您調查失敗的要求時，會發現相關聯的追蹤。  
+* 當您調查失敗的要求時，會發現相關聯的追蹤。
 
 ![鑽研](./media/app-insights-asp-net-exceptions/060-req-related.png)
 
@@ -327,10 +327,10 @@ VB
 
 有一些無法處理的例外狀況篩選器案例。例如：
 
-* 從控制器建構函式擲回的例外狀況。 
-* 從訊息處理常式擲回的例外狀況。 
-* 在路由期間擲回的例外狀況。 
-* 在回應內容序列化期間擲回的例外狀況。 
+* 從控制器建構函式擲回的例外狀況。
+* 從訊息處理常式擲回的例外狀況。
+* 在路由期間擲回的例外狀況。
+* 在回應內容序列化期間擲回的例外狀況。
 
 ## Web API 2.x
 
@@ -386,7 +386,7 @@ VB
 
 做為替代方案，您可以：
 
-2. 以 IExceptionHandler 的自訂實作取代唯一的 ExceptionHandler。這只會在架構仍然可以選擇要傳送的回應訊息時呼叫 (不會在針對執行個體中止連接時呼叫) 
+2. 以 IExceptionHandler 的自訂實作取代唯一的 ExceptionHandler。這只會在架構仍然可以選擇要傳送的回應訊息時呼叫 (不會在針對執行個體中止連接時呼叫)
 3. 例外狀況篩選器 (如以上的 Web API 1.x 控制器章節所述) - 在所有案例中均不會呼叫。
 
 
@@ -467,7 +467,6 @@ VB
 <!--Link references-->
 
 [api]: app-insights-api-custom-events-metrics.md
-[azure]: ../azure-portal/insights-perf-analytics.md
 [client]: app-insights-javascript.md
 [diagnostic]: app-insights-diagnostic-search.md
 [greenbrown]: app-insights-asp-net.md
@@ -477,4 +476,4 @@ VB
 
  
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0914_2016-->

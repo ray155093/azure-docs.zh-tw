@@ -18,6 +18,8 @@
 
 # 使用 Docker VM 擴充功能來部署您的環境
 
+> [AZURE.NOTE] 若能耽擱您一些時間，請透過回答這個針對您經驗的[簡短問卷](https://aka.ms/linuxdocsurvey)，來協助我們改善 Azure Linux VM 文件。每個答案都有助於我們協助您完成工作。
+
 Docker 是常用的容器管理和映像處理平台，它能讓您在 Linux 上 (和 Windows 上) 快速地操作容器。透過 Azure，您可以根據需求利用幾個不同的方式彈性地部署 Docker︰
 
 - 若要快速建立應用程式原型，您可以[使用 Docker Machine Azure 驅動程式](./virtual-machines-linux-docker-machine.md)在 Azure 內部署 Docker 主機。
@@ -31,7 +33,7 @@ Docker 是常用的容器管理和映像處理平台，它能讓您在 Linux 上
 
 Azure Docker VM 擴充功能會在您的 Linux 虛擬機器中安裝並設定 Docker 精靈、Docker 用戶端和 Docker Compose。此擴充功能也可用來透過 Docker Compose 定義及部署容器應用程式。您可以額外控制是要使用 Docker Machine 還是自行建立 Docker 主機，使其適合更健全的開發人員環境或生產環境。
 
-在使用 Azure Resource Manager 的情況下，您可以建立及部署定義整個環境結構的範本。範本可讓您定義 Docker 主機、儲存體、「角色型存取控制」(RBAC)、診斷等。您可以[閱讀更多有關 Resource Manage ](../resource-group-overview.md) 和範本的資訊，以充分了解其中的一些優點。透過使用 Resource Manager 範本，您未來也將能夠視需要重現部署。
+在使用 Azure Resource Manager 的情況下，您可以建立及部署定義整個環境結構的範本。範本可讓您定義 Docker 主機、儲存體、角色型存取控制 (RBAC)、診斷等。您可以[閱讀更多有關 Resource Manage ](../resource-group-overview.md) 和範本的資訊，以充分了解其中的一些優點。透過使用 Resource Manager 範本，您未來也將能夠視需要重現部署。
 
 ## 使用 Docker VM 擴充功能部署範本︰
 
@@ -105,7 +107,7 @@ b6ed109fb743        nginx               "nginx -g 'daemon off"   About a minute 
 
 ## Docker VM 擴充功能 JSON 範本參考
 
-此範例使用快速啟動範本。若要使用您自己的 Resource Manager 範本來部署 Azure Docker VM 擴充功能，請新增下列內容︰
+此範例使用快速啟動範本。若要使用您自己的 Resource Manager 範本來部署 Azure Docker VM 擴充功能，請新增下列內容：
 
 ```
 {
@@ -138,4 +140,4 @@ b6ed109fb743        nginx               "nginx -g 'daemon off"   About a minute 
 3. [在 Azure 虛擬機器上開始使用 Docker 和 Compose 定義並執行多容器應用程式](virtual-machines-linux-docker-compose-quickstart.md)。
 3. [部署 Azure 容器服務叢集](../container-service/container-service-deployment.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0914_2016-->

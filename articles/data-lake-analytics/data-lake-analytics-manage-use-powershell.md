@@ -4,7 +4,7 @@
    services="data-lake-analytics" 
    documentationCenter="" 
    authors="edmacauley" 
-   manager="paulettm" 
+   manager="jhubbard" 
    editor="cgronlun"/>
  
 <tags
@@ -20,7 +20,7 @@
 
 [AZURE.INCLUDE [manage-selector](../../includes/data-lake-analytics-selector-manage.md)]
 
-了解如何使用 Azure PowerShell 管理 Azure 資料湖分析帳戶、資料來源、使用者和工作。若要使用其他工具查看管理主題，請按一下上方選取的索引標籤。
+了解如何使用 Azure PowerShell 管理 Azure 資料湖分析帳戶、資料來源、使用者和工作。若要使用其他工具查看管理主題，請按一下上方的索引標籤選取器。
 
 **必要條件**
 
@@ -98,7 +98,7 @@
  
 ###清單帳戶
 
-列出目前訂用帳戶內的資料湖分析帳戶
+列出目前訂用帳戶內的 Data Lake Analytics 帳戶
 
 	Get-AzureRmDataLakeAnalyticsAccount
 	
@@ -392,4 +392,4 @@ U-SQL 目錄是用來建構資料和程式碼，讓 U-SQL 指令碼可以共用�
 	  }
 	}
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0914_2016-->
