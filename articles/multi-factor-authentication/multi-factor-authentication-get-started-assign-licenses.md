@@ -1,20 +1,20 @@
-<properties 
-	pageTitle="為 Microsoft Azure Multi-Factor Authentication 指派授權" 
-	description="了解如何為 Microsoft Azure Multi-Factor Authentication 指派授權。" 
-	services="multi-factor-authentication" 
-	documentationCenter="" 
-	authors="billmath" 
-	manager="stevenpo" 
+<properties
+	pageTitle="為 Microsoft Azure Multi-Factor Authentication 指派授權"
+	description="了解如何為 Microsoft Azure Multi-Factor Authentication 指派授權。"
+	services="multi-factor-authentication"
+	documentationCenter=""
+	authors="kgremban"
+	manager="femila"
 	editor="curtand"/>
 
-<tags 
-	ms.service="multi-factor-authentication" 
-	ms.workload="identity" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="get-started-article" 
-	ms.date="08/04/2016" 
-	ms.author="billmath"/>
+<tags
+	ms.service="multi-factor-authentication"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="08/04/2016"
+	ms.author="kgremban"/>
 
 # 將 Azure MFA、Azure AD Premium 或 Enterprise Mobility 授權指派給使用者
 
@@ -33,4 +33,4 @@
 7. **按一下**核取記號圖示以儲存變更。![指派授權](./media/multi-factor-authentication-get-started-assign-licenses/assign4.png)
 8. 您應該會看到訊息，指出已指派多少授權以及多少授權已失敗。按一下 [確定]。![指派授權](./media/multi-factor-authentication-get-started-assign-licenses/assign5.png)
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0921_2016-->

@@ -18,26 +18,23 @@
 
 # 教學課程：使用 Azure Resource Manager 範本建置您的第一個 Azure Data Factory
 > [AZURE.SELECTOR]
+- [概觀和必要條件](data-factory-build-your-first-pipeline.md)
 - [Azure 入口網站](data-factory-build-your-first-pipeline-using-editor.md)
 - [Visual Studio](data-factory-build-your-first-pipeline-using-vs.md)
 - [PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
 - [Resource Manager 範本](data-factory-build-your-first-pipeline-using-arm.md)
 - [REST API](data-factory-build-your-first-pipeline-using-rest-api.md)
 
+在本文中，您會使用 Azure Resource Manager 範本來建立第一個 Azure Data Factory。
 
-[AZURE.INCLUDE [data-factory-tutorial-prerequisites](../../includes/data-factory-tutorial-prerequisites.md)]
-
-## 其他必要條件
-除了前面必要條件一節所列的必要條件以外，您還需要安裝下列項目：
-
-- **安裝 Azure PowerShell**。按照[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 一文中的指示，在您的電腦上安裝最新版的 Azure PowerShell。
+## 必要條件
+- 詳讀[教學課程概觀](data-factory-build-your-first-pipeline.md)一文並完成**必要**步驟。
+- 按照[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 一文中的指示，在您的電腦上安裝最新版的 Azure PowerShell。
 - 若要了解 Azure Resource Manager 範本，請參閱[撰寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md)。
 
 ## 建立 Resource Manager 範本
 
-在 **C:\\ADFGetStarted** 資料夾中，使用下列內容建立名為 **ADFTutorialARM.json** 的 JSON 檔案：
-
-範本允許您建立以下 Data Factory 項目。
+在這一節中，您會建立下列 Data Factory 實體：
 
 1. 名為 **TutorialDataFactoryARM** 的 **ata Factory**。資料處理站可以有一或多個管線。其中的管線可以有一或多個活動。例如，「複製活動」會從來源複製資料到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼來轉換輸入資料。
 2. 兩個**連結的服務**：**StorageLinkedService** 和 **HDInsightOnDemandLinkedService**。這些連結的服務會將您的 Azure 儲存體帳戶和 Azure HDInsight 叢集連結到您的 Data Factory。Azure 儲存體帳戶會保留此範例中管線的輸入和輸出資料。HDInsight 連結服務會用來執行此範例中管線活動指定的 Hive 指令碼。識別案例中使用的資料存放區/計算服務，並建立連結的服務將這些服務連結到 Data Factory。
@@ -45,8 +42,9 @@
 
 按一下 [使用 Data Factory 編輯器] 索引標籤，切換到詳細說明此範本中使用的 JSON 屬性的文章。
 
-> [AZURE.IMPORTANT] 變更 **storageAccountName** 和 **storageAccountKey** 變數的值。也變更 **dataFactoryName**，因為名稱必須是唯一的。
+在 **C:\\ADFGetStarted** 資料夾中，使用下列內容建立名為 **ADFTutorialARM.json** 的 JSON 檔案：
 
+> [AZURE.IMPORTANT] 變更 **storageAccountName** 和 **storageAccountKey** 變數的值。也變更 **dataFactoryName**，因為名稱必須是唯一的。
 
 	{
 	    "contentVersion": "1.0.0.0",
@@ -226,9 +224,10 @@
 
 ## 建立 Data Factory
 
-1. 啟動 **Azure PowerShell** 並執行下列命令。
-	- 執行 **Login-AzureRmAccount**，並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
-	- 執行以下命令，選取您要在其中建立 Data Factory 的訂用帳戶。Get-AzureRmSubscription -SubscriptionName <訂用帳戶名稱> | Set-AzureRmContext
+1. 啟動 **Azure PowerShell** 並執行下列命令：
+	- 執行 `Login-AzureRmAccount`，並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
+	- 執行 `Get-AzureRmSubscription` 以檢視此帳戶的所有訂用帳戶。
+	- 執行 `Get-AzureRmSubscription -SubscriptionName <SUBSCRIPTION NAME> | Set-AzureRmContext` 以選取您要使用的訂用帳戶。此訂用帳戶應該與您在 Azure 入口網站中使用的相同。
 1. 執行下列命令，使用您在步驟 1 中建立的 Resource Manager 範本來部署 Data Factory 實體。
 
 		New-AzureRmResourceGroupDeployment -Name MyARMDeployment -ResourceGroupName ADFTutorialResourceGroup -TemplateFile C:\ADFGetStarted\ADFTutorialARM.json
@@ -244,7 +243,7 @@
 8. 在 [圖表檢視] 中，按兩下 **AzureBlobOutput** 資料集。您會看到目前正在處理的配量。
 
 	![Dataset](./media/data-factory-build-your-first-pipeline-using-arm/AzureBlobOutput.png)
-9. 處理完成時，您會看到配量處於 [就緒] 狀態。建立隨選 HDInsight 叢集通常需要一些時間 (大約 20 分鐘)。
+9. 處理完成時，您會看到配量處於 [就緒] 狀態。建立隨選 HDInsight 叢集通常需要一些時間 (大約 20 分鐘)。因此，管線預計需要**大約 30 分鐘**的時間來處理配量。
 
 	![Dataset](./media/data-factory-build-your-first-pipeline-using-arm/SliceReady.png)
 10. 當配量處於**就緒**狀態時，檢查您 Blob 儲存體中 **adfgetstarted** 容器內 **partitioneddata** 資料夾的輸出資料。
@@ -302,4 +301,4 @@
 
   
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->

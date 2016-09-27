@@ -12,7 +12,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/03/2016"
+   ms.date="09/20/2016"
    ms.author="tomfitz" />
 
 # 透過 Visual Studio 建立與部署 Azure 資源群組
@@ -47,7 +47,7 @@ Azure 資源群組專案包含 Azure Resource Manager JSON 範本，可定義部
 
     ![顯示節點](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/show-items.png)
 
-    因為我們針對此範例選擇 Web 應用程式 + SQL 範本，所以您會看到下列檔案。
+    因為我們針對此範例選擇 Web 應用程式 + SQL 範本，所以您會看到下列檔案：
 
     |檔案名稱|說明|
     |---|---|
@@ -75,7 +75,7 @@ Visual Studio 編輯器提供工具，協助您編輯 Resource Manager 範本。
 
 ![新增資源](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/add-resource.png)
 
-在本教學課程中，選取 [儲存體帳戶] 並提供它的名稱。儲存體帳戶名稱只能使用數字和小寫字母，且長度小於 24 個字元。專案會在您提供的名稱上加入 13 個字元唯一字串，以確定您的名稱不超過 11 個字元。
+在本教學課程中，選取 [儲存體帳戶] 並提供它的名稱。提供的名稱不能超過 11 個字元，而且只包含數字和小寫字母。
 
 ![加入儲存體](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/add-storage.png)
 
@@ -83,7 +83,7 @@ Visual Studio 編輯器提供工具，協助您編輯 Resource Manager 範本。
 
 ![顯示大綱](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/show-new-items.png)
 
-**storageType** 參數是以允許的類型與預設類型預先定義。您可以保留這些值，或針對您的案例進行編輯。如果您不想要讓任何人透過此範本部署 **Premium\_LRS** 儲存體帳戶，只要將其從允許的類型中移除即可。
+**storageType** 參數是以允許的類型與預設類型預先定義。您可以保留這些值，或針對您的案例進行編輯。如果您不想要讓任何人透過此範本部署 **Premium\_LRS** 儲存體帳戶，請將它從允許的類型中移除。
 
     "storageType": {
       "type": "string",
@@ -127,30 +127,37 @@ Visual Studio 也會提供 Intellisense 以協助您了解編輯範本時可以�
 
     ![[建立資源群組] 對話方塊](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/create-resource-group.png)
    
-1. 您可以選擇 [編輯參數] 按鈕以編輯部署的參數。提供參數的值，然後選取 [儲存] 按鈕。
+1. 選取 [編輯參數] 按鈕，以編輯部署的參數。
+
+    ![[編輯參數] 按鈕](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/edit-parameters.png)
+
+1. 提供空白參數的值，然後選取 [儲存] 按鈕。空白參數為 **hostingPlanName**、**administratorLogin**、**administratorLoginPassword** 和 **databaseName**。
+
+    **hostingPlanName** 指定要建立之 [App Service 方案](./app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)的名稱。
+    
+    **administratorLogin** 指定 SQL Server 系統管理員的使用者名稱。請勿使用常見的系統管理員名稱，例如 **sa** 或 **admin**。
+    
+    **AdministratorLoginPassword** 指定 SQL Server 系統管理員的密碼。[將密碼儲存為參數檔案中的純文字] 選項並不安全；因此，請勿選取此選項。因為不會以純文字方式儲存密碼，所以您必須在部署期間再次提供此密碼。
+    
+    **databaseName** 指定要建立之資料庫的名稱。
 
     ![[編輯參數] 對話方塊](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/provide-parameters.png)
     
-    [將密碼儲存為參數檔案中的純文字] 選項不安全。
-
-1. 選擇 [部署] 按鈕以將專案部署至 Azure。您可在 [輸出] 視窗中查看部署的進度。部署可能需要幾分鐘才能完成，取決於您的組態。出現提示時，請在 PowerShell 主控台中輸入資料庫系統管理員密碼。如果您的部署進度已停止，可能是因為處理序正等待您在 PowerShell 主控台中輸入密碼。
+1. 選擇 [部署] 按鈕以將專案部署至 Azure。PowerShell 主控台會在 Visual Studio 執行個體的外部開啟。出現提示時，請在 PowerShell 主控台中輸入 SQL Server 系統管理員密碼。**PowerShell 主控台可能會隱藏在其他項目之後或在工作列中最小化。** 尋找此主控台並加以選取，以便提供密碼。
 
     >[AZURE.NOTE] Visual Studio 可能會要求您安裝 Azure PowerShell Cmdlet。您需要 Azure PowerShell Cmdlet 才能成功部署資源群組。如果出現提示，請予以安裝。
     
-1. 當部署完成時，您應該會在 [輸出] 視窗中看到如下的訊息：
+1. 部署可能需要幾分鐘的時間。您可在 [輸出] 視窗中查看部署的狀態。部署完成時，最後一則訊息會表示成功部署，如下所示︰
 
-        ...
-        15:19:19 - DeploymentName     : websitesqldatabase-0212-2318
-        15:19:19 - CorrelationId      : 6cb43be5-86b4-478f-9e2c-7e7ce86b26a2
-        15:19:19 - ResourceGroupName  : DemoSiteGroup
-        15:19:19 - ProvisioningState  : Succeeded
-        ...
+        ... 
+        18:00:58 - Successfully deployed template 'c:\users\user\documents\visual studio 2015\projects\azureresourcegroup1\azureresourcegroup1\templates\websitesqldatabase.json' to resource group 'DemoSiteGroup'.
+
 
 1. 在瀏覽器中，開啟 [Azure 入口網站](https://portal.azure.com/)並登入您的帳戶。若要查看資源群組，請選取 [資源群組]，然後選取您部署所在的資源群組。
 
     ![選取群組](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/select-group.png)
 
-1. 您會看到所有已部署的資源。
+1. 您會看到所有已部署的資源。請注意，儲存體帳戶的名稱不完全是新增該資源時所指定的名稱。儲存體帳戶必須是獨一無二的。範本會在您所提供的名稱中自動新增字元字串，以提供唯一的名稱。
 
     ![顯示資源](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/show-deployed-resources.png)
 
@@ -162,7 +169,11 @@ Visual Studio 也會提供 Intellisense 以協助您了解編輯範本時可以�
 
 此時，您已為您的應用程式部署基礎結構，但是專案尚未部署實際程式碼。本主題說明如何在部署期間部署 Web 應用程式和 SQL Database 資料表。如果您是部署虛擬機器而不是 Web 應用程式，您想要在機器上執行一些程式碼做為部署的一部分。部署 Web 應用程式的程式碼或設定虛擬機器的程序幾乎完全相同。
 
-1. 在 Visual Studio 解決方案中，加入 **ASP.NET Web 應用程式**。
+1. 將專案新增至您的 Visual Studio 方案。以滑鼠右鍵按一下方案，然後選取 [新增] > [新增專案]。
+
+    ![新增專案](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/add-project.png)
+
+1. 新增 **ASP.NET Web 應用程式**。
 
     ![加入 Web 應用程式](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/add-app.png)
     
@@ -170,37 +181,55 @@ Visual Studio 也會提供 Intellisense 以協助您了解編輯範本時可以�
 
     ![選取 MVC](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/select-mvc.png)
     
-1. Visual Studio 建立 Web 應用程式之後，將資源群組專案中的參考加入至 Web 應用程式專案。
+1. 在 Visual Studio 建立 Web 應用程式之後，您會在方案中看到這兩個專案。
+
+    ![顯示專案](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/show-projects.png)
+
+1. 現在，您必須確定資源群組專案已察覺新的專案。回到您的資源群組專案 (AzureResourceGroup1)。以滑鼠右鍵按一下 [參考]，然後選取 [新增參考]。
+
+    ![加入參考](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/add-new-reference.png)
+
+1. 選取您所建立的 Web 應用程式專案。
 
     ![加入參考](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/add-reference.png)
     
-    加入參考，您可以將 Web 應用程式專案連結至資源群組專案中，並自動設定三個重要屬性。
+    加入參考，您可以將 Web 應用程式專案連結至資源群組專案中，並自動設定三個重要屬性。您會在參考的 [屬性] 視窗中看到這些屬性。
+
+      ![查看參考](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/see-reference.png)
     
-    - [其他屬性] 包含會推送至 Azure 儲存體的 Web 部署套件預備位置。
+    屬性如下︰
+
+    - [其他屬性] 包含會推送至 Azure 儲存體的 Web 部署套件預備位置。請注意資料夾 (ExampleApp) 和檔案 (package.zip)。您會提供這些值做為部署應用程式時的參數。
     - [包含檔案路徑] 包含建立套件所在的路徑。[包含目標] 包含部署執行的命令。
     - 預設值 [建立封裝] 會讓部署建立 Web 部署封裝 (package.zip)。
     
     您不需要發佈設定檔，因為部署會從屬性取得必要的資訊來建立套件。
-    
-      ![查看參考](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/see-reference.png)
       
-1. 將資源加入範本，這次請選取 [Web Deploy for Web Apps]。
+1. 將資源新增至範本。
+
+    ![新增資源](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/add-resource-2.png)
+
+1. 這次請選取 [Web Deploy for Web Apps]。
 
     ![加入 Web 部署](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/add-web-deploy.png)
     
-1. 將您的資源群組專案重新部署至資源群組。這次還有一些新的參數。您不需要提供 **\_artifactsLocation** 或 **\_artifactsLocationSasToken** 的值，因為 Visual Studio 會自動產生這些值。將資料夾和檔案名稱設為包含部署封裝的路徑。
+1. 將您的資源群組專案重新部署至資源群組。這次還有一些新的參數。您不需要提供 **\_artifactsLocation** 或 **\_artifactsLocationSasToken** 的值，因為 Visual Studio 會自動產生這些值。不過，您必須將資料夾和檔案名稱設定為包含部署封裝的路徑 (如下圖中顯示的 **ExampleAppPackageFolder** 和 **ExampleAppPackageFileName**)。提供您稍早在參考屬性 (**ExampleApp** 和 **package.zip**) 中看到的值。
 
     ![加入 Web 部署](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/set-new-parameters.png)
     
-    對於 [構件儲存體帳戶]，您可以搭配已部署的項目與此資源群組一起使用。
+    對於 [構件儲存體帳戶]，選取與此資源群組一起部署的帳戶。
     
-部署完成之後，您可以瀏覽至網站，並且注意到預設的 ASP.NET 應用程式已成功部署。
+1. 部署完成後，請在入口網站中選取您的 Web 應用程式。按一下 URL 以瀏覽至此網站。
 
-![顯示已部署的應用程式](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/show-deployed-app.png)
+    ![瀏覽網站](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/browse-site.png)
+
+1. 請注意，您已成功部署預設的 ASP.NET 應用程式。
+
+    ![顯示已部署的應用程式](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/show-deployed-app.png)
 
 ## 後續步驟
 
 - 若要了解透過入口網站管理資源，請參閱[使用 Azure 入口網站來管理您的 Azure 資源](./azure-portal/resource-group-portal.md)。
 - 若要了解範本，請參閱[撰寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0921_2016-->

@@ -7,27 +7,21 @@
 	manager="jhubbard" 
 	editor="monicar"/>
 
-<tags 
-	ms.service="data-factory" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="get-started-article" 
-	ms.date="08/01/2016" 
-	ms.author="spelluru"/>
+<tags ms.service="data-factory" ms.workload="data-services" ms.tgt_pltfrm="na" ** ms.devlang="na" ms.topic="get-started-article" ms.date="09/16/2016" ms.author="spelluru"/>
 
 # 教學課程：使用 Data Factory 複製精靈建立具有複製活動的管線
 > [AZURE.SELECTOR]
-- [教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
-- [使用 Data Factory 編輯器](data-factory-copy-activity-tutorial-using-azure-portal.md)
-- [使用 PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
-- [使用 Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
-- [使用 REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
-- [使用複製精靈](data-factory-copy-data-wizard-tutorial.md)
+- [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
+- [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)
+- [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
+- [PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
+- [REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
+- [.NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
+- [複製精靈](data-factory-copy-data-wizard-tutorial.md)
 
 在本教學課程中，您會使用 Data Factory 複製精靈在 Data Factory 中建立具有複製活動的管線。首先，您會使用 Azure 入口網站建立 Data Factory。然後，使用複製精靈建立 Data Factory 連結服務、資料集和具有複製活動的管線，將資料從 Azure Blob 儲存體複製到 Azure SQL Database。如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)文章。
 
-> [AZURE.IMPORTANT] 請檢閱[教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)文章，並在執行本教學課程之前完成必要的步驟。
+> [AZURE.IMPORTANT] 請檢閱[教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)文章，並在執行本教學課程之前完成**必要**步驟。
 
 ## 建立 Data Factory
 在此步驟中，您會使用 Azure 入口網站來建立名為 **ADFTutorialDataFactory** 的 Azure Data Factory。
@@ -40,7 +34,7 @@
 	1. 輸入 **ADFTutorialDataFactory** 做為名稱。
 	
   		![新增 Data Factory 刀鋒視窗](./media/data-factory-copy-data-wizard-tutorial/getstarted-new-data-factory.png)
-	2. 按一下 [資源群組名稱]，然後執行下列動作：
+	2. 按一下 [資源群組名稱]，然後執行下列步驟：
 		1. 按一下 [建立新的資源群組]。
 		2. 在 [建立資源群組] 刀鋒視窗中，輸入 **ADFTutorialResourceGroup** 做為資源群組的名稱，然後按一下 [確定]。
 
@@ -57,7 +51,7 @@
 	> [AZURE.NOTE] Data Factory 的名稱未來可能會註冊為 DNS 名稱，因此會變成公開可見的名稱。
 
 9. 按一下左側的 [通知] 中樞，然後從建立程序中尋找通知。按一下 **X** 關閉 [通知] 刀鋒視窗 (若已開啟)。
-10. 建立完成之後，您會看到 [DATA FACTORY] 刀鋒視窗，如下圖所示。
+10. 建立完成之後，您會看到 [DATA FACTORY] 刀鋒視窗，如下圖所示：
 
     ![Data Factory 首頁](./media/data-factory-copy-data-wizard-tutorial/getstarted-data-factory-home-page.png)
 
@@ -88,7 +82,10 @@
 	3. 按 [下一步]。
 
 	![複製工具 - 選擇輸入檔案或資料夾](./media/data-factory-copy-data-wizard-tutorial/copy-tool-choose-input-file-or-folder.png)
-7. 在 [檔案格式設定] 頁面上，選取**預設**值，然後按 [下一步]。
+7. 在 [選擇輸入檔案或資料夾] 頁面上，按 [下一步]。請勿選取 [二進位複本]。
+
+	![複製工具 - 選擇輸入檔案或資料夾](./media/data-factory-copy-data-wizard-tutorial/chose-input-file-folder.png)
+8. 在 [檔案格式設定] 頁面上，選取**預設**值，然後按 [下一步]。
 
 	![複製工具 - 檔案格式設定](./media/data-factory-copy-data-wizard-tutorial/copy-tool-file-format-settings.png)
 8. 在 [目的地資料存放區] 頁面上，按一下 [Azure SQL Database] 圖格，然後按 [下一步]。
@@ -102,11 +99,12 @@
 
 	![複製工具 - 資料表對應](./media/data-factory-copy-data-wizard-tutorial/copy-tool-table-mapping-page.png)
 10. 在 [結構描述對應] 頁面上，按 [下一步]。
+11. 在 [效能設定] 頁面上，按 [下一步]。
 11. 在 [摘要] 頁面中檢閱資訊，然後按一下 [完成]。此精靈會在 Data Factory (從您啟動複製精靈的位置) 中建立兩個連結服務、兩個資料集 (輸入和輸出)，以及一個管線。
-12. 在 [部署成功] 頁面上，點選 [按一下這裡以監視複製管線]。
+12. 在 [部署成功] 頁面上，點選連結：[按一下這裡以監視複製管線]。
 
 	![複製工具 - 部署成功](./media/data-factory-copy-data-wizard-tutorial/copy-tool-deployment-succeeded.png)
-13. 使用[使用監視應用程式監視和管理管線](data-factory-monitor-manage-app.md)中的指示，了解如何監視您建立的管線。
+13. 使用[使用監視應用程式監視和管理管線](data-factory-monitor-manage-app.md)中的指示，了解如何監視您建立的管線。按一下 [活動時段] 清單中的 [重新整理] 圖示來查看配量。
 
 	![監視應用程式](./media/data-factory-copy-data-wizard-tutorial/monitoring-app.png)
  
@@ -120,4 +118,4 @@
 | [資料集](data-factory-create-datasets.md) | 本文協助您了解 Azure Data Factory 中的資料集。
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0921_2016-->

@@ -19,15 +19,17 @@
 
 # 教學課程：使用 Data Factory REST API 建置您的第一個 Azure Data Factory
 > [AZURE.SELECTOR]
+- [概觀和必要條件](data-factory-build-your-first-pipeline.md)
 - [Azure 入口網站](data-factory-build-your-first-pipeline-using-editor.md)
 - [Visual Studio](data-factory-build-your-first-pipeline-using-vs.md)
 - [PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
 - [Resource Manager 範本](data-factory-build-your-first-pipeline-using-arm.md)
 - [REST API](data-factory-build-your-first-pipeline-using-rest-api.md)
 
-[AZURE.INCLUDE [data-factory-tutorial-prerequisites](../../includes/data-factory-tutorial-prerequisites.md)]
+在本文中，您會使用 Data Factory REST API 來建立第一個 Azure Data Factory。
 
-## 其他必要條件
+## 必要條件
+- 詳讀[教學課程概觀](data-factory-build-your-first-pipeline.md)一文並完成**必要**步驟。
 - 在您的電腦上安裝 [Curl](https://curl.haxx.se/dlwiz/)。您可搭配使用 CURL 工具與 REST 命令來建立 Data Factory。
 - 請依照[本文](../resource-group-create-service-principal-portal.md)的指示：
 	1. 在 Azure Active Directory 中建立名為 **ADFGetStartedApp** 的 Web 應用程式。
@@ -39,7 +41,7 @@
 	1. 執行 **Login-AzureRmAccount**，並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
 	2. 執行 **Get-AzureRmSubscription** 以檢視此帳戶的所有訂用帳戶。
 	3. 執行 **Get-AzureRmSubscription -SubscriptionName NameOfAzureSubscription| Set-AzureRmContext** to select the subscription that you want to work with. Replace **NameOfAzureSubscription** with the name of your Azure subscription. 
-3. 在 PowerShell 中執行以下命令，建立名為 **ADFTutorialResourceGroup** 的 Azure 資源群組。
+3. 在 PowerShell 中執行以下命令，建立名為 **ADFTutorialResourceGroup** 的 Azure 資源群組：
 
 		New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
 
@@ -94,7 +96,7 @@
 | TimeToLive | 指定 HDInsight 叢集在被刪除之前的閒置時間。 |
 | linkedServiceName | 指定用來儲存 HDInsight 產生之記錄檔的儲存體帳戶 |
 
-請注意：
+請注意下列幾點：
 
 - Data Factory 會以上述 JSON 為您建立「以 Windows 為基礎的」HDInsight 叢集。您也可以讓它建立**以 Linux 為基礎的** HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
 - 您可以使用**自己的 HDInsight 叢集**，不必使用隨選的 HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 連結服務](data-factory-compute-linked-services.md#azure-hdinsight-linked-service)。
@@ -261,9 +263,9 @@ Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (�
 
 		Write-Host $results
 
-請注意：
+請注意下列幾點：
  
-- Azure Data Factory 的名稱在全域必須是唯一的。如果您在結果中看到錯誤︰「Data factory 名稱 “FirstDataFactoryREST” 無法使用」，請執行下列動作︰
+- Azure Data Factory 的名稱在全域必須是唯一的。如果您在結果中看到錯誤︰「Data factory 名稱 “FirstDataFactoryREST” 無法使用」，請執行下列步驟︰
 	1. 在 **datafactory.json** 檔案中變更名稱 (例如，yournameFirstDataFactoryREST)。請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md)主題，以了解 Data Factory 成品的命名規則。
 	2. 在指派 **$cmd** 變數值的第一個命令中，以新的名稱取代 FirstDataFactoryREST 並執行命令。
 	3. 執行下面兩個命令來叫用 REST API，以建立 Data Factory 和列印作業的結果。
@@ -271,11 +273,11 @@ Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (�
 - Data Factory 的名稱未來可能會註冊為 DNS 名稱，因此會變成公開可見的名稱。
 - 如果您收到錯誤：「此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory」，請執行下列其中一項，然後嘗試再次發佈︰
 
-	- 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者。
+	- 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者：
 		
 			Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
 	
-		您可以執行下列命令來確認已註冊 Data Factory 提供者。
+		您可以執行下列命令來確認已註冊 Data Factory 提供者：
 	
 			Get-AzureRmResourceProvider
 	- 使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)並瀏覽至 [Data Factory] 刀鋒視窗 (或) 在 Azure 入口網站中建立 Data Factory。此動作會自動為您註冊提供者。
@@ -370,6 +372,10 @@ Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (�
     	    (convertFrom-Json $results2).RemoteException
 	}
 
+
+> [AZURE.IMPORTANT] 
+建立隨選 HDInsight 叢集通常需要一些時間 (大約 20 分鐘)。因此，管線預計需要**大約 30 分鐘**的時間來處理配量。
+
 執行 Invoke-Command 和下一個命令，直到您看到配量處於 [就緒] 狀態或 [失敗] 狀態。當配量處於就緒狀態時，檢查您 Blob 儲存體中 **adfgetstarted** 容器內 **partitioneddata** 資料夾的輸出資料。建立隨選 HDInsight 叢集通常需要一些時間。
 
 ![輸出資料](./media/data-factory-build-your-first-pipeline-using-rest-api/three-ouptut-files.png)
@@ -402,4 +408,4 @@ Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (�
 | [使用 Azure 入口網站刀鋒視窗監視及管理管線](data-factory-monitor-manage-pipelines.md) | 本文描述如何使用 Azure 入口網站刀鋒視窗來監視、管理和偵錯您的管線。 |
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->

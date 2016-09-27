@@ -12,7 +12,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/09/2016"
+   ms.date="09/09/2016"
    ms.author="gwallace"/>
 
 # 使用 Azure 資源管理員設定適用於 SSL 的應用程式閘道
@@ -44,14 +44,14 @@
 
 針對 SSL 憑證組態，**HttpListener** 中的通訊協定應該變更為 Https (區分大小寫)。將 **SslCertificate** 元素加入至 **HttpListener**，並針對 SSL 憑證設定變數值。前端連接埠應該更新為 443。
 
-**啟用以 Cookie 為基礎的同質性**：您可以設定應用程式閘道，以確保來自用戶端工作階段的要求一律會導向至 Web 伺服陣列中的相同 VM。這是透過插入允許閘道適當導向流量的工作階段 Cookie 來完成。若要啟用以 Cookie 為基礎的同質，請在 **BackendHttpSettings** 元素中將 **CookieBasedAffinity** 設定為 *Enabled*。
+**啟用以 Cookie 為基礎的同質性**：您可以設定應用程式閘道，以確保來自用戶端工作階段的要求一律會導向至 Web 伺服陣列中的相同 VM。此案例透過插入允許閘道適當導向流量的工作階段 Cookie 來完成。若要啟用以 Cookie 為基礎的同質性，請在 **BackendHttpSettings** 元素中將 **CookieBasedAffinity** 設定為 *Enabled*。
 
 
 ## 建立應用程式閘道
 
-使用「Azure 傳統部署模型」和「Azure Resource Manager」的差別，在於您建立應用程式閘道和需設定項目的順序。
+使用 Azure 傳統部署模型和 Azure Resource Manager 的差別，在於您建立應用程式閘道和需設定項目的順序。
 
-透過 Resource Manager，組成應用程式閘道的所有項目會個別進行設定，然後放在一起建立應用程式閘道資源。
+透過 Resource Manager，應用程式閘道的所有元件會個別進行設定，然後放在一起建立應用程式閘道資源。
 
 
 以下是建立應用程式閘道所需的步驟：
@@ -69,8 +69,6 @@
 ### 步驟 1
 
 	Login-AzureRmAccount
-
-
 
 ### 步驟 2
 
@@ -106,24 +104,25 @@ Azure 資源管理員需要所有的資源群組指定一個位置。此設定�
 
 	$subnet = New-AzureRmVirtualNetworkSubnetConfig -Name subnet01 -AddressPrefix 10.0.0.0/24
 
-這會將位址範圍 10.0.0.0/24 指派給用於建立虛擬網路的子網路變數。
+此範例會將位址範圍 10.0.0.0/24 指派給用於建立虛擬網路的子網路變數。
 
 ### 步驟 2
+
 	$vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-rg -Location "West US" -AddressPrefix 10.0.0.0/16 -Subnet $subnet
 
-這會使用前置詞 10.0.0.0/16 搭配子網路 10.0.0.0/24，在美國西部 ("West US") 區域的 "appgw-rg" 資源群組中建立名為 "appgwvnet" 的虛擬網路。
+此範例會使用前置詞 10.0.0.0/16 搭配子網路 10.0.0.0/24，在美國西部 ("West US") 區域的 "appgw-rg" 資源群組中建立名為 "appgwvnet" 的虛擬網路。
 
 ### 步驟 3
 
 	$subnet = $vnet.Subnets[0]
 
-這會將子網路物件指派給下一個步驟的變數 $subnet。
+此範例會將子網路物件指派給下一個步驟的變數 $subnet。
 
 ## 建立前端組態的公用 IP 位址
 
 	$publicip = New-AzureRmPublicIpAddress -ResourceGroupName appgw-rg -name publicIP01 -location "West US" -AllocationMethod Dynamic
 
-這會在美國西部區域的 "appgw-rg" 資源群組中建立公用 IP 資源 "publicIP01"。
+此範例會在美國西部區域的 "appgw-rg" 資源群組中建立公用 IP 資源 "publicIP01"。
 
 
 ## 建立應用程式閘道組態物件
@@ -132,56 +131,56 @@ Azure 資源管理員需要所有的資源群組指定一個位置。此設定�
 
 	$gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Subnet $subnet
 
-這會建立名為 "gatewayIP01" 的應用程式閘道 IP 組態。當應用程式閘道啟動時，它會從設定的子網路取得 IP 位址，再將網路流量路由傳送到後端 IP 集區中的 IP 位址。請記住，每個執行個體需要一個 IP 位址。
+此範例會建立名為 "gatewayIP01" 的應用程式閘道 IP 組態。當「應用程式閘道」啟動時，它會從已設定的子網路取得 IP 位址，再將網路流量路由傳送到後端 IP 集區中的 IP 位址。請記住，每個執行個體需要一個 IP 位址。
 
 ### 步驟 2
 
 	$pool = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 134.170.185.46, 134.170.188.221,134.170.185.50
 
-這會設定名為 "pool01" 的後端 IP 位址集區，其 IP 位址有 "134.170.185.46, 134.170.188.221,134.170.185.50"。 這些 IP 位址會接收來自前端 IP 端點的網路流量。以您的 Web 應用程式端點的 IP 位址取代上述範例中的 IP 位址。
+此範例會設定名為 "pool01" 的後端 IP 位址集區，其 IP 位址有 "134.170.185.46, 134.170.188.221,134.170.185.50"。 這些值為 IP 位址，可接收來自前端 IP 端點的網路流量。以您的 Web 應用程式端點的 IP 位址取代前述範例中的 IP 位址。
 
 ### 步驟 3
 
 	$poolSetting = New-AzureRmApplicationGatewayBackendHttpSettings -Name poolsetting01 -Port 80 -Protocol Http -CookieBasedAffinity Enabled
 
-這會設定後端集區中負載平衡網路流量的應用程式閘道設定 "poolsetting01"。
+此範例會設定後端集區中負載平衡網路流量的應用程式閘道設定 "poolsetting01"。
 
 ### 步驟 4
 
 	$fp = New-AzureRmApplicationGatewayFrontendPort -Name frontendport01  -Port 443
 
-這會設定公用 IP 端點的前端 IP 連接埠 "frontendport01"。
+此範例會設定公用 IP 端點的前端 IP 連接埠 "frontendport01"。
 
 ### 步驟 5
 
 	$cert = New-AzureRmApplicationGatewaySslCertificate -Name cert01 -CertificateFile <full path for certificate file> -Password ‘<password>’
 
-這會設定 SSL 連接所使用的憑證。憑證必須是 .pfx 格式，而密碼則必須介於 4 到 12 個字元。
+此範例會設定 SSL 連接所使用的憑證。憑證必須是 .pfx 格式，而密碼則必須介於 4 到 12 個字元。
 
 ### 步驟 6
 
 	$fipconfig = New-AzureRmApplicationGatewayFrontendIPConfig -Name fipconfig01 -PublicIPAddress $publicip
 
-這會建立名為 "fipconfig01" 的前端 IP 組態，並將公用 IP 位址與前端 IP 組態產生關聯。
+此範例會建立名為 "fipconfig01" 的前端 IP 組態，並將公用 IP 位址與前端 IP 組態產生關聯。
 
 ### 步驟 7
 
 	$listener = New-AzureRmApplicationGatewayHttpListener -Name listener01  -Protocol Https -FrontendIPConfiguration $fipconfig -FrontendPort $fp -SslCertificate $cert
 
 
-這會建立名為 "listener01" 的接聽程式，並將前端連接埠與前端 IP 組態和憑證產生關聯。
+此範例會建立名為 "listener01" 的接聽程式，並將前端連接埠與前端 IP 組態和憑證產生關聯。
 
 ### 步驟 8
 
 	$rule = New-AzureRmApplicationGatewayRequestRoutingRule -Name rule01 -RuleType Basic -BackendHttpSettings $poolSetting -HttpListener $listener -BackendAddressPool $pool
 
-這會建立名為 "rule01" 的負載平衡器路由規則，設定負載平衡器的行為。
+此範例會建立名為 "rule01" 的負載平衡器路由規則，設定負載平衡器的行為。
 
 ### 步驟 9
 
 	$sku = New-AzureRmApplicationGatewaySku -Name Standard_Small -Tier Standard -Capacity 2
 
-這會設定應用程式閘道的執行個體大小。
+此範例會設定應用程式閘道的執行個體大小。
 
 >[AZURE.NOTE]  InstanceCount 的預設值是 2，最大值是 10。GatewaySize 的預設值是 Medium。您可以在 Standard\_Small、Standard\_Medium 和 Standard\_Large 之間選擇。
 
@@ -189,7 +188,7 @@ Azure 資源管理員需要所有的資源群組指定一個位置。此設定�
 
 	$appgw = New-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg -Location "West US" -BackendAddressPools $pool -BackendHttpSettingsCollection $poolSetting -FrontendIpConfigurations $fipconfig  -GatewayIpConfigurations $gipconfig -FrontendPorts $fp -HttpListeners $listener -RequestRoutingRules $rule -Sku $sku -SslCertificates $cert
 
-這會使用上述步驟中的所有組態項目建立應用程式閘道。範例中的應用程式閘道名為 "appgwtest"。
+此範例利用上述步驟中的所有組態項目來建立應用程式閘道。範例中的應用程式閘道名為 "appgwtest"。
 
 ## 後續步驟
 
@@ -200,4 +199,4 @@ Azure 資源管理員需要所有的資源群組指定一個位置。此設定�
 - [Azure 負載平衡器](https://azure.microsoft.com/documentation/services/load-balancer/)
 - [Azure 流量管理員](https://azure.microsoft.com/documentation/services/traffic-manager/)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0921_2016-->

@@ -13,43 +13,46 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article" 
-	ms.date="08/16/2016"
+	ms.date="09/14/2016"
 	ms.author="spelluru"/>
 
 # 教學課程：使用 Azure 入口網站建置您的第一個 Azure Data Factory
 > [AZURE.SELECTOR]
+- [概觀和必要條件](data-factory-build-your-first-pipeline.md)
 - [Azure 入口網站](data-factory-build-your-first-pipeline-using-editor.md)
 - [Visual Studio](data-factory-build-your-first-pipeline-using-vs.md)
 - [PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
 - [Resource Manager 範本](data-factory-build-your-first-pipeline-using-arm.md)
 - [REST API](data-factory-build-your-first-pipeline-using-rest-api.md)
 
-[AZURE.INCLUDE [data-factory-tutorial-prerequisites](../../includes/data-factory-tutorial-prerequisites.md)]
+在本文中，您會了解如何使用 [Azure 入口網站](https://portal.azure.com/)來建立您的第一個 Azure Data Factory。
+
+## 必要條件		
+1. 詳讀[教學課程概觀](data-factory-build-your-first-pipeline.md)一文並完成**必要**步驟。
+2. 本文不提供 Azure Data Factory 服務的概念性概觀。建議您詳讀 [Azure Data Factory 簡介](data-factory-introduction.md)一文，了解服務的詳細概觀。
 
 ## 建立 Data Factory
-資料處理站可以有一或多個管線。其中的管線可以有一或多個活動。例如，「複製活動」會從來源複製資料到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼來轉換輸入資料。讓我們在這個步驟中開始建立 Data Factory。
+資料處理站可以有一或多個管線。其中的管線可以有一或多個活動。例如，「複製活動」會從來源複製資料到目的地資料存放區，HDInsight Hive 活動則是執行 Hive 指令碼轉換輸入資料以產生輸出資料。讓我們在這個步驟中開始建立 Data Factory。
 
-1.	登入 [Azure 入口網站](https://portal.azure.com/)之後，執行下列動作：
-	1.	按一下左側功能表上的 [新增]。
-	2.	按一下 [建立] 刀鋒視窗中的 [資料分析]。
-	3.	按一下 [資料分析] 刀鋒視窗上的 [Data Factory]。
-
-		![建立刀鋒視窗](./media/data-factory-build-your-first-pipeline-using-editor/create-blade.png)
+1.	登入 [Azure 入口網站](https://portal.azure.com/)。
+2.	按一下左側功能表上的 [新增]、[資料 + 分析]，再按一下 [Data Factory]。
+		
+	![建立刀鋒視窗](./media/data-factory-build-your-first-pipeline-using-editor/create-blade.png)
 
 2.	在 [新增 Data Factory] 刀鋒視窗中，輸入 **GetStartedDF** 做為 [名稱]。
 
 	![新增 Data Factory 刀鋒視窗](./media/data-factory-build-your-first-pipeline-using-editor/new-data-factory-blade.png)
 
-	> [AZURE.IMPORTANT] Azure Data Factory 的名稱在全域必須是唯一的。如果您收到錯誤：**Data Factory 名稱 “GetStartedDF” 無法使用**。請變更 Data Factory 名稱 (例如 yournameGetStartedDF)，然後嘗試重新建立。請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md)主題，以了解 Data Factory 成品的命名規則。
+	> [AZURE.IMPORTANT] 
+	Azure Data Factory 的名稱必須是**全域唯一的**。如果您收到錯誤：**Data Factory 名稱 “GetStartedDF” 無法使用**。請變更 Data Factory 名稱 (例如 yournameGetStartedDF)，然後嘗試重新建立。請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md)主題，以了解 Data Factory 成品的命名規則。
 	> 
-	> Data Factory 的名稱未來可能會註冊為 DNS 名稱，因此會變成公開可見的名稱。
-	> 
-	> 若要建立 Data Factory 執行個體，您必須是 Azure 訂用帳戶的參與者/系統管理員
-
+	> Data Factory 的名稱未來可能會註冊為 **DNS** 名稱，因此會變成公開可見的名稱。
 
 3.	選取您想要建立 Data Factory 的 [Azure 訂用帳戶]。
 4.	請選取現有的 **資源群組**，或建立資源群組。在教學課程中，建立名稱如下的資源群組：**ADFGetStartedRG**。
 5.	按一下 [新增 Data Factory] 刀鋒視窗上的 [建立]。
+
+	> [AZURE.IMPORTANT] 若要建立 Data Factory 執行個體，您必須是訂用帳戶/資源群組層級的 [Data Factory 參與者](../active-directory/role-based-access-built-in-roles.md/#data-factory-contributor)角色成員。
 6.	您會看到 Data Factory 建立在 Azure 入口網站的「開始面板」 中，如下所示：
 
 	![建立 Data Factory 狀態](./media/data-factory-build-your-first-pipeline-using-editor/creating-data-factory-image.png)
@@ -57,10 +60,10 @@
 
 	![Data Factory 刀鋒視窗](./media/data-factory-build-your-first-pipeline-using-editor/data-factory-blade.png)
 
-建立管線之前，您必須先建立一些 Data Factory 項目。首先，您要先建立連結的服務，以便將資料存放區/電腦連結到您的資料存放區；並定義輸入和輸出資料集，表示位於連結的資料存放區中的輸入/輸出資料，然後建立具有使用這些資料集的活動之管線。
+在 Data Factory 中建立管線之前，您必須先建立一些 Data Factory 項目。首先，您要先建立連結的服務，以便將資料存放區/電腦連結到您的資料存放區；並定義輸入和輸出資料集，表示位於連結的資料存放區中的輸入/輸出資料，然後建立具有使用這些資料集的活動之管線。
 
 ## 建立連結服務
-在此步驟中，您會將您的 Azure 儲存體帳戶和隨選 Azure HDInsight 叢集連結到您的 Data Factory。Azure 儲存體帳戶會保留此範例中管線的輸入和輸出資料。HDInsight 連結服務會用來執行此範例中管線活動指定的 Hive 指令碼。識別案例中使用的資料存放區/計算服務，並建立連結的服務將這些服務連結到 Data Factory。
+在此步驟中，您會將您的 Azure 儲存體帳戶和隨選 Azure HDInsight 叢集連結到您的 Data Factory。Azure 儲存體帳戶會保留此範例中管線的輸入和輸出資料。HDInsight 連結服務會用來執行此範例中管線活動指定的 Hive 指令碼。識別案例中使用的[資料存放區](data-factory-data-movement-activities.md)/[計算服務](data-factory-compute-linked-services.md)，並建立連結的服務將這些服務連結到 Data Factory。
 
 ### 建立 Azure 儲存體連結服務
 在此步驟中，您會將您的 Azure 儲存體帳戶連結到您的 Data Factory。在本教學課程中，您會使用相同的 Azure 儲存體帳戶來存放輸入/輸出資料及 HQL 指令碼檔案。
@@ -69,23 +72,25 @@
 	 
 	![[製作和部署] 圖格](./media/data-factory-build-your-first-pipeline-using-editor/data-factory-author-deploy.png)
 2.	按一下 [新增資料存放區] 並選擇 [Azure 儲存體]。
+
+	![新增資料存放區 - Azure 儲存體 - 功能表](./media/data-factory-build-your-first-pipeline-using-editor/new-data-store-azure-storage-menu.png)
+
+3.	在編輯器中，您應該會看到用來建立 Azure 儲存體連結服務的 JSON 指令碼。
 	
 	![Azure 儲存體連結服務](./media/data-factory-build-your-first-pipeline-using-editor/azure-storage-linked-service.png)
-
-	在編輯器中，您應該會看到用來建立 Azure 儲存體連結服務的 JSON 指令碼。
-4. 使用您的 Azure 儲存體帳戶名稱取代**帳戶名稱**，並使用 Azure 儲存體帳戶的存取金鑰取代**帳戶金鑰**。若要了解如何取得儲存體存取金鑰，請參閱[檢視、複製和重新產生儲存體存取金鑰](../storage/storage-create-storage-account.md#view-copy-and-regenerate-storage-access-keys)
+	 
+4. 使用您的 Azure 儲存體帳戶名稱取代帳戶名稱，並使用 Azure 儲存體帳戶的存取金鑰取代帳戶金鑰。若要了解如何取得儲存體存取金鑰，請參閱[檢視、複製和重新產生儲存體存取金鑰](../storage/storage-create-storage-account.md#view-copy-and-regenerate-storage-access-keys)
 5. 按一下命令列的 [部署]，部署連結服務。
 
 	![[部署] 按鈕](./media/data-factory-build-your-first-pipeline-using-editor/deploy-button.png)
 
-   成功部署連結的服務之後，應該會出現 **Draft-1** 視窗，而且您會在左側的樹狀檢視中看到 **AzureStorageLinkedService**。
-   ![功能表中的儲存體連結服務](./media/data-factory-build-your-first-pipeline-using-editor/StorageLinkedServiceInTree.png)
+   成功部署連結的服務之後，應該會出現 **Draft-1** 視窗，而且您會在左側的樹狀檢視中看到 **AzureStorageLinkedService**。![功能表中的儲存體連結服務](./media/data-factory-build-your-first-pipeline-using-editor/StorageLinkedServiceInTree.png)
 
  
 ### 建立 Azure HDInsight 連結服務
 在此步驟中，您可將隨選 HDInsight 叢集連結至 Data Factory。HDInsight 叢集會在執行階段自動建立，並在處理完成之後刪除，且會閒置一段時間。
 
-1. 在 [Data Factory 編輯器] 中，按一下命令列上的 [新增計算]，然後選取 [隨選 HDInsight 叢集]。
+1. 在 [Data Factory 編輯器] 中，按一下 [...更多]，按一下 [新增計算]，然後選取 [HDInsight 隨選叢集]。
 
 	![新增計算](./media/data-factory-build-your-first-pipeline-using-editor/new-compute-menu.png)
 2. 複製下列程式碼片段並貼到 [Draft-1] 視窗。此 JSON 程式碼片段描述用來建立隨選 HDInsight 叢集的屬性。
@@ -112,7 +117,7 @@
 	| TimeToLive | 指定 HDInsight 叢集在被刪除之前的閒置時間。 |
 	| linkedServiceName | 指定用來儲存 HDInsight 產生之記錄檔的儲存體帳戶。 |
 
-	請注意：
+	請注意下列幾點：
 	
 	- Data Factory 會使用 JSON 為您建立「以 Windows 為基礎的」HDInsight 叢集。您也可以讓它建立**以 Linux 為基礎的** HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
 	- 您可以使用**自己的 HDInsight 叢集**，不必使用隨選的 HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 連結服務](data-factory-compute-linked-services.md#azure-hdinsight-linked-service)。
@@ -122,6 +127,9 @@
 
 	如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
 3. 按一下命令列的 [部署]，部署連結服務。
+
+	![部署 HDInsight 隨選連結服務](./media/data-factory-build-your-first-pipeline-using-editor/ondemand-hdinsight-deploy.png)
+
 4. 確認您有在左側的樹狀檢視中看到 **AzureStorageLinkedService** 和 **HDInsightOnDemandLinkedService**。
 
 	![含連結服務的樹狀檢視](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-linked-services.png)
@@ -131,7 +139,7 @@
 
 ### 建立輸入資料集
 
-1. 在 [**Data Factory 編輯器**] 中，按一下命令列的 [**新增資料集**]，然後選取 [**Azure Blob 儲存體**]。
+1. 在 [Data Factory 編輯器] 中，按一下命令列上的 [...其他]，按一下 [新增資料集]，然後選取 [Azure Blob 儲存體]。
 
 	![新增資料集](./media/data-factory-build-your-first-pipeline-using-editor/new-data-set.png)
 2. 複製下列程式碼片段並貼到 [Draft-1] 視窗。在 JSON 程式碼片段中，您會建立名為 **AzureBlobInput** 的資料集，代表管線中活動的輸入資料。此外，您指定將輸入資料放在名為 **adfgetstarted** 的 Blob 容器及名為 **inputdata** 的資料夾中。
@@ -169,15 +177,14 @@
 	| columnDelimiter | 記錄檔案中的資料行會以逗號字元 (,) 分隔 |
 	| frequency/interval | 頻率設為「每月」且間隔為 1，表示每個月都會可取得輸入配量。 | 
 	| external | 如果輸入資料不是由 Data Factory 服務產生，此屬性會設為 true。 | 
-	  
-	
+	  	
 3. 按一下命令列的 [部署] 以部署新建立的資料集。您應該會看到左側樹狀檢視中的資料集。
 
 
 ### 建立輸出資料集
 現在，您會建立輸出資料集來代表 Azure Blob 儲存體中儲存的輸出資料。
 
-1. 在 [**Data Factory 編輯器**] 中，按一下命令列的 [**新增資料集**]，然後選取 [**Azure Blob 儲存體**]。
+1. 在 [Data Factory 編輯器] 中，按一下命令列上的 [...其他]，按一下 [新增資料集]，然後選取 [Azure Blob 儲存體]。
 2. 複製下列程式碼片段並貼到 [Draft-1] 視窗。在 JSON 程式碼片段中，建立名為 **AzureBlobOutput** 的資料集，並指定由 Hive 指令碼產生的資料結構。此外，指定將結果儲存在名為 **adfgetstarted** 的 Blob 容器及名為 **partitioneddata** 的資料夾中。**availability** 區段指定每個月產生一次輸出資料集。
 	
 		{
@@ -282,6 +289,8 @@
 
 ## 監視管線
 
+### 使用圖表檢視監視管線
+
 6. 按一下 **X** 以關閉 [Data Factory 編輯器] 刀鋒視窗、瀏覽回 [Data Factory] 刀鋒視窗，然後按一下 [圖表]。
   
 	![[圖表] 磚](./media/data-factory-build-your-first-pipeline-using-editor/diagram-tile.png)
@@ -304,17 +313,35 @@
 
 	![Dataset](./media/data-factory-build-your-first-pipeline-using-editor/dataset-blade.png)
 9. 處理完成時，您會看到配量處於 [就緒] 狀態。
-	>[AZURE.IMPORTANT] 建立隨選 HDInsight 叢集通常需要一些時間 (大約 20 分鐘)。
+	>[AZURE.IMPORTANT] 建立隨選 HDInsight 叢集通常需要一些時間 (大約 20 分鐘)。因此，管線預計需要**大約 30 分鐘**的時間來處理配量。
 
 	![Dataset](./media/data-factory-build-your-first-pipeline-using-editor/dataset-slice-ready.png)
 	
 10. 當配量處於**就緒**狀態時，檢查您 Blob 儲存體中 **adfgetstarted** 容器內 **partitioneddata** 資料夾的輸出資料。
  
 	![輸出資料](./media/data-factory-build-your-first-pipeline-using-editor/three-ouptut-files.png)
+11. 按一下配量，以在 [資料配量] 刀鋒視窗中查看其詳細資料。
 
-如需詳細資訊，請參閱[使用 Azure 入口網站刀鋒視窗監視及管理管線](data-factory-monitor-manage-pipelines.md)一文。
+	![資料配量詳細資料](./media/data-factory-build-your-first-pipeline-using-editor/data-slice-details.png)
+12. 按一下 [活動執行清單] 中的活動執行，以在 [活動執行詳細資料] 視窗中查看活動執行 (我們的案例中的 Hive 活動) 的詳細資料。
+
+	![活動執行詳細資料](./media/data-factory-build-your-first-pipeline-using-editor/activity-window-blade.png)
+	
+	從記錄檔中，您可以看到所執行的 Hive 查詢和狀態資訊。這些記錄檔適合用來排解任何疑難問題。如需詳細資訊，請參閱[使用 Azure 入口網站刀鋒視窗監視及管理管線](data-factory-monitor-manage-pipelines.md)一文。
 
 > [AZURE.IMPORTANT] 配量處理成功時就會刪除輸入檔案。因此，如果您想要重新執行配量或再次進行本教學課程，請將輸入檔案 (input.log) 上傳至 adfgetstarted 容器的 inputdata 資料夾。
+
+### 使用監視及管理應用程式來監視管線
+您也可以使用「監視及管理應用程式」來監視您的管線。如需使用此應用程式的詳細資訊，請參閱[使用監視及管理應用程式來監視和管理 Azure Data Factory 管線](data-factory-monitor-manage-app.md)。
+
+1. 在 Data Factory 首頁上按一下 [監視及管理] 圖格。
+
+	![監視及管理圖格](./media/data-factory-build-your-first-pipeline-using-editor/monitor-and-manage-tile.png)
+2. 您應該會看到 [監視及管理] 應用程式。變更 [開始時間] 和 [結束時間] 以符合您管線的開始 (04-01-2016 12:00 AM) 和結束時間 (04-02-2016 12:00 AM)，然後按一下 [套用]。
+
+	![監視及管理應用程式](./media/data-factory-build-your-first-pipeline-using-editor/monitor-and-manage-app.png)
+3. 選取 [活動時段] 清單中的活動時段以查看其詳細資料。![活動時段詳細資料](./media/data-factory-build-your-first-pipeline-using-editor/activity-window-details.png)
+
 
 ## 摘要 
 在本教學課程中，您會在 HDInsight hadoop 叢集上執行 Hive 指令碼，以建立 Azure Data Factory 來處理資料。您會在使用 Azure 入口網站中使用 Data Factory 編輯器來執行下列步驟︰
@@ -340,4 +367,4 @@
 
   
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->

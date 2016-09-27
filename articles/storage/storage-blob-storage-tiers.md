@@ -3,8 +3,8 @@
     description="Azure Blob 儲存體的儲存層會根據存取模式，為物件資料提供具成本效益的儲存體。非經常性存取儲存層已針對不常存取的資料最佳化。"
     services="storage"
     documentationCenter=""
-    authors="sribhat-msft"
-    manager=""
+    authors="michaelhauss"
+    manager="vamshik"
     editor="tysonn"/>
 
 <tags
@@ -13,13 +13,13 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="get-started-article"
-    ms.date="07/05/2016"
-    ms.author="sribhat"/>
+    ms.date="09/20/2016"
+    ms.author="mihauss;robinsh"/>
 
 
 # Azure Blob 儲存體︰經常性存取與非經常性存取儲存層
 
-## 概觀
+## Overview
 
 Azure 儲存體現在為 Blob 儲存體 (物件儲存體) 提供兩個儲存層，所以您可根據您的資料使用方式，以最符合成本效益的方式進行儲存。Azure **經常性存取儲存層**已最佳化，可用於儲存經常存取的資料。Azure **非經常性存取儲存層**已最佳化，可用於儲存不常存取且長期存留的資料。非經常性存取儲存層中的資料可容忍稍微較低的可用性，但仍要求高持久性以及與經常性存取資料類似的存取時間和輸送量特性。對於非經常性存取資料而言，稍微較低的可用性 SLA 和更高的存取成本是可接受的取捨，可讓儲存體成本降低許多。
 
@@ -340,4 +340,4 @@ AzCopy 為 Windows 命令列公用程式，可以極高效能將資料複製到 
 
 [瀏覽及探索您的儲存體帳戶](http://storageexplorer.com/)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0921_2016-->

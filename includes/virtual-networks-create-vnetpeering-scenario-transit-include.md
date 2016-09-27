@@ -4,8 +4,8 @@
 
 ![NVA 傳輸](./media/virtual-networks-create-vnetpeering-scenario-transit-include/figure01.PNG)
 
-注意︰為了簡單起見，假設此處所有 Vnet 都位於同一訂用帳戶中。但跨訂用帳戶的案例也適用。
+> [AZURE.NOTE] 為了簡單起見，假設此處所有 Vnet 都位於同一訂用帳戶中。但跨訂用帳戶的案例也適用。
 
 啟用傳輸路由的關鍵屬性是「允許轉送流量」參數。可在對等互連 VNet 中允許接收來自 NVA 和傳送至 NVA 的流量。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0921_2016-->

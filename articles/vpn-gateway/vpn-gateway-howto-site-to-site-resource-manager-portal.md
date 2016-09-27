@@ -20,9 +20,9 @@
 # 使用 Azure 入口網站建立具有網站間連線的 VNet
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
-- [Azure 傳統入口網站](vpn-gateway-site-to-site-create.md)
-- [PowerShell - 資源管理員](vpn-gateway-create-site-to-site-rm-powershell.md)
+- [Resource Manager - Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
+- [Resource Manager - PowerShell](vpn-gateway-create-site-to-site-rm-powershell.md)
+- [傳統 - 傳統入口網站](vpn-gateway-site-to-site-create.md)
 
 
 本文逐步引導您使用 **Azure Resource Manager 部署模型**和 Azure 入口網站，建立虛擬網路以及內部部署網路的網站間 VPN 連線。網站間連線可以用於跨單位與混合式組態。
@@ -154,4 +154,4 @@
 
 - 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md)和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0921_2016-->

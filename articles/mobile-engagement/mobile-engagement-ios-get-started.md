@@ -1,10 +1,10 @@
 <properties
-	pageTitle="開始使用適用於 iOS (Objective C) 的 Azure Mobile Engagement"
+	pageTitle="開始使用適用於 iOS (Objective C) 的 Azure Mobile Engagement | Microsoft Azure"
 	description="了解如何使用 iOS app 的 Azure Mobile Engagement 與分析和推播通知。"
 	services="mobile-engagement"
-	documentationCenter="ios"
+	documentationCenter="mobile"
 	authors="piyushjo"
-	manager="dwrede"
+	manager="erikre"
 	editor="" />
 
 <tags
@@ -13,18 +13,18 @@
 	ms.tgt_pltfrm="mobile-ios"
 	ms.devlang="objective-c"
 	ms.topic="hero-article"
-	ms.date="05/03/2016"
+	ms.date="09/14/2016"
 	ms.author="piyushjo" />
 
 # 開始使用適用於 iOS 應用程式 (Objective C) 的 Azure Mobile Engagement
 
 [AZURE.INCLUDE [Hero 教學課程切換器](../../includes/mobile-engagement-hero-tutorial-switcher.md)]
 
-本主題說明如何使用 Azure Mobile Engagement 來了解您的應用程式使用量，並傳送推播通知給 iOS 應用程式的區隔使用者。在本教學課程中，您將使用 Apple 推播通知服務 (APNS)，建立可收集基本資料，並接收推播通知的空白 iOS 應用程式。
+本主題說明如何使用 Azure Mobile Engagement 了解您的應用程式使用情形，並將推送通知傳送至 iOS 應用程式的區隔使用者。在本教學課程中，您將使用 Apple 推播通知服務 (APNS)，建立可收集基本資料，並接收推播通知的空白 iOS 應用程式。
 
 本教學課程需要下列各項：
 
-+ Xcode 6 或 XCode 7，可以從您的 MAC App Store 安裝
++ Xcode 8，可以從您的 MAC App Store 安裝
 + [Mobile Engagement iOS SDK]
 
 完成本教學課程是所有其他 iOS 應用程式 Mobile Engagement 教學課程的先決條件。
@@ -96,7 +96,7 @@
 
 	`@interface ViewController : EngagementViewController`
 
-##<a id="monitor"></a>將應用程式與即時監視連接
+##<a id="monitor"></a>將 App 與即時監視連接
 
 [AZURE.INCLUDE [將 App 與即時監視連接](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
@@ -178,4 +178,4 @@ Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊�
 [3]: ./media/mobile-engagement-ios-get-started/xcode-build-phases.png
 [4]: ./media/mobile-engagement-ios-get-started/app-connection-info-page.png
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0921_2016-->

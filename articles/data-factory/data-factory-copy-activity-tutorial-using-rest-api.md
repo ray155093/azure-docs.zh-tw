@@ -13,22 +13,20 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="08/17/2016" 
+	ms.date="09/16/2016" 
 	ms.author="spelluru"/>
 
 # 教學課程：使用 REST API 建立具有複製活動的管線
 > [AZURE.SELECTOR]
-- [教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
-- [使用 Data Factory 編輯器](data-factory-copy-activity-tutorial-using-azure-portal.md)
-- [使用 PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
-- [使用 Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
-- [使用 REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
-- [使用 .NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
-- [使用複製精靈](data-factory-copy-data-wizard-tutorial.md)
+- [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
+- [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)
+- [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
+- [PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
+- [REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
+- [.NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
+- [複製精靈](data-factory-copy-data-wizard-tutorial.md)
 
 本教學課程示範如何使用 REST API 建立和監視 Azure Data Factory。Data Factory 中的管線會使用複製活動將資料從 Azure Blob 複製到 Azure SQL Database。
-
-複製活動會在 Azure Data Factory 中執行資料移動。此活動是由全域可用的服務所提供，可以使用安全、可靠及可調整的方式，在各種不同的資料存放區之間複製資料。如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)文章。
 
 > [AZURE.NOTE] 
 這篇文章並未涵蓋所有的 Data Factory REST API。如需 Data Factory Cmdlet 的完整文件，請參閱 [Data Factory REST API 參考](https://msdn.microsoft.com/library/azure/dn906738.aspx)。
@@ -36,7 +34,7 @@
 
 ## 必要條件
 
-- 逐步了解[教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
+- 請檢閱[教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)並完成**必要**步驟。
 - 在您的電腦上安裝 [Curl](https://curl.haxx.se/dlwiz/)。您可搭配使用 Curl 工具與 REST 命令來建立 Data Factory。
 - 請依照[本文](../resource-group-create-service-principal-portal.md)的指示：
 	1. 在 Azure Active Directory 中建立名為 **ADFCopyTutorialApp** 的 Web 應用程式。
@@ -136,7 +134,7 @@
 
 JSON 定義會定義名為 **AzureBlobInput** 的資料集，以表示管線中活動的輸入資料。此外，它也會指定將輸入資料放在 Blob 容器 **adftutorial** 的 **emp.txt** 檔案中。
 
- 請注意：
+ 請注意下列幾點：
 
 - 資料集 **type** 設為 **AzureBlob**。
 - **linkedServiceName** 設為 **AzureStorageLinkedService**。
@@ -192,7 +190,7 @@ JSON 定義會定義名為 **AzureBlobInput** 的資料集，以表示管線中�
 
 JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中活動的輸出資料。此外，它也會指定將結果存放在 AzureSqlLinkedService 所代表的資料庫的 **emp** 資料表中。**availability** 區段指定每小時產生一次輸出資料集 (頻率：小時，間隔：1)。
 
-請注意：
+請注意下列幾點：
 
 - 資料集 **type** 設為 **AzureSQLTable**。
 - **linkedServiceName** 設為 **AzureSqlLinkedService**。
@@ -245,7 +243,7 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 	}
 
 
-請注意：
+請注意下列幾點：
 
 - 在活動區段中，只會有一個活動的 **type** 設為 **CopyActivity**。
 - 活動的輸入設為 **AzureBlobInput**，活動的輸出則設為 **AzureSqlOutput**。
@@ -300,9 +298,9 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 
 		Write-Host $results
 
-請注意：
+請注意下列幾點：
  
-- Azure Data Factory 的名稱在全域必須是唯一的。如果您在結果中看到錯誤︰「Data factory 名稱 "ADFCopyTutorialDF" 無法使用」，請執行下列動作︰
+- Azure Data Factory 的名稱在全域必須是唯一的。如果您在結果中看到錯誤︰「Data factory 名稱 "ADFCopyTutorialDF" 無法使用」，請執行下列步驟︰
 	1. 在 **datafactory.json** 檔案中變更名稱 (例如，yournameADFCopyTutorialDF)。
 	2. 在指派 **$cmd** 變數值的第一個命令中，以新的名稱取代 ADFCopyTutorialDF 並執行命令。
 	3. 執行下面兩個命令來叫用 REST API，以建立 Data Factory 和列印作業的結果。
@@ -493,4 +491,4 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 [sql-management-studio]: ../sql-database/sql-database-manage-azure-ssms.md
  
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0921_2016-->

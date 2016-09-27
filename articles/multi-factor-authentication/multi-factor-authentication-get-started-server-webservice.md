@@ -1,24 +1,24 @@
 <properties 
-	pageTitle="開始使用 MFA Server Mobile App Web 服務" 
-	description="Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項。它可以讓 MFA Server 將通知推播給使用者。" 
-	services="multi-factor-authentication" 
-	documentationCenter="" 
-	authors="billmath" 
-	manager="stevenpo" 
+	pageTitle="開始使用 MFA Server Mobile App Web 服務"
+	description="Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項。它可以讓 MFA Server 將通知推播給使用者。"
+	services="multi-factor-authentication"
+	documentationCenter=""
+	authors="kgremban"
+	manager="femila"
 	editor="curtland"/>
 
-<tags 
-	ms.service="multi-factor-authentication" 
-	ms.workload="identity" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="get-started-article" 
-	ms.date="08/04/2016" 
-	ms.author="billmath"/>
+<tags
+	ms.service="multi-factor-authentication"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="08/04/2016"
+	ms.author="kgremban"/>
 
 # 開始使用 MFA Server Mobile App Web 服務
 
-Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項。Azure Multi-Factor Authentication 會將通知推送到使用者智慧型手機或平板電腦上的 Azure Multi-Factor Authentication 應用程式，取代在登入時撥打自動電話或傳送 SMS 給使用者。使用者只需要在應用程式中點選 [驗證] \(或輸入 PIN 再點選 [驗證]) 即可登入。
+Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項。Azure Multi-Factor Authentication 會將通知推送到使用者智慧型手機或平板電腦上的 Azure Multi-Factor Authentication 應用程式，取代在登入時撥打自動電話或傳送 SMS 給使用者。使用者只需要在應用程式中點選 [驗證] (或輸入 PIN 再點選 [驗證]) 即可登入。
 
 若要使用 Azure Multi-Factor Authentication 應用程式，使用者必須滿足以下條件，應用程式才能與 Mobile App Web 服務成功通訊：
 
@@ -58,11 +58,11 @@ Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項�
 ### 安裝 Mobile App Web 服務
 
 <ol>
-<li>在 Azure Multi-Factor Authentication 伺服器上開啟 Windows 檔案總管，接著瀏覽至安裝 Azure Multi-Factor Authentication Server 的資料夾 (如 C:\Program Files\Azure Multi-Factor Authentication)。視需要針對要安裝 Mobile App Web 服務的伺服器選擇 32 位元或 64 位元版本的 Azure Multi-Factor AuthenticationPhoneAppWebServiceSetup 安裝檔案。將安裝檔案複製到網際網路對向伺服器。</li> 
+<li>在 Azure Multi-Factor Authentication 伺服器上開啟 Windows 檔案總管，接著瀏覽至安裝 Azure Multi-Factor Authentication Server 的資料夾 (如 C:\Program Files\Azure Multi-Factor Authentication)。視需要針對要安裝 Mobile App Web 服務的伺服器選擇 32 位元或 64 位元版本的 Azure Multi-Factor AuthenticationPhoneAppWebServiceSetup 安裝檔案。將安裝檔案複製到網際網路對向伺服器。</li>
 
 <li>在網際網路對向 Web 伺服器上，您必須以系統管理員權限執行安裝程式檔案。若要這樣做，最簡單的方式是以系統管理員身分開啟命令提示字元，再瀏覽至複製安裝檔案的位置。</li>  
 
-<li>執行 Multi-factor AuthenticationMobileAppWebServiceSetup 安裝檔案，視需要變更網站，再將虛擬目錄變更為簡短的名稱 (如 "PA")。在啟用期間，由於使用者必須將 Mobile App Web 服務 URL 輸入行動裝置，因此我們建議使用簡短的虛擬目錄名稱。</li> 
+<li>執行 Multi-factor AuthenticationMobileAppWebServiceSetup 安裝檔案，視需要變更網站，再將虛擬目錄變更為簡短的名稱 (如 "PA")。在啟用期間，由於使用者必須將 Mobile App Web 服務 URL 輸入行動裝置，因此我們建議使用簡短的虛擬目錄名稱。</li>
 
 <li>Azure Multi-Factor AuthenticationMobileAppWebServiceSetup 安裝完成之後，瀏覽至 C:\inetpub\wwwroot\PA (或根據虛擬目錄名稱瀏覽至適當目錄) 並編輯 web.config 檔案。</li>  
 
@@ -72,7 +72,7 @@ Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項�
 
 <li>如果安裝 Mobile App Web 服務的網站 (如預設網站) 尚未與公開簽署的憑證繫結，請在伺服器上安裝憑證 (如果尚未安裝)，開啟 IIS 管理員，然後將憑證繫結至網站。</li>  
 
-<li>從任何電腦開啟網頁瀏覽器，並瀏覽至安裝 Mobile App Web 服務的 URL (如 https://www.publicwebsite.com/PA)。確定未出現任何憑證警告或錯誤。</li> 
+<li>從任何電腦開啟網頁瀏覽器，並瀏覽至安裝 Mobile App Web 服務的 URL (如 https://www.publicwebsite.com/PA)。確定未出現任何憑證警告或錯誤。</li>
 
 ### 在 Azure Multi-Factor Authentication Server 中配置行動應用程式設定
 既然 Mobile App Web 服務已安裝完成，您需要設定 Azure Multi-Factor Authentication Server，使其與入口網站搭配運作。
@@ -88,6 +88,5 @@ Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項�
 
 
 <center>![Setup](./media/multi-factor-authentication-get-started-server-webservice/mobile.png)</center>
- 
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0921_2016-->

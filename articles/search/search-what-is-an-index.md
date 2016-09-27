@@ -36,14 +36,14 @@ authors="ashmaka"
 ### 欄位類型
 |類型|說明|
 |------------|-----------|
-|Edm.String|可選擇性予以 Token 化以供進行全文檢索搜尋 (斷字、詞幹分析等) 的文字。|
-|Collection(Edm.String)|可選擇性予以 Token 化以供進行全文檢索搜尋的字串清單。理論上，集合中的項目數沒有上限，但集合的承載大小有 16 MB 的上限。|
-|Edm.Boolean|包含 true/false 值。|
-|Edm.Int32|32 位元整數值。|
-|Edm.Int64|64 位元整數值。|
-|Edm.Double|雙精度數值資料。|
-|Edm.DateTimeOffset|以 OData V4 格式 (例如 `yyyy-MM-ddTHH:mm:ss.fffZ` 或 `yyyy-MM-ddTHH:mm:ss.fff[+/-]HH:mm`) 表示的日期時間值。|
-|Edm.GeographyPoint|代表地球上地理位置的一點。|
+|*Edm.String*|可選擇性予以 Token 化以供進行全文檢索搜尋 (斷字、詞幹分析等) 的文字。|
+|*Collection(Edm.String)*|可選擇性予以 Token 化以供進行全文檢索搜尋的字串清單。理論上，集合中的項目數沒有上限，但集合的承載大小有 16 MB 的上限。|
+|*Edm.Boolean*|包含 true/false 值。|
+|*Edm.Int32*|32 位元整數值。|
+|*Edm.Int64*|64 位元整數值。|
+|*Edm.Double*|雙精度數值資料。|
+|*Edm.DateTimeOffset*|以 OData V4 格式 (例如 `yyyy-MM-ddTHH:mm:ss.fffZ` 或 `yyyy-MM-ddTHH:mm:ss.fff[+/-]HH:mm`) 表示的日期時間值。|
+|*Edm.GeographyPoint*|代表地球上地理位置的一點。|
 
 您可以在 MSDN 上找到有關 Azure 搜尋服務[支援的資料類型](https://msdn.microsoft.com/library/azure/dn798938.aspx)的詳細資訊。
 
@@ -52,12 +52,12 @@ authors="ashmaka"
 ### 欄位屬性
 |屬性|說明|
 |------------|-----------|
-|Key|字串，提供每一份文件的唯一識別碼，用於查閱文件。每個索引必須有一個索引鍵。只有一個欄位可以做為索引鍵，而且其類型必須設定為 Edm.String。|
-|Retrievable|指定搜尋結果中是否可傳回某欄位。|
-|Filterable|允許欄位用於篩選查詢。|
-|Sortable|允許查詢使用此欄位排序搜尋結果。|
-|Facetable|允許欄位用於使用者自我引導篩選的[多面向導覽](search-faceted-navigation.md)結構中。通常，欄位若包含您可以用來將多份文件群組在一起的重複值 (例如，落在單一品牌或服務類別目錄下的多份文件)，最適合做為 Facet。|
-|Searchable|將欄位標記為可供全文檢索。|
+|*Key*|字串，提供每一份文件的唯一識別碼，用於查閱文件。每個索引必須有一個索引鍵。只有一個欄位可以做為索引鍵，而且其類型必須設定為 Edm.String。|
+|*Retrievable*|指定搜尋結果中是否可傳回某欄位。|
+|*Filterable*|允許欄位用於篩選查詢。|
+|*Sortable*|允許查詢使用此欄位排序搜尋結果。|
+|*Facetable*|允許欄位用於使用者自我引導篩選的[多面向導覽](search-faceted-navigation.md)結構中。通常，欄位若包含您可以用來將多份文件群組在一起的重複值 (例如，落在單一品牌或服務類別目錄下的多份文件)，最適合做為 Facet。|
+|*Searchable*|將欄位標記為可供全文檢索。|
 
 您可以在 MSDN 上找到有關 Azure 搜尋服務[索引屬性](https://msdn.microsoft.com/library/azure/dn798941.aspx)的詳細資訊。
 
@@ -70,4 +70,4 @@ authors="ashmaka"
 
 如果資料儲存體需求在之後有所改變，您可以藉由新增或移除資料分割來增加或減少容量。如需詳細資料，請參閱[在 Azure 中管理您的搜尋服務](search-manage.md)或[服務限制](search-limits-quotas-capacity.md)。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0921_2016-->

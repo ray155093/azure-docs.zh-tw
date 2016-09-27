@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="08/23/2016"
+	ms.date="09/20/2016"
 	ms.author="deonhe"/>
 
 # 連接器清單
@@ -26,18 +26,18 @@
 |連接器||||
 |-----------|-----------|-----------|-----------|
 |[![API 圖示][API/Web-Appicon]<br/>**API/Web 應用程式**][API/Web-Appdoc]|[![API 圖示][Azure-Blobicon]<br/>**Azure Blob**][Azure-Blobdoc]|[![API 圖示][Azure~Functionsicon]<br/>**Azure<br/>Functions**][Azure~Functionsdoc]|[![API 圖示][Boxicon]<br/>**Box**][Boxdoc]|
-|[![API 圖示][CRM-Onlineicon]<br/>**CRM Online**][CRM-Onlinedoc]|[![API 圖示][Delayicon]<br/>**Delay**][Delaydoc]|[![API 圖示][Dropboxicon]<br/>**Dropbox**][Dropboxdoc]|[![API 圖示][Facebookicon]<br/>**Facebook**][Facebookdoc]|
-|[![API 圖示][FTPicon]<br/>**FTP**][FTPdoc]|[![API 圖示][GitHubicon]<br/>**GitHub**][GitHubdoc]|[![API 圖示][Google-Driveicon]<br/>**Google 雲端硬碟**][Google-Drivedoc]|![API 圖示][Google-Sheetsicon]<br/>**Google 試算表**|
-|![API 圖示][Google-Tasksicon]<br/>**Google 工作**|![API 圖示][Google~Calendaricon]<br/>**Google<br/>行事曆**|[![API 圖示][HTTPicon]<br/>**HTTP**][HTTPdoc]|[![API 圖示][HTTP-Swaggericon]<br/>**HTTP Swagger**][HTTP-Swaggerdoc]|
-|[![API 圖示][HTTP~Requesticon]<br/>**HTTP<br/>要求**][HTTP~Requestdoc]|[![API 圖示][HTTP~Responseicon]<br/>**HTTP<br/>回應**][HTTP~Responsedoc]|![API 圖示][Instagramicon]<br/>**Instagram**|[![API 圖示][MailChimpicon]<br/>**MailChimp**][MailChimpdoc]|
-|![API 圖示][Mandrillicon]<br/>**Mandrill**|[![API 圖示][Nested~Logic-Appicon]<br/>**巢狀<br/>邏輯應用程式**][Nested~Logic-Appdoc]|[![API 圖示][Office-365~Outlookicon]<br/>**Office 365<br/>Outlook**][Office-365~Outlookdoc]|[![API 圖示][Office-365~Usersicon]<br/>**Office 365<br/>使用者**][Office-365~Usersdoc]|
-|[![API 圖示][Office-365~Videoicon]<br/>**Office 365<br/>視訊**][Office-365~Videodoc]|[![API 圖示][OneDriveicon]<br/>**OneDrive**][OneDrivedoc]|[![API 圖示][OneDrive-for~Businessicon]<br/>**商務用 <br/>OneDrive**][OneDrive-for~Businessdoc]|[![API 圖示][Outlookicon]<br/>**Outlook**][Outlookdoc]|
-|[![API 圖示][Project-Onlineicon]<br/>**Project Online**][Project-Onlinedoc]|[![API 圖示][Queryicon]<br/>**查詢**][Querydoc]|[![API 圖示][Recurrenceicon]<br/>**循環**][Recurrencedoc]|[![API 圖示][RSSicon]<br/>**RSS**][RSSdoc]|
-|[![API 圖示][Salesforceicon]<br/>**Salesforce**][Salesforcedoc]|[![API 圖示][SendGridicon]<br/>**SendGrid**][SendGriddoc]|[![API 圖示][Service-Busicon]<br/>**服務匯流排**][Service-Busdoc]|[![API 圖示][SFTPicon]<br/>**SFTP**][SFTPdoc]|
-|[![API 圖示][SharePointicon]<br/>**SharePoint**][SharePointdoc]|[![API 圖示][Slackicon]<br/>**Slack**][Slackdoc]|[![API 圖示][SMTPicon]<br/>**SMTP**][SMTPdoc]|![API 圖示][SparkPosticon]<br/>**SparkPost**|
-|[![API 圖示][SQLicon]<br/>**SQL**][SQLdoc]|[![API 圖示][Translatoricon]<br/>**Translator**][Translatordoc]|[![API 圖示][Trelloicon]<br/>**Trello**][Trellodoc]|[![API 圖示][Twilioicon]<br/>**Twilio**][Twiliodoc]|
-|[![API 圖示][Twittericon]<br/>**Twitter**][Twitterdoc]|[![API 圖示][Webhookicon]<br/>**Webhook**][Webhookdoc]|[![API 圖示][Wunderlisticon]<br/>**Wunderlist**][Wunderlistdoc]|[![API 圖示][Yammericon]<br/>**Yammer**][Yammerdoc]|
-|![API 圖示][YouTubeicon]<br/>**YouTube**||||
+|[![API 圖示][CRM-Onlineicon]<br/>**CRM Online**][CRM-Onlinedoc]|[![API 圖示][DB2icon]<br/>**DB2**][db2doc]|[![API 圖示][Delayicon]<br/>**Delay**][Delaydoc]|[![API 圖示][Dropboxicon]<br/>**Dropbox**][Dropboxdoc]|
+|[![API 圖示][Facebookicon]<br/>**Facebook**][Facebookdoc]|[![API 圖示][FTPicon]<br/>**FTP**][FTPdoc]|[![API 圖示][GitHubicon]<br/>**GitHub**][GitHubdoc]|[![API 圖示][Google-Driveicon]<br/>**Google 雲端硬碟**][Google-Drivedoc]|
+|![API 圖示][Google-Sheetsicon]<br/>**Google 試算表**|![API 圖示][Google-Tasksicon]<br/>**Google 工作**|![API 圖示][Google~Calendaricon]<br/>**Google<br/>行事曆**|[![API 圖示][HTTPicon]<br/>**HTTP**][HTTPdoc]|
+|[![API 圖示][HTTP-Swaggericon]<br/>**HTTP Swagger**][HTTP-Swaggerdoc]|[![API 圖示][HTTP~Requesticon]<br/>**HTTP<br/>要求**][HTTP~Requestdoc]|[![API 圖示][HTTP~Responseicon]<br/>**HTTP<br/>回應**][HTTP~Responsedoc]|[![API 圖示][Informixicon]<br/>**Informix**][informixdoc]|
+|![API 圖示][Instagramicon]<br/>**Instagram**|[![API 圖示][MailChimpicon]<br/>**MailChimp**][MailChimpdoc]|![API 圖示][Mandrillicon]<br/>**Mandrill**|[![API 圖示][Nested~Logic-Appicon]<br/>**巢狀<br/>邏輯應用程式**][Nested~Logic-Appdoc]|
+|[![API 圖示][Office-365~Outlookicon]<br/>**Office 365<br/>Outlook**][Office-365~Outlookdoc]|[![API 圖示][Office-365~Usersicon]<br/>**Office 365<br/>使用者**][Office-365~Usersdoc]|[![API 圖示][Office-365~Videoicon]<br/>**Office 365<br/>視訊**][Office-365~Videodoc]|[![API 圖示][OneDriveicon]<br/>**OneDrive**][OneDrivedoc]|
+|[![API 圖示][OneDrive-for~Businessicon]<br/>**商務用 <br/>OneDrive**][OneDrive-for~Businessdoc]|[![API 圖示][Outlookicon]<br/>**Outlook**][Outlookdoc]|[![API 圖示][Project-Onlineicon]<br/>**Project Online**][Project-Onlinedoc]|[![API 圖示][Queryicon]<br/>**查詢**][Querydoc]|
+|[![API 圖示][Recurrenceicon]<br/>**循環**][Recurrencedoc]|[![API 圖示][RSSicon]<br/>**RSS**][RSSdoc]|[![API 圖示][Salesforceicon]<br/>**Salesforce**][Salesforcedoc]|[![API 圖示][SendGridicon]<br/>**SendGrid**][SendGriddoc]|
+|[![API 圖示][Service-Busicon]<br/>**服務匯流排**][Service-Busdoc]|[![API 圖示][SFTPicon]<br/>**SFTP**][SFTPdoc]|[![API 圖示][SharePointicon]<br/>**SharePoint**][SharePointdoc]|[![API 圖示][Slackicon]<br/>**Slack**][Slackdoc]|
+|[![API 圖示][SMTPicon]<br/>**SMTP**][SMTPdoc]|![API 圖示][SparkPosticon]<br/>**SparkPost**|[![API 圖示][SQLicon]<br/>**SQL**][SQLdoc]|[![API 圖示][Translatoricon]<br/>**Translator**][Translatordoc]|
+|[![API 圖示][Trelloicon]<br/>**Trello**][Trellodoc]|[![API 圖示][Twilioicon]<br/>**Twilio**][Twiliodoc]|[![API 圖示][Twittericon]<br/>**Twitter**][Twitterdoc]|[![API 圖示][Webhookicon]<br/>**Webhook**][Webhookdoc]|
+|[![API 圖示][Wunderlisticon]<br/>**Wunderlist**][Wunderlistdoc]|[![API 圖示][Yammericon]<br/>**Yammer**][Yammerdoc]|![API 圖示][YouTubeicon]<br/>**YouTube**||
 
 > [AZURE.NOTE] 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure Logic Apps，請移至[試用邏輯應用程式](https://tryappservice.azure.com/?appservice=logic)。您可以在 App Service 中立即建立短期的入門邏輯應用程式。不需要信用卡；沒有承諾。
 
@@ -72,10 +72,12 @@
 [azure-blobdoc]: ./connectors-create-api-azureblobstorage.md "連接到 Azure Blob 以管理 Blob 容器中的檔案。"
 [boxDoc]: ./connectors-create-api-box.md "連接到 Box，可以上傳、取得、刪除、列出等檔案工作。"
 [crm-onlinedoc]: ./connectors-create-api-crmonline.md "連接到 Dynamics CRM Online，利用您的 CRM Online 資料執行更多動作。"
+[db2doc]: ./connectors-create-api-db2.md "連接到雲端或內部部署中的 IBM DB2，以便更新資料列、取得資料表等等。"
 [dropboxdoc]: ./connectors-create-api-dropbox.md "連接到 Dropbox，可以取得、刪除、列出等檔案工作。"
 [facebookdoc]: ./connectors-create-api-facebook.md "連接到 Facebook 以張貼在動態時報上、取得頁面摘要等等。"
 [ftpdoc]: ./connectors-create-api-ftp.md "連接到 FTP / FTPS 伺服器，執行不同的 FTP 工作，包括上傳、取得、刪除檔案等等。"
 [google-drivedoc]: ./connectors-create-api-googledrive.md "連接到 GoogleDrive，並與您的資料互動。"
+[informixdoc]: ./connectors-create-api-informix.md "連接到雲端或內部部署中的 Informix，以便讀取資料列、列出資料表等等。"
 [translatordoc]: ./connectors-create-api-microsofttranslator.md
 [office-365~outlookdoc]: ./connectors-create-api-office365-outlook.md "Office 365 連接器可以使用 Office 365 帳戶來傳送和接收電子郵件、管理您的行事曆及管理您的連絡人。"
 [office-365~usersdoc]: ./connectors-create-api-office365-users.md
@@ -133,13 +135,22 @@
 
 <!--Icon references-->
 [Azure-Blobicon]: ./media/apis-list/azureblob.png
+[Azure~Functionsicon]: ./media/apis-list/function.png
 [Boxicon]: ./media/apis-list/box.png
-[FTPicon]: ./media/apis-list/ftp.png
-[GitHubicon]: ./media/apis-list/github.png
 [CRM-Onlineicon]: ./media/apis-list/dynamicscrmonline.png
+[DB2icon]: ./media/apis-list/db2.png
 [Dropboxicon]: ./media/apis-list/dropbox.png
 [Facebookicon]: ./media/apis-list/facebook.png
+[FTPicon]: ./media/apis-list/ftp.png
+[GitHubicon]: ./media/apis-list/github.png
 [Google-Driveicon]: ./media/apis-list/googledrive.png
+[Google~Calendaricon]: ./media/apis-list/googlecalendar.png
+[Google-Tasksicon]: ./media/apis-list/googletasks.png
+[Google-Sheetsicon]: ./media/apis-list/googlesheet.png
+[HTTPicon]: ./media/apis-list/http.png
+[HTTP~Requesticon]: ./media/apis-list/request.png
+[HTTP~Responseicon]: ./media/apis-list/response.png
+[Informixicon]: ./media/apis-list/informix.png
 [MailChimpicon]: ./media/apis-list/mailchimp.png
 [Translatoricon]: ./media/apis-list/microsofttranslator.png
 [Office-365~Outlookicon]: ./media/apis-list/office365.png
@@ -163,21 +174,14 @@
 [Twittericon]: ./media/apis-list/twitter.png
 [Wunderlisticon]: ./media/apis-list/wunderlist.png
 [Yammericon]: ./media/apis-list/yammer.png
-[Google~Calendaricon]: ./media/apis-list/googlecalendar.png
-[Google-Tasksicon]: ./media/apis-list/googletasks.png
-[Google-Sheetsicon]: ./media/apis-list/googlesheet.png
 [Mandrillicon]: ./media/apis-list/mandrill.png
 [SparkPosticon]: ./media/apis-list/sparkpost.png
 [Instagramicon]: ./media/apis-list/instagram.png
 [YouTubeicon]: ./media/apis-list/youtube.png
-[HTTPicon]: ./media/apis-list/http.png
-[HTTP~Requesticon]: ./media/apis-list/request.png
-[HTTP~Responseicon]: ./media/apis-list/response.png
 [Delayicon]: ./media/apis-list/delay.png
 [HTTP-Swaggericon]: ./media/apis-list/http_swagger.png
 [Queryicon]: ./media/apis-list/query.png
 [Webhookicon]: ./media/apis-list/webhook.png
-[Azure~Functionsicon]: ./media/apis-list/function.png
 [API/Web-Appicon]: ./media/apis-list/api.png
 [Nested~Logic-Appicon]: ./media/apis-list/workflow.png
 [Recurrenceicon]: ./media/apis-list/recurrence.png
@@ -190,4 +194,4 @@
 [xmlvalidateicon]: ./media/apis-list/xmlvalidation.png
 [xmltransformicon]: ./media/apis-list/xsltransform.png
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0921_2016-->

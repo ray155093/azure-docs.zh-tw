@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-catalog"
-   ms.date="05/26/2016"
+   ms.date="09/21/2016"
    ms.author="maroche"/>
 
 # 什麼是 Azure 資料目錄？
@@ -74,4 +74,4 @@ Azure 資料目錄是完全受管理的雲端服務，可讓使用者探索所�
 * [如何設定商務詞彙](data-catalog-how-to-business-glossary.md)
 * [常見問題集](data-catalog-frequently-asked-questions.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0921_2016-->

@@ -62,7 +62,7 @@
 
 若要決定獨立資料庫的服務層，先判斷您需要的資料庫功能以選擇 SQL Database 版本︰
 
-- 資料庫大小 (基本最大 5GB、標準最大 250 GB、進階最大 500 GB 至 1 TB - 視效能層級而定)
+- 資料庫大小 (基本最大 2GB、標準最大 250 GB、進階最大 500 GB 至 1 TB - 視效能層級而定)
 - 資料庫備份的保留期限 (基本 7 天、標準 35 天、進階 35 天)
 
 一旦決定 SQL Database 版本之後，接下來要決定資料庫的效能層級 (DTU 數目)。如同您所猜測，然後根據實際經驗 [動態相應增加或減少](sql-database-scale-up.md)。也可以使用 [DTU 計算機](http://dtucalculator.azurewebsites.net/) 估計所需的 DTU 數目。
@@ -88,4 +88,4 @@
 
 如需多租用戶型軟體即服務 (SaaS) 資料庫應用程式的常見資料架構模式的資訊，請參閱 [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->

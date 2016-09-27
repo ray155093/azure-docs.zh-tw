@@ -18,22 +18,25 @@
 
 # 教學課程：使用 Microsoft Visual Studio 建置您的第一個 Azure Data Factory
 > [AZURE.SELECTOR]
+- [概觀和必要條件](data-factory-build-your-first-pipeline.md)
 - [Azure 入口網站](data-factory-build-your-first-pipeline-using-editor.md)
 - [Visual Studio](data-factory-build-your-first-pipeline-using-vs.md)
 - [PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
 - [Resource Manager 範本](data-factory-build-your-first-pipeline-using-arm.md)
 - [REST API](data-factory-build-your-first-pipeline-using-rest-api.md)
 
-[AZURE.INCLUDE [data-factory-tutorial-prerequisites](../../includes/data-factory-tutorial-prerequisites.md)]
+在本文中，您會使用 Microsoft Visual Studio 來建立您的第一個 Azure Data Factory。
 
-## 其他必要條件
+## 必要條件
+1. 詳讀[教學課程概觀](data-factory-build-your-first-pipeline.md)一文並完成**必要**步驟。
 2. 您必須是 **Azure 訂用帳戶的系統管理員**，才能將 Visual Studio 中的 Data Factory 實體發佈至 Azure Data Factory。
 3. 您必須已在電腦上安裝下列項目：
 	- Visual Studio 2013 或 Visual Studio 2015
 	- 下載 Azure SDK for Visual Studio 2013 或 Visual Studio 2015。瀏覽至 [Azure 下載頁面](https://azure.microsoft.com/downloads/)，然後按一下 [.NET] 區段中的 [VS 2013] 或 [VS 2015]。
 	- 下載適用於 Visual Studio 的最新 Azure Data Factory 外掛程式：[VS 2013](https://visualstudiogallery.msdn.microsoft.com/754d998c-8f92-4aa7-835b-e89c8c954aa5) 或 [VS 2015](https://visualstudiogallery.msdn.microsoft.com/371a4cf9-0093-40fa-b7dd-be3c74f49005)。如果您使用的是 Visual Studio 2013，也可以執行下列動作來更新外掛程式：在功能表中按一下 [工具] -> [擴充功能和更新] -> [線上] -> [Visual Studio 組件庫] -> [Microsoft Azure Data Factory Tools for Visual Studio] -> [更新]。
  
-下列逐步解說將說明如何建立及部署 Data Factory 實體。
+現在，讓我們使用 Visual Studio 來建立 Azure Data Factory。
+
 
 ## 建立 Visual Studio 專案 
 1. 啟動 **Visual Studio 2013** 或 **Visual Studio 2015**。按一下 [**檔案**]，指向 [**新增**]，然後按一下 [**專案**]。您應該會看到 [新增專案] 對話方塊。
@@ -267,10 +270,12 @@
 
 21. 在 [設定 Data Factory] 頁面中，執行下列作業：
 	1. 選取 [建立新的 Data Factory] 選項。
-	2. 輸入 FirstDataFactoryUsingVS 當做名稱。
+	2. 輸入 Data Factory 的唯一 [名稱]。例如：**FirstDataFactoryUsingVS09152016**。此名稱必須是全域唯一的。
 	
-		> [AZURE.IMPORTANT] Azure Data Factory 的名稱在全域必須是唯一的。如果您在發佈時收到錯誤：「Data Factory 名稱 “FirstDataFactoryUsingVS” 無法使用」，請變更名稱 (例如 yournameFirstDataFactoryUsingVS)。請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md)主題，以了解 Data Factory 成品的命名規則。
+		> [AZURE.IMPORTANT] 如果您在發佈時收到錯誤：「Data Factory 名稱 “FirstDataFactoryUsingVS” 無法使用」，請變更名稱 (例如 yournameFirstDataFactoryUsingVS)。請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md)主題，以了解 Data Factory 成品的命名規則。
 	3. 針對 [訂用帳戶] 欄位選取適當的訂用帳戶。
+	 
+		> [AZURE.IMPORTANT] 如果看不到任何訂用帳戶，請確定您是使用訂用帳戶的管理員或共同管理員的帳戶進行登入。
 	4. 針對要建立的 Data Factory 選取 [資源群組]。
 	5. 選取 Data Factory 的 [區域]。
 	6. 按 [下一步]，切換至 [發佈項目] 頁面。(如果 [下一步] 按鈕已停用，請按 **TAB** 來移出 [名稱] 欄位)。
@@ -278,7 +283,8 @@
 24. 檢閱摘要，然後按 [下一步] 開始部署程序，並檢視 [部署狀態]。
 25. 在 [部署狀態] 頁面上，您應該會看到部署程序的狀態。部署完成後按一下 [完成]。
 
-請注意：
+ 
+需要注意的重點：
 
 - 如果您收到錯誤：「此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory」，請執行下列其中一項，然後嘗試再次發佈︰
 
@@ -291,14 +297,15 @@
 			Get-AzureRmResourceProvider
 	- 使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)並瀏覽至 [Data Factory] 刀鋒視窗 (或) 在 Azure 入口網站中建立 Data Factory。此動作會自動為您註冊提供者。
 - 	Data Factory 的名稱未來可能會註冊為 DNS 名稱，因此會變成公開可見的名稱。
-- 	若要建立 Data Factory 執行個體，您必須是 Azure 訂用帳戶的參與者/系統管理員
+- 	若要建立 Data Factory 執行個體，您必須是 Azure 訂用帳戶的管理員或共同管理員
 
  
 ## 監視管線
 
+### 使用圖表檢視監視管線
 6. 登入 [Azure 入口網站](https://portal.azure.com/)，執行下列動作。
-	1. 按一下 [瀏覽]，選取 [資料處理站]。![瀏覽 Data Factory](./media/data-factory-build-your-first-pipeline-using-vs/browse-datafactories.png)
-	2. 從 Data Factory 清單中選取 **FirstDataFactoryUsingVS**。
+	1. 按一下 [更多服務]，然後按一下 [Data Factory]。![瀏覽 Data Factory](./media/data-factory-build-your-first-pipeline-using-vs/browse-datafactories.png)
+	2. 從 Data Factory 清單中選取您的 Data Factory 名稱 (例如︰**FirstDataFactoryUsingVS09152016**)。![選取您的 Data Factory](./media/data-factory-build-your-first-pipeline-using-vs/select-first-data-factory.png)
 7. 在您 Data Factory 的首頁中，按一下 [圖表]。
   
 	![[圖表] 圖格](./media/data-factory-build-your-first-pipeline-using-vs/diagram-tile.png)
@@ -321,17 +328,34 @@
 
 	![Dataset](./media/data-factory-build-your-first-pipeline-using-vs/dataset-blade.png)
 9. 處理完成時，您會看到配量處於 [就緒] 狀態。
-	>[AZURE.IMPORTANT] 建立隨選 HDInsight 叢集通常需要一些時間 (大約 20 分鐘)。
+	>[AZURE.IMPORTANT] 建立隨選 HDInsight 叢集通常需要一些時間 (大約 20 分鐘)。因此，管線預計需要**大約 30 分鐘**的時間來處理配量。
 
 	![Dataset](./media/data-factory-build-your-first-pipeline-using-vs/dataset-slice-ready.png)
 	
 10. 當配量處於**就緒**狀態時，檢查您 Blob 儲存體中 **adfgetstarted** 容器內 **partitioneddata** 資料夾的輸出資料。
  
 	![輸出資料](./media/data-factory-build-your-first-pipeline-using-vs/three-ouptut-files.png)
+11. 按一下配量，以在 [資料配量] 刀鋒視窗中查看其詳細資料。
+
+	![資料配量詳細資料](./media/data-factory-build-your-first-pipeline-using-vs/data-slice-details.png)
+12. 按一下 [活動執行清單] 中的活動執行，以在 [活動執行詳細資料] 視窗中查看活動執行 (我們的案例中的 Hive 活動) 的詳細資料。![活動執行詳細資料](./media/data-factory-build-your-first-pipeline-using-vs/activity-window-blade.png)
+	
+	從記錄檔中，您可以看到所執行的 Hive 查詢和狀態資訊。這些記錄檔適合用來排解任何疑難問題。
+ 
 
 如需如何使用 Azure 入口網站來監視您在本教學課程中建立的管線和資料集的指示，請參閱[監視資料集和管線](data-factory-monitor-manage-pipelines.md)。
 
-您也可以監視和管理應用程式，進而監視您的資料管線。如需有關使用應用程式的詳細資訊，請參閱[使用監視應用程式來監視和管理 Azure Data Factory 管線](data-factory-monitor-manage-app.md)。
+### 使用監視及管理應用程式來監視管線
+您也可以使用「監視及管理應用程式」來監視您的管線。如需使用此應用程式的詳細資訊，請參閱[使用監視及管理應用程式來監視和管理 Azure Data Factory 管線](data-factory-monitor-manage-app.md)。
+
+1. 按一下 [監視及管理] 圖格。
+
+	![監視及管理圖格](./media/data-factory-build-your-first-pipeline-using-vs/monitor-and-manage-tile.png)
+2. 您應該會看到 [監視及管理] 應用程式。變更 [開始時間] 和 [結束時間] 以符合您的管線的開始 (04-01-2016 12:00 AM) 和結束時間 (04-02-2016 12:00 AM)，然後按一下 [套用]。
+
+	![監視及管理應用程式](./media/data-factory-build-your-first-pipeline-using-vs/monitor-and-manage-app.png)
+3. 選取 [活動時段] 清單中的活動時段以查看其詳細資料。![活動時段詳細資料](./media/data-factory-build-your-first-pipeline-using-vs/activity-window-details.png)
+
 
 > [AZURE.IMPORTANT] 配量處理成功時就會刪除輸入檔案。因此，如果您想要重新執行配量或再次進行本教學課程，請將輸入檔案 (input.log) 上傳至 adfgetstarted 容器的 inputdata 資料夾。
  
@@ -478,4 +502,4 @@
 | [資料集](data-factory-create-datasets.md) | 本文協助您了解 Azure Data Factory 中的資料集。
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->

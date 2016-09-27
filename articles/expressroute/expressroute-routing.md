@@ -12,7 +12,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/10/2016"
+   ms.date="09/16/2016"
    ms.author="ganesr"/>
 
 
@@ -78,7 +78,7 @@ a.b.c.d/29 會分割成 a.b.c.d/30 和 a.b.c.d+4/30 並透過佈建 API 向下�
 
 ## 自發系統號碼
 
-Microsoft 將使用 AS 12076 進行 Azure 公用、Azure 私人和 Microsoft 對等互連。我們已保留 65515 至 65520 的 ASN，以供內部使用。同時支援 16 和 32 位元號碼。在對等互連端 (客戶或提供者) 上，AS 可以是公用 ASN (若可確認將由您擁有)，或是私人對等互連的私人 ASN 號碼，而且需要公用 ASN 才能進行公用和 Microsoft 對等互連。
+Microsoft 將使用 AS 12076 進行 Azure 公用、Azure 私人和 Microsoft 對等互連。我們已保留 65515 至 65520 的 ASN，以供內部使用。同時支援 16 和 32 位元號碼。在對等互連端 (客戶或提供者) 上，AS 可以是公用 ASN (若可確認將由您擁有)，或是私人ASN 號碼。
 
 任何指定線路的主要和次要路徑都沒有資料傳輸對稱的相關需求。轉送與返回路徑可能會周遊不同的路由器配對。相同的路由必須從橫跨多個屬於您的循環配對的主要或次要端公告。路由計量不需要完全相同。
 
@@ -175,4 +175,4 @@ Microsoft 會以適當的 BGP 社群值標記透過公用對等互連和 Microso
 	- [設定傳統部署模型的路由](expressroute-howto-routing-classic.md)或[設定 Resource Manager 部署模型的路由](expressroute-howto-routing-arm.md)
 	- [將傳統 VNet 連結至 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)或[將 Resource Manager VNet 連結至 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0921_2016-->

@@ -14,7 +14,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="08/30/2016"
+   ms.date="09/13/2016"
    ms.author="larryfr"/>
 
 #從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop
@@ -47,7 +47,7 @@ SSH 是用來登入遠端伺服器並在其中遠端執行命令的公用程式�
 
 ###SSH 使用者名稱
 
-SSH 使用者名稱為您用來向 HDInsight 叢集驗證的名稱。當您在叢集建立期間指定 SSH 使用者名稱時，會在叢集中所有節點上建立此使用者。建立叢集之後，您可以使用此使用者名稱連線至 HDInsight 叢集前端節點。然後您可以從前端節點連線至個別的工作節點。
+SSH 使用者名稱為您用來向 HDInsight 叢集驗證的名稱。當您在叢集建立期間指定 SSH 使用者名稱時，會在叢集中所有節點上建立此使用者。建立叢集之後，您可以使用此使用者名稱連線至 HDInsight 叢集前端節點。然後您可以從前端節點連線至個別的背景工作節點。
 
 ###SSH 密碼或公開金鑰
 
@@ -122,13 +122,13 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCelfkjrpYHYiks4TM+r1LVsTYQ4jAXXGeOAF9Vv/KG
 
 * **SSH 位址** - 有兩個使用 SSH 的位址可用來連接到叢集：
 
-    * **連接到前端節點** - 叢集名稱加上 **-ssh.azurehdinsight.net**。例如，**mycluster-ssh.azurehdinsight.net**。
+    * **連接到前端節點**：叢集名稱加上 **-ssh.azurehdinsight.net**。例如，**mycluster-ssh.azurehdinsight.net**。
     
     * **連接到邊緣節點**：如果您的叢集是 HDInsight 上的 R Server，此叢集也會包含可使用 **RServer.CLUSTERNAME.ssh.azurehdinsight.net** (其中 __CLUSTERNAME__ 是叢集名稱) 存取的邊緣節點。
 
 * **使用者名稱** - 建立叢集時所提供的 SSH 使用者名稱。
 
-下列範例將以使用者身分 **me** 連接到 **mycluster** 叢集的前端節點 0：
+下列範例以使用者身分 **me** 連接到 **mycluster** 的主要前端節點：
 
 	ssh me@mycluster-ssh.azurehdinsight.net
 
@@ -140,7 +140,7 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCelfkjrpYHYiks4TM+r1LVsTYQ4jAXXGeOAF9Vv/KG
 >
 > `ssh -i ~/.ssh/id_rsa me@mycluster-ssh.azurehdinsight.net`
 
-如果您使用前端節點的位址進行連接，則 SSH 預設為連接埠 22，這將會連接到 HDInsight 叢集上的前端節點 0。如果您使用連接埠 23，您將會連接到前端節點 1。如需前端節點的詳細資訊，請參閱 [HDInsight 上 Hadoop 叢集的可用性和可靠性](hdinsight-high-availability-linux.md)。
+如果您使用前端節點的位址進行連接，則 SSH 預設為連接埠 22，這將會連接到 HDInsight 叢集上的主要前端節點。如果您使用連接埠 23，您將會連接到次要前端節點。如需前端節點的詳細資訊，請參閱 [HDInsight 上 Hadoop 叢集的可用性和可靠性](hdinsight-high-availability-linux.md)。
 
 ###連接至背景工作節點
 
@@ -195,9 +195,9 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCelfkjrpYHYiks4TM+r1LVsTYQ4jAXXGeOAF9Vv/KG
 
     > [AZURE.NOTE] 如果您使用密碼以驗證您的 SSH 工作階段，則系統會提示您再次輸入密碼。如果您使用 SSH 金鑰，連線應該沒有任何提示即會完成。
 
-4. 建立工作階段之後，終端機提示會從 `username@hn0-clustername` 變更為 `username@wk0-clustername`，以指出您已連接至背景工作節點。目前您執行的任何命令會在背景工作節點上執行。
+4. 建立工作階段之後，終端機提示會從 `username@hn#-clustername` 變更為 `username@wk#-clustername`，以指出您已連接至背景工作節點。目前您執行的任何命令會在背景工作節點上執行。
 
-4. 完成在背景工作節點上執行動作之後，請使用 `exit` 命令以關閉背景工作節點的工作階段。這樣會帶您返回 `username@hn0-clustername` 提示字元。
+4. 完成在背景工作節點上執行動作之後，請使用 `exit` 命令以關閉背景工作節點的工作階段。這樣會帶您返回 `username@hn#-clustername` 提示字元。
 
 ##新增更多帳戶
 
@@ -247,4 +247,4 @@ SSH 可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDInsi
 
 [preview-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->

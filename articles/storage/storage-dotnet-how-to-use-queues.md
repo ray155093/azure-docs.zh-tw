@@ -14,13 +14,13 @@
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
 	ms.date="07/26/2016"
-	ms.author="gusapost"/>
+	ms.author="cbrooks;robinsh"/>
 
 # 以 .NET 開始使用 Azure 佇列儲存體
 
 [AZURE.INCLUDE [storage-selector-queue-include](../../includes/storage-selector-queue-include.md)] <br/> [AZURE.INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-queues.md)]
 
-## 概觀
+## Overview
 
 Azure 佇列儲存體可提供應用程式元件之間的雲端傳訊。設計擴充性的應用程式時，會經常分離應用程式元件，以便進行個別擴充。佇列儲存體可針對應用程式元件間的通訊，提供非同步傳訊，無論應用程式元件是在雲端、桌面、內部部署伺服器或行動裝置上執行。佇列儲存體也支援管理非同步工作並建置處理工作流程。
 
@@ -50,7 +50,7 @@ Azure 佇列儲存體可提供應用程式元件之間的雲端傳訊。設計�
 
 在 `program.cs` 檔案頂端新增下列 `using` 陳述式：
 
-	using Microsoft.Azure; // Namespace for CloudConfigurationManager 
+	using Microsoft.Azure; // Namespace for CloudConfigurationManager
 	using Microsoft.WindowsAzure.Storage; // Namespace for CloudStorageAccount
     using Microsoft.WindowsAzure.Storage.Queue; // Namespace for Queue storage types
 
@@ -275,4 +275,4 @@ Azure 佇列儲存體可提供應用程式元件之間的雲端傳訊。設計�
   [Edm]: http://nuget.org/packages/Microsoft.Data.Edm/5.0.2
   [Spatial]: http://nuget.org/packages/System.Spatial/5.0.2
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0921_2016-->
