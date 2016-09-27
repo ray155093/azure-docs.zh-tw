@@ -19,7 +19,7 @@
 # 管理及回應 Azure 資訊安全中心的安全性警示
 本文件可協助您使用 Azure 資訊安全中心來管理及回應安全性警示。
 
-> [AZURE.NOTE] 若要啟用進階偵測，請升級至 Azure 資訊安全中心標準。提供 90 天的免費試用。若要升級，請選取 [安全性原則][](security-center-policies.md) 中的 [定價層]。若要深入了解，請參閱[價格頁面](https://azure.microsoft.com/pricing/details/security-center/)。
+> [AZURE.NOTE] 若要啟用進階偵測，請升級至 Azure 資訊安全中心標準。提供 90 天的免費試用。若要升級，請選取 [安全性原則](security-center-policies.md) 中的 [定價層]。若要深入了解，請參閱[價格頁面](https://azure.microsoft.com/pricing/details/security-center/)。
 
 
 ## 什麼是安全性警示：

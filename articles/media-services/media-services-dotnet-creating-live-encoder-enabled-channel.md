@@ -20,14 +20,14 @@
 #如何使用 Azure 媒體服務執行即時串流，以使用 .NET 建立多位元速率串流
 
 > [AZURE.SELECTOR]
-- [入口網站](media-services-portal-creating-live-encoder-enabled-channel.md)
+- [Portal](media-services-portal-creating-live-encoder-enabled-channel.md)
 - [.NET](media-services-dotnet-creating-live-encoder-enabled-channel.md)
 - [REST API](https://msdn.microsoft.com/library/azure/dn783458.aspx)
 
 >[AZURE.NOTE]
 若要完成此教學課程，您需要 Azure 帳戶。如需詳細資訊，請參閱 [Azure 免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)。
 
-##Overview
+##概觀
 
 本教學課程將逐步引導您建立**通道**，可接收單一位元速率的即時串流，並將其編碼為多位元速率串流。
 
