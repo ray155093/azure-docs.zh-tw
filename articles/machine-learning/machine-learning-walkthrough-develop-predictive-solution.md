@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="06/10/2016"
+	ms.date="09/16/2016"
 	ms.author="garye"/>
 
 
@@ -43,4 +43,4 @@
 
 此逐步解說以 [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com/) 中的簡化版[二進位分類：信用風險預測](http://go.microsoft.com/fwlink/?LinkID=525270)範例實驗為基礎。
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->

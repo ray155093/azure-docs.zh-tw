@@ -20,12 +20,12 @@
 # 使用傳統入口網站設定 VNet 的點對站連線
 
 > [AZURE.SELECTOR]
-- [PowerShell - 資源管理員](vpn-gateway-howto-point-to-site-rm-ps.md)
-- [入口網站 - 傳統](vpn-gateway-point-to-site-create.md)
+- [Resource Manager - PowerShell](vpn-gateway-howto-point-to-site-rm-ps.md)
+- [傳統 - 傳統入口網站](vpn-gateway-point-to-site-create.md)
 
 點對站 (P2S) 設定可讓您建立從個別的用戶端電腦到虛擬網路的安全連線。當您想要從遠端位置 (例如從住家或會議) 連接到您的 VNet 時，或您只有幾個需要連線至虛擬網路的用戶端時，P2S 連線是很實用的解決方案。
 
-本文逐步引導您使用傳統入口網站，在**傳統部署模型**中建立具有點對站連線的 VNet。您目前無法在 Azure 入口網站中為傳統部署模型建立此端對端組態。
+本文逐步引導您使用**傳統入口網站**，在**傳統部署模型**中建立具有點對站連線的 VNet。您目前無法在 Azure 入口網站中為傳統部署模型建立此端對端組態。您可以在 Azure 入口網站中執行一些步驟，但 PowerShell 仍需要下載 VPN 用戶端組態。
 
 點對站連線不需要 VPN 裝置或公眾對應 IP 位址即可運作。VPN 連線的建立方式是從用戶端電腦啟動連線。如需點對站連線的詳細資訊，請參閱 [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md#point-to-site-connections)和[計劃與設計](vpn-gateway-plan-design.md)。
 
@@ -60,7 +60,7 @@
 2. 按一下螢幕左下角的 [新增]。在導覽窗格中依序按一下 [網路服務] 和 [虛擬網路]。按一下 [**自訂建立**] 開始組態精靈。
 
 3. 在 [虛擬網路詳細資料] 頁面上，輸入下列資訊，然後按一下右下角的下一步箭頭。
-	- **名稱**：為虛擬網路命名。例如，「VNet1」。這是當您將 Vm 部署到此 VNet 時要參照的名稱。
+	- **名稱**：為虛擬網路命名。例如，'VNet1'。這是當您將 Vm 部署到此 VNet 時要參照的名稱。
 	- **位置**：位置會與您要存放資源 (VM) 的實體位置 (區域) 直接相關。例如，如果您要讓部署到此虛擬網路的 VM 實際上位於 East US 中，請選取該位置。建立關聯之後，您就無法變更與虛擬網路相關聯的區域。
 
 4. 在 [DNS Servers and VPN Connectivity] 頁面上，輸入下列資訊，然後按一下右下角的下一步箭頭。
@@ -102,7 +102,7 @@
 
 ### <a name="root"></a>第 1 部分︰取得根憑證的 .cer 檔案
 
-如果您使用企業憑證系統，請取得您想要使用的根憑證的 .cer 檔案。在[第 3 部分](#createclientcert)中，您將會從根憑證產生用戶端憑證。
+如果您使用企業憑證系統，請取得您想要使用的根憑證的 .cer 檔案。在[第 3 部分](#createclientcert)中，您會從根憑證產生用戶端憑證。
 
 如果您未使用企業憑證解決方案，您必須產生自我簽署的根憑證。如需 Windows 10 的步驟，請參閱[使用點對站設定的自我簽署根憑證](vpn-gateway-certificates-point-to-site.md)。本文會引導您完成使用 makecert 以產生自我簽署的憑證，然後匯出 .cer 檔案。
 
@@ -193,4 +193,4 @@
 
 如需關於虛擬網路的詳細資訊，請參閱[虛擬網路文件](https://azure.microsoft.com/documentation/services/virtual-network/)頁面。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0921_2016-->

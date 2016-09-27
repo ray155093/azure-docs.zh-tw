@@ -15,7 +15,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/16/2016"
+   ms.date="09/19/2016"
    ms.author="nepeters"/>
 
 # 透過 Web UI 來管理容器
@@ -101,4 +101,4 @@ DC/OS 叢集會使用一組私人和公用代理程式來進行部署。若要�
 
 > [AZURE.VIDEO] azurecon-2015-deep-dive-on-the-azure-container-service-with-mesos]
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->

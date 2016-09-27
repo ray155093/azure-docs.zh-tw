@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="教學課程：使用 Data Factory 編輯器建立具有複製活動的管線 | Microsoft Azure" 
+	pageTitle="教學課程：使用 Azure 入口網站建立具有複製活動的管線 | Microsoft Azure" 
 	description="在本教學課程中，您會使用 Azure 入口網站中的 Data Factory 編輯器，建立具有複製活動的 Azure Data Factory 管線。" 
 	services="data-factory" 
 	documentationCenter="" 
@@ -13,32 +13,34 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="08/01/2016" 
+	ms.date="09/16/2016" 
 	ms.author="spelluru"/>
 
-# 教學課程：使用 Data Factory 編輯器建立具有複製活動的管線
+# 教學課程：使用 Azure 入口網站建立具有複製活動的管線
 > [AZURE.SELECTOR]
-- [教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
-- [使用 Data Factory 編輯器](data-factory-copy-activity-tutorial-using-azure-portal.md)
-- [使用 PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
-- [使用 Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
-- [使用 REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
-- [使用 .NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
-- [使用複製精靈](data-factory-copy-data-wizard-tutorial.md)
+- [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
+- [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)
+- [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
+- [PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
+- [REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
+- [.NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
+- [複製精靈](data-factory-copy-data-wizard-tutorial.md)
 
 
-本教學課程包含下列步驟：
+本教學課程示範如何使用 Azure 入口網站建立和監視 Azure Data Factory。Data Factory 中的管線會使用複製活動將資料從 Azure Blob 複製到 Azure SQL Database。
+
+以下是您會在本教學課程中執行的步驟：
 
 步驟 | 說明
 -----| -----------
 [建立 Azure Data Factory](#create-data-factory) | 在此步驟中，您會建立名為 **ADFTutorialDataFactory** 的 Azure Data Factory。  
 [建立連結服務](#create-linked-services) | 在此步驟中，您將建立兩個連結服務：**AzureStorageLinkedService** 和 **AzureSqlLinkedService**。AzureStorageLinkedService 會連結 Azure 儲存體，而 AzureSqlLinkedService 會將 Azure SQL Database 連結至 ADFTutorialDataFactory。管線的輸入資料位於 Azure Blob 儲存體的 Blob 容器中，輸出資料則儲存在 Azure SQL Database 的資料表中。因此，您可以將這兩個資料存放區以連結服務的形式新增至 Data Factory。      
-[建立輸入和輸出資料集](#create-datasets) | 在上一個步驟中，您所建立的連結服務參照含有輸入/輸出資料的資料存放區。在此步驟中，您會定義兩個 Data Factory 資料表：**EmpTableFromBlob** 和 **EmpSQLTable**，它們分別代表儲存在資料存放區的輸入/輸出資料。您會針對 EmpTableFromBlob，指定所含 Blob 具有來源資料的 Blob 容器，而針對 EmpSQLTable 指定可儲存輸出資料的 SQL 資料表。您也會指定其他屬性，例如結構、可用性等。 
+[建立輸入和輸出資料集](#create-datasets) | 在上一個步驟中，您所建立的連結服務參照含有輸入/輸出資料的資料存放區。在此步驟中，您會定義兩個 Data Factory 資料表：**EmpTableFromBlob** 和 **EmpSQLTable**，它們分別代表儲存在資料存放區的輸入/輸出資料。您會針對 EmpTableFromBlob，指定所含 Blob 具有來源資料的 Blob 容器，而針對 EmpSQLTable 指定可儲存輸出資料的 SQL 資料表。您也會指定其他屬性，例如結構、可用性和原則。 
 [建立管線](#create-pipeline) | 在此步驟中，您會在 ADFTutorialDataFactory 中建立名為 **ADFTutorialPipeline** 的管線。管線有一個**複製活動**，會將輸入資料從 Azure Blob 複製到輸出 Azure SQL 資料表。複製活動會在 Azure Data Factory 中執行資料移動。此活動是由全域可用的服務所提供，可以使用安全、可靠及可調整的方式，在各種不同的資料存放區之間複製資料。如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)文章。 
 [監視管線](#monitor-pipeline) | 在此步驟中，您會使用 Azure 入口網站來監視輸入和輸出資料表的配量。
 
 > [AZURE.IMPORTANT] 
-請檢閱[教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)文章，並在執行本教學課程之前完成必要的步驟。
+請檢閱[教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)文章，並在執行本教學課程之前完成**必要**步驟。
 
 ## 建立 Data Factory
 在此步驟中，您會使用 Azure 入口網站來建立名為 **ADFTutorialDataFactory** 的 Azure Data Factory。
@@ -51,7 +53,7 @@
 	1. 輸入 **ADFTutorialDataFactory** 做為名稱。
 	
   		![新增 Data Factory 刀鋒視窗][image-data-factory-getstarted-new-data-factory-blade]
-	2. 按一下 [資源群組名稱]，然後執行下列動作：
+	2. 按一下 [資源群組名稱]，然後執行下列步驟：
 		1. 按一下 [建立新的資源群組]。
 		2. 在 [建立資源群組] 刀鋒視窗中，輸入 **ADFTutorialResourceGroup** 做為資源群組的名稱，然後按一下 [確定]。
 
@@ -72,7 +74,7 @@
 	> 若要建立 Data Factory 執行個體，您必須是 Azure 訂用帳戶的參與者/系統管理員
 
 9. 按一下左側的 [通知] 中樞，然後從建立程序中尋找通知。按一下 **X** 關閉 [通知] 刀鋒視窗 (若已開啟)。
-10. 建立完成之後，您會看到 [DATA FACTORY] 刀鋒視窗，如下所示。
+10. 建立完成之後，您會看到如圖所示的 [DATA FACTORY] 刀鋒視窗。
 
     ![Data Factory 首頁][image-data-factory-get-stated-factory-home-page]
 
@@ -151,7 +153,7 @@
 		}
 
 		
-     請注意：
+     請注意下列幾點：
 	
 	- 資料集 **type** 設為 **AzureBlob**。
 	- **linkedServiceName** 設為 **AzureStorageLinkedService**。您已在步驟 2 中建立此連結服務。
@@ -161,7 +163,7 @@
 	- **availability** 設定為**每小時** (**frequency** 設定為**小時**，**interval** 設定為 **1**)。因此，Data Factory 會每小時都在您指定之 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。
 	
 
-	如果您沒有指定**輸入****資料表**的 **fileName**，則輸入資料夾 (**folderPath**) 中的所有檔案/Blob 都會視為輸入。如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。
+	如果您沒有指定**輸入** **資料表** 的 **fileName**，則輸入資料夾 (**folderPath**) 中的所有檔案/Blob 都會視為輸入。如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。
  
 	如果您未指定輸出資料表的 **fileName**，**folderPath** 中產生的檔案會依照下列格式命名：Data.&lt;Guid&gt;.txt (範例：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt)。
 
@@ -213,7 +215,7 @@
 		}
 
 		
-     請注意：
+     請注意下列幾點：
 	
 	* 資料集 **type** 設為 **AzureSQLTable**。
 	* **linkedServiceName** 設為 **AzureSqlLinkedService** (您已在步驟 2 中建立此連結服務)。
@@ -276,7 +278,7 @@
 		  }
 		} 
 
-	請注意：
+	請注意下列幾點：
 
 	- 在活動區段中，只會有一個活動的 **type** 設為 **CopyActivity**。
 	- 活動的輸入設為 **EmpTableFromBlob**，活動的輸出則設為 **EmpSQLTable**。
@@ -303,7 +305,7 @@
 
 	![Data Factory 刀鋒視窗：圖表磚][image-datafactoryblade-diagramtile]
 
-2. 您應該會看到如下所示的圖表：
+2. 您應該會看到如下圖所示的圖表：
 
 	![圖表檢視][image-data-factory-get-started-diagram-blade]
 
@@ -330,7 +332,7 @@
 	![已選取 EmpTableFromBlob 的資料集][image-data-factory-get-started-datasets-emptable-selected]
 5. 請注意，截至目前為止的資料配量都已產生，並已「就緒」，因為 **emp.txt** 檔案一直都存在於 Blob 容器中：**adftutorial\\input**。確認下方的 [最近失敗的配量] 區段中沒有任何配量。
 
-	[最近更新的配量] 和 [最近失敗的配量] 清單都依照 [上次更新時間] 排序。在下列情況中，配量的更新時間會變更。
+	[最近更新的配量] 和 [最近失敗的配量] 清單都依照 [上次更新時間] 排序。在下列情況中，配量的更新時間會變更：
     
 	按一下清單的標題或 **...** (省略符號)，查看更長的配量清單。按一下工具列上的 [篩選] 以篩選配量。
 	
@@ -461,4 +463,4 @@
 [image-data-factory-name-not-available]: ./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-data-factory-not-available.png
  
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0921_2016-->

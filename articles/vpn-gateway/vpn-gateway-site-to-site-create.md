@@ -20,10 +20,9 @@
 # 使用 Azure 傳統入口網站建立具有網站間連線的 VNet
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
-- [Azure 傳統入口網站](vpn-gateway-site-to-site-create.md)
-- [PowerShell - 資源管理員](vpn-gateway-create-site-to-site-rm-powershell.md)
-
+- [Resource Manager - Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
+- [Resource Manager - PowerShell](vpn-gateway-create-site-to-site-rm-powershell.md)
+- [傳統 - 傳統入口網站](vpn-gateway-site-to-site-create.md)
 
 本文逐步引導您使用**傳統部署模型**和傳統入口網站，建立虛擬網路以及內部部署網路的網站間 VPN 連線。網站間連線可以用於跨單位與混合式組態。目前您無法使用 Azure 入口網站為傳統部署模型建立端對端網站間組態。
 
@@ -55,13 +54,13 @@
 
 2. 按一下螢幕左下角的 [新增]。在導覽窗格中依序按一下 [網路服務] 和 [虛擬網路]。按一下 [**自訂建立**] 開始組態精靈。
 
-3. 若要建立 VNet，請在下列頁面上填寫資訊。
+3. 若要建立 VNet，請在下列頁面上輸入組態設定：
 
 ## 虛擬網路詳細資料頁面
 
 輸入以下資訊：
 
-- **名稱**：為虛擬網路命名。例如， *EastUSVNet* 。當您部署 VM 和 PaaS 執行個體時，將會使用此虛擬網路名稱，因此您可能不會想要太過複雜的名稱。
+- **名稱**：為虛擬網路命名。例如，*EastUSVNet*。當您部署 VM 和 PaaS 執行個體時，將會使用此虛擬網路名稱，因此您可能不會想要太過複雜的名稱。
 - **位置**：位置會與您要存放資源 (VM) 的實體位置 (區域) 直接相關。例如，如果想要您部署到此虛擬網路的 VM 實際上位於 *美國東部*，請選取該位置。建立關聯之後，您就無法變更與虛擬網路相關聯的區域。
 
 ## DNS 伺服器和 VPN 連線能力頁面
@@ -76,7 +75,7 @@
 
 如果您正在建立新的區域網路，將看到 [網站間連線能力] 頁面。如果您想要使用先前建立的區域網路，此頁面不會出現在精靈中，而您可以移至下一節。
 
-輸入下列資訊，然後按一下 [下一步] 箭頭。
+輸入下列資訊，然後按 [下一步] 箭頭。
 
 - 	**名稱**：您想要命名區域 (內部部署) 網站的名稱。
 - 	**VPN 裝置 IP 位址**：您用來連接到 Azure 之內部部署 VPN 裝置的公開 IPv4 位址。VPN 裝置不能位於 NAT 後方。
@@ -107,4 +106,4 @@
 
 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。如需詳細資訊，請參閱[虛擬機器文件](https://azure.microsoft.com/documentation/services/virtual-machines/)。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0921_2016-->

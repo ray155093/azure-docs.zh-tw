@@ -3,8 +3,8 @@
 	description="本文說明如何開始使用 Azure Multi-Factor Authentication 和 Windows Server 2012 R2 中的 AD FS。"
 	services="multi-factor-authentication"
 	documentationCenter=""
-	authors="billmath"
-	manager="stevenpo"
+	authors="kgremban"
+	manager="femila"
 	editor="curtland"/>
 
 <tags
@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="get-started-article"
 	ms.date="08/04/2016"
-	ms.author="billmath"/>
+	ms.author="kgremban"/>
 
 
 # 搭配 Windows Server 2012 R2 中的 AD FS 使用 Azure Multi-Factor Authentication Server 來保護雲端和內部部署資源
@@ -85,4 +85,4 @@
 
 若要登錄配接器，在 PowerShell 中執行 \\Program Files\\Multi-Factor Authentication Server\\Register-MultiFactorAuthenticationAdfsAdapter.ps1 指令碼。此配接器會登錄為 WindowsAzureMultiFactorAuthentication。您必須重新啟動 AD FS 服務，登錄才會生效。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0921_2016-->

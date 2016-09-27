@@ -25,8 +25,6 @@
 
 在本教學課程中，您將會開發一個工作以讀取定位鍵分隔值 (TSV) 檔案，並將該檔案轉換為逗點分隔值 (CSV) 檔案。若要使用其他支援的工具進行同一個教學課程，請按一下此區段最上方的索引標籤。
 
-[AZURE.INCLUDE [basic-process-include](../../includes/data-lake-analytics-basic-process.md)]
-
 ##必要條件
 
 開始進行本教學課程之前，您必須具備下列條件：
@@ -99,7 +97,7 @@ Azure 入口網站會提供使用者介面，可將範例資料檔案複製到�
 
 ## 提交資料湖分析工作
 
-資料湖分析工作是以 U-SQL 語言撰寫。若要深入了解 U-SQL，請參閱[開始使用 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)和 [U-SQL 語言參考](http://go.microsoft.com/fwlink/?LinkId=691348)。
+資料湖分析工作是以 U-SQL 語言撰寫。若要深入了解 U-SQL，請參閱[開始使用 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)和[U-SQL 語言參考](http://go.microsoft.com/fwlink/?LinkId=691348)。
 
 **建立資料湖分析工作指令碼**
 
@@ -162,4 +160,4 @@ Azure 入口網站會提供使用者介面，可將範例資料檔案複製到�
 - 針對管理工作，請參閱[使用 Azure 入口網站管理 Azure 資料湖分析](data-lake-analytics-manage-use-portal.md)。
 - 若要取得資料湖分析概觀，請參閱 [Azure 資料湖分析概觀](data-lake-analytics-overview.md)。
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->

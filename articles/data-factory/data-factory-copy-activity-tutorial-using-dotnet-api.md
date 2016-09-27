@@ -13,18 +13,18 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article" 
-	ms.date="08/19/2016" 
+	ms.date="09/16/2016" 
 	ms.author="spelluru"/>
 
 # 教學課程：使用 .NET API 建立具有複製活動的管線
 > [AZURE.SELECTOR]
-- [教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
-- [使用 Data Factory 編輯器](data-factory-copy-activity-tutorial-using-azure-portal.md)
-- [使用 PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
-- [使用 Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
-- [使用 REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
-- [使用 .NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
-- [使用複製精靈](data-factory-copy-data-wizard-tutorial.md)
+- [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
+- [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)
+- [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
+- [PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
+- [REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
+- [.NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
+- [複製精靈](data-factory-copy-data-wizard-tutorial.md)
 
 本教學課程示範如何使用 .NET API 建立和監視 Azure Data Factory。Data Factory 中的管線會使用複製活動將資料從 Azure Blob 複製到 Azure SQL Database。
 
@@ -34,7 +34,7 @@
 這篇文章並未涵蓋所有的 Data Factory .NET API。請參閱 [Data Factory .NET API 參考](https://msdn.microsoft.com/library/mt415893.aspx)，以取得有關 Data Factory .NET SDK 的詳細資料。
 
 ## 必要條件
-- 逐一完成[教學課程概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)，以取得本教學課程的概觀並完成必要元件。
+- 請檢閱[教學課程概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)，以取得本教學課程的概觀並完成**必要**步驟。
 - Visual Studio 2012、2013 或 2015
 - 下載並安裝 [Azure .NET SDK](http://azure.microsoft.com/downloads/)
 - Azure PowerShell。按照[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 一文中的指示操作，在您的電腦上安裝 Azure PowerShell。您可以使用 Azure PowerShell 建立 Azure Active Directory 應用程式。
@@ -458,4 +458,4 @@
 
  
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0921_2016-->

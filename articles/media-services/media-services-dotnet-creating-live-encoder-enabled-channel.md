@@ -1,9 +1,9 @@
 <properties 
-	pageTitle="如何使用 Azure 媒體服務執行即時串流，以使用 .NET 建立多位元速率串流" 
+	pageTitle="如何使用 Azure 媒體服務執行即時串流，以使用 .NET 建立多位元速率串流 | Microsoft Azure" 
 	description="本教學課程將逐步引導您使用 .NET SDK 建立通道，以接收單一位元速率即時串流，並將其編碼為多位元速率串流。" 
 	services="media-services" 
 	documentationCenter="" 
-	authors="juliako,anilmur" 
+	authors="anilmur" 
 	manager="erikre" 
 	editor=""/>
 
@@ -13,19 +13,16 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="get-started-article"
-	ms.date="06/22/2016"
-	ms.author="juliako"/>
+	ms.date="09/15/2016"
+	ms.author="juliako;anilmur"/>
 
 
 #如何使用 Azure 媒體服務執行即時串流，以使用 .NET 建立多位元速率串流
 
 > [AZURE.SELECTOR]
-- [入口網站](media-services-portal-creating-live-encoder-enabled-channel.md)
+- [Portal](media-services-portal-creating-live-encoder-enabled-channel.md)
 - [.NET](media-services-dotnet-creating-live-encoder-enabled-channel.md)
 - [REST API](https://msdn.microsoft.com/library/azure/dn783458.aspx)
-
-
-
 
 >[AZURE.NOTE]
 若要完成此教學課程，您需要 Azure 帳戶。如需詳細資訊，請參閱 [Azure 免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)。
@@ -39,7 +36,7 @@
 
 ##常見即時串流案例
 
-下列步驟說明建立常見即時串流應用程式所包含的工作。
+下列步驟描述當我們建立一般即時資料流應用程式時，會涉及到的各種工作。
 
 >[AZURE.NOTE] 目前，即時事件的最大建議持續時間是 8 小時。如果您需要較長的時間來執行通道，請連絡 amslived@Microsoft.com。
 
@@ -92,7 +89,7 @@
 
 需要有下列項目，才能完成教學課程。
 
-- 若要完成此教學課程，您需要 Azure 帳戶。 
+- 若要完成此教學課程，您需要 Azure 帳戶。
 	
 	如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)。您將獲得能用來試用 Azure 付費服務的額度。即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務和功能，例如 Azure App Service 中的 Web Apps 功能。
 - 媒體服務帳戶。若要建立媒體服務帳號，請參閱[建立帳戶](media-services-create-account.md)。
@@ -521,7 +518,9 @@
 	}	
 
 
-##後續步驟：媒體服務學習路徑
+##後續步驟
+
+檢閱媒體服務學習路徑。
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
@@ -533,4 +532,4 @@
 
 如果本主題未包含您預期的內容、缺少部分內容，或者提供了一些其他不符合您需求的方式，請在下方提供您使用 Disqus 執行緒的意見反應給我們。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0921_2016-->

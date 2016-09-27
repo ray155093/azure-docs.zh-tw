@@ -19,28 +19,20 @@
 
 # 教學課程：使用 Azure PowerShell 建置您的第一個 Azure Data Factory
 > [AZURE.SELECTOR]
+- [概觀和必要條件](data-factory-build-your-first-pipeline.md)
 - [Azure 入口網站](data-factory-build-your-first-pipeline-using-editor.md)
 - [Visual Studio](data-factory-build-your-first-pipeline-using-vs.md)
 - [PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
 - [Resource Manager 範本](data-factory-build-your-first-pipeline-using-arm.md)
 - [REST API](data-factory-build-your-first-pipeline-using-rest-api.md)
 
+在本文中，您會使用 Azure PowerShell 來建立您的第一個 Azure Data Factory。
 
-[AZURE.INCLUDE [data-factory-tutorial-prerequisites](../../includes/data-factory-tutorial-prerequisites.md)]
+## 必要條件
 
-## 其他必要條件
-除了「教學課程概觀」主題中所列的必要條件，您還需要安裝下列項目：
-
-- **Azure PowerShell** (英文)。按照[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 一文中的指示，在您的電腦上安裝最新版的 Azure PowerShell。
+- 詳讀[教學課程概觀](data-factory-build-your-first-pipeline.md)一文並完成**必要**步驟。
+- 按照[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 一文中的指示，在您的電腦上安裝最新版的 Azure PowerShell。
 - (選用) 這篇文章並未涵蓋所有的 Data Factory Cmdlet。如需 Data Factory Cmdlet 的完整文件，請參閱 [Data Factory Cmdlet 參考](https://msdn.microsoft.com/library/dn820234.aspx)。
-
-若您使用 **1.0 版本之前**的 Azure PowerShell，您必須使用[這裡](https://msdn.microsoft.com/library/azure/dn820234.aspx)所記載的 Cmdlet。您也必須在使用 Data Factory Cmdlet 之前，先執行下列命令：
- 
-1. 啟動 Azure PowerShell 並執行下列命令。將 Azure PowerShell 維持在開啟狀態，直到本教學課程結束為止。如果您關閉並重新開啟，則需要再次執行這些命令。
-	1. 執行 `Add-AzureAccount`，並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
-	2. 執行 `Get-AzureSubscription` 以檢視此帳戶的所有訂用帳戶。
-	3. 執行 `Get-AzureRmSubscription -SubscriptionName NameOfAzureSubscription | Set-AzureRmContext` 以選取您要使用的訂用帳戶。以您的 Azure 訂用帳戶名稱取代 **NameOfAzureSubscription**。
-4. 切換至 Azure Resource Manager 模式，因為 Azure Data Factory Cmdlet 可在此模式中使用：`Switch-AzureMode AzureResourceManager`。
 
 ## 建立 Data Factory
 
@@ -49,8 +41,8 @@
 1. 啟動 Azure PowerShell 並執行下列命令。將 Azure PowerShell 維持在開啟狀態，直到本教學課程結束為止。如果您關閉並重新開啟，則需要再次執行這些命令。
 	- 執行 `Login-AzureRmAccount`，並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
 	- 執行 `Get-AzureRmSubscription` 以檢視此帳戶的所有訂用帳戶。
-	- 執行 `Select-AzureRmSubscription <Name of the subscription>` 以選取您要使用的訂用帳戶。此訂用帳戶應該與您在 Azure 入口網站中使用的相同。
-3. 執行以下命令，建立名為 **ADFTutorialResourceGroup** 的 Azure 資源群組。
+	- 執行 `Get-AzureRmSubscription -SubscriptionName <SUBSCRIPTION NAME> | Set-AzureRmContext` 以選取您要使用的訂用帳戶。此訂用帳戶應該與您在 Azure 入口網站中使用的相同。
+3. 執行以下命令，建立名為 **ADFTutorialResourceGroup** 的 Azure 資源群組：
 
 		New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
 
@@ -60,18 +52,18 @@
 		New-AzureRmDataFactory -ResourceGroupName ADFTutorialResourceGroup -Name FirstDataFactoryPSH –Location "West US"
 
 
-請注意：
+請注意下列幾點：
  
 - Azure Data Factory 的名稱在全域必須是唯一的。如果您收到錯誤：「Data Factory 名稱 “FirstDataFactoryPSH” 無法使用」，請變更名稱 (例如 yournameFirstDataFactoryPSH)。執行本教學課程中的步驟時，請使用此名稱來取代 ADFTutorialFactoryPSH。請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md)主題，以了解 Data Factory 成品的命名規則。
 - 若要建立 Data Factory 執行個體，您必須是 Azure 訂用帳戶的參與者/系統管理員
 - Data Factory 的名稱未來可能會註冊為 DNS 名稱，因此會變成公開可見的名稱。
 - 如果您收到錯誤：「此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory」，請執行下列其中一項，然後嘗試再次發佈︰
 
-	- 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者。
+	- 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者：
 		
 			Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
 	
-		您可以執行下列命令來確認已註冊 Data Factory 提供者。
+		您可以執行下列命令來確認已註冊 Data Factory 提供者：
 	
 			Get-AzureRmResourceProvider
 	- 使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)並瀏覽至 [Data Factory] 刀鋒視窗 (或) 在 Azure 入口網站中建立 Data Factory。此動作會自動為您註冊提供者。
@@ -141,7 +133,7 @@
 	| TimeToLive | 指定 HDInsight 叢集在被刪除之前的閒置時間。 |
 	| linkedServiceName | 指定用來儲存 HDInsight 產生之記錄檔的儲存體帳戶 |
 
-	請注意：
+	請注意下列幾點：
 	
 	- Data Factory 會使用 JSON 為您建立「以 Windows 為基礎的」HDInsight 叢集。您也可以讓它建立**以 Linux 為基礎的** HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)。
 	- 您可以使用**自己的 HDInsight 叢集**，不必使用隨選的 HDInsight 叢集。如需詳細資訊，請參閱 [HDInsight 連結服務](data-factory-compute-linked-services.md#azure-hdinsight-linked-service)。
@@ -197,7 +189,7 @@
 	| frequency/interval | 頻率設為「每月」且間隔為 1，表示每個月都會可取得輸入配量。 | 
 	| external | 如果輸入資料不是由 Data Factory 服務產生，此屬性會設為 true。 | 
 
-2. 在 Azure PowerShell 中執行以下命令來建立 Data Factory 資料集。
+2. 在 Azure PowerShell 中執行以下命令來建立 Data Factory 資料集：
 
 		New-AzureRmDataFactoryDataset $df -File .\InputTable.json
 
@@ -227,7 +219,7 @@
 
 	JSON 會定義名為 **AzureBlobOutput** 的資料集，以表示管線中活動的輸出資料。此外，它也會指定將結果儲存在名為 **adfgetstarted** 的 Blob 容器及名為 **partitioneddata** 的資料夾中。**availability** 區段指定每個月產生一次輸出資料集。
 
-2. 在 Azure PowerShell 中執行以下命令來建立 Data Factory 資料集。
+2. 在 Azure PowerShell 中執行以下命令來建立 Data Factory 資料集：
 
 		New-AzureRmDataFactoryDataset $df -File .\OutputTable.json
 
@@ -307,15 +299,15 @@
 
 2. 執行 **Get-AzureRmDataFactorySlice**，以取得 **EmpSQLTable** (管線的輸出資料表) 所有配量的詳細資料。
 
-		Get-AzureRmDataFactorySlice $df -DatasetName AzureBlobOutput -StartDateTime 2014-02-01
+		Get-AzureRmDataFactorySlice $df -DatasetName AzureBlobOutput -StartDateTime 2016-04-01
 
 	請注意，您在此處指定的 StartDateTime 與在管線 JSON 中指定的開始時間是相同的。您應該會看到如下所示的輸出。
 
 		ResourceGroupName : ADFTutorialResourceGroup
 		DataFactoryName   : FirstDataFactoryPSH
 		DatasetName       : AzureBlobOutput
-		Start             : 2/1/2014 12:00:00 AM
-		End               : 3/1/2014 12:00:00 AM
+		Start             : 4/1/2016 12:00:00 AM
+		End               : 4/2/2016 12:00:00 AM
 		RetryCount        : 0
 		State             : InProgress
 		SubState          :
@@ -325,7 +317,7 @@
 
 3. 執行 **Get-AzureRmDataFactoryRun**，以取得特定配量的活動執行詳細資料。
 
-		Get-AzureRmDataFactoryRun $df -DatasetName AzureBlobOutput -StartDateTime 2014-02-01
+		Get-AzureRmDataFactoryRun $df -DatasetName AzureBlobOutput -StartDateTime 2016-04-01
 
 	您應該會看到如下所示的輸出。
 		
@@ -336,8 +328,8 @@
 		ProcessingStartTime : 12/18/2015 4:50:33 AM
 		ProcessingEndTime   : 12/31/9999 11:59:59 PM
 		PercentComplete     : 0
-		DataSliceStart      : 2/1/2014 12:00:00 AM
-		DataSliceEnd        : 3/1/2014 12:00:00 AM
+		DataSliceStart      : 4/1/2016 12:00:00 AM
+		DataSliceEnd        : 4/2/2016 12:00:00 AM
 		Status              : AllocatingResources
 		Timestamp           : 12/18/2015 4:50:33 AM
 		RetryAttempt        : 0
@@ -352,7 +344,10 @@
 	![輸出資料](./media/data-factory-build-your-first-pipeline-using-powershell/three-ouptut-files.png)
 
 
-> [AZURE.IMPORTANT] 配量處理成功時就會刪除輸入檔案。因此，如果您想要重新執行配量或再次進行本教學課程，請將輸入檔案 (input.log) 上傳至 adfgetstarted 容器的 inputdata 資料夾。
+> [AZURE.IMPORTANT] 
+建立隨選 HDInsight 叢集通常需要一些時間 (大約 20 分鐘)。因此，管線預計需要**大約 30 分鐘**的時間來處理配量。
+> 
+> 配量處理成功時就會刪除輸入檔案。因此，如果您想要重新執行配量或再次進行本教學課程，請將輸入檔案 (input.log) 上傳至 adfgetstarted 容器的 inputdata 資料夾。
 
 ## 摘要 
 在本教學課程中，您會在 HDInsight hadoop 叢集上執行 Hive 指令碼，以建立 Azure Data Factory 來處理資料。您會在使用 Azure 入口網站中使用 Data Factory 編輯器來執行下列步驟︰
@@ -378,4 +373,4 @@
 | [使用 Azure 入口網站刀鋒視窗監視及管理管線](data-factory-monitor-manage-pipelines.md) | 本文描述如何使用 Azure 入口網站刀鋒視窗來監視、管理和偵錯您的管線。 |
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->

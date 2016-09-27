@@ -1,20 +1,20 @@
 <properties 
-	pageTitle="部署 Azure Multi-factor Authentication Server 使用者入口網站" 
-	description="這是說明如何開始使用 Azure MFA 和使用者入口網站的 Azure Multi-Factor Authentication 頁面。" 
-	services="multi-factor-authentication" 
-	documentationCenter="" 
-	authors="billmath" 
-	manager="femila" 
+	pageTitle="部署 Azure Multi-factor Authentication Server 使用者入口網站"
+	description="這是說明如何開始使用 Azure MFA 和使用者入口網站的 Azure Multi-Factor Authentication 頁面。"
+	services="multi-factor-authentication"
+	documentationCenter=""
+	authors="kgremban"
+	manager="femila"
 	editor="curtand"/>
 
-<tags 
-	ms.service="multi-factor-authentication" 
-	ms.workload="identity" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="get-started-article" 
-	ms.date="08/15/2016" 
-	ms.author="billmath"/>
+<tags
+	ms.service="multi-factor-authentication"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="08/15/2016"
+	ms.author="kgremban"/>
 
 # 部署 Azure Multi-factor Authentication Server 使用者入口網站
 
@@ -101,7 +101,7 @@
 Azure Multi-Factor Authentication 伺服器為使用者入口網站提供數個選項。下表提供這些選項及其用途說明的清單。
 
 使用者入口網站設定|說明|
-:------------- | :------------- | 
+:------------- | :------------- |
 使用者入口網站 URL| 可讓您輸入裝載入口網站的 URL。
 主要驗證| 可讓您指定登入入口網站時所使用的驗證類型。Windows、Radius 或 LDAP 驗證。
 允許使用者登入|可讓使用者在使用者入口網站的登入頁面輸入使用者名稱和密碼。如果未選取此項目，則會呈現灰色方塊。
@@ -187,6 +187,4 @@ Azure Multi-Factor Authentication 伺服器為使用者入口網站提供數個�
 
 使用者自助式註冊現已完成，使用者也已登入使用者入口網站。只要系統管理員許可，使用者以後可隨時重新登入使用者入口網站來變更電話號碼、PIN、驗證方法和安全性問題。
 
- 
-
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0921_2016-->
