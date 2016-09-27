@@ -93,9 +93,9 @@
 
             &nbsp;
 
-            > [AZURE.IMPORTANT] When creating a metastore, do not use a database name that contains dashes or hyphens, as this can cause the cluster creation process to fail.
+            > [AZURE.IMPORTANT] 在建立中繼存放區時，請勿使用包含破折號或連字號的資料庫名稱，因為這會導致叢集建立程序失敗。
 		
-  	* **指令碼動作**：如果您想要在叢集建立時使用自訂指令碼來自訂該叢集。如需指令碼動作的詳細資訊，請參閱[使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md)。請在 [指令碼動作] 刀鋒視窗上提供如螢幕擷取畫面所示的詳細資料。
+  		* **指令碼動作**：如果您想要在叢集建立時使用自訂指令碼來自訂該叢集。如需指令碼動作的詳細資訊，請參閱[使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md)。請在 [指令碼動作] 刀鋒視窗上提供如螢幕擷取畫面所示的詳細資料。
   	
 
 			![指令碼動作刀鋒視窗](./media/hdinsight-provision-clusters/HDI.CreateCluster.8.png "指定指令碼動作")
