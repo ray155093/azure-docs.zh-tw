@@ -173,8 +173,8 @@
 
 以 Windows 為基礎的電腦可以驗證本機帳戶或網域帳戶之認證。
 
-- 如果是本機帳戶，請使用 *ComputerName*\*UserName* 語法 (範例：SQL1\\Admin4798)。
-- 針對網域帳戶，請使用 DomainName\\UserName 語法 (範例：CONTOSO\\peterodman)。
+- 如果是本機帳戶，請使用 *ComputerName*\\*UserName* 語法 (範例：SQL1\\Admin4798)。
+- 針對網域帳戶，請使用 *DomainName*\\*UserName* 語法 (範例：CONTOSO\\peterodman)。
 
 如果您在新的 Active Directory 樹系將 VM 提升為網域控制站，您用來登入的本機系統管理員帳戶會轉換為對等的帳戶，在新樹系和網域中使用相同的密碼。本機帳戶隨即刪除。
 
@@ -211,3 +211,4 @@
 [疑難排解存取在 Azure 虛擬機器上執行的應用程式](virtual-machines-linux-troubleshoot-app-connection.md)
 
 <!----HONumber=AcomDC_0907_2016-->
+
