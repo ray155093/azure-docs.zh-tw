@@ -3,7 +3,7 @@
 	description="HDInsight 支援多個可部署的 Hadoop 叢集版本。請參閱支援的 Hadoop 和 HortonWorks Data Platform (HDP) 配送版本。"
 	services="hdinsight"
 	editor="cgronlun"
-	manager="paulettm"
+	manager="jhubbard"
 	authors="mumian"
 	documentationCenter=""/>
 
@@ -167,4 +167,4 @@ SLA 是根據「支援期間」來定義。「支援期間」是指 Microsoft �
 
 [zookeeper]: http://zookeeper.apache.org/
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

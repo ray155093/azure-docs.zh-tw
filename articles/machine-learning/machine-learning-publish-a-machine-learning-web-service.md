@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="garyericson"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -26,7 +26,7 @@ Azure Machine Learning 可讓您建置、測試以及部署預測性分析解決
 - **[將其轉換為預測性實驗]** - 一旦您的模型已使用現有資料訓練好，並準備好使用該模型為新資料評分之後，您就是在準備並簡化您的實驗進行預測。
 - **將其部署為 Web 服務** - 您可以將預測性實驗部署為[新的]或[傳統] Azure Web 服務。使用者可以將資料傳送到您的模型以及接收您的模型的預測。
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## 建立訓練實驗
 
@@ -178,4 +178,4 @@ For more information on how to manage Azure Machine Learning web service endpoin
 [Manage]: #manage-the-web-service-in-the-azure-management-portal
 [Update]: #update-the-web-service
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

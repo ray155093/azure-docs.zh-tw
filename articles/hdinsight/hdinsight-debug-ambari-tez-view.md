@@ -4,7 +4,7 @@ description="了解如何在 HDInsight 上使用 Ambari Tez 檢視來為 Tez 作
 services="hdinsight"
 documentationCenter=""
 authors="Blackmist"
-manager="paulettm"
+manager="jhubbard"
 editor="cgronlun"/>
 
 <tags
@@ -22,7 +22,7 @@ ms.author="larryfr"/>
 
 > [AZURE.NOTE] 本文件的資訊是以 Linux 為基礎的 HDInsight 叢集的特定資訊。如需如何使用 Windows 型 HDInsight 來為 Tez 作業偵錯的資訊，請參閱 [Use the Tez UI to debug Tez jobs on Windows-based HDInsight (在 Windows 型 HDInsight 上使用 Tez UI 來為 Tez 作業偵錯)](hdinsight-debug-tez-ui.md)。
 
-##先決條件
+##必要條件
 
 * 以 Linux 為基礎的 HDInsight 叢集。如需建立新叢集的步驟，請參閱[開始使用 Linux 型 HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md)。
 
@@ -141,4 +141,4 @@ Tez 檢視只包含正在或曾經使用 Tez 引擎來執行之作業的資料�
 
 如需如何搭配 HDInsight 來使用 Ambari 的詳細資訊，請參閱[使用 Ambari Web UI 管理 HDInsight 叢集](hdinsight-hadoop-manage-ambari.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

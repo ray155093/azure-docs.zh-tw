@@ -14,7 +14,7 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="08/25/2016"
+	ms.date="09/14/2016"
 	ms.author="markvi"/>
 
 
@@ -24,15 +24,13 @@
   
 ## 為什麼要使用條件式存取？  
 
-Azure Active Directory 中的條件式存取控制功能可提供一些簡單的方式，讓公司保護在雲端和內部部署環境中的資源。條件式存取原則可用來協助防範認證遭竊和遭到網路釣魚的風險 (藉由要求使用 Multi-Factor Authentication)，以及協助保護公司資料的安全 (藉由要求使用會授與機密服務存取權的 Intune 受管理裝置)。
+Azure Active Directory 中的條件式存取控制功能提供一些簡單的方式，可讓公司保護在雲端和內部部署環境中的資源。條件式存取原則除了會要求使用授與對機密服務之存取權的受 Intune 管理裝置來協助保護公司資料安全之外，也會要求使用多重要素驗證，因此可用來協助防範認證遭竊和遭到網路釣魚的風險。
 
 
 
 ## 授權需求
 
-條件式存取是 [Azure AD Premium](http://www.microsoft.com/identity) 的一項功能。所有存取已套用條件式存取原則之應用程式的使用者，都必須要有 Azure AD Premium 授權。您可以透過[未經授權的使用者報告](https://aka.ms/utc5ix)深入了解使用情況。
-
-
+Azure Active Directory 條件式存取是 [Azure AD Premium](http://www.microsoft.com/identity) 的一項功能。所有存取已套用條件式存取原則之應用程式的使用者，都必須要有 Azure AD Premium 授權。您可以透過[未經授權的使用者報告](https://aka.ms/utc5ix)深入了解使用情況。
 
 
 
@@ -57,7 +55,7 @@ Azure Active Directory 中的條件式存取控制功能可提供一些簡單的
 
 ## 控制
    
-- **Multi-Factor Authentication (MFA)**︰您可以使用 MFA 來要求增強式驗證。可由 Azure MFA 或在內部部署的 MFA 提供者使用 ADFS 提供 MFA。對於未獲授權但已取得有效使用者之使用者名稱和密碼存取權的使用者，MFA 驗證可協助防止其存取您的資源。
+- **Multi-Factor Authentication (MFA)**︰您可以透過 MFA 來要求使用增強式驗證。可由 Azure MFA 或在內部部署的 MFA 提供者使用 ADFS 提供 MFA。對於未獲授權但已取得有效使用者之使用者名稱和密碼存取權的使用者，MFA 驗證可協助防止其存取您的資源。
 
 - **封鎖**︰可依據使用者位置等條件套用存取權。例如，當使用者不是在受信任網路時封鎖存取權。
 
@@ -89,7 +87,7 @@ Azure Active Directory 中的條件式存取控制功能可提供一些簡單的
     - 由 Microsoft Intune 所管理的「iOS 和 Android 裝置」。
 
 
-使用者如果存取受裝置型 CA 原則保護的應用程式，必須從符合此原則的裝置進行存取。如果是從不符合此原則的裝置進行存取，則會遭到拒絕。
+使用者如果存取受裝置型 CA 原則保護的應用程式，就必須從符合此原則的裝置進行存取。如果是從不符合此原則的裝置進行存取，則會遭到拒絕。
 
 如需有關如何在 Azure AD 中設定裝置型 CA 原則的資訊，請參閱[如何設定裝置型條件式存取原則來控制對 Azure Active Directory 連線應用程式的存取](active-directory-conditional-access-policy-connected-applications.md)。
 
@@ -125,4 +123,4 @@ Azure Active Directory 中的條件式存取控制功能可提供一些簡單的
 - [條件式存取常見問題集](active-directory-conditional-faqs.md)
 - [技術參考](active-directory-conditional-access-technical-reference.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

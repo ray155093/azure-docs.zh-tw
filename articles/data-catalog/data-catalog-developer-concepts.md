@@ -4,7 +4,7 @@
 	services="data-catalog"
 	documentationCenter=""
 	authors="spelluru"
-	manager="paulettm"
+	manager="jhubbard"
 	editor=""
 	tags=""/>
 <tags 
@@ -26,7 +26,7 @@ Microsoft **Azure 資料目錄**是全面管理的雲端服務，能夠進行資
 
 ![概念][1]
 
-圖 1 - Azure 資料目錄簡易概念模型
+*圖 1 - Azure 資料目錄簡易概念模型*
 
 ### 目錄
 
@@ -353,4 +353,4 @@ Azure 資料目錄使用兩種授權機制：
 <!--Image references-->
 [1]: ./media/data-catalog-developer-concepts/concept2.png
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

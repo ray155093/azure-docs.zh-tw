@@ -12,7 +12,7 @@ ms.workload="tbd"
 ms.tgt_pltfrm="na" 
 ms.devlang="na" 
 ms.topic="article" 
-ms.date="06/22/2016" 
+ms.date="09/06/2016" 
 ms.author="adegeo"/>
 
 # 啟用 Azure 中角色執行個體的通訊
@@ -101,7 +101,7 @@ int port = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["StandardWeb"].
 
 **Instances** 屬性會傳回 **RoleInstance** 物件的集合。這個集合一律會包含目前的執行個體。如果該角色沒有定義內部端點，則該集合只包含目前的執行個體，沒有其他執行個體。在沒有為角色定義內部端點的情況下，集合中的角色執行個體數量一律為 1。如果該角色定義了一個內部端點，就可以在執行階段中探索其執行個體，而且集合中執行個體的數量將與服務組態檔中為該角色指定的執行個體數量相對應。
 
-> [AZURE.NOTE] Azure 設管理程式庫沒有提供判斷其他角色執行個體健康狀態的方法，但是如果您的服務需要這類功能，您可以自行實作此健康狀態評估。您可以使用 [Azure 診斷](https://msdn.microsoft.com/library/azure/gg433048.aspx)來取得執行中角色執行個體的相關資訊。
+> [AZURE.NOTE] Azure 設管理程式庫沒有提供判斷其他角色執行個體健康狀態的方法，但是如果您的服務需要這類功能，您可以自行實作此健康狀態評估。您可以使用 [Azure 診斷](cloud-services-dotnet-diagnostics.md)來取得執行中角色執行個體的相關資訊。
 
 若要判斷角色執行個體上內部端點的連接埠號碼，您可以使用 [InstanceEndpoints](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstance.instanceendpoints.aspx) 屬性，以傳回包含端點名稱及其對應 IP 位址與連接埠的 Dictionary 物件。[IPEndpoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstanceendpoint.ipendpoint.aspx) 屬性會傳回指定端點的 IP 位址和連接埠。**PublicIPEndpoint** 屬性會傳回負載平衡端點的連接埠。未使用 **PublicIPEndpoint** 屬性的 IP 位址部分。
 
@@ -359,4 +359,4 @@ namespace WorkerRole1
 ## 後續步驟
 深入了解雲端服務[模型](cloud-services-model-and-package.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

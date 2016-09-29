@@ -4,7 +4,7 @@
    services="data-lake-store,hdinsight" 
    documentationCenter=""
    authors="nitinme"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"/>
 
 <tags
@@ -50,11 +50,11 @@
 開始進行本教學課程之前，您必須具備下列條件：
 
 - **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-- **啟用您的 Azure 訂用帳戶**以使用資料湖存放區公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
+- **啟用您的 Azure 訂用帳戶**以使用 Data Lake Store 公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
 - **Windows SDK**。您可以從[這裡](https://dev.windows.com/zh-TW/downloads)安裝。您使用它來建立安全性憑證。
 
 
-##請安裝 Azure PowerShell 1.0 以上版本。
+##安裝 Azure PowerShell 1.0 或更新版本
 
 一開始，您必須解除安裝 Azure PowerShell 的 0.9x 版本。若要檢查已安裝 PowerShell 的版本，請從 PowerShell 視窗執行下列命令：
 
@@ -83,14 +83,14 @@
 
 - [Microsoft Web Platform Installer (WebPI)](http://aka.ms/webpi-azps)。如果您已安裝 Azure PowerShell 0.9.x，系統將提示您解除安裝 0.9.x。如果您是從 PowerShell 資源庫安裝 Azure PowerShell 模組，必須在安裝安裝程式之前先移除模組，以確保 Azure PowerShell 環境保持一致。如需指示，請參閱[透過 WebPI 安裝 Azure PowerShell 1.0](https://azure.microsoft.com/blog/azps-1-0/)。
 
-WebPI 每個月都會更新。PowerShell 資源庫將持續更新。如果您想要從 PowerShell 資源庫進行安裝，這會是取得最新和最優異的 Azure PowerShell 功能之首要管道。
+WebPI 每個月都會更新。PowerShell 資源庫將持續更新。若您想要透過 PowerShell 資源庫安裝，則此為取得最新最優異 Azure PowerShell 的首要管道。
 
 
 ## 建立 Azure 資料湖存放區
 
 依照這些步驟建立資料湖存放區。
 
-1. 從您的桌面開啟新的 Azure PowerShell 視窗，並輸入下列程式碼片段。系統提示您登入時，請使用其中一個訂用帳戶管理員/擁有者身分登入：
+1. 從您的桌面開啟新的 Azure PowerShell 視窗，並輸入下列程式碼片段。系統提示您登入時，請確定您會使用其中一個訂用帳戶管理員/擁有者身分登入：
 
         # Log in to your Azure account
 		Login-AzureRmAccount
@@ -104,7 +104,7 @@ WebPI 每個月都會更新。PowerShell 資源庫將持續更新。如果您想
 		# Register for Data Lake Store
 		Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.DataLakeStore"
 
-	>[AZURE.NOTE] 如果您在註冊 Data Lake Store 的資源提供者時收到類似 `Register-AzureRmResourceProvider : InvalidResourceNamespace: The resource namespace 'Microsoft.DataLakeStore' is invalid` 的錯誤，可能表示您的訂用帳戶不在 Azure Data Lake Store 的允許清單中。請遵循這些[指示](data-lake-store-get-started-portal.md#signup)，確保您已為 Azure 訂用帳戶啟用 Data Lake Store 公開預覽功能。
+	>[AZURE.NOTE] 如果您在註冊 Data Lake Store 的資源提供者時收到類似 `Register-AzureRmResourceProvider : InvalidResourceNamespace: The resource namespace 'Microsoft.DataLakeStore' is invalid` 的錯誤，可能表示您的訂用帳戶不在 Azure Data Lake Store 的允許清單中。請遵循這些[指示](data-lake-store-get-started-portal.md#signup)，確保您會啟用 Azure 訂用帳戶來使用 Data Lake Store 公開預覽版。
 
 3. Azure 資料湖存放區帳戶與 Azure 資源群組相關聯。從建立 Azure 資源群組開始。
 
@@ -135,7 +135,7 @@ WebPI 每個月都會更新。PowerShell 資源庫將持續更新。如果您想
 
 ## 設定資料湖存放區以角色為基礎的存取的驗證
 
-每一個 Azure 訂閱都與 Azure Active Directory 相關聯。透過 Azure 傳統入口網站或是 Azure 資源管理員 API 來存取訂用帳戶資源的使用者與服務，都必須先向 Azure Active Directory 進行驗證。您可以在 Azure 資源上為 Azure 訂用帳戶和服務指派適當的角色，以授與其存取權限。對於服務，服務主體會識別 Azure Active Directory (AAD) 中的服務。本章節將說明如何將 Azure 資源 (您稍早建立的 Azure 資料湖存放區帳戶) 的存取權授與像是 HDInsight 的應用程式服務，方法是建立應用程式的服務主體，並透過 Azure PowerShell 將角色指派給它。
+每一個 Azure 訂用帳戶都與 Azure Active Directory 相關聯。透過 Azure 傳統入口網站或 Azure Resource Manager API 來存取訂用帳戶資源的使用者與服務，都必須先向 Azure Active Directory 進行驗證。您可以在 Azure 資源上為 Azure 訂用帳戶和服務指派適當的角色，以授與其存取權限。對於服務，服務主體會識別 Azure Active Directory (AAD) 中的服務。本章節將說明如何將 Azure 資源 (您稍早建立的 Azure 資料湖存放區帳戶) 的存取權授與像是 HDInsight 的應用程式服務，方法是建立應用程式的服務主體，並透過 Azure PowerShell 將角色指派給它。
 
 若要設定 Azure 資料湖的 Active Directory 驗證，您必須執行下列工作。
 
@@ -384,4 +384,4 @@ WebPI 每個月都會更新。PowerShell 資源庫將持續更新。如果您想
 [makecert]: https://msdn.microsoft.com/library/windows/desktop/ff548309(v=vs.85).aspx
 [pvk2pfx]: https://msdn.microsoft.com/library/windows/desktop/ff550672(v=vs.85).aspx
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0914_2016-->

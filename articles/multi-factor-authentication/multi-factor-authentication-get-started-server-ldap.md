@@ -1,22 +1,22 @@
 <properties 
-	pageTitle="LDAP 驗證和 Azure Multi-Factor Authentication Server" 
-	description="此 Azure Multi-Factor Authentication 頁面協助您部署 LDAP 驗證與 Azure Multi-Factor Authentication Server。" 
-	services="multi-factor-authentication" 
-	documentationCenter="" 
-	authors="billmath" 
-	manager="stevenpo" 
+	pageTitle="LDAP 驗證和 Azure Multi-Factor Authentication Server"
+	description="此 Azure Multi-Factor Authentication 頁面協助您部署 LDAP 驗證與 Azure Multi-Factor Authentication Server。"
+	services="multi-factor-authentication"
+	documentationCenter=""
+	authors="kgremban"
+	manager="femila"
 	editor="curtand"/>
 
-<tags 
-	ms.service="multi-factor-authentication" 
-	ms.workload="identity" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="get-started-article" 
-	ms.date="08/04/2016" 
-	ms.author="billmath"/>
+<tags
+	ms.service="multi-factor-authentication"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="08/04/2016"
+	ms.author="kgremban"/>
 
-# LDAP 驗證和 Azure Multi-Factor Authentication Server 
+# LDAP 驗證和 Azure Multi-Factor Authentication Server
 
 
 根據預設，Azure Multi-Factor Authentication Server 會設定為從 Active Directory 匯入或同步處理使用者。不過，它可以設定為繫結至不同 LDAP 目錄 (例如 ADAM 目錄) 或特定的 Active Directory 網域控制站。當設定為透過 LDAP 連線到目錄時，可以設定 Azure Multi-Factor Authentication Server 做為 LDAP Proxy 來執行驗證。也支援使用 LDAP 繫結做為 RADIUS 目標、使用 IIS 驗證時預先驗證使用者，或 Azure Multi-Factor Authentication 使用者入口網站中的主要驗證。
@@ -37,8 +37,8 @@
 3. 如果 Azure Multi-Factor Authentication LDAP 服務應該繫結到非標準連接埠，以接聽將設定的用戶端的 LDAP 要求，請在 [用戶端] 索引標籤上變更 TCP 連接埠和 SSL 連接埠。
 4. 如果您打算在用戶端到 Azure Multi-Factor Authentication Server 之間使用 LDAPS，則必須在執行「伺服器」的伺服器上安裝 SSL 憑證。按一下 SSL 憑證方塊旁邊的 [瀏覽...] 按鈕，選取將用於安全連接的已安裝憑證。
 5. 按一下 [新增...] 按鈕。
-6. 在 [新增 LDAP 用戶端] 對話方塊中，輸入要向「伺服器」驗證的應用裝置、伺服器或應用程式的 IP 位址，以及 [應用程式名稱] \(選擇性)。應用程式名稱會出現在 Azure Multi-Factor Authentication 報表中，而且可能顯示在簡訊或行動應用程式驗證訊息內。
-7. 如果所有使用者都已經或將要匯入到「伺服器」，且必須接受多因素驗證，請核取 [需要進行 Azure Multi-Factor Authentication 使用者比對] 方塊。如果有大量使用者尚未匯入到「伺服器」，且/或將免除多因素驗證，請勿核取此方塊。如需此功能的其他資訊，請參閱說明檔。
+6. 在 [新增 LDAP 用戶端] 對話方塊中，輸入要向「伺服器」驗證的應用裝置、伺服器或應用程式的 IP 位址，以及 應用程式名稱 (選擇性)。應用程式名稱會出現在 Azure Multi-Factor Authentication 報表中，而且可能顯示在簡訊或行動應用程式驗證訊息內。
+7. 如果所有使用者都已經或將要匯入到「伺服器」，且必須接受多因素驗證，請核取 [需要進行 Azure Multi-Factor Authentication 使用者比對] 方塊。如果有大量使用者尚未匯入到「伺服器」，且/或將免除多因素驗證，請勿核取此方塊。如需此功能的其他資訊，請參閱說明檔。 
 8. 您可以重複步驟 5 到 7，新增其他 LDAP 用戶端。
 9. 當 Azure Multi-Factor Authentication 設定為接受 LDAP 驗證時，它必須將這些驗證交由 LDAP 目錄代理。因此，[目標] 索引標籤只會顯示灰色的單一選項來使用 LDAP 目標。若要設定 LDAP 目錄連線，請按一下 [目錄整合] 圖示。
 10. 在 [設定] 索引標籤上，選取 [使用特定 LDAP 設定] 選項按鈕。
@@ -63,4 +63,4 @@
 - 將 LDAP 逾時設定為 30 至 60 秒，以保留足夠的時間向 LDAP 目錄驗證使用者的認證、執行第二個因素驗證、接收回應，然後回應 LDAP 存取要求。
 - 如果使用 LDAPS，則提出 LDAP 查詢的應用裝置或伺服器必須信任安裝在 Azure Multi-Factor Authentication Server 上的 SSL 憑證。
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_0921_2016-->

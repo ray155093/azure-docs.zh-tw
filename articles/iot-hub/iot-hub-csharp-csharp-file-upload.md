@@ -195,4 +195,4 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0914_2016-->

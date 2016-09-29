@@ -6,7 +6,7 @@
 	tags="azure-portal"
 	authors="mumian"
 	editor="cgronlun"
-	manager="paulettm"/>
+	manager="jhubbard"/>
 
 <tags
 	ms.service="hdinsight"
@@ -172,4 +172,4 @@ HDInsight 目前僅支援 Ambari 監視功能。HDInsight 3.0 及 2.1 版叢集�
 
 [img-jobtracker-output]: ./media/hdinsight-monitor-use-ambari-api/hdi.ambari.monitor.jobtracker.output.png
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0914_2016-->

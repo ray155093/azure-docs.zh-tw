@@ -4,7 +4,7 @@
 	services="data-factory"
 	documentationCenter=""
 	authors="spelluru"
-	manager="paulettm"
+	manager="jhubbard"
 	editor=""/>
 
 <tags
@@ -162,4 +162,4 @@
 | 66 | [Azure Data Factory - 命名規則](data-factory-naming-rules.md) | 描述 Data Factory 實體的命名規則。 |
 | 67 | [對 Data Factory 問題進行疑難排解](data-factory-troubleshoot.md) | 了解如何使用 Azure Data Factory 進行問題的疑難排解。 |
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

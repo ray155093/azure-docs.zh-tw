@@ -132,7 +132,7 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 
 | 別名名稱 | 說明 |
 | ---------- | ----------- |
-| {resourceType}/sku.name | 支援的資源類型包括：Microsoft.Compute/virtualMachines、<br />Microsoft.Storage/storageAccounts、<br />Microsoft.Web/serverFarms、<br /> Microsoft.Scheduler/jobcollections、<br />Microsoft.DocumentDB/databaseAccounts、<br />Microsoft.Cache/Redis、<br />Microsoft..CDN/profiles |
+| {resourceType}/sku.name | 支援的資源類型包括：Microsoft.Compute/virtualMachines、<br />Microsoft.Storage/storageAccounts、<br />Microsoft.Web/serverFarms、<br /> Microsoft.Scheduler/jobcollections、<br />Microsoft.DocumentDB/databaseAccounts、<br />Microsoft.Cache/Redis、<br />Microsoft.CDN/profiles |
 | {resourceType}/sku.family | 支援的資源類型為 Microsoft.Cache/Redis |
 | {resourceType}/sku.capacity | 支援的資源類型為 Microsoft.Cache/Redis |
 | Microsoft.Compute/virtualMachines/imagePublisher | |
@@ -414,6 +414,27 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 
     New-AzureRmPolicyDefinition -Name regionPolicyDefinition -Description "Policy to allow resource creation only in certain 	regions" -Policy "path-to-policy-json-on-disk"
 
+### 使用 Azure CLI 來建立原則定義
+
+您可以使用 Azure CLI 搭配原則定義命令來建立新的原則定義，如以下所示。下面範例會建立一個原則，只允許北歐和西歐中的資源。
+
+    azure policy definition create --name regionPolicyDefinition --description "Policy to allow resource creation only in certain regions" --policy-string '{	
+      "if" : {
+        "not" : {
+          "field" : "location",
+          "in" : ["northeurope" , "westeurope"]
+    	}
+      },
+      "then" : {
+        "effect" : "deny"
+      }
+    }'    
+    
+
+您可指定包含該原則的 .json 檔案路徑，而不以內嵌方式指定該原則，如以下所示。
+
+    azure policy definition create --name regionPolicyDefinition --description "Policy to allow resource creation only in certain regions" --policy "path-to-policy-json-on-disk"
+
 
 ## 套用原則
 
@@ -456,17 +477,46 @@ RBAC 著重於**使用者**在不同範圍內可執行的動作。例如，若�
 
 同樣地，您可以分別透過 Get-AzureRmPolicyAssignment、Set-AzureRmPolicyAssignment 和 Remove-AzureRmPolicyAssignment 取得、變更或移除原則指派。
 
+### 使用 Azure CLI 來指派原則
+
+您可以透過 Azure CLI 使用原則指派命令，將上面建立的原則套用至所需的範圍，如以下所示：
+
+    azure policy assignment create --name regionPolicyAssignment --policy-definition-id /subscriptions/########-####-####-####-############/providers/Microsoft.Authorization/policyDefinitions/<policy-name> --scope    /subscriptions/########-####-####-####-############/resourceGroups/<resource-group-name>
+        
+此處的範圍是您指定之資源群組的名稱。如果 policy-definition-id 參數的值為未知，您可以透過 Azure CLI 取得該值，如以下所示︰
+
+    azure policy definition show <policy-name>
+
+如果想要移除上述原則指派，您可以執行如下動作：
+
+    azure policy assignment remove --name regionPolicyAssignment --ccope /subscriptions/########-####-####-####-############/resourceGroups/<resource-group-name>
+
+您可以分別透過 policy definition show、set 及 delete 命令來取得、變更或移除原則定義。
+
+同樣地，您也可以分別透過 policy assignment show 和 delete 命令來取得、變更或移除原則指派。
+
 ##原則稽核事件
 
-在您套用原則之後，您會開始看到原則相關的事件。您可以前往入口網站，或使用 PowerShell 來取得這項資料。
+在您套用原則之後，您會開始看到原則相關的事件。您可以前往入口網站、使用 PowerShell 或 Azure CLI 來取得這項資料。
 
-如要檢視所有與拒絕效果相關的事件，可以使用下列命令。
+### 使用 PowerShell 的原則稽核事件
+
+若要檢視與拒絕效果相關的所有事件，您可以使用下列 PowerShell 命令。
 
     Get-AzureRmLog | where {$_.OperationName -eq "Microsoft.Authorization/policies/deny/action"} 
 
-如要檢視所有與稽核效果相關的事件，可以使用下列命令。
+若要檢視與稽核效果相關的所有事件，您可以使用下列命令。
 
     Get-AzureRmLog | where {$_.OperationName -eq "Microsoft.Authorization/policies/audit/action"} 
-    
 
-<!---HONumber=AcomDC_0810_2016------>
+### 使用 Azure CLI 的原則稽核事件
+
+若要檢視資源群組中與拒絕效果相關的所有事件，您可以使用下列 CLI 命令。
+
+    azure group log show ExampleGroup --json | jq ".[] | select(.operationName.value == "Microsoft.Authorization/policies/deny/action")"
+
+若要檢視與稽核效果相關的所有事件，您可以使用下列 CLI 命令。
+
+    azure group log show ExampleGroup --json | jq ".[] | select(.operationName.value == "Microsoft.Authorization/policies/audit/action")"
+
+<!---HONumber=AcomDC_0914_2016-->

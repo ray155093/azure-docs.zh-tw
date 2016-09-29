@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/27/2016" 
+	ms.date="09/12/2016" 
 	ms.author="spelluru"/>
 
 # 從 Data Factory 叫用 MapReduce 程式
@@ -22,7 +22,7 @@ Data Factory [管線](data-factory-create-pipelines.md)中的 HDInsight MapReduc
 ## 簡介 
 Azure Data Factory 中的「管線」會使用連結的計算服務，來處理連結的儲存體服務中的資料。它包含一系列活動，其中每個活動都會執行特定的處理作業。本文說明如何使用「HDInsight MapReduce 活動」。
  
-若要了解如何使用 HDInsight 的 Pig 和 Hive 活動，在 Windows/Linux 的 HDInsight 叢集上從 Azure Data Factory 管線執行 Pig/Hive 指令碼，請參閱 [Pig](data-factory-pig-activity.md) 和 [Hive](data-factory-hive-activity.md) 文章。
+若要了解如何使用 HDInsight 的 Pig 和 Hive 活動，在 Windows/Linux 型 HDInsight 叢集上從管線執行 Pig/Hive 指令碼，請參閱 [Pig](data-factory-pig-activity.md) 和 [Hive](data-factory-hive-activity.md)。
 
 ## 「HDInsight MapReduce 活動」的 JSON 
 
@@ -32,7 +32,7 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
 3. 指定 **className** 屬性的類別名稱。
 4. 為 **jarFilePath** 屬性指定包含檔案名稱的 JAR 檔案路徑。
 5. 為 **jarLinkedService** 屬性指定連結服務，此連結服務參考包含 JAR 檔案的 Azure Blob 儲存體。
-6. 在 **arguments** 區段中，為 MapReduce 程式指定所有引數。在執行階段，您會看到 MapReduce 架構的幾個額外的引數 (例如: mapreduce.job.tags)。若要區分在 MapReduce 引數中所使用您的引數，請考慮同時使用選項和值做為引數，如下列範例所示 (-s、--input、--output 等等...這些選項後面緊跟著其值)。
+6. 在 **arguments** 區段中，為 MapReduce 程式指定所有引數。在執行階段，您會看到幾個來自 MapReduce 架構的額外引數 (例如：mapreduce.job.tags)。若要區分您的引數與 MapReduce 引數，請考慮同時使用選項和值作為引數，如下列範例所示 (-s、--input、--output 等等是後面接著其值的選項)。
 
 		{
 		    "name": "MahoutMapReduceSamplePipeline",
@@ -134,7 +134,7 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
 ### 資料集
 
 #### 輸出資料集
-此範例中的管線不需要取得任何輸入。您必須指定「HDInsight MapReduce 活動」的輸出資料集。這只是驅動管線排程所需的空資料集。
+此範例中的管線不需要取得任何輸入。您需指定「HDInsight MapReduce 活動」的輸出資料集。這個資料集只是一個驅動管線排程所需的虛設資料集。
 
 	{
 	    "name": "MROutput",
@@ -163,8 +163,8 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
 :-------- | :-----
 類型 | 類型必須設為 **HDInsightMapReduce**。 
 className | 類別的名稱是：**wordcount**
-jarFilePath | 包含上述類別之 Jar 檔案的路徑。如果您複製/貼上下列程式碼，請記得變更叢集的名稱。 
-jarLinkedService | 包含 Jar 檔案的 Azure 儲存體連結服務。這是與 HDInsight 叢集相關聯的儲存體。 
+jarFilePath | 包含類別的 Jar 檔案路徑。如果您複製/貼上下列程式碼，請記得變更叢集的名稱。 
+jarLinkedService | 包含 Jar 檔案的 Azure 儲存體連結服務。這個連結服務會參考與 HDInsight 叢集關聯的儲存體。 
 引數 | 字數統計程式會採用輸入和輸出兩個引數。輸入檔為 davinci.txt 檔案。
 frequency/interval | 這些屬性的值符合輸出資料集。 
 linkedServiceName | 表示您先前建立的 HDInsight 連結服務。   
@@ -228,4 +228,4 @@ linkedServiceName | 表示您先前建立的 HDInsight 連結服務。
 - [叫用 Spark 程式](data-factory-spark.md)
 - [叫用 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0914_2016-->

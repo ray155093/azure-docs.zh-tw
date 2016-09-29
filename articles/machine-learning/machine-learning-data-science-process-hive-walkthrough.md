@@ -4,7 +4,7 @@
 	services="machine-learning,hdinsight"
 	documentationCenter=""
 	authors="bradsev"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun" />
 
 <tags
@@ -97,7 +97,7 @@
 
 我們在這裡說明如何使用 AzCopy 來傳輸含有資料的檔案。若要下載並安裝 AzCopy，請遵循[開始使用 AzCopy 命令列公用程式](../storage/storage-use-azcopy.md)的指示。
 
-1. 從命令提示字元視窗中發出下列 AzCopy 命令，以所需的目的地取代 *<path_to_data_folder>*：
+1. 從命令提示字元視窗中發出下列 AzCopy 命令，以所需的目的地取代*<path\_to\_data\_folder>*：
 
 
 		"C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy\azcopy" /Source:https://nyctaxitrips.blob.core.windows.net/data /Dest:<path_to_data_folder> /S
@@ -543,7 +543,7 @@ NYC 計程車資料集中的 medallion 會識別唯一的計程車。我們可�
 
 **警告：**對於大型檔案，`copyToLocal` 可能會很慢，因此不建議使用。
 
-將這份資料放在 Azure Blob 中的主要優點是，我們可以使用[匯入資料][import-data]模組來探索 Azure Machine Learning 中的資料。
+將此資料放在 Azure Blob 中的主要優點是，我們可以使用[匯入資料][import-data]模組來探索 Azure Machine Learning 中的資料。
 
 
 ## <a name="#downsample"></a>在 Azure Machine Learning 中縮小取樣和建置模型
@@ -689,13 +689,13 @@ NYC 計程車資料集中的 medallion 會識別唯一的計程車。我們可�
 
 	hive -f "C:\temp\sample_hive_prepare_for_aml_full.hql"
 
-我們現在有內部資料表 "nyctaxidb.nyctaxi\_downsampled\_dataset"，使用 Azure Machine Learning 中的[匯入資料][import-data]模組即可存取此資料表。此外，我們可能使用這個資料集來建置機器學習服務模型。
+我們現在有內部資料表 "nyctaxidb.nyctaxi\_downsampled\_dataset"，使用 Azure Machine Learning 中的[匯入資料][import-data]模組，即可存取此資料表。此外，我們可能使用這個資料集來建置機器學習服務模型。
 
 ### 使用 Azure Machine Learning 中的「匯入資料」模組來存取縮小取樣的資料
 
 若要在 Azure Machine Learning 的[匯入資料][import-data]模組中發出 Hive 查詢，先決條件是要能夠存取 Azure Machine Learning 工作區，以及要能夠存取叢集及其相關儲存體帳戶的認證。
 
-以下是[匯入資料][import-data]模組及所要輸入之參數的一些詳細資料：
+以下是[匯入資料][import-data]模組及要輸入之參數的一些詳細資料：
 
 **HCatalog 伺服器 URI**：如果叢集名稱是 abc123，則為：https://abc123.azurehdinsight.net
 
@@ -709,7 +709,7 @@ NYC 計程車資料集中的 medallion 會識別唯一的計程車。我們可�
 
 **Azure 容器名稱**：這是叢集的預設容器名稱，且通常與叢集名稱相同。如果叢集為 "abc123"，即為 abc123。
 
-**重要事項：****任何我們想要使用 Azure Machine Learning 中的[匯入資料][import-data]模組來查詢的資料表都必須是內部資料表。** 以下是判斷資料庫 D.db 中的資料表 T 是否為內部資料表的秘訣。
+**重要事項：** **任何我們想要使用 Azure Machine Learning 中的[匯入資料][import-data]模組來查詢的資料表都必須是內部資料表。** 以下是判斷資料庫 D.db 中的資料表 T 是否為內部資料表的秘訣。
 
 從 Hive 目錄提示字元發出下列命令：
 
@@ -733,7 +733,7 @@ NYC 計程車資料集中的 medallion 會識別唯一的計程車。我們可�
 
 **已使用學習者：**二元羅吉斯迴歸
 
-a.對於這個問題，我們的目標 (或類別) 標籤是 "tipped"。縮小取樣的原始資料集有幾個資料行會顯示這個分類實驗目標。特別是 tip\_class、tip\_amount 和 total\_amount，可揭示測試時不會提供之目標標籤的相關資訊。我們會使用[選取資料集中的資料行][select-columns]模組將這些資料行自考量範圍中移除。
+a.對於這個問題，我們的目標 (或類別) 標籤是 "tipped"。縮小取樣的原始資料集有幾個資料行會顯示這個分類實驗目標。特別是 tip\_class、tip\_amount 和 total\_amount，可揭示測試時不會提供之目標標籤的相關資訊。我們會使用[選取資料集中的資料行][select-columns]模組，從考量範圍中移除這些資料行。
 
 以下快照顯示我們的實驗，目的是預測是否會支付指定車程的小費。
 
@@ -810,4 +810,4 @@ b.對於迴歸問題，我們會藉由查看預測中的平方誤差、決定係
 [select-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 [import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

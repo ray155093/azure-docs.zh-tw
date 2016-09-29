@@ -48,8 +48,7 @@
 
 設定目前工作階段的 Azure 訂用帳戶。以正確的名稱取代括號中 (包括 < 和 > 字元) 的所有內容。
 
-	$subscr="<subscription name>"
-	Get-AzureRmSubscription –SubscriptionName $subscr | Select-AzureRmSubscription
+	Select-AzureRmSubscription –SubscriptionName "<subscription name>"
 
 >[AZURE.NOTE] 註冊是一次性步驟，但您必須在嘗試移轉之前完成。如果不註冊，您會看到下列錯誤訊息：
 
@@ -73,8 +72,7 @@
 
 設定目前工作階段的 Azure 訂用帳戶。以正確的名稱取代括號中 (包括 < 和 > 字元) 的所有內容。
 
-	$subscr="<subscription name>"
-	Get-AzureSubscription –SubscriptionName $subscr | Select-AzureSubscription
+	Select-AzureSubscription –SubscriptionName "<subscription name>"
 
 ## 步驟 4︰確定您目前的部署或 VNET 的 Azure 區域中有足夠的 Azure Resource Manager 虛擬機器核心
 
@@ -189,4 +187,4 @@ Get-AzureRmVMUsage -Location "<Your VNET or Deployment's Azure region"
 - [平台支援的從傳統移轉至 Resource Manager 的技術深入探討](virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
 - [使用社群 PowerShell 指令碼將傳統虛擬機器複製到 Azure Resource Manager](virtual-machines-windows-migration-scripts.md)
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

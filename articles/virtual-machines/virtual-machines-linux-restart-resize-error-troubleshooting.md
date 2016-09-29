@@ -14,14 +14,10 @@
    ms.tgt_pltfrm="vm-linux"
    ms.devlang="na"
    ms.workload="required"
-   ms.date="06/16/2016"
+   ms.date="09/09/2016"
    ms.author="delhan"/>
 
 # 針對在 Azure 中重新啟動或調整現有 Linux 虛擬機器的 Resource Manager 部署問題進行疑難排解
-
-> [AZURE.SELECTOR]
-- [傳統](../articles/virtual-machines/virtual-machines-linux-classic-restart-resize-error-troubleshooting.md)
-- [資源管理員](../articles/virtual-machines/virtual-machines-linux-restart-resize-error-troubleshooting.md)
 
 當您嘗試啟動已停止的 Azure 虛擬機器 (VM)，或調整現有 Azure VM 的大小時，常會遇到的錯誤是配置失敗。當叢集或區域沒有可用的資源或無法支援所要求的 VM 大小，就會產生此錯誤。
 
@@ -78,4 +74,4 @@
 
 如果您在 Azure 中建立新的 Linux VM 時遇到問題，請參閱[針對在 Azure 中建立新 Linux 虛擬機器的部署問題進行疑難排解](../virtual-machines/virtual-machines-linux-troubleshoot-deployment-new-vm.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

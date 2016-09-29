@@ -4,7 +4,7 @@
 	services="machine-learning,storage" 
 	documentationCenter="" 
 	authors="bradsev" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun" />
 
 <tags 
@@ -53,4 +53,4 @@ Azure 儲存體總管是 Microsoft 所提供的免費工具，可讓您在 Windo
 8. 按一下 [檔案] 方塊右邊的 [...]、從檔案系統中選取一或多個要上傳的檔案，然後按一下 [上傳]，開始上傳檔案。![](./media/machine-learning-data-science-move-data-to-azure-blob-using-azure-storage-explorer/upload-files-to-blob.png)
 7. 若要下載資料，選取對應容器中要下載的 Blob，然後按一下 [下載]。![](./media/machine-learning-data-science-move-data-to-azure-blob-using-azure-storage-explorer/download-files-from-blob.png)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

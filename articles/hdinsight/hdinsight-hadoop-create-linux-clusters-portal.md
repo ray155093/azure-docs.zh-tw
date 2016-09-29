@@ -4,7 +4,7 @@
    	services="hdinsight"
    	documentationCenter=""
    	authors="nitinme"
-   	manager="paulettm"
+   	manager="jhubbard"
    	editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -161,7 +161,7 @@ Azure 入口網站會公開大部分的叢集屬性。使用 Azure Resource Mana
 
 		> [AZURE.IMPORTANT] 這「只會」影響在 Azure 入口網站對此叢集的存取和權限，對於連線到 HDInsight 叢集或將工作提交到 HDInsight 叢集的使用者沒有影響。
 
-	* **標記** (![標記圖示](./media/hdinsight-hadoop-create-linux-cluster-portal/tags.png))：標記可讓您設定索引鍵/值組，以定義雲端服務的自訂分類。例如，您可以建立名為 __project__ 的索引鍵，然後使用與特定專案相關聯之所有服務的通用值。
+	* **標記** (![標記圖示](./media/hdinsight-hadoop-create-linux-cluster-portal/tags.png))：標記可讓您設定索引鍵/值組，以定義雲端服務的自訂分類。例如，您可建立名為 __project__ 的索引鍵，然後使用與特定專案相關聯之所有服務的通用值。
 
 ##自訂叢集
 
@@ -201,4 +201,4 @@ Azure 入口網站會公開大部分的叢集屬性。使用 Azure Resource Mana
 * [Spark 和機器學習：使用 HDInsight 中的 Spark 來預測食物檢查結果](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Spark 串流：使用 HDInsight 中的 Spark 來建置即時串流應用程式](hdinsight-apache-spark-eventhub-streaming.md)
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

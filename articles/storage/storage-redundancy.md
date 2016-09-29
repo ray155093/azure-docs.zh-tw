@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/03/2016"
+	ms.date="09/07/2016"
 	ms.author="tamram"/>
 
 # Azure 儲存體複寫
@@ -117,4 +117,4 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 - [Microsoft Azure 儲存體備援選項和讀取權限異地備援儲存體](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/12/11/introducing-read-access-geo-replicated-storage-ra-grs-for-windows-azure-storage.aspx)
 - [SOSP 文件：具有高度一致性的高可用性雲端儲存體服務。](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0914_2016-->

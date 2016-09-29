@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="hning86"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/05/2016"
+	ms.date="09/06/2016"
 	ms.author="haining;chlovel;garye"/>
 
 # Microsoft Cortana Intelligence 競賽常見問題集
@@ -115,4 +115,4 @@ Microsoft 將會驗證私人排行榜的結果，然後我們會與您連絡。�
 
 使用者參賽作品只會保留供評估之用，以識別勝出的解決方案。詳情請參閱我們的[條款及條件](http://aka.ms/comptermsandconditions)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0914_2016-->

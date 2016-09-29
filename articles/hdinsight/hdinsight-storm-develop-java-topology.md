@@ -4,7 +4,7 @@
    services="hdinsight"
    documentationCenter=""
    authors="Blackmist"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -514,7 +514,7 @@ Trident 是 Storm 提供的高層級抽象。它支援具狀態的處理。Tride
 
 如需 Trident 的詳細資訊，請參閱 <a href="http://storm.apache.org/documentation/Trident-API-Overview.html" target="_blank">Trident API 概觀</a>。
 
-如需 Trident 應用程式的範例，請參閱 [Apache Storm on HDInsight 的 Twitter 趨勢主題](hdinsight-storm-twitter-trending.md)。
+如需 Trident 應用程式的範例，請參閱 [Twitter 的趨勢主題與 Apache Storm on HDInsight](hdinsight-storm-twitter-trending.md)。
 
 ##後續步驟
 
@@ -526,4 +526,4 @@ Trident 是 Storm 提供的高層級抽象。它支援具狀態的處理。Tride
 
 您可透過瀏覽 [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)找到更多範例 Storm 拓撲。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0914_2016-->

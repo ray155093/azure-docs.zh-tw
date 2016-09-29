@@ -20,9 +20,9 @@
 # 使用 PowerShell 建立具有站對站連線的 VNet
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
-- [Azure 傳統入口網站](vpn-gateway-site-to-site-create.md)
-- [PowerShell - 資源管理員](vpn-gateway-create-site-to-site-rm-powershell.md)
+- [Resource Manager - Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
+- [Resource Manager - PowerShell](vpn-gateway-create-site-to-site-rm-powershell.md)
+- [傳統 - 傳統入口網站](vpn-gateway-site-to-site-create.md)
 
 本文逐步引導您使用 **Azure Resource Manager 部署模型**建立虛擬網路以及內部部署網路的網站間 VPN 連線。網站間連線可以用於跨單位與混合式組態。
 
@@ -148,7 +148,7 @@ Azure 會使用您指定的 IP 位址前置詞來識別要傳送至內部部署�
 
 資源管理員部署模型的 Azure VPN 閘道目前使用動態配置方法，僅支援公用 IP 位址。但是，這不代表 IP 位址會變更。Azure VPN 閘道 IP 位址只會在刪除或重新建立閘道時變更。閘道公用 IP 位址不會因為重新調整、重設或 Azure VPN 閘道的其他內部維護/升級而變更。
 
-使用下列 PowerShell 範例。
+使用下列 PowerShell 範例：
 
 	$gwpip= New-AzureRmPublicIpAddress -Name gwpip -ResourceGroupName testrg -Location 'West US' -AllocationMethod Dynamic
 
@@ -177,7 +177,7 @@ Azure 會使用您指定的 IP 位址前置詞來識別要傳送至內部部署�
 
 ## 7\.設定 VPN 裝置
 
-此時，您需要虛擬網路閘道的公用 IP 位址，以便設定內部部署 VPN 裝置。向您的裝置製造商取得特定的組態資訊。或者，請參閱 [VPN 裝置](vpn-gateway-about-vpn-devices.md)以取得詳細資訊。
+此時，您需要虛擬網路閘道的公用 IP 位址，以便設定內部部署 VPN 裝置。向您的裝置製造商取得特定的組態資訊。請參閱 [VPN 裝置](vpn-gateway-about-vpn-devices.md)以取得詳細資訊。
 
 若要尋找虛擬網路閘道的公用 IP 位址，請使用下面範例：
 
@@ -222,4 +222,4 @@ VPN 連線有幾種不同的驗證方式。
 
 - 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md)和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0921_2016-->

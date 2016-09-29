@@ -4,7 +4,7 @@
 	services="hdinsight" 
 	documentationCenter="" 
 	authors="nitinme" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -31,7 +31,7 @@
 
 * 叢集
 
-* 主題模型
+* 主題模型化
 
 * 奇異值分解 (SVD) 和主體元件分析 (PCA)
 
@@ -420,4 +420,4 @@ MLLib 可提供簡單的方法來執行此作業。首先，我們將「語彙�
 
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -5,7 +5,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="roalexan"
-	manager="paulettm"
+	manager="jhubbard"
 	editor=""/>
 
 <tags
@@ -20,13 +20,13 @@
 
 # 了解如何使用 API 管理來管理 AzureML Web 服務
 
-##概觀
+##Overview
 
 本指南示範如何快速開始使用 API 管理，來管理您的 AzureML Web 服務。
 
 ##什麼是 Azure API 管理？
 
-Azure API 管理是一項 Azure 服務，可讓您藉由定義使用者存取、使用節流設定和儀表板監視，來管理 REST API 端點。如需 Azure API 管理的詳細資訊，請按一下[這裡](https://azure.microsoft.com/services/api-management/)。如需如何開始使用 Azure API 管理的指南，請按一下[這裡](../api-management/api-management-get-started.md)。這是本指南所依據的指南，涵蓋更多主題，包括通知組態、定價層、回應處理、使用者驗證、建立產品、開發人員訂閱和使用量儀表板。
+Azure API 管理是一項 Azure 服務，可讓您藉由定義使用者存取、使用節流設定和儀表板監視，來管理 REST API 端點。如需 Azure API 管理的詳細資訊，請按一下[這裡](https://azure.microsoft.com/services/api-management/)。如需如何開始使用 Azure API 管理的指南，請按一下[這裡](../api-management/api-management-get-started.md)。這是本指南所依據的另一份指南，涵蓋更多主題，包括通知組態、定價層、回應處理、使用者驗證、建立產品、開發人員訂用帳戶和使用量儀表板。
 
 ##什麼是 AzureML？
 
@@ -46,7 +46,7 @@ AzureML 是 Azure Machine Learning 服務，可讓您輕鬆建置、部署及共
 
 ![建立執行個體](./media/machine-learning-manage-web-service-endpoints-using-api-management/create-instance.png)
 
-指定唯一的 **URL**。本指南使用 **demoazureml**，您必須選擇其他不同的值。針對您的服務執行個體，選擇需要的 [**訂用帳戶**] 和 [**地區**]。進行您的選擇之後，請按下一步按鈕。
+指定唯一的 **URL**。本指南使用 **demoazureml**，您必須選擇其他不同的值。針對您的服務執行個體，選擇需要的 [訂用帳戶] 和 [區域]。進行您的選擇之後，請按下一步按鈕。
 
 ![建立服務 1](./media/machine-learning-manage-web-service-endpoints-using-api-management/create-service-1.png)
 
@@ -72,7 +72,7 @@ API 是透過您經由 Azure 傳統入口網站存取的 API 發行者入口網�
 
 ![API 管理功能表](./media/machine-learning-manage-web-service-endpoints-using-api-management/api-management-menu.png)
 
-將 **AzureML 示範 API** 輸入為 **Web API 名稱**。將在 **https://ussouthcentral.services.azureml.net** 輸入為 **Web 服務 URL**。在 [**Web API URL 尾碼**] 中，輸入 **azureml-demo**。在 [Web API URL 配置] 中，核取 [HTTPS]。在 [產品] 中，選取 [Starter]。完成後，按一下 [儲存] 建立 API。
+將 **AzureML 示範 API** 輸入為 **Web API 名稱**。在 [Web 服務 URL]** 中，輸入 **https://ussouthcentral.services.azureml.net**。 在 [Web API URL 尾碼]** 中，輸入 **azureml-demo。在 [Web API URL 配置]** 中，核取 [HTTPS]**。在 [產品]** 中，選取 [Starter]**。完成後，按一下 [儲存]**** 以建立 API。
 
 ![加入新的 API](./media/machine-learning-manage-web-service-endpoints-using-api-management/add-new-api.png)
 
@@ -130,13 +130,13 @@ API 是透過您經由 Azure 傳統入口網站存取的 API 發行者入口網�
 
 在 [要求參數] 中，輸入您的**工作區**和**服務**，在 [API 版本] 中輸入 **2.0**，並在 [詳細資料] 中輸入 **true**。您可以在 AzureML Web 服務儀表板中找到您的**工作區**和**服務** (請參閱附錄 A 中的**測試 Web 服務**)。
 
-在 [要求標頭] 中，按一下 [加入標頭] 並輸入 **Content-type** 和 **application/json**，然後按一下 [加入標頭] 並輸入 **Authorization** 和 **Bearer <YOUR AZUREML SERVICE API-KEY>**。您可以在 AzureML Web 服務儀表板中找到您的 **API 金鑰** (請參閱附錄 A 中的**測試 Web 服務**)。
+在 [要求標頭] 中，按一下 [加入標頭] 並輸入 **Content-type** 和 **application/json**，然後按一下 [加入標頭] 並輸入 **Authorization** 和 **Bearer <您的 AZUREML 服務 API 金鑰>**。您可以在 AzureML Web 服務儀表板中找到您的 **API 金鑰** (請參閱附錄 A 中的**測試 Web 服務**)。
 
 在 [要求本文] 中，輸入 **{"Inputs": {"input1": {"ColumnNames": ["Col2"], "Values": [["這是美好的一天"]]}}, "GlobalParameters": {}}**。
 
 ![AzureML 示範 API](./media/machine-learning-manage-web-service-endpoints-using-api-management/azureml-demo-api.png)
 
-按一下 [**傳送**]。
+按一下 [傳送]。
 
 ![傳送](./media/machine-learning-manage-web-service-endpoints-using-api-management/send.png)
 
@@ -384,4 +384,4 @@ AzureML Web 服務是由 RSS (要求/回應服務) 和 BES (批次執行服務) 
 	return
 	invokeBatchExecutionService()
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0914_2016-->

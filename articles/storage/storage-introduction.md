@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="07/21/2016"
-	ms.author="tamram"/>
+	ms.date="09/20/2016"
+	ms.author="vamshik;tamram"/>
 
 # Microsoft Azure 儲存體簡介
 
@@ -139,7 +139,7 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 建立儲存體帳戶時，您必須選取下列其中一個複寫選項：
 
 - **本地備援儲存體 (LRS)。** 本地備援儲存體可維護三個資料複本。LRS 會在單一區域的單一設備內複寫三次。LRS 可保護您的資料以避免一般的硬體故障，但無法避免單一設備的故障。
-  
+
 	使用 LRS 可享有折扣費率。如需最高的持久性，建議您採用異地備援儲存體，如下所述。
 
 
@@ -148,7 +148,7 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 	ZRS 提供高於 LRS 等級的持久性；不過，如需最高的持久性，建議您採用地理區域備援儲存體，如下所述。
 
 	> [AZURE.NOTE] ZRS 目前僅適用於區塊 blob，且僅 2014年 2 月 14 日版以上版本提供支援。
-	> 
+	>
 	> 建立儲存體帳戶並選取 ZRS 後，就無法轉換為採用任何其他類型的複寫，反之亦然。
 
 - **異地備援儲存體 (GRS)**。GRS 可維護六個資料複本。有了 GRS，您的資料會在主要區域內複寫三次，並在與主要區域相距甚遠的次要區域內複寫三次，提供最高等級的持久性。在主要區域發生問題時，Azure 儲存體將會容錯移轉至次要區域。GRS 可確保兩個不同區域中的資料持續性。
@@ -158,7 +158,7 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 - **讀取權限異地備援儲存體 (RA-GRS)**。建立儲存體帳戶時，依預設會啟用讀取權限異地備援儲存體。讀取權限異地備援儲存體會將您的資料複寫到次要地理位置，並同時提供次要位置中資料的讀取權限。讀取權限異地備援儲存體可讓您在主要或次要任一位置無法使用的情況下，從另外一個位置存取資料。
 
 	> [AZURE.IMPORTANT] 除非您建立帳戶時指定了 ZRS，否則就可以在建立儲存體帳戶之後，變更資料的複寫方式。不過請注意，從 LRS 切換到 GRS 或 RA-GRS 時，可能必須支付額外的單次資料傳輸成本。
- 
+
 如需儲存體複寫選項相關的其他詳細資料，請參閱 [Azure 儲存體複寫](storage-redundancy.md)。
 
 如需儲存體帳戶複寫的價格資訊，請參閱 [Azure 儲存體價格](https://azure.microsoft.com/pricing/details/storage/)。
@@ -267,4 +267,4 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 - [如何使用 Python 的佇列儲存體](storage-python-how-to-use-queue-storage.md)
 - [如何使用 Python 的檔案儲存體](storage-python-how-to-use-file-storage.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->

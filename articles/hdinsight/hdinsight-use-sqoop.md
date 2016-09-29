@@ -2,7 +2,7 @@
 	pageTitle="在 HDInsight 上使用 Hadoop Sqoop | Microsoft Azure"
 	description="了解如何從工作站使用 Azure PowerShell，在 HDInsight 叢集與 Azure SQL Database 之間執行 Sqoop 匯入和匯出。"
 	editor="cgronlun"
-	manager="paulettm"
+	manager="jhubbard"
 	services="hdinsight"
 	documentationCenter=""
 	tags="azure-portal"
@@ -629,4 +629,4 @@ HDInsight 可以使用各種方法執行 Sqoop 工作。請使用下表決定適
 
 [sqoop-user-guide-1.4.4]: https://sqoop.apache.org/docs/1.4.4/SqoopUserGuide.html
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

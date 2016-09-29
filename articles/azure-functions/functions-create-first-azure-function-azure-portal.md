@@ -37,7 +37,7 @@ Azure Functions 是事件取向的隨選計算體驗並擴充了現有的 Azure 
 
 	+ **[資源群組](../azure-portal/resource-group-portal.md/)**：選取 [新建] 並為您的新資源群組輸入名稱。您也可以選擇現有的資源群組，不過您可能無法為函數應用程式建立動態的 App Service 方案。
 	+ **[App Service 方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)**：選擇 [動態] 或 [傳統]。
-		+ **動態**：Azure Functions 的預設方案類型。當您選擇動態方案時，您也必須選擇 [位置] 並設定 [記憶體配置] (以 MB 為單位)。如需記憶體配置如何影響成本的詳細資訊，請參閱 [Azure Functions 定價](https://azure.microsoft.com/pricing/details/functions/)。
+		+ **動態**：Azure Functions 的預設方案類型。當您選擇動態方案時，您也必須選擇 [位置] 並設定 [記憶體配置] \(以 MB 為單位)。如需記憶體配置如何影響成本的詳細資訊，請參閱 [Azure Functions 定價](https://azure.microsoft.com/pricing/details/functions/)。
 		+ **傳統**：傳統 App Service 方案需要您建立一個 (或選取現有的)「App Service 方案/位置」。這些設定決定與您的應用程式相關聯的[位置、功能、成本和計算資源](https://azure.microsoft.com/pricing/details/app-service/)。
 	+ **儲存體帳戶**：每個函數應用程式都需要一個儲存體帳戶。您可以選擇現有的儲存體帳戶或是建立帳戶。
 

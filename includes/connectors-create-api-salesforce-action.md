@@ -31,7 +31,7 @@
 - 選取 [Office 365 Outlook - 傳送電子郵件] 清單項目。如果您尚未建立與 Office 365 帳戶的「連線」，系統就會提示您輸入 Office 365 認證來立即建立連線。完成之後，[傳送電子郵件] 控制項會隨即開啟。  
 ![Salesforce 動作圖像 7](./media/connectors-create-api-salesforce/action-7.png)  
 - 在 [收件者] 控制項中，輸入要接收您電子郵件的電子郵件地址。
--  在 [主旨] 控制項中，輸入「已建立新潛在客戶 - 」，然後選取 [公司] 語彙基元。這會顯示來自在 Salesforce 中建立之新潛在客戶的 [公司] 欄位。
+-  在 [主旨] 控制項中，輸入「已建立新的潛在客戶」，然後選取 [公司] 語彙基元。這會顯示來自在 Salesforce 中建立之新潛在客戶的 [公司] 欄位。
 -  在 [內文] 控制項中，您可以從新潛在客戶物件選取任何語彙基元，也可以輸入您想要顯示在電子郵件內文中的任何文字。以下是範例：  
 ![Salesforce 動作圖像 8](./media/connectors-create-api-salesforce/action-8.png)  
 - 儲存您的工作流程。
@@ -41,4 +41,4 @@
 現在，您可以測試邏輯應用程式︰在 Salesforce 中，建立一個符合您所建立條件的新潛在客戶。如果您完全按照本逐步解說操作，就只要建立一個電子郵件地址包含 *amazon.com* 的新潛在客戶即可。幾秒鐘之後，應該會觸發您的邏輯應用程式，而結果看起來可能會像這樣︰  
 ![Salesforce 動作圖像 9](./media/connectors-create-api-salesforce/action-9.png)  
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

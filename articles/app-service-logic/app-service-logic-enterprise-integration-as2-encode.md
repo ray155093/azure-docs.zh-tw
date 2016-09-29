@@ -66,10 +66,10 @@
 
 ##親身體驗
 
-何不嘗試看看。按一下[這裡](https://github.com/Azure/azure-quickstart-templates/tree/master/201-logic-app-as2-send-receive)，使用 Logic Apps AS2 功能部署您自己的全功能邏輯應用程式
- 
+何不嘗試看看。按一下[這裡](https://azure.microsoft.com/documentation/templates/201-logic-app-as2-send-receive/)，使用 Logic Apps AS2 功能部署您自己的全功能邏輯應用程式
+
 ## 後續步驟
 
 [深入了解企業整合套件](./app-service-logic-enterprise-integration-overview.md "了解企業整合套件")
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

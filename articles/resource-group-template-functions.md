@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/11/2016"
+   ms.date="09/12/2016"
    ms.author="tomfitz"/>
 
 # Azure 資源管理員範本函數
@@ -1087,7 +1087,7 @@
 		}
 	}
 
-傳回物件上的內容會因資源類型而有所不同。
+從 **reference** 函式傳回之物件上的屬性會因資源類型而有所不同。若要查看資源類型的屬性名稱和值，請建立一個會在 **outputs** 區段中傳回物件的範例範本。如果您有一個該類型的現有資源，您的範本就會直接傳回物件，而不會部署任何新資源。如果您沒有該類型的現有資源，您的範本則會只部署該類型並傳回物件。然後，請將這些屬性新增到需要在部署時以動態方式擷取值的其他範本。
 
 <a id="resourcegroup" />
 ### resourceGroup
@@ -1217,4 +1217,4 @@
 - 建立資源類型時若要逐一查看指定的次數，請參閱[在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
 - 若要了解如何部署已建立的範本，請參閱[使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -4,7 +4,7 @@
 	services="hdinsight"
 	documentationCenter=""
 	editor="cgronlun"
-	manager="paulettm"
+	manager="jhubbard"
 	authors="nitinme"
 	tags="azure-portal"/>
 
@@ -14,11 +14,31 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/18/2016"
+	ms.date="08/31/2016"
 	ms.author="nitinme"/>
 
 
 # Azure HDInsight 上 Hadoop 元件的版本資訊
+
+## HDInsight 的 R 伺服器 2016/8/30 版本的相關資訊
+
+使用此版本部署的 Linux 型 HDInsight 叢集的完整版本號碼：
+
+|HDI |HDI 叢集版本 |HDP |HDP 組建 |Ambari 組建 |
+|----|----------------------|----|------------|-------------|
+|3\.2 |3\.2.1000.0.8268980 |2\.2 |2\.2.9.1-19 |2\.2.1.12-4 |
+|3\.3 |3\.3.1000.0.8268980 |2\.3 |2\.3.3.1-25 |2\.2.1.12-4 |
+|3\.4 |3\.4.1000.0.8269383 |2\.4 |2\.4.2.4-5 |2\.2.1.12-4 |
+
+使用此版本部署的 Windows 型 HDInsight 叢集的完整版本號碼：
+
+|HDI |HDI 叢集版本 |HDP |HDP 組建 |
+|----|----------------------|----|--------------|
+|2\.1 |2\.1.10.1033.2559206 |1\.3 |1\.3.12.0-01795|
+|3\.0 |3\.0.6.1033.2559206 |2\.0 |2\.0.13.0-2117 |
+|3\.1 |3\.1.4.1033.2559206 |2\.1 |2\.1.16.0-2374 |
+|3\.2 |3\.2.7.1033.2559206 |2\.2 |2\.2.9.1-11 |
+|3\.3 |3\.3.0.1033.2559206 |2\.3 |2\.3.3.1-25 |
 
 ## HDInsight 的 R 伺服器 2016/8/17 版本的相關資訊
 
@@ -1688,4 +1708,4 @@ SQL Server 的 Java 資料庫連接 (JDBC) 驅動程式僅供 HDInsight 內部�
 [hdinsight-r-scripts]: ../hdinsight-hadoop-r-scripts/
  
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

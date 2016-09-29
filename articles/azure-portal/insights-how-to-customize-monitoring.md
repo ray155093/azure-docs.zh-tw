@@ -68,8 +68,8 @@
 * 每當計量超出臨界值時，[接收警示通知](insights-receive-alert-notifications.md)。
 * [啟用監視和診斷](insights-how-to-use-diagnostics.md)來在您服務中收集詳細的高頻率計量。
 * [自動調整執行個體計數](insights-how-to-scale.md)以確保您的服務可用且可迅速回應。
-* 如果您想要了解您的程式碼如何在雲端中執行，可以[監視應用程式效能](insights-perf-analytics.md)。
+* 如果您想要了解您的程式碼如何在雲端中執行，可以[監視應用程式效能](../application-insights/app-insights-azure-web-apps.md)。
 * 使用 [JavaScript 應用程式和網頁適用的 Application Insights](../application-insights/app-insights-web-track-usage.md)，以取得有關造訪網頁瀏覽器的用戶端分析。
 * 使用 Application Insights [監視任何網頁的可用性和回應性](../application-insights/app-insights-monitor-web-app-availability.md)，讓您可以找出您的頁面是否關閉。
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

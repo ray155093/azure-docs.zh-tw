@@ -13,7 +13,7 @@
   ms.topic="article"
   ms.tgt_pltfrm="na"
   ms.workload="data-services"
-  ms.date="09/01/2016"
+  ms.date="09/12/2016"
   ms.author="andrl"/>
 
 # 社群入口網站
@@ -265,7 +265,8 @@ DocumentDB 精靈是社群領導者，他們是在協助其他人充分利用他
  [Mihail Mateev](https://twitter.com/mihailmateev) | [![Mihail Mateev](./media/documentdb-community/wizard-mihail-mateev.jpg)](https://twitter.com/mihailmateev) |
  [Larry Maccherone](https://twitter.com/lmaccherone) | [![Larry Maccherone](./media/documentdb-community/wizard-larry-maccherone.jpg)](https://twitter.com/lmaccherone) 
  [Howard Edidin](https://twitter.com/hsedidin) | [![Howard Edidin](./media/documentdb-community/wizard-howard-edidin.jpg)](https://twitter.com/hsedidin) 
+ [Santosh Hari](https://twitter.com/_s_hari) | [![Santosh Hari](./media/documentdb-community/wizard-santosh-hari.jpg)](https://twitter.com/_s_hari) 
 
 想要成為 DocumentDB 精靈？ 由於是否能成為 DocumentDB 精靈並沒有任何評斷基準，因此我們會針對部分條件來評估，包括被提名人在線上論壇 (例如 StackOverflow 和 MSDN；Wiki 和線上內容；會議和使用者群組；播客；網站；部落格和社群媒體；以及文章與書籍) 中提供之貢獻所產生的影響。如果您想提名自己或其他人，請[傳送電子郵件給我們](mailto:askdocdb@microsoft.com)。
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

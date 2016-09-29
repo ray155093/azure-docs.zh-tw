@@ -5,7 +5,7 @@
    services="hdinsight"
    documentationCenter=""
    authors="nitinme"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"
    tags="azure-portal"/>
 
@@ -72,7 +72,7 @@
 	|叢集類型| 請為本教學課程選取 [Hadoop]。 |
 	|叢集作業系統| 請為本教學課程選取 [Windows Server 2012 R2 Datacenter]。|
 	|HDInsight 版本| 請為本教學課程選取最新的版本。|
-	|訂閱| 請選取將用於此叢集的 Azure 訂用帳戶。|
+	|訂用帳戶| 選取將用於此叢集的 Azure 訂用帳戶。|
 	|資源群組 | 請選取現有的 Azure 資源群組，或建立新的資源群組。基本的 HDInsight 叢集包含一個叢集，以及它的預設儲存體帳戶。您可以把兩個叢集組成一個資源群組來方便管理。|
 	|認證| 請輸入叢集登入使用者名稱和密碼。以 Windows 為基礎的叢集可以有 2 個使用者帳戶。系統會利用叢集使用者 (或 HTTP 使用者) 來管理叢集及提交工作。(選用) 您可以建立遠端桌面 (RDP) 使用者帳戶，以便遠端連線到叢集。如果您選擇啟用遠端桌面，您將建立 RDP 使用者帳戶。|
 	|資料來源| 請按一下 [建立新項目] 來建立新的預設 Azure 儲存體帳戶。請把叢集名稱當做預設的容器名稱。每個 HDinsight 叢集在 Azure 儲存體帳戶中都有一個預設的 Blob 容器。而預設 Azure 儲存體帳戶的位置，會決定 HDInsight 叢集的位置。|
@@ -255,4 +255,4 @@ HDInsight 叢集會提供查詢主控台，其中包括快速入門組件庫，�
 [image-hdi-gettingstarted-powerquery-importdata2]: ./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.GettingStarted.PowerQuery.ImportData2.png
  
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0914_2016-->

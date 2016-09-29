@@ -4,7 +4,7 @@
    	services="hdinsight"
    	documentationCenter=""
    	authors="Blackmist"
-   	manager="paulettm"
+   	manager="jhubbard"
    	editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -262,7 +262,7 @@ Azure 資源管理範本是描述__資源群組__與其中所有資源 (例如 H
 
 ##登入您的 Azure 訂用帳戶
 
-依照[從 Azure 命令列介面 (Azure CLI) 連線到 Azure 訂用帳戶](../xplat-cli-connect.md)中記載的步驟，使用 `azure login` 命令連線到您的訂用帳戶。
+依照[從 Azure 命令列介面 (Azure CLI) 連接到 Azure 訂用帳戶](../xplat-cli-connect.md)中記載的步驟，使用 `azure login` 命令連接到您的訂用帳戶。
 
 ##建立服務主體
 
@@ -272,7 +272,7 @@ Azure 資源管理範本是描述__資源群組__與其中所有資源 (例如 H
 
         azure account list
         
-    在清單中，選取您要使用的訂用帳戶，並記下 __Id__ 資料行。這是 __subscription ID__，將用於本文件的大部分步驟。
+    在清單中，選取您要使用的訂用帳戶，並記下 __Id__ 資料行。這是__訂用帳戶 ID__，將用於本文件的大部分步驟中。
 
 2. 在 Azure Active Directory 中建立新的應用程式。
 
@@ -305,11 +305,11 @@ Azure 資源管理範本是描述__資源群組__與其中所有資源 (例如 H
         data:                      https://www.contoso.org/example
         info:    ad sp create command OK
         
-4. 使用先前傳回的 __Object ID__ 值將 __Owner__ 角色指派給服務主體。您也必須使用稍早取得的 __subscription ID__。
+4. 使用先前傳回的 __Object ID__ 值將 __Owner__ 角色指派給服務主體。您也必須使用稍早取得的__訂用帳戶 ID__。
     
         azure role assignment create --objectId 7dbc8265-51ed-4038-8e13-31948c7f4ce7 -o Owner -c /subscriptions/{SubscriptionID}/
         
-    此命令完成之後，服務主體就會有對所指定之訂用帳戶識別碼的「擁有者」存取權。
+    此命令完成之後，服務主體就會具備所指定訂用帳戶 ID 的擁有者存取權。
 
 ##取得驗證權杖
 
@@ -435,4 +435,4 @@ curl -X "GET" "https://management.azure.com/subscriptions/SubscriptionID/resourc
 * [在 HDInsight 上的 Storm 中使用 Python 元件](hdinsight-storm-develop-python-topology.md)
 * [在 HDInsight 上使用 Storm 部署和監視拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

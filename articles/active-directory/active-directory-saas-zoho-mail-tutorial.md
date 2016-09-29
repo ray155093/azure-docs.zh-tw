@@ -11,14 +11,14 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="06/20/2016" 
+    ms.date="09/09/2016" 
     ms.author="markvi" />
 
 #教學課程：Azure Active Directory 與 Zoho Mail 整合
   
 本教學課程的目的是要示範 Azure 與 Zoho Mail 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
--   有效的 Azure 訂閱
+-   有效的 Azure 訂用帳戶
 -   Zoho Mail 租用戶
   
 完成本教學課程之後，您指派給 Zoho Mail 的 Azure AD 使用者就能夠從您的 Zoho Mail 公司網站 (服務提供者起始登入)，或使用[存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
@@ -54,7 +54,7 @@
 
 5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-zoho-mail-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![從資源庫新增應用程式](./media/active-directory-saas-zoho-mail-tutorial/IC749322.png "從資源庫新增應用程式")
 
 6.  在**搜尋方塊**中，輸入 **Zoho Mail**。
 
@@ -66,11 +66,11 @@
 
 ##設定單一登入
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶在 Zoho Mail 中進行驗證。在此程序中，您必須建立 base-64 編碼的憑證檔案。如果您不熟悉這個程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶在 Zoho Mail 中進行驗證。在此程序中，您必須建立 Base-64 編碼的憑證檔案。如果您不熟悉此程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure 傳統入口網站的 [Zoho Mail] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [Zoho Mail] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-zoho-mail-tutorial/IC789603.png "設定單一登入")
 
@@ -105,12 +105,12 @@
 
     ![SAML 驗證詳細資料](./media/active-directory-saas-zoho-mail-tutorial/IC789609.png "SAML 驗證詳細資料")
 
-    1.  在 Azure 傳統入口網站的 [設定在Zoho Mail 單一登入] 對話方塊頁面上，複製 [遠端登入 URL] 值，然後將它貼入 [登入 URL] 文字方塊。
-    2.  在 Azure 傳統入口網站的 [設定在Zoho Mail 單一登入] 對話方塊頁面上，複製 [遠端登出 URL] 值，然後將它貼入 [登出 URL] 文字方塊。
-    3.  在 Azure 傳統入口網站的 [設定在Zoho Mail 單一登入] 對話方塊頁面上，複製 [變更密碼 URL] 值，然後將它貼入 [變更密碼 URL] 文字方塊。
-    4.  從您下載的憑證建立「Base-64 編碼」檔案。  
+    1.  在 Azure 傳統入口網站的 [設定在 Zoho Mail 單一登入] 對話方塊頁面上，複製 [遠端登入 URL] 值，然後將它貼到 [登入 URL] 文字方塊中。
+    2.  在 Azure 傳統入口網站的 [設定在 Zoho Mail 單一登入] 對話方塊頁面上，複製 [遠端登出 URL] 值，然後將它貼到 [登出 URL] 文字方塊中。
+    3.  在 Azure 傳統入口網站的 [設定在 Zoho Mail 單一登入] 對話方塊頁面上，複製 [變更密碼 URL] 值，然後將它貼到 [變更密碼 URL] 文字方塊中。
+    4.  從您下載的憑證建立「Base-64 編碼」檔案。
 
-        >[AZURE.TIP] 如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
+        >[AZURE.TIP] 如需詳細資料，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
 
     5.  在記事本中開啟 base-64 編碼的憑證，將其內容複製到剪貼簿，然後貼入 [公開金鑰] 文字方塊。
     6.  選取 [RSA] 做為 [演算法]。
@@ -139,7 +139,7 @@
     ![新增使用者](./media/active-directory-saas-zoho-mail-tutorial/IC789612.png "新增使用者")
 
     1.  在相關的文字方塊中，輸入您要佈建之有效 Azure Active Directory 帳戶的 [名字]、[姓氏]、[電子郵件地址]、[密碼]。
-    2.  按一下 [確定]。  
+    2.  按一下 [確定]。
 
         >[AZURE.NOTE] Azure Active Directory 帳戶的持有者會收到一封包含連結的電子郵件，以在啟用帳戶前進行確認。
 
@@ -147,7 +147,7 @@
 
 ##指派使用者
   
-若要測試您的組態，您需要指派使用者，授予存取權給您想要允許其使用您的應用程式存取設定的 Azure AD 使用者。
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
 ###若要指派使用者給 Zoho Mail，請執行下列步驟：
 
@@ -163,4 +163,4 @@
   
 如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

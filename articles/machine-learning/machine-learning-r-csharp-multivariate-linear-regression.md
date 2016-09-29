@@ -4,7 +4,7 @@
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="jaymathe" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -24,7 +24,7 @@
 假設您有一個資料集，並想要根據獨立變數，快速地預測每個項目 (i) 的相依變數 (y)。線性迴歸是這類預測的常用統計技術。這裡假設相依變數 y 是連續值。
 
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 一個簡單的案例是研究人員嘗試根據身高 (x) 來預測某人 (y) 的體重。一個較為進階的案例是研究人員擁有個別的額外資訊 (例如體重、性別、種族)，並嘗試預測某人的體重。這項 [Web 服務](https://datamarket.azure.com/dataset/aml_labs/multivariate_regression)會將資料套入線性迴歸模型，並為資料中的每個觀察輸出預測值 (y)。
 
@@ -117,4 +117,4 @@ Azure Machine Learning 中已建立新的空白實驗，並將兩個[執行 R �
 [execute-r-script]: https://msdn.microsoft.com/library/azure/30806023-392b-42e0-94d6-6b775a6e0fd5/
  
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

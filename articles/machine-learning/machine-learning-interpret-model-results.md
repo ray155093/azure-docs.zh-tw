@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter="" 
 	authors="bradsev" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/27/2016" 
+	ms.date="09/12/2016" 
 	ms.author="bradsev" />
 
 
@@ -21,7 +21,7 @@
  
 **了解和視覺化「評分模型」輸出**本主題說明如何視覺化和解譯 Azure Machine Learning Studio 中的預測結果。在您訓練模型並且完成模型最上層的預測 (「評分模型」) 之後，您必須了解和解譯您已取得的預測結果。
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 Azure Machine Learning 中有四個主要的機器學習類型：
 
@@ -32,34 +32,34 @@ Azure Machine Learning 中有四個主要的機器學習類型：
 
 用來在這些模組上層進行預測的模組，稱為為其「評分」，指定一些測試資料，如下所示：
 
-* [評分模型][score-model]模組，用於分類和迴歸， 
-* [指派至叢集][assign-to-clusters]模組，用於叢集 
-* [評分 Matchbox 推薦][score-matchbox-recommender]，用於推薦系統 
+* [評分模型][score-model]模組，用於分類和迴歸，
+* [指派至叢集][assign-to-clusters]模組，用於叢集
+* [評分 Matchbox 推薦][score-matchbox-recommender]，用於推薦系統
  
 本文件說明如何針對每個模組解譯預測結果。如需這些類型模組的概觀，請參閱[如何選擇參數來最佳化 Azure Machine Learning 中的演算法](machine-learning-algorithm-parameters-optimize.md)。
 
-本主題說明預測解譯，但是未說明模型評估。如需如何評估模型的詳細資訊，請參閱[如何評估 Azure Machine Learning 中的模型效能](machine-learning-evaluate-model-performance.md)。
+本主題說明預測解譯，但是未說明模型評估。如需如何評估模型的詳細資訊，請參閱[如何在 Azure Machine Learning 中評估模型效能](machine-learning-evaluate-model-performance.md)。
 
 如果您是 Azure Machine Learning 的新手，並且需要如何建立簡單實驗以開始使用的說明，請參閱[在 Azure Machine Learning Studio 中建立簡單實驗](machine-learning-create-experiment.md)。
 
 ##分類
 分類問題方面有兩個子類別：
 
-* 只有兩個分類的問題 (雙類別或二進位分類) 
-* 兩個以上分類的問題 (多類別分類) 
+* 只有兩個分類的問題 (雙類別或二進位分類)
+* 兩個以上分類的問題 (多類別分類)
 
-Azure Machine Learning 有不同的模組可以處理各種類型的分類。但是解譯其預測結果的方式非常相似。我們將會首先談論雙類別分類問題，然後再說明多類別分類問題。
+Azure Machine Learning 有不同的模組可以處理各種類型的分類。但是解譯其預測結果的方式非常相似。我們會先談論二元分類問題，然後討論多元分類問題。
 
 ###雙類別分類
 **範例實驗**
 
-雙類別分類問題的範例是鳶尾花的分類：根據其特徵分類鳶尾花。請注意，Azure Machine Learning 中提供的鳶尾花資料集是熱門[鳶尾花資料集](http://en.wikipedia.org/wiki/Iris_flower_data_set)的子集，僅包含 2 個花卉物種 (類別 0 和 1) 的執行個體。每個花卉有四個特徵 (萼片長度、萼片寬度、花瓣長度及花瓣寬度)。
+雙類別分類問題的範例是鳶尾花的分類：根據其特徵分類鳶尾花。Azure Machine Learning 中提供的鳶尾花資料集是熱門[鳶尾花資料集](http://en.wikipedia.org/wiki/Iris_flower_data_set)的子集，僅包含兩個花卉物種 (類別 0 和 1) 的執行個體。每個花卉有四個特徵 (萼片長度、萼片寬度、花瓣長度及花瓣寬度)。
 
 ![screenshot\_of\_experiment](./media/machine-learning-interpret-model-results/1.png)
 
 圖 1 鳶尾花雙類別分類問題的實驗
 
-已執行實驗以解決此問題，如「圖 1」所示。已訓練及評分雙類別促進式決策樹模型。現在我們可以從[評分模型][score-model]模組視覺化預測結果，方法是按一下[評分模型][score-model]模組的輸出連接埠，然後按一下功能表中的 [**視覺化**]。這樣會帶出評分結果，如「圖 2」所示。
+已執行實驗以解決此問題，如「圖 1」所示。已訓練及評分雙類別促進式決策樹模型。現在我們可以從[評分模型][score-model]模組來將預測結果視覺化，方法是按一下[評分模型][score-model]模組的輸出連接埠，然後按一下功能表中的 [視覺化]。這樣會帶出評分結果，如圖 2 所示。
 
 ![screenshot\_of\_experiment](./media/machine-learning-interpret-model-results/1_1.png)
 
@@ -79,7 +79,7 @@ Azure Machine Learning 有不同的模組可以處理各種類型的分類。但
 
 圖 3 鳶尾花雙類別分類問題的評分實驗
 
-現在我們必須設定 Web 服務的輸入和輸出。很顯然的，輸入是[評分模型][score-model]的右側輸入連接埠，這是鳶尾花的特徵輸入。輸出的選擇取決於我們是對於預測類別 (評分標籤)、評分機率或兩者感到興趣。這裡假設我們對兩者都感到興趣。若要選取想要的輸出資料行，我們必須使用[選取資料集中的資料行][select-columns]模組。我們將按一下 [[選取資料集中的資料行][select-columns]] 模組、按一下右窗格中的 [啟動資料行選取器]，然後選取 [評分標籤] 和 [評分機率]。設定[選取資料集中的資料行][select-columns]模組的輸出連接埠並再次執行之後，應該就可以按一下底部的 [發佈 WEB 服務] 按鈕，將評分實驗發佈為 Web 服務。最終實驗如「圖 4」所示。
+現在我們必須設定 Web 服務的輸入和輸出。很顯然的，輸入是[評分模型][score-model]的右側輸入連接埠，這是鳶尾花的特徵輸入。輸出的選擇取決於我們是對於預測類別 (評分標籤)、評分機率或兩者感到興趣。這裡假設我們對兩者都感到興趣。若要選取想要的輸出資料行，我們必須使用[選取資料集中的資料行][select-columns]模組。依序按一下 [[選取資料集中的資料行][select-columns]] 模組和右窗格的 [啟動資料行選取器]，然後選取 [評分標籤] 和 [評分機率]。設定[選取資料集中的資料行][select-columns]模組的輸出連接埠並再次執行之後，應該就可以按一下底部的 [發佈 WEB 服務] 按鈕，將評分實驗發佈為 Web 服務。最終實驗如「圖 4」所示。
  
 ![screenshot\_of\_experiment](./media/machine-learning-interpret-model-results/4.png)
 
@@ -96,7 +96,7 @@ Azure Machine Learning 有不同的模組可以處理各種類型的分類。但
 ###多類別分類
 **範例實驗**
 
-在此實驗中，我們將會執行字母辨識工作，做為多類別分類的範例。我們嘗試預測特定字母 (類別) 的分類器，指定一些從手寫映像中擷取的手寫屬性值。在訓練資料中，從手寫字母映像中擷取 16 個特徵。26 個字母形成我們的 26 個類別。已設定實驗以訓練多類別分類模型進行字母辨識，並且預測測試資料集的相同特徵集，如「圖 6」所示。
+在此實驗中，我們將執行字母辨識工作，做為多元分類的範例。分類器會嘗試預測特定字母 (類別)，指定一些從手寫影像中擷取的手寫屬性值。在定型資料中，有 16 個擷取自手寫字母影像的特徵。26 個字母形成我們的 26 個類別。已設定實驗以訓練多元分類模型進行字母辨識，並在測試資料集上針對相同的特徵集進行預測，如圖 6 所示。
 
 ![screenshot\_of\_experiment](./media/machine-learning-interpret-model-results/5_1.png)
  
@@ -104,7 +104,7 @@ Azure Machine Learning 有不同的模組可以處理各種類型的分類。但
 
 圖 6 字母辨識多類別分類問題的實驗
 
-從[評分模型][score-model]模組視覺化結果，方法是以滑鼠右鍵/左鍵按一下[評分模型][score-model]模組的輸出連接埠，然後按一下 [**視覺化**]，您會看見如「圖 7」所示的視窗。
+從[評分模型][score-model]模組視覺化結果，方法是以滑鼠右鍵/左鍵按一下[評分模型][score-model]模組的輸出連接埠，然後按一下 [視覺化]，您應會看見如圖 7 所示的視窗。
  
 ![screenshot\_of\_experiment](./media/machine-learning-interpret-model-results/7.png)
 
@@ -126,7 +126,7 @@ Azure Machine Learning 有不同的模組可以處理各種類型的分類。但
 
 圖 9 字母辨識多類別分類問題的最終評分實驗
 
-發佈及執行 Web 服務並且輸入一些輸入特徵值之後，傳回結果如「圖 10」。此手寫字母具有其擷取的 16 個特徵，預測為 “T”，其機率為 0.9715。
+發佈及執行 Web 服務並且輸入一些輸入特徵值之後，傳回結果如「圖 10」。此手寫字母具有其擷取的 16 個特徵，預測為 “T” 的機率是 0.9715。
  
 ![screenshot\_of\_experiment](./media/machine-learning-interpret-model-results/9_1.png)
 
@@ -184,7 +184,7 @@ Azure Machine Learning 有不同的模組可以處理各種類型的分類。但
 
 叢集與分類的不同之處在於訓練資料集本身沒有地面實況標籤。我們對於如何將訓練資料集執行個體群組至不同的叢集更感興趣。在訓練處理期間，模型會為項目加上標籤，方法是學習其特徵之間的差異。之後，可以進一步使用已訓練的模型以分類未來的項目。在叢集問題當中，我們感興趣的結果有兩個部分。第一個部分是如何為訓練資料集加上標籤，第二個部分是如何使用已訓練的模型分類新的資料集。
 
-結果的第一個部分可以藉由按一下[訓練叢集模型][train-clustering-model]模組的左側輸出連接埠，然後按一下 [**視覺化**]，加以視覺化。視覺化視窗如「圖 16」所示。
+結果的第一個部分可藉由按一下[訓練叢集模型][train-clustering-model]模組的左側輸出連接埠，然後按一下 [視覺化]，加以視覺化。視覺化視窗如「圖 16」所示。
  
 ![screenshot\_of\_experiment](./media/machine-learning-interpret-model-results/16.png)
 
@@ -219,11 +219,11 @@ Azure Machine Learning 有不同的模組可以處理各種類型的分類。但
 ##推薦系統
 **範例實驗**
 
-對於推薦系統，我們將會使用餐廳推薦問題做為範例：根據餐廳的評等歷史為客戶推薦餐廳。輸入資料是由三個部分組成：
+對於推薦系統，我們會使用餐廳推薦問題做為範例：根據餐廳的評等歷史為客戶推薦餐廳。輸入資料是由三個部分組成：
 
-* 來自客戶的餐廳評等 
-* 客戶特色資料 
-* 餐廳特色資料 
+* 來自客戶的餐廳評等
+* 客戶特色資料
+* 餐廳特色資料
 
 我們可以使用 Azure Machine Learning 的內建[訓練 Matchbox 推薦][train-matchbox-recommender]模組做許多事情：
 
@@ -232,7 +232,7 @@ Azure Machine Learning 有不同的模組可以處理各種類型的分類。但
 - 尋找指定使用者相關的使用者
 - 尋找指定項目相關的項目
 
-我們可以選擇想要執行的動作，方法是從右窗格的 [**推薦預測類型**] 功能表上的四個選項中進行選取。我們會在這裡逐步完成全部四個案例。典型的推薦系統 Azure Machine Learning 實驗如「圖 20」所示。如需如何使用這些推薦系統模組的詳細資訊，請參閱[訓練 Matchbox 推薦][train-matchbox-recommender]和[評分 Matchbox 推薦][score-matchbox-recommender]的說明頁面。
+我們可以選擇想要執行的動作，方法是從右窗格的 [**推薦預測類型**] 功能表上的四個選項中進行選取。我們會在這裡逐步完成這四個案例。典型的推薦系統 Azure Machine Learning 實驗如「圖 20」所示。如需如何使用這些推薦系統模組的詳細資訊，請參閱[訓練 Matchbox 推薦][train-matchbox-recommender]和[評分 Matchbox 推薦][score-matchbox-recommender]的說明頁面。
  
 ![screenshot\_of\_experiment](./media/machine-learning-interpret-model-results/19_1.png)
 
@@ -254,7 +254,7 @@ Azure Machine Learning 有不同的模組可以處理各種類型的分類。但
 
 *對指定使用者推薦項目*
 
-藉由在 [**推薦預測類型**] 功能表中選取 [**項目推薦**]，我們會要求推薦系統對指定使用者推薦項目。此案例中還有一個需要選擇的參數，推薦項目選取。選項 [**從評等項目 (針對模型評估)**] 主要適用於訓練處理期間的模型評估。對於此預測階段，我們將會選擇 [**從所有項目**]。[評分 Matchbox 推薦][score-matchbox-recommender]輸出的視覺化如「圖 22」所示。
+藉由在 [**推薦預測類型**] 功能表中選取 [**項目推薦**]，我們會要求推薦系統對指定使用者推薦項目。此案例中還有一個需要選擇的參數，推薦項目選取。選項 [**從評等項目 (針對模型評估)**] 主要適用於訓練處理期間的模型評估。對於此預測階段，我們選擇 [從所有項目]。[評分 Matchbox 推薦][score-matchbox-recommender]輸出的視覺化如「圖 22」所示。
  
 ![screenshot\_of\_experiment](./media/machine-learning-interpret-model-results/22.png)
 
@@ -309,4 +309,4 @@ Azure Machine Learning 有不同的模組可以處理各種類型的分類。但
 [train-matchbox-recommender]: https://msdn.microsoft.com/library/azure/fa4aa69d-2f1c-4ba4-ad5f-90ea3a515b4c/
  
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0914_2016-->

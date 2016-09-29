@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="05/24/2016"
+   ms.date="09/12/2016"
    ms.author="magoedte;bwren;sngun"/>
 
 # Azure 自動化 Webhook
@@ -84,7 +84,7 @@ Webhook 的安全性仰賴其 URL 的隱私權，其中包含可允許其接受�
 
 使用下列程序在 Azure 入口網站中建立連結至 Runbook 的全新 Webhook。
 
-1. 從 Azure 入口網站的 **Runbook 刀鋒視窗**中，按一下 Webhook 將開始檢視詳細資料刀鋒視窗的 Runbook。 
+1. 從 Azure 入口網站的 **Runbook 刀鋒視窗**中，按一下 Webhook 將開始檢視詳細資料刀鋒視窗的 Runbook。
 3. 按一下刀鋒視窗頂端的 [**Webhook**] 以開啟 [**新增 Webhook**] 刀鋒視窗。<br> ![Webhook 按鈕](media/automation-webhooks/webhooks-button.png)
 4. 按一下 [**建立新的 Webhook**] 以開啟 [**建立 Webhook 刀鋒視窗**]。
 5. 指定 Webhook 的 [**名稱**]、[**到期日期**] 以及是否應該啟用。請參閱 [Webhook 的詳細資料](#details-of-a-webhook)以取得這些屬性的詳細資訊。
@@ -196,12 +196,12 @@ Runbook 預期在要求的主體中有 JSON 格式的虛擬機器清單。我們
 
 考量如虛擬機器的 Azure 資源，這台電腦的 CPU 使用率是其中一個關鍵效能計量。如果 CPU 使用率是 100% 或者在一段長時間超過某個量，您可能會想要重新啟動虛擬機器以修正問題。這可以藉由設定虛擬機器的警示規則來解決，而此規則可以使用 CPU 百分比做為計量。這裡的 CPU 百分比只是一個範例，但是還有許多您可以對 Azure 資源設定的其他計量，重新啟動虛擬機器是修正此問題所採取的一個動作，您可以設定 Runbook 採取其他動作。
 
-當此警示規則變成作用中並且觸發啟用 Webhook 的 Runbook 時，會傳送警示內容到 Runbook。[警示內容](../azure-portal/insights-receive-alert-notifications.md)包含的詳細資料包括 **SubscriptionID**、**ResourceGroupName**、**ResourceName**、**ResourceType**、**ResourceId** 和 **Timestamp**，這些都是 Runbook 識別會在其上採取動作的資源所需的項目。警示內容內嵌在傳送至 Runbook 的 **WebhookData** 物件的內文部分，可以使用 **Webhook.RequestBody** 屬性存取
+當此警示規則變成作用中並且觸發啟用 Webhook 的 Runbook 時，會傳送警示內容到 Runbook。[警示內容](../azure-portal/insights-receive-alert-notifications.md)包含的詳細資料包括 **SubscriptionID**、**ResourceGroupName**、**ResourceName**、**ResourceType**、**ResourceId** 和 **Timestamp**，這些都是 Runbook 識別要在其上採取動作的資源所需的項目。警示內容內嵌在傳送至 Runbook 的 **WebhookData** 物件的內文部分，可以使用 **Webhook.RequestBody** 屬性存取
 
 
 ### 範例
 
-在訂用帳戶中建立 Azure 虛擬機器，並且關聯[警示以監視 CPU 百分比計量](../azure-portal/insights-receive-alert-notifications.md)。建立警示時，請確定以建立 Webhook 時所產生的 Webhook URL 填入 Webhook 欄位。
+在訂用帳戶中建立 Azure 虛擬機器，並關聯[警示以監視 CPU 百分比計量](../azure-portal/insights-receive-alert-notifications.md)。建立警示時，請確定以建立 Webhook 時所產生的 Webhook URL 填入 Webhook 欄位。
 
 下列範例 Runbook 會在警示規則變成作用中時觸發，而且會收集 Runbook 識別在上面採取動作的資源所需的警示內容參數。
 
@@ -272,4 +272,4 @@ Runbook 預期在要求的主體中有 JSON 格式的虛擬機器清單。我們
 - 如需檢視 Runbook 作業狀態的詳細資訊，請參閱 [Azure 自動化中的 Runbook 執行](automation-runbook-execution.md)
 - 若要了解如何使用 Azure 自動化來對 Azure 警示採取動作，請參閱[使用自動化 Runbook 修復 Azure VM 警示](automation-azure-vm-alert-integration.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0914_2016-->

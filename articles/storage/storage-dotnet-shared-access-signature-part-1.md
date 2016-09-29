@@ -1,6 +1,6 @@
 <properties
-	pageTitle="共用存取簽章：了解 SAS 模型 | Microsoft Azure"
-	description="深入了解使用共用的存取簽章 (SAS) 委派存取至 Azure 儲存體資源，包括 Blob、佇列、資料表及檔案。共用存取簽章可以保護您的儲存體帳戶金鑰，同時將帳戶中資源的存取權授與其他使用者。您可以控制您授與的權限和 SAS 的有效時間間隔。如果您也可以建立預存的存取原則，您就可以在擔心帳戶安全性遭到入侵時撤銷 SAS。"
+	pageTitle="使用共用存取簽章 (SAS) | Microsoft Azure"
+	description="深入了解使用共用的存取簽章 (SAS) 委派存取至 Azure 儲存體資源，包括 Blob、佇列、資料表及檔案。"
 	services="storage"
 	documentationCenter=""
 	authors="tamram"
@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="05/23/2016"
+	ms.date="09/07/2016"
 	ms.author="tamram"/>
 
 
 
-# 共用存取簽章，第 1 部分：了解 SAS 模型
+# 使用共用存取簽章 (SAS)
 
-## 概觀
+## Overview
 
 若要在無需提供您帳戶金鑰的情況下，將儲存體帳戶中物件的限制存取授與其他用戶端，則使用共用存取簽章 (SAS) 會是個佷有效的方式。在本教學課程有關共用存取簽章的第 1 部分中，我們將提供 SAS 模型的概觀並檢閱 SAS 最佳做法。本教學課程的[第 2 部分](storage-dotnet-shared-access-signature-part-2.md)會逐步引導您，使用 Blob 服務來完成建立共用存取簽章的程序。
 
@@ -318,4 +318,4 @@ IP 範圍|sip=168.1.5.60-168.1.5.70|將從中接受要求的 IP 位址範圍。
 [sas-storage-fe-proxy-service]: ./media/storage-dotnet-shared-access-signature-part-1/sas-storage-fe-proxy-service.png
 [sas-storage-provider-service]: ./media/storage-dotnet-shared-access-signature-part-1/sas-storage-provider-service.png
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0914_2016-->

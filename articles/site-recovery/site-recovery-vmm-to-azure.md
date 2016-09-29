@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="08/23/2016"
+	ms.date="09/16/2016"
 	ms.author="raynew"/>
 
 # 使用 Azure Site Recovery 搭配 Azure 入口網站來複寫 VMM 雲端中的 Hyper-V 虛擬機器 | Microsoft Azure
@@ -571,4 +571,4 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 
 在您的部署設定完成並開始執行之後，請[深入了解](site-recovery-failover.md)不同類型的容錯移轉。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0921_2016-->

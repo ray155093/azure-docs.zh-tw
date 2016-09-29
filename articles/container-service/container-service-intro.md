@@ -15,7 +15,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/16/2016"
+   ms.date="09/13/2016"
    ms.author="rogardle"/>
 
 # Azure 容器服務簡介
@@ -106,4 +106,4 @@ Docker Swarm 為 Docker 提供原生叢集。由於 Docker Swarm 可作為標準
 
 > [AZURE.VIDEO build-2016-building-applications-using-the-azure-container-service]
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

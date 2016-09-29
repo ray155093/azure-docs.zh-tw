@@ -61,6 +61,7 @@
 - [如何移除不再使用於 Azure 付款方式的信用卡？](#how-do-i-remove-a-credit-card-that-i-no-longer-use-as-an-azure-payment-method)
 - [如何更新或變更信用卡資訊？](#how-can-i-update-or-change-my-credit-card-information)
 - [我要如何編輯 Azure 訂用帳戶的付費資訊？](#how-can-i-edit-my-payment-information-for-my-azure-subscriptions)
+- [為什麼我看到必須使用國際信用卡的訊息？](#why-am-i-seeing-a-message-that-i-need-to-use-an-international-credit-card)
 
 ## Azure 定價
 
@@ -74,7 +75,7 @@
 - [什麼是 Azure SLA 信用額度？](#what-are-the-azure-sla-credits)
 - [Azure 服務等級協定如何搭配目前的內部部署 Microsoft 授權合約運作？](#how-will-azure-service-level-agreements-work-with-current-on-premises-microsoft-licensing-agreements)
 
-## Azure 消費限制
+## 消費限制
 
 - [如果我關閉「消費限制」功能，還能再重新開啟嗎？](#can-i-turn-the-spending-limit-back-on-if-i-turn-off-it)
 - [我可以調整「消費限制」的金額嗎？](#can-i-adjust-the-amount-of-the-spending-limit)
@@ -251,6 +252,10 @@ Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權�
 
 >[AZURE.NOTE] 目前 [變更付款方式] 工具不允許您移除現有作為付款方式的信用卡。如需如何移除信用卡方式的相關資訊，請參閱本文的[如何移除不再使用於 Azure 付款方式的信用卡？](#how-do-i-remove-a-credit-card-that-i-no-longer-use-as-an-azure-payment-method)。
 
+### 為什麼我會看到必須使用國際信用卡的訊息？
+
+在某些情況下，雖然您是以本地/慣用貨幣支付 Azure 服務，但卻是透過非本地 Microsoft 實體購買服務，而處理您信用卡的銀行並非本地銀行。在這些情況下，本地銀行所發行的卡片可能會失敗，而對您的 Azure 服務造成負面影響。如果您不確定您的信用卡是否具備國際交易功能，請連絡您的銀行或發卡機構來進行確認。請參閱[支援的國家/地區與貨幣](billing-countries-and-currencies.md)。
+
 ### 為什麼我無法編輯或新增詳細資料到我的訂用帳戶中？
 
 若要檢視及編輯 Azure 帳戶資訊，您必須以帳戶管理員的身分登入 Azure 帳戶中心。如果您是帳戶管理員，且仍無法編輯訂用帳戶，請提交支援票證以要求協助。若要建立支援票證，請參閱 [How to Create a Support Ticket for Azure Billing and Subscription Issues (如何針對 Azure 計費和訂用帳戶問題建立支援票證)](billing-how-to-create-billing-support-ticket.md) 一文。
@@ -321,4 +326,4 @@ Azure 免費試用訂用帳戶是為任何新客戶提供的為期一個月的�
 
 如果您設定為使用[發票付款方法](https://azure.microsoft.com/pricing/invoicing/)，請將您的付款交付至您發票底部所列的位置。如需詳細說明，請[連絡支援服務](billing-how-to-create-billing-support-ticket.md)。
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

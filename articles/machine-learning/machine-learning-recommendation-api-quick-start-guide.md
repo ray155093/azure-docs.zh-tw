@@ -4,7 +4,7 @@
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="LuisCabrer" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -13,13 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/17/2016" 
+	ms.date="09/08/2016" 
 	ms.author="luisca"/>
 
 # Machine Learning Recommendations API 的快速入門指南
 
-> 這是資料市場中舊建議 API 的文件，將於 2016 年 12 月 31 日作廢。您現在應該繼續使用[建議 API Cognitive Service](https://www.microsoft.com/cognitive-services/zh-TW/recommendations-api)。
-
+>[AZURE.NOTE] 您應該開始使用 Recommendations API 的 Cognitive Service，而不是此版本。Recommendations 的 Cognitive Service 將會取代這個服務，而所有的新特徵都會在其中進行開發。它會提供新功能，例如，批次支援、更好的 API 總管、更簡潔的 API 介面、更一致的註冊/計費體驗等。深入了解[移轉到新的 Cognitive Service](http://aka.ms/recomigrate)
 
 
 本文說明如何準備您的服務或應用程式來開始使用 Microsoft Azure Machine Learning 建議。您可於[資源庫](http://gallery.cortanaanalytics.com/MachineLearningAPI/Recommendations-2)中找到有關建議 API 更詳細的資料。
@@ -91,8 +90,8 @@ Azure Machine Learning 建議 API 的服務根 URI 在[這裡。](https://api.da
 
 |	參數名稱 |	有效值 |
 |:--------			|:--------								|
-|	modelName |	只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (\_)。<br>最大長度：20 |
-|	apiVersion | 1\.0 |
+|modelName |	只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (\_)。<br>最大長度：20 |
+|apiVersion | 1\.0 |
 |||
 | 要求本文 | 無 |
 
@@ -146,7 +145,7 @@ OData XML
 |:--------			|:--------								|
 |	modelId |	模型的唯一識別碼 (區分大小寫) |
 | 檔名 | 目錄的文字識別碼。<br>只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (\_)。<br>最大長度：50 |
-|	apiVersion | 1\.0 |
+|apiVersion | 1\.0 |
 |||
 | 要求本文 | 目錄資料。格式：<br>`<Item Id>,<Item Name>,<Item Category>[,<description>]`<br><br><table><tr><th>名稱</th><th>強制</th><th>類型</th><th>描述</th></tr><tr><td>項目識別碼</td><td>是</td><td>英數字元，長度上限 50</td><td>項目的唯一識別碼</td></tr><tr><td>項目名稱</td><td>是</td><td>英數字元，長度上限 255</td><td>項目名稱</td></tr><tr><td>項目類別</td><td>是</td><td>英數字元，長度上限 255</td><td>這個項目所屬類別 (例如烹飪書籍、戲劇...)</td></tr><tr><td>描述</td><td>否</td><td>英數字元，長度上限 4000</td><td>這個項目的描述</td></tr></table><br>檔案大小上限為 200 MB。<br><br>範例：<br><pre>2406e770-769c-4189-89de-1c9283f93a96,Clara Callan,Book<br>21bf8088-b6c0-4509-870c-e1c7ac78304a,The Forgetting Room: A Fiction (Byzantium Book),Book<br>3bb5cb44-d143-4bdd-a55c-443964bf4b23,Spadework,Book<br>552a1940-21e4-4399-82bb-594b46d7ed54,Restraint of Beasts,Book</pre> |
 
@@ -195,7 +194,7 @@ OData XML
 |:--------			|:--------								|
 |	modelId |	模型的唯一識別碼 (區分大小寫) |
 | 檔名 | 目錄的文字識別碼。<br>只允許使用字母 (A-Z、a-z)、數字 (0-9)、連字號 (-) 及底線 (\_)。<br>最大長度：50 |
-|	apiVersion | 1\.0 |
+|apiVersion | 1\.0 |
 |||
 | 要求本文 | 使用狀況資料。格式：<br>`<User Id>,<Item Id>[,<Time>,<Event>]`<br><br><table><tr><th>名稱</th><th>強制</th><th>類型</th><th>描述</th></tr><tr><td>使用者識別碼</td><td>是</td><td>英數字元</td><td>使用者的唯一識別碼</td></tr><tr><td>項目識別碼</td><td>是</td><td>英數字元，長度上限 50</td><td>項目的唯一識別碼</td></tr><tr><td>時間</td><td>否</td><td>日期格式：YYYY/MM/DDTHH:MM:SS (例如 2013/06/20T10:00:00)</td><td>資料的時間</td></tr><tr><td>事件</td><td>否；如果提供，也必須註明日期</td><td>下列其中之一：<br>• Click<br>• RecommendationClick<br>• AddShopCart<br>• RemoveShopCart<br>• Purchase</td><td></td></tr></table><br>檔案大小上限為 200 MB。<br><br>範例：<br><pre>149452,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>6360,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>50321,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>71285,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>224450,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>236645,1b3d95e2-84e4-414c-bb38-be9cf461c347<br>107951,1b3d95e2-84e4-414c-bb38-be9cf461c347</pre> |
 
@@ -718,4 +717,4 @@ OData XML
 © 2014 Microsoft.著作權所有，並保留一切權利。
  
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -12,7 +12,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/03/2016" 
+	ms.date="09/07/2016" 
 	ms.author="tamram"/>
 
 # 使用 Azure 儲存體模擬器進行開發和測試
@@ -22,6 +22,8 @@
 Microsoft Azure 儲存體模擬器提供了模擬 Azure Blob、佇列和資料表服務的本機環境，以供進行開發。您可以使用儲存體模擬器，針對儲存體服務在本機測試您的應用程式，而不需建立 Azure 訂用帳戶，也不會產生任何費用。如果您滿意應用程式在模擬器中的運作方式，就可以切換成使用雲端的 Azure 儲存體帳戶。
 
 > [AZURE.NOTE] 儲存體模擬器隨 [Microsoft Azure SDK](https://azure.microsoft.com/downloads/) 提供。您也可以使用[獨立安裝程式](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409)來安裝儲存體模擬器。若要設定儲存體模擬器，您必須在電腦上具有系統管理權限。
+> 
+> 儲存體模擬器目前只能在 Windows 上執行。
 >  
 > 請注意，在某個儲存體模擬器版本中建立的資料不保證可在使用不同版本時加以存取。如果您需要長期保存資料，建議您將資料儲存於 Azure 儲存體帳戶中 (而不是儲存體模擬器中)。
 
@@ -65,7 +67,7 @@ Microsoft Azure 儲存體模擬器提供了模擬 Azure Blob、佇列和資料�
 
 使用此範例建立的共用存取簽章的效期為一天。簽章會將完整存取權限 (也就是讀取、寫入、刪除和列出) 授與容器內的 Blob。
 
-如需共用存取簽章的詳細資訊，請參閱[共用存取簽章：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)。
+如需共用存取簽章的詳細資訊，請參閱[使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)。
 
 
 ## 啟動及初始化儲存體模擬器
@@ -203,7 +205,13 @@ Microsoft Azure 儲存體模擬器提供了模擬 Azure Blob、佇列和資料�
 
 ## 儲存體模擬器版本資訊
 
+### 版本 4.5
+
+- 已修正在重新命名備份資料庫時，會導致儲存體模擬器的初始化與安裝失敗的錯誤。
+
 ### 4\.4 版
+
+- 儲存體模擬器現在支援 Blob、佇列和資料表服務端點上 2015-12-11 版的儲存體服務。
 
 - 現在，處理大量 blob 時，儲存體模擬器的 blob 資料記憶體回收更有效率。
 
@@ -247,4 +255,4 @@ Microsoft Azure 儲存體模擬器提供了模擬 Azure Blob、佇列和資料�
 
 - 現在完全支援 2013-08-15 版的 Azure 儲存體服務。(先前只有儲存體模擬器 2.2.1 版預覽才支援此版本)。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0914_2016-->

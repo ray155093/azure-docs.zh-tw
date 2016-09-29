@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="bradsev" 
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun" />
 
 <tags
@@ -141,7 +141,7 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。若�
 
 2.  當 Management Studio 開啟時，它會顯示 [**連接到伺服器**] 對話方塊。在 [**伺服器名稱**] 方塊中，輸入虛擬機器的名稱以利用物件總管連接 Database Engine。除了虛擬機器名稱之外，您還可以使用 [(本機)]，或將一個句點當做 [伺服器名稱]。選取 [Windows 驗證]，並保留 [使用者名稱] 方塊中的 [*your\_VM\_name*\\your\_local\_administrator]。按一下 [連接]。
 
-    ![連接到伺服器][6]
+    ![連線到伺服器][6]
 
 	<br>
 
@@ -251,7 +251,7 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。若�
 
 ##<a name="amlconnect"></a>從 Azure Machine Learning 連接 Database Engine
 
-在 Team Data Science Process 的後續階段中，您將使用 [Azure Machine Learning Studio](https://studio.azureml.net) 來建置和部署機器學習服務模型。若要將資料從 SQL Server VM 資料庫直接擷取到 Azure Machine Learning 以供訓練或評分使用，請在新的 [Azure Machine Learning Studio](https://studio.azureml.net) 實驗中使用「匯入資料」模組。您可以透過 Team Data Science Process 指南的連結來找到更多有關本主題的詳細資訊。如需簡介，請參閱「[什麼是 Azure Machine Learning Studio？」](machine-learning-what-is-ml-studio.md)。
+在 Team Data Science Process 的後續階段中，您將使用 [Azure Machine Learning Studio](https://studio.azureml.net) 來建置和部署機器學習服務模型。若要將資料從 SQL Server VM 資料庫直接擷取到 Azure Machine Learning 以供訓練或評分使用，請在新的 [Azure Machine Learning Studio](https://studio.azureml.net) 實驗中使用「匯入資料」模組。您可以透過 Team Data Science Process 指南的連結，找到更多有關本主題的詳細資訊。如需簡介，請參閱「[什麼是 Azure Machine Learning Studio？」](machine-learning-what-is-ml-studio.md)。
 
 2.	在[匯入資料模組](https://msdn.microsoft.com/library/azure/dn905997.aspx)的 [屬性] 窗格中，從 [資料來源] 下拉式清單中選取 [Azure SQL Database]。
 
@@ -306,4 +306,4 @@ Azure 虛擬機器的定價策略是「**只針對您使用的項目進行付費
 [15]: ./media/machine-learning-data-science-setup-sql-server-virtual-machine/vmshutdown.png
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

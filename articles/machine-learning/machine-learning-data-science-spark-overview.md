@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="bradsev,deguhath,gokuma"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"  />
 
 <tags
@@ -20,11 +20,11 @@
 
 [AZURE.INCLUDE [machine-learning-spark-modeling](../../includes/machine-learning-spark-modeling.md)]
 
-此套件的主題說明了如何使用 HDInsight Spark 來完成常見的資料科學工作，例如資料擷取、特徵工程、建模和模型評估。所使用的資料是 2013 NYC 計程車車程和費用資料集的抽樣樣本。建立的模型包括羅吉斯和線性迴歸、隨機樹系和漸層停駐推進式決策樹。本主題也說明如何將這些模型儲存至 Azure Blob 儲存體 (WASB)，以及如何評分及評估模型的預測效能。更進階的主題會討論如何使用交叉驗證和超參數牽涉來訓練模型。此概觀主題也說明了如何與在先前提供的三個逐步解說中，需完成相應步驟的 Spark 叢集搭配來進行設定。
+這組主題會說明如何使用 HDInsight Spark 來完成常見的資料科學工作，例如資料擷取、特徵工程、模型化和模型評估。所使用的資料是 2013 NYC 計程車車程和費用資料集的抽樣樣本。建立的模型包括羅吉斯和線性迴歸、隨機樹系和漸層停駐推進式決策樹。這些主題也會說明如何將這些模型儲存至 Azure Blob 儲存體 (WASB)，以及如何評分及評估模型的預測效能。更進階的主題會討論如何使用交叉驗證和超參數掃掠來訓練模型。此概觀主題也說明了如何與在先前提供的三個逐步解說中，需完成相應步驟的 Spark 叢集搭配來進行設定。
 
 [Spark](http://spark.apache.org/) 是一個開放原始碼平行處理架構，可支援記憶體內部處理，大幅提升巨量資料分析應用程式的效能。Spark 處理引擎是專為速度、易用性及精密分析打造的產品。Spark 的記憶體內分散式計算功能，使其成為機器學習和圖表計算中反覆演算法的絕佳選擇。[MLlib](http://spark.apache.org/mllib/) 是將模型化功能引進此分散式環境的 Spark 可調整機器學習程式庫。
 
-[HDInsight Spark](../hdinsight/hdinsight-apache-spark-overview.md) 是開放原始碼 Spark 的 Azure 託管服務。它也支援 Spark 叢集上的 **Jupyter PySpark notebooks**，可執行 Spark SQL 互動式查詢以轉換、篩選和視覺化 Azure Blob (WASB) 中儲存的資料。PySpark 是適用於 Spark 的 Python API。程式碼片段提供了解決方案，並且顯示相關的繪圖，進而將安裝在 Spark 叢集上的 Jupyter Notebook 資料加以視覺化。這些主題中的模型化步驟包括程式碼以示範如何訓練、評估、儲存和使用各類模型。
+[HDInsight Spark](../hdinsight/hdinsight-apache-spark-overview.md) 是開放原始碼 Spark 的 Azure 託管服務。它也支援 Spark 叢集上的 **Jupyter PySpark notebooks**，可執行 Spark SQL 互動式查詢以轉換、篩選和視覺化 Azure Blob (WASB) 中儲存的資料。PySpark 是適用於 Spark 的 Python API。程式碼片段提供了解決方案，並且顯示相關的繪圖，進而將安裝在 Spark 叢集上的 Jupyter Notebook 資料加以視覺化。這些主題中的模型化步驟包括程式碼，以示範如何訓練、評估、儲存和使用各類模型。
 
 此逐步解說所提供的設定步驟和程式碼適用於 HDInsight 3.4 Spark 1.6。不過，此處及 Notebook 內的程式碼皆屬泛型程式碼，而且應該能在任何 Spark 叢集上運作。若未使用 HDInsight Spark，叢集設定和管理步驟可能與這裡顯示的稍有不同。
 
@@ -112,7 +112,7 @@
 
 ![](./media/machine-learning-data-science-spark-overview/spark-jupyter-notebook.png)
 
-選取 [PySpark] 來查看包含一些預先封裝 Notebook 範例的目錄，這些範例使用了 PySpark API。適用於此 Spark 套件主題的 Notebook (包含程式碼範例)，可在 [Github](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark) 上找到
+選取 [PySpark] 來查看包含一些預先封裝 Notebook 範例的目錄，這些範例使用了 PySpark API。適用於這組 Spark 主題的 Notebook (包含程式碼範例) 可在 [Github](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark) 上找到
 
 
 您可以將 Notebook 直接從 Github 上傳至 Spark 叢集上的 Jupyter Notebook 伺服器。在您的 Jupyter 首頁，按一下螢幕右側的 [上傳] 按鈕。它會開啟檔案總管。您可以在這裡貼上 Notebook 的 Github (原始內容) URL，然後按一下 [開啟]。下列 URL 有 PySpark Notebook 可供使用：
@@ -138,7 +138,7 @@
 
 ## 後續步驟
 
-現在您已使用 HDInsight Spark 叢集進行設定，並已上傳 Jupyter 筆記本，您已準備要逐步執行對應至這三個 PySpark 的主題，其示範如何瀏覽資料、建立和使用模型。進階資料探索和模型化筆記本深入探討到包括交叉驗證、超參數清除和模型評估。
+現在您已使用 HDInsight Spark 叢集進行設定，並已上傳 Jupyter 筆記本，您已準備要逐步執行對應至這三個 PySpark Notebook 的主題，其示範如何瀏覽資料、建立和取用模型。進階資料探索和模型化筆記本深入探討到包括交叉驗證、超參數清除和模型評估。
 
 **使用 Spark 資料探索和模型化：**遵循[使用 Spark MLlib 工具組來建立資料的二進位分類和迴歸模型](machine-learning-data-science-spark-data-exploration-modeling.md)主題來探索資料集、建立要評分和評估的機器學習服務模型。
 
@@ -146,4 +146,4 @@
 
 **交叉驗證和超參數清除**：請參閱[使用 Spark 進階資料探索和模型化](machine-learning-data-science-spark-advanced-data-exploration-modeling.md)有關如何使用交叉驗證和超參數清除訓練模型
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -11,15 +11,15 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="06/21/2016" 
+    ms.date="09/11/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Thirdlight 整合
   
 本教學課程的目的是要示範 Azure 與 Thirdlight 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
--   有效的 Azure 訂閱
--   啟用 Thirdlight 單一登入的訂用帳戶
+-   有效的 Azure 訂用帳戶
+-   已啟用 Thirdlight 單一登入功能的訂用帳戶
   
 完成本教學課程之後，您指派給 Thirdlight 的 Azure AD 使用者就能夠從您的 Thirdlight 公司網站 (服務提供者起始登入)，或使用[存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
   
@@ -54,7 +54,7 @@
 
 5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-thirdlight-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![從資源庫新增應用程式](./media/active-directory-saas-thirdlight-tutorial/IC749322.png "從資源庫新增應用程式")
 
 6.  在 [搜尋方塊] 中，輸入 **Thirdlight**。
 
@@ -66,11 +66,11 @@
 
 ##設定單一登入
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶驗證至 Thirdlight。設定 Thirdlight 的單一登入需要您從憑證擷取指紋值。如果您不熟悉這個程序，請參閱[如何擷取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶驗證至 Thirdlight。設定 Thirdlight 的單一登入需要您從憑證擷取指紋值。如果您不熟悉這個程序，請參閱[如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure 傳統入口網站的 [Thirdlight] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [Thirdlight] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-thirdlight-tutorial/IC805839.png "設定單一登入")
 
@@ -78,11 +78,11 @@
 
     ![設定單一登入](./media/active-directory-saas-thirdlight-tutorial/IC805840.png "設定單一登入")
 
-3.  在 [設定應用程式 URL] 頁面的 [Thirdlight 登入 URL] 文字方塊中，輸入使用者登入您 Thirdlight 應用程式所使用的 URL (例如："**http://azuresso2.thirdlight.com/*"))，然後按 [下一步]。
+3.  在 [設定應用程式 URL] 頁面的 [Thirdlight 登入 URL] 文字方塊中，輸入使用者用來登入 Thirdlight 應用程式的 URL (例如："http://azuresso2.thirdlight.com/*")，然後按 [下一步]*。
 
     ![設定應用程式 URL](./media/active-directory-saas-thirdlight-tutorial/IC805841.png "設定應用程式 URL")
 
-4.  於 [在 Thirdlight 設定單一登入] 頁面上，若要下載您的中繼資料，請按 [下載中繼資料]，然後將中繼資料檔儲存在您的本機電腦中。
+4.  在 [設定在 Thirdlight 單一登入] 頁面上，若要下載您的中繼資料，請按一下 [下載中繼資料]，然後將中繼資料檔儲存在本機電腦上。
 
     ![設定單一登入](./media/active-directory-saas-thirdlight-tutorial/IC805842.png "設定單一登入")
 
@@ -141,6 +141,6 @@
 
     ![是](./media/active-directory-saas-thirdlight-tutorial/IC767830.png "是")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

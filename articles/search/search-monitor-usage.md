@@ -4,7 +4,7 @@
    services="search" 
    documentationCenter="" 
    authors="HeidiSteen" 
-   manager="paulettm" 
+   manager="jhubbard" 
    editor=""
    tags="azure-portal"/>
 
@@ -27,7 +27,7 @@
 
 ##在入口網站中檢視計數和度量 
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。 
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
 
 2. 開啟 Azure 搜尋服務的服務儀表板。可在首頁上找到並排的服務，或是您也可以使用 JumpBar 上的 [瀏覽] 來瀏覽服務。如需逐步指示，請參閱[建立服務](search-create-service-portal.md)。
 
@@ -59,4 +59,4 @@ Azure 搜尋服務 REST API 和 .NET SDK 都提供以程式設計方式存取服
 
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -4,7 +4,7 @@
    services="hdinsight"
    documentationCenter=".net"
    authors="Blackmist"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"
    tags="azure-portal"/>
 
@@ -14,12 +14,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="06/17/2016"
+   ms.date="09/06/2016"
    ms.author="larryfr"/>
 
 #在 HDInsight 中使用 .NET SDK for Hadoop 執行 Pig 工作
 
-[AZURE.INCLUDE [Pig 選取器](../../includes/hdinsight-selector-use-pig.md)]
+[AZURE.INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
 
 本文件提供使用 .NET SDK for Hadoop 將 Pig 工作提交至 HDInsight 叢集上的 Hadoop 的範例。
 
@@ -31,7 +31,7 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 
 ## 必要條件
 
-若要完成這篇文章中的步驟，您需要下列項目。
+若要完成本文中的步驟，您需要下列項目。
 
 * Azure HDInsight (HDInsight 上的 Hadoop) 叢集 (Windows 或 Linux 型)。
 * Visual Studio 2012、2013 或 2015。
@@ -143,4 +143,4 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
 [preview-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

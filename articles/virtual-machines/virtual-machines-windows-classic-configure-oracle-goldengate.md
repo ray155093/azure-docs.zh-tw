@@ -12,7 +12,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows"
 	ms.workload="infrastructure-services"
-	ms.date="05/17/2016"
+	ms.date="09/06/2016"
 	ms.author="rclaus" />
 
 
@@ -29,7 +29,7 @@ Oracle GoldenGate 包含下列主要元件：擷取、資料幫浦、複寫、�
 
 此外，本教學課程假設您已經實作下列必要條件：
 
-- 您已經檢閱過 [Oracle 虛擬機器映像 - 其他考量](virtual-machines-windows-classic-oracle-considerations.md)主題中的＜高可用性和嚴重損壞修復考量＞一節。請注意，Azure 支援獨立的 Oracle 資料庫執行個體，但目前不支援 Oracle Real Application Cluster (Oracle RAC)。
+- 您已經檢閱過 [Oracle 虛擬機器映像 - 其他考量](virtual-machines-windows-classic-oracle-considerations.md)主題中的＜高可用性和災害復原考量＞一節。請注意，Azure 支援獨立的 Oracle 資料庫執行個體，但目前不支援 Oracle Real Application Cluster (Oracle RAC)。
 
 - 您已經從 [Oracle 下載](http://www.oracle.com/us/downloads/index.html)網站下載 Oracle GoldenGate 軟體。您已選取 Oracle Fusion Middleware 產品套件 - 資料整合。然後，您針對 Oracle 11g 資料庫，在適用於 Microsoft Windows x64 (64 位元) 的 Oracle v11.2.1 媒體套件上選取了 Oracle GoldenGate。接著，在 Windows 2008 (64 位元) 上下載適用於 Oracle 11g (64 位元) 的 Oracle GoldenGate V11.2.1.0.3。
 
@@ -43,7 +43,7 @@ Oracle GoldenGate 包含下列主要元件：擷取、資料幫浦、複寫、�
 
 在本教學課程中，您將：
 
-1. 在站台 A 和站台 B 上設定資料庫  
+1. 在站台 A 和站台 B 上設定資料庫
 
 	1. 執行初始資料載入
 
@@ -601,4 +601,4 @@ Oracle GoldenGate 管理員會執行一些像是啟動其他 GoldenGate 程序�
 ##其他資源
 [適用於 Azure 的 Oracle 虛擬機器映像](virtual-machines-linux-classic-oracle-images.md)
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -18,31 +18,31 @@
 
 # 教學課程：使用 Visual Studio 建立具有複製活動的管線
 > [AZURE.SELECTOR]
-- [教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
-- [使用 Data Factory 編輯器](data-factory-copy-activity-tutorial-using-azure-portal.md)
-- [使用 PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
-- [使用 Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
-- [使用 REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
-- [使用 .NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
-- [使用複製精靈](data-factory-copy-data-wizard-tutorial.md)
+- [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
+- [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)
+- [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
+- [PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
+- [REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
+- [.NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
+- [複製精靈](data-factory-copy-data-wizard-tutorial.md)
 
-在本教學課程中，您會使用 Visual Studio 2013 執行下列作業：
+本教學課程示範如何使用 Visual Studio 建立和監視 Azure Data Factory。Data Factory 中的管線會使用複製活動將資料從 Azure Blob 複製到 Azure SQL Database。
+
+以下是您會在本教學課程中執行的步驟：
 
 1. 建立兩個連結的服務：**AzureStorageLinkedService1** 和 **AzureSqlinkedService1**。AzureStorageLinkedService1 連結 Azure 儲存體，而 AzureSqlLinkedService1 連結 Azure SQL 資料庫至 Data Factory：**ADFTutorialDataFactoryVS**。管線的輸入資料位於 Azure Blob 儲存體的 Blob 容器中，輸出資料則儲存在 Azure SQL Database 的資料表中。因此，您可以將這兩個資料存放區以連結服務的形式新增至 Data Factory。
-2. 建立兩個 Data Factory 資料表：**EmpTableFromBlob** 和 **EmpSQLTable**，它們分別代表儲存在資料存放區的輸入/輸出資料。您會針對 EmpTableFromBlob，指定所含 Blob 具有來源資料的 Blob 容器。針對 EmpSQLTable，您會指定可儲存輸出資料的 SQL 資料表。您也會指定其他屬性，例如結構、可用性等。
+2. 建立兩個 Data Factory 資料表：**EmpTableFromBlob** 和 **EmpSQLTable**，它們分別代表儲存在資料存放區的輸入/輸出資料。您會針對 EmpTableFromBlob，指定所含 Blob 具有來源資料的 Blob 容器。針對 EmpSQLTable，您會指定可儲存輸出資料的 SQL 資料表。您也會指定其他屬性，例如結構、可用性和原則。
 3. 在 ADFTutorialDataFactoryVS 中建立名為 **ADFTutorialPipeline** 的管線。管線有一個**複製活動**，會將輸入資料從 Azure Blob 複製到輸出 Azure SQL 資料表。複製活動會在 Azure Data Factory 中執行資料移動。此活動是由全域可用的服務所提供，可以使用安全、可靠及可調整的方式，在各種不同的資料存放區之間複製資料。如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)文章。
 4. 建立 Data Factory，以及部署連結的服務、資料表和管線。
 
 ## 必要條件
 
-1. 詳閱[教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)一文。
-	
-	> [AZURE.IMPORTANT] 先完成必要條件，再進一步繼續進行。
+1. 詳讀[教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)一文並完成**必要**步驟。
 2. 您必須是 **Azure 訂用帳戶的系統管理員**才能發佈 Data Factory 實體至 Azure Data Factory。
 3. 您必須已在電腦上安裝下列項目：
 	- Visual Studio 2013 或 Visual Studio 2015
 	- 下載 Azure SDK for Visual Studio 2013 或 Visual Studio 2015。瀏覽至 [Azure 下載頁面](https://azure.microsoft.com/downloads/)，然後按一下 [.NET] 區段中的 [VS 2013] 或 [VS 2015]。
-	- 下載適用於 Visual Studio 的最新 Azure Data Factory 外掛程式：[VS 2013](https://visualstudiogallery.msdn.microsoft.com/754d998c-8f92-4aa7-835b-e89c8c954aa5) 或 [VS 2015](https://visualstudiogallery.msdn.microsoft.com/371a4cf9-0093-40fa-b7dd-be3c74f49005)。如果您使用的是 Visual Studio 2013，也可以執行下列動作來更新外掛程式：在功能表中按一下 [工具] -> [擴充功能和更新] -> [線上] -> [Visual Studio 組件庫] -> [Microsoft Azure Data Factory Tools for Visual Studio] -> [更新]。
+	- 下載適用於 Visual Studio 的最新 Azure Data Factory 外掛程式：[VS 2013](https://visualstudiogallery.msdn.microsoft.com/754d998c-8f92-4aa7-835b-e89c8c954aa5) 或 [VS 2015](https://visualstudiogallery.msdn.microsoft.com/371a4cf9-0093-40fa-b7dd-be3c74f49005)。如果您使用的是 Visual Studio 2013，也可以執行下列步驟來更新外掛程式：在功能表中按一下 [工具] -> [擴充功能和更新] -> [線上] -> [Visual Studio 組件庫] -> [Microsoft Azure Data Factory Tools for Visual Studio] -> [更新]。
  
 
 
@@ -212,7 +212,7 @@
 
 	![發佈對話方塊](./media/data-factory-copy-activity-tutorial-using-visual-studio/publish.png)
 
-21. 在 [設定 Data Factory] 頁面中，執行下列作業：
+21. 在 [設定 Data Factory] 頁面中，執行下列步驟：
 	1. 選取 [建立新的 Data Factory] 選項。
 	2. 針對 [名稱] 輸入 **VSTutorialFactory**。
 	
@@ -227,7 +227,7 @@
 24. 檢閱摘要，然後按 [下一步] 開始部署程序，並檢視 [部署狀態]。
 25. 在 [部署狀態] 頁面上，您應該會看到部署程序的狀態。部署完成後按一下 [完成]。
 
-請注意：
+請注意下列幾點：
 
 - 如果您收到錯誤：「此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory」，請執行下列其中一項，然後嘗試再次發佈︰
 
@@ -260,7 +260,7 @@
 3. 您可以在 Data Factory 上按一下滑鼠右鍵，並選取 [將 Data Factory 匯出至新的專案]，以便根據現有的 Data Factory 建立 Visual Studio 專案。![匯出 Data Factory 至 VS 專案](./media/data-factory-copy-activity-tutorial-using-visual-studio/export-data-factory-menu.png)
 
 ## 更新 Visual studio 的 Data Factory 工具
-若要更新 Visual Studio 的 Azure Data Factory 工具，請執行下列作業：
+若要更新 Visual Studio 的 Azure Data Factory 工具，請執行下列步驟：
 
 1. 按一下功能表上的 [工具]，然後選取 [擴充功能和更新]。
 2. 選取左窗格中的 [更新]，然後選取 [Visual Studio 組件庫]。
@@ -277,4 +277,4 @@
 | [資料集](data-factory-create-datasets.md) | 本文協助您了解 Azure Data Factory 中的資料集。
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0921_2016-->

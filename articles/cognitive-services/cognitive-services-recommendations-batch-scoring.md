@@ -5,7 +5,7 @@
 	services="cognitive-services"
 	documentationCenter=""
 	authors="luiscabrer"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -198,4 +198,4 @@ API 要求本文必須定義須儲存輸入、輸出及錯誤檔的位置。也�
 -	每個訂用帳戶一次只能呼叫一個批次作業。
 -	批次作業輸入檔不能超過 2 MB。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

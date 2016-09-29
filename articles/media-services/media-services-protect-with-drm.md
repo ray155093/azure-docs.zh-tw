@@ -1,9 +1,9 @@
 <properties
-	pageTitle="使用 PlayReady 和/或 Widevine 動態 Common Encryption"
+	pageTitle="使用 PlayReady 和/或 Widevine 動態一般加密 | Microsoft Azure"
 	description="Microsoft Azure 媒體服務可讓您傳遞受到 Microsoft PlayReady DRM 保護的 MPEG DASH、 Smooth Streaming 和 Http Live Streaming (HLS) 串流。AMS 也可讓您傳遞使用 Widevine DRM 加密的 DASH。本主題展示如何利用 PlayReady 和 Widevine DRM 動態加密。"
 	services="media-services"
 	documentationCenter=""
-	authors="Juliako,Mingfeiy"
+	authors="Mingfeiy"
 	manager="erikre"
 	editor=""/>
 
@@ -13,11 +13,11 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article" 
-	ms.date="06/22/2016"
-	ms.author="juliako"/>
+	ms.date="09/19/2016"
+	ms.author="juliako;mingfeiy"/>
 
 
-#使用 PlayReady 和/或 Widevine 動態 Common Encryption
+#使用 PlayReady 和/或 Widevine 動態一般加密
 
 > [AZURE.SELECTOR]
 - [.NET](media-services-protect-with-drm.md)
@@ -37,7 +37,7 @@ Microsoft Azure 媒體服務可讓您傳遞受到 [Microsoft PlayReady DRM](http
 
 本主題可協助開發人員處理傳遞多重 DRM (如 PlayReady 和 Widevine) 保護之媒體的應用程式。本主題將示範如何利用授權原則設定 PlayReady 授權傳遞服務，這樣只有授權的用戶端才會收到 PlayReady 或 Widevine 授權。其中也示範如何搭配 PlayReady 或透過 DASH 的 Widevine DRM 來使用動態加密。
 
->[AZURE.NOTE]若要開始使用動態加密，您必須先取得至少一個縮放單位 (也稱為串流單位)。如需詳細資訊，請參閱[如何調整媒體服務](media-services-manage-origins.md#scale_streaming_endpoints)。
+>[AZURE.NOTE]若要開始使用動態加密，您必須先取得至少一個縮放單位 (也稱為串流單位)。如需詳細資訊，請參閱[如何調整媒體服務](media-services-portal-manage-streaming-endpoints.md)。
 
 
 ##下載範例
@@ -53,13 +53,13 @@ Microsoft Azure 媒體服務可讓您傳遞受到 [Microsoft PlayReady DRM](http
 1. 建立內容金鑰，並將它與編碼的資產產生關聯。在媒體服務中，內容金鑰包含資產的加密金鑰。
 1. 設定內容金鑰的授權原則。內容金鑰授權原則必須由您設定，而且用戶端必須符合條件，才能將內容金鑰傳遞給用戶端。
 
-	建立內容金鑰授權原則時，您需要指定下列各項：傳遞方法 (PlayReady 或 Widevine)、限制 (開放或權杖)，以及金鑰傳遞類型的特定資訊，其定義如何將金鑰傳遞給用戶端 ([PlayReady](media-services-playready-license-template-overview.md) 或 [Widevine](media-services-widevine-license-template-overview.md) 授權範本) 。
+建立內容金鑰授權原則時，您需要指定下列各項：傳遞方法 (PlayReady 或 Widevine)、限制 (開放或權杖)，以及金鑰傳遞類型的特定資訊，其定義如何將金鑰傳遞給用戶端 ([PlayReady](media-services-playready-license-template-overview.md) 或 [Widevine](media-services-widevine-license-template-overview.md) 授權範本) 。
 1. 設定資產的傳遞原則。傳遞原則組態包括：傳遞通訊協定 (例如，MPEG DASH、HLS、HDS、Smooth Streaming 或全部)、動態加密的類型 (例如，Common Encryption)、PlayReady 或 Widevine 授權取得 URL。
- 
-	您可以將不同的原則套用至相同資產上的每一個通訊協定。例如，您可以將 PlayReady 加密套用到 Smooth/DASH，以及將 AES 信封加密套用到 HLS。傳遞原則中未定義的任何通訊協定 (例如，您加入單一原則，它只有指定 HLS 做為通訊協定) 將會遭到封鎖無法串流。這個狀況的例外情形是您完全沒有定義資產傳遞原則之時。那麼，將允許所有通訊協定，不受阻礙。
+
+您可以將不同的原則套用至相同資產上的每一個通訊協定。例如，您可以將 PlayReady 加密套用到 Smooth/DASH，以及將 AES 信封加密套用到 HLS。傳遞原則中未定義的任何通訊協定 (例如，您加入單一原則，它只有指定 HLS 做為通訊協定) 將會遭到封鎖無法串流。這個狀況的例外情形是您完全沒有定義資產傳遞原則之時。那麼，將允許所有通訊協定，不受阻礙。
 1. 若要取得串流 URL，請建立隨選定位器。
 
-您會在本主題結尾處發現完整的.NET 範例。
+您會在本主題結尾處發現完整的 .NET 範例。
 
 下圖示範上述的工作流程。這裡的權杖用於驗證。
 
@@ -84,7 +84,7 @@ Microsoft Azure 媒體服務可讓您傳遞受到 [Microsoft PlayReady DRM](http
 使用動態加密時，您只需建立一個資源，其中包含一組多位元速率 MP4 檔案或多位元速率 Smooth Streaming 來源檔案。然後隨選資料流處理伺服器會根據資訊清單和片段要求中的指定格式，確保您以自己選擇的通訊協定接收資料流。因此，您只需要儲存及支付一種儲存格式之檔案的費用，媒體服務會根據用戶端的要求建置及提供適當的回應。如需詳細資訊，請參閱[動態封裝概觀](media-services-dynamic-packaging-overview.md)主題。
 
 如需如何編碼的指示，請參閱[如何使用 Media Encoder Standard 為資產編碼](media-services-dotnet-encode-with-media-encoder-standard.md)。
-	
+
 
 ##<a id="create_contentkey"></a>建立內容金鑰並將它與編碼的資產產生關聯
 
@@ -609,7 +609,9 @@ Microsoft Azure 媒體服務可讓您傳遞受到 [Microsoft PlayReady DRM](http
 		}
 
 
-##媒體服務學習路徑
+## 後續步驟
+
+檢閱媒體服務學習路徑。
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
@@ -626,4 +628,4 @@ Microsoft Azure 媒體服務可讓您傳遞受到 [Microsoft PlayReady DRM](http
 
 [宣布在 Azure 媒體服務中推出 Google Widevine 授權傳遞服務](https://azure.microsoft.com/blog/announcing-general-availability-of-google-widevine-license-services/)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0921_2016-->

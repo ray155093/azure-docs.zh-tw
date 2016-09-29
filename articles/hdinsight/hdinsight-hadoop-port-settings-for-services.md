@@ -4,7 +4,7 @@ description="在 HDInsight 上執行的 Hadoop 服務所使用的連接埠清單
 services="hdinsight"
 documentationCenter=""
 authors="Blackmist"
-manager="paulettm"
+manager="jhubbard"
 editor="cgronlun"/>
 
 <tags
@@ -143,4 +143,4 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 | Broker | 背景工作節點 | 9092 | [Kafka Wire Protocol (Kafka 有線通訊協定)](http://kafka.apache.org/protocol.html) | 用於用戶端通訊 |
 | &nbsp; | Zookeeper 節點 | 2181 | &nbsp; | 用戶端用於連接至 ZooKeeper 的連接埠 |
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

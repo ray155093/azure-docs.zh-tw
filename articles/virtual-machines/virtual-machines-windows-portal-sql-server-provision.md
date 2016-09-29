@@ -13,7 +13,7 @@
 	ms.topic="hero-article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="06/21/2016"
+	ms.date="09/21/2016"
 	ms.author="jroth" />
 
 # 在 Azure 入口網站中佈建 SQL Server 虛擬機器
@@ -125,6 +125,7 @@ Azure 虛擬機器 (VM) 資源庫涵蓋數個包含 Microsoft SQL Server 的映�
 | [自動修補](#automated-patching) |
 | [自動備份](#automated-backup) |
 | [Azure 金鑰保存庫整合](#azure-key-vault-integration) |
+| [R 服務](#r-services) |
 
 ### 連線能力
 在 [SQL 連線] 底下，指定您要對此 VM 上的 SQL Server 執行個體進行的存取類型。基於本教學課程的目的，指定 [公用 (網際網路)] 以允許從網際網路上的電腦或服務連線到 SQL Server。在已選取此選項的情況下，Azure 會自動設定防火牆和網路安全性群組以允許連接埠 1433 上的流量。
@@ -133,12 +134,14 @@ Azure 虛擬機器 (VM) 資源庫涵蓋數個包含 Microsoft SQL Server 的映�
 
 若要透過網際網路連接到 SQL Server，您也必須啟用下一節所述的「SQL Server 驗證」。
 
->[AZURE.NOTE] 很可能對您的 SQL Server VM 的網路通訊帶來更多限制。在 VM 建立後，編輯網路安全性群組即可達成此目的。如需詳細資訊，請參閱[什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)
+>[AZURE.NOTE] 很可能對您的 SQL Server VM 的網路通訊帶來更多限制。在 VM 建立後，編輯網路安全性群組即可達成此目的。如需詳細資訊，請參閱[什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)。
 
 如果您偏好不要啟用透過網際網路連線到 Database Engine 的功能，請選擇下列其中一個選項：
 
 - [本機 (僅限在 VM 內)] 只允許從 VM 內連接到 SQL Server。
 - [私人 (在虛擬網路內)] 允許從相同虛擬網路中的電腦或服務連接到 SQL Server。
+
+>[AZURE.NOTE] SQL Server Express 版本的虛擬機器映像不會自動啟用 TCP/IP 通訊協定。這也適用於公用和私用連線能力選項。在 Express 版本中，您必須在建立 VM 之後，使用 SQL Server 組態管理員來[手動啟用 TCP/IP 通訊協定](#configure-sql-server-to-listen-on-the-tcp-protocol)。
 
 一般情況下，選擇您的案例允許的最嚴格連線能力，即可改善安全性。但所有透過網路安全性群組規則和 SQL/Windows 驗證的選項都是安全的。
 
@@ -177,7 +180,7 @@ Azure 預設會針對 5000 IOPs、200 MBs 及 1 TB 的儲存體空間進行最�
 
 ![SQL 自動修補](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-arm-patching.png)
 
-如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 自動修補](virtual-machines-windows-classic-sql-automated-patching.md)。
+如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 自動修補](virtual-machines-windows-sql-automated-patching.md)。
 
 ### 自動備份
 在 [自動備份] 底下，可以為所有資料庫啟用自動資料庫備份。預設會停用自動備份。
@@ -192,7 +195,7 @@ Azure 預設會針對 5000 IOPs、200 MBs 及 1 TB 的儲存體空間進行最�
 
 ![SQL 自動備份](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-arm-autobackup.png)
 
- 如需詳細資訊，請參閱 [Azure 虛擬機器中 SQL Server 的自動化備份](virtual-machines-windows-classic-sql-automated-backup.md)。
+ 如需詳細資訊，請參閱 [Azure 虛擬機器中 SQL Server 的自動化備份](virtual-machines-windows-sql-automated-backup.md)。
 
 ### Azure 金鑰保存庫整合
 若要在 Azure 中儲存用於加密的安全性密碼，請按一下 [Azure 金鑰保存庫整合]，然後按一下 [啟用]。
@@ -208,9 +211,16 @@ Azure 預設會針對 5000 IOPs、200 MBs 及 1 TB 的儲存體空間進行最�
 | **主體密碼**|Azure Active Directory 服務主體密碼。此密碼也稱為「用戶端密碼」。 | 9VTJSQwzlFepD8XODnzy8n2V01Jd8dAjwm/azF1XDKM=|
 |**認證名稱**|**認證名稱**：AKV 整合會在 SQL Server 內建立認證，允許 VM 具有金鑰保存庫的存取權。選擇此認證的名稱。| mycred1|
 
-如需詳細資訊，請參閱[在 Azure VM 上設定 SQL Server 的 Azure 金鑰保存庫整合](virtual-machines-windows-classic-ps-sql-keyvault.md)。
+如需詳細資訊，請參閱[在 Azure VM 上設定 SQL Server 的 Azure 金鑰保存庫整合](virtual-machines-windows-ps-sql-keyvault.md)。
 
 完成 SQL Server 設定之後，請按一下 [確定]。
+
+### R 服務
+在 SQL Server 2016 Enterprise 版本中，您可以選擇啟用 [SQL Server R 服務](https://msdn.microsoft.com/library/mt604845.aspx)。這可讓您搭配使用進階分析與 SQL Server 2016。在 [SQL Server 設定] 刀鋒視窗上按一下 [啟用]。
+
+![啟用 SQL Server R 服務](./media/virtual-machines-windows-portal-sql-server-provision/azure-vm-sql-server-r-services.png)
+
+>[AZURE.NOTE] 對於不是 2016 Enterprise 版本的 SQL Server 映像，用來啟用 R 服務的選項已停用。
 
 ## 5\.檢閱摘要
 在 [摘要] 刀鋒視窗上檢閱摘要，然後按一下 [確定] 來建立為此 VM 指定的 SQL Server、資源群組及資源。
@@ -228,7 +238,7 @@ Azure 預設會針對 5000 IOPs、200 MBs 及 1 TB 的儲存體空間進行最�
 1. 瀏覽器會為 VM 下載 RDP 檔案。開啟 RDP 檔案。![SQL VM 的遠端桌面](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-vm-remote-desktop.png)
 1. [遠端桌面連線] 會通知您無法識別這個遠端連線的發行者。按一下 [連接] 以繼續。
 1. 在 [**Windows 安全性**] 對話方塊中按一下 [**使用其他帳戶**]。
-1. 針對 [使用者名稱]，輸入 **<使用者名稱>**，其中 <user name> 是您設定 VM 時所指定的使用者名稱。您必須在名稱前面加入初始反斜線。
+1. 針對 [使用者名稱]，輸入 **<使用者名稱>**，其中 <使用者名稱> 是您設定 VM 時所指定的使用者名稱。您必須在名稱前面加入初始反斜線。
 1. 輸入您先前為此 VM 設定的 [密碼]，然後按一下 [確定] 進行連線。
 1. 如果另一個 [遠端桌面連線] 對話方塊詢問您是否要連線，請按一下 [是]。
 
@@ -253,4 +263,4 @@ Azure 預設會針對 5000 IOPs、200 MBs 及 1 TB 的儲存體空間進行最�
 
 [探索學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-azure-vm/)：Azure 虛擬機器上的 SQL Server。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0921_2016-->

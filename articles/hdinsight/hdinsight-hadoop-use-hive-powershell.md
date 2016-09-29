@@ -4,7 +4,7 @@
    services="hdinsight"
    documentationCenter=""
    authors="Blackmist"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="06/16/2016"
+   ms.date="09/07/2016"
    ms.author="larryfr"/>
 
 #使用 PowerShell 執行 Hive 查詢
@@ -28,7 +28,7 @@
 
 **必要條件**
 
-若要完成這篇文章中的步驟，您需要下列項目。
+若要完成本文中的步驟，您需要下列項目。
 
 - **Azure HDInsight (HDInsight 上的 Hadoop) 叢集 (Windows 型或 Linux 型)**
 - **具有 Azure PowerShell 的工作站**。
@@ -41,7 +41,7 @@ Azure PowerShell 提供 *Cmdlet*，可讓您從遠端在 HDInsight 上執行 Hiv
 
 在遠端 HDInsight 叢集中執行 Hive 查詢時，會使用下列 Cmdlet：
 
-* **Add-AzureRmAccount**：驗證您 Azure 訂用帳戶的 Azure PowerShell
+* **Add-AzureRmAccount**：向您的 Azure 訂用帳戶驗證 Azure PowerShell
 
 * **New-AzureRmHDInsightHiveJobDefinition**：使用指定的 HiveQL 陳述式建立新的*工作定義*
 
@@ -113,7 +113,7 @@ Azure PowerShell 提供 *Cmdlet*，可讓您從遠端在 HDInsight 上執行 Hiv
 
 		.\hivejob.ps1
 
-    執行指令碼時，系統會提示輸入您叢集的 HTTPS/系統管理帳戶認證。可能也會提示登入您的 Azure 訂用帳戶。
+    執行指令碼時，系統會提示輸入您叢集的 HTTPS/系統管理帳戶認證。系統可能也會提示您登入 Azure 訂用帳戶。
     
 7. 工作完成時，應該會傳回與下面類似的資訊：
 
@@ -188,4 +188,4 @@ Azure PowerShell 提供 *Cmdlet*，可讓您從遠端在 HDInsight 上執行 Hiv
 
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

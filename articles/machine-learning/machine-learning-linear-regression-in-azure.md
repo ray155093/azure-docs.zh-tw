@@ -5,7 +5,7 @@
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="garyericson" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"  />
 
 <tags 
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/31/2016" 
+	ms.date="09/09/2016" 
 	ms.author="kbaroni;garye" />
 
 # 在 Azure Machine Learning 中使用線性迴歸
@@ -51,8 +51,8 @@
 我們遵循下列步驟在 Azure ML 中建立我們的實驗：
 
 1.	將資料集以 csv 檔案 (非常小的檔案) 的形式上傳到 Azure ML
-2.	建立新的實驗，並使用[選取資料集中的資料行][select-columns]模組來選取 Excel 中所使用的相同資料功能   
-3.	使用[資料分割][split]模組 (與「相對運算式」模式)，將資料分成完全相同的訓練集，正如同在 Excel 中完成的動作  
+2.	建立新的實驗，並使用[選取資料集中的資料行][select-columns]模組來選取 Excel 中所使用的相同資料功能
+3.	使用[資料分割][split]模組 (與「相對運算式」模式)，將資料分成完全相同的訓練集，正如同在 Excel 中完成的動作
 4.	使用[線性迴歸][linear-regression]模組實驗 (只有使用預設選項)、記載，並將結果與我們 Excel 迴歸模型比較
 
 ### 檢閱初步結果
@@ -71,7 +71,7 @@
 * 當您在 Azure ML 中使用[線性迴歸][linear-regression]模組時，會提供兩種方法：
 	*  線上梯度下降：可能比較適合較大規模的問題
 	*  一般最小平方：這是大多數人聽到線性迴歸時會想到的方法。對於小型資料集，一般最小平方是較佳的選擇。
-*  考慮調整 L2 正規化加權參數，以改善效能。它預設設定為 0.001，而對我們的小型資料集，將它設定為 0.005 以改善效能。    
+*  考慮調整 L2 正規化加權參數，以改善效能。它預設設定為 0.001，而對我們的小型資料集，將它設定為 0.005 以改善效能。
 
 ### 謎題解開了！
 當我們套用建議時，我們在 Azure ML 中達成與 Excel 的相同基準效能：
@@ -143,7 +143,7 @@
 以下列出一些可幫助您處理迴歸的資源：
 
 * Excel 中的迴歸。如果您未曾使用 Excel 中的迴歸，本教學課程可讓它變得容易：[http://www.excel-easy.com/examples/regression.html](http://www.excel-easy.com/examples/regression.html)
-* 迴歸與預測。Tyler Chessman 撰寫部落格文章，說明如何在 Excel 中執行時間序列預測，其中包含初學者適用的良好線性迴歸描述：[http://sqlmag.com/sql-server-analysis-services/understanding-time-series-forecasting-concepts](http://sqlmag.com/sql-server-analysis-services/understanding-time-series-forecasting-concepts)  
+* 迴歸與預測。Tyler Chessman 撰寫部落格文章，說明如何在 Excel 中執行時間序列預測，其中包含初學者適用的良好線性迴歸描述：[http://sqlmag.com/sql-server-analysis-services/understanding-time-series-forecasting-concepts](http://sqlmag.com/sql-server-analysis-services/understanding-time-series-forecasting-concepts)
 * 	一般最小平方線性迴歸：缺點、問題和陷阱。迴歸的簡介和討論：[http://www.clockbackward.com/2009/06/18/ordinary-least-squares-linear-regression-flaws-problems-and-pitfalls/ ](http://www.clockbackward.com/2009/06/18/ordinary-least-squares-linear-regression-flaws-problems-and-pitfalls/)
 
 [1]: ./media/machine-learning-linear-regression-in-azure/machine-learning-linear-regression-in-azure-1.png
@@ -159,4 +159,4 @@
 [split]: https://msdn.microsoft.com/library/azure/70530644-c97a-4ab6-85f7-88bf30a8be5f/
  
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="hero-article"
 	ms.date="05/03/2016"
-	ms.author="krisagh"/>
+	ms.author="glennga"/>
 
 # <a name="getting-started"> </a>什麼是行動應用程式？
 
@@ -101,6 +101,6 @@ Azure App Service 是完全受管理的[平台即服務](https://azure.microsoft
 [虛擬網路]: ../app-service-web/web-sites-integrate-with-vnet.md
 [ExpressRoute]: ../app-service/app-service-app-service-environment-network-configuration-expressroute.md
 [App Service 環境]: ../app-service-web/app-service-app-service-environment-intro.md
-[學習地圖]: https://azure.microsoft.com/en-us/documentation/learning-paths/appservice-mobileapps/
+[學習地圖]: https://azure.microsoft.com/zh-TW/documentation/learning-paths/appservice-mobileapps/
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->

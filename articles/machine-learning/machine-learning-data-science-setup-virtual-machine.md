@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="bradsev"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"  />
 
 <tags
@@ -18,7 +18,7 @@
 
 # 將 Azure 虛擬機器設定為 IPython Notebook 伺服器供進階分析使用
 
-本主題示範如何針對可做為資料科學環境一部分的進階分析，佈建及設定 Azure 虛擬機器。Windows 虛擬機器是使用支援工具 (例如 IPython Notebook、Azure 儲存體總管、AzCopy)，以及其他對於進階分析專案非常實用的公用程式來設定。例如，Azure 儲存體總管和 AzCopy 會提供便利的方法，將資料從本機電腦上傳至 Azure Blob 儲存體，或者從 Blob 儲存體將資料下載到本機電腦。
+本主題示範如何針對可用來做為資料科學環境一部分的進階分析，佈建及設定 Azure 虛擬機器。Windows 虛擬機器是使用支援工具 (例如 IPython Notebook、Azure 儲存體總管、AzCopy)，以及其他對於進階分析專案非常實用的公用程式來設定。例如，Azure 儲存體總管和 AzCopy 會提供便利的方法，將資料從本機電腦上傳至 Azure Blob 儲存體，或者從 Blob 儲存體將資料下載到本機電腦。
 
 ## <a name="create-vm"></a>步驟 1：建立一般用途的 Azure 虛擬機器
 
@@ -66,7 +66,7 @@
 
 ## <a name="run-commands"></a>步驟 3：安裝 IPython Notebook 和其他支援工具
 
-建立虛擬機器之後，請使用遠端桌面通訊協定 (RDP) 登入 Windows 虛擬機器。如需指示，請參閱[如何登入執行 Windows Server 的虛擬機器](../virtual-machines/virtual-machines-windows-classic-connect-logon.md)。以**系統管理員**身分開啟 [**命令提示字元**] \ (**不是 Powershell 命令視窗**)，並執行下列命令。
+建立虛擬機器之後，請使用遠端桌面通訊協定 (RDP) 登入 Windows 虛擬機器。如需指示，請參閱[如何登入執行 Windows Server 的虛擬機器](../virtual-machines/virtual-machines-windows-classic-connect-logon.md)。以**系統管理員**身分開啟 [**命令提示字元**] \(**不是 Powershell 命令視窗**)，並執行下列命令。
 
     set script='https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/MachineSetup/Azure_VM_Setup_Windows.ps1'
 
@@ -83,7 +83,7 @@
 
 ![建立工作區][19]
 
-您將會看見一則警告，指出「_此網站的安全性憑證有問題_」(Internet Explorer) 或「_您的連線不是私人連線_」(Chrome)，如下圖所示。按一下 [**繼續瀏覽此網站 (不建議)**]\(Internet Explorer)，或者依序按一下 [**進階**] 和 [**前往 &#60;*DNS 名稱*> (不安全)**]\(Chrome)，以便繼續進行。接著，輸入您先前指定的密碼來存取 IPython Notebook。
+您將會看見一則警告，指出「_此網站的安全性憑證有問題_」(Internet Explorer) 或「_您的連線不是私人連線_」(Chrome)，如下圖所示。按一下 [**繼續瀏覽此網站 (不建議)**]\(Internet Explorer)，或者依序按一下 [**進階**] 和 [**前往 &#60;*DNS 名稱*> (不安全)**] \(Chrome)，以便繼續進行。接著，輸入您先前指定的密碼來存取 IPython Notebook。
 
 Internet Explorer：![建立工作區][20]
 
@@ -142,4 +142,4 @@ Azure 虛擬機器的定價策略是「**只針對您使用的項目進行付費
 [28]: ./media/machine-learning-data-science-setup-virtual-machine/create-virtual-machine-5.png
 [29]: ./media/machine-learning-data-science-setup-virtual-machine/create-virtual-machine-6.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

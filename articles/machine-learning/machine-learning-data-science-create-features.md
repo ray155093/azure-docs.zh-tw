@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="bradsev"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -19,11 +19,11 @@
 
 # Cortana 分析程序的特性工程設計 
 
-本主題說明機器學習服務的資料增強程序中特性工程設計的目的，並提供其角色的範例。用來說明此程序的範例是取自 Azure Machine Learning Studio。
+本主題說明在機器學習服務的資料增強程序中特徵工程設計的目的，並提供其角色的範例。用來說明此程序的範例是取自 Azure Machine Learning Studio。
 
 [AZURE.INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]
 
-這個 [功能表] 連結至主題，描述如何在各種環境中建立資料的特性。此工作是 [Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
+這個**功能表**所連結的主題會說明如何在各種環境中建立資料的特徵。此工作是 [Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
 
 特徵工程設計藉由以協助學習程序的原始資料來建立特徵，以嘗試增加學習演算法的預測能力。特徵的工程設計與選取是[何謂 Team Data Science Process？](data-science-process-overview.md)中所概述 TDSP 程序的其中一部分。 特性工程設計和選取項目屬於 CAP 的**開發功能**步驟。
 * **特性工程設計**：此程序嘗試從資料中的現有原始特性建立其他相關特性，以及增加學習演算法的預測功效。
@@ -79,7 +79,7 @@ Azure 機器學習中有一個[特性雜湊](https://msdn.microsoft.com/library/
 
 * 第一步，選取包含輸入文字的資料行 (此例中的 "Col2")。
 * 第二步，將 "Hashing bitsize" 設定為 8，表示將建立 2^8=256 個特性。所有文字中的文字/片語會雜湊至 256 個索引。"Hashing bitsize" 參數的範圍是 1 至 31。如果將此值設定為較大的數字，文字/片語比較不可能雜湊至相同的索引。
-* 第三步，將 "N-grams" 參數設定為 2。這麼做可從輸入文字中取得 unigrams (適用於每一個文字的特性) 和 bigrams (適用於每一對相鄰文字的特性) 的發生次數。"N-grams" 參數的範圍是 0 至 10，這表示要包含在一個特性中的循序文字數目上限。  
+* 第三步，將 "N-grams" 參數設定為 2。這麼做可從輸入文字中取得 unigrams (適用於每一個文字的特性) 和 bigrams (適用於每一對相鄰文字的特性) 的發生次數。"N-grams" 參數的範圍是 0 至 10，這表示要包含在一個特性中的循序文字數目上限。
 
 ![「特性雜湊」模組](./media/machine-learning-data-science-create-features/feature-Hashing1.png)
 
@@ -95,4 +95,4 @@ Azure 機器學習中有一個[特性雜湊](https://msdn.microsoft.com/library/
 請注意，不一定要執行特性工程設計和特性選取。需要與否取決於我們所擁有或收集的資料、我們挑選的演算法，以及實驗的目標。
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

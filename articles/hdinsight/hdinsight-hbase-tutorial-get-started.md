@@ -5,7 +5,7 @@
 	services="hdinsight"
 	documentationCenter=""
 	authors="mumian"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -52,7 +52,7 @@
 	- **叢集類型**：請選取 [HBase]。
 	- **叢集作業系統**：請選取 [Windows]。如需建立以 Linux 為基礎的叢集，請參閱 [HBase 教學課程：開始在 HDInsight (Linux) 中搭配 Hadoop 使用 Apache HBase](hdinsight-hbase-tutorial-get-started-linux.md)。
 	- **版本**：請選取 HBase 的版本。
-	- **訂用帳戶**：請選取要用來建立此叢集的 Azure 訂用帳戶。
+	- **訂用帳戶**：選取用來建立此叢集的 Azure 訂用帳戶。
 	- **資源群組**：請建立新的 Azure 資源群組，或選取現有的資源群組。如需詳細資訊，請參閱 [Azure 資源管理員概觀](resource-group-overview.md)。
 	- **認證**：對於以 Windows 為基礎的叢集，您可以建立叢集使用者 (也就是 HTTP 使用者、HTTP Web 服務使用者) 和遠端桌面使用者。請按一下 [啟用遠端桌面] 來新增遠端桌面使用者認證。我們在下一節將需要使用 RDP。
 	- **資料來源**：請建立新的 Azure 儲存體帳戶，或選取現有的 Azure 儲存體帳戶，來做為叢集的預設檔案系統。預設儲存體帳戶的位置，會決定叢集的位置。預設儲存體帳戶和叢集必須位於同一個資料中心。
@@ -334,4 +334,4 @@ HDInsight 中的 HBase 隨附於 Web UI，以供監視叢集。使用 Web UI，�
 [img-hbase-sample-data-tabular]: ./media/hdinsight-hbase-tutorial-get-started/hdinsight-hbase-contacts-tabular.png
 [img-hbase-sample-data-bigtable]: ./media/hdinsight-hbase-tutorial-get-started/hdinsight-hbase-contacts-bigtable.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

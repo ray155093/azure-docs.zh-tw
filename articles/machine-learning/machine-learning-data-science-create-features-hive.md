@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="bradsev"
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"  />
 
 <tags
@@ -26,11 +26,11 @@
 [Github 儲存機制](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/DataScienceScripts)中也會提供 [NYC 計程車車程資料](http://chriswhong.com/open-data/foil_nyc_taxi/)案例特定的查詢範例。這些查詢已經具備指定的資料結構描述，且準備好進行提交來執行。最後一節也會討論使用者可以微調的參數，以改善 Hive 查詢的效能。
 
 [AZURE.INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]
-這個 [功能表] 連結至主題，描述如何在各種環境中建立資料的特性。此工作是 [Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
+這個**功能表**所連結的主題會說明如何在各種環境中建立資料的特徵。此工作是 [Team Data Science Process TDSP](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
 
 
 ## 必要條件
-本文假設您已經：
+本文假設您擁有：
 
 * 建立 Azure 儲存體帳戶。如需指示，請參閱[建立 Azure 儲存體帳戶](../hdinsight-get-started.md#storage)。
 * 佈建含有 HDInsight 服務的自訂 Hadoop 叢集。如需指示，請參閱[自訂適用於進階分析的 Azure HDInsight Hadoop 叢集](machine-learning-data-science-customize-hadoop-cluster.md)。
@@ -147,7 +147,7 @@ Hive 會和一組 UDF 一起出現，用來處理日期時間欄位。在 Hive �
 
 您可以在 <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-MathematicalFunctions" target="_blank">Apache Hive wiki</a> 上的**內建函式**一節中找到 Hive 內嵌 UDF 的完整清單。
 
-## <a name="tuning"></a> 進階主題：微調 Hive 參數以提升查詢速度
+## <a name="tuning"></a>進階主題：微調 Hive 參數以提升查詢速度
 
 Hive 叢集的預設參數設定可能不適合 Hive 查詢以及查詢正在處理的資料。本節將討論一些使用者可以微調的參數，來提升 Hive 查詢的效能。使用者需要在處理資料的查詢之前新增參數微調查詢。
 
@@ -184,4 +184,4 @@ Hive 叢集的預設參數設定可能不適合 Hive 查詢以及查詢正在處
 
  
 
-<!---HONumber=AcomDC_0622_2016--->
+<!---HONumber=AcomDC_0914_2016-->

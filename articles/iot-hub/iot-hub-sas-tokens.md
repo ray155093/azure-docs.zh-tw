@@ -50,7 +50,7 @@ IoT 中樞使用安全性權杖來驗證裝置和服務，以避免透過線路�
 | {URL-encoded-resourceURI} | 小寫資源 URI 的小寫 URL 編碼 |
 | {policyName} | 此權杖所參考的共用存取原則名稱。在權杖參考裝置登錄認證的情況下不存在。 |
 
-**前置詞的注意事項**︰URI 前置詞是依區段 (而不是依字元) 計算。例如，`/a/b` 是 `/a/b/c` 的前置詞，而不是 `/a/bc` 的前置詞。
+**前置詞的注意事項**︰URI 前置詞是依區段 (而不是依字元) 計算。例如，`/a/b` 是 `/a/b/c` 的前置詞，但不是 `/a/bc` 的前置詞。
 
 這是從輸入 `resourceUri, signingKey, policyName, expiresInMins` 計算權杖的 Node 函數。下一節將詳細說明如何初始化不同權杖使用案例的不同輸入。
 
@@ -213,7 +213,7 @@ IoT 中樞使用安全性權杖來驗證裝置和服務，以避免透過線路�
 
 ## 註冊裝置的 X.509 用戶端憑證
 
-[適用於 C# 的 Azure IoT 服務 SDK][lnk-service-sdk] (版本 1.0.8+) 支援註冊使用 X.509 用戶端憑證來進行驗證的裝置。其他 API (例如匯入/匯出裝置) 也支援 X.509 用戶端憑證。
+[適用於 C# 的 Azure IoT 服務 SDK][lnk-service-sdk] \(版本 1.0.8+) 支援註冊使用 X.509 用戶端憑證來進行驗證的裝置。其他 API (例如匯入/匯出裝置) 也支援 X.509 用戶端憑證。
 
 ### C# 支援
 
@@ -240,7 +240,7 @@ await registryManager.AddDeviceAsync(device);
 
 ## 在執行階段作業期間使用 X.509 用戶端憑證
 
-[適用於 .NET 的 Azure IoT 裝置 SDK][lnk-client-sdk] (版本 1.0.11+) 支援使用 X.509 用戶端憑證。
+[適用於 .NET 的 Azure IoT 裝置 SDK][lnk-client-sdk] \(版本 1.0.11+) 支援使用 X.509 用戶端憑證。
 
 ### C# 支援
 
@@ -265,4 +265,4 @@ var deviceClient = DeviceClient.Create("<IotHub DNS HostName>", authMethod);
 [lnk-service-sdk]: https://github.com/Azure/azure-iot-sdks/tree/master/csharp/service
 [lnk-client-sdk]: https://github.com/Azure/azure-iot-sdks/tree/master/csharp/device
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

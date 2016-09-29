@@ -11,12 +11,12 @@
 	ms.tgt_pltfrm="mobile-windows-store"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="05/23/2016"
+	ms.date="09/07/2016"
 	ms.author="tamram"/>
 	
 # 如何在 Windows 市集應用程式中使用 Azure 儲存體
 
-## 概觀
+## Overview
 
 本指南說明如何開始著手開發採用 Azure 儲存體的 Windows 市集應用程式。
 
@@ -87,4 +87,4 @@
 [store-apps-storage-choose-library]: ./media/storage-use-store-apps/store-apps-storage-choose-library.png
 [store-apps-storage-package-manager]: ./media/storage-use-store-apps/store-apps-storage-package-manager.png
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -13,14 +13,14 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-linux"
 	ms.workload="na"
-	ms.date="08/26/2016"
+	ms.date="09/08/2016"
 	ms.author="marsma" />
 
 # 在 Azure Batch 集區中佈建 Linux 計算節點
 
 您可以使用 Azure Batch 同時在 Linux 和 Windows 虛擬機器上執行平行計算工作負載。本文將詳細說明如何同時使用 [Batch Python][py_batch_package] 和 [Batch .NET][api_net] 用戶端程式庫，在 Batch 服務中建立 Linux 計算節點的集區。
 
-> [AZURE.NOTE] Batch 中的 Linux 支援目前為預覽狀態。在公開上市之前，此處所討論功能的某些層面可能會變更。Linux 計算節點上目前不支援[應用程式封裝](batch-application-packages.md)。
+> [AZURE.NOTE] Linux 計算節點上目前不支援 [Application packages](batch-application-packages.md)。
 
 ## 虛擬機器組態
 
@@ -55,7 +55,7 @@ Batch 節點代理程式是一項程式，會在集區中的每個節點上執�
 
 ## 建立 Linux 集區︰Batch Python
 
-下列程式碼片段舉例示範如何使用 [Python 適用的 Microsoft Azure Batch 用戶端程式庫][py_batch_package]來建立 Ubuntu Server 計算節點的集區。Batch Python 模組的參考文件，可在此找到： [azure.batch package ][py_batch_docs] (位於＜Read the Docs (閱讀文件)＞上)。
+下列程式碼片段舉例示範如何使用 [Python 適用的 Microsoft Azure Batch 用戶端程式庫][py_batch_package]來建立 Ubuntu Server 計算節點的集區。Batch Python 模組的參考文件，可在此找到： [azure.batch package ][py_batch_docs] \(位於＜Read the Docs (閱讀文件)＞上)。
 
 此程式碼片段會明確建立 [ImageReference][py_imagereference]，並指定其每一個屬性 (發行者、服務、SKU、版本)。不過，我們建議您在實際執行程式碼中使用 [list\_node\_agent\_skus][py_list_skus] 方法來判斷，並在執行階段從可用映像和節點代理程式 SKU 組合中選擇。
 
@@ -198,7 +198,7 @@ ImageReference imageReference = new ImageReference(
 
 ## 虛擬機器映像的清單
 
-下表列出本文最後一次更新時，與可用 Batch 節點代理程式相容的 Marketplace 虛擬機器映像。請務必注意，此清單並非永久不變，因為可能隨時新增或移除映像和節點代理程式。我們建議您的 Batch 應用程式和服務一律使用 [list\_node\_agent\_skus][py_list_skus] (Python) 和 [ListNodeAgentSkus][net_list_skus] (Batch .NET) 來判斷，並從目前可用的 SKU 中選取。
+下表列出本文最後一次更新時，與可用 Batch 節點代理程式相容的 Marketplace 虛擬機器映像。請務必注意，此清單並非永久不變，因為可能隨時新增或移除映像和節點代理程式。我們建議您的 Batch 應用程式和服務一律使用 [list\_node\_agent\_skus][py_list_skus] \(Python) 和 [ListNodeAgentSkus][net_list_skus] \(Batch .NET) 來判斷，並從目前可用的 SKU 中選取。
 
 > [AZURE.WARNING] 下列清單可能會隨時變更。一律使用 Batch API 中提供的**清單節點代理程式 SKU**方法來列出，然後在執行 Batch 作業時，從相容的虛擬機器和節點代理程式的 SKU 選取。
 
@@ -349,6 +349,4 @@ MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 B
 [vm_marketplace]: https://azure.microsoft.com/marketplace/virtual-machines/
 [vm_pricing]: https://azure.microsoft.com/pricing/details/virtual-machines/
 
-[1]: ./media/batch-application-packages/app_pkg_01.png "應用程式封裝高階圖表"
-
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

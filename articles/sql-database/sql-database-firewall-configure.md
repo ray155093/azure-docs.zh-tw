@@ -15,7 +15,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="09/06/2016"
+   ms.date="09/14/2016"
    ms.author="rickbyh"/>
 
 # 設定 Azure SQL Database 防火牆規則 - 概觀
@@ -76,7 +76,7 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 
 ## 建立第一個伺服器層級防火牆規則
 
-可以使用 [Azure 入口網站](https://portal.azure.com/)或以程式設計方式使用 REST API 或 Azure PowerShell，建立第一個伺服器層級防火牆設定。後續的伺服器層級防火牆規則可以使用這些方法，以及透過 Transact-SQL 來建立和管理。如需伺服器層級防火牆規則的詳細資訊，請參閱[做法：使用 Azure 入口網站設定 Azure SQL 伺服器防火牆](sql-database-configure-firewall-settings.md)。
+可以使用 [Azure 入口網站](https://portal.azure.com/)或以程式設計方式使用 REST API 或 Azure PowerShell，建立第一個伺服器層級防火牆設定。後續的伺服器層級防火牆規則可以使用這些方法，以及透過 Transact-SQL 來建立和管理。為了改進效能，系統會暫時在資料庫層級快取伺服器層級防火牆規則。若應重新整理快取，請參閱 [DBCC FLUSHAUTHCACHE](https://msdn.microsoft.com/library/mt627793.aspx)。如需伺服器層級防火牆規則的詳細資訊，請參閱[做法：使用 Azure 入口網站設定 Azure SQL 伺服器防火牆](sql-database-configure-firewall-settings.md)。
 
 ## 建立資料庫層級防火牆規則
 
@@ -158,4 +158,4 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 <!--Image references-->
 [1]: ./media/sql-database-firewall-configure/sqldb-firewall-1.png
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

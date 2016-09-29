@@ -4,7 +4,7 @@
  services="hdinsight"
  documentationCenter=""
  authors="Blackmist"
- manager="paulettm"
+ manager="jhubbard"
  editor="cgronlun"
 	tags="azure-portal"/>
 <tags
@@ -245,7 +245,7 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。�
 
 		Select-AzureRMSubscription -SubscriptionID <YourSubscriptionId>
 
-    > [AZURE.NOTE] 您可以使用 `Get-AzureRMSubscription` 來取得與您帳戶關聯的所有訂用帳戶清單，同時也包含每個訂用帳戶的訂閱 Id。
+    > [AZURE.NOTE] 您可以使用 `Get-AzureRMSubscription` 來取得與您帳戶關聯的所有訂用帳戶清單，其中會包含每個訂用帳戶的訂用帳戶 ID。
 
 4. 使用下列指令碼來上傳和執行 WordCount 工作。使用您 HDInsight 叢集的名稱取代 `CLUSTERNAME`，並確定 `$fileToUpload` 是指向 __scaldingwordcount-1.0-SNAPSHOT.jar__ 檔案的正確路徑。
 
@@ -345,4 +345,4 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。�
 
 * [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0914_2016-->

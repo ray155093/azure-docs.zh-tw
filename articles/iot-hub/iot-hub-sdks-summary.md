@@ -13,7 +13,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="06/23/2016"
+ ms.date="09/13/2016"
  ms.author="dobett"/>
 
 # IoT 中心 SDK
@@ -91,10 +91,10 @@ Microsoft Azure IoT 服務 SDK 包含有助於建置應用程式的程式碼，�
 [物聯網 (IoT) .NET (英文)]: https://msdn.microsoft.com/library/mt488521.aspx
 [Microsoft Azure IoT 裝置 SDK for C (英文)]: http://azure.github.io/azure-iot-sdks/c/api_reference/index.html
 [Microsoft Azure IoT 裝置 SDK for Java (英文)]: http://azure.github.io/azure-iot-sdks/java/device/api_reference/index.html
-[Microsoft Azure IoT 裝置 SDK for Node.js (英文)]: http://azure.github.io/azure-iot-sdks/node/api_reference/azure-iot-device/1.0.8/index.html
+[Microsoft Azure IoT 裝置 SDK for Node.js (英文)]: http://azure.github.io/azure-iot-sdks/node/api_reference/azure-iot-device/1.0.14/index.html
 [IoT 中樞 REST (英文)]: https://msdn.microsoft.com/library/mt548492.aspx
 [Microsoft Azure IoT 服務 SDK for Java]: http://azure.github.io/azure-iot-sdks/java/service/api_reference/index.html
-[Microsoft Azure IoT 服務 SDK for Node.js]: http://azure.github.io/azure-iot-sdks/node/api_reference/azure-iothub/1.0.10/index.html
+[Microsoft Azure IoT 服務 SDK for Node.js]: http://azure.github.io/azure-iot-sdks/node/api_reference/azure-iothub/1.0.16/index.html
 [Microsoft Azure IoT 閘道器 SDK]: http://azure.github.io/azure-iot-gateway-sdk/api_reference/c/html/
 
 [lnk-design]: iot-hub-guidance.md
@@ -102,4 +102,4 @@ Microsoft Azure IoT 服務 SDK 包含有助於建置應用程式的程式碼，�
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 [lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0914_2016-->

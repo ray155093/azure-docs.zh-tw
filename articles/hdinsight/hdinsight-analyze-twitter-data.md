@@ -4,7 +4,7 @@
 	services="hdinsight"
 	documentationCenter=""
 	authors="mumian"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -35,7 +35,7 @@
 
         Login-AzureRmAccount
 
-    如果您有多個 Azure 訂用帳戶，請使用下列 Cmdlet 設定目前的訂用帳戶：
+    如果您有多個 Azure 訂閱，請使用下列 Cmdlet 設定目前的訂閱：
 
         Select-AzureRmSubscription -SubscriptionID <Azure Subscription ID>
 
@@ -435,7 +435,7 @@ HiveQL 指令碼將執行下列作業：
 	變數|說明
 	---|---
 	$clusterName|# 提供您要在其中執行 Hive 工作的 HDInsight 叢集名稱
-	$subscriptionID|輸入您的 Azure 訂用帳戶識別碼。
+	$subscriptionID|輸入您的 Azure 訂用帳戶 ID。
 	$sourceDataPath|Hive 查詢將從中讀取資料的 Azure Blob 儲存體位置。您無須變更此變數。
 	$outputPath|Hive 查詢將輸出結果的 Azure Blob 儲存體位置。您無須變更此變數。
 	$hqlScriptFile|HiveQL 指令碼檔案的位置和檔案名稱。您無須變更此變數。
@@ -565,4 +565,4 @@ HiveQL 指令碼將執行下列作業：
 [hdinsight-hive-odbc]: hdinsight-connect-excel-hive-ODBC-driver.md
 [hdinsight-hbase-twitter-sentiment]: hdinsight-hbase-analyze-twitter-sentiment.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

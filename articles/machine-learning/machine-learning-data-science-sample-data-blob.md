@@ -4,7 +4,7 @@
 	services="machine-learning,storage" 
 	documentationCenter="" 
 	authors="bradsev" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun" />
 
 <tags 
@@ -23,7 +23,7 @@
 
 **為何要對您的資料進行取樣？** 如果您規劃分析的資料集很龐大，通常最好是對資料進行向下取樣，將資料縮減為更小但具代表性且更容易管理的大小。這有助於資料了解、探索和功能工程。它在 Cortana 分析程序中扮演的角色是能夠快速建立資料處理函式與機器學習服務模型的原型。
 
-以下**功能表**會連結至如何從各種不同儲存體環境進行資料取樣的說明主題。
+以下**功能表**所連結的主題會說明如何從各種不同儲存體環境進行資料取樣。
 
 [AZURE.INCLUDE [cap-sample-data-selector](../../includes/cap-sample-data-selector.md)]
 
@@ -31,7 +31,7 @@
 
 
 ## 下載和降低取樣資料
-1. 從下列 Python 程式碼範例中，使用 Blob 服務，從 Azure Blob 儲存體下載資料。 
+1. 從下列 Python 程式碼範例中，使用 Blob 服務，從 Azure Blob 儲存體下載資料。
 
 	    from azure.storage.blob import BlobService
     	import tables
@@ -102,4 +102,4 @@
 
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

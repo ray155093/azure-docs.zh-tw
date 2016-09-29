@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/20/2016"
+	ms.date="09/09/2016"
 	ms.author="jeedes"/>
 
 
@@ -34,7 +34,7 @@ SAP Business ByDesign 與 Azure AD 整合提供下列優點：
 若要設定 Azure AD 與 SAP Business ByDesign 整合，您需要下列項目：
 
 - Azure AD 訂用帳戶
-- 啟用 SAP Business ByDesign 單一登入的訂用帳戶
+- 已啟用 SAP Business ByDesign 單一登入功能的訂用帳戶
 
 
 > [AZURE.NOTE] 若要測試本教學課程中的步驟，我們不建議使用生產環境。
@@ -113,7 +113,7 @@ SAP Business ByDesign 應用程式需要特定格式的 SAML 判斷提示。請�
 **若要使用 SAP Business ByDesign 設定 Azure AD 單一登入，請執行下列步驟：**
 
 
-1. 在 Azure 傳統入口網站中的 **SAP Business ByDesign** 應用程式整合頁面上，按一下頂端功能表中的 [屬性]。
+1. 在 Azure 傳統入口網站的 [SAP Business ByDesign] 應用程式整合頁面上，按一下頂端功能表中的 [屬性]。
 
 	![設定單一登入](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_general_80.png)
 
@@ -133,7 +133,7 @@ SAP Business ByDesign 應用程式需要特定格式的 SAML 判斷提示。請�
 	c.按一下 [完成]。
 	
 
-4. 在傳統入口網站的 [SAP Business ByDesign ] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+4. 在傳統入口網站的 [SAP Business ByDesign ] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
 	 
 	![設定單一登入][6]
 
@@ -141,11 +141,11 @@ SAP Business ByDesign 應用程式需要特定格式的 SAML 判斷提示。請�
 
 	![設定單一登入](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_03.png)
 
-6. 在 [設定 App 設定] 對話方塊頁面執行下列步驟：
+6. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟：
 
 	![設定單一登入](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_04.png)
 
-    a.在 [登入 URL] 文字方塊中，使用以下模式輸入使用者登入您的 SAP Business ByDesign 應用程式時所使用的 URL：`https://<servername>.sapbydesign.com`
+    a.在 [登入 URL] 文字方塊中，使用以下模式輸入使用者用來登入 SAP Business ByDesign 應用程式的 URL：`https://<servername>.sapbydesign.com`
 	
 	b. 按 [下一步]
  
@@ -223,11 +223,11 @@ SAP Business ByDesign 應用程式需要特定格式的 SAML 判斷提示。請�
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_04.png)
 
@@ -333,4 +333,4 @@ SAP Business ByDesign 應用程式需要特定格式的 SAML 判斷提示。請�
 [204]: ./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

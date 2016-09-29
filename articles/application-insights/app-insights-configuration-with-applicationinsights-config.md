@@ -20,7 +20,7 @@
 
 Application Insights .NET SDK 是由數個 NuGet 封裝所組成。[核心封裝](http://www.nuget.org/packages/Microsoft.ApplicationInsights)提供 API，用於傳送遙測至 Application Insights。[其他封裝](http://www.nuget.org/packages?q=Microsoft.ApplicationInsights)提供遙測_模組_和_初始設定式_，用於自動從您的應用程式和其內容追蹤遙測。您可以藉由調整組態檔，來啟用或停用遙測模組和初始設定式，並為其設定一些參數。
 
-組態檔的名稱為 `ApplicationInsights.config` 或 `ApplicationInsights.xml`，端視您的應用程式類型而定。當您[安裝大部分版本的 SDK][start] 時，系統會自動將組態檔加入您的專案。[IIS 伺服器上的狀態監視器][redfield]，或是當您[選取 Azure 網站或 VM 的 Application Insights 延伸模組][azure]時，也會將組態檔加入至 Web 應用程式。
+組態檔的名稱為 `ApplicationInsights.config` 或 `ApplicationInsights.xml`，端視您的應用程式類型而定。當您[安裝大部分版本的 SDK][start] 時，系統會自動將組態檔加入您的專案。[IIS 伺服器上的狀態監視器][redfield]，或是當您[選取 Azure 網站或 VM 的 Application Insights 延伸模組](app-insights-azure-web-apps.md)時，也會將組態檔加入至 Web 應用程式。
 
 沒有同等的檔案可以控制[網頁中的 SDK][client]。
 
@@ -36,7 +36,7 @@ Application Insights .NET SDK 是由數個 NuGet 封裝所組成。[核心封裝
 
 ### 相依性追蹤
 
-[相依性追蹤](app-insights-dependencies.md)會收集有關您的 app 對資料庫和外部服務和資料庫呼叫的遙測。若要允許此模組用於 IIS 伺服器，您必須[安裝狀態監視器][redfield]。若要在 Azure Web 應用程式或 VM 中使用此模組，[請選取 Application Insights 延伸模組][azure]。
+[相依性追蹤](app-insights-dependencies.md)會收集有關您的 app 對資料庫和外部服務和資料庫呼叫的遙測。若要允許此模組用於 IIS 伺服器，您必須[安裝狀態監視器][redfield]。若要在 Azure Web 應用程式或 VM 中使用此模組，[請選取 Application Insights 延伸模組](app-insights-azure-web-apps.md)。
 
 您也可以使用 [TrackDependency API](app-insights-api-custom-events-metrics.md#track-dependency) 撰寫您自己的相依性追蹤程式碼。
 
@@ -57,7 +57,7 @@ Application Insights .NET SDK 是由數個 NuGet 封裝所組成。[核心封裝
 `DiagnosticsTelemetryModule` 報告 Application Insights 檢測程式碼本身中的錯誤。例如，如果程式碼無法存取效能計數器，或 `ITelemetryInitializer` 擲回例外狀況。此模組所追蹤的追蹤遙測會出現在[診斷搜尋][diagnostic]中。將診斷資料傳送至 dc.services.vsallin.net。
  
 * `Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing.DiagnosticsTelemetryModule`
-* [Microsoft.ApplicationInsights](http://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet 封裝。如果您只安裝這個封裝，不會自動建立 ApplicationInsights.config 檔案。 
+* [Microsoft.ApplicationInsights](http://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet 封裝。如果您只安裝這個封裝，不會自動建立 ApplicationInsights.config 檔案。
 
 ### 開發人員模式
 
@@ -124,8 +124,8 @@ Microsoft.ApplicationInsights 封裝提供 SDK 的[核心 API](https://msdn.micr
 * 針對具有 Web 應用程式執行所在電腦之網域名稱的所有遙測項目，`DomainNameRoleInstanceTelemetryInitializer` 會更新 `Device` 內容的 `RoleInstance` 屬性。
 * `OperationNameTelemetryInitializer` 會根據 HTTP 方法，以及 ASP.NET MVC 控制器的名稱和叫用來處理要求的動作，更新所有遙測項目 `RequestTelemetry` 之 `Name` 屬性和 `Operation` 內容的 `Name` 屬性。
 * `OperationIdTelemetryInitializer` 或 `OperationCorrelationTelemetryInitializer` 在處理具有自動產生的 `RequestTelemetry.Id` 的要求時，會更新追蹤的所有遙測項目的 `Operation.Id` 內容屬性。
-* 針對具有從使用者瀏覽器中執行的 Application Insights JavaScript 檢測程式碼所產生之 `ai_session` Cookie 擷取值的所有遙測項目，`SessionTelemetryInitializer` 會更新 `Session` 內容的 `Id` 屬性。 
-* `SyntheticTelemetryInitializer` 或 `SyntheticUserAgentTelemetryInitializer` 在處理來自綜合來源 (例如可用性測試或搜尋引擎 Bot) 的要求時，會更新追蹤的所有遙測項目的 `User`、`Session` 和 `Operation` 內容屬性。根據預設，[計量瀏覽器](app-insights-metrics-explorer.md)不會顯示綜合的遙測。 
+* 針對具有從使用者瀏覽器中執行的 Application Insights JavaScript 檢測程式碼所產生之 `ai_session` Cookie 擷取值的所有遙測項目，`SessionTelemetryInitializer` 會更新 `Session` 內容的 `Id` 屬性。
+* `SyntheticTelemetryInitializer` 或 `SyntheticUserAgentTelemetryInitializer` 在處理來自綜合來源 (例如可用性測試或搜尋引擎 Bot) 的要求時，會更新追蹤的所有遙測項目的 `User`、`Session` 和 `Operation` 內容屬性。根據預設，[計量瀏覽器](app-insights-metrics-explorer.md)不會顯示綜合的遙測。
 
     `<Filters>` 會設定要求的識別屬性。
 * `UserAgentTelemetryInitializer` 會根據要求的 `User-Agent` HTTP 標頭來更新所有遙測項目之 `User` 內容的 `UserAgent` 屬性。
@@ -278,7 +278,6 @@ Microsoft.ApplicationInsights 封裝提供 SDK 的[核心 API](https://msdn.micr
 <!--Link references-->
 
 [api]: app-insights-api-custom-events-metrics.md
-[azure]: ../insights-perf-analytics.md
 [client]: app-insights-javascript.md
 [diagnostic]: app-insights-diagnostic-search.md
 [exceptions]: app-insights-asp-net-exceptions.md
@@ -287,4 +286,4 @@ Microsoft.ApplicationInsights 封裝提供 SDK 的[核心 API](https://msdn.micr
 [redfield]: app-insights-monitor-performance-live-website-now.md
 [start]: app-insights-overview.md
 
-<!---HONumber=AcomDC_0316_2016-->
+<!---HONumber=AcomDC_0914_2016-->

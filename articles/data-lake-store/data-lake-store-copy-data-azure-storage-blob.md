@@ -4,7 +4,7 @@
    services="data-lake-store"
    documentationCenter=""
    authors="nitinme"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"/>
 
 <tags
@@ -38,7 +38,7 @@ Azure Data Lake Store 提供命令列工具 [AdlCopy](http://aka.ms/downloadadlc
 開始閱讀本文之前，您必須符合下列必要條件：
 
 - **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-- **啟用您的 Azure 訂用帳戶**以使用資料湖存放區公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
+- **啟用您的 Azure 訂用帳戶**以使用 Data Lake Store 公開預覽版。請參閱[指示](data-lake-store-get-started-portal.md#signup)。
 - **Azure 儲存體 Blob** 容器 (其中含有一些資料)。
 - **Azure 資料湖分析帳戶 (選用)** - 如需如何建立資料湖存放區帳戶的指示，請參閱[開始使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md) 。
 - **AdlCopy 工具**。從 [http://aka.ms/downloadadlcopy](http://aka.ms/downloadadlcopy) 安裝 AdlCopy 工具。
@@ -77,7 +77,7 @@ Azure Data Lake Store 提供命令列工具 [AdlCopy](http://aka.ms/downloadadlc
 	
 	>[AZURE.NOTE] 上述語法指定要複製到 Data Lake Store 帳戶內資料夾中的檔案。如果指定的資料夾名稱不存在，AdlCopy 工具會建立一個資料夾。
 
-	系統將提示您輸入 Azure 訂用帳戶的認證，該帳戶為您的資料湖存放區帳戶所在之處。您將看到類似以下的輸出：
+	系統會提示您輸入您 Data Lake Store 帳戶所在 Azure 訂用帳戶的認證。您將看到類似以下的輸出：
 
 		Initializing Copy.
 		Copy Started.
@@ -109,7 +109,7 @@ Azure Data Lake Store 提供命令列工具 [AdlCopy](http://aka.ms/downloadadlc
 
 	>[AZURE.NOTE] 上述語法會指定要複製到目的地 Data Lake Store 帳戶內資料夾中的檔案。如果指定的資料夾名稱不存在，AdlCopy 工具會建立一個資料夾。
 
-	系統將提示您輸入 Azure 訂用帳戶的認證，該帳戶為您的資料湖存放區帳戶所在之處。您將看到類似以下的輸出：
+	系統會提示您輸入您 Data Lake Store 帳戶所在 Azure 訂用帳戶的認證。您將看到類似以下的輸出：
 
 		Initializing Copy.
 		Copy Started.|
@@ -169,8 +169,8 @@ Azure Data Lake Store 提供命令列工具 [AdlCopy](http://aka.ms/downloadadlc
 
 ## 後續步驟
 
-- [保護資料湖存放區中的資料](data-lake-store-secure-data.md)
-- [搭配資料湖存放區使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
+- [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
+- [搭配 Data Lake Store 使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 - [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0914_2016-->

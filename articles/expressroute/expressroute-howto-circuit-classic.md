@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/29/2016"
-   ms.author="ganesr"/>
+   ms.date="09/14/2016"
+   ms.author="ganesr;cherylmc"/>
 
 # 建立和修改 ExpressRoute 線路
 
@@ -32,15 +32,34 @@
 
 ## 開始之前
 
-- 您需要最新版的 Azure PowerShell 模組。您可以從 [Azure 下載頁面](https://azure.microsoft.com/downloads/)的 PowerShell 區段下載最新的 PowerShell 模組。請遵循[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 中的指示，取得如何設定您的電腦以使用 Azure PowerShell 模組的逐步指引。
+### 1\.檢閱必要條件和工作流程文章
 
-- 開始設定之前，請確定您已經檢閱過[必要條件](expressroute-prerequisites.md)和[工作流程](expressroute-workflows.md)。
+開始設定之前，請確定您已經檢閱過[必要條件](expressroute-prerequisites.md)和[工作流程](expressroute-workflows.md)。
+
+
+### 2\.安裝最新版的 Azure PowerShell 模組 
+
+請遵循[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 中的指示，取得如何設定您的電腦以使用 Azure PowerShell 模組的逐步指引。
+
+### 3\.登入您的 Azure 帳戶並選取訂用帳戶
+
+1. 使用提升權限的 Windows PowerShell 命令提示字元，執行下列 Cmdlet：
+
+		Add-AzureAccount
+2. 在出現的登入畫面中，登入您的帳戶。
+
+3. 取得您的訂用帳戶清單。
+
+		Get-AzureSubscription
+4. 選取您要使用的訂用帳戶。
+	
+		Select-AzureSubscription -SubscriptionName "mysubscriptionname"
 
 ## 建立和佈建 ExpressRoute 線路
 
 ### 1\.匯入 ExpressRoute 的 PowerShell 模組
 
- 您必須將 Azure 和 ExpressRoute 模組匯入至 PowerShell 工作階段，才能開始使用 ExpressRoute Cmdlet。若要這樣做，請執行下列命令：
+ 如果您尚未執行此動作，您必須將 Azure 和 ExpressRoute 模組匯入 PowerShell 工作階段，才能開始使用 ExpressRoute Cmdlet。您要將模組從其安裝所在的位置匯入您的本機電腦。根據您用來安裝模組的方法而定，位置可能與下列範例所示的不同。如有必要，請修改範例。
 
 	Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\ServiceManagement\Azure\Azure.psd1'
 	Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\ServiceManagement\Azure\ExpressRoute\ExpressRoute.psd1'
@@ -313,4 +332,4 @@ ExpressRoute 線路必須處於下列狀態，才可供您使用。
 - [建立和修改 ExpressRoute 線路的路由](expressroute-howto-routing-classic.md)
 - [將虛擬網路連結至 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -13,16 +13,16 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/23/2016"
+	ms.date="09/07/2016"
 	ms.author="tamram"/>
 
 # 管理對容器與 Blob 的匿名讀取權限。
 
-## 概觀
+## Overview
 
 根據預設，只有儲存體帳戶的擁有者可以存取該帳戶內的儲存體資源。您可以僅針對 Blob 儲存體設定容器的權限，以允許對容器和 Blob 的匿名讀取權限，讓您能夠授予這些資源的存取權，而無需分享您的帳戶金鑰。
 
-匿名存取適用於您想要某些 Blob 永遠可供匿名讀取存取的狀況。如需更精密的控制，您可以建立共用存取簽章，讓您能夠在指定的時間間隔內，使用不同的權限來委派受限制的存取權。如需建立共用存取簽章的詳細資訊，請參閱[共用存取簽章：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)。
+匿名存取適用於您想要某些 Blob 永遠可供匿名讀取存取的狀況。如需更精密的控制，您可以建立共用存取簽章，讓您能夠在指定的時間間隔內，使用不同的權限來委派受限制的存取權。如需建立共用存取簽章的詳細資訊，請參閱[使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)。
 
 ## 授與容器和 Blob 的匿名使用者權限
 
@@ -152,7 +152,7 @@
 ## 另請參閱
 
 - [Azure 儲存體服務的驗證](https://msdn.microsoft.com/library/azure/dd179428.aspx)
-- [共用存取簽章：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)
-- [使用共用存取簽章來委派存取權](https://msdn.microsoft.com/library/azure/ee395415.aspx) 
+- [使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)
+- [使用共用存取簽章來委派存取權](https://msdn.microsoft.com/library/azure/ee395415.aspx)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0914_2016-->

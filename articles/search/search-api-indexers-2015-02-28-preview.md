@@ -13,7 +13,7 @@ ms.devlang="rest-api"
 ms.workload="search" 
 ms.topic="article"  
 ms.tgt_pltfrm="na" 
-ms.date="07/14/2016" 
+ms.date="09/07/2016" 
 ms.author="eugenesh" />
 
 #索引子作業 (Azure 搜尋服務 REST API：2015-02-28-Preview)#
@@ -39,6 +39,7 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 - **Azure SQL Database** 和 **Azure VM 上的 SQL Server**。如需目標逐步解說，請參閱[本文](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers-2015-02-28.md)。
 - **Azure DocumentDB**。如需目標逐步解說，請參閱[本文](../documentdb/documentdb-search-indexer.md)。
 - **Azure Blob 儲存體**，包括下列文件格式：PDF、Microsoft Office (DOCX/DOC、XSLX/XLS、PPTX/PPT、MSG)、HTML、XML、ZIP 以及純文字檔案 (包括 JSON)。如需目標逐步解說，請參閱[本文](search-howto-indexing-azure-blob-storage.md)。
+- **Azure 資料表儲存體**。如需精準的逐步解說，請參閱[本文](search-howto-indexing-azure-tables.md)。
 	 
 我們考慮在未來增加支援其他資料來源。為了協助我們確定決策的優先順序，請您在 [Azure 搜尋服務意見反應論壇](http://feedback.azure.com/forums/263029-azure-search)上提供寶貴意見。
 
@@ -94,7 +95,7 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 - `Content-Type`：必要。請設為 `application/json`
 - `api-key`：必要。`api-key` 可用來驗證搜尋服務的要求。其為服務的唯一字串值。**建立資料來源**要求必須包含管理員金鑰 (相對於查詢金鑰) 上所設的 `api-key` 標頭。
  
-您也必須提供服務名稱才能建構要求 URL。您可以透過 [Azure 入口網站](https://portal.azure.com/)的服務儀表板取得服務名稱和 `api-key`。如需頁面導覽說明，請參閱[在入口網站中建立搜尋服務](search-create-service-portal.md)。
+您也必須提供服務名稱才能建構要求 URL。您可以透過 [Azure 入口網站](https://portal.azure.com/)中的服務儀表板取得服務名稱和 `api-key`。如需頁面導覽說明，請參閱[在入口網站中建立搜尋服務](search-create-service-portal.md)。
 
 <a name="CreateDataSourceRequestSyntax"></a> **要求本文的語法**
 
@@ -105,7 +106,7 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
     { 
 		"name" : "Required for POST, optional for PUT. The name of the data source",
     	"description" : "Optional. Anything you want, or nothing at all",
-    	"type" : "Required. Must be one of 'azuresql', 'documentdb', or 'azureblob'",
+    	"type" : "Required. Must be one of 'azuresql', 'documentdb', 'azureblob', or 'azuretable'",
     	"credentials" : { "connectionString" : "Required. Connection string for your data source" },
     	"container" : { "name" : "Required. The name of the table, collection, or blob container you wish to index" },
     	"dataChangeDetectionPolicy" : { Optional. See below for details }, 
@@ -120,22 +121,23 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 	- `azuresql` - Azure SQL Database 或 Azure VM 中的 SQL Server
 	- `documentdb` - Azure DocumentDB
 	- `azureblob` - Azure Blob 儲存體
+	- `azuretable` - Azure 資料表儲存體
 - `credentials`：
 	- 必要的 `connectionString` 屬性可指定資料來源的連接字串。連接字串的格式依據資料來源類型而定：
-		- 若是 Azure SQL，則通常為 SQL Server 連接字串。如果您是使用 Azure 入口網站擷取連接字串，請使用 `ADO.NET connection string` 選項。
-		- 若是 DocumentDB，則連接字串必須為下列格式：`"AccountEndpoint=https://[your account name].documents.azure.com;AccountKey=[your account key];Database=[your database id]"`。所有值都是必要的。您可以在 [Azure 入口網站](https://portal.azure.com/)中找到所有值。
-		- 對於 Azure Blob 儲存體，這是儲存體帳戶連接字串。[這裡](https://azure.microsoft.com/documentation/articles/storage-configure-connection-string/)有格式的相關說明。需要有 HTTPS 端點通訊協定。
-		
-- `container` (必要)：指定要使用 `name` 和 `query` 屬性編製索引的資料：
+		- 若是 Azure SQL，則通常為 SQL Server 連接字串。如果您是使用 Azure 入口網站來擷取連接字串，請使用 `ADO.NET connection string` 選項。
+		- 若是 DocumentDB，則連接字串必須為下列格式：`"AccountEndpoint=https://[your account name].documents.azure.com;AccountKey=[your account key];Database=[your database id]"`。所有值都是必要的。您可以在 [Azure 入口網站](https://portal.azure.com/)中找到這些值。
+		- 就「Azure Blob 儲存體」和「資料表儲存體」而言，這會是儲存體帳戶連接字串。[這裡](https://azure.microsoft.com/documentation/articles/storage-configure-connection-string/)有格式的相關說明。需要有 HTTPS 端點通訊協定。
+- `container` (必要)：使用 `name` 和 `query` 屬性來指定要編製索引的資料：
 	- `name` (必要)：
 		- Azure SQL：指定資料表或檢視表。您可以使用符合結構描述的名稱，例如 `[dbo].[mytable]`。
 		- DocumentDB：指定集合。
 		- Azure Blob 儲存體：指定儲存體容器。
+		- Azure 資料表儲存體：指定資料表的名稱。
 	- `query` (選用)：
 		- DocumentDB：可讓您指定查詢，將任意 JSON 文件版面配置壓平合併為 Azure 搜尋服務可編製索引的一般結構描述。
-		- Azure Blob 儲存體：可讓您在 Blob 容器內指定虛擬資料夾。例如，對於 Blob 路徑 `mycontainer/documents/blob.pdf`，`documents` 可用來當做虛擬資料夾使用。
+		- Azure Blob 儲存體：可讓您在 Blob 容器內指定虛擬資料夾。例如，就 Blob 路徑 `mycontainer/documents/blob.pdf` 而言，`documents` 可用來作為虛擬資料夾。
+		- Azure 資料表儲存體︰可讓您指定查詢來篩選一組要匯入的資料列。
 		- Azure SQL：不支援查詢。如果您需要此功能，請投票給[這項建議](https://feedback.azure.com/forums/263029-azure-search/suggestions/9893490-support-user-provided-query-in-sql-indexer)
-   
 - 以下說明選用的 `dataChangeDetectionPolicy` 與 `dataDeletionDetectionPolicy` 屬性。
 
 <a name="DataChangeDetectionPolicies"></a> **資料變更偵測原則**
@@ -237,13 +239,11 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 
 **要求**
 
-要求本文的語法和[建立資料來源要求](#CreateDataSourceRequestSyntax)的語法相同。
+要求本文的語法與[建立資料來源要求](#CreateDataSourceRequestSyntax)的語法相同。
 
-> [AZURE.NOTE]
-無法更新現有資料來源上的某些屬性。例如，您無法變更現有資料來源的類型。
+> [AZURE.NOTE] 無法更新現有資料來源上的某些屬性。例如，您無法變更現有資料來源的類型。
 
-> [AZURE.NOTE]
-如果您不想要變更現有資料來源的連接字串，您可以指定連接字串的常值 `<unchanged>`。當您需要更新資料來源，但是因為它是有安全性顧慮的資料，而無法方便地存取連接字串時，這非常有幫助。
+> [AZURE.NOTE] 如果您不想要變更現有資料來源的連接字串，您可以指定常值 `<unchanged>` 作為連接字串。當您需要更新資料來源，但是因為它是有安全性顧慮的資料，而無法方便地存取連接字串時，這非常有幫助。
 
 **回應**
 
@@ -280,7 +280,7 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 
     GET /datasources?api-version=205-02-28&$select=name
 
-在這種情況下，上述範例的回應將顯示為：
+在這種情況下，上述範例的回應就會顯示為：
 
     {
       "value" : [ { "name": "datasource1" }, ... ]
@@ -302,7 +302,7 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 
 **回應**
 
-狀態碼：回應成功時會傳回「200 確定」。
+回應成功時會傳回狀態碼：200 OK。
 
 回應與[建立資料來源範例要求](#CreateDataSourceRequestExamples)中的範例類似：
 
@@ -321,7 +321,7 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 			"softDeleteMarkerValue" : "true" }
 	}
 
-> [AZURE.NOTE] 呼叫此 API 時，請不要將 `Accept` 要求標頭設為 `application/json;odata.metadata=none`，以免導致回應的 `@odata.type` 屬性遭到省略，而無法區分不同類型的資料變更與資料刪除偵測原則。
+> [AZURE.NOTE] 呼叫此 API 時，請不要將 `Accept` 要求標頭設定為 `application/json;odata.metadata=none`，因為這麼做會導致在回應中省略 `@odata.type` 屬性，您將無法區分不同類型的資料變更和資料刪除偵測原則。
 
 <a name="DeleteDataSource"></a>
 ## 刪除資料來源 ##
@@ -383,7 +383,7 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 
 索引子可以選擇性地指定排程。如有排程，索引子將會依照排程定期執行。排程具有下列屬性：
 
-- `interval`：必要。可用以指定索引子執行間隔或期間的持續時間值。允許的最小間隔為 5 分鐘；最長間隔為一天。其必須格式化為 XSD "dayTimeDuration" 值 ([ISO 8601 持續時間](http://www.w3.org/TR/xmlschema11-2/#dayTimeDuration)值的受限子集)。間隔的模式為：`"P[nD][T[nH][nM]]"`。範例：`PT15M` 代表每隔 15 分鐘，`PT2H` 代表每隔 2 小時。
+- `interval`：必要。可用以指定索引子執行間隔或期間的持續時間值。允許的最小間隔為 5 分鐘；最長間隔為一天。其必須格式化為 XSD "dayTimeDuration" 值 ([ISO 8601 持續時間](http://www.w3.org/TR/xmlschema11-2/#dayTimeDuration)值的受限子集)。間隔的模式為：`"P[nD][T[nH][nM]]"`。範例：`PT15M` 代表每隔 15 分鐘，`PT2H` 代表每隔 2 個小時。
 
 - `startTime`：必要。索引子應該開始執行的 UTC 日期時間。
 
@@ -397,8 +397,7 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 
 - `base64EncodeKeys`：指定文件金鑰是否要進行 base-64 編碼。針對文件金鑰中可使用的字元，Azure 搜尋服務有加諸限制。但在您的來源資料中的值，可能包含無效字元。如果您必須將這些值編製索引為文件金鑰，可將此旗標設為 true。預設值為 `false`。
 
-- `batchSize`：指定從資料來源讀取並以單一批次編製索引的項目數以提升效能。預設值取決於資料來源類型：Azure SQL 和 DocumentDB 的預設值為 1000，而 Azure Blob 儲存體的預設值為 10。
-
+- `batchSize`：指定從資料來源讀取並以單一批次編製索引來提升效能的項目數。預設值取決於資料來源類型：Azure SQL 和 DocumentDB 的預設值為 1000，而 Azure Blob 儲存體的預設值為 10。
 
 **欄位對應**
 
@@ -497,7 +496,7 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 	  }]
     }
 
-請注意，您可以僅針對所需的屬性來篩選回應。例如，如果您只需要索引子名稱的清單，可使用 OData `$select` 查詢選項：
+請注意，您可以僅針對所需的屬性來縮小篩選回應的範圍。例如，如果您只需要索引子名稱的清單，可使用 OData `$select` 查詢選項：
 
     GET /indexers?api-version=2014-10-20-Preview&$select=name
 
@@ -641,7 +640,7 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 
 - `endTime`：這項執行結束的 UTC 時間。如果執行仍在進行中，則不會設定此值。
 
-- `errors`：項目層級的錯誤清單 (如果有)。每個項目皆包含文件金鑰 (`key` 屬性) 和錯誤訊息 (`errorMessage` 屬性)。
+- `errors`：項目層級的錯誤陣列 (如果有)。每個項目皆包含文件金鑰 (`key` 屬性) 和錯誤訊息 (`errorMessage` 屬性)。
 
 - `itemsProcessed`：在這項執行期間，索引子嘗試編製索引的資料來源項目數 (例如資料表的資料列)。
 
@@ -772,7 +771,7 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 <td></td>
 </tr>
 <tr>
-<td>字串</td>
+<td>string</td>
 <td>Edm.String</td>
 <td></td>
 </tr>
@@ -798,4 +797,4 @@ Azure 搜尋服務可以直接整合一些常用的資料來源，因此您不�
 </tr>
 </table>
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

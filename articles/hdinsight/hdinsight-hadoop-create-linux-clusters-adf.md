@@ -5,7 +5,7 @@
    documentationCenter=""
    tags="azure-portal"
    authors="mumian"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"/>
 
 <tags
@@ -338,7 +338,7 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
 9. 按兩下 [AzureBlobOutput]。
 10. 在 [最近更新的配量] 上，您應該會看到一個配量。如果狀態為 [進行中]，請等到其變更為 [就緒]。
 
-檢查 Data Factory 輸出
+**檢查 Data Factory 輸出**
 
 1. 使用最後一個工作階段中的相同程序來檢查 adfgetstarted 容器的內容。除了 adfgetsarted，有兩個新容器：
 
@@ -438,4 +438,4 @@ hdinsight-hive-on-demand 資源包含 4 個資源︰
 - [HDInsight 文件](https://azure.microsoft.com/documentation/services/hdinsight/)
 - [Data Factory 文件](https://azure.microsoft.com/documentation/services/data-factory/)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0914_2016-->

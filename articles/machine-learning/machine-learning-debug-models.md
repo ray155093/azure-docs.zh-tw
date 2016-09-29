@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter="" 
 	authors="garyericson" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -13,17 +13,17 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/03/2016" 
+	ms.date="09/09/2016" 
 	ms.author="bradsev;garye" />
 
 # 在 Azure Machine Learning 中為模型偵錯
 
 本文說明如何在 Microsoft Azure Machine Learning 中為模型偵錯。具體來說，它涵蓋了為什麼執行模型時可能會發生以下任一個失敗狀況的潛在原因：
 
-* [定型模型][train-model]模組擲回錯誤 
-* [計分模型][score-model]模組產生不正確的結果 
+* [定型模型][train-model]模組擲回錯誤
+* [計分模型][score-model]模組產生不正確的結果
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## [訓練模型] 模組擲回錯誤
 
@@ -56,7 +56,7 @@
 
 即使實驗成功，[計分模型][score-model]模組還是可能會產生不正確的結果。有幾個情況可能會導致這個結果：
 
-1. 如果指定的 [標籤] 經過分類，且迴歸模型的資料已定型，則[計分模型][score-model]模組將會產生不正確的輸出。這是因為迴歸需要持需回應變數。在此情況下，應該更適合使用分類模型。 
+1. 如果指定的 [標籤] 經過分類，且迴歸模型的資料已定型，則[計分模型][score-model]模組將會產生不正確的輸出。這是因為迴歸需要持需回應變數。在此情況下，應該更適合使用分類模型。
 2. 同樣地，如果分類模型針對 [標籤] 資料行中包含浮點數的資料集進行訓練，它可能會產生非預期的結果。這是因為分類需要離散回應變數，該變數僅允許涉及一組有限且通常比較小的類別的值。
 3. 如果計分資料集不包含用來定型模型的所有特徵，[計分模型][score-model]將會產生錯誤。
 4. 在其特徵遺漏值或具有無限值的計分資料集中，[計分模型][score-model]將不會產生對應於資料列的任何輸出。
@@ -69,4 +69,4 @@
 [train-model]: https://msdn.microsoft.com/library/azure/5cc7053e-aa30-450d-96c0-dae4be720977/
  
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0914_2016-->

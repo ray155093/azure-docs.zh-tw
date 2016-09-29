@@ -2,7 +2,7 @@
 	pageTitle="在以 Linux 為基礎的 HDInsight 上使用 Hadoop Sqoop | Microsoft Azure"
 	description="了解如何在 HDInsight 叢集上 Linux 架構的 Hadoop 與 Azure SQL Database 之間執行 Sqoop 匯入和匯出。"
 	editor="cgronlun"
-	manager="paulettm"
+	manager="jhubbard"
 	services="hdinsight"
 	documentationCenter=""
 	authors="Blackmist"
@@ -206,4 +206,4 @@
 
 [sqoop-user-guide-1.4.4]: https://sqoop.apache.org/docs/1.4.4/SqoopUserGuide.html
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

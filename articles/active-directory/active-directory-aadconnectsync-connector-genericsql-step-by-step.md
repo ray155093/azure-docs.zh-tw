@@ -52,7 +52,7 @@
 6. 並非所有屬性類型都可以在 SQL 資料庫中偵測到。特別是無法偵測到參考屬性類型。針對群組物件類型，我們必須變更 OwnerID 和 MemberID 以供參考。![Connector6](.\media\active-directory-aadconnectsync-connector-genericsql-step-by-step\connector6.png)
 7. 我們在上一個步驟中選取來做為參考屬性的屬性，要求的物件類型是這些值所參考的物件類型。在此案例中為 User 物件類型。![Connector7](.\media\active-directory-aadconnectsync-connector-genericsql-step-by-step\connector7.png)
 8. 在 [全域參數] 頁面中，選取 [浮水印] 做為差異策略。此外，使用日期/時間格式 **-yyyy-mm-dd hh: mm:** 來輸入。![Connector8](.\media\active-directory-aadconnectsync-connector-genericsql-step-by-step\connector8.png)
-9. 在 [設定分割區] 頁面上，選取這兩種物件類型。![Connector9](.\media\active-directory-aadconnectsync-connector-genericsql-step-by-step\connector9.png)
+9. 在 [設定資料分割和階層] 頁面上，同時選取這兩種物件類型。![Connector9](.\media\active-directory-aadconnectsync-connector-genericsql-step-by-step\connector9.png)
 10. 在 [選取物件類型] 和 [選取屬性] 中，選取物件類型和所有屬性。在 [設定錨點] 頁面上，按一下 [完成]。
 
 ## 建立執行設定檔
@@ -149,25 +149,25 @@ PRIMARY KEY CLUSTERED
 
 GO
 ALTER TABLE [dbo].[GroupMembers]  WITH CHECK ADD  CONSTRAINT [FK_GroupMembers_GROUPS] FOREIGN KEY([Group_ID])
-REFERENCES [dbo].[GROUPS] ([GroupID])
+REFERENCES [dbo].[GROUPS] \([GroupID])
 GO
 ALTER TABLE [dbo].[GroupMembers] CHECK CONSTRAINT [FK_GroupMembers_GROUPS]
 GO
 ALTER TABLE [dbo].[GroupMembers]  WITH CHECK ADD  CONSTRAINT [FK_GroupMembers_USERS] FOREIGN KEY([MemberID])
-REFERENCES [dbo].[USERS] ([USERID])
+REFERENCES [dbo].[USERS] \([USERID])
 GO
 ALTER TABLE [dbo].[GroupMembers] CHECK CONSTRAINT [FK_GroupMembers_USERS]
 GO
 ALTER TABLE [dbo].[GROUPS]  WITH CHECK ADD  CONSTRAINT [FK_GROUPS_USERS] FOREIGN KEY([OwnerID])
-REFERENCES [dbo].[USERS] ([USERID])
+REFERENCES [dbo].[USERS] \([USERID])
 GO
 ALTER TABLE [dbo].[GROUPS] CHECK CONSTRAINT [FK_GROUPS_USERS]
 GO
 ALTER TABLE [dbo].[USERPHONE]  WITH CHECK ADD  CONSTRAINT [FK_USERPHONE_USER] FOREIGN KEY([USER_ID])
-REFERENCES [dbo].[USERS] ([USERID])
+REFERENCES [dbo].[USERS] \([USERID])
 GO
 ALTER TABLE [dbo].[USERPHONE] CHECK CONSTRAINT [FK_USERPHONE_USER]
 GO
 ```
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

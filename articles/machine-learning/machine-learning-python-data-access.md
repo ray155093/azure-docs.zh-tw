@@ -4,7 +4,7 @@
 	services="machine-learning" 
 	documentationCenter="python" 
 	authors="bradsev" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/27/2016" 
+	ms.date="09/12/2016" 
 	ms.author="huvalo;bradsev" />
 
 
@@ -23,12 +23,12 @@ Microsoft Azure Machine Learning Python 用戶端程式庫的預覽能夠從本�
 
 本主題提供如何執行以下作業的指示：
 
-* 安裝 Machine Learning Python 用戶端程式庫 
+* 安裝 Machine Learning Python 用戶端程式庫
 * 存取和上傳資料集，包括如何從本機 Python 環境取得授權以存取 Azure Machine Learning 資料集
 *  存取實驗中的中繼資料集
 *  使用 Python 用端程式庫列舉資料集、存取中繼資料、讀取資料集內容、建立新資料集以及更新現有資料集
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
  
 ##<a name="prerequisites"></a>必要條件
@@ -70,21 +70,23 @@ Python 用戶端程式庫讓您以程式設計方式存取執行實驗所得的�
 
 ### <a name="security"></a>資料存取安全性
 
-Studio 所提供可與 Python 用戶端程式碼搭配使用的程式碼片段包括工作區識別碼與授權權杖。這些可提供工作區的完整存取權，而務必加以保護，像是密碼。
+Studio 所提供可與 Python 用戶端程式碼搭配使用的程式碼片段包括工作區識別碼與授權權杖。這些項目可提供工作區的完整存取權，且務必加以保護，像是密碼。
 
 基於安全性理由，程式碼片段功能只提供給其角色設定為工作區「擁有者」的使用者。您的角色會在 Azure Machine Learning Studio 中，顯示於 [設定] 下的 [使用者] 頁面上。
 
-![Security][security]
+![安全性][security]
 
 如果您的角色未設定為 [擁有者]，您可以要求重新受邀為擁有者，或要求該工作區的擁有者將程式碼片段提供給您。
 
 若要取得授權權杖，您可以執行下列其中一項：
 
-1. 向擁有者要求權杖。擁有者能夠在 Studio 中，從他們工作區的 [設定] 頁面存取其授權權杖。選擇左窗格中的 [設定]，然後按一下 [授權權杖]，即可看到主要與次要權杖。雖然主要或次要授權權杖都能用於程式碼片段，但建議擁有者只共用次要授權權杖。
+
+
+- 向擁有者要求權杖。擁有者能夠在 Studio 中，從他們工作區的 [設定] 頁面存取其授權權杖。選取左窗格中的 [設定]，然後按一下 [授權權杖]，即可看到主要與次要權杖。雖然主要或次要授權權杖都能用於程式碼片段，但建議擁有者只共用次要授權權杖。
 
 ![](./media/machine-learning-python-data-access/ml-python-access-settings-tokens.png)
 
-2. 要求升級成擁有者角色。若要這樣做，工作區目前的擁有者必須先將您從工作區中移除，再重新邀請您成為其擁有者。
+- 要求升級成擁有者角色。若要這樣做，工作區目前的擁有者必須先將您從工作區中移除，再重新邀請您成為其擁有者。
 
 開發人員一旦取得工作區識別碼與授權權杖，無論其角色為何，都能夠使用程式碼片段存取該工作區。
 
@@ -92,11 +94,11 @@ Studio 所提供可與 Python 用戶端程式碼搭配使用的程式碼片段�
 
 ### <a name="accessingDatasets"></a>從本機 Python 應用程式存取資料集
 
-1. 在 Machine Learning Studio 左邊的導覽列中，按一下 [資料集] 。
+1. 在 Machine Learning Studio 的左邊導覽列中，按一下 [資料集]。
 
 2. 選取您想要存取的資料集。您可以從 [範例] 清單的 [我的資料集] 清單中，選擇任何資料集。
 
-3. 按一下底部工具列上的 [產生資料存取程式碼]。請注意，如果資料格式與 Python 用戶端程式課不相容，就會停用這個按鈕。
+3. 按一下底部工具列上的 [產生資料存取程式碼]。如果資料格式與 Python 用戶端程式的不相容，就會停用這個按鈕。
 
 	![資料集][datasets]
 
@@ -147,11 +149,12 @@ Studio 所提供可與 Python 用戶端程式碼搭配使用的程式碼片段�
 
 6. 按一下[轉換成 CSV][convert-to-csv] 模組上的輸出節點。
 
-7. 在隨即出現內容功能表，選取 [產生資料存取程式碼]。
+7. 內容功能表
+8.  隨即出現，選取 [產生資料存取程式碼]。
 
 	![內容功能表][experiment]
 
-8. 隨即會出現一個視窗。選取程式碼片段，然後複製到剪貼簿。
+8. 選取程式碼片段，然後從出現的視窗中將它複製到剪貼簿。
 
 	![存取程式碼][intermediate-dataset-access-code]
 
@@ -244,7 +247,7 @@ Machine Learning Studio 提供的程式碼片段會自動下載並將資料集�
 
 ### 建立新的資料集
 
-Python 用戶端程式碼可讓您上傳 Python 程式中的資料集。這些資料集將可在您的工作區中使用。
+Python 用戶端程式碼可讓您上傳 Python 程式中的資料集。這些資料集接著可在您的工作區中使用。
 
 如果您有資料在 Pandas DataFrame 中，可以使用下列程式碼：
 
@@ -279,7 +282,7 @@ Python 用戶端程式碼能夠將 Pandas DataFrame 序列化為下列格式 (�
 
 ### 更新現有資料集
 
-如果您嘗試以與現有資料集相符的名稱上傳新的資料集，將會發生衝突錯誤。
+如果您嘗試以與現有資料集相符的名稱上傳新的資料集，應會發生衝突錯誤。
 
 若要更新現有資料集，您必須先取得現有資料集的參照：
 
@@ -344,9 +347,9 @@ Python 用戶端程式碼能夠將 Pandas DataFrame 序列化為下列格式 (�
     print(ws.datasets['existing dataset v2'].name) # 'existing dataset v2'
     print(ws.datasets['existing dataset'].name)    # IndexError
 
-`data_type_id`、`name` 及 `description` 全都是選擇性參數，並以先前的值為預設值。`dataframe` 一向是必要參數。
+`data_type_id`、`name` 及 `description` 都是選擇性參數，並以先前的值為預設值。`dataframe` 一向是必要參數。
 
-如果您的資料已經序列化，請使用 `update_from_raw_data`，而不是 `update_from_dataframe`：其運作方式類似，您只需傳入 `raw_data`，而不是 `dataframe`。
+如果您的資料已經序列化，請使用 `update_from_raw_data`，而不是 `update_from_dataframe`：如果您只傳入 `raw_data`，而不是 `dataframe`，其會以類似方式運作。
 
 
 
@@ -368,4 +371,4 @@ Python 用戶端程式碼能夠將 Pandas DataFrame 序列化為下列格式 (�
 [split]: https://msdn.microsoft.com/library/azure/70530644-c97a-4ab6-85f7-88bf30a8be5f/
  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0914_2016-->

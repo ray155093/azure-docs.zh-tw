@@ -4,7 +4,7 @@
    	services="hdinsight"
    	documentationCenter=""
    	authors="mumian"
-   	manager="paulettm"
+   	manager="jhubbard"
    	editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -394,4 +394,4 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
 - [使用 .NET SDK 在 HDInsight 中執行 Sqoop 工作](hdinsight-hadoop-use-sqoop-dotnet-sdk.md)
 - [在 HDInsight 中執行 Oozie 工作](hdinsight-use-oozie.md)
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

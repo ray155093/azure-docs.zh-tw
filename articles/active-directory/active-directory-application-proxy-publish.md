@@ -75,7 +75,7 @@ Azure AD 應用程式 Proxy 可藉由發佈要透過網際網路存取的內部�
 
 ## 測試已發佈的應用程式
 
-發佈您的應用程式後，您可以瀏覽至您所發佈的 URL 來進行測試。確定您可加以存取、它會正確地呈現，以及所有一切如預期般運作。如果您遇到問題或收到錯誤訊息，請嘗試[疑難排解指南](active-directory-application-proxy-troubleshoot.md)。
+發佈您的應用程式後，您可以瀏覽至您所發佈的 URL 來進行測試。確定您可以存取，且應用程式會正確地呈現，以及所有一切如預期般運作。如果您遇到問題或收到錯誤訊息，請嘗試[疑難排解指南](active-directory-application-proxy-troubleshoot.md)。
 
 ## 設定您的應用程式
 
@@ -101,4 +101,4 @@ Azure AD 應用程式 Proxy 可藉由發佈要透過網際網路存取的內部�
 
 如需最新消息，請查閱[應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
 
-<!----HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0921_2016-->

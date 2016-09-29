@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="vm-linux"
    ms.workload="infrastructure"
-   ms.date="05/24/2016"
+   ms.date="09/06/2016"
    ms.author="rclaus"/>
 
 # Azure 和 Linux
@@ -42,22 +42,22 @@ Microsoft Azure 支援執行由多家合作夥伴提供和維護的眾多熱門 
 為了讓您的部署符合 99.95 的 VM 服務等級協定資格，您必須部署兩個或更多在可用性設定組內執行工作負載的 VM。這可確保您的 VM 會分散在我們資料中心內的多個容錯網域，以及部署至具有不同維護期間的主機。如需 SLA 的完整詳細資料，您可以**[在此進行線上檢視](https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_0/)**。
 
 ## VM 大小和配額
-當您在 Azure 中部署 VM 時，將會從我們一系列的大小中選取一個適合您工作負載的 VM 大小。大小也會影響虛擬機器的處理能力、記憶體和儲存體容量。收費的依據則是 VM 執行和使用其配置資源的時間長短。如需更完整的清單，請參閱下列關於[虛擬機器大小](virtual-machines-linux-sizes.md)的文章。
+當您在 Azure 中部署 VM 時，會從我們一系列的大小中選取一個適合您工作負載的 VM 大小。大小也會影響虛擬機器的處理能力、記憶體和儲存體容量。收費的依據則是 VM 執行和使用其配置資源的時間長短。如需更完整的清單，請參閱下列關於[虛擬機器大小](virtual-machines-linux-sizes.md)的文章。
 
 以下是一些從我們提供的系列 (A、D、DS、G 和 GS) 中選取一個 VM 大小的基本指導方針。
 
 * A 系列 VM 是物超所值的入門級 VM，適用於輕度工作負載和開發/測試案例。所有區域皆廣泛提供此系列 VM，其可用來連接並使用虛擬機器可用的所有標準資源。
 * A 系列大小 (A8 - A11) 則是特殊的可進行大量運算的組態，適用於高效能的運算叢集應用程式。
-* D 系列 VM 是為了執行要求更高計算能力和暫存磁碟效能的應用程式所設計。D 系列 VM 提供更快的處理器、較高的記憶體與核心比率，以及適用於暫存磁碟的固態硬碟 (SSD)。 
+* D 系列 VM 是為了執行要求更高計算能力和暫存磁碟效能的應用程式所設計。D 系列 VM 提供更快的處理器、較高的記憶體與核心比率，以及適用於暫存磁碟的固態硬碟 (SSD)。
 * Dv2 系列是 D 系列的最新版本，其配備有功能更強大的 CPU。Dv2 系列 CPU 比 D 系列 CPU 快約 35%。它以最新一代的 2.4 GHz Intel Xeon® E5-2673 v3 (Haswell) 處理器為基礎，搭配 Intel Turbo Boost Technology 2.0，最高可達 3.2 GHz。Dv2 系列的記憶體和磁碟組態和 D 系列一樣。
 * G 系列 VM 提供最大的記憶體，並且是在具有 Intel Xeon E5 V3 系列處理器的主機上執行。
 
-注意：DS 系列和 GS 系列 VM 可存取進階儲存體，這個搭載 SSD 的高效能、低延遲儲存體適合需要進行密集 I/O 工作的工作負載。僅特定地區可用進階儲存體。如需詳細資訊，請參閱**[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../storage/storage-premium-storage.md)**。
+> [AZURE.NOTE] DS 系列和 GS 系列 VM 可存取進階儲存體，這個搭載 SSD 的高效能、低延遲儲存體適合需要進行密集 I/O 工作的工作負載。僅特定地區可用進階儲存體。如需詳細資訊，請參閱**[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../storage/storage-premium-storage.md)**。
 
-每個 Azure 訂用帳戶都有預設配額限制，而此限制會在您要部署大量 VM 以供專案使用時造成影響。每一訂用帳戶目前的限制是每一區域 20 個 VM。只要提出支援票證來要求增加限制即可提高此配額限制。如需配額限制的詳細資訊，請參閱 **[Azure 訂用帳戶服務限制](../azure-subscription-service-limits.md)**
+每個 Azure 訂用帳戶都有預設配額限制，而此限制會在您要部署多個 VM 以供專案使用時造成影響。每一訂用帳戶目前的限制是每一區域 20 個 VM。只要提出支援票證來要求增加限制，即可提高這些配額限制。如需配額限制的詳細資訊，請參閱 **[Azure 訂用帳戶服務限制](../azure-subscription-service-limits.md)**
 
 ## 後續步驟
 
-免費試用帳戶。**[前往取得](https://azure.microsoft.com/pricing/free-trial/)**。 如果您已有帳戶而想要試用看看，請**[安裝 Azure CLI](../xplat-cli-install.md)**。如果您已安裝，請[立即建立 Linux VM](virtual-machines-linux-quick-create-cli.md)。
+免費試用帳戶。**[前往取得](https://azure.microsoft.com/pricing/free-trial/)**。 如果您已有帳戶且想要試用，請**[安裝 Azure CLI](../xplat-cli-install.md)**。 如果您已安裝，則可[立即建立 Linux VM](virtual-machines-linux-quick-create-cli.md)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0914_2016-->

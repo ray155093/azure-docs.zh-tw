@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/30/2016" 
+	ms.date="09/12/2016" 
 	ms.author="tomfitz"/>
 
 # 將資源移動到新的資源群組或訂用帳戶
@@ -23,7 +23,7 @@
 1. 因計費之目的，資源必須位於不同的訂用帳戶。
 2. 資源不會再與先前的相同群組資源共用相同的生命週期。您想要將它移動到新的資源群組，以便您可以將該資源與其他資源分開管理。
 
-當移動資源時，會在作業期間鎖定來源群組和目標群組。群組上的寫入和刪除作業將會封鎖，直到移動完成。
+移動資源時，在此作業期間會同時鎖定來源群組和目標群組。群組上的寫入和刪除作業將會封鎖，直到移動完成。
 
 您無法變更資源的位置。移動資源只會將它移動到新的資源群組。新的資源群組可能會有不同的位置，但那樣不會變更資源的位置。
 
@@ -75,7 +75,7 @@
 - 應用程式閘道
 - Application Insights
 - ExpressRoute
-- 復原服務保存庫 - 也不會移動與復原服務保存庫相關聯的計算、網路和儲存體資源。
+- 復原服務保存庫 - 也不會移動與「復原服務」保存庫關聯的「計算」、「網路」及「儲存體」資源，請參閱[復原服務限制](#recovery-services-limitations)。
 - 虛擬機器擴展集
 - 虛擬網路 (傳統) - 請參閱[傳統部署限制](#classic-deployment-limitations)
 - VPN 閘道
@@ -84,7 +84,7 @@
 
 使用 App Service 應用程式時，您無法只移動 App Service 方案。若要移動 App Service 應用程式，您的選項如下：
 
-- 將該資源群組中的 App Service 方案和所有其他 App Service 資源，都移到還沒有 App Service 資源的新資源群組。這表示甚至會移動未與 App Service 方案相關聯的 App Service 資源。
+- 將該資源群組中的 App Service 方案和所有其他 App Service 資源，都移到還沒有 App Service 資源的新資源群組。這項需求意謂著您甚至必須移動與 App Service 方案沒有關聯的 App Service 資源。
 - 將應用程式移到不同的資源群組，但在原始資源群組中保留所有 App Service 方案。
 
 如果原始資源群組也包含 Application Insights 資源，則無法移動該資源，因為 Application Insights 目前不支援移動作業。如果您在移動 App Service 應用程式時包含 Application Insights 資源，則整個移動作業會失敗。不過，Application Insights 和 App Service 方案不需要位於與應用程式相同的資源群組，應用程式就能正確運作。
@@ -114,6 +114,12 @@
 1. 將 **web-a** 移到 **plan-group**
 2. 將 **web-a** 和 **plan-a** 移到 **combined-group**。
 
+## 復原服務限制
+
+不支援移動用來設定 Azure Site Recovery 相關災害復原的「儲存體」、「網路」或「計算」資源。
+
+舉例來說，假設您已設定將內部部署機器複寫到某個儲存體帳戶 (Storage1)，而想要讓受保護的機器在容錯移轉到 Azure 之後，以連接到虛擬網路 (Network1) 的虛擬機器 (VM1) 身分上線。您無法跨相同訂用帳戶內的資源群組或跨訂用帳戶來移動任何這些 Azure 資源 - Storage1、VM1 及 Network1。
+
 ## 傳統部署限制
 
 移動透過傳統模型所部署之資源的選項，會根據移動訂用帳戶內的資源還是將資源移到新的訂用帳戶而有所不同。
@@ -122,7 +128,7 @@
 
 - 無法移動虛擬網路 (傳統)。
 - 虛擬機器 (傳統) 必須與雲端服務一起移動。
-- 只有在移動包含其所有虛擬機器時，才能移動雲端服務。
+- 只有當移動作業包含雲端服務的所有虛擬機器時，才能移動雲端服務。
 - 一次只能移動一個雲端服務。
 - 一次只能移動一個儲存體帳戶 (傳統)。
 - 透過相同的作業，儲存體帳戶 (傳統) 不能與虛擬機器或雲端服務一起移動。
@@ -130,107 +136,12 @@
 將資源移到「新訂用帳戶」時，適用下列限制︰
 
 - 必須透過相同的作業移動訂用帳戶中的所有傳統資源。
-- 只能透過入口網站或透過傳統移動的個別 REST API，來要求這項移動。將傳統資源移到新的訂用帳戶時，標準 Resource Manager 移動命令無法運作。下列各節會顯示入口網站或 REST API 的使用步驟。
+- 目標訂用帳戶不得包含任何其他傳統資源。
+- 只能透過適用於傳統移動的個別 REST API 來要求移動。將傳統資源移到新的訂用帳戶時，標準 Resource Manager 移動命令無法運作。
 
-## 使用入口網站移動資源
+若要將傳統資源移到**相同訂用帳戶內**的新資源群組，請使用[入口網站](#use-portal)、[Azure PowerShell](#use-powershell), [Azure CLI](#use-azure-cli) 或 [REST API](#use-rest-api)。
 
-若要移動資源，請選取該資源，然後選取 [移動] 按鈕。
-
-![移動資源](./media/resource-group-move-resources/move-resources.png)
-
-> [AZURE.NOTE] 目前並非所有資源都支援透過入口網站移動。如果您想要移動的資源沒有 [移動] 按鈕，請使用 PowerShell、CLI 或 REST API 來移動資源。
-
-移動資源時，您可以指定目的地訂用帳戶和資源群組。如果其他資源必須連同此資源移動，便會列出這些資源。
-
-![選取目的地](./media/resource-group-move-resources/select-destination.png)
-
-在 [通知] 中，您會看到移動作業正在執行。
-
-![顯示移動狀態](./media/resource-group-move-resources/show-status.png)
-
-完成後，您會收到結果的通知。
-
-![顯示移動結果](./media/resource-group-move-resources/show-result.png)
-
-如需將資源移到新資源群組 (但不是訂用帳戶) 的另一個選項，請選取您想要移動的資源。
-
-![選取要移動的資源](./media/resource-group-move-resources/select-resource.png)
-
-選取其 [屬性]。
-
-![選取屬性](./media/resource-group-move-resources/select-properties.png)
-
-如果適用於此資源類型，請選取 [變更資源群組]。
-
-![變更資源群組](./media/resource-group-move-resources/change-resource-group.png)
-
-您可以選取要移動的資源，以及要移入它們的資源群組。
-
-![移動資源](./media/resource-group-move-resources/select-group.png)
-
-將透過傳統模型所部署的資源移到新的資源群組時，您可以使用資源群組名稱旁邊的 [編輯] 圖示。
-
-![移動傳統資源](./media/resource-group-move-resources/edit-rg-icon.png)
-
-選取要移動的資源，同時留意[傳統部署限制](#classic-deployment-limitations)。選取 [確定] 來開始移動。
-
- ![選取傳統資源](./media/resource-group-move-resources/select-classic-resources.png)
- 
- 將透過傳統模型所部署的資源移到新的訂用帳戶時，請使用訂用帳戶旁邊的 [編輯] 圖示。
- 
- ![移到新的訂用帳戶](./media/resource-group-move-resources/edit-subscription-icon.png)
- 
- 針對移動，會自動選取所有傳統資源。
-
-## 使用 PowerShell 移動資源
-
-若要將現有的資源移動到另一個資源群組或訂用帳戶，請使用 **Move-AzureRmResource** 命令。
-
-第一個範例顯示如何將某個資源移動到新的資源群組。
-
-    $resource = Get-AzureRmResource -ResourceName ExampleApp -ResourceGroupName OldRG
-    Move-AzureRmResource -DestinationResourceGroupName NewRG -ResourceId $resource.ResourceId
-
-第二個範例顯示如何將多個資源移動到新的資源群組。
-
-    $webapp = Get-AzureRmResource -ResourceGroupName OldRG -ResourceName ExampleSite
-    $plan = Get-AzureRmResource -ResourceGroupName OldRG -ResourceName ExamplePlan
-    Move-AzureRmResource -DestinationResourceGroupName NewRG -ResourceId $webapp.ResourceId, $plan.ResourceId
-
-若要移動到新的訂用帳戶，請為 **DestinationSubscriptionId** 參數設定某個值。
-
-系統會要求您確認您想要移動指定的資源。
-
-    Confirm
-    Are you sure you want to move these resources to the resource group
-    '/subscriptions/{guid}/resourceGroups/newRG' the resources:
-
-    /subscriptions/{guid}/resourceGroups/destinationgroup/providers/Microsoft.Web/serverFarms/exampleplan
-    /subscriptions/{guid}/resourceGroups/destinationgroup/providers/Microsoft.Web/sites/examplesite
-    [Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"): y
-
-## 使用 Azure CLI 移動資源
-
-若要將現有的資源移動到另一個資源群組或訂用帳戶，請使用 **azure resource move** 命令。下列範例說明如何將 Redis 快取移動到新的資源群組。請在 **-i** 參數中，為要移動的資源識別碼提供以逗號分隔的清單。
-
-    azure resource move -i "/subscriptions/{guid}/resourceGroups/OldRG/providers/Microsoft.Cache/Redis/examplecache" -d "NewRG"
-	
-系統會要求您確認您想要移動指定的資源。
-	
-    info:    Executing command resource move
-    Move selected resources in OldRG to NewRG? [y/n] y
-    + Moving selected resources to NewRG
-    info:    resource move command OK
-
-## 使用 REST API 移動資源
-
-若要將現有的資源移動到另一個資源群組或訂用帳戶，請執行：
-
-    POST https://management.azure.com/subscriptions/{source-subscription-id}/resourcegroups/{source-resource-group-name}/moveResources?api-version={api-version} 
-
-在要求主體中，您可以指定目標資源群組以及要移動的資源。如需有關 REST 移動作業的詳細資訊，請參閱[移動資源](https://msdn.microsoft.com/library/azure/mt218710.aspx)。
-
-不過，若要將**傳統資源移到新的訂用帳戶**，您必須使用不同的 REST 作業。若要檢查訂用帳戶是否可以做為傳統資源之跨訂用帳戶移動中的來源或目標訂用帳戶，請使用下列作業︰
+若要將**傳統資源移到新的訂用帳戶**，您必須使用傳統資源特定的 REST 作業。若要檢查訂用帳戶是否可以做為傳統資源之跨訂用帳戶移動中的來源或目標訂用帳戶，請使用下列作業︰
 
     POST https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.ClassicCompute/validateSubscriptionMoveAvailability?api-version=2016-04-01
     
@@ -267,6 +178,78 @@
     }
 
 
+## 使用入口網站
+
+若要將資源移到相同訂用帳戶中的新資源群組，請選取包含這些資源的資源群組，然後選取 [移動] 按鈕。
+
+![移動資源](./media/resource-group-move-resources/edit-rg-icon.png)
+
+若要將資源移到新的訂用帳戶，請選取包含這些資源的資源群組，然後選取 [編輯訂用帳戶] 圖示。
+
+![移動資源](./media/resource-group-move-resources/change-subscription.png)
+
+選取要移動的資源和目的地資源群組。認可您需要更新這些資源的指令碼，然後選取 [確定]。如果您在上一個步驟中選取了 [編輯訂用帳戶] 圖示，則也必須選取目的地訂用帳戶。
+
+![選取目的地](./media/resource-group-move-resources/select-destination.png)
+
+在 [通知] 中，您會看到移動作業正在執行。
+
+![顯示移動狀態](./media/resource-group-move-resources/show-status.png)
+
+完成後，您會收到結果的通知。
+
+![顯示移動結果](./media/resource-group-move-resources/show-result.png)
+
+## 使用 PowerShell
+
+若要將現有的資源移動到另一個資源群組或訂用帳戶，請使用 **Move-AzureRmResource** 命令。
+
+第一個範例顯示如何將某個資源移動到新的資源群組。
+
+    $resource = Get-AzureRmResource -ResourceName ExampleApp -ResourceGroupName OldRG
+    Move-AzureRmResource -DestinationResourceGroupName NewRG -ResourceId $resource.ResourceId
+
+第二個範例顯示如何將多個資源移動到新的資源群組。
+
+    $webapp = Get-AzureRmResource -ResourceGroupName OldRG -ResourceName ExampleSite
+    $plan = Get-AzureRmResource -ResourceGroupName OldRG -ResourceName ExamplePlan
+    Move-AzureRmResource -DestinationResourceGroupName NewRG -ResourceId $webapp.ResourceId, $plan.ResourceId
+
+若要移動到新的訂用帳戶，請為 **DestinationSubscriptionId** 參數設定某個值。
+
+系統會要求您確認您想要移動指定的資源。
+
+    Confirm
+    Are you sure you want to move these resources to the resource group
+    '/subscriptions/{guid}/resourceGroups/newRG' the resources:
+
+    /subscriptions/{guid}/resourceGroups/destinationgroup/providers/Microsoft.Web/serverFarms/exampleplan
+    /subscriptions/{guid}/resourceGroups/destinationgroup/providers/Microsoft.Web/sites/examplesite
+    [Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"): y
+
+## 使用 Azure CLI
+
+若要將現有的資源移動到另一個資源群組或訂用帳戶，請使用 **azure resource move** 命令。下列範例說明如何將 Redis 快取移動到新的資源群組。請在 **-i** 參數中，為要移動的資源識別碼提供以逗號分隔的清單。
+
+    azure resource move -i "/subscriptions/{guid}/resourceGroups/OldRG/providers/Microsoft.Cache/Redis/examplecache" -d "NewRG"
+	
+系統會要求您確認您想要移動指定的資源。
+	
+    info:    Executing command resource move
+    Move selected resources in OldRG to NewRG? [y/n] y
+    + Moving selected resources to NewRG
+    info:    resource move command OK
+
+## 使用 REST API
+
+若要將現有的資源移動到另一個資源群組或訂用帳戶，請執行：
+
+    POST https://management.azure.com/subscriptions/{source-subscription-id}/resourcegroups/{source-resource-group-name}/moveResources?api-version={api-version} 
+
+在要求主體中，您可以指定目標資源群組以及要移動的資源。如需有關 REST 移動作業的詳細資訊，請參閱[移動資源](https://msdn.microsoft.com/library/azure/mt218710.aspx)。
+
+
+
 
 ## 後續步驟
 - 若要了解用於管理訂用帳戶的 PowerShell Cmdlet，請參閱[搭配使用 Azure PowerShell 與 Azure Resource Manager](powershell-azure-resource-manager.md)。
@@ -274,4 +257,4 @@
 - 若要了解用於管理訂用帳戶的入口網站功能，請參閱[使用 Azure 入口網站來管理資源](./azure-portal/resource-group-portal.md)。
 - 若要了解如何將邏輯組織套用到您的資源，請參閱[使用標記來組織您的資源](resource-group-using-tags.md)。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->
