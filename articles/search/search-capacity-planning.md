@@ -4,7 +4,7 @@
 	services="search"
 	documentationCenter=""
 	authors="HeidiSteen"
-	manager="paulettm"
+	manager="jhubbard"
 	editor=""
     tags="azure-portal"/>
 
@@ -118,4 +118,4 @@ S3 HD 有 1 個分割區及最多 12 個複本，上限為 12 個 SU。唯一可
 
 每個 SU 的成本取決於層。基本層的每個 SU 成本低於標準層。如需每一層的費率，請參閱[定價詳細資料](https://azure.microsoft.com/pricing/details/search/)。
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

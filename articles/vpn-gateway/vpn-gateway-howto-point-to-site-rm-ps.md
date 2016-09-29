@@ -19,8 +19,8 @@
 # 使用 PowerShell 設定 VNet 的點對站連線
 
 > [AZURE.SELECTOR]
-- [PowerShell - 資源管理員](vpn-gateway-howto-point-to-site-rm-ps.md)
-- [入口網站 - 傳統](vpn-gateway-point-to-site-create.md)
+- [Resource Manager - PowerShell](vpn-gateway-howto-point-to-site-rm-ps.md)
+- [傳統 - 傳統入口網站](vpn-gateway-point-to-site-create.md)
 
 點對站 (P2S) 設定可讓您建立從個別的用戶端電腦到虛擬網路的安全連線。當您想要從遠端位置 (例如從住家或會議) 連接到您的 VNet 時，或您只有幾個需要連線至虛擬網路的用戶端時，P2S 連線是很實用的解決方案。
 
@@ -111,7 +111,7 @@
 
 		New-AzureRmResourceGroup -Name $RG -Location $Location
 
-2. 為虛擬網路建立子網路組態，將其命名為 *FrontEnd*、*BackEnd* 和 *GatewaySubnet*。這些前置詞必須是上面宣告的 VNet 位址空間的一部分。
+2. 為虛擬網路建立子網路組態，將其命名為 *FrontEnd*、*BackEnd* 和 *GatewaySubnet*。這些前置詞必須是您宣告的 VNet 位址空間的一部分。
 
 		$fesub = New-AzureRmVirtualNetworkSubnetConfig -Name $FESubName -AddressPrefix $FESubPrefix
 		$besub = New-AzureRmVirtualNetworkSubnetConfig -Name $BESubName -AddressPrefix $BESubPrefix
@@ -172,7 +172,7 @@ Azure 會使用憑證來驗證想要透過 P2S 連接的用戶端。您會將根
 
 3. 複製並貼上傳回給網頁瀏覽器的連結，以下載封裝。然後在用戶端電腦上安裝封裝。
 
-4. 在用戶端電腦上，瀏覽至 [網路設定]，然後按一下 [VPN]。您會看到列出的連線。它會顯示將要連接的虛擬網路名稱，如下所示︰
+4. 在用戶端電腦上，瀏覽至 [網路設定]，然後按一下 [VPN]。您會看到列出的連線。它會顯示將要連接的虛擬網路名稱，如以下範例所示︰
 
 	![VPN 用戶端](./media/vpn-gateway-howto-point-to-site-rm-ps/vpn.png "VPN 用戶端")
 
@@ -226,7 +226,7 @@ Azure 會使用憑證來驗證想要透過 P2S 連接的用戶端。您會將根
 
 憑證是用於點對站 VPN 的 VPN 用戶端驗證。下列步驟將逐步引導您新增和移除根憑證。當您將 Base64 編碼 X.509 (.cer) 檔案新增至 Azure 時，便是告訴 Azure 信任該檔案所代表的根憑證。
 
-您可以使用 PowerShell 或在 Azure 入口網站中，新增或移除受信任的根憑證。如果您想要使用 Azure 入口網站執行此作業，請移至 [虛擬網路閘道] > [設定] > [點對站組態] > [根憑證]。以下步驟會逐步引導您使用 PowerShell 完成下列工作。
+您可以使用 PowerShell 或在 Azure 入口網站中，新增或移除受信任的根憑證。如果您想要使用 Azure 入口網站執行此作業，請移至 [虛擬網路閘道] > [設定] > [點對站組態] > [根憑證]。下列步驟會逐步引導您使用 PowerShell 完成下列工作。
 
 ### 新增受信任的根憑證
 
@@ -234,11 +234,11 @@ Azure 會使用憑證來驗證想要透過 P2S 連接的用戶端。您會將根
 
 1. 建立並準備要新增至 Azure 的新根憑證。將公開金鑰匯出成 Base-64 編碼 X.509 (.CER) 並使用文字編輯器開啟。然後僅複製如下所示的區段。
  
-	如下列範例所示，複製相關值。
+	如下列範例所示，複製相關值：
 
 	![憑證](./media/vpn-gateway-howto-point-to-site-rm-ps/copycert.png "憑證")
 	
-2. 在下列範例中，指定憑證名稱和金鑰資訊做為變數。使用您自己的資訊加以取代。
+2. 指定憑證名稱和金鑰資訊做為變數。如下列範例所示，以您自己的資訊加以取代：
 
 		$P2SRootCertName2 = "ARMP2SRootCert2.cer"
 		$MyP2SCertPubKeyBase64_2 = "MIIC/zCCAeugAwIBAgIQKazxzFjMkp9JRiX+tkTfSzAJBgUrDgMCHQUAMBgxFjAUBgNVBAMTDU15UDJTUm9vdENlcnQwHhcNMTUxMjE5MDI1MTIxWhcNMzkxMjMxMjM1OTU5WjAYMRYwFAYDVQQDEw1NeVAyU1Jvb3RDZXJ0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyjIXoWy8xE/GF1OSIvUaA0bxBjZ1PJfcXkMWsHPzvhWc2esOKrVQtgFgDz4ggAnOUFEkFaszjiHdnXv3mjzE2SpmAVIZPf2/yPWqkoHwkmrp6BpOvNVOpKxaGPOuK8+dql1xcL0eCkt69g4lxy0FGRFkBcSIgVTViS9wjuuS7LPo5+OXgyFkAY3pSDiMzQCkRGNFgw5WGMHRDAiruDQF1ciLNojAQCsDdLnI3pDYsvRW73HZEhmOqRRnJQe6VekvBYKLvnKaxUTKhFIYwuymHBB96nMFdRUKCZIiWRIy8Hc8+sQEsAML2EItAjQv4+fqgYiFdSWqnQCPf/7IZbotgQIDAQABo00wSzBJBgNVHQEEQjBAgBAkuVrWvFsCJAdK5pb/eoCNoRowGDEWMBQGA1UEAxMNTXlQMlNSb290Q2VydIIQKazxzFjMkp9JRiX+tkTfSzAJBgUrDgMCHQUAA4IBAQA223veAZEIar9N12ubNH2+HwZASNzDVNqspkPKD97TXfKHlPlIcS43TaYkTz38eVrwI6E0yDk4jAuPaKnPuPYFRj9w540SvY6PdOUwDoEqpIcAVp+b4VYwxPL6oyEQ8wnOYuoAK1hhh20lCbo8h9mMy9ofU+RP6HJ7lTqupLfXdID/XevI8tW6Dm+C/wCeV3EmIlO9KUoblD/e24zlo3YzOtbyXwTIh34T0fO/zQvUuBqZMcIPfM1cDvqcqiEFLWvWKoAnxbzckye2uk1gHO52d8AVL3mGiX8wBJkjc/pMdxrEvvCzJkltBmqxTM6XjDJALuVh16qFlqgTWCIcb7ju"
@@ -311,4 +311,4 @@ Azure 會使用憑證來驗證想要透過 P2S 連接的用戶端。您會將根
 
 您可以將虛擬機器新增至虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0921_2016-->

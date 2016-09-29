@@ -1,33 +1,35 @@
 <!--author=alkohli last changed: 09/02/16 -->
 
-#### To install updates via the Azure classic portal
+#### 透過 Azure 傳統入口網站安裝更新
 
-1. On the **Devices** page, select the device on which you want to install updates.
+1. 在 [裝置] 頁面上，選取要安裝更新的裝置。
 
-2. Navigate to **Devices > Maintenance > Software Updates**.
+2. 瀏覽至 [裝置] > [維護] > [軟體更新]。
 
-    ![update device](../includes/media/storsimple-ova-install-update-via-portal/azupdate1m.png)  
+    ![更新裝置](../includes/media/storsimple-ova-install-update-via-portal/azupdate1m.png)
 
-3. You see a message if the software updates are available. To check for updates, you can also click **Scan Updates** at the bottom of the page.
+3. 如有軟體更新可用，您會看到一則訊息。若要檢查更新，也可以按一下頁面底部的 [掃描更新]。
 
-    ![update device](../includes/media/storsimple-ova-install-update-via-portal/azupdate2m.png)
+    ![更新裝置](../includes/media/storsimple-ova-install-update-via-portal/azupdate2m.png)
 
-4. From the bottom of the page, click **Download Updates**. A dialog notifies the user that the update is disruptive. Given the StorSimple Virtual Array is a single node device, the device restarts after it is updated. This disrupts any IO in progress. Click the check icon to launch a job to download the available updates. 
+4. 按一下頁面底部的 [下載更新]。對話方塊會通知使用者更新會造成干擾。假設 StorSimple Virtual Array 是單一節點裝置，裝置會在更新之後重新啟動。這會中斷任何進行中的 IO。按一下核取圖示啟動作業，以下載可用的更新。
 
-    ![update device](../includes/media/storsimple-ova-install-update-via-portal/azupdate3m.png)
+    ![更新裝置](../includes/media/storsimple-ova-install-update-via-portal/azupdate3m.png)
 
-5. You are notified when the updates are downloaded. 
+5. 當更新下載完成時，您會收到通知。
 
-    ![update device](../includes/media/storsimple-ova-install-update-via-portal/azupdate6m.png)
+    ![更新裝置](../includes/media/storsimple-ova-install-update-via-portal/azupdate6m.png)
 
-6. From the bottom of the page, click **Install Updates** to begin updating the device. The dialog is presented to you again. Click the check icon to start a job to install the updates. 
+6. 按一下頁面底部的 [安裝更新]，開始更新裝置。對話方塊會再次出現。按一下核取圖示開始作業，以安裝更新。
 
-    ![update device](../includes/media/storsimple-ova-install-update-via-portal/azupdate7m.png) 
+    ![更新裝置](../includes/media/storsimple-ova-install-update-via-portal/azupdate7m.png)
 
-7. You are notified after the job is created. 
+7. 作業建立之後，您會收到通知。
 
-    ![update device](../includes/media/storsimple-ova-install-update-via-portal/azupdate8m.png)
+    ![更新裝置](../includes/media/storsimple-ova-install-update-via-portal/azupdate8m.png)
 
-8. Click **View Job** link to go to the Jobs page and monitor the install status. You can click **Details** at any time to get detailed information about the update job. 
+8. 按一下 [檢視作業] 連結以移至 [作業] 頁面，並監視安裝狀態。您可以按一下 [詳細資料]，隨時取得更新作業的詳細資訊。
 
-    ![update device](../includes/media/storsimple-ova-install-update-via-portal/azupdate9m.png)
+    ![更新裝置](../includes/media/storsimple-ova-install-update-via-portal/azupdate9m.png)
+
+<!---HONumber=AcomDC_0914_2016-->

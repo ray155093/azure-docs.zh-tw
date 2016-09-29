@@ -3,7 +3,7 @@
 	description="若要開始了解 Hadoop 生態系統，您可以在 Azure 虛擬機器上從 Hortonworks 設定 Hadoop 沙箱。"
 	keywords="hadoop 模擬器, hadoop 沙箱"
 	editor="cgronlun"
-	manager="paulettm"
+	manager="jhubbard"
 	services="hdinsight"
 	authors="nitinme"
 	documentationCenter=""
@@ -26,4 +26,4 @@
 
 熟悉 Hadoop 之後，您就可以開始在 Azure 中使用 Hadoop 建立 HDInsight 叢集。有關如何開始使用的詳細資訊，請參閱[開始在 HDInsight 中使用 Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

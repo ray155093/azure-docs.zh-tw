@@ -4,7 +4,7 @@
 	services="hdinsight"
 	documentationCenter=""
 	authors="Blackmist"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -187,7 +187,7 @@ Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。使
 
 	- **RunSqoopExport**：此動作會使用 Sqoop 將建立的資料從 Hive 指令碼匯出到 SQL Database。只有 **RunHiveScript** 動作成功時才會執行此動作。
 
-		> [AZURE.NOTE] 如需關於 Oozie 工作流程和使用工作流程動作的詳細資訊，請參閱 [Apache Oozie 4.0 文件][apache-oozie-400] (英文，適用於 HDInsight 3.0 版) 或 [Apache Oozie 3.3.2 文件][apache-oozie-332] (英文，適用於 HDInsight 2.1 版)。
+		> [AZURE.NOTE] 如需關於 Oozie 工作流程和使用工作流程動作的詳細資訊，請參閱 [Apache Oozie 4.0 文件][apache-oozie-400] \(英文，適用於 HDInsight 3.0 版) 或 [Apache Oozie 3.3.2 文件][apache-oozie-332] \(英文，適用於 HDInsight 2.1 版)。
 
 	請注意，工作流程有數個項目，例如 `${jobTracker}` 會替換為您在本文件稍後的工作定義中所使用的值。
 
@@ -695,4 +695,4 @@ Oozie UI 對於疑難排解 Oozie 工作的問題很有幫助，因為它可讓�
 
 [technetwiki-hive-error]: http://social.technet.microsoft.com/wiki/contents/articles/23047.hdinsight-hive-error-unable-to-rename.aspx
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

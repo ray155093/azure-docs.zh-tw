@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="garyericson"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/10/2016"
+	ms.date="09/09/2016"
 	ms.author="garye"/>
 
 
@@ -21,13 +21,13 @@
 
 本指南針對一些在設定 Azure Machine Learning 工作區時常發生的問題，提供解決方案。
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## 工作區擁有者
 
 當您建立新的機器學習服務工作區時，您在 [工作區擁有者] 欄位中輸入的識別碼必須是有效的 Microsoft 帳戶 (先前稱為 Windows Live ID)，例如 john-contoso@live.com 或 john-contoso@hotmail.com。不可以使用非 Microsoft 帳戶，例如您的公司電子郵件帳戶。若要建立免費 Microsoft 帳戶，請前往 [www.live.com](http://www.live.com)。
 
-請注意，您用來登入 Azure 傳統入口網站來建立工作區的帳戶，不會自動具備可「開啟」該工作區的權限，除非您將該帳戶指定為擁有者。若要在 Machine Learning Studio 中開啟工作區，您必須使用定義為工作區擁有者的 Microsoft 帳戶登入，或者您需要收到來自擁有者的邀請，才能加入工作區。不過，您可以從 Azure 傳統入口網站*管理*工作區，其中包括變更擁有者和設定存取的能力。
+請注意，您用來登入 Azure 入口網站來建立工作區的帳戶，不會自動具備可*開啟*該工作區的權限，除非您將該帳戶指定為擁有者。若要在 Machine Learning Studio 中開啟工作區，您必須使用定義為工作區擁有者的 Microsoft 帳戶登入，或者您需要收到來自擁有者的邀請，才能加入工作區。不過，您可以從 Azure 傳統入口網站*管理*工作區，其中包括變更擁有者和設定存取的能力。
 
 如需管理工作區的詳細資訊，請參閱[管理 Azure Machine Learning 工作區]。
 
@@ -35,9 +35,9 @@
 
 ## 允許區域
 
-機器學習服務目前可用於數量有限的區域。如果您的訂用帳戶不在這些區域之中，您可能會看見訊息「您沒有允許區域中的訂用帳戶。」
+機器學習服務目前可用於數量有限的區域。如果您的訂用帳戶並未包含這其中一個區域，您可能會看見錯誤訊息「您在允許的區域中沒有任何訂用帳戶」。
 
-如要要求將允許區域加入至您的訂用帳戶，請從 Azure 傳統入口網站中選取 [連絡 Microsoft 支援服務]，選擇問題類型為 [計費]，並遵照提示來提交您的要求。
+為了要求將允許區域加入至您的訂用帳戶，請從 Azure 傳統入口網站中選取 [連絡 Microsoft 支援服務]，將問題類型選擇為 [計費]，並遵照提示來提交您的要求。
 
 ![連絡 Microsoft 支援][screen1]
 
@@ -80,4 +80,4 @@ To see if you can create a new storage account, in the Classic Portal, go to **S
 [screen5]: media/machine-learning-troubleshooting-creating-ml-workspace/screen5.png
 [screen6]: media/machine-learning-troubleshooting-creating-ml-workspace/screen6.png
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0914_2016-->

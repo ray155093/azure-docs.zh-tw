@@ -3,8 +3,8 @@
    description="目前支援的資料來源的規格。"
    services="data-catalog"
    documentationCenter=""
-   authors="spelluru"
-   manager="paulettm"
+   authors="trhabe"
+   manager="jstrauss"
    editor=""
    tags=""/>
 <tags
@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-catalog"
-   ms.date="07/25/2016"
+   ms.date="09/13/2016"
    ms.author="trhabe"/>
 
 # Azure 資料目錄支援的資料來源
 
-Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具，或手動將資訊直接輸入至資料目錄 Web 入口網站，發佈中繼資料。以下方格摘要說明目前目錄支援的所有來源，以及針對每個來源的發佈功能。也列出每個來源可以從我們的入口網站「開啟」經驗啟動的外部資料工具。接下來是第二個方格，有每個資料來源連接屬性的更詳細技術規格。
+Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具，或手動將資訊直接輸入至資料目錄 Web 入口網站，發佈中繼資料。下列方格摘要說明目前目錄支援的所有來源，以及針對每個來源的發佈功能。也列出每個來源可以從我們的入口網站「開啟」經驗啟動的外部資料工具。文章中的第二個方格會提供每個資料來源連接屬性的更詳細技術規格。
 
 
 ## 支援的資料來源的清單
@@ -73,8 +73,8 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
     <tr>
       <td>Azure 儲存體資料表</td>
       <td>✓</td>
-      <td></td>
-      <td></td>
+      <td>✓</td>
+      <td>✓</td>
       <td>
         <font size="2"></font>
       </td>
@@ -414,7 +414,7 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
 
 <br> <br>
 ## 資料來源參考規格
-> [AZURE.NOTE] 下表中的 「DSL 結構」資料行只會列出 Azure 資料目錄所使用之「位址」屬性包的連接屬性 (也就是「位址」屬性包可以包含 Azure 資料目錄持續保留之資料來源的其他連接屬性，但不會加以使用)。
+> [AZURE.NOTE] 下表中的「DSL 結構」資料行只會列出 Azure 資料目錄所使用之「位址」屬性包的連接屬性 (也就是「位址」屬性包可以包含 Azure 資料目錄持續保留之資料來源的其他連接屬性，但不會加以使用)。
 <table>
     <tr>
        <td><b>來源類型</b></td>
@@ -423,7 +423,7 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
        <td><b>DSL 結構<b></td>
     </tr>
     <tr>
-      <td>Azure 資料湖存放區</td>
+      <td>Azure Data Lake Store</td>
       <td>容器</td>
       <td>資料湖</td>
       <td>
@@ -434,7 +434,7 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
       </td>
     </tr>
     <tr>
-      <td>Azure 資料湖存放區</td>
+      <td>Azure Data Lake Store</td>
       <td>資料表</td>
       <td>目錄、檔案</td>
       <td>
@@ -795,6 +795,17 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
       </td>
     </tr>
     <tr>
+      <td>Power Query</td>
+      <td>資料表</td>
+      <td>交互式資料</td>
+      <td>
+        <font size=2> 通訊協定：power-query
+            <br>驗證：{oauth}
+            <br>位址：
+            <br>&#160;&#160;&#160;&#160;&#160; url </font>
+      </td>
+    </tr>
+    <tr>
       <td>Salesforce</td>
       <td>資料表</td>
       <td>Object</td>
@@ -858,6 +869,20 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
     </tr>
     <tr>
       <td>SQL 資料倉儲</td>
+      <td>TableValuedFunction</td>
+      <td>資料表值函數</td>
+      <td>
+        <font size=2>通訊協定：tds
+            <br>驗證：{通訊協定、windows}
+            <br>位址：
+            <br>&#160;&#160;&#160;&#160;&#160; 伺服器
+            <br>&#160;&#160;&#160;&#160;&#160; 資料庫
+            <br>&#160;&#160;&#160;&#160;&#160; 結構描述
+            <br>&#160;&#160;&#160;&#160;&#160; 物件</font>
+      </td>
+    </tr>
+    <tr>
+      <td>SQL 資料倉儲</td>
       <td>容器</td>
       <td>資料庫</td>
       <td>
@@ -898,6 +923,20 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
     </tr>
     <tr>
       <td>SQL Server</td>
+      <td>TableValuedFunction</td>
+      <td>資料表值函數</td>
+      <td>
+        <font size=2>通訊協定：tds
+            <br>驗證：{通訊協定、windows}
+            <br>位址：
+            <br>&#160;&#160;&#160;&#160;&#160; 伺服器
+            <br>&#160;&#160;&#160;&#160;&#160; 資料庫
+            <br>&#160;&#160;&#160;&#160;&#160; 結構描述
+            <br>&#160;&#160;&#160;&#160;&#160; 物件</font>
+      </td>
+    </tr>
+    <tr>
+      <td>SQL Server</td>
       <td>容器</td>
       <td>資料庫</td>
       <td>
@@ -911,7 +950,7 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
     <tr>
       <td>SQL Server</td>
       <td>資料表</td>
-      <td>資料表、檢視、資料表值函式</td>
+      <td>資料表、檢視</td>
       <td>
         <font size=2>通訊協定：tds
             <br>驗證：{通訊協定、windows}
@@ -1127,4 +1166,4 @@ Azure 資料目錄的使用者可以使用公用 API、Click Once 註冊工具�
     </tr>
 </table>
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

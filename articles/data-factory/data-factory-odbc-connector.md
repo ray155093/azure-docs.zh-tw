@@ -13,19 +13,19 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/27/2016" 
+	ms.date="09/12/2016" 
 	ms.author="spelluru"/>
 
 # 使用 Azure Data Factory 從 ODBC 資料存放區移動資料
 本文將概述如何使用 Azure Data Factory 中的複製活動將資料從內部部署 ODBC 資料存放區移動到另一個資料存放區。本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
 
-Data Factory 目前只支援將資料從內部部署 ODBC 資料存放區移動到其他資料存放區，而不支援將資料從其他資料存放區移動到內部部署 ODBC 資料存放區。
+Data Factory 目前只支援將資料從內部部署 ODBC 資料存放區移到其他資料存放區。不支援將資料從其他資料存放區移到內部部署 ODBC 資料存放區。
 
 
 ## 啟用連線
-Data Factory 服務支援使用資料管理閘道器連接至內部部署 ODBC 來源。請參閱[在內部部署位置與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文來了解資料管理閘道器和設定閘道器的逐步指示。即使 ODBC 資料存放區裝載於 Azure IaaS VM 中，您還是需要運用閘道器與其連接。
+Data Factory 服務支援使用資料管理閘道器連接至內部部署 ODBC 來源。請參閱[在內部部署位置與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文來了解資料管理閘道和設定閘道的逐步指示。即使 ODBC 資料存放區裝載於 Azure IaaS VM 中，仍請使用閘道來與其連接。
 
-雖然您可以在與 ODBC 資料存放區相同的內部部署機器或 Azure VM 上安裝閘道器，仍建議您在個別的機器或 Azure IaaS VM 上安裝，以避免資源爭用，並且具有更佳的效能。當您在不同機器上安裝閘道器時，機器應該能夠存取具有 ODBC 資料存放區的機器。
+您可以將閘道安裝在與 ODBC 資料存放區相同的內部部署機器或 Azure VM 上。不過，建議您將閘道安裝在個別的機器/Azure IaaS VM 上，除了可避免發生資源爭用的情況之外，也可獲得較佳的效能。當您在不同機器上安裝閘道器時，機器應該能夠存取具有 ODBC 資料存放區的機器。
 
 除了資料管理閘道器，您也需要在閘道器機器上的資料存放區安裝 ODBC 驅動程式。
 
@@ -51,7 +51,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 ODBC �
 
 此範例會每個小時將資料從 ODBC 資料存放區中的查詢結果複製到 Blob。範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
-在第一個步驟中，請根據[在內部部署位置與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文中的指示，設定資料管理閘道器。
+第一步是設定資料管理閘道。如需相關指示，請參閱[在內部部署位置和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)。
 
 **ODBC 連結服務** 此範例會使用 Basic 驗證。請參閱 [ODBC 連結服務](#odbc-linked-service-properties)章節以了解您可以使用的各種不同類型的驗證。
 
@@ -87,7 +87,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 ODBC �
 
 此範例假設您已在 ODBC 資料庫中建立資料表 "MyTable"，其中包含時間序列資料的資料行 (名稱為 "timestampcolumn")。
 
-設定 “external”: ”true” 和指定 externalData 原則即可通知 Data Factory 服務：這是 Data Factory 外部的資料表而且不是由 Data Factory 中的活動所產生。
+設定 “external”: ”true” 會通知 Data Factory 服務：這是 Data Factory 外部的資料集而且不是由 Data Factory 中的活動所產生。
 	
 	{
 	    "name": "ODBCDataSet",
@@ -175,7 +175,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 ODBC �
 
 **具有複製活動的管線**
 
-此管線包含複製活動，該活動已設定為使用上述輸入和輸出資料集並排定為每小時執行。在管線 JSON 定義中，**source** 類型設為 **RelationalSource**，而 **sink** 類型設為 **BlobSink**。針對 **query** 屬性指定的 SQL 查詢會選取過去一小時內要複製的資料。
+此管線包含「複製活動」，該活動已設定為使用這些輸入和輸出資料集，並且排定為每小時執行。在管線 JSON 定義中，**source** 類型設為 **RelationalSource**，而 **sink** 類型設為 **BlobSink**。針對 **query** 屬性指定的 SQL 查詢會選取過去一小時內要複製的資料。
 	
 	{
 	    "name": "CopyODBCToBlob",
@@ -230,8 +230,8 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 ODBC �
 | 屬性 | 說明 | 必要 |
 | -------- | ----------- | -------- | 
 | 類型 | 類型屬性必須設為：**OnPremisesOdbc** | 是 |
-| connectionString | 連接字串的非存取認證部分，以及選擇性的加密認證。請參閱以下範例。 | 是
-| 認證 | 以驅動程式特定屬性-值的格式指定的連接字串的存取認證部分，例如“Uid=<使用者識別碼>;Pwd=<密碼>;RefreshToken=<密碼重新整理權杖>;”。 | 否
+| connectionString | 連接字串的非存取認證部分和選擇性的加密認證。請參閱下列幾節中的範例。 | 是
+| 認證 | 以驅動程式特定「屬性-值」格式指定之連接字串的存取認證部分。範例：“Uid=<user ID>;Pwd=<password>;RefreshToken=<secret refresh token>;”。 | 否
 | authenticationType | 用來連接到 ODBC 資料存放區的驗證類型。可能的值為：Anonymous 和 Basic。 | 是 | 
 | username | 如果您要使用 Basic 驗證，請指定使用者名稱。 | 否 | 
 | password | 指定您為使用者名稱所指定之使用者帳戶的密碼。 | 否 | 
@@ -259,7 +259,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 ODBC �
 	}
 
 ### 使用基本驗證與加密認證
-您可以使用 [New-AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) (1.0 版的 Azure PowerShell) Cmdlet 或 [New-AzureDataFactoryEncryptValue](https://msdn.microsoft.com/library/dn834940.aspx) (0.9 或舊版的 Azure PowerShell) 來加密認證。
+您可以使用 [New-AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) (1.0 版的 Azure PowerShell) Cmdlet 或 [New-AzureDataFactoryEncryptValue](https://msdn.microsoft.com/library/dn834940.aspx) (0.9 或更舊版的 Azure PowerShell) 來加密認證。
 
 	{
 	    "name": "odbc",
@@ -303,15 +303,15 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 ODBC �
 
 | 屬性 | 說明 | 必要 |
 | -------- | ----------- | -------- |
-| tableName | ODBC 資料存放區中連結服務所參照的資料表名稱。 | 是 | 
+| tableName | ODBC 資料存放區中資料表的名稱。 | 是 | 
 
 ## ODBC 複製活動類型屬性
 
-如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。名稱、描述、輸入和輸出資料表、各種原則等屬性都適用於所有活動類型。
+如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
 
-另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同，而在複製活動的案例中，可用的屬性會根據來源與接收的類型而有所不同。
+另一方面，活動的 **typeProperties** 區段中可用的屬性會隨著每個活動類型而有所不同。就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
 
-在複製活動的案例中，如果來源類型為 **RelationalSource** (包含 ODBC)，則 typeProperties 區段可使用下列屬性：
+在複製活動中，如果來源的類型為 **RelationalSource** (包括 ODBC)，則 typeProperties 區段中可使用下列屬性：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | -------- | ----------- | -------------- | -------- |
@@ -321,7 +321,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 ODBC �
 
 ### ODBC 的類型對應
 
-如同[資料移動活動](data-factory-data-movement-activities.md)一文所述，複製活動會使用下列 2 個步驟的方法，執行自動類型轉換，將來源類型轉換成接收類型。
+如[資料移動活動](data-factory-data-movement-activities.md)一文所述，複製活動會藉由下列含有兩個步驟的方法，執行從來源類型轉換成接收類型的自動類型轉換：
 
 1. 從原生來源類型轉換成 .NET 類型
 2. 從 .NET 類型轉換成原生接收類型
@@ -352,14 +352,14 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 ODBC �
 	    }
 	}
 
-您必須在內部部署機器上安裝資料管理閘道，並向入口網站註冊閘道器。安裝在內部部署電腦上的閘道器，使用 GE Historian 的 ODBC 驅動程式連接到 GE Historian 的資料存放區，如果閘道器電腦上尚未安裝驅動程式，請安裝。如需詳細資訊，請參閱[啟用連線](#enabling-connectivity)一節。
+將「資料管理閘道」安裝在內部部署機器上，並向入口網站註冊該閘道。安裝在內部部署電腦上的閘道會使用適用於 GE Historian 的 ODBC 驅動程式來連接到 GE Historian 資料存放區。因此，如果尚未在閘道機器上安裝該驅動程式，請安裝它。如需詳細資訊，請參閱[啟用連線](#enabling-connectivity)一節。
 
 使用 Data Factory 方案中的 GE Historian 存放區之前，請先確認閘道器可否使用下節中的指示連接到資料存放區。
 
 如需在複製作業中將 ODBC 資料存放區用做來源資料存放區的詳細概觀，請從頭閱讀本文。
 
 ## 疑難排解連線問題
-使用**資料管理閘道組態管理員**的 [診斷] 索引標籤針對連線問題進行疑難排解。
+若要針對連線問題進行疑難排解，請使用 [資料管理閘道器組態管理員] 的 [診斷] 索引標籤。
 
 1. 啟動**資料管理閘道組態管理員**。您可以直接執行 "C:\\Program Files\\Microsoft Data Management Gateway\\1.0\\Shared\\ConfigManager.exe" (或) 搜尋**閘道**，以尋找 **Microsoft 資料管理閘道**應用程式的連結，如下圖所示。
 
@@ -368,10 +368,10 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 ODBC �
 
 	![閘道診斷](./media/data-factory-odbc-connector/data-factory-gateway-diagnostics.png)
 3. 選取資料存放區 (連結的服務) 的**類型**。
-4. 指定**驗證**並輸入**認證** (或) 輸入**連接字串**，以連接到資料存放區。
+4. 指定 [驗證]，然後輸入用來連線到資料存放區的「認證」(或) 輸入「連接字串」。
 5. 按一下 [測試連線] 以測試資料存放區連線。
 
 ## 效能和微調  
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0914_2016-->

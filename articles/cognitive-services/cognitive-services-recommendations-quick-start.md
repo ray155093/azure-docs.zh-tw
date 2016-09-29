@@ -4,7 +4,7 @@
 	services="cognitive-services"
 	documentationCenter=""
 	authors="luiscabrer"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -168,4 +168,4 @@ Recommendations API 將可從您的類別目錄和交易進行了解，以便提
 ### 後續步驟
 如果您已進展至此，恭喜您！ 若要深入了解，您可以瀏覽完整的 [Recommendations API 參考](http://go.microsoft.com/fwlink/?LinkId=759348) 如果您有任何疑問，請隨時與我們連絡：mlapi@microsoft.com
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

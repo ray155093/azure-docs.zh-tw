@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="bradsev"
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"  />
 
 <tags
@@ -13,23 +13,23 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/14/2016"
-	ms.author="hangzh;bradsev" />
+	ms.date="09/13/2016"
+	ms.author="bradsev" />
 
 # 使用 Hive 查詢來瀏覽 Hive 資料表的資料 
 
 本文件提供 Hive 指令碼範例，可用來瀏覽 HDInsight Hadoop 叢集的 Hive 資料表中的資料。
 
-以下**功能表**連結至其他主題，說明如何使用工具來瀏覽各種儲存體環境中的資料。
+下列**功能表**所連結的主題會說明如何從各種不同的儲存體環境使用工具來瀏覽資料。
 
 [AZURE.INCLUDE [cap-explore-data-selector](../../includes/cap-explore-data-selector.md)]
 
 ## 必要條件
-本文假設您已經：
+本文假設您擁有：
 
 * 建立 Azure 儲存體帳戶。如需指示，請參閱[建立 Azure 儲存體帳戶](../hdinsight-get-started.md#storage)。
 * 佈建含有 HDInsight 服務的自訂 Hadoop 叢集。如需指示，請參閱[自訂適用於進階分析的 Azure HDInsight Hadoop 叢集](machine-learning-data-science-customize-hadoop-cluster.md)。
-* 已將資料上傳至 Azure HDInsight Hadoop 叢集中的 Hive 資料表。如果沒有，請遵循[建立資料並載入 Hive 資料表](machine-learning-data-science-move-hive-tables.md)，先將資料上傳至 Hive 資料表。
+* 已將資料上傳至 Azure HDInsight Hadoop 叢集中的 Hive 資料表。如果沒有，請遵循[建立資料並載入 Hive 資料表](machine-learning-data-science-move-hive-tables.md)中的指示，先將資料上傳至 Hive 資料表。
 * 啟用叢集的遠端存取。如需指示，請參閱[存取 Hadoop 叢集的前端節點](machine-learning-data-science-customize-hadoop-cluster.md#headnode)。
 * 如果您需要如何提交 Hive 查詢的指示，請參閱[如何提交 Hive 查詢](machine-learning-data-science-move-hive-tables.md#submit)
 
@@ -78,4 +78,4 @@
 
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -5,7 +5,7 @@
 	services="cognitive-services"
 	documentationCenter=""
 	authors="luiscabrer"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -64,4 +64,4 @@ DataMarket Recommendations API 會在 2016 年 12 月 31 日停止接受新客�
 
 我們希望能為您盡量簡化此轉換作業。我們可以協助您將 DataMarket 帳戶中的舊模型移至新的 Azure Cognitive Services Recommendations API 訂用帳戶。請透過 [mlapi@microsoft.com](mailto://mlapi@microsoft.com) 與我們連絡。我們會在關聯模型與新帳戶之前，要求您提供 DataMarket 訂用帳戶識別碼和 Cognitive Services 訂用帳戶識別碼。
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

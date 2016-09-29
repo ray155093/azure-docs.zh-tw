@@ -4,7 +4,7 @@
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="bradsev" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"  />
 
 <tags 
@@ -20,7 +20,7 @@
 
 本文將說明若將 HDInsight Hadoop 叢集佈建為 HDInsight 服務，如何藉由在每個節點上安裝 64 位元的 Anaconda (Python 2.7) 來自訂該叢集。它也會示範如何存取前端節點，以將自訂工作提交至叢集。這項自訂讓許多熱門的 Python 模組 (隨附於 Anaconda) 非常方便地在使用者定義函式 (UDF) 中使用，這類函式是設計來處理叢集中的 Hive 記錄。如需此案例中使用的程序的相關指示，請參閱[如何提交 Hive 查詢](machine-learning-data-science-move-hive-tables.md#submit)。
 
-以下功能表會連結至說明如何設定 Team Data Science Process (TDSP) 所用的各種資料科學環境的主題。
+以下功能表所連結的主題會說明如何設定 Team Data Science Process (TDSP) 所用的各種資料科學環境。
 
 [AZURE.INCLUDE [data-science-environment-setup](../../includes/cap-setup-environments.md)]
 
@@ -51,11 +51,11 @@
 
 在最後的 [指令碼動作] 設定頁面中，按一下 [加入指令碼動作] 按鈕，然後使用下列值填入文字欄位。
  
-* **名稱** - 可做為這個指令碼動作名稱的任何字串。 
-* **節點類型** - 選取 [所有節點]。 
-* **指令碼 URI** - **http://getgoing.blob.core.windows.net/publicscripts/Azure_HDI_Setup_Windows.ps1*
-	* *publicscripts* 是儲存體帳戶中的公用容器 
-	* *getgoing* 可用來共用 PowerShell 指令碼檔案，以協助使用者在 Azure 中工作。 
+* **名稱** - 可做為這個指令碼動作名稱的任何字串。
+* **節點類型** - 選取 [所有節點]。
+* **指令碼 URI** - *http://getgoing.blob.core.windows.net/publicscripts/Azure_HDI_Setup_Windows.ps1*
+	* *publicscripts* 是儲存體帳戶中的公用容器
+	* *getgoing* 可用來共用 PowerShell 指令碼檔案，以協助使用者在 Azure 中工作。
 * **PARAMETERS** - (保留空白)
 
 最後，按一下勾號，開始建立自訂的 HDInsight Hadoop 叢集。
@@ -86,4 +86,4 @@
 
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

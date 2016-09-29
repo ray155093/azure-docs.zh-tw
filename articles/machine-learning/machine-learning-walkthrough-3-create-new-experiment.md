@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="garyericson"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -39,7 +39,7 @@
 	> [AZURE.TIP] 在 [**屬性**] 窗格中為實驗填入**摘要**和**描述**是不錯的作法。這些屬性會提供記錄實驗的機會，以便稍後查看它的人員能了解您的目標和方法。
 
 3.	在實驗畫布左側的模組調色盤中，展開 [Saved Datasets]。
-4.	尋找您在**我的資料集**下建立的資料集並將它拖曳到畫布上。您也可以在調色盤上方的 [搜尋] 方塊中輸入名稱，以尋找資料集。
+4.	尋找您在**我的資料集**下建立的資料集並將它拖曳到畫布上。您也可以在調色盤上方的 [搜尋] 方塊中輸入名稱，以尋找資料集。  
 
 ##準備資料
 您可以按一下資料集的輸出連接埠 (底部的小圓圈)，然後選取 [視覺化]，來檢視整個資料集的前 100 列資料和部分統計資訊。
@@ -65,7 +65,7 @@
 4.	選取 [[編輯中繼資料][edit-metadata]]，然後在畫布右邊的 [屬性] 窗格中，按一下 [啟動資料行選取器]。
 5.	在 [選取資料行] 對話方塊中，選取 [可用資料行] 中的所有資料列，然後按一下 > 將它們移到 [選取的資料行]。對話方塊應該會看起來如下：![已選取所有資料行的資料行選取器][4]
 7.	按一下 [**確定**] 核取記號。
-8.	回到 [**屬性**] 窗格，找到 [**新增資料行名稱**] 參數。在這個欄位中，輸入資料集中 21 個資料行的名稱清單，並以逗號加以分隔，且依資料行順序排序。您可以從 UCI 網站上的資料集文件中取得資料行名稱，或為求簡便，您可以複製並貼上下列清單：
+8.	回到 [**屬性**] 窗格，找到 [**新增資料行名稱**] 參數。在這個欄位中，輸入資料集中 21 個資料行的名稱清單，並以逗號加以分隔，且依資料行順序排序。您可以從 UCI 網站上的資料集文件中取得資料行名稱，或為求簡便，您可以複製並貼上下列清單：  
 
 		  Status of checking account, Duration in months, Credit history, Purpose, Credit amount, Savings account/bond, Present employment since, Installment rate in percentage of disposable income, Personal status and sex, Other debtors, Present residence since, Property, Age in years, Other installment plans, Housing, Number of existing credits, Job, Number of people providing maintenance for, Telephone, Foreign worker, Credit risk  
 
@@ -130,4 +130,4 @@
 [edit-metadata]: https://msdn.microsoft.com/library/azure/370b6676-c11c-486f-bf73-35349f842a66/
 [split]: https://msdn.microsoft.com/library/azure/70530644-c97a-4ab6-85f7-88bf30a8be5f/
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

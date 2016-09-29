@@ -4,7 +4,7 @@
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="ireiter" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -23,7 +23,7 @@
 常態分佈套件是一組範例 Web 服務 ([產生器](https://datamarket.azure.com/dataset/aml_labs/ndg7)、[分位數計算機](https://datamarket.azure.com/dataset/aml_labs/ndq5)、[機率計算機](https://datamarket.azure.com/dataset/aml_labs/ndp5))，可協助產生和處理常態分佈。這些服務允許產生任何長度的常態分佈序列、計算指定機率的分位數，以及計算指定分位數的機率。每個服務會根據所選取的服務發出不同的輸出 (請參閱下列說明)。常態分佈套件會以 R 統計封裝中所包含的 R 函數 qnorm、rnorm 和 pnorm 為基礎。
 
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 >使用者可透過行動裝置應用程式、網站，甚至是本機電腦，來取用這項 Web 服務。不過，該 Web 服務也可用來示範如何使用 Azure Machine Learning，來建立採用 R 程式碼的 Web 服務。只需幾行 R 程式碼並在 Azure Machine Learning Studio 中的按鈕上按幾下，就可以建立採用 R 程式碼的實驗，並將其發佈為 Web 服務。接著可將 Web 服務發佈至 Azure Marketplace，以供世界各地的使用者和裝置取用，而不需要 Web 服務的作者設定基礎結構。
  
@@ -36,9 +36,9 @@
 
 輸入引數包括：
 
-* p - 常態分佈事件的單一機率。 
+* p - 常態分佈事件的單一機率。
 * Mean - 常態分佈平均值。
-* SD - 常態分佈標準差。 
+* SD - 常態分佈標準差。
 * Side - L 代表分佈的下限，而 U 代表分佈的上限。
 
 服務的輸出是計算與指定機率相關聯的分位數。
@@ -48,9 +48,9 @@
 
 輸入引數包括：
 
-* q - 常態分佈事件的單一分位數。 
+* q - 常態分佈事件的單一分位數。
 * Mean - 常態分佈平均值。
-* SD - 常態分佈標準差。 
+* SD - 常態分佈標準差。
 * Side - L 代表分佈的下限，而 U 代表分佈的上限。
 
 服務的輸出是計算與指定分位數相關聯的機率。
@@ -58,9 +58,9 @@
 ###常態分佈產生器
 這項服務可接受 3 個常態分佈的引數，並產生已常態分佈的隨機序號。要求中應提供下列引數：
 
-* n - 觀察的次數。 
+* n - 觀察的次數。
 * mean - 常態分佈平均值。
-* sd - 常態分佈標準差。 
+* sd - 常態分佈標準差。
 
 服務的輸出是一系列長度 n 和根據 mean 和 sd 引數的常態分佈。
 
@@ -265,4 +265,4 @@
 [4]: ./media/machine-learning-r-csharp-normal-distribution/normal-img4.png
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

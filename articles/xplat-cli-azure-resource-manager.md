@@ -24,11 +24,7 @@
 - [入口網站](azure-portal/resource-group-portal.md)
 - [Azure CLI](xplat-cli-azure-resource-manager.md)
 - [Azure PowerShell](powershell-azure-resource-manager.md)
-- [.NET](https://azure.microsoft.com/documentation/samples/resource-manager-dotnet-resources-and-groups/)
-- [Java](https://azure.microsoft.com/documentation/samples/resources-java-manage-resource-group/)
-- [節點](https://azure.microsoft.com/documentation/samples/resource-manager-node-resources-and-groups/)
-- [Python](https://azure.microsoft.com/documentation/samples/resource-manager-python-resources-and-groups/)
-- [Ruby](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-resources-and-groups/)
+- [REST API](resource-manager-rest-api.md)
 
 
 Azure 命令列介面 (Azure CLI) 是您可以使用 Resource Manager 來部署和管理資源的其中一個工具。本文將介紹以 Resource Manager 模式使用 Azure CLI 來管理 Azure 資源和資源群組的常見方式。如需使用 CLI 來部署資源的相關資訊，請參閱[使用 Resource Manager 與 Azure 入口網站來部署資源](resource-group-template-deploy-cli.md)。如需 Azure 資源和 Resource Manager 的背景，請參閱 [Azure Resource Manager 概觀](resource-group-overview.md)。
@@ -231,4 +227,4 @@ Azure 命令列介面 (Azure CLI) 是您可以使用 Resource Manager 來部署�
 * 若要取得部署作業的詳細資料，並使用 Azure CLI 進行部署錯誤的疑難排解，請參閱[使用 Azure CLI 檢視部署作業](resource-manager-troubleshoot-deployments-cli.md)。
 * 如果您想要使用 CLI 來設定應用程式或指令碼以存取資源，請參閱[使用 Azure CLI 來建立服務主體以存取資源](resource-group-authenticate-service-principal-cli.md)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

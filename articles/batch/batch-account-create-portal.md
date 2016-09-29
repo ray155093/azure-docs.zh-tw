@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="08/26/2016"
+	ms.date="09/21/2016"
 	ms.author="marsma"/>
 
 # 使用 Azure 入口網站建立 Azure Batch 帳戶
@@ -22,13 +22,13 @@
 - [Azure 入口網站](batch-account-create-portal.md)
 - [Batch Management .NET](batch-management-dotnet.md)
 
-了解如何在 [Azure 入口網站][azure_portal]中建立 Azure Batch 帳戶，以及何處尋找重要帳戶屬性，例如存取金鑰與帳戶 URL。我們也會討論 Batch 價格，以及如何將 Azure 儲存體帳戶連結到 Batch 帳戶，以便您使用[應用程式封裝](batch-application-packages.md)及[保存作業和工作輸出](batch-task-output.md)。
+了解如何在 [Azure 入口網站][azure_portal]中建立 Azure Batch 帳戶，以及何處尋找重要帳戶屬性，例如存取金鑰與帳戶 URL。我們也會討論 Batch 定價，以及如何將 Azure 儲存體帳戶連結到 Batch 帳戶，以便您使用[應用程式封裝](batch-application-packages.md)及[保存作業和工作輸出](batch-task-output.md)。
 
 ## 建立批次帳戶：
 
 1. 登入 [Azure 入口網站][azure_portal]。
 
-2. 按一下 [新增] > [虛擬機器] > [Batch 服務]。
+2. 按一下 [**新增**] > [**計算**] > [**Batch 服務**]。
 
 	![Marketplace 中的批次][marketplace_portal]
 
@@ -40,11 +40,11 @@
 
 	b.**訂用帳戶**：要在其中建立 Batch 帳戶的訂用帳戶。如果您只有一個訂用帳戶，則預設會選取此項目。
 
-	c.**資源群組**：對新的 Batch 帳戶使用現有資源群組，或選擇性地建立一個新的資源群組。
+	c.**資源群組**：為新的 Batch 帳戶使用現有資源群組，或選擇性地建立一個新的資源群組。
 
 	d.**位置**：要在其中建立 Batch 帳戶的 Azure 區域。只有您的訂用帳戶和資源群組所支援的區域會顯示為選項。
 
-    e.**儲存體帳戶** (選用)：與新的 Batch 帳戶關聯 (連結) 的**一般用途**儲存體帳戶。如需詳細資訊，請參閱下面的[連結的 Azure 儲存體帳戶](#linked-azure-storage-account)。
+    e.**儲存體帳戶** (選用)：與新的 Batch 帳戶有關聯 (連結) 的**一般用途**儲存體帳戶。如需詳細資訊，請參閱下面的[連結的 Azure 儲存體帳戶](#linked-azure-storage-account)。
 
 4. 按一下 [建立] 來建立帳戶。
 
@@ -68,7 +68,7 @@
 
 ## 價格
 
-Batch 帳戶只在「免費層」提供，這表示您不需對 Batch 帳戶本身付費。您需支付您的 Batch 解決方案所用基礎 Azure 計算資源的費用，以及您的工作負載執行時其他服務所用資源的費用。例如，您需針對您集區中的計算節點以及您儲存在 Azure 儲存體中做為您的工作輸入或輸出的資料付費。同樣地，如果您使用 Batch 的[應用程式封裝](batch-application-packages.md)功能，您則需支付用來儲存應用程式封裝的 Azure 儲存體資源費用。如需詳細資訊，請參閱 [Batch 價格][batch_pricing]。
+Batch 帳戶只在「免費層」提供，這表示您不需為 Batch 帳戶本身付費。您需為 Batch 解決方案所使用的基礎 Azure 計算資源，以及工作負載執行時其他服務所使用的資源付費。例如，您需針對您集區中的計算節點以及您儲存在 Azure 儲存體中作為您的工作輸入或輸出的資料付費。同樣地，如果您使用 Batch 的[應用程式封裝](batch-application-packages.md)功能，您則需支付用來儲存應用程式封裝的 Azure 儲存體資源費用。如需詳細資訊，請參閱 [Batch 價格][batch_pricing]。
 
 ## 連結的 Azure 儲存體帳戶
 
@@ -125,4 +125,4 @@ Batch 目前僅支援**一般用途**的儲存體帳戶類型，如[關於 Azure
 [storage_account]: ./media/batch-account-create-portal/storage_account.png
 [quotas]: ./media/batch-account-create-portal/quotas.png
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0921_2016-->

@@ -4,7 +4,7 @@
 	services="cognitive-services"
 	documentationCenter=""
 	authors="luiscabrer"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -151,4 +151,4 @@ Recommendations 組建最終會支援建置具有最多 20 個功能的模型。
 
 一旦建立模型之後，就可以執行[離線評估](cognitive-services-recommendations-buildtypes.md)來檢查您的模型可能執行的程度。
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

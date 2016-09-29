@@ -12,7 +12,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="infrastructure-services"
-	ms.date="05/24/2016"
+	ms.date="09/12/2016"
 	ms.author="magoedte;bwren" />
 
 # 在 Azure 自動化中測試 Runbook
@@ -43,4 +43,4 @@
 - 若要開始使用 PowerShell 工作流程 Runbook，請參閱[我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)
 - 若要深入了解設定 Runbok 以傳回狀態訊息和錯誤，包括建議的作法，請參閱[Azure 自動化中的 Runbook 輸出和訊息](automation-runbook-output-and-messages.md)
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="get-started-article"
-	ms.date="05/23/2016"
+	ms.date="09/16/2016"
 	ms.author="sethm"/>
 
 # 使用 Azure 服務匯流排轉送的 .NET 內部部署/雲端混合式應用程式
@@ -25,7 +25,7 @@
 您將了解：
 
 -   如何建立 Web 服務或調整現有的 Web 服務，以供 Web 方案使用。
--   如何使用 Azure 服務匯流排轉送，以在 Azure 應用程式與其他位置託管的 Web 服務之間共用資料。
+-   如何使用 Azure 服務匯流排轉送服務，在 Azure 應用程式與其他位置託管的 Web 服務之間共用資料。
 
 [AZURE.INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
@@ -53,7 +53,7 @@
 
 在開始開發 Azure 應用程式之前，請取得工具，並設定開發環境：
 
-1.  安裝位於[取得工具和 SDK][] 的 Azure SDK for .NET。
+1.  從[取得工具和 SDK][] 頁面安裝 Azure SDK for .NET。
 
 2. 	按一下您所使用 Visual Studio 版本的 [安裝 SDK]。本教學課程中的步驟使用 Visual Studio 2015。
 
@@ -366,9 +366,9 @@
 
 下一步是利用 ASP.NET 應用程式連接內部部署產品伺服器。
 
-1.  請在 Visual Studio 重新開啟您在＜建立 ASP.NET 應用程式＞一節中建立的 **ProductsPortal** 專案 (如果尚未開啟)。
+1.  請在 Visual Studio 重新開啟您在[建立 ASP.NET 應用程式](#create-an-aspnet-application)一節中建立的 **ProductsPortal** 專案 (如果尚未開啟)。
 
-2.  類似於＜建立內部部署伺服器＞一節中的步驟，將 NuGet 封裝新增至 References 專案。在 [方案總管] 中，以滑鼠右鍵按一下 **ProductsPortal** 專案，然後按一下 [管理 NuGet 封裝]。
+2.  類似於＜建立內部部署伺服器＞一節中的步驟，將 NuGet 封裝新增至專案參考。在 [方案總管] 中，以滑鼠右鍵按一下 **ProductsPortal** 專案，然後按一下 [管理 NuGet 封裝]。
 
 3.  搜尋「服務匯流排」並選取 [Microsoft Azure 服務匯流排] 項目。然後完成安裝並關閉此對話方塊。
 
@@ -420,7 +420,7 @@
 	}
 	```
 
-7.  在 [方案總管] 中，以滑鼠右鍵按一下 **ProductsPortal**、按一下 [新增]，然後按一下 [現有專案]。
+7.  在 [方案總管] 中，以滑鼠右鍵按一下 **ProductsPortal** 方案 (務必以滑鼠右鍵按一下方案，而非專案)。按一下 [新增]，然後按一下 [現有專案]。
 
 8.  導覽至 **ProductsServer** 專案，然後按兩下 **ProductsServer.csproj** 方案檔來新增它。
 
@@ -448,16 +448,17 @@
 
 按 **ProductsPortal** 頁面上的 [重新整理]。每次重新整理頁面時，您會看到伺服器應用程式在呼叫來自 **ProductsServer** 的 `GetProducts()` 時顯示一則訊息。
 
+先關閉這兩個應用程式，才能繼續下一個步驟。
+
 ## 將 ProductsPortal 專案部署至 Azure Web 應用程式
 
 下一個步驟是將 **ProductsPortal** 前端轉換為 Azure Web 應用程式。首先，部署 **ProductsPortal** 專案，遵循[將 Web 專案部署至 Azure Web 應用程式](../app-service-web/web-sites-dotnet-get-started.md#deploy-the-web-project-to-the-azure-web-app)一節中的所有步驟。部署完成後，回到本教學課程並繼續進行下一個步驟。
 
+> [AZURE.NOTE] 在部署後自動啟動 **ProductsPortal** Web 專案時，您可在瀏覽器視窗中看到錯誤訊息。這是預期的，且因為 **ProductsServer** 應用程式尚未執行而出現。
+
 請複製已部署 Web 應用程式的 URL，印為您在下一個步驟中需要用到 URL。您也可以從 Visual Studio 中的 [Azure App Service 活動] 視窗中取得此 URL：
 
 ![][9]
-   
-
-> [AZURE.NOTE] 在部署後自動啟動 **ProductsPortal** Web 專案時，您可在瀏覽器視窗中看到錯誤訊息。這是預期的，且因為 **ProductsServer** 應用程式尚未執行而出現。
 
 ### 將 ProductsPortal 設定為 Web 應用程式
 
@@ -528,4 +529,4 @@
   [sbwacom]: /documentation/services/service-bus/
   [sbwacomqhowto]: service-bus-dotnet-get-started-with-queues.md
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0921_2016-->

@@ -284,7 +284,7 @@ Application Insights 是 Microsoft Azure 中裝載的多項服務之一，而遙
 
 Application Insights 會提供三種類型的警示 (透過電子郵件傳送)。
 
-### 主動式診斷 
+### 主動診斷 
 
 [主動式診斷](app-insights-nrt-proactive-diagnostics.md)** 會自動設定 - 您不需要進行設定。假設您的網站有足夠的流量，如果一天當中某個時間的失敗要求或要求率不尋常增加，您就會收到一封電子郵件。警示包含診斷資訊。
 
@@ -347,11 +347,11 @@ Application Insights 的使用方式有所限制，在某個程度上這取決�
  * [疑難排解][qna]
  * [MSDN 論壇](https://social.msdn.microsoft.com/Forums/vstudio/home?forum=ApplicationInsights)
  * [StackOverflow](http://stackoverflow.com/questions/tagged/ms-application-insights)
-* 建議：
+ * [取得開發人員支援](app-insights-get-dev-support.md)
+* 您的建議：
  * [UserVoice](https://visualstudio.uservoice.com/forums/357324)
 * 部落格：
  * [Application Insights 部落格](https://azure.microsoft.com/blog/tag/application-insights)
-
 
 
 
@@ -386,4 +386,4 @@ Application Insights 的使用方式有所限制，在某個程度上這取決�
 
  
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

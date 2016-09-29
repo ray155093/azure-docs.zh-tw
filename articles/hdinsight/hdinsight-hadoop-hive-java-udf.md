@@ -4,7 +4,7 @@ description="了解如何在 HDInsight 中從 Hive 建立及使用 Java 使用�
 services="hdinsight"
 documentationCenter=""
 authors="Blackmist"
-manager="paulettm"
+manager="jhubbard"
 editor="cgronlun"/>
 
 <tags
@@ -166,4 +166,4 @@ Hive 很適合在 HDInsight 中處理資料，但您有時需要更通用的語�
 
 如需 Hive 使用者定義函式的詳細資訊，請造訪 apache.org 並參閱 Hive wiki 的 [Hive 運算子和使用者定義函式](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF)一節。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

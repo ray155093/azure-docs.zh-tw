@@ -5,7 +5,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="bradsev"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun" />
 
 <tags
@@ -100,4 +100,4 @@ Team Data Science Process 的分析環境包含數個元件：
 
 此外也會提供完整的端對端逐步解說，說明**特定案例**之程序中的所有步驟。[Team Data Science Process 逐步解說](data-science-process-walkthroughs.md)主題中會列出這些逐步解說與縮圖描述。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

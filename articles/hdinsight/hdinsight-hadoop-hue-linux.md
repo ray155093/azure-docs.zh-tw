@@ -4,7 +4,7 @@
 	services="hdinsight"
 	documentationCenter=""
 	authors="nitinme"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags 
@@ -137,4 +137,4 @@ Hue 是一組 Web 應用程式，用來與 Hadoop 叢集互動。您可以使用
 [hdinsight-provision]: hdinsight-provision-clusters-linux.md
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster-linux.md
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

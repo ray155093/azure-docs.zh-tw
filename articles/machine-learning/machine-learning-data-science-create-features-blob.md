@@ -4,7 +4,7 @@
 	services="machine-learning,storage" 
 	documentationCenter="" 
 	authors="bradsev" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun" />
 
 <tags 
@@ -21,7 +21,7 @@
 本文件說明如何使用 [Pandas](http://pandas.pydata.org/) Python 封裝，對儲存在 Azure blob 容器的資料建立特徵。概述如何將資料載入 Panda 資料框架後，接著會示範如何使用 Python 指令碼，搭配指標值和分類收納特徵，以產生分類特徵。
 
 [AZURE.INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]
-這個 [功能表] 連結至主題，描述如何在各種環境中建立資料的特性。此工作是 [Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
+這個**功能表**所連結的主題會說明如何在各種環境中建立資料的特徵。此工作是 [Team Data Science Process TDSP](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
 
 
 ## 必要條件
@@ -31,7 +31,7 @@
 ## 將資料載入至 Pandas 資料框架
 若要進行探索和操作資料集，必須從 Blob 來源將資料集下載至本機檔案，然後將其載入 Pandas 資料框架中。以下是此程序的遵循步驟：
 
-1. 使用 Blob 服務，透過下列 Python 程式碼範例，從 Azure Blob 下載資料。使用您的特定值來取代下列程式碼中的變數： 
+1. 使用 Blob 服務，透過下列 Python 程式碼範例，從 Azure Blob 下載資料。使用您的特定值來取代下列程式碼中的變數：
 
 	    from azure.storage.blob import BlobService
     	import tables
@@ -137,4 +137,4 @@
 
  
 
-<!----HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

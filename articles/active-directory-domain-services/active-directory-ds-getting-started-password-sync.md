@@ -13,10 +13,10 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="09/08/2016"
+	ms.date="09/20/2016"
 	ms.author="maheshu"/>
 
-# Azure AD 網域服務 (預覽) - 啟用 Azure AD 網域服務的密碼同步處理
+# 啟用 Azure AD 網域服務的密碼同步處理
 在先前工作中，您無法為 Azure AD 租用戶啟用 Azure AD 網域服務。下一項工作是啟用 NTLM 和 Kerberos 驗證所需的認證雜湊，以同步處理到 Azure AD 網域服務。設定認證同步處理後，使用者即可使用他們的公司認證來登入受管理的網域。
 
 根據組織有僅限雲端的 Azure AD 租用戶，或已設定為使用 Azure AD Connect 來與內部部署目錄同步處理，所需的步驟會有所不同。
@@ -61,11 +61,11 @@ Azure AD 網域服務需要適合於 NTLM 和 Kerberos 驗證之格式的認證�
 
 ## 相關內容
 
-- [為同步處理的 Azure AD 租用戶啟用 AAD 網域服務的密碼同步處理](active-directory-ds-getting-started-password-sync-synced-tenant.md)
-
 - [如何更新自己的密碼](../active-directory/active-directory-passwords-update-your-own-password.md)
 
 - [在 Azure AD 中開始使用密碼管理](../active-directory/active-directory-passwords-getting-started.md)。
+
+- [為同步處理的 Azure AD 租用戶啟用 AAD 網域服務的密碼同步處理](active-directory-ds-getting-started-password-sync-synced-tenant.md)
 
 - [Administer an Azure AD Domain Services managed domain (管理 Azure AD 網域服務受管理的網域)](active-directory-ds-admin-guide-administer-domain.md)
 
@@ -73,4 +73,4 @@ Azure AD 網域服務需要適合於 NTLM 和 Kerberos 驗證之格式的認證�
 
 - [將 Red Hat Enterprise Linux 虛擬機器加入 Azure AD 網域服務受管理的網域](active-directory-ds-admin-guide-join-rhel-linux-vm.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="search"
-   ms.date="07/25/2016"
+   ms.date="09/07/2016"
    ms.author="brjohnst"/>
 
 # Azure 搜尋服務 REST API：版本 2015-02-28-Preview
@@ -55,7 +55,7 @@ Azure 搜尋服務 API 對 API 作業支援兩種 URL 語法：簡單和 OData (
 
 [測試分析器](#TestAnalyzer)
 
-    GET /indexes/[index name]/analyze?api-version=2015-02-28-Preview
+    POST /indexes/[index name]/analyze?api-version=2015-02-28-Preview
 
 [删除索引](#DeleteIndex)
 
@@ -176,7 +176,7 @@ ________________________________________
 - `defaultScoringProfile` 可用來覆寫預設的評分行為。
 - `corsOptions` 允許在您的索引上進行跨原始來源查詢。
 
-建構要求承載的語法如下。本主題稍後會提供範例要求。
+下列為建構要求承載的語法。本主題稍後會提供範例要求。
 
     {
       "name": (optional on PUT; required on POST) "name_of_index",
@@ -644,7 +644,7 @@ Azure 搜尋支援多種語言。每一種語言都需要非標準的文字分�
         {"name": "hotelId", "type": "Edm.String", "key": true, "searchable": false},
         {"name": "baseRate", "type": "Edm.Double"},
         {"name": "description", "type": "Edm.String", "filterable": false, "sortable": false, "facetable": false},
-	    {"name": "description_fr", "type": "Edm.String", "filterable": false, "sortable": false, "facetable": false, analyzer="fr.lucene"},
+        {"name": "description_fr", "type": "Edm.String", "filterable": false, "sortable": false, "facetable": false, "analyzer": "fr.lucene"},
         {"name": "hotelName", "type": "Edm.String"},
         {"name": "category", "type": "Edm.String"},
         {"name": "tags", "type": "Collection(Edm.String)"},
@@ -1344,7 +1344,9 @@ ________________________________________
 
 使用 HTTP GET 呼叫**搜尋** API 時，您需要留意要求 URL 的長度不能超過 8 KB。這對大部分的應用程式通常已足夠。不過，有些應用程式會產生非常大型的查詢或 OData 篩選條件運算式。對於這些應用程式而言，使用 HTTP POST 是較好的選擇，因為它允許比 GET 更大型的篩選與查詢。使用 POST 時，限制因素為查詢中的字詞或子句數目，而不是原始查詢的大小，因為 POST 的要求大小限制約為 16 MB。
 
-> [AZURE.NOTE] 即使 POST 要求大小限制很大，搜尋查詢與篩選運算式也不能任意複雜化。如需有關搜尋查詢和篩選複雜性限制的詳細資訊，請參閱 [Lucene 查詢語法](https://msdn.microsoft.com/library/mt589323.aspx)和 [OData 運算式語法](https://msdn.microsoft.com/library/dn798921.aspx)。**要求**
+> [AZURE.NOTE] 即使 POST 要求大小限制很大，搜尋查詢與篩選運算式也不能任意複雜化。如需有關搜尋查詢和篩選複雜性限制的詳細資訊，請參閱 [Lucene 查詢語法](https://msdn.microsoft.com/library/mt589323.aspx)和 [OData 運算式語法](https://msdn.microsoft.com/library/dn798921.aspx)。
+
+**要求**
 
 服務要求需要使用 HTTPS。**搜尋**要求可以使用 GET 或 POST 方法來建構。
 
@@ -1387,7 +1389,7 @@ ________________________________________
 
 `$top=#` (選用) - 要擷取的搜尋結果數目。這可用於搭配 `$skip` 來實作用戶端的搜尋結果分頁。
 
-> [AZURE.NOTE] 使用 POST 呼叫**搜尋**時，此參數的名稱會是 `top` 而不是 `$top`。
+> [AZURE.NOTE] 使用 POST 呼叫**搜尋**時，此參數的名稱是 `top` 而不是 `$top`。
 
 `$count=true|false` (選用，預設值為 `false`) - 指定是否要擷取結果的總計數。這是所有符合 `search` 和 `$filter` 參數並忽略 `$top` 和 `$skip` 的文件計數將此值設為 `true`，可能會對效能產生影響。請注意，傳回的計數是一個近似值。
 
@@ -1415,12 +1417,12 @@ ________________________________________
 - `interval` (如果是數字，整數間隔大於 0，如果是日期時間值，則為 `minute`、`hour`、`day`、`week`、`month`、`quarter` 或 `year`)
   - 例如：`facet=baseRate,interval:100` 會根據大小為 100 的基本匯率範圍來產生值區。舉例來說，如果基本匯率全都介於 60 美元到 600 美元之間，則會有下列值區：0-100、100-200、200-300、300-400、400-500 及 500-600。
   - 例如：`facet=lastRenovationDate,interval:year` 會在旅館重新整修期間，每一年產生一個值區。
-- `timeoffset` ([+-]hh:mm、[+-]hhmm 或 [+-]hh) `timeoffset` 為選用項目。它只能與 `interval` 選項結合，而且只有在套用至 `Edm.DateTimeOffset` 類型的欄位時才能結合。值會指定帳戶的 UTC 時間位移，以設定時間介面。
+- `timeoffset` ([+-]hh:mm、[+-]hhmm 或 [+-]hh) `timeoffset` 為選用項目。它只能與 `interval` 選項結合使用，而且只有在套用至 `Edm.DateTimeOffset` 類型的欄位時才能結合使用。值會指定帳戶的 UTC 時間位移，以設定時間介面。
   - 例如：`facet=lastRenovationDate,interval:day,timeoffset:-01:00` 會使用在 01:00:00 UTC (目標時區午夜) 開始的日界限
 - **注意**：`count` 和 `sort` 可以在相同面向規格中組合在一起，但它們無法與 `interval` 或 `values` 結合，而且 `interval` 和 `values` 無法組合在一起。
 - **注意**：如果未指定 `timeoffset`，日期時間上的間隔 Facet 就會根據 UTC 時間來計算。例如：對於 `facet=lastRenovationDate,interval:day` 而言，日界限會在 00:00:00 UTC 開始。
 
-> [AZURE.NOTE] 使用 POST 呼叫**搜尋**時，此參數的名稱會是 `facets` 而不是 `facet`。此外，您會將它指定為字串的 JSON 陣列，其中每個字串是不同的 facet 運算式。
+> [AZURE.NOTE] 使用 POST 呼叫**搜尋**時，此參數的名稱是 `facets` 而不是 `facet`。此外，您會將它指定為字串的 JSON 陣列，其中每個字串是不同的 facet 運算式。
 
 `$filter=[string]` (選用) - 使用標準 OData 語法的結構化搜尋運算式。如需 Azure 搜尋服務支援的 OData 運算式文法子集詳細資訊，請參閱 [OData 運算式語法](#ODataExpressionSyntax)。
 
@@ -1438,13 +1440,13 @@ ________________________________________
 
 `scoringProfile=[string]` (選用) - 評分設定檔的名稱，可用來評估比對文件的相符分數以排序結果。
 
-`scoringParameter=[string]` (零個或零個以上) - 使用 `name-value1,value2,...` 格式來指出評分函數 (例如 `referencePointParameter`) 中每個所定義參數的值。
+`scoringParameter=[string]` (零個或零個以上) - 使用 `name-value1,value2,...` 格式來指出評分函數 (例如 `referencePointParameter`) 中所定義每個參數的值。
 
 - 舉例來說，如果評分設定檔使用名為 "mylocation" 的參數來定義函數，則查詢字串選項會是 `&scoringParameter=mylocation--122.2,44.8`。第一個破折號將名稱與值清單隔開，而第二個破折號是第一個值的一部分 (在此範例中的 longitude)。
 - 針對評分參數，例如可包含逗號的標籤提升，您可以使用單引號在清單中逸出任何這類值。如果值本身包含單引號，您可以使用兩個單引號加以逸出。
   - 舉例來說，如果您有名為 "mytag" 的標籤提升參數，而您想要針對標記值 "Hello, O'Brien" 和 "Smith" 進行提升，則查詢字串選項會是 `&scoringParameter=mytag-'Hello, O''Brien',Smith`。請注意，只有包含逗號的值需要引號。
 
-> [AZURE.NOTE] 使用 POST 呼叫**搜尋**時，此參數的名稱會是 `scoringParameters` 而不是 `scoringParameter`。此外，您需將它指定為 JSON 字串陣列，其中每個字串都是個別的 `name-values` 組。
+> [AZURE.NOTE] 使用 POST 呼叫**搜尋**時，此參數的名稱是 `scoringParameters` 而不是 `scoringParameter`。此外，您需以 JSON 字串陣列方式指定它，其中每個字串都是個別的 `name-values` 組。
 
 `minimumCoverage` (選擇性，預設值為 100) - 介於 0 和 100 的數字，指出搜尋查詢要報告為成功查詢，必須涵蓋的索引的百分比。根據預設，整個索引必須可供使用，否則 `Search` 會傳回 HTTP 狀態碼 503。如果您成功設定 `minimumCoverage` 和 `Search`，它會傳回 HTTP 200，並在回應中包含 `@search.coverage` 值，指出查詢中包含的索引的百分比。
 
@@ -1655,7 +1657,7 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
       "select": "hotelName, description"
     }
 
-10) 抓取符合特定篩選運算式的文件
+10) 抓取符合特定篩選運算式的文件：
 
 
     GET /indexes/hotels/docs?$filter=(baseRate ge 60 and baseRate lt 300) or hotelName eq 'Fancy Stay'&api-version=2015-02-28-Preview
@@ -1970,4 +1972,4 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
       "suggesterName": "sg"
     }
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

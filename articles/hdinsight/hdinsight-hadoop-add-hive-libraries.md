@@ -4,7 +4,7 @@ description="了解如何在叢集建立期間將 Hive 程式庫 (jar 檔案) �
 services="hdinsight"
 documentationCenter=""
 authors="Blackmist"
-manager="paulettm"
+manager="jhubbard"
 editor="cgronlun"/>
 
 <tags
@@ -88,4 +88,4 @@ __需求__
 
 在這份文件中，您已經學會如何在叢集建立期間將 jar 檔案包含的 Hive 程式庫新增至 HDInsight 叢集。如需有關使用 Hive 的詳細資訊，請參閱[搭配使用 Hive 與 HDInsight](hdinsight-use-hive.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

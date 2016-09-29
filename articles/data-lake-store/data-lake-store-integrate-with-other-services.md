@@ -4,7 +4,7 @@
    documentationCenter=""
    services="data-lake-store"
    authors="nitinme"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"/>
 
 <tags
@@ -84,4 +84,4 @@ Azure 資料湖存放區提供命令列工具 AdlCopy，可讓您將資料從 Az
 - [使用入口網站開始使用資料湖存放區](data-lake-store-get-started-portal.md)
 - [使用 PowerShell 開始使用資料湖存放區](data-lake-store-get-started-powershell.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0914_2016-->

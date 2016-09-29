@@ -4,7 +4,7 @@
    services="hdinsight"
    documentationCenter=""
    authors="Blackmist"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"/>
 
 <tags
@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="06/22/2016"
+   ms.date="09/07/2016"
    ms.author="larryfr"/>
 
 # 部署和管理以 Linux 為基礎的 HDInsight 上的 Apache Storm 拓撲
@@ -62,11 +62,11 @@
 
 您可以用程式設計方式與裝載於叢集中的 Nimbus 服務進行通訊，以對 Storm on HDInsight 部署拓撲。[https://github.com/Azure-Samples/hdinsight-java-deploy-storm-topology](https://github.com/Azure-Samples/hdinsight-java-deploy-storm-topology) 提供範例 Java 應用程式，以示範如何透過 Nimbus 服務部署和啟動拓撲。
 
-##使用 Storm 命令監視和管理
+## 使用 Storm 命令監視和管理
 
 `storm` 公用程式可讓您從命令列使用執行中拓撲。以下是常用命令的清單。使用 `storm -h` 以取得完整的命令清單。
 
-###列出拓撲
+### 列出拓撲
 
 使用下列命令來列出所有執行中拓撲：
 
@@ -78,7 +78,7 @@
     -------------------------------------------------------------------
     WordCount            ACTIVE     29         2            263
 
-###停用和重新啟動
+### 停用和重新啟動
 
 停用拓撲會暫停它，直到刪除或重新啟動。使用下列項目以停用和重新啟動：
 
@@ -86,13 +86,13 @@
     
     storm Activate TOPOLOGYNAME
 
-###刪除執行中拓撲
+### 刪除執行中拓撲
 
 Storm 拓撲一旦啟動之後，將會繼續執行直到停止。若要停止拓撲，請使用下列命令：
 
     storm stop TOPOLOGYNAME
 
-###重新平衡
+### 重新平衡
 
 重新平衡拓撲可以讓系統修訂拓撲的平行處理原則。例如，如果您已調整叢集的大小以新增更多節點，重新平衡可讓執行中的拓撲使用新的節點。
 
@@ -100,7 +100,7 @@ Storm 拓撲一旦啟動之後，將會繼續執行直到停止。若要停止�
 
     storm rebalance TOPOLOGYNAME
 
-##使用 Storm UI 監視和管理
+## 使用 Storm UI 監視和管理
 
 Storm UI 提供 Web 介面來處理執行中的拓撲，包含在您的 HDInsight 叢集中。若要檢視 Storm UI，請使用網頁瀏覽器開啟 __https://CLUSTERNAME.azurehdinsight.net/stormui____，其中 CLUSTERNAME\_\_ 是叢集的名稱。
 
@@ -197,4 +197,4 @@ REST API 的要求必須使用**基本驗證**，因此請使用 HDInsight 叢�
 
 若需更多範例拓撲的清單，請參閱 [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="raymondlaghaeian"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -238,4 +238,4 @@ Resources 中 Name 參數的值，應該符合預測性實驗中儲存之定型�
 <!-- Module References -->
 [train-model]: https://msdn.microsoft.com/library/azure/5cc7053e-aa30-450d-96c0-dae4be720977/
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

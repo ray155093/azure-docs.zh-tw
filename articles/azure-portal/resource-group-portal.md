@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/23/2016" 
+	ms.date="09/12/2016" 
 	ms.author="tomfitz"/>
 
 # 透過入口網站管理 Azure 資源
@@ -94,7 +94,7 @@
 
     ![儀表板](./media/resource-group-portal/create-dashboard.png)
 
-     若要了解如何使用儀表板，請檢視 [Build Custom Dashboards in the Microsoft Azure Portal (在 Azure 入口網站中建置自訂儀表板)](https://channel9.msdn.com/Blogs/trevor-cloud/azure-portal-dashboards) 影片。若要深入了解如何共用已發佈儀表板的存取權，請參閱[共用 Azure 儀表板](azure-portal-dashboard-share-access.md)。
+     若要了解如何使用儀表板，請參閱 [Creating and sharing dashboards in the Azure portal (在 Azure 入口網站建立和共用儀表板)](azure-portal-dashboards.md)。
 
 ## 管理資源
 
@@ -151,4 +151,4 @@
 - 若要透過入口網站部署資源，請參閱 [使用 Resource Manager 範本與 Azure 入口網站來部署資源](../resource-group-template-deploy-portal.md)。
 - 若要管理資源的存取權，請參閱[使用角色指派來管理 Azure 訂用帳戶資源的存取權](../active-directory/role-based-access-control-configure.md)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/08/2016" 
+	ms.date="09/08/2016" 
 	ms.author="deonhe"/>
 
 # 企業整合套件概觀
@@ -23,9 +23,9 @@
 
 此套件可讓使用不同通訊協定和格式的組織，透過將不同格式轉換為雙方組織系統都可解譯並採取動作的格式，以電子方式交換訊息。
 
-如果您熟悉 BizTalk Server 或 Microsoft Azure BizTalk 服務，您就會發現可輕鬆地使用企業整合功能，因為大部分的概念都很類似。有一個主要差異是企業整合會運用整合帳戶，來簡化對於 B2B 通訊中所使用構件的儲存與管理。
+如果您熟悉 BizTalk Server 或 Microsoft Azure BizTalk 服務，您就會發現可輕鬆地使用企業整合功能，因為大部分的概念都很類似。有一個主要差異是企業整合會使用整合帳戶，來簡化對於 B2B 通訊中所使用構件的儲存與管理。
 
-在架構上，企業整合套件是以儲存所有構件的**整合帳戶**依據，這些構件可用來設計、部署及維護您的 B2B 應用程式。整合帳戶基本上是以雲端為基礎的容器，您可以在其中儲存構件，例如結構描述、夥伴、憑證、對應和合約。這些構件接著可在 Logic Apps 中用來建置 B2B 工作流程。在您可以於邏輯應用程式中使用構件之前，只需將整合帳戶連結到邏輯應用程式。連結它們之後，邏輯應用程式將可存取整合帳戶的構件。
+在架構上，企業整合套件是以儲存所有構件的**整合帳戶**依據，這些構件可用來設計、部署及維護您的 B2B 應用程式。整合帳戶基本上是以雲端為基礎的容器，您可以在其中儲存構件，例如結構描述、夥伴、憑證、對應和合約。這些構件接著可在 Logic Apps 中用來建置 B2B 工作流程。您需要先將整合帳戶連結到邏輯應用程式，才能在邏輯應用程式中使用構件。連結它們之後，邏輯應用程式將可存取整合帳戶的構件。
 
 ## 為什麼應該使用企業整合？
 - 透過企業整合，您就能夠在同一個地方 (也就是您的整合帳戶) 使用所有構件。
@@ -35,7 +35,9 @@
 ## 如何開始使用企業整合？
 您可以透過 **Azure 入口網站**上的 Logic Apps 設計工具，使用邏輯應用程式來建置和管理 B2B 應用程式。
 
-以下是您可以在 Azure 入口網站中建立應用程式之前需採取的步驟概觀︰![overviewimage](./media/app-service-logic-enterprise-integration-overview/overview-0.png)
+您也可以使用 [PowerShell](https://msdn.microsoft.com/library/azure/mt652195.aspx "邏輯應用程式 PowerShell 主題") 來管理邏輯應用程式。
+
+以下是您可以在 Azure 入口網站中建立應用程式之前需採取的步驟概觀︰![概觀影像](./media/app-service-logic-enterprise-integration-overview/overview-0.png)
 
 ## 有哪些常見的案例？
 
@@ -49,8 +51,8 @@
 - 可建立對應和結構描述的 Visual Studio 2015
 - [Visual Studio 2015 2.0 適用的 Microsoft Azure Logic Apps 企業整合工具](https://aka.ms/vsmapsandschemas)
 
-## 親身體驗
-何不嘗試看看。按一下[這裡](https://github.com/Azure/azure-quickstart-templates/tree/master/201-logic-app-as2-send-receive)，使用 Logic Apps 的 B2B 功能部署您自己的全功能 AS2 傳送與接收邏輯應用程式。
+## 試試看
+[立即試用](https://github.com/Azure/azure-quickstart-templates/tree/master/201-logic-app-as2-send-receive)來部署全功能的範例 AS2 傳送與接收邏輯應用程式，以使用 Logic Apps 的 B2B 功能。
 
 ## 深入了解：
 - [合約](./app-service-logic-enterprise-integration-agreements.md "了解企業整合合約")
@@ -63,5 +65,6 @@
 - [結構描述](./app-service-logic-enterprise-integration-schemas.md "了解企業整合結構描述")
 - [XML 訊息驗證](./app-service-logic-enterprise-integration-xml.md "了解如何使用 Logic Apps 驗證 XML 訊息")
 - [XML 轉換](./app-service-logic-enterprise-integration-transform.md "了解企業整合對應")
+- [企業整合連接器](../connectors/apis-list.md "了解企業整合套件連接器")
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -1,10 +1,10 @@
 <properties
-   pageTitle="Twitter 趨勢主題與 Apache Storm on HDInsight | Microsoft Azure"
+   pageTitle="Twitter 的趨勢主題與 Apache Storm on HDInsight | Microsoft Azure"
    description="了解如何使用 Trident 建立 Apache Storm 拓撲，藉此根據 # 標籤判斷 Twitter 上的趨勢主題。"
    services="hdinsight"
    documentationCenter=""
    authors="Blackmist"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -140,4 +140,4 @@ Spout **TwitterSpout** 會使用 <a href="http://twitter4j.org/en/" target="_bla
 
 * [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0914_2016-->

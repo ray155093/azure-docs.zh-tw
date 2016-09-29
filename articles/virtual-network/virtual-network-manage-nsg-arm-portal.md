@@ -19,7 +19,10 @@
 
 # 使用 Preview 入口網站管理 NSG
 
-[AZURE.INCLUDE [virtual-network-manage-arm-selectors-include.md](../../includes/virtual-network-manage-nsg-arm-selectors-include.md)]
+> [AZURE.SELECTOR]
+- [入口網站](virtual-network-manage-nsg-arm-portal.md)
+- [PowerShell](virtual-network-manage-nsg-arm-ps.md)
+- [Azure CLI](virtual-network-manage-nsg-arm-cli.md)
 
 [AZURE.INCLUDE [virtual-network-manage-nsg-intro-include.md](../../includes/virtual-network-manage-nsg-intro-include.md)]
 
@@ -184,4 +187,4 @@
 
 - [啟用 NSG 的記錄](virtual-network-nsg-manage-log.md)。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0914_2016-->

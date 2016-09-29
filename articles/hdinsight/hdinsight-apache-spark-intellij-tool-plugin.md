@@ -4,7 +4,7 @@
 	services="hdinsight"
 	documentationCenter=""
 	authors="nitinme"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/26/2016"
+	ms.date="09/09/2016"
 	ms.author="nitinme"/>
 
 
@@ -34,13 +34,38 @@
 ##必要條件
 
 * Azure 訂用帳戶。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+
 * HDInsight Linux 上的 Apache Spark 叢集。如需指示，請參閱[在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
+
 * Oracle Java Development Kit。您可以從[這裡](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)加以安裝。
+
 * IntelliJ IDEA。本文章使用 15.0.1 版。您可以從[這裡](https://www.jetbrains.com/idea/download/)加以安裝。
 
 ## 安裝適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具
 
 適用於 IntelliJ 的 HDInsight 工具是適用於 IntelliJ 的 Azure 工具組的一部分。如需有關如何安裝 Azure 工具組的指示，請參閱[安裝 Azure Toolkit for IntelliJ](../azure-toolkit-for-intellij-installation.md)。
+
+## 登入您的 Azure 訂用帳戶
+
+1. 啟動 IntelliJ IDE，然後開啟 [Azure Explorer]。從 IDE 的 [檢視] 功能表中，按一下 [工具視窗]，然後按一下 [Azure Explorer]。
+
+	![建立 Spark Scala 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/show-azure-explorer.png)
+
+2. 以滑鼠右鍵按一下 [Azure Explorer] 中的 [Azure] 節點，然後按一下 [管理訂用帳戶]。
+
+3. 在 [管理訂用帳戶] 對話方塊中，按一下 [登入] 並輸入您的 Azure 認證。
+
+	![建立 Spark Scala 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/view-explorer-2.png)
+
+4. 登入之後，[管理訂用帳戶] 對話方塊會列出與認證相關聯的所有 Azure 訂用帳戶。按一下對話方塊中的 [關閉]。
+
+5. 在 [Azure Explorer] 索引標籤中，展開 [HDInsight]，以查看您訂用帳戶下的 HDInsight Spark 叢集。
+
+	![建立 Spark Scala 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/view-explorer-3.png)
+
+6. 您可以進一步展開叢集名稱節點，查看與叢集相關聯的資源 (例如儲存體帳戶)。
+
+	![建立 Spark Scala 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/view-explorer-4.png)
 
 ## 在 HDInsight Spark 叢集上執行 Spark Scala 應用程式
 
@@ -145,21 +170,9 @@
 
 您可以使用 HDInsight 工具 (此工具為適用於 IntelliJ Azure 工具組的一部分) 來執行各種作業。
 
-### 存取叢集的儲存體容器
-
-1. 從 [檢視] 功能表中，指向 [工具視窗]，然後按一下 [HDInsight 總管]。如果出現提示，請輸入認證來存取您的 Azure 訂用帳戶。
-
-2. 展開 [HDInsight] 根節點，以查看可用的 HDInsight Spark 叢集清單。
-
-3. 展開叢集名稱以查看叢集的儲存體帳戶和預設儲存體容器。
-
-	![存取叢集儲存體](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-spark-access-storage.png)
-
-4. 按一下與叢集相關聯的儲存體容器名稱。在右窗格中，您應該會看到名稱為 **HVACOut** 的資料夾。按兩下以開啟資料夾，即可看到 **part-*** 檔案。開啟其中一個檔案以查看應用程式的輸出。
-
 ### 直接從 HDInsight 工具存取作業檢視
 
-1. 從 [HDInsight 總管] 中，展開 Spark 叢集名稱，然後按一下 [作業]。
+1. 從 [Azure Explorer] 中，依序展開 [HDInsight] 和 Spark 叢集名稱，然後按一下 [作業]。
 
 2. 在右窗格中，[Spark 作業檢視] 索引標籤會顯示已在叢集上執行的所有應用程式。按一下您想要查看更多詳細資料的應用程式名稱。
 
@@ -171,17 +184,17 @@
 
 ### 存取 Spark 歷程記錄伺服器
 
-1. 從 [HDInsight 總管] 中，以滑鼠右鍵按一下您的 Spark 叢集名稱，然後選取 [開啟 Spark 歷程記錄 UI]。出現提示時，輸入叢集的系統管理員認證。在佈建叢集時，您必須已指定這些項目。
+1. 從 [Azure Explorer] 中，展開 [HDInsight]、以滑鼠右鍵按一下您的 Spark 叢集名稱，然後選取 [開啟 Spark 歷程記錄 UI]。出現提示時，輸入叢集的系統管理員認證。在佈建叢集時，您必須已指定這些項目。
 
 2. 在 [Spark 歷程記錄伺服器] 儀表板中，您可以使用應用程式名稱，尋找您剛完成執行的應用程式。在上述程式碼中，您使用 `val conf = new SparkConf().setAppName("MyClusterApp")` 來設定應用程式名稱。因此，Spark 應用程式名稱為 **MyClusterApp**。
 
 ### 啟動 Ambari 入口網站
 
-從 [HDInsight 總管] 中，以滑鼠右鍵按一下您的 Spark 叢集名稱，然後選取 [Open Cluster Management Portal (Ambari)(開啟叢集管理入口網站 (Ambari))] 。出現提示時，輸入叢集的系統管理員認證。在佈建叢集時，您必須已指定這些項目。
+從 [Azure Explorer] 中，展開 [HDInsight]、以滑鼠右鍵按一下您的 Spark 叢集名稱，然後選取 [開啟叢集管理入口網站 (Ambari)]。出現提示時，輸入叢集的系統管理員認證。在佈建叢集時，您必須已指定這些項目。
 
 ### 管理 Azure 訂用帳戶
 
-根據預設，HDInsight 工具會列出您所有 Azure 訂用帳戶中的 Spark 叢集。如有需要，您可以指定要存取其叢集的訂用帳戶。從 [HDInsight 總管] 中，以滑鼠右鍵按一下 [HDInsight] 根節點，然後按一下 [管理訂用帳戶]。從對話方塊中，清除您不想存取的訂用帳戶核取方塊，然後按一下 [關閉]。如果您想要從 Azure 訂用帳戶登出，也可以按一下 [登出]。
+根據預設，HDInsight 工具會列出您所有 Azure 訂用帳戶中的 Spark 叢集。如有需要，您可以指定要存取其叢集的訂用帳戶。以滑鼠右鍵按一下 [Azure Explorer] 中的 [Azure] 根節點，然後按一下 [管理訂用帳戶]。從對話方塊中，清除您不想存取的訂用帳戶核取方塊，然後按一下 [關閉]。如果您想要從 Azure 訂用帳戶登出，也可以按一下 [登出]。
 
 
 ## 在本機執行 Spark Scala 應用程式
@@ -316,4 +329,4 @@
 
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

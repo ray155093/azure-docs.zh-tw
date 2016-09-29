@@ -4,7 +4,7 @@
 	services="search"
 	documentationCenter=""
 	authors="HeidiSteen"
-	manager="paulettm"
+	manager="jhubbard"
 	editor=""
     tags="azure-portal"/>
 
@@ -97,4 +97,4 @@ API 金鑰可用於服務驗證。有兩種類型。系統管理金鑰是在要�
 - 每個服務最多 2 個系統管理金鑰
 - 每個服務最多 50 個查詢金鑰
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -13,7 +13,7 @@
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
 	ms.date="07/26/2016"
-	ms.author="minet" />
+	ms.author="minet;robinsh" />
 
 # 在 Windows 上開始使用 Azure 檔案儲存體
 
@@ -189,7 +189,7 @@ Get-AzureStorageFile 會傳回已傳入任何目錄物件的檔案和目錄清�
     # copy a blob to a file directory
     Start-AzureStorageFileCopy -SrcContainerName srcctn -SrcBlobName hello2.txt -DestShareName hello -DestFilePath hellodir/hello2copy.txt -DestContext $ctx -Context $ctx
 
-## 掛接檔案共用 
+## 掛接檔案共用
 
 利用對 SMB 3.0 的支援，檔案儲存體現在支援來自 SMB 3.0 用戶端的加密和永續性處理常式。支援加密表示 SMB 3.0 用戶端可以從任何位置掛接檔案共用，包括來自：
 
@@ -200,7 +200,7 @@ Get-AzureStorageFile 會傳回已傳入任何目錄物件的檔案和目錄清�
 當用戶端存取檔案儲存體，使用的 SMB 版本取決於作業系統所支援的 SMB 版本。下表提供 Windows 用戶端支援的摘要。請參閱此部落格以深入了解 [SMB 版本](http://blogs.technet.com/b/josebda/archive/2013/10/02/windows-server-2012-r2-which-version-of-the-smb-protocol-smb-1-0-smb-2-0-smb-2-1-smb-3-0-or-smb-3-02-you-are-using.aspx)的詳細資訊。
 
 | Windows 用戶端 | 支援的 SMB 版本 |
-|------------------------|-----------------------|
+|:-----------------------|:----------------------|
 | Windows 7 | SMB 2.1 |
 | Windows Server 2008 R2 | SMB 2.1 |
 | Windows 8 | SMB 3.0 |
@@ -247,7 +247,7 @@ Windows 現在便可在虛擬機器重新開機時重新連線到檔案共用。
 
 您也可以從在 Azure 雲端服務上執行的角色來掛接檔案共用，方法是透過遠端進入此角色。
 
-### 從執行 Windows 的內部部署用戶端掛接檔案共用 
+### 從執行 Windows 的內部部署用戶端掛接檔案共用
 
 若要從內部部署用戶端掛接檔案共用，您必須先進行下列步驟：
 
@@ -589,13 +589,13 @@ Azure 儲存體分析現在支援檔案儲存體的度量。利用度量資料�
 	僅透過 REST API 或用戶端程式庫才支援 SAS。當您透過 SMB 通訊協定掛接檔案共用時，您無法使用 SAS 來委派其內容的存取。
 
 2. **Azure 檔案共用可公開在網際網路顯示，或只可從 Azure 取得？**
- 
+
 	只要已開啟連接埠 445 (TCP 輸出) 且您的用戶端支援 SMB 3.0 通訊協定 (例如：Windows 8 或 Windows Server 2012)，即可透過網際網路使用檔案共用。
 
 3. **Azure 虛擬機器和檔案共用之間的網路流量，會計算為向訂用帳戶收費的外部頻寬嗎？**
 
 	如果檔案共用和虛擬機器位於不同的區域，兩者之間的流量會以外部頻寬收費。
- 
+
 4. **如果網路流量是在虛擬機器和相同區域的檔案共用之間，是否免費？**
 
 	是。如果流量位於相同區域則是免費的。
@@ -607,7 +607,7 @@ Azure 儲存體分析現在支援檔案儲存體的度量。利用度量資料�
 6. **容錯移轉叢集的「檔案共用見證」是Azure 檔案儲存體的其中一個使用案例？**
 
 	這目前不受支援。
- 
+
 7. **檔案儲存體目前只能透過 LRS 或 GRS 複寫，正確嗎？**
 
 	我們打算支援 RA-GRS，但時程尚未決定。
@@ -634,7 +634,7 @@ Azure 儲存體分析現在支援檔案儲存體的度量。利用度量資料�
 
 13. **已發行修補程式來修正 Azure 檔案的效能下滑問題**
 
-	Windows 小組最近發行了修補程式，以修正當客戶從 Windows 8.1 或 Windows Server 2012 R2 存取 Azure 檔案儲存體時所發生的效能下滑問題。如需詳細資訊，請查看相關聯的知識庫文件：[當您從 Windows 8.1 或 Server 2012 R2 存取 Azure 檔案儲存體時效能變慢](https://support.microsoft.com/en-us/kb/3114025)。
+	Windows 小組最近發行了修補程式，以修正當客戶從 Windows 8.1 或 Windows Server 2012 R2 存取 Azure 檔案儲存體時所發生的效能下滑問題。如需詳細資訊，請查看相關聯的知識庫文件：[當您從 Windows 8.1 或 Server 2012 R2 存取 Azure 檔案儲存體時效能變慢](https://support.microsoft.com/zh-TW/kb/3114025)。
 
 14. **搭配 IBM MQ 使用 Azure 檔案儲存體**
 
@@ -667,4 +667,4 @@ Azure 儲存體分析現在支援檔案儲存體的度量。利用度量資料�
 - [Microsoft Azure 檔案服務簡介](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx)
 - [保留與 Microsoft Azure 檔案的連線](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->

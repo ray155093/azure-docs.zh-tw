@@ -442,7 +442,9 @@
 
 ## 步驟 3.變更網域名稱對應 (僅限以 IP 為主的 SSL)
 
-如果您只使用 **SNI SSL** 繫結，請略過本節。在指派給您的應用程式的現有共用 IP 位址上，多個 **SNI SSL** 繫結可以共同運作。不過，如果您建立**以 IP 為主的 SSL** 繫結，App Service 會為繫結建立專用的 IP 位址，因為**以 IP 為主的 SSL** 需要一個專用 IP 位址。因為這個專用的 IP 位址，在以下狀況下，您必須進一步設定您的應用程式︰
+如果您只使用 **SNI SSL** 繫結，請略過本節。在指派給您的應用程式的現有共用 IP 位址上，多個 **SNI SSL** 繫結可以共同運作。不過，如果您建立**以 IP 為主的 SSL** 繫結，App Service 會為繫結建立專用的 IP 位址，因為**以 IP 為主的 SSL** 需要一個專用 IP 位址。只能建立一個專用的 IP 位址，因此可能只會新增一個**以 IP 為主的 SSL** 繫結。
+
+因為這個專用的 IP 位址，在以下狀況下，您必須進一步設定您的應用程式︰
 
 - 您[使用 A 記錄將您的自訂網域對應至 Azure 應用程式](web-sites-custom-domain-name.md#a)，而且您剛新增一個**以 IP 為主的 SSL** 繫結。在此案例中，您需要遵循下列步驟來重新對應現有的 A 記錄，以指向專用的 IP 位址︰
 
@@ -547,4 +549,4 @@
 [certwiz3]: ./media/web-sites-configure-ssl-certificate/waws-certwiz3.png
 [certwiz4]: ./media/web-sites-configure-ssl-certificate/waws-certwiz4.png
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

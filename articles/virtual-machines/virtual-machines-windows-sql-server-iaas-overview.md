@@ -14,7 +14,7 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="08/29/2016"
+	ms.date="09/21/2016"
 	ms.author="jroth"/>
 
 # Azure 虛擬機器上的 SQL Server 概觀
@@ -38,10 +38,13 @@
 
 您決定要在 Azure VM 上執行 SQL Server 之後，您的第一個決策之一為是否要使用包含 SQL Server 授權成本的 VM 映像。另一個選擇是自備授權 (BYOL)，而只支付 VM 本身。下面兩節會說明這些選項。
 
-## 選項 1︰ 部署的 SQL VM (每分鐘授權)
-下表提供虛擬機器資源庫中的可用 SQL Server 映像比較。按一下任何連結，即可開始建立採用您指定的版本和作業系統的新 SQL VM。所有映像都包含 [SQL Server 授權成本](https://azure.microsoft.com/pricing/details/virtual-machines/#Sql)。
+## 建立新的 SQL VM
+下列各節提供 Azure 入口網站中 SQL Server 虛擬機器資源庫映像的直接連結。視您選取的映像而定，您可以按分鐘支付 SQL Server 授權成本，或者可以自備授權 (BYOL)。
 
-如需逐步指引，請參閱[在 Azure 入口網站中佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。此外，檢閱 [SQL Server VM 的效能最佳作法](virtual-machines-windows-sql-performance.md)，該文說明如何選取適當的機器大小和佈建期間其他可用的功能。
+在[在 Azure 入口網站中佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)教學課程中尋找此程序的逐步指引。此外，檢閱 [SQL Server VM 的效能最佳作法](virtual-machines-windows-sql-performance.md)，該文說明如何選取適當的機器大小和佈建期間其他可用的功能。
+
+## 選項 1︰利用每分鐘授權建立 SQL VM
+下表提供虛擬機器資源庫中的可用 SQL Server 映像比較。按一下任何連結，即可開始建立採用您指定的版本和作業系統的新 SQL VM。
 
 |版本|作業系統|版本|
 |---|---|---|
@@ -54,12 +57,8 @@
 |**SQL 2008 R2 SP3**|Windows Server 2008 R2|[Enterprise](https://portal.azure.com/#create/Microsoft.SQLServer2008R2SP3EnterpriseWindowsServer2008R2)、[Standard](https://portal.azure.com/#create/Microsoft.SQLServer2008R2SP3StandardWindowsServer2008R2)、[Web](https://portal.azure.com/#create/Microsoft.SQLServer2008R2SP3WebWindowsServer2008R2)|
 |**SQL 2008 R2 SP3**|Windows Server 2012|[Express](https://portal.azure.com/#create/Microsoft.SQLServer2008R2SP3ExpressWindowsServer2012)|
 
-## 選項 2︰ 部署的 SQL VM (BYOL)
-另一個選項是自備授權 (BYOL)。在此案例中，您只需支付 VM 費用，而 SQL Server 授權不需任何額外的費用。若要使用自己的授權，請使用 SQL Server 版本及下列作業系統的矩陣。在入口網站中，映像名稱前面會加上 **{BYOL}**。
-
-> [AZURE.IMPORTANT] 若要使用 BYOL VM 映像，您必須具備 Enterprise 合約和 [Azure 上透過軟體保證的授權流動性](https://azure.microsoft.com/pricing/license-mobility/)。您也需要您要使用的 SQL Server 版本的有效授權。您必須在佈建您的 VM 的 **10** 天內[提供必要的 BYOL 資訊給 Microsoft](http://d36cz9buwru1tt.cloudfront.net/License_Mobility_Customer_Verification_Guide.pdf)。
-
-適用[佈建教學課程](virtual-machines-windows-portal-sql-server-provision.md)中的指引，但您必須使用下列其中一個 **BYOL** 映像選項。此外，檢閱 [SQL Server VM 的效能最佳作法](virtual-machines-windows-sql-performance.md)，該文說明如何選取適當的機器大小和佈建期間其他可用的功能。
+## 選項 2︰利用現有授權建立 SQL VM
+您也可以自備授權 (BYOL)。在此案例中，您只需支付 VM 費用，而 SQL Server 授權不需任何額外的費用。若要使用自己的授權，請使用 SQL Server 版本及下列作業系統的矩陣。在入口網站中，這些映像名稱前面會加上 **{BYOL}**。
 
 |版本|作業系統|版本|
 |---|---|---|
@@ -67,8 +66,10 @@
 |**SQL Server 2014 SP1**|Windows Server 2012 R2|[Enterprise BYOL](https://portal.azure.com/#create/Microsoft.BYOLSQLServer2014SP1EnterpriseWindowsServer2012R2)、[Standard BYOL](https://portal.azure.com/#create/Microsoft.BYOLSQLServer2014SP1StandardWindowsServer2012R2)|
 |**SQL Server 2012 SP2**|Windows Server 2012 R2|[Enterprise BYOL](https://portal.azure.com/#create/Microsoft.BYOLSQLServer2012SP3EnterpriseWindowsServer2012R2)、[Standard BYOL](https://portal.azure.com/#create/Microsoft.BYOLSQLServer2012SP3StandardWindowsServer2012R2)|
 
+> [AZURE.IMPORTANT] 若要使用 BYOL VM 映像，您必須具備 Enterprise 合約和 [Azure 上透過軟體保證的授權流動性](https://azure.microsoft.com/pricing/license-mobility/)。您也需要您要使用的 SQL Server 版本的有效授權。您必須在佈建您的 VM 的 **10** 天內[提供必要的 BYOL 資訊給 Microsoft](http://d36cz9buwru1tt.cloudfront.net/License_Mobility_Customer_Verification_Guide.pdf)。
+
 ## 管理您的 SQL VM
-佈建之後您的 SQL Server VM 之後，有幾個選用的管理工作。在某些方面，您可以設定和管理 SQL Server，如同您處理內部部署一樣。但是某些是 Azure 特有的工作。下列各節強調上述某些領域並提供詳細資訊的連結。
+佈建之後您的 SQL Server VM 之後，有幾個選用的管理工作。在許多方面，您設定和管理 SQL Server 的方式，完全如同您管理內部部署 SQL Server 執行個體。不過，有些是 Azure 特有的工作。下列各節強調上述某些領域並提供詳細資訊的連結。
 
 ### 遷移資料
 
@@ -94,4 +95,4 @@ Azure VM 可以使用[自動修補](virtual-machines-windows-sql-automated-patch
 
 其他問題？ 請先參閱 [Azure 虛擬機器上的 SQL Server 常見問題集](virtual-machines-windows-sql-server-iaas-faq.md)。也請將您的問題或意見加入任何 SQL VM 主題的底部來與 Microsoft 和社群互動。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0921_2016-->

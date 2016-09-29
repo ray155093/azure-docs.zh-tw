@@ -5,7 +5,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="garyericson"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -35,4 +35,4 @@
 
 儲存完成時，資料集可用於工作區中的任何實驗。您可以在模組調色盤的 [**儲存的資料集**] 清單中找到它。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

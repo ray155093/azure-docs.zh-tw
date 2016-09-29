@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="bradsev,deguhath,gokuma"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"  />
 
 <tags
@@ -25,7 +25,7 @@
 - **二進位分類**工作可預測是否已支付某趟車程的小費。
 - **迴歸**工作可根據其他小費功能來預測小費金額。
 
-模型化步驟也包含程式碼來示範如何訓練、評估和儲存每類模型。這個主題涵蓋一些與[使用 Spark 資料探索和模型化](machine-learning-data-science-spark-data-exploration-modeling.md)主題相同的內容，但是所謂「進階」，是指它也會使用交叉驗證搭配超參數掃掠，以最佳地定型精確分類和迴歸模型。
+模型化步驟也包含程式碼來示範如何訓練、評估和儲存每類模型。這個主題涵蓋一些與[使用 Spark 資料探索和模型化](machine-learning-data-science-spark-data-exploration-modeling.md)主題相同的內容，但所謂「進階」是指它也會使用交叉驗證搭配超參數掃掠，以最佳方式訓練精確的分類和迴歸模型。
 
 **交叉驗證 (CV)** 是一種技術，評估在一組已知的資料上定型的模型如何一般化，以預測在其上尚未定型的資料集的功能。這套方法背後的基本概念是模型已在已知資料的資料集上定型，然後針對獨立的資料集測試其預測的精確度。此處所使用的通用實作是將資料集分割成 K 摺疊，然後以循環配置資源方式定型所有摺疊，只留下其中一個摺疊。
 
@@ -40,7 +40,7 @@
 - [隨機樹系](http://spark.apache.org/docs/latest/mllib-ensembles.html#Random-Forests)是整體的決策樹。其結合許多決策樹以降低風險過度膨脹。隨機樹系適用於迴歸和分類，並可處理分類功能、擴充至多類別分類設定、不需要調整功能，而且能夠擷取非線性和功能互動。隨機樹系是其中一個最成功的分類和迴歸的機器學習模型。
 - [漸層停駐推進式決策樹](http://spark.apache.org/docs/latest/ml-classification-regression.html#gradient-boosted-trees-gbts) (GBT) 是整體的決策樹。GBT 反覆地訓練決策樹以盡可能降低遺失函式。GBT 適用於迴歸和分類，並可處理分類功能、不需要調整功能，而且能夠擷取非線性和功能互動。它們也可用於多類別分類設定。
 
-使用 CV 和超參數掃掠的模型化範例會針對二進位分類問題顯示。更簡單的範例 (不含參數掃掠) 會出現在迴歸工作的主要主題。但是在附錄中，另外也會提到針對線性迴歸使用彈性 net 的驗證，和針對隨機樹系迴歸使用 CV 和參數掃掠的驗證。**彈性 net** 是正規化迴歸方法，以符合線性迴歸模型，線性結合 L1 和 L2 度量做為 [lasso](https://en.wikipedia.org/wiki/Lasso%20%28statistics%29) 和 [ridge](https://en.wikipedia.org/wiki/Tikhonov_regularization) 方法的處罰。
+使用 CV 和超參數掃掠的模型化範例會針對二進位分類問題顯示。更簡單的範例 (不含參數掃掠) 會出現在迴歸工作的主要主題中。但是在附錄中，另外也會提到針對線性迴歸使用彈性 net 的驗證，和針對隨機樹系迴歸使用 CV 和參數掃掠的驗證。**彈性 net** 是正規化迴歸方法，以符合線性迴歸模型，線性結合 L1 和 L2 度量做為 [lasso](https://en.wikipedia.org/wiki/Lasso%20%28statistics%29) 和 [ridge](https://en.wikipedia.org/wiki/Tikhonov_regularization) 方法的處罰。
 
 
 
@@ -49,7 +49,7 @@
 
 ## 必要條件
 
-您需要 Azure 帳戶和 HDInsight Spark 叢集。您需要 HDInsight 3.4 Spark 1.6 叢集才能開始這個逐步解說。請參閱[使用 Azure HDInsight 上的 Spark 的資料科學概觀](machine-learning-data-science-spark-overview.md)以取得這些需求、這裡使用的 NYC 2013 計程車資料的描述，以及如何從 Spark 叢集的 Jupyter Notebook 執行程式碼的指示。**machine-learning-data-science-spark-data-exploration-modeling.ipynb** Notebook，其中包含本主題中的程式碼範例 (位於 [Github](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark))。
+您需要 Azure 帳戶和 HDInsight Spark 叢集。您需要 HDInsight 3.4 Spark 1.6 叢集才能開始這個逐步解說。請參閱[使用 Azure HDInsight 上的 Spark 的資料科學概觀](machine-learning-data-science-spark-overview.md)以取得這些需求、這裡使用的 NYC 2013 計程車資料的描述，以及如何從 Spark 叢集的 Jupyter Notebook 執行程式碼的指示。您可以在 [Github](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark) 上取得 **machine-learning-data-science-spark-data-exploration-modeling.ipynb** Notebook，其中包含本主題中的程式碼範例。
 
 
 [AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
@@ -1040,10 +1040,10 @@ ROC 下的領域 = 0.985336538462
 3. Blob 中供未來取用的**儲存模型**
 
 
->AZURE 附註︰交叉驗證未與本節中的三個迴歸模型搭配使用，因為這是用來顯示羅吉斯迴歸模型詳細資料的方法。本主題的「附錄」會示範如何針對線性迴歸使用 CV 與 Elastic Net。
+>AZURE 附註︰交叉驗證未與本節中的三個迴歸模型搭配使用，因為這是用來顯示羅吉斯迴歸模型詳細資料的方法。本主題的＜附錄＞示範如何針對線性迴歸使用 CV 與 Elastic Net。
 
 
->AZURE NOTE︰在我們的經驗中，交集的 LinearRegressionWithSGD 模型可能會發生問題，且必須小心變更/最佳化參數以取得有效的模型。調整變數對於聚合很有用。本主題中的附錄所顯示的 Elastic Net 迴歸也可用來取代 LinearRegressionWithSGD。
+>AZURE NOTE︰在我們的經驗中，交集的 LinearRegressionWithSGD 模型可能會發生問題，且必須小心變更/最佳化參數以取得有效的模型。調整變數對於聚合很有用。本主題中的＜附錄＞所顯示的 Elastic Net 迴歸也可用來取代 LinearRegressionWithSGD。
 
 
 ### 使用 SGD 的線性迴歸
@@ -1496,4 +1496,4 @@ BoostedTreeRegressionFileLoc = modelDir + "GradientBoostingTreeRegression_2016-0
 
 **模型耗用量︰**若要瞭解如何評分及評估本主題中所建立的分類和迴歸模型，請參閱[評分及評估 Spark 建置機器學習服務模型](machine-learning-data-science-spark-model-consumption.md)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -4,7 +4,7 @@
 	services="cortana-analytics"
 	documentationCenter=""
 	authors="fboylu"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/28/2016"
+	ms.date="09/13/2016"
 	ms.author="fboylu" />
 
 # 航太與其他業務中預測性維護的 Cortana Intelligence 解決方案範本的技術指南
@@ -25,7 +25,7 @@
 
 解決方案範本的設計是要加速在 Cortana Intelligence 套件之上建置 E2E 示範的程序。已部署的範本會以所需的 Cortana Intelligence 元件佈建您的訂用帳戶，並建立兩者間的關聯性。它也會在資料管線內植入由資料產生器應用程式所產生的範例資料，供您在部署解決方案範本之後下載並安裝到本機電腦上。由產生器產生的資料將會產生資料管線，並開始產生機器學習服務預測，然後您可以在 Power BI 儀表板上將其視覺化。部署程序將引導您完成數個步驟來設定解決方案的認證。務必記錄這些認證，例如您在部署期間提供的解決方案名稱、使用者名稱和密碼。
 
-這份文件的目標在於說明參考架構與隨著此方案範本佈建在您的訂用帳戶的不同元件。文件也會示範如何使用您自己的實際資料來取代範例資料，以便看到您自己的資料的見解和預測。此外，文件將說明如果想要以您自己的資料自訂解決方案，您需要修改的解決方案範本部份。最後會提供如何建置此方案範本的 Power BI 儀表板的指示。
+這份文件的目標是說明參考架構，以及隨著此解決方案範本佈建在您訂用帳戶中的不同元件。文件也會示範如何使用您自己的實際資料來取代範例資料，以便看到您自己的資料的見解和預測。此外，文件將說明如果想要以您自己的資料自訂解決方案，您需要修改的解決方案範本部份。最後會提供如何建置此方案範本的 Power BI 儀表板的指示。
 
 >[AZURE.TIP] 您可以下載及列印[這份文件的 PDF 版本](http://download.microsoft.com/download/F/4/D/F4D7D208-D080-42ED-8813-6030D23329E9/cortana-analytics-technical-guide-predictive-maintenance.pdf)。
 
@@ -173,7 +173,7 @@ Azure 串流分析查詢建構的相關資訊可在 MSDN 上的[串流分析查�
 
 ## **Power BI 儀表板**
 
-### 概觀
+### Overview
 
 本節說明如何設定 Power BI 儀表板，以視覺化方式檢視來自 Azure 串流分析 (熱路徑) 的即時資料，以及來自 Azure 機器學習 (冷路徑) 的 Batch 預測結果。
 
@@ -193,7 +193,7 @@ Power BI 會連接到 Azure SQL Database 做為其資料來源，即預測結果
 
     -   您會看到新的瀏覽器索引標籤/視窗，其中顯示 Azure 入口網站頁面。按一下左側面板上的 [資源群組]。
 
-    -   選取您用於部署解決方案的訂用帳戶，然後選取 **YourSolutionName\_ResourceGroup**。
+    -   選取您用於部署解決方案的訂用帳戶，然後選取 [YourSolutionName\_ResourceGroup]。
 
     -   在新快顯面板中，按一下 ![](media\cortana-analytics-technical-guide-predictive-maintenance\icon-sql.png) 圖示來存取您的資料庫。您的資料庫名稱在這個圖示旁邊 (例如，**'pmaintenancedb'**)，而 **資料庫伺服器名稱**則列在伺服器名稱屬性下方，看起來應該類似 **YourSoutionName.database.windows.net**。
 
@@ -266,10 +266,10 @@ Power BI 會連接到 Azure SQL Database 做為其資料來源，即預測結果
 
 ## **成本估計工具**
 
-下兩項工具可協助您進一步了解在您的訂用帳戶中執行航太解決方案範本的預測性維護所牽涉的總成本：
+下列兩項工具可協助您進一步了解在您的訂用帳戶中執行航太解決方案範本的預測性維護所牽涉的總成本：
 
 -   [Microsoft Azure Cost Estimator Tool (線上版)](https://azure.microsoft.com/pricing/calculator/)
 
 -   [Microsoft Azure Cost Estimator Tool (桌面版)](http://www.microsoft.com/download/details.aspx?id=43376)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0914_2016-->

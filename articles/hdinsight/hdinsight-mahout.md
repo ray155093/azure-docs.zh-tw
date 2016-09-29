@@ -4,7 +4,7 @@
 	services="hdinsight"
 	documentationCenter=""
 	authors="Blackmist"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -66,7 +66,7 @@ Mahout 提供的其中一項功能是推薦引擎。這個引擎接受 `userID``
 
 [GroupLens 研究][movielens] 提供與 Mahout 相容之格式的電影評價資料，相當方便。您可在位於 `/HdiSamples/MahoutMovieData` 的叢集預設儲存體取得這份資料。
 
-其中有兩個檔案：`moviedb.txt` (影片相關資訊) 和 `user-ratings.txt`。分析期間使用的是 user-ratings.txt 檔案，moviedb.txt 則是在顯示分析結果時用來提供使用者易懂的文字資訊。
+有兩份檔案：`moviedb.txt` (影片相關資訊) 和 `user-ratings.txt`。分析期間使用的是 user-ratings.txt 檔案，moviedb.txt 則是在顯示分析結果時用來提供使用者易懂的文字資訊。
 
 user-ratings.txt 內包含的資料具有 `userID`、`movieID`、`userRating` 和 `timestamp` 結構，可告訴我們每位使用者對於影片的評價為何。以下是資料範例：
 
@@ -286,7 +286,7 @@ Mahout 工作不會將輸出傳回 STDOUT。相反地，其會將該輸出儲存
 
 	PS C:\> show-recommendation.ps1 -userId 4 -userDataFile .\user-ratings.txt -movieFile .\moviedb.txt -recommendationFile .\output.txt
 
-輸出應該類似下列所示：
+輸出應該如下所示：
 
 	Reading movies descriptions
 	Reading rated movies
@@ -524,4 +524,4 @@ HDInsight 3.1 叢集包含 Mahout。路徑和檔案名稱包含叢集上安裝�
 [tools]: https://github.com/Blackmist/hdinsight-tools
  
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="NA"
 	ms.workload="data-catalog"
-	ms.date="06/27/2016"
+	ms.date="09/13/2016"
 	ms.author="spelluru"/>
 
 # 對資料來源進行資料分析
@@ -22,11 +22,11 @@
 
 [Microsoft Azure 資料目錄] 是全面管理的雲端服務，可作為企業資料來源的註冊系統和探索系統。換句話說，**Azure 資料目錄**的重點在於協助人們探索、了解，以及使用資料來源，並可協助組織從現有的資料獲得更多價值。當資料來源向 **Azure 資料目錄**註冊之後，該服務會複製其中繼資料並建立索引，但不僅止於此。
 
-**Azure 資料目錄**會檢查目錄所支援資料來源中的資料，並收集關於該資料的統計資料和資訊。這稱為**資料分析**。想要包含資料資產的設定檔很容易。當您註冊資料資產時，請選擇資料來源註冊工具中的 [包含資料設定檔]。
+**Azure 資料目錄**的「資料分析」功能會檢查目錄所支援資料來源中的資料，並收集關於該資料的統計資料和資訊。想要包含資料資產的設定檔很容易。當您註冊資料資產時，請選擇資料來源註冊工具中的 [包含資料設定檔]。
 
 ## 什麼是資料分析
 
-資料分析會檢查所註冊資料來源中的資料，並收集關於該資料的統計資料和資訊。在探索資料來源期間，這些統計資料可以協助使用者判斷資料是否適合用來解決其商務問題。
+資料分析會檢查所註冊資料來源中的資料，並收集關於該資料的統計資料和資訊。在探索資料來源期間，這些統計資料可以協助您判斷資料是否適合用來解決他們的商務問題。
 
 <!-- In [How to discover data sources](data-catalog-how-to-discover.md), you learn about **Azure Data Catalog's** extensive search capabilities including searching for data assets that have a profile. See [How to include a data profile when registering a data source](#howto). -->
 
@@ -58,9 +58,9 @@
 
 
 ## 篩選包含資料設定檔的資料資產
-若要探索包含資料設定檔的資料資產，您可以包含 **has:tableDataProfiles** 或 **has:columnsDataProfiles** 以做為搜尋字詞之一。
+若要探索包含資料設定檔的資料資產，您可以包含 `has:tableDataProfiles` 或 `has:columnsDataProfiles` 做為搜尋字詞之一。
 
-> [AZURE.NOTE] 在資料來源註冊工具中選取 [包含資料設定檔] 將會包含資料表和資料行層級的設定檔資訊，但是資料目錄 API 只允許在註冊資料資產時包含一組設定檔資訊。
+> [AZURE.NOTE] 在資料來源註冊工具中選取 [包含資料設定檔]，即會同時包含資料表和資料行層級的設定檔資訊。不過，資料目錄 API 讓只含一組設定檔資訊的資料資產能夠加以註冊。
 
 ## 檢視資料設定檔資訊
 
@@ -84,11 +84,11 @@
 - 資料行的最小值、最大值、平均值和標準差值
 
 ## 摘要
-資料分析可提供關於註冊資料資產的統計資料和資訊，以協助使用者判斷資料是否適合用來解決商務問題。加上註解和記載資料來源後，資料設定檔可以讓使用者更深入了解資料。
+資料分析可提供關於註冊資料資產的統計資料和資訊，以協助您判斷資料是否適合用來解決商務問題。加上註解和記載資料來源後，資料設定檔可以讓使用者更深入了解資料。
 
 
 ## 另請參閱
 -	[如何註冊資料來源](data-catalog-how-to-register.md)
 -	[開始使用 Azure 資料目錄](data-catalog-get-started.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -4,7 +4,7 @@
    services="hdinsight,virtual-network" 
    documentationCenter="" 
    authors="mumian" 
-   manager="paulettm" 
+   manager="jhubbard" 
    editor="cgronlun"/>
 
 <tags
@@ -57,11 +57,11 @@
 - **兩個具備 VPN 連線且已設定 DNS 的 Azure 虛擬網路**。如需相關指示，請參閱[設定兩個 Azure 虛擬網路之間的 VPN 連線][hdinsight-hbase-replication-vnet]和[在兩個 Azure 虛擬網路之間設定 DNS][hdinsight-hbase-replication-dns]。
 
 
-	執行 PowerShell 指令碼之前，請確定您已使用下列 Cmdlet 連接到 Azure 訂用帳戶：
+	執行 PowerShell 指令碼之前，請確定您已使用下列 Cmdlet 連接到 Azure 訂閱：
 
 		Add-AzureAccount
 
-	如果您有多個 Azure 訂用帳戶，請使用下列 Cmdlet 設定目前的訂用帳戶：
+	如果您有多個 Azure 訂閱，請使用下列 Cmdlet 設定目前的訂閱：
 
 		Select-AzureSubscription <AzureSubscriptionName>
 
@@ -314,4 +314,4 @@ Azure 傳統入口網站不支援使用自訂組態選項佈建 HDInsight 叢集
 [hdinsight-hbase-overview]: hdinsight-hbase-overview.md
 [hdinsight-hbase-provision-vnet]: hdinsight-hbase-provision-vnet.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

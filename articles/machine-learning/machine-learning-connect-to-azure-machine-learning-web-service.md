@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="garyericson"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun" />
 
 <tags
@@ -20,7 +20,7 @@
 # 連線到 Azure Machine Learning Web 服務
 Azure Machine Learning 開發人員體驗是一個 Web 服務 API，可即時或以批次模式從輸入資料進行預測。您可以使用 Azure Machine Learning Studio 來建立預測及部署 Azure 機器學習 Web 服務。
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 若要了解如何使用 Machine Learning Studio 建立和部署機器學習 Web 服務，請參閱：
 
@@ -121,4 +121,4 @@ Azure Machine Learning 有兩種類型的服務：
 2. 使用來自 Web 服務的金鑰指派 apikey。請參閱前述的**取得 Azure Machine Learning 授權金鑰**。
 3. 使用要求 URI 指派 serviceUri。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

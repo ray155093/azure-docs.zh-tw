@@ -4,7 +4,7 @@
 	services="hdinsight"
 	documentationCenter=""
 	authors="Blackmist"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -21,7 +21,7 @@
 
 您也可以使用 [指令碼動作] 來自訂叢集，在 Azure HDInsight 上 Hadoop 中的任何一種叢集上安裝 Giraph。
 
-在本主題中，您將學習如何使用指令碼動作來安裝 Giraph。一旦您已安裝 Giraph，您也將了解如何將 Giraph 用於大部分的一般應用程式，也就是處理大型的圖形。
+在本主題中，您將了解如何使用指令碼動作來安裝 Giraph。一旦您已安裝 Giraph，您也將了解如何將 Giraph 用於大部分的一般應用程式，也就是處理大型的圖形。
 
 > [AZURE.NOTE] 本文的資訊是以 Linux 為基礎的 HDInsight 叢集的特定資訊。如需使用以 Windows 為基礎的叢集的詳細資訊，請參閱[在 HDInsight Hadoop 叢集上安裝 Giraph (Windows)](hdinsight-hadoop-giraph-install.md)。
 
@@ -154,4 +154,4 @@
 
 - [在 HDInsight 叢集上安裝 Solr](hdinsight-hadoop-solr-install-linux.md)。在 HDInsight Hadoop 叢集上使用叢集自訂安裝 Solr。Solr 可讓您在儲存的資料上執行功能強大的搜尋作業。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0914_2016-->

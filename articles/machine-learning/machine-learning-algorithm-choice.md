@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="brohrer"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"
     tags=""/>
     
@@ -77,11 +77,11 @@
 
 ![非線性類別界限][1]
 
-***非線性類別界限*** *：依賴線性分類演算法會造成低精確度的結果*
+***非線性類別界限****：依賴線性分類演算法會造成低精確度的結果*
 
 ![具有非線性趨勢的資料][2]
 
-***具有非線性趨勢的資料*** *：使用線性迴歸方法會產生較大且不必要的誤差*
+***具有非線性趨勢的資料****：使用線性迴歸方法會產生較大且不必要的誤差*
 
 儘管有風險，線性演算法對於首次攻擊而言仍是一種非常熱門的方式。這種演算法定型起來通常又快又簡單。
 
@@ -119,12 +119,12 @@
 |[決策叢林](https://msdn.microsoft.com/library/azure/dn905963.aspx)|●|○| |6|低記憶體使用量|
 |[類神經網路](https://msdn.microsoft.com/library/azure/dn906030.aspx)|●| | |9|[支援其他自訂項目](http://go.microsoft.com/fwlink/?LinkId=402867)|
 |[一對多](https://msdn.microsoft.com/library/azure/dn905887.aspx)|-|-|-|-|請參閱選定之雙類別的屬性|
-|**迴歸**| | | | | |
-|[線性](https://msdn.microsoft.com/library/azure/dn905978.aspx) | |●|●|4| |
-|[貝氏線性](https://msdn.microsoft.com/library/azure/dn906022.aspx)| |○|●|2| |
-|[決策樹系](https://msdn.microsoft.com/library/azure/dn905862.aspx)|●|○| |6| |
-|[促進式決策樹](https://msdn.microsoft.com/library/azure/dn905801.aspx)|●|○| |5|高記憶體使用量|
-|[快速樹系分量](https://msdn.microsoft.com/library/azure/dn913093.aspx)|●|○| |9|分佈而非點預測|
+|**迴歸**| | | | | | 
+|[線性](https://msdn.microsoft.com/library/azure/dn905978.aspx) | |●|●|4| | 
+|[貝氏線性](https://msdn.microsoft.com/library/azure/dn906022.aspx)| |○|●|2| | 
+|[決策樹系](https://msdn.microsoft.com/library/azure/dn905862.aspx)|●|○| |6| | 
+|[促進式決策樹](https://msdn.microsoft.com/library/azure/dn905801.aspx)|●|○| |5|高記憶體使用量| 
+|[快速樹系分量](https://msdn.microsoft.com/library/azure/dn913093.aspx)|●|○| |9|分佈而非點預測| 
 |[類神經網路](https://msdn.microsoft.com/library/azure/dn905924.aspx)|●| | |9|[支援其他自訂項目](http://go.microsoft.com/fwlink/?LinkId=402867)|
 |[Poisson ](https://msdn.microsoft.com/library/azure/dn905988.aspx)| | |●|5|技術上的對數線性，用於預測計數|
 |[序數](https://msdn.microsoft.com/library/azure/dn906029.aspx)| | | |0|用於預測排名順序|
@@ -237,4 +237,4 @@ Azure 機器學習中也可存取 [Vowpal Wabbit](https://msdn.microsoft.com/lib
 [9]: ./media/machine-learning-algorithm-choice/image9.png
 [10]: ./media/machine-learning-algorithm-choice/image10.png
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0914_2016-->

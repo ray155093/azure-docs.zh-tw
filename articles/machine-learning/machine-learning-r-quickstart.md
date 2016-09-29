@@ -5,7 +5,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="Blackmist"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -27,7 +27,7 @@ Stephen F Elston 博士
 
 Microsoft Azure Machine Learning 包含許多功能強大的機器學習和資料操作模組。功能強大的 R 語言被描述為分析通用語言。好消息是，在 Azure Machine Learning 中，分析和資料操作皆可藉由使用 R 來加以擴充。這個組合利用 R 的彈性和深入分析，讓 Azure Machine Learning 更具延展性且更易於部署。
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 
 ###預測和資料集
@@ -694,7 +694,7 @@ POSIXct 時間序列類別是常用且相對簡單的類別。此時間序列類
     [ModuleOutput] 
     [ModuleOutput]  $ Month.Count      : num  0 1 2 3 4 5 6 7 8 9 ...
 
-* 14.[執行 R 指令碼] 模組中資料框架的摘要。*
+*圖 14.[執行 R 指令碼] 模組中資料框架的摘要。*
 
 此資料的類型和格式皆如預期。請注意，'Month' 資料行的類型是因素，並且具有預期的層級數目。
 
@@ -735,7 +735,7 @@ POSIXct 時間序列類別是常用且相對簡單的類別。此時間序列類
     [ModuleOutput] 
     [ModuleOutput]  $ Time             : POSIXct, format: "1995-01-01" "1995-02-01" ...
 
-* 15.含有時間序列物件之資料框架的摘要。*
+*圖 15.含有時間序列物件之資料框架的摘要。*
 
 我們可以從摘要看出，新資料行的類別事實上是 POSIXct。
 
@@ -1358,4 +1358,4 @@ Paul Cowpertwait 與 Andrew Metcalfe 所著的 《Introductory Time Series with 
 <!-- Module References -->
 [execute-r-script]: https://msdn.microsoft.com/library/azure/30806023-392b-42e0-94d6-6b775a6e0fd5/
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0914_2016-->

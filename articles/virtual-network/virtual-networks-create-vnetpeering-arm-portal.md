@@ -14,8 +14,8 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/02/2016"
-   ms.author="narayanannamalai"/>
+   ms.date="09/14/2016"
+   ms.author="narayanannamalai;annahar"/>
 
 # 使用 Azure 入口網站建立虛擬網路對等互連
 
@@ -60,7 +60,7 @@
 
 	![最終連結狀態 2](./media/virtual-networks-create-vnetpeering-arm-portal/figure08.png)
 
-10. 注意：只有當兩個連結都已連接時，才會建立 VNET 對等互連。
+    > [AZURE.NOTE] 只有當兩個連結都已連接時，才會建立 VNET 對等互連。
 
 每個連結都有幾個可設定的屬性︰
 
@@ -91,7 +91,7 @@ VNet 對等互連中每個連結都具有一組上述的屬性。從入口網站
 
     ![RBAC2](./media/virtual-networks-create-vnetpeering-arm-portal/figure11.png)
 
-    注意︰您可以在瀏覽器中登出並登入這兩個使用者工作階段以確定授權已成功啟用。
+    > [AZURE.NOTE] 您可以在瀏覽器中登出並登入這兩個使用者工作階段以確定授權已成功啟用。
 
 6. 以使用者 A 登入入口網站，瀏覽至 [VNET3] 刀鋒視窗，按一下 [對等互連]，檢查「我知道我的資源識別碼」核取方塊，然後以下列格式輸入 VNET5 的資源識別碼。
 
@@ -107,15 +107,37 @@ VNet 對等互連中每個連結都具有一組上述的屬性。從入口網站
 
 [AZURE.INCLUDE [virtual-networks-create-vnet-scenario-transit-include](../../includes/virtual-networks-create-vnetpeering-scenario-transit-include.md)]
 
-1. 第一個步驟中，從 HubVnet 至 VNET1 的 VNET 對等互連連結。請注意連結的 [允許轉送流量] 選項未選取。
+1. 第一個步驟中，從 HubVnet 至 VNET1 的 VNET 對等互連連結。請注意，未選取連結的 [允許轉送流量] 選項。
 
     ![基本對等互連](./media/virtual-networks-create-vnetpeering-arm-portal/figure14.png)
 
-2. 下一個步驟中，可以建立從 VNET1 至 HubVnet 的對等互連連結。請注意「允許轉送流量」選項已選取。
+2. 下一個步驟中，可以建立從 VNET1 至 HubVnet 的對等互連連結。請注意，已選取 [允許轉送流量] 選項。
 
     ![基本對等互連](./media/virtual-networks-create-vnetpeering-arm-portal/figure15a.png)
 
 3. 對等互連建立之後，您可以參考此[文章](virtual-network-create-udr-arm-ps.md)並定義使用者定義路由 (UDR)，透過虛擬應用裝置重新導向 VNet1 流量以使用其功能。當您在路徑中指定下個躍點位址時，可以將其設定為對等 VNet HubVNet 中的虛擬設備 IP 位址
+
+
+[AZURE.INCLUDE [virtual-networks-create-vnet-scenario-asmtoarm-include](../../includes/virtual-networks-create-vnetpeering-scenario-asmtoarm-include.md)]
+
+
+
+1. 透過瀏覽器瀏覽至 http://portal.azure.com，並視需要使用您的 Azure 帳戶登入。
+
+2. 若要在此案例中建立 VNET 對等互連，您必須只建立一個連結 (從 Azure Resource Manager 中的虛擬網路至傳統虛擬網路)。也就是，從 **VNET1** 至 **VNET2**。在入口網站中，按一下 [瀏覽]，然後選擇 [虛擬網路]。
+
+3. 在 [虛擬網路] 刀鋒視窗中，選擇 [VNET1]。按一下 [對等互連]，然後按一下 [新增]。
+
+4. 在 [新增對等互連] 刀鋒視窗中，為您的連結命名。在此稱為 [LinkToVNet2]。在 [對等詳細資料] 下選取 [傳統]。
+
+5. 然後選擇訂用帳戶和對等虛擬網路 [VNET2]。然後按一下 [確定]。
+
+    ![將 Vnet1 連結至 Vnet 2](./media/virtual-networks-create-vnetpeering-arm-portal/figure18.png)
+
+6. 建立此 VNet 對等互連連結後，兩個虛擬網路會對等互連，您將可看到下列畫面︰
+
+    ![檢查對等互連連線](./media/virtual-networks-create-vnetpeering-arm-portal/figure19.png)
+
 
 ## 移除 VNet 對等互連
 
@@ -130,4 +152,4 @@ VNet 對等互連中每個連結都具有一組上述的屬性。從入口網站
 
 4. 在此狀態下，您無法重新建立連結直到對等連結狀態變更為初始化為止。建議您兩個連結都移除後，再重新建立 VNET 對等互連。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0921_2016-->

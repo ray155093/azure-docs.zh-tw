@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="06/10/2016"
+   ms.date="08/26/2016"
    ms.author="ryanwi"/>
 
 # 在 Visual Studio 中建立第一個 Azure Service Fabric 應用程式
@@ -110,6 +110,14 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 
     ![容錯移轉之後的診斷事件檢視器][diagnostic-events-viewer-detail-post-failover]
 
+## 切換叢集模式
+
+根據預設，本機開發叢集已設定為以 5 個節點的叢集方式執行，這很適合用於偵錯跨多個節點部署的服務。不過，將應用程式部署到 5 個節點的開發叢集可能需要一些時間。如果您想要快速反覆執行程式碼變更，但不要在 5 個節點上執行您的應用程式，您可以將開發叢集切換到 1 個節點的模式。若要在具有一個節點的叢集上執行您的程式碼，請以滑鼠右鍵按一下系統匣中的 [本機叢集管理員] 並選取 [交換器叢集模式] -> [1 個節點]。
+
+![切換叢集模式][switch-cluster-mode]
+
+當您變更叢集模式時，開發叢集會重設，而且將移除在此叢集上佈建或執行的所有應用程式。
+
 ## 清除
 
   在我們做結論之前，請務必記得本機叢集非常真實。停止偵錯工具將會移除應用程式執行個體，並取消註冊應用程式類型。但叢集會繼續在背景中執行。您有數個選項可管理叢集：
@@ -138,5 +146,6 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 [systray-launch-sfx]: ./media/service-fabric-create-your-first-application-in-visual-studio/launch-sfx.png
 [diagnostic-events-viewer-detail-post-failover]: ./media/service-fabric-create-your-first-application-in-visual-studio/diagnostic-events-viewer-detail-post-failover.png
 [sfe-delete-application]: ./media/service-fabric-create-your-first-application-in-visual-studio/sfe-delete-application.png
+[switch-cluster-mode]: ./media/service-fabric-create-your-first-application-in-visual-studio/switch-cluster-mode.png
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0921_2016-->

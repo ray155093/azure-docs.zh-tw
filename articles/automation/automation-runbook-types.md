@@ -12,7 +12,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="07/06/2016"
+   ms.date="09/12/2016"
    ms.author="bwren" />
 
 # Azure 自動化 Runbook 類型
@@ -104,4 +104,4 @@ PowerShell Workflow Runbook 是以 [Windows PowerShell 工作流程](automation-
 - 若要了解適用於 Runbook 的 PowerShell 和 PowerShell 工作流程之間的差異，請參閱[了解 Windows PowerShell 工作流程](automation-powershell-workflow.md)
 - 如需如何建立或匯入 Runbook 的詳細資訊，請參閱[建立或匯入 Runbook](automation-creating-importing-runbook.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0914_2016-->

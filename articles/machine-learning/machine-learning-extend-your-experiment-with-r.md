@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="garyericson"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -17,7 +17,7 @@
 	ms.author="garye" />
 
 
-#透過 R 擴展您的經驗
+# 透過 R 擴展您的經驗
 
 您可以利用[執行 R 指令碼][execute-r-script]模組，透過 R 語言擴充 ML Studio 的功能。
 
@@ -29,7 +29,7 @@
 
 [AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
 
-##列出所有目前安裝的封裝
+## 列出所有目前安裝的封裝
 
 可以變更已安裝的封裝清單。若要取得目前已安裝封裝的最新完整清單，包括每個封裝的描述，請將下列程式碼輸入[執行 R 指令碼][execute-r-script]模組中︰
 
@@ -40,8 +40,11 @@
 
 ![](./media/machine-learning-extend-your-experiment-with-r/download-package-list.png)
 
+<!--
+For convenience, here is the [current full list with version numbers in Excel format](http://az754797.vo.msecnd.net/docs/RPackages.xlsx).
+-->
 
-##匯入封裝
+## 匯入封裝
 
 您也可以使用[執行 R 指令碼][execute-r-script]模組和已壓縮封裝封存檔中的下列命令，匯入尚未從分段 ML Studio 儲存機制安裝的封裝：
 
@@ -50,9 +53,8 @@
 
 其中 `my_favorite_package.zip` 包含封裝的壓縮檔。
 
-
 <!-- Module References -->
 [execute-r-script]: https://msdn.microsoft.com/library/azure/30806023-392b-42e0-94d6-6b775a6e0fd5/
 [convert-to-csv]: https://msdn.microsoft.com/library/azure/faa6ba63-383c-4086-ba58-7abf26b85814/
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

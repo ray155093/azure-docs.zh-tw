@@ -4,7 +4,7 @@
 	services="hdinsight" 
 	documentationCenter="" 
 	authors="mumian" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="05/09/2016" 
+	ms.date="09/09/2016" 
 	ms.author="jgao"/>
 
 # 使用 HDInsight 中的 HBase 分析即時的 Twitter 情緒
@@ -95,9 +95,9 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 
 1. 登入 [Twitter 應用程式](https://apps.twitter.com/)。如果您沒有 Twitter 帳戶，請按一下[立即註冊] 連結。
 2. 按一下 [建立新的應用程式]。
-3. 輸入 [名稱]、[描述] 和 [網站]。Twitter 應用程式名稱必須是唯一的名稱。我們實際上不會用到 [網站] 欄位。因此您不必輸入有效的 URL。 
+3. 輸入 [名稱]、[描述] 和 [網站]。Twitter 應用程式名稱必須是唯一的名稱。我們實際上不會用到 [網站] 欄位。因此您不必輸入有效的 URL。
 4. 核取 [Yes, I agree]然後按一下 [Create your Twitter application]。
-5. 按一下 [權限] 索引標籤。預設權限為 [唯讀]。本教學課程使用預設值即可。 
+5. 按一下 [權限] 索引標籤。預設權限為 [唯讀]。本教學課程使用預設值即可。
 6. 按一下 **[金鑰和存取權杖**] 索引標籤。
 7. 按一下 [Create my access token]。
 8. 按一下位於頁面右上角的 [測試 OAuth]。
@@ -140,24 +140,29 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 
 **建立串流應用程式**
 
-1. 開啟 **Visual Studio**，建立名為 **TweetSentimentStreaming** 的 Visual C# 主控台應用程式。 
+1. 開啟 **Visual Studio**，建立名為 **TweetSentimentStreaming** 的 Visual C# 主控台應用程式。
 2. 從 [Package Manager Console]，執行下列命令：
 
-		Install-Package Microsoft.HBase.Client
-		Install-Package TweetinviAPI
-    這些命令會安裝 [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) 套件 (要存取 HBase 叢集的用戶端程式庫) 和 [Tweetinvi API](https://www.nuget.org/packages/TweetinviAPI/) 套件 (用來存取 Twitter API)。
+		Install-Package Microsoft.HBase.Client -version 0.4.2.0
+		Install-Package TweetinviAPI -version 1.0.0.0
+
+	這些命令會安裝 [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) 套件 (要存取 HBase 叢集的用戶端程式庫) 和 [Tweetinvi API](https://www.nuget.org/packages/TweetinviAPI/) 套件 (用來存取 Twitter API)。
+
+	> [AZURE.NOTE] 本文中所使用的範例已通過上述指定版本的測試。您可以移除 -version 參數來安裝最新版本。
+
 3. 從 [方案總管] 中，將 **System.Configuration** 新增至參考。
 4. 將新的類別檔案加入至名為 **HBaseWriter.cs** 的專案中，然後以下列內容取代程式碼：
 
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Text;
-        using System.IO;
-        using System.Threading;
-        using Microsoft.HBase.Client;
-        using Tweetinvi.Core.Interfaces;
-        using org.apache.hadoop.hbase.rest.protobuf.generated;
+		using System;
+		using System.Collections.Generic;
+		using System.IO;
+		using System.Linq;
+		using System.Text;
+		using System.Threading;
+		using Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling;
+		using org.apache.hadoop.hbase.rest.protobuf.generated;
+		using Microsoft.HBase.Client;
+		using Tweetinvi.Models;
 
         namespace TweetSentimentStreaming
         {
@@ -167,7 +172,12 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
                 const string CLUSTERNAME = "https://<Enter Your Cluster Name>.azurehdinsight.net/";
                 const string HADOOPUSERNAME = "admin"; //the default name is "admin"
                 const string HADOOPUSERPASSWORD = "<Enter the Hadoop User Password>";
+
                 const string HBASETABLENAME = "tweets_by_words";
+				const string COUNT_ROW_KEY = "~ROWCOUNT";
+				const string COUNT_COLUMN_NAME = "d:COUNT";
+        		
+				long rowCount = 0;
 
                 // Sentiment dictionary file and the punctuation characters
                 const string DICTIONARYFILENAME = @"..\..\dictionary.tsv";
@@ -198,9 +208,12 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
                         TableSchema tableSchema = new TableSchema();
                         tableSchema.name = HBASETABLENAME;
                         tableSchema.columns.Add(new ColumnSchema { name = "d" });
-                        client.CreateTableAsync(tableSchema).Wait;
+						client.CreateTableAsync(tableSchema).Wait();
                         Console.WriteLine("Table "{0}" is created.", HBASETABLENAME);
                     }
+
+					// Read current row count cell
+            		rowCount = GetRowCount();
 
                     // Load sentiment dictionary from a file
                     LoadDictionary();
@@ -214,6 +227,38 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
                 {
                     threadRunning = false;
                 }
+
+				private long GetRowCount()
+				{
+					try
+					{
+						RequestOptions options = RequestOptions.GetDefaultOptions();
+						options.RetryPolicy = RetryPolicy.NoRetry;
+						var cellSet = client.GetCellsAsync(HBASETABLENAME, COUNT_ROW_KEY, null, null, options).Result;
+						if (cellSet.rows.Count != 0)
+						{
+							var countCol = cellSet.rows[0].values.Find(cell => Encoding.UTF8.GetString(cell.column) == COUNT_COLUMN_NAME);
+							if (countCol != null)
+							{
+								return Convert.ToInt64(Encoding.UTF8.GetString(countCol.data));
+							}
+						}
+					}
+					catch(Exception ex)
+					{
+						if (ex.InnerException.Message.Equals("The remote server returned an error: (404) Not Found.", StringComparison.OrdinalIgnoreCase))
+						{
+							return 0;
+						}
+						else
+						{
+							throw ex;
+						}
+						
+					}
+
+					return 0;
+				}
 
                 // Enqueue the Tweets received
                 public void WriteTweet(ITweet tweet)
@@ -367,14 +412,14 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
             }
         }
 
-6. 設定先前程式碼中的常數，包括 **CLUSTERNAME**、**HADOOPUSERNAME**、**HADOOPUSERPASSWORD** 及 DICTIONARYFILENAME。DICTIONARYFILENAME 是 direction.tsv 的檔案名稱和位置。您可以從 **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv** 下載該檔案。如果您想要變更 HBase 資料表名稱，則必須連帶變更 Web 應用程式中的資料表名稱。
+6. 在先前程式碼中設定常數，包括 **CLUSTERNAME**、**HADOOPUSERNAME**、**HADOOPUSERPASSWORD** 及 DICTIONARYFILENAME。DICTIONARYFILENAME 是 direction.tsv 的檔案名稱和位置。您可以從 **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv** 下載該檔案。如果您想要變更 HBase 資料表名稱，則必須連帶變更 Web 應用程式中的資料表名稱。
 
 7. 開啟 **Program.cs** 並以下列內容取代程式碼：
 
         using System;
         using System.Diagnostics;
         using Tweetinvi;
-        using Tweetinvi.Core.Parameters;
+        using Tweetinvi.Models;
 
         namespace TweetSentimentStreaming
         {
@@ -400,7 +445,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
                         {
                             HBaseWriter hbase = new HBaseWriter();
                             var stream = Stream.CreateFilteredStream();
-                            stream.AddLocation(new Coordinates(-180, -90), new Coordinates(180, 90)); //Geo .GenerateLocation(-180, -90, 180, 90));
+                            stream.AddLocation(new Coordinates(-180, -90), new Coordinates(180, 90)); 
 
                             var tweetCount = 0;
                             var timer = Stopwatch.StartNew();
@@ -463,15 +508,15 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 	- 範本類別：**Visual C#/Web**
 	- 範本：**ASP.NET Web 應用程式**
 	- 名稱：**TweetSentimentWeb**
-	- 位置：**C:\\Tutorials** 
+	- 位置：**C:\\Tutorials**
 4. 按一下 [確定]。
-5. 在 [選取範本] 中按一下 **MVC**。 
-6. 在 **Microsoft Azure** 中按一下 [管理訂用帳戶]。
+5. 在 [選取範本] 中按一下 **MVC**。
+6. 在 [Microsoft Azure] 中按一下 [管理訂用帳戶]。
 7. 在 [管理 Microsoft Azure 訂用帳戶] 中按一下 [登入]。
-8. 輸入您的 Azure 認證。系統會將您的 Azure 訂用帳戶資訊顯示在 [帳戶] 索引標籤。
+8. 輸入您的 Azure 認證。您的 Azure 訂用帳戶資訊將顯示於 [帳戶] 索引標籤中。
 9. 按一下 [關閉] 以關閉 [管理 Microsoft Azure 訂用帳戶] 視窗。
 10. 在 [新增 ASP.NET 專案 - TweetSentimentWeb] 中按一下 [確定]。
-11. 在 [設定 Microsoft Azure 網站設定] 中，選取與您最接近的 [區域]。您不需要指定資料庫伺服器。 
+11. 在 [設定 Microsoft Azure 網站設定] 中，選取與您最接近的 [區域]。您不需要指定資料庫伺服器。
 12. 按一下 [確定]。
 
 **安裝 NuGet 套件**
@@ -597,7 +642,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 
 4. 在 **HBaseReader** 類別中變更常數值，如下所示：
 
-	- **CLUSTERNAME**：HBase 叢集名稱，例如 *https://<HBaseClusterName>.azurehdinsight.net/*。 
+	- **CLUSTERNAME**：HBase 叢集名稱，例如 *https://<HBaseClusterName>.azurehdinsight.net/*。
     - **HADOOPUSERNAME**：HBase 叢集 Hadoop 使用者的使用者名稱。預設名稱為 *admin*。
     - **HADOOPUSERPASSWORD**：HBase 叢集 Hadoop 使用者密碼。
     - **HBASETABLENAME** = "tweets\_by\_words";
@@ -899,7 +944,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 
 1. 在 [方案總管] 中展開 **TweetSentimentWeb**。
 2. 以滑鼠右鍵按一下 [指令碼]，然後依序按一下 [新增] 和 [JavaScript 檔案]。
-3. 在 [項目名稱]欄位輸入 **twitterStream.js**。
+3. 在 [項目名稱] 欄位中輸入 **twitterStream.js**。
 4. 複製以下程式碼並貼到檔案中：
 
 		var liveTweetsPos = [];
@@ -1099,7 +1144,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 
 **修改 layout.cshtml**
 
-1. 在 [方案總管] 中，依序展開 **TweetSentimentWeb**、**Views** 及 **Shared**，然後按兩下 \__**Layout.cshtml**。
+1. 在 [方案總管] 中，依序展開 **TweetSentimentWeb**、**Views** 及 **Shared**，然後按兩下 \_**Layout.cshtml**。
 2. 以下列內容取代原始內容：
 
 		<!DOCTYPE html>
@@ -1218,7 +1263,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 2. 按 **F5** 以執行 Web 應用程式：
 
 	![hdinsight.hbase.twitter.sentiment.bing.map][img-bing-map]
-2. 在文字方塊中輸入關鍵字，然後按一下 [搜尋]。您不一定能找到所有關鍵字，須視 HBase 資料表內收集到的資料而定。請嘗試一些常用的關鍵字，例如 "love"、"xbox" 和 "playstation"。 
+2. 在文字方塊中輸入關鍵字，然後按一下 [搜尋]。您不一定能找到所有關鍵字，須視 HBase 資料表內收集到的資料而定。請嘗試一些常用的關鍵字，例如 "love"、"xbox" 和 "playstation"。
 3. 切換 **Positive**、**Neutral** 及 **Negative** 以比較投注在主題上的情緒。
 4. 讓串流服務再多執行一小時，然後搜尋相同的關鍵字並比較結果。
 
@@ -1230,7 +1275,7 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 在本教學課程中，您了解如何取得推文、分析推文的情緒、將情緒資料儲存到 HBase，以及在 Bing 地圖上呈現即時的 Twitter 情緒資料。若要深入了解，請參閱：
 
 - [開始使用 HDInsight][hdinsight-get-started]
-- [在 HDInsight 中設定 HBase 複寫](hdinsight-hbase-geo-replication.md) 
+- [在 HDInsight 中設定 HBase 複寫](hdinsight-hbase-geo-replication.md)
 - [在 HDInsight 中使用 Hadoop 分析 Twitter 資料][hdinsight-analyze-twitter-data]
 - [使用 HDInsight 分析航班延誤資料][hdinsight-analyze-flight-delay-data]
 - [開發 HDInsight 的 Java MapReduce 程式][hdinsight-develop-mapreduce]
@@ -1276,4 +1321,4 @@ Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。使用 OA
 [hdinsight-hive-odbc]: hdinsight-connect-excel-hive-ODBC-driver.md
  
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0914_2016-->

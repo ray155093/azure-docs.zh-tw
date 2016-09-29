@@ -12,7 +12,7 @@ ms.workload="tbd"
 ms.tgt_pltfrm="na" 
 ms.devlang="na" 
 ms.topic="article" 
-ms.date="06/07/2016" 
+ms.date="09/06/2016" 
 ms.author="adegeo"/>
 
 # 在 .NET 中自訂 Web 或背景工作角色的生命週期
@@ -33,9 +33,9 @@ ms.author="adegeo"/>
 
      如果在其中一個生命週期方法內發生例外狀況，Azure 將會引發 [UnhandledException](https://msdn.microsoft.com/library/system.appdomain.unhandledexception.aspx) 事件，然後處理序便會終止。您的角色離線之後，Azure 將重新啟動該角色。當未處理的例外狀況發生時，不會引發 [Stopping](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.stopping.aspx) 事件，也不會呼叫 **OnStop** 方法。
 
-如果您的角色無法啟動，或在初始化、忙碌和停止狀態之間循環，每次角色重新啟動時，您的程式碼可能會在其中一個生命週期事件內擲回未處理的例外狀況。在此情況下，使用 [UnhandledException](https://msdn.microsoft.com/library/system.appdomain.unhandledexception.aspx) 事件判斷造成此例外狀況的原因，並適當地處理。您的角色可能也會從 [Run](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) 方法傳回，而導致該角色重新啟動。如需有關部署狀態的詳細資訊，請參閱[導致角色循環的常見問題](https://msdn.microsoft.com/library/azure/gg465402.aspx)。
+如果您的角色無法啟動，或在初始化、忙碌和停止狀態之間循環，每次角色重新啟動時，您的程式碼可能會在其中一個生命週期事件內擲回未處理的例外狀況。在此情況下，使用 [UnhandledException](https://msdn.microsoft.com/library/system.appdomain.unhandledexception.aspx) 事件判斷造成此例外狀況的原因，並適當地處理。您的角色可能也會從 [Run](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) 方法傳回，而導致該角色重新啟動。如需有關部署狀態的詳細資訊，請參閱[導致角色循環的常見問題](cloud-services-troubleshoot-common-issues-which-cause-roles-recycle.md)。
 
-> [AZURE.NOTE] 如果您要使用 [Azure Tools for Microsoft Visual Studio](https://msdn.microsoft.com/library/azure/ee405484.aspx) 開發您的應用程式，角色專案範本會在 WebRole.cs 及 WorkerRole.cs 檔案中，自動為您擴充 **RoleEntryPoint** 類別。
+> [AZURE.NOTE] 如果您要使用 **Azure Tools for Microsoft Visual Studio** 開發您的應用程式，角色專案範本會在 WebRole.cs 及 WorkerRole.cs 檔案中，自動為您擴充 **RoleEntryPoint** 類別。
 
 ## OnStart 方法
 
@@ -80,4 +80,4 @@ public override bool OnStart()
 ## 後續步驟
 了解如何[建立雲端服務封裝](cloud-services-model-and-package.md)。
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0914_2016-->

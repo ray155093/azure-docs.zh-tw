@@ -12,7 +12,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="09/07/2016"
+   ms.date="09/20/2016"
    ms.author="cherylmc" />
 
 # ExpressRoute 合作夥伴和對等互連位置
@@ -64,7 +64,7 @@
 | **亞特蘭大** | Equinix |
 | **辰內** | Tata Communications |
 | **芝加哥** | AT&T NetBond、Comcast、Equinix、Level 3 Communications、Zayo Group |
-| **達拉斯** | AT&T NetBond、Equinix、Level 3 Communications、Megaport |
+| **達拉斯** | AT&T NetBond、Cologix、Equinix、Level 3 Communications、Megaport |
 | **都柏林** | Colt、Telecity Group |
 | **香港** | British Telecom、China Telecom Global、Equinix、Megaport、Orange、PCCW Global Limited、Tata Communications、Verizon |
 | **倫敦** | AT&T NetBond、British Telecom、Colt、Equinix、InterCloud、Internet Solutions - Cloud Connect、Interxion、Jisc+、Level 3 Communications、MTN、NTT Communications、Orange、Tata Communications、Telecity Group、Telenor、Verizon、Vodafone |
@@ -156,4 +156,4 @@
 <!--Image References-->
 [0]: ./media/expressroute-locations/expressroute-locations-map.png "位置圖"
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->

@@ -12,7 +12,7 @@ ms.workload="tbd"
 ms.tgt_pltfrm="na" 
 ms.devlang="na" 
 ms.topic="article" 
-ms.date="06/07/2016" 
+ms.date="09/06/2016" 
 ms.author="adegeo"/>
 
 
@@ -44,7 +44,7 @@ ms.author="adegeo"/>
 
 2. 所有啟動工作均會根據其 **taskType** 屬性來執行。
     - **simple** 的工作會以同步方式執行，一次一個。
-    - **background** 和 **foreground** 工作則會以非同步方式，與啟動工作平行開始。  
+    - **background** 和 **foreground** 工作則會以非同步方式，與啟動工作平行開始。
        
     > [AZURE.WARNING] 在啟動處理序中的啟動工作階段期間，IIS 可能不會完全設定好，因此特定的角色資料可能會無法使用。需要特定角色資料的啟動工作應該使用 [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.OnStart](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx)。
 
@@ -105,7 +105,7 @@ EXIT /B 0
 
 **taskType** - 指定啟動工作執行的方式。
 
-- **simple** 工作會以同步的方式執行，一次一個，並依照 [ServiceDefinition.csdef] 檔案所指定的順序。當某個 **simple** 啟動工作以零值的 **errorlevel** 做為結尾時，就會執行下一個 **simple** 啟動工作。如果沒有任何 **simple** 啟動工作需要執行，則會啟動角色本身。   
+- **simple** 工作會以同步的方式執行，一次一個，並依照 [ServiceDefinition.csdef] 檔案所指定的順序。當某個 **simple** 啟動工作以零值的 **errorlevel** 做為結尾時，就會執行下一個 **simple** 啟動工作。如果沒有任何 **simple** 啟動工作需要執行，則會啟動角色本身。
 
     > [AZURE.NOTE] 如果 **simple** 的結尾是非零值的 **errorlevel**，執行個體會遭到封鎖。後續的 **simple** 啟動工作和角色本身將不會啟動。
 
@@ -164,4 +164,4 @@ EXIT /B 0
 [RoleInstanceValue]: https://msdn.microsoft.com/library/azure/gg557552.aspx#RoleInstanceValue
 [RoleEnvironment]: https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.aspx
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0914_2016-->

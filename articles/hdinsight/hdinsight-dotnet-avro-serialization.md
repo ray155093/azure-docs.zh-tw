@@ -5,7 +5,7 @@
 	documentationCenter=""
 	tags="azure-portal"
 	authors="mumian" 
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/10/2016"
+	ms.date="09/14/2016"
 	ms.author="jgao"/>
 
 
@@ -43,7 +43,7 @@ Azure HDInsight 和其他 Apache Hadoop 環境中廣泛採用了 Apache Avro 序
 
 ## 安裝 Avro Library
 
-以下安裝此程式庫前必需具備的條件：
+以下是安裝此程式庫前必備的條件：
 
 - <a href="http://www.microsoft.com/download/details.aspx?id=17851" target="_blank">Microsoft .NET Framework 4</a>
 - <a href="http://james.newtonking.com/json" target="_blank">Newtonsoft Json.NET</a> (6.0.4 或更新版本)
@@ -68,7 +68,7 @@ Microsoft Avro 程式庫會以 NuGet 封裝發行，您可以透過下列程序�
 
 Microsoft Avro Library 包含程式碼產生公用程式，可允許自動依據先前定義的 JSON 結構描述來建立 C# 類型。程式碼產生公用程式未以二進位執行檔的形式散佈，但可透過下列程序輕鬆建置：
 
-1. 從 <a href="http://hadoopsdk.codeplex.com/SourceControl/latest" target="_blank">Microsoft .NET SDK For Hadoop</a> 下載具有最新版 HDInsight SDK 原始程式碼的 ZIP 檔案。(按一下 [**下載**] 圖示。)
+1. 從 <a href="http://hadoopsdk.codeplex.com/SourceControl/latest#" target="_blank">Microsoft .NET SDK For Hadoop</a> 下載具有最新版 HDInsight SDK 原始程式碼的 ZIP 檔案。(按一下 [下載] 圖示，而不是 [下載] 索引標籤。)
 
 2. 將 HDInsight SDK 解壓縮至已安裝 .NET Framework 4 並連接至網際網路的電腦上的目錄，以下載必要的相依性 NuGet 封裝。在以下我們假設原始程式碼會解壓縮至 C:\\SDK。
 
@@ -1403,4 +1403,4 @@ Microsoft Avro 程式庫可透過反映、根據要序列化的 C# 物件資料�
 [deflate-100]: http://msdn.microsoft.com/library/system.io.compression.deflatestream(v=vs.100).aspx
 [deflate-110]: http://msdn.microsoft.com/library/system.io.compression.deflatestream(v=vs.110).aspx
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0914_2016-->

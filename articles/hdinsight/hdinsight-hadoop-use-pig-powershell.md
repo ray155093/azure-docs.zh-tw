@@ -4,7 +4,7 @@
    services="hdinsight"
    documentationCenter=""
    authors="Blackmist"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -19,7 +19,7 @@
 
 #使用 PowerShell 執行 Pig 工作
 
-[AZURE.INCLUDE [Pig 選取器](../../includes/hdinsight-selector-use-pig.md)]
+[AZURE.INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
 
 本文件提供使用 Azure PowerShell 將 Pig 工作提交至 HDInsight 叢集上的 Hadoop 的範例。Pig 可讓您使用可建立資料轉換模型的語言 (Pig Latin) 撰寫 MapReduce 工作，而不是撰寫對應和歸納函數。
 
@@ -41,7 +41,7 @@ Azure PowerShell 提供 *Cmdlet*，可讓您從遠端在 HDInsight 上執行 Pig
 
 在遠端 HDInsight 叢集上執行 Pig 工作時，會使用下列 Cmdlet：
 
-* **Login-AzureRmAccount**：驗證您 Azure 訂用帳戶的 PowerShell
+* **Login-AzureRmAccount**：向您的 Azure 訂用帳戶驗證 Azure PowerShell
 
 * **New-AzureRmHDInsightPigJobDefinition**：使用指定的 Pig Latin 陳述式建立新的*工作定義*
 
@@ -115,7 +115,7 @@ Azure PowerShell 提供 *Cmdlet*，可讓您從遠端在 HDInsight 上執行 Pig
 
 		.\pigjob.ps1
         
-    會先提示登入您的 Azure 訂用帳戶。接著，您還必須提供 HDInsight 叢集的 HTTPs/系統管理帳戶名稱和密碼。
+    系統會先提示您登入 Azure 訂用帳戶。接著，您還必須提供 HDInsight 叢集的 HTTPs/系統管理帳戶名稱和密碼。
 
 7. 工作完成時，應該會傳回與下面類似的資訊：
 
@@ -162,4 +162,4 @@ Azure PowerShell 提供 *Cmdlet*，可讓您從遠端在 HDInsight 上執行 Pig
 
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

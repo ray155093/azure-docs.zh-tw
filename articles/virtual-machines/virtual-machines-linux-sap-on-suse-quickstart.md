@@ -14,7 +14,7 @@
    ms.topic="campaign-page"
    ms.tgt_pltfrm="vm-linux"
    ms.workload="na"
-   ms.date="05/30/2016"
+   ms.date="09/12/2016"
    ms.author="hermannd"/>
 
 # 在 Microsoft Azure SUSE Linux VM 上執行 SAP NetWeaver
@@ -125,9 +125,16 @@ SAP「增強型監視」是在 Azure 上執行 SAP 的必要先決條件。請�
 
 針對官方的 SAP-Azure 憑證，已經有新的機制可以計算 SAP 授權使用的 SAP 硬體金鑰。要使用此機制，必須調整 SAP 核心。Linux 先前的 SAP 核心版本不包括此程式碼變更。因此，在某些情況下 (例如 Azure VM 調整大小)，SAP 硬體金鑰已發生變更，而 SAP 授權已不再有效在最新的 SAP Linux 核心中已解決此問題。如需詳細資料，請查看 SAP 附註 1928533。
 
-## SUSE sapconf 封裝
+## SUSE sapconf 封裝 / tuned-adm
 
 SUSE 提供稱為 "sapconf" 的封裝，這組封裝負責管理一組 SAP 特定設定。如需有關此封裝之用途、安裝方式及使用方式的更多詳細資料，請參閱[使用 sapconf 來準備要執行 SAP 系統的 SUSE Linux Enterprise Server](https://www.suse.com/communities/blog/using-sapconf-to-prepare-suse-linux-enterprise-server-to-run-sap-systems/) 和[何謂 sapconf 或如何準備要執行 SAP 系統的 SUSE Linux Enterprise Server？](http://scn.sap.com/community/linux/blog/2014/03/31/what-is-sapconf-or-how-to-prepare-a-suse-linux-enterprise-server-for-running-sap-systems)。
+
+同時還提供一個新工具來取代 sapconf - tuned-adm。您可以在下列這兩個連結中找到關於這個工具的更多詳細資料。
+
+您可以在[這裡](https://www.suse.com/documentation/sles-for-sap-12/book_s4s/data/sec_s4s_configure_sapconf.html)找到關於 tuned-adm 設定檔 sap-hana 的 SLES 文件
+
+您可以在第 6.2 章中的[這裡](https://www.suse.com/documentation/sles-for-sap-12/pdfdoc/book_s4s/book_s4s.pdf)，找到如何利用 tuned-adm 針對 SAP 工作負載微調系統
+
 
 ## 分散式 SAP 安裝中的 NFS 共用
 
@@ -166,4 +173,4 @@ SUSE 提供稱為 "sapconf" 的封裝，這組封裝負責管理一組 SAP 特�
 
 在虛擬環境中，Oracle 對 Linux 的支援有所限制。雖然這不是 Azure 專屬的主題，不過仍請務必了解。SAP 不支援 SUSE 上的 Oracle 或類似 Azure 之公用雲端中的 Red Hat。若要討論這個主題，請直接連絡 Oracle。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

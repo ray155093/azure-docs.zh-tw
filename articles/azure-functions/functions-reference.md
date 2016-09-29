@@ -78,21 +78,19 @@ Azure 入口網站內建的函式編輯器可讓您更新「function.json」檔�
 
 函式應用程式是建置於 App Service 之上，因此[標準 Web 應用程式可用的部署選項](../app-service-web/web-sites-deploy.md)也可供函式應用程式使用。以下是一些您可以用來上傳或更新函式應用程式檔案的方法。
 
-#### 使用 Visual Studio Online (Monaco)
+#### 使用 App Service 編輯器
 
 1. 在 Azure Functions 入口網站中，按一下 [函式應用程式設定]。
 
 2. 在 [進階設定] 區段中，按一下 [移至 App Service 設定]。
 
-3. 按一下 [工具]。
+3. 在 [開發工具] 下方，按一下 [應用程式功能表導覽] 中的 [App Service 編輯器]。
 
-4. 在 [開發] 之下按一下 [Visual Studio Online]。
+4.  按一下 [執行]。
 
-5. 如果尚未啟用，請將它 [開啟]，然後按一下 [執行]。
+	App Service 編輯器載入之後，您將會在 wwwroot 下方看見 host.json 檔案和函式資料夾。
 
-	Visual Studio Online 載入之後，您會看到在「wwwroot」下有「host.json」檔和函式資料夾。
-
-6. 開啟檔案加以編輯，或從您的開發電腦拖放檔案以上傳檔案。
+5. 開啟檔案加以編輯，或從您的開發電腦拖放檔案以上傳檔案。
 
 #### 使用函式應用程式的 SCM (Kudu) 端點
 
@@ -151,4 +149,4 @@ Azure Functions 的程式碼是開放原始碼，儲存於 GitHub 儲存機制�
 * [Azure Functions 觸發程序和繫結](functions-triggers-bindings.md)
 * [Azure Functions︰Azure App Service 團隊部落格上的旅程](https://blogs.msdn.microsoft.com/appserviceteam/2016/04/27/azure-functions-the-journey/)。Azure Functions 的開發歷史。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

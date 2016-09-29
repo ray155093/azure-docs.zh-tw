@@ -18,7 +18,7 @@
 
 # StorSimple 軟體、高可用性和網路需求
 
-## Overview
+## 概觀
 
 歡迎使用 Microsoft Azure StorSimple。本文描述重要的系統需求和 StorSimple 裝置以及存取裝置之儲存體用戶端的最佳做法。建議您先仔細檢閱資訊，再部署 StorSimple 系統，然後在部署和後續作業期間，必要時回顧參考。
 
@@ -57,7 +57,7 @@
 | 連接埠號碼 <sup>1,2</sup> | 內或外 | 連接埠範圍 | 必要 | 注意事項 |
 |------------------------|-----------|------------|----------|-------|
 |TCP 80 (HTTP)<sup>3</sup>| 外 | WAN | 否 |<ul><li>輸出連接埠可用於網際網路存取以擷取更新。</li><li>輸出 web proxy 可由使用者設定。</li><li>若要允許系統更新，此連接埠也必須為控制器固定 IP 開啟。</li></ul> |
-|TCP 443 (HTTPS)<sup>3</sup>| 外 | WAN | 是 |<ul><li>輸出連接埠可用於存取雲端中的資料。</li><li>輸出 web proxy 可由使用者設定。</li><li>若要允許系統更新，此連接埠也必須為控制器固定 IP 開啟。</li></ul>|
+|TCP 443 (HTTPS)<sup>3</sup>| 外 | WAN | 是 |<ul><li>輸出連接埠可用於存取雲端中的資料。</li><li>輸出 Web Proxy 可由使用者設定。</li><li>若要允許系統更新，就必須也為控制器固定 IP 開啟此連接埠。</li><li>此連接埠在兩個控制器上也都用於廢棄項目收集。</li></ul>|
 |UDP 53 (DNS) | 外 | WAN | 在某些情況下，請參閱附註。 |只有當您使用網際網路 DNS 伺服器時，才需要此連接埠。 |
 | UDP 123 (NTP) | 外 | WAN | 在某些情況下，請參閱附註。 |只有當您使用網際網路 NTP 伺服器時，才需要此連接埠。 |
 | TCP 9354 | 外 | WAN | 是 |StorSimple 裝置使用輸出連接埠與 StorSimple Manager 服務通訊。 |
@@ -291,4 +291,4 @@ StorSimple 裝置包含使用鏡像空間保護的固態硬碟 (SSD) 與硬碟 (
 <!--Reference links-->
 [1]: https://technet.microsoft.com/library/cc731844(v=WS.10).aspx
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0914_2016-->

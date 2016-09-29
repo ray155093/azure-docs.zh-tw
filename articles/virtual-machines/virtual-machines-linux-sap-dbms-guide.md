@@ -703,7 +703,11 @@ SQL Server 2014 引進的新功能，稱為「緩衝集區延伸模組」。此�
 * Microsoft Azure 儲存體總管 (<https://azure.microsoft.com/downloads/>)
 * 協力廠商工具
 
-[註解]: <> (ARM 上還不支援) [註解]: <> (# # # Azure VM 備份) [註解]: <> (SAP 系統中的 VM 可以使用 Azure 虛擬機器備份功能來備份。Azure 虛擬機器備份是在 2015 年初所引進，也就是目前在 Azure 中備份完整 VM 的標準方法。「Azure 備份」會將備份儲存在 Azure 中，並允許再次還原 VM。)[註解]: <> (如果 DBMS 系統支援 Windows VSS (磁碟區陰影複製服務 - <https://msdn.microsoft.com/library/windows/desktop/bb968832.aspx>)，例如就像 SQL Server 一樣，則也可以用一致的方式備份執行資料庫的 VM。因此，使用 Azure VM 備份，可能是取得 SAP 資料庫可還原備份的方法。不過請注意，您無法以資料庫的 Azure VM 備份還原時間點為基礎。因此，建議使用 DBMS 功能來執行資料庫備份，而不要依賴「Azure VM 備份」。)[註解]: <> (若要熟悉「Azure 虛擬機器備份」，請從這裡開始著手：<https://azure.microsoft.com/documentation/services/backup/>)
+[註解]: <> (ARM 上還不支援) 
+[註解]: <> (# # # Azure VM 備份) 
+[註解]: <> (SAP 系統中的 VM 可以使用 Azure 虛擬機器備份功能來備份。Azure 虛擬機器備份是在 2015 年初所引進，也就是目前在 Azure 中備份完整 VM 的標準方法。「Azure 備份」會將備份儲存在 Azure 中，並允許再次還原 VM。)
+[註解]: <> (如果 DBMS 系統支援 Windows VSS (磁碟區陰影複製服務 - <https://msdn.microsoft.com/library/windows/desktop/bb968832.aspx>)，例如就像 SQL Server 一樣，則也可以用一致的方式備份執行資料庫的 VM。因此，使用 Azure VM 備份，可能是取得 SAP 資料庫可還原備份的方法。不過請注意，您無法以資料庫的 Azure VM 備份還原時間點為基礎。因此，建議使用 DBMS 功能來執行資料庫備份，而不要依賴「Azure VM 備份」。)
+[註解]: <> (若要熟悉「Azure 虛擬機器備份」，請從這裡開始著手：<https://azure.microsoft.com/documentation/services/backup/>)
 
 ### <a name="1b353e38-21b3-4310-aeb6-a77e7c8e81c8"></a>使用來自 Microsoft Azure Marketplace 的 SQL Server 映像
 Microsoft 在 Azure Marketplace 中提供已經包含 SQL Server 版本的 VM。對於需要 SQL Server 和 Windows 授權的 SAP 客戶，這可能是透過組織已安裝 SQL Server 的 VM，大致涵蓋授權需求的機會。若要針對 SAP 使用這類映像，必須進行下列考量︰
@@ -735,7 +739,8 @@ Microsoft 在 Azure Marketplace 中提供已經包含 SQL Server 版本的 VM。
 ### SQL Server 在 Azure 中適用於 SAP 的高可用性
 如本文稍早所述，您無法建立使用最舊 SQL Server 高可用性功能所需的共用儲存體。此功能會在 Windows Server 容錯移轉叢集 (WSFC) 中針對使用者資料庫 (以及最終的 tempdb) 使用共用磁碟，來安裝兩個以上的 SQL Server 執行個體。這是 SAP 也支援的長期標準高可用性方法。由於 Azure 不支援共用儲存體，所以無法實現具有共用磁碟叢集組態的 SQL Server 高可用性組態。不過，仍有許多其他高可用性方法，如下列各節所述。
 
-[註解]: <> (文章仍然參考 ASM) [註解]: <> (閱讀可針對 Azure 中的 SQL Server 使用的不同特定高可用性技術之前，[這裡][virtual-machines-sql-server-high-availability-and-disaster-recovery-solutions]有一份非常好的文件，可提供更多詳細資料和指標)
+[註解]: <> (文章仍然參考 ASM) 
+[註解]: <> (閱讀可針對 Azure 中的 SQL Server 使用的不同特定高可用性技術之前，[這裡][virtual-machines-sql-server-high-availability-and-disaster-recovery-solutions]有一份非常好的文件，可提供更多詳細資料和指標)
 
 #### SQL Server 記錄傳送
 高可用性 (HA) 的方法之一是 SQL Server 記錄傳送。如果參與 HA 組態的 VM 具有運作中的名稱解析，就不會發生問題，而 Azure 中的設定與內部部署中完成的任何設定並無任何差別。不建議只依賴 IP 解析。如需設定記錄傳送和記錄傳送原則的相關事宜，請參閱這份文件︰

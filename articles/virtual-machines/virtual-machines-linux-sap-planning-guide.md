@@ -651,7 +651,8 @@ Azure 中的每個虛擬機器都必須連線到虛擬網路。
 
 如需更多詳細資料，請參閱[這篇文章][resource-groups-networking]和[這個頁面](https://azure.microsoft.com/documentation/services/virtual-network/)。
 
-[註解]: <> (MShermannd TODO 找不到包含 OpenLDAP 主題 + ARM 的文章；) [註解]: <> (MSSedusch <https://channel9.msdn.com/Blogs/Open/Load-balancing-highly-available-Linux-services-on-Windows-Azure-OpenLDAP-and-MySQL>)
+[註解]: <> (MShermannd TODO 找不到包含 OpenLDAP 主題 + ARM 的文章；) 
+[註解]: <> (MSSedusch <https://channel9.msdn.com/Blogs/Open/Load-balancing-highly-available-Linux-services-on-Windows-Azure-OpenLDAP-and-MySQL>)
 
 > [AZURE.NOTE] 根據預設，一旦部署 VM，就無法變更虛擬網路組態。TCP/IP 設定必須留給 Azure DHCP 伺服器。預設行為是動態 IP 指派。
 
@@ -685,7 +686,11 @@ Azure 中的每個虛擬機器都必須連線到虛擬網路。
 #### 點對站 VPN
 點對站 VPN 需要每個用戶端電腦使用自己的 VPN 連線到 Azure。針對我們所討論的 SAP 案例，點對站連線能力並不實用。因此，不會針對點對站 VPN 連線能力提供進一步的參考資料。
 
-[註解]: <> (MSSedusch -- 如需詳細資訊，請參閱這裡) [註解]: <> (MShermannd TODO 連結不再有效；但無論如何都不支援 ARM - 請參閱下一個連結) [註解]: <> (MSSedusch -- <http://msdn.microsoft.com/library/azure/dn133798.aspx>。) [註解]: <> (MShermannd TODO ARM 尚未支援點對站) [註解]: <> (MSSedusch -- <https://azure.microsoft.com/documentation/articles/vpn-gateway-point-to-site-create/>)
+[註解]: <> (MSSedusch -- 如需詳細資訊，請參閱這裡) 
+[註解]: <> (MShermannd TODO 連結不再有效；但無論如何都不支援 ARM - 請參閱下一個連結) 
+[註解]: <> (MSSedusch -- <http://msdn.microsoft.com/library/azure/dn133798.aspx>。) 
+[註解]: <> (MShermannd TODO ARM 尚未支援點對站) 
+[註解]: <> (MSSedusch -- <https://azure.microsoft.com/documentation/articles/vpn-gateway-point-to-site-create/>)
 
 #### 多站台 VPN
 Azure 現在也可讓您為一個 Azure 訂用帳戶建立「多站台 VPN」連線能力。之前，單一訂用帳戶僅限於一個站對站 VPN 連線。此限制在單一訂用帳戶可以有「多站台 VPN」連線之後已不存在。您可以透過「跨單位」組態，針對特定訂用帳戶使用多個「Azure 區域」。
@@ -763,7 +768,8 @@ Azure 入口網站是管理 Azure VM 部署的三個介面之一。基本管理�
  
 ![Microsoft Azure 入口網站 - 虛擬機器概觀][planning-guide-figure-800]
 
-[註解]: <> (MSSedusch * <https://azure.microsoft.com/documentation/articles/virtual-networks-create-vnet-arm-pportal/>) [註解]: <> (MSSedusch * <https://azure.microsoft.com/documentation/articles/virtual-machines-windows-tutorial/>)
+[註解]: <> (MSSedusch * <https://azure.microsoft.com/documentation/articles/virtual-networks-create-vnet-arm-pportal/>) 
+[註解]: <> (MSSedusch * <https://azure.microsoft.com/documentation/articles/virtual-machines-windows-tutorial/>)
 
 您可以從 Azure 入口網站進行虛擬機器執行個體的管理和設定工作。
 
@@ -774,7 +780,9 @@ Azure 入口網站提供用以部署及設定 VM 和許多其他 Azure 服務的
 * 將 VHD 上傳至 Azure
 * 複製 VM
 
-[註解]: <> (MShermannd TODO SAP VM 的自動化服務又如何？) [註解]: <> (MSSedusch 可同時部署多個 VM OS) [註解]: <> (MSSedusch 此外，有關部署的任何自動化類型都無法透過 Azure 入口網站進行。多個 VM 的指令碼部署等工作無法透過 Azure 入口網站進行。)
+[註解]: <> (MShermannd TODO SAP VM 的自動化服務又如何？) 
+[註解]: <> (MSSedusch 可同時部署多個 VM OS) 
+[註解]: <> (MSSedusch 此外，有關部署的任何自動化類型都無法透過 Azure 入口網站進行。多個 VM 的指令碼部署等工作無法透過 Azure 入口網站進行。)
 
 ### 透過 Microsoft Azure PowerShell Cmdlet 管理
 Windows PowerShell 是強大且可擴充的架構，客戶已廣泛採用此架構在 Azure 中部署大量系統。在桌上型電腦、膝上型電腦或專用管理工作站上安裝 PowerShell Cmdlet 之後，即可從遠端執行 PowerShell Cmdlet。
@@ -787,7 +795,8 @@ Windows PowerShell 是強大且可擴充的架構，客戶已廣泛採用此架�
 
 請參閱下列範例︰<http://blogs.technet.com/b/keithmayer/archive/2015/07/07/18-steps-for-end-to-end-iaas-provisioning-in-the-cloud-with-azure-resource-manager-arm-powershell-and-desired-state-configuration-dsc.aspx>
 
-[註解]: <> (MShermannd TODO 描述測試時的新 CLI 命令 ) 您只能透過 PowerShell 或 CLI 來部署 Azure Monitoring Extension for SAP (請參閱本文件的[適用於 SAP 的 Azure 監視解決方案][planning-guide-9.1]一章)。因此，在 Azure 中部署或管理 SAP NetWeaver 系統時，請務必安裝及設定 PowerShell 或 CLI。
+[註解]: <> (MShermannd TODO 描述測試時的新 CLI 命令 ) 
+您只能透過 PowerShell 或 CLI 來部署 Azure Monitoring Extension for SAP (請參閱本文件的[適用於 SAP 的 Azure 監視解決方案][planning-guide-9.1]一章)。因此，在 Azure 中部署或管理 SAP NetWeaver 系統時，請務必安裝及設定 PowerShell 或 CLI。
 
 隨著 Azure 提供更多功能，也會新增 PS Cmdlet，而需要更新 Cmdlet。因此，您每個月至少要檢查一次「Azure 下載」網站 <https://azure.microsoft.com/downloads/> 是否有新的 Cmdlet 版本。新版本將會直接覆蓋舊版本進行安裝。
 

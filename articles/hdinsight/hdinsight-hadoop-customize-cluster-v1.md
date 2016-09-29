@@ -4,7 +4,7 @@
 	services="hdinsight" 
 	documentationCenter="" 
 	authors="nitinme" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -65,7 +65,7 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝下列元件：
 
 **從 Azure 傳統入口網站。**
 
-1. 依照[使用自訂選項佈建叢集](hdinsight-provision-clusters.md#portal)所述，使用**自訂建立**選項開始佈建叢集。 
+1. 依照[使用自訂選項佈建叢集](hdinsight-provision-clusters.md#portal)所述，使用**自訂建立**選項開始佈建叢集。
 2. 在精靈的 [**指令碼動作**] 頁面上，按一下 [**加入指令碼動作**] 以提供有關指令碼動作的詳細資料，如下所示：
 
 	![使用指令碼動作以自訂叢集](./media/hdinsight-hadoop-customize-cluster-v1/HDI.CustomProvision.Page6.png "使用指令碼動作以自訂叢集")
@@ -110,7 +110,7 @@ HDInsight 提供數個指令碼在 HDInsight 叢集上安裝下列元件：
 
 HDInsight .NET SDK 提供 <a href="http://msdn.microsoft.com/library/microsoft.windowsazure.management.hdinsight.clusterprovisioning.data.scriptaction.aspx" target="_blank">ScriptAction</a> 類別以叫用自訂指令碼。若要使用 HDInsight .NET SDK：
 
-1. 建立 Visual Studio 應用程式，然後從 NuGet 安裝 SDK。在 [工具] 功能表中按一下 [Nuget 套件管理員]，然後按一下 [Package Manager Console]。在主控台中執行下列命令，以安裝封裝：
+1. 建立 Visual Studio 應用程式，然後從 NuGet 安裝 SDK。在 [工具] 功能表中按一下 [Nuget 套件管理員]，然後按一下 [Package Manager Console]。在主控台中執行下列命令，以安裝套件：
 
 		Install-Package Microsoft.WindowsAzure.Management.HDInsight
 
@@ -180,4 +180,4 @@ HDInsight 服務提供數種方式以使用自訂元件。無論元件如何使�
 [img-hdi-cluster-states]: ./media/hdinsight-hadoop-customize-cluster-v1/HDI-Cluster-state.png "叢集佈建期間的階段"
  
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0914_2016-->

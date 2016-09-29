@@ -4,7 +4,7 @@ description="使用來自內部部署 SQL Server 資料庫的資料，利用 Azu
 services="machine-learning"
 documentationCenter=""
 authors="garyericson"
-manager="paulettm"
+manager="jhubbard"
 editor="cgronlun"/>
 
 <tags
@@ -27,7 +27,7 @@ ms.author="garye;krishnan"/>
 
 <!-- --> 
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 
 ## 安裝 Microsoft 資料管理閘道器
@@ -51,7 +51,7 @@ ms.author="garye;krishnan"/>
 - 您一次只能針對一個工作區設定一個閘道器。目前無法在工作區之間共用閘道器。
 - 您可以針對單一工作區設定多個閘道器。例如，您可能想要使用一個閘道器，在開發期間連接到您的測試資料來源，並在準備運作之際使用生產閘道器。
 - 雖然閘道器不需要和資料來源位在相同的電腦上，但越接近資料來源可縮短閘道器連線到資料來源的時間。建議您安裝閘道器的電腦不同於裝載內部部署資料來源的電腦，如此閘道器和資料來源才不會爭奪資源。
-- 如果您已在電腦上安裝用於 Power BI 或 Azure Data Factory 案例的閘道器，請於另一台電腦上安裝另一個用於 Azure Machine Learning 的閘道器。 
+- 如果您已在電腦上安裝用於 Power BI 或 Azure Data Factory 案例的閘道器，請於另一台電腦上安裝另一個用於 Azure Machine Learning 的閘道器。
 
     > [AZURE.NOTE] 您無法在同一台電腦上同時執行資料管理閘道器和 Power BI Gateway。
 
@@ -162,4 +162,4 @@ ms.author="garye;krishnan"/>
 
 當實驗完成開發之後，您就能部署和操作您的模型。使用批次執行服務時，將會讀取來自**匯入資料**模組中所設定之內部部署 SQL Server 資料庫的資料並用於計分。雖然您可以使用要求回應服務來對內部部署資料進行評分，但是 Microsoft 建議改用 [Excel 增益集](machine-learning-excel-add-in-for-web-services.md)。目前不論是在您的實驗或是已發行的 Web 服務中，都不支援透過**匯出資料**寫入內部部署 SQL Server 資料庫。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0914_2016-->

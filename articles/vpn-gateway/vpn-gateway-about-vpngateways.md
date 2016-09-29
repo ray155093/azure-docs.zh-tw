@@ -13,20 +13,34 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="09/01/2016"
+   ms.date="09/21/2016"
    ms.author="cherylmc" />
 
 # 關於 VPN 閘道
 
 
-虛擬網路閘道用來傳送 Azure 虛擬網路和內部部署位置之間，以及 Azure 內的虛擬網路 (VNet 對 VNet) 之間的網路流量。若要建立連線，您可將虛擬網路閘道連同額外資源及其設定新增至 VNet。
+虛擬網路閘道用來傳送 Azure 虛擬網路和內部部署位置之間，以及 Azure 內的虛擬網路 (VNet 對 VNet) 之間的網路流量。當您設定 VPN 閘道時，您必須建立及設定虛擬網路閘道和虛擬網路閘道連線。
 
-當您建立虛擬網路閘道資源時，需要指定數個設定。其中一個必要設定是「-GatewayType」。閘道類型會指定閘道的連線方式。虛擬網路閘道類型有兩種︰Vpn 和 ExpressRoute。如果網路流量是在專用私人連線上傳送，則使用的閘道類型為「ExpressRoute」。也稱為 ExpressRoute 閘道。如果網路流量是透過公用連線加密傳送，則使用的閘道類型為「Vpn」。稱之為 VPN 閘道。站對站、點對站和 VNet 對 VNet 連線都使用 VPN 閘道。
+在 Resource Manager 部署模型中，當您建立虛擬網路閘道資源時，需要指定數個設定。其中一個必要設定是「-GatewayType」。虛擬網路閘道類型有兩種︰Vpn 和 ExpressRoute。
 
-對於每種閘道類型，每個虛擬網路只能有一個虛擬網路閘道。例如，您可以有一個使用 -GatewayType Vpn 的虛擬網路閘道，以及一個使用 -GatewayType ExpressRoute 的虛擬網路閘道。本文主要著重在 VPN 閘道。如需 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 技術概觀](../expressroute/expressroute-introduction.md)。
+如果網路流量是在專用私人連線上傳送，則使用的閘道類型為「ExpressRoute」。也稱為 ExpressRoute 閘道。如果網路流量是透過公用連線加密傳送，則使用的閘道類型為「Vpn」。稱之為 VPN 閘道。站對站、點對站和 VNet 對 VNet 連線都使用 VPN 閘道。
 
-如需閘道需求的相關資訊，請參閱[閘道需求](vpn-gateway-about-vpn-gateway-settings.md#requirements)。如需估計的彙總輸送量，請參閱[關於 VPN 閘道設定](vpn-gateway-about-vpn-gateway-settings.md#aggthroughput)。如需價格，請參閱 [VPN 閘道價格](https://azure.microsoft.com/pricing/details/vpn-gateway)。如需訂用帳戶和服務限制，請參閱[網路限制](../articles/azure-subscription-service-limits.md#networking-limits)。
+對於每種閘道類型，每個虛擬網路只能有一個虛擬網路閘道。例如，您可以有一個使用 -GatewayType ExpressRoute 的虛擬網路閘道，以及一個使用 -GatewayType Vpn 的虛擬網路閘道。本文主要著重在 VPN 閘道。如需 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 技術概觀](../expressroute/expressroute-introduction.md)。
 
+## 價格
+
+[AZURE.INCLUDE [vpn-gateway-about-pricing-include](../../includes/vpn-gateway-about-pricing-include.md)]
+
+
+## 閘道 SKU
+
+[AZURE.INCLUDE [vpn-gateway-gwsku-include](../../includes/vpn-gateway-gwsku-include.md)]
+
+###  <a name="skugw"></a>依 SKU 和閘道類型列出的估計彙總輸送量
+
+下表顯示閘道類型和預估的彙總輸送量。此資料表適用於資源管理員與傳統部署模型。
+
+[AZURE.INCLUDE [vpn-gateway-table-gwtype-aggthroughput](../../includes/vpn-gateway-table-gwtype-aggtput-include.md)]
 
 ## 設定 VPN 閘道
 
@@ -136,4 +150,4 @@ ExpressRoute 是從 WAN (不透過公用網際網路) 至 Microsoft 服務 (包�
 
  
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0921_2016-->

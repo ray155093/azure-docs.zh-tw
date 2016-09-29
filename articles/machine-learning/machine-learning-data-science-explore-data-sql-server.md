@@ -4,7 +4,7 @@
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="bradsev" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun" />
 
 <tags 
@@ -13,20 +13,20 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/14/2016" 
-	ms.author="fashah;garye;bradsev" />
+	ms.date="09/13/2016" 
+	ms.author="bradsev" />
 
 #在 Azure 上瀏覽 SQL Server 虛擬機器中的資料
 
 
 本文件涵蓋如何瀏覽儲存在 Azure 上 SQL Server VM 中的資料。使用 SQL整理資料或使用 Python 這類程式設計語言，即可完成此動作。
 
-以下**功能表**連結至其他主題，說明如何使用工具來瀏覽各種儲存體環境中的資料。此工作是 Cortana 分析程序 (CAP) 中的一個步驟。
+下列**功能表**所連結的主題會說明如何從各種不同的儲存體環境使用工具來瀏覽資料。此工作是 Cortana 分析程序 (CAP) 中的一個步驟。
 
 [AZURE.INCLUDE [cap-explore-data-selector](../../includes/cap-explore-data-selector.md)]
 
 
-> [AZURE.NOTE] 本文件中的 SQL 陳述式範例假設資料位於 SQL Server 中。如果不是，請參閱雲端資料科學程序圖，以了解如何將資料移至 SQL Server 中。
+> [AZURE.NOTE] 本文件中的 SQL 陳述式範例假設資料位於 SQL Server 中。如果不是，請參閱雲端資料科學程序圖，以了解如何將資料移至 SQL Server。
 
 
 
@@ -54,9 +54,9 @@
 
 ##<a name="python"></a>使用 Python 瀏覽 SQL 資料
 
-當資料位於 SQL Server 時，使用 Python 來瀏覽資料與產生功能，類似於使用 Python 來處理 Azure blob 中的資料，如[在資料科學環境中處理 Azure Blob 資料](machine-learning-data-science-process-data-blob.md)文件所述。資料必須從資料庫載入 Pandas 資料框架，然後就能進一步處理。我們將在本節中說明連接到資料庫以及將資料載入資料框架的程序。
+當資料位於 SQL Server 時，使用 Python 來瀏覽資料與產生特徵，類似於使用 Python 來處理 Azure Blob 中的資料，如[在資料科學環境中處理 Azure Blob 資料](machine-learning-data-science-process-data-blob.md)中所述。資料必須從資料庫載入 Pandas 資料框架，然後就能進一步處理。我們將在本節中說明連接到資料庫以及將資料載入資料框架的程序。
 
-下列連接字串格式可用來使用 pyodbc (使用您的特定值來取代伺服器名稱、dbname、使用者名稱和密碼)，從 Python 連接到 SQL Server 資料庫：
+下列連接字串格式可用來使用 pyodbc (使用您的特定值來取代 servername、dbname、username 和 password)，從 Python 連接到 SQL Server 資料庫：
 
 	#Set up the SQL Azure connection
 	import pyodbc	
@@ -75,4 +75,4 @@ Python 中的 [Pandas 程式庫](http://pandas.pydata.org/)提供一組豐富的
 
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

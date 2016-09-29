@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="get-started-article"
-	ms.date="05/06/2016"
+	ms.date="09/16/2016"
 	ms.author="sethm"/>
 
 
@@ -43,13 +43,12 @@
 
 ## 取得服務匯流排 NuGet 封裝
 
-[服務匯流排 NuGet 套件](https://www.nuget.org/packages/WindowsAzure.ServiceBus)為取得服務匯流排 API，並設定具有所有服務匯流排相依性的應用程式的最容易方式。若要在應用程式中安裝 NuGet 封裝，請執行下列動作：
+[服務匯流排 NuGet 套件](https://www.nuget.org/packages/WindowsAzure.ServiceBus)為取得服務匯流排 API，並設定具有所有服務匯流排相依性的應用程式的最容易方式。若要在專案中安裝 NuGet 封裝，請執行下列動作：
 
 1.  在 [方案總管] 中，以滑鼠右鍵按一下 [喜好設定]，然後按一下 [Manage NuGet Packages]。
-2.  搜尋「服務匯流排」並選取 [Microsoft Azure 服務匯流排] 項目。按一下 [安裝] 完成安裝作業，然後關閉下列對話方塊。
+2.  搜尋「服務匯流排」並選取 [Microsoft Azure 服務匯流排] 項目。按一下 [安裝] 完成安裝作業，然後關閉下列對話方塊：
 
 	![](./media/service-bus-dotnet-how-to-use-relay/getting-started-multi-tier-13.png)
-
 
 ## 使用服務匯流排來公開及取用具有 TCP 的 SOAP Web 服務
 
@@ -57,10 +56,10 @@
 
 在本工作中，您將建立一個簡單的 WCF 服務，並為它新增服務匯流排接聽程式。本練習假設您對 Visual Studio 有一定程度的了解，因此將不會逐步解說完成建立專案的所有詳細資料。而是會將重點放在程式碼。
 
-開始下面的步驟之前，請完成下列設定環境的程序：
+開始這些步驟之前，請完成下列設定環境的程序：
 
 1.  在 Visual Studio 中，建立解決方案中包含兩個專案 ("Client" 和 "Service") 的主控台應用程式。
-2.  對兩個專案新增 Microsoft Azure 服務匯流排 NuGet 封裝。這會將所有必要組件參照新增至您的專案。
+2.  對兩個專案新增 Microsoft Azure 服務匯流排 NuGet 封裝。此封裝會將所有必要組件參考新增至您的專案。
 
 ### 如何建立服務
 
@@ -68,7 +67,7 @@
 
 -   說明會交換哪些訊息以及會叫用哪些作業的合約定義。
 -   所述合約的實作。
--   代管 WCF 服務並公開多個端點的主機。
+-   裝載 WCF 服務並公開數個端點的主機。
 
 本節中的程式碼範例將逐一說明這些元件。
 
@@ -114,7 +113,7 @@ sh.AddServiceEndpoint(
    typeof(IProblemSolver), new NetTcpRelayBinding(),
    ServiceBusEnvironment.CreateServiceUri("sb", "namespace", "solver"))
     .Behaviors.Add(new TransportClientEndpointBehavior {
-          TokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider("RootManageSharedAccessKey", "yourKey")});
+          TokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider("RootManageSharedAccessKey", "<yourKey>")});
 
 sh.Open();
 
@@ -124,7 +123,7 @@ Console.ReadLine();
 sh.Close();
 ```
 
-在此範例中，您將建立相同合約實作的兩個端點。一個是本機，一個透過服務匯流排投射。它們之間的主要差異是繫結；[NetTcpBinding](https://msdn.microsoft.com/library/azure/system.servicemodel.nettcpbinding.aspx) 用於本機，而 [NetTcpRelayBinding](https://msdn.microsoft.com/library/azure/microsoft.servicebus.nettcprelaybinding.aspx) 用於服務匯流排端點和位址。本機端點會包含具有獨特連接埠的本機網路位址。服務匯流排端點會包含一個由字串 `sb`、您的命名空間名稱及路徑 "solver" 組合而成的端點位址。 這會產生 URI `sb://[serviceNamespace].servicebus.windows.net/solver`，指出服務端點為具有完整外部 DNS 名稱的服務匯流排 TCP 端點。如前所述，如果您將要取代預留位置的程式碼置入 **Service** 應用程式的 `Main` 函數中，您將會有一個功能性服務。如果您想要服務專門接聽服務匯流排，請移除本機端點宣告。
+在此範例中，您將建立相同合約實作的兩個端點。一個是本機，一個透過服務匯流排投射。它們之間的主要差異是繫結；[NetTcpBinding](https://msdn.microsoft.com/library/azure/system.servicemodel.nettcpbinding.aspx) 用於本機，而 [NetTcpRelayBinding](https://msdn.microsoft.com/library/azure/microsoft.servicebus.nettcprelaybinding.aspx) 用於服務匯流排端點和位址。本機端點會包含具有獨特連接埠的本機網路位址。服務匯流排端點會包含一個由字串 `sb`、您的命名空間名稱及路徑 "solver" 組合而成的端點位址。 這會產生 URI `sb://[serviceNamespace].servicebus.windows.net/solver`，指出服務端點為具有完整外部 DNS 名稱的服務匯流排 TCP 端點。如果您將要取代預留位置的程式碼置入 **Service** 應用程式的 `Main` 函式中，您將會有一個功能性服務。如果您想要服務專門接聽服務匯流排，請移除本機端點宣告。
 
 ### 在 App.config 檔案中設定服務主機
 
@@ -138,7 +137,7 @@ Console.ReadLine();
 sh.Close();
 ```
 
-端點定義移入 App.config 檔案。請注意，NuGet 封裝已在 App.config 檔案中新增許多定義，這些都是服務匯流排的必要組態擴充功能。下列範例 (與上述程式碼完全相同) 應會出現在 **system.serviceModel** 元素的正下方。這個程式碼範例假設您的專案 C# 命名空間名稱為 **Service**。使用您的服務匯流排服務命名空間和金鑰來取代預留位置。
+端點定義移入 App.config 檔案。NuGet 封裝已在 App.config 檔案中新增許多定義，這些都是服務匯流排的必要組態擴充功能。下列範例 (與上述程式碼完全相同) 應會出現在 **system.serviceModel** 元素的正下方。這個程式碼範例假設您的專案 C# 命名空間名稱為 **Service**。使用您的服務匯流排服務命名空間和金鑰來取代預留位置。
 
 ```
 <services>
@@ -157,7 +156,7 @@ sh.Close();
         <behavior name="sbTokenProvider">
             <transportClientEndpointBehavior>
                 <tokenProvider>
-                    <sharedAccessSignature keyName="RootManageSharedAccessKey" key="yourKey" />
+                    <sharedAccessSignature keyName="RootManageSharedAccessKey" key="<yourKey>" />
                 </tokenProvider>
             </transportClientEndpointBehavior>
         </behavior>
@@ -183,7 +182,7 @@ var cf = new ChannelFactory<IProblemSolverChannel>(
     new EndpointAddress(ServiceBusEnvironment.CreateServiceUri("sb", "namespace", "solver")));
 
 cf.Endpoint.Behaviors.Add(new TransportClientEndpointBehavior
-            { TokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider("RootManageSharedAccessKey","yourKey") });
+            { TokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider("RootManageSharedAccessKey","<yourKey>") });
 
 using (var ch = cf.CreateChannel())
 {
@@ -191,7 +190,7 @@ using (var ch = cf.CreateChannel())
 }
 ```
 
-您現在可以建置用戶端和服務、執行它們 (先執行服務)，然後用戶端將呼叫此服務並列印 **9**。您可以在不同機器上 (即使是在不同網路上) 執行用戶端和伺服器，通訊仍然可以運作。您也可以在雲端或在本機上執行用戶端程式碼。
+您現在可以建置用戶端和服務、執行它們 (先執行服務)，然後用戶端會呼叫此服務並列印 **9**。您可以在不同機器上 (即使是在不同網路上) 執行用戶端和伺服器，通訊仍然可以運作。您也可以在雲端或在本機上執行用戶端程式碼。
 
 #### 在 App.config 檔案中設定用戶端
 
@@ -219,7 +218,7 @@ using (var ch = cf.CreateChannel())
         <behavior name="sbTokenProvider">
             <transportClientEndpointBehavior>
                 <tokenProvider>
-                    <sharedAccessSignature keyName="RootManageSharedAccessKey" key="yourKey" />
+                    <sharedAccessSignature keyName="RootManageSharedAccessKey" key="<yourKey>" />
                 </tokenProvider>
             </transportClientEndpointBehavior>
         </behavior>
@@ -239,4 +238,4 @@ using (var ch = cf.CreateChannel())
   [Azure 範例]: https://code.msdn.microsoft.com/site/search?query=service%20bus&f%5B0%5D.Value=service%20bus&f%5B0%5D.Type=SearchText&ac=2
   [服務匯流排範例概觀]: service-bus-samples.md
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0921_2016-->

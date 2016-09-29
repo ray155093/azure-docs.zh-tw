@@ -4,7 +4,7 @@
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="bradsev" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun" />
 
 <tags 
@@ -22,7 +22,7 @@
 
 如需概述移動資料至機器學習的 Azure SQL Database 之選項的主題，請參閱[移動資料至 Azure Machine Learning 的 Azure SQL Database](machine-learning-data-science-move-sql-azure.md)。
 
-以下**功能表**所連結的主題說明如何將資料內嵌至其他目標環境，以在 Team Data Science Process (TDSP) 期間儲存和處理該資料。
+以下**功能表**所連結的主題會說明如何將資料內嵌至其他目標環境，以在 Team Data Science Process (TDSP) 期間儲存和處理該資料。
 
 [AZURE.INCLUDE [cap-ingest-data-selector](../../includes/cap-ingest-data-selector.md)]
 
@@ -52,7 +52,7 @@
 
 如果您的資料位於一般檔案 (使用資料列或資料行格式排列) 中，可透過下列方法，將它移到 Azure 上的 SQL Server VM：
 
-1. [命令列大量複製公用程式 (BCP)](#insert-tables-bcp) 
+1. [命令列大量複製公用程式 (BCP)](#insert-tables-bcp)
 2. [大量插入 SQL 查詢](#insert-tables-bulkquery)
 3. [SQL Server 中的圖形化內建公用程式 (匯入/匯出，SSIS)](#sql-builtin-utilities)
 
@@ -131,7 +131,7 @@ BCP 是與 SQL Server 一起安裝的命令列公用程式，是最快速移動�
 
 ### <a name="insert-tables-bulkquery"></a>大量插入 SQL 查詢
 
-[大量插入 SQL 查詢](https://msdn.microsoft.com/library/ms188365)可用來將資料從以資料列/資料行為基礎的檔案匯入資料庫 ([準備資料以大量匯出或匯入 (SQL 伺服器)](https://msdn.microsoft.com/library/ms188609) 說明支援的類型) 主題。
+[大量插入 SQL 查詢](https://msdn.microsoft.com/library/ms188365)可用來將資料從以資料列/資料行為基礎的檔案匯入資料庫 (支援類型請參閱 [準備大量匯出或匯入的資料 (SQL Server)](https://msdn.microsoft.com/library/ms188609) 主題中的說明)。
 
 此處提供一些大量插入的命令範例，如下所示：
 
@@ -156,7 +156,7 @@ BCP 是與 SQL Server 一起安裝的命令列公用程式，是最快速移動�
 
 您可以使用 SQL Server Integration Services (SSIS)，將資料從一般檔案匯入 Azure 上的 SQL Server VM。SSIS 適用於兩種 Studio 環境。如需詳細資料，請參閱 [Integration Services (SSIS) 和 Studio 環境](https://technet.microsoft.com/library/ms140028.aspx)：
 
-- 如需 SQL Server Data Tools 的詳細資料，請參閱 [Microsoft SQL Server Data Tools](https://msdn.microsoft.com/data/tools.aspx)  
+- 如需 SQL Server Data Tools 的詳細資料，請參閱 [Microsoft SQL Server Data Tools](https://msdn.microsoft.com/data/tools.aspx)
 - 如需匯入/匯出精靈的詳細資料，請參閱 [SQL Server 匯入和匯出精靈](https://msdn.microsoft.com/library/ms141209.aspx)
 
 
@@ -165,7 +165,7 @@ BCP 是與 SQL Server 一起安裝的命令列公用程式，是最快速移動�
 您也可以使用下列移轉策略：
 
 1. [將 SQL Server Database 部署到 Microsoft Azure VM 精靈](#deploy-a-sql-server-database-to-a-microsoft-azure-vm-wizard)
-2. [匯出至一般檔案](#export-flat-file) 
+2. [匯出至一般檔案](#export-flat-file)
 3. [SQL Database 移轉精靈](#sql-migration)
 4. [資料庫備份和還原](#sql-backup)
 
@@ -177,7 +177,7 @@ BCP 是與 SQL Server 一起安裝的命令列公用程式，是最快速移動�
 
 ### <a name="export-flat-file"></a>匯出至一般檔案
 
-有各種方法可用來從內部部署的 SQL Server 大量匯出資料，如[大量匯入與匯出資料 (SQL 伺服器)](https://msdn.microsoft.com/library/ms175937.aspx) 主題所述。本文件將提供大量複製程式 (BCP) 做為範例。一旦將資料匯出至一般檔案之後，就可以使用大量匯入功能來將它匯入另一部 SQL Server。
+有各種方法可用來從內部部署的 SQL Server 大量匯出資料，如[資料的大量匯入及匯出 (SQL Server)](https://msdn.microsoft.com/library/ms175937.aspx) 主題所述。本文件將提供大量複製程式 (BCP) 做為範例。一旦將資料匯出至一般檔案之後，就可以使用大量匯入功能來將它匯入另一部 SQL Server。
 
 1. 使用 BCP 公用程式，從內部部署的 SQL Server 將資料匯出至檔案，如下所示
 
@@ -208,8 +208,8 @@ BCP 是與 SQL Server 一起安裝的命令列公用程式，是最快速移動�
 
 SQL Server 支援：
 
-1. [資料庫備份和還原功能](https://msdn.microsoft.com/library/ms187048.aspx) (兩者皆可為本機檔案或以 bacpac 匯出至 Blob) 和[資料層應用程式](https://msdn.microsoft.com/library/ee210546.aspx) (使用 bacpac)。 
-2. 使用複製的資料庫直接在 Azure 上建立 SQL Server VM，或者複製到現有 SQL Azure 資料庫的能力。如需詳細資料，請參閱[使用複製資料庫精靈](https://msdn.microsoft.com/library/ms188664.aspx)。 
+1. [資料庫備份和還原功能](https://msdn.microsoft.com/library/ms187048.aspx) (兩者皆可為本機檔案或以 bacpac 匯出至 Blob) 和[資料層應用程式](https://msdn.microsoft.com/library/ee210546.aspx) (使用 bacpac)。
+2. 使用複製的資料庫直接在 Azure 上建立 SQL Server VM，或者複製到現有 SQL Azure 資料庫的能力。如需詳細資料，請參閱[使用複製資料庫精靈](https://msdn.microsoft.com/library/ms188664.aspx)。
 
 SQL Server Management Studio 的資料庫備份/還原選項的螢幕擷取畫面如下所示。
 
@@ -224,4 +224,4 @@ SQL Server Management Studio 的資料庫備份/還原選項的螢幕擷取畫�
 [1]: ./media/machine-learning-data-science-move-sql-server-virtual-machine/sqlserver_builtin_utilities.png
 [2]: ./media/machine-learning-data-science-move-sql-server-virtual-machine/database_migration_wizard.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

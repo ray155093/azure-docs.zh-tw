@@ -34,7 +34,7 @@
 停用動作項目後，會發生下列情況︰
 
 - 動作項目若一段時間未使用，便會從使用中動作項目資料表移除。
-- 呼叫 `OnDeactivateAsync` 方法 (在動作項目實作中會被覆寫)。這會清除動作項目的所有計時器。
+- 呼叫 `OnDeactivateAsync` 方法 (在動作項目實作中會被覆寫)。這會清除動作項目的所有計時器。您不應該從此方法呼叫動作項目作業 (例如狀態變更)。
 
 > [AZURE.TIP] Fabric Actor 執行階段會發出某些[與動作項目啟用和停用相關的事件](service-fabric-reliable-actors-diagnostics.md#actor-activation-and-deactivation-events)。這些項目對於診斷與效能監視很有幫助。
 
@@ -129,4 +129,4 @@ await myActorServiceProxy.DeleteActorAsync(actorToDelete, cancellationToken)
 <!--Image references-->
 [1]: ./media/service-fabric-reliable-actors-lifecycle/garbage-collection.png
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

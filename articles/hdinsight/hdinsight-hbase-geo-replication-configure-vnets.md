@@ -4,7 +4,7 @@
    services="hdinsight,virtual-network" 
    documentationCenter="" 
    authors="mumian" 
-   manager="paulettm" 
+   manager="jhubbard" 
    editor="cgronlun"/>
 
 <tags
@@ -27,7 +27,7 @@ Azure 虛擬網路的站對站連線會使用 VPN 閘道來提供採用 Ipsec/IK
 
 - 跨區域的異地備援和異地目前狀態
 - 具有嚴密隔離界限的區域性多層式應用程式
-- 在 Azure 中的跨訂用帳戶、組織間通訊
+- Azure 中的跨訂用帳戶、組織間通訊
 
 如需詳細資訊，請參閱[設定 VNet 對 VNet 連線](../vpn-gateway/virtual-networks-configure-vnet-to-vnet-connection.md)。
 
@@ -53,11 +53,11 @@ Azure 虛擬網路的站對站連線會使用 VPN 閘道來提供採用 Ipsec/IK
 
 - **具有 Azure PowerShell 的工作站**。
 
-	執行 PowerShell 指令碼之前，請確定您已使用下列 Cmdlet 連接到 Azure 訂用帳戶：
+	執行 PowerShell 指令碼之前，請確定您已使用下列 Cmdlet 連接到 Azure 訂閱：
 
 		Add-AzureAccount
 
-	如果您有多個 Azure 訂用帳戶，請使用下列 Cmdlet 設定目前的訂用帳戶：
+	如果您有多個 Azure 訂閱，請使用下列 Cmdlet 設定目前的訂閱：
 
 		Select-AzureSubscription <AzureSubscriptionName>
 		
@@ -272,4 +272,4 @@ Vnet 閘道會使用共用金鑰來驗證虛擬網路之間的連線。此金鑰
 [img-vnet-lnet-diagram]: ./media/hdinsight-hbase-geo-replication-configure-VNets/HDInsight.HBase.VPN.LNet.diagram.png
 [img-vpn-status]: ./media/hdinsight-hbase-geo-replication-configure-VNets/HDInsight.HBase.VPN.status.png
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0914_2016-->

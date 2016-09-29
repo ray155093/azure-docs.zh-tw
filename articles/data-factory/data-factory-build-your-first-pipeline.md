@@ -19,8 +19,7 @@
 
 # 教學課程︰使用 Hadoop 叢集建置您的第一個管線來處理資料 
 > [AZURE.SELECTOR]
-- [教學課程概觀](data-factory-build-your-first-pipeline.md)
-- [使用 Data Factory 編輯器](data-factory-build-your-first-pipeline-using-editor.md)
+- [使用 Azure 入口網站](data-factory-build-your-first-pipeline-using-editor.md)
 - [使用 Visual Studio](data-factory-build-your-first-pipeline-using-vs.md)
 - [使用 PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
 - [使用資源管理員範本](data-factory-build-your-first-pipeline-using-arm.md)
@@ -226,4 +225,4 @@
 - [使用 PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
 - [使用資源管理員範本](data-factory-build-your-first-pipeline-using-arm.md)
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

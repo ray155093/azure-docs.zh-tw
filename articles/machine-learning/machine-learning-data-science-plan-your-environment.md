@@ -4,7 +4,7 @@
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="bradsev"
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun" />
 
 <tags 
@@ -21,7 +21,7 @@
 
 在設定環境以對資料集執行進階分析處理時，您應該規劃包含哪些資源？ 本文提出一系列問題，有助於識別您的案例相關的工作和資源。[何謂 Team Data Science Process (TDSP)？](data-science-process-overview.md)文件中概述預測性分析的高階步驟順序。針對您的案例相關的工作，每個步驟會需要特定的資源。用以識別案例的主要問題是關於資料邏輯、特性、資料集的品質，以及您想要進行分析的工具和語言。
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## 邏輯問題：資料位置和移動
 邏輯問題是關於**資料來源**的位置、Azure 中的**目標目的地**，以及移動資料的需求，包括排程、數量和涉及的資源。在分析程序期間，資料可能需要移動數次。常見的案例是將本機資料移到 Azure 上的某種儲存體，再移至 Machine Learning Studio。
@@ -40,9 +40,9 @@
 	- Azure Machine Learning
 	- 可裝載的 Azure 虛擬硬碟。
 
-3. **您要如何移動資料？** 下列主題概述可將資料內嵌或載入至各種不同儲存體和處理環境的程序和資源。
+3. **您要如何移動資料？** 下列主題概述可用來將資料內嵌或載入至各種不同儲存體和處理環境的程序和資源。
 
-	-  [將資料載入至儲存體環境以便進行分析](machine-learning-data-science-ingest-data.md) 
+	-  [將資料載入至儲存體環境以便進行分析](machine-learning-data-science-ingest-data.md)
 	-  [從各種資料來源將訓練資料匯入 Azure Machine Learning Studio](machine-learning-data-science-import-data,md)。
 
 4. **資料是否需要定期移動或在移轉期間修改？** 當資料需要持續移轉時，特別是在涉及同時存取內部部署和雲端資源的混合式案例中，或當資料為交易式或在移轉過程中需要修改或新增商務邏輯時，請考慮使用 Azure Data Factory (ADF)。如需進一步資訊，請參閱[使用 Azure Data Factory 從內部部署 SQL Server 移動資料至 SQL Azure](machine-learning-data-science-move-sql-azure-adf.md)。
@@ -53,7 +53,7 @@
 ## 資料特性問題：類型、格式和大小
 這些問題是規劃儲存體和處理環境的關鍵，各適用於不同類型的資料，也各有其特定的限制。
 
-1. **資料類型是什麼？** 例如： 
+1. **資料類型是什麼？** 例如：
 	- 數值
 	- 類別
 	- 字串
@@ -76,7 +76,7 @@
 - 如需 Azure Machine Learning Studio 支援的資料格式和 類型的清單，請參閱[支援的資料格式和資料類型](machine-learning-data-science-import-data.md#data-formats-and-data-types-supported)一節。
 - 如需 Azure Machine Learning Studio 資料限制的相關資訊，請參閱[匯入和匯出機器學習服務的資料](machine-learning-faq.md#machine-learning-studio-questions)的**我的模組適用多大的資料集？**一節
 
-如需分析程序中使用的其他 Azure 服務有何限制的相關資訊，請參閱 [Azure 訂用帳戶和服務限制、配額及條件約束](../azure-subscription-service-limits.md)。
+如需分析程序中使用的其他 Azure 服務限制的相關資訊，請參閱 [Azure 訂用帳戶和服務限制、配額與限制](../azure-subscription-service-limits.md)。
 
 ## 資料品質問題：探索和前置處理
 
@@ -87,7 +87,7 @@
 ## 工具和語言的問題
 根據您需要或最喜歡使用的語言和開發環境或工具而定，這裡有許多選項可選擇。
  
-1. **您想要使用哪些語言進行分析？**  
+1. **您想要使用哪些語言進行分析？**
 	- R
 	- Python
 	- SQL
@@ -100,7 +100,7 @@
 	- [Python Tools for Visual Studio](http://microsoft.github.io/PTVS/)
 	- [Anaconda](https://www.continuum.io/why-anaconda)
 	- [Jupiter notebooks](http://jupyter.org/)
-	- [Microsoft Power BI](http://powerbi.microsoft.com) 
+	- [Microsoft Power BI](http://powerbi.microsoft.com)
 
 
 ## 識別您的進階分析案例
@@ -114,4 +114,4 @@
 
  
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

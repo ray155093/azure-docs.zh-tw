@@ -4,7 +4,7 @@
 	services="machine-learning" 
 	documentationCenter="" 
 	authors="aniedea" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"/>
 
 <tags 
@@ -23,7 +23,7 @@
 兩個比例有統計上的差異嗎？ 假設使用者想要比較兩部電影，以判斷其中一部電影與另一部電影比較起來是否有明顯較高比例的「讚」。在大型樣本中，在 0.50 和 0.51 比例之間可能會有統計上的顯著差異；但在小型樣本中，可能沒有足夠的資料可以判斷這些比例是否真有差異。
 
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 這項 [Web 服務](https://datamarket.azure.com/dataset/aml_labs/prop_test)會根據使用者針對 2 個比較群組輸入的的成功次數和總試驗次數，來進行兩個比例的差異假設測試。一個可能的案例是從電影比較應用程式內部呼叫這項 Web 服務，根據電影分級讓使用者知道其中一部電影是否比另一部電影受到更多人的喜愛。
 
@@ -130,4 +130,4 @@ Azure Machine Learning 中已建立具有兩個[執行 R 指令碼][execute-r-sc
 [execute-r-script]: https://msdn.microsoft.com/library/azure/30806023-392b-42e0-94d6-6b775a6e0fd5/
  
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0914_2016-->

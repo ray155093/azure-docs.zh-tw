@@ -24,8 +24,6 @@
 
 在本教學課程中，您將會開發一個工作以讀取定位鍵分隔值 (TSV) 檔案，並將該檔案轉換為逗點分隔值 (CSV) 檔案。若要使用其他支援的工具進行同一個教學課程，請按一下此區段最上方的索引標籤。當第一個工作成功完成時，您便可開始使用 U SQL 撰寫更複雜的資料轉換。
 
-[AZURE.INCLUDE [basic-process-include](../../includes/data-lake-analytics-basic-process.md)]
-
 ##必要條件
 
 開始進行本教學課程之前，您必須具備下列條件：
@@ -156,4 +154,4 @@ Azure 入口網站會提供使用者介面，可將範例資料檔案複製到�
 - 若要使用其他工具檢視同一個教學課程，請按一下頁面最上方的索引標籤選取器。
 - 若要記錄診斷資訊，請參閱[為 Azure Data Lake Analytics 存取診斷記錄檔](data-lake-analytics-diagnostic-logs.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->

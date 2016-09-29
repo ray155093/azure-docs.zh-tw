@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="tedway"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -22,7 +22,7 @@
 
 如果您使用 Excel 2013 (或更新版本) 或 Excel Online，我們建議您使用 [Excel 增益集](machine-learning-excel-add-in-for-web-services.md)。
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## 步驟
 
@@ -80,4 +80,4 @@
 [3]: ./media/machine-learning-consuming-from-excel/enablecontent.png
 [4]: ./media/machine-learning-consuming-from-excel/sampletable.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

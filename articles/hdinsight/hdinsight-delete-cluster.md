@@ -4,7 +4,7 @@ description="您可用來刪除 HDInsight 叢集的各種方式相關資訊。"
 services="hdinsight"
 documentationCenter=""
 authors="Blackmist"
-manager="paulettm"
+manager="jhubbard"
 editor="cgronlun"/>
 
 <tags
@@ -48,4 +48,4 @@ HDInsight 叢集的費用是從建立叢集時開始計算，而於刪除叢集�
     
 將 __CLUSTERNAME__ 取代為 HDInsight 叢集的名稱。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0914_2016-->

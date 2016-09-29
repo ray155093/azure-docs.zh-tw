@@ -4,7 +4,7 @@
 	services="hdinsight"
 	documentationCenter=""
 	authors="Blackmist"
-	manager="paulettm"
+	manager="jhubbard"
 	editor=""/>
 
 <tags
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/29/2016"
+	ms.date="09/14/2016"
 	ms.author="larryfr"/>
 
 #使用 Maven 建置搭配使用 HBase 和以 Linux 為基礎的 HDInsight (Hadoop) 之 Java 應用程式
@@ -148,7 +148,7 @@
 
 		scp USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:/etc/hbase/conf/hbase-site.xml ./conf/hbase-site.xml
 
-	> [AZURE.NOTE] 如果您對 SSH 帳戶使用密碼，系統會提示您輸入密碼。如果您搭配帳戶使用 SSH 金鑰，可能需要使用 `-i` 參數來指定金鑰檔的路徑。下列範例會從 `~/.ssh/id_rsa` 載入私密金鑰：
+	> [AZURE.NOTE] 如果您針對 SSH 帳戶使用密碼，系統會提示您輸入密碼。如果您搭配帳戶使用 SSH 金鑰，可能需要使用 `-i` 參數來指定金鑰檔的路徑。下列範例會從 `~/.ssh/id_rsa` 載入私密金鑰：
 	>
 	> `scp -i ~/.ssh/id_rsa USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:/etc/hbase/conf/hbase-site.xml ./conf/hbase-site.xml`
 
@@ -361,7 +361,7 @@
 
 		ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
 
-	> [AZURE.NOTE] 如果您對 SSH 帳戶使用密碼，系統會提示您輸入密碼。如果您搭配帳戶使用 SSH 金鑰，可能需要使用 `-i` 參數來指定金鑰檔的路徑。下列範例會從 `~/.ssh/id_rsa` 載入私密金鑰：
+	> [AZURE.NOTE] 如果您針對 SSH 帳戶使用密碼，系統會提示您輸入密碼。如果您搭配帳戶使用 SSH 金鑰，可能需要使用 `-i` 參數來指定金鑰檔的路徑。下列範例會從 `~/.ssh/id_rsa` 載入私密金鑰：
 	>
 	> `ssh -i ~/.ssh/id_rsa USERNAME@CLUSTERNAME-ssh.azurehdinsight.net`
 
@@ -390,4 +390,4 @@
 
 	hadoop jar hbaseapp-1.0-SNAPSHOT.jar com.microsoft.examples.DeleteTable
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

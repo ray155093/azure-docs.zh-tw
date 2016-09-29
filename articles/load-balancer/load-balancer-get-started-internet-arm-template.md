@@ -1,6 +1,6 @@
-<properties 
+<properties
    pageTitle="使用範本在資源管理員中建立網際網路面向的負載平衡器 | Microsoft Azure"
-   description="了解如何使用 ARM 範本在資源管理員中建立網際網路面向的負載平衡器"
+   description="了解如何使用範本在資源管理員中建立網際網路面向的負載平衡器"
    services="load-balancer"
    documentationCenter="na"
    authors="sdwheeler"
@@ -8,7 +8,7 @@
    editor=""
    tags="azure-resource-manager"
 />
-<tags  
+<tags
    ms.service="load-balancer"
    ms.devlang="na"
    ms.topic="article"
@@ -17,7 +17,7 @@
    ms.date="02/09/2016"
    ms.author="sewhee" />
 
-# 開始使用 ARM 範本建立網際網路面向的負載平衡器
+# 開始使用範本建立網際網路對向負載平衡器
 
 [AZURE.INCLUDE [load-balancer-get-started-internet-arm-selectors-include.md](../../includes/load-balancer-get-started-internet-arm-selectors-include.md)]
 
@@ -28,13 +28,13 @@
 
 [AZURE.INCLUDE [load-balancer-get-started-internet-scenario-include.md](../../includes/load-balancer-get-started-internet-scenario-include.md)]
 
-## 使用按一下即部署來部署 ARM 範本
+## 使用按一下即部署來部署範本
 
 公用儲存機制中可用的範例範本會使用一個包含預設值的參數檔案，這些預設值可用來產生上述案例。若要使用「按一下即部署」來部署此範本，請依循[此連結](http://go.microsoft.com/fwlink/?LinkId=544801)，按一下 [部署至 Azure]，視情況取代預設參數值，再依循入口網站中的指示。
 
-## 使用 PowerShell 部署 ARM 範本
+## 使用 PowerShell 部署範本
 
-若要使用 PowerShell 部署您下載的 ARM 範本，請依照下列步驟執行。
+若要使用 PowerShell 部署您下載的範本，請依照下列步驟執行。
 
 1. 如果您從未用過 Azure PowerShell，請參閱[如何安裝和設定 Azure PowerShell](../../articles/powershell-install-configure.md)，並遵循其中的所有指示登入 Azure，然後選取您的訂用帳戶。
 
@@ -42,13 +42,13 @@
 
 		New-AzureRmResourceGroupDeployment -Name TestRG -Location uswest `
 		    -TemplateFile 'https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-2-vms-loadbalancer-lbrules/azuredeploy.json' `
-		    -TemplateParameterFile 'https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-2-vms-loadbalancer-lbrules/azuredeploy.parameters.json'	
+		    -TemplateParameterFile 'https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-2-vms-loadbalancer-lbrules/azuredeploy.parameters.json'
 
-## 使用 Azure CLI 部署 ARM 範本
+## 使用 Azure CLI 部署範本
 
-若要使用 Azure CLI 部署 ARM 範本，請依照下列步驟執行。
+若要使用 Azure CLI 部署範本，請依照下列步驟執行。
 
-1. 如果您從未用過 Azure CLI，請參閱[安裝和設定 Azure CLI](../../articles/xplat-cli-install.md)，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶。
+1. 如果您從未使用過 Azure CLI，請參閱[安裝和設定 Azure CLI](../../articles/xplat-cli-install.md)，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶為止。
 2. 執行 **azure config mode** 命令，以切換為資源管理員模式，如下所示。
 
 		azure config mode arm
@@ -70,4 +70,4 @@
 
 [設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

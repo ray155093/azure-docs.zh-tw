@@ -3,7 +3,7 @@
 	description="如何移轉至 HDInsight 叢集的 Azure Resource Manager 開發工具"
 	services="hdinsight"
 	editor="cgronlun"
-	manager="paulettm"
+	manager="jhubbard"
 	authors="nitinme"
 	documentationCenter=""/>
 
@@ -33,7 +33,7 @@ Azure CLI 提供用來搭配使用 Azure Service Management (ASM) 與 HDInsight 
 * `azure hdinsight cluster create` - 建立新的 HDInsight 叢集
 * `azure hdinsight cluster delete` - 刪除現有的 HDInsight 叢集
 * `azure hdinsight cluster show` - 顯示現有叢集的相關資訊
-* `azure hdinsight cluster list` - 列出用於您 Azure 訂用帳戶的 HDInsight 叢集
+* `azure hdinsight cluster list` - 列出適用於您 Azure 訂用帳戶的 HDInsight 叢集
 
 使用 `-h` 切換參數來檢查每個命令可用的參數和切換參數。
 
@@ -137,11 +137,11 @@ Azure PowerShell ARM Cmdlet 可與 ASM Cmdlet 並存安裝。來自兩種模式�
 下列是只在 ARM 模式中使用的新 Cmdlet。
 
 **指令碼動作相關的 Cmdlet：**
-- **Get-AzureRmHDInsightPersistedScriptAction**︰取得叢集的持續性指令碼動作，並依時間先後順序列出，或取得有關指定持續性指令碼動作的詳細資料。 
-- **Get AzureRmHDInsightScriptActionHistory**︰ 取得叢集的指令碼動作記錄，並依反向的時間先後順序列出，或取得有關先前執行指令碼動作的詳細資料。 
+- **Get-AzureRmHDInsightPersistedScriptAction**︰取得叢集的持續性指令碼動作，並依時間先後順序列出，或取得有關指定持續性指令碼動作的詳細資料。
+- **Get AzureRmHDInsightScriptActionHistory**︰ 取得叢集的指令碼動作記錄，並依反向的時間先後順序列出，或取得有關先前執行指令碼動作的詳細資料。
 - **Remove-AzureRmHDInsightPersistedScriptAction**︰自 HDInsight 叢集移除持續性指令碼動作。
 - **Set-AzureRmHDInsightPersistedScriptAction**︰將先前執行的指令碼動作設定為持續性指令碼動作。
-- **Submit-AzureRmHDInsightScriptAction**︰將新的指令碼動作提交至 Azure HDInsight 叢集。 
+- **Submit-AzureRmHDInsightScriptAction**︰將新的指令碼動作提交至 Azure HDInsight 叢集。
 
 如需關於其他使用方式的詳細資訊，請參閱[使用指令碼動作自訂以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
 
@@ -375,4 +375,4 @@ Azure PowerShell ARM Cmdlet 可與 ASM Cmdlet 並存安裝。來自兩種模式�
 
 		client.Clusters.Delete(resourceGroup, dnsname);
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0914_2016-->

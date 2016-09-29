@@ -11,14 +11,14 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="06/20/2016" 
+    ms.date="09/09/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Workday 整合
   
 本教學課程的目的是要示範 Azure 與 Workday 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
--   有效的 Azure 訂閱
+-   有效的 Azure 訂用帳戶
 -   Workday 中的租用戶
   
 本教學課程中說明的案例由下列建置組塊組成：
@@ -48,7 +48,7 @@
 
 4.  若要開啟 [應用程式庫]，請按一下 [新增應用程式]，然後按一下 [新增應用程式讓我的組織使用]。
 
-    ![欲執行動作](./media/active-directory-saas-workday-tutorial/IC700995.png "您要如何處理？")
+    ![欲執行動作](./media/active-directory-saas-workday-tutorial/IC700995.png "欲執行動作")
 
 5.  在**搜尋方塊**中，輸入 **Workday**。
 
@@ -64,7 +64,7 @@
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 **Workday** 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
+1.  在 [Workday] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-workday-tutorial/IC782920.png "設定單一登入")
 
@@ -76,13 +76,13 @@
 
     ![設定應用程式 URL](./media/active-directory-saas-workday-tutorial/IC782957.png "設定應用程式 URL")
 
-	a.在 [登入 URL] 文字方塊中，使用下列模式輸入您的使用者用來登入 Workday 的 URL：`https://impl.workday.com/<tenant>/login-saml2.htmld`
+	a.在 [登入 URL] 文字方塊中，使用下列模式輸入使用者用來登入 Workday 的 URL：`https://impl.workday.com/<tenant>/login-saml2.htmld`
 
 	b.在 [Workday 回覆 URL] 文字方塊中，使用下列模式輸入 Workday 回覆 URL：`https://impl.workday.com/<tenant>/login-saml.htmld`
 
-	>[AZURE.NOTE] 您的回覆 URL 必須有子網域 (例如：www、wd2、wd3、wd3-impl、wd5、wd5-impl)。使用「**http://www.myworkday.com*」這類網域有效，但「**http://myworkday.com*」這類網域則無效。
+	>[AZURE.NOTE] 您的回覆 URL 必須有子網域 (例如：www、wd2、wd3、wd3-impl、wd5、wd5-impl)。使用 "http://www.myworkday.com*" 這類網域有效，但 "http://myworkday.com*" 這類網域則無效。
  
-4.  在 [在 Workday 設定單一登入] 頁面上，按一下 [下載憑證] 以下載您的憑證，然後將憑證檔案儲存在您的電腦中。
+4.  在 [設定在 Workday 單一登入] 頁面上，若要下載您的憑證，請按一下 [下載憑證]，然後將憑證檔案儲存在您的電腦上。
 
     ![設定單一登入](./media/active-directory-saas-workday-tutorial/IC782922.png "設定單一登入")
 
@@ -108,7 +108,7 @@
 
 	b.在 [登入重新導向 URL] 文字方塊和 [行動裝置重新導向 URL] 文字方塊中，輸入您在 Azure 傳統入口網站的 [設定應用程式 URL] 頁面上輸入的 [Workday 租用戶 URL]。
     
-	c.在 Azure 傳統入口網站中的 [在 Workday 設定單一登入] 對話方塊頁面上，複製 [單一登出服務 URL]，然後將它貼至 [登出重新導向 URL] 文字方塊中。
+	c.在 Azure 傳統入口網站的 [設定在 Workday 單一登入] 對話方塊頁面上，複製 [單一登出服務 URL]，然後將它貼到 [登出重新導向 URL] 文字方塊中。
 
 	d.在 [環境] 文字方塊中輸入環境名稱。
 
@@ -132,14 +132,14 @@
 
 	a.在 [身分識別提供者名稱] 文字方塊中，輸入提供者名稱 (例如：*SPInitiatedSSO*)。
 
-    b.在 Azure 傳統入口網站中的 [在 Workday 設定單一登入] 對話方塊頁面上，複製 [身分識別提供者 URL] 值，然後將它貼入 [簽發者] 文字方塊。
+    b.在 Azure 傳統入口網站的 [設定在 Workday 單一登入] 對話方塊頁面上，複製 [識別提供者 ID] 值，然後將它貼到 [簽發者] 文字方塊中。
 
     c.選取 [啟用 Workday 啟始的登出]。
 
-    d.在 Azure 傳統入口網站中的 [在 Workday 設定單一登入] 對話方塊頁面上，複製 [單一登出服務 URL] 值，然後將它貼至 [登出要求 URL] 文字方塊中。
+    d.在 Azure 傳統入口網站的 [設定在 Workday 單一登入] 對話方塊頁面上，複製 [單一登出服務 URL] 值，然後將它貼到 [登出要求 URL] 文字方塊中。
 
 
-    e.按一下 [身分識別提供者公開金鑰憑證]，然後按一下 [建立]。
+    e.按一下 [識別提供者公開金鑰憑證]，然後按一下 [建立]。
 
 	![建立](./media/active-directory-saas-workday-tutorial/IC782928.png "建立")
 
@@ -162,7 +162,7 @@
 
 	d.從您下載的憑證建立 **Base-64 編碼**檔案。
 
-	>[AZURE.TIP] 如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
+	>[AZURE.TIP] 如需詳細資料，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
 
 	e.在記事本中開啟 base-64 編碼的憑證，然後複製其內容。
     
@@ -180,7 +180,7 @@
 
 	c.選取 [啟用 SP 啟始的 SAML 驗證]。
 
-	d.在 Azure 傳統入口網站中的 [在 Workday 設定單一登入] 對話方塊頁面上，複製 [單一登入服務 URL] 值，然後將它貼入 [IdP SSO 服務 URL] 文字方塊中。
+	d.在 Azure 傳統入口網站的 [設定在 Workday 單一登入] 對話方塊頁面上，複製 [單一登入服務 URL] 值，然後將它貼到 [IdP SSO 服務 URL] 文字方塊中。
      
 	e.選取 [不要壓縮 SP 起始的驗證要求]。
 
@@ -192,7 +192,7 @@
         
 	![OK](./media/active-directory-saas-workday-tutorial/IC782933.png "OK")
 
-12. 在 Azure 傳統入口網站的 [在 Workday 設定單一登入] 頁面上，按 [下一步]。
+12. 在 Azure 傳統入口網站的 [設定在 Workday 單一登入] 頁面上，按 [下一步]。
 
     ![設定單一登入](./media/active-directory-saas-workday-tutorial/IC782934.png "設定單一登入")
 
@@ -208,13 +208,13 @@
 
 ##指派使用者
   
-若要測試您的組態，您需要指派使用者，授予存取權給您想要允許其使用您的應用程式存取設定的 Azure AD 使用者。
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
 ###若要指派使用者給 Workday，請執行下列步驟：
 
 1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  在 **Workday** 應用程式整合頁面中，按一下 [指派使用者]。
+2.  在 [Workday] 應用程式整合頁面上，按一下 [指派使用者]。
 
     ![指派使用者](./media/active-directory-saas-workday-tutorial/IC782935.png "指派使用者")
 
@@ -224,4 +224,4 @@
   
 如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

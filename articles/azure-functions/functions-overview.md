@@ -21,7 +21,7 @@
    
 # Azure Functions 概觀
 
-Azure Functions 是可在雲端輕鬆執行程式碼片段或「函數」的解決方案。您可以只撰寫處理手邊問題所需的程式碼，而不需擔心要執行它的整個應用程式或基礎結構。這會讓開發更有生產力，而且您可以使用您選擇的開發語言，例如 C#、Node.js、Python 或 PHP。只需對您的程式碼執行的時間付費，並信任 Azure 視需要調整。
+Azure Functions 是可在雲端輕鬆執行程式碼片段或「函數」的解決方案。您可以只撰寫處理手邊問題所需的程式碼，而不需擔心要執行它的整個應用程式或基礎結構。這會讓開發更有生產力，而且您可以使用您選擇的開發語言，例如 C#、F#、Node.js、Python 或 PHP。只需對您的程式碼執行的時間付費，並信任 Azure 視需要調整。
 
 本主題提供 Azure Functions 的高階概觀。如果您想要直接進入正題並開始使用 Azure Functions，請從[建立您的第一個Azure Functions](functions-create-first-azure-function.md) 著手。如果您要尋找更多有關 Functions 的技術資訊，請參閱[開發人員參考](functions-reference.md)。
 
@@ -29,7 +29,7 @@ Azure Functions 是可在雲端輕鬆執行程式碼片段或「函數」的解�
 
 以下是 Azure Functions 的一些主要功能︰
     
-* **選擇的語言** - 使用 C#、Node.js、Python、F#、PHP、batch、bash、Java 或任何可執行檔撰寫函數。
+* **選擇的語言** - 使用 C#、F#、Node.js、Python、PHP、batch、bash、Java 或任何可執行檔撰寫函式。
 * **使用即付費價格模式** - 只對執行您的程式碼所花的時間付費。請參閱底下[價格](#pricing)一節中的「動態 App Service 方案」選項。
 * **自備相依性** - Functions 支援 NuGet 和 NPM，以便您使用您最愛的程式庫。
 * **整合式安全性** - 利用 OAuth 提供者 (如 Azure Active Directory、Facebook、Google、Twitter 和 Microsoft 帳戶) 保護 HTTP 觸發的函數。
@@ -87,4 +87,4 @@ Azure Functions 有兩種價格方案，選擇一個最適合您的需求的方�
 + [如何調整 Azure Functions](functions-scale.md) 討論 Azure Functions 可用的服務方案，包括動態服務方案，以及如何選擇正確的方案。
 + [深入了解 Azure App Service](../app-service/app-service-value-prop-what-is.md) Azure Functions 會利用 Azure App Service 平台執行核心功能，例如部署、環境變數和診斷。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0921_2016-->

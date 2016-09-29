@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="bradsev,wguo123"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun" />
 
 <tags
@@ -70,7 +70,7 @@ Azure Machine Learning Studio 可用來建置和部署預測模型。這是使�
 ## 準備 Azure Data Lake 的資料科學環境
 若要準備本逐步解說的資料科學環境，請建立下列資源︰
 
-- Azure Data Lake Store (ADLS) 
+- Azure Data Lake Store (ADLS)
 - Azure Data Lake Analytics (ADLA)
 - Azure Blob 儲存體帳戶
 - Azure Machine Learning Studio 帳戶
@@ -158,7 +158,7 @@ Azure Machine Learning Studio 可用來建置和部署預測模型。這是使�
 
 ### <a name="ingest"></a>資料擷取：從公用 Blob 讀取資料
 
-Azure Blob 中的資料位置是以 **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name** 來參考，可透過 **Extractors.Csv()** 來擷取。在下列指令碼中，以您自己的容器名稱和儲存體帳戶名稱來替換 wasb 位址中的 container_name@blob_storage_account_name。由於檔案名稱的格式相同，因此我們可以使用 **trip\_data\_{*}.csv** 來讀取全部 12 個車程檔案。
+Azure Blob 中的資料位置是以 **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name** **來參考，可透過 Extractors.Csv()** 來擷取。在下列指令碼中，以您自己的容器名稱和儲存體帳戶名稱來替換 wasb 位址中的 container_name@blob\_storage\_account\_name。由於檔案名稱的格式相同，因此我們可以使用 **trip\_data\_{*}.csv** 來讀取全部 12 個車程檔案。
 
 	///Read in Trip data
 	@trip0 =
@@ -181,7 +181,7 @@ Azure Blob 中的資料位置是以 **wasb://container_name@blob_storage_account
     FROM "wasb://container_name@blob_storage_account_name.blob.core.windows.net/nyctaxitrip/trip_data_{*}.csv"
     USING Extractors.Csv();
 
-由於第一列有標頭，我們必須移除標頭，並將資料行類型變更為適當的類型。我們可以使用 **swebhdfs://data_lake_storage_name.azuredatalakestorage.net/folder_name/file_name**_，將已處理的資料儲存至 Azure Data Lake Storage，或使用 **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name**，儲存至 Azure Blob 儲存體帳戶。
+由於第一列有標頭，我們必須移除標頭，並將資料行類型變更為適當的類型。我們可以使用 **swebhdfs://data_lake_storage_name.azuredatalakestorage.net/folder_name/file_name**_**，將已處理的資料儲存至 Azure Data Lake 儲存體，或使用 wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name**，儲存至 Azure Blob 儲存體帳戶。
 
 	// change data types
 	@trip =
@@ -213,7 +213,7 @@ Azure Blob 中的資料位置是以 **wasb://container_name@blob_storage_account
 	TO "wasb://container_name@blob_storage_account_name.blob.core.windows.net/demo_trip.csv"
 	USING Outputters.Csv();  
 
-同樣地，我們可以讀取費用資料集。以滑鼠右鍵按一下 Azure Data Lake Store，您可以選擇在 [Azure 入口網站] --> [資料總管] 或 Visual Studio 內的 [檔案總管] 中查看您的資料。
+同樣地，我們可以讀取費用資料集。以滑鼠右鍵按一下 [Azure Data Lake Store]，您可以選擇在 [Azure 入口網站] --> [資料總管] 或 Visual Studio 內的 [檔案總管] 中查看您的資料。
 
  ![10](./media/machine-learning-data-science-process-data-lake-walkthrough/10-data-in-ADL-VS.PNG)
 
@@ -470,8 +470,8 @@ Azure Blob 中的資料位置是以 **wasb://container_name@blob_storage_account
 
 我們將示範兩個可用的選項，讓您可將資料提取到要建置的 Azure Machine Learning
 
-- 在第一個選項中，您可以使用已寫入 Azure Blob 的取樣資料 (來自上述的**資料取樣**步驟)，然後使用 Python，從 Azure Machine Learning 建置並部署模型。 
-- 在第二個選項中，您會直接使用 Hive 查詢來查詢 Azure Data Lake 中的資料。此選項需要您建立新的 HDInsight 叢集，或使用現有的 HDInsight 叢集，其中 Hive 資料表指向 Azure Data Lake Storage 中的 NY 計程車資料。以下我們討論這兩個選項。 
+- 在第一個選項中，您可以使用已寫入 Azure Blob 的取樣資料 (來自上述的**資料取樣**步驟)，然後使用 Python，從 Azure Machine Learning 建置並部署模型。
+- 在第二個選項中，您會直接使用 Hive 查詢來查詢 Azure Data Lake 中的資料。此選項需要您建立新的 HDInsight 叢集，或使用現有的 HDInsight 叢集，其中 Hive 資料表指向 Azure Data Lake Storage 中的 NY 計程車資料。以下我們討論這兩個選項。
 
 ## 選項 1︰使用 Python 建置和部署機器學習服務模型
 
@@ -504,7 +504,7 @@ Azure Blob 中的資料位置是以 **wasb://container_name@blob_storage_account
 
 ### 從 blob 讀取資料
 
-- 連接字串   
+- 連接字串
 
 		CONTAINERNAME = 'test1'
 		STORAGEACCOUNTNAME = 'XXXXXXXXX'
@@ -596,7 +596,7 @@ Azure Blob 中的資料位置是以 **wasb://container_name@blob_storage_account
 
 我們希望機器學習服務模型在建置後開始運作。在此，我們以二元羅吉斯模型為例子。請確定本機電腦中的 scikit-learn 版本是 0.15.1。如果您使用 Azure ML Studio 服務，則不必擔心這一點。
 
-- 從 Azure ML Studio 設定中尋找您的工作區認證。在 Azure Machine Learning Studio 中，按一下 [設定] --> [名稱] --> [授權權杖]。 
+- 從 Azure ML Studio 設定中尋找您的工作區認證。在 Azure Machine Learning Studio 中，按一下 [設定] --> [名稱] --> [授權權杖]。
 
 	![c3](./media/machine-learning-data-science-process-data-lake-walkthrough/c3-workspace-id.PNG)
 
@@ -658,7 +658,7 @@ Azure Machine Learning Studio 可以直接從 Azure Data Lake Store 讀取資料
  ![21](./media/machine-learning-data-science-process-data-lake-walkthrough/21-Hive-Query-Editor-v2.PNG)
 
 
-貼上下列 Hive 指令碼來建立資料表。Azure Data Lake Store 中以這種方式參考資料來源的位置：**adl://data_lake_store_name.azuredatalakestore.net:443/folder_name/file_name**。
+貼上下列 Hive 指令碼來建立資料表。在 Azure Data Lake Store 中以這種方式參考資料來源的位置：**adl://data_lake_store_name.azuredatalakestore.net:443/folder_name/file_name**。
 
 	CREATE EXTERNAL TABLE nyc_stratified_sample
 	(
@@ -701,7 +701,7 @@ Azure Machine Learning Studio 可以直接從 Azure Data Lake Store 讀取資料
 
 現在，我們已準備好要建置和部署使用 Azure Machine Learning 來預測是否會支付小費的模型。分層範例資料已經備妥，可在這個二元分類 (有無小費) 問題中使用。使用多類別分類 (tip\_class) 和迴歸 (tip\_amount) 的預測模型也會使用 Azure Machine Learning Studio 來建置和部署，但是我們只會在此處示範如何使用二元分類模型來處理此案例。
 
-1. 使用「匯入資料」模組 (可從＜資料輸入和輸出＞一節取得) 將資料匯入 Azure ML 中。如需詳細資訊，請參閱[匯入資料模組](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/)參考頁面。
+1. 使用**匯入資料**模組 (可從**資料輸入和輸出**一節取得)，將資料匯入 Azure ML。如需詳細資訊，請參閱[匯入資料](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/)模組參考頁面。
 2. 在 [屬性] 面板中，選取 [Hive 查詢] 做為 [資料來源]。
 3. 將下列 Hive 指令碼貼到 [Hive 資料庫查詢] 編輯器中
 
@@ -741,4 +741,4 @@ Azure Machine Learning Studio 可以直接從 Azure Data Lake Store 讀取資料
 - [Team Data Science Process：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)
 - [在 Azure HDInsight 上使用 Spark 的資料科學程序概觀](machine-learning-data-science-spark-overview.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

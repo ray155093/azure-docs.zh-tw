@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="bradsev"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"  />
 
 <tags
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/10/2016"
-	ms.author="gokuma;bradsev" />
+	ms.date="09/12/2016"
+	ms.author="bradsev" />
 
 # 佈建 Linux 資料科學虛擬機器
 
@@ -61,10 +61,10 @@ Linux 資料科學虛擬機器可以大幅減輕這樣的負擔。使用它可�
 建立 Linux 資料科學虛擬機器執行個體的步驟如下：
 
 1.	瀏覽至 [Azure 入口網站](https://portal.azure.com/#create/microsoft-ads.linux-data-science-vmlinuxdsvm)上的虛擬機器清單。
-2.	 按一下 [建立] (在底部) 以進入精靈。![configure-data-science-vm](./media/machine-learning-data-science-linux-dsvm-intro/configure-linux-data-science-virtual-machine.png)
+2.	 按一下 [建立] \(在底部) 以進入精靈。![configure-data-science-vm](./media/machine-learning-data-science-linux-dsvm-intro/configure-linux-data-science-virtual-machine.png)
 3.	 下列各節提供精靈中每個步驟 (列舉於上圖的右邊) 的輸入，可用來建立 Microsoft 資料科學虛擬機器。以下是設定每個步驟所需的輸入：
 
-  a.**基本**：
+  	a.**基本**：
 
   - **名稱**：您建立的資料科學伺服器名稱。
   - **使用者名稱**：第一個帳戶登入識別碼。
@@ -73,21 +73,21 @@ Linux 資料科學虛擬機器可以大幅減輕這樣的負擔。使用它可�
   - **資源群組**：您可以建立新群組或使用現有的群組。
   - **位置**：選取最適合的資料中心。它通常是擁有您大部分資料的資訊中心，或是最接近您實際位置可進行最快速網路存取的資料中心。
 
-  b.**大小**：
+  	b.**大小**：
 
   - 選取其中一個符合您的功能性需求和成本條件約束的伺服器類型。選取 [檢視全部] 以查看更多 VM 大小的選項。
 
-  c.**設定**：
+  	c.**設定**：
 
   - **磁碟類型**：如果您偏好固態硬碟 (SSD)，請選擇 [進階]，否則請選擇 [標準]。
   - **儲存體帳戶**：您可以在訂用帳戶中建立新的 Azure 儲存體帳戶，或使用在精靈的**基本**步驟上選擇的相同位置中的現有儲存體帳戶。
   - **其他參數**：在大部分情況下只會使用預設值。若考慮使用非預設值，可將滑鼠停留在特定欄位的資訊連結上以取得說明。
 
-  d.**摘要**：
+  	d.**摘要**：
 
   - 請確認您輸入的所有資訊都正確無誤。
 
-  e.**購買**：
+  	e.**購買**：
 
   - 若要開始佈建，按一下 [購買]。會提供一個交易條款的連結。VM 除了計算您在 [大小] 步驟中所選擇的伺服器大小之外，不會收取任何其他費用。
 
@@ -340,8 +340,9 @@ Rattle (**R** **A**nalytical **T**ool **T**o **L**earn **E**asily) 會使用 GUI
 ## 後續步驟
 以下是如何繼續進行學習和探索的方式：
 
+* [Data science on the Linux Data Science Virtual Machine (Linux 資料科學虛擬機器上的資料科學)](machine-learning-data-science-linux-dsvm-walkthrough.md) 逐步解說會示範如何使用此處佈建的 Linux 資料科學 VM 來執行數個常見的資料科學工作。
 * 試試本文中所述的工具，在資料科學 VM 上探索各種資料科學工具。您也可以在虛擬機器內的殼層上執行 *dsvm-more-info*，以獲得關於 VM 上所安裝工具的基本簡介和詳細資訊的指標。
 * 了解如何使用 [Team Data Science Process](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)，以系統化方式建置端對端分析方案。
 * 請造訪 [Cortana Analytics Gallery](http://gallery.cortanaanalytics.com)，以取得使用 Cortana Analytics Suite 的機器學習和資料分析範例。
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

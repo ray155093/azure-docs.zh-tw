@@ -1,30 +1,30 @@
-<properties 
-	pageTitle="在五分鐘內開始使用 Azure 儲存體 | Microsoft Azure" 
-	description="使用 Azure 儲存體快速入門、Visual Studio 和 Azure 儲存體模擬器，快速掌握 Microsoft Azure Blob、資料表和佇列。在五分鐘內執行第一個 Azure 儲存體應用程式" 
-	services="storage" 
-	documentationCenter=".net" 
-	authors="tamram" 
-	manager="carmonm" 
+<properties
+	pageTitle="在五分鐘內開始使用 Azure 儲存體 | Microsoft Azure"
+	description="使用 Azure 儲存體快速入門、Visual Studio 和 Azure 儲存體模擬器，快速掌握 Microsoft Azure Blob、資料表和佇列。在五分鐘內執行第一個 Azure 儲存體應用程式"
+	services="storage"
+	documentationCenter=".net"
+	authors="tamram"
+	manager="carmonm"
 	editor="tysonn"/>
 
-<tags 
-	ms.service="storage" 
-	ms.workload="storage" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="dotnet" 
-	ms.topic="get-started-article" 
-	ms.date="07/21/2016"
-	ms.author="tamram"/>
+<tags
+	ms.service="storage"
+	ms.workload="storage"
+	ms.tgt_pltfrm="na"
+	ms.devlang="dotnet"
+	ms.topic="get-started-article"
+	ms.date="09/20/2016"
+	ms.author="dineshm;tamram"/>
 
-# 在五分鐘內開始使用 Azure 儲存體 
+# 在五分鐘內開始使用 Azure 儲存體
 
-## 概觀
+## Overview
 
 很容易就能開始使用 Azure 儲存體進行開發。本教學課程示範如何取得 Azure 儲存體應用程式，並快速執行。您可以使用 Azure SDK for .NET 隨附的「快速入門」範本。這些「快速入門」包含已就緒可執行的程式碼，示範一些基本的 Azure 儲存體程式設計案例。
 
 如果要在鑽研程式碼前深入了解 Azure 儲存體，請參閱[後續步驟](#next-steps)。
 
-## 先決條件
+## 必要條件
 
 開始之前，您需要下列先決條件：
 
@@ -38,7 +38,7 @@
 
 4. 您將需要 Azure 訂用帳戶和 Azure 儲存體帳戶。
 
-    - 若要取得 Azure 訂用帳戶，請參閱[免費試用版](https://azure.microsoft.com/pricing/free-trial/)、[購買選項](https://azure.microsoft.com/pricing/purchase-options/)和[會員優惠](https://azure.microsoft.com/pricing/member-offers/) (適用於 MSDN、Microsoft Partner Network、BizSpark 和其他 Microsoft 方案的成員)。
+    - 若要取得 Azure 訂用帳戶，請參閱[免費試用版](https://azure.microsoft.com/pricing/free-trial/)、[購買選項](https://azure.microsoft.com/pricing/purchase-options/)和[會員優惠](https://azure.microsoft.com/pricing/member-offers/) (適用於 MSDN、Microsoft 合作夥伴網路、BizSpark 和其他 Microsoft 方案的成員)。
     - 若要在 Azure 中建立儲存體帳戶，請參閱[如何建立儲存體帳戶](storage-create-storage-account.md#create-a-storage-account)。
 
 ## 針對雲端 Azure 儲存體執行第一個 Azure 儲存體應用程式
@@ -49,7 +49,7 @@
 2. 從 [檔案] 功能表，按一下 [新增專案]。
 3. 在 [新增專案] 對話方塊中，按一下 [已安裝] > [範本] > [Visual C#] > [雲端] > [快速入門] > [資料服務]。a.選擇下列其中一個範本：**Azure 儲存體：Blob**、**Azure 儲存體：檔案**、**Azure 儲存體：佇列**或 **Azure 儲存體：資料表**。b.確定已選取 [.NET Framework 4.5] 作為目標架構。
 	- 3\.c.指定您專案的名稱，並建立新的 Visual Studio 方案，如下所示：
-	
+
 	![Azure 快速入門][Image1]
 
 您可能想要在執行應用程式前檢閱原始程式碼。若要檢閱程式碼，請在 Visual Studio 中選取 [檢視] 功能表上的 [方案總管]。然後，按兩下 Program.cs 檔案。
@@ -78,7 +78,7 @@
 1. 啟動 Visual Studio。
 2. 從 [檔案] 功能表，按一下 [新增專案]。
 3. 在 [新增專案] 對話方塊中，按一下 [已安裝] > [範本] > [Visual C#] > [雲端] > [快速入門] > [資料服務]。a.選擇下列其中一個範本：**Azure 儲存體：Blob**、**Azure 儲存體：檔案**、**Azure 儲存體：佇列**或 **Azure 儲存體：資料表**。b.確定已選取 [.NET Framework 4.5] 作為目標架構。c.指定您專案的名稱，並建立新的 Visual Studio 方案，如下所示：
-	
+
 	![Azure 快速入門][Image1]
 
 4.	在 Visual Studio 中，選取 [檢視] 功能表上的 [方案總管]。如果您已經新增其中一個，請開啟 App.config 檔案，並註解化 Azure 儲存體帳戶的連接字串。然後取消註解化 Azure 儲存體模擬器的連接字串：
@@ -109,6 +109,5 @@
 * [Azure 儲存體服務 REST API](https://msdn.microsoft.com/library/azure/dd179355.aspx)
 
 [Image1]: ./media/storage-getting-started-guide/QuickStart.png
- 
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0921_2016-->

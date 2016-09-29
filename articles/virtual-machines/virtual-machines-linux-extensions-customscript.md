@@ -27,7 +27,30 @@
 
 在範本的資源區段中定義下列延伸模組資源
 
-   { "type": "Microsoft.Compute/virtualMachines/extensions", "name": "MyCustomScriptExtension", "apiVersion": "2015-05-01-preview", "location": "[parameters('location')]", "dependsOn": ["[concat('Microsoft.Compute/virtualMachines/',parameters('vmName'))]"], "properties": { "publisher": "Microsoft.OSTCExtensions", "type": "CustomScriptForLinux", "typeHandlerVersion": "1.2", "autoUpgradeMinorVersion": true "settings": { "fileUris": [ "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mongodb-on-ubuntu/mongo-install-ubuntu.sh" ], "commandToExecute": "sh mongo-install-ubuntu.sh" }, "protectedSettings": {} } }
+```json
+{
+  "type": "Microsoft.Compute/virtualMachines/extensions",
+  "name": "MyCustomScriptExtension",
+  "apiVersion": "2015-05-01-preview",
+  "location": "[parameters('location')]",
+  "dependsOn": [
+    "[concat('Microsoft.Compute/virtualMachines/',parameters('vmName'))]"
+  ],
+  "properties": {
+    "publisher": "Microsoft.OSTCExtensions",
+    "type": "CustomScriptForLinux",
+    "typeHandlerVersion": "1.2",
+    "autoUpgradeMinorVersion": true,
+    "settings": {
+      "fileUris": [
+        "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mongodb-on-ubuntu/mongo-install-ubuntu.sh"
+      ],
+      "commandToExecute": "sh mongo-install-ubuntu.sh"
+    },
+    "protectedSettings": {}
+  }
+}
+```
 
 在上述範例中，以您自己的設定取代檔案的 URL 和檔案名稱。
 
@@ -37,4 +60,4 @@
 
 * [Linux VM 上的自訂指令碼擴充功能](https://github.com/Azure/azure-quickstart-templates/blob/b1908e74259da56a92800cace97350af1f1fc32b/mongodb-on-ubuntu/azuredeploy.json/)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0914_2016-->

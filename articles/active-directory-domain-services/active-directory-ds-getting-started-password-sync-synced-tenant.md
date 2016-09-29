@@ -13,30 +13,29 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="09/07/2016"
+	ms.date="09/20/2016"
 	ms.author="maheshu"/>
 
-# Azure AD 網域服務 (預覽) - 啟用 Azure AD 網域服務的密碼同步處理
+# 啟用 Azure AD 網域服務的密碼同步處理
+在先前工作中，您無法為 Azure AD 租用戶啟用 Azure AD 網域服務。下一個工作是啟用 Azure AD 網域服務的密碼同步處理。設定認證同步處理後，使用者即可使用他們的公司認證來登入受管理的網域。
 
-## 工作 5︰為同步處理的 Azure AD 租用戶啟用 AAD 網域服務的密碼同步處理
-一旦您已針對 Azure AD 目錄啟用 Azure AD 網域服務之後，下一個工作就是啟用 Azure AD 網域服務的密碼同步處理。這麼做之後，使用者可以使用他們的公司認證來登入網域。
-
-所涉及的步驟會根據組織擁有僅限雲端的 Azure AD 目錄，或已設定為使用 Azure AD Connect 來與內部部署目錄同步處理而有所不同。
+根據組織有僅限雲端的 Azure AD 租用戶，或已設定為使用 Azure AD Connect 來與內部部署目錄同步處理，所需的步驟會有所不同。
 
 <br>
 
 > [AZURE.SELECTOR]
-- [僅限雲端的 Azure AD 目錄](active-directory-ds-getting-started-password-sync.md)
-- [同步處理的 Azure AD 目錄](active-directory-ds-getting-started-password-sync-synced-tenant.md)
+- [僅限雲端的 Azure AD 租用戶](active-directory-ds-getting-started-password-sync.md)
+- [已同步處理的 Azure AD 租用戶](active-directory-ds-getting-started-password-sync-synced-tenant.md)
 
 <br>
 
-### 同步處理的租用戶 - 能夠將 NTLM 和 Kerberos 認證雜湊同步處理到 Azure AD
+
+## 工作 5︰為同步處理的 Azure AD 租用戶啟用 AAD 網域服務的密碼同步處理
 已同步處理的 Azure AD 租用戶會設定為使用 Azure AD Connect 來與您組織的內部部署目錄同步處理。根據預設，Azure AD Connect 不會將 NTLM 和 Kerberos 認證雜湊同步處理到 Azure AD。若要使用 Azure AD 網域服務，您需要設定 Azure AD Connect 以同步處理 NTLM 和 Kerberos 驗證所需的認證雜湊。下列步驟能夠將必要的認證雜湊同步處理到 Azure AD 租用戶。
 
-#### 安裝或更新 Azure AD Connect
 
-您必須在已加入網域的電腦上安裝建議的最新 Azure AD Connect 版本。如果您目前已設定 Azure AD Connect 的執行個體，則必須加以更新才能使用最新版的 Azure AD Connect。若要避免已知問題/錯誤可能已經修復，請確定您使用的是最新的 Azure AD Connect 版本。
+### 安裝或更新 Azure AD Connect
+在已加入網域的電腦上安裝建議的最新 Azure AD Connect 版本。如果您目前已設定 Azure AD Connect 的執行個體，則必須加以更新才能使用最新版的 Azure AD Connect。若要避免已知問題/錯誤可能已經修復，請確定您使用的是最新的 Azure AD Connect 版本。
 
 **[下載 Azure AD Connect](http://www.microsoft.com/download/details.aspx?id=47594)**
 
@@ -47,8 +46,7 @@
 Azure AD Connect 的安裝指示可於下列文章中取得：[開始使用 Azure AD Connect](../active-directory/active-directory-aadconnect.md)
 
 
-#### 強制執行與 Azure AD 的完整密碼同步處理
-
+### 能夠將 NTLM 和 Kerberos 認證雜湊同步處理到 Azure AD
 在每個 AD 樹系上執行下列 PowerShell 指令碼，以強制執行完整密碼同步處理，並能夠讓所有內部部署使用者的密碼雜湊同步處理到 Azure AD 租用戶。此指令碼能夠讓 NTLM/Kerberos 驗證所需的認證雜湊同步處理到 Azure AD 租用戶。
 
 ```
@@ -80,4 +78,4 @@ Set-ADSyncAADPasswordSyncConfiguration -SourceConnector $adConnector -TargetConn
 
 - [將 Red Hat Enterprise Linux 虛擬機器加入 Azure AD 網域服務受管理的網域](active-directory-ds-admin-guide-join-rhel-linux-vm.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->

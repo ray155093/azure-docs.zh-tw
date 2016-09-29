@@ -4,7 +4,7 @@
 	services="machine-learning"
 	documentationCenter=""
 	authors="garyericson"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -127,7 +127,8 @@
 
 ## 測試 Web 服務
 
-**測試傳統 Web 服務** 在 [儀表板] 頁面上，按一下 [預設端點] 下的 [測試] 按鈕。即會顯示對話方塊，要求您提供服務的輸入資料。這些就是在原始的德國信用風險資料集中出現的資料行。
+**測試傳統 Web 服務**
+在 [儀表板] 頁面上，按一下 [預設端點] 下的 [測試] 按鈕。即會顯示對話方塊，要求您提供服務的輸入資料。這些就是在原始的德國信用風險資料集中出現的資料行。
 
 輸入一組資料，然後按一下 [確定]。
 
@@ -200,4 +201,4 @@
 [two-class-support-vector-machine]: https://msdn.microsoft.com/library/azure/12d8479b-74b4-4e67-b8de-d32867380e20/
 [project-columns]: https://msdn.microsoft.com/zh-TW/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0914_2016-->

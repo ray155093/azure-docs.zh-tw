@@ -4,7 +4,7 @@
    services="hdinsight"
    documentationCenter=".net"
    authors="Blackmist"
-   manager="paulettm"
+   manager="jhubbard"
    editor="cgronlun"/>
 
 <tags
@@ -18,7 +18,7 @@
 
 #在 HDInsight 中使用 .NET SDK for Hadoop 執行 Pig 工作
 
-[AZURE.INCLUDE [Pig 選取器](../../includes/hdinsight-selector-use-pig.md)]
+[AZURE.INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
 
 本文件提供使用 .NET SDK for Hadoop 將 Pig 工作提交至 HDInsight 叢集上的 Hadoop 的範例。
 
@@ -32,7 +32,7 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 
 ##<a id="prereq"></a>必要條件
 
-若要完成這篇文章中的步驟，您需要下列項目。
+若要完成本文中的步驟，您需要下列項目。
 
 * Azure HDInsight (HDInsight 上的 Hadoop) 叢集 (Windows 或 Linux 型)
 
@@ -40,23 +40,23 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 
 ##<a id="certificate"></a>建立管理憑證
 
-若要向 Azure HDInsight 驗證應用程式，您必須建立自我簽署憑證、將它安裝在您的開發工作站上，同時將它上傳至您的 Azure 訂閱。
+若要向 Azure HDInsight 驗證應用程式，您必須建立自我簽署憑證、將它安裝在您的開發工作站上，同時將它上傳至您的 Azure 訂用帳戶。
 
 如需如何執行這項作業的指示，請參閱[建立自我簽署憑證](http://go.microsoft.com/fwlink/?LinkId=511138)。
 
 > [AZURE.NOTE] 建立憑證時，請一定要記下您使用的易記名稱，供稍後使用。
 
-##<a id="subscriptionid"></a>尋找訂閱識別碼
+##<a id="subscriptionid"></a>尋找訂用帳戶 ID
 
-每個 Azure 訂閱都是透過 GUID 值 (稱為訂閱識別碼) 予以識別。請使用下列步驟來尋找此值。
+每個 Azure 訂用帳戶都是透過 GUID 值 (稱為訂用帳戶 ID) 予以識別。請使用下列步驟來尋找此值。
 
 1. 瀏覽 [Azure 管理主控台](https://manage.windowsazure.com/)。
 
 2. 從入口網站左側的列中，選取 [**設定**]。
 
-3. 在頁面右側上所呈現的資訊中，找出您要使用的訂閱，並記下 [**訂閱識別碼**] 資料欄中的值。
+3. 在頁面右側上所呈現的資訊中，找出您要使用的訂用帳戶，並記下 [訂用帳戶 ID] 欄中的值。
 
-儲存訂閱識別碼，供稍後使用。
+儲存訂用帳戶 ID，供稍後使用。
 
 ##<a id="create"></a>建立應用程式
 
@@ -162,4 +162,4 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

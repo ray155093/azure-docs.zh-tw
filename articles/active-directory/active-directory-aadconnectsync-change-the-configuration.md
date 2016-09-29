@@ -35,7 +35,7 @@
 底部有可供您處理選取的同步處理規則的按鈕。[編輯] 和 [刪除] 會如您預期般執行。[匯出] 會產生 PowerShell 指令碼以便重新建立同步處理規則。此程序可讓您將同步處理規則從一部伺服器移到另一部伺服器。
 
 ## 建立您的第一個自訂規則
-最常見的變更是屬性流程的變更。來源目錄中的資料可能不會以您想要的方式出現在 Azure AD 中。在本節的範例中，您要確保使用者的名稱一律為**適當的大小寫**。
+最常見的變更是屬性流程的變更。您來源目錄中的資料可能不會與 Azure AD 中的一樣。在本節的範例中，您要確保使用者的名稱一律為**適當的大小寫**。
 
 ### 停用排程器
 [排程器](active-directory-aadconnectsync-feature-scheduler.md)預設會每隔 30 分鐘執行一次。您要確保在您進行變更時，排程器未啟動，並疑難排解您的新規則。若要暫時停用排程器，請啟動 PowerShell，然後執行 `Set-ADSyncScheduler -SyncCycleEnabled $false`
@@ -134,4 +134,4 @@ Active Directory 中的某些屬性在結構描述中是多重值，但是在 [A
 - [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
 - [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0914_2016-->

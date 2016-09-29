@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/14/2016"
+	ms.date="09/11/2016"
 	ms.author="nisoneji"/>
 
 
@@ -35,7 +35,7 @@ Azure Site Recovery 中的 InMage Scout 可提供內部部署 VMware 網站之�
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 按一下 [資料服務] > [復原服務]，然後按一下 [Site Recovery 保存庫]。
 3. 按一下 [新建] > [快速建立]。
-4. 在 [名稱] 中，輸入保存庫的易記識別名稱。
+4. 在 [**名稱**] 中，輸入保存庫的易記識別名稱。
 5. 在 [**區域**] 中，選取保存庫的地理區域。若要查看支援的地區，請參閱 [Azure Site Recovery 定價](https://azure.microsoft.com/pricing/details/site-recovery/)。
 
 檢查狀態列，以確認是否順利建立保存庫。保存庫在主要 [復原服務] 頁面上會列為 [使用中]。
@@ -164,4 +164,4 @@ Update 1 包含下列錯誤修正和新功能：
 
 若有任何問題，請造訪 [Azure Recovery Services 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) (英文)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0914_2016-->

@@ -11,7 +11,7 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="06/21/2016" 
+    ms.date="09/11/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 ThousandEyes 整合
@@ -20,8 +20,8 @@
   
 本教學課程中說明的案例假設您已經具有下列項目：
 
--   有效的 Azure 訂閱
--   啟用 ThousandEyes 單一登入的訂用帳戶
+-   有效的 Azure 訂用帳戶
+-   已啟用 ThousandEyes 單一登入功能的訂用帳戶
   
 完成本教學課程之後，或是使用 AAD 存取面板，您指派給 ThousandEyes 存取的 AAD 使用者就能夠單一登入您 ThousandEyes 公司網站 (服務提供者起始登入) 的應用程式。
 
@@ -52,9 +52,9 @@
 
     ![新增應用程式](./media/active-directory-saas-thousandeyes-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-thousandeyes-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![從資源庫新增應用程式](./media/active-directory-saas-thousandeyes-tutorial/IC749322.png "從資源庫新增應用程式")
 
 6.  在 [搜尋方塊] 中，輸入 **ThousandEyes**。
 
@@ -70,7 +70,7 @@
 
 ###若要設定單一登入，請執行下列步驟：
 
-1.  在 Azure 傳統入口網站的 [ThousandEyes] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  在 Azure 傳統入口網站的 [ThousandEyes] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-thousandeyes-tutorial/IC790062.png "設定單一登入")
 
@@ -78,11 +78,11 @@
 
     ![設定單一登入](./media/active-directory-saas-thousandeyes-tutorial/IC790063.png "設定單一登入")
 
-3.  在 [設定應用程式 URL] 頁面的 [ThousandEyes 登入 URL] 文字方塊中，輸入使用者登入您 ThousandEyes 應用程式所使用的 URL (例如："**https://app.thousandeyes.com/login/sso*"))，然後按 [下一步]。
+3.  在 [設定應用程式 URL] 頁面的 [ThousandEyes 登入 URL] 文字方塊中，輸入使用者用來登入 ThousandEyes 應用程式的 URL (例如："https://app.thousandeyes.com/login/sso*")，然後按 [下一步]*。
 
     ![設定應用程式 URL](./media/active-directory-saas-thousandeyes-tutorial/IC790064.png "設定應用程式 URL")
 
-4.  於 [在 ThousandEyes 設定單一登入] 頁面上，按 [下載憑證] 以下載您的憑證，然後在本機電腦上儲存憑證檔案。
+4.  在 [設定在 ThousandEyes 單一登入] 頁面上，若要下載您的憑證，請按一下 [下載憑證]，然後將憑證檔案儲存在本機電腦上。
 
     ![設定單一登入](./media/active-directory-saas-thousandeyes-tutorial/IC790065.png "設定單一登入")
 
@@ -90,7 +90,7 @@
 
 6.  在頂端的功能表中，按一下 [設定]。
 
-    ![設定](./media/active-directory-saas-thousandeyes-tutorial/IC790066.png "設定")
+    ![Settings](./media/active-directory-saas-thousandeyes-tutorial/IC790066.png "Settings")
 
 7.  按一下 [帳戶]
 
@@ -105,10 +105,10 @@
     ![設定單一登入](./media/active-directory-saas-thousandeyes-tutorial/IC790069.png "設定單一登入")
 
     1.  選取 [啟用單一登入]。
-    2.  在 Microsoft Azure 傳統入口網站的 [在 ThousandEyes 設定單一登入] 頁面上，複製 [遠端登入 URL] 值，然後將它貼至 [登入頁面 URL] 文字方塊中。
-    3.  在 Microsoft Azure 傳統入口網站的 [在 ThousandEyes 設定單一登入] 頁面上，複製 [遠端登出 URL] 值，然後將它貼至 [登出頁面 URL] 文字方塊中。
-    4.  在 Microsoft Azure 傳統入口網站的 [在 ThousandEyes 設定單一登入] 頁面上，複製 [簽發者 URL] 值，然後將它貼至 [識別提供者簽發者] 文字方塊中。
-    5.  在 [識別提供者憑證] 按一下 [選擇檔案]，然後上傳您已從 Microsoft Azure 傳統入口網站下載的憑證。
+    2.  在 Microsoft Azure 傳統入口網站的 [設定在 ThousandEyes 單一登入] 頁面上，複製 [遠端登入 URL] 值，然後將它貼到 [登入頁面 URL] 文字方塊中。
+    3.  在 Microsoft Azure 傳統入口網站的 [設定在 ThousandEyes 單一登入] 頁面上，複製 [遠端登出 URL] 值，然後將它貼到 [登出頁面 URL] 文字方塊中。
+    4.  在 Microsoft Azure 傳統入口網站的 [設定在 ThousandEyes 單一登入] 頁面上，複製 [簽發者 URL] 值，然後將它貼到 [識別提供者簽發者] 文字方塊中。
+    5.  在 [識別提供者憑證] 中，按一下 [選擇檔案]，然後上傳您已從 Microsoft Azure 傳統入口網站下載的憑證。
     6.  按一下 [儲存]。
 
 10. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
@@ -125,7 +125,7 @@
 
 2.  按一下 [設定]。
 
-    ![設定](./media/active-directory-saas-thousandeyes-tutorial/IC790066.png "設定")
+    ![Settings](./media/active-directory-saas-thousandeyes-tutorial/IC790066.png "Settings")
 
 3.  按一下 [帳戶]。
 
@@ -154,7 +154,7 @@
 
 1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  在 [ThousandEyes] 應用程式整合頁面中，按一下 [指派使用者]。
+2.  在 [ThousandEyes] 應用程式整合頁面上，按一下 [指派使用者]。
 
     ![指派使用者](./media/active-directory-saas-thousandeyes-tutorial/IC790075.png "指派使用者")
 
@@ -162,6 +162,6 @@
 
     ![是](./media/active-directory-saas-thousandeyes-tutorial/IC767830.png "是")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->

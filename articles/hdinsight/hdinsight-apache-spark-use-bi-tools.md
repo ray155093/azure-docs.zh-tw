@@ -4,7 +4,7 @@
 	services="hdinsight" 
 	documentationCenter="" 
 	authors="nitinme" 
-	manager="paulettm" 
+	manager="jhubbard" 
 	editor="cgronlun"
 	tags="azure-portal"/>
 
@@ -36,7 +36,7 @@
 - Azure 訂用帳戶。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 - HDInsight Linux 上的 Apache Spark 叢集。如需指示，請參閱[在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 - 一台已安裝 Microsoft Spark ODBC 驅動程式的電腦 (HDInsight 上的 Spark 需要此電腦才能使用 Tableau)。您可以前往[這裡](http://go.microsoft.com/fwlink/?LinkId=616229)來安裝驅動程式。
-- BI 工具，例如 [Power BI](http://www.powerbi.com/) 或 [Tableau Desktop](http://www.tableau.com/products/desktop)。您可以從 [http://www.powerbi.com/](http://www.powerbi.com/) 取得 Power BI 的免費預覽訂用帳戶。
+- BI 工具，例如 [Power BI](http://www.powerbi.com/) 或 [Tableau Desktop](http://www.tableau.com/products/desktop)。您可以從 [http://www.powerbi.com/](http://www.powerbi.com/) 取得 Power BI 的免費預覽版訂用帳戶。
 
 ##<a name="hivetable"></a>將原始資料儲存成 Hive 資料表
 
@@ -241,4 +241,4 @@
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0914_2016-->

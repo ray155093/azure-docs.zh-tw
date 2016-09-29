@@ -3,7 +3,7 @@
 	description="本教學課程將逐步引導您使用 Azure 入口網站建立通道，以接收單一位元速率即時串流，並將其編碼為多位元速率串流。" 
 	services="media-services" 
 	documentationCenter="" 
-	authors="juliako,anilmur" 
+	authors="anilmur" 
 	manager="erikre" 
 	editor=""/>
 
@@ -14,7 +14,7 @@
 	ms.devlang="na" 
 	ms.topic="get-started-article"
 	ms.date="09/06/2016"
-	ms.author="juliako"/>
+	ms.author="juliako;juliako"/>
 
 
 #如何使用 Azure 媒體服務執行即時串流，以使用 Azure 入口網站建立多位元速率串流
@@ -183,7 +183,7 @@
 	
 	![createprogram](./media/media-services-portal-creating-live-encoder-enabled-channel/media-services-create-program.png)
 	
-	如果您保留 [立即發佈此事件] 的核取狀態，則事件會建立發佈 URL。
+	如果您保留 [立即發佈此即時事件] 的核取狀態，則事件會建立發佈 URL。
 	
 	只要準備好串流處理事件，即可按 [啟動]。
 
@@ -240,4 +240,4 @@
 
  
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0921_2016-->

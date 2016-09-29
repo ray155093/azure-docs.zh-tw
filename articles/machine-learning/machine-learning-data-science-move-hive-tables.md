@@ -4,7 +4,7 @@
 	services="machine-learning,storage" 
 	documentationCenter="" 
 	authors="bradsev"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun" />
 
 <tags 
@@ -19,26 +19,26 @@
  
 #建立並將資料從 Azure Blob 儲存體載入 Hive 資料表
 
-本主題顯示泛型 Hive 查詢，這類查詢可建立 Hive 資料表，並從 Azure Blob 儲存體載入資料。同時也會提供一些關於資料分割 Hive 資料表，以及使用最佳化單欄式資料列 (ORC) 格式來提升查詢效能的指引。
+本主題會顯示泛型 Hive 查詢，這類查詢可建立 Hive 資料表，並從 Azure Blob 儲存體載入資料。同時也會提供一些關於資料分割 Hive 資料表，以及使用最佳化單欄式資料列 (ORC) 格式來提升查詢效能的指引。
 
-此**功能表**所連結的主題說明如何將資料內嵌至目標環境，以在 Team Data Science Process (TDSP) 期間儲存和處理該資料。
+此**功能表**所連結的主題會說明如何將資料內嵌至目標環境，以在 Team Data Science Process (TDSP) 期間儲存和處理該資料。
 
 [AZURE.INCLUDE [cap-ingest-data-selector](../../includes/cap-ingest-data-selector.md)]
 
 
 ## 必要條件
-本文假設您已經：
+本文假設您擁有：
  
-* 建立 Azure 儲存體帳戶。如需指示，請參閱[建立 Azure 儲存體帳戶](../hdinsight-get-started.md#storage)。 
+* 建立 Azure 儲存體帳戶。如需指示，請參閱[建立 Azure 儲存體帳戶](../hdinsight-get-started.md#storage)。
 * 佈建含有 HDInsight 服務的自訂 Hadoop 叢集。如需指示，請參閱[自訂適用於進階分析的 Azure HDInsight Hadoop 叢集](machine-learning-data-science-customize-hadoop-cluster.md)。
-* 啟用叢集的遠端存取、登入，然後開啟 Hadoop 命令列主控台。如需指示，請參閱[存取 Hadoop 叢集的前端節點](machine-learning-data-science-customize-hadoop-cluster.md#headnode)。 
+* 啟用叢集的遠端存取、登入，然後開啟 Hadoop 命令列主控台。如需指示，請參閱[存取 Hadoop 叢集的前端節點](machine-learning-data-science-customize-hadoop-cluster.md#headnode)。
 
 ## 將資料上傳至 Azure Blob 儲存體
 如果您遵循[設定適用於進階分析的 Azure 虛擬機器](machine-learning-data-science-setup-virtual-machine.md)中所提供的指示建立了 Azure 虛擬機器，應該已將這個指令碼檔案下載至虛擬機器上的 *C:\\Users\\<使用者名稱>\\Documents\\Data Science Scripts* 目錄中。這些 Hive 查詢只要求您插入自己的資料結構描述，以及已準備好進行提交之適當欄位中的 Azure Blob 儲存體設定。
 
 我們假設 Hive 資料表的資料為**未壓縮的**表格格式，而且資料已上傳至 Hadoop 叢集所使用之儲存體帳戶的預設 (或其他) 容器。
 
-如果您想要使用「NYC 計程車車程資料」進行練習，則需要先下載 24 個 <a href="http://www.andresmh.com/nyctaxitrips/" target="_blank">NYC 計程車車程資料</a>檔案 (12 個車程檔案和 12 個費用檔案)，將所有檔案**解壓縮**成 .csv 檔案，然後將檔案上傳至[自訂適用於進階分析程序和技術的 Azure HDInsight Hadoop 叢集](machine-learning-data-science-customize-hadoop-cluster.md)主題中概述之程序所使用的 Azure 儲存體帳戶的預設 (或適當) 容器。請參閱此[頁面](machine-learning-data-science-process-hive-walkthrough.md#upload)，以了解將 .csv 檔案上傳至儲存體帳戶上之預設容器的程序。
+如果您想要使用「NYC 計程車車程資料」進行練習，則需要先下載 24 個 <a href="http://www.andresmh.com/nyctaxitrips/" target="_blank">NYC 計程車車程資料</a>檔案 (12 個車程檔案和 12 個費用檔案)，將所有檔案**解壓縮**成 .csv 檔案，然後將檔案上傳至[自訂適用於進階分析程序和技術的 Azure HDInsight Hadoop 叢集](machine-learning-data-science-customize-hadoop-cluster.md)主題中概述之程序所建立的 Azure 儲存體帳戶的預設 (或適當) 容器。請參閱此[頁面](machine-learning-data-science-process-hive-walkthrough.md#upload)，以了解將 .csv 檔案上傳至儲存體帳戶上之預設容器的程序。
 
 
 ## <a name="submit"></a>如何提交 Hive 查詢
@@ -154,12 +154,12 @@ Hive 查詢會在 [GitHub 存放庫](https://github.com/Azure/Azure-MachineLearn
 
 以下是使用者需要插入的欄位和其他設定的說明：
 
-- **&#60;資料庫名稱>**：使用者要建立之資料庫的名稱。如果使用者只想要使用預設資料庫，則可省略 *create database...* 查詢。 
+- **&#60;資料庫名稱>**：使用者要建立之資料庫的名稱。如果使用者只想要使用預設資料庫，則可省略 *create database...* 查詢。
 - **&#60;資料表名稱>**：使用者想要在指定資料庫內建立之資料表的名稱。如果使用者想要使用預設資料庫，可透過 *&#60;資料表名稱>* 直接參考資料表，而不需要使用 &#60;資料庫名稱>。
-- **&#60;欄位分隔符號>**：上傳至 Hive 資料表的資料檔中分隔欄位的分隔符號。 
-- **&#60;資料行分隔符號>**：用來分隔資料檔中各行的分隔符號。 
-- **&#60;儲存體位置>**：用來儲存 Hive 資料表資料的 Azure 儲存體位置。如果使用者未指定 *LOCATION &#60;儲存體位置>*，資料庫和資料表預設會儲存在 Hive 叢集之預設容器的 *hive/warehouse/* 目錄中。如果使用者想要指定儲存體位置，儲存體位置必須位於資料庫和資料表的預設容器內。這個位置必須是叢集之預設容器的相對位置，其格式為 *'wasb:///&#60;directory 1>/'* 或 *'wasb:///&#60;directory 1>/&#60;directory 2>/'* 等。執行查詢之後，系統會在預設容器內建立相對目錄。 
-- **TBLPROPERTIES("skip.header.line.count"="1")**：如果資料檔具有標頭行，使用者就必須在 *create table* 查詢的**結尾**處加入這個屬性。否則，載入的標頭行將做為資料表的記錄。如果資料檔不含標頭行，則可在查詢中省略此設定。 
+- **&#60;欄位分隔符號>**：上傳至 Hive 資料表的資料檔中分隔欄位的分隔符號。
+- **&#60;資料行分隔符號>**：用來分隔資料檔中各行的分隔符號。
+- **&#60;儲存體位置>**：用來儲存 Hive 資料表資料的 Azure 儲存體位置。如果使用者未指定 *LOCATION &#60;儲存體位置>*，資料庫和資料表預設會儲存在 Hive 叢集之預設容器的 *hive/warehouse/* 目錄中。如果使用者想要指定儲存體位置，儲存體位置必須位於資料庫和資料表的預設容器內。這個位置必須是叢集之預設容器的相對位置，其格式為 *'wasb:///&#60;directory 1>/'* 或 *'wasb:///&#60;directory 1>/&#60;directory 2>/'* 等。執行查詢之後，系統會在預設容器內建立相對目錄。
+- **TBLPROPERTIES("skip.header.line.count"="1")**：如果資料檔具有標頭行，使用者就必須在 *create table* 查詢的**結尾**處加入這個屬性。否則，載入的標頭行將做為資料表的記錄。如果資料檔不含標頭行，則可在查詢中省略此設定。
 
 ## <a name="load-data"></a>將資料載入至 Hive 資料表
 以下是將資料載入 Hive 資料表的 Hive 查詢。
@@ -245,4 +245,4 @@ Hive 查詢會在 [GitHub 存放庫](https://github.com/Azure/Azure-MachineLearn
 
 依照此程序執行之後，您應該會有含 ORC 格式之資料的資料表可供使用。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0914_2016-->
