@@ -46,7 +46,7 @@
 | **逐步部署** | 需要執行這些步驟，才能在生產環境中部署您的 StorSimple 裝置。 |
 | [步驟 1：建立新的服務](#step-1-create-a-new-service) | 設定雲端管理和 StorSimple 裝置的儲存體。*如果您現在已經有針對其他 StorSimple 裝置的服務，請略過此步驟*。 |
 | [步驟 2：取得服務註冊金鑰](#step-2-get-the-service-registration-key) | 使用此金鑰註冊並將 StorSimple 裝置與管理服務連接。 |
-| [步驟 3：透過 Windows PowerShell for StorSimple 設定和註冊裝置] \(step 3-configure-and-register-the-device-through-windows-powershell-for-storsimple) | 使用管理服務將裝置連線到您的網路並使用 Azure 註冊以完成設定。 |
+| [步驟 3：透過 Windows PowerShell for StorSimple 設定和註冊裝置](step 3-configure-and-register-the-device-through-windows-powershell-for-storsimple) | 使用管理服務將裝置連線到您的網路並使用 Azure 註冊以完成設定。 |
 | [步驟 4：完成最小量的裝置設定](#step-4-complete-the-minimum-device-setup)</br>選用：更新您的 StorSimple 裝置。 | 使用管理服務來完成裝置設定並啟用裝置以提供儲存體。 |
 | [步驟 5：建立磁碟區容器](#step-5-create-a-volume-container) | 建立容器以佈建磁碟區。磁碟區容器具有其中所含之所有磁碟區的儲存體帳戶、頻寬及加密設定。 |
 | [步驟 6：建立磁碟區](#step-6-create-a-volume) | 在您伺服器的 StorSimple 裝置上佈建儲存體磁碟區。 |

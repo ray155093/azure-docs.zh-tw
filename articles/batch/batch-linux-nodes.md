@@ -20,7 +20,7 @@
 
 您可以使用 Azure Batch 同時在 Linux 和 Windows 虛擬機器上執行平行計算工作負載。本文將詳細說明如何同時使用 [Batch Python][py_batch_package] 和 [Batch .NET][api_net] 用戶端程式庫，在 Batch 服務中建立 Linux 計算節點的集區。
 
-> [AZURE.NOTE] [Application packages]Linux 計算節點上目前不支援 (batch-application-packages.md)。
+> [AZURE.NOTE] Linux 計算節點上目前不支援 [Application packages](batch-application-packages.md)。
 
 ## 虛擬機器組態
 

@@ -44,7 +44,7 @@
 
 	A.按一下 [工具] ![工具按鈕](./media/billing-cannot-login-subscription/Toolsbutton.png) > [安全性] > [InPrivate 瀏覽]。
 
-	B.瀏覽至 [Azure 入口網站][]\(https://portal.azure.com) 或 [Azure 傳統入口網站][]\(https://manage.windowsazure.com)，然後登入入口網站。
+	B.瀏覽至 [Azure 入口網站](https://portal.azure.com) 或 [Azure 傳統入口網站](https://manage.windowsazure.com)，然後登入入口網站。
 
 ## 徵兆︰錯誤訊息「找不到任何訂閱」
 
