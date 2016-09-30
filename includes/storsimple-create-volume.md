@@ -29,5 +29,5 @@
 
 若要觀看影片示範如何建立 StorSimple 磁碟區，請按一下[這裡](https://azure.microsoft.com/documentation/videos/create-a-storsimple-volume/)。
 
-<!----HONumber=AcomDC_0211_2016-->
+<!----HONumber=AcomDC_0211_2016--->
 

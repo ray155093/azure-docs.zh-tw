@@ -81,4 +81,4 @@ Azure Functions 是事件驅動、依需求計算的體驗，可讓您建立以�
 
 [AZURE.INCLUDE [開始使用注意事項](../../includes/functions-get-help.md)]
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0622_2016--->

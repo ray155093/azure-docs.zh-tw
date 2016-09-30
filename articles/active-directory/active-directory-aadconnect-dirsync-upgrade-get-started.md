@@ -208,4 +208,4 @@ Azure AD Connect 概觀 | [整合內部部署身分識別與 Azure Active Direct
 使用自訂設定進行安裝 | [自訂 Azure AD Connect 安裝](active-directory-aadconnect-get-started-custom.md)
 用於安裝的帳戶 | [Azure AD Connect 帳戶與權限的詳細資訊](active-directory-aadconnect-accounts-permissions.md)
 
-<!----HONumber=AcomDC_0824_2016-->
+<!----HONumber=AcomDC_0824_2016--->

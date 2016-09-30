@@ -113,4 +113,4 @@ SQL Database 服務會評估使用量的歷史資料，並為您推薦一或多�
 - [使用 C# 管理 SQL Database 彈性集區](sql-database-elastic-pool-manage-csharp.md)
 - [使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0907_2016--->

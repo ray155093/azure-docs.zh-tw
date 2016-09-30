@@ -263,4 +263,4 @@ DataLakeStoreUploader 支援本機檔案 (或資料夾) 路徑與 Data Lake Stor
 - [Data Lake Store .NET SDK 參考](https://msdn.microsoft.com/library/mt581387.aspx)
 - [Data Lake Store REST 參考](https://msdn.microsoft.com/library/mt693424.aspx)
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0921_2016--->

@@ -182,4 +182,4 @@ Polybase 可讓您透過使用熟悉的 T-SQL 命令來運用不同來源的資�
 [Twitter]: https://twitter.com/hashtag/SQLDW
 [影片]: https://azure.microsoft.com/documentation/videos/index/?services=sql-data-warehouse
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0727_2016--->
