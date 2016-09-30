@@ -51,4 +51,4 @@
 ## 工作 5 - 啟用 Azure AD 網域服務的密碼同步處理
 下一個組態工作是[啟用 Azure AD 網域服務的密碼同步處理](active-directory-ds-getting-started-password-sync.md)。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0706_2016--->
