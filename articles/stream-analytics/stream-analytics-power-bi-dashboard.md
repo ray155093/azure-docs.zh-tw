@@ -5,7 +5,7 @@
 	services="stream-analytics"
 	documentationCenter=""
 	authors="jeffstokes72"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun"/>
 
 <tags
@@ -33,7 +33,7 @@ Azure 串流分析可讓您使用其中一種業界頂尖智慧型工具 Microso
 
 ## 建立 Azure 串流分析工作
 
-在 [Azure 傳統入口網站](https://manage.windowsazure.com) 中，依序按一下 [新增]、[資料服務]、[串流分析]、[快速建立]。
+在 [Azure 傳統入口網站]](https://manage.windowsazure.com) 中，依序按一下 [新增]、[資料服務]、[串流分析]、[快速建立]。
 
 指定下列值，然後按一下 [建立 Stream Analytics 工作]：
 
@@ -57,7 +57,7 @@ Azure 串流分析可讓您使用其中一種業界頂尖智慧型工具 Microso
 *	選取 [事件中樞]，然後按一下右鍵。
 *	在第三頁上輸入或選取下列值：
   *	**輸入別名** - 輸入此工作輸入的易記名稱。請注意，此名稱將用於後續的查詢。
-  * **事件中樞** - 如果您建立的事件中樞與 Stream Analytics 工作位於相同的訂閱中，請選取事件中樞所在的命名空間。
+  * **事件中樞** - 如果您建立的「事件中樞」與「串流分析」工作位於相同的訂用帳戶，請選取事件中樞所在的命名空間。
 *	如果事件中樞位於不同的訂閱中，請選取 [使用其他訂閱中的事件中樞]，並手動輸入 [服務匯流排命名空間]、[事件中樞名稱]、[事件中樞原則名稱]、[事件中樞原則索引鍵] 和 [事件中樞資料分割計數] 的資訊。
 
 > [AZURE.NOTE]	此範例會使用預設的 16 個資料分割數目。
@@ -166,8 +166,7 @@ Azure 串流分析可讓您使用其中一種業界頂尖智慧型工具 Microso
 
 Power BI 同時採用了並行處理和輸送量條件約束，如下所述：[https://powerbi.microsoft.com/pricing](https://powerbi.microsoft.com/pricing "Power BI 價格")
 
-由於這些 Power BI 本身以最自然的方式符合案例需求，其中 Azure 串流分析會大量降低資料載入的作業。
-我們建議使用 TumblingWindow 或 HoppingWindow 來確保資料推送最多為每秒推送 1 次，並且您的查詢會符合輸送量的要求範圍 – 您可以使用下列方程式，以秒為單位計算要提供給視窗的值：
+由於這些 Power BI 本身以最自然的方式符合案例需求，其中 Azure 串流分析會大量降低資料載入的作業。我們建議使用 TumblingWindow 或 HoppingWindow 來確保資料推送最多為每秒推送 1 次，並且您的查詢會符合輸送量的要求範圍 – 您可以使用下列方程式，以秒為單位計算要提供給視窗的值：
 
 ![equation1](./media/stream-analytics-power-bi-dashboard/equation1.png)
 
@@ -241,4 +240,4 @@ Power BI 同時採用了並行處理和輸送量條件約束，如下所述：[h
 [graphic12]: ./media/stream-analytics-power-bi-dashboard/12-stream-analytics-power-bi-dashboard.png
 [graphic13]: ./media/stream-analytics-power-bi-dashboard/13-stream-analytics-power-bi-dashboard.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0921_2016-->

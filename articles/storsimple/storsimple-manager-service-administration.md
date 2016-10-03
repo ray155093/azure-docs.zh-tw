@@ -12,12 +12,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="05/24/2016"
+   ms.date="09/21/2016"
    ms.author="alkohli" />
 
 # 使用 StorSimple Manager 服務管理 StorSimple 裝置
 
-## 概觀
+## Overview
 
 本文描述 StorSimple Manager 服務介面，包括如何與其連接、各種可用選項，以及可以透過此 UI 執行的特定工作流程連結。本指引適用於以下兩者；StorSimple 實體和虛擬裝置。
 
@@ -114,4 +114,4 @@ StorSimple Manager 服務 UI 的瀏覽階層顯示於下表。
 
 如果您不能解決問題，且您必須建立服務要求，請參閱：[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0921_2016-->

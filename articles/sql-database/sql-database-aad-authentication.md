@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="08/24/2016"
+   ms.date="09/16/2016"
    ms.author="rick.byham@microsoft.com"/>
 
 # 使用 Azure Active Directory 驗證連線到 SQL Database 或 SQL 資料倉儲
@@ -246,13 +246,9 @@ Azure Active Directory 驗證需要建立資料庫使用者做為自主資料庫
 
 如果您已使用 Azure Active Directory 認證從同盟網域登入 Windows，請使用這個方法。
 
-1. 啟動 Management Studio 或 Data Tools，並在 [連接到伺服器]\(或 [連接到 Database Engine]) 對話方塊的 [驗證] 方塊中，選取 [Active Directory 整合式驗證]。不需要密碼或沒有密碼可輸入，因為現有的認證將會在連接時出現。
+1. 啟動 Management Studio 或 Data Tools，並在 [連接到伺服器] (或 [連接到 Database Engine]) 對話方塊的 [驗證] 方塊中，選取 [Active Directory 整合式驗證]。不需要密碼或沒有密碼可輸入，因為現有的認證將會在連接時出現。![選取 AD 整合式驗證][11]
 
-	![選取 AD 整合式驗證][11]
-
-2. 按一下 [選項] 按鈕，然後在 [連接屬性] 頁面的 [連接到資料庫] 方塊中，輸入您想要連線的使用者資料庫名稱。
-
-	![選取資料庫名稱][13]
+2. 按一下 [選項] 按鈕，然後在 [連接屬性] 頁面的 [連接到資料庫] 方塊中，輸入您想要連線的使用者資料庫名稱。![選取資料庫名稱][13]
 
 
 #### 使用 Active Directory 密碼驗證進行連接
@@ -261,11 +257,9 @@ Azure Active Directory 驗證需要建立資料庫使用者做為自主資料庫
 
 如果您使用認證從未與 Azure 建立同盟的網域登入 Windows，或在使用 Azure AD 驗證時使用以初始或用戶端網域為基礎的 Azure AD，請使用這個方法。
 
-1. 啟動 Management Studio 或 Data Tools，並在 [連接到伺服器]\(或 [連接到 Database Engine]) 對話方塊的 [驗證] 方塊中，選取 [Active Directory 密碼驗證]。
+1. 啟動 Management Studio 或 Data Tools，並在 [連接到伺服器] (或 [連接到 Database Engine]) 對話方塊的 [驗證] 方塊中，選取 [Active Directory 密碼驗證]。
 2. 在 [使用者名稱] 方塊中，以 **username@domain.com** 格式輸入您的 Azure Active Directory 使用者名稱。這必須是來自 Azure Active Directory 的帳戶或來自與 Azure Active Directory 建立同盟之網域的帳戶。
-3. 在 [密碼] 方塊中，輸入您的 Azure Active Directory 帳戶或同盟網域帳戶的使用者密碼。
-
-	![選取 AD 密碼驗證][12]
+3. 在 [密碼] 方塊中，輸入您的 Azure Active Directory 帳戶或同盟網域帳戶的使用者密碼。![選取 AD 密碼驗證][12]
 
 4. 按一下 [選項] 按鈕，然後在 [連接屬性] 頁面的 [連接到資料庫] 方塊中，輸入您想要連線的使用者資料庫名稱。(請參閱上一個選項中的圖形。)
 
@@ -280,8 +274,7 @@ Azure Active Directory 驗證需要建立資料庫使用者做為自主資料庫
 
 *Azure\_AD\_principal\_name* 可以是 Azure AD 使用者的使用者主體名稱或 Azure AD 群組的顯示名稱。
 
-**範例：**
-建立代表 Azure AD 同盟或受管理網域使用者的自主資料庫使用者：
+**範例：**建立代表 Azure AD 同盟或受管理網域使用者的自主資料庫使用者：
 
 	CREATE USER [bob@contoso.com] FROM EXTERNAL PROVIDER;
 	CREATE USER [alice@fabrikam.onmicrosoft.com] FROM EXTERNAL PROVIDER;
@@ -319,7 +312,7 @@ Azure Active Directory 驗證支援下列方法，使用 Azure AD 身分識別�
 若要使用整合式驗證以及 Azure AD 身分識別連接至資料庫，資料庫連接字串中的驗證關鍵字必須設定為 Active Directory 整合式。下列 C# 程式碼範例會使用 ADO.NET。
 
 	string ConnectionString =
-	@"Data Source=n9lxnyuzhv.database.windows.net; Authentication=Active Directory Integrated;";
+	@"Data Source=n9lxnyuzhv.database.windows.net; Authentication=Active Directory Integrated; Initial Catalog=testdb;";
 	SqlConnection conn = new SqlConnection(ConnectionString);
 	conn.Open();
 
@@ -329,7 +322,7 @@ Azure Active Directory 驗證支援下列方法，使用 Azure AD 身分識別�
 若要使用整合式驗證和 Azure AD 身分識別來連接到資料庫，Authentication 關鍵字就必須設定為 Active Directory Password。連接字串必須包含使用者識別碼 (UID) 及密碼 (PWD) 關鍵字和值。下列 C# 程式碼範例會使用 ADO.NET。
 
 	string ConnectionString =
-	  @"Data Source=n9lxnyuzhv.database.windows.net; Authentication=Active Directory Password; UID=bob@contoso.onmicrosoft.com; PWD=MyPassWord!";
+	  @"Data Source=n9lxnyuzhv.database.windows.net; Authentication=Active Directory Password; Initial Catalog=testdb;  UID=bob@contoso.onmicrosoft.com; PWD=MyPassWord!";
 	SqlConnection conn = new SqlConnection(ConnectionString);
 	conn.Open();
 
@@ -388,4 +381,4 @@ sqlcmd -S Target_DB_or_DW.testsrv.database.windows.net -U bob@contoso.com -P MyA
 [12]: ./media/sql-database-aad-authentication/12connect-using-pw-auth.png
 [13]: ./media/sql-database-aad-authentication/13connect-to-db.png
 
-<!-----HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0921_2016-->

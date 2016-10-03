@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="storage-backup-recovery"
-	ms.date="05/03/2016"
+	ms.date="09/19/2016"
 	ms.author="raynew"/>
 
 
@@ -243,7 +243,7 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 		- **子網路**：針對虛擬機器上的每張網路介面卡，請選取 Azure 網路中的子網路，機器在容錯移轉之後應會連接到該子網路。
 		- **目標 IP 位址**：如果來源虛擬機器的網路介面卡已設定為使用靜態 IP 位址，則您可以指定目標虛擬機器的 IP 位址，以確保機器在容錯移轉後會有相同的 IP 位址。如果您未指定 IP 位址，則系統將在容錯移轉期間指派任何可用的位址。如果您指定了使用中的位址，則容錯移轉將會失敗。
 		
-        > [AZURE.NOTE] [Migration of networks](../resource-group-move-resources.md) 對於用於部署 Site Recovery 的網路，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶。
+        > [AZURE.NOTE] [Migration of networks]對於用於部署 Site Recovery 的網路，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶(../resource-group-move-resources.md)。
 
 		![設定虛擬機器屬性](./media/site-recovery-hyper-v-site-to-azure-classic/multiple-nic.png)
 
@@ -300,4 +300,4 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 
 在您的部署設定完成並開始執行之後，[深入了解](site-recovery-failover.md)容錯移轉。
 
-<!----HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0921_2016-->

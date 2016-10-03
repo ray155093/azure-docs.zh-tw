@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/01/2016"
+	ms.date="09/19/2016"
 	ms.author="jeedes"/>
 
 
@@ -33,7 +33,7 @@
 
 若要設定 Azure AD 與 Allocadia 整合，您需要下列項目：
 
-- 一個 Azure AD 訂用帳戶
+- Azure AD 訂用帳戶
 - 一個已啟用 Allocadia 單一登入功能的訂用帳戶
 
 
@@ -72,7 +72,7 @@
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![應用程式][4]
 
@@ -87,7 +87,7 @@
 ##  設定並測試 Azure AD 單一登入
 在本節中，您會以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Allocadia 搭配運作的 Azure AD 單一登入。
 
-若要讓單一登入能夠運作，Azure AD 必須知道 Allocadia 與 Azure AD 中互相對應的使用者。換句話說，必須在 Azure AD 使用者與 Allocadia 中的相關使用者之間建立連結關聯性。建立此連結關聯性的方法，就是指派 Azure AD 中 [使用者名稱] 的值做為 Allocadia 中 [Username] \(使用者名稱) 的值。
+若要讓單一登入能夠運作，Azure AD 必須知道 Allocadia 與 Azure AD 中互相對應的使用者。換句話說，必須在 Azure AD 使用者與 Allocadia 中的相關使用者之間建立連結關聯性。建立此連結關聯性的方法，就是指派 Azure AD 中 [使用者名稱] 的值做為 Allocadia 中 [Username] (使用者名稱) 的值。
 
 若要設定及測試與 Allocadia 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
 
@@ -102,7 +102,7 @@
 在本節中，您會在傳統入口網站中啟用 Azure AD 單一登入，然後在您的 Allocadia 應用程式中設定單一登入。
 
 
-Allocadia 應用程式會預期要有特定格式的 SAML 判斷提示。請設定此應用程式的下列宣告。您可以從應用程式的 [屬性] 索引標籤管理這些屬性的值。以下螢幕擷取畫面顯示上述的範例。
+Allocadia 應用程式會預期要有特定格式的 SAML 判斷提示。請設定此應用程式的下列宣告。您可以從應用程式的 [屬性] 索引標籤來管理這些屬性的值。以下螢幕擷取畫面顯示上述的範例。
 
 ![設定單一登入](./media/active-directory-saas-allocadia-tutorial/tutorial_allocadia_07.png)
 
@@ -191,11 +191,11 @@ Allocadia 應用程式會預期要有特定格式的 SAML 判斷提示。請設�
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
 	
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-allocadia-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-allocadia-tutorial/create_aaduser_04.png)
 
@@ -209,7 +209,7 @@ Allocadia 應用程式會預期要有特定格式的 SAML 判斷提示。請設�
 
     c.按 [下一步]。
 
-6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
+6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-allocadia-tutorial/create_aaduser_06.png)
 
@@ -302,4 +302,4 @@ Allocadia 應用程式會預期要有特定格式的 SAML 判斷提示。請設�
 [204]: ./media/active-directory-saas-allocadia-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-allocadia-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0921_2016-->

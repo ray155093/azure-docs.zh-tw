@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="mobile-android"
 	ms.devlang="java"
 	ms.topic="article"
-	ms.date="03/18/2016"
+	ms.date="09/16/2016"
 	ms.author="brandwe"/>
 
 # 將 Azure AD 整合至 Android 應用程式
@@ -270,8 +270,7 @@ dependencies {
      mContext.acquireTokenSilent(resource, clientid, userId, callback );
     ```
 
-11. **Broker**：
-Microsoft Intune 公司入口網站應用程式將提供 Broker 元件。如果有一個使用者帳戶在這個驗證器上建立，且開發人員選擇不要略過它，ADAL 會使用 Broker 帳戶。開發人員可以使用下列方法來略過 Broker 使用者：
+11. **Broker**：Microsoft Intune 公司入口網站應用程式將提供 Broker 元件。如果有一個使用者帳戶在這個驗證器上建立，且開發人員選擇不要略過它，ADAL 會使用 Broker 帳戶。開發人員可以使用下列方法來略過 Broker 使用者：
 
     ```java
      AuthenticationSettings.Instance.setSkipBroker(true);
@@ -457,4 +456,4 @@ Adal 1.1.0 版支援 NTLM 對話方塊，此對話方塊是透過 WebViewClient 
 
 [AZURE.INCLUDE [active-directory-devquickstarts-additional-resources](../../includes/active-directory-devquickstarts-additional-resources.md)]
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0921_2016-->

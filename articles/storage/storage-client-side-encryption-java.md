@@ -4,7 +4,7 @@
 	services="storage"
 	documentationCenter="java"
 	authors="dineshmurthy"
-	manager="carmonm"
+	manager="jahogg"
 	editor="tysonn"/>
 
 <tags
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/24/2016"
-	ms.author="dineshm"/>
+	ms.date="09/20/2016"
+	ms.author="dineshm;robinsh"/>
 
 
 # Microsoft Azure 儲存體的用戶端 Java 加密   
@@ -247,4 +247,4 @@ Azure 金鑰保存庫可協助保護雲端應用程式和服務所使用的密�
 	- [用戶端](http://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault)封裝
 - 請瀏覽 [Azure 金鑰保存庫文件](../key-vault/key-vault-whatis.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0921_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="06/24/2016" 
+	ms.date="09/15/2016" 
 	ms.author="sdanie"/>
 
 # 如何使用 Azure 受管理快取服務
@@ -41,7 +41,7 @@ Azure 受管理快取服務是一種分散式、記憶體內的可擴充解決�
 -	標準 - 大小從 1GB 到 10GB 的快取
 -	高級 - 大小從 5GB 到 150GB 的快取
 
-每一個階層都有不同的功能和定價。本指南稍後將探討這些功能，如需定價的詳細資訊，請參閱[快取定價詳細資料][]。
+每一個階層都有不同的功能和價格。本指南稍後將探討這些功能，如需定價的詳細資訊，請參閱[快取定價詳細資料][]。
 
 本指南提供開始使用受管理的快取服務的概觀。如需本入門指南涵蓋範圍外之功能的詳細資訊，請參閱 [Azure 受管理快取服務概觀][]。
 
@@ -65,11 +65,11 @@ Azure 受管理快取服務是一種分散式、記憶體內的可擴充解決�
 
 >如需安裝和使用 Azure PowerShell 的指示，請參閱[如何安裝和設定 Azure PowerShell][]。
 
-叫用 [Add-AzureAccount][] Cmdlet，然後輸入與您帳戶相關聯的電子郵件地址和密碼。叫用 [Add-AzureAccount][] Cmdlet 之後，預設會選擇並顯示一個訂用帳戶。若要變更訂用帳戶，請叫用 [Select-AzureSubscription][] Cmdlet。
+叫用 [Add-AzureAccount][] Cmdlet，然後輸入與您帳戶相關聯的電子郵件地址和密碼。預設會選擇某一個訂用帳戶並在您叫用 [Add-AzureAccount][] Cmdlet 之後顯示。若要變更該訂用帳戶，請叫用 [Select-AzureSubscription][] Cmdlet。
 
 >如果您已使用帳戶的憑證來設定 Azure PowerShell，那麼就可以跳過此步驟。如需將 Azure PowerShell 與 Azure 帳戶連接的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell][]。
 
-預設會選擇並顯示一個訂用帳戶。若要變更訂用帳戶，請叫用 [Select-AzureSubscription][] Cmdlet。
+預設會選擇並顯示某一個訂用帳戶。若要變更該訂用帳戶，請叫用 [Select-AzureSubscription][] Cmdlet。
 
 叫用 [New-AzureManagedCache][] Cmdlet，然後指定快取的名稱、區域、快取提供項目和大小。
 
@@ -485,4 +485,4 @@ Azure 快取的輸出快取提供者為輸出快取資料的程序外儲存體�
 [Which Azure Cache offering is right for me?]: cache-faq.md#which-azure-cache-offering-is-right-for-me
  
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0921_2016-->

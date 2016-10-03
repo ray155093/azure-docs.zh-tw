@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="設定 FMLE 編碼器來傳送單一位元速率的即時串流" 
+	pageTitle="設定 FMLE 編碼器來傳送單一位元速率的即時串流 | Microsoft Azure" 
 	description="本主題示範如何設定 Flash Media Live Encoder (FMLE) 編碼器，藉此將單一位元速率的即時串流傳送到已啟用即時編碼的 AMS 通道。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="ne" 
 	ms.topic="article" 
-	ms.date="06/22/2016"
+	ms.date="09/19/2016"
 	ms.author="juliako;cenkdin;anilmur"/>
 
 #使用 FMLE 編碼器來傳送單一位元速率的即時串流
@@ -24,7 +24,7 @@
 - [Tricaster](media-services-configure-tricaster-live-encoder.md)
 - [Wirecast](media-services-configure-wirecast-live-encoder.md)
 
-本主題示範如何設定 [Flash Media Live Encoder](http://www.adobe.com/products/flash-media-encoder.html) (FMLE) 編碼器，藉此將單一位元速率的即時串流傳送到已啟用即時編碼的 AMS 通道。如需詳細資訊，請參閱[使用啟用的通道以 Azure 媒體服務執行即時編碼](media-services-manage-live-encoder-enabled-channels.md)。
+本主題示範如何設定 [Flash Media Live Encoder](http://www.adobe.com/products/flash-media-encoder.html) (FMLE) 編碼器，藉此將單一位元速率的即時串流傳送到已啟用即時編碼的 AMS 通道。如需詳細資訊，請參閱[使用啟用的通道來以 Azure 媒體服務執行即時編碼](media-services-manage-live-encoder-enabled-channels.md)。
 
 本教學課程示範如何使用 Azure 媒體服務總管 (AMSE) 工具管理 Azure 媒體服務 (AMS)。此工具只會在 Windows 電腦上執行。如果您用 Mac 或 Linux，請使用 Azure 傳統入口網站建立[頻道](media-services-portal-creating-live-encoder-enabled-channel.md#create-a-channel)和[節目](media-services-portal-creating-live-encoder-enabled-channel.md#create-and-manage-a-program)。
 
@@ -33,7 +33,7 @@
 ##必要條件
 
 - [建立 Azure 媒體服務帳戶](media-services-create-account.md)
-- 請確定執行的串流端點至少有一個配置的串流單位。如需詳細資訊，請參閱[在媒體服務帳戶中管理串流端點](media-services-manage-origins.md)
+- 請確定執行的串流端點至少有一個配置的串流單位。如需詳細資訊，請參閱[在媒體服務帳戶中管理串流端點](media-services-portal-manage-streaming-endpoints.md)
 - 安裝最新版的 [AMSE](https://github.com/Azure/Azure-Media-Services-Explorer) 工具。
 - 啟動工具並連接到您的 AMS 帳戶。
 
@@ -54,8 +54,7 @@
 
 請確認已選取 [**立即啟動新頻道**]。
 
-3. 按一下 [**建立頻道**]。
-	![FMLE](./media/media-services-fmle-live-encoder/media-services-fmle2.png)
+3. 按一下 [**建立頻道**]。![FMLE](./media/media-services-fmle-live-encoder/media-services-fmle2.png)
 
 >[AZURE.NOTE] 通道約需 20 分鐘的時間即可啟動。
 
@@ -66,7 +65,7 @@
 
 ##<a id=configure_fmle_rtmp></a>設定 FMLE 編碼器
 
-在本教學課程中，我們會使用下列輸出設定。本章節的其餘部分將詳細說明組態步驟。
+在本教學課程中會使用下列輸出設定。本章節的其餘部分將詳細說明組態步驟。
 
 **視訊**：
  
@@ -115,7 +114,7 @@
 
 6. 取得頻道的輸入 URL，以將其指派給 FMLE 的 **RTMP 端點**。
 	
-	瀏覽回 AMSE 工具，並檢查通道的完成狀態。狀態從 [**啟動中**] 變更為 [**執行中**] 後，您便可取得輸入 URL。
+	瀏覽回到 AMSE 工具，並檢查通道的完成狀態。狀態從 [**啟動中**] 變更為 [**執行中**] 後，您便可取得輸入 URL。
 	  
 	頻道執行時，以滑鼠右鍵按一下頻道名稱，向下瀏覽讓滑鼠游標停留在 [**複製輸入 URL 到剪貼簿**]，然後選取 [**主要輸入 URL**]。
 	
@@ -128,8 +127,7 @@
 	如需額外的備援，請用次要輸入 URL 重複這些步驟。
 8. 選取 [**連接**]。
 
->[AZURE.IMPORTANT] 在您按一下 [**連接**] 之前，**必須**先確保頻道已就緒。
-此外，請務必不要讓通道在沒有輸入比重摘要的情況下，處於就緒狀態超過 15 分鐘。
+>[AZURE.IMPORTANT] 在您按一下 [**連接**] 之前，**必須**先確保頻道已就緒。此外，請務必不要讓通道在沒有輸入比重摘要的情況下，處於就緒狀態超過 15 分鐘。
 
 ##測試播放
   
@@ -154,7 +152,7 @@
 	注意：建立程式時所使用的時間會比建立通道時更少。
  
 5. 一旦程式開始執行，請在程式上按一下滑鼠右鍵，並瀏覽至 [播放程式]，然後選取 [使用 Azure 媒體播放器] 確認播放。
-6. 一經確認後，再次於該程式上按一下滑鼠右鍵，並選取 [複製輸出 URL 到剪貼簿] \(或從 [程式資訊和設定] 功能表選項擷取這項資訊)。 
+6. 一經確認後，再次於該程式上按一下滑鼠右鍵，並選取 [複製輸出 URL 到剪貼簿] (或從 [程式資訊和設定] 功能表選項擷取這項資訊)。
 
 串流現在已經可以內嵌於播放程式中，或散發給某個對象，以供即時檢視。
 
@@ -172,4 +170,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0921_2016-->

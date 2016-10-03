@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/17/2016" 
+	ms.date="09/20/2016" 
 	ms.author="jeannt"/>
 
 # 使用 Azure Machine Learning 分析客戶流失
@@ -215,17 +215,17 @@ Azure Machine Learning 中另一項吸引人的功能是可以將自訂模組加
 
 這些意見將有助於改善我們所發表的白皮書品質。
 
-[傳送意見](mailto:sqlfback@microsoft.com)。
+[傳送意見](mailto:sqlfback@microsoft.com)。 
 ##參考
 [1] Predictive Analytics: Beyond the Predictions (預測性分析：超出預測)，W. McKnight，資訊管理，2011 年 7 月/8 月，第 18-20 頁。
 
 [2] 維基百科文章：[Accuracy and precision (正確性與準確度)](http://en.wikipedia.org/wiki/Accuracy_and_precision)
 
-\[3] [CRISP-DM 1.0：資料採礦逐步指南](http://www.the-modeling-agency.com/crisp-dm.pdf)
+[3] [CRISP-DM 1.0：資料採礦逐步指南] (http://www.the-modeling-agency.com/crisp-dm.pdf)
 
-\[4] [Big Data Marketing: Engage Your Customers More Effectively and Drive Value (巨量資料行銷：更有效地吸引您的客戶和促進價值)](http://www.amazon.com/Big-Data-Marketing-Customers-Effectively/dp/1118733894/ref=sr_1_12?ie=UTF8&qid=1387541531&sr=8-12&keywords=customer+churn)
+[4] [Big Data Marketing: Engage Your Customers More Effectively and Drive Value (巨量資料行銷：更有效地吸引您的客戶和促進價值)](http://www.amazon.com/Big-Data-Marketing-Customers-Effectively/dp/1118733894/ref=sr_1_12?ie=UTF8&qid=1387541531&sr=8-12&keywords=customer+churn)
 
-\[5] [Cortana Intelligence Gallery (Cortana Intelligence 資源庫)](http://gallery.cortanaintelligence.com/) 中的 [電信公司客戶流失模型範本](http://gallery.cortanaintelligence.com/Experiment/Telco-Customer-Churn-5)
+[5] [Cortana Intelligence Gallery (Cortana Intelligence 資源庫)](http://gallery.cortanaintelligence.com/) 中的 [電信公司客戶流失模型範本](http://gallery.cortanaintelligence.com/Experiment/Telco-Customer-Churn-5)  
 ##附錄
 
 ![][10]
@@ -244,4 +244,4 @@ Azure Machine Learning 中另一項吸引人的功能是可以將自訂模組加
 [9]: ./media/machine-learning-azure-ml-customer-churn-scenario/churn-9.png
 [10]: ./media/machine-learning-azure-ml-customer-churn-scenario/churn-10.png
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->

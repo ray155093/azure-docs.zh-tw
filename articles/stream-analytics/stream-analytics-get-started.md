@@ -5,7 +5,7 @@
 	services="stream-analytics"
 	documentationCenter=""
 	authors="jeffstokes72"
-	manager="paulettm"
+	manager="jhubbard"
 	editor="cgronlun" />
 
 <tags
@@ -34,7 +34,7 @@
 
 物聯網 (IoT) 會產生大量遙測或感應器資料 – 而且客戶想要彙總這些資料或即時針對異常發出警示。
 
-## 先決條件
+## 必要條件
 
 - 從 Microsoft 下載中心下載 [TelcoGenerator.zip](http://download.microsoft.com/download/8/B/D/8BD50991-8D54-4F59-AB83-3354B69C8A7E/TelcoGenerator.zip)。
 - 選擇性：[GitHub](https://github.com/Azure/azure-stream-analytics/tree/master/DataGenerators/TelcoGenerator) 中事件產生器的原始程式碼
@@ -103,7 +103,7 @@
 
 3.	按一下左窗格中的 [Stream Analytics]，以列出 Stream Analytics 工作。
 
-	![Stream Analytics 服務圖示](./media/stream-analytics-get-started/stream-analytics-service-icon.png)
+	![串流分析服務圖示](./media/stream-analytics-get-started/stream-analytics-service-icon.png)
 
 4.	新工作會以 [已建立] 的狀態列出。請注意，頁面底部的 [啟動] 按鈕會停用。您必須先設定工作輸入、輸出、查詢等項目，才能啟動工作。
 
@@ -227,7 +227,7 @@
 3.	在第三頁上輸入或選取下列值：
 
 	* **輸出別名**：為這個工作輸出設定一個容易記的名稱。
-	* **訂用帳戶**：如果建立的 Blob 儲存體與「串流分析」工作屬於相同的訂用帳戶，請選取 [從目前的訂用帳戶使用儲存體帳戶]。如果儲存體屬於不同的訂閱，請選取 [從另一個訂用帳戶使用儲存體帳戶]，然後手動輸入 [儲存體帳戶]」[儲存體帳戶金鑰、[容器] 等資訊。
+	* **訂用帳戶**：如果建立的 Blob 儲存體與「串流分析」工作屬於相同的訂用帳戶，請選取 [從目前的訂用帳戶使用儲存體帳戶]。如果儲存體屬於不同的訂閱，請選取 [從另一個訂用帳戶使用儲存體帳戶]，然後手動輸入 [儲存體帳戶]、[儲存體帳戶金鑰]、[容器] 等資訊。
 	* **儲存體帳戶名稱**：選取儲存體帳戶的名稱。
 	* **容器**：選取容器的名稱。
 	* **檔案名稱前置詞**：輸入當您填寫 Blob 輸出時所使用的檔案前置詞。
@@ -265,4 +265,4 @@
 - [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 - [Azure Stream Analytics 管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0921_2016-->

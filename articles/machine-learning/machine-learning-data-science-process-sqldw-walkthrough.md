@@ -3,7 +3,7 @@
 	description="進階分析程序和技術實務"  
 	services="machine-learning"
 	documentationCenter=""
-	authors="bradsev,hangzh-msft,wguo123"
+	authors="bradsev"
 	manager="jhubbard"
 	editor="cgronlun" />
 
@@ -457,7 +457,7 @@
 	GO
 
 	-- User-defined function to calculate the direct distance  in mile between two geographical coordinates.
-	CREATE FUNCTION [dbo].[fnCalculateDistance] \(@Lat1 float, @Long1 float, @Lat2 float, @Long2 float)
+	CREATE FUNCTION [dbo].[fnCalculateDistance] (@Lat1 float, @Long1 float, @Lat2 float, @Long2 float)
 
 	RETURNS float
 	AS
@@ -504,7 +504,7 @@
 	GO
 
 	-- User-defined function calculate the direct distance between two geographical coordinates.
-	CREATE FUNCTION [dbo].[fnCalculateDistance] \(@Lat1 float, @Long1 float, @Lat2 float, @Long2 float)
+	CREATE FUNCTION [dbo].[fnCalculateDistance] (@Lat1 float, @Long1 float, @Lat2 float, @Long2 float)
 
 	RETURNS float
 	AS
@@ -969,4 +969,4 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。特
 [select-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 [import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0921_2016-->
