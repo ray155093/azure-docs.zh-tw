@@ -271,7 +271,7 @@ Azure 虛擬機器的定價策略是「**只針對您使用的項目進行付費
 
 關閉及取消配置虛擬機器：
 
-1. 使用您的帳戶登入 [Azure 傳統入口網站](http://manage.windowsazure.com/)。
+1. 使用您的帳戶登入 [Azure 傳統入口網站](http://manage.windowsazure.com/)。  
 
 2. 從左側導覽列選取 [**虛擬機器**]。
 

@@ -56,7 +56,7 @@ http(s)://<Cluster FQDN | internal IP>:Port/<ServiceInstanceName>/<Suffix path>?
 ```
 
  - **http(s)：** 反向 Proxy 可設定為接受 HTTP 或 HTTPS 流量。如果是 HTTPS 流量，SSL 終止會發生在反向 Proxy。反向 Proxy 是透過 HTTP 轉送要求到叢集中的服務。
- - ** 叢集的 FQDN| internal IP:** For external clients, the reverse proxy can be configured so that it is reachable through the cluster domain (e.g., mycluster.eastus.cloudapp.azure.com). By default the reverse proxy runs on every node, so for internal traffic it can be reached on localhost or on any internal node IP (e.g., 10.0.0.1).
+ - **叢集的 FQDN| internal IP:** For external clients, the reverse proxy can be configured so that it is reachable through the cluster domain (e.g., mycluster.eastus.cloudapp.azure.com). By default the reverse proxy runs on every node, so for internal traffic it can be reached on localhost or on any internal node IP (e.g., 10.0.0.1).
  - **連接埠︰**為反向 Proxy 指定的連接埠。例如 19008。
  - **ServiceInstanceName：**這是您嘗試連線到 "fabric: /" 配置的 SANS 服務的完整部署服務執行個體名稱 。例如，若要連線到服務 fabric: / myapp/myservice/，可以使用 myapp/myservice。
  - **尾碼路徑︰**這是要連線服務的實際 URL 路徑。例如，myapi/values/add/3

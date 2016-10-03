@@ -84,7 +84,7 @@ Maven 可讓您定義稱為屬性的專案層級值。將以下內容加到 `<ur
         <!--
         Storm 0.10.0 is for HDInsight 3.3 and 3.4.
         To find the version information for earlier HDInsight cluster
-        versions, see https://azure.microsoft.com/zh-TW/documentation/articles/hdinsight-component-versioning/
+        versions, see https://azure.microsoft.com/documentation/articles/hdinsight-component-versioning/
         -->
         <storm.version>0.10.0</storm.version>
     </properties>

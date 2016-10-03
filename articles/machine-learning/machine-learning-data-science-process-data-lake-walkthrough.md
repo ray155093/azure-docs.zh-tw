@@ -156,7 +156,7 @@ Azure Machine Learning Studio 可用來建置和部署預測模型。這是使�
 
 ### <a name="ingest"></a>資料擷取：從公用 Blob 讀取資料
 
-Azure Blob 中的資料位置是以 **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name**** 來參考，可透過 Extractors.Csv()** 來擷取。在下列指令碼中，以您自己的容器名稱和儲存體帳戶名稱來替換 wasb 位址中的 container_name@blob\_storage\_account\_name。由於檔案名稱的格式相同，因此我們可以使用 **trip\_data\_{*}.csv** 來讀取全部 12 個車程檔案。
+Azure Blob 中的資料位置是以 **wasb://container_name@blob_storage_account_name.blob.core.windows.net/blob_name** **來參考，可透過 Extractors.Csv()** 來擷取。在下列指令碼中，以您自己的容器名稱和儲存體帳戶名稱來替換 wasb 位址中的 container_name@blob\_storage\_account\_name。由於檔案名稱的格式相同，因此我們可以使用 **trip\_data\_{*}.csv** 來讀取全部 12 個車程檔案。
 
 	///Read in Trip data
 	@trip0 =

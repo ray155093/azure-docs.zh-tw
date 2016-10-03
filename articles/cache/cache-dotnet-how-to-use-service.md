@@ -368,7 +368,7 @@ Azure 快取的工作階段狀態提供者為 ASP.NET 應用程式的程序外�
       </sessionState>
     </system.web>-->
 
->在安裝 Caching NuGet 套件之後，如果 web.config 未包含這個已標成註解的區段，請確實從 [NuGet Package Manager 安裝][] (英文) 中安裝最新的 NuGet Package Manager，然後解除安裝並重新安裝套件。
+>在安裝 Caching NuGet 套件之後，如果 web.config 未包含這個已標成註解的區段，請確實從 [NuGet Package Manager 安裝][] \(英文) 中安裝最新的 NuGet Package Manager，然後解除安裝並重新安裝套件。
 
 若要對 Azure 快取啟用工作階段狀態提供者，請將指定的區段取消註解。預設快取是在提供的片段中指定。若要使用不同快取，請在 **cacheName** 屬性中指定所需的快取。
 
@@ -392,7 +392,7 @@ Azure 快取的輸出快取提供者為輸出快取資料的程序外儲存體�
       </outputCache>
     </caching>-->
 
->在安裝 Caching NuGet 套件之後，如果 web.config 未包含這個已標成註解的區段，請確實從 [NuGet Package Manager 安裝][] (英文) 中安裝最新的 NuGet Package Manager，然後解除安裝並重新安裝套件。
+>在安裝 Caching NuGet 套件之後，如果 web.config 未包含這個已標成註解的區段，請確實從 [NuGet Package Manager 安裝][] \(英文) 中安裝最新的 NuGet Package Manager，然後解除安裝並重新安裝套件。
 
 若要對 Azure 快取啟用輸出快取提供者，請將指定的區段取消註解。預設快取是在提供的片段中指定。若要使用不同快取，請在 **cacheName** 屬性中指定所需的快取。
 

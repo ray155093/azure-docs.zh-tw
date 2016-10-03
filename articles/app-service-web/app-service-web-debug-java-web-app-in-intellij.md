@@ -29,7 +29,7 @@
 * Java Developer Kit (JDK) 1.8 版或更新版本。
 * IntelliJ 概念旗艦版。這可透過 <https://www.jetbrains.com/idea/download/index.html> 下載。
 * Java 型 Web 伺服器或應用程式伺服器的散發套件，例如 Apache Tomcat 或 Jetty。
-* Azure 訂用帳戶，可從 <https://azure.microsoft.com/zh-TW/free/> 或 <http://azure.microsoft.com/pricing/purchase-options/> 取得。
+* Azure 訂用帳戶，可從 <https://azure.microsoft.com/free/> 或 <http://azure.microsoft.com/pricing/purchase-options/> 取得。
 * 適用於 IntelliJ 的 Azure 工具組。如需詳細資訊，請參閱 [Installing the Azure Toolkit for IntelliJ (安裝適用於 IntelliJ 的 Azure 工具組)]。
 * 動態 Web 專案已建立並部署到 Azure App Service；例如，請參閱[在 IntelliJ 中建立 Azure 的 Hello World Web 應用程式]。
 

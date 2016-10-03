@@ -77,7 +77,7 @@ Azure AD Privileged Identity Manager 有一個儀表板可提供重要資訊，�
 
 ## 設定角色啟用設定
 
-您可以使用 [角色設定][](active-directory-privileged-identity-management-how-to-change-default-settings.md) 來設定合格角色啟用屬性，包括：
+您可以使用 [角色設定](active-directory-privileged-identity-management-how-to-change-default-settings.md) 來設定合格角色啟用屬性，包括：
 
 - 角色啟用期間的持續時間
 - 角色啟用通知

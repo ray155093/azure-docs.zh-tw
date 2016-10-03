@@ -21,7 +21,7 @@
 - [資源管理員](virtual-machines-windows-sql-connect.md)
 - [傳統](virtual-machines-windows-classic-sql-connect.md)
 
-## Overview
+## 概觀
 
 本主題說明如何連線到在 Azure 虛擬機器上執行的 SQL Server 執行個體。其中涵蓋一些[一般連線案例](#connection-scenarios)並提供[在 Azure VM 中設定 SQL Server 連線的詳細步驟](#steps-for-manually-configuring-sql-server-connectivity-in-an-azure-vm)。
 

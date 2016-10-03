@@ -140,14 +140,14 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 - [深入了解](../vpn-gateway/vpn-gateway-site-to-site-create.md)針對 VPN 站台間連線支援的部署方法，以及如何[設定連線](../vpn-gateway/vpn-gateway-site-to-site-create.md#create-your-virtual-network)。
 - 或者，您也可以設定 [Azure ExpressRoute](../expressroute/expressroute-introduction.md)。[深入了解](../expressroute/expressroute-howto-vnet-portal-classic.md)如何使用 ExpressRoute 來設定 Azure 網路。
 
-> [AZURE.NOTE] [Migration of networks]對於用於部署 Site Recovery 的網路，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶(../resource-group-move-resources.md)。
+> [AZURE.NOTE] [Migration of networks](../resource-group-move-resources.md) 對於用於部署 Site Recovery 的網路，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶。
 
 ### 設定 Azure 儲存體帳戶
 
 - 您需要標準或進階 Azure 儲存體帳戶來保存複寫到 Azure 的資料。此帳戶必須位於與復原服務保存庫相同的區域中。視您想要針對已容錯移轉的 Azure VM 使用的資源模型而定，您將以 [ARM 模式](../storage/storage-create-storage-account.md)或[傳統模式](../storage/storage-create-storage-account-classic-portal.md)設定帳戶。
 - 如果您將進階帳戶使用於複寫的資料，則必須建立其他標準帳戶來儲存複寫記錄檔，而這類記錄檔會擷取內部部署資料的進行中變更。
 
-> [AZURE.NOTE] [Migration of storage accounts]對於用於部署 Site Recovery 的儲存體帳戶，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶(../resource-group-move-resources.md)。
+> [AZURE.NOTE] [Migration of storage accounts](../resource-group-move-resources.md) 對於用於部署 Site Recovery 的儲存體帳戶，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶。
 
 ### 準備帳戶以進行自動探索
 
@@ -792,7 +792,9 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 以下是監視 Site Recovery 部署的組態設定、狀態和健康狀態的方式︰
 
-1. 按一下保存庫名稱來存取 [基本資訊] 儀表板。在此儀表板中，您可以看見 Site Recovery 作業、複寫狀態、復原方案、伺服器健康狀態和事件。您可以自訂 [基本資訊] 以顯示對您最有用的圖格和配置，包括其他 Site Recovery 和「備份」保存庫的狀態。<br> ![基本資訊](./media/site-recovery-vmware-to-azure/essentials.png)
+1. 按一下保存庫名稱來存取 [基本資訊] 儀表板。在此儀表板中，您可以看見 Site Recovery 作業、複寫狀態、復原方案、伺服器健康狀態和事件。您可以自訂 [基本資訊] 以顯示對您最有用的圖格和配置，包括其他 Site Recovery 和「備份」保存庫的狀態。
+<br> 
+![基本資訊](./media/site-recovery-vmware-to-azure/essentials.png)
 
 2. 在 [健全狀況] 圖格中，您可以監視發生問題的站台伺服器 (VMM 或組態伺服器)，以及 Site Recovery 在過去 24 小時內引發的事件。
 3. 您可以在 [複寫的項目]、[復原方案] 和 [Site Recovery 作業] 圖格中管理和監視複寫。您可以在 [設定] -> [作業] -> [Site Recovery 作業] 中向下鑽研作業。

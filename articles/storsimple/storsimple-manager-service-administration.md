@@ -17,7 +17,7 @@
 
 # 使用 StorSimple Manager 服務管理 StorSimple 裝置
 
-## Overview
+## 概觀
 
 本文描述 StorSimple Manager 服務介面，包括如何與其連接、各種可用選項，以及可以透過此 UI 執行的特定工作流程連結。本指引適用於以下兩者；StorSimple 實體和虛擬裝置。
 
