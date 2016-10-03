@@ -56,7 +56,7 @@
 
 	![新增查詢。連接到 SQL Database 伺服器：SQL Server Management Studio](./media/sql-database-connect-query/tools.png)
 
-7. 按一下 [在 Visual Studio 中開啟] (如果您需要 Visual Studio，請按一下下載連結)︰
+7. 按一下 [在 Visual Studio 中開啟] \(如果您需要 Visual Studio，請按一下下載連結)︰
 
 	![新增查詢。連接到 SQL Database 伺服器：SQL Server Management Studio](./media/sql-database-connect-query/open-in-vs.png)
 

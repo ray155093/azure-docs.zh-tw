@@ -48,7 +48,7 @@
 
 - [二元支援向量機器][two-class-support-vector-machine]
 - 連接到這個模組的[定型模型][train-model]和[計分模型][score-model]模組
-- [標準化資料][normalize-data] (兩者)
+- [標準化資料][normalize-data] \(兩者)
 - [評估模型][evaluate-model]
 
 只要選取模組然後按 Delete 鍵，或用右鍵按一下模組並選取 [刪除]。

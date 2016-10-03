@@ -99,7 +99,7 @@ Error:
 
 ### 修改 WAD 設定
 
-下列範例是只有從安全性事件記錄檔中收集 EventID 4624 和 EventId 4625 的組態。會從系統事件記錄檔中收集 Microsoft 反惡意程式碼事件。如需使用 XPath 運算式的詳細資訊，請參閱 [使用事件] (https://msdn.microsoft.com/library/windows/desktop/dd996910(v=vs.85)。
+下列範例是只有從安全性事件記錄檔中收集 EventID 4624 和 EventId 4625 的組態。會從系統事件記錄檔中收集 Microsoft 反惡意程式碼事件。如需使用 XPath 運算式的詳細資訊，請參閱 [使用事件](https://msdn.microsoft.com/library/windows/desktop/dd996910(v=vs.85)。
 
     <WindowsEventLog scheduledTransferPeriod="PT1M">
         <DataSource name="Security!*[System[(EventID=4624 or EventID=4625)]]" />
