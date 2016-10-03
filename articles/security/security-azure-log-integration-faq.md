@@ -60,7 +60,7 @@
 
 Error:
 
-  無法建立 AAD 應用程式 - 租用戶 72f988bf-86f1-41af-91ab-2d7cd011db37 - 原因 = 「禁止」 - 訊息 = 「權限不足以完成作業。」
+  *無法建立 AAD 應用程式 - 租用戶 72f988bf-86f1-41af-91ab-2d7cd011db37 - 原因 = 「禁止」 - 訊息 = 「權限不足以完成作業。」*
 
 **Azlog createazureid** 嘗試在 Azure 登入具有存取權的訂用帳戶所有的 Azure AD 租用戶中建立服務主體。如果您的 Azure 登入在該 Azure AD 租用戶中只是來賓使用者，然後命令會失敗，並出現「權限不足以完成作業」訊息。 要求租用戶系統管理員將您的帳戶新增為租用戶中的使用者。
 
@@ -113,7 +113,9 @@ Error:
 
 完成變更之後，請檢查儲存體帳戶，以確保會收集正確的事件。
 
+如果您有關於「Azure 記錄整合」的問題，請傳送電子郵件給 [AzSIEMteam@microsoft.com](mailto:AzSIEMteam@microsoft.com)
+
 <!--Image references-->
 [1]: ./media/security-azure-log-integration-faq/event-xml.png
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0921_2016-->
