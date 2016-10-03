@@ -45,7 +45,7 @@
 
 ### 使用 Visual Studio 2013 和 Visual Studio 2015 建立 .NET 後端
 
-安裝 [Azure SDK for .NET][4] (2.9.0 版或更新版本)，以在 Visual Studio 中建立 Azure Mobile Apps 專案。當您安裝 SDK 之後，使用下列步驟建立 ASP.NET 應用程式：
+安裝 [Azure SDK for .NET][4] \(2.9.0 版或更新版本)，以在 Visual Studio 中建立 Azure Mobile Apps 專案。當您安裝 SDK 之後，使用下列步驟建立 ASP.NET 應用程式：
 
 1. 開啟 [新增專案] 對話方塊 (從 [檔案] > [新增] > [專案...])。
 2. 展開 [範本] > [Visual C#]，然後選取 [Web]。
