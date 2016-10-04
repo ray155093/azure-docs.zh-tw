@@ -106,9 +106,7 @@ IP 子網路|網路遮罩|IP 範圍
 1. 按兩下可執行檔。安裝作業隨即會開始。
 2. 在 [選取安裝資料夾] 畫面中，請確認資料夾正確，然後按一下 [下一步]。
 3. 當安裝完成時，請按一下 [完成]。這會啟動組態精靈。
-4. 在組態精靈歡迎畫面上，勾選 [**略過使用驗證組態精靈**]，然後按 [**下一步**]。  這會關閉精靈並啟動伺服器。
-![雲端](./media/multi-factor-authentication-get-started-server/skip2.png)
-
+4. 在組態精靈歡迎畫面上，勾選 [**略過使用驗證組態精靈**]，然後按 [**下一步**]。這會關閉精靈並啟動伺服器。![雲端](./media/multi-factor-authentication-get-started-server/skip2.png)
 5. 回到下載伺服器的頁面，按一下 [**產生啟用認證**] 按鈕。將此資訊複製到 Azure MFA Server 提供的方塊中，然後按一下 [**啟用**]。
 
 
@@ -178,7 +176,7 @@ Azure Multi-Factor Authentication Server 提供各種方式來設定您的使用
 :------------- | :------------- |
 [使用者入口網站](multi-factor-authentication-get-started-portal.md)| 有關設定使用者入口網站的資訊，包括部署和使用者自助。
 [Active Directory Federation Service](multi-factor-authentication-get-started-adfs.md)|有關搭配 AD FS 設定 Azure Multi-Factor Authentication 的資訊。
-[RRADIUS 驗證](multi-factor-authentication-get-started-server-radius.md)| 有關搭配 RADIUS 設定 Azure MFA Server 的資訊。
+[RADIUS 驗證](multi-factor-authentication-get-started-server-radius.md)| 有關搭配 RADIUS 設定 Azure MFA Server 的資訊。
 [IIS 驗證](multi-factor-authentication-get-started-server-iis.md)|有關搭配 IIS 設定 Azure MFA Server 的資訊。
 [Windows 驗證](multi-factor-authentication-get-started-server-windows.md)| 有關搭配 Windows 驗證設定 Azure MFA Server 的資訊。
 [LDAP 驗證](multi-factor-authentication-get-started-server-ldap.md)|有關搭配 LDAP 驗證設定 Azure MFA Server 的資訊。
@@ -186,4 +184,4 @@ Azure Multi-Factor Authentication Server 提供各種方式來設定您的使用
 [與 Windows Server Active Directory 同步處理](multi-factor-authentication-get-started-server-dirint.md)|有關設定 Active Directory 與 Azure MFA Server 之間同步處理的資訊。
 [部署 Azure Multi-Factor Authentication Server 行動應用程式 Web 服務](multi-factor-authentication-get-started-server-webservice.md)|有關設定 Azure MFA 伺服器 Web 服務的資訊。
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->
