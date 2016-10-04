@@ -44,7 +44,7 @@ Azure AD Connect Health 未來更新的內容包括額外監視，以及額外�
 
 下列影片將提供適用於 AD FS 的 Azure AD Connect Health 概觀
 
->[AZURE.VIDEO azure-ad-connect-health--monitor-you-identity-bridge]
+> [AZURE.VIDEO azure-ad-connect-health--monitor-you-identity-bridge]
 
 ## [適用於同步處理的 Azure AD Connect Health](active-directory-aadconnect-health-sync.md)
 
