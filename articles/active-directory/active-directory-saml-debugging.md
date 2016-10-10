@@ -1,9 +1,9 @@
 <properties 
     pageTitle="如何偵錯 SAML 型單一登入 Azure Active Directory 中的應用程式 | Microsoft Azure" 
-    description="了解如何偵錯 SAML 型單一登入 Azure Active Directory 中的應用程式" 
+    description="了解如何偵錯 SAML 型單一登入 Azure Active Directory 中的應用程式 " 
     services="active-directory" 
     authors="asmalser-msft"  
-    documentationCenter="na" manager="stevenpo"/>
+    documentationCenter="na" manager="femila"/>
 <tags 
     ms.service="active-directory" 
     ms.devlang="na" 
@@ -34,4 +34,4 @@
 <!--Image references-->
 [1]: ./media/active-directory-saml-debugging/fiddler.png
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0928_2016-->

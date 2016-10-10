@@ -14,14 +14,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/07/2016"
+	ms.date="09/27/2016"
 	ms.author="femila"/>
 
 
 
 # 在 Azure Active Directory 中啟用企業狀態漫遊
 
-企業狀態漫遊適用於具有 Premium Azure Active Directory (Azure AD) 訂用帳戶的任何組織。如需有關如何取得 Azure AD 訂用帳戶的詳細資訊，請參閱 [Azure AD 產品頁面](https://azure.microsoft.com/services/active-directory)。
+企業狀態漫遊適用於具有 Premium Azure Active Directory (Azure AD) 訂用帳戶的任何組織。如需如何取得 Azure AD 訂用帳戶的詳細資訊，請參閱 [Azure AD 產品](https://azure.microsoft.com/services/active-directory)頁面。
 
 當您啟用企業狀態漫遊時，貴組織將會自動獲得 Azure Rights Management 的免費但有使用限制的訂用帳戶授權。此免費訂用帳戶會限制為加密和解密企業設定以及企業狀態漫遊服務所同步的應用程式資料；您必須擁有付費的訂用帳戶，才能使用 Azure Rights Management 的完整功能。
 
@@ -51,15 +51,15 @@ Azure AD 全域管理員可以在 Azure 傳統入口網站中啟用和停用企�
 
 **明確刪除︰**當 Azure 管理員刪除使用者或目錄時，或管理員明確要求刪除資料時，即會刪除資料。
 
-- **使用者刪除**：在 Azure AD 中刪除使用者時，會將使用者帳戶漫遊資料標示為刪除，並且將會在 90 至 180 天內加以刪除。 
-- **目錄刪除**：在 Azure AD 中刪除整個目錄是即時作業。與該目錄相關聯的所有設定資料都將標示為刪除，並且將會在 90 至 180 天內加以刪除。 
-- **依要求刪除**：如果 Azure AD 管理員想要手動刪除特定使用者的資料或設定資料，管理員可以向 [Azure 支援](https://azure.microsoft.com/support/)提出票證。 
+- **使用者刪除**：在 Azure AD 中刪除使用者時，會將使用者帳戶漫遊資料標示為刪除，並且將會在 90 至 180 天內加以刪除。
+- **目錄刪除**：在 Azure AD 中刪除整個目錄是即時作業。與該目錄相關聯的所有設定資料都將標示為刪除，並且將會在 90 至 180 天內加以刪除。
+- **依要求刪除**：如果 Azure AD 管理員想要手動刪除特定使用者的資料或設定資料，管理員可以向 [Azure 支援](https://azure.microsoft.com/support/)提出票證。
 
 **刪除過時的資料**：一年 (「保留期限」) 未存取的資料會被視為過時，可能會從 Azure 中刪除。保留期限可能有所變更，但不會小於 90 天。過時的資料可能是一組特定的 Windows/應用程式設定或使用者的所有設定。例如：
  
-- 如果沒有任何裝置存取特定設定集合 (例如，從裝置移除應用程式，或針對所有使用者的裝置停用如「主題」的設定群組)，則該集合在保留期限之後就會變成過時，可能會遭到刪除。 
-- 如果使用者在其所有裝置上已關閉設定同步處理，則不會存取任何設定資料，而且該使用者的所有設定資料將會變成過時，而且可能在保留期限之後刪除。 
-- 如果 Azure AD 目錄管理員針對整個目錄關閉企業狀態漫遊，則該目錄中的所有使用者會停止同步處理設定，且所有使用者的所有設定資料會變成過時，並且可能在保留期限之後刪除。 
+- 如果沒有任何裝置存取特定設定集合 (例如，從裝置移除應用程式，或針對所有使用者的裝置停用如「主題」的設定群組)，則該集合在保留期限之後就會變成過時，可能會遭到刪除。
+- 如果使用者在其所有裝置上已關閉設定同步處理，則不會存取任何設定資料，而且該使用者的所有設定資料將會變成過時，而且可能在保留期限之後刪除。
+- 如果 Azure AD 目錄管理員針對整個目錄關閉企業狀態漫遊，則該目錄中的所有使用者會停止同步處理設定，且所有使用者的所有設定資料會變成過時，並且可能在保留期限之後刪除。
 
 **復原已刪除的資料**：無法設定資料保留期原則。一旦資料永久刪除，就無法復原。不過，務必記得設定資料只會從 Azure 中刪除，不會從使用者裝置中刪除。如果任何裝置稍後重新連線至企業狀態漫遊服務，設定會再次同步處理並儲存在 Azure 中。
 
@@ -70,4 +70,4 @@ Azure AD 全域管理員可以在 Azure 傳統入口網站中啟用和停用企�
 - [設定同步處理的群組原則和 MDM 設定](active-directory-windows-enterprise-state-roaming-group-policy-settings.md)
 - [Windows 10 漫遊設定參考](active-directory-windows-enterprise-state-roaming-windows-settings-reference.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0928_2016-->

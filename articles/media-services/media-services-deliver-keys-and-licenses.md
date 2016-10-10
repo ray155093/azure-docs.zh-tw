@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"
+	ms.date="09/26/2016"
 	ms.author="juliako"/>
 
 
@@ -22,7 +22,7 @@
 Azure 媒體服務 (AMS) 可讓您內嵌、編碼、新增內容保護，以及串流您的內容 (如需詳細資料，請參閱[這篇](media-services-protect-with-drm.md)文章)。不過，有一些客戶只想使用 AMS 來傳遞授權和/或金鑰，並使用他們的內部部署伺服器來進行編碼、加密和串流。本文章說明如何使用 AMS 來傳遞 PlayReady 和/或 Widevine 授權，但使用您的內部部署伺服器來完成其餘部分。
 
 
-## 概觀
+## Overview
 
 媒體服務提供傳遞 PlayReady 和 Widevine DRM 授權及 AES-128 金鑰的服務。媒體服務也提供 API，可讓您設定您要 DRM 執行階段在使用者播放受 DRM 保護內容時強制執行的權限和限制。當使用者要求受保護的內容時，播放器應用程式會向 AMS 授權服務要求授權。如果播放器已獲授權，則 AMS 授權服務會發出授權給播放器。PlayReady 和 Widevine 授權包含解密金鑰，可被用戶端播放器用來解密和串流處理內容。
 
@@ -351,4 +351,4 @@ Azure 媒體服務 (AMS) 可讓您內嵌、編碼、新增內容保護，以及�
 
 [使用合作夥伴將 Widevine 授權傳遞到 Azure 媒體服務](media-services-licenses-partner-integration.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

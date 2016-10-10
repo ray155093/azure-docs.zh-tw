@@ -339,7 +339,7 @@ Azure Redis 快取可用來做為基礎 Redis 伺服器的表面。目前它支�
 
 每個主要/下層配對應彼此鄰近，以將延遲降至最低。但若您想要找出靠近應用程式，且該應用程式最有可能使用的快取資料，每一組配對可以在位於不同區域的不同 Azure 資料中心內執行。Microsoft 網站上的[在 Azure 中的 CentOS Linux VM 上執行 Redis](http://blogs.msdn.com/b/tconte/archive/2012/06/08/running-redis-on-a-centos-linux-vm-in-windows-azure.aspx) 頁面會逐步解說範例，並顯示如何建置和設定做為 Azure VM 執行的 Redis 節點。
 
-請注意，如果您以這種方式實作自己的 Redis 快取，則必須負責監視、管理和保護服務。
+[AZURE.NOTE] 請注意，如果您以這種方式實作自己的 Redis 快取，則必須負責監視、管理和保護服務。
 
 ## Redis 快取的資料分割
 
@@ -935,4 +935,4 @@ ISubscriber subscriber = redisHostConnection.GetSubscriber();
 - StackExchange.Redis 儲存機制上的 [Transactions in Redis (Redis 中的交易)](https://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Transactions.md) 頁面
 - Microsoft 網站上的[資料分割指南](http://msdn.microsoft.com/library/dn589795.aspx)。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

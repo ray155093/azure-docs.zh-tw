@@ -3,7 +3,7 @@
 	description="了解如何啟用 Microsoft Azure 儲存體服務的 CORS 支援。"
 	services="storage"
 	documentationCenter=".net"
-	authors="tamram"
+	authors="cbrooks"
 	manager="carmonm"
 	editor="tysonn"/>
 
@@ -14,7 +14,7 @@
 	ms.devlang="dotnet"
 	ms.topic="article"
 	ms.date="09/07/2016"
-	ms.author="tamram"/>
+	ms.author="cbrooks;tamram"/>
 
 # Azure 儲存體服務的跨原始資源共用 (CORS) 支援
 
@@ -195,4 +195,4 @@ CORS 規則的評估，如下所示：
 
 [W3C 跨原始資源共用規格](http://www.w3.org/TR/cors/)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

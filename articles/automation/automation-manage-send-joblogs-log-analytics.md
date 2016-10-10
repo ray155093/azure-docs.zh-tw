@@ -12,7 +12,7 @@
     ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="infrastructure-services"
-    ms.date="08/08/2016"
+    ms.date="09/22/2016"
     ms.author="magoedte" />
 
 # 從「自動化」將工作狀態和工作資料流轉送到 Log Analytics (OMS)
@@ -77,6 +77,41 @@
 
     這將會傳回指定 OMS 工作區的儲存體深入解析。我們想要確認先前指定的自動化帳戶儲存體深入解析確實存在，而 **State** 物件顯示的值為 **OK**。<br> ![來自 Get-AzureRmOperationalInsightsStorageInsights Cmdlet 的結果](media/automation-manage-send-joblogs-log-analytics/automation-posh-getstorageinsights-results.png)。
 
+
+## Log Analytics 記錄
+
+自動化會在 OMS 儲存機制中建立兩種類型的記錄。
+
+### 作業記錄檔
+
+屬性 | 說明|
+----------|----------|
+時間 | Runbook 作業的執行日期和時間。|
+resourceId | 指定 Azure 中的資源類型。對自動化來說，該值是與 Runbook 相關聯的自動化帳戶。|
+operationName | 指定在 Azure 中執行的作業類型。對自動化來說，該值是 Job。|
+resultType | Runbook 作業的狀態。可能的值為︰<br>- Started<br>- Stopped<br>- Suspended<br>- Failed<br>- Succeeded|
+resultDescription | 說明 Runbook 作業的結果狀態。可能的值為︰<br>- Job is started<br>- Job Failed<br>- Job Completed|
+CorrelationId | Runbook 作業之相互關聯識別碼的 GUID。|
+類別 | 資料類型的分類。對自動化來說，該值是 JobLogs。|
+RunbookName | Runbook 的名稱。|
+JobId | Runbook 作業之識別碼的 GUID。|
+呼叫者 | 起始作業的人員。可能的值為電子郵件地址或排程作業的系統。|
+
+### 作業串流
+屬性 | 說明|
+----------|----------|
+時間 | Runbook 作業的執行日期和時間。|
+resourceId | 指定 Azure 中的資源類型。對自動化來說，該值是與 Runbook 相關聯的自動化帳戶。|
+operationName | 指定在 Azure 中執行的作業類型。對自動化來說，該值是 Job。|
+resultType | Runbook 作業的狀態。可能的值為：<br>- InProgres|
+resultDescription | 包含來自 Runbook 的輸出串流。|
+CorrelationId | Runbook 作業之相互關聯識別碼的 GUID。|
+類別 | 資料類型的分類。對自動化來說，該值是 JobStreams。|
+RunbookName | Runbook 的名稱。|
+JobId | Runbook 作業之識別碼的 GUID。|
+呼叫者 | 起始作業的人員。可能的值為電子郵件地址或排程作業的系統。| 
+StreamType | 作業串流的類型。可能的值為︰<br>-Progress<br>- Output<br>- Warning<br>- Error<br>- Debug<br>- Verbose|
+
 ## 在 Log Analytics 中檢視自動化記錄檔 
 
 既然您已經開始將自動化工作記錄傳送到 Log Analytics，我們來看看這些記錄檔在 OMS 中的運用方式。
@@ -114,6 +149,7 @@
 
 `Category=JobLogs NOT(ResultType="started") | measure Count() by ResultType interval 1day` <br> ![OMS 歷史工作狀態圖表](media/automation-manage-send-joblogs-log-analytics/historical-job-status-chart.png)<br>
 
+
 ## 總結
 
 透過將您的自動化工作狀態和資料流資料傳送到 Log Analytics，您可以透過設定警示以在發生問題時做出通知，以及使用進階查詢自訂儀表板來視覺化 Runbook 結果、Runbook 工作狀態及其他相關的關鍵指示器或計量，來針對您的自動化工作取得更佳的深入解析。這將能協助提供更廣泛的作業可見性，並能更快速地解決各種事件。
@@ -126,4 +162,4 @@
 - 若要深入了解 Runbook 執行方式、如何監視 Runbook 工作，以及其他技術性詳細資料，請參閱[追蹤 Runbook 工作](automation-runbook-execution.md)
 - 若要深入了解 OMS Log Analytics 和資料收集來源，請參閱[在 Log Analytics 中收集 Azure 儲存體資料概觀](../log-analytics/log-analytics-azure-storage.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

@@ -14,7 +14,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="08/19/2016"
+   ms.date="09/25/2016"
    ms.author="vturecek"/>
 
 # 使用 Azure Resource Manager 在 Azure 中建立 Service Fabric 叢集
@@ -30,6 +30,8 @@
  - 以適用於叢集管理的 Azure Active Directory (AAD) 驗證使用者。
 
 安全的叢集是會防止未經授權存取管理作業的叢集，那些作業包括部署、升級，及刪除應用程式、服務和它們包含的資料。不安全的叢集是任何人都可以隨時連線並執行管理作業的叢集。雖然可以建立不安全的叢集，但**強烈建議您建立安全的叢集**。不安全的叢集**無法在事後保護其安全** - 必須建立新的叢集。
+
+不論叢集是 Linux 叢集或 Windows 叢集，建立安全叢集的概念都一樣。如需建立安全 Linux 叢集的詳細資訊和協助程式指令碼，請參閱[在 Linux 上建立安全叢集](#secure-linux-clusters)
 
 ## 登入 Azure
 本指南使用 [Azure PowerShell][azure-powershell]。開始新的 PowerShell 工作階段時，請先登入您的 Azure 帳戶並選取您的訂用帳戶，然後再執行 Azure 命令。
@@ -49,7 +51,7 @@ Set-AzureRmContext -SubscriptionId <guid>
 
 ## 設定金鑰保存庫
 
-這部分的指南將逐步引導您為 Azure 中的 Service Fabric 叢集和為 Service Fabric 應用程式建立金鑰保存庫。如需金鑰保存庫的完整指引，請參閱[金鑰保存庫入門指南][key-vault-get-started]。
+本節將逐步引導您為 Azure 中的 Service Fabric 叢集和為 Service Fabric 應用程式建立金鑰保存庫。如需金鑰保存庫的完整指引，請參閱[金鑰保存庫入門指南][key-vault-get-started]。
 
 Service Fabric 會使用 X.509 憑證來保護叢集，並提供應用程式的安全性功能。Azure 金鑰保存庫是用來管理 Azure 中 Service Fabric 叢集的憑證。在 Azure 中部署叢集時，負責建立 Service Fabric 叢集的 Azure 資源提供者會從金鑰保存庫提取憑證，並將它們安裝在叢集 VM 上。
 
@@ -59,12 +61,12 @@ Service Fabric 會使用 X.509 憑證來保護叢集，並提供應用程式的�
 
 ### 建立資源群組
 
-第一個步驟是為金鑰保存庫建立一個專用的新資源群組。建議將金鑰保存庫放入它自己的資源群組，您就可以移除計算和儲存體資源群組 (例如擁有您 Service Fabric 叢集的資源群組) 而不會遺失您的金鑰和密碼。擁有您金鑰保存庫的資源群組必須和正在使用它的叢集位於相同區域。
+第一個步驟是特別針對金鑰保存庫建立資源群組。建議您將金鑰保存庫放入其自己的資源群組中。這可讓您移除計算和儲存體資源群組，包括含有 Service Fabric 叢集的資源群組，而不會遺失您的金鑰和密碼。擁有您金鑰保存庫的資源群組必須和正在使用它的叢集位於相同區域。
 
 ```powershell
 
 	New-AzureRmResourceGroup -Name mycluster-keyvault -Location 'West US'
-	WARNING: The output object type of this cmdlet will be modified in a future release.
+	WARNING: The output object type of this cmdlet is going to be modified in a future release.
 	
 	ResourceGroupName : mycluster-keyvault
 	Location          : westus
@@ -131,7 +133,7 @@ Service Fabric 會使用 X.509 憑證來保護叢集，並提供應用程式的�
 
  - 憑證必須包含私密金鑰。
  - 憑證必須是為了進行金鑰交換而建立，且可匯出成個人資訊交換檔 (.pfx)。
- - 憑證的主體名稱必須符合用來存取 Service Fabric 叢集的網域。這是必要的，以便為叢集的 HTTPS 管理端點和 Service Fabric Explorer 提供 SSL。您無法向憑證授權單位 (CA) 取得 `.cloudapp.azure.com` 網域的 SSL 憑證。您必須為您的叢集取得自訂網域名稱。當您向 CA 要求憑證時，憑證的主體名稱必須符合用於您叢集的自訂網域名稱。
+ - 憑證的主體名稱必須符合用來存取 Service Fabric 叢集的網域。必須如此符合，才能為叢集的 HTTPS 管理端點和 Service Fabric Explorer 提供 SSL。您無法向憑證授權單位 (CA) 取得 `.cloudapp.azure.com` 網域的 SSL 憑證。您必須為您的叢集取得自訂網域名稱。當您向 CA 要求憑證時，憑證的主體名稱必須符合用於叢集的自訂網域名稱。
 
 ### 應用程式憑證 (選用)
 
@@ -160,7 +162,7 @@ Service Fabric 會使用 X.509 憑證來保護叢集，並提供應用程式的�
 	
 	Switching context to SubscriptionId <guid>
 	Ensuring ResourceGroup mycluster-keyvault in West US
-	WARNING: The output object type of this cmdlet will be modified in a future release.
+	WARNING: The output object type of this cmdlet is going to be modified in a future release.
 	Using existing valut myvault in West US
 	Reading pfx file from C:\path\to\key.pfx
 	Writing secret to myvault in vault myvault
@@ -177,8 +179,7 @@ Value : https://myvault.vault.azure.net:443/secrets/mycert/4d087088df974e869f1c0
 
 ```
 
-
-這些是設定 Service Fabric 叢集 Resource Manager 範本時的所有金鑰保存庫必要條件，該範本會安裝用於節點驗證、管理端點安全性和驗證，以及使用 X.509 憑證的任何其他應用程式安全性功能的憑證。此時，您應該已經在 Azure 中建立以下項目：
+先前的字串是設定 Service Fabric 叢集 Resource Manager 範本時的所有金鑰保存庫必要條件，該範本會安裝用於節點驗證、管理端點安全性和驗證，以及使用 X.509 憑證的任何其他應用程式安全性功能的憑證。此時，您應該已經在 Azure 中建立以下項目：
 
  - 金鑰保存庫資源群組
    - 金鑰保存庫
@@ -213,7 +214,7 @@ Service Fabric 叢集提供其管理功能的各種進入點 (包括 Web 型 [Se
 
     在指令碼所建立的 AAD 應用程式前面會加上 **ClusterName**。它不需要完全符合實際的叢集名稱，因為它只是用來讓您更輕鬆地將 AAD 構件對應到與之搭配使用的 Service Fabric 叢集。
 
-    **WebApplicationReplyUrl** 是 AAD 在完成登入程序之後讓您的使用者返回的預設端點。您應該將此設定為您叢集的 Service Fabric Explorer 端點，其預設值為︰
+    **WebApplicationReplyUrl** 是 AAD 在完成登入程序之後傳回給使用者的預設端點。您應該將此設定為您叢集的 Service Fabric Explorer 端點，其預設值為︰
 
     https://&lt;cluster_domain&gt;:19080/Explorer
 
@@ -366,7 +367,7 @@ Service Fabric 叢集提供其管理功能的各種進入點 (包括 Web 型 [Se
 }
 ```
 
-### 設定 Resource Manager 範本參數
+### <a "configure-arm" ></a>設定 Resource Manager 範本參數
 
 最後，使用金鑰保存庫和 AAD PowerShell 命令的輸出值來填入參數檔案︰
 
@@ -445,6 +446,7 @@ Test-AzureRmResourceGroupDeployment -ResourceGroupName "myresourcegroup" -Templa
 New-AzureRmResourceGroupDeployment -ResourceGroupName "myresourcegroup" -TemplateFile .\azuredeploy.json -TemplateParameterFile .\azuredeploy.parameters.json
 ```
 
+<a name="assign-roles"></a>
 ## 將使用者指派給角色
 
 建立應用程式來代表您的叢集之後，需要將使用者指派給 Service Fabric 所支援的角色︰唯讀和系統管理員。您可以使用 [Azure 傳統入口網站][azure-classic-portal]來執行這項作業。
@@ -462,6 +464,54 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName "myresourcegroup" -Templat
 
 >[AZURE.NOTE] 如需 Service Fabric 中角色的詳細資訊，請參閱[角色型存取控制 (適用於 Service Fabric 用戶端)](service-fabric-cluster-security-roles.md)。
 
+ <a name="secure-linux-cluster"></a>
+##  在 Linux 上建立安全叢集
+
+為了簡化此程序，[這裡](http://github.com/ChackDan/Service-Fabric/tree/master/Scripts/CertUpload4Linux)提供一個協助程式指令碼。在使用此協助程式指令碼時，我們假設您已安裝 Azure CLI，而且它位於您的路徑中。下載指令碼後，請執行 `chmod +x cert_helper.py`，以確定指令碼有執行權限。第一個步驟是使用 CLI 輸入 `azure login` 命令，登入您的 Azure 帳戶。登入 Azure 帳戶之後，使用協助程式並指定您的 CA 簽署憑證，如下列命令所示︰
+
+```sh
+./cert_helper.py [-h] CERT_TYPE [-ifile INPUT_CERT_FILE] [-sub SUBSCRIPTION_ID] [-rgname RESOURCE_GROUP_NAME] [-kv KEY_VAULT_NAME] [-sname CERTIFICATE_NAME] [-l LOCATION] [-p PASSWORD]
+
+The -ifile parameter can take a .pfx or a .pem file as input, with the certificate type (pfx or pem, or ss if it is a self-signed cert).
+The parameter -h prints out the help text.
+```
+
+此命令會傳回下列三個字串做為輸出︰
+
+1. SourceVaultID：這是它為您建立的新 KeyVault ResourceGroup 的識別碼。
+
+2. CertificateUrl：用於存取憑證。
+
+3. CertificateThumbprint：用於驗證。
+
+
+下列範例示範如何使用此命令︰
+
+```sh
+./cert_helper.py pfx -sub "fffffff-ffff-ffff-ffff-ffffffffffff"  -rgname "mykvrg" -kv "mykevname" -ifile "/home/test/cert.pfx" -sname "mycert" -l "East US" -p "pfxtest"
+```
+執行上述命令會提供下列三個字串給您︰
+
+```sh
+SourceVault: /subscriptions/fffffff-ffff-ffff-ffff-ffffffffffff/resourceGroups/mykvrg/providers/Microsoft.KeyVault/vaults/mykvname
+CertificateUrl: https://myvault.vault.azure.net/secrets/mycert/00000000000000000000000000000000
+CertificateThumbprint: 0xfffffffffffffffffffffffffffffffffffffffff
+```
+
+ 憑證的主體名稱必須符合用來存取 Service Fabric 叢集的網域。這是必要的，以便為叢集的 HTTPS 管理端點和 Service Fabric Explorer 提供 SSL。您無法向憑證授權單位 (CA) 取得 `.cloudapp.azure.com` 網域的 SSL 憑證。您必須為您的叢集取得自訂網域名稱。當您向 CA 要求憑證時，憑證的主體名稱必須符合用於您叢集的自訂網域名稱。
+
+這些是用於建立安全 Service Fabric 叢集 (不含 AAD) 的必要項目，如[設定 Resource Manager 範本參數](#configure-arm)所述。您可以透過[驗證用戶端對叢集的存取權](service-fabric-connect-to-secure-cluster.md)中的指示連線到安全叢集。Linux 預覽叢集不支援 AAD 驗證。您可以指派系統管理員和用戶端角色，如[指派角色給使用者](#assign-roles)一節所述。在為 Linux 預覽叢集指定系統管理員和用戶端角色時，您必須提供用於驗證的憑證指紋 (而不是主體名稱，因為此預覽版本中不會執行鏈結驗證或撤銷)。
+
+
+如果您想要使用自我簽署的憑證進行測試，您可以使用相同的指令碼，並提供旗標 `ss` 而不是提供憑證名稱與憑證路徑，以產生自我簽署的憑證，並將它上傳至 KeyVault。例如，請參閱下列命令來建立及上傳自我簽署的憑證︰
+
+```sh
+./cert_helper.py ss -rgname "mykvrg" -sub "fffffff-ffff-ffff-ffff-ffffffffffff" -kv "mykevname"   -sname "mycert" -l "East US" -p "selftest" -subj "mytest.eastus.cloudapp.net" 
+```
+
+此命令會傳回相同的三個字串，即 SourceVault、CertificateUrl 和 CertificateThumbprint (用來建立安全的 Linux 叢集)，以及放置自我簽署憑證的位置。您需要有自我簽署的憑證才能連線到叢集。您可以透過[驗證用戶端對叢集的存取權](service-fabric-connect-to-secure-cluster.md)中的指示連線到安全叢集。憑證的主體名稱必須符合用來存取 Service Fabric 叢集的網域。這是必要的，以便為叢集的 HTTPS 管理端點和 Service Fabric Explorer 提供 SSL。您無法向憑證授權單位 (CA) 取得 `.cloudapp.azure.com` 網域的 SSL 憑證。您必須為您的叢集取得自訂網域名稱。當您向 CA 要求憑證時，憑證的主體名稱必須符合用於您叢集的自訂網域名稱。
+
+協助程式指令碼所提供的參數可以在入口網站填入，如[在 Azure 入口網站中建立叢集](service-fabric-cluster-creation-via-portal.md#create-cluster-portal)一節所述。
 
 ## 後續步驟
 
@@ -488,4 +538,4 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName "myresourcegroup" -Templat
 [assign-users-to-roles-button]: ./media/service-fabric-cluster-creation-via-arm/assign-users-to-roles-button.png
 [assign-users-to-roles-dialog]: ./media/service-fabric-cluster-creation-via-arm/assign-users-to-roles.png
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

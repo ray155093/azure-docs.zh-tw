@@ -14,7 +14,7 @@
  ms.topic="article"
  ms.tgt_pltfrm="na"
  ms.workload="big-data"
- ms.date="07/05/2016"
+ ms.date="09/27/2016"
  ms.author="larryfr"/>
 
 # 使用 HDInsight 上的 Storm 和 HBase 讓事件隨著時間而相互關聯
@@ -204,4 +204,4 @@
 如需更多 Storm 範例，請參閱 [Storm on HDInsight 上的範例拓撲](hdinsight-storm-example-topology.md)。
  
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

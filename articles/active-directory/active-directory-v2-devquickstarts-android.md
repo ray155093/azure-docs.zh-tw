@@ -32,7 +32,7 @@ v2.0 端點並未支援所有的 Azure Active Directory 案例和功能。
 
 
 ## 從 GitHub 下載程式碼
-本教學課程的程式碼保留在 [GitHub](git@github.com:Azure-Samples/active-directory-android-native-oidcandroidlib-v2.git)。若要遵循執行，您可以[用 .zip 格式下載應用程式的基本架構](git@github.com:Azure-Samples/active-directory-android-native-oidcandroidlib-v2.git/archive/skeleton.zip)，或複製基本架構：
+本教學課程的程式碼保留在 [GitHub](https://github.com/Azure-Samples/active-directory-android-native-oidcandroidlib-v2)。若要遵循執行，您可以[用 .zip 格式下載應用程式的基本架構](https://github.com/Azure-Samples/active-directory-android-native-oidcandroidlib-v2/archive/skeleton.zip)，或複製基本架構：
 
 ```
 git clone --branch skeleton git@github.com:Azure-Samples/active-directory-android-native-oidcandroidlib-v2.git
@@ -197,4 +197,4 @@ Azure Active Directory 目前不支援 `userInfoEndpoint` 和 `revocationEndpoin
 
 我們鼓勵您造訪[安全性 TechCenter](https://technet.microsoft.com/security/dd252948) 並訂閱資訊安全摘要報告警示，以收到有關安全性事件的通知。
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

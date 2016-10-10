@@ -1,5 +1,5 @@
 <properties
-	pageTitle="使用 Azure Media Indexer 2 Preview 編製媒體檔案索引"
+	pageTitle="使用 Azure Media Indexer 2 Preview 編製媒體檔案索引 | Microsoft Azure"
 	description="Azure Media Indexer 讓您能將媒體檔案的內容變成可搜尋，並產生隱藏式字幕和關鍵字的全文檢索記錄。本主題說明如何使用 Media Indexer 2 Preview。"
 	services="media-services"
 	documentationCenter=""
@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="06/22/2016" 
+	ms.date="09/26/2016" 
 	ms.author="adsolank;juliako;"/>
 
 
 # 使用 Azure Media Indexer 2 Preview 編製媒體檔案索引
 
-##概觀
+##Overview
 
 **Azure Media Indexer 2 Preview** 媒體處理器 (MP) 可讓您將媒體檔案和內容設為可供搜尋，並產生隱藏式輔助字幕追蹤。相較於舊版的 [Azure Media Indexer](media-services-index-content.md)，**Azure Media Indexer 2 Preview** 編製索引速度更快，並提供更廣泛的語言支援。支援的語言包括英文、西班牙文、法文、德文、義大利文、中文、葡萄牙文和阿拉伯文。
 
@@ -54,7 +54,7 @@
 
 這些格式的隱藏式輔助字幕 (CC) 檔案可以用來讓具有聽力障礙的人存取音訊和視訊檔案。
 
-##工作組態 (預設)
+##工作設定 (預設)
 
 以 **Azure 媒體索引器 2 預覽**建立索引工作時，您必須指定設定預設值。
 
@@ -289,4 +289,4 @@ Azure Media Indexer 2 Preview 支援下列語言的語音轉文字 (在工作設
 
 [Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

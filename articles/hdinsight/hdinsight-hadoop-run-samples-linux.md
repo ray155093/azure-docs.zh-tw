@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/12/2016"
+	ms.date="09/27/2016"
 	ms.author="larryfr"/>
 
 
@@ -47,7 +47,7 @@
 - **aggregatewordcount**：以彙總為基礎的 map/reduce 程式，可計算輸入檔中的字數
 - **aggregatewordhist**：以彙總為基礎的 map/reduce 程式，可計算輸入檔中的字數長條圖
 - **bbp**：map/reduce 程式，使用貝利-波爾溫-普勞夫公式 (Bailey-Borwein-Plouffe) 計算 Pi 的確切位數
-- **dbcount**：範例工作，可從資料庫計算 pageview 的計數
+- **dbcount**：範例工作，計數儲存在資料庫中的 pageview 記錄檔
 - **distbbp**：map/reduce 程式，使用 BBP 類型的公式來計算 Pi 的確切位數
 - **grep**：map/reduce 程式，可計算輸入中 regex 的相符項目
 - **join**：工作，可影響已排序且平均分割之資料集的聯結
@@ -83,7 +83,7 @@
 
         yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar
 
-    這麼做會產生本文件上一節中的範例清單。
+    這會產生本文件上一節中的範例清單。
 
 3. 使用下列命令可取得特定範例的說明。在此情況下為 **wordcount** 範例：
 
@@ -93,7 +93,7 @@
 
         Usage: wordcount <in> [<in>...] <out>
 
-    這表示您可以提供數個來源文件的輸入路徑，而最後一個路徑就是要放置輸出 (來源文件中的字數計數) 的位置。
+    這表示您可以為來源文件提供數個輸入路徑。最後一個路徑是輸出 (來源文件中的字數計數) 的儲存處。
 
 4. 使用以下命令計算達文西手稿筆記中的所有字數，該文件已隨附於您的叢集做為範例資料：
 
@@ -109,9 +109,9 @@
 
         hdfs dfs -cat /example/data/davinciwordcount/*
 
-    這麼做會串連工作所產生的所有輸出檔，並加以顯示。此為基本範例，只有一個檔案，但如果有多個檔案，此命令就會逐一計算所有檔案。
+    這會串連工作所產生的所有輸出檔，並加以顯示。此為基本範例，只有一個檔案，但如果有多個檔案，此命令就會逐一計算所有檔案。
 
-    您將透過此命令看到類似以下的輸出：
+    輸出大致如下：
 
         zum     1
         zur     1
@@ -236,4 +236,4 @@ GraySort 是一種效能評定排序，其度量為排序極大資料量時 (通
 [hdinsight-use-hive]: hdinsight-use-hive.md
 [hdinsight-use-pig]: hdinsight-use-pig.md
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

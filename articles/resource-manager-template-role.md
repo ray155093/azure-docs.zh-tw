@@ -41,22 +41,23 @@
 
 下表描述您在結構描述中必須設定的值。
 
-| 名稱 | 值 |
-| ---- | ---- |
-| 類型 | 列舉<br />必要<br />**Microsoft.Authorization/roleAssignments**<br /><br />要建立的資源類型。 |
-| apiVersion | 列舉<br />必要<br />**2014-10-01-preview**<br /><br />要用來建立資源的應用程式開發介面 (API) 版本。 |  
-| 名稱 | 字串<br />必要<br />**全域唯一識別碼**<br /><br />新角色指派的識別碼。 |
-| dependsOn | 陣列<br />選用<br />以逗號分隔的資源名稱或資源唯一識別碼清單。<br /><br />此角色指派所相依的資源集合。如果指派角色的範圍為資源，且該資源部署在相同的範本中，則將該資源的名稱包含在此元素中，以確保會優先部署資源。 | 
-| 屬性 | 物件<br />必要<br />[屬性物件](#properties)<br /><br />識別角色定義、主體和範圍的物件。 |  
+| 名稱 | 值 | 說明 |
+| ---- | ---- | ---- |
+| 類型 | 列舉<br />必要<br />**Microsoft.Authorization/roleAssignments** | 要建立的資源類型。 |
+| apiVersion | 列舉<br />必要<br />**2014-10-01-preview** | 要用來建立資源的應用程式開發介面 (API) 版本。 |  
+| 名稱 | 字串<br />必要<br />**全域唯一識別碼** | 新角色指派的識別碼。 |
+| dependsOn | 陣列<br />選擇性<br />以逗號分隔的資源名稱或資源唯一識別碼清單。 | 此角色指派所依存的資源集合。如果指派角色的範圍為資源，且該資源部署在相同的範本中，則將該資源的名稱包含在此元素中，以確保會優先部署資源。 | 
+| 屬性 | 物件<br />必要<br />[屬性物件](#properties) | 識別角色定義、主體，和範圍的物件。 |  
 
 <a id="properties" />
+
 ### 屬性物件
 
-| 名稱 | 值 |
-| ------- | ---- |
-| roleDefinitionId | 字串<br />必要<br /> **/subscriptions/{subscription-id}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}**<br /><br />要在角色指派中使用的現有角色定義識別碼。 |
-| principalId | 字串<br />必要<br />**全域唯一識別碼**<br /><br />現有主體的識別碼。這會對應到目錄中的識別碼，並且可指向使用者、服務主體，或安全性群組。 |
-| scope | 字串<br />必要<br />**/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}** (適用於資源群組) 或<br />**/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/{provider-namespace}/{resource-type}/{resource-name}** (適用於資源)<br /><br />套用此角色指派的範圍。 |
+| 名稱 | Value1 | 說明 |
+| ---- | ---- | ---- |
+| roleDefinitionId | 字串<br />必要 <br /><br /> **/subscriptions/{subscription-id}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}** | 在角色指派中會使用現有之角色定義的識別碼。 |
+| principalId | 字串<br />必要 <br /><br /> **全域唯一識別碼** | 現有主體的識別碼。這會對應到目錄中的識別碼，並且可指向使用者、服務主體，或安全性群組。 |
+| scope | 字串<br />必要 <br /><br /> **/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}** (資源群組)<br /> 或<br />**/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/{provider-namespace}/{resource-type}/{resource-name}** (資源) | 範圍為此角色指派套用的範圍。 |
 
 
 ## 如何使用角色指派資源
@@ -133,4 +134,4 @@
 - 如需範本結構的相關資訊，請參閱[編寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
 - 如需角色型存取控制的詳細資訊，請參閱 [Azure Active Directory 角色型存取控制](active-directory/role-based-access-control-configure.md)。
 
-<!---HONumber=AcomDC_0406_2016-->
+<!---HONumber=AcomDC_0928_2016-->

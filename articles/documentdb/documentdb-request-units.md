@@ -2,7 +2,7 @@
 	pageTitle="DocumentDB 中的要求單位 | Microsoft Azure" 
 	description="了解如何在 DocumentDB 中了解、指定及估計要求單位需求。" 
 	services="documentdb" 
-	authors="stephbaron" 
+	authors="mimig1" 
 	manager="jhubbard" 
 	editor="mimig" 
 	documentationCenter=""/>
@@ -14,7 +14,7 @@
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="06/29/2016" 
-	ms.author="stbaro"/>
+	ms.author="mimig"/>
 
 #DocumentDB 中的要求單位
 現在可供使用︰DocumentDB [要求單位計算機](https://www.documentdb.com/capacityplanner)。深入了解[預估您的輸送量需求](documentdb-request-units.md#estimating-throughput-needs)。
@@ -220,4 +220,4 @@ DocumentDB 服務的每個回應都會包括自訂標頭 (x-ms-request-charge)�
 [4]: ./media/documentdb-request-units/RUEstimatorResults.png
 [5]: ./media/documentdb-request-units/RUCalculator2.png
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0928_2016-->

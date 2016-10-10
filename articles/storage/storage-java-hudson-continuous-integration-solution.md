@@ -5,7 +5,7 @@
 	documentationCenter="java"
 	authors="rmcmurray"
 	manager="wpickett"
-	editor=""/>
+	editor="tysonn"/>
 
 <tags
 	ms.service="storage"
@@ -14,7 +14,7 @@
 	ms.devlang="Java"
 	ms.topic="article"
 	ms.date="08/11/2016" 
-	ms.author="robmcm"/>
+	ms.author="dinesh;robmcm"/>
 
 # 使用 Azure 儲存體與 Hudson 連續整合解決方案
 
@@ -182,4 +182,4 @@ Hudson 提供軟體專案的連續整合，方法是允許開發人員輕易整�
 
 如需詳細資訊，另請參閱 [Java 開發人員中心](https://azure.microsoft.com/develop/java/)。
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

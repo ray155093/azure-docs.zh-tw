@@ -3,7 +3,7 @@
 	description="了解如何使用 Azure Data Factory，從內部部署或 Azure VM 中的 SQL Server 資料庫來回移動資料。"
 	services="data-factory"
 	documentationCenter=""
-	authors="spelluru"
+	authors="linda33wj"
 	manager="jhubbard"
 	editor="monicar"/>
 
@@ -14,11 +14,25 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="08/31/2016"
-	ms.author="spelluru"/>
+	ms.author="jingwang"/>
 
 # 使用 Azure Data Factory 從 SQL Server 內部部署或 IaaS (Azure VM) 上來回移動資料
-
 本文概述如何使用「複製活動」將資料從 SQL Server 移到另一個資料存放區，或從另一個資料存放區移到 SQL Server。本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文呈現資料移動的一般概觀，以及所支援作為來源和接收器的資料存放區。
+
+## 支援的來源與接收器
+如需受支援成為「複製活動」來源或接收器的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)表格。您可以從任何支援的來源資料存放區將資料移至 SQL Server，或從 SQL Server 移至任何支援的接收資料存放區。
+
+## 建立管線
+您可以建立內含複製活動的管線，使用不同的工具/API 將資料移進/移出內部部署 SQL Server 資料庫。
+
+- 複製精靈
+- Azure 入口網站
+- Visual Studio
+- Azure PowerShell
+- .NET API
+- REST API
+
+請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)的逐步指示，以不同方式建立內含複製活動的管線。
 
 ## 啟用連線
 
@@ -392,6 +406,7 @@
 	}
 
 ## SQL Server 連結服務屬性
+範例中使用 **OnPremisesSqlServer** 類型的連結服務將內部部署 SQL Server 資料庫連結至 Data Factory。下表提供內部部署 SQL Server 連結服務專屬 JSON 元素的描述。
 
 下表提供 SQL Server 連結服務專屬 JSON 元素的描述。
 
@@ -444,16 +459,18 @@
 如需為 SQL Server 資料來源設定認證的詳細資料，請參閱[設定認證和安全性](data-factory-move-data-between-onprem-and-cloud.md#set-credentials-and-security)。
 
 ## SQL Server 資料集類型屬性
+範例中使用使用 **SqlServerTable** 類型的資料集來表示 SQL Server 資料庫中的資料表。
 
 如需定義資料集的區段和屬性完整清單，請參閱[建立資料集](data-factory-create-datasets.md)一文。所有資料集類型 (SQL Server、Azure Blob、Azure 資料表等) 的資料集 JSON 區段 (例如 structure、availability 及 policy) 都相似。
 
-每個資料集類型的 typeProperties 區段都不同，可提供資料存放區中資料的位置相關資訊。**SqlServerTable** 資料集類型的 **typeProperties** 區段具有下列屬性。
+每個資料集類型的 typeProperties 區段都不同，可提供資料存放區中資料的位置相關資訊。**SqlServerTable** 類型資料集的 **typeProperties** 區段有下列屬性：
 
 | 屬性 | 說明 | 必要 |
 | -------- | ----------- | -------- |
 | tableName | SQL Server Database 執行個體中連結服務所參照的資料表名稱。 | 是 |
 
 ## SQL Server 複製活動類型屬性
+如果您要將資料從 SQL Server 資料庫移出，請將複製活動中的來源類型設定為 **SqlSource**。同樣的，如果您要將資料移進 SQL Server 資料庫，請將複製活動中的接收器類型設定為 **SqlSink**。本節提供 SqlSource 和 SqlSink 支援的屬性清單。
 
 如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
 
@@ -488,8 +505,8 @@
 | -------- | ----------- | -------------- | -------- |
 | writeBatchTimeout | 在逾時前等待批次插入作業完成的時間。 | 時間範圍<br/><br/> 範例：“00:30:00” (30 分鐘)。 | 否 |
 | writeBatchSize | 當緩衝區大小達到 writeBatchSize 時，將資料插入 SQL 資料表中 | 整數 (資料列數目) | 否 (預設值：10000)
-| sqlWriterCleanupScript | 指定要讓「複製活動」執行的查詢，以便清除特定分割的資料。如需詳細資訊，請參閱＜可重複性＞一節。 | 查詢陳述式。 | 否 |
-| sliceIdentifierColumnName | 指定要讓「複製活動」以自動產生的分割識別碼填入的資料行名稱，這可在重新執行時用來清除特定分割的資料。如需詳細資訊，請參閱＜可重複性＞一節。 | 資料類型為 binary(32) 之資料行的資料行名稱。 | 否 |
+| sqlWriterCleanupScript | 指定要讓「複製活動」執行的查詢，以便清除特定分割的資料。如需詳細資訊，請參閱[可重複性](#repeatability-during-copy)一節。 | 查詢陳述式。 | 否 |
+| sliceIdentifierColumnName | 指定要讓「複製活動」以自動產生的分割識別碼填入的資料行名稱，這可在重新執行時用來清除特定分割的資料。如需詳細資訊，請參閱[可重複性](#repeatability-during-copy)一節。 | 資料類型為 binary(32) 之資料行的資料行名稱。 | 否 |
 | sqlWriterStoredProcedureName | 將資料更新插入 (更新/插入) 目標資料表中的預存程序名稱。 | 預存程序的名稱。 | 否 |
 | storedProcedureParameters | 預存程序的參數。 | 名稱/值組。參數的名稱和大小寫必須符合預存程序參數的名稱和大小寫。 | 否 |
 | sqlWriterTableType | 指定要在預存程序中使用的資料表類型名稱。複製活動可讓正在移動的資料可用於此資料表類型的暫存資料表。然後，預存程序程式碼可以合併正在複製的資料與現有的資料。 | 資料表類型名稱。 | 否 |
@@ -586,6 +603,8 @@
 
 請注意，您的來源資料表與目標資料表的結構描述不同 (目標資料表有一個具有身分識別的額外資料行)。在此案例中，您必須在目標資料集定義中指定 **structure** 屬性，這不包含身分識別資料行。
 
+然後，將來源資料集中的資料行對應至目的地資料集中的資料行。請參閱[資料行對應範例](#column-mapping-samples)一節中的範例。
+
 [AZURE.INCLUDE [data-factory-type-repeatability-for-sql-sources](../../includes/data-factory-type-repeatability-for-sql-sources.md)]
 
 
@@ -650,4 +669,4 @@
 ## 效能和微調  
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0928_2016-->

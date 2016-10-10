@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="更換儲存體存取金鑰之後更新媒體服務" 
+	pageTitle="更換儲存體存取金鑰之後更新媒體服務 | Microsoft Azure" 
 	description="本文章會教您如何在更換儲存體存取金鑰之後更新媒體服務。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,10 +13,10 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016" 
+	ms.date="09/26/2016" 
 	ms.author="milangada;cenkdin;juliako"/>
 
-#如何：更換儲存體存取金鑰之後更新媒體服務
+#更換儲存體存取金鑰之後更新媒體服務
 
 當您建立新的 Azure 媒體服務帳戶時，系統也會要求您選取一個 Azure 儲存體帳戶，用來儲存媒體內容。請注意，您可以[新增多個儲存體帳戶](meda-services-managing-multiple-storage-accounts.md)至媒體服務帳戶中。
 
@@ -159,4 +159,4 @@
 
 我們想要向下列為建立此文件貢獻心力的人員致謝：Cenk Dingiloglu、Milan Gada、Seva Titov。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

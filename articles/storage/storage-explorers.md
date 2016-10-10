@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/20/2016"
-	ms.author="micurd"/>
+	ms.date="09/21/2016"
+	ms.author="micurd;tamram"/>
 
 # Azure 儲存體用戶端工具
 
@@ -250,4 +250,4 @@ Azure 儲存體的使用者經常想要能夠使用 Azure 儲存體用戶端工�
   </tr>
 </table>
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0928_2016-->

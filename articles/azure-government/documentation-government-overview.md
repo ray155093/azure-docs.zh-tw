@@ -90,10 +90,7 @@ Azure 儲存體服務加密是在儲存體帳戶層級啟用，讓區塊 Blob �
 隔離的關鍵在於使用界限、分割和容器，以限制只有經過授權的使用者、服務和應用程式能夠存取資料。例如，租用戶之間的分隔是多租用戶雲端平台 (例如 Microsoft Azure) 的基本安全性機制。邏輯隔離有助於防止租用戶干擾任何其他租用戶的作業。
 
 ### <a name="Overview"></a>環境隔離
-Azure Government 環境是與其他 Microsoft 網路隔開的實體和網路皆有所隔離的執行個體。透過一系列包括下列各項的實體和邏輯控制即可達成隔離︰
-* 使用生物識別裝置與相機來確保實體屏障。
-* 需要以邏輯方式存取生產環境的 Microsoft 人員需使用特定認證和多重要素驗證。
-* Azure Government 的所有服務基礎結構都位於美國境內。
+Azure Government 環境是與 Microsoft 其他網路隔開的實體執行個體。這透過一系列包括下列各項的實體和邏輯控制即可達成︰使用生物識別裝置與相機來確保實體屏障。需要以邏輯方式存取生產環境的 Microsoft 人員需使用特定認證和多重要素驗證。Azure Government 的所有服務基礎結構都位於美國境內。
 
 #### <a name="Overview"></a>每個客戶隔離
 Azure 會透過 VLAN 隔離、ACL、負載平衡器和 IP 篩選器，實作網路存取控制和隔離
@@ -104,4 +101,4 @@ Azure 會透過 VLAN 隔離、ACL、負載平衡器和 IP 篩選器，實作網�
 
 如需補充資訊和更新，請訂閱 <a href="https://blogs.msdn.microsoft.com/azuregov/">Microsoft Azure Government 部落格。</a>
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0928_2016-->

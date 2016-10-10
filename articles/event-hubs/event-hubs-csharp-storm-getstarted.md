@@ -3,7 +3,7 @@
 	description="遵循此教學課程，以開始使用 Azure 事件中樞；以 C# 傳送事件並在 Apache Storm 叢集中接收這些事件。"
 	services="event-hubs"
 	documentationCenter=""
-	authors="fsautomata"
+	authors="jtaubensee"
 	manager="timlt"
 	editor=""/>
 
@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="article" 
 	ms.date="09/06/2016"
-	ms.author="sethm"/>
+	ms.author="jotaub;sethm"/>
 
 # 開始使用事件中心
 
@@ -72,4 +72,4 @@
 [佇列訊息解決方案]: ../service-bus/service-bus-dotnet-multi-tier-app-using-service-bus-queues.md
  
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0928_2016-->

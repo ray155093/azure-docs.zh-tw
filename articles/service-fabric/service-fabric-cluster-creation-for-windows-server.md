@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="09/15/2016"
+   ms.date="09/26/2016"
    ms.author="dkshir;chackdan"/>
 
 
@@ -25,15 +25,20 @@ Azure Service Fabric 可允許在執行 Windows Server 的任何虛擬機器或�
 
 >[AZURE.NOTE] 此獨立的 Windows Server 封裝可能包含一些目前為預覽版的功能，並不支援商業用途。若要查看預覽功能清單，請向下捲動到本文件的結尾。如果您想要立即下載一份 EULA，[按一下這裡](http://go.microsoft.com/fwlink/?LinkID=733084)。
 
+
+<a id="getsupport"></a>
+## 取得 Service Fabric 獨立封裝的支援
+
+- 請至 [Azure Service Fabric 論壇](https://social.msdn.microsoft.com/Forums/azure/zh-TW/home?forum=AzureServiceFabric?)，向社群發問有關 Windows Server 的 Service Fabric 獨立封裝。
+
+- 向 [Service Fabric 的專業支援](http://support.microsoft.com/oas/default.aspx?prid=16146)開立票證。深入了解 [Microsoft 的專業支援](https://support.microsoft.com/zh-TW/gp/offerprophone?wa=wsignin1.0)。
+
 <a id="downloadpackage"></a>
 ## 下載 Service Fabric 獨立封裝
 
 
 [下載適用於 Windows Server 2012 R2 和更新版本的 Service Fabric 獨立封裝](http://go.microsoft.com/fwlink/?LinkId=730690)，名稱為「Microsoft.Azure.ServiceFabric.WindowsServer.&lt;version&gt;.zip」。
 
->[AZURE.NOTE] 如果您使用 Internet Explorer 或 Microsoft Edge 瀏覽器下載此封裝，必須將 [http://download.microsoft.com](http://download.microsoft.com) 網站加入內部網路中信任的網站，防止區域標籤在 zip 下載之後被寫入檔案
-
- ![TustedZone][TrustedZone]
 
 在下載封裝中，您會找到下列檔案︰
 
@@ -46,12 +51,15 @@ Azure Service Fabric 可允許在執行 Windows Server 的任何虛擬機器或�
 |ClusterConfig.Windows.MultiMachine.json|叢集組態範例檔案，其中包含適用於使用 Windows 安全性的安全、多個 VM/電腦叢集的所有設定，包括安全叢集中每個電腦的相關資訊。使用 [Windows 身分識別](https://msdn.microsoft.com/library/ff649396.aspx)保護叢集的安全。|
 |ClusterConfig.x509.DevCluster.json|叢集組態範例檔案，其中包含適用於安全、三個節點、單一 VM/電腦部署叢集的所有設定，包括叢集中每個節點的相關資訊。使用 x509 憑證保護叢集的安全。|
 |ClusterConfig.x509.MultiMachine.json|叢集組態範例檔案，其中包含適用於安全、多個 VM/電腦叢集的所有設定，包括安全叢集中每個節點的相關資訊。使用 x509 憑證保護叢集的安全。|
-|EULA.txt|使用 Microsoft Azure Service Fabric 獨立 Windows Server 封裝的授權條款。如果您想要立即下載一份 EULA，[按一下這裡](http://go.microsoft.com/fwlink/?LinkID=733084)。|
+|EULA\_ENU.txt|使用 Microsoft Azure Service Fabric 獨立 Windows Server 封裝的授權條款。如果您想要立即下載一份 EULA，[按一下這裡](http://go.microsoft.com/fwlink/?LinkID=733084)。|
 |Readme.txt|指向版本資訊和基本安裝指示的連結。這是您在此頁面上找到的一部分指示。|
 |CreateServiceFabricCluster.ps1|使用 ClusterConfig.json 檔案中的設定建立叢集的 PowerShell 指令碼。|
 |RemoveServiceFabricCluster.ps1|使用 ClusterConfig.json 中的設定移除叢集的 PowerShell 指令碼。|
+|ThirdPartyNotice.rtf |套件中協力廠商軟體的注意事項。|
 |AddNode.ps1|用於將節點加入至現有部署叢集的 PowerShell 指令碼。|
 |RemoveNode.ps1|用於在現有部署叢集移除節點的 PowerShell 指令碼。|
+|CleanFabric.ps1|從目前電腦中清除獨立 Fabric 安裝的 PowerShell 指令碼。先前的 MSI 安裝應該以它自己相關聯的解除安裝程式來移除。|
+|TestConfiguration.ps1|分析 cluster.JSON 中指定之基礎結構的 PowerShell 指令碼。|
 
 
 ## 規劃及準備叢集部署
@@ -64,13 +72,16 @@ Azure Service Fabric 可允許在執行 Windows Server 的任何虛擬機器或�
 ### 步驟 2︰準備符合必要條件的電腦
 您想要新增到叢集的每部電腦的必要條件︰
 
-- 建議至少 4 GB 的記憶體
+- 建議至少 16 GB RAM
+- 建議至少 40 GB 的可用磁碟空間
+- 建議至少 4 核心 CPU
 - 網路連線：請確定電腦位於一或多個安全的網路。
 - Windows Server 2012 R2 或 Windows Server 2012 (您必須安裝 [KB2858668](https://support.microsoft.com/kb/2858668))。
 - [.NET Framework 4.5.1 或更高版本](https://www.microsoft.com/download/details.aspx?id=40773)，完整安裝。
 - [Windows PowerShell 3.0](https://msdn.microsoft.com/powershell/scripting/setup/installing-windows-powershell)。
 - 部署和設定叢集的叢集系統管理員必須擁有每部電腦的[系統管理員權限](https://social.technet.microsoft.com/wiki/contents/articles/13436.windows-server-2012-how-to-add-an-account-to-a-local-administrator-group.aspx)。
 - [RemoteRegistry 服務](https://technet.microsoft.com/library/cc754820)應該在所有電腦上執行。
+- 您無法在網域控制站上安裝 Service Fabric
 
 ### 步驟 3︰決定初始叢集大小
 獨立 Service Fabric 叢集中的每個節點都已部署 Service Fabric 執行階段，並且是叢集的成員。在一般生產部署中，每個作業系統執行個體 (實體或虛擬) 都有一個節點。叢集大小取決於您的業務需求。不過，您必須至少有三個節點 (電腦/VM) 的叢集大小。基於開發目的，在一部指定的電腦上可以有多個節點。在生產環境中，對於每個實體或虛擬機器，Service Fabric 只支援一個節點。
@@ -107,14 +118,42 @@ Azure Service Fabric 可允許在執行 Windows Server 的任何虛擬機器或�
 完成以上規劃和準備一節中所述的步驟之後，您就可以開始建立您的叢集。
 
 ### 步驟 1︰修改叢集組態
-「ClusterConfig.json」檔案中會描述叢集。如需此檔案中各個區段的詳細資訊，請閱讀[獨立 Windows 叢集的組態設定](service-fabric-cluster-manifest.md)一文。從您下載的封裝中開啟其中一個「ClusterConfig.json」檔案，然後修改下列設定︰
+「ClusterConfig.json」檔案中會描述叢集。如需此檔案中各個區段的詳細資訊，請參閱[獨立 Windows 叢集的組態設定](service-fabric-cluster-manifest.md)一文。從您下載的封裝中開啟其中一個「ClusterConfig.json」檔案，然後修改下列設定︰
 
 |**組態設定**|**說明**|
 |-----------------------|--------------------------|
 |**NodeTypes**|節點類型可讓您將叢集節點分成不同的群組。一個叢集至少必須有一個節點類型。群組中的所有節點都有下列共同的特性：<br> **Name** - 這是節點類型名稱。<br>**Endpoint Ports** - 這些是與這個節點類型相關聯的各種具名端點 (連接埠)。您可以使用任何您想要的連接埠號碼，只要該號碼未與此資訊清單中的其他任何號碼衝突，而且目前沒有任何其他在電腦/VM 上執行的應用程式在使用該號碼即可。<br> **Placement Properties** - 此節點類型的這些屬性是用來做為系統服務或您的服務的放置條件約束。這些屬性是使用者定義的索引鍵/值組，可針對指定節點提供額外的中繼資料。節點屬性的範例包括節點是否有硬碟機或圖形卡、其硬碟機的磁針數、核心，以及其他實體屬性。<br> **Capacities** - 節點容量會定義特定節點可以使用的特定資源名稱和數量。例如，節點可能會定義它具有名為 "MemoryInMb" 的度量容量，而且預設有 2048 MB 的可用記憶體。這些容量會在執行階段使用，以確保需要特定資源量的服務會放在有所需資源量可用的節點上。<br>**IsPrimary** - 如果您已定義多個 NodeType，請確定只有一個使用 *true* 值設定為主要，這是系統服務的執行所在位置。其他所有節點類型應該設定為值「false」|
 |**Nodes**|這些是屬於叢集一部分的每個節點的詳細資料 (節點類型、節點名稱、IP 位址、節點的容錯網域和升級網域)。您想要建立叢集所在的電腦必須與其 IP 位址一起列在這裡。<br> 如果您為所有節點使用相同的 IP 位址，則會建立一整體叢集，您可以將此叢集用於測試之用。不要使用一整體叢集部署生產工作負載。|
 
-### 步驟 2︰執行建立叢集指令碼
+### 步驟 5︰ 執行 TestConfiguration 指令碼
+
+此指令碼會測試 cluster.JSON 中定義的基礎結構，以確定所需的權限、電腦已彼此相連等，以便成功部署 JSON。基本上這是迷你版的「最佳做法分析程式」。我們將持續在這項工具中加入更多驗證功能，讓它變得更健全。
+
+此指令碼可以在以系統管理員身分存取叢集組態檔中列為節點的所有電腦的任何電腦上執行。執行此指令碼所在的電腦不一定是叢集的一部分。
+
+```powershell
+
+PS C:\temp\Microsoft.Azure.ServiceFabric.WindowsServer.5.3.202.9494> .\TestConfiguration.ps1 -ClusterConfigFilePath .\ClusterConfig.Unsecure.DevCluster.json
+Trace folder already exists. Traces will be written to existing trace folder: C:\temp\Microsoft.Azure.ServiceFabric.WindowsServer.5.3.202.9494\DeploymentTraces
+Running Best Practices Analyzer...
+Best Practices Analyzer completed successfully.
+
+
+LocalAdminPrivilege        : True
+IsJsonValid                : True
+IsCabValid                 : True
+RequiredPortsOpen          : True
+RemoteRegistryAvailable    : True
+FirewallAvailable          : True
+RpcCheckPassed             : True
+NoConflictingInstallations : True
+FabricInstallable          : True
+Passed                     : True 
+
+
+```
+
+### 步驟 3︰執行建立叢集指令碼
 一旦您修改 JSON 文件中的叢集組態，並在其中加入所有節點資訊之後，請從封裝資料夾中執行叢集建立 *CreateServiceFabricCluster.ps1* PowerShell 指令碼，並傳入 JSON 組態檔的路徑及接受 EULA。
 
 此指令碼可以在以系統管理員身分存取叢集組態檔中列為節點的所有電腦的任何電腦上執行。執行此指令碼所在的電腦不一定是叢集的一部分。
@@ -122,17 +161,17 @@ Azure Service Fabric 可允許在執行 Windows Server 的任何虛擬機器或�
 ```
 #Create an unsecured local development cluster
 
-.\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.Unsecure.DevCluster.json -AcceptEULA true
+.\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.Unsecure.DevCluster.json -AcceptEULA
 ```
 ```
 #Create an unsecured multi-machine cluster
 
-.\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.Unsecure.MultiMachine.json -AcceptEULA true
+.\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.Unsecure.MultiMachine.json -AcceptEULA
 ```
 
 >[AZURE.NOTE] 您可以在用來執行 CreateServiceFabricCluster PowerShell 的 VM/電腦上本機使用部署記錄檔。部署記錄檔位於您執行 PowerShell 命令的資料夾下名為 "DeploymentTraces" 的子資料夾中。此外，若要查看 Service Fabric 是否已正確部署至電腦，您可以在 C:\\ProgramData 目錄中找到已安裝的檔案，並可在工作管理員中看到 FabricHost.exe 和 Fabric.exe 處理程序正在執行。
 
-### 步驟 3：連接到叢集
+### 步驟 4：連接到叢集
 
 請參閱[這份文件](service-fabric-connect-to-secure-cluster.md)了解連線到安全的叢集的指示。
 
@@ -145,7 +184,7 @@ Connect-ServiceFabricCluster -ConnectionEndpoint <*IPAddressofaMachine*>:<Client
 Connect-ServiceFabricCluster -ConnectionEndpoint 192.13.123.2345:19000
 
 ```
-### 步驟 4：啟動 Service Fabric Explorer
+### 步驟 5：啟動 Service Fabric Explorer
 
 現在，您可以使用 http://localhost:19080/Explorer/index.html 直接從其中一部電腦或是使用 http://<IPAddressofaMachine>:19080/Explorer/index.html 從遠端利用 Service Fabric Explorer 連接到叢集
 
@@ -166,9 +205,43 @@ Connect-ServiceFabricCluster -ConnectionEndpoint 192.13.123.2345:19000
 .\RemoveServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.Unsecure.MultiMachine.json   
 ```
 
+<a id="telemetry"></a>
+## 收集的遙測資料及如何選擇退出
+
+根據預設，產品會收集 Service Fabric 使用情形的遙測來改善產品。安裝過程執行的最佳做法分析會檢查能否連線到 [https://vortex.data.microsoft.com/collect/v1](https://vortex.data.microsoft.com/collect/v1)，如果無法連線，則安裝會失敗，除非您選擇退出遙測。
+
+1) 遙測管線會嘗試將下列資料每天上傳一次到 [https://vortex.data.microsoft.com/collect/v1](https://vortex.data.microsoft.com/collect/v1)。這只是儘可能上傳，不會影響叢集功能。只有執行主要容錯移轉管理員的節點才會傳送遙測。沒有其他節點會傳送遙測。
+
+2) 遙測是由下列項目所組成：
+
+1.            Services 的數目，
+1.            ServiceTypes 數目
+1.            Applications 的數目
+1.            ApplicationUpgrades 的數目
+1.            FailoverUnits 的數目
+1.            InBuildFailoverUnits 的數目
+1.            UnhealthyFailoverUnits 的數目
+1.            Replicas 的數目
+1.            InBuildReplicas 的數目
+1.            StandByReplicas 的數目
+1.            OfflineReplicas 的數目
+1.            CommonQueueLength
+1.            QueryQueueLength
+1.            FailoverUnitQueueLength
+1.            CommitQueueLength
+1.            Nodes 的數目
+1.            IsContextComplete: True/False
+1.            ClusterId︰這是針對每個叢集隨機產生的 GUID。
+1.            ServiceFabricVersion
+1.             遙測上傳來源 VM/機器的 IP 位址
+
+
+若要停用遙測，請將下列命令新增至叢集組態中的 “properties” 元素下：”enableTelemetry”: false
+
+<a id="previewfeatures"></a>
 ## 此封裝包含的預覽功能
 
-整個封裝目前皆為預覽版。
+無。
 
 ## 後續步驟
 - [獨立 Windows 叢集的組態設定](service-fabric-cluster-manifest.md)
@@ -181,4 +254,4 @@ Connect-ServiceFabricCluster -ConnectionEndpoint 192.13.123.2345:19000
 <!--Image references-->
 [TrustedZone]: ./media/service-fabric-cluster-creation-for-windows-server/TrustedZone.png
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

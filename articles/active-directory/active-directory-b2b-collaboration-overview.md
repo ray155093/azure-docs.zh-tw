@@ -4,7 +4,7 @@
    services="active-directory"
    documentationCenter=""
    authors="curtand"
-   manager="stevenpo"
+   manager="femila"
    editor=""/>
 
 <tags
@@ -58,4 +58,4 @@ Azure Active Directory B2B 共同作業的設定很簡單，各種規模的合�
 - [目前的預覽版本限制](active-directory-b2b-current-preview-limitations.md)
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0928_2016-->

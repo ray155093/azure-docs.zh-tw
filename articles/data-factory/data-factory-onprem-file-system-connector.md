@@ -3,7 +3,7 @@
 	description="了解如何使用 Azure Data Factory 從內部部署檔案系統來回移動資料。" 
 	services="data-factory" 
 	documentationCenter="" 
-	authors="spelluru" 
+	authors="linda33wj" 
 	manager="jhubbard" 
 	editor="monicar"/>
 
@@ -14,7 +14,7 @@
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="09/01/2016" 
-	ms.author="spelluru"/>
+	ms.author="jingwang"/>
 
 # 使用 Azure Data Factory 從內部部署檔案系統來回移動資料
 
@@ -495,14 +495,14 @@ gatewayName | 資料處理站服務應該用來連接到內部部署檔案伺服
 
 如需定義資料集的區段和屬性完整清單，請參閱[建立資料集](data-factory-create-datasets.md)一文。資料集 JSON 的結構、可用性和原則等區段類似於所有的資料集類型。
 
-每個資料集類型的 TypeProperties 區段都不同，可提供資料存放區中資料的位置、格式等相關資訊。**FileShare** 資料集類型的 typeProperties 區段具有下列屬性。
+每個資料集類型的 TypeProperties 區段都不同，可提供資料存放區中資料的位置、格式等相關資訊。**FileShare** 資料集類型的 typeProperties 區段具有下列屬性：
 
 屬性 | 說明 | 必要
 -------- | ----------- | --------
 folderPath | 資料夾的子路徑。使用逸出字元 ‘ \\ ’ 當做字串中的特殊字元。如需範例，請參閱[範例連結服務和資料集定義](#sample-linked-service-and-dataset-definitions)。<br/><br/>您可以結合此屬性與 **partitionBy**，讓資料夾路徑以配量開始/結束日期時間為基礎。 | 是
 fileName | 如果您想要資料表參考資料夾中的特定檔案，請指定 **folderPath** 中的檔案名稱。如果您未指定此屬性的任何值，資料表會指向資料夾中的所有檔案。<br/><br/>沒有為輸出資料集指定 fileName 時，所產生的檔案名稱會是下列格式：<br/><br/>Data.<Guid>.txt (範例：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt | 否
 partitionedBy | partitionedBy 可以用來指定時間序列資料的動態 folderPath 和 filename。例如，folderPath 可針對每小時的資料進行參數化。 | 否
-格式 | 支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat** 及 **OrcFormat**。將格式下的 **type** 屬性設定為這些值其中之一。如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat) 及[指定 OrcFormat](#specifying-orcformat) 各節。如果您想要在以檔案為基礎的存放區之間依原樣複製檔案 (二進位複本)，您可以在輸入和輸出資料集定義中略過格式區段。 | 否
+格式 | 支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat**、**OrcFormat**、**ParquetFormat**。將格式下的 **type** 屬性設定為這些值其中之一。如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat)、[指定 OrcFormat](#specifying-orcformat)、[指定 ParquetFormat](#specifying-parquetformat) 各節。如果您想要在以檔案為基礎的存放區之間依原樣複製檔案 (二進位複本)，您可以在輸入和輸出資料集定義中略過格式區段。 | 否
 fileFilter | 指定要用來在 folderPath (而不是所有檔案) 中選取檔案子集的篩選器。<br/><br/>允許的值為：(多個字元) 和 ? (單一字元)。<br/><br/>範例 1："fileFilter": ".log"<br/>範例 2："fileFilter": 2014-1-?.txt"<br/><br/>**注意**：fileFilter 適用於輸入 FileShare 資料集 | 否
 | compression | 指定此資料的壓縮類型和層級。支援的類型為：**GZip**、**Deflate** 及 **BZip2**，而支援的層級為：**最佳**和**最快**。**AvroFormat** 或 **OrcFormat** 格式的資料目前不支援壓縮設定。如需詳細資訊，請參閱[壓縮支援](#compression-support)一節。 | 否 |
 
@@ -582,4 +582,4 @@ false | mergeFiles | 對於有下列結構的來源資料夾 Folder1：<br/><br/
 
  
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -32,20 +32,24 @@
 6. 使用描述要新增之新節點的參數執行「AddNode.ps1」Powershell。下列範例會將稱為 VM5 的新節點 (類型 NodeType0、IP 位址 182.17.34.52) 新增至 UD1 和 FD1。「ExistingClusterConnectionEndPoint」是已在現有叢集中之節點的 Connect Endpoint。對於此端點，您可以選擇叢集中「任何」節點的 IP 位址。
 
 ```
-.\AddNode.ps1 -NodeName VM5 -NodeType NodeType0 -NodeIPAddressorFQDN 182.17.34.52 -ExistingClusterConnectionEndPoint 182.17.34.50:19000 -UpgradeDomain UD1 -FaultDomain FD1 -AcceptEULA true
+.\AddNode.ps1 -NodeName VM5 -NodeType NodeType0 -NodeIPAddressorFQDN 182.17.34.52 -ExistingClientConnectionEndpoint 182.17.34.50:19000 -UpgradeDomain UD1 -FaultDomain FD1 -AcceptEULA
+
 ```
 
 ## 從叢集移除節點
 
-1. 以遠端桌面 (RDP) 登入到您想要從叢集移除的 VM/電腦。
+1. 根據為叢集選擇的「可靠性」等級而定，您無法移除主要節點類型的前 n 個 (3/5/7/9) 節點
+2. 不支援在 dev 叢集上執行 RemoveNode 命令。
+2. 以遠端桌面 (RDP) 登入到您想要從叢集移除的 VM/電腦。
 2. 複製或[下載適用於 Windows Server 的 Service Fabric 獨立封裝](http://go.microsoft.com/fwlink/?LinkId=730690)，然後將此封裝解壓縮到此 VM/電腦。
 3. 以系統管理員身分執行 PowerShell，然後瀏覽至解壓縮封裝的位置。
-4. 執行「RemoveNode.ps1」PowerShell。下列範例會從叢集移除目前的節點。「ExistingClusterConnectionEndPoint」是已在現有叢集中之節點的 Connect Endpoint。對於此端點，您可以選擇叢集中「任何」節點的 IP 位址。
+4. 執行「RemoveNode.ps1」PowerShell。下列範例會從叢集移除目前的節點。「ExistingClusterConnectionEndPoint」是已在現有叢集中之節點的 Connect Endpoint。對於此端點，您必須選擇叢集中「任何」**其他節點**的 IP 位址。
 
 ```
 .\RemoveNode.ps1 -ExistingClusterConnectionEndPoint 182.17.34.50:19000
 ```
 
+下一版將修復的已知缺失 - 即使在移除節點後，節點在查詢和 SFX 中仍顯示為已關閉。
 
 ## 後續步驟
 - [獨立 Windows 叢集的組態設定](service-fabric-cluster-manifest.md)
@@ -53,4 +57,4 @@
 - [使用 X509 憑證保護 Windows 上的獨立叢集](service-fabric-windows-cluster-x509-security.md)
 - [建立具有執行 Windows 之 Azure VM 的獨立 Service Fabric 叢集](service-fabric-cluster-creation-with-windows-azure-vms.md)
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

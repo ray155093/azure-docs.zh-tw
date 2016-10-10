@@ -11,15 +11,14 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="07/07/2016" 
+    ms.date="09/26/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 ServiceNow 整合
   
-本教學課程的目的是要示範 Azure 與 ServiceNow 的整合。  
-本教學課程中說明的案例假設您已經具有下列項目：
+本教學課程的目的是要示範 Azure 與 ServiceNow 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
--   有效的 Azure 訂閱
+-   有效的 Azure 訂用帳戶
 -   ServiceNow (Calgary 版本或更新版本) 中的租用戶
 -   ServiceNow 租用戶必須啟用[多個提供者單一登入外掛程式](http://wiki.servicenow.com/index.php?title=Multiple_Provider_Single_Sign-On#gsc.tab=0)。在 https://hi.service-now.com/ 提交服務要求即可達到此目的：
   
@@ -53,13 +52,13 @@
 
     ![新增應用程式](./media/active-directory-saas-servicenow-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-servicenow-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![從資源庫新增應用程式](./media/active-directory-saas-servicenow-tutorial/IC749322.png "從資源庫新增應用程式")
 
 6.  在 [搜尋] 對話方塊中，輸入 **ServiceNow**。
 
-    ![應用程式庫](./media/active-directory-saas-servicenow-tutorial/IC701016.png "應用程式庫")
+    ![應用程式庫](./media/active-directory-saas-servicenow-tutorial/IC701016.png "應用程式資源庫")
 
 7.  在結果窗格中，選取 [ServiceNow]，然後按一下 [完成] 來加入應用程式。
 
@@ -278,7 +277,7 @@
 
     ![是](./media/active-directory-saas-servicenow-tutorial/IC767830.png "是")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
 
 ## 其他資源
@@ -286,4 +285,4 @@
 * [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0928_2016-->

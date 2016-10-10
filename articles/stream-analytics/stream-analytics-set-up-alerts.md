@@ -14,7 +14,7 @@
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
 	ms.workload="data-services" 
-	ms.date="07/27/2016" 
+	ms.date="09/26/2016" 
 	ms.author="jeffstok"/>
 
 
@@ -30,14 +30,14 @@
 
 ## 透過 Azure 傳統入口網站設定警示
 
-在 Azure 管理入口網站中設定警示的方式有兩種：
+在 Azure 傳統入口網站中設定警示的方式有兩種：
 
 1.	串流分析工作的 [監視] 索引標籤
 2.	管理服務中的作業記錄檔
 
 ## 透過入口網站中工作的 [監視] 索引標籤來設定警示
 
-1.	在 [監視] 索引標籤中選取計量，然後按一下儀表板底部的 [加入規則] 按鈕，並設定您的規則。
+1.	在 [監視] 索引標籤中選取計量，然後按一下儀表板底部的 [新增規則] 按鈕，並設定您的規則。
 
     ![儀表板](./media/stream-analytics-set-up-alerts/01-stream-analytics-set-up-alerts.png)
 
@@ -52,7 +52,7 @@
 ## 透過作業記錄檔來設定警示
 
 1.	移至 [Azure 傳統入口網站](https://manage.windowsazure.com)中管理服務的 [警示] 索引標籤。
-2.	按一下 [加入規則]
+2.	按一下 [新增規則]
 
     ![準則](./media/stream-analytics-set-up-alerts/04-stream-analytics-set-up-alerts.png)
 
@@ -72,7 +72,7 @@
 
   ![Azure 入口網站選取度量](./media/stream-analytics-set-up-alerts/07-stream-analytics-set-up-alerts.png)
 
-如需在 Azure 入口網站中設定警示的詳細資訊，請參閱[接收警示通知](../azure-portal/insights-receive-alert-notifications.md)。
+如需在 Azure 入口網站中設定警示的更多詳細資料，請參閱[接收警示通知](../azure-portal/insights-receive-alert-notifications.md)。
 
 ## 取得說明
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=AzureStreamAnalytics)
@@ -85,4 +85,4 @@
 - [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 - [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

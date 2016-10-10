@@ -4,7 +4,7 @@
   services="active-directory"
   documentationCenter=""
   authors="msStevenPo"
-  manager="stevenpo"
+  manager="femila"
   editor=""/>
 
  <tags
@@ -75,4 +75,4 @@
 - [使用條件式存取來保護應用程式](active-directory-conditional-access.md)
 - [自助式群組管理/SSAA](active-directory-accessmanagement-self-service-group-management.md)
 
-<!---HONumber=AcomDC_0330_2016-->
+<!---HONumber=AcomDC_0928_2016-->

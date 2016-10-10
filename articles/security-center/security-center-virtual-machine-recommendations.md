@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/04/2016"
+   ms.date="09/25/2016"
    ms.author="terrylan"/>
 
 # 保護 Azure 資訊安全中心內的虛擬機器
@@ -35,6 +35,8 @@
 |[啟用 VM 代理程式](security-center-enable-vm-agent.md)|可讓您查看哪些 VM 需要「VM 代理程式」。為了佈建修補程式掃描、基準掃描及反惡意程式碼程式，必須在 VM 上安裝「VM 代理程式」。預設會為從 Azure Marketplace 部署的 VM 安裝「VM 代理程式」。如需如何安裝 VM 代理程式的相關資訊，請參閱 [VM 代理程式和擴充功能 – 第 2 部分](http://azure.microsoft.com/blog/2014/04/15/vm-agent-and-extensions-part-2/)。|
 | [套用磁碟加密](security-center-apply-disk-encryption.md) |建議您使用 Azure 磁碟加密來加密您的 VM 磁碟 (Windows 和 Linux VM)。建議您的 VM 上的作業系統和資料磁碟區都進行加密。|
 | [更新作業系統版本](security-center-update-os-version.md) | 建議您將雲端服務的作業系統 (OS) 版本更新為作業系統系列可用的最新版本。若要深入了解雲端服務，請參閱[雲端服務概觀](../cloud-services/cloud-services-choose-me.md)。 |
+| [未安裝弱點評估](security-center-vulnerability-assessment-recommendations.md) | 建議在 VM 上安裝弱點評估解決方案。 |
+| [修復弱點](security-center-vulnerability-assessment-recommendations.md#review-recommendation) | 可讓您查看 VM 上安裝的弱點評估解決方案所偵測到的系統和應用程式弱點。 |
 
 ## 另請參閱
 
@@ -50,4 +52,4 @@
 - [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
 - [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

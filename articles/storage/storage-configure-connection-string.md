@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="09/07/2016"
-	ms.author="tamram"/>
+	ms.author="dineshm;tamram"/>
 
 # 設定 Azure 儲存體連接字串
 
@@ -163,4 +163,4 @@
 - [使用 Azure 儲存體模擬器進行開發和測試](storage-use-emulator.md)
 - [Azure 儲存體總管](storage-explorers.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

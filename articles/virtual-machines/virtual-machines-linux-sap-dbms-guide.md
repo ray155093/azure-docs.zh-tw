@@ -1,19 +1,19 @@
 <properties
    pageTitle="Linux 虛擬機器 (VM) 上的 SAP NetWeaver– DBMS 部署指南 | Microsoft Azure"
    description="Linux 虛擬機器 (VM) 上的 SAP NetWeaver - DBMS 部署指南"
-   services="virtual-machines-linux,virtual-network,storage"
-   documentationCenter="saponazure"
+   services="virtual-machines-linux"
+   documentationCenter=""
    authors="MSSedusch"
-   manager="juergent"
+   manager="timlt"
    editor=""
    tags="azure-resource-manager"
    keywords=""/>
 <tags
    ms.service="virtual-machines-linux"
    ms.devlang="NA"
-   ms.topic="campaign-page"
+   ms.topic="article"
    ms.tgt_pltfrm="vm-linux"
-   ms.workload="na"
+   ms.workload="infrastructure-services"
    ms.date="08/18/2016"
    ms.author="sedusch"/>
 
@@ -1419,4 +1419,4 @@ SAP 快取伺服器是一個額外的伺服器架構元件，可提供在本機�
 
 另請參閱 [適用於 Azure 上 SAP 的一般 SQL Server 摘要][dbms-guide-5.8]。
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0928_2016-->

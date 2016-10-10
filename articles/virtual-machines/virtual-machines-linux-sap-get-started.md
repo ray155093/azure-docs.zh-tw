@@ -1,23 +1,23 @@
 <properties
-   pageTitle="在 Linux 虛擬機器 (VM) 上使用 SAP | Microsoft Azure"
-   description="了解如何在 Microsoft Azure 中的 Linux 虛擬機器 (VM) 上使用 SAP"
-   services="virtual-machines-linux,virtual-network,storage"
-   documentationCenter="saponazure"
-   authors="MSSedusch"
-   manager="juergent"
+   pageTitle="開始使用 SAP 解決方案 | Microsoft Azure"
+   description="了解在 Microsoft Azure 中的虛擬機器 (VM) 上執行的 SAP 解決方案"
+   services="virtual-machines-linux"
+   documentationCenter=""
+   authors="RicksterCDN"
+   manager="timlt"
    editor=""
    tags="azure-resource-manager"
    keywords=""/>
 <tags
    ms.service="virtual-machines-linux"
    ms.devlang="NA"
-   ms.topic="campaign-page"
+   ms.topic="article"
    ms.tgt_pltfrm="vm-linux"
-   ms.workload="na"
-   ms.date="08/18/2016"
-   ms.author="sedusch"/>
+   ms.workload="infrastructure-services"
+   ms.date="09/23/2016"
+   ms.author="rclaus"/>
 
-# 在 Linux 虛擬機器 (VM) 上使用 SAP
+# 在 Microsoft Azure 虛擬機器上使用 SAP 解決方案
 
 [767598]: https://service.sap.com/sap/support/notes/767598
 [773830]: https://service.sap.com/sap/support/notes/773830
@@ -295,13 +295,57 @@
 [xplat-cli]: ../xplat-cli-install.md
 [xplat-cli-azure-resource-manager]: ../xplat-cli-azure-resource-manager.md
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型。
+藉由選擇 Microsoft Azure 作為符合 SAP 需求的雲端合作夥伴，您將能夠在可調整、相容且經企業證明的平台上，可靠地執行您的任務關鍵性 SAP 工作負載。Azure 不僅具備調整規模的能力，而且彈性十足，可以為您節省成本。Microsoft 與 SAP 的合作讓您可以在 Azure 的多種開發/測試及生產案例中執行 SAP 應用程式，最重要是能夠獲得完整的支援。從 SAP NetWeaver 到 SAP S4/HANA、Linux 到 Windows，乃至於 SAP HANA 到 SQL，全部含括在內。
 
-雲端運算這個廣泛使用的名詞已日益受到 IT 產業的重視，不論是小型公司、大型公司還是跨國企業都是如此。Microsoft Azure 是 Microsoft 所推出的雲端服務平台，可提供各式各樣的新契機。客戶現在既能將應用程式快速佈建為雲端服務，也能快速取消佈建，因此不會再受到技術或預算所限制。與其在硬體基礎結構投入時間和預算，公司寧可專注於應用程式、商業流程及其帶給客戶和使用者的優點。
+透過 Microsoft Azure 虛擬機器服務，以及 Azure 大型執行個體上的 SAP HANA，Microsoft 提供了完整的「基礎結構即服務」(IaaS) 平台。由於 Azure 上支援廣泛的 SAP 解決方案，因此這份「入門文件」將作為我們目前 SAP 文件集的「目錄」。隨著有更多標題新增到我們文件庫中，您將在此處看到新增的標題。
 
-透過 Microsoft Azure 虛擬機器服務，Microsoft 提供完整的基礎結構即服務 (IaaS) 平台。Azure 虛擬機器 (IaaS) 支援以 SAP NetWeaver 為基礎的應用程式。下列白皮書將說明如何在做為所選平台的 Microsoft Azure 中，規劃和實作以 SAP NetWeaver 為基礎的應用程式。
+## Microsoft Azure 上的 SAP HANA 認證
+
+
+SAP 產品 | 支援的 OS | Azure 供應項目 
+---------- | ------------ | ------------- 
+SAP HANA Developer Edition (包括由 SQLODBC、Windows 專用版的 ODBO、ODBC、JDBC 驅動程式、HANA Studio 及 HANA 資料庫組成的 HANA 用戶端軟體) | Red Hat Enterprise Linux、SUSE Linux Enterprise | A7、A8
+HANA One | Red Hat Enterprise Linux、SUSE Linux Enterprise | DS14\_v2 (正式運作後)
+SAP S/4HANA | Red Hat Enterprise Linux、SUSE Linux Enterprise | GS5 管制性運作、SAP HANA on Azure (大型執行個體)
+Suite on HANA (OLTP) | Red Hat Enterprise Linux、SUSE Linux Enterprise | SAP HANA on Azure (大型執行個體)
+HANA Enterprise for BW (OLAP) | Red Hat Enterprise Linux、SUSE Linux Enterprise | 適用於單一節點部署的 GS5、SAP HANA on Azure (大型執行個體)
+SAP BW/4HANA | Red Hat Enterprise Linux、SUSE Linux Enterprise | 適用於單一節點部署的 GS5、SAP HANA on Azure (大型執行個體)
+
+
+## SAP NetWeaver 認證
+
+Microsoft Azure 已獲認證可用於下列 SAP 產品，因此具備 Microsoft 和 SAP 的完整支援。
+
+SAP 產品 | 客體作業系統 | RDBMS | 虛擬機器類型 
+---------- | ------------ | ------------- | ------------- 
+SAP Business Suite 軟體 | Windows、SUSE Linux Enterprise | SQL Server、Oracle、DB2、SAP ASE | A5 至 A11、D11 至 D14、DS11 至 DS14、GS1 至 GS5 
+SAP Business All-in-One | Windows、SUSE Linux Enterprise | SQL Server、Oracle、DB2、SAP ASE | A5 至 A11、D11 至 D14、DS11 至 DS14、GS1 至 GS5 
+SAP BusinessObjects BI | Windows | N/A | A5 至 A11、D11 至 D14、DS11 至 DS14、GS1 至 GS5 
+SAP NetWeaver | Windows、SUSE Linux Enterprise | SQL Server、Oracle、DB2、SAP ASE | A5 至 A11、D11 至 D14、DS11 至 DS14、GS1 至 GS5 
+
+
 
 [AZURE.INCLUDE [windows-warning](../../includes/virtual-machines-linux-sap-warning.md)]
+
+## 在 Azure 上開始使用 SAP HANA
+
+標題：在 Azure VM 上手動安裝 SAP HANA 的快速入門指南
+
+摘要：本快速入門指南可協助藉由手動安裝 SAP NetWeaver 7.5 和 SAP HANA SP12，在 Azure VM 上設定單一執行個體 SAP HANA 原型/示範系統。本指南假設讀者已熟悉 Azure IaaS 基本概念，像是如何透過 Azure 入口網站或 Powershell/CLI 部署虛擬機器或虛擬網路，包括使用 json 範本的選項。此外還預期讀者已熟悉 SAP HANA、SAP NetWeaver 以及在內部部署進行安裝的方式。
+
+更新時間：2016 年 9 月
+
+[這裡可以找到本指南](virtual-machines-linux-sap-hana-get-started.md)
+
+## Azure 之 SUSE Linux 上的 NetWeaver 快速入門指南
+
+標題：在 Microsoft Azure SUSE Linux VM 上測試 SAP NetWeaver
+
+摘要：本文描述在 Microsoft Azure SUSE Linux 虛擬機器 (VM) 上執行 SAP NetWeaver 時應考量的各種事項。自 2016 年 5 月 19 日起，在 Azure 的 SUSE Linux VM 上已正式支援 SAP NetWeaver。如需有關 Linux 版本、SAP 核心版本等等的所有詳細資料，請參閱 SAP 附註 1928533＜Azure 上的 SAP 應用程式︰支援的產品和 Azure VM 類型＞。
+
+更新時間：2016 年 9 月
+
+[這裡可以找到本指南](virtual-machines-linux-sap-on-suse-quickstart.md)
 
 ##  <a name="3da0389e-708b-4e82-b2a2-e92f132df89c"></a>規劃和實作
 
@@ -332,4 +376,4 @@
 
 [這裡可以找到本指南][dbms-guide]
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0928_2016-->

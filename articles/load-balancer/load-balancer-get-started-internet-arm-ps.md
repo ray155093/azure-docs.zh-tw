@@ -17,7 +17,7 @@
   ms.date="08/31/2016"
   ms.author="sewhee" />
 
-# <a name="get-started"></a>開始使用 PowerShell 在 Resource Manager 中建立網際網路面向的負載平衡器
+# <a name="get-started"></a>使用 PowerShell 在 Resource Manager 中建立網際網路面向的負載平衡器
 
 [AZURE.INCLUDE [load-balancer-get-started-internet-arm-selectors-include.md](../../includes/load-balancer-get-started-internet-arm-selectors-include.md)]
 
@@ -254,4 +254,4 @@
 
 [設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

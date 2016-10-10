@@ -4,7 +4,9 @@
 	services="storage"
 	documentationCenter=""
 	authors="tamram"
-	manager="carmonm" />
+	manager="carmonm"
+	editor="tysonn"/>
+
 <tags
 	ms.service="storage"
 	ms.workload="storage"
@@ -12,7 +14,7 @@
 	ms.devlang="dotnet"
 	ms.topic="article"
 	ms.date="09/07/2016"
-	ms.author="tamram"/>
+	ms.author="micurd;tamram"/>
 	
 # 如何在 Windows 市集應用程式中使用 Azure 儲存體
 
@@ -87,4 +89,4 @@
 [store-apps-storage-choose-library]: ./media/storage-use-store-apps/store-apps-storage-choose-library.png
 [store-apps-storage-package-manager]: ./media/storage-use-store-apps/store-apps-storage-package-manager.png
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

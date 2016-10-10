@@ -13,18 +13,18 @@
 	ms.tgt_pltfrm="mobile-windows"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="05/15/2016"
+	ms.date="09/25/2016"
 	ms.author="glenga"/>
 
 # 將推播通知加入至 Windows 應用程式
 
 [AZURE.INCLUDE [app-service-mobile-selector-get-started-push](../../includes/app-service-mobile-selector-get-started-push.md)]
 
-##概觀
+##Overview
 
 本主題說明如何使用 Azure App Service 中的 Mobile Apps 與 Azure 通知中樞，將推播通知傳送至通用 Windows 平台 (UWP) 應用程式。在此案例中，加入新項目時，您的行動應用程式後端會傳送通知至所有註冊 Windows 通知服務 (WNS) 的 Windows 應用程式
 
-本教學課程以 Azure Mobile Apps 快速入門為基礎。在開始本教學課程之前，您必須先完成快速入門教學課程：[建立 Windows 應用程式](app-service-mobile-windows-store-dotnet-get-started.md)。如果您不要使用下載的快速入門伺服器專案，必須將推播通知擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
+本教學課程以 Azure Mobile Apps 快速入門為基礎。在開始本教學課程之前，您必須先完成快速入門教學課程：[建立 Windows 應用程式](app-service-mobile-windows-store-dotnet-get-started.md)。如果您不要使用下載的快速入門伺服器專案，必須將推播通知擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure Mobile Apps 的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
 ##<a name="create-hub"></a>建立通知中樞
 
@@ -223,4 +223,4 @@
 
 <!-- Images. -->
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

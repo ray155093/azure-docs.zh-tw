@@ -32,6 +32,8 @@
 
 首先，您需要 Azure AD 租用戶，供您建立使用者並登錄應用程式。如果您還沒有租用戶，[了解如何取得租用戶](active-directory-howto-tenant.md)。
 
+> [AZURE.TIP] 試用新[開發人員入口網站](https://identity.microsoft.com/Docs/Android)的預覽版本，這可協助您在短短幾分鐘內啟動並執行 Azure Active Directory！ 開發人員入口網站會逐步引導您完成註冊應用程式並將 Azure AD 整合至您的程式碼的程序。當您完成時，您會有可驗證租用戶中使用者的簡單應用程式，以及可接受權杖並執行驗證的後端。
+
 ## 步驟 1：下載並執行 Node.js REST API TODO 範例伺服器
 
 我們特別撰寫此範例，以有別於為 Microsoft Azure Active Directory 建置單一租用戶 To-Do REST API 的現有範例。這是快速入門的必要條件。
@@ -457,4 +459,4 @@ Adal 1.1.0 版支援 NTLM 對話方塊，此對話方塊是透過 WebViewClient 
 
 [AZURE.INCLUDE [active-directory-devquickstarts-additional-resources](../../includes/active-directory-devquickstarts-additional-resources.md)]
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

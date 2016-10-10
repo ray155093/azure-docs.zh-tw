@@ -287,7 +287,7 @@ VMSS 節點具有 "properties" 區段以及 "VirtualMachineProfile"、"extension
 
 
 ## 後續步驟
-[深入了解 DSC 和 VMSS](virtual-machines-scale-sets-dsc.md)
+如需了解 DSC 和虛擬機器擴展集，請參閱[搭配 Azure DSC 擴充功能使用虛擬機器擴展集](../virtual-machine-scale-sets/virtual-machine-scale-sets-dsc.md)。
 
 如需詳細資料，請參閱 [DSC 的安全認證管理](virtual-machines-windows-extensions-dsc-credentials.md)。
 
@@ -295,4 +295,4 @@ VMSS 節點具有 "properties" 區段以及 "VirtualMachineProfile"、"extension
 
 如需有關 PowerShell DSC 的詳細資訊，請[瀏覽 PowerShell 文件中心](https://msdn.microsoft.com/powershell/dsc/overview)。
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

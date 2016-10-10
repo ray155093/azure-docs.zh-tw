@@ -13,11 +13,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="big-compute"
-   ms.date="06/08/2016"
+   ms.date="09/22/2016"
    ms.author="danlep"/>
 
-# Azure 中的大量運算：批次和高效能運算 (HPC) 的技術資源
-這是技術資源的指南，將幫助您在 Azure 中執行您的大規模平行、批次和 HPC 工作負載。使用各種 Azure 服務擴充您現有的批次或 HPC 工作負載至 Azure 雲端，或在 Azure 中建置新的大量計算解決方案。
+# Azure 中的大量運算：批次和高效能運算的技術資源 
+本文章是技術資源指南，旨在協助您於 Azure 中執行大規模平行、批次和高效能運算 (HPC) 工作負載。使用各種 Azure 服務擴充您現有的批次或 HPC 工作負載至 Azure 雲端，或建置新的大量計算解決方案。
 
 ## 方案選項
 
@@ -89,7 +89,7 @@ HPC Pack 是建置在 Microsoft Azure 和 Windows Server 技術上的 Microsoft 
 
 ## 計算密集型執行個體
 
-Azure 提供[各種大小](../virtual-machines/virtual-machines-windows-sizes.md) \(包括能夠連接到後端 RDMA 網路的計算密集型 [A8 和 A9](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md) 執行個體) 來執行您的 Linux 和 Windows HPC 工作負載。
+Azure 提供[各種大小的 VM](../virtual-machines/virtual-machines-windows-sizes.md) (包括能夠連接到後端 RDMA 網路的[計算密集型](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md)執行個體) 來執行您的 Linux 和 Windows HPC 工作負載。
 
 
 * [設定 Linux RDMA 叢集以執行 MPI 應用程式](../virtual-machines/virtual-machines-linux-classic-rdma-cluster.md)
@@ -101,6 +101,8 @@ Azure 提供[各種大小](../virtual-machines/virtual-machines-windows-sizes.md
 ## 範例和示範
 
 * [Azure Batch C# 和 Python 程式碼範例](https://github.com/Azure/azure-batch-samples)
+
+* 用來輕鬆部署批次樣式 Dockerized 工作負載的 [Batch Shipyard](https://azure.github.io/batch-shipyard/)
 
 * [測試磁碟機 SUSE Linux Enterprise Server for HPC](https://azure.microsoft.com/marketplace/partners/suse/suselinuxenterpriseserver12optimizedforhighperformancecompute/)
 
@@ -118,7 +120,11 @@ Azure 提供[各種大小](../virtual-machines/virtual-machines-windows-sizes.md
 
 * [雲端服務](https://azure.microsoft.com/documentation/services/cloud-services/)
 
+* [App Service](https://azure.microsoft.com/documentation/services/app-service/)
+
 * [媒體服務](https://azure.microsoft.com/documentation/services/media-services/)
+
+* [函式](https://azure.microsoft.com/documentation/services/functions/)
 
 ## 架構藍圖
 
@@ -132,7 +138,7 @@ Azure 提供[各種大小](../virtual-machines/virtual-machines-windows-sizes.md
 
 ## 客戶案例
 
-* [ANEO](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=4168) 
+* [ANEO](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=4168)
 
 * [d3View](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=22088)
 
@@ -157,4 +163,4 @@ Azure 提供[各種大小](../virtual-machines/virtual-machines-windows-sizes.md
 * 最新宣告請參閱 [Microsoft HPC 和批次的小組部落格](http://blogs.technet.com/b/windowshpc/)以及[Azure 部落格](https://azure.microsoft.com/blog/tag/hpc/)。
 * 另請參閱[批次的新功能](https://azure.microsoft.com/updates/?service=batch)或訂閱 [RSS 摘要](https://azure.microsoft.com/updates/feed/?service=batch)。
 
-<!---HONumber=AcomDC_0615_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -14,7 +14,7 @@
 	ms.workload="search"
 	ms.topic="article" 
 	ms.tgt_pltfrm="na"
-	ms.date="08/29/2016"
+	ms.date="09/22/2016"
 	ms.author="heidist"/>
 
 #Azure 搜尋服務：程式碼範例、示範、影片和教學課程
@@ -25,18 +25,19 @@
 
 - [示範網站的程式碼範例︰NYC 求職網站](https://github.com/Azure-Samples/search-dotnet-asp-net-mvc-jobs)提供現場示範 Azure 搜尋服務網站的來源，該網站使用 ASP.NET MVC 並以 NYC 求職資料為依據。
 
+- [**示範網站台的程式碼範例：Tate 藝廊**](https://github.com/liamca/azure-search-tate-art-gallery/)以藝廊資料為例，提供現場示範 Azure 搜尋服務網站的原始程式碼，其中顯示集合資料型別和巢狀的資料結構、Facet 和篩選器、人員名稱和縮圖影像。
+
 - [.NET 用戶端程式庫的程式碼範例](https://github.com/Azure-Samples/search-dotnet-getting-started)，這是利用 .NET 用戶端程式庫進行搜尋作業的 ASP.NET MVC 5 應用程式。
 
 - [REST API 的程式碼範例](https://github.com/Azure-Samples/search-rest-api-getting-started)提供範例程式碼來說明如何使用 REST API。
 
 如需以上所有程式碼範例，以及其他示範如何在特定案例中使用 Azure 搜尋服務的範例，請參閱 Azure 範例 Github 儲存機制︰[Azure 範例 > Azure 搜尋服務](https://github.com/azure-samples?utf8=%E2%9C%93&query=search)。
 
-##示範網站
+## 線上示範網站
 
 這些網站是使用 Azure 搜尋服務來提供搜尋體驗的全功能 Web 應用程式。
 
 [Azure 搜尋示範用紐約市 (NYC) 徵才入口網站](http://aka.ms/azjobsdemo)是一個活躍的 ASP.NET 網站，使用 NYC 開放資料計劃中的資料來示範 Azure 搜尋的功能。此應用程式使用[簡單查詢語法](https://msdn.microsoft.com/library/azure/dn798920.aspx)。您可以修改程式碼來試用 [Lucene 語法](https://msdn.microsoft.com/library/azure/mt589323.aspx)。
-
 
 [**Azure 搜尋服務示範網站**](https://searchsamples.azurewebsites.net/#/)是一系列 Azure 搜尋服務的示範應用程式。使用 Azure 搜尋服務測試媒體搜尋、地理搜尋和產品庫存應用程式。
 
@@ -90,4 +91,4 @@
 [評分設定檔教學課程](search-get-started-scoring-profiles.md)|使用主控台應用程式來試用評分設定檔。
 [Azure 搜尋管理 REST API 教學課程](search-get-started-management-api.md)|如何使用管理 REST API 來佈建服務和管理系統管理員或查詢 API 金鑰。
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

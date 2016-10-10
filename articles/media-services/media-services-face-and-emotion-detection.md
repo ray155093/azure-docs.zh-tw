@@ -1,5 +1,5 @@
 <properties
-	pageTitle="使用 Azure 媒體分析偵測臉部和情緒"
+	pageTitle="使用 Azure 媒體分析偵測臉部和情緒 | Microsoft Azure"
 	description="本主題示範如何使用 Azure 媒體分析偵測臉部和情緒。"
 	services="media-services"
 	documentationCenter=""
@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="06/22/2016"   
+	ms.date="09/26/2016"   
 	ms.author="milanga;juliako;"/>
  
 #使用 Azure 媒體分析偵測臉部和情緒
 
-##概觀
+##Overview
 
 **Azure 媒體臉部偵測器**媒體處理器 (MP) 能讓您透過臉部表情針對對象的參與情形做出計算、追蹤移動，甚至進行量測。此服務包含兩個功能：
 
@@ -59,8 +59,8 @@
 Offset|這是時間戳記的時間位移。在版本 1.0 的影片 API 中，這永遠會是 0。在我們於未來將支援的案例中，此值可能會變更。
 畫面播放速率|影片的每秒畫面格數。
 片段|中繼資料會被分成稱為「片段」的不同區段。每個片段皆包含開始、持續時間、間隔數字及事件。
-啟動|第一個事件的開始時間 (以「刻度」為單位)。
-持續時間|片段的長度 (以「刻度」為單位)。
+Start|第一個事件的開始時間 (以「刻度」為單位)。
+Duration|片段的長度 (以「刻度」為單位)。
 間隔|片段內每個事件項目的間隔 (以「刻度」為單位)。
 事件|每個事件皆包含在該持續時間內所偵測到並進行追蹤的臉部。它是個包含事件之陣列的陣列。外部陣列代表一個單位的時間間隔。內部陣列包含在那個時間點所發生的 0 或多個事件。空白的括號代表沒有偵測到臉部。
 ID| 正在被追蹤之臉部的識別碼。如果該臉部變成無法被偵測，這個號碼可能會在無意中變更。特定的人員在整個影片中應該要擁有相同的識別碼，但由於偵測演算法的限制 (例如受到阻擋等情況)，使我們並無法保證這個情況。
@@ -537,4 +537,4 @@ AggregateEmotionIntervalMs|0\.5|1|0\.25
 
 [Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

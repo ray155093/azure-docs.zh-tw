@@ -4,7 +4,7 @@
 	services="app-service" 
 	documentationCenter="" 
 	authors="steved0x" 
-	manager="Erikre" 
+	manager="douge" 
 	editor=""/>
 
 <tags 
@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="cache-redis" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/12/2016" 
+	ms.date="09/27/2016" 
 	ms.author="sdanie"/>
 
 # 使用範本建立 Redis 快取
 
-在本主題中，您將學習如何建立 Azure 資源管理員範本，以部署 Azure Redis 快取。快取可以搭配現有的儲存體帳戶以保留診斷資料。您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。
+在本主題中，您將學習如何建立 Azure Resource Manager 範本，以部署 Azure Redis 快取。快取可以搭配現有的儲存體帳戶以保留診斷資料。您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。
 
 目前對於訂用帳戶，同一區域中所有快取的診斷設定是共用的。更新區域中的一個快取將會影響區域中的所有其他快取。
 
@@ -26,7 +26,7 @@
 
 如需完整範本，請參閱 [Redis 快取範本](https://github.com/Azure/azure-quickstart-templates/blob/master/101-redis-cache/azuredeploy.json)。
 
->[AZURE.NOTE] 新的 [Premium 層](cache-premium-tier-intro.md)中有可用的 ARM 範本。
+>[AZURE.NOTE] 新 [Premium 層](cache-premium-tier-intro.md)中有可用的 Resource Manager 範本。
 >
 >-    [建立具有叢集的 Premium Redis 快取](https://azure.microsoft.com/documentation/templates/201-redis-premium-cluster-diagnostics/)
 >-    [建立具有資料永續性的 Premium Redis 快取](https://azure.microsoft.com/documentation/templates/201-redis-premium-persistence/)
@@ -46,13 +46,12 @@
 
 透過 Azure 資源管理員，您可以定義在部署範本時想要指定之值的參數。此範本有一個 Parameters 區段，內含所有參數值。您應該為會隨著要部署的專案或要部署到的環境而變化的值定義參數。請不要為永遠保持不變的值定義參數。每個參數值都可在範本中用來定義所部署的資源。
 
-我們將說明範本中的每個參數。
 
 [AZURE.INCLUDE [app-service-web-deploy-redis-parameters](../../includes/cache-deploy-parameters.md)]
 
 ### redisCacheLocation
 
-Redics 快取的位置。針對最佳效能，使用要與快取搭配使用之應用程式相同的位置。
+Redis 快取的位置。針對最佳效能，使用要與快取搭配使用之應用程式相同的位置。
 
     "redisCacheLocation": {
       "type": "string"
@@ -124,6 +123,7 @@ Redics 快取的位置。針對最佳效能，使用要與快取搭配使用之�
     }
 
 
+
 ## 執行部署的命令
 
 [AZURE.INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
@@ -136,4 +136,4 @@ Redics 快取的位置。針對最佳效能，使用要與快取搭配使用之�
 
     azure group deployment create --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-redis-cache/azuredeploy.json -g ExampleDeployGroup
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0928_2016-->

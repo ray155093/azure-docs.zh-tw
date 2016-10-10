@@ -3,7 +3,7 @@
 	description="了解如何將 DocumentDB (NoSQL 文件資料庫) 的資料模型化。" 
 	keywords="模型化資料"
 	services="documentdb" 
-	authors="stephbaron" 
+	authors="mimig1" 
 	manager="jhubbard" 
 	editor="mimig1" 
 	documentationCenter=""/>
@@ -15,7 +15,7 @@
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="08/05/2016" 
-	ms.author="stbaro"/>
+	ms.author="mimig"/>
 
 #在 DocumentDB 中模型化資料#
 雖然無結構描述的資料庫 (像是 Azure DocumentDB)，讓您極容易運用您的資料模型變更，您仍然應該花一些時間思考您的資料。
@@ -394,4 +394,4 @@
 最後，如需資料模型化和多租用戶應用程式分區化的指引，請參閱[使用 Azure DocumentDB 調整多租用戶應用程式](http://blogs.msdn.com/b/documentdb/archive/2014/12/03/scaling-a-multi-tenant-application-with-azure-documentdb.aspx)。
  
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

@@ -13,13 +13,17 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="06/24/2016"
+   ms.date="09/28/2016"
    ms.author="toddabel"/>
 
 
 # 如何利用 Azure 診斷收集記錄檔
 
-當您執行 Azure Service Fabric 叢集時，最好從中央位置的所有節點收集記錄檔。將記錄檔集中在中央位置，可輕鬆分析和疑難排解您的叢集或該叢集中執行之應用程式與服務的問題。上傳和收集記錄檔的方式之一是使用可將記錄檔上傳至 Azure 儲存體的 Azure 診斷延伸模組。這些記錄檔實際上無法直接在儲存體中使用，但外部處理序可以用來讀取儲存體中的事件，並將它們放在 [Elastic Search](service-fabric-diagnostic-how-to-use-elasticsearch.md) 等產品或或其他記錄檔剖析解決方案中。
+> [AZURE.SELECTOR]
+- [Windows](service-fabric-diagnostics-how-to-setup-wad.md)
+- [Linux](service-fabric-diagnostics-how-to-setup-lad.md)
+
+當您執行 Azure Service Fabric 叢集時，最好從中央位置的所有節點收集記錄檔。將記錄檔集中在中央位置，可輕鬆分析和疑難排解您的叢集或該叢集中執行之應用程式與服務的問題。上傳和收集記錄檔的方式之一是使用可將記錄檔上傳至 Azure 儲存體的 Azure 診斷延伸模組。這些記錄檔實際上在儲存體中並不那麼實用，但可使用外部處理程序來讀取儲存體中的事件，並將它們放在 [Log Analytics](../log-analytics/log-analytics-service-fabric.md) 或 [Elastic Search](service-fabric-diagnostic-how-to-use-elasticsearch.md) 之類的產品或其他記錄檔剖析解決方案中。
 
 ## 必要條件
 這些工具將用來執行這份文件中的某些作業：
@@ -43,13 +47,13 @@
 收集記錄檔的第一個步驟是將診斷延伸模組部署在 Service Fabric 叢集的每個 WM 上。診斷延伸模組會收集每個 VM 上的記錄檔，並將它們上傳至您指定的儲存體帳戶。根據您是使用 Azure 入口網站或 Azure Resource Manager，以及是在建立叢集時或針對已存在的叢集來部署而定，步驟會稍微不同。讓我們看看每個案例的步驟。
 
 ### 透過入口網站建立叢集時部署診斷延伸模組
-為了在建立叢集時將診斷延伸模組部署至叢集中的 WM，我們使用下圖所示的診斷設定面板。若要啟用動作項目或可靠服務事件收集，請確定已將 [診斷] 設定為 [開啟]，這是預設設定。在建立叢集之後，這些設定無法使用入口網站變更。
+為了在建立叢集時將診斷延伸模組部署至叢集中的 WM，我們使用下圖所示的診斷設定面板。若要收集 Actor 或 Reliable Service 事件，請確定已將 [診斷] 設定為 [開啟]，這是預設設定。在建立叢集之後，這些設定無法使用入口網站變更。
 
 ![入口網站中用於建立叢集的 Azure 診斷設定](./media/service-fabric-diagnostics-how-to-setup-wad/portal-cluster-creation-diagnostics-setting.png)
 
-Azure 支援團隊**需要**支援記錄檔，才能斟酌您所建立的任何支援要求。這些記錄檔會即時收集，並儲存在建立於資源群組中的其中一個儲存體帳戶。[診斷] 設定會將應用程式層級事件 (包括[動作項目](service-fabric-reliable-actors-diagnostics.md)事件、[可靠服務](service-fabric-reliable-services-diagnostics.md)事件和某些系統層級 Service Fabric 事件) 設定為儲存至 Azure 儲存體。[Elastic Search](service-fabric-diagnostic-how-to-use-elasticsearch.md) 等產品或您自己的處理序可以從儲存體帳戶中挑選事件。目前沒有任何方法可以篩選或清理已傳送至資料表的事件。如果未實作從資料表移除事件的處理序，資料表將會繼續成長。
+Azure 支援團隊**需要**支援記錄檔，才能盡心處理您所建立的任何支援要求。這些記錄檔會即時收集，並儲存在建立於資源群組中的其中一個儲存體帳戶。[診斷] 設定會將應用程式層級事件 (包括 [Actor](service-fabric-reliable-actors-diagnostics.md) 事件、[Reliable Service](service-fabric-reliable-services-diagnostics.md) 事件和某些系統層級 Service Fabric 事件) 設定為儲存至 Azure 儲存體。[Elastic Search](service-fabric-diagnostic-how-to-use-elasticsearch.md) 等產品或您自己的處理序可以從儲存體帳戶中挑選事件。目前沒有任何方法可以篩選或清理已傳送至資料表的事件。如果未實作從資料表移除事件的處理序，資料表將會繼續成長。
 
-使用入口網站建立叢集時，強烈建議您先下載範本「再按一下 [確定]」來建立叢集。如需詳細資訊，請參閱[使用 Azure Resource Manager 範本來設定 Service Fabric 叢集](service-fabric-cluster-creation-via-arm.md)。這會為您提供您即將建立之叢集的可使用 ARM 範本。必須有此範本，才能在稍後進行變更，因為並非所有變更都可透過入口網站來完成。使用下列步驟即可從入口網站中匯出範本，但這些範本較難使用，因為其中可能會有許多 null 值，導致您必須提供值，或是遺失所有必要資訊。
+使用入口網站建立叢集時，強烈建議您先下載範本，「再按一下 [確定]」來建立叢集。如需詳細資訊，請參閱[使用 Azure Resource Manager 範本來設定 Service Fabric 叢集](service-fabric-cluster-creation-via-arm.md)。這會為您提供您即將建立之叢集的可使用 ARM 範本。必須有此範本，才能在稍後進行變更，因為並非所有變更都可透過入口網站來完成。使用下列步驟即可從入口網站中匯出範本，但這些範本較難使用，因為其中可能會有許多 null 值，導致您必須提供值，或是遺失所有必要資訊。
 
 1. 開啟您的資源群組
 2. 選取設定以顯示設定面板
@@ -58,18 +62,18 @@ Azure 支援團隊**需要**支援記錄檔，才能斟酌您所建立的任何�
 5. 選取 [匯出範本] 以顯示範本面板
 6. 選取 [儲存至檔案] 以匯出包含範本、參數和 PowerShell 檔案的 .zip 檔案。
 
-匯出檔案之後，需要進行修改。編輯 **parameters.json** 檔案，並移除 **adminPassword** 項目。執行部署指令碼時，這樣會導致密碼的提示。在執行部署指令碼時，您可能必須修正 null 參數值。使用下載的範本來更新組態
+匯出檔案之後，需要進行修改。編輯 **parameters.json** 檔案，並移除 **adminPassword** 元素。執行部署指令碼時，這樣會導致密碼的提示。在執行部署指令碼時，您可能必須修正 null 參數值。使用下載的範本來更新組態
 
 1. 將內容解壓縮到本機電腦上的資料夾
 2. 修改內容以反映新的組態
 3. 啟動 PowerShell 並變更到您要解壓縮內容的資料夾
-4. 執行 **deploy.ps1** 並填入訂閱識別碼、資源群組名稱 (使用相同的名稱來更新組態) 和唯一的部署名稱
+4. 執行 **deploy.ps1** 並填入訂用帳戶識別碼、資源群組名稱 (使用相同的名稱來更新組態) 和唯一的部署名稱
 
 
 ### 使用 Azure Resource Manager 在建立叢集時部署診斷延伸模組
-若要使用 Resource Manager 建立叢集，您需要在建立叢集之前，將診斷設定 JSON 加入至完整的 Resource Manager 範本。我們在 Resource Manager 範本範例中提供一個五 VM 叢集 Resource Manager 範本，且已在其中加入診斷設定。您可以在 Azure 資源庫中的這個位置看到它：[具有診斷 Resource Manager 範本範例的五節點叢集](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype-wad)。若要查看 Resource Manager 範本中的 [診斷] 設定，請開啟 **azuredeploy.json** 檔案，並搜尋 **IaaSDiagnostics**。若要使用這個範本建立叢集，只要按上面連結所提供的 [部署到 Azure] 按鈕即可。
+若要使用 Resource Manager 建立叢集，您需要在建立叢集之前，將診斷設定 JSON 加入至完整的 Resource Manager 範本。我們在 Resource Manager 範本範例中提供一個五 VM 叢集 Resource Manager 範本，且已在其中加入診斷設定。您可以在 Azure 資源庫中的這個位置看到它：[具有診斷資源管理員範本範例的五節點叢集](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype-wad)。若要查看 Resource Manager 範本中的 [診斷] 設定，請開啟 **azuredeploy.json** 檔案，並搜尋 **IaaSDiagnostics**。若要使用這個範本建立叢集，只要按上面連結所提供的 [部署到 Azure] 按鈕即可。
 
-或者，您也可以下載 Resource Manager 範例，加以變更，然後在 Azure PowerShell 視窗中使用 `New-AzureRmResourceGroupDeployment` 命令，使用修改過的範本建立叢集。請參閱以下資訊，以取得您需要傳給命令的參數。如需如何使用 PowerShell 部署資源群組的詳細資訊，請參閱[使用 Azure Resource Manager 範本部署資源群組](../resource-group-template-deploy.md)一文
+或者，您也可以下載資源管理員範例，加以變更，然後在 Azure PowerShell 視窗中使用 `New-AzureRmResourceGroupDeployment` 命令，使用修改過的範本建立叢集。請參閱以下資訊，以取得您需要傳給命令的參數。如需如何使用 PowerShell 部署資源群組的詳細資訊，請參閱[使用 Azure Resource Manager 範本部署資源群組](../resource-group-template-deploy.md)一文
 
 ```powershell
 
@@ -98,7 +102,7 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $
 },
 ```
 
- 接下來，將參數區段新增至儲存體帳戶定義之後，"supportLogStorageAccountName" 和 "vmNodeType0Name" 之間。利用想要的儲存體帳戶名稱來取代預留位置文字「將儲存體帳戶名稱放置於此處」。
+ 接下來，將參數區段新增至儲存體帳戶定義之後，"supportLogStorageAccountName" 和 "vmNodeType0Name" 之間。利用想要的儲存體帳戶名稱來取代預留位置文字 *storage account name goes here*。
 
 ##### 更新參數區段
 ```json
@@ -121,7 +125,7 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $
       }
     },
 ```
-然後藉由在「擴充功能」陣列內新增下列內容來更新 **template.json** 的「VirtualMachineProfile」區段。請務必在開頭或結尾加入逗點，取決於其插入的位置。
+然後，更新 **template.json** 的 VirtualMachineProfile 區段，在「擴充功能」陣列內新增下列內容。請務必在開頭或結尾加入逗點，取決於其插入的位置。
 
 ##### 新增至 VirtualMachineProfile 的擴充陣列
 ```json
@@ -179,11 +183,11 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $
 }
 ```
 
-如所述修改 **template.json** 檔案之後，將 ARM 範本重新發佈。如果已匯出範本，執行 **deploy.ps1** 檔案將會重新發佈範本。部署之後，請確認「ProvisioningState」為「Succeeded」。
+如所述修改 **template.json** 檔案之後，將 ARM 範本重新發佈。如果已匯出範本，執行 **deploy.ps1** 檔案將會重新發佈範本。部署之後，請確認 ProvisioningState 為 Succeeded。
 
 
 ## 更新診斷從新的 EventSource 通道收集並上傳記錄檔
-若要更新診斷以便從新的 EventSource 通道 (代表您將要部署的新應用程式) 收集記錄檔，您只需執行[上述小節](#deploywadarm)中相同的步驟即可，其中描述現有叢集的診斷設定。在使用「New-AzureRmResourceGroupDeployment」PowerShell 命令套用組態更新之前，您必須更新 **template.json** 中的 [EtwEventSourceProviderConfiguration] 區段，以新增項目至新的 EventSources。事件來源的名稱定義為在 Visual Studio 產生的 **ServiceEventSource.cs** 檔案中之程式碼的一部分。
+若要更新診斷以便從新的 EventSource 通道 (代表您將要部署的新應用程式) 收集記錄檔，您只需執行[上述小節](#deploywadarm)中相同的步驟即可，其中描述現有叢集的診斷設定。在使用 New-AzureRmResourceGroupDeployment PowerShell 命令套用組態更新之前，您必須更新 **template.json** 中的 EtwEventSourceProviderConfiguration 區段，為新的 EventSources 新增項目。在 Visual Studio 產生的 **ServiceEventSource.cs** 檔案中，事件來源的名稱定義為程式碼的一部分。
 
 
 ## 後續步驟
@@ -194,4 +198,4 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $
 * [了解如何使用診斷擴充功能收集效能計數器或記錄檔](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md)
 * [Service Fabric Solution in Log Analytics (Log Analytics 中的 Service Fabric 方案)](../log-analytics/log-analytics-service-fabric.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

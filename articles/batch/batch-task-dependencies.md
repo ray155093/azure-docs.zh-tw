@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows"
 	ms.workload="big-compute"
-	ms.date="06/29/2016"
+	ms.date="09/28/2016"
 	ms.author="marsma" />
 
 # Azure Batch 中的工作相依性
@@ -24,17 +24,17 @@
 - 資料處理工作可表示為有向非循環圖 (DAG) 的工作。
 - 下游工作相依於上游工作輸出的任何其他工作。
 
-這項功能可讓您建立工作，並讓工作只在一或多個其他工作順利完成後，才在計算節點上排定執行。例如，您可以建立一個將 3D 電影的每個影格以個別、平行工作轉譯的工作。在成功轉譯所有影格之後，最終工作「合併工作」會將轉譯的影格合併為一部完整的電影。
+Batch 工作相依性可讓您建立工作，並讓工作只在一或多個其他工作順利完成後，才在計算節點上排定執行。例如，您可以建立一個將 3D 電影的每個影格以個別、平行工作轉譯的工作。在成功轉譯所有影格之後，最終工作「合併工作」會將轉譯的影格合併為一部完整的電影。
 
 您可以在一對一或一對多的關係中建立相依於其他工作的工作。您可以建立一個範圍相依性，其中的工作相依於在特定工作識別碼範圍內成功完成的一組工作。您可以結合這三種基本案例來建立多對多關聯性。
 
 ## Batch .NET 的工作相依性
 
-在本文中，我們會討論如何使用 [Batch .NET][net_msdn] 程式庫設定工作相依性。我們會先告訴您如何對作業[啟用工作相依性](#enable-task-dependencies)，然後簡單地示範如何[設定工作的相依性](#create-dependent-tasks)。最後，我們將討論 Batch 支援的[相依性案例](#dependency-scenarios)。
+在本文中，我們會討論如何使用 [Batch .NET][net_msdn] 程式庫設定工作相依性。我們會先告訴您如何對作業[啟用工作相依性](#enable-task-dependencies)，然後再示範如何[設定工作的相依性](#create-dependent-tasks)。最後，我們將討論 Batch 支援的[相依性案例](#dependency-scenarios)。
 
 ## 啟用工作相依性
 
-若要在 Batch 應用程式中使用工作相依性，您必須先讓 Batch 服務知道作業將會使用工作相依性。在 Batch .NET 中，將作業的 [UsesTaskDependencies][net_usestaskdependencies] 屬性設定為 `true`，以對 [CloudJob][net_cloudjob] 啟用工作相依性：
+若要在 Batch 應用程式中使用工作相依性，您必須先讓 Batch 服務知道作業會使用工作相依性。在 Batch .NET 中，將作業的 [UsesTaskDependencies][net_usestaskdependencies] 屬性設定為 `true`，以對 [CloudJob][net_cloudjob] 啟用工作相依性：
 
 ```csharp
 CloudJob unboundJob = batchClient.JobOperations.CreateJob( "job001",
@@ -143,7 +143,7 @@ Batch 的[應用程式封裝](batch-application-packages.md)功能提供了簡�
 
 ### 安裝應用程式和預備資料
 
-請查看 Azure Batch 論壇中的[在 Batch 計算節點安裝應用程式和預備資料][forum_post]文章，以取得準備節點以執行工作的各種方法概觀。這篇文章是由 Azure Batch 小組的其中一名成員所撰寫，非常適合做為入門指南，以讓您了解將檔案 (包括應用程式和工作的輸入資料) 放到計算節點的不同方法。它提供了每個方法所應納入的一些特殊考量。
+請查看 Azure Batch 論壇中的[在 Batch 計算節點安裝應用程式和預備資料][forum_post]文章，以取得準備節點以執行工作的各種方法概觀。這篇文章是由 Azure Batch 小組的其中一名成員所撰寫，非常適合做為入門指南，以讓您了解將檔案 (包括應用程式和工作的輸入資料) 放到計算節點的不同方法。
 
 [forum_post]: https://social.msdn.microsoft.com/Forums/zh-TW/87b19671-1bdf-427a-972c-2af7e5ba82d9/installing-applications-and-staging-data-on-batch-compute-nodes?forum=azurebatch
 [github_taskdependencies]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/TaskDependencies
@@ -166,4 +166,4 @@ Batch 的[應用程式封裝](batch-application-packages.md)功能提供了簡�
 [2]: ./media/batch-task-dependency/02_one_to_many.png "圖表︰一對多相依性"
 [3]: ./media/batch-task-dependency/03_task_id_range.png "圖表︰工作識別碼範圍相依性"
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

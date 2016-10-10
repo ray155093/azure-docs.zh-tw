@@ -3,7 +3,7 @@
 	description="了解如何將 Office 365 目錄 (租用戶) 加入至 Azure 訂用帳戶，以便建立關聯。"
 	services=""
 	documentationCenter=""
-	authors="jiangchen79"
+	authors="JiangChen79"
 	manager="mbaldwin"
 	editor=""
 	tags="billing,top-support-issue"/>
@@ -145,4 +145,4 @@
 ## 後續步驟
 相關案例︰您已經擁有 Office 365 訂用帳戶，並且已做好 Azure 訂用帳戶的準備，不過您想要將現有的 Office 365 使用者帳戶用於 Azure 訂用帳戶。或者，您是 Azure 訂閱者，並且想要為現有 Azure Active Directory 中的使用者取得 Office 365 訂用帳戶。若要了解如何完成這些工作，請參閱[搭配使用現有的 Office 365 帳戶與 Azure 訂用帳戶，反之亦然](billing-use-existing-office-365-account-azure-subscription.md)。
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

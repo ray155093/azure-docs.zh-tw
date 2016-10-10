@@ -13,7 +13,7 @@
 	ms.devlang="dotnet" 
 	ms.topic="article" 
 	ms.date="08/03/2016" 
-	ms.author="robinsh"/>
+	ms.author="jahogg;robinsh"/>
 
 # 使用 Azure 儲存體度量和記錄、AzCopy 和 Message Analyzer 進行端對端疑難排解 
 
@@ -375,4 +375,4 @@ Message Analyzer 會找出並選取搜尋準則符合用戶端要求識別碼的
  
  
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

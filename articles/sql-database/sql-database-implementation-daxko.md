@@ -18,7 +18,7 @@
    
 # Daxko/CSI 使用 Azure 來加速其開發週期及提升其客戶服務和效能
 
-![標誌](./media/sql-database-case-study-daxko/csidaxkologo25.png)
+![Daxko CSI/標誌](./media/sql-database-implementation-daxko/csidaxkologo25.png)
 
 Daxko/CSI Software 面臨挑戰︰歸功於其全方位企業軟體解決方案的成功，其體適能和娛樂中心的客戶群快速成長，但是要跟上該不斷成長的客戶群的 IT 基礎結構需求則考驗著該公司的 IT 人員。該公司逐漸受到增加的作業額外負荷限制，特別是在管理日益成長的資料庫方面。更糟的是，這些作業額外負荷已佔用新計畫 (例如該公司軟體的新行動功能) 的部分開發資源。
 
@@ -75,7 +75,7 @@ SpectrumNG 使用 Web 角色。由於應用程式是多租用戶應用程式，�
 針對此服務的 Web 層，CSI Software 會根據日期與時間，利用 Azure 自動調整功能。根據每個區域資料中心的時區，在營業時間內，可用資源會自動增加來配合較高的使用量。資源也會設為在週末客戶需求降低時進行縮減。
 
      
-![圖 1](./media/sql-database-case-study-daxko/figure1.png)
+![Daxko/CSI 架構](./media/sql-database-implementation-daxko/figure1.png)
 
 圖 1.雲端服務背景工作角色會從 Azure SQL Database 抽取結構化資料，以及從資料表儲存體抽取半結構化資料。SpectrumNG 使用者會透過雲端服務 Web 角色與該資料進行互動。
 
@@ -105,4 +105,4 @@ Azure SQL Database 不僅為 SpectrumNG 客戶帶來好處，讓他們享有快�
 
 - 若要深入了解自動調整，請參閱[調整雲端服務](../cloud-services/cloud-services-how-to-scale.md)。
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

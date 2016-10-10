@@ -22,7 +22,7 @@
 
 在閱讀本文之後，請在本文下方或 [Azure Recovery Services Forum (Azure 復原服務論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) 張貼任何意見或問題。
 
-## 概觀
+## Overview
 
 組織需要 BCDR 策略，以決定應用程式、工作負載和資料如何在規劃與未規劃停機期間維持運作，並儘速復原到正常運作的情況。BCDR 策略應保護商務資料安全且可復原，並確保發生災害時工作負載仍持續可用。
 
@@ -115,6 +115,7 @@ iSCSI 磁碟 | 不支援 | 如果不支援，則先決條件檢查會失敗
 共用 VHD | 不支援 | 如果不支援，則先決條件檢查會失敗
 FC 磁碟 | 不支援 | 如果不支援，則先決條件檢查會失敗
 硬碟格式| VHD <br/><br/> VHDX | 雖然 Azure 目前不支援 VHDX，但 Site Recovery 會在您容錯移轉至 Azure 時，自動將 VHDX 轉換為 VHD。當您容錯回復到內部部署時，虛擬機器仍會繼續使用 VHDX 格式。
+BitLocker | 不支援 | 必須停用 Bitlocker，才能保護虛擬機器。
 虛擬機器名稱| 介於 1 到 63 個字元。只能使用字母、數字和連字號。應該以字母或數字為開頭和結尾 | 更新 Site Recovery 中虛擬機器內容的值
 虛擬機器類型 | <p>第 1 代</p> <p>第 2 代 - Windows</p> | 支援第 2 代虛擬機器：具備包含 1 或 2 個資料磁碟區、磁碟格式為 VHDX、磁碟大小小於 300GB 之基本磁碟的作業系統磁碟。不支援 Linux 第 2 代虛擬機器。[了解詳細資訊](https://azure.microsoft.com/blog/2015/04/28/disaster-recovery-to-azure-enhanced-and-were-listening/)
 
@@ -164,4 +165,4 @@ FC 磁碟 | 不支援 | 如果不支援，則先決條件檢查會失敗
 - [利用 SAN 將 Hyper-V VM 複寫至次要站台](site-recovery-vmm-san.md)
 - [利用單一 VMM 伺服器複寫 Hyper-V VM](site-recovery-single-vmm.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0928_2016-->

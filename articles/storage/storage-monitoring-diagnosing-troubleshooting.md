@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/28/2016"
-	ms.author="jahogg"/>
+	ms.date="09/22/2016"
+	ms.author="jahogg;robinsh"/>
 
 # 監視、診斷與疑難排解 Microsoft Azure 儲存體
 
 [AZURE.INCLUDE [storage-selector-portal-monitoring-diagnosing-troubleshooting](../../includes/storage-selector-portal-monitoring-diagnosing-troubleshooting.md)]
 
-## 概觀
+## Overview
 
 與傳統環境相比，託管於雲端環境的分散式應用程式一旦發生問題，無論要為其進行診斷或疑難排解，都更加複雜。應用程式可以部署在 PaaS 或 IaaS 基礎架構、內部部署環境、行動裝置或是這幾種環境的組合上。一般來說，您的應用程式網路流量可能會跨越公共與私有網路，而您的應用程式有可能使用多項儲存技術，例如 Microsoft Azure 儲存體資料表、Blob、佇列或是檔案，乃至於關聯式資料庫與文件資料庫之類的其他資料存放區。
 
@@ -210,7 +210,7 @@
 
 ### <a name="storage-emulator-issues"></a>儲存體模擬器問題
 
-Azure SDK 包含一個儲存體模擬器，可供您在開發工作站上執行。這個模擬器會模擬大部分的 Azure 儲存體服務行為，而且在開發與測試期間非常有用，能讓您在沒有 Azure 訂閱與 Azure 儲存體帳戶的情況下執行使用 Azure 儲存體服務的應用程式。
+Azure SDK 包含一個儲存體模擬器，可供您在開發工作站上執行。這個模擬器會模擬大部分的 Azure 儲存體服務行為，而且在開發與測試期間非常有用，能讓您在沒有 Azure 訂用帳戶與 Azure 儲存體帳戶的情況下執行使用 Azure 儲存體服務的應用程式。
 
 本指南「[疑難排解指引]」一節描述一些使用儲存體模擬器會碰到的常見問題。
 
@@ -497,7 +497,7 @@ Microsoft.WindowsAzure.Storage|錯誤|1|85d077ab -…|重試原則不允許重�
 - SAS 金鑰中的版本參數 (例如 **sv=2015-04-05**) 是否與您所使用的儲存體用戶端程式庫版本相符。 建議您一律使用最新版的[儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage/)。
 - 如果您重新產生儲存體存取金鑰，會讓任何現有的 SAS 權杖失效。如果您產生的 SAS 權杖，內含很長的到期時間以便用戶端應用程式快取處理，則可能會出現問題。
 
-如果您是使用儲存體用戶端程式庫來產生 SAS 權杖，則您可以輕易地建立有效的權杖。不過，如果是使用「儲存體 REST API」並且是手動建構 SAS 權杖，您應該仔細閱讀[使用共用存取簽章來委派存取權](http://msdn.microsoft.com/library/azure/ee395415.aspx)主題。
+如果您是使用儲存體用戶端程式庫來產生 SAS 權杖，則您可以輕易地建立有效的權杖。不過，如果是使用「儲存體 REST API」並且是手動建構 SAS 權杖，您應該仔細閱讀[使用共用存取簽章委派存取](http://msdn.microsoft.com/library/azure/ee395415.aspx)主題。
 
 ### <a name="the-client-is-receiving-404-messages"></a>用戶端收到 HTTP 404 (找不到) 訊息
 當用戶端應用程式接收來自伺服器的 HTTP 404 (找不到) 訊息時，表示用戶端嘗試使用的物件 (例如，實體、資料表、Blob、容器或佇列) 並不存在儲存體服務中。這種情況有數種可能的原因，例如：
@@ -924,4 +924,4 @@ Microsoft Message Analyzer 內建的 **Web Proxy** 追蹤功能是依據 Fiddler
 [9]: ./media/storage-monitoring-diagnosing-troubleshooting/mma-screenshot-1.png
 [10]: ./media/storage-monitoring-diagnosing-troubleshooting/mma-screenshot-2.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="dhanyahk"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -58,4 +58,4 @@ RMS 裝置使用量 | 否
  - [Azure Active Directory 報告](active-directory-view-access-usage-reports.md)
  - [Azure Active Directory 報告稽核事件](active-directory-reporting-audit-events.md)
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0928_2016-->

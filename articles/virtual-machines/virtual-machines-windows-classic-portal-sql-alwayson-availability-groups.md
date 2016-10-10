@@ -13,13 +13,13 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="06/09/2016"
+	ms.date="09/22/2016"
 	ms.author="mikeray" />
 
 # 在 Azure VM 中設定 Always On 可用性群組 - 傳統
 
 > [AZURE.SELECTOR]
-- [Resource Manager︰自動](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
+- [Resource Manager：範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
 - [Resource Manager︰手動](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)
 - [傳統：UI](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
 - [傳統：PowerShell](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
@@ -327,7 +327,7 @@
 |用於管理叢集的存取點|在 [叢集名稱] 中輸入 **Cluster1**|
 |確認|除非您使用的是儲存空間，否則請使用預設值。請詳閱此表之後的備註。|
 
-	>[AZURE.WARNING] 如果您使用的是會將多個磁碟組成存放集區的[儲存空間](https://technet.microsoft.com/library/hh831739)，則請務必取消勾選 [確認] 頁面上的 [將所有合格的儲存體新增至叢集] 核取方塊。如果不取消勾選此選項，在群集程序進行期間虛擬磁碟會中斷連結。因此，虛擬磁碟不會顯示在 [磁碟管理員] 或 [總管] 中，直到您將儲存空間從叢集中移除，並使用 PowerShell 重新連接虛擬磁碟。
+	>[AZURE.WARNING] 如果您使用的是會將多個磁碟組成存放集區的[儲存空間](https://technet.microsoft.com/library/hh831739)，您就必須在 [確認] 頁面上取消勾選 [新增適合的儲存裝置到叢集] 核取方塊。如果不取消勾選此選項，在群集程序進行期間虛擬磁碟會中斷連結。因此，虛擬磁碟不會顯示在 [磁碟管理員] 或 [總管] 中，直到您將儲存空間從叢集中移除，並使用 PowerShell 重新連接虛擬磁碟。
 
 1. 在左窗格中，展開 [容錯移轉叢集管理員]，然後按一下 [Cluster1.corp.contoso.com]。
 
@@ -351,7 +351,7 @@
 
 1. 在 [確認] 頁面中按 [下一步]，以新增節點。
 
-	>[AZURE.WARNING] 如果您使用的是會將多個磁碟組成存放集區[儲存空間](https://technet.microsoft.com/library/hh831739)，則請務必取消勾選 [將所有合格的儲存體新增至叢集] 核取方塊。如果不取消勾選此選項，在群集程序進行期間虛擬磁碟會中斷連結。因此，虛擬磁碟不會顯示在 [磁碟管理員] 或 [總管] 中，直到您將儲存空間從叢集中移除，並使用 PowerShell 重新連接虛擬磁碟。
+	>[AZURE.WARNING] 如果您使用的是會將多個磁碟組成存放集區的[儲存空間](https://technet.microsoft.com/library/hh831739)，您就必須取消勾選 [新增適合的儲存裝置到叢集] 核取方塊。如果不取消勾選此選項，在群集程序進行期間虛擬磁碟會中斷連結。因此，虛擬磁碟不會顯示在 [磁碟管理員] 或 [總管] 中，直到您將儲存空間從叢集中移除，並使用 PowerShell 重新連接虛擬磁碟。
 
 1. 將節點新增至叢集後，請按一下 [完成]。容錯移轉叢集管理員現在應該會顯示您的叢集具有三個節點，並將這些節點列在**節點**容器中。
 
@@ -548,4 +548,4 @@
 
 如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

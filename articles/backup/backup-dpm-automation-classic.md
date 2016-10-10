@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/01/2016"
+	ms.date="09/27/2016"
 	ms.author="jimpark; trinadhk; anuragm; markgal"/>
 
 
@@ -140,7 +140,7 @@ PS C:\> Start-DPMCloudRegistration -DPMServerName "TestingServer" -VaultCredenti
 > [AZURE.IMPORTANT] 請勿使用相對路徑來指定保存庫認證檔。您必須提供絕對路徑做為 Cmdlet 的輸入。
 
 ### 初始組態設定
-一旦向 Azure 備份保存庫註冊 DPM 伺服器，就會使用預設的訂用帳戶設定開始。這些訂閱設定包括網路、加密和臨時區域。若要開始變更訂用帳戶設定，您需要先使用 [Get-DPMCloudSubscriptionSetting](https://technet.microsoft.com/library/jj612793) Cmdlet 取得現有 (預設) 設定上的控制代碼：
+一旦向 Azure 備份保存庫註冊 DPM 伺服器，就會使用預設的訂用帳戶設定開始。這些訂用帳戶設定包括網路、加密和臨時區域。若要開始變更訂用帳戶設定，您需要先使用 [Get-DPMCloudSubscriptionSetting](https://technet.microsoft.com/library/jj612793) Cmdlet 取得現有 (預設) 設定上的控制代碼：
 
 ```
 $setting = Get-DPMCloudSubscriptionSetting -DPMServerName "TestingServer"
@@ -172,7 +172,7 @@ PS C:\> Set-DPMCloudSubscriptionSetting -DPMServerName "TestingServer" -Subscrip
 PS C:\> Set-DPMCloudSubscriptionSetting -DPMServerName "TestingServer" -SubscriptionSetting $setting -StagingAreaPath "C:\StagingArea"
 ```
 
-在上述範例中，臨時區域將在 PowerShell 物件 ```$setting``` 中設定為 *C:\\StagingArea*。請確保指定的資料夾已經存在，否則訂閱設定的最終認可將會失敗。
+在上述範例中，臨時區域將在 PowerShell 物件 ```$setting``` 中設定為 *C:\\StagingArea*。請確保指定的資料夾已經存在，否則訂用帳戶設定的最終認可將會失敗。
 
 
 ### 加密設定
@@ -340,4 +340,4 @@ PS C:\> Restore-DPMRecoverableItem -RecoverableItem $RecoveryPoints[0] -Recovery
 
 - 如需 DPM 的 Azure 備份詳細資訊，請參閱 [DPM 備份簡介](backup-azure-dpm-introduction.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0928_2016-->

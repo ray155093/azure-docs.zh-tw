@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="andkjell"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -148,4 +148,4 @@ ISMEMBEROF、ISNOTMEMBEROF | 此值應該包含連接器空間中群組的 DN。
 
 - [Azure AD Connect 同步處理：函式參考](active-directory-aadconnectsync-functions-reference.md)
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0928_2016-->

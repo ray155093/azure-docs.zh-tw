@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="09/19/2016" 
+	ms.date="09/27/2016" 
 	ms.author="mimig"/>
 
 # DocumentDB 的效能秘訣
@@ -46,7 +46,7 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
     - TCP
     - HTTPS
 
-    DocumentDB 提供透過 HTTPS 的簡單且開放 RESTful 程式設計模型。此外，它可提供有效率的 TCP 通訊協定，此 TCP 通訊協定在通訊模型中也符合 REST 限制，並且可以透過 .NET 用戶端 SDK 取得。為了達到最佳效能，儘可能使用 TCP 通訊協定。
+    DocumentDB 提供透過 HTTPS 的簡單且開放 RESTful 程式設計模型。此外，它可提供有效率的 TCP 通訊協定，此 TCP 通訊協定在通訊模型中也符合 REST 限制，並且可以透過 .NET 用戶端 SDK 取得。直接 TCP 和 HTTPS 皆使用 SSL 來進行初始驗證和加密流量。為了達到最佳效能，儘可能使用 TCP 通訊協定。
 
     連接模式設定於使用 ConnectionPolicy 參數建構 DocumentClient 執行個體期間。如果使用直接模式，也可以在 ConnectionPolicy 參數內設定 Protocol。
 
@@ -93,7 +93,7 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
 
 4. **微調分割之集合的平行查詢**
 
-    DocumentDB .NET SDK 1.9.0 版和更新版本支援平行查詢，可讓您平行查詢分割的集合。如需詳細資訊，請參閱＜使用 SDK＞和相關的程式碼範例。它們的設計目的是要改善查詢延遲和輸送量。平行查詢提供兩個可供使用者微調以符合其需求的參數：(a) MaxDegreeOfParallelism：用來控制可平行查詢的分割數目上限，以及 (b) MaxBufferedItemCount：用來控制預先擷取的結果數目。
+     DocumentDB .NET SDK 1.9.0 版和更新版本支援平行查詢，可讓您平行查詢分割的集合 (詳細資訊請參閱[使用 SDK](documentdb-partition-data.md#working-with-the-sdks) 和相關的[範例程式碼](https://github.com/Azure/azure-documentdb-dotnet/blob/master/samples/code-samples/Queries/Program.cs))。平行查詢的設計目的是要改善其連續對應項目的查詢延遲和輸送量。平行查詢提供兩個可供使用者微調以符合其需求的參數：(a) MaxDegreeOfParallelism：用來控制可平行查詢的分割數目上限，以及 (b) MaxBufferedItemCount：用來控制預先擷取的結果數目。
     
     (a) **微調 MaxDegreeOfParallelism：**平行查詢的運作方式是以平行方式查詢多個分割。不過，對於查詢會以循序方式擷取來自個別分割集合的資料。因此，將 MaxDegreeOfParallelism 設定為分割數目會最有機會達到最高效能的查詢，但前提是其他所有系統條件皆維持不變。如果您不知道分割數目，您可以將 MaxDegreeOfParallelism 設定為較高的數字，然後系統會選擇最小值 (資料分割數目、使用者提供的輸入值) 做為 MaxDegreeOfParallelism。
     
@@ -211,4 +211,4 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
 
 此外，若要深入了解如何針對規模和高效能設計您的應用程式，請參閱 [Azure DocumentDB 的資料分割與調整規模](documentdb-partition-data.md)。
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

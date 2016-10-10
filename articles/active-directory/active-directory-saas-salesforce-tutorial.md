@@ -4,7 +4,7 @@
     services="active-directory"
     documentationCenter=""
     authors="asmalser-msft"
-    manager="stevenpo"
+    manager="femila"
     editor=""/>
 
 <tags
@@ -60,7 +60,7 @@
 
 	![按一下 [新增] 以加入新的應用程式。][2]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![按一下 [從資源庫新增應用程式]。][3]
 
@@ -88,7 +88,7 @@
 
 4. 在 [設定應用程式設定] 頁面上，使用下列格式在 [登入 URL] 輸入您的 Salesforce 網域 URL：
  - 企業帳戶：`https://<domain>.my.salesforce.com`
- - 開發人員帳戶：`https://<domain>-dev-ed.my.salesforce.com` 
+ - 開發人員帳戶：`https://<domain>-dev-ed.my.salesforce.com`
 
 	![輸入您的 [登入 URL]][8]
 
@@ -256,4 +256,4 @@
 [28]: ./media/active-directory-saas-salesforce-tutorial/assign-confirm.png
 [29]: ./media/active-directory-saas-salesforce-tutorial/assign-sf-profile.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/10/2016"
+	ms.date="09/25/2016"
 	ms.author="davidmu"/>
 
 # 使用 Azure PowerShell 建立 Windows 虛擬機器擴展集
@@ -25,7 +25,7 @@
 
 ## 步驟 1：安裝 Azure PowerShell
 
-如需如何安裝最新版 Azure PowerShell 的資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)，並選取您要使用的訂用帳戶，然後登入您的 Azure 帳戶。
+如需如何安裝最新版 Azure PowerShell、選取要使用的訂用帳戶，以及登入 Azure 帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
 ## 步驟 2：建立資源
 
@@ -84,9 +84,9 @@
 
 ### 儲存體帳戶
 
-虛擬機器會使用儲存體帳戶來儲存用於調整的作業系統磁碟和診斷資料。可能的話，在擴展集中建立的每部虛擬機器最好有一個儲存體帳戶。如不可行，請勿為每個儲存體帳戶規劃超過 20 個 VM。本文中的範例顯示針對擴展集中的 3 部虛擬機器建立 3 個儲存體帳戶。
+虛擬機器會使用儲存體帳戶來儲存用於調整的作業系統磁碟和診斷資料。最佳作法是針對在擴展集中建立的每 20 部虛擬機器，提供一個儲存體帳戶。由於擴展集是針對能輕易進行相應放大而設計，請針對您預期擴展集成長幅度所需的最大虛擬機器數量，盡可能地建立所需的儲存體帳戶。本文中的範例顯示建立 3 個儲存體帳戶，使擴展集能放心地成長至 60 部虛擬機器。
 
-1. 以您要用於儲存體帳戶的名稱取代 **saName** 的值，然後建立變數︰ 
+1. 以您要用於儲存體帳戶的名稱取代 **saName** 的值，然後建立變數︰
 
         $saName = "storage account name"
         
@@ -133,7 +133,7 @@
 
 擴展集中的虛擬機器需要虛擬網路。
 
-1. 以您要用於虛擬網路子網路的名稱取代 **$subName** 的值，然後建立變數︰ 
+1. 以您要用於虛擬網路子網路的名稱取代 **$subName** 的值，然後建立變數︰
 
         $subName = "subnet name"
         
@@ -155,7 +155,7 @@
 
 您必須先建立公用 IP 位址，再建立網路介面。
 
-1. 以您要用於公用 IP 位址的網域名稱標籤取代 **$domName** 的值，然後建立變數︰  
+1. 以您要用於公用 IP 位址的網域名稱標籤取代 **$domName** 的值，然後建立變數︰
 
         $domName = "domain name label"
         
@@ -179,7 +179,7 @@
 
 有了公用 IP 位址之後，您就可以建立網路介面。
 
-1. 以您要用於網路介面的名稱取代 **$nicName** 的值，然後建立變數︰ 
+1. 以您要用於網路介面的名稱取代 **$nicName** 的值，然後建立變數︰
 
         $nicName = "network interface name"
         
@@ -191,7 +191,7 @@
 
 您具備擴展集組態所需的所有資源，讓我們開始建立。
 
-1. 以您要用於 IP 組態的名稱取代 **$ipName** 的值，然後建立變數︰ 
+1. 以您要用於 IP 組態的名稱取代 **$ipName** 的值，然後建立變數︰
 
         $ipName = "IP configuration name"
         
@@ -205,7 +205,7 @@
         
 3. 建立擴展集的組態：
 
-        $vmss = New-AzureRmVmssConfig -Location $locName -SkuCapacity 3 -SkuName "Standard_A0" -UpgradePolicyMode "manual"
+        $vmss = New-AzureRmVmssConfig -Location $locName -SkuCapacity 3 -SkuName "Standard_A1" -UpgradePolicyMode "manual"
         
     此範例顯示使用 3 部虛擬機器建立的擴展集。若要深入了解擴展集的容量，請參閱[虛擬機器擴展集概觀](virtual-machine-scale-sets-overview.md)。這個步驟也包括設定集合中的虛擬機器大小 (稱為 SkuName)。請參閱[虛擬機器大小](../virtual-machines/virtual-machines-windows-sizes.md)找出符合您需求的大小。
     
@@ -228,7 +228,7 @@
 
 #### 作業系統設定檔
 
-1. 以您要使用的電腦名稱前置詞名稱取代 **$computerName** 的值，然後建立變數︰ 
+1. 以您要使用的電腦名稱前置詞名稱取代 **$computerName** 的值，然後建立變數︰
 
         $computerName = "computer name prefix"
         
@@ -246,7 +246,7 @@
 
 #### 儲存體設定檔
 
-1. 以您要用於儲存體設定檔的名稱取代 **$storageProfile** 的值，然後建立變數︰  
+1. 以您要用於儲存體設定檔的名稱取代 **$storageProfile** 的值，然後建立變數︰
 
         $storageProfile = "storage profile name"
         
@@ -313,4 +313,4 @@
 - 請考慮使用[自動調整與虛擬機器擴展集](virtual-machine-scale-sets-autoscale-overview.md)中的資訊設定自動調整擴展集。
 - 檢閱[使用虛擬機器擴展集垂直自動調整](virtual-machine-scale-sets-vertical-scale-reprovision.md)，深入了解垂直調整
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -117,10 +117,12 @@ ClusterConfig.JSON 中的 **properties** 區段用來設定叢集，如下所示
 ### **nodeTypes**
 **nodeTypes** 區段說明叢集所擁有的節點類型。至少必須針對叢集指定一個節點類型，如下列程式碼片段所示。
 
-	"nodeTypes": [{
+    "nodeTypes": [{
         "name": "NodeType0",
         "clientConnectionEndpointPort": "19000",
         "clusterConnectionEndpoint": "19001",
+        "leaseDriverEndpointPort": "19002"
+        "serviceConnectionEndpointPort": "19003",
         "httpGatewayEndpointPort": "19080",
         "applicationPorts": {
 			"startPort": "20001",
@@ -133,7 +135,7 @@ ClusterConfig.JSON 中的 **properties** 區段用來設定叢集，如下所示
         "isPrimary": true
     }]
 
-**name** 是此特定節點類型的易記名稱。若要建立此節點類型的節點，您必須將此節點類型的易記名稱指定為該節點的 **nodeTypeRef** 變數，如先前[叢集上的節點](#clusternodes)一節中所述。針對每個節點類型，您可以定義用於連接到此叢集的各種端點。您可以為這些連接端點選擇任意的連接埠號碼，只要它們不會與此叢集中的任何其他端點發生衝突即可。在包含多個節點類型的叢集中，將會有一個主要節點類型，其中已將 **isPrimary** 設定為 *true*。其餘的節點會將 **isPrimary** 設定為 *false*。如需根據您的叢集容量設定 **nodeTypes** 和 **reliabilityLevel** 值的詳細資訊，以及了解主要和非主要節點類型之間的差異，請參閱 [Service Fabric 叢集容量規劃考量](service-fabric-cluster-capacity.md)。
+**name** 是此特定節點類型的易記名稱。若要建立此節點類型的節點，您必須將此節點類型的易記名稱指定為該節點的 **nodeTypeRef** 變數，如先前[叢集上的節點](#clusternodes)一節中所述。針對每個節點類型，您可以定義用於連接到此叢集的各種端點。您可以為這些連接端點選擇任意的連接埠號碼，只要它們不會與此叢集中的任何其他端點發生衝突即可。如果您想要建立 http 應用程式閘道連接埠，則除了上述的其他連接埠，您還可以指定 "reverseProxyEndpointPort": [連接埠號碼]。在包含多個節點類型的叢集中，將會有一個主要節點類型，其中已將 **isPrimary** 設定為 *true*。其餘的節點會將 **isPrimary** 設定為 *false*。如需根據您的叢集容量設定 **nodeTypes** 和 **reliabilityLevel** 值的詳細資訊，以及了解主要和非主要節點類型之間的差異，請參閱 [Service Fabric 叢集容量規劃考量](service-fabric-cluster-capacity.md)。
 
 
 ### **fabricSettings**
@@ -156,4 +158,4 @@ ClusterConfig.JSON 中的 **properties** 區段用來設定叢集，如下所示
 
 當您根據獨立叢集安裝程式設定完整的 ClusterConfig.JSON 檔案之後，就可以遵循[在內部部署或雲端建立 Azure Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)一文來部署叢集，然後繼續[使用 Service Fabric Explorer 視覺化叢集](service-fabric-visualizing-your-cluster.md)。
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

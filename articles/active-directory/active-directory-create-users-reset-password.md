@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="curtand"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -39,4 +39,4 @@
 - [在 Azure AD 中管理密碼](active-directory-manage-passwords.md)
 - [在 Azure AD 中管理群組](active-directory-manage-groups.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

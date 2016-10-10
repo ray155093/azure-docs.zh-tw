@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="backup-recovery"
-	ms.date="07/12/2016"
+	ms.date="09/27/2016"
 	ms.author="bsiva"/>
 
 # 使用 PowerShell 和 Azure Resource Manager 在內部部署 Hyper-V 虛擬機器與 Azure 之間複寫
@@ -25,7 +25,7 @@
 
 
 
-## 概觀
+## Overview
 
 Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容錯移轉及復原，為您的商務持續性與災害復原做出貢獻。如需完整的部署案例清單，請參閱 [Azure Site Recovery 概觀](site-recovery-overview.md)。
 
@@ -257,4 +257,4 @@ Azure PowerShell for Azure Resource Manager 提供的 Site Recovery PowerShell C
 
 [閱讀更多](https://msdn.microsoft.com/library/azure/mt637930.aspx)使用 Azure Resource Manager PowerShell Cmdlet 進行 Azure Site Recovery 的相關資訊。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0928_2016-->

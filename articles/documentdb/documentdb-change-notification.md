@@ -1,6 +1,6 @@
 <properties 
     pageTitle="使用 Logic Apps 的 DocumentDB 變更通知 | Microsoft Azure" 
-    description="." 
+    description="。" 
     keywords="變更通知"
     services="documentdb" 
     authors="hedidin" 
@@ -14,7 +14,7 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="rest-api" 
     ms.topic="article" 
-    ms.date="06/14/2016" 
+    ms.date="09/23/2016" 
     ms.author="b-hoedid"/>
 
 # 使用 Logic Apps 的新增或已變更 DocumentDB 資源的通知
@@ -317,7 +317,7 @@ IT 部門表示他們可以輕鬆提供此通知。他們還表示可以將文�
 
 這個動作會呼叫 API 應用程式以傳回 UTC 日期字串值。
 
-#### 作業
+#### Operations
 
 **要求**
 
@@ -389,7 +389,7 @@ IT 部門表示他們可以輕鬆提供此通知。他們還表示可以將文�
 
 這個動作會呼叫 API 應用程式以處理轉換。
 
-#### 作業
+#### Operations
 
 ##### 要求
 
@@ -468,7 +468,7 @@ QueryDocuments 動作會對 API 應用程式執行 HTTP POST 作業。
 
 呼叫的方法為 **QueryForNewPatientDocuments**。
 
-#### 作業
+#### Operations
 
 ##### 要求
 
@@ -626,7 +626,7 @@ QueryDocuments 動作會對 API 應用程式執行 HTTP POST 作業。
 
 如果您不熟悉如何使用 Azure Blob API，請參閱[開始使用 Azure Blob 儲存體 API](../connectors/connectors-create-api-azureblobstorage.md)。
 
-#### 作業
+#### Operations
 
 ##### 要求
 
@@ -796,7 +796,7 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 這個動作取決於 **GetDocuments** 動作。
 
-#### 作業
+#### Operations
 
 ##### 要求
 ```JSON
@@ -905,7 +905,7 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 觸發程序已設定為 24 個小時的週期。此動作是 HTTP POST，其使用主要邏輯應用程式的回呼 URL。主體包含 JSON 結構描述中所指定的參數。
 
-#### 作業
+#### Operations
 
 ##### 要求
 
@@ -1156,4 +1156,4 @@ EmailTo | 將會收到電子郵件通知的電子郵件地址
 
 若要深入了解 DocumentDB，請瀏覽[學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0928_2016-->

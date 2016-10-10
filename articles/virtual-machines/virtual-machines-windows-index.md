@@ -25,13 +25,13 @@
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 
-## Overview
+## 概觀
 
 [關於虛擬機器](virtual-machines-windows-about.md)
 
 [關於以傳統部署模型建立之 Azure 虛擬機器的常見問題集](virtual-machines-windows-classic-faq.md)
 
-[比較 VM、網站與雲端服務](../app-service-web/choose-web-site-cloud-service-vm.md)
+[比較 VM、網站及雲端服務](../app-service-web/choose-web-site-cloud-service-vm.md)
 
 [Azure 中的虛擬機器和容器](virtual-machines-windows-containers.md)
 
@@ -62,7 +62,7 @@
 
 [虛擬機器的大小](virtual-machines-windows-sizes.md)
 
-[關於 A8、A9、A10 和 A11 密集運算執行個體](virtual-machines-windows-a8-a9-a10-a11-specs.md)
+[關於 H 系列和計算密集型 A 系列 VM](virtual-machines-windows-a8-a9-a10-a11-specs.md)
 
 [Azure 虛擬機器的計劃性維護](virtual-machines-windows-planned-maintenance.md)
 
@@ -192,4 +192,4 @@
 
 [針對在 Azure 中重新啟動或調整現有 Windows 虛擬機器大小的傳統部署問題進行疑難排解](virtual-machines-windows-classic-restart-resize-error-troubleshooting.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0928_2016-->

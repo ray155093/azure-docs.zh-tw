@@ -69,6 +69,17 @@ Data Factory 可在**美國西部**和**北歐**地區使用。資料處理站�
 
 ![移動 Data Factory](media/data-factory-faq/move-data-factory.png)
 
+### Data Factory 支援什麼計算環境?
+下表列出 Data Factory 支援的計算環境以及可在環境上執行的活動。
+
+| 計算環境 | 活動 |
+| ------------------- | -------- | 
+| [隨選 HDInsight 叢集](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)或[您自己的 HDInsight 叢集](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) | [DotNet](data-factory-use-custom-activities.md)、[Hive](data-factory-hive-activity.md)、[Pig](data-factory-pig-activity.md)、[MapReduce](data-factory-map-reduce.md)、[Hadoop 串流](data-factory-hadoop-streaming-activity.md) | 
+| [Azure Batch](data-factory-compute-linked-services.md#azure-batch-linked-service) | [DotNet](data-factory-use-custom-activities.md) |  
+| [Azure Machine Learning](data-factory-compute-linked-services.md#azure-machine-learning-linked-service) | [Machine Learning 活動︰批次執行和更新資源](data-factory-azure-ml-batch-execution-activity.md) |
+| [Azure 資料湖分析](data-factory-compute-linked-services.md#azure-data-lake-analytics-linked-service) | [資料湖分析 U-SQL](data-factory-usql-activity.md)
+| [Azure SQL](data-factory-compute-linked-services.md#azure-sql-linked-service)、[Azure SQL 資料倉儲](data-factory-compute-linked-services.md#azure-sql-data-warehouse-linked-service)、[SQL Server](data-factory-compute-linked-services.md#sql-server-linked-service) | [預存程序](data-factory-stored-proc-activity.md)
+
 ## 活動 - 常見問題集
 ### 您可以在 Data Factory 管線中使用的不同類型活動有哪些？ 
 
@@ -82,8 +93,13 @@ Data Factory 可在**美國西部**和**北歐**地區使用。資料處理站�
 ### 最好是一個管線有多個活動，還是每個活動都有不同的管線？ 
 管線依例應該有配套的相關活動。如果管線外的任何其他活動都未使用連接它們的資料集，則您可以將活動保留在一個管線中。如此一來，您就不需要鏈結管線作用期間，使其彼此一致。此外，更新管線時，也會更適當地保留管線內部資料表中的資料完整性。管線更新基本上會停止、移除並重新建立管線內的所有活動。從撰寫觀點來看，可能也較容易看出管線的某個 JSON 檔案中相關活動內的資料流程。
 
-### 會在哪裡執行複製作業？ 
+### 支援哪些資料存放區？
+[AZURE.INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
 
+### 支援什麼檔案格式？ 
+[AZURE.INCLUDE [data-factory-file-format](../../includes/data-factory-file-format.md)]
+
+### 會在哪裡執行複製作業？ 
 如需詳細資料，請參閱[全域可用的資料移動](data-factory-data-movement-activities.md#global)一節。簡單地說，當涉及內部部署資料存放區時，複製作業是由「資料管理閘道」在內部部署環境中執行。而在兩個雲端存放區之間移動資料時，複製作業是在最接近相同地理位置內接收位置的區域中執行。
 
 
@@ -192,4 +208,4 @@ Data Factory 可在**美國西部**和**北歐**地區使用。資料處理站�
 [hdinsight-alternate-storage-2]: http://blogs.msdn.com/b/cindygross/archive/2014/05/05/use-additional-storage-accounts-with-hdinsight-hive.aspx
  
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -21,7 +21,7 @@
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](site-recovery-hyper-v-site-to-azure.md)
-- [PowerShell - ARM](site-recovery-deploy-with-powershell-resource-manager.md)
+- [PowerShell - 資源管理員](site-recovery-deploy-with-powershell-resource-manager.md)
 - [傳統入口網站](site-recovery-hyper-v-site-to-azure-classic.md)
 
 閱讀本文，以了解當 Hyper-V 主機不在 System Center Virtual Machine Manager (VMM) 雲端中受管理時，如何部署 Site Recovery 來複寫 Hyper-V 虛擬機器至 Azure。
@@ -300,4 +300,4 @@ Site Recovery 可以用在許多案例中，並可保護許多工作負載。深
 
 在您的部署設定完成並開始執行之後，[深入了解](site-recovery-failover.md)容錯移轉。
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

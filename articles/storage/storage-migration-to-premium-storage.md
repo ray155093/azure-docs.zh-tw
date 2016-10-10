@@ -4,7 +4,7 @@
     services="storage"
     documentationCenter="na"
     authors="aungoo-msft"
-    manager=""
+    manager="tadb"
     editor="tysonn"/>
 
 <tags
@@ -13,13 +13,13 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="07/25/2016"
-    ms.author="aungoo-msft"/>
+    ms.date="09/21/2016"
+    ms.author="aungoo;robinsh"/>
 
 
 # 移轉到 Azure 進階儲存體
 
-## 概觀
+## Overview
 
 針對執行時需要大量 I/O 之工作負載的虛擬機器，「Azure 進階儲存體」可提供高效能、低延遲的磁碟支援。使用「進階儲存體」的虛擬機器 (VM) 會將資料儲存在固態硬碟 (SSD) 上。您可以將應用程式的 VM 磁碟移轉到「Azure 進階儲存體」，以利用這些磁碟的速度和效能。
 
@@ -42,12 +42,12 @@ Azure VM 支援連接數個「進階儲存體」磁碟，讓您應用程式的�
 
 ## 將其他平台上的 VM 移轉到 Azure 進階儲存體
 
-### 先決條件
+### 必要條件
 - 您將需要 Azure 訂用帳戶。如果您沒有訂用帳戶，可以建立一個月的[免費試用](https://azure.microsoft.com/pricing/free-trial/)訂用帳戶，或造訪 [Azure 定價](https://azure.microsoft.com/pricing/)以了解其他選項。
 - 若要執行 PowerShell Cmdlet，您將需要 Microsoft Azure PowerShell 模組。若要下載此模組，請參閱 [Microsoft Azure 下載](https://azure.microsoft.com/downloads/)。
 - 當您計劃使用在進階儲存體上執行的 Azure VM 時，您需要使用 DS 系列、DSv2 系列或 GS 系列的 VM。您可以同時使用標準和進階儲存體磁碟與 DS 系列、DSv2 系列或 GS 系列的 VM 搭配。未來進階儲存體磁碟將可搭配更多 VM 類型使用。如需所有可用 Azure VM 磁碟類型和大小的詳細資訊，請參閱[虛擬機器的大小](../virtual-machines/virtual-machines-windows-sizes.md)和[雲端服務的大小](../cloud-services/cloud-services-sizes-specs.md)。
 
-### 注意事項
+### 考量
 
 #### VM 大小
 Azure VM 大小的規格已列在[虛擬機器的大小](../virtual-machines/virtual-machines-windows-sizes.md)一文中。請檢閱使用於進階儲存體的虛擬機器效能特性，然後選擇最適合您的工作負載的 VM 大小。確定 VM 上有足夠的磁碟流量頻寬。
@@ -64,9 +64,9 @@ Azure VM 大小的規格已列在[虛擬機器的大小](../virtual-machines/vir
 
 #### 儲存體帳戶延展性目標
 
-Premium 儲存體帳戶除了 [Azure 儲存體延展性和效能目標](storage-scalability-targets.md)之外，還有以下延展性目標。如果您的應用程式需求超出單一儲存體帳戶的延展性目標，請建置使用多個儲存體帳戶的應用程式，並將資料分散到那些儲存體帳戶中。
+進階儲存體帳戶除了 [Azure 儲存體延展性和效能目標](storage-scalability-targets.md)之外，還有以下延展性目標。如果您的應用程式需求超出單一儲存體帳戶的延展性目標，請建置使用多個儲存體帳戶的應用程式，並將資料分散到那些儲存體帳戶中。
 
-|總帳戶容量|本機備援儲存體帳戶總頻寬|
+|總帳戶容量|本地備援儲存體帳戶總頻寬|
 |:--|:---|
 |磁碟容量：35 TB<br />快照容量：10 TB|每秒最多 50 Gbps (輸入 + 輸出)|
 
@@ -74,7 +74,7 @@ Premium 儲存體帳戶除了 [Azure 儲存體延展性和效能目標](storage-
 
 #### 額外的資料磁碟
 
-根據您的工作負載，決定您的 VM 是否需要額外的資料磁碟。您可以將數個持續性資料磁碟連接至您的 VM。如有需要，您可以跨磁碟等量磁碟區以增加磁碟區的容量和效能。如果您使用[儲存空間](http://technet.microsoft.com/library/hh831739.aspx)等量 Premium 儲存體資料磁碟，應該為所使用的每個磁碟，以一個資料行進行設定。否則，等量磁碟區的整體效能可能會因為磁碟流量分配不平均而比預期的效能還低。而對於 Linux VM，您可以使用 *mdadm* 公用程式來達到相同的效果。如需詳細資訊，請參閱文章[在 Linux 上設定軟體 RAID](../virtual-machines/virtual-machines-linux-configure-raid.md)。
+根據您的工作負載，決定您的 VM 是否需要額外的資料磁碟。您可以將數個持續性資料磁碟連接至您的 VM。如有需要，您可以跨磁碟等量磁碟區以增加磁碟區的容量和效能。如果您使用[儲存空間](http://technet.microsoft.com/library/hh831739.aspx)等量進階儲存體資料磁碟，應該為所使用的每個磁碟，以一個資料行進行設定。否則，等量磁碟區的整體效能可能會因為磁碟流量分配不平均而比預期的效能還低。而對於 Linux VM，您可以使用 *mdadm* 公用程式來達到相同的效果。如需詳細資訊，請參閱文章[在 Linux 上設定軟體 RAID](../virtual-machines/virtual-machines-linux-configure-raid.md)。
 
 #### 磁碟快取原則
 根據預設，所有進階資料磁碟的磁碟快取原則都是「唯讀」，而連接至 VM 的進階作業系統磁碟的則是「讀寫」。為使應用程式的 IO 達到最佳效能，建議使用此組態設定。對於頻繁寫入或唯寫的資料磁碟 (例如 SQL Server 記錄檔)，停用磁碟快取可獲得更佳的應用程式效能。而您可以使用 [Azure 入口網站](https://portal.azure.com)或 *Set-AzureDataDisk* Cmdlet 的 *-HostCaching* 參數來更新現有資料磁碟的快取設定。
@@ -680,4 +680,4 @@ Premium 儲存體帳戶除了 [Azure 儲存體延展性和效能目標](storage-
 [2]: ./media/storage-migration-to-premium-storage/migration-to-premium-storage-1.png
 [3]: ./media/storage-migration-to-premium-storage/migration-to-premium-storage-3.png
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -13,7 +13,7 @@
   ms.topic="article"
   ms.tgt_pltfrm="na"
   ms.workload="data-services"
-  ms.date="09/12/2016"
+  ms.date="09/26/2016"
   ms.author="andrl"/>
 
 # 社群入口網站
@@ -120,8 +120,9 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 
 | 活動名稱 | 主講人 | 位置 | 日期 | Hashtag |
 | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | -------------------- | ------------------------ | ------- |
-| [Ignite 2016](https://myignite.microsoft.com/sessions?q=documentdb) | Andrew Liu 和 Tara Jana | 喬治亞州亞特蘭大 | 2016 年 9 月 26-30 日 | [#MSIgnite](https://twitter.com/MS_Ignite) |
-| [Strata + Hadoop World](http://conferences.oreilly.com/strata/hadoop-big-data-ny/?cmp=kn-data-confreg-home-stny16_bing_branded) | TBD | 美國紐約 | 2016 年 9 月 26-29 日 | [#StrataConf](https://twitter.com/strataconf) |
+| [Ignite 2016](https://myignite.microsoft.com/sessions?q=documentdb)<br><br>[主旨：Enable digital transformation using The Unreasonable Effectiveness of A.C.I.D(利用 A.C.I.D 的絕佳效率執行數位轉換) 主講人：Joseph Sirosh)](https://myignite.microsoft.com/sessions/34953)<br><br>[會議：Azure DocumentDB at massive scale: Customer success and design patterns (大規模 Azure DocumentDB：客戶成功經驗和設計模式) 主講人：Syam Kumar Nair、Andrew Liu](https://myignite.microsoft.com/sessions/3066)<br><br>[會議：Manage IoT assets with Node.js and DocumentDB (使用 Node.js 和 DocumentDB 管理 IoT 資產) 主講人： Joshua Davis](https://myignite.microsoft.com/sessions/39704)<br><br>[會議：Build smarter and scalable applications using Microsoft Azure Database Services (使用 Microsoft Azure Database Services 建置小型可擴充的應用程式) 主講人：Tara Jana、Moshe Gutman](https://myignite.microsoft.com/sessions/2633)| Andrew Liu、Syam Kumar Nair、Tara Jana | 喬治亞州亞特蘭大 | 2016 年 9 月 26-30 日 | [#MSIgnite](https://twitter.com/MS_Ignite) |
+| [Ignite 聚會：DocumentDB: Advanced Features for Large-Scale Apps (DocumentDB：大規模應用程式的進階功能)](http://www.meetup.com/Azure-in-the-ATL/events/234252070/) | Andrew Liu、Syam Kumar Nair | 喬治亞州亞特蘭大 | 2016 年 9 月 27 日 | [#MSIgnite](https://twitter.com/MS_Ignite) [@FlatironCity](https://twitter.com/FlatironCity) |
+| [Strata + Hadoop World](http://conferences.oreilly.com/strata/hadoop-big-data-ny/?cmp=kn-data-confreg-home-stny16_bing_branded) | 請來參觀我們的攤位！ | 美國紐約 | 2016 年 9 月 26-29 日 | [#StrataConf](https://twitter.com/strataconf) |
 | [Capital City .NET Users Group](http://www.meetup.com/tally-dot-net/events/233768568/) | Santosh Hari | 佛羅里達州 Tallahassee | 2016 年 11 月 3 日 | n/a |
 
 
@@ -137,7 +138,8 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 | [Integration User Group](http://www.integrationusergroup.com/do-logic-apps-support-error-handling/) | Howard S. Edidin | 網路廣播 | 2016 年 6 月 20 日 | [Logic Apps 是否支援錯誤處理？](http://www.integrationusergroup.com/do-logic-apps-support-error-handling/) |
 | [Meetup: UK Azure User Group](http://www.meetup.com/UKAzureUserGroup/events/229673468/)| Andrew Liu | 倫敦英國 | 2016 年 5 月 12 日 | n/a
 |[聚會：ONETUG - Orlando .NET User Group ](http://www.meetup.com/ONETUG/events/230797164/)| Santosh Hari| 佛羅里達州奧蘭多市| 2016 年 5 月 12 日| n/a 
-| [SQLBits XV](https://sqlbits.com/) | Andrew Liu、Aravind Ramachandran | 英國利物浦 | 2016 年 5 月 4-7 日 | n/a| [Meetup: NYC .NET Developers Group](http://www.meetup.com/NYC-NET-Developers/events/230396260/) | Leonard Lobel | 美國紐約州紐約市 | 2016 年 4 月 21 日 | n/a |
+| [SQLBits XV](https://sqlbits.com/) | Andrew Liu、Aravind Ramachandran | 英國利物浦 | 2016 年 5 月 4-7 日 | n/a| 
+| [Meetup: NYC .NET Developers Group](http://www.meetup.com/NYC-NET-Developers/events/230396260/) | Leonard Lobel | 美國紐約州紐約市 | 2016 年 4 月 21 日 | n/a |
 | [Integration User Group](http://www.integrationusergroup.com/#) | Howard Edidin | Webinar | 2016 年 4 月 25 日 | n/a |
 | [Global Azure Bootcamp: SoCal](http://xprs.imcreator.com/free/vishalishere/gab2016) | Leonard Lobel | 美國加州橙市 | 2016 年 4 月 16 日 | n/a |
 | [Global Azure Bootcamp: Redmond](https://www.eventbrite.com/e/2016-global-azure-bootcamp-redmond-wa-tickets-21387752343) | David Makogon | 美國華盛頓州雷德蒙德 98052-6399 | 2016 年 4 月 16 日 | n/a |
@@ -269,4 +271,4 @@ DocumentDB 精靈是社群領導者，他們是在協助其他人充分利用他
 
 想要成為 DocumentDB 精靈？ 由於是否能成為 DocumentDB 精靈並沒有任何評斷基準，因此我們會針對部分條件來評估，包括被提名人在線上論壇 (例如 StackOverflow 和 MSDN；Wiki 和線上內容；會議和使用者群組；播客；網站；部落格和社群媒體；以及文章與書籍) 中提供之貢獻所產生的影響。如果您想提名自己或其他人，請[傳送電子郵件給我們](mailto:askdocdb@microsoft.com)。
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

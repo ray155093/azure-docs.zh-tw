@@ -86,6 +86,9 @@ PHP 5.5 和 PHP 5.6 版本同樣可供使用，但預設並未啟用。若要更
 		; Example Settings
 		display_errors=On
 		upload_max_filesize=10M
+		
+		; OPTIONAL: Turn this on to write errors to d:\home\LogFiles\php_errors.log
+		; log_errors=On
 
 3. 部署 Web 應用程式。
 4. 重新啟動 Web 應用程式。(必須重新啟動，因為 PHP 讀取 `.user.ini` 檔案的頻率是由 `user_ini.cache_ttl` 設定所控制，這是系統層級設定，預設為 300 秒 (5 分鐘)。重新啟動 Web 應用程式將強制 PHP 讀取 `.user.ini` 檔案中的新設定。)
@@ -208,4 +211,4 @@ App Service 預設不會對 composer.json (如果您 PHP 專案中有的話) 執
 [GETPHPVERPS]: ./media/web-sites-php-configure/ShowPHPVersion-PS.png
  
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0928_2016-->

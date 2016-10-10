@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/13/2016"
+	ms.date="09/27/2016"
 	ms.author="cynthn"/>
 
 # 如何在 Azure 中的傳統 Windows 虛擬機器上設定端點
@@ -38,4 +38,4 @@
 
 * 如果您已在 Resource Manager 部署模型中建立虛擬機器，則可以使用 Azure PowerShell 來[建立網路安全性群組](../virtual-network/virtual-networks-create-nsg-arm-ps.md)以控制對 VM 的流量。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0928_2016-->

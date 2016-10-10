@@ -18,7 +18,7 @@
 
 # Azure 讓 GEP 全球化並更有效率
 
-![GEP 標誌](./media/sql-database-case-study-gep/geplogo.png)
+![GEP 標誌](./media/sql-database-implementation-gep/geplogo.png)
 
 GEP 提供軟體和服務，可讓世界各地的採購領導者充分影響其業務營運、策略及財務表現。除了諮詢和受管理的服務，該公司還提供 SMART by GEP® 這個雲端型的全方位採購軟體平台。不過，GEP 在嘗試使用自己的內部部署資料中心來支援 SMART by GEP 時遇到一些限制︰所需的投資過高，而其他國家/地區的法規需求則令人在必要的投資上更為卻步。透過移至雲端，GEP 釋出了 IT 資源，讓它可以節省 IT 營運上的心力，而更專注於為其全球客戶開發新的價值來源。
 
@@ -48,7 +48,7 @@ Nagalkar 及其團隊探索了數個雲端選項，但大多數都是基礎結�
 
 GEP 是在 Azure 上從頭開始建置 SMART by GEP。對 GEP 來說，其中一個重要誘因就是與 GEP 在內部部署環境所能達成的相比，使用 Azure SQL Database 所能體驗到的是更大的延展性、更短的停機時間，以及更低的維護成本。不過，在移至雲端之後，GEP 在雲端發現了能以更佳方式回應客戶需求的新開發機會 (例如快速的原型設計和精簡的工程)。在 Azure 中開發可讓 GEP 的開發人員擺脫在內部部署環境中可能需要面對的軟體授權問題。SMART by GEP 的核心是 Azure SQL Database，不過 GEP 也使用許多其他 Azure 服務來輕鬆快速地持續改進 SMART by GEP。
 
-![圖 1](./media/sql-database-case-study-gep/figure1.png) 圖 1.SMART by GEP 架構
+![SMART by GEP 架構](./media/sql-database-implementation-gep/figure1.png) 圖 1.SMART by GEP 架構
 
 ## 結構化資料
 
@@ -107,8 +107,4 @@ GEP 採用一些其他 Azure 服務來讓 SMART by GEP 回應客戶需求。GEP 
 - Sathyan Narasingh，GEP 工程經理
 - Deepa Velukutty，GEP 資料庫架構設計師
 
-![Smart 標誌](./media/sql-database-case-study-gep/smartbygeplogo.png)
-
-![GEP 標誌](./media/sql-database-case-study-gep/geplogo.png)
-
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

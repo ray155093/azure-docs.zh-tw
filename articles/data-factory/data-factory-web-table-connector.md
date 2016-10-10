@@ -3,7 +3,7 @@
 	description="了解如何使用 Azure Data Factory，來移動網頁上內部部署資料表的資料。" 
 	services="data-factory" 
 	documentationCenter="" 
-	authors="spelluru" 
+	authors="linda33wj" 
 	manager="jhubbard" 
 	editor="monicar"/>
 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/18/2016" 
-	ms.author="spelluru"/>
+	ms.date="09/26/2016" 
+	ms.author="jingwang"/>
 
 # 使用 Azure Data Factory 來移動 Web 資料表的資料
 本文章將概述如何使用 Azure 資料處理站中的複製活動，來把網頁上資料表中的資料複製到另一個資料存放區。本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
@@ -65,7 +65,7 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 	  }
 	}
 
-將 **external** 設定為 **True**的**WebTable 輸入資料集**，及指定 **externalData** 原則 (可省略) 即可通知 Data Factory 服務：這是 Data Factory 外部的資料表，且不是由 Data Factory 中的活動所產生。
+**WebTable input dataset** 將 **external** 設定為 **true**，等於是通知 Data Factory 服務：這是 Data Factory 外部的資料集而且不是由 Data Factory 中的活動所產生。
 
 > [AZURE.NOTE] 如需如何取得 HTML 網頁中資料表索引的步驟，請參閱[取得 HTML 網頁中資料表的索引](#get-index-of-a-table-in-an-html-page)一節。
 
@@ -118,7 +118,7 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 
 此管線包含複製活動，該活動已設定為使用上述輸入和輸出資料集並排定為每小時執行。在管線 JSON 定義中，**source** 類型設定為 **WebSource**，且 **sink** 類型設定為 **BlobSink**。
 
-如需 WebSource 支援的屬性清單，請參閱 [WebSource 類別屬性](#websource-copy-activity-type-properties)一節。
+如需 WebSource 支援的屬性清單，請參閱 [WebSource 類別屬性](#websource-copy-activity-type-properties)。
 	
 	{  
 	    "name":"SamplePipeline",
@@ -245,11 +245,11 @@ index | 資源中資料表的索引。如需如何取得 HTML 網頁中資料表
 
 ## WebSource：複製活動類型屬性
 
-如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。名稱、描述、輸入和輸出資料表、各種原則等屬性都適用於所有活動類型。
+如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
 
-另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同，而在複製活動的案例中，可用的屬性會根據來源與接收的類型而有所不同。
+另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
 
-在複製活動的案例中，當來源類型為 **WebSource** 時，目前並未支援任何其他屬性。
+當複製活動中的來源類型為 **WebSource**，目前並未支援任何其他屬性。
 
 ## 取得 HTML 網頁中資料表的索引
 
@@ -287,4 +287,4 @@ index | 資源中資料表的索引。如需如何取得 HTML 網頁中資料表
 ## 效能和微調  
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0928_2016-->

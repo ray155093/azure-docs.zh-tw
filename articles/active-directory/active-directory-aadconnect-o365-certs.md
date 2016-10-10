@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="billmath"
-	manager="stevenpo"
+	manager="femila"
 	editor="curtand"/>
 
 <tags
@@ -100,8 +100,7 @@ Azure AD 會嘗試監視同盟中繼資料，並依照此中繼資料的指示�
 
 **1.AD FS 屬性 AutoCertificateRollover 必須設定為 True。** 這表示 AD FS 會在舊憑證到期之前，自動產生新的權杖簽署和權杖解密憑證。
 
-**2.可公開取得 AD FS 同盟中繼資料。** 
-從公用網際網路 (離開公司網路) 的電腦瀏覽到下列 URL 檢查同盟中繼資料是否可公開存取：
+**2.可公開取得 AD FS 同盟中繼資料。** 從公用網際網路 (離開公司網路) 的電腦瀏覽到下列 URL 檢查同盟中繼資料是否可公開存取：
 
 
 https://(your_FS_name)/federationmetadata/2007-06/federationmetadata.xml
@@ -164,4 +163,4 @@ https://(your_FS_name)/federationmetadata/2007-06/federationmetadata.xml
 
 如需詳細資訊，請參閱[修復信任](./active-directory-aadconnect-federation-management.md#repairing-the-trust)。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

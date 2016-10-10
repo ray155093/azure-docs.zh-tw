@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="篩選器與動態資訊清單" 
+	pageTitle="篩選器與動態資訊清單 | Microsoft Azure" 
 	description="本主題說明如何建立篩選器，讓您的用戶端可以使用篩選器來串流特定的資料流區段。媒體服務會建立動態資訊清單來封存此選擇性資料流。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,16 +13,16 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="ne" 
 	ms.topic="article" 
-	ms.date="06/22/2016" 
+	ms.date="09/26/2016" 
 	ms.author="cenkdin;juliako"/>
 
-#篩選器與動態資訊清單
+# 篩選器與動態資訊清單
 
 從 2.11 版開始，媒體服務可讓您為資產定義篩選器。這些篩選器是伺服器端規則，可讓您的客戶選擇執行如下的動作：只播放一段視訊 (而非播放完整視訊)，或只指定您客戶裝置可以處理的一部分音訊和視訊轉譯 (而非與該資產相關的所有轉譯)。透過在您客戶要求下建立的**動態資訊清單**可達成對資訊進行這樣的篩選，藉此根據指定的篩選器來串流視訊。
 
 本主題討論對您客戶很有幫助的常見篩選器使用案例，並提供主題連結以示範如何以程式設計方式建立篩選器 (目前您只能使用 REST API 建立篩選器)。
 
-##概觀
+##Overview
 
 當您將內容傳遞給客戶時 (串流即時事件或點播視訊)，您的目標是在不同的網路條件下將高品質的視訊傳遞到各種裝置。若要達成此目標，請執行下列動作：
 
@@ -236,4 +236,4 @@
 [skiing]: ./media/media-services-dynamic-manifest-overview/media-services-skiing.png
  
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

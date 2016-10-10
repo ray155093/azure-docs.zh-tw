@@ -14,7 +14,7 @@
 	ms.devlang="dotnet"
 	ms.topic="article"
 	ms.date="09/08/2016"
-	ms.author="robinsh"/>
+	ms.author="cbrooks;robinsh"/>
 
 #Azure 儲存體安全性指南
 
@@ -632,4 +632,4 @@ Azure 儲存體可讓您啟用 CORS – 跨原始來源資源共用。對於每�
 
 	本文討論如何在較舊的 Windows 電腦中使用 FIPS 模式。
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

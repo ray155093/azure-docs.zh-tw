@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/07/2016"
+	ms.date="09/26/2016"
 	ms.author="carlasab"/>
 
 
 # 將 SQL Server 資料庫移轉至 Azure VM 中的 SQL Server
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)] 資源管理員模型。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)] Resource Manager 模型。
 
 
 有多個方法可將內部部署 SQL Server 使用者資料庫移轉至 Azure VM 中 SQL Server。這篇文章將簡短討論各種方法、建議各種案例的最佳方法，且包含的[教學課程](#azure-vm-deployment-wizard-tutorial)可引導您使用「將 SQL Server Database 部署到 Microsoft Azure VM」精靈。
@@ -98,7 +98,7 @@
 
 6. 按一下 [下一步]。
 7. 在 [Microsoft Azure 登入]頁面上，按一下 [登入] 並登入至您的 Azure 帳戶。
-8. 選取您要使用的訂用帳戶，然後按一下 [下一步]。
+8. 選取您要使用的訂用帳戶，然後按 [下一步]。
 
 	![Azure 登入](./media/virtual-machines-windows-migrate-sql/azure-signin.png)
 
@@ -180,4 +180,4 @@
 
 如需從擷取的映像建立 Azure SQL Server 虛擬機器的指示，請參閱 CSS SQL Server 工程師部落格上的[從擷取之映像複製 Azure SQL 虛擬機器的秘訣和竅門](https://blogs.msdn.microsoft.com/psssql/2016/07/06/tips-tricks-on-cloning-azure-sql-virtual-machines-from-captured-images/)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0928_2016-->

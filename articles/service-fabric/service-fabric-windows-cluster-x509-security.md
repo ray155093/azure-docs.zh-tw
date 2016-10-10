@@ -53,8 +53,12 @@
                 "CertificateIssuerThumbprint" : "[Thumbprint]",
                 "IsAdmin": true
             }]
+			"HttpApplicationGatewayCertificate":{
+                "Thumbprint": "[Thumbprint]",
+                "X509StoreName": "My"
+			}
         }
-    },
+    }
 
 此區段描述保護獨立 Windows 叢集所需的憑證。若要啟用憑證型安全性，將 **ClusterCredentialType** 和 **ServerCredentialType** 的值設定為 X509。
 
@@ -68,6 +72,7 @@
 |ServerCertificate|用戶端嘗試連線到此叢集時，會向用戶端此憑證顯示此憑證。為了方便起見，您可以選擇對 *ClusterCertificate* 和 *ServerCertificate* 使用相同的憑證。您可以使用兩個不同的伺服器憑證 (主要和次要) 進行更新。在 **Thumbprint** 區段中設定主要憑證的指紋，以及在 **ThumbprintSecondary** 變數中設定次要憑證的指紋。 |
 |ClientCertificateThumbprints|這是您想在經過驗證的用戶端上安裝的一組憑證。在您要允許存取叢集的電腦上，您可以安裝數個不同的用戶端憑證。在 **CertificateThumbprint** 變數中設定每個憑證的指紋。如果您將 **IsAdmin** 設為 true，則已安裝此憑證的用戶端可以對叢集執行系統管理員管理活動。如果 **IsAdmin** 是 false，有此憑證的用戶端只能執行其使用者存取權限允許的動作，通常是唯讀。如需角色的詳細資訊，請參閱[角色型存取控制 (RBAC)](service-fabric-cluster-security.md/#role-based-access-control-rbac) |
 |ClientCertificateCommonNames|針對 **CertificateCommonName** 設定第一個用戶端憑證的一般名稱。**CertificateIssuerThumbprint** 是此憑證的簽發者指紋。閱讀[使用憑證](https://msdn.microsoft.com/library/ms731899.aspx)，以深入了解一般名稱和簽發者。|
+|HttpApplicationGatewayCertificate|如果您想要保護 Http 應用程式閘道，這是可以指定的選擇性憑證。如果您使用此憑證，請務必在 nodeTypes 中設定 reverseProxyEndpointPort。|
 
 以下是範例叢集組態，其中已提供叢集、 伺服器和用戶端憑證。
 
@@ -262,4 +267,4 @@ Get-ServiceFabricNode
 .\RemoveServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.X509.MultiMachine.json   -MicrosoftServiceFabricCabFilePath .\MicrosoftAzureServiceFabric.cab
 ```
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -13,12 +13,17 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/23/2016"
-	ms.author="femila"/>
+	ms.date="09/21/2016"
+	ms.author="Markvi"/>
 
 # 為加入網域的 Windows 8.1 裝置設定自動註冊裝置
 
 您可以使用 Active Directory 群組原則，設定加入網域的 Windows 8.1 裝置自動向 Azure AD 註冊。若要設定群組原則，您至少必須要有一個加入 Windows Server 2012 R2 的網域，或一部安裝群組原則管理功能的 Windows 8.1 電腦。您的網域一旦啟用了這個群組原則，任何登入電腦的網域使用者都會自動且無訊息地向 Azure AD 中的裝置物件註冊。在 Azure AD 中，實體裝置的每一個已註冊的使用者都有一個裝置物件。請務必詳細閱讀並完成「自動向 Azure Active Directory 註冊加入網域的 Windows 裝置」中的必要條件。
+
+>[AZURE.NOTE]
+ 如需有關如何設定自動裝置註冊的最新指示，請參閱[如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊](active-directory-conditional-access-automatic-device-registration-setup.md)。
+
+
 
 ## 設定加入網域的 Windows 8.1 裝置的群組原則
 
@@ -61,4 +66,4 @@ Windows 8.1 電腦上的 Windows 事件記錄檔會顯示與裝置註冊相關�
 - [自動向 Azure Active Directory 註冊加入網域的 Windows 10 裝置](active-directory-conditional-access-automatic-device-registration.md)
 - [為加入網域的 Windows 7 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows7.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

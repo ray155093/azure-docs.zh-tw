@@ -280,7 +280,7 @@ A1.Azure 備份代理程式與 Azure 入口網站中反映的備份作業狀態�
 
 **Q.2 當備份作業失敗時，需要多久的時間才會引發警示？**
 
-A.2 在 Azure 備份失敗的 5 分鐘內就會引發警示。
+A.2 在 Azure 備份失敗的 20 分鐘內就會引發警示。
 
 **Q3.是否會有已設定通知但不會傳送電子郵件的情況？**
 
@@ -300,4 +300,4 @@ A3.以下是不傳送通知以便減少警示雜訊的案例︰
 - 若要深入了解 Azure 備份，請參閱 [Azure 備份概觀](backup-introduction-to-azure-backup.md)
 - 瀏覽 [Azure 備份論壇](http://go.microsoft.com/fwlink/p/?LinkId=290933)
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

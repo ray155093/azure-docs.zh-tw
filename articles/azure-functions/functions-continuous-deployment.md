@@ -1,7 +1,7 @@
 <properties
    pageTitle="Azure Functions 的持續部署 | Microsoft Azure"
    description="使用 Azure App Service 的持續部署工具來發佈 Azure Functions。"
-   services="azure-functions"
+   services="functions"
    documentationCenter="na"
    authors="ggailey777"
    manager="erikre"
@@ -15,7 +15,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="multiple"
    ms.workload="na"
-   ms.date="08/15/2016"
+   ms.date="09/25/2016"
    ms.author="glenga"/>
 
 # Azure Functions 的持續部署 
@@ -48,7 +48,9 @@ Azure Functions 可讓您輕鬆地為函式應用程式設定持續部署。Func
 1. 在 [Azure Functions 入口網站](https://functions.azure.com/signin)的函式應用程式中，按一下 [函式應用程式設定] > [設定持續整合] > [設定]。
 
 	![設定持續部署](./media/functions-continuous-deployment/setup-deployment.png)
-
+	
+	![設定持續部署](./media/functions-continuous-deployment/setup-deployment-1.png)
+	
 	您也可以按一下 [從原始檔控制開始] 以從 Functions 快速入門進入 [部署] 刀鋒視窗。
 
 2. 在 [部署] 刀鋒視窗中按一下 [選擇來源]、填入所選部署來源的資訊，然後按一下 [確定]。
@@ -128,4 +130,4 @@ Azure Functions 可讓您輕鬆地為函式應用程式設定持續部署。Func
 
 [GitHub]: https://github.com/
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0928_2016-->

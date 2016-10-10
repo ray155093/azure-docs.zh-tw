@@ -4,7 +4,7 @@
 	documentationCenter=""
 	services="active-directory"
 	authors="billmath"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -200,4 +200,4 @@ Microsoft 有三個主要的整合案例，分別為雲端身分識別、同步�
 ## 另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

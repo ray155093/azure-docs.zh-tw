@@ -3,11 +3,11 @@
 **Resource** | **預設限制** | **上限**
 -------- | ------------- | -------------
 Azure 訂用帳戶中的 Data Factory | 50 | [請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)
-資料處理站中的管線 | 100 | 2500
-資料處理站中的資料集 | 500 | 5000
+資料處理站中的管線 | 2500 | [請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)
+資料處理站中的資料集 | 5000 | [請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)
 每個資料集的並行配量 | 10 | 10
 管線物件的每個物件位元組大小<sup>1</sup> | 200 KB | 2000 KB
-資料集和 linkedservice 物件的每個物件位元組大小<sup>1</sup> | 30 KB | 2000 KB
+資料集和已連結服務的每個物件位元組大小<sup>1</sup> | 100 KB | 2000 KB
 物件的欄位數目 | 100 | [請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)
 每一欄位名稱或識別碼的位元組大小 | 2 KB | [請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)
 每一欄位的位元組大小 | 30 KB | [請連絡支援人員](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)
@@ -18,7 +18,6 @@ Azure 訂用帳戶中的 Data Factory | 50 | [請連絡支援人員](https://azu
 
 <sup>2</sup>隨選 HDInsight 核心並非配置在包含資料處理站的訂用帳戶之中。因此，上述限制為 Data Factory 針對隨選 HDInsight 核心所強制的核心限制，不同於您 Azure 訂用帳戶相關聯的核心限制。
 
-
 **Resource** | **預設下限** | **下限**
 -------- | ------------------- | -------------
 排程間隔 | 15 Minuten | 15 Minuten
@@ -28,6 +27,6 @@ Azure 訂用帳戶中的 Data Factory | 50 | [請連絡支援人員](https://azu
 
 ### Web 服務呼叫限制
 
-Azure 資源管理員有 API 呼叫限制。您可使用 [Azure 資源管理員 API 限制](../azure-subscription-service-limits.md#resource-group-limits)內的速率進行 API 呼叫。
+Azure Resource Manager 有 API 呼叫限制。您可使用 [Azure 資源管理員 API 限制](../azure-subscription-service-limits.md#resource-group-limits)內的速率進行 API 呼叫。
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0928_2016-->

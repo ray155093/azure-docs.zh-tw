@@ -108,7 +108,7 @@
     PM> Install-Package Microsoft.Azure.Management.Resources –Pre
     PM> Install-Package Microsoft.Azure.Common.Authentication –Pre
 
-建立主控台應用程式並使用下列程式碼取代 Program.cs 的內容。若要取得必要的用戶端識別碼和相關值，請參閱[註冊應用程式並取得必要的用戶端值來將應用程式連線到 SQL Database](sql-database-client-id-keys.md)。
+建立主控台應用程式並使用下列程式碼取代 Program.cs 的內容。若要取得必要的用戶端識別碼和相關的值，請參閱[使用 Azure PowerShell 建立用來存取資源的服務主體](../resource-group-authenticate-service-principal.md)。
 
     using Microsoft.Azure;
     using Microsoft.Azure.Management.Resources;
@@ -430,4 +430,4 @@
 - [何時使用彈性資料庫集區？](sql-database-elastic-pool-guidance.md)
 - 請參閱[使用 Azure SQL Database 相應放大](sql-database-elastic-scale-introduction.md)︰使用彈性資料庫工具相應放大、移動資料、查詢或建立交易。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0928_2016-->

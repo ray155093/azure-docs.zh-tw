@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="跨多個儲存體帳戶管理媒體服務資產" 
+	pageTitle="跨多個儲存體帳戶管理媒體服務資產 | Microsoft Azure" 
 	description="此文件指引您如何管理跨多個儲存體帳戶的媒體服務資產。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"    
+	ms.date="09/26/2016"    
 	ms.author="juliako"/>
 
 
@@ -26,7 +26,7 @@
 
 本主題示範如何將多個儲存體帳戶附加到媒體服務帳戶使用 Azure 服務管理 REST API。同時也會示範如何在使用媒體服務 SDK 建立資產時，指定不同的儲存體帳戶。
 
-##注意事項
+##考量
 
 當您在媒體服務帳戶中附加多個儲存體帳戶時，適用下列考量事項：
 
@@ -259,4 +259,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

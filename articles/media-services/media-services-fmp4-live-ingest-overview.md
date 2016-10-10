@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="Azure 媒體服務的分散 MP4 即時內嵌規格" 
+	pageTitle="Azure 媒體服務的分散 MP4 即時內嵌規格 | Microsoft Azure" 
 	description="此規格說明以分散 MP4 為基礎的即時資料流內嵌通訊協定和格式 (Microsoft Azure 媒體服務適用)。Microsoft Azure 媒體服務提供即時資料流服務，讓客戶使用 Microsoft Azure 作為雲端平台來即時串流即時事件和廣播內容。本文也討論建置高度備援且穩固即時內嵌機制的最佳作法。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"     
+	ms.date="09/26/2016"     
 	ms.author="cenkdin;juliako"/>
 
 #Azure 媒體服務的分散 MP4 即時內嵌規格
@@ -221,4 +221,4 @@ Microsoft Azure 媒體服務的 ISO 分散 MP4 即時內嵌使用標準的長時
 
  
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

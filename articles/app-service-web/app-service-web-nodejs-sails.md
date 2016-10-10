@@ -13,31 +13,33 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="nodejs"
 	ms.topic="article"
-	ms.date="07/19/2016"
+	ms.date="09/23/2016"
 	ms.author="cephalin"/>
 
 # 將 Sails.js Web 應用程式部署至 Azure App Service
 
 本教學課程示範如何將 Sails.js 應用程式部署至 Azure App Service。過程中，您可以搜集一些如何設定 Node.js 應用程式以在 App Service 中執行的一般知識。
 
+您應具備 Sails.js 的使用知識。本教學課程的目的不是協助您了解一般執行 Sail.js 的相關問題。
+
+
 ## 必要條件
 
-- [Node.js](https://nodejs.org/)。
-- [Sails.js](http://sailsjs.org/get-started)。
-- Sails.js 的使用知識。本教學課程的目的不是協助您了解一般執行 Sail.js 的相關問題。
-- [Git](http://www.git-scm.com/downloads)。
-- [Azure CLI](../xplat-cli-install.md)。
+- [Node.js](https://nodejs.org/)
+- [Sails.js](http://sailsjs.org/get-started)
+- [Git](http://www.git-scm.com/downloads)
+- [Azure CLI](../xplat-cli-install.md)
 - Microsoft Azure 帳戶。如果您沒有這類帳戶，可以[申請免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)，或是[啟用自己的 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
 
 >[AZURE.NOTE] 若要在註冊 Azure 帳戶前查看運作中的 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)。您可以於該處，在 App Service 中立即建立短期的入門應用程式 — 不需信用卡，不需任何承諾。
 
-## 步驟 1︰在開發環境中建立 Sails.js 應用程式
+## 步驟 1︰在本機建立 Sails.js 應用程式
 
-首先，執行下列步驟 ，快速建立預設的 Sails.js 應用程式︰
+首先，請執行下列步驟 ，在部署環境中快速建立預設 Sails.js 應用程式︰
 
 1. 開啟您選擇的命令列終端機，並 `CD` 到工作目錄。
 
-2. 建立新的 Sails.js 應用程式並加以執行︰
+2. 建立 Sails.js 應用程式並加以執行︰
 
         sails new <appname>
         cd <appname>
@@ -45,9 +47,9 @@
 
     請確定您可以瀏覽到 http://localhost:1377 上的預設首頁。
 
-## 步驟 2︰在 Azure 中建立 App Service 應用程式資源
+## 步驟 2︰建立 Azure 應用程式資源
 
-接下來，建立 App Service 應用程式資源。您稍後要將 Sails.js 應用程式部署到其中。
+接下來，在 Azure 中建立 App Service 資源。您稍後要將 Sails.js 應用程式部署到其中。
 
 1. 如下所示，登入 Azure：
 1. 在相同的終端機中，變更為 ASM 模式並登入 Azure：
@@ -115,6 +117,12 @@
             "sails-sqlserver": "<leave-as-is>"
         },
 
+3. 在 package.json 中新增以下 `engines` 屬性，以將 Node.js 版本設定為我們需要的版本。
+
+        "engines": {
+            "node": "6.6.0"
+        },
+
 6. 儲存變更並測試變更，以確定您的應用程式仍在本機執行。若要這樣做，請刪除 `node_modules` 資料夾，然後執行：
 
         npm install
@@ -141,7 +149,7 @@
                 .-..-.
 
     Sails              <|    .-..-.
-    v0.12.3             |\
+    v0.12.4             |\
                         /|.\
                         / || \
                     ,'  |'  \
@@ -151,39 +159,39 @@
     ____---___--___---___--___---___--___-__
 
     Server lifted in `D:\home\site\wwwroot`
-    To see your app, visit http://localhost:\\.\pipe\a76e8111-663e-449d-956e-5c5deff2d304
+    To see your app, visit http://localhost:\\.\pipe\c775303c-0ebc-4854-8ddd-2e280aabccac
     To shut down Sails, press <CTRL> + C at any time.
 
 您可以在 [config/log.js](http://sailsjs.org/#!/documentation/concepts/Logging) 檔案中控制 stdout 記錄檔的細微度。
 
 ## 連接到 Azure 中的資料庫
 
-若要連接到 Azure 資料庫，您可以在 Azure 中建立所選擇的資料庫，例如 Azure SQL Database、MySQL、MongoDB、Azure (Redis) 快取等，並使用對應的[資料存放區配接器](https://github.com/balderdashy/sails#compatibility)連接到它。本節中的步驟示範如何連接到 Azure SQL Database。
+若要連接到 Azure 中的資料庫，您可以在 Azure 中建立所選擇的資料庫，例如 Azure SQL Database、MySQL、MongoDB、Azure (Redis) 快取等，並使用對應的[資料存放區配接器](https://github.com/balderdashy/sails#compatibility)連接到它。本節中的步驟示範如何連接到 Azure 中的 MySQL 資料庫。
 
-1. 遵循[這裡](../sql-database/sql-database-get-started.md)的教學課程，在新的 SQL Server 中建立空白的 Azure SQL Database。預設防火牆設定允許 Azure 服務 (例如 App Service) 連接到它。
+1. 遵循[這裡](../store-php-create-mysql-database.md)的教學課程在 Azure 中建立 MySQL 資料庫。
 
-2. 從命令列終端機中，安裝 SQL Server 配接器︰
+2. 從命令列終端機安裝 MySQL 配接器︰
 
-        npm install sails-sqlserver --save
+        npm install sails-mysql --save
 
 3. 開啟 config/connections.js 並將下列連接物件加入至清單︰
 
-        sqlserver: {
-            adapter: 'sails-sqlserver',
+        mySql: {
+            adapter: 'sails-mysql',
             user: process.env.dbuser,
             password: process.env.dbpassword,
-            host: process.env.sqlserver, 
+            host: process.env.dbhost, 
             database: process.env.dbname,
             options: {
-                encrypt: true   // use this for Azure databases
+                encrypt: true
             }
         },
 
-4. 針對每個環境變數 (`process.env.*`)，您需要在 App Service 中加以設定。若要執行此動作，可從您的終端機執行下列命令：
+4. 針對每個環境變數 (`process.env.*`)，您需要在 App Service 中加以設定。若要執行此動作，可從您的終端機執行下列命令。Azure 入口網站備有您需要的所有連線資訊 (請參閱[連接到您的 MySQL 資料庫](../store-php-create-mysql-database.md#connect))。
 
-        azure site appsetting add dbuser="<database server administrator>"
-        azure site appsetting add dbpassword="<database server password>"
-        azure site appsetting add sqlserver="<database server name>.database.windows.net"
+        azure site appsetting add dbuser="<database user>"
+        azure site appsetting add dbpassword="<database password>"
+        azure site appsetting add dbhost="<database hostname>"
         azure site appsetting add dbname="<database name>"
         
     將您的設定放在 Azure 應用程式設定中，可讓敏感性資料脫離原始檔控制 (Git)。接下來，您將設定開發環境，以便使用相同的連接資訊。
@@ -191,31 +199,31 @@
 4. 開啟 config/local.js 並新增下列連接物件︰
 
         connections: {
-            sqlserver: {
-                user: "<database server administrator>",
-                password: "<database server password>",
-                host: "<database server name>.database.windows.net", 
+            mySql: {
+                user: "<database user>",
+                password: "<database password>",
+                host: "<database hostname>", 
                 database: "<database name>",
             },
         },
     
-    此組態會覆寫 config/connections.js 檔案中本機環境的設定。您專案中的預設 .gitignore 會排除這個檔案，因此不會儲存在 Git 中。您現在可以從 Azure Web 應用程式和從本機開發環境連接到您的 Azure SQL Database。
+    此組態會覆寫 config/connections.js 檔案中本機環境的設定。您專案中的預設 .gitignore 會排除這個檔案，因此不會儲存在 Git 中。您現在可以從 Azure Web 應用程式和從本機開發環境連接到您的 MySQL 資料庫。
 
 4. 開啟 config/env/production.js 來設定您的生產環境，並加入下列 `models` 物件：
 
         models: {
-            connection: 'sqlserver',
+            connection: 'mySql',
             migrate: 'safe'
         },
 
 4. 開啟 config/env/development.js 來設定您的開發環境，並加入下列 `models` 物件：
 
         models: {
-            connection: 'sqlserver',
+            connection: 'mySql',
             migrate: 'alter'
         },
 
-    `migrate: 'alter'` 可讓您使用資料庫移轉功能，在 Azure SQL Database 中輕鬆地建立和更新資料庫資料表。不過，要針對您的 Azure (生產) 環境使用 `migrate: 'safe'`，因為 Sails.js 不允許您在生產環境中使用 `migrate: 'alter'` (請參閱 [Sails.js 文件](http://sailsjs.org/documentation/concepts/models-and-orm/model-settings))。
+    `migrate: 'alter'` 可讓您使用資料庫移轉功能，在 MySQL 中輕鬆地建立和更新資料庫資料表。不過，要針對您的 Azure (生產) 環境使用 `migrate: 'safe'`，因為 Sails.js 不允許您在生產環境中使用 `migrate: 'alter'` (請參閱 [Sails.js 文件](http://sailsjs.org/documentation/concepts/models-and-orm/model-settings))。
 
 4. 從終端機中，[產生](http://sailsjs.org/documentation/reference/command-line-interface/sails-generate) Sails.js [藍圖 API](http://sailsjs.org/documentation/concepts/blueprints) (就像您平常所做的一樣)，然後執行 `sails lift` 以使用 Sails.js 資料庫移轉來建立資料庫。例如：
 
@@ -230,7 +238,7 @@
     
     此 API 應該會在瀏覽器視窗中將建立的項目傳回給您，這表示您的資料庫建立成功。
 
-        {"id":1,"createdAt":"2016-03-28T23:08:01.000Z","updatedAt":"2016-03-28T23:08:01.000Z"}
+        {"id":1,"createdAt":"2016-09-23T13:32:00.000Z","updatedAt":"2016-09-23T13:32:00.000Z"}
 
 5. 現在，將變更推送至 Azure，並瀏覽至您的應用程式以確定它仍能運作。
 
@@ -243,11 +251,11 @@
 
         http://<appname>.azurewebsites.net/mywidget/create
 
-    如果此 API 傳回另一個新項目，則您的 Azure Web 應用程式會與您的 Azure SQL Database 通訊。
+    如果此 API 傳回另一個新項目，則您的 Azure Web 應用程式會與您的 MySQL 資料庫通訊。
 
 ## 其他資源
 
 - [在 Azure App Service 中開始使用 Node.js Web 應用程式](app-service-web-nodejs-get-started.md)
 - [使用 Node.js 模組與 Azure 應用程式搭配](../nodejs-use-node-modules-azure-apps.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

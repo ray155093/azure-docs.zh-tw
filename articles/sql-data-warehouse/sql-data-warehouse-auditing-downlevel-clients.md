@@ -13,19 +13,10 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="08/29/2016" 
+   ms.date="09/24/2016" 
    ms.author="rortloff;barbkess;sonyama"/>
 
 # SQL 資料倉儲 - 下層用戶端對稽核和動態資料遮罩的支援
-
-> [AZURE.SELECTOR]
-- [安全性概觀](sql-data-warehouse-overview-manage-security.md)
-- [威脅偵測](sql-data-warehouse-security-threat-detection.md)
-- [加密 (入口網站)](sql-data-warehouse-encryption-tde.md)
-- [加密 (T-SQL)](sql-data-warehouse-encryption-tde-tsql.md)
-- [稽核概觀](sql-data-warehouse-auditing-overview.md)
-- [稽核下層用戶端](sql-data-warehouse-auditing-downlevel-clients.md)
-
 
 [稽核](sql-data-warehouse-auditing-overview.md)可與支援 TDS 重新導向的 SQL 用戶端搭配使用。
 
@@ -46,4 +37,4 @@
 
 **備註：**上述伺服器 FDQN 修改可能會對於套用 SQL Server 層級稽核原則有所助益，不需要每個資料庫中的組態步驟 (暫存緩和)。
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0928_2016-->

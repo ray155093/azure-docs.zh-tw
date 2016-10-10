@@ -4,7 +4,7 @@
 	services="active-directory" 
 	documentationCenter="" 
 	authors="billmath" 
-	manager="stevenpo" 
+	manager="femila" 
 	editor="curtand"/>
 
 <tags 
@@ -93,4 +93,4 @@ Azure Active Directory 團隊會定期以新的特性和功能更新 Azure AD Co
 ## 後續步驟
 深入了解[在雲端中監視內部部署身分識別基礎結構和同步處理服務](active-directory-aadconnect-health.md)。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

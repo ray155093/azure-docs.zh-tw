@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="asmalser-msft"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -51,7 +51,7 @@
 
 **若要設定單一登入，請執行下列步驟：**
 
-1.	在 Azure 傳統入口網站中加入 Evidence.com 後，按一下 [設定單一登入]。 
+1.	在 Azure 傳統入口網站中加入 Evidence.com 後，按一下 [設定單一登入]。
  
 2.	在下一個畫面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
 
@@ -107,4 +107,4 @@
  
 4.	在頁面頁尾中，按一下 [指派] 按鈕。
 
-<!---HONumber=AcomDC_0224_2016-->
+<!---HONumber=AcomDC_0928_2016-->

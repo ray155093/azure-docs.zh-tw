@@ -555,7 +555,10 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 來源作業系統 | 行動服務安裝檔案
 --- | ---
 Windows Server (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0_Windows_* release.exe
-CentOS 6.4、6.5、6.6 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_RHEL6-64\_*release.tar.gz
+CentOS 6.5、6.6、6.7 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_RHEL6-64\_*release.tar.gz
+CentOS 7.0、7.1、7.2 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_RHEL7-64\_*release.tar.gz
+Red Had Enterprise Linux 6.7 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_RHEL6-64\_*release.tar.gz
+Red Had Enterprise Linux 7.1、7.2 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_RHEL7-64\_*release.tar.gz
 SUSE Linux Enterprise Server 11 SP3 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_SLES11-SP3-64\_*release.tar.gz
 Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) | Microsoft-ASR\_UA\_9.*.0.0\_OL6-64\_*release.tar.gz
 
@@ -792,9 +795,7 @@ UnifiedAgent.exe [/Role <代理程式/主要目標>] [/InstallLocation <安裝�
 
 以下是監視 Site Recovery 部署的組態設定、狀態和健康狀態的方式︰
 
-1. 按一下保存庫名稱來存取 [基本資訊] 儀表板。在此儀表板中，您可以看見 Site Recovery 作業、複寫狀態、復原方案、伺服器健康狀態和事件。您可以自訂 [基本資訊] 以顯示對您最有用的圖格和配置，包括其他 Site Recovery 和「備份」保存庫的狀態。
-<br> 
-![基本資訊](./media/site-recovery-vmware-to-azure/essentials.png)
+1. 按一下保存庫名稱來存取 [基本資訊] 儀表板。在此儀表板中，您可以看見 Site Recovery 作業、複寫狀態、復原方案、伺服器健康狀態和事件。您可以自訂 [基本資訊] 以顯示對您最有用的圖格和配置，包括其他 Site Recovery 和「備份」保存庫的狀態。<br> ![基本資訊](./media/site-recovery-vmware-to-azure/essentials.png)
 
 2. 在 [健全狀況] 圖格中，您可以監視發生問題的站台伺服器 (VMM 或組態伺服器)，以及 Site Recovery 在過去 24 小時內引發的事件。
 3. 您可以在 [複寫的項目]、[復原方案] 和 [Site Recovery 作業] 圖格中管理和監視複寫。您可以在 [設定] -> [作業] -> [Site Recovery 作業] 中向下鑽研作業。
@@ -864,4 +865,4 @@ The information in Section B is regarding Third Party Code components that are b
 
 The complete file may be found on the [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428).Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

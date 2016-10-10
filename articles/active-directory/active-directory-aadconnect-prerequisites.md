@@ -4,7 +4,7 @@
    services="active-directory"
    documentationCenter=""
    authors="andkjell"
-   manager="stevenpo"
+   manager="femila"
    editor="curtand"/>
 
 <tags
@@ -51,7 +51,7 @@
 ### 帳戶
 - 想要與其整合之 Azure AD 目錄的 Azure AD 全域管理員帳戶必須是**學校或組織帳戶**，不能是 **Microsoft 帳戶**。
 - 如果使用快速設定或從 DirSync 升級，則為本機 Active Directory 的企業系統管理員帳戶。
-- 如果您使用自訂設定的安裝路徑，[則帳戶是 Active Directory](active-directory-aadconnect-accounts-permissions.md)。
+- 如果您使用自訂設定的安裝路徑，則為 [Active Directory 中的帳戶](active-directory-aadconnect-accounts-permissions.md)。
 
 ### Azure AD Connect 伺服器組態
 - 如果全域系統管理員已啟用 MFA，URL **https://secure.aadcdn.microsoftonline-p.com** 就必須在信任的網站清單中。在顯示 MFA 挑戰提示之前，系統會先提示您將此 URL 新增到信任的網站清單中 (如果它尚未新增到清單中)。您可以使用 Internet Explorer 將它新增到信任的網站。
@@ -197,4 +197,4 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
 ## 後續步驟
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

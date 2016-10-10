@@ -62,7 +62,7 @@
 
 	* 新增 [A (主機) 記錄] 時，您必須將 [主機] 欄位設定為 **@** (這代表根網域名稱，例如 **contoso.com**)、* (符合多個子網域的萬用字元)，或您要使用的子網域 (例如 *www**)。 您必須將* [指向] 欄位設為 Azure Web 應用程式的 IP 位址。
 
-	* 新增 [CNAME (別名) 記錄] 時，您必須將 [主機] 欄位設定為您要使用的子網域。例如 **www**。您必須將 [指向] 欄位設為 Azure Web 應用程式的 **.azurewebsites.net** 網域名稱。例如 **contoso.azurewebsites.net**。
+	* 新增 [CNAME (別名) 記錄] 時，您必須將 [主機] 欄位設定為您要使用的子網域。例如 **www**。您必須將 [指向] 欄位設為 Azure Web 應用程式的 **.azurewebsites.net** 網域名稱。例如，**contoso.azurewebsites.net**。
 
 5. 按一下 [加入另一個]。
 6. 選取 [TXT] 做為記錄類型，然後指定 **@** 的 [主機] 值和 **&lt;yourwebappname&gt;.azurewebsites.net** 的 [指向] 值。
@@ -81,4 +81,4 @@
 ## 變更的項目
 * 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0928_2016-->

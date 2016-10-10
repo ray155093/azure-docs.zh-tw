@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="使用合作夥伴將 Widevine 授權傳遞到 Azure 媒體服務" 
+	pageTitle="使用合作夥伴將 Widevine 授權傳遞到 Azure 媒體服務 | Microsoft Azure" 
 	description="本文說明如何使用 Azure 媒體服務 (AMS) 來傳遞 AMS 使用 PlayReady 與 Widevine DRM 動態加密的資料流。PlayReady 授權來自媒體服務 PlayReady 授權伺服器，Widevine 授權由 castLabs 授權伺服器傳遞。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"  
+	ms.date="09/26/2016"  
 	ms.author="juliako"/>
 
 #使用合作夥伴將 Widevine 授權傳遞到 Azure 媒體服務
 
-##概觀
+##Overview
 
 Microsoft Azure 媒體服務可讓您提供受 Widevine DRM 保護的 MPEG-DASH，其會依據「一般加密 (Common Encryption，CENC)」規格進行加密。
 
@@ -47,4 +47,4 @@ Microsoft Azure 媒體服務可讓您提供受 Widevine DRM 保護的 MPEG-DASH�
 
 [Mingfei 的部落格](https://azure.microsoft.com/blog/azure-media-services-adds-google-widevine-packaging-for-delivering-multi-drm-stream/)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

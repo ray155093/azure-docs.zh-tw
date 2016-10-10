@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="multiple"
 	ms.devlang="Java"
 	ms.topic="article"
-	ms.date="09/20/2016" 
-	ms.author="robmcm;asirveda"/>
+	ms.date="08/26/2016" 
+	ms.author="robmcm;asirveda;martinsawicki"/>
 
 # 適用於 IntelliJ 的 Azure 工具組新增功能
 
@@ -23,6 +23,18 @@
 本文包含適用於 IntelliJ 的 Azure 工具組的各種版本和最新更新相關資訊。
 
 > [AZURE.NOTE] 另外還有適用於 Eclipse IDE 的 Azure 工具組。如需詳細資訊，請參閱[適用於 Eclipse 的 Azure 工具組]。
+
+### 2016 年 8 月 26 日
+
+適用於 IntelliJ 的 Azure 工具組 - 2016 年 8 月版本包含下列增強功能：
+
+* **自訂 JDK 散發套件**。適用於 IntelliJ 的 Azure 工具組現在支援指定任意 JDK 版本，以及將其部署至 Azure WebApp 容器︰
+  - 除了 Azure 提供的 JDK 之外，您也可以從 Azul Systems 在 Azure 上提供的多種 Zulu OpenJDK 版本中選擇。
+  - 您也可以指定自己的 JDK 散發套件，前提是您必須以 ZIP 檔案的形式將它上傳到儲存體帳戶。
+* **Azure Explorer 檢視的增強功能**：
+  - 支援使用 Azure 的新 Resource Manager 模型管理虛擬機器︰您可以列出、建立和刪除以 Resource Manager 為基礎的虛擬機器，而不需要離開 IDE。
+  - 支援使用 Azure 的 Resource Manager 管理儲存體帳戶 Blob，這項功能可輔助現有的「傳統」儲存體帳戶管理功能。
+* **Microsoft JDBC Driver 6.0 for SQL Server**。這項更新包含適用於 Microsoft SQL Server (6.0 版) 的最新 JDBC 驅動程式，該驅動程式現在以程式庫形式提供，可讓您輕鬆地加入專案中，因而取代舊有版本。
 
 ### 2016 年 6 月 29 日
 
@@ -73,4 +85,4 @@
 
 [IntelliJ 的 HDInsight Tools 外掛程式]: ./hdinsight/hdinsight-apache-spark-intellij-tool-plugin.md
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

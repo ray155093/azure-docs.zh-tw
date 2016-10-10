@@ -5,7 +5,7 @@
 	  keywords="Azure AD 授權"
     documentationCenter=""
     authors="curtand"
-    manager="stevenpo"
+    manager="femila"
     editor=""/>
 
 <tags
@@ -140,4 +140,4 @@ Azure Active Directory (Azure AD) 是 Microsoft 的「身分識別即服務 (IDa
 - [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)
 - [直接購買 Azure AD Premium 授權](http://aka.ms/buyaadp)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0928_2016-->

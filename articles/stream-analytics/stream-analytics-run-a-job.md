@@ -14,7 +14,7 @@
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
 	ms.workload="data-services" 
-	ms.date="07/27/2016" 
+	ms.date="09/26/2016" 
 	ms.author="jeffstok"/>
 
 # 如何在 Azure 串流分析中執行串流工作
@@ -29,7 +29,7 @@
 
     在 Azure 入口網站中，按一下工作頁面頂端的 [開始]。
 
-    ![Azure 入口網站的開始工作按鈕](./media/stream-analytics-run-a-job/4-stream-analytics-run-a-job.png)
+    ![Azure 入口網站開始工作按鈕](./media/stream-analytics-run-a-job/4-stream-analytics-run-a-job.png)
 
 2.	指定 [開始輸出] 值來決定這項工作開始產生輸出的時間。先前尚未開始之工作的預設設定為 [工作開始時間]，這代表該工作會立即開始處理資料。您也可以指定在過去 (適用於取用歷史資料) 或未來 (用來延遲處理到未來某個時間) 的 [自訂] 時間。對於先前已經開始並停止的工作，您可選取 [上次停止時間]，以便從上次輸出的時間點繼續工作，並避免資料遺失。
 
@@ -54,4 +54,4 @@
 - [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 - [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

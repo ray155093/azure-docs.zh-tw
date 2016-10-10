@@ -39,7 +39,7 @@
 
 5. 在 [群組] 刀鋒視窗上，輸入群組的名稱和描述。
 
-6. 若要選取要新增到群組中的成員，請在 [成員資格類型] 方塊中選取 [已指派]，然後選取 [成員]。如需有關如何動態管理群組成員資格的詳細資訊，請參閱 [管理群組中使用者的動態規則](active-directory-groups-dynamic-users-azure-portal.md)或[管理群組中裝置的動態規則](active-directory-groups-dynamic-devices-azure-portal.md)。
+6. 若要選取要新增到群組中的成員，請在 [成員資格類型] 方塊中選取 [已指派]，然後選取 [成員]。如需有關如何動態管理群組成員資格的詳細資訊，請參閱 [使用屬性來建立群組成員資格的進階規則](active-directory-groups-dynamic-membership-azure-portal.md)。
 
   ![選取要新增的成員](./media/active-directory-groups-create-azure-portal/select-members.png)
 
@@ -62,4 +62,4 @@
 * [管理群組的成員資格](active-directory-groups-membership-azure-portal.md)
 * [管理群組中使用者的動態規則](active-directory-groups-dynamic-membership-azure-portal.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

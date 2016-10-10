@@ -3,7 +3,7 @@
 	description="了解如何使用 Azure Data Factory 從 Salesforce 移動資料。"
 	services="data-factory"
 	documentationCenter=""
-	authors="spelluru"
+	authors="linda33wj"
 	manager="jhubbard"
 	editor="monicar"/>
 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/07/2016"
-	ms.author="spelluru"/>
+	ms.date="09/26/2016"
+	ms.author="jingwang"/>
 
 # 使用 Azure Data Factory 從 Salesforce 移動資料
 本文概述如何在 Azure Data Factory 使用複製活動，將資料從 Salesforce 複製到[支援的來源與接收](data-factory-data-movement-activities.md#supported-data-stores)資料表的 [接收] 欄底下列出的任何資料存放區。本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
@@ -209,20 +209,20 @@ Azure Data Factory 目前只支援將資料從 Salesforce 移動到 [支援的�
 ## RelationalSource 類型屬性
 如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。名稱、描述、輸入和輸出資料表以及各種原則等屬性都適用於所有活動類型。
 
-另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同，而在複製活動的案例中，可用的屬性會根據來源與接收的類型而有所不同。
+另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
 
-在複製活動的案例中，如果來源類型為 **RelationalSource** (包含 Salesforce)，則 typeProperties 區段可使用下列屬性：
+在複製活動中，如果來源類型為 **RelationalSource** (包含 Salesforce)，則 typeProperties 區段可使用下列屬性：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | -------- | ----------- | -------------- | -------- |
-| query | 使用自訂查詢來讀取資料。 | SQL-92 查詢或 [Salesforce 物件查詢語言 (SOQL) ](https://developer.salesforce.com/docs/atlas.zh-TW.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm) 查詢。例如：select * from MyTable\_\_c。 | 否 (如果已指定 **dataset** 的 **tableName**) |
+| query | 使用自訂查詢來讀取資料。 | SQL-92 查詢或 [Salesforce 物件查詢語言 (SOQL) ](https://developer.salesforce.com/docs/atlas.zh-TW.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm) 查詢。例如：`select * from MyTable__c`。 | 否 (如果已指定 **dataset** 的 **tableName**) |
 
-> [AZURE.IMPORTANT] 任何自訂物件都需要 API 名稱的 "\_\_c" 部分。<br> 當您指定的查詢在 DateTime 資料行上包含 **where** 子句，請使用 SOQL。例如：$$Text.Format('SELECT Id, Name, BillingCity FROM Account WHERE LastModifiedDate >= {0:yyyy-MM-ddTHH:mm:ssZ} AND LastModifiedDate < {1:yyyy-MM-ddTHH:mm:ssZ}', WindowStart, WindowEnd) 或 SQL 查詢，例如 $$Text.Format('SELECT * FROM Account WHERE LastModifiedDate >= {{ts'{0:yyyy-MM-dd HH:mm:ss}'}} AND LastModifiedDate < {{ts'{1:yyyy-MM-dd HH:mm:ss}'}}', WindowStart, WindowEnd)。
+> [AZURE.IMPORTANT] 任何自訂物件都需要 API 名稱的 "\_\_c" 部分。<br> 當您指定的查詢在 DateTime 資料行上包含 **where** 子句，請使用 SOQL。例如：`$$Text.Format('SELECT Id, Name, BillingCity FROM Account WHERE LastModifiedDate >= {0:yyyy-MM-ddTHH:mm:ssZ} AND LastModifiedDate < {1:yyyy-MM-ddTHH:mm:ssZ}', WindowStart, WindowEnd), or SQL query e.g. $$Text.Format('SELECT * FROM Account  WHERE LastModifiedDate   >= {{ts\'{0:yyyy-MM-dd HH:mm:ss}\'}} AND LastModifiedDate  < {{ts\'{1:yyyy-MM-dd HH:mm:ss}\'}}', WindowStart, WindowEnd)`。
 
 ![Data Factory - Salesforce 連線 - API 名稱](media/data-factory-salesforce-connector/data-factory-salesforce-api-name-2.png)
 
 ## 從 Salesforce 報表擷取資料
-您可以藉由指定 {call "<report name>"} 格式的查詢 (例如 "query": "{call "TestReport"}")，以從 Salesforce 報表擷取資料。
+您可以藉由指定 `{call "<report name>"}` 格式的查詢 (例如 `"query": "{call "TestReport"}"`，以從 Salesforce 報表擷取資料。
 
 ## Salesforce 要求限制
 Salesforce 對於 API 要求總數和並行 API 要求均有限制。如需詳細資訊，請參閱 [Salesforce 開發人員限制](http://resources.docs.salesforce.com/200/20/zh-TW/sfdc/pdf/salesforce_app_limits_cheatsheet.pdf)文章的＜API 要求限制＞一節。
@@ -261,4 +261,4 @@ URL | String
 ## 效能和微調  
 若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0928_2016-->

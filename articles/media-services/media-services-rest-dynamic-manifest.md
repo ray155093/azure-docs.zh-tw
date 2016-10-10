@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="使用 Azure 媒體服務 REST API 建立篩選器" 
+	pageTitle="使用 Azure 媒體服務 REST API 建立篩選器 | Microsoft Azure" 
 	description="本主題說明如何建立篩選器，讓您的用戶端可以使用篩選器來串流特定的資料流區段。媒體服務會建立動態資訊清單來完成此選擇性資料流。"
 	services="media-services" 
 	documentationCenter="" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="ne" 
 	ms.topic="article" 
-	ms.date="06/22/2016"  
+	ms.date="09/26/2016"  
 	ms.author="juliako;cenkdin"/>
 
 #使用 Azure 媒體服務 REST API 建立篩選器
@@ -374,4 +374,4 @@ Request body
 
  
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

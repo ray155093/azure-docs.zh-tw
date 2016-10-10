@@ -70,7 +70,7 @@ Azure 網狀架構控制器會佈建和監視 Azure 計算執行個體的狀況�
 
 這種方式的變化會使用 Azure 儲存體 (Blob、資料表、佇列) 或服務匯流排佇列來做為失敗資料庫呼叫的容錯移轉位置。例如，某個應用程式內對另一個服務 (例如 Azure SQL Database) 的同步呼叫會重複失敗。您或許可以將該資料序列化到耐久性儲存體。稍後當服務或資料庫重新上線時，應用程式就可以從儲存體重新提交要求。此模型的差異在於，中繼位置不是應用程式工作流程的固定部分。它只用於失敗案例。
 
-在這兩種案例中，非同步通訊和中繼儲存體可避免停機的後端服務關閉整個應用程式。佇列會做為邏輯媒介。如需有關選擇正確佇列服務的詳細指引，請參閱 [Azure 佇列和 Azure 服務匯流排佇列--異同比較](../service-bus/service-bus-azure-and-service-bus-queues-compared-contrasted.md)。
+在這兩種案例中，非同步通訊和中繼儲存體可避免停機的後端服務關閉整個應用程式。佇列會做為邏輯媒介。如需有關選擇正確佇列服務的詳細指引，請參閱 [Azure 佇列和 Azure 服務匯流排佇列--異同比較](../service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted.md)。
 
 ###錯誤偵測和重試邏輯
 
@@ -143,4 +143,4 @@ Web 角色會不同於基礎結構的其餘部分而變成是自發性的。其�
 
 本文屬於著重[在 Microsoft Azure 上建置的應用程式的災害復原和高可用性](./resiliency-disaster-recovery-high-availability-azure-applications.md)的系列文章。這一系列中的下一篇文章是[在 Microsoft Azure 上建置的應用程式的災害復原](./resiliency-disaster-recovery-azure-applications.md)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0928_2016-->

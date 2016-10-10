@@ -13,12 +13,22 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/15/2016"
+	ms.date="09/22/2016"
 	ms.author="spelluru"/>
 
 # 計算連結服務
 
 本文說明您可用來處理或轉換資料的各種計算環境。其中還提供在設定將這些計算環境連結至 Azure Data Factory 的連結服務時，Data Factory 所支援的不同組態 (隨選與自備) 的詳細資料。
+
+下表列出 Data Factory 支援的計算環境以及可在環境上執行的活動。
+
+| 計算環境 | 活動 |
+| ------------------- | -------- | 
+| [隨選 HDInsight 叢集](#azure-hdinsight-on-demand-linked-service)或[您自己的 HDInsight 叢集](#azure-hdinsight-linked-service) | [DotNet](data-factory-use-custom-activities.md)、[Hive](data-factory-hive-activity.md)、[Pig](data-factory-pig-activity.md)、[MapReduce](data-factory-map-reduce.md)、[Hadoop 串流](data-factory-hadoop-streaming-activity.md) | 
+| [Azure Batch](#azure-batch-linked-service) | [DotNet](data-factory-use-custom-activities.md) |  
+| [Azure Machine Learning](#azure-machine-learning-linked-service) | [Machine Learning 活動︰批次執行和更新資源](data-factory-azure-ml-batch-execution-activity.md) |
+| [Azure 資料湖分析](#azure-data-lake-analytics-linked-service) | [資料湖分析 U-SQL](data-factory-usql-activity.md)
+| [Azure SQL](#azure-sql-linked-service)、[Azure SQL 資料倉儲](#azure-sql-data-warehouse-linked-service)、[SQL Server](#sql-server-linked-service) | [預存程序](data-factory-stored-proc-activity.md)
 
 ## 隨選計算環境
 
@@ -297,7 +307,7 @@ subscriptionId | Azure 訂用帳戶識別碼 | 否 (如果未指定，便會使�
 resourceGroupName | Azure 資源群組名稱 | 否 (若未指定，便會使用 Data Factory 的資源群組)。
 sessionId | OAuth 授權工作階段的工作階段識別碼。每個工作階段識別碼都是唯一的，只能使用一次。這是在 Data Factory 編輯器中自動產生。 | 是
 
-您使用 [授權] 按鈕所產生的授權碼會在一段時間之後到期。請參閱下表以了解不同類型的使用者帳戶的到期時間。當驗證**權杖到期**時，您可能會看到下列錯誤訊息：認證作業發生錯誤：invalid\_grant - AADSTS70002：驗證認證時發生錯誤。AADSTS70008：提供的存取授權已過期或撤銷。追蹤識別碼：d18629e8-af88-43c5-88e3-d8419eb1fca1 相互關連識別碼：fac30a0c-6be6-4e02-8d69-a776d2ffefd7 時間戳記：2015-12-15 21:09:31Z
+您使用 [授權] 按鈕所產生的授權碼在一段時間後會到期。請參閱下表以了解不同類型的使用者帳戶的到期時間。當驗證**權杖到期**時，您可能會看到下列錯誤訊息：認證作業發生錯誤：invalid\_grant - AADSTS70002：驗證認證時發生錯誤。AADSTS70008：提供的存取授權已過期或撤銷。追蹤識別碼：d18629e8-af88-43c5-88e3-d8419eb1fca1 相互關連識別碼：fac30a0c-6be6-4e02-8d69-a776d2ffefd7 時間戳記：2015-12-15 21:09:31Z
 
 | 使用者類型 | 到期時間 |
 | :-------- | :----------- | 
@@ -344,4 +354,4 @@ sessionId | OAuth 授權工作階段的工作階段識別碼。每個工作階�
 ## SQL Server 連結服務
 您可以建立 SQL Server 連結服務，並將其與[預存程序活動](data-factory-stored-proc-activity.md)搭配使用，以叫用 Data Factory 管線中的預存程序。如需此連結服務的詳細資料，請參閱 [SQL Server 連接器](data-factory-sqlserver-connector.md#sql-server-linked-service-properties)一文。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="透過 DASH.js 將 MPEG-DASH 彈性資料流視訊嵌入到 HTML5 應用程式" 
+	pageTitle="透過 DASH.js 將 MPEG-DASH 彈性資料流視訊嵌入到 HTML5 應用程式 | Microsoft Azure" 
 	description="本主題示範如何使用 DASH.js 在 HTML5 應用程式中嵌入 MPEG-DASH 彈性資料流視訊。" 
 	authors="Juliako" 
 	manager="erikre" 
@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016" 
+	ms.date="09/26/2016" 
 	ms.author="juliako"/>
 
 
 #透過 DASH.js 將 MPEG-DASH 彈性資料流視訊嵌入到 HTML5 應用程式
 
-##概觀
+##Overview
 
 MPEG-DASH 符合 ISO 的視訊內容彈性資料流標準，能為想要傳遞高品質彈性視訊資料流輸出的人帶來相當大的幫助。透過 MPEG-DASH，視訊資料流在網路擁塞時會自動降至低畫質的內容。這會減少檢視者在播放程式下載接下來數秒的播放內容 (亦即緩衝) 時，看到視訊「暫停」的可能性。當網路不再擁塞，視訊播放程式會改為高品質的資料流。這種調整所需頻寬的能力也會讓視訊的開始時間變快。這表示會在快速下載但低品質區段中播放頭幾秒的內容，一旦已緩衝足夠的內容，就會升級為高品質內容。
 
@@ -114,4 +114,4 @@ Dash.js 是以 JavaScript 撰寫的開放原始碼 MPEG-DASH 視訊播放程式�
 
 [GitHub dash.js 存放庫](https://github.com/Dash-Industry-Forum/dash.js)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

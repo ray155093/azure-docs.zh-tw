@@ -14,14 +14,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/23/2016"
+	ms.date="09/22/2016"
 	ms.author="dastrock"/>
 
 # v2.0 通訊協定 - OpenID Connect
 OpenID Connect 是建置在 OAuth 2.0 的驗證通訊協定之上，可用來將使用者安全地登入 Web 應用程式。使用 v2.0 端點實作 OpenID Connect，您可以將登入及 API 存取新增至您 Web 架構的應用程式中 。本指南以不考慮語言的方式來示範如何這樣做，描述在不使用我們的任何開放原始碼程式庫的情況下，如何傳送和接收 HTTP 訊息。
 
 > [AZURE.NOTE]
-	v2.0 端點並未支援所有的 Azure Active Directory 案例和功能。若要判斷是否應該使用 v2.0 端點，請閱讀相關的 [v2.0 限制](active-directory-v2-limitations.md)。
+	v2.0 端點並非支援每個 Azure Active Directory 案例和功能。若要判斷是否應該使用 v2.0 端點，請閱讀相關的 [v2.0 限制](active-directory-v2-limitations.md)。
 
 [OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html) 擴充 OAuth 2.0「授權」通訊協定，可作為「驗證」通訊協定，讓您使用 OAuth 執行單一登入。它引進 `id_token` 的概念，這是一種安全性權杖，可讓用戶端驗證使用者的身分識別，並取得有關使用者的基本設定檔資訊。因為它擴充 OAuth 2.0，所以也可讓應用程式安全地取得 **access\_tokens**，而這些權杖可用於存取[授權伺服器](active-directory-v2-protocols.md#the-basics)所保護的資源。如果您要建置的 [Web 應用程式](active-directory-v2-flows.md#web-apps)是裝載於伺服器且透過瀏覽器存取，建議使用 OpenID Connect。
 
@@ -61,10 +61,10 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 | scope | 必要 | 範圍的空格分隔清單。針對 OpenID Connect，即必須包含範圍 `openid`，其會在同意 UI 中轉譯成「讓您登入」權限。您也可以在此要求中包含其他範圍以要求同意。 |
 | nonce | 必要 | 由應用程式產生且包含在要求中的值，會以宣告方式包含在產生的 id\_token 中。應用程式接著便可確認此值，以減少權杖重新執行攻擊。此值通常是隨機的唯一字串，可用以識別要求的來源。 |
 | response\_mode | 建議使用 | 指定將產生的 authorization\_code 傳回到應用程式所應該使用的方法。可以是 'query'、'form\_post' 或 'fragment' 其中一種。針對 Web 應用程式，建議使用 `response_mode=form_post`，確保會以最安全的方式將權杖傳輸至您的應用程式。  
-| state | 建議使用 | 同樣會隨權杖回應傳回之要求中所包含的值。其可以是您想要之任何內容的字串。隨機產生的唯一值通常用於[防止跨站台偽造要求攻擊](http://tools.ietf.org/html/rfc6749#section-10.12)。此狀態也用於在驗證要求出現之前，於應用程式中編碼使用者的狀態資訊，例如之前所在的網頁或檢視。 |
+| state | 建議使用 | 同樣會隨權杖回應傳回之要求中所包含的值。其可以是您想要之任何內容的字串。隨機產生的唯一值通常用於[防止跨站台要求偽造攻擊](http://tools.ietf.org/html/rfc6749#section-10.12)。此狀態也用於在驗證要求出現之前，於應用程式中編碼使用者的狀態資訊，例如之前所在的網頁或檢視。 |
 | prompt | 選用 | 表示需要的使用者互動類型。此時的有效值為「登入」、「無」和「同意」。`prompt=login` 會強制使用者在該要求上輸入認證，否定單一登入。`prompt=none` 則相反 - 它會確保不會對使用者顯示任何互動式提示。如果要求無法透過單一登入以無訊息方式完成，v2.0 端點會傳回錯誤。`prompt=consent` 會在使用者登入之後觸發 OAuth 同意對話方塊，詢問使用者是否要授與權限給應用程式。 |
 | login\_hint | 選用 | 如果您事先知道其使用者名稱，可用來預先填入使用者登入頁面的使用者名稱/電子郵件地址欄位。通常應用程式會在重新驗證期間使用此參數，已經使用 `preferred_username` 宣告從上一個登入擷取使用者名稱。 |
-| domain\_hint | 選用 | 可以是 `consumers` 或 `organizations` 其中一個。如果包含，它會略過使用者在 v2.0 登入頁面上經歷的以電子郵件為基礎的探索程序，導致稍微更佳流暢的使用者經驗。通常 app 會在重新驗證期間使用此參數，方法是從 id\_token 擷取 `tid` 宣告。如果 `tid` 宣告值是 `9188040d-6c67-4c5b-b112-36a304b66dad`，您應該使用 `domain_hint=consumers`。否則，使用 `domain_hint=organizations`。 |
+| domain\_hint | 選用 | 可以是 `consumers` 或 `organizations` 其中一個。如果包含，它會略過使用者在 v2.0 登入頁面上經歷的以電子郵件為基礎的探索程序，導致稍微更佳流暢的使用者經驗。通常應用程式會在重新驗證期間使用此參數，方法是從 id\_token 擷取 `tid` 宣告。如果 `tid` 宣告值是 `9188040d-6c67-4c5b-b112-36a304b66dad`，您應該使用 `domain_hint=consumers`。否則，使用 `domain_hint=organizations`。 |
 此時，會要求使用者輸入其認證並完成驗證。v2.0 端點也會確保使用者已經同意 `scope` 查詢參數所示的權限。如果使用者未曾同意這些權限的任何一項，就會要求使用者同意要求的權限。[這裡提供權限、同意與多租用戶應用程式](active-directory-v2-scopes.md)的詳細資料。
 
 一旦使用者驗證並同意，v2.0 端點就會使用 `response_mode` 參數中指定的方法，將回應傳回至位於指定所在 `redirect_uri` 的應用程式。
@@ -167,7 +167,7 @@ post_logout_redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F
 
 GET https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize?
 client_id=6731de76-14a6-49ae-97bc-6eba6914391e		// Your registered Application Id
-&response_type=id_token+code
+&response_type=id_token%20code
 &redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F 	  // Your registered Redirect Uri, url encoded
 &response_mode=form_post						      // 'query', 'form_post', or 'fragment'
 &scope=openid%20                                      // Include both 'openid' and scopes your app needs  
@@ -177,9 +177,9 @@ https%3A%2F%2Fgraph.microsoft.com%2Fmail.read
 &nonce=678910										 // Any value, provided by your app
 ```
 
-> [AZURE.TIP] 按一下下面的連結以執行此要求！ 登入之後，您的瀏覽器應重新導向至在位址列中有 `id_token` 和 `code` 的 `https://localhost/myapp/`。請注意，此要求會使用 `response_mode=query` (僅限教學課程目的)。建議使用 `response_mode=form_post`。<a href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&response_type=id_token+code&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F&response_mode=query&scope=openid%20offline_access%20https%3A%2F%2Fgraph.microsoft.com%2Fmail.read&state=12345&nonce=678910" target="_blank">https://login.microsoftonline.com/common/oauth2/v2.0/authorize...</a>
+> [AZURE.TIP] 按一下下面的連結以執行此要求！ 登入之後，您的瀏覽器應重新導向至在位址列中有 `id_token` 和 `code` 的 `https://localhost/myapp/`。請注意，此要求會使用 `response_mode=query` (僅限教學課程目的)。建議使用 `response_mode=form_post`. <a href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&response_type=id_token%20code&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F&response_mode=query&scope=openid%20offline_access%20https%3A%2F%2Fgraph.microsoft.com%2Fmail.read&state=12345&nonce=678910" target="_blank">https://login.microsoftonline.com/common/oauth2/v2.0/authorize...</a>
 
-在要求中包含權限範圍，並且使用 `response_type=code+id_token`，v2.0 端點可確保使用者已經同意 `scope` 查詢參數中表示的權限，並且將授權碼傳回至您的應用程式以交換存取權杖。
+在要求中包含權限範圍，並且使用 `response_type=id_token code`，v2.0 端點可確保使用者已經同意 `scope` 查詢參數中表示的權限，並且將授權碼傳回至您的應用程式以交換存取權杖。
 
 #### 成功回應
 使用 `response_mode=form_post` 的成功回應如下所示：
@@ -218,4 +218,4 @@ error=access_denied&error_description=the+user+canceled+the+authentication
 
 一旦取得授權 `code` 和 `id_token`，您可以將使用者登入，並且代表他們取得存取權杖。若要將使用者登入，您必須完整地如[上方](#validating-the-id-token)所述驗證 `id_token`。若要取得存取權杖，您可以遵循我們的 [OAuth 通訊協定文件](active-directory-v2-protocols-oauth-code.md#request-an-access-token)中所述的步驟。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

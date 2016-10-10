@@ -21,9 +21,9 @@
 
 虛擬網路閘道可用來傳送 Azure 虛擬網路和內部部署位置之間的網路流量。當您設定 ExpressRoute 連線時，您必須建立及設定虛擬網路閘道和虛擬網路閘道連線。
 
-當您建立虛擬網路閘道時，需要指定數個設定。其中一個必要設定會指定是否要對 ExpressRoute 或 VPN 閘道流量使用閘道。在 Resource Manager 部署模型中，此設定是「-GatewayType」。
+當您建立虛擬網路閘道時，需要指定數個設定。其中一個必要設定會指定是否要對 ExpressRoute 或站對站 VPN 閘道流量使用閘道。在 Resource Manager 部署模型中，此設定是「-GatewayType」。
 
-如果網路流量是在專用私人連線上傳送，則使用的閘道類型為「ExpressRoute」。也稱為 ExpressRoute 閘道。如果網路流量是透過公用連線加密傳送，則使用的閘道類型為「Vpn」。稱之為 VPN 閘道。站對站、點對站和 VNet 對 VNet 連線都使用 VPN 閘道。
+如果網路流量是在專用私人連線上傳送，則使用的閘道類型為「ExpressRoute」。也稱為 ExpressRoute 閘道。如果網路流量是透過公用網際網路加密傳送，則使用的閘道類型為「Vpn」。稱之為 VPN 閘道。站對站、點對站和 VNet 對 VNet 連線都使用 VPN 閘道。
 
 對於每種閘道類型，每個虛擬網路只能有一個虛擬網路閘道。例如，您可以有一個使用 -GatewayType Vpn 的虛擬網路閘道，以及一個使用 -GatewayType ExpressRoute 的虛擬網路閘道。本文著重於 ExpressRoute 虛擬網路閘道。
 
@@ -63,4 +63,4 @@
 
  
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

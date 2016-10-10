@@ -30,7 +30,7 @@
 
 ### 範例 1
 
-下列組態檔會部署一個 HPC Pack 叢集，其中包含一個具有本機資料庫的前端節點，以及 5 個執行 Windows Server 2012 R2 作業系統的計算節點。所有雲端服務都直接建立在「美國西部」位置。前端節點會做為網域樹系的網域控制站。
+下列組態檔會部署一個 HPC Pack 叢集，其中包含一個具有本機資料庫的前端節點，以及五個執行 Windows Server 2012 R2 作業系統的計算節點。所有雲端服務都直接建立在「美國西部」位置。前端節點會做為網域樹系的網域控制站。
 
 ```
 <?xml version="1.0" encoding="utf-8" ?>
@@ -68,7 +68,7 @@
 
 ### 範例 2
 
-下列組態檔會在現有的網域樹系中部署 HPC Pack 叢集。叢集中有 1 個具有本機資料庫的前端節點，和 12 個套用了 BGInfo VM 延伸模組的計算節點。對於網域樹系中的所有 VM，都會停用 Windows 更新的自動安裝。所有雲端服務都直接建立在「東亞」位置中。計算節點建立在 3 個雲端服務和 3 個儲存體帳戶中 (即 _MyHPCCNService01_ 和 _mycnstorage01_ 中的 _MyHPCCN-0001_ 至 _MyHPCCN-0005_；_MyHPCCNService02_ 和 _mycnstorage02_ 中的 _MyHPCCN-0006_ 至 _MyHPCCN0010_；以及 _MyHPCCNService03_ 和 _mycnstorage03_ 中的 _MyHPCCN-0011_ 至 _MyHPCCN-0012_)。計算節點會從擷取自雲端節點的現有私人映像建立。自動增加和縮減服務會根據預設的增加和縮減間隔來啟用。
+下列組態檔會在現有的網域樹系中部署 HPC Pack 叢集。叢集中有 1 個具有本機資料庫的前端節點，和 12 個套用了 BGInfo VM 延伸模組的計算節點。對於網域樹系中的所有 VM，都會停用 Windows 更新的自動安裝。所有雲端服務都直接建立在「東亞」位置中。計算節點會建立在三個雲端服務和三個儲存體帳戶中：_MyHPCCNService01_ 和 _mycnstorage01_ 中的 _MyHPCCN-0001_ 至 _MyHPCCN-0005_；_MyHPCCNService02_ 和 _mycnstorage02_ 中的 _MyHPCCN-0006_ 至 _MyHPCCN0010_；以及 _MyHPCCNService03_ 和 _mycnstorage03_ 中的 _MyHPCCN-0011_ 至 _MyHPCCN-0012_。計算節點會從擷取自雲端節點的現有私人映像建立。自動增加和縮減服務會根據預設的增加和縮減間隔來啟用。
 
 ```
 <?xml version="1.0" encoding="utf-8" ?>
@@ -132,7 +132,7 @@
 
 ### 範例 3
 
-下列組態檔會在現有的網域樹系中部署 HPC Pack 叢集。叢集中包含 1 個前端節點、1 個具有 500 GB 資料磁碟的資料庫伺服器、2 個執行 Windows Server 2012 R2 作業系統的訊息代理程式節點，和 5 個執行 Windows Server 2012 R2 作業系統的計算節點。雲端服務 MyHPCCNService 會建立在同質群組 *MyIBAffinityGroup* 中，其他所有的雲端服務則建立在同質群組 *MyAffinityGroup* 中。前端節點上會啟用 HPC 工作排程器 REST API 和 HPC Web 入口網站。
+下列組態檔會在現有的網域樹系中部署 HPC Pack 叢集。叢集中包含 1 個前端節點、1 個具有 500 GB 資料磁碟的資料庫伺服器、2 個執行 Windows Server 2012 R2 作業系統的訊息代理程式節點，以及 5 個執行 Windows Server 2012 R2 作業系統的計算節點。MyHPCCNService 雲端服務會建立在 *MyIBAffinityGroup* 同質群組中，其他雲端服務則是建立在 *MyAffinityGroup* 同質群組中。前端節點上會啟用 HPC 工作排程器 REST API 和 HPC Web 入口網站。
 
 ```
 <?xml version="1.0" encoding="utf-8" ?>
@@ -188,7 +188,7 @@
 
 ### 範例 4
 
-下列組態檔會在現有的網域樹系中部署 HPC Pack 叢集。叢集中包含 1 個具有本機資料庫的前端節點，並建立了兩個 Azure 節點範本，且針對 Azure 節點範本 _AzureTemplate1_ 建立了 3 個中型大小的 Azure 節點。指令碼檔案會在前端節點設定後執行於前端節點上。
+下列組態檔會在現有的網域樹系中部署 HPC Pack 叢集。叢集中包含兩個具有本機資料庫的前端節點、建立了兩個 Azure 節點範本，且針對 Azure 節點範本 _AzureTemplate1_ 建立了 3 個中型大小的 Azure 節點。在設定完前端節點之後，指令檔會在前端節點上執行。
 
 ```
 <?xml version="1.0" encoding="utf-8" ?>
@@ -257,13 +257,13 @@
 ## 疑難排解
 
 
-* **「VNet 不存在」錯誤** - 如果您執行 HPC Pack IaaS 部署指令碼，在一個訂用帳戶下同時將多個叢集部署於 Azure 中，則可能會有一或多個部署失敗，並顯示錯誤「VNet *VNet\_Name* 不存在」。如果發生此錯誤，請對失敗的部署重新執行指令碼。
+* **「VNet 不存在」錯誤** - 如果您執行指令碼將多個叢集同時部署在 Azure 中的一個訂用帳戶底下，可能會有一或多個部署因發生「VNet *VNet\_Name* 不存在」錯誤而失敗。如果發生此錯誤，請針對失敗的部署重新執行指令碼。
 
-* **從 Azure 虛擬網路存取網際網路時發生問題** - 如果您使用部署指令碼建立具有新網域控制站的 HPC Pack 叢集，或手動將前端節點 VM 升級到網域控制站，則在將 Azure 虛擬網路中的 VM 連接到網際網路時，可能會發生問題。如果在網域控制站上自動設定轉寄站 DNS 伺服器，且這個轉寄站 DNS 伺服器未正確解析，就可能出現這種狀況。
+* **從 Azure 虛擬網路存取網際網路時發生問題** - 如果您使用部署指令碼建立具有新網域控制站的叢集，或手動將前端節點 VM 升級到網域控制站，則在將 VM 連接到網際網路時，可能會發生問題。如果網域控制站上自動設定了轉寄站 DNS 伺服器，而此轉寄站 DNS 伺服器未正確解析，就可能發生這種問題。
 
-    若要解決此問題，請登入網域控制站，並選擇移除轉寄站組態設定，或設定有效的轉寄站 DNS 伺服器。若要這樣做，請在伺服器管理員中按一下 [工具] > [DNS] 以開啟 DNS 管理員，然後按兩下 [轉寄站]。
+    若要解決此問題，請登入網域控制站，並選擇移除轉寄站組態設定，或設定有效的轉寄站 DNS 伺服器。若要設定這項設定，請在「伺服器管理員」中按一下 [工具] > [DNS] 以開啟 [DNS 管理員]，然後按兩下 [轉寄站]。
 
-* **從大小為 A8 或 A9 的 VM 存取 RDMA 網路時發生問題** - 如果您使用部署指令碼新增 Windows Server 計算節點或大小為 A8 或 A9 的訊息代理程式節點 VM，您將這些 VM 連接到 RDMA 應用程式網路時可能會發生問題。之所以會發生此狀況，其中的一個原因是在大小為 A8 或 A9 的 VM 新增至叢集未正確安裝 HpcVmDrivers 延伸模組。比方說，延伸模組可能卡在安裝中狀態。
+* **從計算密集型 VM 存取 RDMA 網路時發生問題** - 如果您使用支援 RDMA 大小 (例如 A8 或 A9) 的 VM 來新增 Windows Server 計算節點 VM 或訊息代理程式節點 VM，則在將這些 VM 連接到 RDMA 應用程式網路時，可能會發生問題。之所以會發生此問題，其中一個原因是在將 VM 新增到叢集時，未正確安裝 HpcVmDrivers 擴充功能。比方說，延伸模組可能卡在安裝中狀態。
 
     若要解決這個問題，請先檢查 VM 中的延伸模組狀態。如果延伸模組未正確安裝，請嘗試從 HPC 叢集中移除節點，然後重新新增節點。例如，您可以在前端節點上執行 Add-HpcIaaSNode.ps1 指令碼，以新增計算節點 VM。
     
@@ -271,10 +271,10 @@
 
 * 嘗試在叢集上執行測試工作負載。如需範例，請參閱 HPC Pack [快速入門指南](https://technet.microsoft.com/library/jj884144)。
 
-* 如需使用指令碼來建立叢集並執行 HPC 工作負載的教學課程，請參閱[開始使用 Azure 中的 HPC Pack 叢集執行 Excel 和 SOA 工作負載](virtual-machines-windows-excel-cluster-hpcpack.md)。
+* 如需編寫叢集部署指令碼及執行 HPC 工作負載的教學課程，請參閱[開始使用 Azure 中的 HPC Pack 叢集執行 Excel 和 SOA 工作負載](virtual-machines-windows-excel-cluster-hpcpack.md)。
 
 * 嘗試以 HPC Pack 的工具啟動、停止、新增和移除您所建立之叢集中的計算節點。請參閱[在 Azure 中管理 HPC Pack 叢集的計算節點](virtual-machines-windows-classic-hpcpack-cluster-node-manage.md)。
 
 * 若要設定將工作從本機電腦提交至叢集，請參閱[將 HPC 工作從內部部署電腦提交至 Azure 中的 HPC Pack 叢集](virtual-machines-windows-hpcpack-cluster-submit-jobs.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -13,13 +13,13 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="06/12/2016"
+	ms.date="09/22/2016"
 	ms.author="mikeray" />
 
 # 在 Azure VM 中自動設定 Always On 可用性群組 - Resource Manager
 
 > [AZURE.SELECTOR]
-- [Resource Manager︰自動](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
+- [Resource Manager：範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
 - [Resource Manager︰手動](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)
 - [傳統：UI](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
 - [傳統：PowerShell](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
@@ -46,7 +46,7 @@
 
 此解決方案中的資源全部屬於單一資源群組。
 
-本教學課程假設您已具備下列條件：
+本教學課程假設您已句備下列條件：
 
 - 您已經有 Azure 帳戶。如果您沒有帳戶，請[註冊一個試用帳戶](http://azure.microsoft.com/pricing/free-trial/)。
 
@@ -79,7 +79,7 @@ Azure 提供整個解決方案的資源庫映像。若要找出範本，請執�
 1.	在搜尋結果中，找出「SQL Server AlwaysOn 叢集」。![AlwaysOn 範本](./media/virtual-machines-windows-portal-sql-alwayson-availability-groups/17-alwaysontemplate.png)
 1.	在 [選取部署模型] 中，選擇 [Resource Manager]。
 
-### 基本
+### 基本概念
 
 按一下 [基本] 並設定下列各項：
 
@@ -87,7 +87,7 @@ Azure 提供整個解決方案的資源庫映像。若要找出範本，請執�
 
 - [密碼] 是網域系統管理員帳戶的密碼。使用複雜密碼。確認密碼。
 
-- [訂用帳戶] 是執行為可用性群組部署的所有資源時，Azure 將會收費的訂用帳戶。如果您的帳戶有多個訂用帳戶，您可以指定不同的訂用帳戶。
+- [訂用帳戶] 是在執行針對可用性群組部署的所有資源時，Azure 將會收費的訂用帳戶。如果您的帳戶有多個訂用帳戶，您可以指定不同的訂用帳戶。
 
 - [資源群組] 是本教學課程建立的所有 Azure 資源所屬群組的名稱。本教學課程使用 **SQL-HA-RG**。如需詳細資訊，請參閱 (Azure Resource Manager 概觀)[resource-group-overview.md/#resource-groups]。
 
@@ -259,4 +259,4 @@ SQL Server 的新執行個體會在沒有網際網路連線的虛擬機器上執
 
 您現在已使用 RDP 連接至 SQL Server。您可以開啟 SQL Server Management Studio、連接到 SQL Server 的預設執行個體，並確認已設定可用性群組。
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0928_2016-->

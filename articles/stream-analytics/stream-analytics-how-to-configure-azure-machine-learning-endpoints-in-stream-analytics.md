@@ -14,17 +14,17 @@
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
 	ms.workload="data-services" 
-	ms.date="07/27/2016" 
+	ms.date="09/26/2016" 
 	ms.author="jeffstok"
 />
 
 # 在串流分析中整合機器學習服務
 
-串流分析可支援對外呼叫 Azure Machine Learning 端點的使用者定義函式。[串流分析 REST API 程式庫](https://msdn.microsoft.com/library/azure/dn835031.aspx)中會詳細說明此功能的 REST API 支援。本文提供要在串流分析中成功實作這項功能所需的補充資訊。您也可以在[這裡](stream-analytics-machine-learning-integration-tutorial.md)取得已發佈的教學課程。
+串流分析支援對外呼叫 Azure Machine Learning 端點的使用者定義函式。[串流分析 REST API 程式庫](https://msdn.microsoft.com/library/azure/dn835031.aspx)中會詳細說明此功能的 REST API 支援。本文提供要在串流分析中成功實作這項功能所需的補充資訊。您也可以在[這裡](stream-analytics-machine-learning-integration-tutorial.md)取得已發佈的教學課程。
 
 ## 概觀：Azure Machine Learning 術語
 
-Microsoft Azure Machine Learning 提供可共同作業的拖放工具，供您依據資料來建置、測試及部署預測性分析解決方案。此工具稱為 *Azure Machine Learning Studio*。您將會利用此 Studio 來與機器學習服務資源進行互動，並輕鬆地建置、測試和反覆調整設計。這些資源和其定義如下。
+Microsoft Azure Machine Learning 提供可共同作業的拖放工具，供您依據資料來建置、測試及部署預測性分析解決方案。此工具稱為 *Azure Machine Learning Studio*。您可以利用此 Studio 來與機器學習服務資源互動，並輕鬆地建置、測試和反覆調整設計。這些資源和其定義如下。
 
 - **工作區**：*工作區*這個容器中會保有其他所有機器學習服務資源，以便集中管理和控制。
 - **實驗**：資料科學家會建立*實驗*來利用資料集和訓練機器學習服務模型。
@@ -52,10 +52,13 @@ Microsoft Azure Machine Learning 提供可共同作業的拖放工具，供您�
 
 下列範例程式碼會建立名為 *newudf* 且繫結至 Azure Machine Learning 端點的純量 UDF，來做為示範。請注意，您可以在 API 說明頁面中找到所選服務的*端點* (服務 URI)，以及在 [服務] 主頁面中找到 *apiKey*。
 
-PUT : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers/Microsoft.StreamAnalytics/streamingjobs/<streamingjobName>/functions/<udfName>?api-version=<apiVersion>
+````
+	PUT : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers/Microsoft.StreamAnalytics/streamingjobs/<streamingjobName>/functions/<udfName>?api-version=<apiVersion>  
+````
 
 要求本文範例：
 
+````
 	{
 		"name": "newudf",
 		"properties": {
@@ -71,15 +74,19 @@ PUT : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers/M
 			}
 		}
 	}
+````
 
 ## 呼叫預設 UDF 的 RetrieveDefaultDefinition 端點
 
 一旦建立好基本架構 UDF，就需要 UDF 的完整定義。RetreiveDefaultDefinition 端點可協助您取得繫結至 Azure Machine Learning 端點之純量函式的預設定義。下列內容會要求您取得繫結至 Azure Machine Learning 端點之純量函式的預設 UDF 定義。因為已在 PUT 要求期間提供，因此它不會指定實際的端點。串流分析會呼叫要求中提供的端點 (如果已明確提供)。否則，它會使用原本參考的端點。UDF 在這邊會採用單一字串參數 (一個句子)，並傳回指出該句子的「情緒」標籤的單一類型字串輸出。
 
+````
 POST : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers/Microsoft.StreamAnalytics/streamingjobs/<streamingjobName>/functions/<udfName>/RetrieveDefaultDefinition?api-version=<apiVersion>
+````
 
 要求本文範例：
 
+````
 	{
 		"bindingType": "Microsoft.MachineLearning/WebService",
 		"bindingRetrievalProperties": {
@@ -87,10 +94,11 @@ POST : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers/
 			"udfType": "Scalar"
 		}
 	}
+````
 
 此項目的範例輸出會看起來像下面這樣。
 
-
+````
 	{
 		"name": "newudf",
 		"properties": {
@@ -126,19 +134,61 @@ POST : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers/
 			}
 		}
 	}
+````
 
 ## 使用回應修補 UDF 
 
 現在必須使用先前的回應修補 UDF，如下所示。
 
+````
 PATCH : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers/Microsoft.StreamAnalytics/streamingjobs/<streamingjobName>/functions/<udfName>?api-version=<apiVersion>
+````
 
-要求本文：RetrieveDefaultDefinition 的輸出
+要求本文 (RetrieveDefaultDefinition 的輸出)：
+
+````
+	{
+		"name": "newudf",
+		"properties": {
+			"type": "Scalar",
+			"properties": {
+				"inputs": [{
+					"dataType": "nvarchar(max)",
+					"isConfigurationParameter": null
+				}],
+				"output": {
+					"dataType": "nvarchar(max)"
+				},
+				"binding": {
+					"type": "Microsoft.MachineLearning/WebService",
+					"properties": {
+						"endpoint": "https://ussouthcentral.services.azureml.net/workspaces/f80d5d7a77ga4a4bbf2a30c63c078dca/services/b7be5e40fd194258896fb602c1858eaf/execute",
+						"apiKey": null,
+						"inputs": {
+							"name": "input1",
+							"columnNames": [{
+								"name": "tweet",
+								"dataType": "string",
+								"mapTo": 0
+							}]
+						},
+						"outputs": [{
+							"name": "Sentiment",
+							"dataType": "string"
+						}],
+						"batchSize": 10
+					}
+				}
+			}
+		}
+	}
+````
 
 ## 實作串流分析轉換來呼叫 UDF
 
 現在要查詢每一個輸入事件的 UDF (這裡稱為 scoreTweet)，並將該事件的回應寫入至輸出。
 
+````
 	{
 		"name": "transformation",
 		"properties": {
@@ -146,8 +196,8 @@ PATCH : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers
 			"query": "select *,scoreTweet(Tweet) TweetSentiment into blobOutput from blobInput"
 		}
 	}
+````
 
-如需進一步資訊，請參閱：
 
 ## 取得說明
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=AzureStreamAnalytics)
@@ -160,4 +210,4 @@ PATCH : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers
 - [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 - [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

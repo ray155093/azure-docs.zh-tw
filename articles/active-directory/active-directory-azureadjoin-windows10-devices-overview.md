@@ -9,7 +9,7 @@
 	editor=""
 	tags="azure-classic-portal"/>
 
-<tags ms.service="active-directory" ms.workload="identity" ms.tgt_pltfrm="na" ms.devlang="na" ms.topic="article" ms.date="06/23/2016"
+<tags ms.service="active-directory" ms.workload="identity" ms.tgt_pltfrm="na" ms.devlang="na" ms.topic="article" ms.date="09/27/2016"
 
 	ms.author="femila"/>
 
@@ -27,7 +27,7 @@ Windows 10 讓您可以充分利用 Azure Active Directory (Azure AD)。您可�
 | | 主題 |
 |--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 開始使用 | [在工作場所使用 Windows 10](active-directory-azureadjoin-windows10-devices.md) <br> <br> [透過 Azure Active Directory 聯結擴充 Windows 10 裝置的雲端功能](active-directory-azureadjoin-overview.md) <br> <br> [透過 Microsoft Passport 驗證身分識別，不需要密碼](active-directory-azureadjoin-passport.md) |
-| Deployment | [Azure AD Join 的使用方式案例和部署考量](active-directory-azureadjoin-deployment-aadjoindirect.md) <br><br> [將已加入的網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)<br><br>[啟用 Microsoft Passport 在組織中工作](active-directory-azureadjoin-passport-deployment.md)<br><br> [啟用適用於 Windows 10 的企業狀態漫遊](active-directory-windows-enterprise-state-roaming-overview.md)<br><br> |
+| 部署 | [Azure AD Join 的使用方式案例和部署考量](active-directory-azureadjoin-deployment-aadjoindirect.md) <br><br> [將已加入的網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)<br><br>[啟用 Microsoft Passport 在組織中工作](active-directory-azureadjoin-passport-deployment.md)<br><br> [啟用適用於 Windows 10 的企業狀態漫遊](active-directory-windows-enterprise-state-roaming-overview.md)<br><br> |
 | 使用者工作 | [在安裝期間以 Azure AD 設定新的 Windows 10 裝置](active-directory-azureadjoin-user-frx.md) <br><br> [從設定功能表以 Azure AD 設定 Windows 10 裝置](active-directory-azureadjoin-user-upgrade.md) <br><br> [聯結個人 Windows 10 裝置到貴組織](active-directory-azureadjoin-personal-device.md) |
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

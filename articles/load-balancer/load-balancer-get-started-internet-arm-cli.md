@@ -17,7 +17,7 @@
    ms.date="08/31/2016"
    ms.author="sewhee" />
 
-# 開始使用 Azure CLI 建立內部負載平衡器
+# 使用 Azure CLI 建立內部負載平衡器
 
 [AZURE.INCLUDE [load-balancer-get-started-internet-arm-selectors-include.md](../../includes/load-balancer-get-started-internet-arm-selectors-include.md)]
 
@@ -306,4 +306,4 @@
 
 [設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
 
-<!----HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

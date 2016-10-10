@@ -3,7 +3,7 @@
 	description="了解在嘗試註冊 Azure 時，如何在信用卡或金融卡遭到拒絕時解決問題。"
 	services=""
 	documentationCenter=""
-	authors="jiangchen79"
+	authors="JiangChen79"
 	manager="felixwu"
 	editor=""
 	tags="billing,top-support-issue"
@@ -74,4 +74,4 @@
 
 > [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

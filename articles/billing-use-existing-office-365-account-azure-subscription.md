@@ -3,7 +3,7 @@
 	description="了解如何與 Azure 訂用帳戶分享 Office 365 Azure AD 租用戶和其使用者，反之亦然"
 	services=""
 	documentationCenter=""
-	authors="jiangchen79"
+	authors="JiangChen79"
 	manager="mbaldwin"
 	editor=""
 	tags="billing,top-support-issue"/>
@@ -151,4 +151,4 @@ Office 365 和 Azure 均使用 Azure Active Directory (AAD) 服務來管理使�
 
 > [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0928_2016-->

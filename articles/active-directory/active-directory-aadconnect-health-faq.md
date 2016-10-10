@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="billmath"
-	manager="stevenpo"
+	manager="femila"
 	editor="curtand"/>
 
 <tags
@@ -114,4 +114,4 @@ Azure AD Connect Health 警示會在成功情況下獲得解決。Azure AD Conne
 * [在 AD DS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adds.md)
 * [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0928_2016-->

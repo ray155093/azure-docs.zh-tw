@@ -17,8 +17,13 @@
    ms.author="subramar"/>
 
 
-
 # 使用 Visual Studio 進行 Service Fabric 應用程式升級的教學課程
+
+> [AZURE.SELECTOR]
+- [PowerShell](service-fabric-application-upgrade-tutorial-powershell.md)
+- [Visual Studio](service-fabric-application-upgrade-tutorial.md)
+
+<br/>
 
 Azure Service Fabric 藉由確保只升級已變更的服務，並且在整個升級程序中監視應用程式健康狀態，簡化雲端應用程式的升級程序。它也會在應用程式發生問題時自動回復到舊版。Service Fabric 應用程式升級並「不需要停機」，因為可以在不停機的情況下升級應用程式。本教學課程涵蓋如何從 Visual Studio 完成輪流升級。
 
@@ -87,4 +92,4 @@ Azure Service Fabric 藉由確保只升級已變更的服務，並且在整個�
 [image3]: media/service-fabric-application-upgrade-tutorial/upgrade5.png
 [image4]: media/service-fabric-application-upgrade-tutorial/upgrade6.png
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

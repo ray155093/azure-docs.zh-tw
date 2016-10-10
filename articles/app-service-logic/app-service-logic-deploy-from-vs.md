@@ -28,6 +28,7 @@
 
 - [Visual Studio 2015](https://www.visualstudio.com/downloads/download-visual-studio-vs.aspx)
 - [最新的 Azure SDK](https://azure.microsoft.com/downloads/) (2.9.1 或更新版本)
+- [Azure PowerShell](https://github.com/Azure/azure-powershell#installation)
 - Web 的存取權 (若使用內嵌的設計工具)
 
 ### 安裝適用於 Logic Apps 的 Visual Studio 工具
@@ -105,4 +106,4 @@
 - [您可以使用 Logic Apps 自動化商務程序](http://channel9.msdn.com/Events/Build/2016/T694)
 - [了解如何整合您的系統與 Logic Apps](http://channel9.msdn.com/Events/Build/2016/P462)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0928_2016-->

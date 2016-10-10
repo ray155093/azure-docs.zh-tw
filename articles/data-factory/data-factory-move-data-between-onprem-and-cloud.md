@@ -4,7 +4,7 @@
     keywords="資料閘道器, 資料整合, 移動資料, 閘道認證"
 	services="data-factory" 
 	documentationCenter="" 
-	authors="spelluru" 
+	authors="linda33wj" 
 	manager="jhubbard" 
 	editor="monicar"/>
 
@@ -15,7 +15,7 @@
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="09/12/2016" 
-	ms.author="spelluru"/>
+	ms.author="jingwang"/>
 
 # 利用資料管理閘道在內部部署來源和雲端之間移動資料
 本文提供使用 Data Factory 整合內部部署資料存放區與雲端資料存放區資料的概觀。本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文和其他 Data Factory 核心概念文章：[資料集](data-factory-create-datasets.md)和[管線](data-factory-create-pipelines.md)。
@@ -100,12 +100,12 @@
 
 	![閘道器憑證組態](./media/data-factory-move-data-between-onprem-and-cloud/gateway-certificate.png)
 
-	您也可以在 [設定] 索引標籤上執行以下操作：- 檢視或匯出閘道使用的憑證。- 變更閘道使用的 HTTPS 端點 -
+	您也可以在 [設定] 索引標籤上執行以下動作：- 檢視或匯出閘道使用的憑證。- 變更閘道使用的 HTTPS 端點 -
 9. (選擇性) 切換到 [診斷] 索引標籤，如果您想啟用詳細資訊記錄功能，以便對閘道的任何問題進行疑難排解，請勾選 [啟用詳細資訊記錄] 選項。在 [應用程式及服務記錄檔] -> [資料管理閘道器] 節點之下的 [事件檢視器] 中可找到記錄資訊。
 
 	![[診斷] 索引標籤](./media/data-factory-move-data-between-onprem-and-cloud/diagnostics-tab.png)
 
-	您也可以在 [診斷] 索引標籤上執行以下操作：
+	您也可以在 [診斷] 索引標籤上執行以下動作：
 	
 	- 使用**測試連線**一節來對使用閘道器的內部部署資料來源。
 	- 按一下 [檢視記錄檔] 以查看 [事件檢視器] 視窗中的資料管理閘道記錄檔。
@@ -121,7 +121,7 @@
 1.	在 [Data Factory 編輯器] 中，按一下工具列上的 [新增資料存放區]，然後選取 [SQL Server]。
 
 	![新增 SQL Server 連結服務](./media/data-factory-move-data-between-onprem-and-cloud/NewSQLServer.png)
-3.	在 [JSON 編輯器] 中，執行下列動作：
+3.	在 [JSON 編輯器] 中，執行下列步驟：
 	1. 為 **gatewayName** 指定 **adftutorialgateway**。
 	2. 如果您使用 Windows 驗證：
 		1. 在 [connectionString] 中，將 [整合式安全性] 設為 [true]，指定資料庫**伺服器名稱**和**資料庫名稱**，並移除**使用者識別碼**和**密碼**。
@@ -157,7 +157,7 @@
    
  
 ## 建立資料集
-在此步驟中，您會建立代表複製作業的輸入和輸出資料的輸入和輸出資料集 (內部部署 SQL Server 資料庫 => Azure Blob 儲存體)。在建立資料集或資料表 (矩形資料集) 之前，您必須執行下列動作 (清單後列有詳細步驟)：
+在此步驟中，您會建立代表複製作業的輸入和輸出資料的輸入和輸出資料集 (內部部署 SQL Server 資料庫 => Azure Blob 儲存體)。在建立資料集或資料表 (矩形資料集) 之前，您必須執行下列步驟 (緊接在後的小節為詳細步驟)：
 
 - 在您新增為 Data Factory 連結服務的 SQL Server 資料庫中，建立名為 **emp** 的資料表，並在資料表中插入幾個範例項目。
 - 在您加入 Data Factory 作為連結服務的 Azure Blob 儲存體帳戶中，建立名為 **adftutorial** 的 Blob 容器。
@@ -213,7 +213,7 @@
 		  }
 		}
 
-	請注意：
+	請注意下列幾點：
 	
 	- **type** 設定為 **SqlServerTable**。
 	- **tableName** 設定為 **emp**。
@@ -249,7 +249,7 @@
 		  }
 		}
   
-	請注意：
+	請注意下列幾點：
 	
 	- **type** 設定為 **AzureBlob**。
 	- **linkedServiceName** 是設定為 **AzureStorageLinkedService** (您已在步驟 2 中建立此連結服務)。
@@ -331,7 +331,7 @@
 			  }
 			}
 
-	請注意：
+	請注意下列幾點：
  
 	- 在 activities 區段中，只會有 **type** 設定為 **Copy** 的活動。
 	- 活動的**輸入**設定為 **EmpOnPremSQLTable**，活動的**輸出**則設定為 **OutputBlobTable**。
@@ -358,7 +358,7 @@
 
 	![圖表連結](./media/data-factory-move-data-between-onprem-and-cloud/OnPremDiagramLink.png)
 
-2. 您應該會看到如下所示的圖表：
+2. 您應該會看到如下圖所示的圖表：
 
 	![圖表檢視](./media/data-factory-move-data-between-onprem-and-cloud/OnPremDiagramView.png)
 
@@ -414,4 +414,4 @@
 - 如需資料管理閘道的所有詳細資料，請參閱[資料管理閘道](data-factory-data-management-gateway.md)一文。
 - 若要了解如何使用複製活動將資料從來源資料存放區移動到接收資料存放區，請參閱[從 Azure Blob 複製資料到 Azure SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

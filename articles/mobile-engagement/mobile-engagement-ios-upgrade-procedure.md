@@ -45,6 +45,42 @@
 ### 應用程式推播功能
 XCode 8 可能會重設您的應用程式推播功能，請在您選取的目標的 `capability` 索引標籤中再檢查一次。
 
+### 新增 iOS 10 通知註冊程式碼
+要將應用程式註冊通知的較舊程式碼片段仍會運作，但在 iOS 10 上執行時會使用已被取代的 API。
+
+匯入 `User Notification` 架構：
+
+		#import <UserNotifications/UserNotifications.h> 
+
+在您的應用程式中委派 `application:didFinishLaunchingWithOptions` 方法取代︰
+
+	if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+		[application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert) categories:nil]];
+		[application registerForRemoteNotifications];
+	}
+	else {
+
+    	[application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+	}
+
+依︰
+
+		if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0)
+		{
+			if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_9_x_Max)
+			{
+				[UNUserNotificationCenter.currentNotificationCenter requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {}];
+			}else
+			{
+				[application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)   categories:nil]];
+			}
+			[application registerForRemoteNotifications];
+		}
+		else
+		{
+			[application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+		}
+
 ### 如果您已有自己的 UNUserNotificationCenterDelegate 實作
 
 SDK 也有它自己的 UNUserNotificationCenterDelegate 通訊協定實作。SDK 會用它來監視在 iOS 10 或更新版本上執行的裝置中的 Engagement 通知生命週期。如果 SDK 偵測到您的委派則不會使用它自己的實作，因為每個應用程式只可以有一個 UNUserNotificationCenter 委派。這表示您必須將 Engagement 邏輯加入到您自己的委派。
@@ -156,4 +192,4 @@ SmartAd 追蹤已從 SDK 移除，因此您必須移除 `AETrackModule` 類別�
 -   `CapptainUtils` 類別已重新命名為 `EngagementUtils`。
 -   `CapptainViewController` 類別已重新命名為 `EngagementViewController`。
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

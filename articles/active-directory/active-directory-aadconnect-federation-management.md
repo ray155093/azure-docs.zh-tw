@@ -5,7 +5,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="anandyadavmsft"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -211,4 +211,4 @@ Azure AD Connect 可在將物件同步處理至 Azure AD 時，讓您指定要�
 
 深入了解[使用者登入選項](active-directory-aadconnect-user-signin.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0928_2016-->

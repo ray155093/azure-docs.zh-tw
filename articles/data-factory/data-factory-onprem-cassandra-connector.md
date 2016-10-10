@@ -3,7 +3,7 @@
 	description="了解如何使用 Azure Data Factory 從內部部署的 Cassandra 資料庫移動資料。" 
 	services="data-factory" 
 	documentationCenter="" 
-	authors="spelluru" 
+	authors="linda33wj" 
 	manager="jhubbard" 
 	editor="monicar"/>
 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/07/2016" 
-	ms.author="spelluru"/>
+	ms.date="09/07/2016" 
+	ms.author="jingwang"/>
 
 # 使用 Azure Data Factory 從內部部署的 Cassandra 資料庫移動資料
 本文概述如何在 Azure Data Factory 使用複製活動，將資料從內部部署的 Cassandra 資料庫，複製到[支援的來源與接收](data-factory-data-movement-activities.md#supported-data-stores)一節的 [接收] 欄底下列出的任何資料存放區。本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
@@ -33,7 +33,7 @@ Data Dactory 目前只支援將資料從 Cassandra 資料庫移動到[支援的�
 ## 複製資料精靈
 若要建立管線以將資料從 Cassandra 資料庫複製到任何支援的接收資料存放區，最簡單的方式是使用複製資料精靈。如需使用複製資料精靈建立管線的快速逐步解說，請參閱[教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md)。
 
-以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)或 [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。這些範例示範如何將資料從 Cassandra 資料庫複製到 Azure Blob 儲存體。不過，您可以在 Azure Data Factory 中使用複製活動，將資料複製到[這裡](data-factory-data-movement-activities.md#supported-data-stores)所說的任何接收器。
+下列範例提供您使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 來建立管線時，可使用的範例 JSON 定義。這些範例示範如何將資料從 Cassandra 資料庫複製到 Azure Blob 儲存體。不過，您可以在 Azure Data Factory 中使用複製活動，將資料複製到[這裡](data-factory-data-movement-activities.md#supported-data-stores)所說的任何接收器。
 
 
 ## 範例︰將資料從 Cassandra 複製到 Blob
@@ -132,7 +132,7 @@ Data Dactory 目前只支援將資料從 Cassandra 資料庫移動到[支援的�
 
 **具有複製活動的管線**
 
-此管線包含複製活動，該活動已設定為使用上述輸入和輸出資料集並排定為每小時執行。在管線 JSON 定義中，**source** 類型設定為 **CassandraSource**，且 **sink** 類型設定為 **BlobSink**。
+此管線包含複製活動，該活動已設定為使用輸入和輸出資料集並排定為每小時執行。在管線 JSON 定義中，**source** 類型設定為 **CassandraSource**，且 **sink** 類型設定為 **BlobSink**。
 
 如需 RelationalSource 支援的屬性清單，請參閱 [RelationalSource 類型屬性](#cassandrasource-type-properties)。
 	
@@ -193,7 +193,7 @@ Data Dactory 目前只支援將資料從 Cassandra 資料庫移動到[支援的�
 | authenticationType | 基本或匿名 | 是 |
 | username |指定使用者帳戶的使用者名稱。 | 是，如果 authenticationType 設定為 [基本]。 |
 | password | 指定使用者帳戶的密碼。 | 是，如果 authenticationType 設定為 [基本]。 |
-| gatewayName | 將用來連線到內部部署 Cassandra 資料庫的閘道器名稱。 | 是 |
+| gatewayName | 用來連線到內部部署 Cassandra 資料庫的閘道器名稱。 | 是 |
 | encryptedCredential | 由閘道加密認證。 | 否 | 
 
 ## CassandraTable 屬性
@@ -209,11 +209,11 @@ Data Dactory 目前只支援將資料從 Cassandra 資料庫移動到[支援的�
 
 
 ## CassandraSource 類型屬性
-如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。名稱、描述、輸入和輸出資料表、各種原則等屬性都適用於所有活動類型。
+如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
 
-另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同，而在複製活動的案例中，可用的屬性會根據來源與接收的類型而有所不同。
+另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
 
-在複製活動的案例中，如果來源類型為 **CassandraSource**，則 typeProperties 區段可使用下列屬性：
+如果來源類型為 **CassandraSource**，則 typeProperties 區段可使用下列屬性：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | -------- | ----------- | -------------- | -------- |
@@ -253,12 +253,12 @@ Azure Data Factory 會使用內建的 ODBC 驅動程式來連線到 Cassandra �
 -	**基底資料表**，其中包含與實際資料表相同的資料 (集合資料行除外)。基底資料表使用與它所代表的實際資料表相同的名稱。
 -	每個集合資料行的**虛擬資料表**，以展開巢狀資料。代表集合的虛擬資料表會使用實際資料表名稱、分隔字元 “vt” 和資料行名稱來命名。
 
-虛擬資料表會參考實際資料表中的資料，讓驅動程式得以存取反正規化的資料。如需詳細資訊，請參閱下方的＜範例＞一節。您可以藉由查詢和聯結虛擬資料表來存取 Cassandra 集合的內容。
+虛擬資料表會參考實際資料表中的資料，讓驅動程式得以存取反正規化的資料。如需詳細資訊，請參閱＜範例＞一節。您可以藉由查詢和聯結虛擬資料表來存取 Cassandra 集合的內容。
 
 您可以利用[複製精靈](data-factory-data-movement-activities.md#data-factory-copy-wizard)，以直觀方式檢視 Cassandra 資料庫中的資料表清單 (包括虛擬資料表)，並預覽其中的資料。您也可以在複製精靈中建構查詢，並進行驗證以查看結果。
 
 ### 範例
-例如，下方的「ExampleTable」就是 Cassandra 資料庫資料表，其中包含名為「pk\_int」的整數主索引鍵資料行、名為「值」的文字資料行、「清單」資料行、「對應」資料行和「集」資料行 (名為「StringSet」)。
+例如，以下的「ExampleTable」就是 Cassandra 資料庫資料表，其中包含名為「pk\_int」的整數主索引鍵資料行、名為「值」的文字資料行、「清單」資料行、「對應」資料行和「集」資料行 (名為「StringSet」)。
 
 pk\_int | 值 | 列出 | 對應 |	StringSet
 ------ | ----- | ---- | --- | --------
@@ -267,7 +267,7 @@ pk\_int | 值 | 列出 | 對應 |	StringSet
 
 驅動程式會產生多個代表這個單一資料表的虛擬資料表。虛擬資料表中的外部索引鍵資料行會參考實際資料表中的主索引鍵資料行，並指出虛擬資料表資料列所對應的實際資料表資料列。
 
-第一個虛擬資料表是名為「ExampleTable」的基底資料表，如下所示。基底資料表包含與原始資料庫資料表相同的資料，但集合除外，集合會被此資料表省略，而在其他虛擬資料表中展開。
+第一個虛擬資料表是名為「ExampleTable」的基底資料表，如下表所示。基底資料表包含與原始資料庫資料表相同的資料，但集合除外，集合會被此資料表省略，而在其他虛擬資料表中展開。
 
 pk\_int | 值
 ------ | -----
@@ -313,4 +313,4 @@ pk\_int | StringSet\_value
 ## 效能和微調  
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0928_2016-->

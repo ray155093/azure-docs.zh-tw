@@ -14,7 +14,7 @@
 	ms.devlang="dotnet" 
 	ms.topic="article" 
 	ms.date="08/03/2016" 
-	ms.author="robinsh"/>
+	ms.author="fryu;robinsh"/>
 
 # 啟用儲存體度量和檢視度量資料
 
@@ -212,4 +212,4 @@
 [啟用儲存體分析記錄和存取記錄檔資料](https://msdn.microsoft.com/library/dn782840.aspx)
  
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

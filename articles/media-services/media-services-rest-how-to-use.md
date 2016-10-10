@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
-	ms.date="06/22/2016"
+	ms.date="09/26/2016"
 	ms.author="juliako"/>
 
 
@@ -52,7 +52,7 @@ Microsoft Azure 媒體服務會接受以 OData 為基礎的 HTTP 要求，而且
 您對媒體服務每次呼叫，有一組必須在要求中包含的必要標頭，以及一組可能會想要包含的選擇性標頭。下表列出必要標頭：
 
 
-標頭|類型|值
+頁首|類型|值
 ---|---|---
 Authorization|Bearer|Bearer 是唯一接受的授權機制。此值也必須包含 ACS 所提供的存取權杖。
 x-ms-version|十進位|2\.11
@@ -65,7 +65,7 @@ MaxDataServiceVersion|十進位|3\.0
 
 以下是一組選擇性標頭：
 
-標頭|類型|值
+頁首|類型|值
 ---|---|---
 Date|RFC 1123 日期|要求的時間戳記
 Accept|內容類型|如下所示的回應要求內容類型：<p> -application/json;odata=verbose<p> - application/atom+xml<p> 回應可能會有不同的內容類型，例如 Blob 擷取，成功的回應會在其中包含 Blob 資料流做為裝載。
@@ -81,7 +81,7 @@ client-request-id|String|呼叫端定義的值，識別指定的要求。如果�
 以下是一組可能會根據您所要求的資源，以及您要執行的動作而傳回給您的標頭。
 
 
-標頭|類型|值
+頁首|類型|值
 ---|---|---
 request-id|String|目前作業的唯一識別碼，由服務產生。
 client-request-id|String|在原始要求中，呼叫者所指定的識別碼 (如果有的話)。
@@ -132,4 +132,4 @@ HEAD|傳回 GET 回應的物件中繼資料。
 
  
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

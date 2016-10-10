@@ -14,12 +14,12 @@
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
 	ms.workload="data-services" 
-	ms.date="07/27/2016" 
+	ms.date="09/26/2016" 
 	ms.author="jeffstok"/>
 
 # 如何設定串流分析工作的資料輸出
 
-Azure 串流分析工作可以連線至一或多個輸出，且每個輸出都定義了一個與現有資料接收器之間的連線。當您的資料流分析工作處理並轉換傳入的資料時，系統會將資料輸出事件串流寫入工作的輸出中。
+Azure 串流分析工作可以連線至一或多個輸出，且每個輸出都定義了一個與現有資料接收器之間的連線。當您的串流分析工作處理並轉換傳入的資料時，系統會將資料輸出事件串流寫入工作的輸出中。
 
 串流分析資料輸出可用來獲得即時的儀表板或警示資訊、觸發資料移動流程，或是單純保存資料以供稍後進行批次處理。串流分析與數個 Azure 服務具有第一級的整合，將在此詳述。
 
@@ -66,4 +66,4 @@ Azure 串流分析工作可以連線至一或多個輸出，且每個輸出都�
 - [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 - [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

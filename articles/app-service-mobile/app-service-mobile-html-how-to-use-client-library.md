@@ -22,6 +22,12 @@
 
 本指南將教導您使用最新的[適用於 Azure Mobile Apps 的 JavaScript SDK] 執行一般案例。如果您不熟悉 Azure Mobile Apps，請先完成 [Azure 行動應用程式快速入門]建立後端，並建立資料表。在本指南中，我們會著重在使用 HTML/JavaScript Web 應用程式中的行動後端。
 
+## 支援的平台
+
+我們將瀏覽器支援限制在下列主要瀏覽器的當前最新版本︰Google Chrome、Microsoft Edge、Microsoft Internet Explorer 和 Mozilla Firefox。我們預期 SDK 可與任何相對近期的瀏覽器搭配運作。
+
+套件會以通用 JavaScript 模組的形式來散發，因此能夠支援全域、AMD 和 CommonJS 格式。
+
 ##<a name="Setup"></a>設定和必要條件
 
 本指南假設您已建立包含資料表的後端。本指南假設資料表的結構描述與這些教學課程中的資料表相同。
@@ -73,7 +79,7 @@ Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、M
 4. 按一下 [執行]，在新的索引標籤或視窗中開啟行動裝置應用程式後端的資源總管。
 5. 展開應用程式的 [config] > [authsettings] 節點。
 6. 按一下 [編輯] 按鈕來啟用資源的編輯。
-7. 尋找 **allowedExternalRedirectUrls** 元素，此元素應該是 null。將它變更為以下項目：
+7. 尋找 **allowedExternalRedirectUrls** 元素，此元素應該是 null。在陣列中新增 URL：
 
          "allowedExternalRedirectUrls": [
              "http://localhost:3000",
@@ -101,6 +107,6 @@ Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、M
 
 [Azure 入口網站]: https://portal.azure.com/
 [適用於 Azure Mobile Apps 的 JavaScript SDK]: https://www.npmjs.com/package/azure-mobile-apps-client
-[Query object documentation]: https://msdn.microsoft.com/zh-TW/library/azure/jj613353.aspx
+[Query 物件文件]: https://msdn.microsoft.com/zh-TW/library/azure/jj613353.aspx
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

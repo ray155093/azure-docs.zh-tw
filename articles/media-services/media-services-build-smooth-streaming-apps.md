@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="Smooth Streaming Windows 市集應用程式教學課程" 
+	pageTitle="Smooth Streaming Windows 市集應用程式教學課程 | Microsoft Azure" 
 	description="了解如何使用 Azure 媒體服務建立可用 XML MediaElement 控制項來播放 Smooth Streaming 內容的 C# Windows 市集應用程式。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"  
+	ms.date="09/26/2016"  
 	ms.author="juliako"/>
 
 
@@ -69,7 +69,7 @@ Smooth Streaming Client SDK for Windows 8 可讓開發人員建置能夠播放�
 名稱|SSPlayer
 位置|C:\\SSTutorials
 方案名稱|SSPlayer
-建立方案的目錄|(已選取)
+為方案建立目錄|(已選取)
 
 4.	按一下 [確定]。
 
@@ -988,4 +988,4 @@ Smooth Streaming 簡報可以包含多個以不同品質等級 (位元速率) �
 [CodeViewPic]: ./media/media-services-build-smooth-streaming-apps/SSClientWin8-2.png
  
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

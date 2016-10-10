@@ -13,7 +13,7 @@ ms.service="virtual-machines-linux"
  ms.topic="article"
  ms.tgt_pltfrm="vm-linux"
  ms.workload="infrastructure-services"
- ms.date="07/18/2016"
+ ms.date="09/22/2016"
  ms.author="danlep"/>
 
 # Linux VM 的計算基準測試分數
@@ -84,15 +84,29 @@ Standard\_GS4 | 16 | 1 | Intel Xeon E5-2698B v3 @ 2 GHz | 84 | 194,111 | 4,735
 Standard\_GS5 | 32 | 2 | Intel Xeon E5-2698B v3 @ 2 GHz | 84 | 357,396 | 16,228
 
 
+## H 系列
+
+大小 | vCPU | NUMA 節點 | CPU | 執行 | 反覆運算/秒 | 標準差
+------- | ------ | ---- | -------| ---- | ---- | -----
+Standard\_H8 | 8 | 1 | Intel Xeon E5-2667 v3 @ 3.2 GHz | 28 | 140,782 | 2,512
+Standard\_H16 | 16 | 2 | Intel Xeon E5-2667 v3 @ 3.2 GHz | 35 | 275,289 | 7,110 
+Standard\_H18m | 8 | 1 | Intel Xeon E5-2667 v3 @ 3.2 GHz | 28 | 139,071 | 3,988 
+Standard\_H16m | 16 | 2 | Intel Xeon E5-2667 v3 @ 3.2 GHz | 28 | 275,988 | 6,963 
+Standard\_H16r | 16 | 2 | Intel Xeon E5-2667 v3 @ 3.2 GHz | 28 | 273,982 | 6,069 
+Standard\_H16mr | 16 | 2 | Intel Xeon E5-2667 v3 @ 3.2 GHz | 28 | 274,523 | 5,698 
+
+
+
 ## 關於 CoreMark
 
-Linux 數字是藉由在 Ubuntu 上執行 [CoreMark](http://www.eembc.org/coremark/faq.php) 來計算出。在 CoreMark 的設定中，執行緒的數目是設定為虛擬 CPU 的數目，而並行處理則是設定為 PThreads。目標反覆運算次數已根據預期的效能進行調整，以提供一個至少 20 秒 (通常會更長) 的執行階段，而最終分數代表的是已完成的反覆運算次數除以執行測試所花費秒數後得出的值。每個測試在每個 VM 上至少執行了七次。測試執行時間是在 2015 年 10 月，於測試執行當天支援 VM 的每個 Azure 公用區域中的多個 VM 上執行。
+Linux 數字是藉由在 Ubuntu 上執行 [CoreMark](http://www.eembc.org/coremark/faq.php) 來計算出。在 CoreMark 的設定中，執行緒的數目是設定為虛擬 CPU 的數目，而並行處理則是設定為 PThreads。目標反覆運算次數已根據預期的效能進行調整，以提供一個至少 20 秒 (通常會更長) 的執行階段。最終分數代表的是已完成的反覆運算次數除以執行測試所花費秒數後得出的值。每個測試在每個 VM 上至少執行了七次。測試 (H 系列除外) 執行時間是在 2015 年 10 月，於測試執行當天支援 VM 的每個 Azure 公用區域中的多個 VM 上執行。
+
 ## 後續步驟
 
 
 
-* 如需儲存體容量、磁碟詳細資料及其他選擇 VM 大小的考量，請參閱[虛擬機器的大小](virtual-machines-linux-sizes.md)。
+* 如需了解儲存體容量、磁碟詳細資料及其他選擇 VM 大小的考量，請參閱[虛擬機器的大小](virtual-machines-linux-sizes.md)。
 
 * 若要在 Linux VM 上執行 CoreMark 指令碼，請下載 [CoreMark 指令碼套件](http://download.microsoft.com/download/3/0/5/305A3707-4D3A-4599-9670-AAEB423B4663/AzureCoreMarkScriptPack.zip)。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0928_2016-->

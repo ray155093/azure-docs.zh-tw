@@ -5,7 +5,7 @@
 	documentationCenter="java"
 	authors="rmcmurray"
 	manager="wpickett"
-	editor=""/>
+	editor="tysonn"/>
 
 <tags
 	ms.service="storage"
@@ -14,7 +14,7 @@
 	ms.devlang="Java"
 	ms.topic="article"
 	ms.date="08/11/2016"
-	ms.author="rmcmurray"/>
+	ms.author="jwillis;rmcmurray"/>
 
 # 搭配 Blob 儲存體的內部部署應用程式
 
@@ -359,4 +359,4 @@
 - [Azure 儲存體服務 REST API](https://msdn.microsoft.com/library/azure/dd179355.aspx)
 - [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0928_2016-->

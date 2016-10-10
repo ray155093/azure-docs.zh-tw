@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="07/05/2016"
+   ms.date="09/22/2016"
    ms.author="skwan;bryanla"/>
 
 #如何讓 AppSource 取得 Azure Active Directory (AD) 認證 
@@ -41,4 +41,4 @@
 
 <!--Image references-->
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -3,7 +3,7 @@
 	description="了解如何使用 Azure Data Factory 從 Azure 資料湖存放區來回移動資料"
 	services="data-factory"
 	documentationCenter=""
-	authors="spelluru"
+	authors="linda33wj"
 	manager="jhubbard"
 	editor="monicar"/>
 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/22/2016"
-	ms.author="spelluru"/>
+	ms.date="09/27/2016"
+	ms.author="jingwang"/>
 
 # 使用 Azure Data Factory 從 Azure 資料湖存放區來回移動資料
 本文將概述如何使用 Azure Data Factory 中的複製活動，在 Azure Data Lake Store 和另一個資料存放區之間往返移動資料。本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
@@ -426,7 +426,7 @@
 
 如果您在此權杖的到期時間之前變更密碼，權杖會立即到期，且您會看到本節所述的錯誤。
 
-如果要避免/解決此錯誤，請在權杖到期時使用 [授權] 按鈕重新授權，然後重新部署連結服務。您也可以使用下一節中的程式碼以程式設計方式產生 sessionId 和 authorization 屬性的值。
+如果要避免/解決此錯誤，請在權杖到期時使用 [授權] 按鈕重新授權，然後重新部署連結服務。您也可以使用下一節中的程式碼以程式設計方式產生 sessionId 和 authorization 屬性的值：
 
 ### 若要以程式設計方式產生 sessionId 與 authorization 的值 
 
@@ -460,14 +460,14 @@
 
 如需定義資料集的 JSON 區段和屬性完整清單，請參閱[建立資料集](data-factory-create-datasets.md)一文。資料集 JSON 的結構、可用性和原則等區段類似於所有的資料集類型 (SQL Azure、Azure Blob、Azure 資料表等)。
 
-每個資料集類型的 **TypeProperties** 區段都不同，可提供資料存放區中資料的位置、格式等相關資訊。**AzureDataLakeStore** 類型資料集的 typeProperties 區段具有下列屬性。
+每個資料集類型的 **TypeProperties** 區段都不同，可提供資料存放區中資料的位置、格式等相關資訊。**AzureDataLakeStore** 類型資料集的 typeProperties 區段具有下列屬性：
 
 | 屬性 | 說明 | 必要 |
 | :-------- | :----------- | :-------- |
 | folderPath | Azure 資料湖存放區中容器與資料夾的路徑。 | 是 |
 | fileName | Azure 資料湖存放區中的檔案名稱。fileName 為選用且區分大小寫。<br/><br/>若您指定 fileName，活動 (包括複製活動) 將只會在特定檔案上運作。<br/><br/>若未指定 fileName，則複製活動會包含輸入資料集 folderPath 中的所有檔案。<br/><br/>若未指定輸出資料集的 fileName，則所產生檔案的名稱會使用下列格式：Data.<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt | 否 |
 | partitionedBy | partitionedBy 是選擇性的屬性。您可以用來指定時間序列資料的動態 folderPath 和 filename。例如，folderPath 可針對每小時的資料進行參數化。如需詳細資訊和範例，請參閱[使用 partitionedBy 屬性](#using-partitionedby-property)一節。 | 否 |
-| format | 支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat** 及 **OrcFormat**。將格式下的 **type** 屬性設定為這些值其中之一。如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat) 及[指定 OrcFormat](#specifying-orcformat) 各節。如果您想要在以檔案為基礎的存放區之間依原樣複製檔案 (二進位複本)，您可以在輸入和輸出資料集定義中略過格式區段。| 否
+| format | 支援下列格式類型：**TextFormat**、**AvroFormat**、**JsonFormat**、**OrcFormat**、**ParquetFormat**。將格式下的 **type** 屬性設定為這些值其中之一。如需詳細資料，請參閱[指定 TextFormat](#specifying-textformat)、[指定 AvroFormat](#specifying-avroformat)、[指定 JsonFormat](#specifying-jsonformat)、[指定 OrcFormat](#specifying-orcformat)、[指定 ParquetFormat](#specifying-parquetformat) 各節。如果您想要在以檔案為基礎的存放區之間依原樣複製檔案 (二進位複本)，您可以在輸入和輸出資料集定義中略過格式區段。| 否
 | compression | 指定此資料的壓縮類型和層級。支援的類型為：**GZip**、**Deflate** 及 **BZip2**，而支援的層級為：**最佳**和**最快**。**AvroFormat** 或 **OrcFormat** 格式的資料目前不支援壓縮設定。如需詳細資訊，請參閱[壓縮支援](#compression-support)一節。 | 否 |
 
 ### 使用 partitionedBy 屬性
@@ -534,7 +534,7 @@
 	- **最快：**即使未以最佳方式壓縮所產生的檔案，壓縮作業也應儘速完成。
 	- **最佳**：即使作業耗費較長的時間才能完成，壓縮作業也應以最佳方式壓縮。
 	
-	請參閱[壓縮層級](https://msdn.microsoft.com/library/system.io.compression.compressionlevel.aspx)主題以取得詳細資訊。
+	如需詳細資訊，請參閱[壓縮層級](https://msdn.microsoft.com/library/system.io.compression.compressionlevel.aspx)主題。
 
 假設範例資料集做為複製活動的輸出。複製活動會透過使用最佳比率的 GZIP 轉碼器壓縮初輸資料，然後將壓縮的資料寫入到 Azure Data Lake Store 中名為 pagecounts.csv.gz 的檔案。
 
@@ -546,7 +546,7 @@
 
 
 ## Azure 資料湖複製活動類型屬性  
-如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。名稱、描述、輸入和輸出資料表、各種原則等屬性都適用於所有活動類型。
+如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
 
 另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。若為複製活動，這些屬性會根據來源和接收的類型而有所不同
 
@@ -574,4 +574,4 @@
 ## 效能和微調  
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0928_2016-->

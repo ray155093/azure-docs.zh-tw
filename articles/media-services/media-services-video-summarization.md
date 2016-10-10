@@ -1,5 +1,5 @@
 <properties
-	pageTitle="使用 Azure 媒體視訊縮圖建立視訊摘要"
+	pageTitle="使用 Azure 媒體視訊縮圖建立視訊摘要 | Microsoft Azure"
 	description="視訊摘要可自動選取來源視訊的有趣片段，協助您建立較長視訊的摘要。針對片長較長的視訊，如果您想要提供精彩內容的快速概觀，這非常有用。"
 	services="media-services"
 	documentationCenter=""
@@ -13,17 +13,17 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="06/22/2016"   
+	ms.date="09/26/2016"   
 	ms.author="milanga;juliako;"/>
 
 #使用 Azure 媒體視訊縮圖建立視訊摘要
-##概觀
+##Overview
 
 **Azure 媒體視訊縮圖**媒體處理器 (MP) 可讓您建立視訊的摘要；當視訊較長而客戶只想預覽摘要時，就非常實用。例如，客戶可能會想在將滑鼠移至縮圖上時，查看簡短的「視訊摘要」。透過設定預設值，調整 **Azure 媒體視訊縮圖**的參數，您即可使用 MP 強大的拍攝偵測和串連技術，以演算法來產生描述性的子剪輯。
 
 **Azure 媒體視訊縮圖** MP 目前為預覽功能。
 
-本主題提供有關 **Azure 媒體視訊縮圖**的詳細資訊，並示範如何搭配適用於 .NET 的媒體服務 SDK 來使用它。
+本主題提供有關 **Azure 媒體視訊縮圖**的詳細資訊，並示範如何搭配適用於 .NET 的媒體服務 SDK 來使用它
 
 ##視訊摘要範例 
 
@@ -37,7 +37,7 @@
 
 [視訊縮圖的結果](http://ampdemo.azureedge.net/azuremediaplayer.html?url=http%3A%2F%2Fnimbuscdn-nimbuspm.streaming.mediaservices.windows.net%2Ff5c91052-4232-41d4-b531-062e07b6a9ae%2FHololens%2520Demo_VideoThumbnails_MotionThumbnail.mp4)
 
-##工作組態 (預設)
+##工作設定 (預設)
 
 以 **Azure 媒體視訊縮圖**建立視訊縮圖工作時，您必須指定設定預設值。上述縮圖是使用下列基本 JSON 組態建立的範例︰
 
@@ -273,4 +273,4 @@ maxMotionThumbnailDurationInSecs|整數，指定整個結果視訊的片長。�
 
 [Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

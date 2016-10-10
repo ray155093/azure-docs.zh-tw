@@ -12,7 +12,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="06/23/2016"
+	ms.date="09/22/2016"
 	ms.author="jroth" />
 
 # 連線到 Azure 上的 SQL Server 虛擬機器 (傳統部署)
@@ -21,9 +21,9 @@
 - [資源管理員](virtual-machines-windows-sql-connect.md)
 - [傳統](virtual-machines-windows-classic-sql-connect.md)
 
-## 概觀
+## Overview
 
-本主題說明如何連接在 Azure 虛擬機器上執行的 SQL Server 執行個體。其中涵蓋一些[一般連線案例](#connection-scenarios)並提供[在 Azure VM 中設定 SQL Server 連線的詳細步驟](#steps-for-configuring-sql-server-connectivity-in-an-azure-vm)。
+本主題說明如何連線到在 Azure 虛擬機器上執行的 SQL Server 執行個體。其中涵蓋一些[一般連線案例](#connection-scenarios)並提供[在 Azure VM 中設定 SQL Server 連線的詳細步驟](#steps-for-configuring-sql-server-connectivity-in-an-azure-vm)。
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 如果您是使用 Resource Manager VM，請參閱[使用 Resource Manager 連接到 Azure 上的 SQL Server 虛擬機器](virtual-machines-windows-sql-connect.md)。
 
@@ -101,6 +101,6 @@
 
 [探索學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-azure-vm/)：Azure 虛擬機器上的 SQL Server。
 
-如需在 Azure VM 中執行 SQL Server 的其他相關主題，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
+如需有關在 Azure VM 中執行 SQL Server 的其他主題，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

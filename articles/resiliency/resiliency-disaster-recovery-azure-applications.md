@@ -147,7 +147,7 @@ Azure 儲存體的內建備援功能會在相同區域中建立兩個備份檔�
 
 實作完整功能的災害模式策略時，必須將交易資料非同步複寫到次要地區。可進行複寫的實際時間範圍將會決定應用程式的 RPO 特性。在複寫時間範圍內，您仍可復原從主要區域遺失的資料。您也可以稍後合併次要地區。
 
-下列架構範例對於在容錯移轉案例中以不同方式處理交易資料，提供了一些構想。請務必注意，這些範例並不詳盡。例如，Azure SQL Database 可以取代佇列等中繼儲存位置。佇列本身可能是 Azure 儲存體或服務匯流排佇列 (請參閱 [Azure 佇列和服務匯流排佇列 - 比較和對比](../service-bus/service-bus-azure-and-service-bus-queues-compared-contrasted.md))。伺服器存放裝置目的地也可能有所改變，例如 Azure 資料表，而不是 SQL Database。此外，也可能會插入背景工作角色做為各種步驟中的媒介。重點不是要完全模擬這些架構，而是要考量復原交易資料和相關模組中的各種替代方案。
+下列架構範例對於在容錯移轉案例中以不同方式處理交易資料，提供了一些構想。請務必注意，這些範例並不詳盡。例如，Azure SQL Database 可以取代佇列等中繼儲存位置。佇列本身可能是 Azure 儲存體或服務匯流排佇列 (請參閱 [Azure 佇列和服務匯流排佇列 - 比較和對比](../service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted.md))。伺服器存放裝置目的地也可能有所改變，例如 Azure 資料表，而不是 SQL Database。此外，也可能會插入背景工作角色做為各種步驟中的媒介。重點不是要完全模擬這些架構，而是要考量復原交易資料和相關模組中的各種替代方案。
 
 ####複寫交易資料以準備進行災害復原
 
@@ -305,4 +305,4 @@ IaaS 解決方案也為內部部署應用程式提供比較簡單的路徑，以
 
 本文屬於著重[在 Microsoft Azure 上建置的應用程式的災害復原和高可用性](./resiliency-disaster-recovery-high-availability-azure-applications.md)的系列文章。這一系列中的前一篇文章是[在 Microsoft Azure 上建置的應用程式的高可用性](./resiliency-high-availability-azure-applications.md)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0928_2016-->

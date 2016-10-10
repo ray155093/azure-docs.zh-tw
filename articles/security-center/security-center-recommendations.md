@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/26/2016"
+   ms.date="09/25/2016"
    ms.author="terrylan"/>
 
 # 管理 Azure 資訊安全中心的安全性建議
@@ -69,7 +69,7 @@
 |[修復 OS 弱點](security-center-remediate-os-vulnerabilities.md)|建議您讓作業系統組態符合建議的設定規則，例如不允許儲存密碼。|
 |[套用系統更新](security-center-apply-system-updates.md)|建議您將遺漏的系統安全性與重大更新部署到 VM。|
 |[在系統更新之後重新開機](security-center-apply-system-updates.md#reboot-after-system-updates)|建議您重新啟動 VM 以完成套用系統更新的程序。|
-|[新增 Web 應用程式防火牆](security-center-add-web-application-firewall.md)|建議您為 Web 端點部署「Web 應用程式防火牆」(WAF)。您可以將這些應用程式加入現有的 WAF 部署，以保護資訊安全中心的多個 Web 應用程式。WAF 應用裝置 (使用 Resource Manager 部署模型建立) 需要部署至不同的虛擬網路。WAF 應用裝置 (使用傳統部署模型所建立) 受限於只能使用網路安全性群組。這項支援在未來將會延伸至 WAF 應用裝置 (傳統) 的完全自訂部署。|
+|[新增 Web 應用程式防火牆](security-center-add-web-application-firewall.md)|建議您為 Web 端點部署「Web 應用程式防火牆」(WAF)。您可以將這些應用程式加入現有的 WAF 部署，以保護資訊安全中心的多個 Web 應用程式。WAF 應用裝置 (使用 Resource Manager 部署模型建立) 需要部署至不同的虛擬網路。WAF 應用裝置 (使用傳統部署模型所建立) 受限於只能使用網路安全性群組。這項支援在未來將會延伸至 WAF 應用裝置 (傳統) 的完全自訂部署。資訊安全中心建議您佈建 WAF，協助對抗以 VM 和 App Service 環境 (ASE) 上的 Web 應用程式為目標的攻擊。若要深入了解 ASE，請參閱 [App Service 環境的文件](../app-service/app-service-app-service-environments-readme.md)。 |
 |[完成應用程式保護](security-center-add-web-application-firewall.md#finalize-application-protection)|若要完成 WAF 組態，必須將流量重新路由至 WAF 設備。遵循這項建議會完成必要的設定變更。|
 |[新增新一代防火牆](security-center-add-next-generation-firewall.md)|建議您新增由 Microsoft 合作夥伴提供的新一代防火牆 (NGFW)，以提升您的安全防護。|
 |[僅透過 NGFW 路由傳送流量](security-center-add-next-generation-firewall.md#route-traffic-through-ngfw-only)|建議您設定網路安全性群組 (NSG) 規則，強制透過您的 NGFW 傳送內送流量到 VM。|
@@ -84,6 +84,8 @@
 | [套用磁碟加密](security-center-apply-disk-encryption.md) |建議您使用 Azure 磁碟加密來加密您的 VM 磁碟 (Windows 和 Linux VM)。建議您的 VM 上的作業系統和資料磁碟區都進行加密。|
 |[提供安全性連絡人詳細資料](security-center-provide-security-contact-details.md) | 建議您提供每個訂用帳戶安全性連絡人資訊。連絡人資訊為電子郵件地址和電話號碼。如果我們的安全性小組發現您的資源遭到入侵，就會用這項資訊連絡您。 |
 | [更新作業系統版本](security-center-update-os-version.md) | 建議您將雲端服務的作業系統 (OS) 版本更新為作業系統系列可用的最新版本。若要深入了解雲端服務，請參閱[雲端服務概觀](../cloud-services/cloud-services-choose-me.md)。 |
+| [未安裝弱點評估](security-center-vulnerability-assessment-recommendations.md) | 建議在 VM 上安裝弱點評估解決方案。 |
+| [修復弱點](security-center-vulnerability-assessment-recommendations.md#review-recommendation) | 可讓您查看 VM 上安裝的弱點評估解決方案所偵測到的系統和應用程式弱點。 |
 
 您可以篩選並關閉建議。
 
@@ -115,4 +117,4 @@
 [2]: ./media/security-center-recommendations/filter-recommendations.png
 [3]: ./media/security-center-recommendations/dismiss-recommendations.png
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

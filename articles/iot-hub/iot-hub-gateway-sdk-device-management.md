@@ -43,7 +43,7 @@
 
 ### 閘道軟體
 
-閘道軟體會在 Edison 面板上以服務形式執行。兩個模擬裝置會產生溫度遙測。對應模組會將這些模擬裝置對應至已向 IoT 中樞註冊的裝置，而 HTTP 模組會處理與 IoT 中樞端點的通訊。[IoT 閘道 SDK – 使用模擬裝置傳送裝置到雲端訊息][lnk-gateway-scenario]一文會詳細說明此案例。
+閘道軟體會在 Edison 面板上以服務形式執行。兩個模擬裝置會產生溫度遙測。對應模組會將這些模擬裝置對應至已向 IoT 中樞註冊的裝置，而 IoT 中樞模組會處理與 IoT 中樞端點的通訊。[IoT 閘道 SDK – 使用模擬裝置傳送裝置到雲端訊息][lnk-gateway-scenario]一文會詳細說明此案例。
 
 ### 裝置管理用戶端
 
@@ -425,4 +425,4 @@ IoT 裝置管理服務所要求的 Edison 韌體更新通常會下載 zip 檔案
 [lnk-dmui]: iot-hub-device-management-ui-sample.md
 [lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/27/2016"
-	ms.author="micurd"/>
+	ms.date="09/21/2016"
+	ms.author="micurd;tamram"/>
 
 # 從 Azure 儲存體來回移動資料
 
@@ -82,4 +82,4 @@ Azure CLI 提供您一組開放原始碼的跨平台命令，供您使用 Azure 
 
 若要深入了解，請參閱 [Azure Site Recovery](../site-recovery/site-recovery-overview.md)。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0928_2016-->

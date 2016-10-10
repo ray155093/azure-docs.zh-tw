@@ -39,6 +39,11 @@ CNAME 記錄只允許一個單一字串值。
 
 	azure network dns record-set add-record myresourcegroup  contoso.com  "test-ns" NS -d "ns1.contoso.com"
 
+#### 建立含有單一記錄的 PTR 記錄集  
+在此情況下，'my-arpa-zone.com' 代表表示您 IP 範圍的 ARPA 區域。此區域中的每個 PTR 記錄集都與此 IP 範圍內的一個 IP 位址相對應。
+
+	azure network dns record-set add-record myresourcegroup my-arpa-zone.com "10" PTR -P "myservice.contoso.com"   
+
 #### 建立含有單一記錄的 SRV 記錄集
 
 如果您要在區域的根內建立 SRV 記錄，您可以在記錄名稱中指定 "\_service" 和 "\_protocol"。記錄名稱中不需要包含 ‘.@’。
@@ -54,4 +59,4 @@ CNAME 記錄只允許一個單一字串值。
 
 	azure network dns record-set add-record myresourcegroup contoso.com "test-txt" TXT -x "this is a TXT record"
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0928_2016-->

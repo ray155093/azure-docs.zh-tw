@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/29/2016" 
+	ms.date="07/29/2016" 
 	ms.author="anwestg"/>
 
 # 企業的 Azure App Service Web Apps 提供項目白皮書 #
@@ -159,4 +159,4 @@ App Service Web Apps 針對快速發展環境中的企業動態需求，提供�
  
  
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0928_2016-->

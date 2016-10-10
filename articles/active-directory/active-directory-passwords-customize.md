@@ -202,9 +202,8 @@
                 </p>
                 <ul>
                   <li class="unordered">
-												如果設定為否，則在您的目錄中的所有使用者都可以在下列位置註冊密碼重設：<a href="http://aka.ms/ssprsetup">http://aka.ms/ssprsetup</a><br><br></li>
-                  <li class="unordered">
-												如果設定為是，則只有在 [<strong>可以執行密碼重設的群組</strong>] 控制項中指定的使用者可以在下列位置註冊密碼重設：<a href="http://aka.ms/ssprsetup">http://aka.ms/ssprsetup</a><br><br></li>
+                    此設定不會影響使用者的密碼重設註冊入口網站的存取權。如果 [使用者已啟用密碼重設]<strong></strong> 設定為 [是]<strong></strong>，則在您的目錄中的所有使用者都可以在下列位置註冊密碼重設：<a href="http://aka.ms/ssprsetup">http://aka.ms/ssprsetup</a>。
+                  </li>
                 </ul>
                 <p>
                   <strong>密碼重設入口網站：</strong>
@@ -245,7 +244,8 @@
                 </p>
                 <ul>
                   <li class="unordered">
-												如果 [<strong>密碼重設限制存取</strong>] 設為 [<strong>是</strong>]，則只有這個群組中的使用者能夠註冊密碼重設。<br><br></li>
+                    此設定不會影響使用者的密碼重設註冊入口網站的存取權。如果 [使用者已啟用密碼重設]<strong></strong> 設定為 [是]<strong></strong>，則在您的目錄中的所有使用者都可以在下列位置註冊密碼重設：<a href="http://aka.ms/ssprsetup">http://aka.ms/ssprsetup</a>。
+                  </li>
                 </ul>
                 <p>
                   <strong>密碼重設入口網站：</strong>
@@ -270,12 +270,6 @@
                 <p>(只有在 [<strong>使用者啟用密碼重設</strong>] 設為 [<strong>是</strong>] 時才能看見)。</p>
               </td>
               <td>
-                <p>
-
-                </p>
-                <p>
-
-                </p>
                 <p>
                   <strong>注意：</strong>
                 </p>
@@ -875,4 +869,4 @@
 
 [001]: ./media/active-directory-passwords-customize/001.jpg "Image_001.jpg"
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

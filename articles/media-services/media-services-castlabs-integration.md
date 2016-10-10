@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="使用 castLabs 將 Widevine 授權傳遞到 Azure 媒體服務" 
+	pageTitle="使用 castLabs 將 Widevine 授權傳遞到 Azure 媒體服務 | Microsoft Azure" 
 	description="本文說明如何使用 Azure 媒體服務 (AMS) 來傳遞 AMS 使用 PlayReady 與 Widevine DRM 動態加密的資料流。PlayReady 授權來自媒體服務 PlayReady 授權伺服器，Widevine 授權由 castLabs 授權伺服器傳遞。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"  
+	ms.date="09/26/2016"  
 	ms.author="Mingfeiy;willzhan;Juliako"/>
 
 
@@ -23,7 +23,7 @@
 - [Axinom](media-services-axinom-integration.md)
 - [castLabs](media-services-castlabs-integration.md)
 
-##概觀
+##Overview
 
 本文說明如何使用 Azure 媒體服務 (AMS) 來傳遞 AMS 使用 PlayReady 與 Widevine DRM 動態加密的資料流。PlayReady 授權來自媒體服務 PlayReady 授權伺服器，Widevine 授權則來自 **castLabs** 授權伺服器。
 
@@ -50,7 +50,7 @@ castLabs 與 AMS 皆支援使用 JWT (JSON Web Token) 權杖格式進行授權�
 
 下表說明 AMS 中的 JWT 權杖。
 
-Issuer|所選安全權杖服務 (STS) 中的簽發者字串
+簽發者|所選安全權杖服務 (STS) 中的簽發者字串
 ---|---
 Audience|所使用 STS 中的對象字串
 Claims|一組宣告
@@ -122,4 +122,4 @@ jti|權杖的唯一識別碼 (每個權杖在 castLabs 系統中只使用一次)
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

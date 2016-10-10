@@ -2,7 +2,9 @@
 
 每一筆 DNS 記錄都有名稱和類型。記錄根據所包含的資料而組織成各種類型。最常見的類型為 "A" 記錄，可將名稱對應到 IPv4 位址。另一個類型為 "MX" 記錄，可將名稱對應到郵件伺服器。
 
-Azure DNS 支援所有常見的 DNS 記錄類型，包括 A、AAAA、CNAME、MX、NS、SOA、SRV 和 TXT。每個區域會自動建立 SOA 記錄集。您無法另外建立記錄集。請注意，應該使用 TXT 記錄類型建立 SPF 記錄。如需詳細資訊，請參閱[此頁面](http://tools.ietf.org/html/rfc7208#section-3.1)。
+Azure DNS 支援所有常見的 DNS 記錄類型，包括 A、AAAA、CNAME、MX、NS、PTR、SOA、SRV 和 TXT。請注意：
+- 每個區域會自動建立 SOA 記錄集，無法另外建立。
+- 應該使用 TXT 記錄類型建立 SPF 記錄。如需詳細資訊，請參閱[此頁面](http://tools.ietf.org/html/rfc7208#section-3.1)。
 
 在 Azure DNS 中，記錄是使用相對名稱來指定。「完整」網域名稱 (FQDN) 包含區域名稱，而「相對」名稱不含區域名稱。比方說，區域 "contoso.com" 中的相對記錄名稱 "www" 就給出完整記錄名稱 www.contoso.com。
 
@@ -29,4 +31,4 @@ Azure DNS 支援[萬用字元記錄](https://en.wikipedia.org/wiki/Wildcard_DNS_
 
 CNAME 記錄集不能與其他具有相同名稱的記錄集共存。例如，您無法同時建立具有相對名稱 "www" 的 CNAME 記錄集和具有相對名稱 "www" 的 A 記錄。因為區域頂點 (名稱 = '@') 一定會包含建立區域時所建立的 NS 和 SOA 記錄集，您無法在區域頂點建立 CNAME 記錄集。這些條件約束源自於 DNS 標準，並不是 Azure DNS 的限制。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0928_2016-->

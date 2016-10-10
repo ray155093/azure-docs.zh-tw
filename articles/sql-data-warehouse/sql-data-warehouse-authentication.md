@@ -14,15 +14,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
-   ms.date="09/04/2016"
+   ms.date="09/24/2016"
    ms.author="rickbyh;barbkess;sonyama"/>
 
 # 適用於 Azure SQL 資料倉儲的驗證
 
 > [AZURE.SELECTOR]
-- [概觀](sql-data-warehouse-connect-overview.md)
+- [安全性概觀](sql-data-warehouse-overview-manage-security.md)
 - [驗證](sql-data-warehouse-authentication.md)
-- [驅動程式](sql-data-warehouse-connection-strings.md)
+- [加密 (入口網站)](sql-data-warehouse-encryption-tde.md)
+- [加密 (T-SQL)](sql-data-warehouse-encryption-tde-tsql.md)
 
 若要連線到 SQL 資料倉儲，您必須傳入安全性認證進行驗證用途。建立連線時，會設定特定的連線設定，以做為建立查詢工作階段的一部分。
 
@@ -90,4 +91,4 @@ Azure Active Directory 使用者目前不會顯示在 SSDT 物件總管中。解
 [What is Azure Active Directory]: ../active-directory/active-directory-whatis.md
 [Azure AD 功能和限制]: ../sql-database/sql-database-aad-authentication.md#azure-ad-features-and-limitations
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0928_2016-->

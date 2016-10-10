@@ -1,7 +1,7 @@
 <properties
    pageTitle="使用 Windows 用戶端映像進行開發/測試案例 | Microsoft Azure"
    description="如何使用 Visual Studio 訂用帳戶權益在 Azure 中部署 Windows 7/8/10，以進行開發/測試案例"
-   services="virtual-machines-windowse"
+   services="virtual-machines-windows"
    documentationCenter=""
    authors="iainfoulds"
    manager="timlt"
@@ -57,4 +57,4 @@
 ## 後續步驟
 您現在可以使用 [PowerShell](virtual-machines-windows-ps-create.md)、[Resource Manager 範本](virtual-machines-windows-ps-template.md) 或 [Visual Studio](../vs-azure-tools-resource-groups-deployment-projects-create-deploy.md) 來部署您的 VM。
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

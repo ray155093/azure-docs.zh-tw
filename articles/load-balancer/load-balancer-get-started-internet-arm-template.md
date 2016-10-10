@@ -17,7 +17,7 @@
    ms.date="02/09/2016"
    ms.author="sewhee" />
 
-# 開始使用範本建立網際網路對向負載平衡器
+# 使用範本建立網際網路面向的負載平衡器
 
 [AZURE.INCLUDE [load-balancer-get-started-internet-arm-selectors-include.md](../../includes/load-balancer-get-started-internet-arm-selectors-include.md)]
 
@@ -70,4 +70,4 @@
 
 [設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

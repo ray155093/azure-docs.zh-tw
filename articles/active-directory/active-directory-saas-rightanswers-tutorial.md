@@ -11,14 +11,14 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="07/07/2016" 
+    ms.date="09/26/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 RightAnswers 整合
   
 本教學課程的目的是要示範 Azure 與 RightAnswers 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
--   有效的 Azure 訂閱
+-   有效的 Azure 訂用帳戶
 -   已啟用 RightAnswers 單一登入的訂用帳戶
   
 完成本教學課程之後，您指派給 RightAnswers 的 Azure AD 使用者就能夠使用[存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
@@ -53,7 +53,7 @@
 
 5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-rightanswers-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![從資源庫新增應用程式](./media/active-directory-saas-rightanswers-tutorial/IC749322.png "從資源庫新增應用程式")
 
 6.  在**搜尋方塊**中，輸入 **RightAnswers**。
 
@@ -70,13 +70,13 @@
 
     ![設定單一登入](./media/active-directory-saas-rightanswers-tutorial/IC802927.png "設定單一登入")
 
-2.  在 [要如何讓使用者登入 RightAnswers] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按一下 [下一步]。
+2.  在 [要如何讓使用者登入 RightAnswers] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
     ![設定單一登入](./media/active-directory-saas-rightanswers-tutorial/IC802928.png "設定單一登入")
 
 3.  在 [設定應用程式 URL] 頁面的 [登入 URL] 文字方塊中，輸入使用者用來登入RightAnswers 應用程式的 URL (例如：*https://fortify.rightanswers.com/portal/ss/*)，然後按一下 *[下一步]*。
 
-    ![設定 App 設定](./media/active-directory-saas-rightanswers-tutorial/IC802929.png "設定 App 設定")
+    ![設定應用程式設定](./media/active-directory-saas-rightanswers-tutorial/IC802929.png "設定應用程式設定")
 
 4.  於 [設定在 RightAnswers 單一登入] 頁面上，按 [下載中繼資料] 來下載您的中繼資料，然後將中繼資料檔儲存在您的本機電腦上。
 
@@ -91,7 +91,7 @@
     ![設定單一登入](./media/active-directory-saas-rightanswers-tutorial/IC802931.png "設定單一登入")
 ##設定使用者佈建
   
-若要讓 Azure AD 使用者可以登入 RightAnswers，則必須將他們佈建至 RightAnswers。在 RightAnswersd 的情況下，佈建是自動化工作。沒有您適用的動作項目。
+若要讓 Azure AD 使用者可以登入 RightAnswers，則必須將他們佈建至 RightAnswers。在 RightAnswersd 的情況下，佈建是自動化工作。沒有您需要使用的動作項目。
   
 第一次嘗試單一登入時，會視需要自動建立使用者。
 
@@ -115,4 +115,4 @@
   
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0928_2016-->

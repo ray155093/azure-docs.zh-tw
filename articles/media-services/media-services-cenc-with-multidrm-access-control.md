@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="具有多重 DRM 及存取控制的 CENC：Azure 與 Azure 媒體服務的參考設計和實作" 
+	pageTitle="具有多重 DRM 及存取控制的 CENC：Azure 與 Azure 媒體服務的參考設計和實作 | Microsoft Azure" 
 	description="了解如何授權 Microsoft® Smooth Streaming Client Porting Kit。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"  
+	ms.date="09/26/2016"  
 	ms.author="willzhan;kilroyh;yanmf;juliako"/>
 
 #具有多重 DRM 及存取控制的 CENC：Azure 與 Azure 媒體服務的參考設計和實作
@@ -522,4 +522,4 @@ Windows 10 的 Microsoft Edge 及 IE 11 中的 EME，允許支援 [PlayReady SL3
 
 William Zhang、Mingfei Yan、Roland Le Franc、Kilroy Hughes、Julia Kornich
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

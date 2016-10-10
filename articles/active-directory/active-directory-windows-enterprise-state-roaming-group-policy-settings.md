@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/07/2016"
+	ms.date="09/27/2016"
 	ms.author="femila"/>
 
 # 群組原則和 MDM 設定
@@ -55,4 +55,4 @@ MDM 原則設定會套用至 Windows 10 及 Windows 10 行動裝置版。Windows
 - [設定和資料漫遊常見問題集](active-directory-windows-enterprise-state-roaming-faqs.md)
 - [Windows 10 漫遊設定參考](active-directory-windows-enterprise-state-roaming-windows-settings-reference.md)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0928_2016-->

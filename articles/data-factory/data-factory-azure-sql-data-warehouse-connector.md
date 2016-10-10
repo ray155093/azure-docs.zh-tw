@@ -3,7 +3,7 @@
 	description="了解如何使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料" 
 	services="data-factory" 
 	documentationCenter="" 
-	authors="spelluru" 
+	authors="linda33wj" 
 	manager="jhubbard" 
 	editor="monicar"/>
 
@@ -14,7 +14,7 @@
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="09/20/2016" 
-	ms.author="spelluru"/>
+	ms.author="jingwang"/>
 
 # 使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料
 
@@ -658,4 +658,4 @@ NULL 值是一種特殊形式的預設值。如果資料行可為 null，該資�
 ## 效能和微調  
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

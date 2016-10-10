@@ -13,12 +13,12 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="09/08/2016"
+   ms.date="09/22/2016"
    ms.author="carlrab"/>
 
 # Umbraco 使用 Azure SQL Database 為雲端中數千個租用戶快速佈建和調整服務
 
-![Umbraco 標誌](./media/sql-database-case-study-umbraco/umbracologo.png)
+![Umbraco 標誌](./media/sql-database-implementation-umbraco/umbracologo.png)
 
 Umbraco 是一個熱門的開放原始碼內容管理系統 (CMS)，從小型行銷活動或簡冊站台，到適用於 Fortune 500 大公司及全球媒體網站的複雜應用程式，全部都能執行。
 
@@ -33,7 +33,7 @@ Umbraco 是一個熱門的開放原始碼內容管理系統 (CMS)，從小型行
 UaaS 讓 SaaS 客戶能夠使用他們先前無法觸及的 Umbraco CMS 功能。針對這些客戶，會佈建一個包含生產環境資料庫的可運作 CMS 環境。客戶可以依其需求，最多新增兩個額外的資料庫來用於開發和預備環境。發出新環境要求時，自動化程序會自動為該客戶指派一個資料庫。新資料庫幾秒內就會準備就緒，因為 Umbraco 早就已經從 Azure 的可用資料庫彈性集區預先佈建資料庫 (請參閱圖 1)。
 
 
-![圖 1](./media/sql-database-case-study-umbraco/figure1.png)
+![Umbraco 佈建的生命週期](./media/sql-database-implementation-umbraco/figure1.png)
 
 圖 1.Umbraco 即服務 (UaaS) 的佈建生命週期
  
@@ -53,9 +53,9 @@ UaaS 讓 SaaS 客戶能夠使用他們先前無法觸及的 Umbraco CMS 功能�
 
     客戶會使用一到三個環境 (用於生產、預備和/或開發)，每個環境都有自己的資料庫。客戶資料庫是在彈性資料庫集區中，這讓 Umbraco 不需過度佈建即可提供有效率的調整。
 
-    ![圖 2](./media/sql-database-case-study-umbraco/figure2.png)
+    ![Umbraco 專案概觀](./media/sql-database-implementation-umbraco/figure2.png)
 
-    ![圖 3](./media/sql-database-case-study-umbraco/figure3.png)
+    ![Umbraco 專案詳細資料](./media/sql-database-implementation-umbraco/figure3.png)
 
     圖 2.顯示專案總覽和詳細資料的 Umbraco 即服務 (UaaS) 客戶網站
 
@@ -85,7 +85,7 @@ UaaS 讓 SaaS 客戶能夠使用他們先前無法觸及的 Umbraco CMS 功能�
 
 如果客戶不再需要第二個和/或第三個環境，可以直接將這些環境移除。這樣會釋出資源成為 Umbraco 彈性資料庫可用性集區的一部分，而可供用於其他客戶。
 
-![圖 4](./media/sql-database-case-study-umbraco/figure4.png)
+![Umbraco 部署架構](./media/sql-database-implementation-umbraco/figure4.png)
 
 圖 3.Microsoft Azure 上的 UaaS 部署架構
 
@@ -101,7 +101,7 @@ UaaS 讓 SaaS 客戶能夠使用他們先前無法觸及的 Umbraco CMS 功能�
 
 Umbraco 開發人員的其中一個重要的目標就是，為 UaaS 客戶提供一個快速且沒有容量限制的環境佈建方式。但是在 Umbraco 資料中心提供專屬的託管服務將需要大量的額外容量，以應付處理時的高載狀況。這意謂著要新增大量一般不會充分利用的計算基礎結構。
 
-此外，Umbraco 開發團隊想要的是一個能讓他們儘量重複使用現有程式碼的解決方案。如 Umbraco 開發人員 Mikkel Hansen 所述：「我們非常滿意我們已經熟悉的 Microsoft 開發工具，像是 Microsoft SQL Server、Microsoft Azure SQL Database、ASP.net，以及 Internet Information Services (IIS)。在投資 IaaS 或 PaaS 雲端解決方案之前，我們想要確定它可以支援我們的 Microsoft 工具與平台，如此我們才不需要對我們的程式碼基底進行大規模變更。」
+此外，Umbraco 開發團隊想要的是一個能讓他們儘量重複使用現有程式碼的解決方案。如 Umbraco 開發人員 Mikkel Madsen 所述：「我們非常滿意我們已經熟悉的 Microsoft 開發工具，像是 Microsoft SQL Server、Microsoft Azure SQL Database、ASP.net，以及 Internet Information Services (IIS)。在投資 IaaS 或 PaaS 雲端解決方案之前，我們想要確定它可以支援我們的 Microsoft 工具與平台，如此我們才不需要對我們的程式碼基底進行大規模變更。」
 
 為了符合其所有準則，Umbraco 尋找了符合下列資格的雲端合作夥伴︰
 
@@ -117,7 +117,7 @@ Morten 繼續說道：「以前，我們必須手動佈建 Web 資料庫的伺�
 
 Morten 也很滿意 Azure 所提供的調整功能。「彈性資料庫集區是最適合我們 SaaS 方案的選項，因為我們可以視需要上下調整容量。佈建相當簡單，再搭配上我們的設定，我們便可以做最充分的利用」。 Morten 表示：「彈性集區的簡單性，再加上以服務層為基礎之 DTU 的保證，使得我們能夠依需求佈建新的資源集區。最近，我們一個較大客戶的即時環境尖峰達到了 100 個 DTU。透過使用 Azure，我們的彈性集區為客戶的資料庫提供了它們所需的即時資源，而不需預測 DTU 需求。簡單地說，我們的客戶達到了預期的周轉時間，而我們則符合了效能服務等級協定。」
 
-Mikkel Hansen 總結：「除了將「Azure 服務匯流排」與 Azure SQL Database 搭配使用的基礎技術以外，我們也採用了強大的 Azure 演算法，將常見的 SaaS 案例 (讓新客戶即時大規模上線) 與我們的應用程式模式 (預先佈建開發資料庫和即時資料庫) 連接。」
+Mikkel Madsen 總結：「除了將「Azure 服務匯流排」與 Azure SQL Database 搭配使用的基礎技術以外，我們也採用了強大的 Azure 演算法，將常見的 SaaS 案例 (讓新客戶即時大規模上線) 與我們的應用程式模式 (預先佈建開發資料庫和即時資料庫) 連接。」
 
 ##透過 Azure，UaaS 的表現超出客戶期望
 
@@ -139,4 +139,4 @@ Mikkel Hansen 總結：「除了將「Azure 服務匯流排」與 Azure SQL Data
 
 - 若要深入了解 Umbraco，請參閱 [Umbraco](https://umbraco.com/cloud)。
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

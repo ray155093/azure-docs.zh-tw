@@ -22,7 +22,11 @@
 
 ## 準備虛擬磁碟
 
->[AZURE.NOTE] Azure 不支援較新的 VHDX 格式。VHD 必須是固定大小，非動態大小。如有需要，下列指示將詳細說明如何從 VHDX 或動態磁碟進行轉換。允許的 VHD 大小上限為 1023 GB。
+>[AZURE.NOTE] 
+Azure 只支援採用 VHD 檔案格式的[第 1 代虛擬機器](http://blogs.technet.com/b/ausoemteam/archive/2015/04/21/deciding-when-to-use-generation-1-or-generation-2-virtual-machines-with-hyper-v.aspx)。Azure 不支援較新的 VHDX 格式。
+>
+> VHD 必須是固定大小，非動態大小。如有需要，下列指示將詳細說明如何從 VHDX 或動態磁碟進行轉換。允許的 VHD 大小上限為 1023 GB。
+
 
 確定 Windows VHD 目前在本機伺服器上的運作正常。先解決 VM 本身的任何錯誤，然後嘗試轉換或上傳至 Azure。
 
@@ -319,4 +323,4 @@ Convert-VHD –Path c:\test\MY-VM.vhdx –DestinationPath c:\test\MY-NEW-VM.vhd 
 
 - [將 Windows VM 映像上傳至 Azure 供 Resource Manager 部署使用](virtual-machines-windows-upload-image.md)
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

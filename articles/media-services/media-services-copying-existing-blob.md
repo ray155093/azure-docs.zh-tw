@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="將現有的 blob 複製到媒體服務資產" 
+	pageTitle="將現有的 blob 複製到媒體服務資產 | Microsoft Azure" 
 	description="本主題說明如何將現有的 blob 複製到媒體服務資產。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="ne" 
 	ms.topic="article" 
-	ms.date="06/22/2016" 
+	ms.date="09/26/2016" 
 	ms.author="juliako"/>
 
 #將現有的 blob 複製到媒體服務資產
@@ -28,9 +28,9 @@
 
 從[這裡](https://azure.microsoft.com/documentation/samples/media-services-dotnet-copy-blob-into-asset/)取得和執行範例。
 
-##先決條件
+##必要條件
 
-- 在新的或現有的 Azure 訂用帳戶中有兩個媒體服務帳戶。請參閱主題＜[如何建立媒體服務帳戶](media-services-create-account.md)＞ (英文)。
+- 在新的或現有的 Azure 訂用帳戶中有兩個媒體服務帳戶。請參閱主題[如何建立媒體服務帳戶](media-services-create-account.md)。
 - 作業系統：Windows 10、Windows 7、Windows 2008 R2 或 Windows 8。
 - .NET Framework 4.5。
 - Visual Studio 2010 SP1 (Professional、Premium、Ultimate 或 Express) 或更新版本。
@@ -322,4 +322,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

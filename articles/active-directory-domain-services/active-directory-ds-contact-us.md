@@ -1,5 +1,5 @@
 <properties
-	pageTitle="Azure Active Directory 網域服務預覽：連絡我們 | Microsoft Azure"
+	pageTitle="Azure Active Directory Domain Services：與我們連絡 | Microsoft Azure"
 	description="請連絡 Azure AD 網域服務產品小組"
 	services="active-directory-ds"
 	documentationCenter=""
@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/06/2016"
+	ms.date="09/21/2016"
 	ms.author="maheshu"/>
 
 
-# Azure AD 網域服務 (預覽) - 連絡我們
+# Azure AD 網域服務 - 與我們連絡
 
-## 連絡我們
-如果對您的受管理網域有問題，請檢查以了解[疑難排解指南](active-directory-ds-troubleshooting.md)中所述的步驟是否可解決問題。如果您仍然有問題，請與我們如果您仍然有問題，請與我們連絡。
+## 連絡產品小組
+如果對您的受管理網域有問題，請檢查以了解[疑難排解指南](active-directory-ds-troubleshooting.md)中所述的步驟是否可解決問題。如果您仍然有問題，請與我們連絡。
 
 您可以透過 [Azure AD 網域服務意見反應](mailto:aaddsfb@microsoft.com)寄送電子郵件給我們。
 
@@ -36,4 +36,4 @@
 
 請務必在問題或意見反應前加上 **'AADDS'** 字樣，它才可送達我們。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0928_2016-->

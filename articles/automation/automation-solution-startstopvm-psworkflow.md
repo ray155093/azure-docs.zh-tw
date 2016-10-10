@@ -65,9 +65,9 @@ Runbook 需要下列資產，您必須建立這些資產並填入適當的值。
 
 | 參數 | 類型 | 強制 | 說明 |
 |:---|:---|:---|:---|
-| ServiceName | 字串 | 否 | 如果提供一個值，則會啟動或停止具有該服務名稱的所有虛擬機器。如果不提供任何值，則會啟動或停止 Azure 訂用帳戶中的所有傳統虛擬機器。 |
-| AzureSubscriptionIdAssetName | 字串 | 否 | 包含[變數資產](#installing-and-configuring-the-scenario)的名稱，此資產含有 Azure 訂用帳戶的訂用帳戶識別碼。如果不指定任何值，則會使用 *AzureSubscriptionId*。 |
-| AzureCredentialAssetName | 字串 | 否 | 包含[認證資產](#installing-and-configuring-the-scenario)的名稱，此資產含有要使用的 Runbook 認證。如果不指定任何值，則會使用 *AzureCredential*。 |
+| ServiceName | string | 否 | 如果提供一個值，則會啟動或停止具有該服務名稱的所有虛擬機器。如果不提供任何值，則會啟動或停止 Azure 訂用帳戶中的所有傳統虛擬機器。 |
+| AzureSubscriptionIdAssetName | string | 否 | 包含[變數資產](#installing-and-configuring-the-scenario)的名稱，此資產含有 Azure 訂用帳戶的訂用帳戶識別碼。如果不指定任何值，則會使用 *AzureSubscriptionId*。 |
+| AzureCredentialAssetName | string | 否 | 包含[認證資產](#installing-and-configuring-the-scenario)的名稱，此資產含有要使用的 Runbook 認證。如果不指定任何值，則會使用 *AzureCredential*。 |
 
 ### 啟動 Runbook
 
@@ -87,9 +87,9 @@ Runbook 將為每部虛擬機器[輸出訊息](automation-runbook-output-and-mes
 | Start-AzureVMs | 虛擬機器已在執行中 | MyVM 已在執行中 |
 | Start-AzureVMs | 成功提交虛擬機器的啟動要求 | MyVM 已啟動 |
 | Start-AzureVMs | 虛擬機器的啟動要求失敗 | MyVM 無法啟動 |
-| Stop-AzureVMs | 虛擬機器已在執行中 | MyVM 已停止 |
-| Stop-AzureVMs | 成功提交虛擬機器的啟動要求 | MyVM 已啟動 |
-| Stop-AzureVMs | 虛擬機器的啟動要求失敗 | MyVM 無法啟動 |
+| Stop-AzureVMs | 虛擬機器已停止 | MyVM 已停止 |
+| Stop-AzureVMs | 成功提交虛擬機器的停止要求 | MyVM 已停止 |
+| Stop-AzureVMs | 虛擬機器的停止要求失敗 | MyVM 無法停止 |
 
 例如，Runbook 的下列程式碼片段會嘗試啟動服務名稱為 *MyServiceName* 的所有虛擬機器。如果有任何啟動要求失敗，則可以採取錯誤動作。
 
@@ -193,4 +193,4 @@ Runbook 將為每部虛擬機器[輸出訊息](automation-runbook-output-and-mes
 - 若要深入了解如何使用子系 Runbook，請參閱 [Azure 自動化中的子系 Runbook](automation-child-runbooks.md)
 - 若要深入了解 Runbook 執行和記錄期間的輸出訊息以協助進行疑難排解，請參閱 [Azure 自動化中的 Runbook 輸出和訊息](automation-runbook-output-and-messages.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0928_2016-->

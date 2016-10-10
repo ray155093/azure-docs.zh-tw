@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="asmalser-msft"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -18,7 +18,7 @@
 
 #使用 SCIM 以啟用從 Azure Active Directory 到應用程式的使用者和群組自動佈建
 
-##概觀
+##Overview
 
 Azure Active Directory 會利用 [SCIM 2.0 通訊協定規格](https://tools.ietf.org/html/draft-ietf-scim-api-19)中定義的介面，自動佈建使用者和群組到 Web 服務前端的任何應用程式或身分識別存放區。Azure Active Directory 可以傳送要求給此 Web 服務來建立、修改和刪除指派的使用者與群組，Web 服務接著可將這些要求轉譯為目標身分識別存放區的作業。
 
@@ -36,7 +36,7 @@ Azure Active Directory 中的 SCIM 有兩個使用案例：
 
 Azure Active Directory 可以設定為將已指派的使用者和群組佈建至實作 [System for Cross-domain Identity Management 2 (SCIM)](https://tools.ietf.org/html/draft-ietf-scim-api-19) Web 服務、並接受以 OAuth 持有人權杖進行驗證的應用程式。在 SCIM 2.0 規格中，應用程式必須符合下列需求：
 
-* 支援根據 SCIM 通訊協定 3.3 小節建立使用者和 (或) 群組的作業。  
+* 支援根據 SCIM 通訊協定 3.3 小節建立使用者和 (或) 群組的作業。
 
 * 支援根據 SCIM 通訊協定 3.5.2 小節修改具有修補要求的使用者和 (或) 群組的作業。
 
@@ -67,11 +67,11 @@ Azure Active Directory 可以設定為將已指派的使用者和群組佈建至
 4.	在產生的畫面中，選取第二個 [設定帳戶佈建] 按鈕。
 5.	在 [佈建端點 URL] 欄位中，輸入應用程式 SCIM 端點的 URL。
 6.	如果 SCIM 端點需要來自非 Azure AD 簽發者的 OAuth 持有人權杖，那麼便將所需的 OAuth 持有人權杖複製到 [驗證權杖 (選擇性)] 欄位。如果此欄位保留空白，則 Azure AD 將在每個要求包含從 Azure AD 簽發的 OAuth 持有人權杖。使用 Azure AD 作為身分識別提供者的應用程式，可以驗證此 Azure AD 簽發的權杖。
-7.	按 [下一步]，然後按一下 [開始測試] 按鈕，讓 Azure Active Directory 嘗試連接到 SCIM 端點。如果嘗試失敗，就會顯示診斷資訊。  
+7.	按 [下一步]，然後按一下 [開始測試] 按鈕，讓 Azure Active Directory 嘗試連接到 SCIM 端點。如果嘗試失敗，就會顯示診斷資訊。
 8.	如果嘗試連接到應用程式成功，請在其餘畫面上按 [下一步]，然後按一下 [完成] 以結束對話方塊。
 9.	在產生的畫面中，選取第三個 [指派帳戶] 按鈕。在產生的使用者和群組區段中，指派您想要佈建到應用程式的使用者或群組。
 10.	指派使用者和群組之後，按一下畫面頂端附近的 [設定] 索引標籤。
-11.	在 [帳戶佈建] 下，確認狀態設為開啟。 
+11.	在 [帳戶佈建] 下，確認狀態設為開啟。
 12.	在 [工具] 下，按一下 [重新啟動帳戶佈建] 來開始進行佈建程序。
 
 請注意，可能需要 5-10 分鐘的時間，佈建程序才會開始將要求傳送至 SCIM 端點。應用程式的 [儀表板] 索引標籤上提供的連接嘗試的摘要和佈建活動的報表和佈建的任何錯誤就可以從下載目錄的 [報表] 索引標籤。
@@ -131,12 +131,12 @@ Azure Active Directory 可以設定為將已指派的使用者和群組佈建至
 ![][2]
 
 4.	在產生的畫面中，選取第二個 [**設定帳戶佈建**] 按鈕。
-5.	在對話方塊中，輸入網際網路公開的 URL 和 SCIM 端點的連接埠。這看起來應該像 http://testmachine.contoso.com:9000 或 http://<ip-address>:9000/，其中 <ip-address> 是網際網路公開 IP 位址。  
-6.	按一下 [**下一步**]，然後按一下 [**開始測試**] 按鈕，讓 Azure Active Directory 嘗試連接到 SCIM 端點。如果嘗試失敗，就會顯示診斷資訊。  
+5.	在對話方塊中，輸入網際網路公開的 URL 和 SCIM 端點的連接埠。這看起來應該像 http://testmachine.contoso.com:9000 或 http://<ip-address>:9000/，其中 <ip-address> 是網際網路公開 IP 位址。
+6.	按 [下一步]，然後按一下 [開始測試] 按鈕，讓 Azure Active Directory 嘗試連接到 SCIM 端點。如果嘗試失敗，就會顯示診斷資訊。
 7.	如果嘗試連接到您的 Web 服務成功，請在剩餘的畫面上按一下 [**下一步**]，然後再按一下 [**完成**] 結束對話方塊。
 8.	在產生的畫面中，選取第三個 [**指派帳戶**] 按鈕。在產生的使用者和群組區段中，指派您想要佈建到應用程式的使用者或群組。
 9.	指派使用者和群組之後，按一下畫面頂端附近的 [設定] 索引標籤。
-10.	在 [帳戶佈建] 下，確認狀態設為開啟。 
+10.	在 [帳戶佈建] 下，確認狀態設為開啟。
 11.	在 [工具] 下，按一下 [重新啟動帳戶佈建] 來開始進行佈建程序。
 
 請注意，可能需要 5-10 分鐘的時間，佈建程序才會開始將要求傳送至 SCIM 端點。應用程式的 [儀表板] 索引標籤上提供的連接嘗試的摘要和佈建活動的報表和佈建的任何錯誤就可以從下載目錄的 [報表] 索引標籤。
@@ -435,7 +435,7 @@ Azure Active Directory 可以佈建兩種類型的資源至 SCIM Web 服務。�
 * parameters.AlternateFilters.ElementAt(0).AttributePath: "externalId"
 * parameters.AlternateFilters.ElementAt(0).ComparisonOperator: ComparisonOperator.Equals
 * parameters.AlternateFilter.ElementAt(0).ComparisonValue: "jyoung"
-* correlationIdentifier: System.Net.Http.HttpRequestMessage.GetOwinEnvironment["owin.RequestId"] 
+* correlationIdentifier: System.Net.Http.HttpRequestMessage.GetOwinEnvironment["owin.RequestId"]
 
 **2：**如果對具有符合 Azure Active Directory 中使用者之 mailNickname 屬性值的 externalId 屬性值的使用者服務查詢的回應未傳回任何使用者，Azure Active Directory 便會要求服務佈建與 Azure Active Directory 中的使用者相對應的使用者。以下是這類要求的範例：
 
@@ -677,9 +677,9 @@ Microsoft 所提供、用於實作 SCIM 服務的通用語言基礎結構程式�
 
 下圖顯示 Azure Active Directory 會傳送至 SCIM 服務的訊息，以管理群組在其他身分識別存放區中的生命週期。這些訊息與使用者的訊息不同，有下列三個方面：
 
-* 群組資源的結構描述會被識別為 http://schemas.microsoft.com/2006/11/ResourceManagement/ADSCIM/Group。  
-* 擷取群組的要求會規定將成員屬性從回應要求中提供的任何資源中排除。  
-* 要求判斷參考屬性是否具有特定值，將會是有關成員屬性的要求。  
+* 群組資源的結構描述會被識別為 http://schemas.microsoft.com/2006/11/ResourceManagement/ADSCIM/Group。
+* 擷取群組的要求會規定將成員屬性從回應要求中提供的任何資源中排除。
+* 要求判斷參考屬性是否具有特定值，將會是有關成員屬性的要求。
 
 ![][5] *圖：群組佈建和取消佈建順序*
 
@@ -702,4 +702,4 @@ Microsoft 所提供、用於實作 SCIM 服務的通用語言基礎結構程式�
 [4]: ./media/active-directory-scim-provisioning/scim-figure-4.PNG
 [5]: ./media/active-directory-scim-provisioning/scim-figure-5.PNG
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0928_2016-->

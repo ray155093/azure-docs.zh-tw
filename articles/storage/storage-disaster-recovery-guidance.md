@@ -14,7 +14,7 @@
 	ms.devlang="dotnet"
 	ms.topic="article"
 	ms.date="08/03/2016"
-	ms.author="robinsh"/>
+	ms.author="jutang;robinsh"/>
 
 
 # 如果 Azure 儲存體發生中斷怎麼辦
@@ -81,4 +81,4 @@
 
 -   檔案 – 使用 [AzCopy](storage-use-azcopy.md) 或 [Azure PowerShell](storage-powershell-guide-full.md) 將您的檔案複製到位於其他區域的其他儲存體帳戶。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

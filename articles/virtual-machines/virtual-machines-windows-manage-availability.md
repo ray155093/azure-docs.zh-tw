@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/25/2016"
+	ms.date="09/27/2016"
 	ms.author="cynthn"/>
 
 # 管理虛擬機器的可用性
@@ -31,4 +31,4 @@
 
 若要深入了解如何對虛擬機器進行負載平衡，請參閱[對虛擬機器進行負載平衡](virtual-machines-windows-load-balance.md)。
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0928_2016-->

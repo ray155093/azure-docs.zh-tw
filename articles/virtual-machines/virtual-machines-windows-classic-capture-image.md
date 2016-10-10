@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/16/2016"
+	ms.date="09/27/2016"
 	ms.author="cynthn"/>
 
 #擷取以傳統部署模型建立之 Azure Windows 虛擬機器的映像。
@@ -91,4 +91,4 @@ Azure 會將映像儲存在 [我的映像] 之下。這個位置與您已上傳�
 [Image capture successful]: ./media/virtual-machines-capture-image-windows-server/CaptureSuccess.png
 [Use the captured image]: ./media/virtual-machines-capture-image-windows-server/MyImagesWindows.png
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0928_2016-->

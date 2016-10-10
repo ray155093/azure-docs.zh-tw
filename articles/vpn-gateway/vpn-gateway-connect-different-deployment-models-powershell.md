@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/09/2016"
+   ms.date="09/23/2016"
    ms.author="cherylmc" />
 
 # 使用 PowerShell 從不同的部署模型連接虛擬網路
@@ -24,8 +24,7 @@
 
 Azure 目前有兩種管理模型：傳統和 Resource Manager (RM)。如果您已使用 Azure 一段時間，則可能具有傳統 VNet 上執行的 Azure VM 和執行個體角色。較新的 VM 和角色執行個體可能會在 Resource Manager 中建立的 VNet 中執行。本文將逐步引導您將傳統 Vnet 連接到 Resource Manager Vnet，以允許位於不同部署模型中的資源透過閘道連線彼此通訊。
 
-您可以在不同訂用帳戶、不同區域和不同部署模型中的 VNet 之間建立連線。只要設定的閘道是動態或路由式，您也可以連接已連線到內部部署網路的 Vnet。如需 VNet 對 VNet 連線的詳細資訊，請參閱本文結尾處的 [VNet 對 VNet 常見問題集](#faq)。
-[AZURE.INCLUDE [vpn-gateway-vnetpeeringlink](../../includes/vpn-gateway-vnetpeeringlink-include.md)]
+您可以在不同訂用帳戶、不同區域和不同部署模型中的 VNet 之間建立連線。只要設定的閘道是動態或路由式，您也可以連接已連線到內部部署網路的 Vnet。如需 VNet 對 VNet 連線的詳細資訊，請參閱本文結尾處的 [VNet 對 VNet 常見問題集](#faq)。[AZURE.INCLUDE [vpn-gateway-vnetpeeringlink](../../includes/vpn-gateway-vnetpeeringlink-include.md)]
 
 ## 開始之前
 
@@ -39,7 +38,7 @@ Azure 目前有兩種管理模型：傳統和 Resource Manager (RM)。如果您�
 
 ### <a name="exampleref"></a>設定範例
 
-在下列步驟中使用 PowerShell Cmdlet 時，您可以使用設定範例做為參考。
+使用 PowerShell Cmdlet 時，您可以參考設定範例。
 
 **傳統 VNet 設定**
 
@@ -47,20 +46,20 @@ VNet 名稱 = ClassicVNet <br> 位置 = 美國西部 <br> 虛擬網路位址空�
 
 **Resource Manager VNet 設定**
 
-VNet 名稱 = RMVNet <br> 資源群組 = RG1 <br> 虛擬網路 IP 位址空間 = 192.168.1.0/16 <br> Subnet -1 = 192.168.1.0/24 <br> GatewaySubnet = 192.168.0.0/26 <br> 位置 = 美國東部 <br> 閘道公用 IP 名稱 = gwpip <br> 區域網路閘道 = ClassicVNetLocal <br> 虛擬網路閘道名稱 = RMGateway <br> 閘道 IP 位址組態 = gwipconfig
+VNet 名稱 = RMVNet <br> 資源群組 = RG1 <br> 虛擬網路 IP 位址空間 = 192.168.0.0/16 <br> Subnet-1 = 192.168.1.0/24 <br> GatewaySubnet = 192.168.0.0/26 <br> 位置 = 美國東部 <br> 閘道公用 IP 名稱 = gwpip <br> 區域網路閘道 = ClassicVNetLocal <br> 虛擬網路閘道名稱 = RMGateway <br> 閘道 IP 位址組態 = gwipconfig
 
 
 ## <a name="createsmgw"></a>區段 1 - 設定傳統 VNet
 
 ### 第 1 部份 - 下載您的網路組態檔
 
-1. 在 PowerShell 主控台中登入您的 Azure 帳戶。此 Cmdlet 會提示您提供 Azure 帳戶的登入認證。登入之後，它會下載您的帳戶設定以供 Azure PowerShell 使用。您將使用 SM PowerShell Cmdlet 才能完成這個部分的設定。
+1. 在 PowerShell 主控台中以提高的權限登入您的 Azure 帳戶。下列 Cmdlet 會提示您輸入 Azure 帳戶的登入認證。登入之後，它會下載您的帳戶設定以供 Azure PowerShell 使用。您將使用 SM PowerShell Cmdlet 才能完成這個部分的設定。
 
 		Add-AzureAccount
 
 2. 執行下列命令以匯出 Azure 網路組態檔。您可以視需要變更此檔案的位置，以匯出至不同的位置。您將編輯此檔案，然後將它匯入至 Azure。
 
-		Get-AzureVNetConfig -ExportToFile c:\AzureNet\NetworkConfig.xml
+		Get-AzureVNetConfig -ExportToFile C:\AzureNet\NetworkConfig.xml
 
 3. 開啟您下載的 .xml 檔案加以編輯。如需網路組態檔的範例，請參閱[網路組態結構描述](https://msdn.microsoft.com/library/jj157100.aspx)。
  
@@ -92,7 +91,7 @@ VNet 名稱 = RMVNet <br> 資源群組 = RG1 <br> 虛擬網路 IP 位址空間 =
     <LocalNetworkSites>
       <LocalNetworkSite name="RMVNetLocal">
         <AddressSpace>
-          <AddressPrefix>192.168.1.0/16</AddressPrefix>
+          <AddressPrefix>192.168.0.0/16</AddressPrefix>
         </AddressSpace>
         <VPNGatewayAddress>13.68.210.16</VPNGatewayAddress>
       </LocalNetworkSite>
@@ -114,7 +113,7 @@ VNet 名稱 = RMVNet <br> 資源群組 = RG1 <br> 虛擬網路 IP 位址空間 =
 
 儲存檔案，然後執行下列命令，將它匯入至 Azure。確定您會視需要變更環境的檔案路徑。
 
-		Set-AzureVNetConfig -ConfigurationPath C:\AzureNet\ClassicVNet.xml
+		Set-AzureVNetConfig -ConfigurationPath C:\AzureNet\NetworkConfig.xml
 
 您應會看到類似以下的結果顯示匯入成功。
 
@@ -122,25 +121,15 @@ VNet 名稱 = RMVNet <br> 資源群組 = RG1 <br> 虛擬網路 IP 位址空間 =
 		--------------------        -----------                      ---------------                                                
 		Set-AzureVNetConfig        e0ee6e66-9167-cfa7-a746-7casb9    Succeeded 
 
-### 第 6 部份 - 建立虛擬網路閘道 
+### 第 6 部分 - 建立閘道 
 
-您可以使用傳統入口網站或 PowerShell 來建立虛擬網路閘道。目前，不可能在 Azure 入口網站中建立傳統閘道。
+您可以使用傳統入口網站或 PowerShell 來建立 VNet 閘道。
 
-#### 在傳統入口網站中建立閘道
-
-1. 在[傳統入口網站](https://manage.windowsazure.com)中，移至 [網路]，然後按一下您要為其建立虛擬網路閘道的傳統 VNet。這會開啟 VNet 的主頁面。
-2. 按一下頁面頂端的 [儀表板] 以變更成 [儀表板] 頁面。
-3. 按一下 [儀表板] 頁面底部的 [建立閘道]，然後按一下 [動態路由]。
-4. 按一下 [是] 即可開始建立閘道。
-5. 等待閘道建立。有時可能需要 45 分鐘或更久的時間才能完成。
-6. 建立閘道之後，您可以在 [儀表板] 頁面上檢視閘道 IP 位址。這是您的閘道的公用 IP 位址。記下或複製公用 IP 位址。您會在稍後步驟中使用它來建立 Resource Manager VNet 組態的區域網路。
-7. 您可以選擇性地使用此 Cmdlet 來擷取閘道設定和檢查閘道狀態︰`Get-AzureVirtualNetworkGateway`
-
-#### 使用 PowerShell 建立閘道
-
-若要使用 PowerShell 建立閘道，請使用下列範例。
+使用以下範例來建立動態路由閘道︰
 
 	New-AzureVNetGateway -VNetName ClassicVNet -GatewayType DynamicRouting
+
+您可以使用 `Get-AzureVNetGateway` Cmdlet 檢查閘道的狀態。
 
 
 ## <a name="creatermgw"></a>區段 2 - 設定 RM VNet 閘道
@@ -169,7 +158,7 @@ VNet 名稱 = RMVNet <br> 資源群組 = RG1 <br> 虛擬網路 IP 位址空間 =
 			-Location "West US" -AddressPrefix "10.0.0.0/24" `
 			-GatewayIpAddress "n.n.n.n" -ResourceGroupName RG1
 
-3. **要求公用 IP 位址**以配置給 Azure Resource Manager VNet VPN 閘道。您無法指定想要使用的 IP 位址。該 IP 位址會以動態方式配置給您的閘道。但是，這不代表 IP 位址會變更。Azure VPN 閘道 IP 位址只會在刪除或重新建立閘道時變更。它不會因為重新調整、重設或其他 Azure VPN 閘道內部維護/升級而變更。<br>在此步驟中，我們還會設定稍後步驟所用的變數。
+3. **要求將公用 IP 位址**配置到 Resource Manager VNet 的虛擬網路閘道。您無法指定想要使用的 IP 位址。IP 位址是動態地配置到虛擬網路閘道。但是，這不代表 IP 位址會變更。只有在刪除及重新建立閘道時，虛擬網路閘道 IP 位址才會變更。它不會因為重新調整、重設或其他閘道內部維護/升級而變更。<br>在此步驟中，我們還會設定稍後步驟所用的變數。
 
 
 		$ipaddress = New-AzureRmPublicIpAddress -Name gwpip `
@@ -192,7 +181,7 @@ VNet 名稱 = RMVNet <br> 資源群組 = RG1 <br> 虛擬網路 IP 位址空間 =
 		-Name gwipconfig -SubnetId $subnet.id `
 		-PublicIpAddressId $ipaddress.id
 	
-7. 執行下列命令，以**建立 Resource Manager VNet 閘道**。`-VpnType` 必須為 RouteBased。
+7. 執行下列命令，以**建立 Resource Manager 虛擬網路閘道**。`-VpnType` 必須為 RouteBased。可能需要 45 分鐘以上才能完成。
 
 		New-AzureRmVirtualNetworkGateway -Name RMGateway -ResourceGroupName RG1 `
 		-Location "EastUS" -GatewaySKU Standard -GatewayType Vpn `
@@ -233,7 +222,7 @@ VNet 名稱 = RMVNet <br> 資源群組 = RG1 <br> 虛擬網路 IP 位址空間 =
 		
 	Add-AzureAccount
 
-1. 執行下列命令來**設定共用金鑰**。在此範例中，`-VNetName` 是傳統 VNet 的名稱，而 `-LocalNetworkSiteName` 是在傳統入口網站中設定區域網路時所指定的名稱。`-SharedKey` 是您可以產生和指定的值。您在此指定的值，必須與您在下一個步驟中建立連線時指定的值相同。此範例的傳回資料應該顯示狀態︰成功。
+1. 執行下列命令來**設定共用金鑰**。在此範例中，`-VNetName` 是傳統 VNet 的名稱，而 `-LocalNetworkSiteName` 是在傳統入口網站中設定區域網路時所指定的名稱。`-SharedKey` 是您可以產生和指定的值。您在此指定的值，必須與您在下一個步驟中建立連線時指定的值相同。此範例的傳回資料應該顯示狀態 [成功]。
 
 		Set-AzureVNetGatewayKey -VNetName ClassicVNet `
 		-LocalNetworkSiteName RMVNetLocal -SharedKey abc123
@@ -262,4 +251,4 @@ VNet 名稱 = RMVNet <br> 資源群組 = RG1 <br> 虛擬網路 IP 位址空間 =
 
 [AZURE.INCLUDE [vpn-gateway-vnet-vnet-faq](../../includes/vpn-gateway-vnet-vnet-faq-include.md)]
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

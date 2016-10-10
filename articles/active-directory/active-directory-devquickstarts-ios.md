@@ -35,6 +35,8 @@ Azure AD 提供 Active Directory 驗證程式庫 (ADAL) 給需要存取受保護
 
 若要開始使用，請[下載應用程式基本架構](https://github.com/AzureADQuickStarts/NativeClient-iOS/archive/skeleton.zip)或[下載完整的範例](https://github.com/AzureADQuickStarts/NativeClient-iOS/archive/complete.zip)。您還需要一個可以建立使用者並註冊應用程式的 Azure AD 租用戶。如果您還沒有租用戶，[了解如何取得租用戶](active-directory-howto-tenant.md)。
 
+> [AZURE.TIP] 試用新[開發人員入口網站](https://identity.microsoft.com/Docs/iOS)的預覽版本，這可協助您在短短幾分鐘內啟動並執行 Azure Active Directory！ 開發人員入口網站會逐步引導您完成註冊應用程式並將 Azure AD 整合至您的程式碼的程序。當您完成時，您會有可驗證租用戶中使用者的簡單應用程式，以及可接受權杖並執行驗證的後端。
+
 ## *1.決定您 iOS 的重新導向 URI*
 
 為了安全地在特定 SSO 案例啟動您的應用程式，我們需要您以特定格式建立**「重新導向 URI」**。重新導向 URI 可確保應用程式要求的權杖會正確地傳回給它們。
@@ -230,4 +232,4 @@ ADAL 可讓您輕鬆地將這些常見的身分識別功能全部納入您的應
 
 [AZURE.INCLUDE [active-directory-devquickstarts-additional-resources](../../includes/active-directory-devquickstarts-additional-resources.md)]
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

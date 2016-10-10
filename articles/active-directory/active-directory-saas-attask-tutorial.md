@@ -72,7 +72,7 @@
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![應用程式][4]
 
@@ -147,7 +147,7 @@
 
     e.在 Azure 傳統入口網站上，複製 [變更密碼 URL]，然後將它貼到 [變更密碼 URL] 文字方塊中。
 
-    e.按一下 [儲存]。
+    f.按一下 [儲存]。
 
 6. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按 [下一步]。
 
@@ -314,4 +314,4 @@
 [204]: ./media/active-directory-saas-attask-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-attask-tutorial/tutorial_general_205.png
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0928_2016-->

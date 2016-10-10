@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/18/2016"
+   ms.date="09/21/2016"
    ms.author="lakshmir;barbkess;sonyama"/>
 
 # 還原 Azure SQL 資料倉儲 (入口網站)
@@ -60,7 +60,7 @@
 8. 按一下 [確定]。
 9. 資料庫還原程序將會開始，您可以使用 [通知] 來監視此程序
 
->[AZURE.NOTE] 還原完成後，您可以遵循[完成復原的資料庫][]指南來設定復原的資料庫。
+>[AZURE.NOTE] 還原完成後，您可以遵循[在復原之後設定資料庫][]來設定復原的資料庫。
 
 
 ## 還原已刪除的資料庫
@@ -92,8 +92,7 @@
 8. 按一下 [確定]。
 9. 資料庫還原程序將會開始，您可以使用 [通知] 來監視此程序
 
->[AZURE.NOTE] 還原完成後，您可以遵循[完成復原的資料庫][]指南來設定復原的資料庫。
-
+>[AZURE.NOTE] 若要在還原完成之後設定資料庫，請參閱[在復原之後設定資料庫][]。
 
 ## 後續步驟
 若要深入了解 Azure SQL Database 版本的商務持續性功能，請閱讀 [Azure SQL Database 商務持續性概觀][]。
@@ -106,7 +105,7 @@
 [入口網站]: ./sql-data-warehouse-restore-database-portal.md
 [PowerShell]: ./sql-data-warehouse-restore-database-powershell.md
 [REST]: ./sql-data-warehouse-restore-database-rest-api.md
-[完成復原的資料庫]: ./sql-database-recovered-finalize.md
+[在復原之後設定資料庫]: ./sql-database-disaster-recovery.md#configure-your-database-after-recovery
 [要求 DTU 配額變更]: ./sql-data-warehouse-get-started-create-support-ticket.md#request-quota-change
 
 <!--MSDN references-->
@@ -116,4 +115,4 @@
 <!--Other Web references-->
 [Azure 入口網站]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0928_2016-->

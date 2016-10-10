@@ -14,21 +14,20 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="09/14/2016"
+	ms.date="09/21/2016"
 	ms.author="markvi"/>
 
 
 # Azure Active Directory 條件式存取   
   
-保護對公司資源的存取對每個組織來說相當重要。隨著雲端服務和行動裝置的出現，使用者存取公司資源的方式已經大幅變更。這導致需要新的安全性方法。
+保護對公司資源的存取對每個組織來說相當重要。隨著雲端服務和行動裝置的出現，使用者存取公司資源的方式已大幅改變。個人和公司擁有的裝置激增，因此需要新的方法來存取公司資源和安全性。
   
 ## 為什麼要使用條件式存取？  
 
-Azure Active Directory 中的條件式存取控制功能提供一些簡單的方式，可讓公司保護在雲端和內部部署環境中的資源。條件式存取原則除了會要求使用授與對機密服務之存取權的受 Intune 管理裝置來協助保護公司資料安全之外，也會要求使用多重要素驗證，因此可用來協助防範認證遭竊和遭到網路釣魚的風險。
+Azure Active Directory 條件式存取控制功能提供一些簡單的方式，可讓公司保護在雲端和內部部署環境中的資源。條件式存取原則可以利用 Multi-Factor Authentication 防範認證遭竊和遭到網路釣魚的風險。您也可以強制執行條件式存取原則來保護公司資料的安全，只有在 Microsoft Intune 等行動裝置管理系統中註冊的裝置會被授與機密服務的存取權。
 
 
-
-## 授權需求
+## 必要條件
 
 Azure Active Directory 條件式存取是 [Azure AD Premium](http://www.microsoft.com/identity) 的一項功能。所有存取已套用條件式存取原則之應用程式的使用者，都必須要有 Azure AD Premium 授權。您可以透過[未經授權的使用者報告](https://aka.ms/utc5ix)深入了解使用情況。
 
@@ -42,25 +41,24 @@ Azure Active Directory 條件式存取是 [Azure AD Premium](http://www.microsof
 
 ## 條件
   
-- **群組成員資格**：您可以根據使用者的群組成員資格，控制使用者的存取權層級。
+- **群組成員資格**：根據使用者的群組成員資格，控制使用者的存取權層級。
 
-- **位置**︰您可以利用使用者位置來觸發 MFA，並在使用者未在受信任網路時封鎖控制權。
+- **位置**︰利用使用者位置來觸發 Multi-Factor Authentication (MFA)，並在使用者未在受信任網路時封鎖控制權。
 
-- **裝置平台**︰您可以使用裝置平台類型 (例如 iOS、Android、Windows Mobile 和 Windows) 做為原則的套用條件。
+- **裝置平台**︰使用裝置平台類型 (例如 iOS、Android、Windows Mobile 和 Windows) 做為原則的套用條件。
 
 - **裝置啟用**︰裝置原則評估期間會驗證裝置的啟用/停用狀態。透過在目錄中停用遺失或遭竊的裝置，它就不能再用來滿足原則需求。
 
-- **登入和使用者風險**︰條件式存取風險原則適用於 Azure AD Identity Protection，並根據風險事件和異常登入活動提供進階保護。
+- **登入和使用者風險**︰條件式存取風險原則適用於 [Azure AD Identity Protection](active-directory-identityprotection.md)，並根據風險事件和異常登入活動提供進階保護。
 
 
 ## 控制
    
-- **Multi-Factor Authentication (MFA)**︰您可以透過 MFA 來要求使用增強式驗證。可由 Azure MFA 或在內部部署的 MFA 提供者使用 ADFS 提供 MFA。對於未獲授權但已取得有效使用者之使用者名稱和密碼存取權的使用者，MFA 驗證可協助防止其存取您的資源。
+- **Multi-Factor Authentication (MFA)**︰您可以透過 MFA 來要求使用增強式驗證。Azure MFA 或內部部署 MFA 提供者可以使用 Active Directory Federation Server (AD FS) 提供 MFA。對於未獲授權但已取得有效使用者之認證存取權的使用者，MFA 可協助防止其存取您的資源。
 
-- **封鎖**︰可依據使用者位置等條件套用存取權。例如，當使用者不是在受信任網路時封鎖存取權。
+- **封鎖**︰可以套用使用者位置等條件來封鎖使用者存取。例如，當使用者不是在受信任網路時封鎖存取權。
 
-- **相容裝置**：在裝置層級，您可以設定一些原則，來強制要求只有已加入網域的電腦或已向「行動裝置管理」(MDM) 註冊且符合規範的行動裝置，才能進行存取。Microsoft Intune 可用來檢查裝置相容性並回報給 Azure Active Directory，以在進行應用程式存取時強制要求相容性。
- 
+- **相容裝置**：在裝置層級，您可以設定一些原則，強制要求只有已加入網域的電腦或已在「行動裝置管理」(MDM) 應用程式中註冊且符合規範的行動裝置才能進行存取。例如，Microsoft Intune 可用來檢查裝置相容性並回報給 Azure Active Directory，以在進行應用程式存取時強制要求相容性。如需如何使用 Microsoft Intune 來保護應用程式和資料的詳細指引，請參閱[使用 Microsoft Intune 保護應用程式和資料](https://docs.microsoft.com/intune/deploy-use/protect-apps-and-data-with-microsoft-intune)。您也可以強制透過 Microsoft Intune 進行遺失或遭竊裝置的資料保護。如需詳細資訊，請參閱[使用 Microsoft Intune 搭配完整或選擇性抹除協助保護您的資料](https://docs.microsoft.com/intune/deploy-use/use-remote-wipe-to-help-protect-data-using-microsoft-intune)。
 
 ## 應用程式
 
@@ -69,9 +67,9 @@ Azure Active Directory 條件式存取是 [Azure AD Premium](http://www.microsof
 
 ## 裝置型條件式存取
 
-您也可以針對已向 Azure AD 註冊且符合特定條件的裝置，限制對應用程式的存取權。這可用來保護組織資源，讓有效使用者無法從下列裝置存取這些資源：
+您也可以針對已向 Azure AD 註冊且符合特定條件的裝置，限制對應用程式的存取權。裝置型條件式存取可保護組織資源，讓使用者無法從下列裝置存取這些資源：
 
-- 不明/未受管理的裝置
+- 不明/不受管理的裝置
 - 不符合貴組織所定義安全性原則的裝置。
 
 您可以根據下列需求來設定原則：
@@ -80,11 +78,11 @@ Azure Active Directory 條件式存取是 [Azure AD Premium](http://www.microsof
 
 - **相容裝置** - 您可以設定原則來限制只有在目錄中被管理系統標示為「相容」的裝置才能存取。此原則可確保只有符合安全性原則 (例如在裝置上強制執行檔案加密) 的裝置會獲允許存取。此原則可用來限制來自下列裝置的存取︰
 
-    - 由部署在混合式組態中的 System Center Configuration Manager (目前分支) 所管理的「已加入網域的 Windows 裝置」。
+    - **已加入網域的 Windows 裝置** - 由部署在混合式組態中的 System Center Configuration Manager (最新分支) 所管理。
 
-    - 由 Microsoft Intune 或支援的第三方「行動裝置管理」(MDM) 系統所管理的「Windows 10 行動工作或個人裝置」。
+    - **Windows 10 行動工作或個人裝置** - 由 Microsoft Intune 或支援的第三方「行動裝置管理」(MDM) 系統所管理。
 
-    - 由 Microsoft Intune 所管理的「iOS 和 Android 裝置」。
+    - **iOS 和 Android 裝置** - 由 Microsoft Intune 所管理。
 
 
 使用者如果存取受裝置型 CA 原則保護的應用程式，就必須從符合此原則的裝置進行存取。如果是從不符合此原則的裝置進行存取，則會遭到拒絕。
@@ -111,7 +109,7 @@ Azure Active Directory 條件式存取是 [Azure AD Premium](http://www.microsof
 
 - [使用者在存取 Azure AD 裝置型條件式存取受保護應用程式時的補救方式](active-directory-conditional-access-device-remediation.md)
 
-- [要求使用 Microsoft Intune 以協助保護資料](https://docs.microsoft.com/intune/deploy-use/use-remote-wipe-to-help-protect-data-using-microsoft-intune)
+- [使用 Microsoft Intune 保護遺失或遭竊裝置上的資料](https://docs.microsoft.com/intune/deploy-use/use-remote-wipe-to-help-protect-data-using-microsoft-intune)
 
 
 ### 根據登入風險保護資源
@@ -123,4 +121,4 @@ Azure Active Directory 條件式存取是 [Azure AD Premium](http://www.microsof
 - [條件式存取常見問題集](active-directory-conditional-faqs.md)
 - [技術參考](active-directory-conditional-access-technical-reference.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

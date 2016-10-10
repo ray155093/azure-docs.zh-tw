@@ -4,7 +4,7 @@
    services="active-directory"
    documentationCenter=""
    authors="andkjell"
-   manager="stevenpo"
+   manager="femila"
    editor=""/>
 
 <tags
@@ -43,4 +43,4 @@
 
 深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

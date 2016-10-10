@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="09/07/2016"
-	ms.author="tamram"/>
+	ms.author="dineshm;tamram"/>
 
 # 設定與擷取屬性和中繼資料 #
 
@@ -97,4 +97,4 @@
 - [適用於 .NET 的 Azure 儲存體用戶端程式庫參考資料](http://msdn.microsoft.com/library/azure/wa_storage_30_reference_home.aspx)
 - [適用於 .NET 的 Azure 儲存體用戶端程式庫封裝](https://www.nuget.org/packages/WindowsAzure.Storage/)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -32,16 +32,16 @@ Azure Machine Learning 建議 API 可分成下列邏輯群組：
 
 - <ins>限制</ins> - 建議 API 限制。
 - <ins>一般資訊</ins> - 驗證、服務 URI 和版本控制的相關資訊。
-- <ins>模型基本操作</ins> – 可讓您對模型執行基本操作 (例如建立、更新及刪除模型) 的 API。
-- <ins>模型進階操作</ins> – 可讓您深入了解模型相關進階資料的 API。
-- <ins>模型商務規則</ins> – 可讓您管理模型建議結果之相關商業規則的 API。
-- <ins>目錄</ins> – 可讓您對模型目錄執行基本操作的 API。目錄包含使用狀況資料項目的相關中繼資料資訊。
+- <ins>模型基本操作</ins> - 可讓您對模型執行基本操作 (例如建立、更新及刪除模型) 的 API。
+- <ins>模型進階操作</ins> - 可讓您深入了解模型相關進階資料的 API。
+- <ins>模型商務規則</ins> - 可讓您管理模型建議結果之相關商業規則的 API。
+- <ins>目錄</ins> - 可讓您對模型目錄執行基本操作的 API。目錄包含使用狀況資料項目的相關中繼資料資訊。
 - <ins>功能</ins> - 可讓您深入了解目錄中的項目，以及如何使用這項資訊來建立更佳建議的 API。
-- <ins>使用狀況資料</ins> – 可讓您對模型使用狀況資料執行基本操作的 API。基本格式的使用狀況資料由資料列組成，這些資料列包含成對的 &#60;userId&#62;,&#60;itemId&#62;。
-- <ins>組建</ins> – 能夠讓您觸發模型組建並執行與此組建相關之基本操作的 API。您可以在獲得有價值的使用狀況資料之後，觸發模型組建。
-- <ins>建議</ins> – 模型組建結束之後，可讓您取用建議的 API。
+- <ins>使用狀況資料</ins> - 可讓您對模型使用狀況資料執行基本操作的 API。基本格式的使用狀況資料由資料列組成，這些資料列包含成對的 &#60;userId&#62;,&#60;itemId&#62;。
+- <ins>組建</ins> - 能夠讓您觸發模型組建並執行與此組建相關之基本操作的 API。您可以在獲得有價值的使用狀況資料之後，觸發模型組建。
+- <ins>建議</ins> - 模型組建結束之後，可讓您取用建議的 API。
 - <ins>使用者資料</ins> - 可讓您擷取使用者使用方式資料之相關資訊的 API。
-- <ins>通知</ins> – 可讓您接收與 API 操作相關之問題通知的 API。(例如，您透過資料擷取回報使用量資料，而大部分的事件處理都失敗了。這將會引發錯誤通知。)
+- <ins>通知</ins> - 可讓您接收與 API 操作相關之問題通知的 API。(例如，您透過資料擷取回報使用量資料，而大部分的事件處理都失敗了。這將會引發錯誤通知。)
 
 ##2\.限制
 
@@ -159,16 +159,16 @@ HTTP 狀態碼：200
 
 在下列項目之下，您可以找到模型資料：
 
-- `feed/entry/content/properties/Id` – 模型的唯一識別碼。
-- `feed/entry/content/properties/Name` – 模型名稱。
-- `feed/entry/content/properties/Date` – 模型建立日期。
-- `feed/entry/content/properties/Status` – 模型狀態。下列其中之一：
+- `feed/entry/content/properties/Id` - 模型的唯一識別碼。
+- `feed/entry/content/properties/Name` - 模型名稱。
+- `feed/entry/content/properties/Date` - 模型建立日期。
+- `feed/entry/content/properties/Status` - 模型狀態。下列其中之一：
     - Created - 模型已建立且不包含目錄和使用方式。
-	- ReadyForBuild – 模型已建立且包含目錄和使用方式。
-- `feed/entry/content/properties/HasActiveBuild` – 表示模型是否已成功建置。
-- `feed/entry/content/properties/BuildId` – 模型的作用中組建識別碼。
-- `feed/entry/content/properties/Mpr` – 模型的平均值百分位數排名 (MPR - 如需詳細資訊，請參閱 ModelInsight)。
-- `feed/entry/content/properties/UserName` – 模型的內部使用者名稱。
+	- ReadyForBuild - 模型已建立且包含目錄和使用狀況。
+- `feed/entry/content/properties/HasActiveBuild` - 表示模型是否已成功建置。
+- `feed/entry/content/properties/BuildId` - 模型的作用中組建識別碼。
+- `feed/entry/content/properties/Mpr` - 模型的平均值百分位數排名 (MPR - 如需詳細資訊，請參閱 ModelInsight)。
+- `feed/entry/content/properties/UserName` - 模型的內部使用者名稱。
 
 OData XML
 
@@ -220,20 +220,20 @@ OData XML
 
 HTTP 狀態碼：200
 
-- `feed/entry/content/properties/Id` – 模型的唯一識別碼。
-- `feed/entry/content/properties/Name` – 模型名稱。
-- `feed/entry/content/properties/Date` – 模型建立日期。
-- `feed/entry/content/properties/Status` – 模型狀態。下列其中之一：
+- `feed/entry/content/properties/Id` - 模型的唯一識別碼。
+- `feed/entry/content/properties/Name` - 模型名稱。
+- `feed/entry/content/properties/Date` - 模型建立日期。
+- `feed/entry/content/properties/Status` - 模型狀態。下列其中之一：
   - Created - 模型已建立且不包含目錄和使用方式。
-  - ReadyForBuild – 模型已建立且包含目錄和使用方式。
-- `feed/entry/content/properties/HasActiveBuild` – 表示模型是否已成功建置。
-- `feed/entry/content/properties/BuildId` – 模型的作用中組建識別碼。
-- `feed/entry/content/properties/Mpr` – 模型 MPR (如需詳細資訊，請參閱 ModelInsight)。
-- `feed/entry/content/properties/UserName` – 模型的內部使用者名稱。
-- `feed/entry/content/properties/UsageFileNames` – 逗號分隔的模型使用方式檔案清單。
-- `feed/entry/content/properties/CatalogId` – 模型目錄識別碼。
-- `feed/entry/content/properties/Description` – 模型說明。
-- `feed/entry/content/properties/CatalogFileName` – 模型目錄檔案名稱。
+  - ReadyForBuild - 模型已建立且包含目錄和使用狀況。
+- `feed/entry/content/properties/HasActiveBuild` - 表示模型是否已成功建置。
+- `feed/entry/content/properties/BuildId` - 模型的作用中組建識別碼。
+- `feed/entry/content/properties/Mpr` - 模型 MPR (如需詳細資訊，請參閱 ModelInsight)。
+- `feed/entry/content/properties/UserName` - 模型的內部使用者名稱。
+- `feed/entry/content/properties/UsageFileNames` - 逗號分隔的模型使用狀況檔案清單。
+- `feed/entry/content/properties/CatalogId` - 模型目錄識別碼。
+- `feed/entry/content/properties/Description` - 模型說明。
+- `feed/entry/content/properties/CatalogFileName` - 模型目錄檔案名稱。
 
 OData XML
 
@@ -271,7 +271,7 @@ OData XML
 
 ###5\.4.更新模型
 
-您可以更新模型說明或作用中組建識別碼。<br> <ins>作用中組建識別碼</ins> – 每個模型的每個組建都有組建識別碼。作用中組建識別碼是每個新模型的第一個成功組建。一旦您有作用中組建識別碼，而且您執行相同模型的其他組建，您必須是需要將它明確設為預設組建識別碼。當您取用建議時，如果您未指定想要使用的組建識別碼，將會自動使用預設組建識別碼。<br> 此機制可讓您在生產環境中有建議模型時建置新模型，並先加以測試，再將其提升至生產環境。
+您可以更新模型說明或作用中組建識別碼。<br> <ins>作用中組建識別碼</ins> - 每個模型的每個組建都有組建識別碼。作用中組建識別碼是每個新模型的第一個成功組建。一旦您有作用中組建識別碼，而且您執行相同模型的其他組建，您必須是需要將它明確設為預設組建識別碼。當您取用建議時，如果您未指定想要使用的組建識別碼，將會自動使用預設組建識別碼。<br> 此機制可讓您在生產環境中有建議模型時建置新模型，並先加以測試，再將其提升至生產環境。
 
 
 | HTTP 方法 | URI |
@@ -839,9 +839,9 @@ d5358189-d70f-4e35-8add-34b83b4942b3, Pigs in Heaven
 
 HTTP 狀態碼：200
 
-- `feed/entry/content/properties/Id` – 此規則的唯一識別碼。
-- `feed/entry/content/properties/Type` – 規則的類型。
-- `feed/entry/content/properties/Parameter` – 規則參數。
+- `feed/entry/content/properties/Id` - 此規則的唯一識別碼。
+- `feed/entry/content/properties/Type` - 規則的類型。
+- `feed/entry/content/properties/Parameter` - 規則參數。
 
 OData XML
 
@@ -912,9 +912,9 @@ HTTP 狀態碼：200
 
 API 會傳回新建立的規則及其詳細資料。規則屬性可從下列路徑擷取：
 
-- `feed/entry/content/properties/Id` – 此規則的唯一識別碼。
-- `feed/entry/content/properties/Type` – 規則的類型：BlockList 或 Upsale。
-- `feed/entry/content/properties/Parameter` – 規則參數。
+- `feed/entry/content/properties/Id` - 此規則的唯一識別碼。
+- `feed/entry/content/properties/Type` - 規則的類型：BlockList 或 Upsale。
+- `feed/entry/content/properties/Parameter` - 規則參數。
 
 OData XML
 
@@ -1019,8 +1019,8 @@ HTTP 狀態碼：200
 HTTP 狀態碼：200
 
 API 傳回匯入的報告。
-- `feed\entry\content\properties\LineCount` – 已接受的行數。
-- `feed\entry\content\properties\ErrorCount` – 因錯誤而未插入的行數。
+- `feed\entry\content\properties\LineCount` - 已接受的行數。
+- `feed\entry\content\properties\ErrorCount` - 因錯誤而未插入的行數。
 
 OData XML
 
@@ -1066,12 +1066,12 @@ HTTP 狀態碼：200
 
 回應會包含每個目錄項目的一個項目。每個項目都有下列資料：
 
-- `feed/entry/content/properties/ExternalId` – 目錄項目外部識別碼，由客戶提供。
-- `feed/entry/content/properties/InternalId` – 目錄項目內部識別碼，由 Azure Machine Learning 建議產生。
-- `feed/entry/content/properties/Name` – 目錄項目名稱。
-- `feed/entry/content/properties/Category` – 目錄項目類別。
-- `feed/entry/content/properties/Description` – 目錄項目說明。
-- `feed/entry/content/properties/Metadata` – 目錄項目中繼資料。
+- `feed/entry/content/properties/ExternalId` - 目錄項目外部識別碼，由客戶提供。
+- `feed/entry/content/properties/InternalId` - 目錄項目內部識別碼，由 Azure Machine Learning 建議產生。
+- `feed/entry/content/properties/Name` - 目錄項目名稱。
+- `feed/entry/content/properties/Category` - 目錄項目類別。
+- `feed/entry/content/properties/Description` - 目錄項目說明。
+- `feed/entry/content/properties/Metadata` - 目錄項目中繼資料。
 
 
 OData XML
@@ -1169,12 +1169,12 @@ HTTP 狀態碼：200
 
 回應會包含每個目錄項目的一個項目。每個項目都有下列資料：
 
-- `feed/entry/content/properties/InternalId` – 目錄項目內部識別碼，由 Azure Machine Learning 建議產生。
-- `feed/entry/content/properties/Name` – 目錄項目名稱。
-- `feed/entry/content/properties/Rating` – (保留以供日後使用)
-- `feed/entry/content/properties/Reasoning` – (保留以供日後使用)
-- `feed/entry/content/properties/Metadata` – (保留以供日後使用)
-- `feed/entry/content/properties/FormattedRating` – (保留以供日後使用)
+- `feed/entry/content/properties/InternalId` - 目錄項目內部識別碼，由 Azure Machine Learning 建議產生。
+- `feed/entry/content/properties/Name` - 目錄項目名稱。
+- `feed/entry/content/properties/Rating` - (保留供日後使用)
+- `feed/entry/content/properties/Reasoning` - (保留供日後使用)
+- `feed/entry/content/properties/Metadata` - (保留供日後使用)
+- `feed/entry/content/properties/FormattedRating` - (保留供日後使用)
 
 OData XML
 
@@ -1224,9 +1224,9 @@ OData XML
 
 HTTP 狀態碼：200
 
-- `Feed\entry\content\properties\LineCount` – 已接受的行數。
-- `Feed\entry\content\properties\ErrorCount` – 因錯誤而未插入的行數。
-- `Feed\entry\content\properties\FileId` – 檔案識別碼。
+- `Feed\entry\content\properties\LineCount` - 已接受的行數。
+- `Feed\entry\content\properties\ErrorCount` - 因錯誤而未插入的行數。
+- `Feed\entry\content\properties\FileId` - 檔案識別碼。
 
 OData XML
 
@@ -1388,10 +1388,10 @@ HTTP 狀態碼：200
 
 回應會包含每個使用方式檔案的一個項目。每個項目都有下列資料：
 
-- `feed\entry\content\properties\Id` – 使用方式檔案識別碼。
-- `feed\entry\content\properties\Length` – 使用方式檔案長度，以 MB 為單位。
-- `feed\entry\content\properties\DateModified` – 使用方式檔案建立日期。
-- `feed\entry\content\properties\UseInModel` – 使用方式檔案是否在模型中使用。
+- `feed\entry\content\properties\Id` - 使用狀況檔案識別碼。
+- `feed\entry\content\properties\Length` - 使用狀況檔案長度，以 MB 為單位。
+- `feed\entry\content\properties\DateModified` - 使用狀況檔案建立日期。
+- `feed\entry\content\properties\UseInModel` - 使用狀況檔案是否在模型中使用。
 
 OData XML
 
@@ -1430,7 +1430,7 @@ OData XML
           	</m:properties>
 		</content>
 	</entry>
-</feed>
+</摘要>
 
 ###9\.3.取得使用狀況統計資料
 取得使用狀況統計資料。
@@ -1455,8 +1455,8 @@ HTTP 狀態碼：200
 
 索引鍵/值項目的集合。每個集合都包含以小時分組之特定事件類型的事件總和。
 
-- `feed\entry[i]\content\properties\Key` – 包含時間 (以小時分組) 和事件類型。
-- `feed\entry[i]\content\properties\Value` – 總事件計數。
+- `feed\entry[i]\content\properties\Key` - 包含時間 (以小時分組) 和事件類型。
+- `feed\entry[i]\content\properties\Value` - 事件總數。
 
 OData XML
 
@@ -1734,7 +1734,7 @@ OData XML
 		</m:properties>
 		</content>
 	</entry>
-</feed>
+</摘要>
 
 
 ###10\.2.取得功能資訊 (適用於特定排名組建)
@@ -1928,10 +1928,10 @@ HTTP 狀態碼：200
 
 - 建立 - 組建要求已建立。
 - 已排入佇列 - 組建要求已傳送並排入佇列。
-- 建置中 -建置進行中。
-- 成功 – 組建已成功結束。
-- 錯誤 – 組建已結束但發生失敗。
-- 已取消 – 組建已取消。
+- 建置中 - 建置進行中。
+- 成功 - 組建已成功結束。
+- 錯誤 - 組建已結束但發生失敗。
+- 已取消 - 組建已取消。
 - 取消中 - 組建的取消要求已傳送。
 
 
@@ -2002,13 +2002,13 @@ HTTP 狀態碼：200
 
 有效的組建狀態：
 
-- 建立 – 模型已建立。
-- 已排入佇列 – 已觸發模型組建，並已排入佇列。
-- 建置中 – 模型正在建置中。
-- 成功 – 組建已成功結束。
-- 錯誤 – 組建已結束但發生失敗。
-- 已取消 – 組建已取消。
-- 取消中 – 正在取消組建。
+- 建立 - 模型已建立。
+- 已排入佇列 - 已觸發模型組建，並已排入佇列。
+- 建置中 - 模型正在建置中。
+- 成功 - 組建已成功結束。
+- 錯誤 - 組建已結束但發生失敗。
+- 已取消 - 組建已取消。
+- 取消中 - 正在取消組建。
 
 請注意，組建識別碼可以在下列路徑下找到：`Feed\entry\content\properties\Id`
 
@@ -2075,28 +2075,28 @@ HTTP 狀態碼：200
 
 回應會包含每個組建的一個項目。每個項目都有下列資料：
 
-- `feed/entry/content/properties/UserName` – 使用者的名稱。
-- `feed/entry/content/properties/ModelName` – 模型的名稱。
-- `feed/entry/content/properties/ModelId` – 模型的唯一識別碼。
-- `feed/entry/content/properties/IsDeployed` – 組建是否已部署 (又稱為作用中組建)。
-- `feed/entry/content/properties/BuildId` – 組建的唯一識別碼。
+- `feed/entry/content/properties/UserName` - 使用者的名稱。
+- `feed/entry/content/properties/ModelName` - 模型的名稱。
+- `feed/entry/content/properties/ModelId` - 模型的唯一識別碼。
+- `feed/entry/content/properties/IsDeployed` - 組建是否已部署 (又稱為作用中組建)。
+- `feed/entry/content/properties/BuildId` - 組建的唯一識別碼。
 - `feed/entry/content/properties/BuildType` - 組建類型。
-- `feed/entry/content/properties/Status` – 組建狀態。可以是下列其中之一：錯誤、建置中、已排入佇列、取消中、已取消、成功。
-- `feed/entry/content/properties/StatusMessage` – 詳細狀態訊息 (僅適用於特定狀態)。
-- `feed/entry/content/properties/Progress` – 組建進度 (%)。
-- `feed/entry/content/properties/StartTime` – 組建開始時間。
-- `feed/entry/content/properties/EndTime` – 組建結束時間。
-- `feed/entry/content/properties/ExecutionTime` – 組建持續時間。
-- `feed/entry/content/properties/ProgressStep` – 正在進行中組建的目前階段相關詳細資料。
+- `feed/entry/content/properties/Status` - 組建狀態。可以是下列其中之一：錯誤、建置中、已排入佇列、取消中、已取消、成功。
+- `feed/entry/content/properties/StatusMessage` - 詳細狀態訊息 (僅適用於特定狀態)。
+- `feed/entry/content/properties/Progress` - 組建進度 (%)。
+- `feed/entry/content/properties/StartTime` - 組建開始時間。
+- `feed/entry/content/properties/EndTime` - 組建結束時間。
+- `feed/entry/content/properties/ExecutionTime` - 組建持續時間。
+- `feed/entry/content/properties/ProgressStep` - 正在進行中組建的目前階段相關詳細資料。
 
 有效的組建狀態：
 - 建立 - 組建要求項目已建立。
 - 已排入佇列 - 組建要求已觸發並排入佇列。
 - 建置中 - 建置進行中。
-- 成功 – 組建已成功結束。
-- 錯誤 – 組建已結束但發生失敗。
-- 已取消 – 組建已取消。
-- 取消中 – 正在取消組建。
+- 成功 - 組建已成功結束。
+- 錯誤 - 組建已結束但發生失敗。
+- 已取消 - 組建已取消。
+- 取消中 - 正在取消組建。
 
 組建類型的有效值：
 - 排名 - 排名組建。
@@ -2159,28 +2159,28 @@ HTTP 狀態碼：200
 
 回應會包含每個組建的一個項目。每個項目都有下列資料：
 
-- `feed/entry/content/properties/UserName` – 使用者的名稱。
-- `feed/entry/content/properties/ModelName` – 模型的名稱。
-- `feed/entry/content/properties/ModelId` – 模型的唯一識別碼。
-- `feed/entry/content/properties/IsDeployed` – 組建是否已部署。
-- `feed/entry/content/properties/BuildId` – 組建的唯一識別碼。
+- `feed/entry/content/properties/UserName` - 使用者的名稱。
+- `feed/entry/content/properties/ModelName` - 模型的名稱。
+- `feed/entry/content/properties/ModelId` - 模型的唯一識別碼。
+- `feed/entry/content/properties/IsDeployed` - 組建是否已部署。
+- `feed/entry/content/properties/BuildId` - 組建的唯一識別碼。
 - `feed/entry/content/properties/BuildType` - 組建類型。
-- `feed/entry/content/properties/Status` – 組建狀態。可以是下列其中之一：錯誤、建置中、已排入佇列、已取消、取消中、成功。
-- `feed/entry/content/properties/StatusMessage` – 詳細狀態訊息 (僅適用於特定狀態)。
-- `feed/entry/content/properties/Progress` – 組建進度 (%)。
-- `feed/entry/content/properties/StartTime` – 組建開始時間。
-- `feed/entry/content/properties/EndTime` – 組建結束時間。
-- `feed/entry/content/properties/ExecutionTime` – 組建持續時間。
-- `feed/entry/content/properties/ProgressStep` – 正在進行中組建的目前階段相關詳細資料。
+- `feed/entry/content/properties/Status` - 組建狀態。可以是下列其中之一：錯誤、建置中、已排入佇列、已取消、取消中、成功。
+- `feed/entry/content/properties/StatusMessage` - 詳細狀態訊息 (僅適用於特定狀態)。
+- `feed/entry/content/properties/Progress` - 組建進度 (%)。
+- `feed/entry/content/properties/StartTime` - 組建開始時間。
+- `feed/entry/content/properties/EndTime` - 組建結束時間。
+- `feed/entry/content/properties/ExecutionTime` - 組建持續時間。
+- `feed/entry/content/properties/ProgressStep` - 正在進行中組建的目前階段相關詳細資料。
 
 有效的組建狀態：
 - 建立 - 組建要求項目已建立。
 - 已排入佇列 - 組建要求已觸發並排入佇列。
 - 建置中 - 建置進行中。
-- 成功 – 組建已成功結束。
-- 錯誤 – 組建已結束但發生失敗。
-- 已取消 – 組建已取消。
-- 取消中 – 正在取消組建。
+- 成功 - 組建已成功結束。
+- 錯誤 - 組建已結束但發生失敗。
+- 已取消 - 組建已取消。
+- 取消中 - 正在取消組建。
 
 
 組建類型的有效值：
@@ -2490,7 +2490,7 @@ HTTP 狀態碼：200
 - `Feed\entry\content\properties\Id` - 建議項目識別碼。
 - `Feed\entry\content\properties\Name` - 項目的名稱。
 - `Feed\entry\content\properties\Rating` - 建議的評等，數字愈高表示信賴度愈高。
-- `Feed\entry\content\properties\Reasoning` - 建議理由 (例如建議說明)。
+- `Feed\entry\content\properties\Reasoning` - 建議推論 (例如建議說明)。
 
 以下範例回應包含 10 個建議項目。
 
@@ -2671,7 +2671,7 @@ HTTP 狀態碼：200
 - `Feed\entry\content\properties\Id` - 建議項目識別碼。
 - `Feed\entry\content\properties\Name` - 項目的名稱。
 - `Feed\entry\content\properties\Rating` - 建議的評等，數字愈高表示信賴度愈高。
-- `Feed\entry\content\properties\Reasoning` - 建議理由 (例如建議說明)。
+- `Feed\entry\content\properties\Reasoning` - 建議推論 (例如建議說明)。
 
 請參閱 12.1 中的回應範例
 
@@ -2700,10 +2700,10 @@ HTTP 狀態碼：200
 回應會包含每個建議項目集 (通常會與種子/輸入項目一起購買的一組項目) 的一個項目。每個項目都有下列資料：
 - `Feed\entry\content\properties\Id1` - 建議項目識別碼。
 - `Feed\entry\content\properties\Name1` - 項目的名稱。
-- `Feed\entry\content\properties\Id2` - 第二個建議項目識別碼 (選擇性)。
-- `Feed\entry\content\properties\Name2` - 第二個項目名稱 (選擇性)。
+- `Feed\entry\content\properties\Id2` - 第二個建議項目的識別碼 (選擇性)。
+- `Feed\entry\content\properties\Name2` - 第二個項目的名稱 (選擇性)。
 - `Feed\entry\content\properties\Rating` - 建議的評等，數字愈高表示信賴度愈高。
-- `Feed\entry\content\properties\Reasoning` - 建議理由 (例如建議說明)。
+- `Feed\entry\content\properties\Reasoning` - 建議推論 (例如建議說明)。
 
 以下範例回應包含 3 個建議項目集。
 
@@ -2792,10 +2792,10 @@ HTTP 狀態碼：200
 回應會包含每個建議項目集 (通常會與種子/輸入項目一起購買的一組項目) 的一個項目。每個項目都有下列資料：
 - `Feed\entry\content\properties\Id1` - 建議項目識別碼。
 - `Feed\entry\content\properties\Name1` - 項目的名稱。
-- `Feed\entry\content\properties\Id2` - 第二個建議項目識別碼 (選擇性)。
-- `Feed\entry\content\properties\Name2` - 第二個項目名稱 (選擇性)。
+- `Feed\entry\content\properties\Id2` - 第二個建議項目的識別碼 (選擇性)。
+- `Feed\entry\content\properties\Name2` - 第二個項目的名稱 (選擇性)。
 - `Feed\entry\content\properties\Rating` - 建議的評等，數字愈高表示信賴度愈高。
-- `Feed\entry\content\properties\Reasoning` - 建議理由 (例如建議說明)。
+- `Feed\entry\content\properties\Reasoning` - 建議推論 (例如建議說明)。
 
 請參閱 12.3 中的回應範例
 
@@ -2830,7 +2830,7 @@ HTTP 狀態碼：200
 - `Feed\entry\content\properties\Id` - 建議項目識別碼。
 - `Feed\entry\content\properties\Name` - 項目的名稱。
 - `Feed\entry\content\properties\Rating` - 建議的評等，數字愈高表示信賴度愈高。
-- `Feed\entry\content\properties\Reasoning` - 建議理由 (例如建議說明)。
+- `Feed\entry\content\properties\Reasoning` - 建議推論 (例如建議說明)。
 
 請參閱 12.1 中的回應範例
 
@@ -2867,7 +2867,7 @@ HTTP 狀態碼：200
 - `Feed\entry\content\properties\Id` - 建議項目識別碼。
 - `Feed\entry\content\properties\Name` - 項目的名稱。
 - `Feed\entry\content\properties\Rating` - 建議的評等，數字愈高表示信賴度愈高。
-- `Feed\entry\content\properties\Reasoning` - 建議理由 (例如建議說明)。
+- `Feed\entry\content\properties\Reasoning` - 建議推論 (例如建議說明)。
 
 請參閱 12.1 中的回應範例
 
@@ -2902,7 +2902,7 @@ HTTP 狀態碼：200
 - `Feed\entry\content\properties\Id` - 建議項目識別碼。
 - `Feed\entry\content\properties\Name` - 項目的名稱。
 - `Feed\entry\content\properties\Rating` - 建議的評等，數字愈高表示信賴度愈高。
-- `Feed\entry\content\properties\Reasoning` - 建議理由 (例如建議說明)。
+- `Feed\entry\content\properties\Reasoning` - 建議推論 (例如建議說明)。
 
 請參閱 12.1 中的回應範例
 
@@ -2940,7 +2940,7 @@ HTTP 狀態碼：200
 - `Feed\entry\content\properties\Id` - 建議項目識別碼。
 - `Feed\entry\content\properties\Name` - 項目的名稱。
 - `Feed\entry\content\properties\Rating` - 建議的評等，數字愈高表示信賴度愈高。
-- `Feed\entry\content\properties\Reasoning` - 建議理由 (例如建議說明)。
+- `Feed\entry\content\properties\Reasoning` - 建議推論 (例如建議說明)。
 
 請參閱 12.1 中的回應範例
 
@@ -3000,7 +3000,7 @@ OData XML
 			</m:properties>
 		</content>
 	</entry>
-</feed>
+</摘要>
 
 ##14\.通知
 Azure Machine Learning 建議會在系統中持續發生錯誤時建立通知。有 3 種類型的通知：
@@ -3031,11 +3031,11 @@ HTTP 狀態碼：200
 OData XML
 
     The response includes one entry per notification. Each entry has the following data:
-		* feed\entry\content\properties\UserName – Internal user name identification.
-		* feed\entry\content\properties\ModelId – Model ID.
-		* feed\entry\content\properties\Message – Notification message.
-		* feed\entry\content\properties\DateCreated – Date that this notification was created in UTC format.
-		* feed\entry\content\properties\NotificationType – Notification types. Values are BuildFailure, RecommendationFailure, and DataAquisitionFailure.
+		* feed\entry\content\properties\UserName - Internal user name identification.
+		* feed\entry\content\properties\ModelId - Model ID.
+		* feed\entry\content\properties\Message - Notification message.
+		* feed\entry\content\properties\DateCreated - Date that this notification was created in UTC format.
+		* feed\entry\content\properties\NotificationType - Notification types. Values are BuildFailure, RecommendationFailure, and DataAquisitionFailure.
 
 	<feed xmlns:base="https://api.datamarket.azure.com/amla/recommendations/v3/GetNotifications" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://www.w3.org/2005/Atom">
 		<title type="text" />
@@ -3108,4 +3108,4 @@ HTTP 狀態碼：200
 © 2015 Microsoft.著作權所有，並保留一切權利。
  
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -4,7 +4,7 @@
    services="active-directory"
    documentationCenter=""
    authors="dhanyahk"
-   manager="stevenpo"
+   manager="femila"
    editor=""/>
 
 <tags
@@ -52,4 +52,4 @@ RMS 裝置使用量 | 2 小時 | 4 小時 | 8 小時
 **私人預覽報告** | | |
 所有使用者登入活動 | 2 小時 | 4 小時 | 8 小時
 
-<!---HONumber=AcomDC_0309_2016-->
+<!---HONumber=AcomDC_0928_2016-->

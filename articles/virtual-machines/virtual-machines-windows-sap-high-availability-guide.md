@@ -1,19 +1,19 @@
 <properties
    pageTitle="Windows 虛擬機器 (VM) 上的 SAP NetWeaver - 高可用性指南 | Microsoft Azure"
    description="Windows 虛擬機器 (VM) 上的 SAP NetWeaver - 高可用性指南"
-   services="virtual-machines-windows,virtual-network,storage"
-   documentationCenter="saponazure"
+   services="virtual-machines-windows"
+   documentationCenter=""
    authors="goraco"
-   manager="juergent"
+   manager="timlt"
    editor=""
    tags="azure-resource-manager"
    keywords=""/>
 <tags
    ms.service="virtual-machines-windows"
    ms.devlang="NA"
-   ms.topic="campaign-page"
+   ms.topic="article"
    ms.tgt_pltfrm="vm-windows"
-   ms.workload="na"
+   ms.workload="infrastructure-services"
    ms.date="08/18/2016"
    ms.author="goraco"/>
 
@@ -1432,4 +1432,4 @@ _**SAP WAC**_ 叢集群組在叢集節點 A 上執行，例如在 _**ascsha-clna
 
 **圖 62：**SIOS DataKeeper︰將本機磁碟區從叢集節點 B 複寫到叢集節點 A
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0928_2016-->

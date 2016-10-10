@@ -5,7 +5,7 @@
 - 虛擬網路名稱 = "TestVNet"
 - 虛擬網路位址空間 = 192.168.0.0/16
 - 資源群組 = "TestRG"
-- Subnet1 名稱 = "FrontEnd" 
+- Subnet1 名稱 = "FrontEnd"
 - Subnet1 位址空間 = "192.168.0.0/16"
 - 閘道器子網路名稱："GatewaySubnet"，您必須一律將閘道器子網路命名為 *GatewaySubnet*。
 - 閘道子網路位址空間 = "192.168.200.0/26"
@@ -19,7 +19,7 @@
 
 ## 新增閘道
 
-1. 連接到您的 Azure 訂用帳戶。 
+1. 連接到您的 Azure 訂用帳戶。
 
 		Login-AzureRmAccount
 		Get-AzureRmSubscription 
@@ -70,7 +70,9 @@
 
 ## 調整閘道器大小
 
-有三個[閘道器 SKU](../articles/vpn-gateway/vpn-gateway-about-vpngateways.md)。您可以使用下列命令隨時變更閘道器 SKU。
+有幾個[閘道 SKU](../articles/expressroute/expressroute-about-virtual-network-gateways.md)。您可以使用下列命令隨時變更閘道器 SKU。
+
+>[AZURE.IMPORTANT] 此命令不適用於 UltraPerformance 閘道。若要將您的閘道變更為 UltraPerformance 閘道，請先移除現有的 ExpressRoute 閘道，然後建立新的 UltraPerformance 閘道。若要從 UltraPerformance 閘道降級您的閘道，請先移除 UltraPerformance 閘道，然後建立新的閘道。
 
 	$gw = Get-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG
 	Resize-AzureRmVirtualNetworkGateway -VirtualNetworkGateway $gw -GatewaySku HighPerformance
@@ -81,4 +83,4 @@
 
 	Remove-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG  
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -13,8 +13,8 @@
      ms.topic="article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="05/31/2016"
-     ms.author="cstreet"/>
+     ms.date="08/29/2016"
+     ms.author="andbuc"/>
 
 
 # IoT 閘道 SDK (Beta) – 搭配使用真實裝置與 Linux 來傳送裝置到雲端訊息
@@ -41,9 +41,10 @@
 閘道包含下列模組︰
 
 - 「BLE 模組」，可與 BLE 裝置接合，以接收來自裝置的溫度資料，並將命令傳送到裝置。
-- 「記錄器模組」，可產生訊息匯流排診斷。
+- 「BLE 雲端至裝置模組」，可將來自雲端的 JSON 訊息轉譯為「BLE 模組」所用的 BLE 指示。
+- 「記錄器模組」，可記錄所有閘道訊息。
 - 「身分識別對應模組」，可在 BLE 裝置 MAC 位址與 Azure IoT 中樞裝置身分識別之間進行轉譯。
-- 「IoT 中樞 HTTP 模組」，將遙測資料上傳到 IoT 中樞，並從 IoT 中樞接收裝置命令。
+- 「IoT 中樞模組」，將遙測資料上傳到 IoT 中樞，並從 IoT 中樞接收裝置命令。
 - 「BLE 印表機模組」，可解譯來自 BLE 裝置的遙測，並將格式化的資料列印到主控台以啟用疑難排解和偵錯。
 
 ### 資料透過閘道流動的方式
@@ -52,23 +53,24 @@
 
 ![](media/iot-hub-gateway-sdk-physical-device/gateway_ble_upload_data_flow.png)
 
-遙測的項目要採取來從 BLE 裝置流動到 IoT 中樞的步驟如下：
+遙測的項目從 BLE 裝置流動到 IoT 中樞要採取的步驟如下：
 
 1. BLE 裝置會產生溫度範例，並透過藍牙將它傳送到閘道中的 BLE 模組。
-2. BLE 模組會接收範例，並將其發佈到訊息匯流排以及裝置的 MAC 位址。
-3. 身分識別對應模組會從訊息匯流排挑選出這個訊息，並使用內部資料表來將裝置的 MAC 位址轉譯為 IoT 中樞裝置身分識別 (裝置識別碼與裝置金鑰)。接著將新訊息發佈到包含溫度範例資料、裝置的 MAC 位址、裝置識別碼及裝置金鑰的訊息匯流排。
-4. IoT 中樞 HTTP 模組會接收這個來自訊息匯流排的新訊息 (由身分識別對應模組所產生)，並將其發佈到 IoT 中樞。
-5. 記錄器模組會將所有來自訊息匯流排的所有訊息記錄到磁碟檔案。
+2. BLE 模組會接收範例，並將其發佈到訊息代理程式以及裝置的 MAC 位址。
+3. 身分識別對應模組會挑選出這個訊息，並使用內部資料表來將裝置的 MAC 位址轉譯為 IoT 中樞裝置身分識別 (裝置識別碼與裝置金鑰)。接著將發佈包含溫度範例資料、裝置的 MAC 位址、裝置識別碼及裝置金鑰的新訊息。
+4. IoT 中樞模組會接收這個新訊息 (由身分識別對應模組所產生)，並將其發佈到 IoT 中樞。
+5. 記錄器模組會將所有來自訊息代理程式的所有訊息記錄到磁碟檔案。
 
 下列區塊圖說明裝置命令資料流程路線︰
 
 ![](media/iot-hub-gateway-sdk-physical-device/gateway_ble_command_data_flow.png)
 
-1. IoT 中樞 HTTP 模組會定期輪詢 IoT 中樞以取得新的命令訊息。
-2. 當 IoT 中樞 HTTP 模組接收到新的命令訊息時，會將其發佈到訊息匯流排。
-3. 身分識別對應模組會從訊息匯流排挑選出命令訊息，並使用內部資料表來將 IoT 中樞裝置識別碼轉譯到裝置的 MAC 位址。接著將新訊息發佈到訊息匯流排，其中會在訊息的屬性對應中包含目標裝置的 MAC 位址。
-4. BLE 模組會挑選出這個訊息，然後藉由與 BLE 裝置通訊來執行 I/O 指令。
-5. 記錄器模組會將所有來自訊息匯流排的所有訊息記錄到磁碟檔案。
+1. IoT 中樞模組會定期輪詢 IoT 中樞以取得新的命令訊息。
+2. 當 IoT 中樞模組接收到新的命令訊息時，會將其發佈到訊息代理程式。
+3. 身分識別對應模組會挑選出命令訊息，並使用內部資料表來將 IoT 中樞裝置識別碼轉譯到裝置的 MAC 位址。接著將發佈新訊息，其中會在訊息的屬性對應中包含目標裝置的 MAC 位址。
+4. BLE 雲端至裝置模組會挑選此訊息，並將其轉譯成適當的 BLE 指示供 BLE 模組使用。接著將發佈新訊息。
+5. BLE 模組會挑選出這個訊息，然後藉由與 BLE 裝置通訊來執行 I/O 指令。
+6. 記錄器模組會將所有來自訊息代理程式的所有訊息記錄到磁碟檔案。
 
 ## 準備硬體
 
@@ -283,17 +285,18 @@ BLE 裝置的範例組態會假設 Texas Instruments SensorTag 裝置。任何�
 }
 ```
 
-#### IoT 中樞 HTTP 模組
+#### IoT 中樞模組
 
 新增 IoT 中樞的名稱。尾碼值通常是 **azure-devices.net**：
 
 ```json
 {
   "module name": "IoTHub",
-  "module path": "/home/root/azure-iot-gateway-sdk/build/modules/iothubhttp/libiothubhttp_hl.so",
+  "module path": "/home/root/azure-iot-gateway-sdk/build/modules/iothub/libiothub_hl.so",
   "args": {
     "IoTHubName": "<<Azure IoT Hub Name>>",
-    "IoTHubSuffix": "<<Azure IoT Hub Suffix>>"
+    "IoTHubSuffix": "<<Azure IoT Hub Suffix>>",
+    "Transport": "HTTP"
   }
 }
 ```
@@ -324,6 +327,26 @@ BLE 裝置的範例組態會假設 Texas Instruments SensorTag 裝置。任何�
     "module path": "/home/root/azure-iot-gateway-sdk/build/samples/ble_gateway_hl/ble_printer/libble_printer.so",
     "args": null
 }
+```
+
+#### 路由設定
+
+下列設定參數可以確保︰
+- **Logger** 模組接收並記錄所有訊息。
+- **SensorTag**模組會將訊息傳送至 **mapping** 和 **BLE Printer** 模組。
+- **mapping** 模組會將準備傳送至您的 IoT 中樞的訊息傳送給 **IoTHub** 模組。
+- **IoTHub** 模組會將訊息傳回 **mapping** 模組。
+- **mapping** 模組會將訊息傳回 **SensorTag** 模組。
+
+```json
+"links" : [
+    {"source" : "*", "sink" : "Logger" },
+    {"source" : "SensorTag", "sink" : "mapping" },
+    {"source" : "SensorTag", "sink" : "BLE Printer" },
+    {"source" : "mapping", "sink" : "IoTHub" },
+    {"source" : "IoTHub", "sink" : "mapping" },
+    {"source" : "mapping", "sink" : "SensorTag" }
+  ]
 ```
 
 若要執行範例，您要執行 **ble\_gateway\_hl** 二進位檔，將路徑傳遞到 JSON 組態檔。如果您使用 **gateway\_sample.json** 檔案，要執行的命令看起來如下︰
@@ -428,4 +451,4 @@ BLE 模組也支援從 Azure IoT 中樞傳送指示給裝置。您可以使用 [
 [lnk-dmui]: iot-hub-device-management-ui-sample.md
 [lnk-portal]: iot-hub-manage-through-portal.md
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

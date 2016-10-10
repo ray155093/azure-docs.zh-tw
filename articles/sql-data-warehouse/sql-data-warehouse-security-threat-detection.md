@@ -13,23 +13,17 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="05/31/2016"
+   ms.date="09/24/2016"
    ms.author="lodipalm;sonyama;barbkess"/>
 
 
 # 開始使用威脅偵測
 
 > [AZURE.SELECTOR]
-- [安全性概觀](sql-data-warehouse-overview-manage-security.md)
+- [稽核](sql-data-warehouse-auditing-overview.md)
 - [威脅偵測](sql-data-warehouse-security-threat-detection.md)
-- [加密 (入口網站)](sql-data-warehouse-encryption-tde.md)
-- [加密 (T-SQL)](sql-data-warehouse-encryption-tde-tsql.md)
-- [稽核概觀](sql-data-warehouse-auditing-overview.md)
-- [稽核下層用戶端](sql-data-warehouse-auditing-downlevel-clients.md)
 
-
-
-## 概觀
+## Overview
 
 威脅偵測會偵測異常資料庫活動，指出資料庫有潛在的安全性威脅。威脅偵測處於預覽階段，SQL 資料倉儲支援此功能。
 
@@ -99,4 +93,4 @@
 [8]: ./media/sql-data-warehouse-security-threat-detection/8_td_excel_fast_combine.png
 [9]: ./media/sql-data-warehouse-security-threat-detection/9_td_excel_parameters.png
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0928_2016-->

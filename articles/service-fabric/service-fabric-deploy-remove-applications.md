@@ -18,6 +18,12 @@
 
 # 使用 PowerShell 部署與移除應用程式
 
+> [AZURE.SELECTOR]
+- [PowerShell](service-fabric-deploy-remove-applications.md)
+- [Visual Studio](service-fabric-publish-app-remote-cluster.md)
+
+<br/>
+
 [應用程式類型封裝][10]後，隨即準備好部署至 Azure Service Fabric 叢集。部署涉及下列三個步驟：
 
 1. 上傳應用程式封裝
@@ -239,4 +245,4 @@ PS D:\temp>
 [10]: service-fabric-application-model.md
 [11]: service-fabric-application-upgrade.md
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0928_2016-->

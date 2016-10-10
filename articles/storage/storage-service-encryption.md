@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="09/08/2016"
-	ms.author="robinsh"/>
+	ms.date="09/16/2016"
+	ms.author="lakasa;robinsh"/>
 
 # 待用資料的 Azure 儲存體服務加密
 
@@ -24,18 +24,17 @@
 
 ## 概觀
 
-
 Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共同建置安全應用程式。您可以使用[用戶端加密](storage-client-side-encryption.md)、HTTP 或 SMB 3.0，在應用程式和 Azure 之間進行傳輸時保護資料的安全。儲存體服務加密可提供待用加密，並以完全透明的方式處理加密、解密和金鑰管理。所有資料都使用 256 位元 [AES 加密](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) (可用的最強區塊加密方式之一) 進行加密。
 
 SSE 運作方式是在資料寫入 Azure 儲存體時進行加密，並可使用於區塊 Blob、分頁 Blob 和附加 Blob。它也適用於下列各項︰
 
 -   一般用途儲存體帳戶和 Blob 儲存體帳戶
--   「標準」儲存體和「進階」儲存體
+-   標準儲存體和進階儲存體
 -   所有備援層級 (LRS、ZRS、GRS、RA-GRS)
 -   Azure Resource Manager 儲存體帳戶 (但不是傳統帳戶)
 -   所有區域
 
-這個螢幕擷取畫面顯示如何使用 [Azure 入口網站](https://azure.portal.com)來尋找「儲存體服務加密」設定。在此畫面上，按一下 [加密] 以繼續。
+若要針對儲存體帳戶啟用或停用儲存體服務加密，請登入 [Azure 入口網站](https://azure.portal.com)並選取儲存體帳戶。在 [設定] 刀鋒視窗上，尋找此螢幕擷取畫面所示的 [Blob 服務] 區段，並按一下 [加密]。
 
 ![入口網站螢幕擷取畫面顯示 [加密] 選項](./media/storage-service-encryption/image1.png)
 
@@ -127,6 +126,8 @@ AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率�
 
 答︰您可以建立新的 Resource Manager 儲存體帳戶，並且使用 [AzCopy](storage-use-azcopy.md)，從現有的傳統儲存體帳戶將資料複製到新建立的 Resource Manager 儲存體帳戶。
 
+另一個選項是將傳統儲存體帳戶移轉到 Resource Manager 儲存體帳戶。如需詳細資訊，請參閱 [Platform Supported Migration of IaaS Resources from Classic to Resource Manager (從傳統移轉至 Resource Manager 的平台支援 IaaS 資源移轉)](https://azure.microsoft.com/blog/iaas-migration-classic-resource-manager/)。
+
 **問：我有現有的 Resource Manager 儲存體帳戶。可以在其上啟用 SSE 嗎？**
 
 答︰是，但只會加密新寫入的 Blob。並不會返回及加密已經存在的資料。
@@ -177,7 +178,7 @@ AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率�
 
 **問︰我的儲存體帳戶設定為異地備援複寫。如果啟用 SSE，我的備援複本是否也會加密？**
 
-答︰是，會加密儲存體帳戶的所有複本，並且支援所有備援選項 – 本地備援儲存體 (LRS)、區域備援儲存體 (ZRS)、異地備援儲存體 (GRS) 和讀取權限異地備援儲存體 (RA-GRS)。
+答︰是，會加密儲存體帳戶的所有複本，並且支援所有備援選項 - 本地備援儲存體 (LRS)、區域備援儲存體 (ZRS)、異地備援儲存體 (GRS) 和讀取權限異地備援儲存體 (RA-GRS)。
 
 **問︰我無法在我的儲存體帳戶上啟用加密。**
 
@@ -195,4 +196,4 @@ AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率�
 
 Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共同建置安全應用程式。如需詳細資訊，請參閱[儲存體安全性指南](storage-security-guide.md)。
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

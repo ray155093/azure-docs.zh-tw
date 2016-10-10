@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="karavar"
-	manager="stevenpo"
+	manager="femila"
 	editor="curtand"/>
 
 <tags
@@ -89,7 +89,7 @@
 
 [//]: # "Start of RBAC section"
 ## 使用角色型存取控制管理存取權
-### 概觀
+### Overview
 Azure AD Connect Health 的[角色型存取控制](role-based-access-control-configure.md)，可為全域系統管理員以外的使用者和/或群組提供 Azure AD Connect Health 服務的存取。這是透過指派角色給目標使用者和/或群組所達成，並提供一個機制來限制您目錄內的全域系統管理員。
 
 #### 角色
@@ -158,4 +158,4 @@ Azure AD Connect 支援兩個層級的管理存取：
 * [Azure AD Connect Health 常見問題集](active-directory-aadconnect-health-faq.md)
 * [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0928_2016-->

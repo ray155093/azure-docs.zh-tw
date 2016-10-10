@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="andkjell"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -29,7 +29,7 @@ Azure AD Connect 是 DirSync 和 Azure AD Sync 的後續產品。它結合了兩
 
 ## 淘汰排程
 
-日期 | 註解
+Date | 註解
  --- | ---
 2016 年 4 月 13 日 | Windows Azure Active Directory Sync (“DirSync”) 和 Microsoft Azure Active Directory Sync (“Azure AD Sync”) 已宣布淘汰。
 2017 年 4 月 13 日 | 支援結束。客戶必須先升級至 Azure AD Connect 才能開啟支援案例。
@@ -61,4 +61,4 @@ Azure AD Connect 是 DirSync 和 Azure AD Sync 的後續產品。它結合了兩
 
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

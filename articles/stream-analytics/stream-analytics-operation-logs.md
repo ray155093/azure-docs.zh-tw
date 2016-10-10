@@ -14,7 +14,7 @@
 	ms.topic="article" 
 	ms.tgt_pltfrm="na" 
 	ms.workload="data-services" 
-	ms.date="07/27/2016" 
+	ms.date="09/26/2016" 
 	ms.author="jeffstok"/>
 
 # 使用服務和作業記錄檔對串流分析工作進行偵錯
@@ -38,14 +38,14 @@
 
 若要以手動方式瀏覽至串流分析的作業記錄檔以及 Azure 傳統入口網站中的其他服務：
 
-1.	按一下 [[Azure 傳統入口網站](https://manage.windowsazure.com)] 中的 [**管理服務**]。
+1.	按一下 [Azure 傳統入口網站](https://manage.windowsazure.com) 中的 [管理服務]。
 2.	針對 [類型] 選取 [串流分析]，並針對 [服務名稱] 選取作業的名稱。
 
   ![選取串流分析](./media/stream-analytics-operation-logs/02-stream-analytics-operation-logs.png)
 
 ## 在 Azure 入口網站中尋找稽核記錄檔 ##
 
-若要在 Azure 入口網站中尋找串流分析工作的作業記錄檔，請按一下 [**瀏覽**]，然後選取 [**稽核記錄檔**]。
+若要在 Azure 入口網站中尋找串流分析工作的作業記錄檔，請按一下 [瀏覽]，然後選取 [稽核記錄檔]。
 
   ![Azure 入口網站選取串流分析](./media/stream-analytics-operation-logs/06-stream-analytics-operation-logs.png)
 
@@ -79,7 +79,7 @@
 
   ![Azure 入口網站偵錯](./media/stream-analytics-operation-logs/10-stream-analytics-operation-logs.png)
 
-您可以選取任何一個失敗項目，並按一下 [詳細資料] 來取得有關此錯誤的詳細資訊。某些錯誤訊息也會提供降低此問題之風險的方法。
+您可以選取任何一個失敗項目，並按一下 [詳細資料] 來取得有關此錯誤的詳細資訊。某些錯誤訊息也會提供如何降低此問題之風險的相關資訊。
 
   ![Operation Details](./media/stream-analytics-operation-logs/05-stream-analytics-operation-logs.png)
 
@@ -96,4 +96,4 @@
 - [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 - [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="azure-government"
-	ms.date="08/25/2016"
+	ms.date="09/14/2016"
 	ms.author="ryansoc"/>
 
 
@@ -22,6 +22,7 @@
 
 ##  虛擬機器
 
+###  資料考量
 
 下列資訊可識別 Azure 虛擬機器的 Azure Government 界限︰
 
@@ -33,4 +34,4 @@
 
 如需補充資訊和更新，請訂閱 <a href="https://blogs.msdn.microsoft.com/azuregov/">Microsoft Azure Government 部落格。</a>
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0928_2016-->

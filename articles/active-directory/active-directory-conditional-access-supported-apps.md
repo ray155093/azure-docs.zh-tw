@@ -14,7 +14,7 @@
 	ms.topic="article"
     ms.tgt_pltfrm="na"
     ms.workload="identity" 
-	ms.date="08/12/2016"
+	ms.date="09/26/2016"
 	ms.author="markvi"/>
 
 
@@ -22,56 +22,41 @@
 
 Azure Active Directory 連線應用程式、預先整合的同盟 SaaS 應用程式、使用密碼單一登入的應用程式、商務營運應用程式及 Azure AD 應用程式 Proxy，都支援條件式存取規則。如需可啟用條件式存取的應用程式詳細清單，請參閱[已啟用條件式存取功能的服務](active-directory-conditional-access-technical-reference.md#Services-enabled-with-conditional-access)。條件式存取可以與運用新式驗證的行動和傳統型應用程式搭配使用。本主題說明這些應用程式的行動和桌面版本所支援的相關功能。
 
-使用新式驗證的應用程式會顯示 Azure AD 登入頁面。這讓使用者可以看見多重要素驗證的內嵌提示，或顯示使用者正面臨存取遭到封鎖的訊息。請務必了解支援哪些應用程式，以及可能需要用來保護其他進入點的步驟。
+使用新式驗證的應用程式會顯示 Azure AD 登入頁面。這讓使用者可以看見多重要素驗證的內嵌提示，或顯示使用者正面臨存取遭到封鎖的訊息。此外，還需要新式驗證，裝置才能夠向 Azure AD 進行驗證，所以會評估裝置型條件式存取原則。
+
+請務必了解支援哪些應用程式，以及可能需要用來保護其他進入點的步驟。
 
 ## 使用新式驗證的應用程式
-下列應用程式已通過利用 Multi-Factor Authentication (MFA) 和目標服務上設定的位置原則所進行的測試。
+下列應用程式支援在存取 Office 365 和其他 Azure AD 連接的服務應用程式時的條件式存取︰
 
-| 應用程式 | 目標服務 | 平台 |
+| 目標服務 | 平台 | 應用程式 |
 |--------------|-----------------|----------------------------------------------------------------|
-| Outlook 2016 | Exchange | Windows 10、Windows Mobile 10、Windows 8.1、Windows 7、Mac |
-| Outlook 2013 (需要啟用新式驗證)| Exchange |Windows 10、Windows Mobile 10、Windows 8.1、Windows 7|
-|商務用 Skype (使用新式驗證)|Exchange (存取 Exchange 以取得行事曆和交談記錄)| Windows 10、Windows 8.1、Windows 7 |
-|Outlook Mobile 應用程式|Exchange| iOS 和 Android |
-|Office 2016、Word、Excel、Sharepoint|SharePoint| Windows 10、Windows Mobile 10、Windows 8.1、Windows 7、Mac |
-|Office 2013 (需要啟用新式驗證)|SharePoint|Windows 10、Windows Mobile 10、Windows 8.1、Windows 7|
-|Dynamics CRM 應用程式|Dynamics CRM| Windows 10、Windows 8.1、Windows 7、iOS、Android|
-| Yammer 應用程式|Yammer| Windows Mobile 10、iOS、Android|
-|Azure 遠端應用程式|Azure 遠端應用程式服務|Windows 10、Windows 8.1、Windows 7、Mac、iOS、Android|
-
-
-
-
-
-下列應用程式支援目標服務上設定的裝置型原則︰
-
-| 應用程式 | 目標服務 | 平台 |
-| :--                                     | :--            | :--      |
-| 郵件/行事曆/人員 | Exchange | Windows 10、Windows Mobile 10 |
-| Office 通用︰Word/Excel/PowerPoint | SharePoint | Windows 10、Windows Mobile 10 |
-| Outlook 2016 | Exchange | Windows 10、Windows Mobile 10、Windows 8.1、Windows 7 |
-|Outlook 2013 (需要啟用新式驗證) | Exchange | Windows 8.1、Windows 7 |
-
-
-下列應用程式不支援目標服務上設定的裝置型原則。
-
-| 應用程式 | 目標服務 | 平台 |
-| :--                                     | :--            | :--      |
-| 使用新一代同步處理用戶端 (NGSC) 的商務用 One Drive (我的網站和小組網站) | SharePoint | Windows 10、Windows Mobile 10 |
-| My Apps 應用程式 | 任意 | iOS、Android |
+|Office 365 Exchange Online | Windows 10|郵件/行事曆/連絡人應用程式、Outlook 2016、Outlook 2013 (已啟用新式驗證)、商務用 Skype (採用新式驗證)|
+|Office 365 Exchange Online| Windows 7、Windows 8.1 |Outlook 2016、Outlook 2013 (已啟用新式驗證)、商務用 Skype (採用新式驗證)|
+|Office 365 Exchange Online|iOS、Android| Outlook 行動應用程式|
+|Office 365 Exchange Online|Mac OSX| 僅限 MFA/位置的 Outlook 2016；未來提供的裝置型原則支援、未來提供的商業用 Skype 支援|
+|Office 365 SharePoint Online|Windows 10| Office 2016 應用程式、Office Universal 應用程式、Office 2013 (已啟用新式驗證)、未來提供的商務用 OneDrive 應用程式 (NGSC 或新一代同步處理用戶端) 支援、未來提供的 Office Groups 支援、未來提供的 SharePoint 應用程式支援|
+|Office 365 SharePoint Online|Windows 7、Windows 8.1|Office 2016 應用程式、Office 2013 (已啟用新式驗證)、商務用 OneDrive 應用程式 (Groove 同步處理用戶端)|
+|Office 365 SharePoint Online|iOS、Android| Office 行動應用程式 |
+|Office 365 SharePoint Online|Mac OSX| 僅限 MFA/位置的 Office 2016 應用程式；未來提供的裝置型原則支援|
+|Office 365 Yammer|Windows 10、iOS 和 Android | Office Yammer 應用程式|
+|Dynamics CRM|Windows 10、7、8.1、iOS 和 Android | Dynamics CRM 應用程式|
+|PowerBI service|Windows 10、7、8.1、iOS 和 Android | PowerBI 應用程式|
+|Azure 遠端應用程式服務|Windows 10、7、8.1、iOS 和 Android、Mac OSX |Azure 遠端應用程式|
+|任何 My Apps 應用程式服務|Android 和 iOS|任何 My Apps 應用程式服務 |
 
 
 ## 未使用新式驗證的應用程式
 
 您目前必須使用其他方法來封鎖存取未使用新式驗證的應用程式，因為無法依條件式存取強制執行它們。這主要是對於 Exchange 和 SharePoint 存取的考量，因為舊版應用程式是使用較舊的通訊協定來建置。
 
-## SharePoint
+## Office 365 SharePoint Online
 
 您可以使用 Set-SPOTenant Cmdlet，在 SharePoint 中停用舊版通訊協定。這個 Cmdlet 將阻止未使用新式驗證通訊協定的 Office 用戶端存取 SharePoint Online 資源。
 
 **範例命令**：`Set-SPOTenant -LegacyAuthProtocolsEnabled $false`
  
-## Exchange
+## Office 365 Exchange Online
 
 Exchange 上有兩個主要的通訊協定類別，請檢閱並選取貴組織適用的正確原則：
 
@@ -130,4 +115,4 @@ Exchange 上有兩個主要的通訊協定類別，請檢閱並選取貴組織�
 	c2:[Type == "http://schemas.microsoft.com/2012/01/requestcontext/claims/x-ms-endpoint-absolute-path", Value =~ "(/adfs/ls)|(/adfs/oauth2)"] 
 	=> issue(Type = "http://schemas.microsoft.com/authorization/claims/permit", Value = "true");
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0928_2016-->

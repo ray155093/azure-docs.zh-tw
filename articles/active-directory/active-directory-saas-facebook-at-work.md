@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="asmalser-msft"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -23,12 +23,12 @@
 
 Facebook at Work 與 Azure AD 整合提供下列優點：
 
-- 您可以在 Azure AD 中控制可存取 Facebook at Work 的人員 
+- 您可以在 Azure AD 中控制可存取 Facebook at Work 的人員
 - 您可以自動佈建帳戶已獲授與存取 Facebook at Work 的使用者
 - 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Facebook at Work (單一登入)
-- 您可以在單一中央位置管理您的帳戶 
+- 您可以在單一中央位置管理您的帳戶
 
-若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
+若您想了解 SaaS 應用程式與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
 
 ## 必要條件 
@@ -41,7 +41,7 @@ Facebook at Work 與 Azure AD 整合提供下列優點：
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 - 除非必要，否則您不應使用生產環境，。
-- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。 
+- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
 
 ## 從資源庫加入 Facebook at Work
@@ -49,7 +49,7 @@ Facebook at Work 與 Azure AD 整合提供下列優點：
 
 **若要從資源庫加入 Facebook at Work，請執行下列步驟：**
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。 
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
 	![Active Directory][1]
 
@@ -63,7 +63,7 @@ Facebook at Work 與 Azure AD 整合提供下列優點：
 	
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![應用程式][4]
 
@@ -80,7 +80,7 @@ Facebook at Work 與 Azure AD 整合提供下列優點：
 
 1.	在 Azure 傳統入口網站中加入 Facebook at Work 後，按一下 [設定單一登入]。
 
-2.	在 [設定應用程式 URL] 畫面上，輸入使用者將登入您的 Facebook at Work 應用程式的 URL。這是您的 Facebook at Work 租用戶 URL (範例：https://example.facebook.com/)。完成後按 [下一步]。
+2.	在 [設定應用程式 URL] 畫面上，輸入使用者將登入您的 Facebook at Work 應用程式的 URL。這是您的 Facebook at Work 租用戶 URL (範例：https://example.facebook.com/。完成後按 [下一步]。
 
 3.	在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 Facebook at Work 公司網站。
 
@@ -124,4 +124,4 @@ Azure AD 支援將指派的使用者的帳戶詳細資料自動同步處理至 F
 [3]: ./media/active-directory-saas-cs-stars-tutorial/tutorial_general_03.png
 [4]: ./media/active-directory-saas-cs-stars-tutorial/tutorial_general_04.png
 
-<!---HONumber=AcomDC_0511_2016-->
+<!---HONumber=AcomDC_0928_2016-->

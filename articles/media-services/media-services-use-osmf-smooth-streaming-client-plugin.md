@@ -13,13 +13,13 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"
+	ms.date="09/26/2016"
 	ms.author="juliako"/>
 
 
 # 如何使用 Adobe Open Source Media Framework 的 Microsoft Smooth Streaming 外掛程式
 
-##概觀
+##Overview
 
 
 Open Source Media Framework 2.0 的 Microsoft Smooth Streaming 外掛程式 (SS for OSMF) 可擴充 OSMF 的預設功能，並可為新的和現有的 OSMF 播放程式新增 Microsoft Smooth Streaming 內容播放功能。此外掛程式也可為 Strobe Media Playback (SMP) 新增 Smooth Streaming 播放功能。
@@ -410,4 +410,4 @@ Smooth Streaming for OSMF 動態外掛程式與 [Strobe Media Playback (SMP)](ht
 
 [OSMF 的 Microsoft 彈性資料流外掛程式更新 (英文)](https://azure.microsoft.com/blog/2014/10/27/microsoft-adaptive-streaming-plugin-for-osmf-update/)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -241,7 +241,7 @@ Set-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId -StorageAccountId $sa.Id
 
 > [AZURE.NOTE] 您最多在執行過金鑰保存庫作業 10 分鐘後，就能存取其記錄資訊。但大多不用這麼久。
 
-下一步是[建立 Azure 服務匯流排佇列](../service-bus/service-bus-dotnet-get-started-with-queues.md)。這是金鑰保存庫稽核記錄檔的推送位置。一旦進入佇列，邏輯應用程式就會加以提取並採取行動。建立服務匯流排相當簡單，以下是高階步驟︰
+下一步是[建立 Azure 服務匯流排佇列](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md)。這是金鑰保存庫稽核記錄檔的推送位置。一旦進入佇列，邏輯應用程式就會加以提取並採取行動。建立服務匯流排相當簡單，以下是高階步驟︰
 
 1. 建立服務匯流排命名空間 (如果您已經有一個想要用於此作業的命名空間，請跳至步驟 2)。
 2. 在入口網站中瀏覽至服務匯流排，然後選取要在其中建立佇列的命名空間。
@@ -424,4 +424,4 @@ static string GetContainerSasUri(CloudBlockBlob blob)
 
 此時，您已擁有端對端管線，它會每分鐘一次尋找是否有新的金鑰保存庫稽核記錄檔。每當它找到新的記錄檔，就會將其傳送至服務匯流排佇列。一旦有新的訊息進入佇列，就會觸發邏輯應用程式，如果事件內的 appid 不符合呼叫端應用程式的應用程式識別碼，則會傳送電子郵件。
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0928_2016-->

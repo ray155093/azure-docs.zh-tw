@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="08/26/2016"
+   ms.date="09/21/2016"
    ms.author="terrylan"/>
 
 # Azure 資訊安全中心常見問題集 (FAQ)
@@ -121,10 +121,10 @@ Microsoft Security Response Center (MSRC) 執行 Azure 網路和基礎結構的�
 ### Azure 資訊安全中心會監視哪些 Azure 資源？
 Azure 資訊安全中心會監視下列 Azure 資源：
 
-- 虛擬機器 (包括雲端服務)
+- 虛擬機器 (VM) (包括[雲端服務](../cloud-services/cloud-services-choose-me.md))
 - Azure 虛擬網路
 - Azure SQL 服務
-- 與您的 Azure 訂用帳戶整合的合作夥伴解決方案，例如 Web 應用程式防火牆
+- 與您的 Azure 訂用帳戶整合的合作夥伴解決方案，例如 VM 和 [App Service 環境](../app-service/app-service-app-service-environments-readme.md)上的 Web 應用程式防火牆
 
 ## 虛擬機器
 
@@ -159,4 +159,4 @@ Azure 資訊安全中心僅能辨識透過 Azure 擴充功能安裝的反惡意�
 
 VM 代理程式必須安裝在 VM 上，才能啟用資料收集。預設會為從 Azure Marketplace 部署的 VM 安裝「VM 代理程式」。如需如何在其他 VM 上安裝 VM 代理程式的資訊，請參閱部落格文章 [VM Agent and Extensions (VM 代理程式和擴充功能)](https://azure.microsoft.com/blog/vm-agent-and-extensions-part-2/)。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0928_2016-->

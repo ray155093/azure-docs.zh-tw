@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="02/04/2016"
+   ms.date="02/05/2016"
    ms.author="v-jeana; hascipio"/>
 
 # 了解賣方 Insights 報告
@@ -92,7 +92,9 @@
 選取 [發行者] 索引標籤。![selectpublisherstab][8]
 
 
-在 URL 中尋找發行者識別碼：使用這個識別碼做為密碼，可開啟賣方 Insights 的 Excel 檔案。在進一步通知之前，這就是您的密碼。- 我們建議您使用 Microsoft Office 2013 搭配 Windows 做為您的活頁簿讀取程式。有些使用者回報使用 Microsoft Office for Mac 有問題。
+在 URL 中尋找發行者識別碼︰
+- 使用這個識別碼做為密碼，可開啟賣方 Insights 的 Excel 檔案。在進一步通知之前，這就是您的密碼。
+- 我們建議您使用 Microsoft Office 2013 搭配 Windows 做為您的活頁簿讀取程式。有些使用者回報使用 Microsoft Office for Mac 有問題。
 
 ![publisherid][9]
 
@@ -118,4 +120,4 @@
 [9]: ./media/marketplace-publishing-report-seller-insights/publisherid.png
 [10]: ./media/marketplace-publishing-report-seller-insights/sellerinsightsquestions.png
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0928_2016-->

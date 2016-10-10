@@ -48,7 +48,7 @@
 
 ![新 Azure Active Directory 應用程式][api-management-new-aad-application-1]
 
-針對 [**登入 URL**]，請從發行者入口網站 [**外部身分識別**] 索引標籤的 [**Azure Active Directory**] 區段，複製 [**重新導向 URL**]，並從 URL 結尾移除 **-aad** 尾碼。在此範例中，[**登入 URL**] 為 `https://aad03.portal.current.int-azure-api.net/signin`。
+在 [登入 URL] 中，輸入開發人員入口網站的登入 URL。在此範例中，[**登入 URL**] 為 `https://aad03.portal.current.int-azure-api.net/signin`。
 
 針對 [**應用程式識別碼 URL**]，請輸入 Azure Active Directory 的預設網域或自訂網域，並為其附加獨特的字串。在此範例中，使用了 **https://contoso5api.onmicrosoft.com** 的預設網域並指定尾碼** /api**。
 
@@ -227,4 +227,4 @@
 
 [使用 Azure Active Directory 帳戶登入開發人員入口網站]: #Log-in-to-the-Developer-portal-using-an-Azure-Active-Directory-account
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0928_2016-->

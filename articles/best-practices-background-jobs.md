@@ -318,7 +318,7 @@ Web 和背景工作角色在啟動、執行和停止時會經歷一組不同的�
 - [Azure 角色啟動生命週期](http://blog.syntaxc4.net/post/2011/04/13/windows-azure-role-startup-life-cycle.aspx) (英文) (部落格文章)
 - [Azure 雲端服務角色生命週期](http://channel9.msdn.com/Series/Windows-Azure-Cloud-Services-Tutorials/Windows-Azure-Cloud-Services-Role-Lifecycle) (英文) (影片)
 - [開始使用 Azure WebJobs SDK (英文)](./app-service-web/websites-dotnet-webjobs-sdk-get-started.md)
-- [Azure 佇列和服務匯流排佇列 - 異同比較 (英文)](./service-bus/service-bus-azure-and-service-bus-queues-compared-contrasted.md)
+- [Azure 佇列和服務匯流排佇列 - 異同比較 (英文)](./service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted.md)
 - [如何在雲端服務中啟用診斷](./cloud-services/cloud-services-dotnet-diagnostics.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0928_2016-->
