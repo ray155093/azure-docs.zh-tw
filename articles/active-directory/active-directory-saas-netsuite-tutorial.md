@@ -4,7 +4,7 @@
     services="active-directory"
     documentationCenter=""
     authors="asmalser-msft"
-    manager="stevenpo"
+    manager="femila"
     editor=""/>
 
 <tags
@@ -42,7 +42,7 @@
 
 	![按一下 [新增] 以加入新的應用程式。][2]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![按一下 [從資源庫新增應用程式]。][3]
 
@@ -192,7 +192,7 @@
 
 	![設定使用者佈建][28]
 
-2. 在開啟的對話方塊中，輸入 NetSuite 的系統管理員認證，然後按一下 [下一步]。
+2. 在開啟的對話方塊中，輸入 NetSuite 的系統管理員認證，然後按 [下一步]。
 
 	![輸入您的 NetSuite 系統管理員認證。][29]
 
@@ -259,4 +259,4 @@
 [31]: ./media/active-directory-saas-netsuite-tutorial/assign-users.png
 [32]: ./media/active-directory-saas-netsuite-tutorial/assign-confirm.png
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0928_2016-->

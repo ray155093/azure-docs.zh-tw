@@ -19,7 +19,7 @@
 
 # 在 Azure 中建立 MySQL 資料庫並連接到此資料庫
 
-本指南將示範如何在 [Azure 入口網站](https://portal.azure.com)中建立 MySQL 資料庫 (提供者是 [ClearDB](http://www.cleardb.com/))，以及如何從在 [Azure App Service](./app-service/app-service-value-prop-what-is.md) 中執行的 PHP Web 應用程式連接到此資料庫。
+本教學課桯將示範如何在 [Azure 入口網站](https://portal.azure.com)中建立 MySQL 資料庫 (提供者是 [ClearDB](http://www.cleardb.com/))，以及如何從在 [Azure App Service](./app-service/app-service-value-prop-what-is.md) 中執行的 PHP Web 應用程式連接到此資料庫。
 
 > [AZURE.NOTE] 您也可以建立 MySQL 資料庫做為 [Marketplace 應用程式範本](./app-service-web/app-service-web-create-web-app-from-marketplace.md)的一部分。
 
@@ -33,7 +33,7 @@
 
 	![在 Azure 中建立 MySQL 資料庫 - 開始](./media/store-php-create-mysql-database/create-db-1-start.png)
 
-2. 在 [新增 MySQL 資料庫](azure-portal-overview.md) 刀鋒視窗中，依下列方式設定新的 MySQL 資料庫 (刀鋒視窗︰以水平方式開啟的入口網站頁面)：
+2. 在 [新增 MySQL 資料庫][](azure-portal-overview.md) 刀鋒視窗中，依下列方式設定新的 MySQL 資料庫 (刀鋒視窗︰以水平方式開啟的入口網站頁面)：
 
 	- **資料庫名稱**︰輸入可唯一識別的名稱
 	- **訂用帳戶**：選擇要使用的訂用帳戶
@@ -56,17 +56,18 @@
 
 	部署成功之後，您會看到另一則快顯通知。入口網站也會自動開啟您的 MySQL 資料庫刀鋒視窗。
 
-## 從 Azure 中的 PHP Web 應用程式連接到 MySQL 資料庫
+<a name="connect"></a>
+## 連接到您的 MySQL 資料庫
 
-若要查看新 MySQL 資料庫的連接資訊，請按一下 [屬性]。如果沒有看到 [設定] 刀鋒視窗，請按一下 [設定] > [屬性]。
+若要查看新 MySQL 資料庫的連接資訊，請在 Web 應用程式的刀鋒視窗中按一下 [屬性]。
 	
 ![在 Azure 中建立 MySQL 資料庫 - MySQL 資料庫刀鋒視窗](./media/store-php-create-mysql-database/create-db-5-finished-db-blade.png)
 
 您現在已可以在任何 Web 應用程式中使用該連接資訊。[這裡](https://github.com/WindowsAzure/azure-sdk-for-php-samples/tree/master/tasklist-mysql)提供範例，示範如何使用來自簡單 PHP 應用程式的連接資訊。
 
-### 連接 Laravel Web 應用程式 (來自開始使用 PHP 教學課程)
+## 連接 Laravel Web 應用程式 (來自開始使用 PHP 教學課程)
 
-假設您剛完成[建立、設定 PHP Web 應用程式並部署到 Azure](./app-service-web/app-service-web-php-get-started.md) 教學課程，並且擁有一個在 Azure 中執行的 [Laravel](https://www.laravel.com/) Web 應用程式，則您可以將資料庫功能輕鬆新增到您的 Laravel 應用程式。只要依照下列步驟操作即可：
+假設您剛完成[建立、設定 PHP Web 應用程式並部署到 Azure](./app-service-web/app-service-web-php-get-started.md) 教學課程，並且擁有一個在 Azure 中執行的 [Laravel](https://www.laravel.com/) Web 應用程式。您可以將資料庫功能輕鬆新增到您的 Laravel 應用程式。只要依照下列步驟操作即可：
 
 >[AZURE.NOTE] 下列步驟是假設您已完成[建立、設定 PHP Web 應用程式並部署到 Azure](./app-service-web/app-service-web-php-get-started.md) 教學課程。
 
@@ -139,4 +140,4 @@
 
 如需詳細資訊，請參閱 [PHP 開發人員中心](/develop/php/)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0928_2016-->

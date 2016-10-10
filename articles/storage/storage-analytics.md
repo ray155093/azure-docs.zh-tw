@@ -14,7 +14,7 @@
 	ms.devlang="dotnet"
 	ms.topic="article"
 	ms.date="08/03/2016"
-	ms.author="robinsh"/>
+	ms.author="fryu;robinsh"/>
 
 # 儲存體分析
 
@@ -208,4 +208,4 @@ Azure 儲存體分析會執行記錄，並提供儲存體帳戶的度量資料�
 - [儲存體分析度量資料表結構描述](https://msdn.microsoft.com/library/hh343264.aspx)
 - [儲存體分析記錄作業和狀態訊息](https://msdn.microsoft.com/library/hh343260.aspx)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

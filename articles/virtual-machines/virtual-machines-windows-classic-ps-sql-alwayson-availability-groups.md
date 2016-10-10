@@ -13,13 +13,13 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="06/09/2016"
+	ms.date="09/22/2016"
 	ms.author="mikeray" />
 
 # 在 Azure VM 中使用 PowerShell 設定 Always On 可用性群組
 
 > [AZURE.SELECTOR]
-- [Resource Manager︰自動](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
+- [Resource Manager：範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
 - [Resource Manager︰手動](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)
 - [傳統：UI](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
 - [傳統：PowerShell](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
@@ -44,7 +44,7 @@ Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高�
 
 本教學課程的目的是示範設定上述解決方案所需執行的步驟，但不會闡述每個步驟的細節內容。因此，本教學課程會使用 PowerShell 指令碼帶您快速進行每個步驟，但不會顯示 GUI 組態步驟。本教學課程假設您已具備下列條件：
 
-- 您已經有訂閱虛擬機器訂用帳戶的 Azure 帳戶。
+- 您已經有具備虛擬機器訂用帳戶的 Azure 帳戶。
 
 - 您已安裝 [Azure PowerShell Cmdlet](../powershell-install-configure.md)。
 
@@ -52,15 +52,15 @@ Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高�
 
 ## 連接至您的 Azure 訂用帳戶並建立虛擬網路
 
-1. 在您本機電腦上的 [PowerShell] 視窗中匯入 Azure 模組，再將發佈設定檔案下載至您的電腦，然後透過匯入所下載的發佈設定，將 PowerShell 工作階段連接至您的 Azure 訂用帳戶。
+1. 在您本機電腦上的 [PowerShell] 視窗中，匯入 Azure 模組、將發佈設定檔案下載至您的電腦，然後透過匯入所下載的發佈設定，將 PowerShell 工作階段連接至您的 Azure 訂用帳戶。
 
 		Import-Module "C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\Azure\Azure.psd1"
 		Get-AzurePublishSettingsFile
 		Import-AzurePublishSettingsFile <publishsettingsfilepath>
 
-	**Get AzurePublishgSettingsFile** 命令會自動產生管理憑證，然後讓 Azure 將該憑證下載至您的電腦。瀏覽器會自動開啟，並提示您輸入 Azure 訂用帳戶的 Microsoft 帳戶認證。所下載的 **.publishsettings** 檔案包含管理 Azure 訂用帳戶的所有資訊。將此檔案儲存至本機目錄之後，再透過 **Import-AzurePublishSettingsFile** 命令將它匯入。
+	**Get AzurePublishgSettingsFile** 命令會自動產生管理憑證，然後讓 Azure 將該憑證下載至您的電腦。瀏覽器會自動開啟，並提示您針對 Azure 訂用帳戶輸入 Microsoft 帳戶認證。所下載的 **.publishsettings** 檔案包含管理 Azure 訂用帳戶所需的一切資訊。將此檔案儲存至本機目錄之後，再透過 **Import-AzurePublishSettingsFile** 命令將它匯入。
 
-	>[AZURE.NOTE] .publishsettings 檔案包含用來管理 Azure 訂用帳戶和服務的認證 (未編碼)。這個檔案的安全性最佳作法是暫時儲存在來源目錄之外 (例如在 Libraries\\Documents 資料夾)，然後在匯入完成後予以刪除。惡意使用者若取得 .publishsettings 檔案的存取權，就可以編輯、建立和刪除您的 Azure 服務。
+	>[AZURE.NOTE] publishsettings 檔案包含用來管理 Azure 訂用帳戶和服務的認證 (未編碼)。這個檔案的安全性最佳作法是暫時儲存在來源目錄之外 (例如在 Libraries\\Documents 資料夾)，然後在匯入完成後予以刪除。惡意使用者若取得 .publishsettings 檔案的存取權，就可以編輯、建立和刪除您的 Azure 服務。
 
 1. 定義一系列可用來建立雲端 IT 基礎結構的變數。
 
@@ -128,7 +128,7 @@ Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高�
 		  </VirtualNetworkConfiguration>
 		</NetworkConfiguration>
 
-1. 建立與您所建立之同質群組相關聯的儲存體帳戶，並將其設為訂用帳戶目前的儲存體帳戶。
+1. 建立與您所建立之同質群組關聯的儲存體帳戶，並將其設定為您訂用帳戶中目前的儲存體帳戶。
 
 		New-AzureStorageAccount `
 			-StorageAccountName $storageAccountName `
@@ -630,4 +630,4 @@ Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高�
 
 如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

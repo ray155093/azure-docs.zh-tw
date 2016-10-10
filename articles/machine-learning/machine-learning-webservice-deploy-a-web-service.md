@@ -13,12 +13,12 @@
    	ms.tgt_pltfrm="na"
    	ms.devlang="na"
    	ms.topic="article"
-   	ms.date="07/06/2016"
+   	ms.date="09/22/2016"
    	ms.author="v-donglo"/>
 
 # 部署新的 Web 服務
 
-Microsoft Azure Machine learning 現在提供的 Web 服務是以 [Azure Resource Manager](../azure-portal/resource-group-overview.md) 為基礎，允許新的計費方案選項以及將您的 Web 服務部署到多個區域。
+Microsoft Azure Machine Learning 現在提供的 Web 服務是以 [Azure Resource Manager](../resource-group-overview.md) 為基礎，允許新的計費方案選項以及將您的 Web 服務部署到多個區域。
 
 使用 Microsoft Azure Machine Learning Web Services 部署 Web 服務的一般工作流程為︰
 
@@ -87,6 +87,13 @@ Web 服務的 [快速入門] 頁面提供您存取建立新的 Web 服務之後�
 
 如需如何取用 Web 服務的詳細資訊，請參閱[如何取用已從機器學習實驗部署的 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
 
+## 後續步驟
+
+如需有關如何取用 Web 服務的詳細資訊，請參閱︰
+
+[如何使用已從機器學習實驗部署的 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)
+
+[Azure Machine Learning Web 服務：部署和取用](machine-learning-deploy-consume-web-service-guide.md)
 
 <!--Image references-->
 [1]: ./media/machine-learning-webservice-deploy-a-web-service/armdeploymentworkflow.png
@@ -94,4 +101,4 @@ Web 服務的 [快速入門] 頁面提供您存取建立新的 Web 服務之後�
 
 <!--links-->
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0928_2016-->

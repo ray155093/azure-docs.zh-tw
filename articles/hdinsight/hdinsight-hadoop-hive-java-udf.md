@@ -13,7 +13,7 @@ ms.devlang="java"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="07/07/2016"
+ms.date="09/27/2016"
 ms.author="larryfr"/>
 
 #在 HDInsight 中搭配使用 Java UDF 和 Hive
@@ -67,7 +67,61 @@ Hive 很適合在 HDInsight 中處理資料，但您有時需要更通用的語�
 
     這些項目能指定 HDInsight 3.3 和 3.4 叢集隨附之 Hadoop 和 Hive 的版本。在 [HDInsight 元件版本設定](hdinsight-component-versioning.md)文件中，您可以找到有關 HDInsight 隨附之 Hadoop 和 Hive 的版本資訊。
 
-    完成此項變更後，請儲存檔案。
+    在檔案結尾處 `</project>` 之前新增 `<build>` 區段。此區段應該包含下列項目：
+
+        <build>
+            <plugins>
+                <!-- build for Java 1.7, even if you're on a later version -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.3</version>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                    </configuration>
+                </plugin>
+                <!-- build an uber jar -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>2.3</version>
+                    <configuration>
+                        <!-- Keep us from getting a can't overwrite file error -->
+                        <transformers>
+                            <transformer
+                                    implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer">
+                            </transformer>
+                            <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer">
+                            </transformer>
+                        </transformers>
+                        <!-- Keep us from getting a bad signature error -->
+                        <filters>
+                            <filter>
+                                <artifact>*:*</artifact>
+                                <excludes>
+                                    <exclude>META-INF/*.SF</exclude>
+                                    <exclude>META-INF/*.DSA</exclude>
+                                    <exclude>META-INF/*.RSA</exclude>
+                                </excludes>
+                            </filter>
+                        </filters>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>shade</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
+    
+    這些項目會定義如何建置專案。具體來說，定義專案使用的 Java 版本以及如何建置 uberjar 以部署至叢集。
+
+    完成變更後，儲存檔案。
 
 4. 將 __exampleudf/src/main/java/com/microsoft/examples/App.java__ 重新命名為 __ExampleUDF.java__，然後在編輯器中開啟檔案。
 
@@ -136,7 +190,7 @@ Hive 很適合在 HDInsight 中處理資料，但您有時需要更通用的語�
 
 2. 一旦到達 `jdbc:hive2://localhost:10001/>` 提示後，請輸入下列命令以將 UDF 新增至 Hive，並將它公開為函式。
 
-        ADD JAR wasbs:///example/jar/ExampleUDF-1.0-SNAPSHOT.jar;
+        ADD JAR wasbs:///example/jars/ExampleUDF-1.0-SNAPSHOT.jar;
         CREATE TEMPORARY FUNCTION tolower as 'com.microsoft.examples.ExampleUDF';
 
 3. 使用 UDF 將從資料表擷取的值轉換成小寫字串。
@@ -166,4 +220,4 @@ Hive 很適合在 HDInsight 中處理資料，但您有時需要更通用的語�
 
 如需 Hive 使用者定義函式的詳細資訊，請造訪 apache.org 並參閱 Hive wiki 的 [Hive 運算子和使用者定義函式](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF)一節。
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

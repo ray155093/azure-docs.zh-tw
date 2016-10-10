@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="03/04/2016"
+   ms.date="09/27/2016"
    ms.author="femila"/>
 
 # 在 Azure 虛擬機器上部署 Windows Server Active Directory 的指導方針
@@ -176,7 +176,7 @@ Azure 也非常適合替代耗費成本的災害復原 (DR) 網站。託管少�
 
 在此情況下部署 AD FS 的高階步驟，如下所示︰
 
-1. 建立[具有跨單位連線的虛擬網路](../vpn-gateway/vpn-gateway-cross-premises-options.md)，使用 VPN 或 [ExpressRoute](http://azure.microsoft.com/services/expressroute/)。
+1. 使用 VPN 或 [ExpressRoute](http://azure.microsoft.com/services/expressroute/)，建立具有跨單位連線的虛擬網路。
 
 2. 在虛擬網路上部署網域控制站。此步驟為選用步驟，但建議執行。
 
@@ -273,7 +273,7 @@ Azure 也非常適合替代耗費成本的災害復原 (DR) 網站。託管少�
 
 ### <a name="BKMK_CloudOnly"></a>1.AD DS︰部署 AD DS 感知應用程式，不需要公司網路連接
 
-![僅限雲端的 AD DS 部署](media/active-directory-deploying-ws-ad-guidelines/ADDS_cloud.png)**圖 1**
+![僅限雲端的 AD DS 部署](media/active-directory-deploying-ws-ad-guidelines/ADDS_cloud.png) **圖 1**
 
 #### 說明
 
@@ -295,13 +295,13 @@ SharePoint 是部署在 Azure 虛擬機器上，且應用程式與公司網路�
 
 - [通用類別目錄](#BKMK_GC)︰樹系中的第一個 DC 必須是通用類別目錄伺服器。額外的 DC 也應該設定為 GC，因為在單一網域樹系中，通用類別目錄不需要從 DC 進行任何其他工作。
 
-- [Windows Server AD DS 資料庫和 SYSVOL 的位置](#BKMK_PlaceDB)︰將資料磁碟加入至 DC 做為 Azure VM 執行，以便儲存 Windows Server Active Directory 資料庫、記錄和 SYSVOL。
+- [Windows Server AD DS 資料庫和 SYSVOL 的位置](#BKMK_PlaceDB)︰將資料磁碟新增至 DC 做為 Azure VM 執行，以便儲存 Windows Server Active Directory 資料庫、記錄和 SYSVOL。
 
 - [備份和還原](#BKMK_BUR)︰決定您要儲存系統狀態備份的位置。如有需要，將另一個資料磁碟加入至 DC VM 以儲存備份。
 
 ### <a name="BKMK_CloudOnlyFed"></a>2 AD FS：將宣告感知內部部署前端應用程式擴充到網際網路
 
-![具有跨單位連線的同盟](media/active-directory-deploying-ws-ad-guidelines/Federation_xprem.png)**圖 2**
+![具有跨單位連線的同盟](media/active-directory-deploying-ws-ad-guidelines/Federation_xprem.png) **圖 2**
 
 #### 說明
 
@@ -328,7 +328,7 @@ SharePoint 是部署在 Azure 虛擬機器上，且應用程式與公司網路�
 
 ### <a name="BKMK_HybridExt"></a>3.AD DS：部署 Windows Server AD DS 感知應用程式，它需要連接公司網路
 
-![跨單位 AD DS 部署](media/active-directory-deploying-ws-ad-guidelines/ADDS_xprem.png)**圖 3**
+![跨單位 AD DS 部署](media/active-directory-deploying-ws-ad-guidelines/ADDS_xprem.png) **圖 3**
 
 #### 說明
 
@@ -356,7 +356,7 @@ LDAP 感知應用程式會部署在 Azure 虛擬機器上。支援 Windows 整�
 
     如果您部署 GC，設定網站連結和網站連結成本，讓 Azure 網站中的 GC 不會成為其他 GC (需要複寫相同的部分網域分割區) 慣用的來源 DC。
 
-- [Windows Server AD DS 資料庫和 SYSVOL 的位置](#BKMK_PlaceDB)︰將資料磁碟加入至 DC 以在 Azure VM 上執行，以便儲存 Windows Server Active Directory 資料庫、記錄和 SYSVOL。
+- [Windows Server AD DS 資料庫和 SYSVOL 的位置](#BKMK_PlaceDB)︰將資料磁碟新增至 DC 以在 Azure VM 上執行，以便儲存 Windows Server Active Directory 資料庫、記錄和 SYSVOL。
 
 - [備份和還原](#BKMK_BUR)︰決定您要儲存系統狀態備份的位置。如有需要，將另一個資料磁碟加入至 DC VM 以儲存備份。
 
@@ -558,4 +558,4 @@ Windows Server AD FS 同盟伺服器 (STS) 的組態一部分取決於您想要�
 
 > [AZURE.NOTE] 若要取得 Azure 上 Windows Server AD FS 端點的負載平衡，請在相同的雲端服務中設定 Windows Server AD FS 伺服器陣列的所有成員，並針對 HTTP (預設為 80) 和 HTTPS 連接埠 (預設為 443) 使用 Azure 的負載平衡功能。如需詳細資訊，請參閱 [Azure 負載平衡器探查](https://msdn.microsoft.com/library/azure/jj151530)。Azure 不支援 Windows Server 網路負載平衡 (NLB)。
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0928_2016-->

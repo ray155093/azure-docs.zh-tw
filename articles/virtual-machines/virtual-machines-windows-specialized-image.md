@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/26/2016"
+	ms.date="09/27/2016"
 	ms.author="cynthn"/>
 
 # 在 Azure Resource Manager 部署模型中建立 Windows 虛擬機器的複本
@@ -32,7 +32,7 @@
 
 - **您有執行 Windows 的 Azure 虛擬機器**，它是使用傳統或 Resource Manager 部署模型所建立。您已設定作業系統、附加資料磁碟和進行像是安裝所需的應用程式等其他自訂。您會使用這部 VM 建立複本。如果您需要建立來源 VM 的說明，請參閱[如何使用 Resource Manager 建立 Windows VM](virtual-machines-windows-ps-create.md)。
 
-- 您已在電腦上安裝 **Azure PowerShell 1.0 (或更新版本)** 並登入了 Azure 訂用帳戶。如需詳細資訊，請參閱[如何安裝及設定 Azure PowerShell](../powershell-install-configure.md)：
+- 您已在機器上安裝 **Azure PowerShell 1.0 (或更新版本)**，並已登入 Azure 訂用帳戶。如需詳細資訊，請參閱[如何安裝及設定 Azure PowerShell](../powershell-install-configure.md)：
 
 - 您已下載並安裝 **AzCopy 工具**。如需這項工具的詳細資訊，請參閱[使用 AzCopy 命令列公用程式傳輸資料](../storage/storage-use-azcopy.md)。
 
@@ -126,4 +126,4 @@
 
 若要使用 Azure PowerShell 管理新的虛擬機器，請參閱[使用 Azure Resource Manager 與 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)。
 
-<!---HONumber=AcomDC_0525_2016-->
+<!---HONumber=AcomDC_0928_2016-->

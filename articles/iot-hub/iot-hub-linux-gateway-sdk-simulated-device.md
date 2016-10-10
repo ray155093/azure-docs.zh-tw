@@ -13,8 +13,8 @@
      ms.topic="article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="04/20/2016"
-     ms.author="cstreet"/>
+     ms.date="08/29/2016"
+     ms.author="andbuc"/>
 
 
 # IoT 閘道 SDK (Beta) – 搭配使用模擬裝置與 Linux 來傳送裝置到雲端訊息
@@ -26,7 +26,7 @@
 開始之前，您必須：
 
 - [設定開發環境][lnk-setupdevbox]以在 Linux 上使用 SDK。
-- [建立 IoT 中樞][lnk-create-hub] \(於 Azure 訂用帳戶中) 時，您將需要中樞名稱才能完成此逐步解說。如果您還沒有 Azure 訂用帳戶，則可以取得[免費帳戶][lnk-free-trial]。
+- 於 Azure 訂用帳戶中[建立 IoT 中樞][lnk-create-hub]時，您將需要中樞名稱才能完成此逐步解說。如果您還沒有 Azure 訂用帳戶，可以取得[免費帳戶][lnk-free-trial]。
 - 將兩個裝置加入 IoT 中樞中，並記下其識別碼和裝置金鑰。您可以使用[裝置總管或 iothub-explorer][lnk-explorer-tools] 工具將您的裝置加入您在上一個步驟中建立的 IoT 中樞，並擷取其金鑰。
 
 建置範例：
@@ -41,11 +41,12 @@
 
 在文字編輯器中，開啟 **azure-iot-gateway-sdk** 儲存機制本機複本中的 **samples/simulated\_device\_cloud\_upload/src/simulated\_device\_cloud\_upload\_lin.json** 檔案。這個檔案設定範例閘道中的模組︰
 
-- **IoTHub** 模組會連接至您的 IoT 中樞。您必須設定它，以將資料傳送至您的 IoT 中樞。特別的是，將 **IoTHubName** 值設定為 IoT 中樞的名稱，並將 **IoTHubSuffix** 的值設定為 **azure-devices.net**。
+- **IoTHub** 模組會連接至您的 IoT 中樞。您必須設定它，以將資料傳送至您的 IoT 中樞。特別是將 **IoTHubName** 值設定為 IoT 中樞的名稱，並將 **IoTHubSuffix** 值設定為 **azure-devices.net**。將 **Transport** 值設定為 "HTTP" 、"AMQP" 或 "MQTT" 其中一個。請注意，目前只有 "HTTP" 會在所有裝置訊息共用一個 TCP 連線。如果您設定為 "AMQP" 或 "MQTT" 值時，閘道會維持每個裝置有一個連至 IoT 中樞的個別 TCP 連線。
 - **mapping** 模組會將您模擬裝置的 MAC 位址對應到您 IoT 中樞裝置識別碼。請確定 **deviceId** 值符合您加入 IoT 中樞之兩個裝置的識別碼，而且 **deviceKey** 值包含兩個裝置的金鑰。
 - **BLE1** 和 **BLE2** 模組是模擬裝置。請注意，其 MAC 位址如何符合 **mapping** 模組中的 MAC 位址。
 - **Logger** 模組會將閘道活動記錄到檔案。
 - 下面顯示的「模組路徑」值假設您將從 **azure-iot-gateway-sdk** 儲存機制本機複本的根資料夾執行範例。
+- JSON 檔案底部的 **links** 陣列會將 **BLE1** 和 **BLE2** 模組連接至 **mapping** 模組，再將 **mapping** 模組連接至 **IoTHub** 模組。它也可確保 **Logger** 模組會記錄所有訊息。
 
 ```
 {
@@ -53,27 +54,28 @@
     [ 
         {
             "module name" : "IoTHub",
-            "module path" : "./build/modules/iothubhttp/libiothubhttp_hl.so",
+            "module path" : "./build/modules/iothub/libiothub_hl.so",
             "args" : 
             {
                 "IoTHubName" : "{Your IoT hub name}",
-                "IoTHubSuffix" : "azure-devices.net"
+                "IoTHubSuffix" : "azure-devices.net",
+                "Transport": "HTTP"
             }
         },
         {
             "module name" : "mapping",
-            "module path" : "./build/modules/identitymap/libidentitymap_hl.so",
+            "module path" : "./build/modules/identitymap/libidentity_map_hl.so",
             "args" : 
             [
                 {
                     "macAddress" : "01-01-01-01-01-01",
-                    "deviceId"   : "GW-ble1-demo",
-                    "deviceKey"  : "{Device key}"
+                    "deviceId"   : "{Device ID 1}",
+                    "deviceKey"  : "{Device key 1}"
                 },
                 {
                     "macAddress" : "02-02-02-02-02-02",
-                    "deviceId"   : "GW-ble2-demo",
-                    "deviceKey"  : "{Device key}"
+                    "deviceId"   : "{Device ID 2}",
+                    "deviceKey"  : "{Device key 2}"
                 }
             ]
         },
@@ -101,6 +103,12 @@
                 "filename":"./deviceCloudUploadGatewaylog.log"
             }
         }
+    ],
+    "links" : [
+        { "source" : "*", "sink" : "Logger" },
+        { "source" : "BLE1", "sink" : "mapping" },
+        { "source" : "BLE2", "sink" : "mapping" },
+        { "source" : "mapping", "sink" : "IoTHub" }
     ]
 }
 
@@ -151,4 +159,4 @@
 [lnk-portal]: iot-hub-manage-through-portal.md
 [lnk-securing]: iot-hub-security-ground-up.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0928_2016-->

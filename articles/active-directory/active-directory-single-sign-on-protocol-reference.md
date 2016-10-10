@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/23/2016"
+	ms.date="09/28/2016"
 	ms.author="priyamo"/>
 
 # 單一登入 SAML 通訊協定
 
-在本文中，我們將了解 Azure Active Directory (Azure AD) 針對單一登入所支援的 SAML 2.0 驗證要求和回應。
+本文涵蓋 Azure Active Directory (Azure AD) 針對單一登入所支援的 SAML 2.0 驗證要求和回應。
 
 下面的通訊協定圖表說明單一登入順序。雲端服務 (服務提供者) 使用 HTTP 重新導向繫結傳遞 `AuthnRequest` (驗證要求) 元素至 Azure AD (識別提供者)。Azure AD 接著使用 HTTP POST 繫結將 `Response` 元素張貼至雲端服務。
 
@@ -52,7 +52,7 @@ xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol">
 
 Azure AD 也會忽略 `AuthnRequest` 中的 `Conditions` 元素。
 
-### Issuer
+### 簽發者
 
 `AuthnRequest` 中的 `Issuer` 元素必須完全符合 Azure AD 中雲端服務的其中一個 **ServicePrincipalNames**。一般而言，這會設定為應用程式註冊期間指定的**應用程式識別碼 URI**。
 
@@ -162,22 +162,6 @@ Azure AD 會將 `Issuer` 元素設為 `https://login.microsoftonline.com/<Tenant
 <Issuer xmlns="urn:oasis:names:tc:SAML:2.0:assertion"> https://login.microsoftonline.com/82869000-6ad1-48f0-8171-272ed18796e9/</Issuer>
 ```
 
-### 簽章
-
-Azure AD 會在成功登入之後簽署 `Response` 元素。`Signature` 元素包含數位簽章，可供應用程式用來驗證來源及確認回應的完整性。
-
-Azure AD 使用其中繼資料文件的 `IDPSSODescriptor` 元素中指定的簽署金鑰。如需詳細資訊，請參閱[同盟中繼資料文件](active-directory-federation-metadata.md)。
-
-Azure AD 也會簽署 `Assertion` 元素，但這兩個 Signature 元素各自獨立。
-
-回應中的範例 `Signature` 元素看起來可能像這樣︰
-
-```
-<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
-    ...
-  </ds:Signature>
-```
-
 ### 狀態
 
 `Status` 元素會傳遞登入的成功或失敗。它包含 `StatusCode` 元素，此元素中包含一個代碼或一組巢狀代碼來表示要求的狀態。它也包含 `StatusMessage` 元素，此元素中包含登入程序期間所產生的自訂錯誤訊息。
@@ -255,7 +239,7 @@ Azure AD 會簽署判斷提示以回應成功的登入。`Signature` 元素包�
 - `NotBefore` 屬性值等於或稍微晚於 (不到一秒) `Assertion` 元素的 `IssueInstant` 屬性值。Azure AD 不會考慮本身與雲端服務 (服務提供者) 之間的任何時間差，而且不會對此時間加上任何緩衝。
 - `NotOnOrAfter` 屬性值比 `NotBefore` 屬性值晚 70 分鐘。
 
-#### 對象
+#### 觀眾
 
 這包含可識別適用對象的 URI。Azure AD 會將這個元素的值設定為起始登入的 `AuthnRequest` 的 `Issuer` 元素值。若要評估 `Audience` 值，請使用應用程式註冊期間指定的 `App ID URI` 值。
 
@@ -301,4 +285,4 @@ Azure AD 會簽署判斷提示以回應成功的登入。`Signature` 元素包�
 </AuthnStatement>
 ```
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -1,6 +1,6 @@
 <properties
 	pageTitle="v2.0 端點類型 |Microsoft Azure"
-	description="Azure AD v2.0 端點支援的 app 與案例類型。"
+	description="Azure AD v2.0 端點支援的應用程式與案例類型。"
 	services="active-directory"
 	documentationCenter=""
 	authors="dstrockis"
@@ -17,19 +17,19 @@
 	ms.author="dastrock"/>
 
 # v2.0 端點類型
-v2.0 端點支援各種新型 app 架構的驗證，它們全都以產業標準通訊協定 [OAuth 2.0](active-directory-v2-protocols.md#oauth2-authorization-code-flow) 和/或 [OpenID Connect](active-directory-v2-protocols.md#openid-connect-sign-in-flow) 為基準。此文件簡要描述您可以建置的應用程式類型，不涉及您慣用的語言或平台。它會先協助您了解高階的案例，才讓您[一頭栽入程式碼](active-directory-appmodel-v2-overview.md#getting-started)。
+v2.0 端點支援各種新型應用程式架構的驗證，它們全都以產業標準通訊協定 [OAuth 2.0](active-directory-v2-protocols.md#oauth2-authorization-code-flow) 和/或 [OpenID Connect](active-directory-v2-protocols.md#openid-connect-sign-in-flow) 為基準。此文件簡要描述您可以建置的應用程式類型，不涉及您慣用的語言或平台。它會先協助您了解高階的案例，才讓您[一頭栽入程式碼](active-directory-appmodel-v2-overview.md#getting-started)。
 
 > [AZURE.NOTE]
 	v2.0 端點並非支援每個 Azure Active Directory 案例和功能。若要判斷是否應該使用 v2.0 端點，請閱讀相關的 [v2.0 限制](active-directory-v2-limitations.md)。
 
 ## 基本概念
-所有使用 v2.0 端點的 app 都必須在 [apps.dev.microsoft.com](https://apps.dev.microsoft.com) 註冊。應用程式註冊處理序會收集與指派一些值給您的應用程式：
+所有使用 v2.0 端點的應用程式都必須在 [apps.dev.microsoft.com](https://apps.dev.microsoft.com) 註冊。應用程式註冊處理序會收集與指派一些值給您的應用程式：
 
 - 可唯一識別應用程式的**應用程式 ID**
 - 可用來將回應導回至應用程式的**重新導向 URI**
 - 其他幾個狀況特定的值。如需詳細資訊，請了解如何[註冊應用程式](active-directory-v2-app-registration.md)。
 
-註冊完成後，app 即會向 Azure Active Directory v2.0 端點傳送要求，以與 Azure AD 通訊。我們提供開放原始碼架構和處理這些要求詳細資料的程式庫，或者您可以自行編寫對這些端點的要求來實作驗證邏輯：
+註冊完成後，應用程式即會向 Azure Active Directory v2.0 端點傳送要求，以便與 Azure AD 通訊。我們提供開放原始碼架構和處理這些要求詳細資料的程式庫，或者您可以自行編寫對這些端點的要求來實作驗證邏輯：
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize
@@ -66,7 +66,7 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImtyaU1QZG1Cd...
 除了簡易登入，Web 伺服器應用程式可能也需要存取一些其他 Web 服務，例如 REST API。在情況下，Web 伺服器應用程式可以使用 [OAuth 2.0 授權碼流程](active-directory-v2-protocols.md#oauth2-authorization-code-flow)，參與合併了 OpenID Connect 與 OAuth 2.0 的流程。在 [WebApp-WebAPI 開始使用主題](active-directory-v2-devquickstarts-webapp-webapi-dotnet.md)下方有此案例的說明。
 
 ## Web API
-您也可以使用 v2.0 端點來保護 Web 服務，例如 app 的 RESTful Web API。Web API 使用 OAuth 2.0 access\_token 保護資料及驗證連入要求，而不使用 id\_token 和工作階段 Cookie。Web API 的呼叫端尾部會附加 HTTP 要求授權標頭的 access\_token：
+您也可以使用 v2.0 端點來保護 Web 服務，例如應用程式的 RESTful Web API。Web API 使用 OAuth 2.0 access\_token 保護資料及驗證連入要求，而不使用 id\_token 和工作階段 Cookie。Web API 的呼叫端尾部會附加 HTTP 要求授權標頭的 access\_token：
 
 ```
 GET /api/items HTTP/1.1
@@ -89,15 +89,15 @@ Web API 可以接收來自所有類型應用程式的 access\_token，包括 Web
 若要了解如何使用 OAuth2 access\_tokens 保護 Web API，請查看[開始使用章節](active-directory-appmodel-v2-overview.md#getting-started)中的 Web API 程式碼範例。
 
 
-## 行動和原生 App
-安裝在裝置中的應用程式 (如行動和桌面應用程式) 通常需要存取儲存資料和代替使用者執行各種功能的後端服務或 Web API。這些 app 可以使用 [OAuth 2.0 授權碼流程](active-directory-v2-protocols-oauth-code.md)，將登入和授權加入後端服務。
+## 行動和原生應用程式
+安裝在裝置中的應用程式 (如行動和桌面應用程式) 通常需要存取儲存資料和代替使用者執行各種功能的後端服務或 Web API。這些應用程式可以使用 [OAuth 2.0 授權碼流程](active-directory-v2-protocols-oauth-code.md)，將登入和授權新增後端服務。
 
 在這個流程中，應用程式會在使用者登入時，接收來自 v2.0 端點的 authorization\_code，這代表應用程式有權限代替目前登入的使用者呼叫後端服務。然後應用程式就可以在背景中交換 OAuth 2.0 access\_token 和 refresh\_token 的 authoriztion\_code。應用程式可以使用 access\_token 在 HTTP 要求中向 Web API 驗證，也可以在舊的 access\_token 過期時，用 refresh\_token 取得新的 access\_token。
 
 ![原生應用程式泳道映像](../media/active-directory-v2-flows/convergence_scenarios_native.png)
 
-## 單一頁面 App (Javascript)
-許多新式 App 都有單一頁面 App (SPA) 前端，以 javascript 編碼為主，而且通常會使用 AngularJS、Ember.js、Durandal 等架構。Azure AD v2.0 端點支援使用 [OAuth 2.0 隱含流程](active-directory-v2-protocols-implicit.md)的這些 app。
+## 單一頁面應用程式 (Javascript)
+許多新式應用程式都有單一頁面應用程式 (SPA) 前端，以 javascript 編碼為主，而且通常會使用 AngularJS、Ember.js、Durandal 等架構。Azure AD v2.0 端點支援使用 [OAuth 2.0 隱含流程](active-directory-v2-protocols-implicit.md)的這些應用程式。
 
 在流程中，應用程式會直接收到來自 v2.0 授權端點的權杖，而不需要執行任何後端伺服器對伺服器交換。這可讓所有的驗證邏輯和工作階段處理完全在 javascript 用戶端中發生，而不需要執行額外的頁面重新導向。
 
@@ -106,9 +106,9 @@ Web API 可以接收來自所有類型應用程式的 access\_token，包括 Web
 若要查看此案例的實際運作情形，請在[使用者入門](active-directory-appmodel-v2-overview.md#getting-started)一節的單一頁面應用程式程式碼範例中擇一試用。
 
 ## 目前的限制
-v2.0 端點目前不支援這些類型的 app，但已列入開發藍圖中。[v2.0 限制文章](active-directory-v2-limitations.md)中說明 v2.0 端點的其他限制。
+v2.0 端點目前不支援這些類型的應用程式，但已列入開發藍圖中。[v2.0 限制文章](active-directory-v2-limitations.md)中說明 v2.0 端點的其他限制。
 
-### 精靈/伺服器端 App
+### 精靈/伺服器端應用程式
 包含長時執行處理序或不需要使用者操作的應用程式，也需他法存取受保護的資源，例如 Web API。這些應用程式可以透過 OAuth 2.0 用戶端認證流程，利用應用程式身分識別 (而非使用者委派身分識別) 驗證及取得權杖。
 
 v2.0 端點中目前不支援用戶端認證流程。若要查看此流程在正式運作的 Azure AD 服務中如何運作，請參閱 [GitHub 上的精靈程式碼範例](https://github.com/AzureADSamples/Daemon-DotNet)。
@@ -118,4 +118,4 @@ v2.0 端點中目前不支援用戶端認證流程。若要查看此流程在正
 
 使用 OAuth 2.0 的 Jwt Bearer 認證授與可支援此鏈結的 Web API，亦稱為[代理者流程](active-directory-v2-protocols.md#oauth2-on-behalf-of-flow)。不過，v2.0 端點中目前尚未實作代理者流程。若要查看此流程在正式運作的 Azure AD 服務中如何運作，請參閱 [GitHub 上的代理者程式碼範例](https://github.com/AzureADSamples/WebAPI-OnBehalfOf-DotNet)。
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

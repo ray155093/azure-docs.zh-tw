@@ -1,6 +1,6 @@
 <properties
 	pageTitle="在 Azure VM 上設定 SQL Server 的 Azure 金鑰保存庫整合 (傳統)"
-	description="了解如何自動化 SQL Server 加密的組態，以用於 Azure 金鑰保存庫。本主題說明如何搭配傳統部署模型中建立之SQL Server 虛擬機器使用 Azure 金鑰保存庫整合。"
+	description="了解如何自動化 SQL Server 加密的組態，以用於 Azure 金鑰保存庫。本主題說明如何將「Azure 金鑰保存庫整合」與在傳統部署模型中建立的 SQL Server 虛擬機器搭配使用。"
 	services="virtual-machines-windows"
 	documentationCenter=""
 	authors="rothja"
@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="07/05/2016"
+	ms.date="09/26/2016"
 	ms.author="jroth"/>
 
 # 在 Azure VM 上設定 SQL Server 的 Azure 金鑰保存庫整合 (傳統)
@@ -28,7 +28,7 @@
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
-如果您使用內部部署電腦執行 SQL Server，有[您可以遵循的步驟以從您的內部部署 SQL Server 電腦存取 Azure 金鑰保存庫](https://msdn.microsoft.com/library/dn198405.aspx)。但是對於 Azure VM 中的 SQL server，您可以使用 *Azure 金鑰保存庫整合*功能來節省時間。使用一些 Azure PowerShell Cmdlet 來啟用這項功能，您可以自動化 SQL VM 存取您的金鑰保存庫所需的組態。
+如果您使用內部部署機器來執行 SQL Server，有[您可以遵循以從內部部署 SQL Server 機器存取 Azure 金鑰保存庫的步驟](https://msdn.microsoft.com/library/dn198405.aspx)。但是對於 Azure VM 中的 SQL server，您可以使用 *Azure 金鑰保存庫整合*功能來節省時間。使用一些 Azure PowerShell Cmdlet 來啟用這項功能，您可以自動化 SQL VM 存取您的金鑰保存庫所需的組態。
 
 啟用這項功能時，它會自動安裝 SQL Server 連接器、設定 EKM 提供者來存取 Azure 金鑰保存庫，並建立認證讓您存取您的保存庫。如果您看到先前提及的內部部署文件中的步驟，您可以發現這項功能會自動執行步驟 2 和 3。您唯一仍然需要手動進行的是建立金鑰保存庫和金鑰。從那裡開始，會自動化 SQL VM 的整個設定。這項功能完成此設定之後，您可以執行 T-SQL 陳述式以開始如往常一般加密您的資料庫或備份。
 
@@ -37,7 +37,11 @@
 ## 設定 AKV 整合
 使用 PowerShell 設定 Azure 金鑰保存庫整合。以下章節提供必要參數的概觀，以及範例 PowerShell 指令碼。
 
-### 輸入參數
+### 安裝 SQL Server IaaS 擴充功能
+
+首先，[安裝 SQL Server IaaS 擴充功能](virtual-machines-windows-classic-sql-server-agent-extension.md)。
+
+### 了解輸入參數
 下表列出在下一節中執行 PowerShell 指令碼所需的參數。
 
 |參數|說明|範例|
@@ -52,7 +56,7 @@
 ### 使用 PowerShell 啟用 AKV 整合
 **New-AzureVMSqlServerKeyVaultCredentialConfig** Cmdlet 會建立 Azure 金鑰保存庫整合功能的組態物件。**Set-AzureVMSqlServerExtension** 會以 **KeyVaultCredentialSettings** 參數設定此整合。下列步驟說明如何使用這些命令。
 
-1. 在 Azure PowerShell 中，首先以您的特定值設定輸入參數，如本本主題前面幾節所述。下列指令碼是範例。
+1. 在 Azure PowerShell 中，先以您的特定值設定輸入參數，如本本主題前面幾節所述。下列指令碼是範例。
 
 		$akvURL = "https://contosokeyvault.vault.azure.net/"
 		$spName = "fde2b411-33d5-4e11-af04eb07b669ccf2"
@@ -70,4 +74,4 @@ SQL IaaS 代理程式延伸會使用這個新的組態更新 SQL VM。
 
 [AZURE.INCLUDE [AKV 整合後續步驟](../../includes/virtual-machines-sql-server-akv-next-steps.md)]
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0928_2016-->

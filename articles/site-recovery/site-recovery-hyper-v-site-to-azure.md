@@ -21,8 +21,8 @@
 
 > [AZURE.SELECTOR]
 - [Azure 入口網站](site-recovery-hyper-v-site-to-azure.md)
-- [Azure 傳統型](site-recovery-hyper-v-site-to-azure-classic.md)
-- [PowerShell ARM](site-recovery-deploy-with-powershell-resource-manager.md)
+- [PowerShell - 資源管理員](site-recovery-deploy-with-powershell-resource-manager.md)
+- [傳統入口網站](site-recovery-hyper-v-site-to-azure-classic.md)
 
 
 
@@ -88,7 +88,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 **必要條件** | **詳細資料**
 --- | ---
 **Hyper-V**| 一或多部執行 Windows Server 2012 R2 及最新更新和 Hyper-V 角色的內部部署伺服器。<br/><br/>Hyper-V 伺服器應該包含一或多部虛擬機器。<br/><br/>Hyper-V 伺服器應該直接或透過 Proxy 連線到網際網路。<br/><br/>Hyper-V 伺服器應該安裝 [KB2961977](https://support.microsoft.com/zh-TW/kb/2961977 "KB2961977") 中所述的修正程式。
-**Provider 和代理程式** | 在 Azure Site Recovery 部署期間，您會安裝 Azure Site Recovery Provider。Provider 安裝也會在每部執行要保護之虛擬機器的 Hyper-V 伺服器上安裝 Azure 復原服務代理程式。Site Recovery 保存庫中的所有 Hyper-V 伺服器應該都有相同版本的 Provider 和代理程式。<br/><br/>Provider 必須透過網際網路連接到 Azure Site Recovery。可以直接或透過 Proxy 傳送流量。請注意，不支援 HTTPS 型 Proxy。Proxy 伺服器應該允許存取：<br/><br/> *.hypervrecoverymanager.windowsazure.com <br/><br/> *.accesscontrol.windows.net <br/><br/> *.backup.windowsazure.com <br/><br/> *.blog.core.windows.net <br/><br/> *store.core.windows.net <br/><br/> https://www.msftncsi.com/ncsi.txt<br/><br/>如果您的伺服器上有以 IP 位址為基礎的防火牆規則，請檢查這些規則是否允許對 Azure 進行通訊。您將需要允許 [Azure Datacenter IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)和 HTTPS (433) 通訊協定。<br/><br/>請允許您訂用帳戶之 Azure 區域及美國西部的 IP 位址範圍。
+**Provider 和代理程式** | 在 Azure Site Recovery 部署期間，您會安裝 Azure Site Recovery Provider。Provider 安裝也會在每部執行要保護之虛擬機器的 Hyper-V 伺服器上安裝 Azure 復原服務代理程式。Site Recovery 保存庫中的所有 Hyper-V 伺服器應該都有相同版本的 Provider 和代理程式。<br/><br/>Provider 必須透過網際網路連接到 Azure Site Recovery。可以直接或透過 Proxy 傳送流量。請注意，不支援 HTTPS 型 Proxy。Proxy 伺服器應該允許存取：<br/><br/> *.hypervrecoverymanager.windowsazure.com <br/><br/> *.accesscontrol.windows.net <br/><br/> *.backup.windowsazure.com <br/><br/> *.blog.core.windows.net <br/><br/> *store.core.windows.net <br/><br/> https://www.msftncsi.com/ncsi.txt<br/><br/>如果您的伺服器上有以 IP 位址為基礎的防火牆規則，請檢查這些規則是否允許對 Azure 進行通訊。您將需要允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)和 HTTPS (443) 連接埠。<br/><br/>請允許訂用帳戶之 Azure 區域及美國西部的 IP 位址範圍。
 
 ## 受保護的機器必要條件
 
@@ -113,7 +113,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 - 視您想要針對已容錯移轉的 Azure VM 使用的資源模型而定，您將以 [ARM 模式](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)或[傳統模式](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)設定 Azure 網路。
 - 建議您在開始之前先設定網路。若非如此，則必須在 Site Recovery 部署期間這麼做。
 
-> [AZURE.NOTE] [Migration of networks](../resource-group-move-resources.md) 對於用於部署 Site Recovery 的網路，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶。
+> [AZURE.NOTE] [Migration of networks]對於用於部署 Site Recovery 的網路，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶(../resource-group-move-resources.md)。
 
 ### 設定 Azure 儲存體帳戶
 
@@ -121,7 +121,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 - 視您想要針對已容錯移轉的 Azure VM 使用的資源模型而定，您將以 [ARM 模式](../storage/storage-create-storage-account.md)或[傳統模式](../storage/storage-create-storage-account-classic-portal.md)設定帳戶。
 - 建議您在開始之前先設定儲存體帳戶。若非如此，則必須在 Site Recovery 部署期間這麼做。此帳戶必須位於與復原服務保存庫相同的區域中。
 
-> [AZURE.NOTE] [Migration of storage accounts](../resource-group-move-resources.md) 對於用於部署 Site Recovery 的儲存體帳戶，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶。
+> [AZURE.NOTE] [Migration of storage accounts]對於用於部署 Site Recovery 的儲存體帳戶，不支援跨相同訂用帳戶內的資源群組或跨訂用帳戶(../resource-group-move-resources.md)。
 
 ### 準備 Hyper-V 主機
 
@@ -469,4 +469,4 @@ Site Recovery 會提供容量規劃工具，協助您為來源環境、Site Reco
 
 在您的部署設定完成並開始執行之後，請[深入了解](site-recovery-failover.md)不同類型的容錯移轉。
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

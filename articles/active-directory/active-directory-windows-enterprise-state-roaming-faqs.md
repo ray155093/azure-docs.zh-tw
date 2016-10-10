@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/21/2016"
+	ms.date="09/27/2016"
 	ms.author="femila"/>
 
 # 設定和資料漫遊常見問題集
@@ -40,7 +40,7 @@
 
 主要帳戶的定義是用來登入 Windows 的帳戶。這可以是 Microsoft 帳戶、Azure Active Directory (Azure AD) 帳戶、內部部署 Active Directory 帳戶或本機帳戶。除了主要帳戶，Windows 10 使用者可以將一或多個次要雲端帳戶新增至他們的裝置。次要帳戶通常是 Microsoft 帳戶、Azure AD 帳戶或一些像是 Gmail 或 Facebook 的其他帳戶。這些次要帳戶提供其他服務 (例如單一登入和 Windows 市集) 的存取權，但是無法進行設定同步處理。
 
-在 Windows 10 中，只有裝置的主要帳戶可用來進行設定同步處理 (請參閱[我該如何從 Windows 8 中的 Microsoft 帳戶設定同步處理升級至 Windows 10 中的 Azure AD 設定同步處理？](active-directory-windows-enterprise-state-roaming-faqs.md#How-do-I-upgrade-from-Microsoft-account-settings-sync-in-Windows-8-to-Azure-AD-settings-sync-in Windows-10?))。
+在 Windows 10 中，只有裝置的主要帳戶可用來進行設定同步處理 (請參閱＜我該如何從 Windows 8 中的 Microsoft 帳戶設定同步處理升級至 Windows 10 中的 Azure AD 設定同步處理？＞(active-directory-windows-enterprise-state-roaming-faqs.md#How-do-I-upgrade-from-Microsoft-account-settings-sync-in-Windows-8-to-Azure-AD-settings-sync-in Windows-10?))。
 
 裝置上不同使用者帳戶之間的資料永遠不會混合。有兩個設定可用來同步處理設定：
 
@@ -136,4 +136,4 @@ Windows 10 用戶端 SKU 支援「企業狀態漫遊」，但伺服器 SKU 則�
 - [設定同步處理的群組原則和 MDM 設定](active-directory-windows-enterprise-state-roaming-group-policy-settings.md)
 - [Windows 10 漫遊設定參考](active-directory-windows-enterprise-state-roaming-windows-settings-reference.md)
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -8,7 +8,7 @@
 	editor=""
 	tags="azure-classic-portal"/>
 
-<tags ms.service="active-directory" ms.workload="identity" ms.tgt_pltfrm="na" ms.devlang="na" ms.topic="article" ms.date="06/23/2016"
+<tags ms.service="active-directory" ms.workload="identity" ms.tgt_pltfrm="na" ms.devlang="na" ms.topic="article" ms.date="09/27/2016"
 
 	ms.author="femila"/>
 
@@ -37,12 +37,12 @@
 ### 讓使用者可將公司擁有的裝置直接加入 Azure AD
 
 
-企業可以為合作夥伴公司和組織提供僅限雲端的帳戶。這些合作夥伴之後就能使用單一登入，輕易地存取公司的 app 和資源。此案例適用於主要存取雲端資源的使用者，例如 Office 365 或 SaaS App，而這類資源會依賴 Azure AD 進行驗證。
+企業可以為合作夥伴公司和組織提供僅限雲端的帳戶。這些合作夥伴之後就能使用單一登入，輕易地存取公司的應用程式和資源。此案例適用於主要存取雲端資源的使用者，例如 Office 365 或 SaaS 應用程式，而這類資源會依賴 Azure AD 進行驗證。
 
 ### 必要條件
 **在企業層級 (系統管理員)**
 
-*	Azure 訂用帳戶搭配 Azure Active Directory  
+*	Azure 訂用帳戶搭配 Azure Active Directory
 
 **在使用者層級**
 
@@ -59,7 +59,7 @@
 
 
 ## 在組織中針對 Windows 10 啟用 BYOD
-您可以設定使用者和員工，使用其個人的 Windows 裝置 (BYOD) 來存取公司 App 和資源。您的使用者可將其 Azure AD 帳戶 (工作或學校帳戶) 新增到個人的 Windows 裝置，以安全且相容的方式來存取資源。
+您可以設定使用者和員工，使用其個人的 Windows 裝置 (BYOD) 來存取公司應用程式和資源。您的使用者可將其 Azure AD 帳戶 (工作或學校帳戶) 新增到個人的 Windows 裝置，以安全且相容的方式來存取資源。
 
 ### 必要條件
 **在企業層級 (系統管理員)**
@@ -87,4 +87,4 @@
 * [將已加入網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [設定 Azure AD Join](active-directory-azureadjoin-setup.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

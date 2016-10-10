@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="在用戶端插入廣告" 
+	pageTitle="在用戶端插入廣告 | Microsoft Azure" 
 	description="本主題說明如何在用戶端上插入廣告。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016" 
+	ms.date="09/26/2016" 
 	ms.author="juliako"/>
 
 
@@ -813,4 +813,4 @@ Microsoft 媒體平台：Player Framework for iOS 包含範例應用程式集合
 
 [開發視訊播放程式應用程式](media-services-develop-video-players.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

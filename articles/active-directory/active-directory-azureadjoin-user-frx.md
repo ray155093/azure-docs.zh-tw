@@ -1,6 +1,6 @@
 <properties
 	pageTitle="設定期間使用 Azure AD 設定新裝置 | Microsoft Azure"
-	description="此主題說明使用者如何在初次執行體驗期間設定 Azure AD Join。"
+	description="說明使用者如何在初次執行體驗期間設定 Azure AD Join 的主題。"
 	services="active-directory"
 	documentationCenter=""
 	authors="femila"
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/23/2016"
+	ms.date="09/27/2016"
 	ms.author="femila"/>
 
 # 設定期間使用 Azure AD 設定新裝置
@@ -52,4 +52,4 @@
 * [將已加入網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [設定 Azure AD Join](active-directory-azureadjoin-setup.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

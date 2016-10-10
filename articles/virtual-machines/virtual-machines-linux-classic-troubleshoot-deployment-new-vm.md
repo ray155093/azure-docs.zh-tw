@@ -3,7 +3,7 @@
    description="針對在 Azure 中建立新 Linux 虛擬機器的傳統部署問題進行疑難排解"
    services="virtual-machines-linux"
    documentationCenter=""
-   authors="jiangchen79"
+   authors="JiangChen79"
    manager="felixwu"
    editor=""
    tags="top-support-issue"/>
@@ -37,13 +37,13 @@
 
 [AZURE.INCLUDE [virtual-machines-linux-troubleshoot-deployment-new-vm-table](../../includes/virtual-machines-linux-troubleshoot-deployment-new-vm-table.md)]
 
-**Y：**如果作業系統是一般化的 Linux，且帶著一般化設定被上傳及/或擷取，則不會有任何錯誤。同樣地，如果作業系統是特殊化的 Linux，且上傳和 (或) 擷取它時使用的是特殊化設定，就不會有任何錯誤。
+**Y：**如果作業系統是一般化的 Linux，且上傳和 (或) 擷取它時使用的是一般化設定，就不會有任何錯誤。同樣地，如果作業系統是特殊化的 Linux，且上傳和 (或) 擷取它時使用的是特殊化設定，就不會有任何錯誤。
 
 **上傳錯誤：**
 
-**N<sup>1</sup>：**如果作業系統是一般化的 Linux，但是以特殊化被上傳，就會發生佈建逾時錯誤，因為 VM 卡在佈建階段。
+**N<sup>1</sup>：**如果作業系統是一般化的 Linux，但是上傳它時是以特殊化形式上傳，就會發生佈建逾時錯誤，因為 VM 會卡在佈建階段。
 
-**N<sup>2</sup>：**如果作業系統是特殊化的 Linux，但是以一般化被上傳，就會發生佈建失敗錯誤，因為新 VM 是以原始的電腦名稱、使用者名稱和密碼執行。
+**N<sup>2</sup>：**如果作業系統是特殊化的 Linux，但是上傳它時是以一般化形式上傳，就會發生佈建失敗錯誤，因為新 VM 是以原始的電腦名稱、使用者名稱和密碼執行。
 
 **解決方案：**
 
@@ -51,13 +51,13 @@
 
 **擷取錯誤：**
 
-**N<sup>3</sup>：**如果作業系統是一般化的 Linux，但是以特殊化被擷取，就會發生佈建逾時錯誤，因為 VM 被標示為一般化而無法加以使用。
+**N<sup>3</sup>：**如果作業系統是一般化的 Linux，但是擷取它時是以特殊化形式擷取，就會發生佈建逾時錯誤，因為原始 VM 會因被標示為一般化而無法供使用。
 
-**N<sup>4</sup>：**如果作業系統是特殊化的 Linux，但是以一般化被擷取，就會發生佈建失敗錯誤，因為新 VM 是以原始的電腦名稱、使用者名稱和密碼執行。此外，原始 VM 會因被標示為特殊化而無法供使用。
+**N<sup>4</sup>：**如果作業系統是特殊化的 Linux，但是擷取它時是以一般化形式擷取，就會發生佈建失敗錯誤，因為新 VM 是以原始的電腦名稱、使用者名稱和密碼執行。此外，原始 VM 會因被標示為特殊化而無法供使用。
 
 **解決方案：**
 
-若要解決這兩個錯誤，請刪除入口網站中目前的映像，[從目前的 VHD 重新擷取映像](virtual-machines-linux-classic-capture-image.md)，此映像將帶有與該 OS (一般化/特殊化) 相同的設定。
+若要解決這兩個錯誤，請從入口網站中刪除目前的映像，然後使用與作業系統相同的設定 (一般化/特殊化) [從目前的 VHD 重新擷取映像](virtual-machines-linux-classic-capture-image.md)。
 
 ## 問題︰自訂/資源庫/Marketplace 映像；配置失敗
 當新的 VM 要求被傳送到沒有可用空間可處理要求、或不支援所要求的 VM 大小的叢集，便會發生此錯誤。在相同的雲端服務中不可混合不同系列的 VM。因此，如果您想要建立和您的雲端服務可支援大小不同的新 VM，計算要求將會失敗。
@@ -84,4 +84,4 @@
 ## 後續步驟
 如果您在啟動已停止的 Linux VM，或重新調整 Azure 中現有 Linux VM 的大小時遇到問題，請參閱[針對在 Azure 中重新啟動或調整現有 Linux 虛擬機器大小的傳統部署問題進行疑難排解](virtual-machines-linux-classic-restart-resize-error-troubleshooting.md)。
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0928_2016-->

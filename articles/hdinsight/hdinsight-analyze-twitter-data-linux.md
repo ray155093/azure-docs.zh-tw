@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/12/2016"
+	ms.date="09/27/2016"
 	ms.author="larryfr"/>
 
 # 在 HDInsight 中使用 Hive 分析 Twitter 資料
@@ -99,7 +99,7 @@ Twitter 可讓您透過 REST API 抓取[每則推文資料](https://dev.twitter.
 
 		nano gettweets.py
 
-5. 使用以下命令做為 __gettweets.py__ 檔案的內容。使用您 Twitter 應用程式的資訊，取代 __consumer/secret、__consumer/key\_、__access/token 及 __access/token/secret 的預留位置資訊。
+5. 使用以下命令做為 __gettweets.py__ 檔案的內容。使用您的 Twitter 應用程式資訊，取代 __consumer\_secret__、__consumer\_key__、__access/\_token__、__access\_token\_secret__ 的預留位置資訊。
 
         #!/usr/bin/python
 
@@ -290,7 +290,7 @@ Twitter 可讓您透過 REST API 抓取[每則推文資料](https://dev.twitter.
 
 4. 使用以下命令執行包含於檔案中的 HiveQL：
 
-		beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin -i twitter.hql		
+		beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin -i twitter.hql
 		
 	這會載入 Hive 殼層，執行 __twitter.hql__ 檔案中的 HiveQL，最後會傳回 `jdbc:hive2//localhost:10001/>` 提示字元。
 	
@@ -319,4 +319,4 @@ Twitter 可讓您透過 REST API 抓取[每則推文資料](https://dev.twitter.
 [twitter-streaming-api]: https://dev.twitter.com/docs/streaming-apis
 [twitter-statuses-filter]: https://dev.twitter.com/docs/api/1.1/post/statuses/filter
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

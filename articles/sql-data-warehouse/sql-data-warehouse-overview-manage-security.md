@@ -13,18 +13,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="08/30/2016"
+   ms.date="09/24/2016"
    ms.author="rortloff;barbkess;sonyama"/>
 
 # 保護 SQL 資料倉儲中的資料庫
 
 > [AZURE.SELECTOR]
 - [安全性概觀](sql-data-warehouse-overview-manage-security.md)
-- [威脅偵測](sql-data-warehouse-security-threat-detection.md)
-- [稽核概觀](sql-data-warehouse-auditing-overview.md)
-- [稽核下層用戶端](sql-data-warehouse-auditing-downlevel-clients.md)
-- [透明資料加密 (入口網站)](sql-data-warehouse-encryption-tde.md)
-- [透明資料加密 (T-SQL)](sql-data-warehouse-encryption-tde-tsql.md)
+- [驗證](sql-data-warehouse-authentication.md)
+- [加密 (入口網站)](sql-data-warehouse-encryption-tde.md)
+- [加密 (T-SQL)](sql-data-warehouse-encryption-tde-tsql.md)
 
 本文逐步解說保護 Azure SQL 資料倉儲資料庫的基本概念。本文尤其著重於協助您開始利用資源，在資料庫上限制存取、保護資料，以及監視活動。
 
@@ -83,18 +81,9 @@ EXEC sp_addrolemember 'db_datawriter', 'ApplicationUser'; -- allows ApplicationU
 
 ## 加密
 
-Azure SQL 資料倉儲可以使用[透明資料加密][]，透過加密「靜止」時的資料，或儲存在資料庫檔案和備份中的資料，來協助保護您的資料。您必須是系統管理員或 master 資料庫中 dbmanager 角色的成員，才能啟用 TDE。若要加密您的資料庫，請連接到您伺服器上的主要資料庫並執行：
+Azure SQL 資料倉儲透明資料加密 (TDE) 可以對待用資料執行即時加密和解密，協助防止惡意活動的威脅。當您加密資料庫時，相關聯的備份和交易記錄檔就會加密，完全不需要變更您的應用程式。TDE 會使用稱為資料庫加密金鑰的對稱金鑰來加密整個資料庫的儲存體。在 SQL Database 中，資料庫加密金鑰是由內建伺服器憑證保護。內建伺服器憑證對每個 SQL Database 伺服器都是唯一的。Microsoft 至少每 90 天會自動替換這些憑證。「SQL 資料倉儲」使用的加密演算法是 AES-256。如需 TDE 的一般描述，請參閱[透明資料加密][]。
 
-
-```sql
-ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
-```
-
-您也可以從 [Azure 入口網站][]中的資料庫設定，啟用透明資料加密。如需詳細資訊，請參閱[開始使用透明資料加密 (TDE)][]。
-
-## 稽核
-
-稽核和追蹤資料庫事件可協助您遵循法規，並找出可疑的活動。SQL 資料倉儲稽核可讓您將資料庫中的事件記錄到 Azure 儲存體帳戶中的稽核記錄。SQL 資料倉儲稽核也整合了 Microsoft Power BI，具備向下鑽研報表和分析的功能。如需詳細資訊，請參閱[開始使用 Azure Database 稽核][]。
+您可以使用 [Azure 入口網站][Encryption with Portal]或 [T-SQL][Encryption with TSQL] 將資料庫加密。
 
 ## 後續步驟
 
@@ -104,8 +93,8 @@ ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 
 <!--Article references-->
 [連接到 SQL 資料倉儲]: ./sql-data-warehouse-connect-overview.md
-[開始使用 Azure Database 稽核]: ./sql-data-warehouse-auditing-overview.md
-[開始使用透明資料加密 (TDE)]: ./sql-data-warehouse-encryption-tde.md
+[Encryption with Portal]: ./sql-data-warehouse-encryption-tde.md
+[Encryption with TSQL]: ./sql-data-warehouse-encryption-tde-tsql.md
 [使用 Azure Active Directory 驗證連線到 SQL 資料倉儲]: ./sql-data-warehouse-authentication.md
 
 <!--MSDN references-->
@@ -116,10 +105,10 @@ ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 [管理 Azure SQL Database 中的資料庫和登入]: https://msdn.microsoft.com/library/ee336235.aspx
 [權限]: https://msdn.microsoft.com/library/ms191291.aspx
 [預存程序]: https://msdn.microsoft.com/library/ms190782.aspx
-[透明資料加密]: https://go.microsoft.com/fwlink/?LinkId=526242
-[Azure 入口網站]: https://portal.azure.com/
+[透明資料加密]: https://msdn.microsoft.com/library/bb934049.aspx
+[Azure portal]: https://portal.azure.com/
 
 <!--Other Web references-->
 [Azure 入口網站中的角色型存取控制]: https://azure.microsoft.com/documentation/articles/role-based-access-control-configure
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -69,7 +69,7 @@
 |---|---|---|---|
 |[HTTP 權杖提供者](http://code.msdn.microsoft.com/Service-Bus-HTTP-Token-38f2cfc5)|示範利用服務匯流排驗證 HTTP/REST 用戶端的不同方式。|2\.1|Microsoft Azure 服務匯流排；Service Bus for Windows Server|
 |[服務匯流排 HTTP 用戶端](http://code.msdn.microsoft.com/Service-Bus-HTTP-client-fe7da74a)|示範如何透過 HTTP/REST 與服務匯流排傳之間送及及接收訊息。|2\.3|Microsoft Azure 服務匯流排；Service Bus for Windows Server|
-|[服務匯流排自動轉送](http://code.msdn.microsoft.com/Service-Bus-Autoforwarding-b9df470b)|示範如何將訊息從佇列、訂用帳戶或無效信件佇列自動轉送到另一個佇列或主題。它也會示範如何透過傳輸佇列將訊息傳送到佇列或主題。|2\.3|Microsoft Azure 服務匯流排；Service Bus for Windows Server|
+|[服務匯流排自動轉送](http://code.msdn.microsoft.com/Service-Bus-Autoforwarding-b9df470b)|示範如何將訊息從佇列、訂用帳戶或寄不出的信件佇列自動轉送到另一個佇列或主題。它也會示範如何透過傳輸佇列將訊息傳送到佇列或主題。|2\.3|Microsoft Azure 服務匯流排；Service Bus for Windows Server|
 |[代理傳訊：WCF 通道工作階段範例](http://code.msdn.microsoft.com/Brokered-Messaging-WCF-0a526451)|示範如何透過 Windows Communication Foundation (WCF) 通道使用 Microsoft Azure 服務匯流排。此範例會顯示如何使用 WCF 通道來透過服務匯流排佇列傳送和接收訊息。此範例會顯示透過服務匯流排的工作階段和非工作階段通訊。|1\.8|Microsoft Azure 服務匯流排；Service Bus for Windows Server|
 |[代理傳訊：交易](http://code.msdn.microsoft.com/Brokered-Messaging-8cd41d1e)|示範如何使用交易範圍內的 Microsoft Azure 服務匯流排傳訊功能，確保批次傳訊作業以不可部分完成的方式認可。|1\.8|Microsoft Azure 服務匯流排；Service Bus for Windows Server|
 |[代理傳訊：使用 REST 的管理作業](http://code.msdn.microsoft.com/Brokered-Messaging-569cff88)|示範如何使用 REST 在服務匯流排上執行管理作業。|1\.8|Microsoft Azure 服務匯流排；Service Bus for Windows Server|
@@ -130,8 +130,8 @@
 
 請參閱下列主題以取得服務匯流排的概念性概觀。
 
-- [服務匯流排訊息概觀](service-bus-messaging-overview.md)
+- [服務匯流排訊息概觀](../service-bus-messaging/service-bus-messaging-overview.md)
 - [服務匯流排架構](service-bus-architecture.md)
 - [服務匯流排基本概念](service-bus-fundamentals-hybrid-solutions.md)
 
-<!---HONumber=AcomDC_0518_2016-->
+<!---HONumber=AcomDC_0928_2016-->

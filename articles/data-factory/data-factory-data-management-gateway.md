@@ -3,7 +3,7 @@
 	description="設定資料閘道器以在內部部署與雲端之間移動資料。使用 Azure Data Factory 中的資料管理閘道移動資料。" 
 	services="data-factory" 
 	documentationCenter="" 
-	authors="spelluru" 
+	authors="linda33wj" 
 	manager="jhubbard" 
 	editor="monicar"/>
 
@@ -14,7 +14,7 @@
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="08/30/2016" 
-	ms.author="spelluru"/>
+	ms.author="jingwang"/>
 
 # 資料管理閘道
 「資料管理閘道」是一個用戶端代理程式，您必須在內部部署環境中部署此代理程式，才能在雲端與內部部署資料存放區之間複製資料。如需 Data Factory 所支援的內部部署資料存放區，請參閱[支援的資料來源](data-factory-data-movement-activities.md##supported-data-stores)一節。
@@ -86,7 +86,7 @@
 7. 在 [準備安裝] 頁面上，按一下 [安裝]。
 8. 按一下 [完成] 來完成安裝。
 9. 從 Azure 入口網站取得金鑰。如需逐步指示，請參閱下一節。
-10. 在於您機器上執行的「資料管理閘道組態管理員」 的 [註冊閘道器] 頁面上，執行下列操作：
+10. 在您機器上執行的**資料管理閘道組態管理員** 中的 [註冊閘道器] 頁面上，執行下列步驟：
 	1. 將金鑰貼在文字中。
 	2. (選擇性) 按一下 [顯示閘道器金鑰] 以查看金鑰文字。
 	3. 按一下 [註冊]。
@@ -142,7 +142,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 
 請確定在公司防火牆、閘道機器上的 Windows 防火牆及資料存放區本身都已正確啟用防火牆規則。啟用這些規則可讓閘道成功連接到來源和接收器。請為複製作業所涉及的每個資料存放區啟用規則。
 
-例如，若要從**內部部署資料存放區複製到 Azure SQL Database 接收器或 Azure SQL 資料倉儲接收器**，您必須執行下列操作︰
+例如，若要**從內部部署資料存放區複製到 Azure SQL Database 接收器或 Azure SQL 資料倉儲接收器**，執行下列步驟︰
 
 - 在 Windows 防火牆或公司防火牆的連接埠 **1433** 上都允許進行輸出 **TCP** 通訊
 - 設定 Azure SQL 伺服器的防火牆設定，將閘道機器的 IP 位址新增到允許的 IP 位址清單中。
@@ -182,7 +182,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 如果您為 HTTP Proxy 選取 [使用系統 Proxy] 設定，閘道就會使用 diahost.exe.config 中的 Proxy 設定。如果 diahost.exe.config 中未指定任何 Proxy，閘道就會直接連線到雲端服務而不經由 Proxy。下列程序說明如何更新組態檔。
 
 1.	在「檔案總管」中，建立一份 C:\\Program Files\\Microsoft Data Management Gateway\\2.0\\Shared\\diahost.exe.config 的安全複本來備份原始檔案。
-2.	以系統管理員身分啟動 Notepad.exe，並開啟文字檔 C:\\Program Files\\Microsoft Data Management Gateway\\2.0\\Shared\\diahost.exe.config。您會看見 system.net 的預設標籤，如下所示：
+2.	以系統管理員身分啟動 Notepad.exe，並開啟文字檔 C:\\Program Files\\Microsoft Data Management Gateway\\2.0\\Shared\\diahost.exe.config。您會在以下程式碼中看見 system.net 的預設標籤：
 
 			<system.net>
 				<defaultProxy useDefaultCredentials="true" />
@@ -208,7 +208,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 如果發生類似以下的錯誤，有可能是因為防火牆或 Proxy 伺服器的組態不正確，使得閘道無法連線到 Data Factory 來進行自我驗證。請參閱上一節，以確保您的防火牆和 Proxy 伺服器的設定皆正確。
 
 1.	當您嘗試註冊閘道器時，您會收到下列錯誤：「無法註冊閘道器金鑰。再次嘗試註冊閘道器金鑰之前，請確認資料管理閘道已處於連線狀態，且已啟動資料管理閘道主機服務。」
-2.	當您開啟「組態管理員」時，您會看到「已中斷連線」或「正在連接」狀態。 檢視 Windows 事件記錄檔時，在 [事件檢視器] > [應用程式和服務記錄檔] > [資料管理閘道] 底下，您會看到如以下的錯誤訊息：`Unable to connect to the remote server` `A component of Data Management Gateway has become unresponsive and restarts automatically. Component name: Gateway.`
+2.	當您開啟「組態管理員」時，您會看到「已中斷連線」或「正在連接」狀態。 檢視 Windows 事件記錄檔時，在 [事件檢視器] > [應用程式和服務記錄檔] > [資料管理閘道] 下，您會看到如以下的錯誤訊息：`Unable to connect to the remote server` `A component of Data Management Gateway has become unresponsive and restarts automatically. Component name: Gateway.`
 
 ### 開啟用於認證加密的連接埠 8050 
 當您在 Azure 入口網站中設定了內部部署連結服務時，「設定認證」應用程式會使用輸入連接埠 **8050** 將認證轉送到閘道。閘道設定期間，資料管理閘道安裝預設會在閘道電腦上開啟此連接埠。
@@ -236,14 +236,14 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 
 ![DMG 組態管理員中的更新](./media/data-factory-data-management-gateway/gateway-auto-update-config-manager.png)
 
-系統匣中的通知訊息看起來就像下面這樣：
+系統匣中的通知訊息看起來就像下圖：
 
 ![系統匣訊息](./media/data-factory-data-management-gateway/gateway-auto-update-tray-message.png)
 
 您會在系統匣中看到更新作業 (手動或自動) 的狀態。下次啟動「閘道組態管理員」時，您會在通知列上看到指出閘道已更新的訊息，以及一個連到[新功能主題](data-factory-gateway-release-notes.md)的連結。
 
 ### 停用/啟用自動更新功能
-您可以執行下列動作來停用/啟用自動更新功能：
+您可以執行下列步驟來停用/啟用自動更新功能：
 
 1. 在閘道電腦上啟動 Windows PowerShell。
 2. 切換至 C:\\Program Files\\Microsoft Data Management Gateway\\2.0\\PowerShellScript 資料夾。
@@ -262,7 +262,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 - 執行下列資料夾中的 **ConfigManager.exe** 可執行檔：**C:\\Program Files\\Microsoft Data Management Gateway\\2.0\\Shared**
  
 ### 首頁
-首頁可讓您執行下列作業︰
+首頁可讓您執行下列動作︰
 
 - 檢視閘道的狀態 (連接至雲端服務等)。
 - 在入口網站中使用金鑰進行**註冊**。
@@ -271,7 +271,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 - 檢視閘道**上次更新**時的日期。
 
 ### 設定頁面
-[設定] 頁面可讓您執行下列作業︰
+[設定] 頁面可讓您執行下列動作︰
 
 - 檢視、變更及匯出閘道所使用的**憑證**。此憑證用來加密資料來源認證。
 - 變更端點的 **HTTPS 連接埠**。閘道會開啟一個連接埠，以便設定資料來源認證。
@@ -279,7 +279,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 - 檢視 [SSL 憑證] 用於入口網站與閘道之間的 SSL 通訊，以設定資料來源的認證。
 
 ### 診斷頁面
-[診斷] 頁面可讓您執行下列作業︰
+[診斷] 頁面可讓您執行下列動作︰
 
 - 啟用詳細資訊**記錄**、在事件檢視器中檢視記錄檔，以及有失敗時將記錄檔傳送給 Microsoft。
 - **測試連線** (對資料來源的連線)。
@@ -296,7 +296,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 - 您可以在 Windows 事件記錄檔的閘道器記錄檔中找到詳細資訊。您可以使用 Windows「事件檢視器」，在 [應用程式及服務記錄檔] -> [資料管理閘道] 底下找到這些資訊。針對閘道相關問題進行疑難排解時，請在事件檢視器中尋找錯誤層級的事件。
 - 如果閘道在您「變更憑證」之後停止運作，請使用「Microsoft 資料管理閘道組態管理員」工具或「服務」控制台小程式來重新啟動「資料管理閘道服務」。如果您仍然看到錯誤，您可能必須提供資料管理閘道服務使用者的明確權限，以存取憑證管理員 (certmgr.msc) 中的憑證。該服務的預設使用者帳戶為：**NT Service\\DIAHostService**。
 - 當您在「Data Factory 編輯器」中按一下 [加密] 按鈕時，如果「認證管理員」應用程式無法「加密」認證，請確認您是在「閘道機器」上執行此應用程式。如果不是，請在閘道機器上執行此應用程式，然後嘗試加密認證。
-- 如果您看到資料存放區連線或驅動程式相關的錯誤，請執行下列操作︰
+- 如果您看到資料存放區連線或驅動程式相關的錯誤，請執行下列步驟︰
 	- 在閘道機器上啟動「資料管理閘道組態管理員」。
 	- 切換到 [診斷] 索引標籤
 	- 為 [使用此閘道來測試與內部部署資料來源的連接] 群組中的欄位，選取或輸入適當的值
@@ -310,15 +310,15 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 1. 切換至閘道組態管理員的 [診斷] 索引標籤。
  
 	![資料管理閘道 - 診斷索引標籤](media/data-factory-data-management-gateway/data-management-gateway-diagnostics-tab.png)
-2. 按一下 [傳送記錄檔] 連結，以查看下列對話方塊。
+2. 按一下 [傳送記錄檔] 連結可看到以下對話方塊：
 
 	![資料管理閘道 - 傳送記錄檔](media/data-factory-data-management-gateway/data-management-gateway-send-logs-dialog.png)
 3. (選擇性) 按一下 [檢視記錄檔] 以在事件檢視器檢閱記錄檔。
 4. (選擇性) 按一下 [隱私權] 以檢閱 Microsoft 線上服務隱私權聲明。
-3. 一旦您滿意即將上傳的內容，請按一下 [傳送記錄檔]，將過去 7 天的記錄檔傳送給 Microsoft 進行疑難排解。您應該會看到「傳送記錄檔」作業的狀態，如下圖所示。
+3. 一旦您滿意即將上傳的內容，請按一下 [傳送記錄檔]，將過去 7 天的記錄檔傳送給 Microsoft 進行疑難排解。您應該會看到「傳送記錄檔」作業的狀態，如下圖所示：
 
 	![資料管理閘道 - 傳送記錄檔狀態](media/data-factory-data-management-gateway/data-management-gateway-send-logs-status.png)
-4. 作業完成之後，您會看到一個對話方塊，如下圖所示。
+4. 作業完成之後，您會看到一個對話方塊，如下圖所示：
 	
 	![資料管理閘道 - 傳送記錄檔狀態](media/data-factory-data-management-gateway/data-management-gateway-send-logs-result.png)
 5. 記下**報告識別碼**並與 Microsoft 支援服務共用。報告識別碼是用來尋找為了進行疑難排解所上傳的閘道記錄檔。報告識別碼也會儲存在事件檢視器，供您參考。查看事件識別碼 "25" 即可找到它，並檢查日期和時間。
@@ -397,11 +397,11 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
  
 	![指定憑證](./media/data-factory-data-management-gateway/SpecifyCertificate.png)
 
-	您可以執行下列步驟從舊閘道器中匯出憑證：啟動舊電腦上的 [資料管理閘道組態管理員]，切換到 [憑證] 索引標籤，按一下 [匯出] 按鈕，然後遵循指示進行。
+	您可以執行下列步驟，從舊閘道器中匯出憑證：啟動舊電腦上的 [資料管理閘道組態管理員]，切換到 [憑證] 索引標籤，按一下 [匯出] 按鈕，然後遵循指示進行。
 10. 成功註冊閘道器後，閘道器組態管理員首頁上的 [註冊] 應會設定為 [已註冊]，[狀態] 會設定為 [已啟動]。
 
 ## 加密認證 
-若要在 Data Factory 編輯器中加密認證，請執行下列作業︰
+若要在 Data Factory 編輯器中加密認證，請執行下列步驟︰
 
 1. 在「閘道機器」上啟動網頁瀏覽器，瀏覽至 [Azure 入口網站](http://portal.azure.com)。視需要搜尋您的 Data Factory，在 [DATA FACTORY] 刀鋒視窗中開啟 Data Factory，然後按一下 [編寫及部署] 來啟動「Data Factory 編輯器」。
 1. 在樹狀檢視中按一下現有的**連結服務**，以查看其 JSON 定義或建立需要「資料管理閘道」(例如︰SQL Server 或 Oracle) 的連結服務。
@@ -409,7 +409,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 3. 在 **connectionString** 中輸入**資料來源**屬性的伺服器名稱。
 4. 在 **connectionString** 中輸入**初始目錄**屬性的資料庫名稱。
 5. 在命令列上按一下 [加密] 按鈕，以啟動 Click Once「認證管理員」應用程式。您應該會看見 [設定認證] 對話方塊。![設定認證對話方塊](./media/data-factory-data-management-gateway/setting-credentials-dialog.png)
-6. 在 [設定認證] 對話方塊中，執行下列動作：
+6. 在 [設定認證] 對話方塊中，執行下列步驟：
 	1.	選取您要 Data Factory 服務用來連接到資料庫的**驗證**。
 	2.	在 [使用者名稱] 設定中輸入可存取資料庫的使用者名稱。
 	3.	在 [密碼] 設定中輸入使用者的密碼。
@@ -496,4 +496,4 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。如果沒有，您
 ## 後續步驟
 - 請參閱[在內部部署和雲端資料存放區之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文。在該逐步解說中，您會建立一個使用閘道將資料從內部部署 SQL Server 資料庫移到 Azure Blob 的管線。
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

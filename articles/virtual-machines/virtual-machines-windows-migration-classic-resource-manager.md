@@ -198,7 +198,7 @@ Microsoft Dynamics 週期服務 | 包含「Dynamics 週期服務」所管理之�
 
 **如果我必須使用 Resource Manager 下的 IaaS，是否必須購買另一條 ExpressRoute 線路？**
 
-否。我們最近已讓 [ExpressRoute 循環跨傳統和 Resource Manager 並存](../expressroute/expressroute-howto-coexist-resource-manager.md)。如果您已有 ExpressRoute 線路，就不需要購買新線路。
+否，我們最近啟用了[將 ExpressRoute 線路從傳統部署模型移至 Resource Manager 部署模型](../expressroute/expressroute-move.md)的功能。如果您已有 ExpressRoute 線路，就不需要購買新線路。
 
 **如果我已為傳統 IaaS 資源設定角色型存取控制原則，該怎麼辦？**
 
@@ -237,4 +237,4 @@ Microsoft Dynamics 週期服務 | 包含「Dynamics 週期服務」所管理之�
 - [使用 CLI 將 IaaS 資源從傳統移轉至 Azure Resource Manager](virtual-machines-linux-cli-migration-classic-resource-manager.md)
 - [使用社群 PowerShell 指令碼將傳統虛擬機器複製到 Azure Resource Manager](virtual-machines-windows-migration-scripts.md)
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0928_2016-->

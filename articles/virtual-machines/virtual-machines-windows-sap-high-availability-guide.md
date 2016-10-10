@@ -1,19 +1,19 @@
 <properties
    pageTitle="Windows 虛擬機器 (VM) 上的 SAP NetWeaver - 高可用性指南 | Microsoft Azure"
    description="Windows 虛擬機器 (VM) 上的 SAP NetWeaver - 高可用性指南"
-   services="virtual-machines-windows,virtual-network,storage"
-   documentationCenter="saponazure"
+   services="virtual-machines-windows"
+   documentationCenter=""
    authors="goraco"
-   manager="juergent"
+   manager="timlt"
    editor=""
    tags="azure-resource-manager"
    keywords=""/>
 <tags
    ms.service="virtual-machines-windows"
    ms.devlang="NA"
-   ms.topic="campaign-page"
+   ms.topic="article"
    ms.tgt_pltfrm="vm-windows"
-   ms.workload="na"
+   ms.workload="infrastructure-services"
    ms.date="08/18/2016"
    ms.author="goraco"/>
 
@@ -434,8 +434,7 @@ Microsoft Azure 可讓公司在最短的時間內取得計算、儲存體及網�
 本文件詳述使用我們的新方法搭配新的 Azure Resource Manager 部署模型，在 Azure 中部署高可用性 SAP 系統所需的一切步驟。本指南將引導您完成主要的步驟：
 
 
-- 尋找在稍後名為[資源][sap-ha-guide-2]的一節中所列出的適當 SAP 安裝指南和附註。  
-  本白皮書會對「SAP 安裝文件」和「SAP 附註」進行補充說明，指出用來在指定平台上安裝和部署 SAP 軟體的主要資源。
+- 尋找在稍後名為[資源][sap-ha-guide-2]的一節中所列出的適當 SAP 安裝指南和附註。本白皮書會對「SAP 安裝文件」和「SAP 附註」進行補充說明，指出用來在指定平台上安裝和部署 SAP 軟體的主要資源。
 
 - 了解目前 Azure 傳統部署模型與這個新的 Azure Resource Manager 部署模型之間的差異。
 
@@ -1432,4 +1431,4 @@ _**SAP WAC**_ 叢集群組在叢集節點 A 上執行，例如在 _**ascsha-clna
 
 **圖 62：**SIOS DataKeeper︰將本機磁碟區從叢集節點 B 複寫到叢集節點 A
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0928_2016-->

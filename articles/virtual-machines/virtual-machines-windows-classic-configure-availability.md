@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/12/2016"
+	ms.date="09/27/2016"
 	ms.author="cynthn"/>
 
 # 如何以傳統部署模型設定 Windows 虛擬機器的可用性設定組
@@ -27,4 +27,4 @@
 
 有關傳統部署的其他文章，請參閱[傳統部署模型中的 Windows VM 的技術文章](virtual-machines-windows-index.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0928_2016-->

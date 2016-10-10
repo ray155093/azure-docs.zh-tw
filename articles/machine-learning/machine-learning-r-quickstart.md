@@ -4,7 +4,7 @@
 	keywords="快速入門,r 語言,r 程式設計語言,r 程式設計教學課程"
 	services="machine-learning"
 	documentationCenter=""
-	authors="Blackmist"
+	authors="garyericson"
 	manager="jhubbard"
 	editor="cgronlun"/>
 
@@ -15,7 +15,7 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="07/12/2016"
-	ms.author="larryfr"/>
+	ms.author="garye"/>
 
 # Azure Machine Learning 之 R 程式設計語言的快速入門教學課程
 
@@ -694,7 +694,7 @@ POSIXct 時間序列類別是常用且相對簡單的類別。此時間序列類
     [ModuleOutput] 
     [ModuleOutput]  $ Month.Count      : num  0 1 2 3 4 5 6 7 8 9 ...
 
-*圖 14.[執行 R 指令碼] 模組中資料框架的摘要。*
+* 14.[執行 R 指令碼] 模組中資料框架的摘要。*
 
 此資料的類型和格式皆如預期。請注意，'Month' 資料行的類型是因素，並且具有預期的層級數目。
 
@@ -735,7 +735,7 @@ POSIXct 時間序列類別是常用且相對簡單的類別。此時間序列類
     [ModuleOutput] 
     [ModuleOutput]  $ Time             : POSIXct, format: "1995-01-01" "1995-02-01" ...
 
-*圖 15.含有時間序列物件之資料框架的摘要。*
+* 15.含有時間序列物件之資料框架的摘要。*
 
 我們可以從摘要看出，新資料行的類別事實上是 POSIXct。
 
@@ -1296,13 +1296,13 @@ RStudio 已經有相當充分的說明，因此在本附錄中，我將提供一
 
 此 R 程式設計教學課程涵蓋您搭配 Azure Machine Learning Studio 使用 R 語言時所需的基本知識。如果您不熟悉 R，CRAN 有提供兩本簡介：
 
-- Emmanuel Paradis 所著的《R for Beginners》是初學者的首選，網址為 http://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf。  
+- Emmanuel Paradis 所著的《R for Beginners》是初學者的首選，網址為 http://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf。
 
 - W. N. Venables et. al. 所著的《An Introduction to R》提供略為深入的探討，網址為 http://cran.r-project.org/doc/manuals/R-intro.html。
 
 有許多 R 的相關書籍可以協助您輕鬆上手。以下是一些我認為實用的書籍：
 
-- Norman Matloff 所著的《The Art of R Programming: A Tour of Statistical Software Design》是一本使用 R 進行程式設計的出色簡介。  
+- Norman Matloff 所著的《The Art of R Programming: A Tour of Statistical Software Design》是一本使用 R 進行程式設計的出色簡介。
 
 - Paul Teetor 所著的《R Cookbook》提供關於使用 R 的問題與解決方法。
 
@@ -1318,7 +1318,7 @@ Paul Cowpertwait 與 Andrew Metcalfe 所著的 《Introductory Time Series with 
 
 一些絕佳的網際網路資源：
 
-- DataCamp：DataCamp 利用視訊課程和程式碼撰寫練習在瀏覽器中輕鬆教導 R。最新 R 技巧和封裝均有互動式教學課程。取得免費的互動式 R 教學課程，網址為 https://www.datacamp.com/courses/introduction-to-r  
+- DataCamp：DataCamp 利用視訊課程和程式碼撰寫練習在瀏覽器中輕鬆教導 R。最新 R 技巧和封裝均有互動式教學課程。取得免費的互動式 R 教學課程，網址為 https://www.datacamp.com/courses/introduction-to-r
 
 - Clarkson 大學 Kelly Black 提供的快速 R 教學課程：http://www.cyclismo.org/tutorial/R/
 
@@ -1358,4 +1358,4 @@ Paul Cowpertwait 與 Andrew Metcalfe 所著的 《Introductory Time Series with 
 <!-- Module References -->
 [execute-r-script]: https://msdn.microsoft.com/library/azure/30806023-392b-42e0-94d6-6b775a6e0fd5/
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

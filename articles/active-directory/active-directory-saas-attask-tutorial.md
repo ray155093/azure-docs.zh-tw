@@ -19,8 +19,7 @@
 
 # 教學課程：Azure Active Directory 與 @Task 整合
 
-本教學課程旨在說明如何整合 @Task 與 Azure Active Directory (Azure AD)。  
-@Task 與 Azure AD 整合提供下列優點：
+本教學課程旨在說明如何整合 @Task 與 Azure Active Directory (Azure AD)。@Task 與 Azure AD 整合提供下列優點：
 
 - 您可以在 Azure AD 中控制可存取 @Task 的人員
 - 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 @Task (單一登入)
@@ -46,8 +45,7 @@
 
  
 ## 案例描述
-此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。  
-本教學課程中說明的案例由三個主要建置組塊組成：
+此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。本教學課程中說明的案例由三個主要建置組塊組成：
 
 1. 從資源庫新增 @Task
 2. 設定並測試 Azure AD 單一登入
@@ -72,7 +70,7 @@
 
 	![應用程式][3]
 
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫新增應用程式]。
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
 	![應用程式][4]
 
@@ -147,7 +145,7 @@
 
     e.在 Azure 傳統入口網站上，複製 [變更密碼 URL]，然後將它貼到 [變更密碼 URL] 文字方塊中。
 
-    e.按一下 [儲存]。
+    f.按一下 [儲存]。
 
 6. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按 [下一步]。
 
@@ -275,8 +273,7 @@
 
 ### 測試單一登入
 
-本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。  
-當您在存取面板中按一下 [@Task] 圖格時，應該會自動登入您的 @Task 應用程式。
+本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。當您在存取面板中按一下 [@Task] 圖格時，應該會自動登入您的 @Task 應用程式。
 
 
 ## 其他資源
@@ -314,4 +311,4 @@
 [204]: ./media/active-directory-saas-attask-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-attask-tutorial/tutorial_general_205.png
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0928_2016-->

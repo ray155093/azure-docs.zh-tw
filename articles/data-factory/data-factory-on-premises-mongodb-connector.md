@@ -3,7 +3,7 @@
 	description="了解如何使用 Azure Data Factory 從 MongoDB 資料庫移動資料。" 
 	services="data-factory" 
 	documentationCenter="" 
-	authors="spelluru" 
+	authors="linda33wj" 
 	manager="jhubbard" 
 	editor="monicar"/>
 
@@ -14,7 +14,7 @@
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="08/04/2016" 
-	ms.author="spelluru"/>
+	ms.author="jingwang"/>
 
 # 使用 Azure Data Factory 從 MongoDB 移動資料
 
@@ -22,12 +22,12 @@
 
 Data Factory 服務支援使用資料管理閘道器連接至內部部署 MongoDB 來源。請參閱[資料管理閘道](data-factory-data-management-gateway.md)一文來了解資料管理閘道，以及[將資料從內部部署移動到雲端](data-factory-move-data-between-onprem-and-cloud.md)一文來取得設定資料管線的閘道以移動資料的逐步指示。
 
-> [AZURE.NOTE] 即使 MongoDB 裝載於 Azure IaaS VM 中，您還是需要運用閘道器與其連接。如果您正嘗試連接到裝載於雲端中的 MongoDB 執行個體，您也可以在 IaaS VM 中安裝閘道器執行個體。
+> [AZURE.NOTE] 即使 MongoDB 是裝載在 Azure IaaS VM 中，您還是需要使用閘道與其連接。如果您正嘗試連接到裝載於雲端中的 MongoDB 執行個體，您也可以在 IaaS VM 中安裝閘道器執行個體。
 
 資料處理站目前只支援將資料從 MongoDB 移動到其他資料存放區，而不支援將資料從其他資料存放區移動到 MongoDB。
 
 ## 必要條件
-如果是能夠連接到您內部部署 MongoDB 資料庫的 Azure Data Factory 服務，您就必須安裝下列項目：
+如果是能夠連接到您內部部署 MongoDB 資料庫的 Azure Data Factory 服務，您就必須安裝下列元件：
 
 - 位於裝載資料庫的同一部電腦上或個別電腦上的資料管理閘道 2.0 或更新版本，可避免與資料庫競用資源。資料管理閘道是一套透過安全且可管理的方式，將內部部署資料來源連結至雲端服務的軟體。如需資料管理閘道的詳細資料，請參閱[資料管理閘道](data-factory-data-management-gateway.md)一文。
   
@@ -36,7 +36,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 MongoD
 ## 複製資料精靈
 若要建立管線以將資料從 MongoDB 資料庫複製到任何支援的接收資料存放區，最簡單的方式是使用複製資料精靈。如需使用複製資料精靈建立管線的快速逐步解說，請參閱[教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md)。
 
-以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)或 [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。這些範例示範如何將資料從 MongoDB 資料庫複製到 Azure Blob 儲存體。不過，您可以在 Azure Data Factory 中使用複製活動，將資料複製到[這裡](data-factory-data-movement-activities.md#supported-data-stores)所說的任何接收器。
+下列範例提供您使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 來建立管線時，可使用的範例 JSON 定義。這些範例示範如何將資料從 MongoDB 資料庫複製到 Azure Blob 儲存體。不過，您可以在 Azure Data Factory 中使用複製活動，將資料複製到[這裡](data-factory-data-movement-activities.md#supported-data-stores)所說的任何接收器。
 
 ## 範例：從 MongoDB 複製資料到 Azure Blob
 此範例示範如何將資料從內部部署 MongoDB 資料庫複製到 Azure Blob 儲存體。不過，您可以在 Azure Data Factory 中使用複製活動，**直接**將資料複製到[這裡](data-factory-data-movement-activities.md#supported-data-stores)所說的任何接收器。
@@ -51,7 +51,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 MongoD
 
 此範例會每個小時將資料從 MongoDB 資料庫中的查詢結果複製到 Blob。範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
-在第一個步驟中，請根據[資料管理閘道](data-factory-data-management-gateway.md)一文中的指示設定資料管理閘道。
+第一個步驟是根據[資料管理閘道](data-factory-data-management-gateway.md)一文中的指示設定資料管理閘道。
 
 **MongoDB 連結服務**
 
@@ -248,11 +248,11 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 MongoD
 
 ## 複製活動類型屬性
 
-如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。名稱、描述、輸入和輸出資料表、各種原則等屬性都適用於所有活動類型。
+如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
 
-另一方面，活動的 **typeProperties** 區段中可用的屬性會隨著每個活動類型而有所不同，而在複製活動的案例中，可用的屬性會根據來源與接收的類型而有所不同。
+另一方面，活動的 **typeProperties** 區段中可用的屬性會隨著每個活動類型而有所不同。就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
 
-在複製活動的案例中，如果來源的類型為 **MongoDbSource**，則 typeProperties 區段有下列可用屬性：
+如果來源類型為 **MongoDbSource**，則 typeProperties 區段可使用下列屬性：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | -------- | ----------- | -------------- | -------- |
@@ -263,12 +263,12 @@ Azure Data Factory 服務會使用 MongoDB 集合中最新的 100 份文件，�
 
 ## MongoDB 的類型對應
 
-如同[資料移動活動](data-factory-data-movement-activities.md)一文所述，複製活動會使用下列 2 個步驟的方法，執行自動類型轉換，將來源類型轉換成接收類型。
+如同[資料移動活動](data-factory-data-movement-activities.md)一文所述，複製活動會使用下列 2 個步驟的方法，執行自動類型轉換，將來源類型轉換成接收類型：
 
 1. 從原生來源類型轉換成 .NET 類型
 2. 從 .NET 類型轉換成原生接收類型
 
-將資料移到 MongoDB 時，下列對應將用於從 MongoDB 類型.NET 類型。
+將資料移到 MongoDB 時，下列對應會用於從 MongoDB 類型對應至 .NET 類型。
 
 | MongoDB 類型 | .NET Framework 類型 |
 | ------------------- | ------------------- | 
@@ -296,7 +296,7 @@ Azure Data Factory 會使用內建的 ODBC 驅動程式來連線到 MongoDB 資�
 
 虛擬資料表會參考實際資料表中的資料，讓驅動程式得以存取反正規化的資料。如需詳細資訊，請參閱下方的＜範例＞一節。您可以藉由查詢和聯結虛擬資料表來存取 MongoDB 陣列的內容。
 
-您可以利用[複製精靈](data-factory-data-movement-activities.md#data-factory-copy-wizard)，以直觀方式檢視 MongoDB 資料庫中的資料表清單 (包括虛擬資料表)，並預覽其中的資料。您也可以在複製精靈中建構查詢，並進行驗證以查看結果。
+您可以使用[複製精靈](data-factory-data-movement-activities.md#data-factory-copy-wizard)，以直觀方式檢視 MongoDB 資料庫中的資料表清單 (包括虛擬資料表)，並預覽其中的資料。您也可以在複製精靈中建構查詢，並進行驗證以查看結果。
 
 ### 範例
 
@@ -304,8 +304,8 @@ Azure Data Factory 會使用內建的 ODBC 驅動程式來連線到 MongoDB 資�
 
 \_id | 客戶名稱 | 發票 | 服務等級 | 評等
 --- | ------------- | -------- | ------------- | -------
-1111 | ABC | [{invoice\_id:”123”, item:”toaster”, price:”456”, discount:”0.2”}, {invoice\_id:”124”, item:”oven”,price: ”1235”,discount: ”0.2”}] | Silver | [5,6]
-2222 | XYZ | [{invoice\_id:”135”, item:”fridge”,price: ”12543”,discount: ”0.0”}] | Gold | [1,2]
+1111 | ABC | [{invoice\_id:”123”, item:”toaster”, price:”456”, discount:”0.2”}, {invoice\_id:”124”, item:”oven”, price: ”1235”, discount: ”0.2”}] | Silver | [5,6]
+2222 | XYZ | [{invoice\_id:”135”, item:”fridge”, price: ”12543”, discount: ”0.0”}] | Gold | [1,2]
 
 驅動程式會產生多個代表這個單一資料表的虛擬資料表。第一個虛擬資料表是名為「ExampleTable」的基底資料表，如下所示。基底資料表包含原始資料表的所有資料，但來自陣列的資料已省略，並且會在虛擬資料表中展開。
 
@@ -314,7 +314,7 @@ Azure Data Factory 會使用內建的 ODBC 驅動程式來連線到 MongoDB 資�
 1111 | ABC | Silver
 2222 | XYZ | Gold
 
-下表顯示代表範例中原始陣列的虛擬資料表。這些資料表各包含下列項目：
+下表顯示代表範例中原始陣列的虛擬資料表。這些資料表包含下列項目：
 
 - 對應到原始陣列資料列 (透過 \_id 資料行) 之原始主要索引鍵資料行的往回參考
 - 資料在原始陣列之位置的指示
@@ -347,4 +347,4 @@ Azure Data Factory 會使用內建的 ODBC 驅動程式來連線到 MongoDB 資�
 ## 後續步驟
 請參閱[在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)一文，以取得如何建立資料管線以將資料從內部部署資料存放區移動至 Azure 資料存放區的逐步指示。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0928_2016-->

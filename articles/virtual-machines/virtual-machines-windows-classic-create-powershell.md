@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="05/05/2016"
+	ms.date="09/27/2016"
 	ms.author="cynthn"/>
 
 # 以 PowerShell 以及傳統部署模型建立 Windows 虛擬機器 
@@ -37,8 +37,8 @@
 
 ## 步驟 1︰加入您的帳戶
 
-1. 在 PowerShell 提示字元中，輸入 **Add-AzureAccount**，然後按一下 **Enter** 鍵。
-2. 輸入與您 Azure 訂用帳戶相關聯的電子郵件地址，並按一下 [**繼續**]。
+1. 在 PowerShell 提示字元處，輸入 **Add-AzureAccount**，然後按一下 **Enter** 鍵。
+2. 輸入與您 Azure 訂用帳戶相關聯的電子郵件地址，並按一下 [繼續]。
 3. 輸入您帳戶的密碼。
 4. 按一下 [**登入**]。
 
@@ -108,7 +108,7 @@
 	$cred=Get-Credential -Message "Type the name and password of the local administrator account."
 	$vm1 | Add-AzureProvisioningConfig -Windows -AdminUsername $cred.Username -Password $cred.GetNetworkCredential().Password
 
- 選擇強式密碼。要檢查密碼強度，請參閱[密碼檢查程式：使用強式密碼](https://www.microsoft.com/security/pc-security/password-checker.aspx)。
+選擇強式密碼。要檢查密碼強度，請參閱[密碼檢查程式：使用強式密碼](https://www.microsoft.com/security/pc-security/password-checker.aspx)。
 
 (選擇性) 若要將 Windows 電腦加入現有的 Active Directory 網域，請指定本機系統管理員帳戶和密碼、網域，以及網域帳戶的名稱和密碼。
 
@@ -262,4 +262,4 @@
 
 如果您需要大於 127 GB 的 OS 磁碟，可以[展開 OS 磁碟機](virtual-machines-windows-expand-os-disk.md)。
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0928_2016-->

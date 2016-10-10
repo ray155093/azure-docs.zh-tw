@@ -13,12 +13,12 @@
       ms.devlang="na"
       ms.topic="article"
       ms.date="02/29/2016"
-      ms.author="minet" />
+      ms.author="minet;robinsh" />
 
 
 # 如何搭配使用 Azure 檔案儲存體與 Linux
 
-## 概觀
+## Overview
 
 Azure 檔案儲存體可在雲端中使用標準的 SMB 通訊協定提供檔案共用。使用 Azure 檔案，您可以將依賴檔案伺服器的企業應用程式移轉至 Azure。在 Azure 中執行的應用程式可以從執行 Linux 的 Azure 虛擬機器輕鬆地掛接檔案共用。有了最新版本的檔案儲存體後，您也可以從支援 SMB 3.0 的內部部署應用程式掛接檔案共用。
 
@@ -64,7 +64,7 @@ Azure 檔案儲存體可在雲端中使用標準的 SMB 通訊協定提供檔案
 
 此外，若要在重新開機後繼續掛接檔案共用，您可以在 /etc/fstab 中加入類似下方的設定：
 
-    //myaccountname.file.core.windows.net/mysharename /mymountpoint cifs vers=3.0,username= myaccountname,password= StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
+    //myaccountname.file.core.windows.net/mysharename /mymountpoint cifs vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
 
 例如，如果您使用 Linux 映像 Ubuntu Server 15.04 (可從 Azure 映像庫取得) 建立 Azure VM，則可以如下所示掛接檔案：
 
@@ -140,4 +140,4 @@ Linux 使用者群組的 Azure 檔案儲存體提供論壇，讓您在 Linux 上
 - [Microsoft Azure 檔案服務簡介](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx)
 - [保留與 Microsoft Azure 檔案的連線](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx)
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0928_2016-->

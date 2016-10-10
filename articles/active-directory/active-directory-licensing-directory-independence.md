@@ -4,7 +4,7 @@
    services="active-directory"
    documentationCenter=""
    authors="curtand"
-   manager="stevenpo"
+   manager="femila"
    editor=""/>
 
 <tags
@@ -45,4 +45,4 @@
 
 如需 Azure AD 授權問題和最佳作法的一般概觀，請參閱[什麼是 Azure Active Directory 授權？](active-directory-licensing-what-is.md)。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0928_2016-->

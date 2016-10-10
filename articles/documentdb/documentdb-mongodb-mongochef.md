@@ -3,7 +3,7 @@
 	description="了解如何搭配使用 MongoChef 與 MongoDB 的通訊協定支援的 DocumentDB 帳戶，現在可供預覽。" 
 	keywords="mongochef"
 	services="documentdb" 
-	authors="stephbaron" 
+	authors="mimig1" 
 	manager="jhubbard" 
 	editor="" 
 	documentationCenter=""/>
@@ -15,7 +15,7 @@
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="08/25/2016" 
-	ms.author="stbaro"/>
+	ms.author="mimig"/>
 
 # 使用 MongoChef 和具有 MongoDB 通訊協定支援的 DocumentDB 帳戶
 
@@ -132,4 +132,4 @@
 
  
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0928_2016-->

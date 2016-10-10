@@ -430,7 +430,7 @@ Azure 備份會將資料從執行 Windows Server 的內部部署伺服器備份�
 
 佇列是一個簡單構想：一個應用程式可將訊息放入佇列中，而該訊息最終會由其他應用程式所讀取。如果您的應用程式只需要這項直接服務，Azure 佇列會是最佳選擇。
 
-由於 Azure 隨時間不斷調整的方式，Azure 儲存體佇列和服務匯流排提供了類似的佇列服務。使用這些服務之一的原因會在相當專門文章 [<LINK>](http://msdn.microsoft.com/library/azure/hh767287.aspx "Azure 佇列和服務匯流排佇列 - 異同比較") 中進行更詳細的介紹。在許多案例中，任一種都適用。
+由於 Azure 隨時間不斷調整的方式，Azure 儲存體佇列和服務匯流排提供了類似的佇列服務。使用這些服務之一的原因會在相當專門的文章 [Azure 佇列和服務匯流排佇列 - 比較和對照](http://msdn.microsoft.com/library/azure/hh767287.aspx)中進行更詳細的介紹。在許多案例中，任一種都適用。
 
 **佇列案例**
 
@@ -606,4 +606,4 @@ SendGrid 是 Azure Store 中可讓您傳送電子郵件的應用程式。它提�
 
 [Azure Media Services Poster]: http://azure.microsoft.com/documentation/infographics/media-services/
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

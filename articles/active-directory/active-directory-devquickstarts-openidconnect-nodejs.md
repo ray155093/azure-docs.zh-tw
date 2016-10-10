@@ -16,21 +16,21 @@
 	ms.date="08/15/2016"
 	ms.author="brandwe"/>
 
-# 使用 Azure AD 進行 Web 應用程式登入與登出
+# 使用 Azure AD 進行 NodeJS Web 應用程式登入與登出
 
 
 我們將在此處使用 Passport 來執行下列動作：
 
 - 使用 Azure AD 將使用者登入應用程式。
 - 顯示使用者的一些相關資訊。
-- 讓使用者登出 App。
+- 讓使用者登出應用程式。
 
 **Passport** 是 Node.js 的驗證中介軟體。您可以暗中將極具彈性且模組化的 Passport 放入任何 Express 或 Resitify Web 應用程式。一組完整的策略可支援使用使用者名稱和密碼、Facebook、Twitter 及其他等驗證。我們已為 Microsoft Azure Active Directory 開發一項策略。我們將安裝此模組，然後加入 Microsoft Azure Active Directory `passport-azure-ad` 外掛程式。
 
 為執行此作業，您必須執行下列動作：
 
 1. 註冊應用程式。
-2. 設定您的 App 以使用 Passport-azure-ad 策略。
+2. 設定您的應用程式以使用 Passport-azure-ad 策略。
 3. 使用 Passport，向 Azure AD 發出登入和登出要求。
 4. 列印出使用者的相關資料。
 
@@ -70,7 +70,7 @@
 
 如此會安裝 passport-azure-ad 做為依據的程式庫。
 
-## 3\.設定您的 App 以使用 passport-node-js 策略。
+## 3\.設定您的應用程式以使用 passport-node-js 策略。
 我們將在此設定 Express 中介軟體，以使用 OpenID Connect 驗證通訊協定。Express 將用來發出登入和登出要求、管理使用者的工作階段，以及取得使用者相關資訊等其他作業。
 
 -	若要開始，請開啟專案根目錄中的 `config.js` 檔案，並在 `exports.creds` 區段中輸入應用程式的組態值。
@@ -135,7 +135,7 @@ Passport 會使用適用於它的所有策略 (Twitter、Facebook 等) 且所有
 
 
 > [AZURE.IMPORTANT] 
-上述程式碼會讓所有使用者經歷伺服器的驗證。這就是所謂的自動註冊。在生產伺服器中，您想要讓所有人都必須先經歷您所決定的註冊過程。這通常是您在取用者 App 中看到的模式，可讓您向 Facebook 註冊，但接著會要求您填寫其他資訊。如果這不是範例應用程式，我們就只能從傳回的權杖物件中擷取電子郵件，然後要求他們填寫其他資訊。由於這是測試伺服器，因此，我們直接將它們加入至記憶體中的資料庫。
+上述程式碼會讓所有使用者經歷伺服器的驗證。這就是所謂的自動註冊。在生產伺服器中，您想要讓所有人都必須先經歷您所決定的註冊過程。這通常是您在取用者應用程式中看到的模式，可讓您向 Facebook 註冊，但接著會要求您填寫其他資訊。如果這不是範例應用程式，我們就只能從傳回的權杖物件中擷取電子郵件，然後要求他們填寫其他資訊。由於這是測試伺服器，因此，我們直接將它們加入至記憶體中的資料庫。
 
 - 接下來，我們會新增方法，依 Passport 所要求，允許我們持續追蹤已登入的使用者。這包括將使用者資訊序列化和還原序列化：
 
@@ -288,10 +288,10 @@ app.get('/logout', function(req, res){
 
 // Simple route middleware to ensure user is authenticated. (Section 4)
 
-//   在任何需要保護的資源上使用此路由中介軟體。  如果
-//   此要求已驗證 (通常是透過持續登入工作階段)，
-//   此要求會繼續執行。否則使用者將重新導向至
-//   登入頁面。
+//   Use this route middleware on any resource that needs to be protected.  If
+//   the request is authenticated (typically via a persistent login session),
+//   the request will proceed.  Otherwise, the user will be redirected to the
+//   login page.
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   res.redirect('/login')
@@ -414,4 +414,4 @@ exports.list = function(req, res){
 
 [AZURE.INCLUDE [active-directory-devquickstarts-additional-resources](../../includes/active-directory-devquickstarts-additional-resources.md)]
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0928_2016-->

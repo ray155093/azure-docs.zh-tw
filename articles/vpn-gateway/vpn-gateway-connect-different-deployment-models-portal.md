@@ -41,15 +41,15 @@ Azure 目前有兩種管理模型：傳統和 Resource Manager (RM)。如果您�
 
 ### <a name="values"></a>設定範例
 
-在下列步驟中使用 PowerShell Cmdlet 時，您可以使用設定範例做為參考。
+在下列步驟中使用 PowerShell Cmdlet 時，您可以使用設定範例做為參考：
 
 **傳統 VNet 設定**
 
-VNet 名稱 = ClassicVNet <br> 位置 = 美國西部 <br> 虛擬網路位址空間 = 10.0.0.0/8 <br> Subnet-1 = 10.0.0.0/11 <br> GatewaySubnet = 10.32.0.0/29 <br> 區域網路名稱 = RMVNetLocal <br>
+VNet 名稱 = ClassicVNet <br> 位置 = 美國西部 <br> 虛擬網路位址空間 = 10.0.0.0/24 <br> Subnet-1 = 10.0.0.0/27 <br> GatewaySubnet = 10.0.0.32/29 <br> 區域網路名稱 = RMVNetLocal <br>
 
 **Resource Manager VNet 設定**
 
-VNet 名稱 = RMVNet <br> 資源群組 = RG1 <br> 虛擬網路 IP 位址空間 = 192.168.1.0/16 <br> Subnet-1 = 192.168.1.0/24 <br> GatewaySubnet = 192.168.0.0/26 <br> 位置 = 美國東部 <br> 虛擬網路閘道名稱 = RMGateway <br> 閘道公用 IP 名稱 = gwpip <br> 閘道類型 = VPN <br> VPN 類型 = 路由式 <br> 區域網路閘道 = ClassicVNetLocal <br>
+VNet 名稱 = RMVNet <br> 資源群組 = RG1 <br> 虛擬網路 IP 位址空間 = 192.168.0.0/16 <br> Subnet-1 = 192.168.1.0/24 <br> GatewaySubnet = 192.168.0.0/26 <br> 位置 = 美國東部 <br> 虛擬網路閘道名稱 = RMGateway <br> 閘道公用 IP 名稱 = gwpip <br> 閘道類型 = VPN <br> VPN 類型 = 路由式 <br> 區域網路閘道 = ClassicVNetLocal <br>
 
 ## <a name="createsmgw"></a>區段 1︰進行傳統 VNet 設定
 
@@ -156,7 +156,7 @@ VNet 名稱 = RMVNet <br> 資源群組 = RG1 <br> 虛擬網路 IP 位址空間 =
 		Set-AzureVNetGatewayKey -VNetName ClassicVNet `
 		-LocalNetworkSiteName RMVNetLocal -SharedKey abc123
 
-4. 執行下列命令來建立 VPN 連線。
+4. 執行下列命令來建立 VPN 連線：
 	
 	**設定變數**
 
@@ -182,4 +182,4 @@ VNet 名稱 = RMVNet <br> 資源群組 = RG1 <br> 虛擬網路 IP 位址空間 =
 
 [AZURE.INCLUDE [vpn-gateway-vnet-vnet-faq](../../includes/vpn-gateway-vnet-vnet-faq-include.md)]
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

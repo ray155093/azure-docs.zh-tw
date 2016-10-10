@@ -31,10 +31,10 @@
 
 下圖顯示彈性集區範例。此檢視包括︰
 
-*  圖表，可供監視彈性集區和集區中內含資料庫的資源使用量。 
-*  [設定] 集區按鈕，以對彈性集區進行變更。 
+*  圖表，可供監視彈性集區和集區中內含資料庫的資源使用量。
+*  [設定] 集區按鈕，以對彈性集區進行變更。
 *  [建立資料庫] 按鈕，以建立新的資料庫並將它加入至目前的彈性集區。
-*  彈性工作，可藉由對清單中的所有資料庫執行 Transact SQL 指令碼，協助您管理大量資料庫。 
+*  彈性工作，可藉由對清單中的所有資料庫執行 Transact SQL 指令碼，協助您管理大量資料庫。
 
 ![集區檢視][2]
 
@@ -56,14 +56,16 @@
 ### 自訂圖表顯示
 
 您可以編輯此圖表和 [度量] 刀鋒視窗，以顯示其他度量，例如所用的 CPU 百分比、資料 IO 百分比和記錄 IO 百分比。
- 
+
 2. 在 [度量] 刀鋒視窗上，按一下 [編輯]。
 
 	![按一下 [編輯]。][6]
 
-- 在 [編輯圖表] 刀鋒視窗中，選取新的時間範圍 (過去 1 小時、今天或上一週)，或按一下 [自訂] 以選取過去兩週內的任何日期範圍。選取圖表類型 (長條圖或折線圖)，再選取要監視的資源。 
+- 在 [編輯圖表] 刀鋒視窗中，選取新的時間範圍 (過去 1 小時、今天或上一週)，或按一下 [自訂] 以選取過去兩週內的任何日期範圍。選取圖表類型 (長條圖或折線圖)，再選取要監視的資源。
 
-	![按一下 [編輯]。](./media/sql-database-elastic-pool-manage-portal/edit-chart.png)
+> 附註︰圖表中只能同時顯示具有相同測量單位的度量。比方說，如果您選取「eDTU 百分比」，則只能選取以百分比做為測量單位的其他度量。
+
+	![Click edit](./media/sql-database-elastic-pool-manage-portal/edit-chart.png)
 
 - 然後按一下 [確定]。
 
@@ -99,7 +101,7 @@
 在 [資料庫資源使用率] 刀鋒視窗的資料庫清單中，瀏覽清單中的頁面或輸入資料庫的名稱，即可找到特定的資料庫。使用此核取方塊來選取資料庫。
 
 ![搜尋要監視的資料庫][7]
-  
+
 
 ## 將警示加入集區資源
 
@@ -115,7 +117,7 @@
 
     圖表會以動態方式顯示該度量的資源使用量，協助您選擇閾值。
 
-4. 選擇 [條件] \(大於、小於等) 和 [臨界值]。
+4. 選擇 [條件] (大於、小於等) 和 [臨界值]。
 5. 按一下 [確定]。
 
 
@@ -132,7 +134,7 @@
 
 	![按一下 [新增到集區]](./media/sql-database-elastic-pool-manage-portal/add-to-pool.png)
 
-	
+
 3. 在 [加入資料庫] 刀鋒視窗中，選取一或多個要加入集區的資料庫。然後按一下 [選取]。
 
 	![選取要新增的資料庫](./media/sql-database-elastic-pool-manage-portal/add-databases-pool.png)
@@ -156,12 +158,12 @@
     ![資料庫清單](./media/sql-database-elastic-pool-manage-portal/click-remove.png)
 
     [設定集區] 刀鋒視窗現在會列出您選取要移除的資料庫，其狀態設為 [暫止]。
-    
+
     ![預覽新增和移除的資料庫](./media/sql-database-elastic-pool-manage-portal/pending-removal.png)
 
 3. 在 [設定集區] 刀鋒視窗中，按一下 [儲存]。
 
-    ![按一下 [Save] \ (儲存)。](./media/sql-database-elastic-pool-manage-portal/click-save.png)
+    ![按一下 [Save] (儲存)。](./media/sql-database-elastic-pool-manage-portal/click-save.png)
 
 ## 變更集區的效能設定
 
@@ -213,4 +215,4 @@
 [8]: ./media/sql-database-elastic-pool-manage-portal/db-utilization.png
 [9]: ./media/sql-database-elastic-pool-manage-portal/metric.png
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0928_2016-->

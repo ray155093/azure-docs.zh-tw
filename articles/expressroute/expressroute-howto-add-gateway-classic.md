@@ -13,7 +13,7 @@
    ms.topic="article" 
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="07/19/2016"
+   ms.date="09/22/2016"
    ms.author="charwen"/>
 
 # 使用傳統部署模型和 PowerShell 設定 ExpressRoute 的虛擬網路閘道
@@ -40,4 +40,4 @@
 
 建立 VNet 閘道之後，您可以將 VNet 連結至 ExpressRoute 循環。請參閱[將虛擬網路連結到 ExpressRoute 循環](expressroute-howto-linkvnet-classic.md)。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0928_2016-->

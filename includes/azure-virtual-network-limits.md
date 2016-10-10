@@ -18,9 +18,9 @@
 端點存取控制清單 (ACL) | 50 | 50
 
 
-#### 網路限制 - Azure Resource Manager
+#### <a name="azure-resource-manager-virtual-networking-limits"></a>網路限制 - Azure Resource Manager
 
-下列限制僅適用於透過每一區域每個訂用帳戶的 Azure Resource Manager 所管理的網路資源。
+下列限制僅適用於透過每個訂用帳戶每一區域的 Azure Resource Manager 所管理的網路資源。
 
 資源| 預設限制 | 上限
 --- | --- | ---
@@ -38,9 +38,9 @@
 負載平衡器 (內部和網際網路面向) | 100 | 連絡支援人員
 每一負載平衡器的負載平衡器規則 | 150 | 150
 每個負載平衡器的公用前端 IP | 5 | 連絡支援人員
-每個負載平衡器的公用後端 IP | 1 | 連絡支援人員
+每個負載平衡器的公用後端 IP | 30 | 連絡支援人員
 應用程式閘道 | 50 | 50
 
 如果您需要增加預設值以外的限制，請連絡支援服務。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -20,15 +20,15 @@ ms.service="virtual-machines-windows"
 
 
 
-本文將說明如何將隨選做為運算資源的 Azure「高載」節點 (在雲端服務中執行的背景工作角色執行個體) 新增至 Azure 中現有的 HPC Pack 前端節點。這可讓您依需求相應增加 Azure 中的 HPC 叢集的計算能力，且無需維護一組預先設定的計算節點 VM。
+本文說明如何將 Azure「高載」節點 (在雲端服務中執行的背景工作角色執行個體) 新增至 Azure 中現有的 HPC Pack 前端節點作為運算資源。在使用高載節點的情況下，您可以依需求相應增加或相應減少 Azure 中 HPC 叢集的計算能力，而不需維護一組預先設定的計算節點 VM。
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 ![高載節點][burst]
 
-本文中的步驟可協助您將 Azure 節點快速新增至雲端架構 HPC Pack 前端節點 VM，以測試或證明部署概念。此程序基本上相當於將雲端運算能力新增至內部部署 HPC Pack 叢集的「將量擴大到 Azure」程序。如需教學課程，請參閱[使用 Microsoft HPC Pack 設定混合式計算叢集](../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md)。如需生產部署的詳細指引和考量，請參閱[使用 Microsoft HPC Pack 將量擴大到 Azure](https://technet.microsoft.com/library/gg481749.aspx)。
+本文中的步驟可協助您將 Azure 節點快速新增至雲端型 HPC Pack 前端節點 VM，以進行測試或概念驗證部署。此程序基本上相當於將雲端運算能力新增至內部部署 HPC Pack 叢集的「將暴增的工作負載移至 Azure」程序。如需教學課程，請參閱[使用 Microsoft HPC Pack 設定混合式計算叢集](../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md)。如需生產部署的詳細指引和考量，請參閱[使用 Microsoft HPC Pack 將暴增的工作負載移至 Azure](https://technet.microsoft.com/library/gg481749.aspx)。
 
-如需有關針對高載節點使用 A8 或 A9 計算密集型執行個體大小的考量，請參閱[關於 A8、A9、A10 和 A11 計算密集型執行個體](virtual-machines-windows-a8-a9-a10-a11-specs.md)。
+如需有關針對高載節點使用計算密集型執行個體大小的考量，請參閱[關於 H 系列和計算密集型 A 系列 VM](virtual-machines-windows-a8-a9-a10-a11-specs.md)。
 
 ## 必要條件
 
@@ -36,33 +36,33 @@ ms.service="virtual-machines-windows"
 
     >[AZURE.TIP] 如果您使用 [HPC Pack IaaS 部署指令碼](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md)在 Azure 中建立叢集，則可以在自動化部署中包含 Azure 高載節點。請參閱該文件中的範例。
 
-* **Azure 訂用帳戶** - 若要新增 Azure 節點，您可以選擇用來部署前端節點 VM 的同一個訂用帳戶，或選擇一或多個不同的訂用帳戶。
+* **Azure 訂用帳戶** - 若要新增 Azure 節點，您可以選擇與用來部署前端節點 VM 相同的訂用帳戶，或選擇一或多個不同的訂用帳戶。
 
 * **核心配額** - 您可能需要增加核心的配額，特別是當您選擇部署數個具有多核心大小的 Azure 節點時。若要增加配額，請[開立線上客戶支援要求](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/) (免費)。
 
-## 步驟 1：建立雲端服務和儲存體帳戶以新增 Azure 節點。
+## 步驟 1：為 Azure 節點建立雲端服務和儲存體帳戶
 
-使用 Azure 傳統入口網站或對等工具，設定下列您在部署 Azure 節點時所需的項目：
+使用 Azure 傳統入口網站或對等工具，以設定下列在部署 Azure 節點時所需的資源：
 
 * 新的 Azure 雲端服務
 * 新的 Azure 儲存體帳戶
 
->[AZURE.NOTE] 請勿重複使用您的訂用帳戶中現有的雲端服務。
+>[AZURE.NOTE] 請勿重複使用您訂用帳戶中現有的雲端服務。
 
 **考量**
 
 * 您打算建立的每個 Azure 節點範本設定個別的雲端服務。不過，您可以將同一個儲存體帳戶用於多個節點範本。
 
-* 您通常應將部署的雲端服務與儲存體帳戶放置在相同的 Azure 區域中。
+* 建議您將用於部署的雲端服務和儲存體帳戶放置在相同的 Azure 區域中。
 
 
 
 
 ## 步驟 2：設定 Azure 管理憑證
 
-若要將 Azure 節點新增運算資源，您在前端節點上必須要有管理憑證，且必須將對應的憑證上傳至用於部署的 Azure 訂用帳戶。
+若要將 Azure 節點新增為運算資源，您在前端節點上必須要有管理憑證，且必須將對應的憑證上傳至用於部署的 Azure 訂用帳戶。
 
-針對這個案例，您可以選擇 HPC Pack 在前端節點上自動安裝及設定的**預設 HPC Azure 管理憑證**。此憑證可用於測試及概念證明部署。若要使用此憑證，請直接將檔案 C:\\Program Files\\Microsoft HPC Pack 2012\\Bin\\hpccert.cer 從前端節點 VM 上傳至訂用帳戶。您可在 [Azure 傳統入口網站](https://manage.windowsazure.com)中執行這項操作。按一下 [設定] > [管理憑證]。
+針對這個案例，您可以選擇 HPC Pack 在前端節點上自動安裝及設定的**預設 HPC Azure 管理憑證**。此憑證可用於測試及概念證明部署。若要使用此憑證，請將檔案 C:\\Program Files\\Microsoft HPC Pack 2012\\Bin\\hpccert.cer 從前端節點 VM 上傳至訂用帳戶。若要上傳憑證，請在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下 [設定] > [管理憑證]。
 
 如需設定管理憑證的其他選項，請參閱[為 Azure 高載部署設定 Azure 管理憑證的案例](http://technet.microsoft.com/library/gg481759.aspx)。
 
@@ -70,7 +70,7 @@ ms.service="virtual-machines-windows"
 
 
 
-在此案例中新增及啟動 Azure 節點的步驟，通常與用於內部部署前端節點的步驟相同。如需詳細資訊，請參閱[使用 Microsoft HPC Pack 部署 Azure 節點的步驟](https://technet.microsoft.com/library/gg481758.aspx)中的下列小節：
+在此案例中新增及啟動 Azure 節點的步驟，與用於內部部署前端節點的步驟大致相同。如需詳細資訊，請參閱[使用 Microsoft HPC Pack 部署 Azure 節點的步驟](https://technet.microsoft.com/library/gg481758.aspx)中的下列小節：
 
 * 建立 Azure 節點範本
 
@@ -84,9 +84,9 @@ ms.service="virtual-machines-windows"
 
 ## 後續步驟
 
-* 如果您想要根據叢集上目前作業與工作的工作負載自動擴增或縮減 Azure 計算資源，請參閱[在 HPC Pack 叢集中自動擴增和縮減 Azure 計算資源](virtual-machines-windows-classic-hpcpack-cluster-node-autogrowshrink.md)。
+* 如果您想要根據叢集工作負載自動擴增或縮減 Azure 計算資源，請參閱[在 HPC Pack 叢集中自動擴增和縮減 Azure 運算資源](virtual-machines-windows-classic-hpcpack-cluster-node-autogrowshrink.md)。
 
 <!--Image references-->
 [burst]: ./media/virtual-machines-windows-classic-hpcpack-cluster-node-burst/burst.png
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0928_2016-->

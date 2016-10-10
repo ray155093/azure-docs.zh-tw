@@ -1,6 +1,6 @@
 <properties
 	pageTitle="Azure 儲存體複寫 | Microsoft Azure"
-	description="系統會 複製Microsoft Azure 儲存體帳戶中的資料，以維持持久性和高可用性。複寫選項包括本機備援儲存體 (LRS)、區域備援儲存體 (ZRS)、異地備援儲存體 (GRS) 和讀取權限異地備援儲存體 (RA-GRS)。"
+	description="系統會 複製Microsoft Azure 儲存體帳戶中的資料，以維持持久性和高可用性。複寫選項包括本地備援儲存體 (LRS)、區域備援儲存體 (ZRS)、異地備援儲存體 (GRS) 和讀取權限異地備援儲存體 (RA-GRS)。"
 	services="storage"
 	documentationCenter=""
 	authors="tamram"
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="09/07/2016"
-	ms.author="tamram"/>
+	ms.date="09/21/2016"
+	ms.author="jutang;tamram"/>
 
 # Azure 儲存體複寫
 
@@ -22,7 +22,7 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 
 建立儲存體帳戶時，您必須選取下列其中一個複寫選項：
 
-- [本機備援儲存體 (LRS)](#locally-redundant-storage)
+- [本地備援儲存體 (LRS)](#locally-redundant-storage)
 - [區域備援儲存體 (ZRS)](#zone-redundant-storage)
 - [異地備援儲存體 (GRS)](#geo-redundant-storage)
 - [讀取權限異地備援儲存體 (RA-GRS)](#read-access-geo-redundant-storage)
@@ -38,11 +38,13 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 
 如需不同備援選項的定價資訊，請參閱 [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/)。
 
+>[AZURE.NOTE] 進階儲存體僅支援本地備援儲存體 (LRS)。如需進階儲存體的相關資訊，請參閱[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](storage-premium-storage.md)。
+
 ## 本地備援儲存體
 
 本地備援儲存體 (LRS) 會在您建立儲存體帳戶的區域內複寫資料。若要達到最高持久性，針對儲存體帳戶資料所提出的每個要求都會複寫三次。這三個複本會各自位於不同的容錯網域和升級網域中。故障網域 (FD) 是一組代表故障實體單元的節點，並且可被視為屬於相同實體機架的節點。升級網域 (UD) 是一組在服務升級 (首度發行) 過程中一起升級的節點。這三個複本會分散到 UD 和 FD 之間，以確保即使硬體故障而影響單一機架，以及首展期間升級節點時，資料仍然可以使用。只有當要求已寫入這三個複本時，系統才會成功傳回該要求。
 
-雖然建議大部分的應用程式使用異地備援儲存體 (GRS)，但在某些情況下本機備援儲存體可能反而有利：
+雖然建議大部分的應用程式使用異地備援儲存體 (GRS)，但在某些情況下本地備援儲存體可能反而有利：
 
 - LRS 比 GRS 便宜，而且提供更高的輸送量。如果您的應用程式儲存可以輕鬆重新建構的資料，則您可能會選擇使用 LRS。
 
@@ -117,4 +119,4 @@ Microsoft Azure 儲存體帳戶中的資料一律會進行複寫以確保持久�
 - [Microsoft Azure 儲存體備援選項和讀取權限異地備援儲存體](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/12/11/introducing-read-access-geo-replicated-storage-ra-grs-for-windows-azure-storage.aspx)
 - [SOSP 文件：具有高度一致性的高可用性雲端儲存體服務。](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

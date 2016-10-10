@@ -13,15 +13,15 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="07/01/2016"
+   ms.date="09/22/2016"
    ms.author="kgremban"/>
 
 # Azure AD Privileged Identity Management：如何使用稽核記錄檔
 
-您可以使用 Privileged Identity Management (PIM) 稽核記錄，來查看指定期間內的所有使用者指派與啟用。
+您可以使用 Privileged Identity Management (PIM) 稽核記錄，來查看指定期間內的所有使用者指派與啟用。如果您想要查看租用戶活動 (包括系統管理員、使用者和同步處理活動) 的完整稽核歷程記錄，您可以使用 [Azure Active Directory 存取和使用情況報告](active-directory-view-access-usage-reports.md)。
 
 ## 瀏覽至稽核記錄檔
-從 [Azure 入口網站](https://portal.azure.com)儀表板選取 [Azure AD Priviliged Identity Management] 應用程式。從該處，按一下 PIM 儀表板中的 [管理特殊權限角色] > [稽核歷程記錄] 來存取稽核記錄。
+從 [Azure 入口網站](https://portal.azure.com)儀表板選取 [Azure AD Privileged Identity Management] 應用程式。從該處，按一下 PIM 儀表板中的 [管理特殊權限角色] > [稽核歷程記錄] 來存取稽核記錄。
 
 ## 稽核記錄圖表
 您可以使用稽核記錄，在折線圖中檢視啟用總數、每天最大啟用數目，以及每天平均啟用數目。如果稽核記錄中有一個以上的角色，您也可以依角色篩選資料。
@@ -60,4 +60,4 @@
 ## 後續步驟
 [AZURE.INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0928_2016-->

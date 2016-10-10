@@ -13,13 +13,13 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows-sql-server"
 	ms.workload="infrastructure-services"
-	ms.date="06/09/2016"
+	ms.date="09/22/2016"
 	ms.author="mikeray" />
 
 # 在 Azure VM 中設定 Always On 可用性群組 - 傳統
 
 > [AZURE.SELECTOR]
-- [Resource Manager︰自動](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
+- [Resource Manager：範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
 - [Resource Manager︰手動](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)
 - [傳統：UI](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
 - [傳統：PowerShell](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
@@ -73,7 +73,7 @@
 
 1. 在 [建立虛擬網路] 對話方塊中，透過套用下方設定以通過精靈中的頁面，來建立新的虛擬網路。
 
-	|頁面|設定|
+	|頁面|Settings|
 |---|---|
 |虛擬網路詳細資料|**名稱 = ContosoNET**<br/>**地區 = 美國西部**|
 |DNS 伺服器和 VPN 連線能力|None|
@@ -85,7 +85,7 @@
 
 1. 在 [建立虛擬機器] 對話方塊中，透過套用下方設定以通過精靈中的頁面，來設定新的 VM。
 
-	|頁面|設定|
+	|頁面|Settings|
 |---|---|
 |選取虛擬機器作業系統|Windows Server 2012 R2 Datacenter|
 |虛擬機器組態|**版本發行日期** = (最新)<br/>**虛擬機器名稱** = ContosoDC<br/>**層** = 標準<br/>**大小** = A2 (2 核心)<br/>**新使用者名稱** = AzureAdmin<br/>**新密碼** = Contoso!000<br/>**確認** = Contoso!000|
@@ -161,8 +161,8 @@
 
 	|設定|值|
 |---|---|
-|**名字**|安裝|
-|**使用者 SamAccountName**|安裝|
+|**名字**|Install|
+|**使用者 SamAccountName**|Install|
 |**密碼**|Contoso!000|
 |**確認密碼**|Contoso!000|
 |**其他密碼選項**|已選取|
@@ -221,7 +221,7 @@
 
 	![變更 VM 慣用的 DNS 伺服器](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC784629.png)
 
-1. 在命令列上按一下 [變更此連接的設定] \(視您的視窗大小而定，可能需按一下雙向右箭頭才能看到此命令)。
+1. 在命令列上按一下 [變更此連接的設定] (視您的視窗大小而定，可能需按一下雙向右箭頭才能看到此命令)。
 
 1. 選取 [網際網路通訊協定第 4 版 (TCP/IPv4)]，然後按一下 [內容]。
 
@@ -319,7 +319,7 @@
 
 1. 在建立叢集精靈中，透過套用下方設定以通過精靈中的頁面，來建立單節點叢集：
 
-	|頁面|設定|
+	|頁面|Settings|
 |---|---|
 |開始之前|使用預設值|
 |選取伺服器|在 [輸入伺服器名稱] 中輸入 **ContosoSQL1**，然後按一下 [新增]。|
@@ -327,7 +327,7 @@
 |用於管理叢集的存取點|在 [叢集名稱] 中輸入 **Cluster1**|
 |確認|除非您使用的是儲存空間，否則請使用預設值。請詳閱此表之後的備註。|
 
-	>[AZURE.WARNING] 如果您使用的是會將多個磁碟組成存放集區的[儲存空間](https://technet.microsoft.com/library/hh831739)，則請務必取消勾選 [確認] 頁面上的 [將所有合格的儲存體新增至叢集] 核取方塊。如果不取消勾選此選項，在群集程序進行期間虛擬磁碟會中斷連結。因此，虛擬磁碟不會顯示在 [磁碟管理員] 或 [總管] 中，直到您將儲存空間從叢集中移除，並使用 PowerShell 重新連接虛擬磁碟。
+	>[AZURE.WARNING] 如果您使用的是會將多個磁碟組成存放集區的[儲存空間](https://technet.microsoft.com/library/hh831739)，您就必須在 [確認] 頁面上取消勾選 [新增適合的儲存裝置到叢集] 核取方塊。如果不取消勾選此選項，在群集程序進行期間虛擬磁碟會中斷連結。因此，虛擬磁碟不會顯示在 [磁碟管理員] 或 [總管] 中，直到您將儲存空間從叢集中移除，並使用 PowerShell 重新連接虛擬磁碟。
 
 1. 在左窗格中，展開 [容錯移轉叢集管理員]，然後按一下 [Cluster1.corp.contoso.com]。
 
@@ -347,11 +347,11 @@
 
 1. 在 [新增節點精靈] 中，按 [下一步]。在 [輸入伺服器名稱] 中輸入伺服器名稱，然後按一下 [新增]，於 [選取伺服器] 頁面上，將 **ContosoSQL2** 和 **ContosoWSFCNode** 新增至清單。完成之後，按 [下一步]。
 
-1. 在 [驗證警告] 頁面上，按一下 [否] \(實際操作時，請執行驗證測試)。然後按 [下一步]。
+1. 在 [驗證警告] 頁面上，按一下 [否] (實際操作時，請執行驗證測試)。然後按 [下一步]。
 
 1. 在 [確認] 頁面中按 [下一步]，以新增節點。
 
-	>[AZURE.WARNING] 如果您使用的是會將多個磁碟組成存放集區[儲存空間](https://technet.microsoft.com/library/hh831739)，則請務必取消勾選 [將所有合格的儲存體新增至叢集] 核取方塊。如果不取消勾選此選項，在群集程序進行期間虛擬磁碟會中斷連結。因此，虛擬磁碟不會顯示在 [磁碟管理員] 或 [總管] 中，直到您將儲存空間從叢集中移除，並使用 PowerShell 重新連接虛擬磁碟。
+	>[AZURE.WARNING] 如果您使用的是會將多個磁碟組成存放集區的[儲存空間](https://technet.microsoft.com/library/hh831739)，您就必須取消勾選 [新增適合的儲存裝置到叢集] 核取方塊。如果不取消勾選此選項，在群集程序進行期間虛擬磁碟會中斷連結。因此，虛擬磁碟不會顯示在 [磁碟管理員] 或 [總管] 中，直到您將儲存空間從叢集中移除，並使用 PowerShell 重新連接虛擬磁碟。
 
 1. 將節點新增至叢集後，請按一下 [完成]。容錯移轉叢集管理員現在應該會顯示您的叢集具有三個節點，並將這些節點列在**節點**容器中。
 
@@ -548,4 +548,4 @@
 
 如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

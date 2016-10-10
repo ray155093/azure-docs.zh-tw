@@ -4,7 +4,7 @@
 	keywords="複製資料, 資料移動, 資料移轉, 傳輸資料"
 	services="data-factory"
 	documentationCenter=""
-	authors="spelluru"
+	authors="linda33wj"
 	manager="jhubbard"
 	editor="monicar"/>
 
@@ -14,8 +14,8 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/08/2016"
-	ms.author="spelluru"/>
+	ms.date="09/22/2016"
+	ms.author="jingwang"/>
 
 # 使用複製活動來移動資料
 
@@ -54,23 +54,14 @@
 您也可以使用「資料管理閘道」，將資料移出/移入 Azure IaaS 虛擬機器 (VM) 上所裝載的支援資料存放區。在此情況下，您可以將「資料管理閘道」安裝在與資料存放區本身相同的 VM 上，或是安裝在可存取該資料存放區的另一部 VM 上。
 
 ## 支援的資料存放區和格式
-「複製活動」會將資料從來源資料存放區複製到接收資料存放區。Data Factory 支援下列資料存放區。可將來自任何來源的資料寫入任何接收器。按一下資料存放區，即可了解如何將資料複製到該存放區，以及從該存放區複製資料。
-
-類別 | 資料存放區 | 支援作為來源 | 支援作為接收器
-:------- | :--------- | :------------------ | :-----------------
-Azure | [Azure Blob 儲存體](data-factory-azure-blob-connector.md) <br/> [Azure Data Lake Store](data-factory-azure-datalake-connector.md) <br/> [Azure SQL Database](data-factory-azure-sql-connector.md) <br/> [Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md) <br/> [Azure 資料表儲存體](data-factory-azure-table-connector.md) <br/> [Azure DocumentDB](data-factory-azure-documentdb-connector.md) <br/> | ✓ <br/> ✓ <br/> ✓ <br/> ✓ <br/> ✓ <br/> ✓ | ✓ <br/> ✓ <br/> ✓ <br/> ✓ <br/> ✓ <br/> ✓
-資料庫 | [SQL Server](data-factory-sqlserver-connector.md)* <br/> [Oracle](data-factory-onprem-oracle-connector.md)* <br/> [MySQL](data-factory-onprem-mysql-connector.md)* <br/> [DB2](data-factory-onprem-db2-connector.md)* <br/> [Teradata](data-factory-onprem-teradata-connector.md)* <br/> [PostgreSQL](data-factory-onprem-postgresql-connector.md)* <br/> [Sybase](data-factory-onprem-sybase-connector.md)* <br/>[Cassandra](data-factory-onprem-cassandra-connector.md)* <br/>[MongoDB](data-factory-on-premises-mongodb-connector.md)*<br/>[Amazon Redshift](data-factory-amazon-redshift-connector.md) | ✓ <br/> ✓ <br/> ✓ <br/> ✓ <br/> ✓ <br/> ✓<br/> ✓ <br/> ✓ <br/> ✓ <br/> ✓ | ✓ <br/> ✓ <br/> &nbsp; <br/> &nbsp; <br/> &nbsp; <br/> &nbsp;<br/> &nbsp;<br/> &nbsp;<br/> &nbsp; <br/>&nbsp;
-檔案 | [檔案系統](data-factory-onprem-file-system-connector.md)* <br/> [HDFS](data-factory-hdfs-connector.md)* <br/> [Amazon S3](data-factory-amazon-simple-storage-service-connector.md) | ✓ <br/> ✓ <br/> ✓ | ✓ <br/> &nbsp;<br/>&nbsp;
-其他 | [Salesforce](data-factory-salesforce-connector.md)<br/> [泛型 ODBC](data-factory-odbc-connector.md)* <br/> [泛型 OData](data-factory-odata-connector.md) <br/> [Web 資料表 (來自 HTML 的資料表)](data-factory-web-table-connector.md) <br/> [GE Historian](data-factory-odbc-connector.md#ge-historian-store)* | ✓ <br/> ✓ <br/> ✓ <br/> ✓ <br/> ✓ | &nbsp; <br/> &nbsp; <br/> &nbsp; <br/> &nbsp;<br/> &nbsp;<br/> &nbsp;
-
-> [AZURE.NOTE] 具有 * 的資料存放區可以在內部部署環境或 Azure IaaS 上，並且需要您在內部部署/Azure IaaS 機器上安裝[資料管理閘道](data-factory-data-management-gateway.md)。
+[AZURE.INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
 
 如果您需要將資料移入/移出「複製活動」不支援的資料存放區，請在 Data Factory 中使用**自訂活動**搭配您自己的邏輯來複製/移動資料。如需有關建立及使用自訂活動的詳細資料，請參閱[在 Azure Data Factory 管線中使用自訂活動](data-factory-use-custom-activities.md)。
 
 ### 支援的檔案格式
 您可以使用「複製活動」在兩個檔案型資料存放區 (例如 Azure Blob、檔案系統及 HDFS) 之間原封不動地複製檔案。若要這樣做，您可以略過輸入和輸出資料集定義中的 [format 區段](data-factory-create-datasets.md)。系統會有效率地複製資料，而不會進行任何序列化/還原序列化。
 
-複製活動也會以指定格式讀取和寫入檔案︰文字、Avro、ORC 和 JSON。您可以執行下列複製活動，例如：
+複製活動也會以下列指定格式讀取和寫入檔案︰文字、Avro、ORC、Parquet 和 JSON。您可以執行下列複製活動，例如：
 
 -	從 Azure Blob 複製文字 (CSV) 格式的資料，然後寫入到 Azure SQL Database 中。
 -	從「檔案系統」內部部署環境複製文字 (CSV) 格式的檔案，然後以 Avro 格式寫入到 Azure Blob 中。
@@ -185,11 +176,11 @@ JSON 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) �
 1. 從原生來源類型轉換成 .NET 類型。
 2. 從 .NET 類型轉換成原生接收類型。
 
-原生類型系統與資料存放區 .NET 類型的對應位於個別的資料存放區文章中。(按一下[支援的資料存放區](#supported-data-stores)表格中的特定連結)。您可以在建立資料表時，使用這些對應來判斷適當的類型，以便讓「複製活動」能夠執行正確的轉換。
+資料存放區從原生類型系統到 .NET 類型的對應，位於個別的資料存放區文章中。(按一下[支援的資料存放區](#supported-data-stores)表格中的特定連結)。您可以在建立資料表時，使用這些對應來判斷適當的類型，以便讓「複製活動」能夠執行正確的轉換。
 
 
 ## 後續步驟
 - 若要深入了解複製活動，請參閱[將資料從 Azure Blob 儲存體複製到 Azure SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
 - 若要了解如何將資料從內部部署資料存放區移到雲端資料存放區，請參閱[將資料從內部部署資料存放區移到雲端資料存放區](data-factory-move-data-between-onprem-and-cloud.md)。
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

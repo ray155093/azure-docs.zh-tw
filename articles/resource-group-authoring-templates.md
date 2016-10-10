@@ -202,7 +202,7 @@
 
 ## 資源
 
-在資源區段中，您會定義要部署或更新資源。這是您的範本可以變得更複雜的地方，因為您必須了解您要部署的類型才能提供正確的值。如果要進一步了解資源提供者，請參閱 [Resource Manager 提供者、區域、API 版本及結構描述](resource-manager-supported-services.md)。
+在資源區段中，您會定義要部署或更新的資源。這是您的範本可以變得更複雜的地方，因為您必須了解您要部署的類型才能提供正確的值。如果要進一步了解資源提供者，請參閱 [Resource Manager 提供者、區域、API 版本及結構描述](resource-manager-supported-services.md)。
 
 您會定義結構如下的資源：
 
@@ -367,4 +367,4 @@ resources 區段包含要部署的資源陣列。在每個資源內，您也可�
 
 [deployment2cmdlet]: https://msdn.microsoft.com/library/mt740620(v=azure.200).aspx
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

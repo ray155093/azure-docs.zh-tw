@@ -1,19 +1,19 @@
 <properties
-   pageTitle="Azure 儲存體延展性和效能目標 | Microsoft Azure"
-   description="了解 Azure 儲存體的延展性和效能目標，包括標準和進階儲存體帳戶的容量、要求率以及輸入和輸出頻寬。了解每一項 Azure 儲存體服務內分割的效能目標。"
-   services="storage"
-   documentationCenter="na"
-   authors="robinsh"
-   manager="carmonm"
-   editor="tysonn" />
+	pageTitle="Azure 儲存體延展性和效能目標 | Microsoft Azure"
+	description="了解 Azure 儲存體的延展性和效能目標，包括標準和進階儲存體帳戶的容量、要求率以及輸入和輸出頻寬。了解每一項 Azure 儲存體服務內分割的效能目標。"
+	services="storage"
+	documentationCenter="na"
+	authors="robinsh"
+	manager="carmonm"
+	editor="tysonn" />
 <tags
-   ms.service="storage"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="storage"
-   ms.date="08/03/2016"
-   ms.author="robinsh" />
+	ms.service="storage"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.tgt_pltfrm="na"
+	ms.workload="storage"
+	ms.date="08/03/2016"
+	ms.author="jahogg;robinsh" />
 
 # Azure 儲存體延展性和效能目標
 
@@ -83,4 +83,4 @@
 - [Microsoft Azure 儲存體效能與延展性檢查清單](storage-performance-checklist.md)
 - [Microsoft Azure 儲存體：具有高度一致性的高可用性雲端儲存體服務。](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

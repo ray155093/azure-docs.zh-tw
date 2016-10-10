@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/23/2016"
+	ms.date="09/27/2016"
 	ms.author="femila"/>
 
 
@@ -194,7 +194,7 @@ Azure Active Directory 裝置註冊使用 iOS 裝置的空中下載設定檔註�
 
 ### 使用 Azure Active Directory 裝置註冊加入 Android 裝置
 
-[Android 的 Azure Authenticator 主題](active-directory-conditional-access-azure-authenticator-app.md)包含如何在 Android 裝置上安裝 Azure Authenticator 應用程式並加入工作帳戶的指示。在 Android 裝置上成功建立工作帳戶時，該裝置是加入至組織的工作場所。
+[Android 的 Azure Authenticator 主題](active-directory-conditional-access-azure-authenticator-app.md)包含如何在 Android 裝置上安裝 Azure Authenticator 應用程式並新增工作帳戶的指示。在 Android 裝置上成功建立工作帳戶時，該裝置是加入至組織的工作場所。
 
 ## 確認已註冊的裝置已寫回至 Active Directory
 您可以使用 LDP.exe 或 ADSI 編輯器檢視並確認裝置物件已寫回至 Active Directory。兩者都可透過 Active Directory 系統管理工具以供使用。
@@ -252,4 +252,4 @@ Azure Active Directory 裝置註冊使用 iOS 裝置的空中下載設定檔註�
 
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0928_2016-->

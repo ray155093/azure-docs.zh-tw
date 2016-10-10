@@ -13,7 +13,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="vm-windows"
 	ms.workload="multiple"
-	ms.date="07/21/2016"
+	ms.date="09/27/2016"
 	ms.author="marsma"/>
 
 # 自動調整 Azure Batch 集區中的計算節點
@@ -60,99 +60,32 @@ $TargetDedicated = min(10, $averageActiveTaskCount);
 
 您可以**取得**並**設定**這些這些服務定義的變數值，以管理集區中的計算節點：
 
-<table>
-  <tr>
-    <th>讀寫<br/>服務定義的變數</th>
-    <th>說明</th>
-  </tr>
-  <tr>
-    <td>$TargetDedicated</td>
-    <td>集區的<b>專用計算節點</b>的<b>目標</b>數目。這是應該調整集區時的計算節點數目。它是「目標」數目，因為集區可能不會達到此目標節點數目。如果在集區達到初始目標之前，後續的自動調整評估再次修改目標節點數目。如果在達到目標節點數目前便達到 Batch 帳戶節點或核心配額，也可能會發生這種情形。</td>
-  </tr>
-  <tr>
-    <td>$NodeDeallocationOption</td>
-    <td>計算節點從集區移除時所發生的動作。可能的值包括：
-      <br/>
-      <ul>
-        <li><p><b>requeue</b>：立即終止工作，並將這些工作放回工作佇列，為它們重新排程。</p></li>
-        <li><p><b>terminate</b>：立即終止工作，並從作業佇列移除這些工作。</p></li>
-        <li><p><b>taskcompletion</b>：等待目前執行中的工作完成，然後再從集區中移除該節點。</p></li>
-        <li><p><b>retaineddata</b>：等待所有本機工作保留在節點上的資料先清除，再從集區移除節點。</p></li>
-      </ul></td>
-   </tr>
-</table>
+| 讀寫服務定義變數 | 說明 |
+| --- | --- |
+| $TargetDedicated | 集區之**專用計算節點**的**目標**數目。這是應該調整集區時的計算節點數目。它是「目標」數目，因為集區可能不會達到此目標節點數目。如果在集區達到初始目標之前，後續的自動調整評估再次修改目標節點數目。如果在達到目標節點數目前便達到 Batch 帳戶節點或核心配額，也可能會發生這種情形。 |
+| $NodeDeallocationOption | 計算節點從集區移除時所發生的動作。可能的值包括：<ul><li>**requeue**--立即終止工作，並將這些工作放回工作佇列，為它們重新排程。<li>**terminate**--立即終止工作，並將這些工作自工作佇列中移除。<li>**taskcompletion**--等待目前執行中的工作完成，然後再從集區中移除該節點。<li>**retaineddata**--等待所有本機工作保留在節點上的資料先清除，再從集區移除節點。</ul> |
 
 您可以**取得**這些服務定義的變數值，以根據 Batch 服務提供的度量進行調整：
 
-<table>
-  <tr>
-    <th>唯讀<br/>服務定義<br/>變數</th>
-    <th>說明</th>
-  </tr>
-  <tr>
-    <td>$CPUPercent</td>
-    <td>CPU 使用量的平均百分比。</td>
-  </tr>
-  <tr>
-    <td>$WallClockSeconds</td>
-    <td>已耗用的秒數。</td>
-  </tr>
-  <tr>
-    <td>$MemoryBytes</td>
-    <td>已使用的平均 MB 數目。</td>
-  <tr>
-    <td>$DiskBytes</td>
-    <td>已在本機磁碟上使用的平均 GB 數目。</td>
-  </tr>
-  <tr>
-    <td>$DiskReadBytes</td>
-    <td>已讀取的位元組數目。</td>
-  </tr>
-  <tr>
-    <td>$DiskWriteBytes</td>
-    <td>已寫入的位元組數目。</td>
-  </tr>
-  <tr>
-    <td>$DiskReadOps</td>
-    <td>已執行的讀取磁碟作業計數。</td>
-  </tr>
-  <tr>
-    <td>$DiskWriteOps</td>
-    <td>已執行的寫入磁碟作業計數。</td>
-  </tr>
-  <tr>
-    <td>$NetworkInBytes</td>
-    <td>輸入位元組的數目。</td>
-  </tr>
-  <tr>
-    <td>$NetworkOutBytes</td>
-    <td>輸出位元組的數目。</td>
-  </tr>
-  <tr>
-    <td>$SampleNodeCount</td>
-    <td>計算節點的計數。</td>
-  </tr>
-  <tr>
-    <td>$ActiveTasks</td>
-    <td>處於作用中狀態的工作數目。</td>
-  </tr>
-  <tr>
-    <td>$RunningTasks</td>
-    <td>處於執行中狀態的工作數目。</td>
-  </tr>
-  <tr>
-    <td>$SucceededTasks</td>
-    <td>已成功完成的工作數目。</td>
-  </tr>
-  <tr>
-    <td>$FailedTasks</td>
-    <td>失敗的工作數目。</td>
-  </tr>
-  <tr>
-    <td>$CurrentDedicated</td>
-    <td>目前的專用計算節點數目。</td>
-  </tr>
-</table>
+| 唯讀服務定義變數 | 說明 |
+| --- | --- |
+| $CPUPercent | CPU 使用量的平均百分比。 |
+| $WallClockSeconds | 已耗用的秒數。 |
+| $MemoryBytes | 已使用的平均 MB 數目。 |
+| $DiskBytes | 已在本機磁碟上使用的平均 GB 數目。 |
+| $DiskReadBytes | 已讀取的位元組數目。 |
+| $DiskWriteBytes | 已寫入的位元組數目。 |
+| $DiskReadOps | 已執行的讀取磁碟作業計數。 |
+| $DiskWriteOps | 已執行的寫入磁碟作業計數。 |
+| $NetworkInBytes | 輸入位元組的數目。 |
+| $NetworkOutBytes | 輸出位元組的數目。 |
+| $SampleNodeCount | 計算節點的計數。 |
+| $ActiveTasks | 處於作用中狀態的工作數目。 |
+| $RunningTasks | 處於執行中狀態的工作數目。 |
+| $PendingTasks | $ActiveTasks 和 $RunningTasks 的總和。 |
+| $SucceededTasks | 已成功完成的工作數目。 |
+| $FailedTasks | 失敗的工作數目。 |
+| $CurrentDedicated | 目前的專用計算節點數目。 |
 
 > [AZURE.TIP] 上述服務定義的唯讀變數是可提供各種方法來存取相關聯資料的「物件」。如需詳細資訊，請參閱下面的[取得樣本資料](#getsampledata)。
 
@@ -163,7 +96,7 @@ $TargetDedicated = min(10, $averageActiveTaskCount);
 - double
 - doubleVec
 - doubleVecList
-- 字串
+- string
 - timestamp：timestamp 是包含下列成員的複合結構：
 
 	- 年
@@ -186,7 +119,7 @@ $TargetDedicated = min(10, $averageActiveTaskCount);
 	- TimeInterval\_Week
 	- TimeInterval\_Year
 
-## 作業
+## Operations
 
 以上列出的類型允許這些**作業**。
 
@@ -200,22 +133,15 @@ $TargetDedicated = min(10, $averageActiveTaskCount);
 | timeinterval 運算子 timeinterval | +、- | timeinterval |
 | timeinterval 運算子 timestamp | + | timestamp |
 | timestamp 運算子 timeinterval | + | timestamp |
-| timestamp 運算子 timestamp | - | timeinterval | 
-| 運算子double | -、! | double | 
-| 運算子timeinterval | - | timeinterval | 
-| double 運算子 double | <、<=、==、>=、>、!= | double | 
-| string 運算子 string | <、<=、==、>=、>、!= | double | 
-| timestamp 運算子 timestamp | <、<=、==、>=、>、!= | double | 
-| timeinterval 運算子 timeinterval | <、<=、==、>=、>、!= | double | 
-| double 運算子 double | &&, || | double |
+| timestamp 運算子 timestamp | - | timeinterval | | 運算子double | -、! | double | | 運算子timeinterval | - | timeinterval | | double 運算子 double | <、<=、==、>=、>、!= | double | | string 運算子 string | <、<=、==、>=、>、!= | double | | timestamp 運算子 timestamp | <、<=、==、>=、>、!= | double | | timeinterval 運算子 timeinterval | <、<=、==、>=、>、!= | double | | double 運算子 double | &&, || | double |
 
 測試具有三元運算子的雙精準數 (`double ? statement1 : statement2`) 時，非零為 **true**，而零則為 **false**。
 
-## 函式
+## Functions
 
 這些預先定義的**函式**可供您用來定義自動調整公式。
 
-| 函式 | 傳回類型 | 說明
+| 函數 | 傳回類型 | 說明
 | --------------------------------- | ------------- | --------- |
 | avg(doubleVecList) | double | 傳回 doubleVecList 中所有值的平均值。
 | len(doubleVecList) | double | 傳回 doubleVecList 建立的向量的長度。
@@ -249,44 +175,13 @@ $TargetDedicated = min(10, $averageActiveTaskCount);
 
 `$CPUPercent.GetSample(TimeInterval_Minute * 5)`
 
-<table>
-  <tr>
-    <th>方法</th>
-    <th>說明</th>
-  </tr>
-  <tr>
-    <td>GetSample()</td>
-    <td><p><b>GetSample()</b> 方法會傳回資料樣本的向量。
-	<p>一個樣本有 30 秒的度量資料。換句話說，每隔 30 秒會取得範例。如下所述，從收集樣本到可用於公式之間會延遲。因此，並非一段指定時間內的所有樣本都可供公式評估。
-        <ul>
-          <li><p><b>doubleVec GetSample(double count)</b>：指定要從最近收集的樣本中取得的樣本數。</p>
-				  <p>Getsample (1) 會傳回最後一個可用的樣本。不過，這不適用於 $CPUPercent 之類的度量，因為不可能知道 <em>何時</em>收集到樣本。此範例可能是最新的，也可能因為系統問題，是更舊的。在此情況下，最好使用如下所示的時間間隔。</p></li>
-          <li><p><b>doubleVec GetSample((timestamp | timeinterval) startTime [, double samplePercent])</b>--：指定收集範例資料的時間範圍。它也會選擇性地指定在要求的時間範圍內必須可用的樣本數百分比。</p>
-          <p>如果 CPUPercent 歷程記錄中有最後十分鐘的所有樣本，則 <em>$CPUPercent.GetSample(TimeInterval_Minute * 10)</em> 會傳回 20 個樣本。不過，如果最後一分鐘的歷程記錄無法使用，則只會傳回 18 個樣本。在此案例中：<br/>
-		  &#160;&#160;&#160;&#160;<em>$CPUPercent.GetSample(TimeInterval_Minute * 10, 95)</em> 會失敗，因為只有 90% 的樣本可用。<br/>
-		  &#160;&#160;&#160;&#160;<em>$CPUPercent.GetSample(TimeInterval_Minute * 10, 80)</em> 會成功。</p></li>
-          <li><p><b>doubleVec GetSample((timestamp | timeinterval) startTime, (timestamp | timeinterval) endTime [, double samplePercent])</b>：使用開始時間和結束時間指定收集資料的時間範圍。</p></li></ul>
-		  <p>如上所述，從收集樣本到可用於公式之間會延遲。使用 <em>GetSample</em> 方法時必須考慮這點。請參閱下方的 <em>GetSamplePercent</em>。</td>
-  </tr>
-  <tr>
-    <td>GetSamplePeriod()</td>
-    <td>傳回歷史範例資料集中取得範例的期間。</td>
-  </tr>
-	<tr>
-		<td>Count()</td>
-		<td>傳回度量歷程記錄中的範例總數。</td>
-	</tr>
-  <tr>
-    <td>HistoryBeginTime()</td>
-    <td>傳回度量的最舊可用資料範例的時間戳記。</td>
-  </tr>
-  <tr>
-    <td>GetSamplePercent()</td>
-    <td><p>傳回指定的時間間隔內可用的樣本百分比。例如：</p>
-    <p><b>doubleVec GetSamplePercent( (timestamp | timeinterval) startTime [, (timestamp | timeinterval) endTime] )</b>
-	<p>因為 GetSample 方法在傳回樣本的百分比小於指定的 samplePercent 時會失敗，因此，您可以先使用 GetSamplePercent 方法進行檢查。然後您可以在樣本不足時執行替代動作，而不暫停自動調整評估。</p></td>
-  </tr>
-</table>
+| 方法 | 說明 |
+| --- | --- |
+| GetSample() | `GetSample()` 方法會傳回資料樣本的向量。<br/><br/>一個樣本有 30 秒的度量資料。換句話說，每隔 30 秒會取得範例。如下所述，從收集樣本到可用於公式之間會延遲。因此，並非一段指定時間內的所有樣本都可供公式評估。<ul><li>`doubleVec GetSample(double count)`<br/>指定要從最近收集的樣本中取得的樣本數。<br/><br/>`GetSample(1)` 傳回最後一個可用的樣本。不過，這不適用於 `$CPUPercent` 之類的度量，因為不可能知道「何時」收集到樣本。此範例可能是最新的，也可能因為系統問題，是更舊的。在此情況下，最好使用如下所示的時間間隔。<li>`doubleVec GetSample((timestamp or timeinterval) startTime [, double samplePercent])`<br/>指定收集樣本資料的時間範圍。它也會選擇性地指定在要求的時間範圍內必須可用的樣本數百分比。如果 CPUPercent 歷程記錄中有最後十分鐘的所有樣本，則 <br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10)` 會傳回 20 個樣本。不過，如果最後一分鐘的歷程記錄無法使用，則只會傳回 18 個樣本。在此情況下︰<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10, 95)` 會失敗，因為只有 90% 的樣本可用。<br/><br/>`$CPUPercent.GetSample(TimeInterval_Minute * 10, 80)` 會成功。<li>`doubleVec GetSample((timestamp or timeinterval) startTime, (timestamp or timeinterval) endTime [, double samplePercent])`<br/>使用開始時間和結束時間指定收集資料的時間範圍。<br/><br/>如上所述，從收集樣本到可用於公式之間會延遲。使用 `GetSample` 方法時必須考慮這點。請參閱下文中的 `GetSamplePercent`。|
+| GetSamplePeriod() | 傳回歷史範例資料集中取得範例的期間。 |
+| Count() | 傳回度量歷程記錄中的範例總數。 |
+| HistoryBeginTime() | 傳回度量的最舊可用資料範例的時間戳記。 |
+| GetSamplePercent() |傳回指定的時間間隔內可用的樣本百分比。範例：<br/><br/>`doubleVec GetSamplePercent( (timestamp or timeinterval) startTime [, (timestamp or timeinterval) endTime] )`<br/><br/>因為 `GetSample` 方法在傳回樣本的百分比小於指定的 `samplePercent` 時會失敗，因此，您可以先使用 `GetSamplePercent` 方法進行檢查。然後您可以在樣本不足時執行替代動作，而不暫停自動調整評估。|
 
 ### 樣本、樣本百分比和 GetSample() 方法
 
@@ -304,7 +199,7 @@ Batch 服務會定期取得工作和資源度量的樣本，使其可供自動�
 
 **GetSample() 和樣本範圍**
 
-您的自動調整公式即將擴大和縮減您的集區--加入節點或移除節點。因為節點為付費使用，您想要確保您的公式使用根據充足資料的明智的分析方法。因此，建議您在公式中使用趨勢類型分析。此類型會根據所收集樣本的*範圍*來擴大和縮減集區。
+您的自動調整公式即將擴大和縮減您的集區--加入節點或移除節點。因為節點為付費使用，您想要確保您的公式使用根據充足資料的明智的分析方法。因此，建議您在公式中使用趨勢類型分析。此類型會根據所收集樣本的範圍來擴大和縮減集區。
 
 若要這樣做，請使用 `GetSample(interval look-back start, interval look-back end)` 傳回樣本的**向量**：
 
@@ -322,7 +217,7 @@ Batch 評估上述程式碼後，它會以值的向量形式傳回樣本範圍�
 
 由於先前提到的樣本可用性延遲，所以也請務必記得指定回顧開始時間早於一分鐘的時間範圍。這是因為樣本需要花大約一分鐘的時間才能傳播到整個系統，所以通常無法使用 `(0 * TimeInterval_Second, 60 * TimeInterval_Second)` 範圍中的樣本。同樣地，您可以使用 `GetSample()` 的百分比參數來強制特定樣本百分比需求。
 
-> [AZURE.IMPORTANT] 我們**強烈建議**您**避免「只」依賴自動調整公式中的 `GetSample(1)`**。這是因為 `GetSample(1)` 基本上會向 Batch 服務表示：「不論您多久以前取得最後一個樣本，請將它提供給我。」 因為它只是單一樣本，而且可能是較舊的樣本，所以可能無法代表最近工作或資源狀態的全貌。如果您使用 `GetSample(1)`，請確定它是較大的陳述式，而且不是您的公式所依賴的唯一資料點。
+> [AZURE.IMPORTANT] 我們**強烈建議**您**避免「只」依賴自動調整公式中的 `GetSample(1)`**。這是因為 `GetSample(1)` 基本上會向 Batch 服務表示：「不論您多久以前取得最後一個樣本，請將它提供給我」。 因為它只是單一樣本，而且可能是較舊的樣本，所以可能無法代表最近工作或資源狀態的全貌。如果您使用 `GetSample(1)`，請確定它是較大的陳述式，而且不是您的公式所依賴的唯一資料點。
 
 ## 度量
 
@@ -361,6 +256,7 @@ Batch 評估上述程式碼後，它會以值的向量形式傳回樣本範圍�
     <p><ul>
       <li>$ActiveTasks</li>
       <li>$RunningTasks</li>
+      <li>$PendingTasks</li>
       <li>$SucceededTasks</li>
 			<li>$FailedTasks</li></ul></p>
 		</td>
@@ -379,7 +275,7 @@ Batch 評估上述程式碼後，它會以值的向量形式傳回樣本範圍�
 
 `$TotalNodes = (min($CPUPercent.GetSample(TimeInterval_Minute*10)) > 0.7) ? ($CurrentDedicated * 1.1) : $CurrentDedicated;`
 
-下一個陳述式定義如果過去 60 分鐘的平均 CPU 使用率「低於」 20%，則將相同的變數設定為節點目前目標數目的 90%。這會在低 CPU 使用率時減少目標數量。請注意，此陳述式也會參考上述陳述式中使用者定義的變數 *$TotalNodes*。
+下一個陳述式定義如果過去 60 分鐘的平均 CPU 使用率「低於」20%，則將相同的變數設定為節點目前目標數目的 90%。這會在低 CPU 使用率時減少目標數量。請注意，此陳述式也會參考上述陳述式中使用者定義的變數 *$TotalNodes*。
 
 `$TotalNodes = (avg($CPUPercent.GetSample(TimeInterval_Minute * 60)) < 0.2) ? ($CurrentDedicated * 0.9) : $TotalNodes;`
 
@@ -611,4 +507,4 @@ string formula = string.Format(@"
 [rest_autoscaleinterval]: https://msdn.microsoft.com/zh-TW/library/azure/dn820173.aspx
 [rest_enableautoscale]: https://msdn.microsoft.com/library/azure/dn820173.aspx
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0928_2016-->

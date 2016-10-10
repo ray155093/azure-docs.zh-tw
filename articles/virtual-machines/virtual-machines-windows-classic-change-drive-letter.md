@@ -1,5 +1,5 @@
 <properties
-	pageTitle="讓 VM 的 D 磁碟機成為資料磁碟 | Microsoft Azure"
+	pageTitle="將 VM 的 D: 磁碟機設為資料磁碟 | Microsoft Azure"
 	description="說明如何為 Windows VM 變更磁碟機代號，讓您能夠使用 D: 磁碟機做為資料磁碟機。"
 	services="virtual-machines-windows"
 	documentationCenter=""
@@ -14,10 +14,10 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/16/2016"
+	ms.date="09/27/2016"
 	ms.author="cynthn"/>
 
-# 使用 D 磁碟機做為 Windows VM 上的資料磁碟機 
+# 使用 D: 磁碟機作為 Windows VM 上的資料磁碟機 
 
 如果您的應用程式需要使用 D 磁碟機來儲存資料，請遵循下列指示，使用不同的磁碟機代號來代表暫存磁碟。切勿使用暫存磁碟儲存需要保留的資料。
 
@@ -111,4 +111,4 @@
 ## 後續步驟
 - 您可以[連接其他資料磁碟](virtual-machines-windows-attach-disk-portal.md)來增加虛擬機器可以使用的儲存空間。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0928_2016-->

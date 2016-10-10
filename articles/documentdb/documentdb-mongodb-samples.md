@@ -3,7 +3,7 @@
 	description="尋找 DocumentDB 的 MongoDB 通訊協定支援的範例。" 
 	keywords="mongodb 範例"
 	services="documentdb" 
-	authors="stephbaron" 
+	authors="mimig1" 
 	manager="jhubbard" 
 	editor="" 
 	documentationCenter=""/>
@@ -15,7 +15,7 @@
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="08/23/2016" 
-	ms.author="stbaro"/>
+	ms.author="mimig"/>
 
 # MongoDB 的 DocumentDB 通訊協定支援範例
 若要使用這些範例，您必須︰
@@ -175,4 +175,4 @@
 
  
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0928_2016-->

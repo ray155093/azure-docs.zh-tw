@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="billmath"
-	manager="stevenpo"
+	manager="femila"
 	editor="curtand"/>
 
 <tags
@@ -153,4 +153,4 @@
 ![取代宣告](./media/active-directory-multiple-domains/sub2.png)
 5.	按一下 [確定]。按一下 [套用]。按一下 [確定]。關閉 [AD FS 管理]。
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

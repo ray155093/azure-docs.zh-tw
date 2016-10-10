@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="09/07/2016"
-	ms.author="tamram"/>
+	ms.author="jwillis;tamram"/>
 
 
 # 針對 Blob 儲存體端點設定自訂網域名稱
@@ -130,4 +130,4 @@ asverify 子網域是 Azure 認可的特殊子網域。在自己的子網域前�
 
 -   [如何將自訂網域對應至內容傳遞網路 (CDN) 端點](../cdn/cdn-map-content-to-custom-domain.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

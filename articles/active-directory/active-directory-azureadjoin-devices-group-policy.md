@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/23/2016"
+	ms.date="09/27/2016"
 	ms.author="femila"/>
 
 # 將已加入網域的裝置連接到 Azure AD 以體驗 Windows 10
@@ -29,7 +29,7 @@
 - 透過 Microsoft Passport 和 Windows Hello 進行工作或學校帳戶的增強式驗證與便利的登入。
 - 能夠限制為只能存取遵循組織裝置群組原則設定的裝置
 
-## 先決條件
+## 必要條件
 
 「網域加入」仍持續有用。但是，若要透過 Azure AD 享有 SSO、使用工作或學校帳戶漫遊設定，以及使用工作或學校帳戶存取 Windows 市集的好處，您必須符合下列條件：
 
@@ -75,7 +75,7 @@ Azure AD Connect 可讓您將內部部署電腦佈建為雲端中的裝置物件
     Initialize-ADSyncDomainJoinedComputerSync –AdConnectorAccount [connector account name] -AzureADCredentials $aadAdminCred;
 
 
-執行 Cmdlet $aadAdminCred = Get-credential 時，針對在 Get-credential 快顯視窗出現時輸入的認證使用者名稱使用格式 *user@example.com* 。
+執行 Cmdlet $aadAdminCred = Get-credential 時，針對在 Get-credential 快顯視窗出現時輸入的認證使用者名稱使用格式 *user@example.com*。
 
 執行 Cmdlet Initialize-ADSyncDomainJoinedComputerSync ... 時，以用來做為 Active Directory 連接器帳戶的網域帳戶來取代 [連接器帳戶名稱]。
 
@@ -123,21 +123,12 @@ Windows 10 電腦將會使用 Windows 整合式驗證，對 AD FS 所裝載的�
 
 ### 步驟 2：透過 Active Directory 中的群組原則設定自動裝置註冊
 
-您可以使用 Active Directory 中的群組原則，將已加入網域的 Windows 10 裝置設定為自動向 Azure AD 註冊。若要這麼做，請使用下列逐步指示：
+您可以使用 Active Directory 中的群組原則，將已加入網域的 Windows 10 裝置設定為自動向 Azure AD 註冊。
 
-1. 	開啟 [伺服器管理員] 並瀏覽至 [工具] > [群組原則管理]。
-2.	從 [群組原則管理]，瀏覽至與您想要啟用 [加入 Azure AD] 的網域相對應的網域節點。
-3.	以滑鼠右鍵按一下 [群組原則物件]，然後選取 [新增]。指定群組原則物件的名稱，例如「自動加入 Azure AD」。按一下 [確定]。
-4.	以滑鼠右鍵按一下新的群組原則物件，然後選取 [編輯]。
-5.	瀏覽至 [電腦設定] > [原則] > [系統管理範本] > [Windows 元件] > [加入工作場所]。
-6.	以滑鼠右鍵按一下 [自動將用戶端電腦加入工作場所]，然後選取 [編輯]。
-7.	選取 [已啟用] 選項按鈕，然後按一下 [套用]。按一下 [確定]。
-8.	將群組原則物件連結到您選擇的位置。若要對組織中所有已加入網域的 Windows 10 裝置啟用此原則，請將群組原則物件連結至網域。例如：
- - Active Directory 中將放置已加入網域的 Windows 10 電腦的特定組織單位 (OU)
- - 已加入網域且會向 Azure AD 自動註冊的 Windows 10 電腦所屬的特定安全性群組
-
->[AZURE.NOTE]
-此群組原則範本在 Windows 10 中已重新命名。如果您從 Windows 10 電腦執行群組原則工具，原則將會顯示為：<br> **註冊加入網域的電腦為裝置**<br>原則將位於下列位置中：<br> **電腦設定/原則/系統管理範本 /Windows 元件/裝置註冊**
+> [AZURE.NOTE]
+如需有關如何設定自動裝置註冊的最新指示，請參閱[如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊](active-directory-conditional-access-automatic-device-registration-setup.md)。
+>
+> 此群組原則範本在 Windows 10 中已重新命名。如果您從 Windows 10 電腦執行群組原則工具，原則將會顯示為：<br> **註冊加入網域的電腦為裝置**<br>原則位於下列位置：<br> **電腦設定/原則/系統管理範本 /Windows 元件/裝置註冊**
 
 
 ## 其他資訊
@@ -147,4 +138,4 @@ Windows 10 電腦將會使用 Windows 整合式驗證，對 AD FS 所裝載的�
 * [將已加入網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [設定 Azure AD Join](active-directory-azureadjoin-setup.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

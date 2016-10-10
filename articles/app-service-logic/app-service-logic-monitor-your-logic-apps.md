@@ -24,7 +24,7 @@
 
 若要檢視記錄，請選取 [瀏覽]，然後選取 [Logic Apps]。隨即會顯示您訂用帳戶中所有 Logic Apps 的清單。選取您想要監視的邏輯應用程式。您便會看到此邏輯應用程式已發生的所有動作和觸發程序的清單。
 
-![概觀](./media/app-service-logic-monitor-your-logic-apps/overview.png)
+![Overview](./media/app-service-logic-monitor-your-logic-apps/overview.png)
 
 此刀鋒視窗上有幾個很實用的區段︰
 
@@ -32,6 +32,8 @@
 	- [所有執行] 會列出最新的邏輯應用程式執行。您可以按一下任何資料列以取得該次執行的詳細資料，或按一下圖格以列出更多執行。
 	- [觸發程序記錄] 會列出此邏輯應用程式的所有觸發程序活動。觸發程序活動可能會是「略過」的新資料檢查 (例如想要查看 FTP 是否已新增新的檔案)、「成功」(表示已傳回資料而引發邏輯應用程式) 或「失敗」(對應到設定錯誤)。
 - [診斷] 可讓您檢視執行階段詳細資料和事件，並訂閱 [Azure 警示](#adding-azure-alerts)
+
+>[AZURE.NOTE] 在邏輯應用程式服務中，所有執行階段詳細資料和事件都會以靜止狀態加密。只有在使用者要求檢視時，才會將其解密。這些事件的存取權也可以 Azure 角色型存取控制 (RBAC) 來控制。
 
 ### 檢視執行的詳細資料
 
@@ -138,4 +140,4 @@
 - [建立邏輯應用程式部署範本](app-service-logic-create-deploy-template.md)
 - [企業整合功能](app-service-logic-enterprise-integration-overview.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0928_2016-->

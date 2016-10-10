@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="使用 REST 建立 ContentKey" 
+	pageTitle="使用 REST 建立 ContentKey | Microsoft Azure" 
 	description="了解如何建立提供資產安全存取的內容金鑰。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"  
+	ms.date="09/26/2016"  
 	ms.author="juliako"/>
 
 
@@ -262,4 +262,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

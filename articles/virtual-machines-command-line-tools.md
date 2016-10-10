@@ -14,18 +14,18 @@
 	ms.tgt_pltfrm="vm-multiple"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/15/2016"
+	ms.date="09/22/2016"
 	ms.author="danlep"/>
 
 # Azure 服務管理 (asm) 模式中的 Azure CLI 命令
 
-[AZURE.INCLUDE [learn-about-deployment-models](../includes/learn-about-deployment-models-classic-include.md)] 您也可以[閱讀所有 Resource Manager 模型命令](virtual-machines/azure-cli-arm-commands.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../includes/learn-about-deployment-models-classic-include.md)] 您也可以[瞭解所有 Resource Manager 模型命令](virtual-machines/azure-cli-arm-commands.md)，並使用 CLI 從傳統模型[移轉資源](virtual-machines/virtual-machines-linux-cli-migration-classic-resource-manager.md)到 Resource Manager 模型。
 
 本文提供傳統部署模型中您通常用來建立和管理 Azure 資源的 Azure CLI 命令的語法和選項。您可以在 Azure 服務管理 (asm) 模式下執行 CLI 來存取這些命令。這不是完整的參考，您的 CLI 版本可能會顯示稍微不同的命令或參數。
 
 若要開始使用，請先[安裝 Azure CLI](xplat-cli-install.md)，並[連線到您的 Azure 訂用帳戶](xplat-cli-connect.md)。
 
-如需在 asm 模式中命令列目前的命令語法和選項，請輸入 `azure help`，或顯示特定命令的說明 `azure help [command]`。您也可以在文件中找到建立和管理特定的 Azure 服務的 CLI 範例。
+如需命令列中目前的命令語法和選項，請輸入 `azure help`，或者，若要顯示特定命令的說明，請輸入 `azure help [command]`。您也可以在文件中找到建立和管理特定的 Azure 服務的 CLI 範例。
 
 選用參數會以方括弧括住 (例如，`[parameter]`)。其他所有參數皆為必要參數。
 
@@ -56,7 +56,7 @@ CLI 可以連線到您帳戶的其中一個方式是使用您的 Azure 訂用帳
 **account import [options] &lt;file>**
 
 
-此命令會匯入 publishsettings 檔或憑證，以供此工具持續使用。
+此命令會匯入 publishsettings 檔或憑證，以供此工具在未來的工作階段中使用。
 
 	~$ azure account import publishsettings.publishsettings
 	info:   Importing publish settings file publishsettings.publishsettings
@@ -67,11 +67,11 @@ CLI 可以連線到您帳戶的其中一個方式是使用您的 Azure 訂用帳
 	warn:   Remember to delete it now that it has been imported.
 	info:   Account publish settings imported successfully
 
-> [AZURE.NOTE] publishsettings 檔可能包含多個訂閱的詳細資料 (也就是訂閱名稱和 ID)。當您匯入 publishsettings 檔時，第一個訂閱將作為預設訂閱。若要使用不同的訂用帳戶，請執行下列命令。<code>~$ azure config set subscription &lt;other-subscription-id&gt;</code>
+> [AZURE.NOTE] publishsettings 檔可能包含多個訂用帳戶的詳細資料 (也就是訂用帳戶名稱和 ID)。當您匯入 publishsettings 檔時，第一個訂用帳戶將作為預設訂用帳戶。若要使用不同的訂用帳戶，請執行下列命令。<code>~$ azure config set subscription &lt;other-subscription-id&gt;</code>
 
 **account clear [options]**
 
-此命令會移除已匯入的已儲存發佈設定。如果您在此機器上使用完此工具，而想要確保此工具日後不能再使用您的帳戶，請使用此命命。
+此命令會移除已匯入的已儲存發佈設定。如果您在此機器上使用完此工具，而想要確保此工具在未來的工作階段中不能再用於您的帳戶，請使用此命令。
 
 	~$ azure account clear
 	Clearing account info.
@@ -79,7 +79,7 @@ CLI 可以連線到您帳戶的其中一個方式是使用您的 Azure 訂用帳
 
 **account list [options]**
 
-列出匯入的訂閱
+列出匯入的訂用帳戶
 
 	~$ azure account list
 	info:    Executing command account list
@@ -93,7 +93,7 @@ CLI 可以連線到您帳戶的其中一個方式是使用您的 Azure 訂用帳
 
 **account set [options] &lt;subscription&gt;**
 
-設定目前訂閱
+設定目前的訂用帳戶
 
 ###管理同質群組的命令
 
@@ -112,7 +112,7 @@ CLI 可以連線到您帳戶的其中一個方式是使用您的 Azure 訂用帳
 
 **account affinity-group create [options] &lt;name&gt;**
 
-This command creates a new affinity group
+此命令會建立同質群組
 
 	~$ azure account affinity-group create opentec -l "West US"
 	info:    Executing command account affinity-group create
@@ -194,21 +194,21 @@ This command creates a new affinity group
 
 **vm create [options] &lt;dns-name> &lt;image> &lt;userName> [password]**
 
-此命令會建立新的 Azure 虛擬機器。依預設，每個虛擬機器 (VM) 都是建立於專屬的雲端服務中；不過，您可以透過本文所述的 -c 選項，指定應該將虛擬機器加入現有的雲端服務。
+此命令會建立 Azure 虛擬機器。依預設，每個虛擬機器 (vm) 都是建立於專屬的雲端服務中。您可以透過本文所述的 -c 選項，指定應該將虛擬機器新增至現有的雲端服務。
 
-如同 Azure 傳統入口網站，vm create 命令只會在生產部署環境中建立虛擬機器。沒有在雲端服務的預備部署環境中建立虛擬機器的選項。如果您的訂閱沒有現有的 Azure 儲存體帳戶，這個命令會建立一個帳戶。
+如同 Azure 傳統入口網站，vm create 命令只會在生產部署環境中建立虛擬機器。沒有在雲端服務的預備部署環境中建立虛擬機器的選項。如果您的訂用帳戶沒有現有的 Azure 儲存體帳戶，這個命令會建立一個帳戶。
 
 您可以透過 --location 參數指定位置，或透過 --affinity-group 參數指定同質群組。如果都不提供，系統會提示您從有效位置清單中提供一個位置。
 
 提供的密碼必須有 8 至 123 個字元，並符合此虛擬機器所用之作業系統本身的密碼複雜度需求。
 
-如果您預期需要使用 SSH 管理已部署的 Linux 虛擬機器 (此乃常見情況)，您必須在建立虛擬機器時透過 -e 選項啟用 SSH。建立虛擬機器後，就無法啟用 SSH。
+如果您打算使用 SSH 管理已部署的 Linux 虛擬機器 (此乃常見情況)，您必須在建立虛擬機器時透過 -e 選項啟用 SSH。建立虛擬機器後，就無法啟用 SSH。
 
 日後若要讓 Windows 虛擬機器啟用 RDP，可新增連接埠 3389 作為端點。
 
 此命令可支援下列選用參數：
 
-**-c, --connect** 於主機服務中已建立的部署內建立虛擬機器。如果使用這個選項時並未加上 -vmname，則會自動產生新虛擬機器的名稱。<br /> **-n, --vm-name** 指定虛擬機器的名稱。此參數預設使用主機服務名稱。如果未指定 -vmname，則會以 &lt;service-name>&lt;id> 格式產生新虛擬機器的名稱，其中 &lt;id> 是服務中現有虛擬機器的編號加 1。例如，如果您使用這個命令將新的虛擬機器加入至已有一個虛擬機器的主機服務 MyService，則新虛擬機器的名稱會是 MyService2。<br /> **-u, --blob-url** 指定要在其中建立虛擬機器系統磁碟的目標 Blob 儲存體 URL。<br /> **-z, --vm-size** 指定虛擬機器的大小。有效值為："ExtraSmall"、"Small"、"Medium"、"Large"、"ExtraLarge"、"A5"、"A6"、"A7"、"A8"、"A9"、"A10"、"A11"、"Basic\_A0"、"Basic\_A1"、"Basic\_A2"、"Basic\_A3"、"Basic\_A4"、"Standard\_D1"、"Standard\_D2"、"Standard\_D3"、"Standard\_D4"、"Standard\_D11"、"Standard\_D12"、"Standard\_D13"、"Standard\_D14"、"Standard\_DS1"、"Standard\_DS2"、"Standard\_DS3"、"Standard\_DS4"、"Standard\_DS11"、"Standard\_DS12"、"Standard\_DS13"、"Standard\_DS14"、"Standard\_G1"、"Standard\_G2"、"Standard\_G3"、"Standard\_G4"、"Standard\_G55"。預設值為 "Small"。<br /> **-r** 將 RDP 連線功能新增至 Windows 虛擬機器。<br /> **-e, --ssh** 將 SSH 連線功能新增至 Windows 虛擬機器。<br /> **-t, --ssh-cert** 指定 SSH 憑證。<br /> **-s** 訂用帳戶 <br /> **-o, --community** 所指定的影像為社群影像 <br /> **-w** 虛擬網路名稱 <br/> **-l, --location** 指定位置 (例如，「美國中北部」)。<br /> **-a, --affinity-group** 指定同質群組。<br /> **-w, --virtual-network-name** 指定要將虛擬機器新增到的虛擬網路。若要設定和管理虛擬網路，可以從 Azure 傳統入口網站進行。<br /> **-b, --subnet-names** 指定要對虛擬機器指派的子網路名稱。
+**-c, --connect** 於主機服務中已建立的部署內建立虛擬機器。如果使用這個選項時並未加上 -vmname，則會自動產生新虛擬機器的名稱。<br /> **-n, --vm-name** 指定虛擬機器的名稱。此參數預設使用主機服務名稱。如果未指定 -vmname，則會以 &lt;service-name>&lt;id> 格式產生新虛擬機器的名稱，其中 &lt;id> 是服務中現有虛擬機器的數目加 1。例如，如果您使用這個命令將虛擬機器新增至已有一個虛擬機器的主機服務 MyService，則新虛擬機器的名稱會是 MyService2。<br /> **-u, --blob-url** 指定要在其中建立虛擬機器系統磁碟的目標 Blob 儲存體 URL。<br /> **-z, --vm-size** 指定虛擬機器的大小。有效值為："ExtraSmall"、"Small"、"Medium"、"Large"、"ExtraLarge"、"A5"、"A6"、"A7"、"A8"、"A9"、"A10"、"A11"、"Basic\_A0"、"Basic\_A1"、"Basic\_A2"、"Basic\_A3"、"Basic\_A4"、"Standard\_D1"、"Standard\_D2"、"Standard\_D3"、"Standard\_D4"、"Standard\_D11"、"Standard\_D12"、"Standard\_D13"、"Standard\_D14"、"Standard\_DS1"、"Standard\_DS2"、"Standard\_DS3"、"Standard\_DS4"、"Standard\_DS11"、"Standard\_DS12"、"Standard\_DS13"、"Standard\_DS14"、"Standard\_G1"、"Standard\_G2"、"Standard\_G3"、"Standard\_G4"、"Standard\_G55"。預設值為 "Small"。<br /> **-r** 將 RDP 連線功能新增至 Windows 虛擬機器。<br /> **-e, --ssh** 將 SSH 連線功能新增至 Windows 虛擬機器。<br /> **-t, --ssh-cert** 指定 SSH 憑證。<br /> **-s** 訂用帳戶 <br /> **-o, --community** 所指定的映像為社群映像 <br /> **-w** 虛擬網路名稱 <br/> **-l, --location** 指定位置 (例如，「美國中北部」)。<br /> **-a, --affinity-group** 指定同質群組。<br /> **-w, --virtual-network-name** 指定要在其中新增虛擬機器的虛擬網路。若要設定和管理虛擬網路，可以從 Azure 傳統入口網站進行。<br /> **-b, --subnet-names** 指定要對虛擬機器指派的子網路名稱。
 
 在此範例中，MSFT\_\_Win2K8R2SP1-120514-1520-141205-01-zh-TW-30GB 是由平台所提供的映像。如需作業系統映像的詳細資訊，請參閱 vm image list。
 
@@ -219,7 +219,7 @@ This command creates a new affinity group
 
 **vm create-from &lt;dns-name> &lt;role-file>**
 
-此命令會從 JSON 角色檔案建立新的 Azure 虛擬機器。
+此命令會從 JSON 角色檔案建立 Azure 虛擬機器。
 
 	~$ azure vm create-from my-vm example.json
 	info:   OK
@@ -333,7 +333,7 @@ info:   vm shutdown command OK
 	info:   vm export command OK
 
 ##  管理 Azure 虛擬機器端點的命令
-下圖顯示某個傳統虛擬機器多個執行個體的一般部署架構。請注意，在此範例中，每個虛擬機器上的連接埠 3389 皆開啟 (供進行 RDP 存取)，且每個虛擬機器上皆有內部 IP 位址 (例如，168.55.11.1)，供負載平衡器用來將流量路由傳送至虛擬機器。此內部 IP 位址也可用於進行虛擬機器之間的通訊。
+下圖顯示某個傳統虛擬機器多個執行個體的一般部署架構。在此範例中，每個虛擬機器上的連接埠 3389 皆開啟 (供進行 RDP 存取)。每個虛擬機器上也皆有內部 IP 位址 (例如，168.55.11.1)，供負載平衡器用來將流量路由傳送至虛擬機器。此內部 IP 位址也可用於進行虛擬機器之間的通訊。
 
 ![azurenetworkdiagram](./media/virtual-machines-command-line-tools/networkdiagram.jpg)
 
@@ -351,7 +351,7 @@ info:   vm shutdown command OK
 	+ Updating network configuration
 	info:   vm endpoint create command OK
 
-*vm endpoint create-multiple [options] &lt;vm-name> &lt;lb-port>[:&lt;vm-port>[:&lt;protocol>[:&lt;enable-direct-server-return>[:&lt;lb-set-name>[:&lt;probe-protocol>[:&lt;probe-port>[:&lt;probe-path>[:&lt;internal-lb-name>]]]]]]]] {1-}**
+**vm endpoint create-multiple [options] &lt;vm-name> &lt;lb-port>[:&lt;vm-port>[:&lt;protocol>[:&lt;enable-direct-server-return>[:&lt;lb-set-name>[:&lt;probe-protocol>[:&lt;probe-port>[:&lt;probe-path>[:&lt;internal-lb-name>]]]]]]]] {1-*}**
 
 建立多個 vm 端點。
 
@@ -417,7 +417,7 @@ info:   vm shutdown command OK
 
 **vm image list [options]**
 
-此命令會取得虛擬機器映像的清單。映像類型可分為三種：Microsoft 建立的映像 (名稱開頭為 "MSFT")、協力廠商建立的映像 (名稱開頭通常為廠商的名稱)，以及您自己建立的映像。若要建立映像，您可以擷取現有的虛擬機器，也可以從上傳至 Blob 儲存體的自訂 .vhd 來建立映像。如需關於使用自訂 .vhd 的詳細資訊，請參閱 vm image create。--json 選項會指定要以原始 JSON 格式傳回結果。
+此命令會取得虛擬機器映像的清單。映像類型可分為三種：Microsoft 建立的映像 (名稱開頭為 "MSFT")、協力廠商建立的映像 (名稱開頭為廠商的名稱)，以及您自己建立的映像。若要建立映像，您可以擷取現有的虛擬機器，也可以從上傳至 Blob 儲存體的自訂 .vhd 來建立映像。如需關於使用自訂 .vhd 的詳細資訊，請參閱 vm image create。--json 選項會指定要以原始 JSON 格式傳回結果。
 
 	~$ azure vm image list
 	data:   Name                                                                   Category   OS
@@ -487,7 +487,7 @@ info:   vm shutdown command OK
 
 使用 azure vm disk detach 命令卸離資料磁碟時，請使用 &lt;lun&gt; 參數指出要卸離的磁碟。
 
-> [AZURE>NOTE] 請注意，您應該務必按照反向順序卸離資料磁碟，亦即從被指派最高編號 LUN 的資料磁碟開始。Linux SCSI 層不支援在較高編號的 LUN 仍然連接的情況下，將較低編號的 LUN 卸離。例如，如果 LUN 1 仍然連接，您就不應該卸離 LUN 0。
+> [AZURE>NOTE] 請務必按照反向順序卸離資料磁碟，亦即從被指派最高編號 LUN 的資料磁碟開始。Linux SCSI 層不支援在較高編號的 LUN 仍然連接的情況下，將較低編號的 LUN 卸離。例如，如果 LUN 1 仍然連接，您就不應該卸離 LUN 0。
 
 **vm disk show [options] &lt;name>**
 
@@ -539,7 +539,7 @@ info:   vm shutdown command OK
 
 **vm disk create &lt;name> [source-path]**
 
-此命令會上傳並註冊 Azure 磁碟。必須指定 --blob-url、--location，或 --affinity-group。如果您使用此命令並加上 [source-path]，則會上傳指定的 .vhd 檔，並建立新的映像。您可以接著使用 vm disk attach，將此映像連接至虛擬機器。
+此命令會上傳並註冊 Azure 磁碟。必須指定 --blob-url、--location，或 --affinity-group。如果您使用此命令並加上 [source-path]，則會上傳指定的 .vhd 檔，並建立映像。您可以接著使用 vm disk attach，將此映像連接至虛擬機器。
 
 某些系統會設有每一程序的檔案描述元限制。如果超過此限制，工具將顯示檔案描述元限制錯誤。您可以使用 -p &lt;number> 參數再次執行此命令，減少平行上傳數上限。預設的平行上傳數上限為 96。
 
@@ -590,7 +590,7 @@ Azure 雲端服務是 Web 角色與工作角色上裝載的應用程式和服務
 
 **service create [options] &lt;serviceName>**
 
-此命令會建立新的雲端服務
+此命令會建立雲端服務
 
 	~$ azure service create newservicemsopentech
 	info:    Executing command service create
@@ -723,7 +723,7 @@ Azure Web 應用程式是一種可透過 URI 存取的 Web 組態。Web 應用�
 
 **site create [options] [name]**
 
-此命令會建立新的 Web 應用程式和本機目錄。
+此命令會建立 Web 應用程式和本機目錄。
 
 	~$ azure site create mysite
 	info:   Executing command site create
@@ -791,7 +791,7 @@ Azure Web 應用程式是一種可透過 URI 存取的 Web 組態。Web 應用�
 
 此命令還支援下列其他選項：
 
-**-q** 或 --quiet：不顯示確認提示。請在自動化指令碼中使用此選項。
+**-q 或 **--quiet**：不顯示確認提示。請在自動化指令碼中使用此選項。
 
 
 **site start [options] [name]**
@@ -814,7 +814,7 @@ Azure Web 應用程式是一種可透過 URI 存取的 Web 組態。Web 應用�
 	info:   Site mysite has been stopped
 	info:   site stop command OK
 
-**site restart [options] [name]
+**site restart [options] [name]**
 
 這個命令會停止再啟動指定的 Web 應用程式。
 
@@ -1436,7 +1436,7 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 
 **mobile data truncate [options] [servicename] [tablename]**
 
-此命令會從資料表中移除所有列。
+此命令會從資料表中移除所有資料列。
 
 	~$azure mobile data truncate todolist TodoItem
 	info:    Executing command mobile data truncate
@@ -1488,13 +1488,13 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 
 **mobile script upload [options] [servicename] [scriptname]**
 
-此命令會從 `table` 子資料夾上傳名為 `todoitem.insert.js` 的新指令碼。
+此命令會從 `table` 子資料夾上傳名為 `todoitem.insert.js` 的指令碼。
 
 	~$azure mobile script upload todolist table/todoitem.insert.js
 	info:    Executing command mobile script upload
 	info:    mobile script upload command OK
 
-檔案的名稱必須由資料表和作業名稱組成，而且必須位在與執行命令的位置相對的 table 子資料夾中。您也可以使用 **-f `<file>`** 或 **--file `<file>`** 參數，指定不同的檔案名稱和路徑來指向含所要註冊指令碼的檔案。
+檔案的名稱必須由資料表和作業名稱組成。它必須位在相對於命令執行位置的 table 子資料夾。您也可以使用 **-f `<file>`** 或 **--file `<file>`** 參數，指定不同的檔案名稱和路徑來指向含所要註冊指令碼的檔案。
 
 
 **mobile script delete [options] [servicename] [scriptname]**
@@ -1524,7 +1524,7 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 
 **mobile job create [options] [servicename] [jobname]**
 
-此命令會建立名為 `getUpdates` 且排定為每小時執行一次的新工作。
+此命令會建立名為 `getUpdates` 且排定為每小時執行一次的工作。
 
 	~$azure mobile job create -i 1 -u hour todolist getUpdates
 	info:    Executing command mobile job create
@@ -1625,7 +1625,7 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 
 **mobile preview enable [options] [servicename] [featurename]**
 
-這個命令會啟用行動服務的指定預覽功能。請注意，行動服務的預覽功能一旦啟用，便無法停用。
+這個命令會啟用行動服務的指定預覽功能。行動服務的預覽功能一旦啟用，便無法停用。
 
 ###管理行動服務 API 的命令
 
@@ -1723,7 +1723,7 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 
 ## 管理工具本機設定
 
-本機設定是您的訂閱 ID 和預設儲存體帳戶名稱。
+本機設定是您的訂用帳戶 ID 和預設儲存體帳戶名稱。
 
 **config list [options]**
 
@@ -1754,7 +1754,7 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 
 **sb namespace create &lt;name> &lt;location>**
 
-建立新的服務匯流排命名空間。
+建立服務匯流排命名空間。
 
 	~$ azure sb namespace create mysbnamespacea-test "West US"
 	info:    Executing command sb namespace create
@@ -1851,7 +1851,7 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 
 **storage account list [options]**
 
-這個命令會顯示您的訂閱上的儲存體帳戶。
+這個命令會顯示您的訂用帳戶上的儲存體帳戶。
 
 	~$ azure storage account list
 	info:    Executing command storage account list
@@ -2052,7 +2052,7 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 
 **sql server create &lt;administratorLogin> &lt;administratorPassword> &lt;location>**
 
-建立新的資料庫伺服器
+建立資料庫伺服器
 
 	~$ azure sql server create test T3stte$t "West US"
 	info:    Executing command sql server create
@@ -2101,7 +2101,7 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 
 **sql db create [options] &lt;serverName> &lt;databaseName> &lt;administratorPassword>**
 
-建立新的資料庫執行個體
+建立資料庫執行個體
 
 	~$ azure sql db create fr8aelne00 newdb test
 	info:    Executing command sql db create
@@ -2193,7 +2193,7 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 
 **sql firewallrule create [options] &lt;serverName> &lt;ruleName> &lt;startIPAddress> &lt;endIPAddress>**
 
-建立 SQL Server 的新防火牆規則。
+建立 SQL Server 的防火牆規則。
 
 	~$ azure sql firewallrule create fr8aelne00 allowed 131.107.0.0 131.107.255.255
 	info:    Executing command sql firewallrule create
@@ -2246,7 +2246,7 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 
 **network vnet create [options] &lt;location>**
 
-建立新的虛擬網路。
+建立虛擬網路。
 
 	~$ azure network vnet create vnet1 --location "West US" -v
 	info:    Executing command network vnet create
@@ -2310,7 +2310,7 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 
 **network export [file-path]**
 
-對於進階網路組態，您可以將網路組態匯出到本機。請注意，匯出的網路組態包括 DNS 伺服器設定、虛擬網路設定、本機網站設定和其他設定。
+對於進階網路組態，您可以將網路組態匯出到本機。匯出的網路組態包括 DNS 伺服器設定、虛擬網路設定、本機網站設定和其他設定。
 
 **network import [file-path]**
 
@@ -2350,4 +2350,4 @@ Azure 行動服務整合了一組為應用程式啟用後端功能的 Azure 服�
 	+ Deleting the DNS server entry dns-4 ( 77.88.99.11 )
 	info:    network dnsserver unregister command OK
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

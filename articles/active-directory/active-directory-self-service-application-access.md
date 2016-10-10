@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="asmalser-msft"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -29,7 +29,7 @@
 
 目前在 [Azure Active Directory 應用程式庫](https://azure.microsoft.com/marketplace/active-directory/all/)中支援同盟或密碼型單一登入的所有預先整合和自訂應用程式都支援這項功能，包括 Salesforce、Dropbox、Google Apps 等等。這篇文章說明如何：
 
-* 設定一般使用者的自助式應用程式存取權，包括設定選擇性核准工作流程 
+* 設定一般使用者的自助式應用程式存取權，包括設定選擇性核准工作流程
 * 將特定應用程式的存取管理委派給您組織中最適當的人員，讓他們能使用 Azure AD 存取面板來核准存取要求，直接將存取權指派給選取的使用者，或者 (選擇性) 在設定密碼型單一登入時設定應用程式存取的認證
 
 
@@ -109,4 +109,4 @@
 [2]: ./media/active-directory-self-service-application-access/ssaa_ap_manage_app.PNG
 [3]: ./media/active-directory-self-service-application-access/ssaa_ap_manage_app_config.PNG
 
-<!---HONumber=AcomDC_0211_2016-->
+<!---HONumber=AcomDC_0928_2016-->

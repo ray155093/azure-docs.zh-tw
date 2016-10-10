@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="使用 Media Encoder Premium Workflow 進行進階編碼" 
+	pageTitle="利用 Media Encoder Premium Workflow 進行進階編碼 | Microsoft Azure" 
 	description="了解如何使用 Media Encoder Premium Workflow 進行編碼。程式碼範例以 C# 撰寫，並使用 Media Services SDK for .NET。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016" 
+	ms.date="09/26/2016" 
 	ms.author="juliako"/>
 
 #使用 Media Encoder Premium Workflow 進行進階編碼
@@ -22,7 +22,7 @@
 
 如有進階編碼器的問題，請傳送電子郵件到 mepd@Microsoft.com。
 
-##概觀
+##Overview
 
 Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處理器。此處理器為高階隨選工作流程提供先進的編碼功能。
 
@@ -278,4 +278,4 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/24/2016"
+	ms.date="09/26/2016"
 	ms.author="johnkem"/>
 
 # Azure 診斷記錄檔概觀
@@ -69,15 +69,23 @@
 
 若要啟用儲存體帳戶中的診斷記錄檔的儲存體，使用下列命令︰
 
-    Set-AzureRmDiagnosticSetting -ResourceId [your resource Id] -StorageAccountId [your storage account id] -Enabled $true
+    Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -StorageAccountId [your storage account id] -Enabled $true
 
 儲存體帳戶識別碼是您要將記錄檔傳送至此的儲存體帳戶的資源識別碼。
 
 若要啟用將診斷記錄檔串流至事件中樞，使用下列命令︰
 
-    Set-AzureRmDiagnosticSetting -ResourceId [your resource Id] -ServiceBusRuleId [your service bus rule id] -Enabled $true
+    Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -ServiceBusRuleId [your service bus rule id] -Enabled $true
 
 服務匯流排規則識別碼是此格式的字串︰`{service bus resource ID}/authorizationrules/{key name}`。
+
+若要啟用將診斷記錄檔傳送到 Log Analytics 工作區，請使用此命令︰
+
+    Set-AzureRmDiagnosticSetting -ResourceId [your resource id] -WorkspaceId [log analytics workspace id] -Enabled $true
+
+您可以在 Azure 入口網站中取得 Log Analytics 工作區識別碼。
+
+您可以結合這些參數讓多個輸出選項。
 
 若要透過 Azure CLI 啟用診斷記錄檔，使用下列命令：
 
@@ -93,7 +101,33 @@
 
 服務匯流排規則識別碼是此格式的字串︰`{service bus resource ID}/authorizationrules/{key name}`。
 
+若要啟用將診斷記錄檔傳送到 Log Analytics 工作區，請使用此命令︰
+
+    azure insights diagnostic set --resourceId <resourceId> --workspaceId <workspaceId> --enabled true
+
+您可以在 Azure 入口網站中取得 Log Analytics 工作區識別碼。
+
+您可以結合這些參數讓多個輸出選項。
+
 若要使用 Insights REST API 變更診斷設定，請參閱[這份文件](https://msdn.microsoft.com/library/azure/dn931931.aspx)。
+
+## 在入口網站中管理診斷設定
+
+為確保所有資源皆以診斷設定正確設定，您可以瀏覽至入口網站中的 [監視] 刀鋒視窗，並開啟 [診斷記錄檔] 刀鋒視窗。
+
+![入口網站中的診斷記錄檔刀鋒視窗](./media/monitoring-overview-of-diagnostic-logs/manage-portal-nav.png)
+
+您可能必須按一下 [更多服務] 來尋找 [監視] 刀鋒視窗。
+
+在此刀鋒視窗中，您可以檢視及篩選支援診斷記錄檔的所有資源，以檢查它們是否已啟用診斷，以及該記錄檔要流向哪些儲存體帳戶、事件中樞及/或 Log Analytics 工作區。
+
+![入口網站中的診斷記錄檔刀鋒視窗結果](./media/monitoring-overview-of-diagnostic-logs/manage-portal-blade.png)
+
+按一下資源，即會顯示已儲存在儲存體帳戶的所有記錄檔，並提供您關閉或修改診斷設定的選項。按一下 [下載] 圖示來下載一段特定時間的記錄。
+
+![一項資源的診斷記錄檔刀鋒視窗](./media/monitoring-overview-of-diagnostic-logs/manage-portal-logs.png)
+
+> [AZURE.NOTE] 僅在您已設定診斷設定，將它們儲存到儲存體帳戶，診斷記錄檔才會出現在此檢視中並可供下載。
 
 ## 支援的服務以及診斷記錄檔的結構描述
 診斷記錄檔的結構描述會根據資源和記錄類別而有所不同。以下是支援的服務和其結構描述。
@@ -133,10 +167,13 @@
 |Microsoft.Network/applicationGateways|ApplicationGatewayPerformanceLog|應用程式閘道效能記錄檔|
 |Microsoft.Network/applicationGateways|ApplicationGatewayFirewallLog|應用程式閘道防火牆記錄檔|
 |Microsoft.Search/searchServices|OperationLogs|作業記錄|
+|Microsoft.ServerManagement/nodes|RequestLogs|要求記錄檔|
+|Microsoft.StreamAnalytics/streamingjobs|執行|執行|
+|Microsoft.StreamAnalytics/streamingjobs|編寫|編寫|
 
 ## 後續步驟
 - [將診斷記錄檔串流至**事件中樞**](monitoring-stream-diagnostic-logs-to-event-hubs.md)
 - [使用 Insights REST API 變更診斷設定](https://msdn.microsoft.com/library/azure/dn931931.aspx)
 - [以 OMS Log Analytics 分析記錄檔](../log-analytics/log-analytics-azure-storage-json.md)
 
-<!----HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_0928_2016-->

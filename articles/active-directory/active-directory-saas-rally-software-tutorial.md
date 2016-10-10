@@ -11,14 +11,14 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="07/07/2016" 
+    ms.date="09/26/2016" 
     ms.author="jeedes" />
 
 #教學課程：Azure Active Directory 與 Rally Software 整合
   
 本教學課程的目的是要示範 Azure 與 Rally Software 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
--   有效的 Azure 訂閱
+-   有效的 Azure 訂用帳戶
 -   Rally Software 租用戶
   
 本教學課程中說明的案例由下列建置組塊組成：
@@ -49,13 +49,13 @@
 
     ![新增應用程式](./media/active-directory-saas-rally-software-tutorial/IC749321.png "新增應用程式")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-rally-software-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![從資源庫新增應用程式](./media/active-directory-saas-rally-software-tutorial/IC749322.png "從資源庫新增應用程式")
 
 6.  在**搜尋方塊**中，輸入 **rally**。
 
-    ![應用程式庫](./media/active-directory-saas-rally-software-tutorial/IC769526.png "應用程式庫")
+    ![應用程式庫](./media/active-directory-saas-rally-software-tutorial/IC769526.png "應用程式資源庫")
 
 7.  在結果窗格中，選取 [Rally Software]，然後按一下 [完成] 來新增應用程式。
 
@@ -70,7 +70,7 @@
 
     ![設定單一登入](./media/active-directory-saas-rally-software-tutorial/IC749323.png "設定單一登入")
 
-2.  在 [要如何讓使用者登入 Rally] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按一下 [下一步]。
+2.  在 [要如何讓使用者登入 Rally] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
     ![Microsoft Azure AD 單一登入](./media/active-directory-saas-rally-software-tutorial/IC769528.png "Microsoft Azure AD 單一登入")
 
@@ -86,7 +86,7 @@
 
 6.  在頂端工具列中，按一下 [設定]，然後選取 [訂用帳戶]。
 
-    ![訂閱](./media/active-directory-saas-rally-software-tutorial/IC769531.png "訂閱")
+    ![訂用帳戶](./media/active-directory-saas-rally-software-tutorial/IC769531.png "訂用帳戶")
 
 7.  按一下右上方工具列中的 [動作] 按鈕，然後選取 [編輯訂用帳戶]。
 
@@ -143,4 +143,4 @@
   
 如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0928_2016-->

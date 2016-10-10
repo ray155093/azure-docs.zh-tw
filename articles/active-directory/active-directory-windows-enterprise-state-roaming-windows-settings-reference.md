@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/07/2016"
+	ms.date="09/27/2016"
 	ms.author="femila"/>
 
 # Windows 10 漫遊設定參考
@@ -38,11 +38,11 @@
 ## Windows 設定概觀
 下列設定群組可供使用者啟用/停用 Windows 10 裝置上的設定同步處理。
 
-- 佈景主題：桌面背景、使用者圖格、工作列位置等 
-- Internet Explorer 設定：瀏覽歷程記錄、輸入的 URL、我的最愛等 
-- 密碼：[Windows 認證保險箱](https://technet.microsoft.com/library/jj554668.aspx)，包括 Wi-Fi 設定檔 
-- 語言喜好設定：拼字檢查字典、系統語言設定 
-- 輕鬆存取：朗讀程式、螢幕小鍵盤、放大鏡 
+- 佈景主題：桌面背景、使用者圖格、工作列位置等
+- Internet Explorer 設定：瀏覽歷程記錄、輸入的 URL、我的最愛等
+- 密碼：[Windows 認證保險箱](https://technet.microsoft.com/library/jj554668.aspx)，包括 Wi-Fi 設定檔
+- 語言喜好設定：拼字檢查字典、系統語言設定
+- 輕鬆存取：朗讀程式、螢幕小鍵盤、放大鏡
 - 其他 Windows 設定：請參閱 Windows 設定詳細資料
 
 ![](./media/active-directory-enterprise-state-roaming/active-directory-enterprise-state-roaming-individual-sync-settings.png)
@@ -176,4 +176,4 @@
 
   
 
-<!---HONumber=AcomDC_0608_2016-->
+<!---HONumber=AcomDC_0928_2016-->

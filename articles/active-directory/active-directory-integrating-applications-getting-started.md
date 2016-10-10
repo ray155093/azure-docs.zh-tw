@@ -4,7 +4,7 @@
    services="active-directory"
    documentationCenter=""
    authors="ihenkel"
-   manager="stevenpo"
+   manager="femila"
    editor=""/>
 
    <tags
@@ -17,7 +17,7 @@
       ms.author="inhenk"/>
 
 # 整合 Azure Active Directory 與應用程式入門指南
-## 概觀
+## Overview
 本主題旨在提供您一個藍圖來整合應用程式與 Azure Active Directory (AD)。每個以下各節包含更詳細主題的簡短摘要，讓您可以識別本入門指南的哪些部分與您相關。遵循連結來深入探索每個主題。
 
 ## 在開始之前，請取得清查
@@ -89,4 +89,4 @@
 
 - [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0928_2016-->

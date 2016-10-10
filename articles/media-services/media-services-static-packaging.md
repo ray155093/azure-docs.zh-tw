@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="使用 Azure Media Packager 完成靜態封裝工作" 
+	pageTitle="使用 Azure Media Packager 完成靜態封裝工作 | Microsoft Azure" 
 	description="本主題說明使用 Azure Media Packager 完成的各種工作。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="dotnet" 
 	ms.topic="article" 
- 	ms.date="06/22/2016"    
+ 	ms.date="09/26/2016"    
 	ms.author="juliako"/>
 
 
@@ -21,7 +21,7 @@
 
 >[AZURE.NOTE]Microsoft Azure Media Packager 和 Microsoft Azure Media Encryptor 的生命週期結束日已展延至 2017 年 3 月 1 日。在此日期之前，這些處理器的功能將會新增到媒體編碼器標準 (MES)。客戶將會收到有關如何移轉工作流程以傳送工作到 MES 的指示。格式轉換和加密功能也可透過動態封裝與動態加密進行。
 
-## 概觀
+## Overview
 
 若要透過網際網路傳遞數位視訊，您必須壓縮媒體。數位視訊檔案十分龐大，而且可能太大而無法透過網際網路傳遞，或是太大而使您客戶的裝置無法正確顯示。編碼是壓縮視訊和音訊，好讓客戶能檢視您的媒體的程序。完成視訊編碼後，即可將其放到其他檔案容器中。將編碼後的媒體放入容器的程序稱為封裝。例如，您可以使用 Azure Media Packager 將 MP4 檔案轉換成 Smooth Streaming 或 HLS 內容。
 
@@ -1447,4 +1447,4 @@
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

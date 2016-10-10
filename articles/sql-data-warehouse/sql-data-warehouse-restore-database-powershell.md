@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/18/2016"
+   ms.date="09/21/2016"
    ms.author="lakshmir;barbkess;sonyama"/>
 
 # 還原 Azure SQL 資料倉儲 (PowerShell)
@@ -78,7 +78,7 @@ $RestoredDatabase.status
 
 ```
 
->[AZURE.NOTE] 還原完成後，您可以遵循[完成復原的資料庫][]指南來設定復原的資料庫。
+>[AZURE.NOTE] 還原完成後，您可以遵循[在復原之後設定資料庫][]來設定復原的資料庫。
 
 
 ## 還原已刪除的資料庫
@@ -113,7 +113,7 @@ $RestoredDatabase = Restore-AzureRmSqlDatabase –FromDeletedDatabaseBackup –D
 $RestoredDatabase.status
 ```
 
->[AZURE.NOTE] 還原完成後，您可以遵循[完成復原的資料庫][]指南來設定復原的資料庫。
+>[AZURE.NOTE] 還原完成後，您可以遵循[在復原之後設定資料庫][]來設定復原的資料庫。
 
 
 ## 從 Azure 地理區域還原
@@ -142,7 +142,7 @@ $GeoRestoredDatabase = Restore-AzureRmSqlDatabase –FromGeoBackup -ResourceGrou
 $GeoRestoredDatabase.status
 ```
 
->[AZURE.NOTE] 還原完成後，您可以遵循[完成復原的資料庫][]指南來設定復原的資料庫。
+>[AZURE.NOTE] 若要在還原完成之後設定資料庫，請參閱[在復原之後設定資料庫][]。
 
 
 如果來源資料庫是啟用 TDE，則復原的資料庫將是啟用 TDE。
@@ -156,13 +156,13 @@ $GeoRestoredDatabase.status
 <!--Article references-->
 [Azure SQL Database 商務持續性概觀]: sql-database-business-continuity.md
 [要求 DTU 配額變更]: ./sql-data-warehouse-get-started-create-support-ticket.md#request-quota-change
-[Finalize a recovered database]: sql-database-recovered-finalize.md
+[Configure your database after recovery]: ./sql-database-disaster-recovery.md#configure-your-database-after-recovery
 [如何安裝和設定 Azure PowerShell]: powershell-install-configure.md
 [概觀]: ./sql-data-warehouse-restore-database-overview.md
 [入口網站]: ./sql-data-warehouse-restore-database-portal.md
 [PowerShell]: ./sql-data-warehouse-restore-database-powershell.md
 [REST]: ./sql-data-warehouse-restore-database-rest-api.md
-[完成復原的資料庫]: ./sql-database-recovered-finalize.md
+[在復原之後設定資料庫]: ./sql-database-disaster-recovery.md#configure-your-database-after-recovery
 
 <!--MSDN references-->
 [Restore-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt693390.aspx
@@ -171,4 +171,4 @@ $GeoRestoredDatabase.status
 [Azure Portal]: https://portal.azure.com/
 [Microsoft Web Platform Installer]: https://aka.ms/webpi-azps
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0928_2016-->

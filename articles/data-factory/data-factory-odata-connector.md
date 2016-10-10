@@ -3,7 +3,7 @@
 	description="了解如何使用 Azure Data Factory，來移動 OData 來源的資料。" 
 	services="data-factory" 
 	documentationCenter="" 
-	authors="spelluru" 
+	authors="linda33wj" 
 	manager="jhubbard" 
 	editor="monicar"/>
 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="07/25/2016" 
-	ms.author="spelluru"/>
+	ms.date="09/26/2016" 
+	ms.author="jingwang"/>
 
 # 使用 Azure Data Factory 來移動 OData 來源的資料
 本文章將概述如何使用 Azure 資料處理站中的複製活動，來把 OData 來源的資料移動到另一個資料存放區。本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
@@ -71,7 +71,7 @@
 
 **OData 輸入資料集**
 
-設定 “external”: ”true” 和指定 externalData 原則即可通知 Data Factory 服務：這是 Data Factory 外部的資料表而且不是由 Data Factory 中的活動所產生。
+設定 “external”: ”true” 會通知 Data Factory 服務：這是 Data Factory 外部的資料集而且不是由 Data Factory 中的活動所產生。
 	
     {
     	"name": "ODataDataset",
@@ -97,7 +97,7 @@
 		}
 	}
 
-請注意，在資料集定義中指定 **path** 的動作是可以省略的。
+在資料集定義中指定 **path** 的動作是可以省略的。
 
 
 **Azure Blob 輸出資料集**
@@ -162,7 +162,7 @@
 
 **具有複製活動的管線**
 
-此管線包含複製活動，該活動已設定為使用上述輸入和輸出資料集並排定為每小時執行。在管線 JSON 定義中，**source** 類型設為 **RelationalSource**，而 **sink** 類型設為 **BlobSink**。針對 **query** 屬性所指定的 SQL 查詢，會從 OData 來源選取最新的資料。
+此管線包含複製活動，該活動已設定為使用輸入和輸出資料集並排定為每小時執行。在管線 JSON 定義中，**source** 類型設為 **RelationalSource**，而 **sink** 類型設為 **BlobSink**。針對 **query** 屬性所指定的 SQL 查詢，會從 OData 來源選取最新的資料。
 	
 	{
 	    "name": "CopyODataToBlob",
@@ -209,7 +209,7 @@
 	}
 
 
-請注意，在管線定義中指定 **query** 的動作是可以省略的。Data Factory 服務用來擷取資料的 **URL** 就是：在連結服務中所指定的 URL (必要) + 在資料集所指定的路徑 (可省略) + 管線中的查詢 (可省略)。
+在管線定義中指定 **query** 的動作是可以省略的。Data Factory 服務用來擷取資料的 **URL** 就是：在連結服務中所指定的 URL (必要) + 在資料集所指定的路徑 (可省略) + 管線中的查詢 (可省略)。
 
 ## OData 連結服務屬性
 
@@ -219,7 +219,7 @@
 | -------- | ----------- | -------- | 
 | 類型 | 類型屬性必須設為：**OData** | 是 |
 | url| OData 服務的 URL。 | 是 |
-| authenticationType | 用來連線到 OData 來源的驗證類型。<br/><br/> 若為雲端 OData，可能值為匿名和基本；若為內部部署 OData，可能值為匿名、基本和 Windows。 | 是 | 
+| authenticationType | 用來連線到 OData 來源的驗證類型。<br/><br/>若為雲端 OData，可能的值為 Anonymous 和 Basic。若為內部部署 OData，可能的值為 Anonymous、Basic 和 Windows。 | 是 | 
 | username | 如果您要使用 Basic 驗證，請指定使用者名稱。 | 是 (只在您使用基本驗證時) | 
 | password | 指定您為使用者名稱所指定之使用者帳戶的密碼。 | 是 (只在您使用基本驗證時) | 
 | gatewayName | Data Factory 服務應該用來連接到內部部署 OData 服務的閘道器名稱。只在要從內部部署 OData 來源複製資料時才指定。 | 否 |
@@ -288,11 +288,11 @@
 
 ## OData 複製活動類型屬性
 
-如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。名稱、描述、輸入和輸出資料表、各種原則等屬性都適用於所有活動類型。
+如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
 
-另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同，而在複製活動的案例中，可用的屬性會根據來源與接收的類型而有所不同。
+另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
 
-在複製活動的案例中，當來源類型為 **RelationalSource** (包含 OData) 時，您可在 typeProperties 區段中使用下列屬性：
+如果來源類型為 **RelationalSource** (包含 OData)，則 typeProperties 區段可使用下列屬性：
 
 | 屬性 | 說明 | 範例 | 必要 |
 | -------- | ----------- | -------------- | -------- |
@@ -302,7 +302,7 @@
 
 ### OData 的類型對應
 
-如同[資料移動活動](data-factory-data-movement-activities.md)一文所述，複製活動會使用下列 2 個步驟的方法，執行自動類型轉換，將來源類型轉換成接收類型。
+如同[資料移動活動](data-factory-data-movement-activities.md)一文所述，複製活動會使用下列 2 個步驟的方法，執行自動類型轉換，將來源類型轉換成接收類型：
 
 1. 從原生來源類型轉換成 .NET 類型
 2. 從 .NET 類型轉換成原生接收類型
@@ -317,4 +317,4 @@
 ## 效能和微調  
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0928_2016-->

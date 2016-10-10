@@ -1,5 +1,5 @@
 <properties
-	pageTitle="識別適用於集區的單一資料庫的 Powershell 指令碼"
+	pageTitle="使用 Powershell 指令碼來識別適用於集區的單一資料庫 | Microsoft Azure"
 	description="彈性資料庫集區是一組彈性資料庫共用的可用資源集合。本文件提供 Powershell 指令碼，幫助您評估對一組資料庫使用彈性資料庫集區的合適性。"
 	services="sql-database"
 	documentationCenter=""
@@ -10,7 +10,7 @@
 <tags
 	ms.service="sql-database"
 	ms.devlang="NA"
-	ms.date="06/06/2016"
+	ms.date="09/22/2016"
 	ms.author="sstein"
 	ms.workload="data-management"
 	ms.topic="article"
@@ -28,7 +28,7 @@
 
 執行指令碼之前安裝下列：
 
-- 最新的 [PowerShell 命令列工具](http://go.microsoft.com/?linkid=9811175&clcid=0x409)。
+- 最新的 Azure PowerShell。如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 - [SQL Server 2014 功能套件](https://www.microsoft.com/download/details.aspx?id=42295)。
 
 ### 指令碼詳細資料
@@ -266,4 +266,4 @@
 
         
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

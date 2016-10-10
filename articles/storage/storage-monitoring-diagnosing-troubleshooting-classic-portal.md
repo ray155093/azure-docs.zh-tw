@@ -13,14 +13,14 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="04/29/2016"
-	ms.author="jahogg"/>
+	ms.date="09/22/2016"
+	ms.author="jahogg;robinsh"/>
 
 # 監視、診斷與疑難排解 Microsoft Azure 儲存體
 
 [AZURE.INCLUDE [storage-selector-portal-monitoring-diagnosing-troubleshooting](../../includes/storage-selector-portal-monitoring-diagnosing-troubleshooting.md)]
 
-## 概觀
+## Overview
 
 與傳統環境相比，託管於雲端環境的分散式應用程式一旦發生問題，無論要為其進行診斷或疑難排解，都更加複雜。應用程式可以部署在 PaaS 或 IaaS 基礎架構、內部部署環境、行動裝置或是這幾種環境的組合上。一般來說，您的應用程式網路流量可能會跨越公共與私有網路，而您的應用程式有可能使用多項儲存技術，例如 Microsoft Azure 儲存體資料表、Blob、佇列或是檔案，乃至於關聯式資料庫與文件資料庫之類的其他資料存放區。
 
@@ -211,7 +211,7 @@
 
 ### <a name="storage-emulator-issues"></a>儲存體模擬器問題
 
-Azure SDK 包含一個儲存體模擬器，可供您在開發工作站上執行。這個模擬器會模擬大部分的 Azure 儲存體服務行為，而且在開發與測試期間非常有用，能讓您在沒有 Azure 訂閱與 Azure 儲存體帳戶的情況下執行使用 Azure 儲存體服務的應用程式。
+Azure SDK 包含一個儲存體模擬器，可供您在開發工作站上執行。這個模擬器會模擬大部分的 Azure 儲存體服務行為，而且在開發與測試期間非常有用，能讓您在沒有 Azure 訂用帳戶與 Azure 儲存體帳戶的情況下執行使用 Azure 儲存體服務的應用程式。
 
 本指南「[疑難排解指引]」一節描述一些使用儲存體模擬器會碰到的常見問題。
 
@@ -493,7 +493,7 @@ Microsoft.WindowsAzure.Storage|錯誤|1|85d077ab -…|重試原則不允許重�
 - 
 - 如果您重新產生儲存體存取金鑰 (在「Azure 傳統入口網站」中您儲存體帳戶內的任何一個頁面上按一下 [管理存取金鑰])，將會讓任何現有的 SAS 權杖失效。如果您產生的 SAS 權杖，內含很長的到期時間以便用戶端應用程式快取處理，則可能會出現問題。
 
-如果您是使用儲存體用戶端程式庫來產生 SAS 權杖，則您可以輕易地建立有效的權杖。不過，如果是使用「儲存體 REST API」並且是手動建構 SAS 權杖，您應該仔細閱讀 MSDN 上的<a href="http://msdn.microsoft.com/library/azure/ee395415.aspx" target="_blank">以共用存取簽章委派存取權</a>主題。
+如果您是使用儲存體用戶端程式庫來產生 SAS 權杖，則您可以輕易地建立有效的權杖。不過，如果是使用「儲存體 REST API」並且是手動建構 SAS 權杖，您應該仔細閱讀 MSDN 上的<a href="http://msdn.microsoft.com/library/azure/ee395415.aspx" target="_blank">使用共用存取簽章委派存取</a>主題。
 
 ### <a name="the-client-is-receiving-404-messages"></a>用戶端收到 HTTP 404 (找不到) 訊息
 當用戶端應用程式接收來自伺服器的 HTTP 404 (找不到) 訊息時，表示用戶端嘗試使用的物件 (例如，實體、資料表、Blob、容器或佇列) 並不存在儲存體服務中。這種情況有數種可能的原因，例如：
@@ -685,7 +685,7 @@ Timestamp|作業|結果|容器名稱|用戶端要求 ID
 
 ### <a name="you-are-experiencing-unexpected-reboots"></a>附加大量 VHD 的 Azure 虛擬機器出現非預期的重新開機情況
 
-當 Azure 虛擬機器 (VM) 裡有大量的附加 VHD 位於同一個儲存體帳戶內時，您可能會超出個別儲存體帳戶的延展性目標，導致 VM 作業失敗。您應該檢查儲存體帳戶的每分鐘度量 (**TotalRequests**/**TotalIngress**/**TotalEgress**)，查看是否有超出儲存體帳戶延展性目標的突然增加情況。請參閱「[度量顯示 PercentThrottlingError 增加]」一節，取得如何判斷儲存體帳戶是否發生節流作業的協助。
+當 Azure 虛擬機器 (VM) 裡有大量的附加 VHD 位於同一個儲存體帳戶內時，您可能會超出個別儲存體帳戶的延展性目標，導致 VM 作業失敗。您應該檢查儲存體帳戶的每分鐘度量 (**TotalRequests**/**TotalIngress**/**TotalEgress**)，查看是否有超出儲存體帳戶延展性目標的流量暴增情況。請參閱「[度量顯示 PercentThrottlingError 增加]」一節，取得如何判斷儲存體帳戶是否發生節流作業的協助。
 
 一般來說，VHD 每次來自虛擬機器的個別流量輸入或輸出，都會在底層的分頁 Blob 上轉換為 **Get Page** 或 **Put Page** 作業。因此，您可以在環境中使用預估的 IOPS，依據應用程式的特定行為調節單一儲存體帳戶中應該具備的 VHD 數量。我們不建議單一儲存體帳戶內具備超過 40 的磁碟。如需儲存體帳戶目前延展性目標的詳細資訊，尤其是您所使用之儲存體帳戶類型的要求率總計和頻寬總計，請參閱 <a href="http://msdn.microsoft.com/library/azure/dn249410.aspx" target="_blank">Azure 儲存體延展性和效能目標</a>。如果您超過儲存體帳戶的延展性目標，則應該將 VHD 放在多個不同儲存體帳戶，以減少每個個別帳戶中的活動。
 
@@ -922,4 +922,4 @@ Microsoft Message Analyzer 內建的 **Web Proxy** 追蹤功能是依據 Fiddler
 [9]: ./media/storage-monitoring-diagnosing-troubleshooting-classic-portal/mma-screenshot-1.png
 [10]: ./media/storage-monitoring-diagnosing-troubleshooting-classic-portal/mma-screenshot-2.png
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0928_2016-->

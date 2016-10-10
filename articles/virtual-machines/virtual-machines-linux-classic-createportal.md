@@ -14,13 +14,13 @@
 	ms.tgt_pltfrm="vm-linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/06/2016"
+	ms.date="09/27/2016"
 	ms.author="cynthn"/>
 
 
 # 建立執行 Linux 的自訂虛擬機器
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 如需有關使用新的 Azure 入口網站來建立 Linux 虛擬機器的資訊，請參閱[使用 Portal.md 在 Azure 上建立 Linux VM](virtual-machines-linux-quick-create-portal.md)。
 
 
 
@@ -30,8 +30,4 @@
 
 [AZURE.INCLUDE [virtual-machines-create-linuxvm](../../includes/virtual-machines-create-linuxvm.md)]
 
-## 後續步驟
-
-您也可以使用傳統入口網站[建立執行 Windows 的自訂虛擬機器](virtual-machines-windows-classic-createportal.md)。
-
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0928_2016-->

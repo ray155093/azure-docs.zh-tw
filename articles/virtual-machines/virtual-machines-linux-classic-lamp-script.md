@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="linux"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="02/23/2015"
+	ms.date="09/13/2016"
 	ms.author="guybo"/>
 
 #使用適用於 Linux 的 Azure CustomScript 延伸模組部署 LAMP 應用程式#
@@ -81,7 +81,7 @@ script-vm VM 需要安裝 Azure CLI，並且與 Azure 之間具有正常運作�
 
 現在您可以使用下一個命令，透過 Azure CLI 將 Linux CustomScript 延伸模組部署到遠端 VM。
 
-    azure vm extension set -c "./public_config.json" lamp-vm CustomScriptForLinux Microsoft.OSTCExtensions 1.*
+    azure vm extension set -c "./public_config.json" lamp-vm CustomScript Microsoft.Azure.Extensions 2.0
 
 前一個命令會在名為 *lamp-vm* 的 VM 上下載並執行 *install\_lamp.sh* 指令碼。
 
@@ -93,8 +93,8 @@ script-vm VM 需要安裝 Azure CLI，並且與 Azure 之間具有正常運作�
 
 您可以藉由查看遠端 VM 上的記錄檔來檢查自訂指令碼執行的情況。SSH 連線到 *lamp-vm*，並使用下一個命令顯示記錄檔的結尾。
 
-    cd /var/log/azure/Microsoft.OSTCExtensions.CustomScriptForLinux/1.3.0.0/
-    tail -f extension.log
+    cd /var/log/azure/customscript
+    tail -f handler.log
 
 執行 CustomScript 延伸模組之後，您可以瀏覽至您建立的 PHP 網頁以取得資訊。這篇文章中的範例 PHP 頁面是 *http://lamp-vm.cloudapp.net/phpinfo.php*。
 
@@ -110,4 +110,4 @@ script-vm VM 需要安裝 Azure CLI，並且與 Azure 之間具有正常運作�
 
 [Azure 上的 Linux 和開放原始碼運算](virtual-machines-linux-opensource-links.md)
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0928_2016-->

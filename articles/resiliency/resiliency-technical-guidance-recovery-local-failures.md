@@ -160,7 +160,7 @@ Azure SQL Database 針對節點層級失敗提供內建的復原功能。所有�
 
 ###服務匯流排
 
-為了避免 Azure 服務匯流排暫時中斷，請考慮建立耐久性用戶端佇列。這會暫時使用替代的本機儲存體機制，來儲存無法新增至服務匯流排佇列的訊息。應用程式可以決定服務還原之後，要如何處理暫時儲存的訊息。如需詳細資訊，請參閱[使用服務匯流排代理傳訊的效能改進最佳作法](../service-bus/service-bus-performance-improvements.md)和[服務匯流排 (災害復原)](./resiliency-technical-guidance-recovery-loss-azure-region.md#other-azure-platform-services)。
+為了避免 Azure 服務匯流排暫時中斷，請考慮建立耐久性用戶端佇列。這會暫時使用替代的本機儲存體機制，來儲存無法新增至服務匯流排佇列的訊息。應用程式可以決定服務還原之後，要如何處理暫時儲存的訊息。如需詳細資訊，請參閱[使用服務匯流排代理傳訊的效能改進最佳作法](../service-bus-messaging/service-bus-performance-improvements.md)和[服務匯流排 (災害復原)](./resiliency-technical-guidance-recovery-loss-azure-region.md#other-azure-platform-services)。
 
 ###行動服務
 
@@ -223,4 +223,4 @@ Azure 行動服務有兩個可用性考量。首先，定期備份與行動服�
 
 這篇文章是一系列文章的一部分，著重在 [Azure 復原技術指導](./resiliency-technical-guidance.md)。系列文章的下一篇是[從全區域服務中斷復原](./resiliency-technical-guidance-recovery-loss-azure-region.md)。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0928_2016-->

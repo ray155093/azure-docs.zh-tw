@@ -148,8 +148,9 @@ Web 應用程式可能會使用根據 URL 路由傳送的模組，而非處理�
 
 ### 部署
 
-- 設定連續部署。請參閱 [在 Azure App Service 中使用 Git 來部署 Web Apps]
+- 設定連續部署。請參閱[在 Azure App Service 中使用 Git 來部署 Web Apps](./web-sites-deploy.md)。
 - 部署位置。請參閱[將 Azure App Service 中的 Web Apps 部署至預備環境]。
+
 
 若要檢視您的部署位置，依序按一下 [**所有設定**] > [**部署位置**]。
 
@@ -188,4 +189,4 @@ Web 應用程式可能會使用根據 URL 路由傳送的模組，而非處理�
 [configure02]: ./media/web-sites-configure/configure02.png
 [configure03]: ./media/web-sites-configure/configure03.png
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0928_2016-->

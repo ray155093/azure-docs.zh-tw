@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="07/01/2016"
+   ms.date="09/22/2016"
    ms.author="kgremban"/>
 
 # Azure AD Privileged Identity Management：如何新增或移除使用者角色
@@ -26,7 +26,7 @@ Azure AD Privileged Identity Management 應用程式也允許特殊權限角色�
 
 在您的組織中，您可以將使用者指派給 Azure AD、Office 365 及其他 Microsoft 服務和應用程式中不同的系統管理角色。如需可用角色的詳細資訊，請參閱 [Azure AD PIM 中的角色](active-directory-privileged-identity-management-roles.md)。
 
-若要使用 Privileged Identity Management 來新增或移除角色中的使用者，請叫出 PIM 儀表板，然後按一下 [系統管理員角色的使用者] 按鈕，或從角色表格中選取特定的角色 (例如 [全域管理員])。
+若要新增或移除使用者使用 Privileged Identity Management 的角色，請啟動 PIM 儀表板。然後按一下 [系統管理員角色的使用者] 按鈕，或從角色資料表中選取特定角色 (例如全域系統管理員)。
 
 > [AZURE.NOTE] 如果您還沒有在 Azure 入口網站中啟用 PIM，請移至[開始使用 Azure AD Privileged Identity Management](active-directory-privileged-identity-management-getting-started.md) 以取得詳細資訊。
 
@@ -58,11 +58,11 @@ Azure AD Privileged Identity Management 應用程式也允許特殊權限角色�
 3. 按一下 [移除]。會出現訊息要求您確認。
 4. 按一下 [是]，即可從使用者中移除角色。
 
-如果您不確定哪些使用者仍然需要其角色指派，您可以[開始角色的安全性檢閱](active-directory-privileged-identity-management-how-to-start-security-review.md)。
+如果您不確定哪些使用者仍然需要其角色指派，您可以[開始角色的存取權檢閱](active-directory-privileged-identity-management-how-to-start-security-review.md)。
 
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## 後續步驟
 [AZURE.INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0928_2016-->

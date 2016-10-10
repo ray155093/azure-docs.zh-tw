@@ -2,7 +2,7 @@
 - [Linux](../articles/iot-hub/iot-hub-linux-gateway-sdk-simulated-device.md)
 - [Windows](../articles/iot-hub/iot-hub-windows-gateway-sdk-simulated-device.md)
 
-[Simulated Device Cloud Upload sample] \(Simulated Device Cloud Upload 範例) 的這個逐步解說示範如何使用 [Microsoft Azure IoT Gateway SDK (Microsoft Azure IoT 閘道 SDK)][lnk-sdk]，以將裝置到雲端遙測從模擬裝置傳送到 IoT 中樞。
+[Simulated Device Cloud Upload sample] (Simulated Device Cloud Upload 範例) 的這個逐步解說示範如何使用 [Microsoft Azure IoT Gateway SDK (Microsoft Azure IoT 閘道 SDK)][lnk-sdk]，以將裝置到雲端遙測從模擬裝置傳送到 IoT 中樞。
 
 本逐步解說涵蓋下列項目：
 
@@ -27,7 +27,7 @@ Simulated Device Cloud Upload 範例示範如何使用 SDK 建立閘道，以將
 ![][1]
 
 
-> [AZURE.NOTE] 模組不會彼此直接傳遞訊息。模組會將訊息發佈到內部訊息匯流排，而內部訊息匯流排會使用訂用帳戶機制將訊息傳遞到其他模組 (如下圖所示)。如需詳細資訊，請參閱[開始使用閘道 SDK][lnk-gw-getstarted]。
+> [AZURE.NOTE] 模組不會彼此直接傳遞訊息。模組會將訊息發佈到內部訊息代理程式，而內部代理程式會使用訂用帳戶機制將訊息傳遞到其他模組 (如下圖所示)。如需詳細資訊，請參閱[開始使用閘道 SDK][lnk-gw-getstarted]。
 
 ### 通訊協定擷取模組
 
@@ -69,3 +69,4 @@ Simulated Device Cloud Upload 範例示範如何使用 SDK 建立閘道，以將
 [lnk-sdk]: https://github.com/Azure/azure-iot-gateway-sdk
 [lnk-gw-getstarted]: ../articles/iot-hub/iot-hub-linux-gateway-sdk-get-started.md
 
+<!---HONumber=AcomDC_0928_2016-->

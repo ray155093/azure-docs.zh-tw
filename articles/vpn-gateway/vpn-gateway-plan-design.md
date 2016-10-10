@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/19/2016"
+   ms.date="09/21/2016"
    ms.author="cherylmc"/>
 
 # 規劃與設計 VPN 閘道
@@ -46,20 +46,13 @@
 
 ### <a name="gwrequire"></a>依據 VPN 類型和 SKU 的閘道需求
 
+[AZURE.INCLUDE [vpn-gateway-gwsku](../../includes/vpn-gateway-gwsku-include.md)]
 
-在建立 VPN 閘道時，您必須指定想要使用的閘道 SKU。有三個 VPN 閘道 SKU：
-
-- 基本
-- 標準
-- 高效能
+如需關於閘道器 SKU 的資訊，請參閱 [VPN 閘道設定](vpn-gateway-about-vpn-gateway-settings.md#gwsku)。
 
 [AZURE.INCLUDE [vpn-gateway-table-requirements](../../includes/vpn-gateway-table-requirements-include.md)]
 
-
-
-### <a name="aggthroughput"></a>閘道類型和彙總輸送量估計值
-
-下表顯示閘道類型和預估的彙總輸送量。估計的彙總輸送量可能是您的設計決定因素。閘道 SKU 之間的定價並不相同。如需定價資訊，請參閱＜[VPN 閘道定價](https://azure.microsoft.com/pricing/details/vpn-gateway/)＞。此資料表適用於資源管理員與傳統部署模型。
+<br>下表顯示閘道類型和預估的彙總輸送量。估計的彙總輸送量可能是您的設計決定因素。閘道 SKU 之間的定價並不相同。如需定價資訊，請參閱＜[VPN 閘道定價](https://azure.microsoft.com/pricing/details/vpn-gateway/)＞。此資料表適用於資源管理員與傳統部署模型。
 
 [AZURE.INCLUDE [vpn-gateway-table-gwtype-aggtput](../../includes/vpn-gateway-table-gwtype-aggtput-include.md)]
 
@@ -161,4 +154,4 @@
 
 如需有關特定閘道設定的詳細資訊，請參閱[關於 VPN 閘道設定](vpn-gateway-about-vpn-gateway-settings.md)。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0928_2016-->

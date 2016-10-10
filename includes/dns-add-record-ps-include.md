@@ -24,6 +24,13 @@
 	Add-AzureRmDnsRecordConfig -RecordSet $rs -Nsdname "ns1.contoso.com"
 	Set-AzureRmDnsRecordSet -RecordSet $rs
 
+### 建立含有單一記錄的 PTR 記錄集
+在此情況下，'my-arpa-zone.com' 代表表示您 IP 範圍的 ARPA 區域。此區域中的每個 PTR 記錄集都與此 IP 範圍內的一個 IP 位址相對應。
+
+	$rs = New-AzureRmDnsRecordSet -Name "10" -RecordType PTR -Ttl 3600 -ZoneName my-arpa-zone.com -ResourceGroupName MyAzureResourceGroup
+	Add-AzureRmDnsRecordConfig -RecordSet $rs -Ptrdname "myservice.contoso.com"
+	Set-AzureRmDnsRecordSet -RecordSet $rs
+
 ### 建立含有單一記錄的 SRV 記錄集
 
 如果您要在區域的根內建立 SRV 記錄，您只要在記錄名稱中指定 *\_service* 和 *\_protocol*。記錄名稱中不需要包含 "@"。
@@ -38,4 +45,4 @@
 	Add-AzureRmDnsRecordConfig -RecordSet $rs -Value "This is a TXT record"
 	Set-AzureRmDnsRecordSet -RecordSet $rs
 
-<!---HONumber=AcomDC_0601_2016-->
+<!---HONumber=AcomDC_0928_2016-->

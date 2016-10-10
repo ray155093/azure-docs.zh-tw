@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="vm-windows"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/12/2016"
+	ms.date="09/27/2016"
 	ms.author="cynthn"/>
 
 # 在 Azure 傳統入口網站中建立執行 Windows 的虛擬機器
@@ -25,7 +25,7 @@
 
 <br>
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 部署模型執行這些步驟](virtual-machines-windows-hero-tutorial.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 部署模型執行這些步驟](virtual-machines-windows-hero-tutorial.md)。如果您想要使用新的 Azure 入口網站，請參閱[在 Azure 入口網站中建立第一個 Windows 虛擬機器](virtual-machines-windows-hero-tutorial.md)。
 
 本教學課程示範在 Azure 傳統入口網站中建立執行 Windows 的 Azure 虛擬機器 (VM) 有多麼容易。我們將使用 Windows Server 映像做為範例，這只是 Azure 提供眾多映像中的一種。請注意，您可以選擇何種映像取決於您的訂用帳戶。例如，Windows 桌面映像可能可供 MSDN 訂閱者使用。
 
@@ -47,8 +47,8 @@
 
 ## 後續步驟
 
-- 登入虛擬機器。如需指示，請參閱[使用 Azure 傳統入口網站登入 Windows 虛擬機器](virtual-machines-windows-classic-connect-logon.md)。
+- 登入虛擬機器。如需相關指示，請參閱[登入執行 Windows Server 的虛擬機器](virtual-machines-windows-classic-connect-logon.md)。
 
-- 附加磁碟來儲存資料。您可以附加空的磁碟和含有資料的磁碟。如需指示，請參閱[將資料磁碟連接至以傳統部署模型建立的 Windows 虛擬機器](virtual-machines-windows-classic-attach-disk.md)。
+- 附加磁碟來儲存資料。您可以附加空的磁碟和含有資料的磁碟。如需相關指示，請參閱[將資料磁碟連接至以傳統部署模型建立的 Windows 虛擬機器](virtual-machines-windows-classic-attach-disk.md)。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0928_2016-->

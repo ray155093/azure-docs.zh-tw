@@ -110,7 +110,7 @@ Azure DevTest Labs 是一項免費服務，這表示建立實驗室和設定原�
 ### 如何建立可讓使用者執行特定工作的角色？
 您可以在這裡找到有關如何建立自訂角色並指派權限給該角色的完整文章。以下指令碼範例會建立「DevTest Labs 進階使用者」角色，其具有啟動和停止實驗室中所有 VM 的權限︰
  
-	$policyRoleDef = (Get-AzureRmRoleDefinition "DevTest Labs User") 
+	$policyRoleDef = Get-AzureRmRoleDefinition "DevTest Labs User" 
 	$policyRoleDef.Actions.Remove('Microsoft.DevTestLab/Environments/*') 
 	$policyRoleDef.Id = $null 
 	$policyRoleDef.Name = "DevTest Labs Advance User" 
@@ -119,7 +119,7 @@ Azure DevTest Labs 是一項免費服務，這表示建立實驗室和設定原�
 	$policyRoleDef.AssignableScopes.Add("subscriptions/<subscription Id>") 
 	$policyRoleDef.Actions.Add("Microsoft.DevTestLab/labs/virtualMachines/Start/action") 
 	$policyRoleDef.Actions.Add("Microsoft.DevTestLab/labs/virtualMachines/Stop/action") 
-	$policyRoleDef = (New-AzureRmRoleDefinition -Role $policyRoleDef)  
+	$policyRoleDef = New-AzureRmRoleDefinition -Role $policyRoleDef  
  
 ### Azure DevTest Labs 是否會與我的 CI/CD 工具鏈整合？ 
 如果您使用 VSTS，[Azure DevTest Labs 工作擴充功能](https://marketplace.visualstudio.com/items?itemName=ms-azuredevtestlabs.tasks)可讓您在 Azure DevTest Labs 自動執行發行管線。此擴充功能的部分用法包括︰
@@ -244,4 +244,4 @@ Microsoft 帳戶是您使用 Microsoft 裝置和服務來執行幾乎所有作�
 ### 為何我現有的虛擬網路未能正確儲存？  
 其中一個可能原因是您的虛擬網路名稱包含句點。若是這樣，請嘗試移除句號或以連字號取代，然後再試著儲存虛擬網路一次。
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

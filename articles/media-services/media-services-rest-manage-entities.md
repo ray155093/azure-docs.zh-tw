@@ -1,6 +1,6 @@
 
 <properties 
-	pageTitle="使用 REST API 管理媒體服務實體" 
+	pageTitle="使用 REST API 管理媒體服務實體 | Microsoft Azure" 
 	description="深入了解如何使用 REST API 管理媒體服務實體。" 
 	authors="juliako" 
 	manager="dwrede" 
@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016" 
+	ms.date="09/26/2016" 
 	ms.author="juliako"/>
 
 #使用 REST API 管理媒體服務實體
@@ -175,4 +175,4 @@ Microsoft Azure 媒體服務是以 REST 為基礎的服務，內建在 OData v3 
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

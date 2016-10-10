@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/09/2016"
+	ms.date="09/26/2016"
 	ms.author="markvi"/>
 
 
@@ -30,8 +30,6 @@
 在下列舊版 Windows 中皆支援註冊︰
 
 - Windows 8.1
-
-- Windows 8.0
 
 - Windows 7
 
@@ -212,9 +210,6 @@ $scp.Keywords 的輸出會顯示類似以下的 Azure AD 租用戶資訊：
 
 **<RPObjectName>** 是 Azure Active Directory 信賴憑證者信任物件的信賴憑證者物件名稱。此物件通常名為「Microsoft Office 365 身分識別平台」。
 
-
-
-
  
 
 ## 部署和導入 
@@ -223,15 +218,15 @@ $scp.Keywords 的輸出會顯示類似以下的 Azure AD 租用戶資訊：
 
 已加入網域的「Windows 10 年度更新版」和 Windows Server 2016 電腦會在下次重新開機或使用者登入 Windows 時，自動向 Azure AD 註冊。加入網域的新電腦會在進行加入網域作業之後，於重新開機時向 Azure AD 註冊。
 
-> [AZURE.NOTE] 已加入網域的「Windows 10 2015 年 11 月更新版」電腦只有在已設定導入「群組原則物件」的情況下，才會自動向 Azure AD 註冊。如需詳細資訊，請參閱下一節。
+> [AZURE.NOTE] 已加入網域的 Windows 10 電腦只有在已設定導入「群組原則物件」的情況下，才會自動向 Azure AD 註冊。如需詳細資訊，請參閱下一節。
 
 若要控制已加入網域之 Windows 10/Windows Server 2016 電腦的自動註冊導入，有一個可供您針對該目的使用的「群組原則」物件。若要導入已加入網域之非 Windows 10 電腦的自動註冊，有一個可供您部署到所選電腦的 Windows Installer 套件。
 
-> [AZURE.NOTE] 用於控制導入的「群組原則」也會觸發已加入網域之 Windows 8.1 電腦的註冊。您也可以選擇使用此原則來註冊已加入網域的 Windows 8.1 電腦，或者如果您有混合的 Windows 版本 (包括 7 或 8.0，或是 Windows Server 版本)，則可以選擇使用 Windows Installer 套件來啟用所有非 Windows 10/Windows Server 2016 電腦的註冊。
+> [AZURE.NOTE] 用於控制導入的「群組原則」也會觸發已加入網域之 Windows 8.1 電腦的註冊。您也可以選擇使用此原則來註冊已加入網域的 Windows 8.1 電腦，或者如果您有混合的 Windows 版本 (包括 7 或 Windows Server 版本)，則可以選擇使用 Windows Installer 套件來啟用所有非 Windows 10/Windows Server 2016 電腦的註冊。
 
 ### 可控制自動註冊導入的群組原則物件 
 
-若要控制已加入網域之電腦的 Azure AD 自動註冊導入，您可以將群組原則「註冊加入網域的電腦為裝置」部署到您想要註冊的電腦，例如您可以根據安全性群組來部署原則，或是將原則部署到組織單位 (OU)。
+若要控制已加入網域之電腦的 Azure AD 自動註冊導入，您可以將群組原則「註冊加入網域的電腦為裝置」部署到您想要註冊的電腦。例如，您可以根據安全性群組來部署原則，或是將原則部署到組織單位 (OU)。
 
 若要設定原則，請執行下列步驟：
 
@@ -257,7 +252,7 @@ $scp.Keywords 的輸出會顯示類似以下的 Azure AD 租用戶資訊：
 
 ## 適用於非 Windows 10 電腦的 MSI 套件  
 
-若要註冊執行 Windows 7、Windows 8.0、Windows 8.1、Windows Server 2008 R2、Windows Server 2012 或 Windows Server 2012 R2 的已加入網域電腦，有一個 Windows Installer 套件 (.msi) 可供您下載：
+若要註冊執行 Windows 7、Windows 8.1、Windows Server 2008 R2、Windows Server 2012 或 Windows Server 2012 R2 的已加入網域電腦，有一個 Windows Installer 套件 (.msi) 可供您下載：
 
 - [x64](http://download.microsoft.com/download/C/A/7/CA79FAE2-8C18-4A8C-A4C0-5854E449ADB8/Workplace_x64.msi)
 - [x86](http://download.microsoft.com/download/C/A/7/CA79FAE2-8C18-4A8C-A4C0-5854E449ADB8/Workplace_x86.msi)
@@ -272,4 +267,4 @@ $scp.Keywords 的輸出會顯示類似以下的 Azure AD 租用戶資訊：
 
 - [Azure Active Directory 條件式存取](active-directory-conditional-access.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

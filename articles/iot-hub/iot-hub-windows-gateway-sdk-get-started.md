@@ -13,8 +13,8 @@
      ms.topic="article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="04/20/2016"
-     ms.author="cstreet"/>
+     ms.date="08/25/2016"
+     ms.author="andbuc"/>
 
 
 # IoT 閘道 SDK (Beta) - 開始使用 Windows
@@ -33,7 +33,7 @@
 
 1. **build.cmd** 指令碼會在儲存機制本機複本中建立稱為 **build** 的資料夾。此資料夾包含在此範例中使用的兩個模組。
 
-    build 指令碼會將 **logger\_hl.dll** 放在 **build\\modules\\logger\\Debug** 資料夾中，並將 **hello\_world\_hl.dl** 放在 **build\\modules\\hello\_world\\Debug** 資料夾中。使用這些路徑作為「模組路徑」值 (如下面的 JSON 設定檔案中所示)。
+    build 指令碼會將 **logger\_hl.dll** 放在 **build\\modules\\logger\\Debug** 資料夾中，並將 **hello\_world\_hl.dll** 放在 **build\\modules\\hello\_world\\Debug** 資料夾中。使用這些路徑作為「模組路徑」值 (如下面的 JSON 設定檔案中所示)。
 
 2. **samples\\hello\_world\\src** 資料夾中的 **hello\_world\_win.json** 檔案是適用於 Windows 且可用來執行範例的範例 JSON 設定檔案。下面顯示的範例 JSON 設定假設您已將閘道 SDK 儲存機制複製到 **C:** 磁碟機的根目錄。如果您已將它下載到另一個位置，則需要據此調整 **samples\\hello\_world\\src\\hello\_world\_win.json** 檔案中的「模組路徑」值。
 
@@ -58,6 +58,13 @@
           "module path" : "C:\\azure-iot-gateway-sdk\\build\\\modules\\hello_world\\Debug\\hello_world_hl.dll",
           "args" : null
         }
+      ],
+      "links" :
+      [
+        {
+          "source": "hello_world",
+          "sink": "logger_hl"
+        }
       ]
     }
     ```
@@ -74,4 +81,4 @@
 <!-- Links -->
 [lnk-setupdevbox]: https://github.com/Azure/azure-iot-gateway-sdk/blob/master/doc/devbox_setup.md
 
-<!---HONumber=AcomDC_0504_2016-->
+<!---HONumber=AcomDC_0928_2016-->

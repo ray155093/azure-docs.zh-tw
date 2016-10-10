@@ -17,9 +17,13 @@
    ms.author="subramar"/>
 
 
-
-
 # 使用 PowerShell 進行 Service Fabric 應用程式升級
+
+> [AZURE.SELECTOR]
+- [PowerShell](service-fabric-application-upgrade-tutorial-powershell.md)
+- [Visual Studio](service-fabric-application-upgrade-tutorial.md)
+
+<br/>
 
 最常使用和建議的升級方法是監視輪流升級。Azure Service Fabric 會根據健康狀態原則集，監視正在升級之應用程式的健康狀態。當更新網域 (UD) 中的應用程式升級之後，Service Fabric 會評估應用程式健康狀態，並根據健康狀態原則繼續進行下一個更新網域或讓升級失敗。
 
@@ -135,4 +139,4 @@ Start-ServiceFabricApplicationUpgrade -ApplicationName fabric:/VisualObjects -Ap
 
 參考[疑難排解應用程式升級](service-fabric-application-upgrade-troubleshooting.md)中的步驟，以修正應用程式升級中常見的問題。
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="Widevine 授權範本概觀" 
+	pageTitle="Widevine 授權範本概觀 | Microsoft Azure" 
 	description="本主題提供了用來設定 Widevine 授權之 Widevine 授權範本的概觀。" 
 	authors="juliako" 
 	manager="erikre" 
@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"  
+	ms.date="09/26/2016"  
 	ms.author="juliako"/>
 
 #Widevine 授權範本概觀
 
-##概觀
+##Overview
 
 Azure 媒體服務現在可讓您設定和要求 Widevine 授權。使用者播放程式嘗試播放 Widevine 保護內容時，會將要求傳送到授權傳遞服務來取得授權。如果授權服務核准要求，就會發出傳送給用戶端並可用來解密和播放所指定內容的授權。
 
@@ -61,8 +61,8 @@ Widevine 授權要求會格式化為 JSON 訊息。
 ---|---|---
 payload |Base64 編碼的字串 |用戶端傳送的授權要求。 
 content\_id | Base64 編碼的字串|用來針對每個 content\_key\_specs.track\_type 衍生 KeyId(s) 與內容金鑰的識別碼。
-provider |字串 |用來查閱內容金鑰和原則。必要。
-policy\_name | 字串 |先前已登錄原則的名稱。選用
+provider |string |用來查閱內容金鑰和原則。必要。
+policy\_name | string |先前已登錄原則的名稱。選用
 allowed\_track\_types | 列舉 | SD\_ONLY 或 SD\_HD。控制授權中應該包含的內容金鑰
 content\_key\_specs | JSON 結構的陣列，請參閱下方的**內容金鑰規格** | 更細部控制要傳回的內容金鑰。如需詳細資料，請參閱以下的內容金鑰規格。只可以指定 allowed\_track\_types 和 content\_key\_specs 中的一個。 
 use\_policy\_overrides\_exclusively | 布林值。true 或 false | 使用 policy\_overrides 所指定的原則屬性，並略過先前儲存的所有原則。
@@ -80,7 +80,7 @@ parse\_only | 布林值。true 或 false | 剖析授權要求，但不會發出�
 
 名稱 | 值 | 說明
 ---|---|---
-content\_key\_specs. track\_type | 字串 | 追蹤類型名稱。如果授權要求中指定 content\_key\_specs，則請務必明確指定所有追蹤類型。未這樣做會導致無法播放過去 10 秒。 
+content\_key\_specs. track\_type | string | 追蹤類型名稱。如果授權要求中指定 content\_key\_specs，則請務必明確指定所有追蹤類型。未這樣做會導致無法播放過去 10 秒。 
 content\_key\_specs <br/> security\_level | uint32 | 定義用戶端對於播放的穩健性需求。<br/> 1 - 以軟體為基礎白箱加密是必要的。<br/> 2 - 軟體加密和模糊化的解碼器是必要的。<br/> 3 - 金鑰資料和加密作業必須在支援硬體的受信任執行環境中執行。<br/> 4 - 內容的加密和解密必須在支援硬體的受信任執行環境中執行。<br/> 5 - 加密、解密和媒體 (壓縮和未壓縮) 的所有處理必須在支援硬體的受信任執行環境中處理。  
 content\_key\_specs <br/> required\_output\_protection.hdc | 字串 - 以下項目的其中一個：HDCP\_NONE、HDCP\_V1、HDCP\_V2 | 指出是否需要 HDCP
 content\_key\_specs <br/>金鑰 | Base64 <br/>編碼的字串|要用於此追蹤的內容金鑰。如果指定，則需要 track\_type 或 key\_id。此選項可讓內容提供者插入此追蹤的內容金鑰，而不是讓 Widevine 授權伺服器產生或查閱金鑰。
@@ -97,7 +97,7 @@ policy\_overrides. can\_renew | 布林值 true 或 false |表示允許更新此�
 policy\_overrides. license\_duration\_seconds | int64 | 指出此特定授權的期間。值為 0 表示期間沒有限制。預設值為 0。 
 policy\_overrides. rental\_duration\_seconds | int64 | 指出允許播放的期間。值為 0 表示期間沒有限制。預設值為 0。 
 policy\_overrides. playback\_duration\_seconds | int64 | 一旦在授權期間內開始播放的檢視時段。值為 0 表示期間沒有限制。預設值為 0。 
-policy\_overrides. renewal\_server\_url |字串 | 應該將此授權的所有活動訊號 (更新) 要求導向到指定 URL。只有在 can\_renew 為 true 時才會使用這個欄位。
+policy\_overrides. renewal\_server\_url |string | 應該將此授權的所有活動訊號 (更新) 要求導向到指定 URL。只有在 can\_renew 為 true 時才會使用這個欄位。
 policy\_overrides. renewal\_delay\_seconds |int64 |license\_start\_time 之後經過幾秒才會第一次嘗試更新。只有在 can\_renew 為 true 時才會使用這個欄位。預設值為 0 
 policy\_overrides. renewal\_retry\_interval\_seconds | int64 | 指定若發生失敗，後續授權更新要求之間的延遲秒數。只有在 can\_renew 為 true 時才會使用這個欄位。 
 policy\_overrides. renewal\_recovery\_duration\_seconds | int64 | 時段，在此時段當嘗試進行更新時允許繼續播放，不過因為授權伺服器發生後端問題而未成功。值為 0 表示期間沒有限制。只有在 can\_renew 為 true 時才會使用這個欄位。
@@ -210,4 +210,4 @@ override\_provider\_client\_token | 布林值。true 或 false |如果為 false 
 
 [使用 PlayReady 和/或 Widevine 動態 Common Encryption](media-services-protect-with-drm.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -65,13 +65,7 @@ VPN 閘道需要 `-GatewayType` *Vpn*。
 	$gw = Get-AzureRmVirtualNetworkGateway -Name vnetgw1 -ResourceGroupName testrg
 	Resize-AzureRmVirtualNetworkGateway -VirtualNetworkGateway $gw -GatewaySku HighPerformance
 
-<br>
-
-
-###  <a name="aggthroughput"></a>依 SKU 和閘道類型列出的估計彙總輸送量
-
-
-下表顯示閘道類型和預估的彙總輸送量。此資料表適用於資源管理員與傳統部署模型。
+<br>下表顯示閘道類型和預估的彙總輸送量。此資料表適用於資源管理員與傳統部署模型。
 
 [AZURE.INCLUDE [vpn-gateway-table-gwtype-aggthroughput](../../includes/vpn-gateway-table-gwtype-aggtput-include.md)]
 
@@ -164,4 +158,4 @@ VPN 閘道需要 `-GatewayType` *Vpn*。
 
  
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

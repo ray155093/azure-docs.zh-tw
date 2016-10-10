@@ -16,14 +16,14 @@
 	ms.date="09/16/2016"
 	ms.author="dastrock"/>
 
-# 使用 Azure AD 進行 Web 應用程式登入與登出
+# 使用 Azure AD 進行 ASP.NET Web 應用程式登入與登出
 
 [AZURE.INCLUDE [active-directory-devguide](../../includes/active-directory-devguide.md)]
 
 Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直接，只需幾行的程式碼便可提供單一登入和登出。在 Asp.NET Web 應用程式中，您可以使用 Microsoft 的社群導向 OWIN 中介軟體 (隨附於 .NET Framework 4.5) 實作來完成這個作業。我們將在此處使用 OWIN 來執行下列動作：
 -	使用 Azure AD 做為身分識別提供者，將使用者登入應用程式。
 -	顯示使用者的一些相關資訊。
--	讓使用者登出 App。
+-	讓使用者登出應用程式。
 
 為執行此作業，您必須執行下列動作：
 
@@ -178,4 +178,4 @@ public ActionResult About()
 
 [AZURE.INCLUDE [active-directory-devquickstarts-additional-resources](../../includes/active-directory-devquickstarts-additional-resources.md)]
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -101,15 +101,29 @@
 
 *目前您的應用程式應該在 Engagement 前端具備已註冊的 Apple 推送憑證。*
 
-如果尚未這麼做，必須註冊應用程式以接收推送通知。啟動您的應用程式時，請新增以下這一行 (通常在 `application:didFinishLaunchingWithOptions:` 中)：
+如果尚未這麼做，必須註冊應用程式以接收推送通知。
 
-	if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-	  	[application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert) categories:nil]];
-	  	[application registerForRemoteNotifications];
-	}
-	else {
-	  	[application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-	}
+* 匯入 `User Notification` 架構：
+
+		#import <UserNotifications/UserNotifications.h>
+
+* 啟動您的應用程式時，請新增以下這一行 (通常在 `application:didFinishLaunchingWithOptions:` 中)：
+
+		if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0)
+		{
+			if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_9_x_Max)
+			{
+				[UNUserNotificationCenter.currentNotificationCenter requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {}];
+			}else
+			{
+				[application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)   categories:nil]];
+			}
+			[application registerForRemoteNotifications];
+		}
+		else
+		{
+			[application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+		}
 
 然後，您需要將 Apple 伺服器傳回的裝置權杖提供給 Engagement。這會在您應用程式委派的 `application:didRegisterForRemoteNotificationsWithDeviceToken:` 方法中完成：
 
@@ -486,4 +500,4 @@ SDK 也有它自己的 UNUserNotificationCenterDelegate 通訊協定實作。SDK
 
 	@end
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

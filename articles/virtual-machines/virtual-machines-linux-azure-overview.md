@@ -18,7 +18,7 @@
 
 # Azure 和 Linux
 
-Microsoft Azure 集結了各種整合式公用雲端服務且數量不斷增加，包括分析、虛擬機器、資料庫、行動、網路、儲存體和 Web，因此很適合用來裝載您的方案。Microsoft Azure 提供可調整的運算平台，可讓您用多少就付多少且隨時都能使用，完全不必投資內部部署的硬體。Azure 可供您將您的方案相應增加和放大至任何您需要的規模，以滿足您所服務之客戶的需求。
+Microsoft Azure 集結了各種整合式公用雲端服務且數量不斷增加，包括分析、虛擬機器、資料庫、行動、網路、儲存體和 Web，因此很適合用來裝載您的方案。Microsoft Azure 提供可調整的運算平台，可讓您在需要時用多少就付多少，而不需投資內部部署的硬體。Azure 可供您將您的方案相應增加和放大至任何您需要的規模，以滿足您所服務之客戶的需求。
 
 如果您熟悉 Amazon AWS 的各項功能，您可以查看 Azure 與 AWS 的對照[定義對應文件](https://azure.microsoft.com/campaigns/azure-vs-aws/mapping/)。
 
@@ -101,10 +101,10 @@ Jenkins - [Azure Marketplace - CloudBees Jenkins Platform](https://azure.microso
 若要開始使用 Azure，您需要一個 Azure 帳戶、安裝 Azure CLI，以及一組 SSH 公開和私密金鑰。
 
 ## 註冊帳戶
-使用 Azure 雲端的第一個步驟就是註冊 Azure 帳戶。請前往 [Azure 帳戶註冊](https://azure.microsoft.com/pricing/free-trial/)頁面來開始註冊。
+使用「Azure 雲端」的第一個步驟就是註冊 Azure 帳戶。請前往 [Azure 帳戶註冊](https://azure.microsoft.com/pricing/free-trial/)頁面來開始註冊。
 
 ## 安裝 CLI
-有了您的新 Azure 帳戶之後，您便可以立即開始使用 Azure 入口網站，這是一個 Web 型系統管理面板。若要透過命令列管理 Azure 雲端，您需安裝 `azure-cli`。請在您的 Mac 或 Linux 工作站上安裝 [Azure CLI](../xplat-cli-install.md)。
+有了您的新 Azure 帳戶之後，您便可以立即開始使用 Azure 入口網站，這是一個 Web 型系統管理面板。若要透過命令列管理「Azure 雲端」，您需安裝 `azure-cli`。請在您的 Mac 或 Linux 工作站上安裝 [Azure CLI](../xplat-cli-install.md)。
 
 ## 建立 SSH 金鑰組
 現在您已擁有 Azure 帳戶、Azure Web 入口網站及 Azure CLI。下一個步驟是建立 SSH 金鑰組，使用此金鑰組即可透過 SSH 連線到 Linux，而不需使用密碼。請[在 Linux 和 Mac 上建立 SSH 金鑰](virtual-machines-linux-mac-create-ssh-keys.md)，以便啟用無密碼登入功能並提升安全性。
@@ -112,13 +112,13 @@ Jenkins - [Azure Marketplace - CloudBees Jenkins Platform](https://azure.microso
 ## 在 Microsoft Azure 上開始使用 Linux
 設定好您的 Azure 帳戶、安裝妥 Azure CLI 及建立完 SSH 金鑰之後，現在您已經準備就緒，可以在 Azure 雲端中開始建置基礎結構。第一個工作是建立一些 VM。
 
-## 透過 CLI 建立 VM
-透過 CLI 建立 Linux VM 是一個讓您不需離開正在工作的終端機即可快速部署 VM 的方法。所有您可以在 Web 入口網站上指定的項目，透過命令列旗標或參數也都可以指定。
+## 使用 CLI 來建立 VM
+使用 CLI 來建立 Linux VM 是一個讓您不需離開正在工作的終端機即可快速部署 VM 的方法。所有您可以在 Web 入口網站上指定的項目，透過命令列旗標或參數也都可以指定。
 
 - [使用 CLI 建立 Linux VM](virtual-machines-linux-quick-create-cli.md)
 
 ## 在入口網站中建立 VM
-在 Azure Web 入口網站上建立 Linux VM 可讓您輕鬆點選各種選項來進行部署。不使用命令列旗標或參數，但是您可以看到含有各種選項和設定的美觀 Web 版面配置。所有您可以透過命令列介面使用的項目，在入口網站上也都可以使用。
+在 Azure Web 入口網站中建立 Linux VM 可讓您輕鬆點選各種選項來進行部署。您將不使用命令列旗標或參數，而是會看到含有各種選項和設定的美觀 Web 版面配置。所有您可以透過命令列介面使用的項目，在入口網站中也都可以使用。
 
 - [使用入口網站建立 Linux VM](virtual-machines-linux-quick-create-portal.md)
 
@@ -164,4 +164,4 @@ VM 現在已在 Azure 上執行，而您已經可以登入。使用密碼透過 
 
 - [使用 CLI 在 Azure 上建立 Linux VM](virtual-machines-linux-quick-create-cli.md)
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

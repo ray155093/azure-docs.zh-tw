@@ -14,7 +14,9 @@
 
 ## 調整閘道器大小
 
-有三個[閘道器 SKU](../articles/vpn-gateway/vpn-gateway-about-vpngateways.md)。您可以使用下列命令隨時變更閘道器 SKU。
+有幾個[閘道 SKU](../articles/expressroute/expressroute-about-virtual-network-gateways.md)。您可以使用下列命令隨時變更閘道器 SKU。
+
+>[AZURE.IMPORTANT] 此命令不適用於 UltraPerformance 閘道。若要將您的閘道變更為 UltraPerformance 閘道，請先移除現有的 ExpressRoute 閘道，然後建立新的 UltraPerformance 閘道。若要從 UltraPerformance 閘道降級您的閘道，請先移除 UltraPerformance 閘道，然後建立新的閘道。
 
 	Resize-AzureVirtualNetworkGateway -GatewayId <Gateway ID> -GatewaySKU HighPerformance
 
@@ -24,4 +26,4 @@
 
 	Remove-AzureVirtualNetworkGateway -GatewayId <Gateway ID>
 
-<!---HONumber=AcomDC_0413_2016-->
+<!---HONumber=AcomDC_0928_2016-->

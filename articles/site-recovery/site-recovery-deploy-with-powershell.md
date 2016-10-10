@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/12/2016"
+	ms.date="09/27/2016"
 	ms.author="bsiva"/>
 
 # 使用 Powershell - Classic 將 Hyper-V 虛擬機器 (位於 VMM 雲端中) 複寫至 Azure
@@ -25,7 +25,7 @@
 - [PowerShell - 傳統](site-recovery-deploy-with-powershell.md)
 
 
-## 概觀
+## Overview
 
 Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容錯移轉及復原，為您的商務持續性與災害復原 (BCDR) 做出貢獻。如需完整的部署案例清單，請參閱 [Azure Site Recovery 概觀](site-recovery-overview.md)。
 
@@ -50,7 +50,7 @@ Azure Site Recovery 可在一些部署案例中協調虛擬機器的複寫、容
 - 您需要 Azure 儲存體帳戶來儲存複寫的資料。此帳戶必須啟用異地複寫。它應該與 Azure Site Recovery 保存庫位於相同的區域，且和同一個訂用帳戶產生關聯。[深入了解 Azure 儲存體](../storage/storage-introduction.md)。
 - 您必須確定您要保護的虛擬機器符合 [Azure 虛擬機器必要條件](site-recovery-best-practices.md#virtual-machines)。
 
-### VMM 先決條件
+### VMM 必要條件
 - 您將需要在在 System Center 2012 R2 上執行的 VMM 伺服器。
 - 在您想要保護的 VMM 伺服器上，您至少需要一個雲端。這個雲端應該包含：
 	- 一或多個 VMM 主機群組。
@@ -209,7 +209,7 @@ New-AzureStorageAccount -StorageAccountName $StorageAccountName -Label $StorageA
 
 ```
 
-請注意，儲存體帳戶必須與 Azure Site Recovery 服務位於相同的區或，且與相同的訂用帳戶相關聯。
+請注意，儲存體帳戶必須與 Azure Site Recovery 服務位於相同的區或，且與相同的訂用帳戶關聯。
 
 
 ## 步驟 6：安裝 Azure 復原服務代理程式
@@ -449,4 +449,4 @@ marsagentinstaller.exe /q /nu
 
 [閱讀更多](https://msdn.microsoft.com/library/dn850420.aspx) Azure Site Recovery PowerShell Cmdlet 的相關資訊。</a>。
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0928_2016-->

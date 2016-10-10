@@ -158,7 +158,7 @@ Azure 上 Linux VM 中的檔案系統根目錄大小受限。因此，必須將�
 SAP HANA 需要不屬於標準 Azure 資源庫映像的特定 Linux 核心設定，並且必須以手動方式設定。沒有特別說明這些設定的 SAP Note。
 
 
-SAP Note SAP HANA DB：SLES 12 / SLE for SAP Applications 12 的建議 OS 設定：[SAP Note 2205917](https://launchpad.support.sap.com/#/notes/2205917)
+SAP Note SAP HANA DB：SLES 12 / SLES for SAP Applications 12 的建議 OS 設定：[SAP Note 2205917](https://launchpad.support.sap.com/#/notes/2205917)
 
 您可以在[這裡](https://www.suse.com/documentation/sles_for_sap/singlehtml/sles_for_sap_guide/sles_for_sap_guide.html#sec.s4s.configure.page-cache)的 6.1 Kernel: Page-Cache Limit 章節中，找到一個關於在 SLES 上執行 SAP HANA 的相關頁面快取的額外主題。
 
@@ -306,7 +306,7 @@ SAP 的[這篇文章](http://help.sap.com/saphelp_hanaplatform/helpdata/en/4c/24
 
 ![](./media/virtual-machines-linux-sap-hana-get-started/image016.jpg)
 
-ASCS 執行個體安裝於應用程式伺服器 VM 且在 SAP MC 中設定為「綠色」之後，必須與 SAP HANA DB 伺服器 VM 共用包含 SAP 設定檔目錄的 sapmnt 目錄。DB 安裝步驟需要存取此資訊。最好的方法是使用可透過 Yast 設定的 NFS。
+當 ASCS 執行個體安裝在應用程式伺服器 VM 上並在 SAP MC 中設定為「綠色」之後，必須將包含諸如 SAP 設定檔目錄的 sapmnt 目錄與 SAP HANA DB 伺服器 VM 共用。DB 安裝步驟需要存取此資訊。最好的方法是使用可透過 Yast 設定的 NFS。
 
 
 ![](./media/virtual-machines-linux-sap-hana-get-started/image017b.jpg)
@@ -484,4 +484,4 @@ ASCS 執行個體安裝於應用程式伺服器 VM 且在 SAP MC 中設定為「
 
 * 從 SAP Service Marketplace 下載 HANA SP12 平台版本︰![](./media/virtual-machines-linux-sap-hana-get-started/image002.jpg)
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

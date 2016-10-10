@@ -55,7 +55,7 @@ Azure AD 經悉心設計，不但支援多租用戶、地理分布周全，更�
 您的組織可以使用 Azure AD 在許多方面提升員工生產力、簡化 IT 程序、改善安全性並降低成本：
 
 -	快速採用雲端服務，提供員工和合作夥伴簡單的單一登入體驗，這是由 Azure AD 提供、完全自動的 SaaS 應用程式存取管理和佈建服務功能。
--	讓員工可以在任何地方，使用他們所喜愛的裝置工作，存取世界級雲端應用程式和服務，以及各種自助式功能。
+-	讓員工可以在任何地方，使用他們所喜愛的裝置工作，存取世界級雲端應用程式和自助式功能。
 -	輕鬆安全地管理員工和廠商對貴公司社交媒體帳戶的存取權限。
 -	利用 Azure AD 多重要素驗證和條件式存取，改善應用程式的安全性。
 -	實施具一致性的自助式應用程式存取管理，讓企業主能夠快速採取行動，同時能夠降低 IT 成本和額外負荷。
@@ -70,10 +70,10 @@ Azure AD 經悉心設計，不但支援多租用戶、地理分布周全，更�
 ## 如何開始使用？
 -	如果您是 IT 管理員：
  - [試試看！](https://azure.microsoft.com/trial/get-started-active-directory/) - 您可以立即註冊免費 30 天的試用版，使用此連結不到 5 分鐘即可部署第一個雲端解決方案
- - 閱讀我們的〈開始使用 Azure AD〉了解秘訣和訣竅，獲得 Azure AD 租用戶並快速執行
+ - 閱讀〈開始使用 Azure AD〉了解秘訣和訣竅，獲得 Azure AD 租用戶並快速執行
 -	如果您是開發人員：
  - 請查看我們的 Azure Active Directory 的[開發人員手冊](active-directory-developers-guide.md)
- - [開始使用試用版](https://azure.microsoft.com/trial/get-started-active-directory/) – 立即註冊免費 30 天的試用版，並開始與 Azure AD 整合您的應用程式
+ - [開始使用試用版](https://azure.microsoft.com/trial/get-started-active-directory/) – 立即註冊免費 30 天的試用版，並開始整合您的應用程式與 Azure AD
 
 
 
@@ -104,4 +104,4 @@ Azure AD 經悉心設計，不但支援多租用戶、地理分布周全，更�
 
 - [如何探索組織內使用未經批准的雲端應用程式](active-directory-cloudappdiscovery-whatis.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0928_2016-->

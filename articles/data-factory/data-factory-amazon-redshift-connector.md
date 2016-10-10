@@ -3,7 +3,7 @@
 	description="了解如何使用 Azure Data Factory 從 Amazon Redshift 移動資料。" 
 	services="data-factory" 
 	documentationCenter="" 
-	authors="spelluru" 
+	authors="linda33wj" 
 	manager="jhubbard" 
 	editor="monicar"/>
 
@@ -14,7 +14,7 @@
 	ms.devlang="na" 
 	ms.topic="article" 
 	ms.date="08/23/2016" 
-	ms.author="spelluru"/>
+	ms.author="jingwang"/>
 
 # 使用 Azure Data Factory 從 Amazon Redshift 移動資料
 
@@ -282,4 +282,4 @@ TEXT | String
 請參閱下列文章：
 - [複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)，以取得使用「複製活動」來建立管線的逐步指示。
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

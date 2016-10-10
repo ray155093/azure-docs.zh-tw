@@ -22,6 +22,8 @@
 
 Azure 傳統入口網站可讓您建立進階規則，以對 Azure Active Directory (Azure AD) 群組啟用更複雜的屬性型動態成員資格。
 
+當使用者的任何屬性變更時，系統會評估目錄中的所有動態群組規則，以查看使用者的屬性變更是否會觸發任何的群組新增或移除。如果使用者滿足群組規則，則使用者會新增為該群組的成員。如果他們不再滿足其所屬群組的規則，則會從該群組的成員中移除。
+
 ## 建立進階規則
 
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，選取 [Active Directory]，然後開啟您組織的目錄。
@@ -172,7 +174,7 @@ Azure 傳統入口網站可讓您建立進階規則，以對 Azure Active Direct
 
 user.extension\_c272a57b722d4eb29bfe327874ae79cb\_\_OfficeNumber
 
-使用 [圖表總管] 查詢使用者的屬性並搜尋屬性名稱，即可在目錄中找到自訂屬性名稱。
+使用 [Graph 總管] 查詢使用者的屬性並搜尋屬性名稱，即可在目錄中找到自訂屬性名稱。
 
 ## 屬下規則
 您現在可以根據使用者的經理屬性在群組中填入成員。
@@ -201,13 +203,24 @@ user.extension\_c272a57b722d4eb29bfe327874ae79cb\_\_OfficeNumber
 您也可以建立規則以在群組中選取成員資格的裝置物件。可以使用下列裝置屬性︰
 
 | 屬性 | 允許的值 | 使用量 |
-|----------------------|---------------------------------|------------------------------------------------------|
+|-------------------------|---------------------------------|-------------------------------------------------------------|
 | displayName | 任何字串值 | (device.displayName -eq "Rob Iphone”) |
 | deviceOSType | 任何字串值 | (device.deviceOSType -eq "IOS") |
 | deviceOSVersion | 任何字串值 | (device.OSVersion -eq "9.1") |
 | isDirSynced | true false null | (device.isDirSynced -eq "true") |
 | isManaged | true false null | (device.isManaged -eq "false") |
 | isCompliant | true false null | (device.isCompliant -eq "true") |
+| deviceCategory | 任何字串值 | (device.deviceCategory -eq "") |
+| deviceManufacturer | 任何字串值 | (device.deviceManufacturer -eq "Microsoft") |
+| deviceModel | 任何字串值 | (device.deviceModel -eq "IPhone 7+") |
+| deviceOwnership | 任何字串值 | (device.deviceOwnership -eq "") |
+| domainName | 任何字串值 | (device.domainName -eq "contoso.com") |
+| enrollmentProfileName | 任何字串值 | (device.enrollmentProfileName -eq "") |
+| enrollmentType | 任何字串值 | (device.enrollmentType -eq "") |
+| isRooted | true false null | (device.deviceOSType -eq "true") |
+| managementType | 任何字串值 | (device.managementType -eq "") |
+| organizationalUnit | 任何字串值 | (device.organizationalUnit -eq "") |
+| deviceId | 有效的 deviceId | (device.deviceId -eq "d4fe7726-5966-431c-b3b8-cddc8fdb717d" |
 
 > [AZURE.NOTE]
 無法在 Azure 傳統入口網站中使用 [簡單規則] 下拉式清單建立這些裝置規則。
@@ -226,4 +239,4 @@ user.extension\_c272a57b722d4eb29bfe327874ae79cb\_\_OfficeNumber
 
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0928_2016-->

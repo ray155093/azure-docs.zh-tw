@@ -15,7 +15,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/23/2016"
+	ms.date="08/08/2016"
 	ms.author="dastrock"/>
 
 # v2.0 通訊協定 - OAuth 2.0 授權碼流程
@@ -25,7 +25,7 @@ OAuth 2.0 授權碼授與可用於裝置上所安裝的應用程式中，以存�
 <!-- TODO: Need link to libraries -->
 
 > [AZURE.NOTE]
-	v2.0 端點並未支援 Azure Active Directory 的所有案例和功能。如果要判斷是否應該使用 v2.0 端點，請閱讀 [v2.0 限制](active-directory-v2-limitations.md)。
+	v2.0 端點並非支援每個 Azure Active Directory 案例和功能。如果要判斷是否應該使用 v2.0 端點，請閱讀 [v2.0 限制](active-directory-v2-limitations.md)。
 
 關於 OAuth 2.0 授權碼流程的說明，請參閱 [OAuth 2.0 規格 4.1 節](http://tools.ietf.org/html/rfc6749)。在大部分的應用程式類型中，其用於執行驗證與授權，包括 [Web Apps](active-directory-v2-flows.md#web-apps) 和[原始安裝的應用程式](active-directory-v2-flows.md#mobile-and-native-apps)。它可讓應用程式安全地取得 access\_token；access\_token 可用於存取以 v2.0 端點保護的資源。
 
@@ -56,7 +56,7 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 | tenant | 必要 | 要求路徑中的 `{tenant}` 值可用來控制可登入應用程式的人員。允許的值為 `common`、`organizations`、`consumers` 及租用戶識別碼。如需更多詳細資訊，請參閱[通訊協定基本概念](active-directory-v2-protocols.md#endpoints)。 |
 | client\_id | 必要 | 註冊入口網站 ([apps.dev.microsoft.com](https://apps.dev.microsoft.com)) 指派給應用程式的應用程式識別碼。 |
 | response\_type | 必要 | 授權碼流程必須包含 `code`。 |
-| redirect\_uri | 建議使用 | 應用程式的 redirect\_uri，您的應用程式可在此傳送及接收驗證回應。其必須完全符合您在入口網站中註冊的其中一個 redirect\_uris，不然就必須得是編碼的 url。對於原生和行動應用程式，請使用 `urn:ietf:wg:oauth:2.0:oob` 的預設值。 |
+| redirect\_uri | 建議使用 | 應用程式的 redirect\_uri，您的應用程式可在此傳送及接收驗證回應。其必須完全符合您在入口網站中註冊的其中一個 redirect\_uris，不然就必須得是編碼的 url。對於原生和行動應用程式，請使用 `https://login.microsoftonline.com/common/oauth2/nativeclient` 的預設值。 |
 | scope | 必要 | 您要使用者同意的[範圍](active-directory-v2-scopes.md)空格分隔清單。 |
 | response\_mode | 建議使用 | 指定將產生的權杖送回到應用程式所應該使用的方法。可以是 `query` 或 `form_post`。 |
 | state | 建議使用 | 同樣會隨權杖回應傳回之要求中所包含的值。其可以是您想要之任何內容的字串。隨機產生的唯一值通常用於[防止跨站台要求偽造攻擊](http://tools.ietf.org/html/rfc6749#section-10.12)。此狀態也用於在驗證要求出現之前，於應用程式中編碼使用者的狀態資訊，例如之前所在的網頁或檢視。 |
@@ -72,7 +72,7 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 使用 `response_mode=query` 的成功回應如下所示：
 
 ```
-GET urn:ietf:wg:oauth:2.0:oob?
+GET https://login.microsoftonline.com/common/oauth2/nativeclient?
 code=AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrq...
 &state=12345
 ```
@@ -86,7 +86,7 @@ code=AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrq...
 錯誤回應可能也會傳送至 `redirect_uri`，讓應用程式可以適當地處理：
 
 ```
-GET urn:ietf:wg:oauth:2.0:oob?
+GET https://login.microsoftonline.com/common/oauth2/nativeclient?
 error=access_denied
 &error_description=the+user+canceled+the+authentication
 ```
@@ -288,4 +288,4 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 
 如需錯誤碼及建議的用戶端動作的說明，請參閱[權杖端點錯誤的錯誤碼](#error-codes-for-token-endpoint-errors)。
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

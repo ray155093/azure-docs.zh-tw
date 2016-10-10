@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="06/27/2016"   
+	ms.date="09/26/2016"   
 	ms.author="juliako"/>
  
 #使用 Azure 媒體分析以將視訊檔案中的文字內容轉換為數位文字 
 
-##概觀
+##Overview
 
 如果您需要擷取視訊檔案的文字內容，並產生可編輯、可搜尋的數位文字，您應該使用 Azure 媒體分析 OCR (光學字元辨識)。此 Azure 媒體處理器會偵測視訊檔案的文字內容並產生文字檔案，以供您使用。OCR 可讓您從媒體的視訊訊號自動擷取有意義的中繼資料。
 
@@ -350,4 +350,4 @@ lines|區域內偵測到的文字行陣列
 
 [Azure 媒體服務分析概觀](media-services-analytics-overview.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -4,7 +4,7 @@
 	services="storage"
 	documentationCenter="na"
 	authors="aungoo-msft"
-	manager=""
+	manager="tadb"
 	editor="tysonn"/>
 
 <tags
@@ -14,7 +14,7 @@
 	ms.devlang="na"
 	ms.topic="article"
 	ms.date="09/20/2016"
-	ms.author="tamram;aungoo"/>
+	ms.author="aungoo;tamram"/>
 
 
 # 使用增量快照集備份 Azure 虛擬機器磁碟
@@ -128,4 +128,4 @@ Blob 快照是在某個時間點擷取的 Blob 唯讀版本。一旦建立快照
 - [建立 Blob 的快照集](https://msdn.microsoft.com/library/azure/hh488361.aspx)
 - [規劃 VM 備份基礎結構](../backup/backup-azure-vms-introduction.md)
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

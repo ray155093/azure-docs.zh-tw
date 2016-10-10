@@ -9,7 +9,7 @@
 
 3.	然後從清單中選取虛擬機器。
 
-4. 在虛擬機器刀鋒視窗的 [基本資訊] 中，按一下 [所有設定] > [磁碟]。
+4. 在 [虛擬機器] 刀鋒視窗上的 [Essentials] 中，按一下 [磁碟]。
 
 	![開啟磁碟設定](./media/virtual-machines-common-attach-disk-portal/find-disk-settings.png)
 
@@ -43,4 +43,4 @@
 
 6.	Azure 將磁碟連接至虛擬機器之後，該磁碟會列在虛擬機器磁碟設定中的 [資料磁碟] 下面。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_0928_2016-->

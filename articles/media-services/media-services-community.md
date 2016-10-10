@@ -1,5 +1,5 @@
 <properties
-	pageTitle="Azure 媒體服務社群概觀"
+	pageTitle="Azure 媒體服務社群概觀 | Microsoft Azure"
 	description="Azure 媒體服務 (AMS) 社群頁面討論您可以取得 AMS 更新資訊、查看新的影片和播客、提出問題並提供意見反應的不同方式。"
 	services="media-services"
 	documentationCenter=""
@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="06/22/2016"  
+	ms.date="09/26/2016"  
 	ms.author="juliako"/>
 
 # Azure 媒體服務社群  
@@ -63,4 +63,4 @@ Azure Media Player|ampinfo@microsoft.com
 Azure 媒體瀏覽器|amse@microsoft.com
 工作流程設計工具|mepd@microsoft.com
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

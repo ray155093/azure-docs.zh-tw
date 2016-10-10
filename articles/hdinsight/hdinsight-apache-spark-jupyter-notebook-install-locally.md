@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/25/2016" 
+	ms.date="09/26/2016" 
 	ms.author="nitinme"/>
 
 
@@ -51,24 +51,7 @@
 
 ## 安裝核心和 Spark magic
 
-在本節中，您會安裝 Spark magic、PySpark 核心及 Spark 核心，然後設定這些核心以連接到在 Azure HDInsight 中執行的 Apache Spark 叢集。
-
-1. 從 [Github](https://github.com/jupyter-incubator/sparkmagic/archive/publicpreview0.5.zip) 下載最新的 Spark magic 公開預覽。
-
-2. 將下載的檔案解壓縮到磁碟上的位置。在下列指示中，我們將此路徑稱為 `$SPARKMAGIC_PATH`。
-
-2. 執行下列命令
-
-		pip install -r $SPARKMAGIC_PATH/requirements.txt  
-
-3. 執行下列命令來安裝 Spark magic。
-
-		pip install -e $SPARKMAGIC_PATH
-
-4. 安裝 PySpark 和 Spark 核心執行下列命令。
-
-		jupyter-kernelspec install $SPARKMAGIC_PATH/remotespark/kernels/sparkkernel
-		jupyter-kernelspec install $SPARKMAGIC_PATH/remotespark/kernels/pysparkkernel
+如需有關如何安裝 Spark magic、PySpark 和 Spark 核心的指示，請參閱 GitHub 上的 [sparkmagic 文件](https://github.com/jupyter-incubator/sparkmagic#installation)。
 
 ## 設定 Spark magic 以存取 HDInsight Spark 叢集
 
@@ -97,7 +80,7 @@
 		  },
 		  "kernel_scala_credentials" : {
 		    "username": "{USERNAME}",
-		    " base64_password ": "{BASE64ENCODEDPASSWORD}",
+		    "base64_password": "{BASE64ENCODEDPASSWORD}",
 		    "url": "https://{CLUSTERDNSNAME}.azurehdinsight.net/livy"
 		  }
 		}
@@ -185,4 +168,4 @@
 
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

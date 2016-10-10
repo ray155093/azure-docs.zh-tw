@@ -12,7 +12,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="cache-redis"
 	ms.workload="tbd"
-	ms.date="07/13/2016"
+	ms.date="09/27/2016"
 	ms.author="sdanie" />
 
 # 如何管理 Azure Redis 快取
@@ -94,10 +94,13 @@ Azure Redis 快取**管理**設定可讓您針對進階快取執行下列管理�
 
 若要指定維護期間，請檢查所需的天數，並指定每一天的維護期間開始小時，然後按一下 [確定]。請注意，維護期間時間是 UTC。
 
+>[AZURE.NOTE] 更新的預設維護期間是 5 個小時。這個值不可以從 Azure 入口網站設定，不過您可以在 PowerShell 中使用 [New-AzureRmRedisCacheScheduleEntry](https://msdn.microsoft.com/library/azure/mt763833.aspx) Cmdlet 的 `MaintenanceWindow` 參數加以設定。如需詳細資訊，請參閱[我可以使用 PowerShell、CLI 或其他管理工具管理排程更新嗎？](#can-i-managed-scheduled-updates-using-powershell-cli-or-other-management-tools)
+
 ## 排程更新常見問題集
 
 -	[如果我未使用排程更新功能，更新會在何時發生？](#when-do-updates-occur-if-i-dont-use-the-schedule-updates-feature)
 -	[在排程維護期間，會進行何種類型的更新？](#what-type-of-updates-are-made-during-the-scheduled-maintenance-window)
+-	[我可以使用 PowerShell、CLI 或其他管理工具管理排程更新嗎？](#can-i-managed-scheduled-updates-using-powershell-cli-or-other-management-tools)
 -	[哪些定價層可以使用排程更新功能？](#what-pricing-tiers-can-use-the-schedule-updates-functionality)
 
 ### 如果我未使用排程更新功能，更新會在何時發生？
@@ -108,6 +111,15 @@ Azure Redis 快取**管理**設定可讓您針對進階快取執行下列管理�
 
 在排程維護期間，只會進行 Redis 伺服器更新。維護期間不適用於 Azure 更新或 VM 作業系統的更新。
 
+### 我可以使用 PowerShell、CLI 或其他管理工具管理排程更新嗎？
+
+是，您可以使用下列 PowerShell Cmdlet 管理排程更新。
+
+-	[Get-AzureRmRedisCachePatchSchedule](https://msdn.microsoft.com/library/azure/mt763835.aspx)
+-	[New-AzureRmRedisCachePatchSchedule](https://msdn.microsoft.com/library/azure/mt763834.aspx)
+-	[New-AzureRmRedisCacheScheduleEntry](https://msdn.microsoft.com/library/azure/mt763833.aspx)
+-	[Remove-AzureRmRedisCachePatchSchedule](https://msdn.microsoft.com/library/azure/mt763837.aspx)
+
 ### 哪些定價層可以使用排程更新功能？
 
 排程更新僅適用於進階定價層。
@@ -116,4 +128,4 @@ Azure Redis 快取**管理**設定可讓您針對進階快取執行下列管理�
 
 -	瀏覽 [Azure Redis 快取進階層](cache-premium-tier-intro.md)功能。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0928_2016-->

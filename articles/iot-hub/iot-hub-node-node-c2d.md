@@ -13,7 +13,7 @@
      ms.topic="article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="07/04/2016"
+     ms.date="09/23/2016"
      ms.author="dobett"/>
 
 # 教學課程：如何使用 IoT 中樞和 Node.js 傳送雲端到裝置訊息
@@ -32,7 +32,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
 您可以在 [IoT 中心開發人員指南][IoT Hub Developer Guide - C2D]中，找到有關雲端到裝置訊息的詳細資訊。
 
-在本教學課程結尾，您將會執行兩個 Node.js 主控台應用程式：
+在本教學課程結尾，您會執行兩個 Node.js 主控台應用程式：
 
 * **SimulatedDevice**，[IoT 中心入門]中建立之應用程式的修改版本，可連接到您的 IoT 中心，並接收雲端到裝置的訊息。
 * **SendCloudToDeviceMessage**：會透過 IoT 中樞，將雲端到裝置訊息傳送到模擬裝置，然後接收其傳遞通知。
@@ -47,7 +47,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
 ## 在模擬裝置上接收訊息
 
-在本節中，您會修改在[開始使用 IoT 中樞]中建立的模擬裝置應用程式，以接收來自 IoT 中樞的雲端對裝置訊息。
+在本節中，您會修改在[開始使用 IoT 中樞]中建立的模擬裝置應用程式，以接收來自 IoT 中樞的雲端到裝置訊息。
 
 1. 使用文字編輯器開啟 SimulatedDevice.js 檔案。
 
@@ -79,9 +79,9 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 
 ## 傳送雲端到裝置訊息
 
-在本節中，您會建立 Node.js 主控台應用程式，將雲端到裝置訊息傳送至模擬裝置應用程式。您需要在[開始使用 IoT 中樞]教學課程中新增裝置的裝置識別碼，以及您 IoT 中樞的連接字串 (可在 [Azure 入口網站]中找到)。
+在本節中，您會建立 Node.js 主控台應用程式，將雲端到裝置訊息傳送至模擬裝置應用程式。您需要您在[開始使用 IoT 中樞]教學課程中所新增裝置的裝置識別碼。您也需要 IoT 中樞的連接字串 (可在 [Azure 入口網站]中找到)。
 
-1. 建立稱為 **sendcloudtodevicemessage** 的新的空資料夾。在 **sendcloudtodevicemessage** 資料夾中，於命令提示字元使用下列命令建立新的 package.json 檔案。接受所有預設值：
+1. 建立新的名為 **sendcloudtodevicemessage** 的空資料夾。在 **sendcloudtodevicemessage** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。接受所有預設值：
 
     ```
     npm init
@@ -104,7 +104,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
     var Message = require('azure-iot-common').Message;
     ```
 
-5. 將下列程式碼加入至 **SendCloudToDeviceMessage.js** 檔案，並使用您在[開始使用 IoT 中樞]教學課程中建立的 IoT 中樞連接字串，來取代連接字串預留位置值，以及使用您在[開始使用 IoT 中樞]新增的裝置裝置識別碼，來取代目標裝置預留位置︰
+5. 在 **SendCloudToDeviceMessage.js** 檔案中新增下列程式碼。將連接字串預留位置的值替換為您在[開始使用 IoT 中樞]教學課程中為 IoT 中樞所建立的連接字串。將目標裝置預留位置的值替換為您在[開始使用 IoT 中樞]教學課程中新增裝置的裝置識別碼：
 
     ```
     var connectionString = '{iot hub connection string}';
@@ -202,4 +202,4 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個 IoT
 [Azure 入口網站]: https://portal.azure.com
 [Azure IoT 套件]: https://azure.microsoft.com/documentation/suites/iot-suite/
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_0928_2016-->

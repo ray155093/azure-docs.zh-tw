@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="07/11/2016"
+   ms.date="09/27/2016"
    ms.author="larryfr"/>
 
 #在 HDInsight 上使用 Python 開發 Apache Storm 拓撲
@@ -174,4 +174,4 @@ __如果要建置 Uberjar 並部署至 HDInsight__，請使用下列步驟：
 * [如何使用 Python 串流處理 MapReduce 工作](hdinsight-hadoop-streaming-python.md)
 * [如何在 Pig 和 Hive 中使用 Python 使用者定義函數 (UDF)](hdinsight-python.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

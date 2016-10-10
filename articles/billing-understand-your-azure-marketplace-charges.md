@@ -3,7 +3,7 @@
 	description="說明如何了解 Marketplace 訂單的相關費用。"
 	services=""
 	documentationCenter=""
-	authors="jiangchen79"
+	authors="JiangChen79"
 	manager="felixwu"
 	editor=""
 	tags="billing"
@@ -31,11 +31,11 @@
 1. 使用您的 Org 識別碼，登入 Azure 帳戶入口網站。
 2. 按一下 [Marketplace]。所顯示的清單是由您的 Azure 帳戶訂購的所有 Marketplace 訂單的完整清單。您會發現訂單依照父 Azure 訂用帳戶名稱和識別碼分組。
 
-	![Marketplace 訂單](./media/billing-understand-your-azure-marketplace-charges/marketplace-orders.png)
+    ![Marketplace 訂單](./media/billing-understand-your-azure-marketplace-charges/marketplace-orders.png)
 
 3. 按一下任何顯示的訂單，將會帶您前往該訂單目前計費週期的摘要概觀。在 [Marketplace 常見問題集](https://azure.microsoft.com/marketplace/faq/)中可以找到不同定價模式的說明。
 
-	![訂單摘要](./media/billing-understand-your-azure-marketplace-charges/order-summary.png)
+    ![訂單摘要](./media/billing-understand-your-azure-marketplace-charges/order-summary.png)
 
 [摘要] 檢視包含每筆訂單的下列資訊︰
 - 價格
@@ -61,11 +61,11 @@
 
 1. 按一下 [變更您的付款方式]。
 
-	![訂用帳戶](./media/billing-understand-your-azure-marketplace-charges/subscriptions.jpg)
+    ![訂用帳戶](./media/billing-understand-your-azure-marketplace-charges/subscriptions.jpg)
 
 2. 選取您想變更的付款方式。[付款方式] 選項可讓您選取您的信用卡。[新增付款方式] 選項可讓您新增信用卡。
 
-	![變更付款方式](./media/billing-understand-your-azure-marketplace-charges/change-payment-method.jpg)
+    ![變更付款方式](./media/billing-understand-your-azure-marketplace-charges/change-payment-method.jpg)
 
 ## 訂單管理
 從 [摘要概觀] 頁面，您會看到 [管理訂單] 連結。此連結會帶您前往您的入口網站，您可以在那裡看到所有 Marketplace 訂單，檢視服務健全狀況，以及要求支援。
@@ -94,12 +94,12 @@
 
     請注意，如果您嘗試在「帳單與帳戶管理入口網站」存取原始的使用量，您必須按一下頁面底部的支援連結以連絡支援人員。)
 
-	![訂單歷程記錄](./media/billing-understand-your-azure-marketplace-charges/order-history.jpg)
+    ![訂單歷程記錄](./media/billing-understand-your-azure-marketplace-charges/order-history.jpg)
 
 2. 找出您想要檢閱的訂單，然後按一下 [詳細資料] 以檢視費用的細項，包含小計、稅金和總計費用。
 
-	![訂單詳細資料](./media/billing-understand-your-azure-marketplace-charges/order-details.jpg)
+    ![訂單詳細資料](./media/billing-understand-your-azure-marketplace-charges/order-details.jpg)
 
 > [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0928_2016-->

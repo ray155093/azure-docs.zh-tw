@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="data-services"
-	ms.date="08/11/2016"
+	ms.date="09/26/2016"
 	ms.author="jeffstok" />
 
 
@@ -45,7 +45,7 @@
 
 建立事件中樞：
 
-1.	在 [Azure 入門網站](https://manage.windowsazure.com/) 中，按一下 [新增] > [應用程式服務] > [服務匯流排] > [事件中樞] > [快速建立]。提供名稱、區域及新的或現有命名空間，以建立新的事件中樞。
+1.	在 [Azure 入門網站][](https://manage.windowsazure.com/) 中，按一下 [新增] > [應用程式服務] > [服務匯流排] > [事件中樞] > [快速建立]。提供名稱、區域及新的或現有命名空間，以建立新的事件中樞。
 2.	每個串流分析工作都應該從單一事件中樞取用者群組讀取資料，這才是最佳作法。我們會帶您逐步進行下方建立取用者群組的程序，您可以[深入了解取用者群組](https://msdn.microsoft.com/library/azure/dn836025.aspx)。若要建立取用者群組，請瀏覽至剛剛建立的事件中樞，然後依序按一下 [取用者群組] 索引標籤、頁面最下方的 [建立]，然後提供取用者群組的名稱。
 3.	為了授權存取事件中樞，我們需要建立一個共用存取原則。按一下事件中樞的 [設定] 索引標籤。
 4.	在 [共用存取原則] 下方，建立一個擁有[管理]權限的新原則。
@@ -264,4 +264,4 @@
 - [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 - [Azure Stream Analytics 管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

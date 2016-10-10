@@ -13,16 +13,15 @@ ms.service="virtual-machines-windows"
  ms.topic="article"
  ms.tgt_pltfrm="vm-windows"
  ms.workload="big-compute"
- ms.date="06/17/2016"
+ ms.date="09/26/2016"
  ms.author="danlep"/>
 
-# 使用 Microsoft HPC Pack 在 Azure 中建立及管理 Windows 高效能運算 (HPC) 叢集的選項
+# 使用 HPC Pack 在 Azure 中建立及管理 Windows HPC 叢集的選項
 
 [AZURE.INCLUDE [virtual-machines-common-hpcpack-cluster-options](../../includes/virtual-machines-common-hpcpack-cluster-options.md)]
 
-本文著重於使用 HPC Pack 執行 Windows 的工作負載的選項。另有[使用 HPC Pack 執行 Linux HPC 工作負載](virtual-machines-linux-hpcpack-cluster-options.md)的選項。
+本文著重於建立 HPC Pack 叢集以執行 Windows 工作負載的選項。此外，也有使用 HPC Pack 來建立叢集以執行 [Linux HPC 工作負載](virtual-machines-linux-hpcpack-cluster-options.md)的選項。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
 ## 在 Azure VM 中執行 HPC Pack 叢集
 
@@ -64,29 +63,29 @@ ms.service="virtual-machines-windows"
 
 * [在 Azure 中管理 HPC Pack 叢集的運算節點](virtual-machines-windows-classic-hpcpack-cluster-node-manage.md)
 
-
 * [增加及縮減 HPC Pack 叢集中的 Azure 運算資源](virtual-machines-windows-classic-hpcpack-cluster-node-autogrowshrink.md)
 
 * [將工作送出至 Azure 的 HPC Pack 叢集](virtual-machines-windows-hpcpack-cluster-submit-jobs.md)
+
+* [HPC Pack 中的作業管理](https://technet.microsoft.com/library/jj899585.aspx)
 
 
 ## 將背景工作角色節點加入 HPC Pack 叢集
 
 
-* [使用 HPC Pack 將量擴大到 Azure 背景工作執行個體](https://technet.microsoft.com/library/gg481749.aspx)
+* [使用 HPC Pack 將暴增的工作負載移至 Azure 背景工作執行個體](https://technet.microsoft.com/library/gg481749.aspx)
 
 * [教學課程：在 Azure 中使用 HPC Pack 設定混合式叢集](../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md)
 
 * [將 Azure「高載」節點加入 Azure 中的 HPC Pack 前端節點](virtual-machines-windows-classic-hpcpack-cluster-node-burst.md)
 
-* [增加及縮減 HPC Pack 叢集中的 Azure 運算資源](virtual-machines-windows-classic-hpcpack-cluster-node-autogrowshrink.md)
 
 ## 與 Azure Batch 整合 
 
-* [使用 HPC Pack 將量擴大到 Azure Batch](https://technet.microsoft.com/library/mt612877.aspx)
+* [使用 HPC Pack 將暴增的工作負載移至 Azure Batch](https://technet.microsoft.com/library/mt612877.aspx)
 
 ## 建立 MPI 工作負載的 RDMA 叢集
 
 * [使用 HPC Pack 設定 Windows RDMA 叢集以執行 MPI 應用程式](virtual-machines-windows-classic-hpcpack-rdma-cluster.md)
 
-<!---HONumber=AcomDC_0622_2016-->
+<!---HONumber=AcomDC_0928_2016-->

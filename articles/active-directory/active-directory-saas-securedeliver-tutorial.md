@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="07/07/2016"
+	ms.date="09/26/2016"
 	ms.author="jeedes"/>
 
 
@@ -25,7 +25,7 @@
 - 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 SECURE DELIVER (單一登入)
 - 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
-若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
+若您想了解 SaaS 應用程式與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
 ## 必要條件
 
@@ -107,7 +107,7 @@
 
 	![設定單一登入][6]
 
-2. 在 [要如何讓使用者登入 SECURE DELIVER] 頁面上，選取 [Azure AD 單一登入]，然後按一下 [下一步]。
+2. 在 [要如何讓使用者登入 SECURE DELIVER] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
  
 	![設定單一登入](./media/active-directory-saas-securedeliver-tutorial/tutorial_securedeliver_03.png)
 
@@ -124,7 +124,7 @@
 	d.按 [**下一步**]
 
 
-4. 在 [設定在 SECURE DELIVER 單一登入] 頁面上，執行下列步驟，然後按一下 [下一步]：
+4. 在 [設定在 SECURE DELIVER 單一登入] 頁面上，執行下列步驟，然後按 [下一步]：
 
 	![設定單一登入](./media/active-directory-saas-securedeliver-tutorial/tutorial_securedeliver_05.png)
 
@@ -145,7 +145,7 @@
 
 
 
-6. 在 Azure 傳統入口網站中，選取單一登入設定確認，然後按一下 [下一步]。
+6. 在 Azure 傳統入口網站中，選取單一登入設定確認，然後按 [下一步]。
 
 	![Azure AD 單一登入][10]
 
@@ -157,7 +157,7 @@
 
 
 ### 建立 Azure AD 測試使用者
-本節目標是在 Azure 傳統入口網站中建立名為 Britta Simon 的測試使用者。
+本節的目標是要在 Azure 傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
 
@@ -169,11 +169,11 @@
 
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者]。
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
   
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-securedeliver-tutorial/create_aaduser_03.png)
 
-4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-securedeliver-tutorial/create_aaduser_04.png)
 
@@ -187,7 +187,7 @@
 
     c.按 [下一步]。
 
-6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
+6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
 
 	![建立 Azure AD 測試使用者](./media/active-directory-saas-securedeliver-tutorial/create_aaduser_06.png)
 
@@ -279,4 +279,4 @@
 [204]: ./media/active-directory-saas-securedeliver-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-securedeliver-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0928_2016-->

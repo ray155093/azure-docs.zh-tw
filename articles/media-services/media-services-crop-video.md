@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="dotnet"
 	ms.topic="article"
-	ms.date="07/11/2016"  
+	ms.date="09/26/2016"  
 	ms.author="anilmur;juliako;"/>
 
 # 以 Media Encoder Standard 裁剪影片
@@ -146,4 +146,4 @@ MES 中的裁剪是前置處理階段，因此編碼預設值中的裁剪參數�
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0928_2016-->

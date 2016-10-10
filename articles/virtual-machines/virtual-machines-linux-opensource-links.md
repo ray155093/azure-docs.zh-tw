@@ -41,7 +41,7 @@
 
 - [在 Azure 中的 Linux 虛擬機器上安裝 LAMP 堆疊](virtual-machines-linux-create-lamp-stack.md)
 - [Azure VM 上的 Ruby on Rails Web 應用程式](virtual-machines-linux-classic-ruby-rails-web-app.md)
-- [做法：安裝 Apache Qpid Proton-C for AMQP 和服務匯流排](../service-bus/service-bus-amqp-apache.md)
+- [做法：安裝 Apache Qpid Proton-C for AMQP 和服務匯流排](../service-bus-messaging/service-bus-amqp-apache.md)
 
 ### 資料庫
 - [在 Azure 上最佳化 MySQL 的效能](virtual-machines-linux-classic-optimize-mysql.md)
@@ -189,4 +189,4 @@
 
 - [Azure 的 Packer 外掛程式](https://github.com/msopentech/packer-azure)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0928_2016-->

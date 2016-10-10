@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="billmath"
-	manager="stevenpo"
+	manager="femila"
 	editor="curtand"/>
 
 <tags
@@ -143,4 +143,4 @@ UserPrincipalName - 屬性 userPrincipalName 是使用者登入 Azure AD 和 Off
 
 深入了解 [Azure AD Connect：設計概念](active-directory-aadconnect-design-concepts.md)
 
-<!---HONumber=AcomDC_0810_2016------>
+<!---HONumber=AcomDC_0928_2016-->

@@ -3,7 +3,7 @@
    description="將網域裝載於 Azure DNS 時，在 Azure DNS 管理 DNS 記錄集和記錄。對記錄集和記錄執行作業的所有 CLI 命令。"
    services="dns"
    documentationCenter="na"
-   authors="cherylmc"
+   authors="jtuliani"
    manager="carmonm"
    editor=""/>
 
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/16/2016"
-   ms.author="cherylmc"/>
+   ms.date="09/22/2016"
+   ms.author="jtuliani"/>
 
 # 使用 CLI 管理 DNS 記錄集和記錄集
 
@@ -153,6 +153,11 @@ Azure DNS 是僅能以 Azure 資源管理員運作的服務。它沒有 Azure �
 
 	azure network dns record-set delete-record myresourcegroup contoso.com  "test-ns" NS -d "ns1.contoso.com"
 
+### 從記錄集移除 PTR 記錄
+在此情況下，'my-arpa-zone.com' 代表表示 IP 範圍的 ARPA 區域。此區域中的每個 PTR 記錄集都與此 IP 範圍內的一個 IP 位址相對應。
+
+	azure network dns record-set delete-record myresourcegroup my-arpa-zone.com "10" PTR -P "myservice.contoso.com"
+
 ### 從記錄集移除 SRV 記錄
 
 	azure network dns record-set delete-record myresourcegroup contoso.com  "_sip._tls" SRV -p 0 -w 5 -o 8080 -u "sip.contoso.com"
@@ -178,4 +183,4 @@ Azure DNS 是僅能以 Azure 資源管理員運作的服務。它沒有 Azure �
 
 如果您想要使用反向 DNS 記錄，請參閱[如何使用 Azure CLI 管理服務的反向 DNS 記錄](dns-reverse-dns-record-operations-cli.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0928_2016-->

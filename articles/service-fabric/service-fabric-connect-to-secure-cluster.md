@@ -16,10 +16,11 @@
    ms.date="08/25/2016"
    ms.author="ryanwi"/>
 
-# 連線到安全的叢集
-當用戶端連線到 Service Fabric 叢集節點時，用戶端可以使用憑證安全性來接受驗證及保護已建立的通訊。這可確保只有已獲授權的使用者可以存取叢集和已部署的應用程式，以及執行管理工作。憑證安全性必須在叢集建立之時即事先在叢集上啟用。至少應使用兩個憑證保護叢集，一個是叢集和伺服器憑證，另一個用於用戶端存取。建議您也使用額外的次要憑證和用戶端存取憑證。如需有關叢集安全性案例的詳細資訊，請參閱[叢集安全性](service-fabric-cluster-security.md)。
+# 連線到安全的叢集 (不含 AAD)
+當用戶端連線到 Service Fabric 叢集節點時，用戶端可以使用憑證安全性來接受驗證及保護已建立的通訊。此驗證可確保只有已獲授權的使用者可以存取叢集和已部署的應用程式，以及執行管理工作。憑證安全性必須在叢集建立之時即事先在叢集上啟用。至少應使用兩個憑證保護叢集，一個是叢集和伺服器憑證，另一個用於用戶端存取。建議您也使用額外的次要憑證和用戶端存取憑證。如需有關叢集安全性案例的詳細資訊，請參閱[叢集安全性](service-fabric-cluster-security.md)。
 
-若要使用憑證安全性來保護用戶端與與叢集節點之間的通訊，您必須先取得用戶端憑證，並安裝到本機電腦上的個人 (My) 存放區或目前使用者的「個人」存放區。您也需要伺服器憑證的指紋，讓用戶端可以驗證叢集。
+若要使用憑證安全性來保護用戶端與叢集節點之間的通訊，您必須先取得並安裝用戶端憑證。此憑證可以安裝到本機電腦或目前使用者的個人 (My) 存放區。您也需要伺服器憑證的指紋，讓用戶端可以驗證叢集。
+
 
 請執行下列 PowerShell Cmdlet 以在您存取叢集的電腦上設定用戶端憑證。
 
@@ -36,9 +37,41 @@ Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\TrustedPe
 -FilePath C:\docDemo\certs\DocDemoClusterCert.pfx `
 -Password (ConvertTo-SecureString -String test -AsPlainText -Force)
 ```
+<a id="connectsecureclustercli"></a>
+## 使用 Azure CLI 連線到安全的叢集 (不含 AAD)
+
+下列 Azure CLI 命令說明如何連線到安全的叢集。憑證詳細資料必須與叢集節點上的憑證相符。
+ 
+如果您的憑證有憑證授權單位 (CA)，則您需要新增 `--ca-cert-path` 參數，如下列範例所示︰
+
+```
+ azure servicefabric cluster connect --connection-endpoint https://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --ca-cert-path /tmp/ca1,/tmp/ca2 
+```
+如果您有多個 CA，請使用逗號做為分隔符號。
+
+ 
+如果憑證中的一般名稱不符合連接端點，您可以使用 `--strict-ssl-false` 參數略過驗證。
+
+```
+azure servicefabric cluster connect --connection-endpoint https://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --ca-cert-path /tmp/ca1,/tmp/ca2 --strict-ssl-false 
+```
+ 
+如果您想要跳過 CA 驗證，您可以新增 ``--reject-unauthorized-false`` 參數，如下列命令所示︰
+
+```
+azure servicefabric cluster connect --connection-endpoint https://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --reject-unauthorized-false 
+```
+ 
+若要連線至使用自我簽署憑證保護的叢集，請使用下列命令以移除 CA 驗證和一般名稱驗證。
+
+```
+azure servicefabric cluster connect --connection-endpoint https://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --strict-ssl-false --reject-unauthorized-false
+```
+
+連線之後，您應該能夠執行其他 CLI 命令來與叢集互動。
 
 <a id="connectsecurecluster"></a>
-## 使用 PowerShell 來連線到安全的叢集
+## 使用 PowerShell 連線到安全的叢集 (不含 AAD)
 
 執行下列 PowerShell 命令來連線到安全的叢集。憑證詳細資料必須與叢集節點上的憑證相符。
 
@@ -50,7 +83,7 @@ Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
           -StoreLocation CurrentUser -StoreName My
 ```
 
-舉例來說，上述 PowerShell 命令應該會類似下列內容。*ServerCertThumbprint* 是安裝在叢集節點上的伺服器憑證指紋，*FindValue* 是管理員用戶端憑證指紋。
+*ServerCertThumbprint* 是安裝在叢集節點上的伺服器憑證指紋。*FindValue* 是系統管理員用戶端憑證的指紋。填入參數後，命令看起來如下列範例所示︰
 
 ```powershell
 Connect-ServiceFabricCluster -ConnectionEndpoint clustername.westus.cloudapp.azure.com:19000 `
@@ -60,8 +93,12 @@ Connect-ServiceFabricCluster -ConnectionEndpoint clustername.westus.cloudapp.azu
           -StoreLocation CurrentUser -StoreName My
 ```
 
+
+
+
 ## 使用 FabricClient API 來連線到安全的叢集
-請參閱以下的 [FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx)。叢集中的節點必須具備有效的憑證，這些憑證在 SAN 中的通用名稱或 DNS 名稱會出現在於 [FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx) 上設定的 [RemoteCommonNames 屬性](https://msdn.microsoft.com/library/azure/system.fabric.x509credentials.remotecommonnames.aspx)集中，這可讓用戶端與叢集節點之間相互驗證。
+
+如需有關 FabricClient Api 的詳細資訊，請參閱 [FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx)。叢集中的節點必須具備有效的憑證，這些憑證在 SAN 中的通用名稱或 DNS 名稱會出現在於 [FabricClient](https://msdn.microsoft.com/library/system.fabric.fabricclient.aspx) 上設定的 [RemoteCommonNames 屬性](https://msdn.microsoft.com/library/azure/system.fabric.x509credentials.remotecommonnames.aspx)中。遵循此程序，就可讓用戶端與叢集節點之間進行相互驗證。
 
 ```csharp
 string clientCertThumb = "71DE04467C9ED0544D021098BCD44C71E183414E";
@@ -115,4 +152,4 @@ static X509Credentials GetCredentials(string clientCertThumb, string serverCertT
 - [Service Fabric 健康情況模型簡介](service-fabric-health-introduction.md)
 - [應用程式安全性及 RunAs](service-fabric-application-runas-security.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0928_2016-->

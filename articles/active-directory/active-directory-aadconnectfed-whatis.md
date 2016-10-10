@@ -4,7 +4,7 @@
 	services="active-directory"
 	documentationCenter=""
 	authors="anandyadavmsft"
-	manager="stevenpo"
+	manager="femila"
 	editor=""/>
 
 <tags
@@ -48,4 +48,4 @@ Azure AD Connect 可讓您設定與內部部署 AD FS 和 Azure AD 同盟。使�
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 * [Azure 中的 AD FS 部署](active-directory-aadconnect-azure-adfs.md)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_0928_2016-->

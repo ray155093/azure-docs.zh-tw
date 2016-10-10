@@ -29,7 +29,7 @@ ExpressRoute 線路不對應至任何實體裝置。線路由一個稱為服務�
 
 ExpressRoute 線路最多可以有三個獨立對等：Azure 公用、Azure 私用和 Microsoft。每個對等為一組獨立的 BGP 工作階段，每個都重複設定，以確保較高的可用性。ExpressRoute 線路與路由網域之間存在 1:N (1 <= N <= 3) 對應。每個 ExpressRoute 電路可以啟用任何一個、兩個或全部三個對等。
  
-每個電路有固定的頻寬 (50 Mbps、100 Mbps、200 Mbps、500 Mbps、1 Gbps、10 Gbps)，而且對應至連線提供者和對等位置。您選取的頻寬由路線上的所有對等共享。
+每個電路有固定的頻寬 (50 Mbps、100 Mbps、200 Mbps、500 Mbps、1 Gbps、10 Gbps)，而且對應至連線提供者和對等位置。您選取的頻寬由路線上的所有對等共用。
 
 ### 配額和限制
 
@@ -45,7 +45,7 @@ ExpressRoute 線路有多個相關聯的路由網域：Azure 公用、Azure 私�
 
 ### 私人對等互連
 
-部署於虛擬網路內的 Azure 計算服務 (也就是虛擬機器 (IaaS) 和雲端服務 (PaaS)) 可透過私用對等網域進行連線。私人對等互連網域會被視為核心網路至 Microsoft Azure 的受信任延伸。您可以在核心網路與 Azure 虛擬網路 (VNet) 之間設定雙向連線。這將可讓您直接連線到虛擬機器和雲端服務的私人 IP 位址。
+部署於虛擬網路內的 Azure 計算服務 (也就是虛擬機器 (IaaS) 和雲端服務 (PaaS)) 可透過私用對等網域進行連線。私人對等互連網域會被視為核心網路至 Microsoft Azure 的受信任延伸。您可以在核心網路與 Azure 虛擬網路 (VNet) 之間設定雙向連線。此對等可讓您直接連線到虛擬機器和雲端服務的私人 IP 位址。
 
 您可以將多個虛擬網路連線到私人對等互連網域。如需限制的相關資訊，請檢閱[常見問題集頁面](expressroute-faqs.md)。如需最新的限制資訊，請參閱 [Azure 訂用帳戶和服務限制、配額及條件約束](../azure-subscription-service-limits.md)。如需路由組態的詳細資訊，請參閱[路由](expressroute-routing.md)頁面。
 
@@ -92,4 +92,4 @@ ExpressRoute 線路有多個相關聯的路由網域：Azure 公用、Azure 私�
 	- [設定路由 (線路對等)](expressroute-howto-routing-classic.md)
 	- [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_0928_2016-->

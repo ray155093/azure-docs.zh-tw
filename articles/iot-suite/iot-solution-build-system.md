@@ -79,7 +79,7 @@ Xamarin、Git、模擬器及其他實用元件已全部與 Visual Studio 整合�
 
 -   [Azure Service Fabric SDK](http://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MicrosoftAzure-ServiceFabric)。必須具備才能建置[微服務](../service-fabric/service-fabric-get-started.md)擴充功能。
 
-此外，請確定您有適當的 Visual Studio 擴充功能。確認在 [工具] 下會看到 **Android、iOS、Xamarin…**。如果看不到，請開啟 [控制台]，然後選取 [程式和功能] > [Microsoft] > [Visual Studio 2015] > [修改]。在 [跨平台開發] 下，選取 [C#/.Net (Xamarin)]。在此檢查是否已安裝 **GitHub**。
+此外，請確定您有適當的 Visual Studio 擴充功能。確認在 [工具] 下會看到 **Android、iOS、Xamarin…**。如果看不到，請開啟 [控制台]，然後選取 [程式和功能] > [Microsoft] > [Visual Studio 2015] > [修改]。在 [跨平台開發] 下，選取 [C#/.Net (Xamarin)]。在此檢查是否已安裝 **Git for Windows**。
 
 ### Mac 開發電腦
 
@@ -462,4 +462,4 @@ Microsoft Azure 提供許多不同的服務，可用來建置雲端應用程式�
 
 我們所建議的 [MyDriving 參考指南](http://aka.ms/mydrivingdocs)完整說明系統及其元件的設計。
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_0928_2016-->

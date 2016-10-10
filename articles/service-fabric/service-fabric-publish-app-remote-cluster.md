@@ -18,6 +18,12 @@
 
 # 使用 Visual Studio 將應用程式發佈至遠端叢集
 
+> [AZURE.SELECTOR]
+- [PowerShell](service-fabric-deploy-remove-applications.md)
+- [Visual Studio](service-fabric-publish-app-remote-cluster.md)
+
+<br/>
+
 Azure Service Fabric extension for Visual Studio 提供簡單、可重複且可編寫指令碼的方式，將應用程式發佈至 Service Fabric 叢集。
 
 ## 發佈所需的構件
@@ -107,4 +113,4 @@ Visual Studio 發佈體驗已針對發佈至遠端叢集 (與您的其中一個 
 [3]: ./media/service-fabric-publish-app-remote-cluster/EditVersions.png
 [4]: ./media/service-fabric-publish-app-remote-cluster/publish-to-party-cluster.png
 
-<!---HONumber=AcomDC_0803_2016-->
+<!---HONumber=AcomDC_0928_2016-->

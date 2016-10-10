@@ -14,7 +14,7 @@
 	ms.topic="article"
 	ms.tgt_pltfrm="na"
 	ms.workload="na"
-	ms.date="08/09/2016"
+	ms.date="09/26/2016"
 	ms.author="ryancraw"/>
 
 # 如何使用 Azure Functions 在 Azure Redis 快取中儲存 Azure 串流分析的資料
@@ -211,8 +211,8 @@ Azure 串流分析可讓您快速開發及部署低成本的解決方案，即�
 
 
 [fraud-detection]: stream-analytics-real-time-fraud-detection.md
-[servicebus-getstarted]: ../service-bus/service-bus-dotnet-get-started-with-queues.md
+[servicebus-getstarted]: ../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md
 [use-rediscache]: ../redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md
 [functions-getstarted]: ../azure-functions/functions-create-first-azure-function.md
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_0928_2016-->

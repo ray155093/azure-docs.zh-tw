@@ -14,12 +14,12 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="08/10/2016"
+	ms.date="09/22/2016"
 	ms.author="curtand"/>
 
 # 適用於群組管理的 Azure Active Directory Preview Cmdlet
 
-下列文件將提供範例，說明如何使用 PowerShell 管理 Azure Active Directory (Azure AD) 中的群組。其中也提供有關如何使用 Azure AD PowerShell Preview 模組完成設定的資訊。首先，您必須[下載 Azure AD PowerShell 模組](http://go.microsoft.com/fwlink/p/?linkid=236297)。
+下列文件將提供範例，說明如何使用 PowerShell 管理 Azure Active Directory (Azure AD) 中的群組。其中也提供有關如何使用 Azure AD PowerShell Preview 模組完成設定的資訊。首先，您必須[下載 Azure AD PowerShell 模組](http://go.microsoft.com/fwlink/p/?LinkId=828627)。
 
 ## 安裝 Azure AD PowerShell 模組
 
@@ -223,4 +223,4 @@ Cmdlet 將會傳回所指定群組的擁有者清單︰
 
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -13,7 +13,7 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="07/18/2016"
+   ms.date="09/21/2016"
    ms.author="lakshmir;barbkess;sonyama"/>
 
 # 還原 Azure SQL 資料倉儲 (REST API)
@@ -38,7 +38,7 @@
 2. 使用[建立資料庫還原要求][]作業來開始還原。
 3. 使用[資料庫作業狀態][]作業來追蹤還原狀態。
 
->[AZURE.NOTE] 還原完成後，您可以遵循[完成復原的資料庫][]指南來設定復原的資料庫。
+>[AZURE.NOTE] 還原完成後，您可以遵循[在復原之後設定資料庫][]來設定復原的資料庫。
 
 ## 還原已刪除的資料庫
 
@@ -49,7 +49,7 @@
 3.	使用[建立資料庫還原要求][]作業來開始還原。
 4.	使用[資料庫作業狀態][]作業來追蹤還原狀態。
 
->[AZURE.NOTE] 還原完成後，您可以遵循[完成復原的資料庫][]指南來設定復原的資料庫。
+>[AZURE.NOTE] 若要在還原完成之後設定資料庫，請參閱[在復原之後設定資料庫][]。
 
 
 ## 後續步驟
@@ -60,7 +60,7 @@
 <!--Article references-->
 [Azure SQL Database 商務持續性概觀]: ./sql-database-business-continuity.md
 [要求 DTU 配額變更]: ./sql-data-warehouse-get-started-create-support-ticket.md#request-quota-change
-[完成復原的資料庫]: ./sql-database-recovered-finalize.md
+[在復原之後設定資料庫]: ./sql-database-disaster-recovery.md#configure-your-database-after-recovery
 [How to install and configure Azure PowerShell]: ./powershell-install-configure.md
 [概觀]: ./sql-data-warehouse-restore-database-overview.md
 [入口網站]: ./sql-data-warehouse-restore-database-portal.md
@@ -78,4 +78,4 @@
 [Azure Portal]: https://portal.azure.com/
 [Microsoft Web Platform Installer]: https://aka.ms/webpi-azps
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_0928_2016-->

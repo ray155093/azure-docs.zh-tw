@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="article"
-	ms.date="06/23/2016"
+	ms.date="09/27/2016"
 	ms.author="femila"/>
 
 # 透過 Microsoft Passport 不需要密碼就能驗證身分識別
@@ -59,7 +59,7 @@
 
 4. 一旦 IDP 登錄金鑰的公開部分之後，IDP 就會要求裝置使用金鑰的私密部分進行簽署。
 
-5. IDP 接著會驗證並發出驗證權杖，讓使用者和裝置能夠存取受保護的資源。IDP 可以撰寫跨平台的 App，或者透過 JavaScript/Webcrypto API 使用瀏覽器支援，為其使用者建立和使用 Microsoft Passport 認證。
+5. IDP 接著會驗證並發出驗證權杖，讓使用者和裝置能夠存取受保護的資源。IDP 可以撰寫跨平台的應用程式，或者透過 JavaScript/Webcrypto API 使用瀏覽器支援，為其使用者建立和使用 Microsoft Passport 認證。
 
 ## Microsoft Passport 的部署需求
 ### 在企業層級
@@ -81,4 +81,4 @@
 * [將已加入網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [設定 Azure AD Join](active-directory-azureadjoin-setup.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

@@ -1,20 +1,20 @@
-<properties 
-	pageTitle="管理對容器與 Blob 的匿名讀取權限 | Microsoft Azure" 
-	description="了解如何讓容器與 Blob 可供匿名存取，以及如何以程式設計方式存取。" 
-	services="storage" 
-	documentationCenter="" 
-	authors="tamram" 
-	manager="carmonm" 
+<properties
+	pageTitle="管理對容器與 Blob 的匿名讀取權限 | Microsoft Azure"
+	description="了解如何讓容器與 Blob 可供匿名存取，以及如何以程式設計方式存取。"
+	services="storage"
+	documentationCenter=""
+	authors="tamram"
+	manager="carmonm"
 	editor="tysonn"/>
 
-<tags 
-	ms.service="storage" 
-	ms.workload="storage" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/07/2016"
-	ms.author="tamram"/>
+<tags
+	ms.service="storage"
+	ms.workload="storage"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/27/2016"
+	ms.author="michaelhauss;jwillis;tamram"/>
 
 # 管理對容器與 Blob 的匿名讀取權限。
 
@@ -47,11 +47,11 @@
 若要從 [Azure 入口網站](https://portal.azure.com)設定容器權限，請遵循下列步驟：
 
 1. 瀏覽至儲存體帳戶的儀表板。
-2. 從清單中選取容器名稱。請注意，您必須按一下 [名稱] 欄右側，才能選取容器名稱。按一下名稱向下切入到容器，以顯示其Blob。
-3. 從工具列中選取 [**編輯**]。
-4. 在 [**編輯容器中繼資料**] 對話方塊中，從 [**存取**] 欄位選取您所需的權限層級，如以下螢幕擷取畫面所示。
+2. 從清單中選取容器名稱。按一下名稱將會公開所選容器中的 Blob
+3. 從工具列選取 [存取原則]。
+4. 在 [存取類型] 欄位中，選取您所需的權限層級，如以下螢幕擷取畫面所示。
 
-	![編輯容器中繼資料對話方塊](./media/storage-manage-access-to-resources/storage-manage-access-to-resources-1.png)
+	![編輯容器中繼資料對話方塊](./media/storage-manage-access-to-resources/storage-manage-access-to-resources-0.png)
 
 ### 使用 .NET 以程式設計方式設定容器權限
 
@@ -155,4 +155,4 @@
 - [使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)
 - [使用共用存取簽章來委派存取權](https://msdn.microsoft.com/library/azure/ee395415.aspx)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_0928_2016-->

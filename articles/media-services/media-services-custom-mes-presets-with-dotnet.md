@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="使用 Media Encoder Standard 進行進階編碼" 
+	pageTitle="使用 Media Encoder Standard 進行進階編碼 | Microsoft Azure" 
 	description="本主題說明如何透過自訂 Media Encoder Standard 工作預設值執行進階編碼。本主題說明如何使用媒體服務 .NET SDK 建立編碼工作與作業。本主題也會說明如何提供自訂預設值給編碼作業。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,15 +13,15 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="06/22/2016"    
+	ms.date="09/26/2016"    
 	ms.author="juliako"/>
 
 
 #使用 Media Encoder Standard 進行進階編碼
 
-##概觀
+##Overview
 
-本主題說明如何以 Media Encoder Standard 執行進階編碼工作。本主題說明[如何使用 .NET 建立編碼工作與執行此工作的作業。](media-services-custom-mes-presets-with-dotnet.md#encoding_with_dotnet)。本主題也會說明如何提供自訂預設值給編碼工作。如需預設值所用項目的說明，請參閱[這份文件](https://msdn.microsoft.com/library/mt269962.aspx)。
+本主題說明如何以 Media Encoder Standard 執行進階編碼工作。本主題說明[如何使用 .NET 建立編碼工作與執行此工作的作業](media-services-custom-mes-presets-with-dotnet.md#encoding_with_dotnet)。本主題也會說明如何提供自訂預設值給編碼工作。如需預設值所用項目的說明，請參閱[這份文件](https://msdn.microsoft.com/library/mt269962.aspx)。
 
 以下說明執行下列編碼工作的自訂預設值：
 
@@ -30,7 +30,7 @@
 - [建立疊加層](media-services-custom-mes-presets-with-dotnet.md#overlay)
 - [在輸入不含音訊時插入靜音曲目](media-services-custom-mes-presets-with-dotnet.md#silent_audio)
 - [停用自動去交錯](media-services-custom-mes-presets-with-dotnet.md#deinterlacing)
-- [只有音訊的預設值](media-services-custom-mes-presets-with-dotnet.md#audio_only)
+- [純音訊預設值](media-services-custom-mes-presets-with-dotnet.md#audio_only)
 
 ##<a id="encoding_with_dotnet"></a>使用媒體服務 .NET SDK 進行編碼
 
@@ -38,7 +38,7 @@
 
 - 建立編碼工作。
 - 取得對 Media Encoder Standard 編碼器的參考
-- 載入自訂 XML 或 JSON 預設值。您可以在檔案中儲存 XML 或 JSON (例如[XML](media-services-custom-mes-presets-with-dotnet.md#xml) 或 [JSON](media-services-custom-mes-presets-with-dotnet.md#json))，並使用下列程式碼載入檔案。
+- 載入自訂 XML 或 JSON 預設值。您可以在檔案中儲存 XML 或 JSON (例如 [XML](media-services-custom-mes-presets-with-dotnet.md#xml) 或 [JSON](media-services-custom-mes-presets-with-dotnet.md#json))，並使用下列程式碼載入檔案。
 
 			// Load the XML (or JSON) from the local file.
 		    string configuration = File.ReadAllText(fileName);  
@@ -242,7 +242,7 @@
 >[AZURE.NOTE]如果編碼為單一位元速率視訊，下列預設值中的 **SceneChangeDetection** 設定只能設定為 true。如果編碼為多重位元速率視訊，並將 **SceneChangeDetection** 設為 true，編碼器會傳回錯誤。
 
 
-如需結構描述的資訊，請參閱[這個主題](https://msdn.microsoft.com/library/mt269962.aspx)。
+如需結構描述的資訊，請參閱[這個](https://msdn.microsoft.com/library/mt269962.aspx)主題。
 
 請務必閱讀[考量](media-services-custom-mes-presets-with-dotnet.md#considerations)一節。
 
@@ -441,7 +441,7 @@
 	- 預設值：Start:{Best}
 - 必須明確地提供每個影像格式的輸出格式：Jpg/Png/BmpFormat。顯示時，AMS 會讓 JpgVideo 與 JpgFormat 相符，依此類推。OutputFormat 引進了新的影像轉碼器特定巨集 (即 {Index})，必須針對影像輸出格式提供一次 (只需一次)。
 
-##<a id="trim_video"></a>修剪影片 (裁剪)
+##<a id="trim_video"></a>修剪視訊 (裁剪)
 
 本節說明修改編碼器預設值，以裁剪或修剪其輸入為所謂的夾層檔或隨選檔的輸入視訊。編碼器也可以用來裁剪或修剪從即時串流擷取或封存的資產 – [此部落格](https://azure.microsoft.com/blog/sub-clipping-and-live-archive-extraction-with-media-encoder-standard/)提供詳細資料。
 
@@ -569,7 +569,7 @@
 
 ###XML 預設值
 	
-若要修剪您的影片，您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並修改 **Sources** 元素 (如下所示)。
+若要剪輯您的視訊，可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並修改 **Sources** 元素 (如下所示)。
 
 	<?xml version="1.0" encoding="utf-16"?>
 	<Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
@@ -690,9 +690,9 @@
 
 Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下列格式：png、jpg、gif 及 bmp。下面定義的預設值為視訊疊加層的基本範例。
 
-除了定義預設檔案之外，您還必須讓媒體服務知道資產中哪個檔案是疊加影像，以及哪個檔案是您要在上面疊加影像的來源影片。影片檔必須是**主要**檔案。
+除了定義預設檔案之外，您還必須讓媒體服務知道資產中哪個檔案是疊加影像，以及哪個檔案是您要在上面疊加影像的來源影片。視訊檔案必須是「主要」檔案。
 
-上述 .NET 範例定義兩個函式：**UploadMediaFilesFromFolder** 和 **EncodeWithOverlay**。UploadMediaFilesFromFolder 函式會上傳資料夾中的檔案 (例如，BigBuckBunny.mp4 和 Image001.png)，並將 mp4 檔案設定為資產中的主要檔案。**EncodeWithOverlay** 函式會使用傳遞給它的自訂預設檔案 (例如，後續的預設值) 建立編碼工作。
+上述 .NET 範例定義兩個函式：**UploadMediaFilesFromFolder** 和 **EncodeWithOverlay**。UploadMediaFilesFromFolder 函式會上傳資料夾中的檔案 (例如，BigBuckBunny.mp4 和 Image001.png)，並將 mp4 檔案設定為資產中的主要檔案。**EncodeWithOverlay** 函式會使用傳遞給它的自訂預設值檔案 (例如後續的預設值) 建立編碼工作。
 
 >[AZURE.NOTE]目前限制：
 >
@@ -846,7 +846,7 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 
 若要強制編碼器在輸入不含音訊時產生包含靜音曲目的資產，請指定 "InsertSilenceIfNoAudio" 值。
 
-您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)列出的任何 MES 預設值，並執行以下修改：
+您可以使用[這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並執行以下修改：
 
 ###JSON 預設值
 
@@ -897,9 +897,9 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 	</Sources>
 
 
-##<a id="audio_only"></a>只有音訊的預設值
+##<a id="audio_only"></a>純音訊預設值
 
-本節示範兩個只有音訊的 MES 預設值︰AAC 音訊和 AAC 好品質音訊。
+本節示範兩個純音訊的 MES 預設值︰AAC 音訊和 AAC 好品質音訊。
 
 ###AAC 音訊 
 
@@ -959,4 +959,4 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。目前支援下
 
 [媒體服務編碼概觀](media-services-encode-asset.md)
 
-<!---HONumber=AcomDC_0629_2016-->
+<!---HONumber=AcomDC_0928_2016-->

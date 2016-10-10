@@ -1,5 +1,5 @@
 <properties 
-	pageTitle="使用 Azure 媒體服務串流以 Apple FairPlay 保護的 HLS 內容" 
+	pageTitle="使用 Apple FairPlay 及/或 Microsoft PlayReady 保護 HLS 內容 | Microsoft Azure" 
 	description="本主題提供概觀及顯示如何使用 Azure 媒體服務，以 Apple FairPlay 動態加密您的 HTTP 即時串流 (HLS) 內容。它也會顯示如何使用媒體服務授權傳遞服務，傳遞 FairPlay 授權給用戶端。" 
 	services="media-services" 
 	documentationCenter="" 
@@ -13,22 +13,29 @@
 	ms.tgt_pltfrm="na" 
 	ms.devlang="na" 
 	ms.topic="article" 
-	ms.date="08/15/2016"
+	ms.date="09/27/2016"
 	ms.author="juliako"/>
 
-#使用 Azure 媒體服務串流以 Apple FairPlay 保護的 HLS 內容 
+# 使用 Apple FairPlay 及/或 Microsoft PlayReady 保護 HLS 內容
 
 Azure 媒體服務可讓您使用下列格式，動態加密您的 HTTP 即時串流 (HLS) 內容︰
 
-- **AES-128 信封清除金鑰** - 使用 **AES-128 CBC** 模式加密整個區塊。iOS 和 OSX 播放程式原本就支援資料流解密。如需詳細資訊，請參閱[本篇文章](media-services-protect-with-aes128.md)。
+- **AES-128 信封清除金鑰**
 
-- **Apple FairPlay** - 使用 **AES-128 CBC** 模式加密個別的視訊和音訊範例。**FairPlay 串流** (FPS) 已整合至裝置工作系統，在 iOS 和 Apple 電視上具有原生支援。在 OS X 上的 Safari 可讓您使用加密媒體擴充功能 (EME) 介面支援的 FPS。
+	使用 **AES-128 CBC** 模式加密整個區塊。iOS 和 OSX 播放程式原本就支援資料流解密。如需詳細資訊，請參閱[本篇文章](media-services-protect-with-aes128.md)。
 
-下圖顯示「FairPlay 動態加密」工作流程。
+- **Apple FairPlay**
+
+	使用 **AES-128 CBC** 模式加密個別的視訊和音訊範例。**FairPlay 串流** (FPS) 已整合至裝置工作系統，在 iOS 和 Apple 電視上具有原生支援。在 OS X 上的 Safari 可讓您使用加密媒體擴充功能 (EME) 介面支援的 FPS。
+- **Microsoft PlayReady (英文)**
+
+下圖顯示 **HLS + FairPlay 及/或 PlayReady 動態加密**工作流程。
 
 ![使用 FairPlay 保護](./media/media-services-content-protection-overview/media-services-content-protection-with-fairplay.png)
 
 本主題示範如何使用 Azure 媒體服務，以 Apple FairPlay 動態加密 HLS 內容。它也會顯示如何使用媒體服務授權傳遞服務，傳遞 FairPlay 授權給用戶端。
+
+>[AZURE.NOTE] 如果您也想要以 PlayReady 加密 HLS 內容，必須建立一般金鑰，並將它與您的資產產生關聯。您也必須設定內容金鑰的授權原則，如[使用 PlayReady 動態一般加密](media-services-protect-with-drm.md)主題中所述。
 
 	
 ## 需求和考量
@@ -115,6 +122,20 @@ Azure 媒體服務可讓您使用下列格式，動態加密您的 HTTP 即時�
 
 >[AZURE.NOTE] Azure 媒體播放器不支援現成的 FairPlay 播放。客戶需要從 Apple 開發人員帳戶取得範例播放程式，才能在 MAC OSX 上播放 FairPlay。
  
+##串流 URL
+
+如果使用一個以上 DRM 來加密您的資產，您應該使用串流 URL 中的加密標籤：(format='m3u8-aapl', encryption='xxx')。
+
+您必須考量下列事項：
+
+- 僅可指定零個或一個加密類型。
+- 如果只有一個加密套用到資產，則無須在 URL 中指定加密類型。
+- 加密類型不區分大小寫。
+- 可以指定下列加密類型︰
+	- **cenc**︰一般加密 (Playready 或 Widevine)
+	- **cbcs-aapl**：Fairplay
+	- **cbc**：AES 信封加密。
+
 
 ##.NET 範例
 
@@ -550,4 +571,4 @@ Azure 媒體服務可讓您使用下列格式，動態加密您的 HTTP 即時�
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_0928_2016-->
