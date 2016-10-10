@@ -145,7 +145,7 @@ Service Fabric 的目標是將使用微服務方法建置應用程式時的複�
 
 * 其他資訊：
     * [Service Fabric 術語概觀](service-fabric-technical-overview.md)
-    * [微服務︰採用雲端技術的應用程式革命](https://azure.microsoft.com/zh-TW/blog/microservices-an-application-revolution-powered-by-the-cloud/)
+    * [微服務︰採用雲端技術的應用程式革命](https://azure.microsoft.com/blog/microservices-an-application-revolution-powered-by-the-cloud/)
 
 
 [Image1]: media/service-fabric-overview-microservices/monolithic-vs-micro.png

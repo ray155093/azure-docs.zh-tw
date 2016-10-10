@@ -272,7 +272,8 @@ dependencies {
      mContext.acquireTokenSilent(resource, clientid, userId, callback );
     ```
 
-11. **Broker**：Microsoft Intune 公司入口網站應用程式將提供 Broker 元件。如果有一個使用者帳戶在這個驗證器上建立，且開發人員選擇不要略過它，ADAL 會使用 Broker 帳戶。開發人員可以使用下列方法來略過 Broker 使用者：
+11. **Broker**：
+Microsoft Intune 公司入口網站應用程式將提供 Broker 元件。如果有一個使用者帳戶在這個驗證器上建立，且開發人員選擇不要略過它，ADAL 會使用 Broker 帳戶。開發人員可以使用下列方法來略過 Broker 使用者：
 
     ```java
      AuthenticationSettings.Instance.setSkipBroker(true);

@@ -30,7 +30,7 @@ ms.service="virtual-machines-linux"
 
 * **Azure CLI 指令碼** - 如本文稍後所示，請使用 [Azure 命令列介面](../xplat-cli-install.md) (CLI) 來處理支援 RDMA 之 VM 叢集的部署指令碼。「服務管理」模式下的 CLI 會以傳統部署模型循序建立叢集節點，因此如果部署許多計算節點，可能需要花費數分鐘的時間。使用傳統部署模型時，若要啟用 RDMA 網路連線，請將 VM 部署在相同的雲端服務中。
 
-* **Azure Resource Manager 範本** - 您也可以使用 Resource Manager 部署模型來部署支援 RDMA 的 VM 叢集，以連線到 RDMA 網路。您可以[建立自己的範本](../resource-group-authoring-templates.md)，或檢查 [Azure 快速入門範本][](https://azure.microsoft.com/documentation/templates/)，取得由 Microsoft 或社群貢獻的範本以部署想要的方案。Resource Manager 範本可提供一個既快速又可靠的方式來部署 Linux 叢集。使用 Resource Manager 部署模型時，若要啟用 RDMA 網路連線，請將 VM 部署在相同的可用性設定組中。
+* **Azure Resource Manager 範本** - 您也可以使用 Resource Manager 部署模型來部署支援 RDMA 的 VM 叢集，以連線到 RDMA 網路。您可以[建立自己的範本](../resource-group-authoring-templates.md)，或檢查 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)，取得由 Microsoft 或社群貢獻的範本以部署想要的方案。Resource Manager 範本可提供一個既快速又可靠的方式來部署 Linux 叢集。使用 Resource Manager 部署模型時，若要啟用 RDMA 網路連線，請將 VM 部署在相同的可用性設定組中。
 
 * **HPC Pack** - 在 Azure 中建立 Microsoft HPC Pack 叢集，並新增支援 RDMA 的計算節點來執行支援的 Linux 散發套件，以存取 RDMA 網路。請參閱[開始在 Azure 中的 HPC Pack 叢集使用 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md)。
 

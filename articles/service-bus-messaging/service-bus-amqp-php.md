@@ -156,7 +156,25 @@ if ($message->properties != null)
 
 | .NET 屬性類型 | PHP 屬性類型 | 注意事項 |
 |--------------------|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| byte | integer | - | | sbyte | integer | - | | char | Char | Proton-PHP 類別 | | short | integer | - | | ushort | integer | - | | int | integer | - | | uint | Integer | - | | long | integer | - | | ulong | integer | - | | float | double | - | | double | double | - | | decimal | string | Proton 目前不支援 decimal。| | bool | boolean | - | | Guid | UUID | Proton-PHP 類別 | | string | string | - | | DateTime | integer | - | | DateTimeOffset | DescribedType | DateTimeOffset.UtcTicks 對應至 AMQP 類型：<type name="datetime-offset" class=restricted source="long"> <descriptor name="com.microsoft:datetime-offset" /></type> | | TimeSpan | DescribedType | Timespan.Ticks 對應至 AMQP 類型：<type name="timespan" class=restricted source="long"> <descriptor name="com.microsoft:timespan" /></type> | | Uri | DescribedType | Uri.AbsoluteUri 對應至 AMQP 類型：<type name="uri" class=restricted source="string"> <descriptor name="com.microsoft:uri" /></type> |
+| byte | integer | - | 
+| sbyte | integer | - | 
+| char | Char | Proton-PHP 類別 | 
+| short | integer | - | 
+| ushort | integer | - | 
+| int | integer | - | 
+| uint | Integer | - | 
+| long | integer | - | 
+| ulong | integer | - | 
+| float | double | - | 
+| double | double | - | 
+| decimal | string | Proton 目前不支援 decimal。| 
+| bool | boolean | - | 
+| Guid | UUID | Proton-PHP 類別 | 
+| string | string | - | 
+| DateTime | integer | - | 
+| DateTimeOffset | DescribedType | DateTimeOffset.UtcTicks 對應至 AMQP 類型：<type name="datetime-offset" class=restricted source="long"> <descriptor name="com.microsoft:datetime-offset" /></type> | 
+| TimeSpan | DescribedType | Timespan.Ticks 對應至 AMQP 類型：<type name="timespan" class=restricted source="long"> <descriptor name="com.microsoft:timespan" /></type> | 
+| Uri | DescribedType | Uri.AbsoluteUri 對應至 AMQP 類型：<type name="uri" class=restricted source="string"> <descriptor name="com.microsoft:uri" /></type> |
 
 ### 標準屬性
 
@@ -167,13 +185,38 @@ if ($message->properties != null)
 | 持久 | n/a | 服務匯流排僅支援持久的訊息。 |
 | 優先順序 | n/a | 服務匯流排僅支援單一訊息優先順序。 |
 | Ttl | Message.TimeToLive | 轉換，Proton-PHP TTL 是以毫秒定義。 |
-| first\_acquirer | - | - | | delivery\_count | - | - | | Id | Message.Id | - | | user\_id | - | - | | Address | Message.To | - | | Subject | Message.Label | - | | reply\_to | Message.ReplyTo | - | | correlation\_id | Message.CorrelationId | - | | content\_type | Message.ContentType | - | | content\_encoding | n/a | - | | expiry\_time | Message.ExpiresAtUTC | - | | creation\_time | n/a | - | | group\_id | Message.SessionId | - | | group\_sequence | - | - | | reply\_to\_group\_id | Message.ReplyToSessionId | - | | Format | n/a | -
+| first\_acquirer | - | - | 
+| delivery\_count | - | - | 
+| Id | Message.Id | - | 
+| user\_id | - | - | 
+| Address | Message.To | - | 
+| Subject | Message.Label | - | 
+| reply\_to | Message.ReplyTo | - | 
+| correlation\_id | Message.CorrelationId | - | 
+| content\_type | Message.ContentType | - | 
+| content\_encoding | n/a | - | 
+| expiry\_time | Message.ExpiresAtUTC | - | 
+| creation\_time | n/a | - | 
+| group\_id | Message.SessionId | - | 
+| group\_sequence | - | - | 
+| reply\_to\_group\_id | Message.ReplyToSessionId | - | 
+| Format | n/a | -
 
 #### 服務匯流排 .NET API 至 PROTON-PHP
 
 | 服務匯流排 .NET | Proton-PHP | 注意事項 |
 |-------------------------|--------------------------------------------------------|--------------------------------------------------------|
-| ContentType | Message->content\_type | - | | CorrelationId | Message->correlation\_id | - | | EnqueuedTimeUtc | Message->annotations[x-opt-enqueued-time] | - | | Label | Message->subject | - | | MessageId | Message->id | - | | ReplyTo | Message->reply\_to | - | | ReplyToSessionId | Message->reply\_to\_group\_id | - | | ScheduledEnqueueTimeUtc | Message->annotations ["x-opt-scheduled-enqueue-time"] | - | | SessionId | Message->group\_id | - | | TimeToLive | Message->ttl | 轉換，Proton-PHP TTL 是以毫秒定義。 | | To | Message->address | - |
+| ContentType | Message->content\_type | - | 
+| CorrelationId | Message->correlation\_id | - | 
+| EnqueuedTimeUtc | Message->annotations[x-opt-enqueued-time] | - | 
+| Label | Message->subject | - | 
+| MessageId | Message->id | - | 
+| ReplyTo | Message->reply\_to | - | 
+| ReplyToSessionId | Message->reply\_to\_group\_id | - | 
+| ScheduledEnqueueTimeUtc | Message->annotations ["x-opt-scheduled-enqueue-time"] | - | 
+| SessionId | Message->group\_id | - | 
+| TimeToLive | Message->ttl | 轉換，Proton-PHP TTL 是以毫秒定義。 | 
+| To | Message->address | - |
 
 ## 後續步驟
 

@@ -119,7 +119,7 @@ Azure Mobile Apps 的 Android SDK 支援 API 層級 19 到 24 (KitKat 到 Nougat
 	    mPriority = priority;
 	}
 
-若要了解如何在您的 Mobile Apps 後端建立其他資料表，請參閱[做法：定義資料表控制器][15] (.NET 後端) 或[使用動態結構描述定義資料表][16] (Node.js 後端)。對於 Node.js 後端，您也可以使用 [Azure 入口網站]中的 [簡單資料表] 設定。
+若要了解如何在您的 Mobile Apps 後端建立其他資料表，請參閱[做法：定義資料表控制器][15] \(.NET 後端) 或[使用動態結構描述定義資料表][16] \(Node.js 後端)。對於 Node.js 後端，您也可以使用 [Azure 入口網站]中的 [簡單資料表] 設定。
 
 ###<a name="create-client"></a>做法：建立用戶端內容
 

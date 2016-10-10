@@ -76,7 +76,7 @@ PHP 5.5 和 PHP 5.6 版本同樣可供使用，但預設並未啟用。若要更
 
 ## 作法：變更內建 PHP 組態
 
-對於任一個內建的 PHP 執行階段，您可以遵循下列步驟，來變更任何組態選項。(如需 php.ini 指示詞的資訊，請參閱 [php.ini 指示詞的清單] (英文))。
+對於任一個內建的 PHP 執行階段，您可以遵循下列步驟，來變更任何組態選項。(如需 php.ini 指示詞的資訊，請參閱 [php.ini 指示詞的清單] \(英文))。
 
 ### 變更 PHP\_INI\_USER、PHP\_INI\_PERDIR、PHP\_INI\_ALL 組態設定
 
@@ -147,7 +147,7 @@ Zend 擴充功能也支援使用 **PHP\_ZENDEXTENSIONS** 索引鍵。若要啟�
 除了預設的 PHP 執行階段之外，App Service Web Apps 也可以使用您提供的 PHP 執行階段來執行 PHP 指令碼。您提供的執行階段可以由也是您提供的 `php.ini` 檔案加以設定。若要使用自訂 PHP 執行階段搭配 Web Apps，請依照下列步驟執行。
 
 1. 取得 PHP for Windows 的非安全執行緒 VC9 或 VC11 相容版本。可以在下列網址找到最新版 PHP for Windows：[http://windows.php.net/download/]。在下列封存中可以找到舊版：[http://windows.php.net/downloads/releases/archives/]。
-2. 為您的執行階段修改 `php.ini` 檔案。請注意，Web Apps 將忽略僅系統層級指示詞的任何組態設定(如需僅系統層級指示詞的資訊，請參閱 [php.ini 指示詞的清單] (英文))。
+2. 為您的執行階段修改 `php.ini` 檔案。請注意，Web Apps 將忽略僅系統層級指示詞的任何組態設定(如需僅系統層級指示詞的資訊，請參閱 [php.ini 指示詞的清單] \(英文))。
 3. 或者，將擴充功能新增至 PHP 執行階段，並且在 `php.ini` 檔案中啟用這些擴充功能。
 4. 將 `bin` 目錄新增至根目錄，並在其中放入包含 PHP 執行階段的目錄 (例如，`bin\php`)。
 5. 部署 Web 應用程式。

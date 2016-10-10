@@ -26,7 +26,7 @@
 
 ## 建立 Node.js 應用程式
 
-建立空白的 Node.js 應用程式。如需建立 Node.js 應用程式的相關指示，請參閱[建立 Node.js 應用程式並將其部署到 Azure 網站][]或 [Node.js 雲端服務][] (使用 Windows PowerShell)。
+建立空白的 Node.js 應用程式。如需建立 Node.js 應用程式的相關指示，請參閱[建立 Node.js 應用程式並將其部署到 Azure 網站][]或 [Node.js 雲端服務][] \(使用 Windows PowerShell)。
 
 ## 設定應用程式以使用服務匯流排
 

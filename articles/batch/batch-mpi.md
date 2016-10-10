@@ -55,7 +55,7 @@ myCloudPool.MaxTasksPerComputeNode = 1;
 
 此外，多重執行個體工作「只」可以在 **2015 年 12 月 14 日之後建立的集區**中的節點上執行。
 
-> [AZURE.TIP] 當您在 Batch 集區中選擇 [支援 RDMA 大小][](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md) (如 A9 計算節點) 時，MPI 應用程式可以利用 Azure 高效能、低延遲的遠端直接記憶體存取 (RDMA) 網路。[雲端服務的大小](./../cloud-services/cloud-services-sizes-specs.md)提供 Batch 集區中可用的計算節點大小的完整清單。
+> [AZURE.TIP] 當您在 Batch 集區中選擇 [支援 RDMA 大小](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md) (如 A9 計算節點) 時，MPI 應用程式可以利用 Azure 高效能、低延遲的遠端直接記憶體存取 (RDMA) 網路。[雲端服務的大小](./../cloud-services/cloud-services-sizes-specs.md)提供 Batch 集區中可用的計算節點大小的完整清單。
 
 ### 使用 StartTask 來安裝 MPI 應用程式
 
@@ -186,7 +186,7 @@ cmd /c ""%MSMPI_BIN%\mpiexec.exe"" -c 1 -wdir %AZ_BATCH_TASK_SHARED_DIR% MyMPIAp
 
 當您刪除多重執行個體工作時，Batch 服務也會刪除主要工作和所有子工作。所有子工作目錄及其檔案會從計算節點中刪除，如同在標準工作中一樣。
 
-多重執行個體工作的 [TaskConstraints][net_taskconstraints] (例如 [MaxTaskRetryCount][net_taskconstraint_maxretry]、[MaxWallClockTime][net_taskconstraint_maxwallclock] 和 [RetentionTime][net_taskconstraint_retention] 屬性) 都視為用於標準工作，並套用至主要工作和所有子工作。不過，如果您在多重執行個體工作新增到作業之後變更 [RetentionTime][net_taskconstraint_retention] 屬性，這項變更只會套用到主要工作。所有的子工作會繼續使用原始 [RetentionTime][net_taskconstraint_retention]。
+多重執行個體工作的 [TaskConstraints][net_taskconstraints] \(例如 [MaxTaskRetryCount][net_taskconstraint_maxretry]、[MaxWallClockTime][net_taskconstraint_maxwallclock] 和 [RetentionTime][net_taskconstraint_retention] 屬性) 都視為用於標準工作，並套用至主要工作和所有子工作。不過，如果您在多重執行個體工作新增到作業之後變更 [RetentionTime][net_taskconstraint_retention] 屬性，這項變更只會套用到主要工作。所有的子工作會繼續使用原始 [RetentionTime][net_taskconstraint_retention]。
 
 如果最近的工作是多重執行個體工作的一部分，計算節點的最近工作清單會反映子工作的識別碼。
 

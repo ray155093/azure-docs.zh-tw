@@ -33,7 +33,7 @@
 
 	![在 Azure 中建立 MySQL 資料庫 - 開始](./media/store-php-create-mysql-database/create-db-1-start.png)
 
-2. 在 [新增 MySQL 資料庫][](azure-portal-overview.md) 刀鋒視窗中，依下列方式設定新的 MySQL 資料庫 (刀鋒視窗︰以水平方式開啟的入口網站頁面)：
+2. 在 [新增 MySQL 資料庫](azure-portal-overview.md) 刀鋒視窗中，依下列方式設定新的 MySQL 資料庫 (刀鋒視窗︰以水平方式開啟的入口網站頁面)：
 
 	- **資料庫名稱**︰輸入可唯一識別的名稱
 	- **訂用帳戶**：選擇要使用的訂用帳戶

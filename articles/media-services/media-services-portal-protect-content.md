@@ -28,7 +28,7 @@ AMS 提供一種服務，將 DRM 授權和 AES 純文字金鑰傳遞給授權用
 
 本文章示範如何使用 Azure 入口網站設定內容保護原則。文章也會說明如何將動態加密套用到資產。
 
-> [AZURE.NOTE]  如果您是使用 Azure 傳統入口網站建立保護原則，原則可能不會出現在 [Azure 入口網站](https://portal.azure.com/)。不過，所有舊的原則仍然存在。您可以使用 Azure 媒體服務 .NET SDK 或 [Azure-Media-Services-Explorer](https://github.com/Azure/Azure-Media-Services-Explorer/releases) 工具來檢查這些原則 (若要參閱原則，請以滑鼠右鍵按一下 [資產] -> [顯示資訊] (F4) -> 按一下 [內容金鑰] 索引標籤 -> 按一下金鑰)。
+> [AZURE.NOTE]  如果您是使用 Azure 傳統入口網站建立保護原則，原則可能不會出現在 [Azure 入口網站](https://portal.azure.com/)。不過，所有舊的原則仍然存在。您可以使用 Azure 媒體服務 .NET SDK 或 [Azure-Media-Services-Explorer](https://github.com/Azure/Azure-Media-Services-Explorer/releases) 工具來檢查這些原則 (若要參閱原則，請以滑鼠右鍵按一下 [資產] -> [顯示資訊] \(F4) -> 按一下 [內容金鑰] 索引標籤 -> 按一下金鑰)。
 > 
 > 如果您想要使用新的原則加密資產，請使用 Azure 入口網站設定它們、按一下 [儲存]，然後重新套用動態加密。
 

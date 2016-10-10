@@ -73,13 +73,13 @@
 
 3. 在 [基本] 刀鋒視窗中，輸入叢集的名稱，這也會指定前端節點 VM 的名稱。您可以選擇現有的資源群組或建立新的資源群組，以進行部署。
 
-4. 如果是第一次部署，通常可接受 [Head node settings] (前端節點設定) 刀鋒視窗中的預設值。
+4. 如果是第一次部署，通常可接受 [Head node settings] \(前端節點設定) 刀鋒視窗中的預設值。
 
-    >[AZURE.NOTE] [Post-configuration script URL] (組態後指令碼 URL) 是選擇性的設定，可指定您想要在前端節點 VM 執行後，於其上執行的公開的 Windows PowerShell 指令碼。
+    >[AZURE.NOTE] [Post-configuration script URL] \(組態後指令碼 URL) 是選擇性的設定，可指定您想要在前端節點 VM 執行後，於其上執行的公開的 Windows PowerShell 指令碼。
     
 5. 在 [計算節點設定] 刀鋒視窗中，選取節點的命名模式、節點數目與大小，以及要部署的 Linux 散發。
 
-6. 在 [Infrastructure settings] (基礎結構設定) 刀鋒視窗中，輸入虛擬網路和 Active Directory 網域的名稱、網域和 VM 系統管理員認證，以及儲存體帳戶的命名模式。
+6. 在 [Infrastructure settings] \(基礎結構設定) 刀鋒視窗中，輸入虛擬網路和 Active Directory 網域的名稱、網域和 VM 系統管理員認證，以及儲存體帳戶的命名模式。
 
     >[AZURE.NOTE]HPC Pack 會使用 Active Directory 網域來驗證叢集使用者。
 

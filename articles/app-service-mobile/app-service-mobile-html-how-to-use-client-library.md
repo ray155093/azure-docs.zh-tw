@@ -107,6 +107,6 @@ Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、M
 
 [Azure 入口網站]: https://portal.azure.com/
 [適用於 Azure Mobile Apps 的 JavaScript SDK]: https://www.npmjs.com/package/azure-mobile-apps-client
-[Query object documentation]: https://msdn.microsoft.com/zh-TW/library/azure/jj613353.aspx
+[Query 物件文件]: https://msdn.microsoft.com/zh-TW/library/azure/jj613353.aspx
 
 <!---HONumber=AcomDC_0928_2016-->

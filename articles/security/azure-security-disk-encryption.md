@@ -718,7 +718,7 @@ OS 磁碟加密的必要條件︰
     OsVolumeEncryptionSettings : Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings
     ProgressMessage            : OS disk successfully encrypted, please reboot the VM
 
-建議您在重新開機「之前」，先儲存 VM 的[開機診斷](https://azure.microsoft.com/zh-TW/blog/boot-diagnostics-for-virtual-machines-v2/)。
+建議您在重新開機「之前」，先儲存 VM 的[開機診斷](https://azure.microsoft.com/blog/boot-diagnostics-for-virtual-machines-v2/)。
 
 #### 監視 OS 加密進度
 
@@ -753,7 +753,7 @@ VM 達到「OS disk encryption started」之後，將需要在進階儲存體所
 
 ![VM 執行個體檢視](./media/azure-security-disk-encryption/vm-instanceview.png)
 
-2\. 查看[開機診斷](https://azure.microsoft.com/zh-TW/blog/boot-diagnostics-for-virtual-machines-v2/)。來自 ADE 擴充功能的訊息應該會在前面加上 `[AzureDiskEncryption]`。
+2\. 查看[開機診斷](https://azure.microsoft.com/blog/boot-diagnostics-for-virtual-machines-v2/)。來自 ADE 擴充功能的訊息應該會在前面加上 `[AzureDiskEncryption]`。
 
 3\. 透過 SSH 登入 VM，並從下列位置取得擴充功能記錄檔
 
@@ -787,7 +787,7 @@ VM 達到「OS disk encryption started」之後，將需要在進階儲存體所
 
 ![Ubuntu 16.04 設定](./media/azure-security-disk-encryption/ubuntu-1604-preencrypted-fig5.png)
 
-6\. 使用[這些指示](https://azure.microsoft.com/zh-TW/documentation/articles/virtual-machines-linux-create-upload-ubuntu/)準備要上傳到 Azure 的 VM。還不要執行最後一個步驟 (解除佈建 VM)。
+6\. 使用[這些指示](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-create-upload-ubuntu/)準備要上傳到 Azure 的 VM。還不要執行最後一個步驟 (解除佈建 VM)。
 
 ###### 設定加密來與 Azure 搭配運作
 
@@ -862,7 +862,7 @@ VM 達到「OS disk encryption started」之後，將需要在進階儲存體所
 
 ![openSUSE 13.2 設定](./media/azure-security-disk-encryption/opensuse-encrypt-fig2.png)
 
-3\. 使用[這些指示](https://azure.microsoft.com/zh-TW/documentation/articles/virtual-machines-linux-suse-create-upload-vhd/#prepare-opensuse-131)準備要上傳到 Azure 的 VM。還不要執行最後一個步驟 (解除佈建 VM)。
+3\. 使用[這些指示](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-suse-create-upload-vhd/#prepare-opensuse-131)準備要上傳到 Azure 的 VM。還不要執行最後一個步驟 (解除佈建 VM)。
 
 ###### 設定加密來與 Azure 搭配運作
 
@@ -942,7 +942,7 @@ VM 達到「OS disk encryption started」之後，將需要在進階儲存體所
 
 ![CentOS 7 設定](./media/azure-security-disk-encryption/centos-encrypt-fig4.png)
 
-5\. 使用[這些指示](https://azure.microsoft.com/zh-TW/documentation/articles/virtual-machines-linux-create-upload-centos/#centos-70)準備要上傳到 Azure 的 VM。還不要執行最後一個步驟 (解除佈建 VM)。
+5\. 使用[這些指示](https://azure.microsoft.com/documentation/articles/virtual-machines-linux-create-upload-centos/#centos-70)準備要上傳到 Azure 的 VM。還不要執行最後一個步驟 (解除佈建 VM)。
 
 6\. 現在您可以取消佈建 VM，並[將 VHD 上傳](#upload-encrypted-vhd-to-an-azure-storage-account)到 Azure。
 
