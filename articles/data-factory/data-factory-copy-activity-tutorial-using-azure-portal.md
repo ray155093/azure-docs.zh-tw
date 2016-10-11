@@ -7,6 +7,7 @@
 	manager="jhubbard" 
 	editor="monicar"/>
 
+<tags 
 	ms.service="data-factory" 
 	ms.workload="data-services" 
 	ms.tgt_pltfrm="na" 
@@ -367,7 +368,8 @@
 2. 您應該會看到 [監視及管理] 應用程式。變更 [開始時間] 和 [結束時間] 以包含您管線的開始 (2016-07-12) 和結束時間 (2016-07-13)，然後按一下 [套用]。
 
 	![監視及管理應用程式](./media/data-factory-copy-activity-tutorial-using-azure-portal/monitor-and-manage-app.png)
-3. 選取 [活動時段] 清單中的活動時段以查看其詳細資料。![活動時段詳細資料](./media/data-factory-copy-activity-tutorial-using-azure-portal/activity-window-details.png)
+3. 選取 [活動時段] 清單中的活動時段以查看其詳細資料。 
+	![活動時段詳細資料](./media/data-factory-copy-activity-tutorial-using-azure-portal/activity-window-details.png)
 
 ## 摘要 
 在本教學課程中，您已建立要將資料從 Azure Blob 複製到 Azure SQL 資料庫的 Azure Data Factory。您已使用 Azure 入口網站建立 Data Factory、連結服務、資料集和管線。以下是您在本教學課程中執行的高階步驟：
