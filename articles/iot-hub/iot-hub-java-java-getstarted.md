@@ -40,13 +40,13 @@
 
 最後一個步驟，記下**主要金鑰**值，然後按一下 [傳訊]。記下 [傳訊] 刀鋒視窗上的**事件中樞相容名稱**和**事件中樞相容端點**。在建立 **read-d2c-messages** 應用程式時需要用到這三個值。
 
-![][6]
+![Azure 入口網站的 IoT 中樞傳訊刀鋒視窗][6]
 
 您現在已經建立 IoT 中樞，並擁有完成本教學課程所需的 IoT 中樞主機名稱、IoT 中樞連接字串、IoT 中樞主要金鑰、事件中樞相容名稱和事件中樞相容端點。
 
 ## 建立裝置識別
 
-在本節中，您會建立 Java 主控台應用程式，它會在 IoT 中樞的身分識別登錄中建立新的裝置身分識別。裝置無法連線到 IoT 中樞，除非它在裝置身分識別登錄中具有項目。如需詳細資訊，請參閱 [IoT 中心開發人員指南][lnk-devguide-identity]的**裝置識別登錄**一節。執行這個主控台應用程式時，它會產生唯一的裝置識別碼及金鑰，當裝置向 IoT 中樞傳送裝置對雲端訊息時，可以用來識別裝置本身。
+在本節中，您會建立 Java 主控台應用程式，它會在 IoT 中樞的身分識別登錄中建立新的裝置身分識別。裝置無法連線到 IoT 中樞，除非它在裝置身分識別登錄中具有項目。如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]的**裝置識別登錄**一節。執行這個主控台應用程式時，它會產生唯一的裝置識別碼及金鑰，當裝置向 IoT 中樞傳送裝置對雲端訊息時，可以用來識別裝置本身。
 
 1. 建立稱為 iot-java-get-started 的新的空資料夾。在 iot-java-get-started 資料夾的命令提示字元下，使用下列命令建立名為 **create-device-identity** 的新 Maven 專案。注意，這是一個單一且非常長的命令：
 
@@ -445,7 +445,7 @@
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
     ```
 
-    ![][7]
+    ![用來監視裝置到雲端訊息的 Java IoT 中樞服務用戶端應用程式][7]
 
 2. 在 simulated-device 資料夾的命令提示字元中，執行下列命令以開始將遙測資料傳送至 IoT 中樞：
 
@@ -453,15 +453,15 @@
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App" 
     ```
 
-    ![][8]
+    ![用來傳送裝置到雲端訊息的 Java IoT 中樞裝置用戶端應用程式][8]
 
 3. [Azure 入口網站][lnk-portal]中的 [使用量] 圖格會顯示傳送至中樞的訊息數目︰
 
-    ![][43]
+    ![顯示傳送到 IoT 中樞之訊息數目的 Azure 入口網站使用量圖格][43]
 
 ## 後續步驟
 
-在本教學課程中，您在入口網站中設定了新的 IoT 中樞，然後在中樞的身分識別登錄中建立了裝置身分識別。您會將此裝置身分識別用於啟用模擬的裝置應用程式，以將裝置對雲端訊息傳送至中樞。您也會建立一個應用程式來顯示中樞所接收的訊息。
+在本教學課程中，您在入口網站中設定了新的 IoT 中樞，然後在中樞的身分識別登錄中建立了裝置識別。您會將此裝置識別用於啟用模擬的裝置應用程式，以將裝置對雲端訊息傳送至中樞。您也會建立一個應用程式來顯示中樞所接收的訊息。
 
 若要繼續開始使用 IoT 中樞並瀏覽其他 IoT 案例，請參閱︰
 
@@ -481,13 +481,13 @@
 [lnk-transient-faults]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 
 [lnk-eventhubs-tutorial]: ../event-hubs/event-hubs-csharp-ephcs-getstarted.md
-[lnk-devguide-identity]: iot-hub-devguide.md#identityregistry
+[lnk-devguide-identity]: iot-hub-devguide-identity-registry.md
 [lnk-event-hubs-overview]: ../event-hubs/event-hubs-overview.md
 
 [lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/java-devbox-setup.md
 [lnk-process-d2c-tutorial]: iot-hub-csharp-csharp-process-d2c.md
 
-[lnk-hub-sdks]: iot-hub-sdks-summary.md
+[lnk-hub-sdks]: iot-hub-devguide-sdks.md
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-portal]: https://portal.azure.com/
 
@@ -495,4 +495,4 @@
 [lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
 [lnk-connect-device]: https://azure.microsoft.com/develop/iot/
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_1005_2016-->

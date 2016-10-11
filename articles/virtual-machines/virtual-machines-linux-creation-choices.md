@@ -130,4 +130,4 @@ azure vm image list --location WestUS --publisher Canonical --offer UbuntuServer
 
 - [重設密碼或 SSH 金鑰及管理使用者](virtual-machines-linux-using-vmaccess-extension.md)的快速步驟
 
-<!---HONumber=AcomDC_0928_2016-->
+<!---HONumber=AcomDC_1005_2016-->

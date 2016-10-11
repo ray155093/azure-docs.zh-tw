@@ -29,13 +29,17 @@
 
 [AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-###必要條件
+##必要條件
 
 開始進行本 HBase 教學課程之前，您必須具備下列條件：
 
 - **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-- [安全殼層 (SSU)](hdinsight-hadoop-linux-use-ssh-unix.md)。
+- [安全殼層 (SSH)](hdinsight-hadoop-linux-use-ssh-unix.md)。
 - [cURL](http://curl.haxx.se/download.html)。
+
+### 存取控制需求
+
+[AZURE.INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
 
 ## 建立 HBase 叢集
 
@@ -246,8 +250,8 @@ SSH 也可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDI
 3. 在 [**類別**] 中，按一下 [**工作階段**]。
 4. 從您 PuTTY 工作階段螢幕的基本選項，輸入下列值：
 
-	- **主機名稱**：請在 [主機名稱] \(或 [IP 位址]) 欄位中，輸入您 HDInsight 伺服器的 SSH 位址。SSH 位址是叢集名稱加上 **-ssh.azurehdinsight.net**。例如，*mycluster-ssh.azurehdinsight.net*。
-	- **連接埠**：22。前端節點 0 上的 ssh 連接埠為 22。  
+	- **主機名稱**：請在 [主機名稱] (或 [IP 位址]) 欄位中，輸入您 HDInsight 伺服器的 SSH 位址。SSH 位址是叢集名稱加上 **-ssh.azurehdinsight.net**。例如，*mycluster-ssh.azurehdinsight.net*。
+	- **連接埠**：22。主要前端節點上的 SSH 連接埠為 22。
 5. 在對話方塊左側的 [類別] 區段中，依序展開 [連線] 和 [SSH]，最後按一下 [通道]。
 6. 在 [控制 SSH 連接埠轉送的選項] 表單中提供下列資訊：
 
@@ -325,4 +329,4 @@ SSH 也可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDI
 [img-hbase-sample-data-tabular]: ./media/hdinsight-hbase-tutorial-get-started-linux/hdinsight-hbase-contacts-tabular.png
 [img-hbase-sample-data-bigtable]: ./media/hdinsight-hbase-tutorial-get-started-linux/hdinsight-hbase-contacts-bigtable.png
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_1005_2016-->

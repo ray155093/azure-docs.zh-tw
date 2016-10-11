@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="07/25/2016"
+	ms.date="10/05/2016"
 	ms.author="nitinme"/>
 
 
@@ -26,7 +26,7 @@
 
 [AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-**必要條件：**
+## 必要條件
 
 - **Azure 訂用帳戶**。開始進行本教學課程之前，您必須擁有 Azure 訂用帳戶。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 
@@ -38,18 +38,21 @@
     
 	-  從 Windows 電腦 - [從 Windows 搭配使用 SSH 與以 Linux 為基礎的 HDInsight (Hadoop)](hdinsight-hadoop-linux-use-ssh-windows.md)。
 
->[AZURE.NOTE] 本文使用 ARM 範本來建立使用 [Azure 儲存體 Blob 做為叢集儲存體](hdinsight-hadoop-use-blob-storage.md)的 Spark 叢集。除了使用 Azure 儲存體 Blob 做為預設儲存體外，您也可以建立使用 [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md) 做為額外儲存體的 Spark 叢集。如需指示，請參閱[建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
+>[AZURE.NOTE] 本文使用 Azure Resource Manager 範本來建立使用 [Azure 儲存體 Blob 做為叢集儲存體](hdinsight-hadoop-use-blob-storage.md)的 Spark 叢集。除了使用 Azure 儲存體 Blob 做為預設儲存體外，您也可以建立使用 [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md) 做為額外儲存體的 Spark 叢集。如需指示，請參閱[建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
 
+### 存取控制需求
+
+[AZURE.INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
 
 ## 建立 Spark 叢集
 
-在本節中，您將使用 Azure ARM 範本建立 HDInsight 3.4 版叢集 (Spark 1.6.1 版)。如需不同 HDInsight 版本及其 SLA 的相關資訊，請參閱〈[HDInsight 元件版本設定](hdinsight-component-versioning.md)〉。如需其他叢集建立方法，請參閱[建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
+在本節中，您將使用 Azure Resource Manager 範本建立 HDInsight 3.4 版叢集 (Spark 1.6.1 版)。如需不同 HDInsight 版本及其 SLA 的相關資訊，請參閱〈[HDInsight 元件版本設定](hdinsight-component-versioning.md)〉。如需其他叢集建立方法，請參閱[建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
 
-1. 按一下以下影像，以在 Azure 入口網站中開啟 ARM 範本。
+1. 按一下以下影像，在 Azure 入口網站中開啟範本。
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-spark-cluster-in-hdinsight.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-spark-cluster-in-hdinsight.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/zh-TW/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
     
-    ARM 範本位於公用 Blob 容器中，*https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-spark-cluster-in-hdinsight.json*。
+    此範本位於公用 Blob 容器中，*https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-spark-cluster-in-hdinsight.json*。
    
 2. 從 [參數] 刀鋒視窗，輸入下列項目：
 
@@ -96,7 +99,7 @@
 
 1. 在 [Azure 入口網站](https://portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。您也可以按一下 [瀏覽全部] > [HDInsight 叢集]，瀏覽至您的叢集。
 
-2. 在 Spark 叢集刀鋒視窗中按一下 [快速連結] ，然後在 [叢集儀表板] 刀鋒視窗中按一下 [Jupyter Notebook]。出現提示時，輸入叢集的系統管理員認證。
+2. 從 Spark 叢集刀鋒視窗按一下 [叢集儀表板]，然後按一下 [Jupyter Notebook]。出現提示時，輸入叢集的系統管理員認證。
 
 	> [AZURE.NOTE] 您也可以在瀏覽器中開啟下列 URL，來連接到您的叢集的 Jupyter Notebook。使用您叢集的名稱取代 __CLUSTERNAME__：
 	>
@@ -214,4 +217,4 @@
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_1005_2016-->

@@ -20,7 +20,7 @@
 # 如何使用 Azure 入口網站建立 DocumentDB NoSQL 帳戶
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](documntdb-create-account.md)
+- [Azure 入口網站](documentdb-create-account.md)
 - [Azure CLI 和 Azure Resource Manager](documentdb-automation-resource-manager-cli.md)
 
 若要使用 Microsoft Azure DocumentDB 建立資料庫，您必須：
@@ -93,4 +93,4 @@
 -	[DocumentDB 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)
 -	[DocumentDB 階層式資源模型和概念](documentdb-resources.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_1005_2016-->

@@ -262,7 +262,7 @@
     node ReadDeviceToCloudMessages.js 
     ```
 
-    ![][7]
+    ![用來監視裝置到雲端訊息的 Node.js IoT 中樞服務用戶端應用程式][7]
 
 2. 在 **simulateddevice** 資料夾的命令提示字元中，執行下列命令以開始將遙測資料傳送至 IoT 中樞：
 
@@ -270,11 +270,11 @@
     node SimulatedDevice.js
     ```
 
-    ![][8]
+    ![用來傳送裝置到雲端訊息的 Node.js IoT 中樞裝置用戶端應用程式][8]
 
 3. [Azure 入口網站][lnk-portal]中的 [使用量] 圖格會顯示傳送至中樞的訊息數目︰
 
-    ![][43]
+    ![顯示傳送到 IoT 中樞之訊息數目的 Azure 入口網站使用量圖格][43]
 
 ## 後續步驟
 
@@ -289,7 +289,6 @@
 若要了解如何擴充您的 IoT 解決方案及大規模處理裝置對雲端訊息，請參閱[處理裝置對雲端訊息][lnk-process-d2c-tutorial]教學課程。
 
 <!-- Images. -->
-[6]: ./media/iot-hub-node-node-getstarted/create-iot-hub6.png
 [7]: ./media/iot-hub-node-node-getstarted/runapp1.png
 [8]: ./media/iot-hub-node-node-getstarted/runapp2.png
 [43]: ./media/iot-hub-csharp-csharp-getstarted/usage.png
@@ -298,13 +297,13 @@
 [lnk-transient-faults]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 
 [lnk-eventhubs-tutorial]: ../event-hubs/event-hubs-csharp-ephcs-getstarted.md
-[lnk-devguide-identity]: iot-hub-devguide.md#identityregistry
+[lnk-devguide-identity]: iot-hub-devguide-identity-registry.md
 [lnk-event-hubs-overview]: ../event-hubs/event-hubs-overview.md
 
 [lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/node-devbox-setup.md
 [lnk-process-d2c-tutorial]: iot-hub-csharp-csharp-process-d2c.md
 
-[lnk-hub-sdks]: iot-hub-sdks-summary.md
+[lnk-hub-sdks]: iot-hub-devguide-sdks.md
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-portal]: https://portal.azure.com/
 
@@ -312,4 +311,4 @@
 [lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
 [lnk-connect-device]: https://azure.microsoft.com/develop/iot/
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_1005_2016-->

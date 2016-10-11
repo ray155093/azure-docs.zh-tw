@@ -29,7 +29,7 @@
 
 1. 如果您從未用過 Azure PowerShell，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)，並遵循其中的所有指示登入 Azure，然後選取您的訂用帳戶。
 
-        > [AZURE.NOTE] PowerShell cmdlet for managing VNet peering is shipped with [Azure PowerShell 1.6.](http://www.powershellgallery.com/packages/Azure/1.6.0)
+> [AZURE.NOTE] 用於管理 VNet 對等互連的 PowerShell Cmdlet 隨附於 [Azure PowerShell 1.6。](http://www.powershellgallery.com/packages/Azure/1.6.0)
 
 2. 讀取虛擬網路物件：
 
@@ -47,7 +47,8 @@
         Etag			: W/"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         ResourceGroupName	: vnet101
         VirtualNetworkName	: vnet1
-        ProvisioningState		: Succeeded
+        PeeringState		: Initiated
+        ProvisioningState	: Succeeded
         RemoteVirtualNetwork	: {
                                             "Id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/vnet101/providers/Microsoft.Network/virtualNetworks/vnet2"
                                         }
@@ -69,7 +70,8 @@
         Etag			: W/"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         ResourceGroupName	: vnet101
         VirtualNetworkName	: vnet2
-        ProvisioningState		: Succeeded
+        PeeringState		: Connected
+        ProvisioningState	: Succeeded
         RemoteVirtualNetwork	: {
                                             "Id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/vnet101/providers/Microsoft.Network/virtualNetworks/vnet1"
                                         }
@@ -91,7 +93,8 @@
 		Etag			: W/"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 		ResourceGroupName	: vnet101
 		VirtualNetworkName	: vnet1
-		ProvisioningState		: Succeeded
+		PeeringState		: Connected
+		ProvisioningState	: Succeeded
 		RemoteVirtualNetwork	: {
 		                                     "Id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/vnet101/providers/Microsoft.Network/virtualNetworks/vnet2"
 		                                }
@@ -124,6 +127,7 @@
         Etag			: W/"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         ResourceGroupName	: vnet101
         VirtualNetworkName	: vnet1
+        PeeringState		: Connected
         ProvisioningState	: Succeeded
         RemoteVirtualNetwork	: {
                                             "Id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/vnet101/providers/Microsoft.Network/virtualNetworks/vnet2"
@@ -234,4 +238,4 @@
 
 2. 一旦在 VNET 對等互連中移除一個連結，對等連結狀態將會改為已中斷連線。在此狀態下，您無法重新建立連結直到對等連結狀態變更為初始化為止。建議您兩個連結都移除後，再重新建立 VNET 對等互連。
 
-<!---HONumber=AcomDC_0928_2016-->
+<!---HONumber=AcomDC_1005_2016-->

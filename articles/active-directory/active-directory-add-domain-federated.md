@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="07/18/2016"
+	ms.date="10/04/2016"
 	ms.author="curtand;jeffsta"/>
 
 # 將您的自訂網域名稱新增至 Azure Active Directory
@@ -60,9 +60,9 @@
 
 1.	**等候一小時**。DNS 記錄必須在 Azure AD 確認網域之後傳播。這可能需要一個小時以上。
 
-2.	**請確定已輸入正確的 DNS 記錄**。請在該網域的網域名稱註冊機構網站上完成這個步驟。如果 DNS 項目不在 DNS 區域檔案中，或如果與 Azure AD 提供您的 DNS 項目不完全相符，則 Azure AD 無法確認網域名稱。如果您無法在網域名稱註冊機構上存取以更新網域的 DNS 記錄，請與組織內具有此存取權的個人或團隊共用 DNS 項目，並請他們新增 DNS 項目。
+2.	**確定已輸入正確的 DNS 記錄**。請在該網域的網域名稱註冊機構網站上完成這個步驟。如果 DNS 項目不在 DNS 區域檔案中，或如果與 Azure AD 提供您的 DNS 項目不完全相符，則 Azure AD 無法確認網域名稱。如果您無法在網域名稱註冊機構上存取以更新網域的 DNS 記錄，請與組織內具有此存取權的個人或團隊共用 DNS 項目，並請他們新增 DNS 項目。
 
-3.	**從 Azure AD 的另一個目錄刪除網域名稱**。網域名稱只能在單一目錄中確認。如果網域名稱先前在另一個目錄中確認過，則必須先在那裡將其刪除後，才可在新的目錄中確認。若要深入了解刪除網域名稱，請參閱[管理自訂網域名稱](active-directory-add-manage-domain-names.md)。
+3.	**從 Azure AD 中的另一個目錄刪除網域名稱**。網域名稱只能在單一目錄中確認。如果網域名稱先前在另一個目錄中確認過，則必須先在那裡將其刪除後，才可在新的目錄中確認。若要了解如何刪除網域名稱，請參閱[管理自訂網域名稱](active-directory-add-manage-domain-names.md)。
 
 ## 新增更多的自訂網域名稱
 
@@ -75,4 +75,4 @@
 -   [在您的使用者登入時顯示公司的商標](active-directory-add-company-branding.md)
 -   [使用 PowerShell 管理 Azure AD 中的網域名稱](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains)
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_1005_2016-->

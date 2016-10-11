@@ -19,7 +19,7 @@
 
 # SQL Database 選項和效能：了解每個服務層中可用的項目
 
-[Azure SQL Database](sql-database-technical-overview.md) 提供三個服務層以及多個效能等級來處理不同的工作負載。每個效能等級都提供越來越多的資源集，旨在提供愈來愈高的輸送量。您可以在資料庫自己的[服務層](sql-database-service-tiers.md#standalone-database-service-tiers-and-performance-levels)及自己的效能等級管理每個資料庫。您也可以在具有一組共用資源的[彈性集區](sql-database-service-tiers.md#elastic-pool-service-tiers-and-performance-in-edtus)中管理多個資料庫。獨立資料庫可用的資源會以資料庫交易單位 (DTU) 表示，而彈性集區可用的資源則會以彈性 DTU 或 eDTU 表示。如需 DTU 和 eDTU 的詳細資訊，請參閱[何謂 DTU](sql-database-what-is-a-DTU.md)。
+[Azure SQL Database](sql-database-technical-overview.md) 提供三個服務層以及多個效能等級來處理不同的工作負載。每個效能等級都提供越來越多的資源集，旨在提供愈來愈高的輸送量。您可以在資料庫自己的[服務層](sql-database-service-tiers.md#standalone-database-service-tiers-and-performance-levels)及自己的效能等級管理每個資料庫。您也可以在具有一組共用資源的[彈性集區](sql-database-service-tiers.md#elastic-pool-service-tiers-and-performance-in-edtus)中管理多個資料庫。獨立資料庫可用的資源會以資料庫交易單位 (DTU) 表示，而彈性集區可用的資源則會以彈性 DTU 或 eDTU 表示。如需 DTU 和 eDTU 的詳細資訊，請參閱[何謂 DTU](sql-database-what-is-a-dtu.md)。
 
 在這兩種情況下，服務層包含[基本]、[標準] 和 [高階]。這些層中的資料庫選項類似於獨立資料庫和彈性集區，但彈性集區有其他考量。本文會提供獨立資料庫和彈性資料庫的服務層詳細資料。
 
@@ -88,4 +88,4 @@
 
 如需多租用戶型軟體即服務 (SaaS) 資料庫應用程式的常見資料架構模式的資訊，請參閱 [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
 
-<!---HONumber=AcomDC_0921_2016--->
+<!---HONumber=AcomDC_1005_2016-->

@@ -20,8 +20,8 @@
 # 使用 PowerShell 設定 Resource Manager 的 VNet 對 VNet 連線
 
 > [AZURE.SELECTOR]
-- [Azure 傳統入口網站](virtual-networks-configure-vnet-to-vnet-connection.md)
-- [PowerShell - 資源管理員](vpn-gateway-vnet-vnet-rm-ps.md)
+- [Resource Manager - PowerShell](vpn-gateway-vnet-vnet-rm-ps.md)
+- [傳統 - 傳統入口網站](virtual-networks-configure-vnet-to-vnet-connection.md)
 
 本文逐步引導您使用 VPN 閘道在 Resource Manager 部署模型中建立 VNet 間的連線。虛擬網路可位於相同或不同的區域，以及來自相同或不同的訂用帳戶。
 
@@ -29,24 +29,23 @@
 ![v2v 圖表](./media/vpn-gateway-vnet-vnet-rm-ps/v2vrmps.png)
 
 
-### VNet 對 VNet 的部署模型和工具
+### VNet 對 VNet 的部署模型和方法
 
 
 [AZURE.INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
-可以在這兩種部署模型中，使用不同的工具，設定 VNet 至 VNet 的連接。如需詳細資訊，請參閱下列表格。當此組態有新文章、新的部署模型和額外工具可以使用時，我們就會更新此資料表。當文章可用時，我們會直接從資料表連結至該文章。
+可以在這兩種部署模型中，使用不同的工具，設定 VNet 至 VNet 的連接。當此組態有新文章和額外工具可以使用時，我們就會更新下表。當文章可用時，我們會直接從資料表連結至該文章。<br><br>
 
 [AZURE.INCLUDE [vpn-gateway-table-vnet-vnet](../../includes/vpn-gateway-table-vnet-to-vnet-include.md)]
 
-
 #### VNet 對等互連
 
-只要您的虛擬網路組態符合特定需求，您就能夠使用 VNet 對等互連來建立您的連線。VNet 對等互連不會使用虛擬網路閘道。[VNET 對等互連](../virtual-network/virtual-network-peering-overview.md)目前處於預覽狀態。
+[AZURE.INCLUDE [vpn-gateway-vnetpeeringlink](../../includes/vpn-gateway-vnetpeeringlink-include.md)]
 
 
 ## 關於 VNet 對 VNet 連線
 
-將虛擬網路連接至另一個虛擬網路 (VNet 對 VNet)，類似於將 VNet 連接至內部部署網站位置。這兩種連線類型都使用 Azure VPN 閘道提供使用 IPsec/IKE 的安全通道。您所連接的 VNet 可位於不同的區域。或位於不同的訂用帳戶。您甚至可以將多網站組態與 VNet 對 VNet 通訊結合。這可讓您建立使用內部虛擬網路連線結合跨單位連線的網路拓撲，如下圖所示。
+將虛擬網路連接至另一個虛擬網路 (VNet 對 VNet)，類似於將 VNet 連接至內部部署網站位置。這兩種連線類型都使用 Azure VPN 閘道提供使用 IPsec/IKE 的安全通道。您所連接的 VNet 可位於不同的區域。或位於不同的訂用帳戶。您甚至可以將多網站組態與 VNet 對 VNet 通訊結合。這可讓您建立使用內部虛擬網路連線結合跨單位連線的網路拓撲，如下圖所示：
 
 
 ![關於連線](./media/vpn-gateway-vnet-vnet-rm-ps/aboutconnections.png)
@@ -453,7 +452,7 @@
 
 3. **[訂用帳戶 1]** 建立 TestVNet1 至 TestVNet5 的連線
 
-	在此步驟中，您會從 TestVNet1 建立連線至 TestVNet5。此處的差別為直接取得 $vnet5gw，因為其位於不同的訂用帳戶中。您必須使用上述步驟中從訂用帳戶 1 通訊的值來建立新的 PowerShell 物件。以您自己的值來取代名稱、識別碼和共用金鑰。但請務必確認該共用金鑰必須適用於這兩個連線。建立連線可能需要一段時間才能完成。
+	在此步驟中，您會從 TestVNet1 建立連線至 TestVNet5。此處的差別為直接取得 $vnet5gw，因為其位於不同的訂用帳戶中。您必須使用上述步驟中從訂用帳戶 1 通訊的值來建立新的 PowerShell 物件。請使用下方的範例。以您自己的值來取代名稱、識別碼和共用金鑰。但請務必確認該共用金鑰必須適用於這兩個連線。建立連線可能需要一段時間才能完成。
 
 	確定您已連接到訂用帳戶 1。
 	
@@ -484,4 +483,4 @@
 - 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
 - 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md)和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_1005_2016-->

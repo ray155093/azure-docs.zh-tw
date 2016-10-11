@@ -1,6 +1,6 @@
 <properties 
-	pageTitle="開始使用 Azure 搜尋服務 | Microsoft Azure | 開始使用 Azure 搜尋服務 | DocumentDB | 雲端搜尋服務" 
-	description="使用本教學課程的逐步解說建立您的第一個 Azure 搜尋服務解決方案。了解如何使用 DocumentDB 資料建立 Azure 搜尋服務索引。這是使用 [匯入資料] 精靈在入口網站中進行的無程式碼練習。" 
+	pageTitle="開始使用 Azure 搜尋服務 | Microsoft Azure | DocumentDB | 雲端搜尋服務" 
+	description="了解如何使用此教學課程的逐步解說和 DocumentDB 範例資料建立第一個 Azure 搜尋服務索引。這個入口網站式的無程式碼練習會使用匯入資料精靈。" 
 	services="search" 
 	documentationCenter="" 
 	authors="HeidiSteen" 
@@ -14,7 +14,7 @@
 	ms.workload="search" 
 	ms.topic="hero-article" 
 	ms.tgt_pltfrm="na" 
-	ms.date="08/29/2016" 
+	ms.date="10/03/2016" 
 	ms.author="heidist"/>
 
 # 開始在入口網站中使用 Azure 搜尋服務
@@ -23,7 +23,7 @@
 
 本教學課程採用可使用我們的資料和指示輕鬆建立的[範例 Azure DocumentDB 資料庫](#apdx-sampledata)，但您也可以將這些步驟套用至 DocumentDB 或 SQL Database 中現有的資料。
 
-> [AZURE.NOTE] 本入門教學課程需要有 [Azure 訂用帳戶](../../includes/free-trial-note.md)和 [Azure 搜尋服務](search-create-service-portal.md)。
+> [AZURE.NOTE] 本入門教學課程需要有 [Azure 訂用帳戶](/pricing/free-trial/?WT.mc_id=A261C142F)和 [Azure 搜尋服務](search-create-service-portal.md)。
  
 ## 尋找您的服務
 
@@ -39,11 +39,11 @@
 
 ## 建立索引和載入資料
 
-搜尋查詢會逐一查看索引，其中包含用來最佳化特定搜尋行為的可搜尋資料、中繼資料及建構。在第一個步驟中，您將定義及填入索引。
+搜尋查詢會逐一查看索引，其中包含用來最佳化特定搜尋行為的可搜尋資料、中繼資料及建構。在第一個步驟中，請定義及填入索引。
 
 有數種方法能夠建立索引。如果您的資料位於 Azure 搜尋服務可以搜耙的存放區 (例如 Azure SQL Database、Azure VM 上的 SQL Server 或 DocumentDB)，您就可以非常輕鬆地使用索引子建立及填入索引。
 
-為了讓這項工作以入口網站為基礎，我們將採用可以透過 [匯入資料精靈] 使用索引子搜耙的 DocumentDB 資料。
+為了讓這項工作以入口網站為基礎，我們使用可以透過 [匯入資料精靈] 使用索引子搜耙的 DocumentDB 資料。
 
 繼續之前，請建立[範例 DocumentDB 資料庫](#apdx-sampledata)以搭配本教學課程使用，再回到本節完成下列步驟。
 
@@ -52,13 +52,13 @@
 
 1. 在 Azure 搜尋服務儀表板上，按一下命令列中的 [匯入資料] 來啟動可建立及填入索引的精靈。
 
-  ![][7]
+    ![][7]
 
 2. 在精靈中，按一下 [資料來源] > [DocumentDB] > [名稱]，鍵入資料來源的名稱。資料來源是 Azure 搜尋服務中可以搭配其他索引子使用的連接物件。建立資料來源後，它就會成為您的服務中可用的「現有資料來源」。
 
 3. 選擇現有的 DocumentDB 帳戶，以及資料庫和集合。如果您使用我們所提供的範例資料，您的資料來源定義會如下所示：
 
-  ![][2]
+    ![][2]
 
 請注意，我們正略過查詢。這是因為我們這陣子並未在我們的資料集中實作變更追蹤。如果您的資料集包含可追蹤何時更新記錄的欄位，您可以設定 Azure 搜尋服務索引子，以對您的索引選擇性更新使用變更追蹤。
 
@@ -76,7 +76,7 @@
 - [可篩選]、[可排序] 和 [可面向化] 判斷欄位是否可以用於篩選、排序或多面向導覽結構。
 - [可搜尋] 表示欄位包含在全文檢索搜尋中。字串通常可以搜尋。數字欄位和布林值欄位通常會標示為不可搜尋。
 
-離開此頁面之前，將您索引中的欄位標示為使用下列選項 (可擷取、可搜尋等等)。大部分的欄位都 [可擷取]。大部分的字串欄位都 [可搜尋] \(您不需要產生可搜尋的索引鍵)。有些欄位 (像是 orderableOnline、rating 和 tags) 也都 [可篩選]、[可排序] 和 [可面向化]。
+離開此頁面之前，將您索引中的欄位標示為使用下列選項 (可擷取、可搜尋等等)。大部分的欄位都 [可擷取]。大部分的字串欄位都 [可搜尋] (您不需要產生可搜尋的索引鍵)。有些欄位 (像是 orderableOnline、rating 和 tags) 也都 [可篩選]、[可排序] 和 [可面向化]。
 	
 欄位 | 類型 | 選項 |
 ------|------|---------|
@@ -183,4 +183,4 @@ lastUpdated | Edm.DateTimeOffset | |
 [6]: ./media/search-get-started-portal/AzureSearch-GetStart-IndexerList.png
 [7]: ./media/search-get-started-portal/search-data-import-wiz-btn.png
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_1005_2016-->

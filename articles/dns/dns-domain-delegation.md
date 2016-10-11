@@ -3,7 +3,7 @@
    description="了解如何變更網域委派及使用 Azure DNS 名稱伺服器提供網域主機代管。"
    services="dns"
    documentationCenter="na"
-   authors="cherylmc"
+   authors="sdwheeler"
    manager="carmonm"
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="06/30/2016"
-   ms.author="cherylmc"/>
+   ms.author="sewhee"/>
 
 
 # 將網域委派給 Azure DNS
@@ -205,4 +205,4 @@ Azure DNS 會自動在包含指派的名稱伺服器的區域中，建立權威 
 
 [管理 DNS 記錄](dns-operations-recordsets.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_1005_2016-->

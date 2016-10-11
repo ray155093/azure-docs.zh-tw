@@ -3,7 +3,7 @@
 	description="遵循此教學課程，可開始使用 Azure 行動應用程式後端進行 C#、Visual Basic 或 JavaScript 的通用 Windows 平台 (UWP) 應用程式開發。"
 	services="app-service\mobile"
 	documentationCenter="windows"
-	authors="ggailey777"
+	authors="adrianhall"
 	manager="erikre"
 	editor=""/>
 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="mobile-windows"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="08/11/2016"
-	ms.author="glenga"/>
+	ms.date="10/01/2016"
+	ms.author="adrianha"/>
 
 #建立 Windows 應用程式
 
@@ -91,4 +91,4 @@
 [Azure portal]: https://portal.azure.com/
 [Visual Studio Community 2015]: https://go.microsoft.com/fwLink/p/?LinkID=534203
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_1005_2016-->

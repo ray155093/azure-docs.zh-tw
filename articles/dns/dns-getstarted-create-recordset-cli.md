@@ -3,7 +3,7 @@
    description="如何建立 Azure DNS 的主機記錄。使用 CLI 設定記錄集和記錄"
    services="dns"
    documentationCenter="na"
-   authors="cherylmc"
+   authors="sdwheeler"
    manager="carmonm"
    editor=""/>
 
@@ -14,7 +14,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="08/16/2016"
-   ms.author="cherylmc"/>
+   ms.author="sewhee"/>
 
 # 使用 CLI 建立 DNS 記錄集和記錄
 
@@ -38,7 +38,7 @@
 
 若要建立記錄集，請使用 `azure network dns record-set create`。指定資源群組、區域名稱、記錄集相對名稱、記錄類型和 TTL。若未定義 `--ttl` 參數，預設值為四 (以秒為單位)。完成此步驟之後，您就具有空的 "www" 記錄集。
 
-使用方式：network dns record-set create <resource-group> <dns-zone-name> <name> <type> <ttl>
+*使用方式：network dns record-set create <resource-group> <dns-zone-name> <name> <type> <ttl>*
 
 	azure network dns record-set create myresourcegroup  contoso.com  www A  60
 
@@ -50,7 +50,7 @@
 
 您可以使用下列命令將 IPv4 A記錄新增至 "www" 記錄集：
 
-使用方式：network dns record-set add-record <resource-group> <dns-zone-name> <record-set-name> <type>
+*使用方式：network dns record-set add-record <resource-group> <dns-zone-name> <record-set-name> <type>*
 
 	azure network dns record-set add-record myresourcegroup contoso.com  www A  -a 134.170.185.46
 
@@ -66,4 +66,4 @@
 
 如需 Azure DNS 的詳細資訊，請參閱 [Azure DNS 概觀](dns-overview.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_1005_2016-->

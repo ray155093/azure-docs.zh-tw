@@ -19,12 +19,13 @@
 # 教學課程：使用 Visual Studio 建立具有複製活動的管線
 > [AZURE.SELECTOR]
 - [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
+- [複製精靈](data-factory-copy-data-wizard-tutorial.md)
 - [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)
 - [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
 - [PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
 - [REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
 - [.NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
-- [複製精靈](data-factory-copy-data-wizard-tutorial.md)
+
 
 本教學課程示範如何使用 Visual Studio 建立和監視 Azure Data Factory。Data Factory 中的管線會使用複製活動將資料從 Azure Blob 複製到 Azure SQL Database。
 
@@ -344,4 +345,4 @@
 | [資料集](data-factory-create-datasets.md) | 本文協助您了解 Azure Data Factory 中的資料集。
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0928_2016-->
+<!---HONumber=AcomDC_1005_2016-->

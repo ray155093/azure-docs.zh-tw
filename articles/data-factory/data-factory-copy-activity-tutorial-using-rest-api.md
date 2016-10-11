@@ -19,12 +19,13 @@
 # 教學課程：使用 REST API 建立具有複製活動的管線
 > [AZURE.SELECTOR]
 - [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
+- [複製精靈](data-factory-copy-data-wizard-tutorial.md)
 - [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)
 - [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
 - [PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
 - [REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
 - [.NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
-- [複製精靈](data-factory-copy-data-wizard-tutorial.md)
+
 
 本教學課程示範如何使用 REST API 建立和監視 Azure Data Factory。Data Factory 中的管線會使用複製活動將資料從 Azure Blob 複製到 Azure SQL Database。
 
@@ -491,4 +492,4 @@ JSON 定義會定義名為 **AzureSqlOutput** 的資料集，以表示管線中�
 [sql-management-studio]: ../sql-database/sql-database-manage-azure-ssms.md
  
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_1005_2016-->

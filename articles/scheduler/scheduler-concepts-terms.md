@@ -3,8 +3,8 @@
  description="Azure 排程器概念、詞彙及實體階層，包括工作和工作集合。顯示排程工作的完整範例。"
  services="scheduler"
  documentationCenter=".NET"
- authors="krisragh"
- manager="dwrede"
+ authors="derek1ee"
+ manager="kevinlam1"
  editor=""/>
 <tags
  ms.service="scheduler"
@@ -13,7 +13,7 @@
  ms.devlang="dotnet"
  ms.topic="get-started-article"
  ms.date="08/18/2016"
- ms.author="krisragh"/>
+ ms.author="deli"/>
 
 # 排程器概念、術語及實體階層
 
@@ -214,4 +214,4 @@
 
  [Azure 排程器輸出驗證](scheduler-outbound-authentication.md)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_1005_2016-->

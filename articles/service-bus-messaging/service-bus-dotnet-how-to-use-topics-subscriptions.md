@@ -151,6 +151,8 @@ if (!namespaceManager.TopicExists("TestTopic"))
 
 您也可以使用 [NamespaceManager](https://msdn.microsoft.com/library/azure/microsoft.servicebus.namespacemanager.aspx) 類別來建立主題訂閱。為訂閱命名，且能包含選擇性篩選器，以用來限制傳遞至訂閱的虛擬佇列的訊息集合。
 
+> [AZURE.IMPORTANT] 為了讓訂用帳戶能夠收到訊息，您必須先建立該訂用帳戶，再將訊息傳送給主題。如果主題沒有訂用帳戶，便會捨棄這些訊息。
+
 ### 使用預設 (MatchAll) 篩選器建立訂用帳戶
 
 如果在建立新的訂用帳戶時未指定篩選器，**MatchAll** 篩選器就會是預設使用的篩選器。使用 **MatchAll** 篩選器時，所有發佈至主題的訊息都會被置於訂用帳戶的虛擬佇列中。下列範例將建立名為 "AllMessages" 的訂閱，並使用預設的 **MatchAll** 篩選器。
@@ -327,4 +329,4 @@ namespaceManager.DeleteSubscription("TestTopic", "HighMessages");
   [服務匯流排代理傳訊 .NET 教學課程]: service-bus-brokered-tutorial-dotnet.md
   [Azure 範例]: https://code.msdn.microsoft.com/site/search?query=service%20bus&f%5B0%5D.Value=service%20bus&f%5B0%5D.Type=SearchText&ac=2
 
-<!---HONumber=AcomDC_0928_2016-->
+<!---HONumber=AcomDC_1005_2016-->

@@ -4,7 +4,7 @@
 	services="app-service\mobile"
 	documentationCenter=""
 	authors="adrianhall"
-	manager="dwrede"
+	manager="yochayk"
 	editor=""/>
 
 <tags
@@ -13,10 +13,10 @@
 	ms.tgt_pltfrm="mobile-multiple"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="05/03/2016"
-	ms.author="glennga"/>
+	ms.date="10/01/2016"
+	ms.author="adrianha"/>
 
-# <a name="getting-started"> </a>什麼是行動應用程式？
+# <a name="getting-started"></a>什麼是 Mobile Apps？
 
 Azure App Service 是完全受管理的[平台即服務](https://azure.microsoft.com/overview/what-is-paas/) (PaaS) 產品，適用於專業開發人員，具有一組豐富的功能可用於 Web、行動和整合案例。*Azure App Service* 中的「行動應用程式」具有高擴充性且可供全球使用，是專為企業開發人員與系統整合人員設計的行動應用程式開發平台，能提供一組豐富的功能給行動應用程式開發人員。
 
@@ -99,8 +99,8 @@ Azure App Service 是完全受管理的[平台即服務](https://azure.microsoft
 [部署選項]: ../app-service-web/web-sites-deploy.md
 [混合式連線]: ../app-service-web/web-sites-hybrid-connection-get-started.md
 [虛擬網路]: ../app-service-web/web-sites-integrate-with-vnet.md
-[ExpressRoute]: ../app-service/app-service-app-service-environment-network-configuration-expressroute.md
+[ExpressRoute]: ../app-service-web/app-service-app-service-environment-network-configuration-expressroute.md
 [App Service 環境]: ../app-service-web/app-service-app-service-environment-intro.md
 [學習地圖]: https://azure.microsoft.com/zh-TW/documentation/learning-paths/appservice-mobileapps/
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_1005_2016-->

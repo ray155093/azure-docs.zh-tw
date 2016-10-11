@@ -14,15 +14,16 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="07/14/2016"
+	ms.date="09/30/2016"
 	ms.author="andkjell;billmath"/>
 
 # 整合內部部署身分識別與 Azure Active Directory
+
 Azure AD Connect 會整合您的內部部署目錄與 Azure Active Directory。這可讓您為與 Azure AD 整合之 Office 365、Azure 和 SaaS 應用程式的使用者提供通用身分識別。本主題將引導您完成規劃、部署和作業步驟。其中集結了與此領域相關的主題連結。
 
 <!-- The hardcoded link is a workaround for campaign ids not working in acom links-->
 
-> [AZURE.IMPORTANT] [Azure AD Connect 是連接內部部署目錄與 Azure AD 和 Office 365 的最佳方式。 這是將 Azure AD Connect 從 Windows Azure Active Directory Sync (DirSync) 或 Azure AD Sync 升級的最佳時機，因為這些工具現在已淘汰，而且會在 2017 年 4 月 13 日結束支援。]( https://azure.microsoft.com/documentation/articles/active-directory-aadconnect-dirsync-deprecated/?WT.mc_id=DirSyncDepACOM)
+> [AZURE.IMPORTANT] [Azure AD Connect is the best way to connect your on-premises directory with Azure AD and Office 365. This is a great time to upgrade to Azure AD Connect from Windows Azure Active Directory Sync (DirSync) or Azure AD Sync as these tools are now deprecated and will reach end of support on April 13, 2017.]active-directory-aadconnect-dirsync-deprecated.md)
 
 ![何謂 Azure AD Connect](./media/active-directory-aadconnect/arch.png)
 
@@ -53,9 +54,9 @@ Azure Active Directory Connect 由三個主要元件組成︰同步處理服務�
 方案 | 案例
 ----- | ----- |
 開始之前 - [硬體和必要條件](active-directory-aadconnect-prerequisites.md) | <li>開始安裝 Azure AD Connect 之前所應完成的步驟。</li>
-[快速設定](active-directory-aadconnect-get-started-express.md) | <li>如果您有單一樹系 AD，則這是建議使用的選項。</li> <li>使用密碼同步處理以相同的密碼進行使用者登入。</li>
-[自訂設定](active-directory-aadconnect-get-started-custom.md) | <li>有多個樹系時使用。支援許多內部部署[拓撲](active-directory-aadconnect-topologies.md)。</li> <li>自訂您登入的選項，例如同盟的 ADFS 或使用第三方身分識別提供者。</li> <li>自訂同步處理功能，例如篩選和回寫。</li>
-[從 DirSync 升級](active-directory-aadconnect-dirsync-upgrade-get-started.md) | <li>在您有已在執行中的現有 DirSync 伺服器時使用。</li>
+[快速設定](./aad-connect/active-directory-aadconnect-get-started-express.md) | <li>如果您有單一樹系 AD，則這是建議使用的選項。</li> <li>使用密碼同步處理以相同的密碼進行使用者登入。</li>
+[自訂設定](./aad-connect/active-directory-aadconnect-get-started-custom.md) | <li>有多個樹系時使用。支援許多內部部署[拓撲](active-directory-aadconnect-topologies.md)。</li> <li>自訂您登入的選項，例如同盟的 ADFS 或使用第三方身分識別提供者。</li> <li>自訂同步處理功能，例如篩選和回寫。</li>
+[從 DirSync 升級](./aad-connect/active-directory-aadconnect-dirsync-upgrade-get-started.md) | <li>在您有已在執行中的現有 DirSync 伺服器時使用。</li>
 [從 Azure AD Sync 或 Azure AD Connect 升級](active-directory-aadconnect-upgrade-previous-version.md)| <li>視您的偏好而定會有數種不同的方法。</li>
 
 
@@ -66,9 +67,9 @@ Azure Active Directory Connect 由三個主要元件組成︰同步處理服務�
 主題 |  
 --------- | ---------
 下載 Azure AD Connect | [下載 Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771)
-使用快速設定進行安裝 | [快速安裝 Azure AD Connect](active-directory-aadconnect-get-started-express.md)
-使用自訂設定進行安裝 | [自訂 Azure AD Connect 安裝](active-directory-aadconnect-get-started-custom.md)
-從 DirSync 升級 | [從 Azure AD Sync 工具 (DirSync) 升級](active-directory-aadconnect-dirsync-upgrade-get-started.md)
+使用快速設定進行安裝 | [快速安裝 Azure AD Connect](./aad-connect/active-directory-aadconnect-get-started-express.md)
+使用自訂設定進行安裝 | [自訂 Azure AD Connect 安裝](./aad-connect/active-directory-aadconnect-get-started-custom.md)
+從 DirSync 升級 | [從 Azure AD Sync 工具 (DirSync) 升級](./aad-connect/active-directory-aadconnect-dirsync-upgrade-get-started.md)
 安裝之後 | [驗證安裝和指派授權](active-directory-aadconnect-whats-next.md)
 
 ### 深入了解安裝 Azure AD Connect
@@ -79,7 +80,7 @@ Azure Active Directory Connect 由三個主要元件組成︰同步處理服務�
 --------- | ---------
 支援的拓撲 | [Azure AD Connect 的拓撲](active-directory-aadconnect-topologies.md)
 設計概念 | [Azure AD Connect 的設計概念](active-directory-aadconnect-design-concepts.md)
-用於安裝的帳戶 | [進一步了解 Azure AD Connect 認證和權限](active-directory-aadconnect-accounts-permissions.md)
+用於安裝的帳戶 | [進一步了解 Azure AD Connect 認證和權限](./aad-connect/active-directory-aadconnect-accounts-permissions.md)
 作業規劃 | [Azure AD Connect 同步處理：作業工作和考量](active-directory-aadconnectsync-operations.md)
 使用者登入選項 | [Azure AD Connect 使用者登入選項](active-directory-aadconnect-user-signin.md)
 
@@ -162,4 +163,4 @@ Azure AD 的非 ADFS 相容性清單 | [Azure AD 同盟相容性清單](active-d
 
 >[AZURE.VIDEO microsoft-ignite-2015-extending-on-premises-directories-to-the-cloud-made-easy-with-azure-active-directory-connect]
 
-<!---HONumber=AcomDC_0928_2016-->
+<!---HONumber=AcomDC_1005_2016-->

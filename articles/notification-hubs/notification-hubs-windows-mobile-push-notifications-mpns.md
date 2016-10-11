@@ -14,16 +14,16 @@
 	ms.tgt_pltfrm="mobile-windows-phone"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="06/29/2016"
+	ms.date="10/03/2016"
 	ms.author="wesmc"/>
 
 # 在 Windows Phone 上使用 Azure 通知中樞傳送推播通知
 
 [AZURE.INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
-##概觀
+##Overview
 
-> [AZURE.NOTE] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-windows-phone-get-started%2F)。
+> [AZURE.NOTE] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdocumentation%2Farticles%2Fnotification-hubs-windows-phone-get-started%2F)。
 
 本教學課程將示範如何使用 Azure 通知中樞，將推播通知傳送到 Windows Phone 8 或 Windows Phone 8.1 Silverlight 應用程式。如果您的目標是 Windows Phone 8.1 (非 Silverlight)，請參閱 [Windows 通用](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md)版本。在本教學課程中，您將使用 Microsoft 推播通知服務 (MPNS)，建立可接收推播通知的空白 Windows Phone 8 應用程式。完成時，您便能夠使用通知中樞，將推播通知廣播到所有執行您 app 的裝置。
 
@@ -31,7 +31,7 @@
 
 本教學課程示範使用通知中樞的簡單廣播案例。
 
-##先決條件
+##必要條件
 
 本教學課程需要下列各項：
 
@@ -136,7 +136,7 @@
 
 4. 依序按一下 [工具]、[程式庫封裝管理員] 和 [封裝管理員主控台]。
 
-	這會顯示 [Package Manager Console]。
+	即會顯示套件管理器主控台。
 
 5.  在 [封裝管理員主控台] 視窗中，將 [預設專案] 設為新的主控台應用程式專案，然後在主控台視窗中執行下列命令：
 
@@ -176,7 +176,7 @@
 
 	您將會收到快顯推播通知。點選快顯通知即可載入 app。
 
-您可以在 MSDN 上的[快顯目錄] \(英文) 和[磚目錄] \(英文) 主題中找到所有可能的裝載。
+您可以在 MSDN 上的[快顯目錄] (英文) 和[目錄] (英文) 主題中找到所有可能的裝載。
 
 ##後續步驟
 
@@ -214,9 +214,9 @@
 [通知中心指引]: http://msdn.microsoft.com/library/jj927170.aspx
 [MPNS authenticated mode]: http://msdn.microsoft.com/library/windowsphone/develop/ff941099(v=vs.105).aspx
 [使用通知中樞來推播通知給使用者]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
-[使用通知中心傳送即時新聞]: notification-hubs-windows-phone-send-breaking-news.md
+[使用通知中心傳送即時新聞]: notification-hubs-windows-phone-push-xplat-segmented-mpns-notification.md
 [快顯目錄]: http://msdn.microsoft.com/library/windowsphone/develop/jj662938(v=vs.105).aspx
-[磚目錄]: http://msdn.microsoft.com/library/windowsphone/develop/hh202948(v=vs.105).aspx
+[目錄]: http://msdn.microsoft.com/library/windowsphone/develop/hh202948(v=vs.105).aspx
 [通知中樞 - Windows Phone Silverlight 教學課程]: https://github.com/Azure/azure-notificationhubs-samples/tree/master/PushToSLPhoneApp
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_1005_2016-->

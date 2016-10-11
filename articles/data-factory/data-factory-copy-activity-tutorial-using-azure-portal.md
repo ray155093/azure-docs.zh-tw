@@ -19,12 +19,13 @@
 # 教學課程：使用 Azure 入口網站建立具有複製活動的管線
 > [AZURE.SELECTOR]
 - [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
+- [複製精靈](data-factory-copy-data-wizard-tutorial.md)
 - [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)
 - [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
 - [PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)
 - [REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
 - [.NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
-- [複製精靈](data-factory-copy-data-wizard-tutorial.md)
+
 
 
 本教學課程示範如何使用 Azure 入口網站建立和監視 Azure Data Factory。Data Factory 中的管線會使用複製活動將資料從 Azure Blob 複製到 Azure SQL Database。
@@ -116,7 +117,7 @@
 ### 建立輸入資料集 
 在此步驟中，您將在 **AzureStorageLinkedService** 連結服務所代表的 Azure 儲存體中，建立指向 Blob 容器的 **InputDataset** 資料集。
 
-1. 在 Data Factory 的**編輯器**中，依序按一下下拉式功能表中的 [... 更多]、[新增資料集] 和 [Azure Blob 儲存體]。
+1. 在 Data Factory 的 [編輯器] 中，依序按一下下拉式功能表中的 [...更多]、[新增資料集] 和 [Azure Blob 儲存體]。
 
 	![新增資料集功能表](./media/data-factory-copy-activity-tutorial-using-azure-portal/new-dataset-menu.png)
 2. 將右窗格中的 JSON 替換為以下 JSON 片段：
@@ -184,7 +185,7 @@
 ### 建立輸出資料集
 在此步驟的這個部分中，您會建立名為 **OutputDataset** 的輸出資料集。此資料集指向 Azure SQL Database 中 **AzureSqlLinkedService** 所代表的 SQL 資料表。
 
-1. 在 Data Factory 的**編輯器**中，依序按一下下拉式功能表中的 [... 更多]、[新增資料集] 和 [Azure SQL]。
+1. 在 Data Factory 的 [編輯器] 中，依序按一下下拉式功能表中的 [...更多]、[新增資料集] 和 [Azure SQL]。
 2. 將右窗格中的 JSON 替換為以下 JSON 片段：
 
 		{
@@ -228,7 +229,7 @@
 ## 建立管線
 在此步驟中您會建立管線，其中含有使用 **InputDataset** 做為輸入和使用 **OutputDataset** 做為輸出的**複製活動**。
 
-1. 在 Data Factory 的**編輯器**中，依序按一下 [... 更多] 和 [新增管線]。或者，您也可以在樹狀檢視中，以滑鼠右鍵按一下 [管線]，再按一下 [**新增管線**]。
+1. 在 Data Factory 的 [編輯器] 中，依序按一下下拉式功能表中的 [...更多] 和 [新增管線]。或者，您也可以在樹狀檢視中，以滑鼠右鍵按一下 [管線]，再按一下 [**新增管線**]。
 2. 將右窗格中的 JSON 替換為以下 JSON 片段：
 		
 		{
@@ -316,7 +317,7 @@
 
 1. 按一下 **X** 關閉 [圖表] 檢視，以查看 Data Factory 首頁上的 Data Factory。如果您已關閉網頁瀏覽器，請執行下列步驟︰
 	2. 瀏覽至 [Azure 入口網站](https://portal.azure.com/)。
-	2. 按兩下 [開始面板] 上的 [ADFTutorialDataFactory]\(或) 按一下左側功能表上的 [Data Factory]，然後搜尋 ADFTutorialDataFactory。
+	2. 按兩下 [開始面板] 上的 [ADFTutorialDataFactory] (或) 按一下左側功能表上的 [Data Factory]，然後搜尋 ADFTutorialDataFactory。
 3. 您應該會看到您在此分頁上建立之資料表和管線的計數和名稱。
 
 	![含名稱的首頁](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-datafactory-home-page-pipeline-tables.png)
@@ -368,8 +369,7 @@
 2. 您應該會看到 [監視及管理] 應用程式。變更 [開始時間] 和 [結束時間] 以包含您管線的開始 (2016-07-12) 和結束時間 (2016-07-13)，然後按一下 [套用]。
 
 	![監視及管理應用程式](./media/data-factory-copy-activity-tutorial-using-azure-portal/monitor-and-manage-app.png)
-3. 選取 [活動時段] 清單中的活動時段以查看其詳細資料。 
-	![活動時段詳細資料](./media/data-factory-copy-activity-tutorial-using-azure-portal/activity-window-details.png)
+3. 選取 [活動時段] 清單中的活動時段以查看其詳細資料。![活動時段詳細資料](./media/data-factory-copy-activity-tutorial-using-azure-portal/activity-window-details.png)
 
 ## 摘要 
 在本教學課程中，您已建立要將資料從 Azure Blob 複製到 Azure SQL 資料庫的 Azure Data Factory。您已使用 Azure 入口網站建立 Data Factory、連結服務、資料集和管線。以下是您在本教學課程中執行的高階步驟：
@@ -391,4 +391,4 @@
 | [資料集](data-factory-create-datasets.md) | 本文協助您了解 Azure Data Factory 中的資料集。
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) | 本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 
 
-<!---HONumber=AcomDC_0928_2016-->
+<!---HONumber=AcomDC_1005_2016-->

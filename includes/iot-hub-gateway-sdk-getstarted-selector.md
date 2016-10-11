@@ -2,7 +2,7 @@
 - [Linux](../articles/iot-hub/iot-hub-linux-gateway-sdk-get-started.md)
 - [Windows](../articles/iot-hub/iot-hub-windows-gateway-sdk-get-started.md)
 
-本文提供 [Hello World 範例程式碼][lnk-helloworld-sample]的詳細逐步解說，來說明 [Azure IoT 閘道 SDK][lnk-gateway-sdk] 架構的基本元件。這個範例會使用閘道 SDK，建置每五秒即將 "hello world" 訊息記錄到檔案的簡單閘道。
+本文提供 [Hello World 範例程式碼][lnk-helloworld-sample]的詳細逐步解說，來說明 [Azure IoT 閘道 SDK][lnk-gateway-sdk] 架構的基本元件。此範例使用 IoT 中樞閘道 SDK，建置每五秒即將 "hello world" 訊息記錄到檔案的簡單閘道。
 
 本逐步解說涵蓋下列項目：
 
@@ -21,7 +21,7 @@
 
 建立和組合「模組」，即可使用 Azure IoT 閘道 SDK 來建置閘道。模組使用「訊息」來彼此交換資料。模組會接收訊息、對其執行某個動作、選擇性地將其轉換為新的訊息，然後發佈它，以供其他模組處理。某些模組可能只會產生新的訊息，且永遠不會處理內送訊息。一連串的模組可建立資料處理管線，而每個模組都會執行該管線中某個點的資料轉換。
 
-![][1]
+![使用 Azure IoT 閘道 SDK 所建置之閘道中的模組鏈結][1]
  
 SDK 包含下列項目：
 
@@ -31,7 +31,7 @@ SDK 包含下列項目：
 
 SDK 提供一個抽象層，可讓您建置要在各種作業系統和平台上執行的閘道。
 
-![][2]
+![Azure IoT 中樞閘道 SDK 抽象層][2]
 
 ### 訊息
 
@@ -39,7 +39,7 @@ SDK 提供一個抽象層，可讓您建置要在各種作業系統和平台上�
 
 模組使用 **Broker\_Publish** 函式將訊息發佈到訊息代理程式。訊息代理程式會叫用回呼函式，以將訊息傳遞到模組。訊息包含一組索引鍵/值屬性以及傳遞為記憶體區塊的內容。
 
-![][3]
+![Azure IoT 閘道 SDK 中的訊息代理程式角色][3]
 
 ### 訊息路由和篩選
 
@@ -52,7 +52,7 @@ Hello World 範例說明上節中所述的概念。Hello World 範例會實作�
 -	「Hello World」模組每五秒會建立一則訊息，並將其傳遞到 Logger 模組。
 -	「Logger」模組會將所收到的訊息寫入檔案。
 
-![][4]
+![使用 Azure IoT 閘道 SDK 所建置之 Hello World 範例的架構][4]
 
 如上節所述，Hello World 模組不會每五秒將訊息直接傳遞到 Logger 模組。而是每五秒將訊息發佈到訊息代理程式。
 
@@ -60,7 +60,7 @@ Logger 模組會接收來自訊息代理程式的訊息並對其採取動作，�
 
 Logger 模組只會取用來自訊息代理程式的訊息，永遠不會對訊息代理程式發佈新訊息。
 
-![][5]
+![訊息代理程式如何在 Azure IoT 閘道 SDK 的模組之間路由傳送訊息][5]
 
 上圖顯示 Hello World 範例的架構，以及實作[儲存機制][lnk-gateway-sdk]中範例不同部分之來源檔案的相對路徑。自行探索程式碼，或使用下面的程式碼片段作為指南。
 
@@ -75,4 +75,4 @@ Logger 模組只會取用來自訊息代理程式的訊息，永遠不會對訊�
 [lnk-helloworld-sample]: https://github.com/Azure/azure-iot-gateway-sdk/tree/master/samples/hello_world
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk
 
-<!---HONumber=AcomDC_0928_2016-->
+<!---HONumber=AcomDC_1005_2016-->

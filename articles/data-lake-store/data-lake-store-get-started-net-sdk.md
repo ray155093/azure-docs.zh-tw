@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="09/26/2016"
+   ms.date="09/27/2016"
    ms.author="nitinme"/>
 
 # 使用 .NET SDK 開始使用 Azure 資料湖存放區
@@ -112,9 +112,9 @@
 
 ## 驗證
 
-### 如果您要使用使用者驗證
+### 如果您要使用使用者驗證 (本教學課程建議的驗證方式)
 
-請將此方法用於現有的 Azure AD「原生用戶端」應用程式；下面會提供一個範例應用程式。
+請將此方法用於現有的 Azure AD「原生用戶端」應用程式；下面會提供一個範例應用程式。為了協助您更快完成本教學課程，建議您使用此方法。
 
     // User login via interactive popup
     // Use the client ID of an existing AAD "Native Client" application.
@@ -124,7 +124,10 @@
     var activeDirectoryClientSettings = ActiveDirectoryClientSettings.UsePromptOnly(nativeClientApp_clientId, new Uri("urn:ietf:wg:oauth:2.0:oob"));
     var creds = UserTokenProvider.LoginWithPromptAsync(domain, activeDirectoryClientSettings).Result;
 
-在上述程式碼片段中，我們使用所有 Azure 訂用帳戶預設可用的 Azure AD 網域和用戶端識別碼。如果您想要使用您自己的 Azure AD 網域和應用程式用戶端識別碼，則必須建立 Azure AD 原生應用程式。如需相關指示，請參閱[建立 Active Directory 應用程式](../resource-group-create-service-principal-portal.md#create-an-active-directory-application)。
+上面這個程式碼片段有幾項須知。
+
+* 為了協助您更快完成本教學課程，此程式碼片段使用所有 Azure 訂用帳戶預設可用的 Azure AD 網域和用戶端識別碼。因此，您可以**在應用程式中原封不動地使用此程式碼片段**。
+* 但是，如果您想要使用自己的 Azure AD 網域和應用程式用戶端識別碼，您必須建立 Azure AD 原生應用程式，然後使用您所建立之應用程式的 Azure AD 網域、用戶端識別碼和重新導向 URI。如需相關指示，請參閱[建立 Active Directory 應用程式](../resource-group-create-service-principal-portal.md#create-an-active-directory-application)。
 
 >[AZURE.NOTE] 上述連結中的指示適用於 Azure AD Web 應用程式。不過，即使您選擇改為建立原生用戶端應用程式，步驟也完全相同。
 
@@ -273,4 +276,4 @@
 - [Data Lake Store .NET SDK 參考](https://msdn.microsoft.com/library/mt581387.aspx)
 - [Data Lake Store REST 參考](https://msdn.microsoft.com/library/mt693424.aspx)
 
-<!---HONumber=AcomDC_0928_2016-->
+<!---HONumber=AcomDC_1005_2016-->

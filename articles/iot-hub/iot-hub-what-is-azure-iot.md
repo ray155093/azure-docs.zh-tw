@@ -13,18 +13,25 @@
  ms.topic="get-started-article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="07/19/2016"
+ ms.date="10/05/2016"
  ms.author="dobett"/>
 
 [AZURE.INCLUDE [iot-azure-and-iot](../../includes/iot-azure-and-iot.md)]
 
 ## 後續步驟
 
-Azure IoT 中樞是一項 Azure 服務，可讓應用程式後端與數百萬個裝置進行安全可靠的雙向通訊。它可讓應用程式後端大規模接收裝置的遙測資料，將該資料路由傳送至串流事件處理器，從裝置接收檔案上傳，而且還能對特定裝置傳送雲端到裝置的命令。您可以使用 IoT 中樞來實作自己的方案後端。此外，IoT 中樞還包含裝置身分識別登錄，可供用來佈建裝置、其安全性認證和其連線到中樞的權限。若要深入了解 IoT 中樞，請參閱[何謂 IoT 中樞？][lnk-iot-hub]。
+Azure IoT 中樞是一項 Azure 服務，可讓應用程式後端與數百萬個裝置進行安全可靠的雙向通訊。它可讓應用程式後端︰
+
+- 從您的裝置接收大規模遙測。
+- 將資料從您的裝置路由傳送到串流事件處理器。
+- 從裝置接收檔案上傳。
+- 將雲端到裝置的命令傳送到特定裝置。
+
+您可以使用 IoT 中樞來實作自己的方案後端。此外，IoT 中樞還包含裝置身分識別登錄，可供用來佈建裝置、其安全性認證和其連線到中樞的權限。若要深入了解 IoT 中樞，請參閱[何謂 IoT 中樞？][lnk-iot-hub]。
 
 若要了解 Azure IoT 中樞如何啟用標準型 IoT 裝置管理，以便您遠端管理、設定和更新您的裝置，請參閱 [IoT 中樞裝置管理概觀][lnk-device-management]。
 
-您可以使用 IoT 裝置 SDK 來實作用戶端應用程式，以便在各式各樣的裝置硬體平台和作業系統上執行。IoT 裝置 SDK 包含程式庫，可協助將遙測傳送至 IoT 中樞，並接收雲端到裝置的命令。當您使用 SDK 時，您可從數個網路通訊協定中挑選，以和 IoT 中樞通訊。若要深入了解，請參閱[裝置 SDK 的相關資訊][lnk-device-sdks]。
+您可以使用 IoT 裝置 SDK 來實作用戶端應用程式，以便在各式各樣的裝置硬體平台和作業系統上執行。IoT 裝置 SDK 包含程式庫，可協助將遙測傳送至 IoT 中樞，並接收雲端到裝置的命令。當您使用 SDK 時，您可以從數種網路通訊協定中選擇，以便與 IoT 中樞通訊。若要深入了解，請參閱[裝置 SDK 的相關資訊][lnk-device-sdks]。
 
 若要開始撰寫一些程式碼和執行一些範例，請參閱[開始使用 IoT 中樞][lnk-getstarted]教學課程。
 
@@ -37,4 +44,4 @@ Azure IoT 中樞是一項 Azure 服務，可讓應用程式後端與數百萬個
 [lnk-iotdev]: https://azure.microsoft.com/develop/iot/
 [lnk-device-management]: iot-hub-device-management-overview.md
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_1005_2016-->

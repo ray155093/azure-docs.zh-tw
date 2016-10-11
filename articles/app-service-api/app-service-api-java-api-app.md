@@ -24,7 +24,7 @@
 
 ## 必要條件
 
-1. [Java Developer Kit 8] \(或更新版本)
+1. [Java Developer Kit 8] (或更新版本)
 1. 安裝在您開發電腦上的 [Maven]
 1. 安裝在您開發電腦上的 [Git]
 1. 付費或[免費試用]的 [Microsoft Azure] 訂用帳戶
@@ -131,7 +131,7 @@
             }
         }
 
-1. 瀏覽至[線上 Swagger 編輯器]。抵達之後，依序按一下 [File] \(檔案) -> [Paste JSON] \(貼上 JSON) 功能表項目 。
+1. 瀏覽至[線上 Swagger 編輯器]。抵達之後，依序按一下 [File] (檔案) -> [Paste JSON] (貼上 JSON) 功能表項目 。
 
     ![貼上 JSON 功能表項目][paste-json]
 
@@ -143,7 +143,7 @@
 
     ![檢視 Swagger 產生的文件][view-swagger-generated-docs]
 
-1. 依序選取 [Generate Server] \(產生伺服器) -> \[JAX RS] 功能表選項，來建立伺服器端的程式碼結構，讓您稍後能拿來新增模擬實作。
+1. 依序選取 [Generate Server] (產生伺服器) -> [JAX RS] 功能表選項，來建立伺服器端的程式碼結構，讓您稍後能拿來新增模擬實作。
 
     ![產生程式碼功能表項目][generate-code-menu-item]
 
@@ -153,7 +153,7 @@
 
 在本節中，您將使用您自訂的程式碼，來取代 Swagger 所產生程式碼的伺服器端實作。新的程式碼會把連絡人實體的 ArrayList 傳回給呼叫中的用戶端。
 
-1. 使用 [Visual Studio Code] 或您偏好的文字編輯器，來開啟「Contact.java」模型檔案 (位於「src/gen/java/io/swagger/model」資料夾)。 
+1. 使用 [Visual Studio Code] 或您偏好的文字編輯器，來開啟「Contact.java」模型檔案 (位於「src/gen/java/io/swagger/model」資料夾)。
 
     ![開啟連絡人模型檔案][open-contact-model-file]
 
@@ -338,4 +338,4 @@
 [copy-git-repo-url]: ./media/app-service-api-java-api-app/copy-git-repo-url.png
 [postman-calling-azure-contacts]: ./media/app-service-api-java-api-app/postman-calling-azure-contacts.png
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_1005_2016-->

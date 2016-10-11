@@ -79,4 +79,4 @@ Azure Data Factory 本身不會儲存任何資料。它可讓您建立資料驅�
 [建置資料管線以在兩個雲端資料存放區之間移動資料](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) | 在本教學課程中，您會建立具有管線的 Data Factory，以從 Blob 儲存體**移動資料**至 SQL Database。
 [建置資料管線，以使用資料管理閘道在內部部署資料存放區與雲端資料存放區之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) | 在本教學課程中，您會建置具有管線的 Data Factory，以從**內部部署** SQL Server 資料庫**移動資料**至 Azure Blob。在逐步解說中，您會在電腦上安裝及設定資料管理閘道。 
 
-<!----HONumber=AcomDC_0928_2016-->
+<!---HONumber=AcomDC_1005_2016-->

@@ -34,8 +34,7 @@ Azure IoT 套件預先設定的解決方案是常見 IoT 解決方案模式的�
 
 | 方案 | 資料擷取 | 裝置身分識別 | 命令和控制 | 規則和動作 | 預測性分析 |
 |------------------------|-----|-----|-----|-----|-----|
-| [遠端監視][lnk-getstarted-preconfigured] | 是 | 是 | 是 | 是 | - | 
-| [預測性維護][lnk-predictive-maintenance] | 是 | 是 | 是 | 是 | 是 |
+| [遠端監視][lnk-getstarted-preconfigured] | 是 | 是 | 是 | 是 | - | | [預測性維護][lnk-predictive-maintenance] | 是 | 是 | 是 | 是 | 是 |
 
 - *資料擷取*：雲端規模的資料輸入。
 - *裝置身分識別*：管理每個連接裝置的唯一身分識別。
@@ -76,7 +75,7 @@ IoT 中樞可讓您透過服務端遙測讀取端點接收遙測資料。
 
 ## Azure 串流分析
 
-預先設定解決方案使用三個 [Azure 串流分析][lnk-asa] \(ASA) 作業來篩選來自裝置的遙測串流：
+預先設定解決方案使用三個 [Azure 串流分析][lnk-asa] (ASA) 作業來篩選來自裝置的遙測串流：
 
 
 - *DeviceInfo 作業* - 將資料輸出到會路由裝置註冊特定訊息的事件中樞，在裝置第一次連線或回應 [變更裝置狀態] 命令時傳送給解決方案裝置註冊 (DocumentDB 資料庫)。
@@ -125,10 +124,10 @@ IoT 中樞可讓您透過服務端遙測讀取端點接收遙測資料。
 [lnk-asa]: https://azure.microsoft.com/documentation/services/stream-analytics/
 [lnk-event-processor]: ../event-hubs/event-hubs-programming-guide.md#event-processor-host
 [lnk-web-job]: ../app-service-web/web-sites-create-web-jobs.md
-[lnk-identity-registry]: ../iot-hub/iot-hub-devguide.md#device-identity-registry
+[lnk-identity-registry]: ../iot-hub/iot-hub-devguide-identity-registry.md
 [lnk-predictive-maintenance]: iot-suite-predictive-overview.md
 [lnk-azureiotsuite]: https://www.azureiotsuite.com/
 [lnk-refarch]: http://download.microsoft.com/download/A/4/D/A4DAD253-BC21-41D3-B9D9-87D2AE6F0719/Microsoft_Azure_IoT_Reference_Architecture.pdf
 [lnk-getstarted-preconfigured]: iot-suite-getstarted-preconfigured-solutions.md
 
-<!---HONumber=AcomDC_0810_2016-->
+<!---HONumber=AcomDC_1005_2016-->

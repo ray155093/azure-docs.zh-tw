@@ -13,14 +13,14 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="multiple"
    ms.workload="big-compute"
-   ms.date="09/06/2016"
+   ms.date="09/30/2016"
    ms.author="marsma"/>
 
 # 開始使用 Azure Batch CLI
 
-跨平台 Azure 命令列介面 (Azure CLI) 可讓您管理 Batch 帳戶和資源，例如 Linux、Mac 和 Windows 命令殼層中的集區、作業和工作。使用 Azure CLI，您可以執行與您使用 Batch API、Azure 入口網站和 Batch PowerShell Cmdlet 執行的許多相同工作並撰寫其指令碼。
+跨平台 Azure 命令列介面 (Azure CLI) 可讓您管理 Batch 帳戶和資源，例如 Linux、Mac 和 Windows 命令殼層中的集區、作業和工作。許多使用 Batch API、Azure 入口網站和 Batch PowerShell Cmdlet 來執行的工作，也都可以使用 Azure CLI 來執行或撰寫指令碼。
 
-本文章是根據 Azure CLI 0.10.3 版所撰寫。
+本文章是根據 Azure CLI 0.10.5 版所撰寫。
 
 ## 必要條件
 
@@ -34,7 +34,7 @@
 
 ## 命令說明
 
-您可以加上 `-h` 做為命令之後的唯一選項，以在 Azure CLI 中顯示每個命令的說明文字。例如：
+您可以加上 `-h` 作為命令之後的唯一選項，以在 Azure CLI 中顯示每個命令的說明文字。例如：
 
 * 若要取得 `azure` 命令的說明，請輸入︰`azure -h`
 * 若要取得 CLI 中所有 Batch 命令的清單，請使用︰`azure batch -h`
@@ -60,7 +60,7 @@ Usage :
 
 ### 連結的儲存體帳戶 (autostorage)
 
-您可以在建立 Batch 帳戶時，(選擇性地) 將**一般用途**的儲存體帳戶連結至該帳戶。Batch 的 [應用程式封裝](batch-application-packages.md)功能會在連結的一般用途儲存體帳戶中使用 blob 儲存體，如同 [Batch 檔案慣例 .NET](batch-task-output.md) 程式庫所為。這些選擇性功能可協助您部署您的 Batch 工作所執行的應用程式，並保存其所產生的資料。
+您可以在建立 Batch 帳戶時，(選擇性地) 將**一般用途**的儲存體帳戶連結至該帳戶。Batch 的 [應用程式套件](batch-application-packages.md)功能會在連結的一般用途儲存體帳戶中使用 blob 儲存體，如同 [Batch 檔案慣例 .NET](batch-task-output.md) 程式庫所為。這些選擇性功能可協助您部署您的 Batch 工作所執行的應用程式，並保存其所產生的資料。
 
 若要在建立新的 Batch 帳戶時，將現有的 Azure 儲存體帳戶連結到該帳戶，請指定 `--autostorage-account-id` 選項。此選項需要儲存體帳戶的完整資源識別碼。
 
@@ -82,7 +82,7 @@ Usage :
 
 	azure batch account delete --resource-group "resgroup001" "batchaccount001"
 
-刪除指定的 Batch 帳戶。出現提示時，請確認您想要移除的帳戶 (帳戶移除可能需要一些時間才能完成)。
+刪除指定的 Batch 帳戶。出現提示時，請確認您想要移除帳戶 (帳戶移除可能需要一些時間才能完成)。
 
 ## 管理帳戶存取金鑰
 
@@ -98,7 +98,7 @@ Usage :
 
 	azure batch account keys list --resource-group "resgroup001" "batchaccount001"
 
-列印指定 Batch 帳戶的帳戶金鑰。
+列出指定 Batch 帳戶的帳戶金鑰。
 
 ### 產生新的存取金鑰
 
@@ -130,7 +130,7 @@ Usage :
 
 雖然您可以使用命令列選項執行許多資源建立作業，但有些功能需要 JSON 格式的檔案 (內含資源詳細資料)。例如，如果您想要指定啟動工作的資源檔，則必須使用 JSON 檔案。
 
-若要尋找建立資源所需的 JSON，請參閱 MSDN 上的 [Batch REST API 參考][rest_api]文件。每個「新增 <資源類型>」主題都包含可供建立資源的範例 JSON，您可以用做為 JSON 檔案的範本。例如，在[將集區新增至帳戶][rest_add_pool]中可找到用於建立集區的 JSON。
+若要尋找建立資源所需的 JSON，請參閱 MSDN 上的 [Batch REST API 參考][rest_api]文件。每個「新增 <資源類型>」主題都包含可供建立資源的範例 JSON，可用來作為 JSON 檔案的範本。例如，在[將集區新增至帳戶][rest_add_pool]中可找到用於建立集區的 JSON。
 
 >[AZURE.NOTE] 如果您在建立資源時指定 JSON 檔案，則會忽略您在命令列上為該資源指定的所有其他參數。
 
@@ -152,7 +152,7 @@ Usage :
 
 如 [Batch 功能概關](batch-api-basics.md#pool)所提，針對集區中的節點選取作業系統時，您有兩個選項︰[虛擬機器組態] 和 [雲端服務組態]。使用 `--image-*` 選項來建立虛擬機器組態集區，使用 `--os-family` 來建立雲端服務組態集區。您無法同時指定 `--os-family` 和 `--image-*` 選項。
 
-您可以指定集區[應用程式封裝](batch-application-packages.md)以及[啟動工作](batch-api-basics.md#start-task)的命令列。若要指定啟動工作的資源檔，您必須改用 [JSON 檔案](#json-files)。
+您可以指定集區[應用程式套件](batch-application-packages.md)以及[啟動工作](batch-api-basics.md#start-task)的命令列。若要指定啟動工作的資源檔，您必須改用 [JSON 檔案](#json-files)。
 
 刪除集區︰
 
@@ -199,35 +199,55 @@ Batch CLI 支援 Batch 服務所支援的全部三個子句︰
 
 如需這三個子句以及執行清單查詢的詳細資訊，請參閱[有效率地查詢 Azure Batch 服務](batch-efficient-list-queries.md)。
 
-## 應用程式封裝管理
+## 應用程式套件管理
 
-應用程式封裝提供了簡化的方式，可將應用程式部署至您集區中的計算節點。您可以使用 Azure CLI，上傳應用程式封裝、管理封裝版本，以及刪除封裝。
+應用程式套件提供了簡化的方式，可將應用程式部署至您集區中的計算節點。您可以使用 Azure CLI，上傳應用程式套件、管理套件版本，以及刪除套件。
 
-若要建立新的應用程式並新增封裝版本︰
+若要建立新的應用程式並新增套件版本︰
 
 **建立**應用程式：
 
     azure batch application create "resgroup001" "batchaccount001" "MyTaskApplication"
 
-**新增**應用程式封裝︰
+**新增**應用程式套件︰
 
     azure batch application package create "resgroup001" "batchaccount001" "MyTaskApplication" "1.10-beta3" package001.zip
 
-**啟動** 封裝︰
+**啟動**套件︰
 
-    azure batch application package activate "resgroup002" "azbatch002" "MyTaskApplication" "1.10-beta3" zip
+    azure batch application package activate "resgroup001" "batchaccount001" "MyTaskApplication" "1.10-beta3" zip
 
-### 部署應用程式封裝
+設定應用程式的**預設版本**︰
 
-您可以在建立新集區時，指定一或多個應用程式封裝以供部署。當您在建立集區時指定封裝時，它會在節點加入集區時部署到每個節點。重新啟動或重新安裝映像節點時，也會部署封裝。
+    azure batch application set "resgroup001" "batchaccount001" "MyTaskApplication" --default-version "1.10-beta3"
 
-此命令會在建立集區時指定封裝，並且部署成每個節點加入新集區︰
+### 部署應用程式套件
 
-    azure batch pool create --id "pool001" --target-dedicated 1 --vm-size "small" --os-family "4" --app-package-ref "MyTaskApplication"
+您可以在建立新集區時，指定一或多個應用程式套件以供部署。當您在建立集區時指定套件時，它會在節點加入集區時部署到每個節點。重新啟動或重新安裝映像節點時，也會部署套件。
 
-您目前無法使用命令列選項來指定要部署的封裝版本。您必須先使用 Azure 入口網站設定應用程式的預設版本，才可以將它指派給集區。若想了解如何設定預設版本，請參閱[使用 Azure Batch 應用程式封裝部署應用程式](batch-application-packages.md)。不過，如果您在建立集區時使用 [JSON 檔案](#json-files)，而非使用命令列選項，即可指定預設版本。
+在建立集區時指定 `--app-package-ref` 選項，以在節點加入集區時將應用程式套件部署到集區的節點。`--app-package-ref` 選項接受一份要部署至計算節點的應用程式識別碼清單 (以分號分隔)。
+
+    azure batch pool create --pool-id "pool001" --target-dedicated 1 --vm-size "small" --os-family "4" --app-package-ref "MyTaskApplication"
+
+當您使用命令列選項建立集區時，您目前無法指定「哪個」應用程式套件版本要部署至計算節點，例如 "1.10-beta3"。因此，您必須在建立集區之前，先利用 `azure batch application set [options] --default-version <version-id>` 指定應用程式的預設版本 (請參閱上一節)。不過，如果您在建立集區時使用 [JSON 檔案](#json-files)，而非使用命令列選項，即可為集區指定套件版本。
+
+您可以在[使用 Azure Batch 應用程式套件部署應用程式](batch-application-packages.md)中，找到應用程式套件的詳細資訊。
 
 >[AZURE.IMPORTANT] 您必須先[連結 Azure 儲存體帳戶](#linked-storage-account-autostorage)到您的 Batch 帳戶，才能使用應用程式套件。
+
+### 更新集區的應用程式套件
+
+若要更新已指派給現有集區的應用程式，請發出搭配 `--app-package-ref` 選項的 `azure batch pool set` 命令︰
+
+    azure batch pool set --pool-id "pool001" --app-package-ref "MyTaskApplication2"
+
+若要將新的應用程式套件部署至已在現有集區中的計算節點，您必須重新啟動這些節點或重新安裝其映像︰
+
+    azure batch node reboot --pool-id "pool001" --node-id "tvm-3105992504_1-20160930t164509z"
+
+>[AZURE.TIP] 您可以利用 `azure batch node list` 取得集區中的節點清單，以及其節點識別碼。
+
+請記住，您必須在部署之前，已經設定應用程式的預設版本 (`azure batch application set [options] --default-version <version-id>`)。
 
 ## 疑難排解秘訣
 
@@ -237,21 +257,21 @@ Batch CLI 支援 Batch 服務所支援的全部三個子句︰
 
 * 使用 `-v` 和 `-vv` 來顯示 **verbose** 命令輸出；`-vv` 是「額外的」詳細資訊，可顯示實際的 REST 要求和回應。這些參數方便用於顯示完整的錯誤輸出。
 
-* 您可以使用 `--json` 選項檢視 **JSON 格式的命令輸出**。例如，`azure batch pool show "pool001" --json` 會以 JSON 格式顯示 pool001 的屬性。您可以接著複製並修改此輸出，以便用於 `--json-file` (請參閱本文前面的 [JSON 檔案](#json-files))。
+* 您可以使用 `--json` 選項檢視 ** JSON 格式的命令輸出**。例如，`azure batch pool show "pool001" --json` 會以 JSON 格式顯示 pool001 的屬性。您可以接著複製並修改此輸出，以便用於 `--json-file` (請參閱本文前面的 [JSON 檔案](#json-files))。
 
 * [MSDN 上的 Batch 論壇][batch_forum]是很棒的說明資源，並受到 Batch 團隊成員的密切監視。如果您遇到問題或需要特定作業的協助，務必在此張貼您的問題。
 
-* Azure CLI 目前並不支援每項 Batch 資源作業。例如，您目前無法指定集區的應用程式封裝「版本」，只能指定封裝識別碼。在這類情況下，您可能需要為您的命令提供 `--json-file`，而不是使用命令列選項。請務必隨時掌握最新的 CLI 版本，以便獲知未來的增強功能。
+* Azure CLI 目前並不支援每項 Batch 資源作業。例如，您目前無法指定集區的應用程式套件「版本」，只能指定套件識別碼。在這類情況下，您可能需要為您的命令提供 `--json-file`，而不是使用命令列選項。請務必隨時掌握最新的 CLI 版本，以便獲知未來的增強功能。
 
 ## 後續步驟
 
-*  請參閱[使用 Azure Batch 應用程式封裝部署應用程式](batch-application-packages.md)，了解如何使用此功能來管理和部署您在 Batch 計算節點上執行的應用程式。
+*  請參閱[使用 Azure Batch 應用程式套件部署應用程式](batch-application-packages.md)，了解如何使用此功能來管理和部署您在 Batch 計算節點上執行的應用程式。
 
 * 如需減少項目數和針對 Batch 查詢所傳回之資訊類型的詳細資訊，請參閱[有效率地查詢 Batch 服務](batch-efficient-list-queries.md)。
 
-[batch_forum]: https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=azurebatch
+[batch_forum]: https://social.msdn.microsoft.com/forums/azure/zh-TW/home?forum=azurebatch
 [github_readme]: https://github.com/Azure/azure-xplat-cli/blob/dev/README.md
 [rest_api]: https://msdn.microsoft.com/library/azure/dn820158.aspx
 [rest_add_pool]: https://msdn.microsoft.com/library/azure/dn820174.aspx
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_1005_2016-->

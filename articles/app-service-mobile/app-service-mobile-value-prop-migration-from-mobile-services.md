@@ -13,12 +13,12 @@
 	ms.tgt_pltfrm="mobile-multiple"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="06/30/2016"
-	ms.author="krisragh"/>
+	ms.date="10/01/2016"
+	ms.author="adrianha"/>
 
 # <a name="getting-started"> </a>我使用行動服務，App Service 有何幫助？
 
-##概觀
+##Overview
 您現有的行動服務很安全並將繼續提供支援。不過，*Azure App Service* 平台為您的行動應用程式提供了行動服務目前所沒有的數個優點：
 
 - 針對包含 Web 和行動用戶端的應用程式，提供更簡單、更容易且更符合成本效益的功能
@@ -61,4 +61,4 @@
 
 您可以藉由遵循此[教學課程](app-service-mobile-migrating-from-mobile-services.md)，開始將 *App Service* 運用於您現有的行動服務。
 
-<!---HONumber=AcomDC_0706_2016-->
+<!---HONumber=AcomDC_1005_2016-->

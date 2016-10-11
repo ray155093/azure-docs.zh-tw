@@ -18,9 +18,7 @@
 
 # 何謂 Azure IoT 中心？
 
-歡迎使用 Azure IoT 中樞。本文提供 Azure IoT 中樞的概觀，並描述在實作物聯網 (IoT) 解決方案時，您應該使用此服務的原因。
-
-Azure IoT 中樞是一項完全受管理的服務，可在數百萬個 IoT 裝置和一個解決方案後端之間啟用可靠且安全的雙向通訊。Azure IoT 中樞：
+歡迎使用 Azure IoT 中樞。本文提供 Azure IoT 中樞的概觀，並描述在實作物聯網 (IoT) 解決方案時，您應該使用此服務的原因。Azure IoT 中樞是一項完全受管理的服務，可在數百萬個 IoT 裝置和一個解決方案後端之間啟用可靠且安全的雙向通訊。Azure IoT 中樞：
 
 - 提供可靠的裝置到雲端和雲端到裝置的大規模傳訊。
 - 使用每一裝置的安全性認證和存取控制來啟用安全通訊。
@@ -106,15 +104,13 @@ Azure IoT 中樞會在實作[服務輔助通訊][lnk-service-assisted-pattern]�
 
 
 [lnk-get-started]: iot-hub-csharp-csharp-getstarted.md
-[lnk-connect-device]: https://azure.microsoft.com/develop/iot/
-[lnk-d2c]: iot-hub-csharp-csharp-process-d2c.md
 [protocol-gateway]: https://github.com/Azure/azure-iot-protocol-gateway/blob/master/README.md
 [lnk-service-assisted-pattern]: http://blogs.msdn.com/b/clemensv/archive/2014/02/10/service-assisted-communication-for-connected-devices.aspx "服務輔助通訊，由 Clemens Vasters 撰寫的部落格文章"
 [lnk-compare]: iot-hub-compare-event-hubs.md
 [lnk-gateway]: iot-hub-protocol-gateway.md
-[lnk-field-gateway]: iot-hub-guidance.md#field-gateways
-[lnk-devguide-identityregistry]: iot-hub-devguide.md#identityregistry
-[lnk-devguide-security]: iot-hub-devguide.md#security
+[lnk-field-gateway]: iot-hub-devguide-endpoints.md#field-gateways
+[lnk-devguide-identityregistry]: iot-hub-devguide-identity-registry.md
+[lnk-devguide-security]: iot-hub-devguide-security.md
 [lnk-wns]: https://msdn.microsoft.com/library/windows/apps/mt187203.aspx
 [lnk-google-messaging]: https://developers.google.com/cloud-messaging/
 [lnk-apple-push]: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9
@@ -123,4 +119,4 @@ Azure IoT 中樞會在實作[服務輔助通訊][lnk-service-assisted-pattern]�
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk
 [lnk-device-management]: iot-hub-device-management-overview.md
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_1005_2016-->

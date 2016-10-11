@@ -17,7 +17,7 @@
 
 # 虛擬網路概觀
 
-Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。它是專屬於您訂用帳戶的 Azure 雲端邏輯隔離。您可以完全控制此網路內的 IP 位址區塊、DNS 設定、安全性原則和路由表。您也可以進一步將 VNet 分成子網路，並啟動 Azure IaaS 虛擬機器 (VM) 和/或[雲端服務 (PaaS 角色執行個體)](../cloud-services/cloud-services-choose-me.md)。另外，您也可以使用 Azure 中提供的其中一個[連線選項](../vpn-gateway/vpn-gateway-cross-premises-options.md)將虛擬網路連線到內部部署網路。基本上，您可以將您的網路延伸至 Azure，透過 Azure 提供的企業級好處完整控制 IP 位址區塊。
+Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。它是專屬於您訂用帳戶的 Azure 雲端邏輯隔離。您可以完全控制此網路內的 IP 位址區塊、DNS 設定、安全性原則和路由表。您也可以進一步將 VNet 分成子網路，並啟動 Azure IaaS 虛擬機器 (VM) 和/或[雲端服務 (PaaS 角色執行個體)](../cloud-services/cloud-services-choose-me.md)。另外，您也可以使用 Azure 中提供的其中一個[連線選項](../vpn-gateway/vpn-gateway-about-vpngateways.md#site-to-site-and-multi-site)將虛擬網路連線到內部部署網路。基本上，您可以將您的網路延伸至 Azure，透過 Azure 提供的企業級好處完整控制 IP 位址區塊。
 
 若要進一步了解 VNet，請看下圖顯示的簡化內部部署網路。
 
@@ -95,4 +95,4 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。它是專屬於
 - 了解 [NSG](virtual-networks-nsg.md)。
 - 了解[使用者定義的路由和 IP 轉送](virtual-networks-udr-overview.md)。
 
-<!---HONumber=AcomDC_0810_2016--->
+<!---HONumber=AcomDC_1005_2016-->

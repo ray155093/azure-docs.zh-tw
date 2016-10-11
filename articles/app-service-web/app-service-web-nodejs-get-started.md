@@ -22,6 +22,7 @@
 
 本教學課程示範如何建立簡單的 [Node.js] 應用程式，並透過 cmd.exe 或 bash 之類的命令列環境將其部署至 [Azure App Service]。本教學課程中的指示可運用在任何能夠執行 Node.js 應用程式的作業系統上。
 
+
 <a name="prereq"></a>
 ## 必要條件
 
@@ -246,4 +247,4 @@ Kudu 部署引擎會依下列順序決定要使用哪個 Node.js 引擎︰
 [iislog-kudu-console-open]: ./media/app-service-web-nodejs-get-started/iislog-kudu-console-open.png
 [iislog-kudu-console-read]: ./media/app-service-web-nodejs-get-started/iislog-kudu-console-read.png
 
-<!---HONumber=AcomDC_0928_2016-->
+<!---HONumber=AcomDC_1005_2016-->
