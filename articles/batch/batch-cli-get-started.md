@@ -257,7 +257,7 @@ Batch CLI 支援 Batch 服務所支援的全部三個子句︰
 
 * 使用 `-v` 和 `-vv` 來顯示 **verbose** 命令輸出；`-vv` 是「額外的」詳細資訊，可顯示實際的 REST 要求和回應。這些參數方便用於顯示完整的錯誤輸出。
 
-* 您可以使用 `--json` 選項檢視 ** JSON 格式的命令輸出**。例如，`azure batch pool show "pool001" --json` 會以 JSON 格式顯示 pool001 的屬性。您可以接著複製並修改此輸出，以便用於 `--json-file` (請參閱本文前面的 [JSON 檔案](#json-files))。
+* 您可以使用 `--json` 選項檢視 **JSON 格式的命令輸出**。例如，`azure batch pool show "pool001" --json` 會以 JSON 格式顯示 pool001 的屬性。您可以接著複製並修改此輸出，以便用於 `--json-file` (請參閱本文前面的 [JSON 檔案](#json-files))。
 
 * [MSDN 上的 Batch 論壇][batch_forum]是很棒的說明資源，並受到 Batch 團隊成員的密切監視。如果您遇到問題或需要特定作業的協助，務必在此張貼您的問題。
 

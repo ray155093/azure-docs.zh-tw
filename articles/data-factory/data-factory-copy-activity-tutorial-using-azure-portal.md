@@ -317,7 +317,7 @@
 
 1. 按一下 **X** 關閉 [圖表] 檢視，以查看 Data Factory 首頁上的 Data Factory。如果您已關閉網頁瀏覽器，請執行下列步驟︰
 	2. 瀏覽至 [Azure 入口網站](https://portal.azure.com/)。
-	2. 按兩下 [開始面板] 上的 [ADFTutorialDataFactory] (或) 按一下左側功能表上的 [Data Factory]，然後搜尋 ADFTutorialDataFactory。
+	2. 按兩下 [開始面板] 上的 [ADFTutorialDataFactory]\(或) 按一下左側功能表上的 [Data Factory]，然後搜尋 ADFTutorialDataFactory。
 3. 您應該會看到您在此分頁上建立之資料表和管線的計數和名稱。
 
 	![含名稱的首頁](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-datafactory-home-page-pipeline-tables.png)
@@ -369,7 +369,8 @@
 2. 您應該會看到 [監視及管理] 應用程式。變更 [開始時間] 和 [結束時間] 以包含您管線的開始 (2016-07-12) 和結束時間 (2016-07-13)，然後按一下 [套用]。
 
 	![監視及管理應用程式](./media/data-factory-copy-activity-tutorial-using-azure-portal/monitor-and-manage-app.png)
-3. 選取 [活動時段] 清單中的活動時段以查看其詳細資料。![活動時段詳細資料](./media/data-factory-copy-activity-tutorial-using-azure-portal/activity-window-details.png)
+3. 選取 [活動時段] 清單中的活動時段以查看其詳細資料。
+	![活動時段詳細資料](./media/data-factory-copy-activity-tutorial-using-azure-portal/activity-window-details.png)
 
 ## 摘要 
 在本教學課程中，您已建立要將資料從 Azure Blob 複製到 Azure SQL 資料庫的 Azure Data Factory。您已使用 Azure 入口網站建立 Data Factory、連結服務、資料集和管線。以下是您在本教學課程中執行的高階步驟：

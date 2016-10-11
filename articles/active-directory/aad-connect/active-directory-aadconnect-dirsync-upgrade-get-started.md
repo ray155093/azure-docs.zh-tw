@@ -164,8 +164,8 @@ DirSync 用於服務帳戶的密碼無法擷取且不會移轉。這些密碼會
 
 ### 解除安裝 DirSync (舊伺服器)
 
-- 在 [程式和功能] 中，尋找 [Windows Azure Active Directory 同步作業工具]
-- 解除安裝 [Windows Azure Active Directory 同步作業工具]
+- 在 [程式和功能] 中，尋找 [Microsoft Azure Active Directory 同步作業工具]
+- 解除安裝 [Microsoft Azure Active Directory 同步作業工具]
 - 解除安裝可能需要 15 分鐘的時間才能完成。
 
 如果您想要稍後解除安裝 DirSync，您也可以暫時關閉伺服器或停用服務。如果發生錯誤，此方法可讓您重新啟用它。不過，下一個步驟應該不會失敗，所以不需要這麼做。
