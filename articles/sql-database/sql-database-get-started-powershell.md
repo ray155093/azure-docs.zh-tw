@@ -132,7 +132,7 @@ SQL Database 會建立在 Azure SQL Database 伺服器內。執行 **New-AzureRm
 ## 後續步驟
 建立 SQL Database 並執行基本的資料庫設定工作之後，您就可以執行下列作業：
 
-- [使用 PowerShell 管理 SQL Database](sql-database-command-line-tools.md)
+- [使用 PowerShell 管理 SQL Database](sql-database-manage-powershell.md)
 - [使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
 
 
@@ -140,4 +140,4 @@ SQL Database 會建立在 Azure SQL Database 伺服器內。執行 **New-AzureRm
 
 - [Azure SQL Database](https://azure.microsoft.com/documentation/services/sql-database/)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!---HONumber=AcomDC_1005_2016-->

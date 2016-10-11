@@ -67,7 +67,7 @@ Azure 有兩個選項可在 Microsoft Azure 主控 SQL Server 工作負載：
 |||||
 |**資源：**|您不想要運用 IT 資源來設定和管理基礎結構，但想要專注於應用程式層級。|您有一些設定和管理的 IT 資源。某些所提供的自動化功能大幅簡化了這部分。|
 |**擁有權的總成本：**|排除硬體成本，並降低管理成本。|排除硬體成本。|
-|**業務持續性︰**|除了內建的容錯基礎結構功能以外，Azure SQL Database 還提供可增加業務持續性的功能，例如[自動備份](sql-database-automated-backups.md)、[時間點還原](sql-database-recovery-using-backups.md#point-in-time-restore)、[異地還原](sql-database-recovery-using-backups.md#geo-restore)和[主動式異地複寫](sql-database-active-geo-replication.md)。如需詳細資訊，請參閱 [SQL Database 業務持續性概觀](sql-database-business-continuity.md)。|Azure VM 上的 SQL Server 可讓您設定高可用性和災害復原解決方案，以滿足您資料庫的特定需求。因此，您可以有已針對您的應用程式進行高度最佳化的系統。您可以視需要自我測試並執行容錯移轉。如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md)。|
+|**業務持續性︰**|除了內建的容錯基礎結構功能以外，Azure SQL Database 還提供可增加業務持續性的功能，例如[自動備份](sql-database-automated-backups.md)、[時間點還原](sql-database-recovery-using-backups.md#point-in-time-restore)、[異地還原](sql-database-recovery-using-backups.md#geo-restore)和[主動式異地複寫](sql-database-geo-replication-overview.md)。如需詳細資訊，請參閱 [SQL Database 業務持續性概觀](sql-database-business-continuity.md)。|Azure VM 上的 SQL Server 可讓您設定高可用性和災害復原解決方案，以滿足您資料庫的特定需求。因此，您可以有已針對您的應用程式進行高度最佳化的系統。您可以視需要自我測試並執行容錯移轉。如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md)。|
 |**混合式雲端：**|您的內部部署應用程式可以存取 Azure SQL Database 中的資料。|有了 Azure VN 上的 SQL Server，您的應用程式可以部分在雲端中執行和部分在內部部署中執行。例如，您可以透過 [[Azure 虛擬網路](../virtual-network/virtual-networks-overview.md)] 將內部部署網路和 Active Directory 網域延伸到雲端。此外，您可以使用 [Azure 中的 SQL Server 資料檔案](http://msdn.microsoft.com/library/dn385720.aspx)，將內部部署資料檔案儲存在 Azure 儲存體中。如需詳細資訊，請參閱 [SQL Server 2014 混合式雲端簡介](http://msdn.microsoft.com/library/dn606154.aspx)。|
 ||支援 [SQL Server 交易式複寫](https://msdn.microsoft.com/library/mt589530.aspx)為訂閱者以複寫資料。|完全支援 [SQL Server 交易式複寫](https://msdn.microsoft.com/library/mt589530.aspx)、[AlwaysOn 可用性群組](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md)、整合服務和記錄傳送以複寫資料。此外也完全支援傳統的 SQL Server 備份|
 |||||
@@ -101,7 +101,7 @@ Azure 有兩個選項可在 Microsoft Azure 主控 SQL Server 工作負載：
 
 **使用 Azure VM 上的 SQL Server 時：**
 
-應用程式的總成本 = 大幅縮減的軟體開發成本 + 系統管理成本 + SQL Server 與 Windows Server 授權成本 + Azure 儲存體成本
+*應用程式的總成本 = 大幅縮減的軟體開發成本 + 系統管理成本 + SQL Server 與 Windows Server 授權成本 + Azure 儲存體成本*
 
 如需價格的詳細資訊，請參閱下列資源：
 
@@ -156,4 +156,4 @@ Azure 有兩個選項可在 Microsoft Azure 主控 SQL Server 工作負載：
 - 請參閱[在 Azure 中佈建 SQL Server 虛擬機器](../virtual-machines/virtual-machines-windows-portal-sql-server-provision.md)以開始使用 Azure VM 上的 SQL Server。
 - 請參閱 [Azure 虛擬機器上的 SQL Server：學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-azure-vm/)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_1005_2016-->

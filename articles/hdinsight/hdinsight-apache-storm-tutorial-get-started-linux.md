@@ -24,7 +24,7 @@ Apache Storm 是一個可處理資料串流的分散式、容錯、即時的運�
 
 > [AZURE.NOTE] 本文中的步驟會建立以 Linux 為基礎的 HDInsight 叢集。如需在 HDInsight 叢集上建立 Windows 式 Storm 的步驟，請參閱 [Apache Storm 教學課程：在 HDInsight 上藉由資料分析開始使用 Storm Starter 範例](hdinsight-apache-storm-tutorial-get-started.md)
 
-## 開始之前
+## 必要條件
 
 [AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
@@ -37,6 +37,10 @@ Apache Storm 是一個可處理資料串流的分散式、容錯、即時的運�
     - **Linux、Unix 或 OS X 用戶端**：請參閱[從 Linux、OS X 或 Unix 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
 
 	- **Windows 用戶端**：請參閱[從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
+
+### 存取控制需求
+
+[AZURE.INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
 
 ## 建立 Storm 叢集
 
@@ -192,4 +196,4 @@ Storm UI 提供 Web 介面來處理執行中的拓撲，包含在您的 HDInsigh
 [hdinsight-provision]: hdinsight-provision-clusters.md
 [preview-portal]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_1005_2016-->

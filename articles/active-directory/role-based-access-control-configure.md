@@ -13,10 +13,14 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="identity"
-	ms.date="07/21/2016"
+	ms.date="09/30/2016"
 	ms.author="kgremban"/>
 
 # 使用角色指派來管理 Azure 訂用帳戶資源的存取權
+
+> [AZURE.SELECTOR]
+- [Azure 入口網站](role-based-access-control-azure-portal.md)
+- [Azure 傳統入口網站](role-based-access-control-configure.md)
 
 Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權管理。使用 RBAC，您可以僅授與使用者執行其作業所需的存取權。本文將協助您在 Azure 入口網站中啟動並執行 RBAC。如果您需要有關 RBAC 如何協助您管理存取權的詳細資訊，請參閱[什麼是角色型存取控制](role-based-access-control-what-is.md)。
 
@@ -67,7 +71,7 @@ Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權�
 
 ## 後續步驟
 - [建立存取權變更歷程記錄報告](role-based-access-control-access-change-history-report.md)
-- 請參閱 [RBAC 內建角色](role-based-access-built-in-roles.md)
-- 為自己定義 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)
+- 參閱 [RBAC 內建角色](role-based-access-built-in-roles.md)
+- 定義您自己的 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)
 
-<!----HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_1005_2016-->

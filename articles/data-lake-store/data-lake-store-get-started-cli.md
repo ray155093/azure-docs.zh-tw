@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="09/13/2016"
+   ms.date="09/27/2016"
    ms.author="nitinme"/>
 
 # 使用 Azure 命令列開始使用 Azure 資料湖存放區
@@ -37,36 +37,40 @@ Azure CLI 會在 Node.js 中實作。此工具可在任何支援 Node.js 的平�
 開始閱讀本文之前，您必須符合下列必要條件：
 
 - **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+
 - **Azure CLI** - 請參閱 [安裝及設定 Azure CLI](../xplat-cli-install.md) 以取得安裝和設定資訊。在安裝 CLI 之後，請務必重新啟動您的電腦。
+
+## 驗證
+
+本文使用簡單的驗證方法搭配 Data Lake Store (您以使用者身分登入其中)。Data Lake Store 帳戶和檔案系統的存取層級則由已登入使用者的存取層級所控管。不過，還有其他方法可向 Data Lake Store 進行驗證：**使用者驗證**或**服務對服務驗證**。如需如何驗證的指示和詳細資訊，請參閱[使用 Azure Active Directory 向 Data Lake Store 進行驗證](data-lake-store-authenticate-using-active-directory.md)。
 
 ##登入您的 Azure 訂用帳戶
 
-依照[從 Azure 命令列介面 (Azure CLI) 連接到 Azure 訂用帳戶](../xplat-cli-connect.md)中記載的步驟，使用 __login__ 方法連線到您的訂用帳戶。
+1. 依照[從 Azure 命令列介面 (Azure CLI) 連接到 Azure 訂用帳戶](../xplat-cli-connect.md)中記載的步驟，使用 `azure login` 方法連接到您的訂用帳戶。
+
+2. 使用 `azure account list` 命令，列出與您的 Azure 帳戶相關聯的訂用帳戶。
+
+		info:    Executing command account list
+		data:    Name              Id                                    Current
+		data:    ----------------  ------------------------------------  -------
+		data:    Azure-sub-1       ####################################  true
+		data:    Azure-sub-2       ####################################  false
+
+	在上述輸出中，目前已啟用 **Azure-sub-1**，而其他訂用帳戶是 **Azure-sub-2**。
+
+3. 選取您想要使用的訂用帳戶。如果您想要使用 Azure-sub-2 訂用帳戶，請使用 `azure account set`。
+
+		azure account set Azure-sub-2
 
 
 ## 建立 Azure 資料湖存放區帳戶
 
 開啟命令提示字元、殼層或終端機工作階段並執行下列命令。
 
-1. 登入您的 Azure 訂用帳戶：
-
-		azure login
-
-	系統會提示您開啟網頁並輸入驗證碼。遵循頁面上的指示登入您的 Azure 訂用帳戶。
-
-2. 使用下列命令來切換至 Azure 資源管理員模式︰
+2. 使用下列命令來切換至 Azure Resource Manager 模式︰
 
 		azure config mode arm
 
-
-3. 列出您帳戶的 Azure 訂用帳戶。
-
-		azure account list
-
-
-4. 如果您有多個 Azure 訂用帳戶，請使用下列命令設定 Azure CLI 命令將使用的訂用帳戶：
-
-		azure account set <subscriptionname>
 
 5. 建立新的資源群組。在下列命令中，提供您想要使用的參數值。
 
@@ -188,4 +192,4 @@ Azure CLI 會在 Node.js 中實作。此工具可在任何支援 Node.js 的平�
 
 [azure-command-line-tools]: ../xplat-cli-install.md
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_1005_2016-->

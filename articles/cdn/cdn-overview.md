@@ -13,7 +13,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="hero-article"
-	ms.date="09/01/2016"
+	ms.date="09/30/2016"
 	ms.author="casoper"/>
 
 # Azure 內容傳遞網路 (CDN) 概觀
@@ -52,7 +52,7 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 
 | | 標準 Akamai | 標準 Verizon | 進階 Verizon |
 |-------|-----------------|------------------|-----------------|
-| 很容易與[儲存體](cdn-create-a-storage-account-with-cdn.md)、[雲端服務](cdn-cloud-service-with-cdn.md)、[Web Apps](../app-service-web/cdn-websites-with-cdn.md) 和[媒體服務](../media-services/media-services-manage-origins.md#enable_cdn)等 Azure 服務整合 | **&#x2713;** | **&#x2713;** | **&#x2713;**|
+| 很容易與[儲存體](cdn-create-a-storage-account-with-cdn.md)、[雲端服務](cdn-cloud-service-with-cdn.md)、[Web Apps](../app-service-web/cdn-websites-with-cdn.md) 和[媒體服務](../media-services/media-services-manage-origins.md#enable-cdn)等 Azure 服務整合 | **&#x2713;** | **&#x2713;** | **&#x2713;**|
 | 透過 [REST API](https://msdn.microsoft.com/library/mt634456.aspx)、[.NET](./cdn-app-dev-net.md)、[Node.js](./cdn-app-dev-node.md) 或 [PowerShell](./cdn-manage-powershell.md) 管理。 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
 | HTTPS 支援 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
 | 負載平衡 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
@@ -87,4 +87,4 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 
 如需價格資訊，請參閱 [CDN 價格](https://azure.microsoft.com/pricing/details/cdn/)。
 
-<!---HONumber=AcomDC_0907_2016-->
+<!---HONumber=AcomDC_1005_2016-->

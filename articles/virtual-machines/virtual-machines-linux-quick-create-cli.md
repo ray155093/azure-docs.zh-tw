@@ -19,19 +19,19 @@
 
 # 使用 CLI 在 Azure 上建立 Linux VM
 
-本文示範如何使用 Azure 命令列介面 (CLI) 中的 `azure vm quick-create` 命令，在 Azure 上快速部署 Linux 虛擬機器 (VM)。`quick-create` 命令會將 VM 部署在基本且安全的基礎結構內，可讓您快速地建立原型或測試概念。在本文章中需要
+本文示範如何使用 Azure 命令列介面 (CLI) 中的 `azure vm quick-create` 命令，在 Azure 上快速部署 Linux 虛擬機器 (VM)。`quick-create` 命令會將 VM 部署在基本且安全的基礎結構內，可讓您快速地建立原型或測試概念。本文需要：
 
-- 一個 Azure 帳戶 ([取得免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/))
+- Azure 帳戶 ([取得免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/))。
 
-- 使用 `azure login` 登入的 [Azure CLI](../xplat-cli-install.md)。
+- 使用 `azure login` 登入的 [Azure CLI](../xplat-cli-install.md)
 
-- Azure CLI「必須」處於 Azure Resource Manager 模式 `azure config mode arm`。
+- Azure CLI「必須」處於 Azure Resource Manager 模式 `azure config mode arm`
 
 您也可以使用 [Azure 入口網站](virtual-machines-linux-quick-create-portal.md)來快速部署 Linux VM。
 
 ## 快速命令
 
-以下範例示範如何部署 CoreOS VM，並附加您的安全殼層 (SSH) 金鑰 (您的引數可能會不同)。
+以下範例示範如何部署 CoreOS VM，並附加您的安全殼層 (SSH) 金鑰 (您的引數可能會不同)：
 
 ```bash
 azure vm quick-create -M ~/.ssh/azure_id_rsa.pub -Q CoreOS
@@ -56,15 +56,15 @@ azure vm quick-create -M ~/.ssh/azure_id_rsa.pub -Q CoreOS
 
 ## 詳細的逐步解說
 
-先前的 `quick-create` 範例只呼叫 `-M` 旗標來識別要上傳的 SSH 公開金鑰，且同時停用 SSH 密碼，因此系統會提示您輸入
+先前的 `quick-create` 範例只呼叫 `-M` 旗標來識別要上傳的 SSH 公開金鑰，且同時停用 SSH 密碼，因此系統會提示您輸入下列引數：
 
 - 資源群組名稱 (任何字串一般都適用於您的第一個 Azure 資源群組)
 - VM 名稱
-- 位置 (westus 或 westeurope 是不錯的預設值)
+- 位置 (`westus` 或 `westeurope` 都是不錯的預設值)
 - Linux (讓 Azure 知道您要的作業系統)
 - username
 
-以下會指定所有的值，因此不會有進一步的提示。只要您有 ssh-rsa 格式公開金鑰檔案的 `~/.ssh/id_rsa.pub`，它就會如預期運作。
+下列範例會指定所有值，因此不會有進一步的提示。只要您有 ssh-rsa 格式公開金鑰檔案的 `~/.ssh/id_rsa.pub`，它就會如預期運作：
 
 ```bash
 azure vm quick-create \
@@ -77,7 +77,7 @@ azure vm quick-create \
 -Q UbuntuLTS
 ```
 
-輸出應該看起來像下列的輸出區塊。
+輸出應該看起來像下列的輸出區塊：
 
 ```bash
 info:    Executing command vm quick-create
@@ -155,13 +155,13 @@ data:      Diagnostics Instance View:
 info:    vm quick-create command OK
 ```
 
-使用輸出中所列的公用 IP 位址登入您的 VM。您也可以使用其中列出的完整網域名稱 (FQDN)。
+使用輸出中所列的公用 IP 位址登入您的 VM。您也可以使用其中列出的完整網域名稱 (FQDN)：
 
 ```bash
 ssh -i ~/.ssh/id_rsa.pub exampleAdminUser@138.91.247.29
 ```
 
-登入程序應該類似下面這樣：
+登入程序應該類似下列輸出區塊：
 
 ```bash
 Warning: Permanently added '138.91.247.29' (ECDSA) to the list of known hosts.
@@ -205,4 +205,4 @@ exampleAdminUser@exampleVMName:~$
 
 您也可以[搭配使用 `docker-machine` Azure 驅動程式與各種命令以快速建立當作 Docker 主機的 Linux VM](virtual-machines-linux-docker-machine.md)。
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_1005_2016-->

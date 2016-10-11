@@ -89,7 +89,7 @@
 | **Softbank** | 支援 | 支援 | 大阪、東京 | 
 | **[Tata Communications](http://www.tatacommunications.com/lp/izo/azure/azure_index.html)** | 支援 | 支援 | 阿姆斯特丹、辰內、香港、倫敦、孟買、矽谷、新加坡、華盛頓特區 |
 | **[TeleCity Group](http://www.telecitygroup.com/investor-centre/news_details.htm?locid=03100500400b00d&xml)** | 支援 | 支援 | 阿姆斯特丹、都柏林、倫敦 |
-| **Telefonica** | 支援 | 敬請期待 | 聖保羅 |
+| **Telefonica** | 支援 | 支援 | 聖保羅 |
 | **Telenor** | 支援 | 支援 | 阿姆斯特丹、倫敦 |
 | **[Telstra Corporation](http://www.telstra.com.au/business-enterprise/network-services/networks/cloud-direct-connect/)** | 支援 | 敬請期待 | 墨爾本、雪梨 |
 | **[Verizon](http://www.verizonenterprise.com/products/networking/secure-cloud-interconnect/)** | 支援 | 支援 | 阿姆斯特丹、香港、倫敦、矽谷、新加坡、雪梨、東京、華盛頓特區 |
@@ -171,4 +171,4 @@
 <!--Image References-->
 [0]: ./media/expressroute-locations/expressroute-locations-map.png "位置圖"
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_1005_2016-->

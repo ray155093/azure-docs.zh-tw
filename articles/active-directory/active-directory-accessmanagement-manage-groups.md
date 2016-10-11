@@ -1,7 +1,6 @@
 <properties
-
-	pageTitle="Managing groups in Azure Active Directory | Microsoft Azure"
-	description="How to create and manage groups to manage Azure users using Azure Active Directory."
+	pageTitle="在 Azure Active Directory 中管理群組 | Microsoft Azure"
+	description="如何使用 Azure Active Directory 來建立和管理群組，進而管理使用者。"
 	services="active-directory"
 	documentationCenter=""
 	authors="curtand"
@@ -14,11 +13,17 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="09/22/2016"
+	ms.date="09/29/2016"
 	ms.author="curtand"/>
 
 
 # 在 Azure Active Directory 中管理群組
+
+> [AZURE.SELECTOR]
+- [Azure 入口網站](active-directory-groups-create-azure-portal.md)
+- [Azure 傳統入口網站](active-directory-accessmanagement-manage-groups.md)
+- [PowerShell](active-directory-accessmanagement-groups-v2-cmdlets.md)
+
 
 Azure Active Directory (Azure AD) 使用者管理的其中一項功能是能夠建立使用者群組。您可以使用群組來執行管理工作，例如一次指派授權或權限給多名使用者。您也可以使用群組來指派存取權限給
 
@@ -42,7 +47,7 @@ Azure Active Directory (Azure AD) 使用者管理的其中一項功能是能夠�
 
 3. 選取 [新增群組]。
 
-4. 在 [加入群組] 視窗中，指定群組的名稱與描述。
+4. 在 [新增群組] 視窗中，指定群組的名稱與描述。
 
 
 ## 如何新增或移除安全性群組中的個別使用者？
@@ -57,7 +62,7 @@ Azure Active Directory (Azure AD) 使用者管理的其中一項功能是能夠�
 
 4. 選取 [新增成員]。
 
-5. 在 [新增成員] 頁面上，選取您想要加入成為此群組成員之使用者或群組的名稱。確定這個名稱加入了 [已選取] 窗格中。
+5. 在 [新增成員] 頁面上，選取您想要新增為此群組成員的使用者或群組名稱。確定這個名稱新增至 [已選取] 窗格中。
 
 
 **從群組中移除個別使用者**
@@ -116,4 +121,4 @@ Azure Active Directory (Azure AD) 使用者管理的其中一項功能是能夠�
 
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-<!---HONumber=AcomDC_0928_2016-->
+<!---HONumber=AcomDC_1005_2016-->

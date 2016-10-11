@@ -13,7 +13,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="big-data"
-   ms.date="09/13/2016"
+   ms.date="10/04/2016"
    ms.author="nitinme"/>
 
 # 使用 Azure PowerShell 開始使用 Azure 資料湖分析存放區
@@ -33,12 +33,13 @@
 
 開始進行本教學課程之前，您必須具備下列條件：
 
-- **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+* **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
+* **Azure PowerShell 1.0 或更新版本**。請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
-##安裝 Azure PowerShell 1.0 或更新版本
+## 驗證
 
-請參閱[搭配使用 Azure PowerShell 與 Azure Resource Manager](../powershell-azure-resource-manager.md#prerequisites)的＜必要條件＞一節。
+本文搭配使用較簡單的驗證方法與 Data Lake Store，系統會提示您輸入 Azure 帳號認證。Data Lake Store 帳戶和檔案系統的存取層級則由已登入使用者的存取層級所控管。不過，還有其他方法可向 Data Lake Store 進行驗證：**使用者驗證**或**服務對服務驗證**。如需如何驗證的指示和詳細資訊，請參閱[使用 Azure Active Directory 向 Data Lake Store 進行驗證](data-lake-store-authenticate-using-active-directory.md)。
 
 ## 建立 Azure 資料湖存放區帳戶
 
@@ -140,4 +141,4 @@
 - [搭配 Data Lake Store 使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 - [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_1005_2016-->

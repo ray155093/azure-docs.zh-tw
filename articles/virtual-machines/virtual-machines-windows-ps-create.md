@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="na"
 	ms.devlang="na"
 	ms.topic="get-started-article"
-	ms.date="06/07/2016"
+	ms.date="09/27/2016"
 	ms.author="davidmu"/>
 
 # 使用 Resource Manager 和 PowerShell 建立 Windows VM
@@ -25,7 +25,7 @@
 
 ## 步驟 1：安裝 Azure PowerShell
 
-如需如何安裝最新版 Azure PowerShell、選取要使用的訂用帳戶，以及登入 Azure 帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
         
 ## 步驟 2：建立資源群組
 
@@ -35,7 +35,7 @@
 
 	    Get-AzureRmLocation | sort Location | Select Location
         
-    您應該會看到如下的結果：
+    您應該會看到如下列範例的結果：
     
         Location
         --------
@@ -98,7 +98,7 @@
         $vnetName = "myvnet1"
         $vnet = New-AzureRmVirtualNetwork -Name $vnetName -ResourceGroupName $rgName -Location $locName -AddressPrefix 10.0.0.0/16 -Subnet $singleSubnet
         
-    您應該使用對您的應用程式和環境有意義的值。
+    使用對您的應用程式和環境有意義的值。
         
 ## 步驟 5︰建立公用 IP 位址和網路介面
 
@@ -122,7 +122,7 @@
 
         $cred = Get-Credential -Message "Type the name and password of the local administrator account."
         
-    密碼長度必須介於 8-123 個字元，且符合下列四個複雜性需求的其中三項：1 個小寫字元、1 個大寫字元、1 個數字和 1 個特殊字元。進一步了解[使用者名稱和密碼需求](virtual-machines-windows-faq.md#what-are-the-username-requirements-when-creating-a-vm)。
+    密碼長度必須介於 12-123 個字元，並且具有至少 1 個小寫字元、1 個大寫字元、1 個數字和 1 個特殊字元。
         
 2. 使用虛擬機器的名稱取代 **$vmName** 的值。建立變數和虛擬機器組態。
 
@@ -146,7 +146,7 @@
 
         $vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
         
-6. 使用虛擬硬碟將使用的儲存體中的路徑和檔案名稱取代 **$blobPath** 的值。虛擬硬碟檔案通常會儲存在容器中，例如 **vhds/WindowsVMosDisk.vhd**。建立變數。
+6. 使用虛擬硬碟儲存體中的路徑和檔案名稱取代 **$blobPath** 的值。虛擬硬碟檔案通常會儲存在容器中，例如 **vhds/WindowsVMosDisk.vhd**。建立變數。
 
         $blobPath = "vhds/WindowsVMosDisk.vhd"
         $osDiskUri = $storageAcc.PrimaryEndpoints.Blob.ToString() + $blobPath
@@ -168,8 +168,8 @@
                                   
 ## 後續步驟
 
-- 如果部署有問題，下一個步驟就是查看[使用 Azure 入口網站針對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)。
-- 檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)，以了解如何管理您剛建立的虛擬機器。
+- 如果部署有問題，下一個步驟就是查看[使用 Azure 入口網站針對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)
+- 檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)，以了解如何管理您建立的虛擬機器。
 - 使用[利用 Resource Manager 範本建立 Windows 虛擬機器](virtual-machines-windows-ps-template.md)中的資訊，充分運用使用範本建立虛擬機器。
 
-<!---HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_1005_2016-->

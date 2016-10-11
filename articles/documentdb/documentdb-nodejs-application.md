@@ -100,7 +100,7 @@
 
 	![[package.json] 索引標籤的螢幕擷取畫面](./media/documentdb-nodejs-application/image17.png)
 
-       這會讓 Node (之後則是 Azure) 知道您的應用程式需要仰賴這些額外模組。
+	這會讓 Node (之後則是 Azure) 知道您的應用程式需要仰賴這些額外模組。
 
 ## <a name="_Toc395783180"></a>步驟 4：在節點應用程式中使用 DocumentDB 服務
 
@@ -568,4 +568,4 @@
 [Github]: https://github.com/Azure-Samples/documentdb-node-todo-app
  
 
-<!-------HONumber=AcomDC_0831_2016-->
+<!---HONumber=AcomDC_1005_2016-->

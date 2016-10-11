@@ -14,7 +14,7 @@
 	ms.tgt_pltfrm="mobile-chrome"
 	ms.devlang="JavaScript"
 	ms.topic="hero-article"
-	ms.date="07/22/2016"
+	ms.date="10/03/2016"
 	ms.author="wesmc"/>
 
 # 使用 Azure 通知中樞將推播通知傳送至 Chrome 應用程式
@@ -23,7 +23,7 @@
 
 本主題說明如何使用 Azure 通知中樞將推播通知傳送至 Chrome 應用程式，以顯示於 Google Chrome 瀏覽器的內容中。在本教學課程中，我們將建立可使用 [ Google 雲端通訊 (GCM)](https://developers.google.com/cloud-messaging/) 接收推播通知的 Chrome 應用程式。
 
->[AZURE.NOTE] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%notification-hubs-chrome-get-started%2F)。
+>[AZURE.NOTE] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdocumentation%2Farticles%notification-hubs-chrome-get-started%2F)。
 
 本教學課程將逐步引導您完成下列啟用推播通知的基本步驟：
 
@@ -388,7 +388,7 @@ Chrome 應用程式是透過 JavaScript 建立的，您可以使用任何慣用�
 
 1. 在 Visual Studio 的 [檔案] 功能表中，選取 [新增]，然後選取 [專案]。在 [Visual C#] 下方，按一下 [Windows] 和 [主控台應用程式]，再按一下 [確定]。這會建立新的主控台應用程式專案。
 
-2. 在 [工具] 功能表中，依序按一下 [Library Package Manager] 及 [Package Manager Console]。這會顯示 [Package Manager Console]。
+2. 在 [工具] 功能表中，依序按一下 [Library Package Manager] 及 [Package Manager Console]。即會顯示套件管理器主控台。
 
 3. 在主控台視窗中，執行下列命令：
 
@@ -474,7 +474,7 @@ Chrome 應用程式是透過 JavaScript 建立的，您可以使用任何慣用�
 [crypto-js 程式庫]: http://code.google.com/p/crypto-js/
 [GCM with Chrome Apps]: https://developer.chrome.com/apps/cloudMessaging
 [Google Cloud Messaging for Chrome]: https://developer.chrome.com/apps/cloudMessagingV1
-[Azure 通知中樞通知使用者]: notification-hubs-aspnet-backend-windows-dotnet-notify-users.md
-[Azure 通知中樞即時新聞]: notification-hubs-windows-store-dotnet-send-breaking-news.md
+[Azure 通知中樞通知使用者]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
+[Azure 通知中樞即時新聞]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_1005_2016-->

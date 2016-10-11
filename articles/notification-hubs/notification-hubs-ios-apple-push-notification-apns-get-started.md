@@ -14,14 +14,14 @@
 	ms.tgt_pltfrm="mobile-ios"
 	ms.devlang="objective-c"
 	ms.topic="hero-article"
-	ms.date="06/29/2016"
+	ms.date="10/03/2016"
 	ms.author="wesmc"/>
 
 # 使用 Azure 通知中樞將推播通知傳送至 iOS
 
 [AZURE.INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
-##概觀
+##Overview
 
 > [AZURE.NOTE] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdocumentation%2Farticles%2Fnotification-hubs-ios-get-started)。
 
@@ -82,7 +82,7 @@
 
 3. 在 [目標] 下按一下您的專案名稱，然後按一下 [組建設定] 索引標籤並展開 [程式碼簽署身分識別]，接著在 [偵錯] 下設定您的程式碼簽署身分識別。將 [層級] 從 [基本] 切換成 [全部]，然後將 [佈建設定檔] 設為您先前建立的佈建設定檔。
 
-	如果畫面未顯示您在 Xcode 中建立的新佈建設定檔，請嘗試重新整理簽署身分識別的設定檔。按一下功能表列上的 \[Xcode]，再依序按一下 [喜好設定]、[帳號] 索引標籤、[檢視詳細資料] 按鈕、您的簽署身分識別，然後按一下右下角的 [重新整理] 按鈕。
+	如果畫面未顯示您在 Xcode 中建立的新佈建設定檔，請嘗試重新整理簽署身分識別的設定檔。按一下功能表列上的 [Xcode]，再依序按一下 [喜好設定]、[帳號] 索引標籤、[檢視詳細資料] 按鈕、您的簽署身分識別，然後按一下右下角的 [重新整理] 按鈕。
 
    	![Xcode - 佈建設定檔][9]
 
@@ -437,7 +437,7 @@
 11. 建置專案並確認一切正確無誤。
 
 
-> [AZURE.NOTE] 如果您在 Xcode7 中遇到有關 Bitcode 支援的建置錯誤，您應該在 Xcode 中將 [建置設定] -> [啟用 Bitcode] \(ENABLE\_BITCODE) 變更為 [否]。通知中樞 SDK 目前不支援 Bitcode。
+> [AZURE.NOTE] 如果您在 Xcode7 中遇到有關 Bitcode 支援的建置錯誤，您應該在 Xcode 中將 [建置設定] > [啟用 Bitcode] \(ENABLE\_BITCODE) 變更為 [否]。通知中樞 SDK 目前不支援 Bitcode。
 
 您可以在 Apple [本機和推播通知程式設計指南]中找到所有可能的通知承載。
 
@@ -450,7 +450,7 @@
 
 	![iOS 應用程式推播通知註冊測試][33]
 
-2. 如上所述，您可以從 [Azure 入口網站]傳送測試推播通知。如果您已在應用程式中加入傳送推播通知的程式碼，在文字欄位中觸控以輸入通知訊息。接著，按下鍵盤上的 [傳送] 按鈕或檢視中的 [傳送通知] 按鈕，以傳送通知訊息。
+2. 如上所述，您可以從 [Azure 入口網站] 傳送測試推播通知。如果您已在應用程式中加入傳送推播通知的程式碼，在文字欄位中觸控以輸入通知訊息。接著，按下鍵盤上的 [傳送] 按鈕或檢視中的 [傳送通知] 按鈕，以傳送通知訊息。
 
 	![iOS 應用程式推播通知傳送測試][34]
 
@@ -463,9 +463,9 @@
 
 在此簡單範例中，您會將推播通知廣播到您已註冊的所有 iOS 裝置。我們建議您繼續進行 [Azure 通知中樞透過 .NET 後端通知 iOS 使用者] 教學課程作為學習的下一步，該教學課程將逐步引導您使用標記，建立後端以傳送推播通知。
 
-如果您想要按興趣群組分隔使用者，您可以額外移至[使用通知中樞傳送即時新聞]教學課程。
+如果您想要按興趣群組分隔使用者，您可以額外移至 [使用通知中樞傳送即時新聞] 教學課程。
 
-如需有關通知中樞的一般資訊，請參閱[通知中樞指引]。
+如需有關通知中樞的一般資訊，請參閱 [通知中樞指引]。
 
 
 
@@ -501,10 +501,10 @@
 [iOS Provisioning Portal]: http://go.microsoft.com/fwlink/p/?LinkId=272456
 
 [Get started with push notifications in Mobile Services]: ../mobile-services-javascript-backend-ios-get-started-push.md
-[Azure 通知中樞透過 .NET 後端通知 iOS 使用者]: notification-hubs-aspnet-backend-ios-notify-users.md
-[使用通知中樞傳送即時新聞]: notification-hubs-ios-send-breaking-news.md
+[Azure 通知中樞透過 .NET 後端通知 iOS 使用者]: notification-hubs-aspnet-backend-ios-apple-apns-notification.md
+[使用通知中樞傳送即時新聞]: notification-hubs-ios-xplat-segmented-apns-push-notification.md
 
 [本機和推播通知程式設計指南]: http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW1
 [Azure 入口網站]: https://portal.azure.com
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_1005_2016-->

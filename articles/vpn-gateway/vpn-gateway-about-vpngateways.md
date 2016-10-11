@@ -34,7 +34,7 @@
 
 ## 閘道 SKU
 
-[AZURE.INCLUDE [vpn-gateway-gwsku-include](../../includes/vpn-gateway-gwsku-include.md)]
+[AZURE.INCLUDE [vpn-gateway-gwsku-include](../../includes/vpn-gateway-gwsku-include.md)] 如需閘道 SKU 的詳細資訊，請參閱[閘道 SKU](vpn-gateway-about-vpn-gateway-settings.md#gwsku)。
 
 下表顯示閘道類型和預估的彙總輸送量。此資料表適用於資源管理員與傳統部署模型。
 
@@ -148,4 +148,4 @@ ExpressRoute 是從 WAN (不透過公用網際網路) 至 Microsoft 服務 (包�
 
  
 
-<!---HONumber=AcomDC_0928_2016-->
+<!---HONumber=AcomDC_1005_2016-->

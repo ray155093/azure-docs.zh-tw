@@ -253,7 +253,7 @@ HDInsight 提供兩種類型的巨量資料雲端提供項目：Standard 和 Pre
 
 * [使用 Power Query 將 Excel 連接到 Hadoop](hdinsight-connect-excel-power-query.md)：了解如何使用 Microsoft Power Query for Excel，將 Excel 連接到儲存 HDInsight 叢集相關資料的 Azure 儲存體帳戶。必要的 Windows 工作站。適用於以 Windows 或 Linux 為基礎的叢集。
 
-* [使用 Microsoft Hive ODBC 驅動程式將 Excel 連接到 Hadoop](hdinsight-connect-excel-hive-ODBC-driver.md)：了解如何使用 Microsoft Hive ODBC 驅動程式從 HDInsight 匯入資料。必要的 Windows 工作站。適用於以 Windows 或 Linux 為基礎的叢集。
+* [使用 Microsoft Hive ODBC 驅動程式將 Excel 連接到 Hadoop](hdinsight-connect-excel-hive-odbc-driver.md)：了解如何使用 Microsoft Hive ODBC 驅動程式從 HDInsight 匯入資料。必要的 Windows 工作站。適用於以 Windows 或 Linux 為基礎的叢集。
 
 * [Microsoft 雲端平台](http://www.microsoft.com/server-cloud/solutions/business-intelligence/default.aspx)：了解 Power BI for Office 365、下載 SQL Server 試用版，以及設定 SharePoint Server 2013 和 SQL Server BI。
 
@@ -268,4 +268,4 @@ HDInsight 提供兩種類型的巨量資料雲端提供項目：Standard 和 Pre
 [component-versioning]: hdinsight-component-versioning.md
 [zookeeper]: http://zookeeper.apache.org/
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_1005_2016-->

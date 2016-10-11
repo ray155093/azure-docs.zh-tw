@@ -72,7 +72,7 @@
 
 	![Add-AzureNodeWebRole 命令的輸出][The output of the Add-AzureNodeWebRole command]
 
-	**Add-AzureNodeWebRole** Cmdlet 可建立基本的 Node.js 應用程式。也可修改 **.csfg** 和 **.csdef** 檔案以加入新角色的設定目。
+	**Add-AzureNodeWebRole** Cmdlet 可建立基本的 Node.js 應用程式。也可修改 **.csfg** 和 **.csdef** 檔案，以新增新角色的組態項目。
 
 	> [AZURE.NOTE] 如果您未指定角色名稱，系統會使用預設名稱。您可以提供一個名稱做為第一個 Cmdlet 參數：`Add-AzureNodeWebRole MyRole`
 
@@ -138,13 +138,13 @@ Node.js app 是在 **server.js** 檔案中定義，該檔案位於 Web 角色 (�
 
 **Publish-AzureServiceProject** Cmdlet 將執行下列步驟：
 
-1.  建立部署的封裝。該封裝包含 node.js 應用程式資料夾中所有的檔案。
+1.  建立要部署的套件。該套件包含 node.js 應用程式資料夾中所有的檔案。
 
-2.  建立新的**儲存體帳戶** (如果不存在)。Azure 儲存體帳戶將用來在部署期間儲存應用程式封裝。部署完成後，即可安全刪除儲存體帳戶。
+2.  建立新的**儲存體帳戶** (如果不存在)。Azure 儲存體帳戶將用來在部署期間儲存應用程式套件。部署完成後，即可安全刪除儲存體帳戶。
 
 3.  建立新的**雲端服務** (如果不存在)。**雲端服務**是應用程式部署到 Azure 時代管應用程式的容器。如需詳細資訊，請參閱[雲端服務]。
 
-4.  將部署封裝發佈到 Azure。
+4.  將部署套件發佈到 Azure。
 
 
 ## 停止並刪除您的應用程式
@@ -169,7 +169,7 @@ Node.js app 是在 **server.js** 檔案中定義，該檔案位於 Web 角色 (�
 
 	![Remove-AzureService 命令的狀態][The status of the Remove-AzureService command]
 
-	> [AZURE.NOTE] 刪除服務不會刪除初次發佈服務時建立的儲存體帳戶，而且將持續對使用的儲存體計費。如需刪除儲存體帳戶的詳細資訊，請參閱[如何從 Azure 訂用帳戶刪除儲存體帳戶]。
+	> [AZURE.NOTE] 刪除服務不會刪除初次發佈服務時建立的儲存體帳戶，而且將持續對使用的儲存體計費。如果沒有其他項目正在使用儲存體，您可以將它刪除。
 
 ## 後續步驟
 
@@ -180,10 +180,9 @@ Node.js app 是在 **server.js** 檔案中定義，該檔案位於 Web 角色 (�
 [Azure 網站、雲端服務與虛擬機器的比較]: ../app-service-web/choose-web-site-cloud-service-vm.md
 [使用輕量型 Web 應用程式]:../app-service-web/web-sites-nodejs-develop-deploy-mac.md
 [Azure Powershell]: ../powershell-install-configure.md
-[Azure SDK for .NET 2.7]: http://www.microsoft.com/en-us/download/details.aspx?id=48178
+[Azure SDK for .NET 2.7]: http://www.microsoft.com/zh-TW/download/details.aspx?id=48178
 [連線 PowerShell]: ../powershell-install-configure.md#how-to-connect-to-your-subscription
 [nodejs.org]: http://nodejs.org/
-[如何從 Azure 訂用帳戶刪除儲存體帳戶]: ../storage/how-to-manage-a-storage-account.md
 [雲端服務]: https://azure.microsoft.com/documentation/services/cloud-services/
 [Node.js 開發人員中心]: https://azure.microsoft.com/develop/nodejs/
 
@@ -193,9 +192,8 @@ Node.js app 是在 **server.js** 檔案中定義，該檔案位於 Web 角色 (�
 [The output of the Add-AzureNodeWebRole command]: ./media/cloud-services-nodejs-develop-deploy-app/node11.png
 [A web browser displaying the Hello World web page]: ./media/cloud-services-nodejs-develop-deploy-app/node14.png
 [The output of the Publish-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node19.png
-[The full status output of the Publish-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node20.png
 [A browser window displaying the hello world page; the URL indicates the page is hosted on Azure.]: ./media/cloud-services-nodejs-develop-deploy-app/node21.png
 [The status of the Stop-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node48.png
 [The status of the Remove-AzureService command]: ./media/cloud-services-nodejs-develop-deploy-app/node49.png
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_1005_2016-->

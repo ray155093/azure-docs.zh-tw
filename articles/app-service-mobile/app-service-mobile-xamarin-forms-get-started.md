@@ -3,7 +3,7 @@
 	description="遵循此教學課程，開始使用 Azure 行動應用程式進行 Xamarin.Forms 開發。"
 	services="app-service\mobile"
 	documentationCenter="xamarin"
-	authors="wesmc7777"
+	authors="adrianhall"
 	manager="erikre"
 	editor=""/>
 
@@ -13,8 +13,8 @@
 	ms.tgt_pltfrm="mobile-xamarin"
 	ms.devlang="dotnet"
 	ms.topic="hero-article"
-	ms.date="08/11/2016"
-	ms.author="glenga"/>
+	ms.date="10/01/2016"
+	ms.author="adrianha"/>
 
 #建立 Xamarin.Forms 應用程式
 
@@ -180,4 +180,4 @@
 [Mobile app SDK]: http://go.microsoft.com/fwlink/?LinkId=257545
 [Azure 入口網站]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_1005_2016-->

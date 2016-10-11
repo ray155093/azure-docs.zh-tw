@@ -27,11 +27,15 @@
 
 [AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-### 必要條件
+## 必要條件
 
 開始進行本教學課程之前，您必須具備：
 
 - **Azure 訂用帳戶**︰若要建立一個月的免費試用帳戶，請瀏覽至 [azure.microsoft.com/free](https://azure.microsoft.com/free)。
+
+### 存取控制需求
+
+[AZURE.INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
 
 ## 建立叢集
 
@@ -39,7 +43,7 @@
 
 1. 按一下以下影像，在 Azure 入口網站中登入 Azure 並開啟 Resource Manager 範本。
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-hadoop-cluster-in-hdinsight.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
+	<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-hadoop-cluster-in-hdinsight.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
 2. 從 [參數] 刀鋒視窗，輸入下列資料：
 
@@ -47,7 +51,7 @@
 
     - ClusterName：輸入您將建立的 Hadoop 叢集名稱。
     - 叢集登入名稱和密碼：預設登入名稱是 admin。
-    - SSH 使用者名稱和密碼：預設使用者名稱是 sshuser。您可以將它重新命名。
+    - **SSH 使用者名稱和密碼**：預設使用者名稱是 **sshuser**。您可以將它重新命名。
     
     其他參數都是進行本教學課程的選擇性參數。您可以將它們維持不變。
     
@@ -100,7 +104,7 @@
 
 >[AZURE.NOTE] 使用 [Azure Data Factory](hdinsight-hadoop-create-linux-clusters-adf.md)，您可以視需要建立 HDInsight 叢集，並進行 TimeToLive 設定以自動刪除叢集。
 
-刪除叢集和/或預設儲存體帳戶
+**刪除叢集和/或預設儲存體帳戶**
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 從入口網站儀表板，按一下具有您建立叢集時所用資源群組名稱的圖格。
@@ -161,4 +165,4 @@
 [image-hdi-gettingstarted-powerquery-importdata]: ./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.GettingStarted.PowerQuery.ImportData.png
 [image-hdi-gettingstarted-powerquery-importdata2]: ./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.GettingStarted.PowerQuery.ImportData2.png
 
-<!---HONumber=AcomDC_0914_2016-->
+<!---HONumber=AcomDC_1005_2016-->

@@ -13,10 +13,14 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="09/25/2016"
+   ms.date="09/30/2016"
    ms.author="markvi"/>
 
 # Azure Active Directory 報告 - 預覽版
+
+> [AZURE.SELECTOR]
+- [Azure 入口網站](active-directory-reporting-azure-portal.md)
+- [Azure 傳統入口網站](active-directory-reporting-guide.md)
 
 *這份文件是 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)的一部分。*
 
@@ -216,4 +220,4 @@ Azure 入口網站中有三個主要類別可稽核相關活動︰
 
 請參閱 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)。
 
-<!---HONumber=AcomDC_0928_2016-->
+<!---HONumber=AcomDC_1005_2016-->

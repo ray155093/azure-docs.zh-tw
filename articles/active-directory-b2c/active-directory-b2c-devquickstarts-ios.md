@@ -71,14 +71,14 @@ git clone --branch complete git@github.com:Azure-Samples/active-directory-ios-na
 
 在此逐步解說中，我們將使用 GitHub 提供的 OAuth2Client，這是適用於 Mac OS X & iOS 的 OAuth2 程式庫 (Cocoa & Cocoa Touch)。此程式庫是以 OAuth2 規格的第 10 版草稿為基礎。它會實作原生應用程式設定檔，並支援使用者授權端點。我們需要上述一切，才能與 Microsoft 身分識別平台整合。
 
-### 使用 CocoaPods 將程式庫加入至您的專案
+### 使用 CocoaPods 將程式庫新增至您的專案
 
 CocoaPods 是 Xcode 專案的相依性管理員。它會自動管理上述安裝步驟。
 
 ```
 $ vi Podfile
 ```
-將下列加入此 Podfile：
+將下列內容新增至此 Podfile：
 
 ```
  platform :ios, '8.0'
@@ -107,7 +107,7 @@ $ open SampleforB2C.xcworkspace
 * 所選工作相關資料的 [新增工作檢視]
 * 可讓使用者登入應用程式的 [登入檢視。
 
-我們會跳入專案中的各種檔案，以加入驗證。程式碼的其他部分 (如視覺化程式碼) 與身分識別無關，所以不會提供給您。
+我們會跳入專案中的各種檔案，以新增驗證。程式碼的其他部分 (如視覺化程式碼) 與身分識別無關，所以不會提供給您。
 
 ## 建立您的應用程式的 `settings.plist` 檔案
 
@@ -151,13 +151,13 @@ $ open SampleforB2C.xcworkspace
 
 對於 `authURL`、`loginURL`、`bhh`、`tokenURL`，您會發現您需要填入您的租用戶名稱。這是已指派給您的 B2C 租用戶的租用戶名稱。例如，`kidventusb2c.onmicrosoft.com`。如果您使用開放原始碼 Microsoft Azure 身分識別程式庫，我們會使用中繼資料端點為您提取此資料。我們已努力完成為您擷取這些值的工作。
 
-如需 B2C 租用戶名稱的詳細資訊，請看看這裡︰[active-directory-b2c-devquickstarts-tenant-name](../../includes/active-directory-b2c-devquickstarts-tenant-name.md)
+[AZURE.INCLUDE [active-directory-b2c-devquickstarts-tenant-name](../../includes/active-directory-b2c-devquickstarts-tenant-name.md)]
 
 `keychain` 值是一個容器，NXOAuth2Client 程式庫將用來建立金鑰鏈來儲存您的權杖。如果您想要取得跨多個應用程式的 SSO，可以在每個應用程式中指定相同的金鑰鏈，以及要求在您的 XCode 權利中使用該金鑰鏈。這涵蓋於 Apple 文件中。
 
 在每個 URL 結尾的 `<policy name>` 是您放置先前建立之原則的地方。應用程式會根據流程呼叫這些原則。
 
-`taskAPI` 是我們將使用 B2C 權杖呼叫的 REST 端點，以便加入工作或查詢現有的工作。這已特別針對此範例進行設定。您不需要加以變更，範例即可運作。
+`taskAPI` 是我們將使用 B2C 權杖呼叫的 REST 端點，以便新增工作或查詢現有的工作。這已特別針對此範例進行設定。您不需要加以變更，範例即可運作。
 
 這些值的其餘部分都必須使用此程式庫，並且只要為您建立位置，即可將這些值送至內容。
 
@@ -242,7 +242,7 @@ NXOAuthClient 程式庫要求設定一些值。完成後，您可以使用所取
 #import "AppData.h" // the class we just created we will use to load the settings of our application
 ```
 
-* 在 AppDelegate 中加入 `setupOAuth2AccountStore` 方法
+* 在 AppDelegate 中新增 `setupOAuth2AccountStore` 方法
 
 我們需要建立 AccountStore，然後將我們剛從 `settings.plist` 檔案讀入的資料饋送給它。
 
@@ -313,7 +313,7 @@ NXOAuthClient 程式庫要求設定一些值。完成後，您可以使用所取
 
 * 建立 `LoginViewController.m` 類別
 
-* 加入一些變數，以在我們進行驗證時傳遞狀態
+* 新增一些變數，以在我們進行驗證時傳遞狀態
 
 ```objc
 NSURL *myRequestedUrl; \\ The URL request to Azure Active Directory 
@@ -416,7 +416,7 @@ NSURL *authcode; \\ A placeholder for our auth code.
 
 * 設定通知處理站。
 
-我們會如同在上述 `AppDelegate` 中建立相同的方法，但這次我們將加入一些 `NSNotification` 來告知我們服務發生什麼狀況。我們會設定觀察者，以在權杖發生任何變更時告訴我們。取得權杖後，我們會讓使用者回到 `masterView`。
+我們會如同在上述 `AppDelegate` 中建立相同的方法，但這次我們將新增一些 `NSNotification` 來告知我們服務發生什麼狀況。我們會設定觀察者，以在權杖發生任何變更時告訴我們。取得權杖後，我們會讓使用者回到 `masterView`。
 
 
 
@@ -457,7 +457,7 @@ NSURL *authcode; \\ A placeholder for our auth code.
 }
 
 ```
-* 加入程式碼，以便在針對 sign-native 起始要求時處理使用者
+* 新增程式碼，以便在針對 sign-native 起始要求時處理使用者
 
 讓我們建立每當我們提出驗證要求時所要呼叫的方法。這會是實際建立 Web 檢視的方法
 
@@ -478,7 +478,7 @@ NSURL *authcode; \\ A placeholder for our auth code.
 }
 ```
 
-* 最後，讓我們在每次 `LoginViewController` 載入時，呼叫我們上面撰寫的所有方法。我們的做法是將這些方法加入至 Apple 提供給我們的 `viewDidLoad` 方法
+* 最後，讓我們在每次 `LoginViewController` 載入時，呼叫我們上面撰寫的所有方法。我們的做法是將這些方法新增至 Apple 提供給我們的 `viewDidLoad` 方法
 
 ```objc
   [super viewDidLoad];
@@ -516,9 +516,9 @@ completionBlock:(void (^)(bool, NSError *error))completionBlock;
 @end
 ```
 
-您可從此程式碼看到，我們將建立兩個方法︰一個會從 API 取得工作，另一個會將工作加入至 API。
+您可從此程式碼看到，我們將建立兩個方法︰一個會從 API 取得工作，另一個會將工作新增至 API。
 
-我們現已設定好我們的介面，讓我們加入實際的實作︰
+我們現已設定好我們的介面，讓我們新增實際的實作︰
 
 * 建立 `GraphAPICaller.m file`
 
@@ -646,4 +646,4 @@ completionBlock:(void (^)(bool, NSError *error))completionBlock {
 
 [自訂 B2C 應用程式的 UX]()
 
-<!---HONumber=AcomDC_0727_2016-->
+<!---HONumber=AcomDC_1005_2016-->

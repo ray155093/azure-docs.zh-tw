@@ -31,8 +31,10 @@
 
 ## 必要條件
 
+
 - [安裝 Git](http://www.git-scm.com/downloads)。從新的 Windows 命令提示字元、PowerShell 視窗、Linux 殼層或 OS X 終端機執行 `git --version`，確認您的安裝是否成功。
 - 取得 Microsoft Azure 帳戶。如果您沒有帳戶，可以[申請免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)，或是[啟用自己的 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
+
 
 >[AZURE.NOTE] 您可以[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，而不需要 Azure 帳戶。建立入門 App，並試用長達一小時。不需要信用卡，也不需簽定合約。
 
@@ -144,4 +146,4 @@
 - 嘗試[將程式碼部署至 Azure 的其他方法](../app-service-web/web-sites-deploy.md)。例如，若要從您的其中一個 GitHub 儲存機制中部署，只需在 [部署選項] 中改為選取 [GitHub] 而不是 [本機 Git 儲存機制] 即可。
 - 加強您 Azure App 的功能。驗證您的使用者。根據需求加以調整。設定一些效能警示。都只要點幾下滑鼠就能完成。請參閱[在您的第一個 Web 應用程式中新增功能](app-service-web-get-started-2.md)。
 
-<!---HONumber=AcomDC_0920_2016--->
+<!---HONumber=AcomDC_1005_2016-->

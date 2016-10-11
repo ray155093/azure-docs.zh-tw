@@ -13,14 +13,14 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="na"
 	ms.workload="storage-backup-recovery" 
-	ms.date="02/22/2016" 
+	ms.date="09/29/2016" 
 	ms.author="raynew"/>
 
 #  什麼是 Site Recovery？
 
 歡迎使用 Azure Site Recovery！ 請以此文章做為開端，快速地概略了解 Site Recovery 服務以及其如何有助於商務持續性和災害復原 (BCDR) 策略。
 
-## 概觀
+## Overview
 
 組織需要 BCDR 策略，以決定應用程式、工作負載和資料如何在規劃與未規劃停機期間維持運作，並儘速復原到正常運作的情況。BCDR 策略應保護商務資料安全且可復原，並確保發生災害時工作負載仍持續可用。
 
@@ -81,4 +81,4 @@ Site Recovery 有助於應用程式感知 BCDR，讓工作負載和應用程式�
 - 若要深入了解 Site Recovery 架構，請閱讀 [Site Recovery 如何運作？](site-recovery-components.md)
  
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_1005_2016-->

@@ -26,6 +26,7 @@ Azure App Service 是一項雲端服務，設計用來解決現今工程師所�
 * 使用 API Apps 實作、部署和發佈 API。
 * 將商務應用程式結合到工作流程中，並使用 Logic Apps 轉換資料。
 
+
 所有的應用程式類型均依賴可調整和彈性的 Web 應用程式平台，其可提供開發人員從應用程式的設計到應用程式維護的最佳化完整生命週期體驗。週期功能可以：
 
 * 快速應用程式建立 - 從頭開始，或從 Azure Marketplace 選取 OSS 封裝。
@@ -39,4 +40,4 @@ App Service 功能整合可讓開發人員專注於他們的程式碼，並能�
 
 [AZURE.INCLUDE [app-service-blueprint-how-app-service-works](../../includes/app-service-blueprint-how-app-service-works.md)]
 
-<!---HONumber=AcomDC_0720_2016-->
+<!---HONumber=AcomDC_1005_2016-->

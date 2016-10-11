@@ -14,7 +14,7 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/31/2016"
+   ms.date="10/03/2016"
    ms.author="cherylmc"/>
 
 # 使用 Azure 入口網站建立具有網站間連線的 VNet
@@ -54,23 +54,22 @@
 
 練習這些步驟時，您可以使用範例組態值：
 
-- VNet 名稱︰TestVNet1
-- 位址空間︰10.11.0.0/16 和 10.12.0.0/16
-- 子網路：
+- **VNet 名稱︰**TestVNet1
+- **位址空間︰**10.11.0.0/16 和 10.12.0.0/16
+- **子網路：**
 	- FrontEnd：10.11.0.0/24
 	- BackEnd：10.12.0.0/24
 	- GatewaySubnet：10.12.255.0/27
-- 資源群組︰TestRG1
-- 位置：美國東部
-- DNS 伺服器：8.8.8.8
-- 閘道名稱：VNet1GW
-- 公用 IP: VNet1GWIP
-- VPN 類型︰路由式
-- 連線類型︰網站間 (IPsec)
-- 閘道類型：VPN
-- 區域網路閘道名稱：Site2
-- 連線名稱：VNet1toSite2
-
+- **資源群組︰**TestRG1
+- **位置：**美國東部
+- **DNS 伺服器：**8.8.8.8
+- **閘道名稱：**VNet1GW
+- **公用 IP：**VNet1GWIP
+- **VPN 類型︰**路由式
+- **連線類型︰**網站間 (IPsec)
+- **閘道類型：**VPN
+- **區域網路閘道名稱：**Site2
+- **連線名稱：**VNet1toSite2
 
 
 ## 1\.建立虛擬網路 
@@ -89,29 +88,24 @@
 
 ## <a name="dns"></a>3.指定 DNS 伺服器
 
-如果您在練習中建立此設定，請在指定 DNS 伺服器時參考這些[值](#values)。
-
 ### 指定 DNS 伺服器
 
 [AZURE.INCLUDE [vpn-gateway-add-dns-rm-portal](../../includes/vpn-gateway-add-dns-rm-portal-include.md)]
 
 ## 4\.建立閘道子網路
 
-將虛擬網路連接到閘道之前，您必須先建立虛擬網路要連接的閘道子網路。您建立的閘道子網路必須命名為 GatewaySubnet，否則無法正常運作。
-
-某些設定的閘道子網路首碼需要是 /28 或更大的子網路，才能容納集區中所需的 IP 位址個數。這表示閘道子網路首碼必須是 /28、/27、/26 等。您可以在此建立較大的子網路，以容納未來可能的設定新增。
+將虛擬網路連接到閘道之前，您必須先建立虛擬網路要連接的閘道子網路。可能的話，最好使用 /28 或 /27 的 CIDR 區塊建立閘道子網路，以便提供足以容納未來其他組態需求的 IP 位址。
 
 如果您在練習中建立此設定，請在建立閘道子網路時參考這些[值](#values)。
 
 ### 建立閘道子網路
 
-[AZURE.INCLUDE [vpn-gateway-no-nsg](../../includes/vpn-gateway-no-nsg-include.md)]
 
 [AZURE.INCLUDE [vpn-gateway-add-gwsubnet-rm-portal](../../includes/vpn-gateway-add-gwsubnet-rm-portal-include.md)]
 
 ## 5\.建立虛擬網路閘道
 
-如果您在練習中建立此組態，請在建立閘道時參考這些[值](#values)。
+如果您要練習建立此組態，您可以參考[範例組態值](#values)。
 
 ### 建立虛擬網路閘道
 
@@ -119,9 +113,9 @@
 
 ## 6\.建立區域網路閘道
 
-區域網路閘道會參考您的內部部署位置。賦予區域網路閘道一個可供 Azure 參考它的名稱。
+「區域網路閘道」會參考您的內部部署位置。賦予區域網路閘道一個可供 Azure 參考它的名稱。
 
-如果您在練習中建立此設定，請在新增本機站台時參考這些[值](#values)。
+如果您要練習建立此組態，您可以參考[範例組態值](#values)。
 
 ### 建立區域網路閘道
 
@@ -154,4 +148,4 @@
 
 - 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md)和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
 
-<!---HONumber=AcomDC_0921_2016-->
+<!---HONumber=AcomDC_1005_2016-->

@@ -49,21 +49,21 @@
 
 在本節中，您將執行下列步驟以從 Azure 入口網站建立新的 Azure 自動化帳戶。這會建立執行身分和傳統執行身分帳戶。
 
->[AZURE.NOTE] 執行這些步驟的使用者「必須」是訂閱管理員角色的成員，而且是授與使用者存取訂用帳戶權限的共同管理員。此使用者也必須加入為該訂用帳戶預設 Active Directory 的使用者；此帳戶不需要指派給特殊權限的角色。
+>[AZURE.NOTE] 執行這些步驟的使用者「必須」是訂閱管理員角色的成員，而且是授與使用者存取訂用帳戶權限的共同管理員。此使用者也必須新增為該訂用帳戶預設 Active Directory 的使用者；此帳戶不需要指派給特殊權限的角色。
 
 1. 您必須以訂用帳戶管理員角色成員和訂用帳戶共同管理員的帳戶登入 Azure 入口網站。
 2. 選取 [自動化帳戶]。
-3. 在 [自動化帳戶] 刀鋒視窗中，按一下 [新增]。<br>![加入自動化帳戶](media/automation-sec-configure-azure-runas-account/create-automation-account-properties-b.png)
+3. 在 [自動化帳戶] 刀鋒視窗中，按一下 [新增]。<br>![新增自動化帳戶](media/automation-sec-configure-azure-runas-account/create-automation-account-properties-b.png)
 
-    >[AZURE.NOTE] 如果您在 [加入自動化帳戶] 刀鋒視窗中看到下列警告，這是因為您的帳戶不是訂用帳戶管理員角色的成員和訂用帳戶的共同管理員。<br>![加入自動化帳戶警告](media/automation-sec-configure-azure-runas-account/create-account-without-perms.png)
+    >[AZURE.NOTE] 如果您在 [新增自動化帳戶] 刀鋒視窗中看到下列警告，這是因為您的帳戶不是訂用帳戶管理員角色的成員和訂用帳戶的共同管理員。<br>![新增自動化帳戶警告](media/automation-sec-configure-azure-runas-account/create-account-without-perms.png)
 
-4. 在 [加入自動化帳戶] 刀鋒視窗的 [名稱] 方塊中，輸入新的自動化帳戶的名稱。
+4. 在 [新增自動化帳戶] 刀鋒視窗的 [名稱] 方塊中，輸入新的自動化帳戶的名稱。
 5. 如果您有多個訂用帳戶，請為新的自動化帳戶指定其中一個訂用帳戶，並指定新的或現有的 [資源群組] 和 Azure 資料中心的 [位置]。
 6. 確認已為 [建立 Azure 執行身分帳戶] 選項選取 [是] 這個值，然後按一下 [建立] 按鈕。
 
-    >[AZURE.NOTE] 如果您選取選項 [否] 以選擇不要建立執行身分帳戶，則會在 [加入自動化帳戶] 刀鋒視窗中看到一則警告訊息。雖然此帳戶建立於 Azure 入口網站中，但在傳統或 Resource Manager 訂用帳戶目錄服務內不會有對應的驗證身分識別，因此無法存取您訂用帳戶中的資源。這將導致參考此帳戶的任何 Runbook 無法進行驗證並對這些部署模型中的資源執行工作。
+    >[AZURE.NOTE] 如果您選取選項 [否] 以選擇不要建立執行身分帳戶，則會在 [新增自動化帳戶] 刀鋒視窗中看到一則警告訊息。雖然此帳戶建立於 Azure 入口網站中，但在傳統或 Resource Manager 訂用帳戶目錄服務內不會有對應的驗證身分識別，因此無法存取您訂用帳戶中的資源。這將導致參考此帳戶的任何 Runbook 無法進行驗證並對這些部署模型中的資源執行工作。
     
-    >![加入自動化帳戶警告](media/automation-sec-configure-azure-runas-account/create-account-decline-create-runas-msg.png)<br> 若未建立服務主體，將不會指派參與者角色。
+    >![新增自動化帳戶警告](media/automation-sec-configure-azure-runas-account/create-account-decline-create-runas-msg.png)<br> 若未建立服務主體，將不會指派參與者角色。
 
 
 7. 在 Azure 建立自動化帳戶時，您可以在功能表的 [通知] 底下追蹤進度。
@@ -384,4 +384,4 @@ AzureClassicRunAsConnection|自動建立的連線資產，其用來向 Azure 進
 - 如需 Azure 自動化中角色型存取控制的詳細資訊，請參閱 [Azure 自動化中的角色型存取控制](../automation/automation-role-based-access-control.md)。
 - 如需有關憑證和 Azure 服務的詳細資訊，請參考 [Azure 雲端服務的憑證概觀](../cloud-services/cloud-services-certs-create.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+<!---HONumber=AcomDC_1005_2016-->

@@ -13,12 +13,12 @@
 	ms.topic="get-started-article"
 	ms.tgt_pltfrm="mobile-multiple"
 	ms.workload="mobile" 
-	ms.date="07/07/2016"
+	ms.date="10/04/2016"
 	ms.author="wesmc;ricksal"/>
 
 # Azure Mobile Engagement - 入門指南與最佳作法
 
-## 概觀
+## Overview
 
 **行動裝置的螢幕是非常擁擠的空間：**2013 年的一項研究中發現，每個行動裝置約安裝了 27 個應用程式。使用者每個月通常會花 30 小時在他們的應用程式上。這些時間大部分是花在社交網路和遊戲上 (大約 20 小時)。截至 2014 年為止，Android 市場約提供了一百五十萬個應用程式供使用者選擇。Apple Store 包含約一百二十萬個應用程式。隨著開發人員競相投入這個成長中的市場，行動應用程式的使用還在逐漸增長中。
 
@@ -356,7 +356,7 @@ Mobile Engagement SDK 自動收集的當機資料，會報告應用程式未處�
 
 #### 設定
 
-設定 Azure Mobile Engagement 其實很簡單。使用者介面的所有相關文件，都可從 Azure Mobile Engagement 網站取得：[如何瀏覽使用者介面](mobile-engagement-user-interface.md)。
+設定 Azure Mobile Engagement 其實很簡單。使用者介面的所有相關文件，都可從 Azure Mobile Engagement 網站取得：[如何瀏覽使用者介面](mobile-engagement-user-interface-home.md)。
 
 建議您一開始先為專案的使用者設定正確的角色和角色成員資格。這有助於您為所有使用者設定適當的平台存取。您的角色可能包括：
 
@@ -407,4 +407,4 @@ Mobile Engagement SDK 自動收集的當機資料，會報告應用程式未處�
 <!--Link references-->
 [Media Playbook link]: https://github.com/Azure/azure-mobile-engagement-samples/tree/master/Playbooks
 
-<!---HONumber=AcomDC_0713_2016-->
+<!---HONumber=AcomDC_1005_2016-->

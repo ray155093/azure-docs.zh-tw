@@ -1,6 +1,6 @@
 <properties
 	pageTitle="開始使用 IoT 中樞閘道 SDK | Microsoft Azure"
-	description="使用 Linux 的 Azure IoT 中樞閘道 SDK 逐步解說，說明您使用 Azure IoT 中樞閘道 SDK 時應該了解的重要概念。"
+	description="此 Azure IoT 中樞閘道 SDK 逐步解說使用 Linux 來說明您使用 Azure IoT 中樞閘道 SDK 時應該了解的重要概念。"
 	services="iot-hub"
 	documentationCenter=""
 	authors="chipalost"
@@ -83,4 +83,4 @@
 <!-- Links -->
 [lnk-setupdevbox]: https://github.com/Azure/azure-iot-gateway-sdk/blob/master/doc/devbox_setup.md
 
-<!---HONumber=AcomDC_0928_2016-->
+<!---HONumber=AcomDC_1005_2016-->
