@@ -7,7 +7,6 @@
 	manager="jhubbard" 
 	editor="monicar"/>
 
-<tags 
 	ms.service="data-factory" 
 	ms.workload="data-services" 
 	ms.tgt_pltfrm="na" 
@@ -316,7 +315,7 @@
 
 1. 按一下 **X** 關閉 [圖表] 檢視，以查看 Data Factory 首頁上的 Data Factory。如果您已關閉網頁瀏覽器，請執行下列步驟︰
 	2. 瀏覽至 [Azure 入口網站](https://portal.azure.com/)。
-	2. 按兩下 [開始面板] 上的 [ADFTutorialDataFactory] (或) 按一下左側功能表上的 [Data Factory]，然後搜尋 ADFTutorialDataFactory。
+	2. 按兩下 [開始面板] 上的 [ADFTutorialDataFactory]\(或) 按一下左側功能表上的 [Data Factory]，然後搜尋 ADFTutorialDataFactory。
 3. 您應該會看到您在此分頁上建立之資料表和管線的計數和名稱。
 
 	![含名稱的首頁](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-datafactory-home-page-pipeline-tables.png)
