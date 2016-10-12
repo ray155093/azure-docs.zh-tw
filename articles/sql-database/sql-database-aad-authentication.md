@@ -248,11 +248,11 @@ Azure Active Directory 驗證需要建立資料庫使用者做為自主資料庫
 
 1. 啟動 Management Studio 或 Data Tools，並在 [連接到伺服器]\(或 [連接到 Database Engine]) 對話方塊的 [驗證] 方塊中，選取 [Active Directory 整合式驗證]。不需要密碼或沒有密碼可輸入，因為現有的認證將會在連接時出現。
 
-![選取 AD 整合式驗證][11]
+	![選取 AD 整合式驗證][11]
 
 2. 按一下 [選項] 按鈕，然後在 [連接屬性] 頁面的 [連接到資料庫] 方塊中，輸入您想要連線的使用者資料庫名稱。
 
-![選取資料庫名稱][13]
+	![選取資料庫名稱][13]
 
 
 #### 使用 Active Directory 密碼驗證進行連接
@@ -323,7 +323,8 @@ Azure Active Directory 驗證支援下列方法，使用 Azure AD 身分識別�
 	SqlConnection conn = new SqlConnection(ConnectionString);
 	conn.Open();
 
-請注意，不支援使用連接字串關鍵字 ``Integrated Security=True`` 來連線到 Azure SQL Database。請注意，建立 ODBC 連接時，您必須移除空格，並將「驗證」設為 'ActiveDirectoryIntegrated'。
+請注意，不支援使用連接字串關鍵字 ``Integrated Security=True`` 來連線到 Azure SQL Database。
+請注意，建立 ODBC 連接時，您必須移除空格，並將「驗證」設為 'ActiveDirectoryIntegrated'。
 
 ### 7\.2.使用 Azure AD 主體名稱與密碼進行連接
 若要使用整合式驗證和 Azure AD 身分識別來連接到資料庫，Authentication 關鍵字就必須設定為 Active Directory Password。連接字串必須包含使用者識別碼 (UID) 及密碼 (PWD) 關鍵字和值。下列 C# 程式碼範例會使用 ADO.NET。
