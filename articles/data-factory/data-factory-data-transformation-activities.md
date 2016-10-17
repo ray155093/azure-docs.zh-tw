@@ -72,10 +72,14 @@ Azure Data Factory 支援下列資料轉換活動和活動計算環境。可將�
 
 資料轉換活動 | 計算環境 
 :----------------------- | :--------------------
-[Hive](data-factory-hive-activity.md) | HDInsight [Hadoop] [Pig](data-factory-pig-activity.md) | HDInsight [Hadoop] [MapReduce](data-factory-map-reduce.md) | HDInsight [Hadoop] [Hadoop 串流](data-factory-hadoop-streaming-activity.md) | HDInsight [Hadoop] [機器學習服務活動：批次執行和更新資源](data-factory-azure-ml-batch-execution-activity.md) | Azure VM 
+[Hive](data-factory-hive-activity.md) | HDInsight [Hadoop] 
+[Pig](data-factory-pig-activity.md) | HDInsight [Hadoop] 
+[MapReduce](data-factory-map-reduce.md) | HDInsight [Hadoop] 
+[Hadoop 串流](data-factory-hadoop-streaming-activity.md) | HDInsight [Hadoop] 
+[機器學習服務活動：批次執行和更新資源](data-factory-azure-ml-batch-execution-activity.md) | Azure VM 
 [預存程序](data-factory-stored-proc-activity.md) | Azure SQL、Azure SQL 資料倉儲或 SQL Server |
 [資料湖分析 U-SQL](data-factory-usql-activity.md) | Azure 資料湖分析 
 [DotNet](data-factory-use-custom-activities.md) | HDInsight [Hadoop] 或 Azure Batch
    
 
-<!---HONumber=AcomDC_0928_2016-->
+<!----HONumber=AcomDC_0928_2016-->
