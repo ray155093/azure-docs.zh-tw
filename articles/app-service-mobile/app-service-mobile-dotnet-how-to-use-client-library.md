@@ -502,14 +502,14 @@ Mobile Apps 支援使用各種外部識別提供者 (Facebook、Google、Microso
 
 您可以使用 Active Directory Authentication Library (ADAL)，從使用 Azure Active Directory 驗證的用戶端起始使用者驗證。
 
-1. 依照「如何設定 App Service 來進行 Active Directory 登入」教學課程的說明，設定您的行動應用程式後端來進行 AAD 登入。請務必完成註冊原生用戶端應用程式的選擇性步驟。
+1. 依照「[如何設定 App Service 來進行 Active Directory 登入]」教學課程的說明，設定您的行動應用程式後端來進行 AAD 登入。請務必完成註冊原生用戶端應用程式的選擇性步驟。
 2. 在 Visual Studio 或 Xamarin Studio 中，開啟您的專案，然後新增對 `Microsoft.IdentityModel.CLients.ActiveDirectory` NuGet 封裝的參考。搜尋時，包含發行前版本。
 3. 根據您使用的平台，將下列程式碼新增至您的應用程式。在每個程式碼中，進行下列取代：
 
-	* 以您佈建應用程式的租用戶名稱取代 **INSERT-AUTHORITY-HERE**。格式應該是 https://login.windows.net/contoso.onmicrosoft.com。此值可從 [Azure 傳統入口網站]複製到 Azure Active Directory 的 [網域] 索引標籤以外。
+	* 以您佈建應用程式的租用戶名稱取代 **INSERT-AUTHORITY-HERE**。格式應該是 https://login.windows.net/contoso.onmicrosoft.com。 此值可從 [Azure 傳統入口網站]複製到 Azure Active Directory 的 [網域] 索引標籤以外。
 	* 以您行動應用程式後端的用戶端識別碼取代 INSERT-RESOURCE-ID-HERE。您可以從入口網站 [Azure Active Directory 設定] 底下的 [進階] 索引標籤取得用戶端識別碼。
 	* 以您從原生用戶端應用程式中複製的用戶端識別碼取代 INSERT-CLIENT-ID-HERE。
-	* 使用 HTTPS 配置，以您網站的 _/.auth/login/done_ 端點取代 **INSERT-REDIRECT-URI-HERE**。此值應與 \_https://contoso.azurewebsites.net/.auth/login/done_ 類似。
+	* 使用 HTTPS 配置，以您網站的 _/.auth/login/done_ 端點取代 **INSERT-REDIRECT-URI-HERE**。此值應與 _https://contoso.azurewebsites.net/.auth/login/done_ 類似。
 	
 	每個平台所需的程式碼如下：
 	
@@ -926,7 +926,7 @@ Xamarin 應用程式需要一些額外的程式碼，才能註冊執行於 iOS �
 [Azure Mobile Apps 中的離線資料同步處理]: app-service-mobile-offline-data-sync.md
 [將推播通知新增至您的應用程式]: app-service-mobile-windows-store-dotnet-get-started-push.md
 [註冊您的應用程式以使用 Microsoft 帳戶登入]: app-service-mobile-how-to-configure-microsoft-authentication.md
-[How to configure App Service for Active Directory login]: app-service-mobile-how-to-configure-active-directory-authentication.md
+[如何設定 App Service 來進行 Active Directory 登入]: app-service-mobile-how-to-configure-active-directory-authentication.md
 
 <!-- Microsoft URLs. -->
 [Azure Mobile Apps .NET 用戶端參考資料]: https://msdn.microsoft.com/zh-TW/library/azure/mt419521(v=azure.10).aspx
