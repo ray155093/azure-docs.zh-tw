@@ -19,7 +19,7 @@
 
 [分析](app-insights-analytics.md)是 [Application Insights](app-insights-overview.md) 的強大搜尋功能。這些頁面說明 Analytics 查詢語言。
 
-> [AZURE.NOTE] \[Test drive Analytics on our simulated data](https://analytics.applicationinsights.io/demo) 如果您的應用程式尚未傳送資料至 Application Insights。
+> [AZURE.NOTE] [在我們的模擬資料上測試分析](https://analytics.applicationinsights.io/demo)，如果您的應用程式尚未傳送資料至 Application Insights。
 
 ## 索引
 
