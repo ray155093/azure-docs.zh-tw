@@ -260,7 +260,8 @@ SAP 的[這篇文章](http://help.sap.com/saphelp_hanaplatform/helpdata/en/4c/24
 
 為了避免上述的 xrdp restart 無法運作，請檢查是否有 .pid 檔案並加以移除：
 
-  檢查 /var/run，尋找 xrdp.pid 並予以移除，然後再試一次重新啟動
+  檢查 /var/run，尋找 xrdp.pid   
+  並予以移除，然後再試一次重新啟動
 
 
 
@@ -484,4 +485,4 @@ SAP 的[這篇文章](http://help.sap.com/saphelp_hanaplatform/helpdata/en/4c/24
 
 * 從 SAP Service Marketplace 下載 HANA SP12 平台版本︰![](./media/virtual-machines-linux-sap-hana-get-started/image002.jpg)
 
-<!---HONumber=AcomDC_0928_2016-->
+<!----HONumber=AcomDC_0928_2016-->
