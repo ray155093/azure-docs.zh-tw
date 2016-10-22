@@ -1,13 +1,13 @@
 <properties
-   pageTitle="透過 REST API 進行 Azure 容器服務容器管理 | Microsoft Azure"
-   description="使用 Marathon REST API 將容器部署到 Azure 容器服務 Mesos 叢集。"
+   pageTitle="Azure Container Service container management through the REST API | Microsoft Azure"
+   description="Deploy containers to an Azure Container Service Mesos cluster by using the Marathon REST API."
    services="container-service"
    documentationCenter=""
    authors="neilpeterson"
    manager="timlt"
    editor=""
    tags="acs, azure-container-service"
-   keywords="Docker、容器、微服務、Mesos、Azure"/>
+   keywords="Docker, Containers, Micro-services, Mesos, Azure"/>
 
 <tags
    ms.service="container-service"
@@ -16,28 +16,29 @@
    ms.tgt_pltfrm="na"
    ms.workload="na"
    ms.date="09/13/2016"
-   ms.author="nepeters"/>
+   ms.author="timlt"/>
 
-# 透過 REST API 進行容器管理
 
-DC/OS 提供環境來部署及調整叢集工作負載，同時將基礎硬體抽象化。在 DC/OS 之上有架構會管理排程和執行計算工作負載。
+# <a name="container-management-through-the-rest-api"></a>Container management through the REST API
 
-雖然許多常見的工作負載都有可用的架構，但這份文件只說明如何使用 Marathon 來建立及調整容器部署。在練習這些範例之前，您需要 Azure 容器服務中設定的 DC/OS 叢集。您也需要有此叢集的遠端連線。如需這些項目的詳細資訊，請參閱下列文章。
+DC/OS provides an environment for deploying and scaling clustered workloads, while abstracting the underlying hardware. On top of DC/OS, there is a framework that manages scheduling and executing compute workloads.
 
-- [部署 Azure 容器服務叢集](container-service-deployment.md)
-- [連接到 Azure 容器服務叢集](container-service-connect.md)
+Although frameworks are available for many popular workloads, this document describes how you can create and scale container deployments by using Marathon. Before working through these examples, you need a DC/OS cluster that is configured in Azure Container Service. You also need to have remote connectivity to this cluster. For more information on these items, see the following articles:
 
-連接到 Azure 容器服務叢集之後，您可以透過 http://localhost:local-port 存取 DC/OS 和相關的 REST API。本文件中的範例假設您的通道為連接埠 80。例如，在 `http://localhost/marathon/v2/` 可以觸達 Marathon 端點。如需各種 API 的詳細資訊，請參閱 [Marathon API](https://mesosphere.github.io/marathon/docs/rest-api.html) 和 [Chronos API](https://mesos.github.io/chronos/docs/api.html) 的 Mesosphere 文件，以及 [Mesos 排程器 API](http://mesos.apache.org/documentation/latest/scheduler-http-api/) 的 Apache 文件
+- [Deploying an Azure Container Service cluster](container-service-deployment.md)
+- [Connecting to an Azure Container Service cluster](container-service-connect.md)
 
-## 從 DC/OS 和 Marathon 收集資訊
+After you are connected to the Azure Container Service cluster, you can access the DC/OS and related REST APIs through http://localhost:local-port. The examples in this document assume that you are tunneling on port 80. For example, the Marathon endpoint can be reached at `http://localhost/marathon/v2/`. For more information on the various APIs, see the Mesosphere documentation for the [Marathon API](https://mesosphere.github.io/marathon/docs/rest-api.html) and the [Chronos API](https://mesos.github.io/chronos/docs/api.html), and the Apache documentation for the [Mesos Scheduler API](http://mesos.apache.org/documentation/latest/scheduler-http-api/).
 
-將容器部署至 DC/OS 叢集之前，請收集 DC/OS 叢集的一些相關資訊，例如 DC/OS 代理程式的名稱和目前狀態。若要這樣做，請查詢 DC/OS REST API 的 `master/slaves` 端點。如果一切順利，您會看到 DC/OS 代理程式清單及每個代理程式的數個屬性。
+## <a name="gather-information-from-dc/os-and-marathon"></a>Gather information from DC/OS and Marathon
+
+Before you deploy containers to the DC/OS cluster, gather some information about the DC/OS cluster, such as the names and current status of the DC/OS agents. To do so, query the `master/slaves` endpoint of the DC/OS REST API. If everything goes well, you will see a list of DC/OS agents and several properties for each.
 
 ```bash
 curl http://localhost/mesos/master/slaves
 ```
 
-現在，使用 Marathon `/apps` 端點來檢查目前部署至 DC/OS 叢集的應用程式。如果這是新的叢集，您會看到空的應用程式陣列。
+Now, use the Marathon `/apps` endpoint to check for current application deployments to the DC/OS cluster. If this is a new cluster, you will see an empty array for apps.
 
 ```
 curl localhost/marathon/v2/apps
@@ -45,9 +46,9 @@ curl localhost/marathon/v2/apps
 {"apps":[]}
 ```
 
-## 部署 Docker 格式化容器
+## <a name="deploy-a-docker-formatted-container"></a>Deploy a Docker-formatted container
 
-您可以使用描述預期部署的 JSON 檔案透過 Marathon 部署 Docker 格式化容器。下列範例將會部署 Nginx 容器，並將 DC/OS 代理程式的連接埠 80 繫結至容器的連接埠 80。另請注意，‘acceptedResourceRoles’ 屬性會設定為 ‘slave\_public’。這會將容器部署到對外公開的代理程式調整集內的代理程式。
+You deploy Docker-formatted containers through Marathon by using a JSON file that describes the intended deployment. The following sample will deploy the Nginx container, binding port 80 of the DC/OS agent to port 80 of the container. Also note that the ‘acceptedResourceRoles’ property is set to ‘slave_public’. This will deploy the container to an agent in the public-facing agent scale set.
 
 ```json
 {
@@ -71,57 +72,57 @@ curl localhost/marathon/v2/apps
 }
 ```
 
-若要部署 Docker 格式化容器，請建立您自己的 JSON 檔案，或使用 [Azure 容器服務示範](https://raw.githubusercontent.com/rgardler/AzureDevTestDeploy/master/marathon/marathon.json)所提供的範例。將它儲存在可存取的位置。接下來，若要部署容器，請執行下列命令。指定 JSON 檔案的名稱。
+In order to deploy a Docker-formatted container, create your own JSON file, or use the sample provided at [Azure Container Service demo](https://raw.githubusercontent.com/rgardler/AzureDevTestDeploy/master/marathon/marathon.json). Store it in an accessible location. Next, to deploy the container, run the following command. Specify the name of the JSON file.
 
 ```
 curl -X POST http://localhost/marathon/v2/apps -d @marathon.json -H "Content-type: application/json"
 ```
 
-輸出將類似於：
+The output will be similar to the following:
 
 ```json
 {"version":"2015-11-20T18:59:00.494Z","deploymentId":"b12f8a73-f56a-4eb1-9375-4ac026d6cdec"}
 ```
 
-現在，如果您查詢 Marathon 中的應用程式，這個新的應用程式會顯示在輸出中。
+Now, if you query Marathon for applications, this new application will show in the output.
 
 ```
 curl localhost/marathon/v2/apps
 ```
 
-## 調整容器的大小
+## <a name="scale-your-containers"></a>Scale your containers
 
-您也可以使用 Marathon API 來相應放大或相應縮小應用程式部署。在前面的範例中，您已部署一個應用程式執行個體。讓我們將其相應放大為三個應用程式執行個體。若要這樣做，請使用下列 JSON 文字建立 JSON 檔案，並將它儲存在可存取的位置。
+You can also use the Marathon API to scale out or scale in application deployments. In the previous example, you deployed one instance of an application. Let's scale this out to three instances of an application. To do so, create a JSON file by using the following JSON text, and store it in an accessible location.
 
 ```json
 { "instances": 3 }
 ```
 
-執行下列命令來相應放大應用程式。
+Run the following command to scale out the application.
 
->[AZURE.NOTE] URI 將是 http://localhost/marathon/v2/apps/，加上要調整的應用程式的識別碼。如果您是使用這裡提供的 Nginx 範例，則 URI 會是 http://localhost/marathon/v2/apps/nginx。
+>[AZURE.NOTE] The URI will be http://localhost/marathon/v2/apps/ and then the ID of the application to scale. If you are using the Nginx sample that is provided here, the URI would be http://localhost/marathon/v2/apps/nginx.
 
 ```json
 curl http://localhost/marathon/v2/apps/nginx -H "Content-type: application/json" -X PUT -d @scale.json
 ```
 
-最後，向 Marathon 端點查詢應用程式。您會看到現在有三個 Nginx 容器。
+Finally, query the Marathon endpoint for applications. You will see that there are now three of the Nginx containers.
 
 ```
 curl localhost/marathon/v2/apps
 ```
 
-## 在此練習中使用 PowerShell︰Marathon REST API 與 PowerShell 的互動
+## <a name="use-powershell-for-this-exercise:-marathon-rest-api-interaction-with-powershell"></a>Use PowerShell for this exercise: Marathon REST API interaction with PowerShell
 
-您可以在 Windows 系統上使用 PowerShell 命令來執行這些相同的動作。
+You can perform these same actions by using PowerShell commands on a Windows system.
 
-若要收集 DC/OS 叢集的相關資訊，例如代理程式名稱和代理程式狀態，請執行下列命令。
+To gather information about the DC/OS cluster, such as agent names and agent status, run the following command.
 
 ```powershell
 Invoke-WebRequest -Uri http://localhost/mesos/master/slaves
 ```
 
-您可以使用描述預期部署的 JSON 檔案透過 Marathon 部署 Docker 格式化容器。下列範例會將部署 Nginx 容器，並將 DC/OS 代理程式的連接埠 80 繫結至容器的連接埠 80。
+You deploy Docker-formatted containers through Marathon by using a JSON file that describes the intended deployment. The following sample will deploy the Nginx container, binding port 80 of the DC/OS agent to port 80 of the container.
 
 ```json
 {
@@ -142,29 +143,33 @@ Invoke-WebRequest -Uri http://localhost/mesos/master/slaves
 }
 ```
 
-建立您自己的 JSON 檔案，或使用 [Azure 容器服務示範](https://raw.githubusercontent.com/rgardler/AzureDevTestDeploy/master/marathon/marathon.json)所提供的範例。將它儲存在可存取的位置。接下來，若要部署容器，請執行下列命令。指定 JSON 檔案的名稱。
+Create your own JSON file, or use the sample provided at [Azure Container Service demo](https://raw.githubusercontent.com/rgardler/AzureDevTestDeploy/master/marathon/marathon.json). Store it in an accessible location. Next, to deploy the container, run the following command. Specify the name of the JSON file.
 
 ```powershell
 Invoke-WebRequest -Method Post -Uri http://localhost/marathon/v2/apps -ContentType application/json -InFile 'c:\marathon.json'
 ```
 
-您也可以使用 Marathon API 來相應放大或相應縮小應用程式部署。在前面的範例中，您已部署一個應用程式執行個體。讓我們將其相應放大為三個應用程式執行個體。若要這樣做，請使用下列 JSON 文字建立 JSON 檔案，並將它儲存在可存取的位置。
+You can also use the Marathon API to scale out or scale in application deployments. In the previous example, you deployed one instance of an application. Let's scale this out to three instances of an application. To do so, create a JSON file by using the following JSON text, and store it in an accessible location.
 
 ```json
 { "instances": 3 }
 ```
 
-執行下列命令來相應放大應用程式。
+Run the following command to scale out the application.
 
-> [AZURE.NOTE] URI 將是 http://localhost/marathon/v2/apps/，加上要調整的應用程式的識別碼。如果您是使用這裡提供的 Nginx 範例，則 URI 會是 http://localhost/marathon/v2/apps/nginx。
+> [AZURE.NOTE] The URI will be http://localhost/marathon/v2/apps/ and then the ID of the application to scale. If you are using the Nginx sample provided here, the URI would be http://localhost/marathon/v2/apps/nginx.
 
 ```powershell
 Invoke-WebRequest -Method Put -Uri http://localhost/marathon/v2/apps/nginx -ContentType application/json -InFile 'c:\scale.json'
 ```
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- [深入了解 Mesos HTTP 端點](http://mesos.apache.org/documentation/latest/endpoints/)。
-- [深入了解 Marathon REST API](https://mesosphere.github.io/marathon/docs/rest-api.html)。
+- [Read more about the Mesos HTTP endpoints]( http://mesos.apache.org/documentation/latest/endpoints/).
+- [Read more about the Marathon REST API]( https://mesosphere.github.io/marathon/docs/rest-api.html).
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

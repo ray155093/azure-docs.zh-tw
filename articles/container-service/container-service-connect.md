@@ -1,13 +1,13 @@
 <properties
-   pageTitle="連接到 Azure 容器服務叢集 | Microsoft Azure"
-   description="使用 SSH 通道連接到 Azure 容器服務叢集。"
+   pageTitle="Connect to an Azure Container Service cluster | Microsoft Azure"
+   description="Connect to an Azure Container Service cluster by using an SSH tunnel."
    services="container-service"
    documentationCenter=""
    authors="rgardler"
    manager="timlt"
    editor=""
    tags="acs, azure-container-service"
-   keywords="Docker, 容器, 微服務, DC/OS, Azure"/>
+   keywords="Docker, Containers, Micro-services, DC/OS, Azure"/>
 
 <tags
    ms.service="container-service"
@@ -19,99 +19,108 @@
    ms.author="rogardle"/>
 
 
-# 連接到 Azure 容器服務叢集
 
-Azure 容器服務部署的 DC/OS 和 Docker Swarm 叢集公開了一些 REST 端點。不過，這些端點並不開放給外界。為了管理這些端點，您必須建立 安全殼層 (SSH) 通道。建立 SSH 通道後，您可以對叢集端點執行命令，並透過您自己系統上的 UI 瀏覽器來檢視叢集。本文會逐步引導您從 Linux、OSX 和 Windows 建立 SSH 通道。
+# <a name="connect-to-an-azure-container-service-cluster"></a>Connect to an Azure Container Service cluster
 
->[AZURE.NOTE] 您可以建立與叢集管理系統的 SSH 工作階段。但不建議這樣做。直接使用管理系統可能會不小心變更組態。
+The DC/OS and Docker Swarm clusters that are deployed by Azure Container Service expose REST endpoints. However, these endpoints are not open to the outside world. In order to manage these endpoints, you must create a Secure Shell (SSH) tunnel. After an SSH tunnel has been established, you can run commands against the cluster endpoints and view the cluster UI through a browser on your own system. This document walks you through creating an SSH tunnel from Linux, OS X, and Windows.
 
-## 在 Linux 或 OSX 上建立 SSH 通道
+>[AZURE.NOTE] You can create an SSH session with a cluster management system. However, we don't recommend this. Working directly on a management system exposes the risk for inadvertent configuration changes.   
 
-在 Linux 或 OS X 上建立 SSH 通道時，您所做的第一件事就是找出負載平衡主機的公用 DNS 名稱。若要這樣做，請展開資源群組以便顯示每個資源。找出並選取主機的公用 IP 位址。這會開啟一個刀鋒視窗，其中包含公用 IP 位址的相關資訊 (包含 DNS 名稱)。儲存這個名稱供稍後使用。<br />
+## <a name="create-an-ssh-tunnel-on-linux-or-os-x"></a>Create an SSH tunnel on Linux or OS X
+
+The first thing that you do when you create an SSH tunnel on Linux or OS X is to locate the public DNS name of load-balanced masters. To do this, expand the resource group so that each resource is being displayed. Locate and select the public IP address of the master. This will open up a blade that contains information about the public IP address, which includes the DNS name. Save this name for later use. <br />
 
 
-![公用 DNS 名稱](media/pubdns.png)
+![Public DNS name](media/pubdns.png)
 
-現在開啟殼層並執行下列命令，其中：
+Now open a shell and run the following command where:
 
-**PORT** 是您想要公開之端點的連接埠。以 Swarm 來說是 2375。若為 DC/OS，則使用連接埠 80。**USERNAME** 是您部署叢集時提供的使用者名稱。**DNSPREFIX** 是您部署叢集時提供的 DNS 首碼。**REGION** 是資源群組所在的區域。**PATH\_TO\_PRIVATE\_KEY** [選用] 是與您建立容器服務叢集時所提供的公開金鑰對應的私密金鑰之路徑。搭配使用此選項與 -i 旗標。
+**PORT** is the port of the endpoint that you want to expose. For Swarm, this is 2375. For DC/OS, use port 80.  
+**USERNAME** is the user name that was provided when you deployed the cluster.  
+**DNSPREFIX** is the DNS prefix that you provided when you deployed the cluster.  
+**REGION** is the region in which your resource group is located.  
+**PATH_TO_PRIVATE_KEY** [OPTIONAL] is the path to the private key that corresponds to the public key you provided when you created the Container Service cluster. Use this option with the -i flag.
 
 ```bash
 ssh -L PORT:localhost:PORT -f -N [USERNAME]@[DNSPREFIX]mgmt.[REGION].cloudapp.azure.com -p 2200
 ```
-> SSH 連線連接埠是 2200 而非標準連接埠 22。
+> The SSH connection port is 2200--not the standard port 22.
 
-## DC/OS 通道
+## <a name="dc/os-tunnel"></a>DC/OS tunnel
 
-若要開啟 DC/OS 相關端點的通道，請執行類似下列的命令：
+To open a tunnel to the DC/OS-related endpoints, execute a command that is similar to the following:
 
 ```bash
 sudo ssh -L 80:localhost:80 -f -N azureuser@acsexamplemgmt.japaneast.cloudapp.azure.com -p 2200
 ```
 
-您現在可以在下列位址存取 DC/OS 相關端點：
+You can now access the DC/OS-related endpoints at:
 
-- DC/OS：`http://localhost/`
-- Marathon：`http://localhost/marathon`
-- Mesos：`http://localhost/mesos`
+- DC/OS: `http://localhost/`
+- Marathon: `http://localhost/marathon`
+- Mesos: `http://localhost/mesos`
 
-同樣地，您可以透過此通道到達每個應用程式的 REST API。
+Similarly, you can reach the rest APIs for each application through this tunnel.
 
-## Swarm 通道
+## <a name="swarm-tunnel"></a>Swarm tunnel
 
-若要開啟 Swarm 端點的通道，請執行類似下列的命令：
+To open a tunnel to the Swarm endpoint, execute a command that looks similar to the following:
 
 ```bash
 ssh -L 2375:localhost:2375 -f -N azureuser@acsexamplemgmt.japaneast.cloudapp.azure.com -p 2200
 ```
 
-現在您可以設定 DOCKER\_HOST 環境變數，如下所示。您可以繼續正常使用 Docker 命令列介面 (CLI)。
+Now you can set your DOCKER_HOST environment variable as follows. You can continue to use your Docker command-line interface (CLI) as normal.
 
 ```bash
 export DOCKER_HOST=:2375
 ```
 
-## 在 Windows 上建立 SSH 通道
+## <a name="create-an-ssh-tunnel-on-windows"></a>Create an SSH tunnel on Windows
 
-在 Windows 上建立 SSH 通道有很多選項。本文件將說明如何使用 PuTTY 來執行這項操作。
+There are multiple options for creating SSH tunnels on Windows. This document will describe how to use PuTTY to do this.
 
-將 PuTTY 下載到 Windows 系統，並執行此應用程式。
+Download PuTTY to your Windows system and run the application.
 
-輸入叢集中第一個主機的主機名稱，由叢集系統管理員使用者名稱和公用 DNS 名稱所組成。[主機名稱] 看起來像這樣：`adminuser@PublicDNS`。輸入 2200 作為 [連接埠]。
+Enter a host name that is comprised of the cluster admin user name and the public DNS name of the first master in the cluster. The **Host Name** will look like this: `adminuser@PublicDNS`. Enter 2200 for the **Port**.
 
-![PuTTY 組態 1](media/putty1.png)
+![PuTTY configuration 1](media/putty1.png)
 
-選取 [SSH] 和 [驗證]。加入用於驗證的私密金鑰檔。
+Select **SSH** and **Authentication**. Add your private key file for authentication.
 
-![PuTTY 組態 2](media/putty2.png)
+![PuTTY configuration 2](media/putty2.png)
 
-選取 [通道] 並設定下列已轉送的連接埠：
-- **來源連接埠：**您的喜好設定--DC/OS 使用 80 或 Swarm 使用 2375。
-- **目的地：**DC/OS 使用 localhost:80 或 Swarm 使用 localhost:2375。
+Select **Tunnels** and configure the following forwarded ports:
+- **Source Port:** Your preference--use 80 for DC/OS or 2375 for Swarm.
+- **Destination:** Use localhost:80 for DC/OS or localhost:2375 for Swarm.
 
-下列範例是針對 DC/OS 而設定，但對於 Docker Swarm 而言也很類似。
+The following example is configured for DC/OS, but will look similar for Docker Swarm.
 
->[AZURE.NOTE] 建立此通道時，連接埠 80 不得使用中。
+>[AZURE.NOTE] Port 80 must not be in use when you create this tunnel.
 
-![PuTTY 組態 3](media/putty3.png)
+![PuTTY configuration 3](media/putty3.png)
 
-完成時，儲存連接設定，並連接 PuTTY 工作階段。連接時，可以在 PuTTY 事件記錄檔中看到連接埠設定。
+When you're finished, save the connection configuration, and connect the PuTTY session. When you connect, you can see the port configuration in the PuTTY event log.
 
-![PuTTY 事件記錄檔](media/putty4.png)
+![PuTTY event log](media/putty4.png)
 
-設定 DC/OS 的通道之後，您即可在下列位址存取相關的端點：
+When you've configured the tunnel for DC/OS, you can access the related endpoint at:
 
-- DC/OS：`http://localhost/`
-- Marathon：`http://localhost/marathon`
-- Mesos：`http://localhost/mesos`
+- DC/OS: `http://localhost/`
+- Marathon: `http://localhost/marathon`
+- Mesos: `http://localhost/mesos`
 
-設定 Docker Swarm 的通道之後，您即可透過 Docker CLI 存取 Swarm 叢集。您必須先使用值 ` :2375` 設定名稱為 `DOCKER_HOST` 的 Windows 環境變數。
+When you've configured the tunnel for Docker Swarm, you can access the Swarm cluster through the Docker CLI. You will first need to configure a Windows environment variable named `DOCKER_HOST` with a value of ` :2375`.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-使用 DC/OS 或 Swarm 來部署及管理容器：
+Deploy and manage containers with DC/OS or Swarm:
 
-- [使用 Azure 容器服務和 DC/OS](container-service-mesos-marathon-rest.md)
-- [使用 Azure 容器服務和 Docker Swarm](container-service-docker-swarm.md)
+- [Work with Azure Container Service and DC/OS](container-service-mesos-marathon-rest.md)
+- [Work with the Azure Container Service and Docker Swarm](container-service-docker-swarm.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

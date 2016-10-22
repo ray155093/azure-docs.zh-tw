@@ -1,6 +1,6 @@
 <properties
-   pageTitle="站台復原會限制資料表"
-   description="描述站台復原的系統限制。"
+   pageTitle="Site Recovery limits table"
+   description="Describes system limits for Site Recovery."
    services="site recovery"
    documentationCenter="NA"
    authors="csilauraa"
@@ -16,16 +16,21 @@
    ms.author="lauraa" />
 
 
-下列限制適用於 Azure Site Recovery：
+
+The following limits apply to Azure Site Recovery:
 
 
-|限制識別碼|預設限制|
+|LIMIT IDENTIFIER|DEFAULT LIMIT|
 |---|---|---|---|
-|每個訂用帳戶的保存庫數目|25|
-|每個 Azure 保存庫的伺服器數目|250|
-|每個 Azure 保存庫的保護群組數目|沒有限制|
-|每個 Azure 保存庫的復原計劃數目|沒有限制|
-|每個保護群組的伺服器數目|沒有限制|
-|每個復原計畫的伺服器數目|50|
+|Number of vaults per subscription|25|
+|Number of servers per Azure vault|250|
+|Number of protection groups per Azure vault|No limit|
+|Number of recovery plans per Azure vault|No limit|
+|Number of servers per protection group|No limit|
+|Number of servers per recovery plan|50|
 
-<!---HONumber=Oct15_HO3-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

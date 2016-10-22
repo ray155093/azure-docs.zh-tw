@@ -1,51 +1,56 @@
 <properties
-	pageTitle="使用 Node.js 連接到 SQL Database | Microsoft Azure"
-	description="提供可用來連接到 Azure SQL Database 的 Node.js 程式碼範例。"
-	services="sql-database"
-	documentationCenter=""
-	authors="meet-bhagdev"
-	manager="jhubbard"
-	editor=""/>
+    pageTitle="Connect to SQL Database by using Node.js | Microsoft Azure"
+    description="Presents a Node.js code sample you can use to connect to Azure SQL Database."
+    services="sql-database"
+    documentationCenter=""
+    authors="meet-bhagdev"
+    manager="jhubbard"
+    editor=""/>
 
 <tags
-	ms.service="sql-database"
-	ms.workload="drivers"
-	ms.tgt_pltfrm="na"
-	ms.devlang="nodejs"
-	ms.topic="article"
-	ms.date="06/16/2016"
-	ms.author="meetb"/>
+    ms.service="sql-database"
+    ms.workload="drivers"
+    ms.tgt_pltfrm="na"
+    ms.devlang="nodejs"
+    ms.topic="article"
+    ms.date="10/03/2016"
+    ms.author="meetb"/>
 
-# 使用 Node.js 連接到 SQL Database
 
-[AZURE.INCLUDE [sql-database-develop-includes-selector-language-platform-depth](../../includes/sql-database-develop-includes-selector-language-platform-depth.md)]
+# <a name="connect-to-sql-database-by-using-node.js"></a>Connect to SQL Database by using Node.js
 
-本主題說明如何使用 Node.js 連接及查詢 Azure SQL Database。您可以從 Windows、Ubuntu Linux 或 Mac 平台執行這個範例。
+[AZURE.INCLUDE [sql-database-develop-includes-selector-language-platform-depth](../../includes/sql-database-develop-includes-selector-language-platform-depth.md)] 
 
-## 步驟 1︰設定開發環境
+This topic shows how to connect and query a Azure SQL Database using Node.js. You can run this sample from Windows, Ubuntu Linux, or Mac platforms.
 
-[使用 Tedious Node.js Driver for SQL Server 的必要條件](https://msdn.microsoft.com/library/mt652094.aspx)
+## <a name="step-1:-configure-development-environment"></a>Step 1: Configure Development Environment
 
-## 步驟 2：建立 SQL Database
+[Prerequisites for using the Tedious Node.js Driver for SQL Server](https://msdn.microsoft.com/library/mt652094.aspx)
 
-請參閱[快速入門頁面](sql-database-get-started.md)，以了解如何建立範例資料庫。請務必遵循該指南以建立 **AdventureWorks 資料庫範本**。以下所示的範例僅適用於 **AdventureWorks 結構描述**。
+## <a name="step-2:-create-a-sql-database"></a>Step 2: Create a SQL database
 
-## 步驟 3：取得連接詳細資料
+See the [getting started page](sql-database-get-started.md) to learn how to create a sample database.  It is important you follow the guide to create an **AdventureWorks database template**. The samples shown below only work with the **AdventureWorks schema**.
+
+## <a name="step-3:-get-connection-details"></a>Step 3: Get Connection Details
 
 [AZURE.INCLUDE [sql-database-include-connection-string-details-20-portalshots](../../includes/sql-database-include-connection-string-details-20-portalshots.md)]
 
-## 步驟 4︰執行範例程式碼
+## <a name="step-4:-run-sample-code"></a>Step 4: Run sample code
 
-[使用 Node.js 連接到 SQL 的概念證明](https://msdn.microsoft.com/library/mt715784.aspx)
+[Proof of Concept connecting to SQL using Node.js](https://msdn.microsoft.com/library/mt715784.aspx)
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-* 檢閱 [SQL Database 開發概觀](sql-database-develop-overview.md)
-* 更多有關 [Microsoft Node.js Driver for SQL Server](https://msdn.microsoft.com/library/mt652093.aspx) 的資訊
+* Review the [SQL Database Development Overview](sql-database-develop-overview.md)
+* More information on the [Microsoft Node.js Driver for SQL Server](https://msdn.microsoft.com/library/mt652093.aspx)
 
-## 其他資源 
+## <a name="additional-resources"></a>Additional resources 
 
-* [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)
-* 瀏覽所有 [SQL Database 的能力](https://azure.microsoft.com/services/sql-database/)
+* [Design Patterns for Multi-tenant SaaS Applications with Azure SQL Database](sql-database-design-patterns-multi-tenancy-saas-applications.md)
+* Explore all the [capabilities of SQL Database](https://azure.microsoft.com/services/sql-database/)
 
-<!---HONumber=AcomDC_0622_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

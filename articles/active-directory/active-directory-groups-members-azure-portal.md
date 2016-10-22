@@ -1,67 +1,72 @@
 <properties
-	pageTitle="在 Azure Active Directory 預覽版中管理群組的成員 | Microsoft Azure"
-	description="如何在 Azure Active Directory 中管理具備群組成員身分的使用者和裝置"
-	services="active-directory"
-	documentationCenter=""
-	authors="curtand"
-	manager="femila"
-	editor=""/>
+    pageTitle="Manage the members for a group in Azure Active Directory preview | Microsoft Azure"
+    description="How to users and devices that are members of a group in Azure Active Directory"
+    services="active-directory"
+    documentationCenter=""
+    authors="curtand"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/12/2016"
-	ms.author="curtand"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/12/2016"
+    ms.author="curtand"/>
 
 
-# 在 Azure Active Directory 預覽版中管理群組的成員
 
-本文說明如何在 Azure Active Directory (Azure AD) 預覽版中管理群組的成員。[預覽版有何功能？](active-directory-preview-explainer.md)
+# <a name="manage-the-members-for-a-group-in-azure-active-directory-preview"></a>Manage the members for a group in Azure Active Directory preview
 
-## 如何尋找成員及管理這些成員？
+This article explains how to manage the members for a group in Azure Active Directory (Azure AD) preview. [What's in the preview?](active-directory-preview-explainer.md)
 
-1.  使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com)。
+## <a name="how-do-i-find-the-members-and-manage-them?"></a>How do I find the members and manage them?
 
-2.  選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
+1.  Sign in to the [Azure portal](https://portal.azure.com) with an account that's a global admin for the directory.
 
-  ![開啟使用者管理](./media/active-directory-groups-members-azure-portal/search-user-management.png)
+2.  Select **More services**, enter **Users and groups** in the text box, and then select **Enter**.
 
-3.  在 [使用者和群組] 刀鋒視窗上，選取 [所有群組]。
+  ![Opening user management](./media/active-directory-groups-members-azure-portal/search-user-management.png)
 
-  ![開啟群組刀鋒視窗](./media/active-directory-groups-members-azure-portal/view-groups-blade.png)
+3.  On the **Users and groups** blade, select **All groups**.
 
-4. 在 [使用者和群組 - 所有群組] 刀鋒視窗上，選取一個群組。
+  ![Opening the groups blade](./media/active-directory-groups-members-azure-portal/view-groups-blade.png)
 
-5. 在 [群組- *groupname*] 刀鋒視窗上，選取 [成員]。
+4. On the **Users and groups - All groups** blade, select a group.
 
-  ![開啟 [成員] 刀鋒視窗](./media/active-directory-groups-members-azure-portal/view-group-members.png)
+5. On the **Group - *groupname*** blade, select **Members**.
 
-6. 若要將成員新增到群組中，請在 [群組 - 成員] 刀鋒視窗上，選取 [新增成員]。
+  ![Opening the Members blade](./media/active-directory-groups-members-azure-portal/view-group-members.png)
 
-  ![[新增成員] 命令](./media/active-directory-groups-members-azure-portal/add-group-members-command.png)
+6. To add members to the group, on the **Group - Members** blade, select **Add Members**.
 
-7. 在 [成員] 刀鋒視窗上，選取一或多個要新增到群組中的使用者或裝置，然後選取刀鋒視窗底部的 [選取] 按鈕來將它們新增到群組中。[使用者] 方塊會根據將您的輸入內容與使用者或裝置名稱的任何部分進行比對來篩選顯示。該方塊中不接受任何萬用字元。
+  ![Add Members command](./media/active-directory-groups-members-azure-portal/add-group-members-command.png)
 
-8. 若要從群組中移除成員，請在 [群組 - 成員] 刀鋒視窗上，選取一個成員。
+7. On the **Members** blade, select one or more users or devices to add to the group and select the **Select** button at the bottom of the blade to add them to the group. The **User** box filters the display based on matching your entry to any part of a user or device name. No wildcard characters are accepted in that box.
 
-9. 在 [***membername***] 刀鋒視窗上，選取 [移除] 命令，並在出現提示時確認您的選擇。
+8. To remove members from the group, on the **Group - Members** blade, select a member.
 
-  ![[移除成員] 命令](./media/active-directory-groups-members-azure-portal/remove-group-members-command.png)
+9. On the ***membername*** blade, select the **Remove** command, and confirm your choice at the prompt.
 
-9. 完成變更群組的成員時，選取 [儲存]。
+  ![remove Members command](./media/active-directory-groups-members-azure-portal/remove-group-members-command.png)
+
+9. When you finish changing members for the group, select **Save**.
 
 
-## 其他資訊
+## <a name="additional-information"></a>Additional information
 
-這些文章提供有關 Azure Active Directory 的其他資訊。
+These articles provide additional information on Azure Active Directory.
 
-* [查看現有的群組](active-directory-groups-view-azure-portal.md)
-* [建立新群組並新增成員](active-directory-groups-create-azure-portal.md)
-* [管理群組的設定](active-directory-groups-settings-azure-portal.md)
-* [管理群組的成員資格](active-directory-groups-membership-azure-portal.md)
-* [管理群組中使用者的動態規則](active-directory-groups-dynamic-membership-azure-portal.md)
+* [See existing groups](active-directory-groups-view-azure-portal.md)
+* [Create a new group and adding members](active-directory-groups-create-azure-portal.md)
+* [Manage settings of a group](active-directory-groups-settings-azure-portal.md)
+* [Manage memberships of a group](active-directory-groups-membership-azure-portal.md)
+* [Manage dynamic rules for users in a group](active-directory-groups-dynamic-membership-azure-portal.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

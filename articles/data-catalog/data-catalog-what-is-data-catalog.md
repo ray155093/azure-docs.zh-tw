@@ -1,6 +1,6 @@
 <properties
-   pageTitle="什麼是 Azure 資料目錄？ | Microsoft Azure"
-   description="本文提供 Microsoft Azure 資料目錄的概觀，包括其具備的功能以及專門解決的問題。資料目錄可讓任何使用者 – 從分析師、資料科學家到開發人員 – 註冊、探索、了解及取用資料來源。"
+   pageTitle="What is Azure Data Catalog? | Microsoft Azure"
+   description="This article provides an overview of Microsoft Azure Data Catalog, including its features and the problems it is designed to address. Data Catalog provides capabilities that enable any user – from analysts to data scientists to developers – to register, discover, understand, and consume data sources."
    services="data-catalog"
    documentationCenter=""
    authors="steelanddata"
@@ -16,62 +16,67 @@
    ms.date="09/21/2016"
    ms.author="maroche"/>
 
-# 什麼是 Azure 資料目錄？
 
-Azure 資料目錄是完全受管理的雲端服務，可讓使用者探索所需的資料來源，並了解他們找到的資料來源，同時協助組織從現有的投資中獲得更多價值。資料目錄可讓任何使用者 – 包括分析師、資料科學家及開發人員 – 探索、了解及取用資料來源。資料目錄包含中繼資料和註解的群眾外包模型，並可讓所有使用者提供他們的知識來建置資料的社群和文化特性。
+# <a name="what-is-azure-data-catalog?"></a>What is Azure Data Catalog?
 
-## 探索資料取用者面臨的挑戰
+Azure Data Catalog is a fully managed cloud service that enables users to discover the data sources they need, and to understand the data sources they find, while helping organizations get more value from their existing investments. Data Catalog provides capabilities that enable any user – from analysts to data scientists to developers – to discover, understand, and consume data sources. Data Catalog includes a crowdsourcing model of metadata and annotations, and allows all users to contribute their knowledge to build a community and culture of data.
 
-傳統上，探索企業資料來源一向都是根據部落知識的一項有機程序。對於想要充分利用其資訊資產的公司，這帶來許多挑戰。
+## <a name="discovery-challenges-for-data-consumers"></a>Discovery challenges for data consumers
 
--	除非使用者在另一個程序中接觸到資料來源，否則並不知道有此資料來源。沒有一個可註冊資料來源的中央位置。
--	除非使用者知道資料來源的位置，否則無法利用用戶端應用程式連接到資料。使用者必須知道連接字串或路徑，才能取用資料。
--	除非使用者知道資料來源的文件位置，否則無法了解資料的用途。資料來源和文件位於不同的地方，需要透過不同的方式才能取得。
--	如果使用者對資訊資產有疑問，他必須找到負責資料的專家或小組，並在離線狀態下請教這些專家。在資料與資料用途上具備專業觀點的專家之間，未建立明確的銜接管道。
--  除非使用者了解要求存取資料來源的程序，否則，探索資料來源及其文件仍無法讓他存取所需的資料。
+Traditionally, discovering enterprise data sources has been an organic process based on tribal knowledge. This presents numerous challenges for companies wanting to get the most value from their information assets.
 
-## 探索資料產生者面臨的挑戰
+-   Users are not aware that data sources exist unless they come into contact with it as part of another process; there is no central location where data sources are registered.
+-   Unless a user knows the location of a data source, he cannot connect to the data using a client application; data consumption experiences require users to know the connection string or path.
+-   Unless a user knows the location of a data source's documentation, he cannot understand the intended uses of the data; data sources and documentation live in different places and are consumed through different experiences.
+-   If a user has questions about an information asset, he must locate the expert or team responsible for the data and engage those experts offline; there is no explicit connection between data and those with expert perspectives on its use.
+-  Unless a user understands the process for requesting access to the data source, discovering the data source and its documentation still does not enable him to access the data he requires.
 
-雖然資料取用者面臨這些挑戰，但負責產生和維護的資訊資產的使用者本身也面臨挑戰。
+## <a name="discovery-challenges-for-data-producers"></a>Discovery challenges for data producers
 
--	使用描述性中繼資料加註資料來源往往白費心力。用戶端應用程式通常會忽略儲存在資料來源中的描述。
--	建立資料來源的文件通常是白費心力。保持文件與資料來源同步是一種持續性的責任，使用者總是認為文件過時，所以都不信任文件。
-- 限制對資料來源的存取，並確保資料取用者知道如何要求存取是一項持續的挑戰。
+While data consumers face these challenges, users responsible for producing and maintaining information assets face challenges of their own.
 
-建立和維護資料來源的文件既複雜又耗時。為了讓使用資料來源的每個使用者可隨時取得文件，所面臨的挑戰通常更艱鉅。
+-   Annotating data sources with descriptive metadata is often a lost effort; client applications typically ignore descriptions stored in the data source.
+-   Creating documentation for data sources is often a lost effort; keeping documentation in sync with the data source is an ongoing responsibility, and users lack trust in documentation as it is often perceived as being out of date.
+- Restricting access to the data source, and ensuring that data consumers know how to request access is an ongoing challenge.
 
-這些挑戰結合起來形成更大的障礙，使得公司難以鼓勵和推動使用和了解企業資料。
+Creating and maintaining documentation for a data source is complex and time-consuming. The challenge of making that documentation readily available to everyone who uses the data source is often even more so.
 
-## Azure 資料目錄能提供協助
+When combined, these challenges present a significant barrier for companies who want to encourage and promote the use and understanding of enterprise data.
 
-資料目錄的設計就是為了解決這些問題，讓企業能夠充分利用現有的資訊資產。透過讓需要所管理之資料的使用者能夠輕鬆地探索和了解資料來源，資料目錄可提供協助。
+## <a name="azure-data-catalog-can-help"></a>Azure Data Catalog can help
 
-資料目錄提供雲端型服務，其中可以註冊資料來源。資料會保留在現有的位置，但中繼資料的複本會連同資料來源位置的參考，一起加入至資料目錄。此中繼資料也會編製索引，能夠透過搜尋輕鬆找到每個資料來源，並讓探索資料來源的使用者了解。
+Data Catalog is designed to address these problems and to enable enterprises to get the most value from their existing information assets. Data Catalog helps by making data sources easily discoverable, and understandable by the users who need the data they manage.
 
-註冊資料來源之後，即可由執行註冊的使用者或企業中的其他使用者來充實其中繼資料。任何使用者都可以提供描述、標記或其他中繼資料 (例如要求資料來源存取的文件和程序) 來加註資料來源。此描述性中繼資料可補充資料來源中已註冊的結構化中繼資料 (例如資料行名稱和資料類型)。
+Data Catalog provides a cloud-based service into which data source can be registered. The data remains in in its existing location, but a copy of the metadata is added to Data Catalog, along with a reference to the data source location. This metadata is also indexed to make each data source easily discoverable via search, and understandable to users who discover it.
 
-註冊來源的主要目的是為了探索和了解資料來源及其用途。當企業使用者在工作上需要用到資料時 (可能是商業智慧、應用程式開發、資料科學，或任何其他需要正確資料的工作)，他們可以透過資料目錄探索體驗，快速找到符合需求的資料、了解資料以評估其適用性，以及在他們選擇的工具中開啟資料來源來使用該資料。在此同時，資料目錄讓使用者能夠藉由標記、記錄及註解已經註冊的資料來源，以及註冊新的資料來源來參與目錄，而目錄使用者社群接著可以探索、了解及取用新的資料來源。
+Once a data source has been registered, its metadata can then be enriched, either by the user who performed the registration, or by other users in the enterprise. Any user can annotate a data source by providing descriptions, tags, or other metadata, such as documentation and processes for requesting data source access. This descriptive metadata supplements the structural metadata (such as column names and data types) registered from the data source.
 
-![資料目錄功能](./media/data-catalog-what-is-data-catalog/data-catalog-capabilities.png)
+Discovering and understanding data sources and their use is the primary purpose of registering the sources. When enterprise users need data for their efforts (which could be business intelligence, application development, data science, or any other task where the right data is required) they can use the Data Catalog discovery experience to quickly find data that matches their needs, understand the data to evaluate its fitness for purpose, and consume that data by opening the data source in their tool of choice. At the same time, Data Catalog allows users to contribute to the catalog, by tagging, documenting, and annotating data sources that have already been registered, and by registering new data sources which can then be discovered, understood, and consumed by the community of catalog users.
 
-## 開始使用資料目錄
+![Data Catalog Capabilities](./media/data-catalog-what-is-data-catalog/data-catalog-capabilities.png)
 
-若要立即開始使用資料目錄，請造訪 [www.azuredatacatalog.com](https://www.azuredatacatalog.com)。
+## <a name="get-started-with-data-catalog"></a>Get started with Data Catalog
 
-[這裡](data-catalog-get-started.md)有提供入門指南。
+To get started with Data Catalog today, visit [www.azuredatacatalog.com](https://www.azuredatacatalog.com).
 
-## 深入了解資料目錄
+A getting started guide is available [here](data-catalog-get-started.md).
 
-若要深入了解資料目錄的功能，請參閱︰
+## <a name="learn-more-about-data-catalog"></a>Learn more about Data Catalog
 
-* [如何註冊資料來源](data-catalog-how-to-register.md)
-* [如何探索資料來源](data-catalog-how-to-discover.md)
-* [如何註解資料來源](data-catalog-how-to-annotate.md)
-* [如何記載資料來源](data-catalog-how-to-documentation.md)
-* [如何連接到資料來源](data-catalog-how-to-connect.md)
-* [如何使用巨量資料](data-catalog-how-to-big-data.md)
-* [如何管理資料資產](data-catalog-how-to-manage.md)
-* [如何設定商務詞彙](data-catalog-how-to-business-glossary.md)
-* [常見問題集](data-catalog-frequently-asked-questions.md)
+To learn more about the capabilities of Data Catalog, see:
 
-<!---HONumber=AcomDC_0921_2016--->
+* [How to register data sources](data-catalog-how-to-register.md)
+* [How to discover data sources](data-catalog-how-to-discover.md)
+* [How to annotate data sources](data-catalog-how-to-annotate.md)
+* [How to document data sources](data-catalog-how-to-documentation.md)
+* [How to connect to data sources](data-catalog-how-to-connect.md)
+* [How to work with big data](data-catalog-how-to-big-data.md)
+* [How to manage data assets](data-catalog-how-to-manage.md)
+* [How to set up the Business Glossary](data-catalog-how-to-business-glossary.md)
+* [Frequently Asked Questions](data-catalog-frequently-asked-questions.md)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

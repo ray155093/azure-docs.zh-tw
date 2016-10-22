@@ -1,16 +1,19 @@
-### 必要條件
+### <a name="prerequisites"></a>Prerequisites
 
-- [FTP](https://wikipedia.org/wiki/File_Transfer_Protocol) 帳戶  
+- An [FTP](https://wikipedia.org/wiki/File_Transfer_Protocol) account  
 
 
-您必須先授權邏輯應用程式連線到您的 FTP 帳戶，才能在該邏輯應用程式中使用您的 FTP 帳戶。幸運的是，您可以在「Azure 入口網站」上，從邏輯應用程式內輕鬆完成此操作。  
+Before you can use your FTP account in a logic app, you must authorize the logic app to connect to your FTP account.Fortunately, you can do this easily from within your logic app on the Azure Portal.  
 
-若要授權邏輯應用程式連線到您的 FTP 帳戶，其步驟如下：  
-1. 若要建立與 FTP 的連線，請在邏輯應用程式設計工具中，從下拉式清單中選取 [顯示 Microsoft Managed API]，然後在搜尋方塊中輸入 *FTP*。請選取您想要使用的觸發程序或動作：  
-![FTP 連接的建立步驟](./media/connectors-create-api-ftp/ftp-1.png)  
-2. 如果您之前尚未建立任何 FTP 連接，系統會提示您提供 FTP 認證。這些認證將用來授權邏輯應用程式連線及存取您 FTP 帳戶的資料：  
-![FTP 連接的建立步驟](./media/connectors-create-api-ftp/ftp-2.png)  
-3. 請注意，連線已經建立，您現在可以繼續進行邏輯應用程式中的其他步驟：  
-![FTP 連接的建立步驟](./media/connectors-create-api-ftp/ftp-3.png)  
+Here are the steps to authorize your logic app to connect to your FTP account:  
+1. To create a connection to FTP, in the logic app designer, select **Show Microsoft managed APIs** in the drop down list then enter *FTP* in the search box. Select the trigger or action you'll like to use:  
+![FTP connection creation step](./media/connectors-create-api-ftp/ftp-1.png)  
+2. If you haven't created any connections to FTP before, you'll get prompted to provide your FTP credentials. These credentials will be used to authorize your logic app to connect to, and access your FTP account's data:  
+![FTP connection creation step](./media/connectors-create-api-ftp/ftp-2.png)  
+3. Notice the connection has been created and you are now free to proceed with the other steps in your logic app:  
+ ![FTP connection creation step](./media/connectors-create-api-ftp/ftp-3.png)  
 
-<!----HONumber=AcomDC_0727_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

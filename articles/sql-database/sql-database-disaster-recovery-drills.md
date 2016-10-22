@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="SQL Database 災害復原演練 | Microsoft Azure" 
-   description="了解使用 Azure SQL Database 執行嚴重損壞修復演練的指引和最佳作法，以協助確保您的關鍵性商務應用程式在失敗和中斷時可迅速復原。" 
+   pageTitle="SQL Database Disaster Recovery Drills | Microsoft Azure" 
+   description="Learn guidance and best practices for using Azure SQL Database to perform disaster recovery drills that will help keep your mission critical business applications resilient to failures and outages." 
    services="sql-database" 
    documentationCenter="" 
    authors="mihaelablendea" 
@@ -16,59 +16,63 @@
    ms.date="07/31/2016"
    ms.author="mihaelab"/>
 
-#執行災害復原演練
 
-建議您定期驗證應用程式的復原工作流程整備。最佳設計作法是，驗證容錯移轉所涉及之資料遺失和 (或) 中斷的應用程式行為和影響。這也是大多數業界標準在商務持續性認證中的規定。
+#<a name="performing-disaster-recovery-drill"></a>Performing Disaster Recovery Drill
 
-災害復原演練內容包括：
+It is recommended that validation of application readiness for recovery workflow is performed periodically. Verifying the application behavior and implications of data loss and/or the disruption that failover involves is a good engineering practice. It is also a requirement by most industry standards as part of business continuity certification.
 
-- 模擬資料層中斷情況
-- 復原
-- 驗證復原後的應用程式完整性
+Performing a disaster recovery drill consists of:
 
-執行演練的工作流程會因您[設計商務持續性之應用程式](sql-database-business-continuity.md)的方式而異。以下將說明在 Azure SQL Database 的內容中進行災害復原演練的最佳作法。
+- Simulating data tier outage
+- Recovering 
+- Validate application integrity post recovery
 
-##異地還原
+Depending on how you [designed your application for business continuity](sql-database-business-continuity.md), the workflow to execute the drill can vary. Below we describe the best practices conducting a disaster recovery drill in the context of Azure SQL Database. 
 
-為了避免在進行災害復原演練時可能遺失資料，建議您使用測試環境來執行演練，方法是建立生產環境的複本，然後使用這個複本來驗證應用程式的容錯移轉工作流程。
+##<a name="geo-restore"></a>Geo-Restore
+
+To prevent the potential data loss when conducting a disaster recovery drill, we recommend performing the drill using a test environment by creating a copy of the production environment and using it to verify the application’s failover workflow.
  
-####中斷模擬
+####<a name="outage-simulation"></a>Outage simulation
 
-若要模擬中斷，您可以刪除或重新命名來源資料庫。這會導致應用程式連線失敗。
+To simulate the outage you can delete or rename the source database. This will cause application connectivity failure. 
 
-####復原
+####<a name="recovery"></a>Recovery
 
-- 如[此處](sql-database-disaster-recovery.md)所述，將資料庫異地還原至其他伺服器。
-- 將應用程式組態變更為連接到復原資料庫，並遵循[在復原後設定資料庫](sql-database-disaster-recovery.md)指南以完成復原。
+- Perform the Geo-Restore of the database into a different server as described [here](sql-database-disaster-recovery.md). 
+- Change the application configuration to connect to the recovered database(s) and follow the [Configure a database after recovery](sql-database-disaster-recovery.md) guide to complete the recovery.
 
-####驗證
+####<a name="validation"></a>Validation
 
-- 驗證復原後的應用程式完整性 (例如連接字串、登入、基本功能測試或標準應用程式登出程序的其他驗證部分)，完成演練。
+- Complete the drill by verifying the application integrity post recovery (i.e. connection strings, logins, basic functionality testing or other validations part of standard application signoffs procedures).
 
-##異地複寫
+##<a name="geo-replication"></a>Geo-Replication
 
-針對使用異地複寫保護的資料庫，本演練內容涵蓋規劃容錯移轉至次要資料庫。規劃的容錯移轉可在角色切換時，確保主要和次要資料庫保持同步。與未計畫的容錯移轉不同的是，這項作業不會導致資料遺失，所以可以在生產環境中執行這項演練。
+For a database that is protected using Geo-Replication the drill exercise will involve planned failover to the secondary database. The planned failover ensures that the primary and the secondary databases remains in sync when the roles are switched. Unlike the unplanned failover, this operation will not result in data loss, so the drill can be performed in the production environment. 
 
-####中斷模擬
+####<a name="outage-simulation"></a>Outage simulation
 
-若要模擬中斷，您可以停用連接到資料庫的 Web 應用程式或虛擬機器。這會導致 Web 用戶端的連線失敗。
+To simulate the outage you can disable the web application or virtual machine connected to the database. This will result in the connectivity failures for the web clients.
 
-####復原
+####<a name="recovery"></a>Recovery
 
-- 請確定 DR 區域中的應用程式組態會指向先前的次要資料庫，該資料庫將變成可完全存取的新主要資料庫。
-- 執行[規劃的容錯移轉](sql-database-geo-replication-powershell.md#initiate-a-planned-failover)將次要資料庫變成新的主要資料庫
-- 請遵循[在復原後設定資料庫](sql-database-disaster-recovery.md)指南以完成復原。
+- Make sure the the application configuration in the DR region points to the former secondary which will become fully accessible new primary. 
+- Perform [planned failover](sql-database-geo-replication-powershell.md#initiate-a-planned-failover) to make the secondary database a new primary
+- Follow the [Configure a database after recovery](sql-database-disaster-recovery.md) guide to complete the recovery.
 
-####驗證
+####<a name="validation"></a>Validation
 
-- 驗證復原後的應用程式完整性 (例如連接字串、登入、基本功能測試或標準應用程式登出程序的其他驗證部分)，完成演練。
+- Complete the drill by verifying the application integrity post recovery (i.e. connection strings, logins, basic functionality testing or other validations part of standard application signoffs procedures).
 
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 若要了解商務持續性案例，請參閱[持續性案例](sql-database-business-continuity.md)
-- 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)
-- 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
-- 若要了解更快速的復原選項，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)
+- To learn about business continuity scenarios, see [Continuity scenarios](sql-database-business-continuity.md)
+- To learn about Azure SQL Database automated backups, see [SQL Database automated backups](sql-database-automated-backups.md)
+- To learn about using automated backups for recovery, see [restore a database from the service-initiated backups](sql-database-recovery-using-backups.md)
+- To learn about faster recovery options, see [Active-Geo-Replication](sql-database-geo-replication-overview.md)  
 
-<!---HONumber=AcomDC_0803_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

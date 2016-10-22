@@ -1,138 +1,139 @@
 <properties
-	pageTitle="Azure Batch 服務基本概念 | Microsoft Azure"
-	description="了解如何將 Azure Batch 服務用於大規模的平行工作負載和 HPC 工作負載 "
-	services="batch"
-	documentationCenter=""
-	authors="mmacy"
-	manager="timlt"
-	editor=""/>
+    pageTitle="Azure Batch service basics | Microsoft Azure"
+    description="Learn about using the Azure Batch service for large-scale parallel and HPC workloads"
+    services="batch"
+    documentationCenter=""
+    authors="mmacy"
+    manager="timlt"
+    editor=""/>
 
 <tags
-	ms.service="batch"
-	ms.workload="big-compute"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="get-started-article"
-	ms.date="08/22/2016"
-	ms.author="marsma"/>
+    ms.service="batch"
+    ms.workload="big-compute"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="get-started-article"
+    ms.date="08/22/2016"
+    ms.author="marsma"/>
 
-# Azure Batch 的基本概念
 
-Azure Batch 可讓您在雲端有效率地執行大規模的平行和高效能運算 (HPC) 應用程式。它是一項平台服務，可排程要在一組受管理的虛擬機器上執行的計算密集型工作，而且可以調整計算資源以符合工作的需求。
+# <a name="basics-of-azure-batch"></a>Basics of Azure Batch
 
-在使用 Batch 服務時，您可以定義用來大規模平行執行應用程式的 Azure 計算資源。您可以依需要或依排程的工作來執行，而不需要手動建立、設定和管理 HPC 叢集、個別的虛擬機器、虛擬網路或複雜的作業和工作排程基礎結構。
+Azure Batch enables you to run large-scale parallel and high-performance computing (HPC) applications efficiently in the cloud. It's a platform service that schedules compute-intensive work to run on a managed collection of virtual machines, and can automatically scale compute resources to meet the needs of your jobs.
 
-## Batch 的使用案例
+With the Batch service, you define Azure compute resources to execute your applications in parallel, and at scale. You can run on-demand or scheduled jobs, and you don't need to manually create, configure, and manage an HPC cluster, individual virtual machines, virtual networks, or a complex job and task scheduling infrastructure.
 
-Batch 是一項受管理的 Azure 服務，可用於批次處理或批次運算 -- 執行大量的類似工作以得到期望的結果。定期處理、轉換和分析大量資料的組織最常使用批次運算。
+## <a name="use-cases-for-batch"></a>Use cases for Batch
 
-Batch 很適合處理本質平行 (也稱為「超簡單平行」) 的應用程式和工作負載。本質平行工作負載可容易分割成多個工作，在多部電腦上同時執行。
+Batch is a managed Azure service that is used for *batch processing* or *batch computing*--running a large volume of similar tasks to get some desired result. Batch computing is most commonly used by organizations that regularly process, transform, and analyze large volumes of data.
 
-![平行工作][1]<br/>
+Batch works well with intrinsically parallel (also known as "embarrassingly parallel") applications and workloads. Intrinsically parallel workloads are easily split into multiple tasks that perform work simultaneously on many computers.
 
-常見使用這項技術處理的一些工作負載範例如下：
+![Parallel tasks][1]<br/>
 
-* 財務風險模型
-* 氣候和水文資料分析
-* 影像轉譯、分析和處理
-* 媒體編碼及轉碼
-* 基因序列分析
-* 工程壓力分析
-* 軟體測試
+Some examples of workloads that are commonly processed using this technique are:
 
-Batch 也可以執行平行計算 (最後加上歸納步驟)，以及執行其他更複雜的 HPC 工作負載，例如[訊息傳遞介面 (MPI)](batch-mpi.md) 應用程式。
+* Financial risk modeling
+* Climate and hydrology data analysis
+* Image rendering, analysis, and processing
+* Media encoding and transcoding
+* Genetic sequence analysis
+* Engineering stress analysis
+* Software testing
 
-如需 Batch 與 Azure 中其他 HPC 解決方案選項的比較，請參閱 [Batch 和 HPC 解決方案](batch-hpc-solutions.md)。
+Batch can also perform parallel calculations with a reduce step at the end, and execute more complex HPC workloads such as [Message Passing Interface (MPI)](batch-mpi.md) applications.
 
-## 使用 Batch 進行開發
+For a comparison between Batch and other HPC solution options in Azure, see [Batch and HPC solutions](batch-hpc-solutions.md).
 
-使用 Batch 處理平行工作負載通常會透過其中一個 [Batch API](#batch-development-apis)，以程式設計方式進行。Batch API 可讓您建立和管理計算節點 (虛擬機器) 集區，以及排程作業及工作在這些節點上執行。您撰寫的用戶端應用程式或服務會使用 Batch API 來與 Batch 服務進行通訊。
+## <a name="developing-with-batch"></a>Developing with Batch
 
-您可以為組織有效率地處理大量工作負載，或提供前端服務給客戶，讓他們可以在一個、數百個或甚至數千個節點上，依需要或依排程執行作業和工作。您也可以在 [Azure Data Factory](../data-factory/data-factory-data-processing-using-batch.md) 之類的工具所管理的大型工作流程中使用 Batch。
+Processing parallel workloads with Batch is typically done programmatically by using one of the [Batch APIs](#batch-development-apis). With the Batch APIs, you create and manage pools of compute nodes (virtual machines) and schedule jobs and tasks to run on those nodes. A client application or service that you author uses the Batch APIs to communicate with the Batch service.
 
-> [AZURE.TIP] 當您準備鑽研 Batch API 以深入了解它所提供的功能時，請參閱[適用於開發人員的 Batch 功能概觀](batch-api-basics.md)。
+You can efficiently process large-scale workloads for your organization, or provide a service front end to your customers so that they can run jobs and tasks--on demand, or on a schedule--on one, hundreds, or even thousands of nodes. You can also use Batch as part of a larger workflow, managed by tools such as [Azure Data Factory](../data-factory/data-factory-data-processing-using-batch.md).
 
-### 您需要的 Azure 帳戶
+> [AZURE.TIP] When you're ready to dig in to the Batch API for a more in-depth understanding of the features it provides, check out the [Batch feature overview for developers](batch-api-basics.md).
 
-當您開發 Batch 解決方案時，您將在 Microsoft Azure 中使用下列帳戶。
+### <a name="azure-accounts-you'll-need"></a>Azure accounts you'll need
 
-- **Azure 帳戶和訂用帳戶** - 如果您沒有 Azure 訂用帳戶，您可以啟用 [MSDN 訂戶權益][msdn_benefits]，或是註冊[免費 Azure 帳戶][free_account]。當您建立帳戶時，會為您建立預設訂用帳戶。
+When you develop Batch solutions, you'll use the following accounts in Microsoft Azure.
 
-- **Batch 帳戶** - 當您的應用程式與 Batch 服務互動時，可以使用帳戶名稱、帳戶的 URL 及存取金鑰做為認證。所有 Batch 資源 (如集區、計算節點、作業和工作) 都與 Batch 帳戶相關聯。您可以在 Azure 入口網站中[建立 Batch 帳戶](batch-account-create-portal.md)。
+- **Azure account and subscription** - If you don't already have an Azure subscription, you can activate your [MSDN subscriber benefit][msdn_benefits], or sign up for a [free Azure account][free_account]. When you create an account, a default subscription is created for you.
 
-- **儲存體帳戶** - Batch 內建就支援處理 [Azure 儲存體][azure_storage]中的檔案。幾乎每個 Batch 案例都會使用 Azure 儲存體，來預備工作執行的程式及其處理的資料，以及儲存其產生的輸出資料。若要建立儲存體帳戶，請參閱[關於 Azure 儲存體帳戶](./../storage/storage-create-storage-account.md)。
+- **Batch account** - When your applications interact with the Batch service, the account name, the URL of the account, and an access key are used as credentials. All your Batch resources such as pools, compute nodes, jobs, and tasks are associated with a Batch account. You can [create Batch account](batch-account-create-portal.md) in the Azure portal.
 
-### Batch 開發 API
+- **Storage account** - Batch includes built-in support for working with files in [Azure Storage][azure_storage]. Nearly every Batch scenario uses Azure Storage--for staging the programs that your tasks run and the data that they process, and for the storage of output data that they generate. To create a Storage account, see [About Azure storage accounts](./../storage/storage-create-storage-account.md).
 
-應用程式和服務可以發出直接的 REST API 呼叫、使用一或多個下列用戶端程式庫或結合使用兩者，以使用 Batch 服務管理計算資源和大規模執行平行的工作負載。
+### <a name="batch-development-apis"></a>Batch development APIs
 
-| API | API 參考資料 | 下載 | 程式碼範例 |
+Your applications and services can issue direct REST API calls, use one or more of the following client libraries, or a combination of both to manage compute resources and run parallel workloads at scale using the Batch service.
+
+| API    | API reference | Download | Code samples |
 | ----------------- | ------------- | -------- | ------------ |
 | **Batch REST** | [MSDN][batch_rest] | N/A | [MSDN][batch_rest] |
-| **Batch .NET** | [MSDN][api_net] | [NuGet][api_net_nuget] | [GitHub][api_sample_net] |
-| **Batch Python** | [readthedocs.io][api_python] | [PyPI][api_python_pypi] |[GitHub][api_sample_python] |
+| **Batch .NET**    | [MSDN][api_net] | [NuGet ][api_net_nuget] | [GitHub][api_sample_net] |
+| **Batch Python**  | [readthedocs.io][api_python] | [PyPI][api_python_pypi] |[GitHub][api_sample_python] |
 | **Batch Node.js** | [github.io][api_nodejs] | [npm][api_nodejs_npm] | - |
-| **Batch Java** (預覽) | [github.io][api_java] | [Maven][api_java_jar] | [GitHub][api_sample_java] |
+| **Batch Java** (preview) | [github.io][api_java] | [Maven][api_java_jar] | [GitHub][api_sample_java] |
 
-### Batch 資源管理
+### <a name="batch-resource-management"></a>Batch resource management
 
-除了用戶端 API，您也可以使用下列項目來管理 Batch 帳戶內的資源。
+In addition to the client APIs, you can also use the following to manage resources within your Batch account.
 
-- [Batch PowerShell Cmdlet][batch_ps]：[Azure PowerShell](../powershell-install-configure.md) 模組中的 Batch PowerShell Cmdlet 可讓您使用 PowerShell 來管理 Batch 資源。
+- [Batch PowerShell cmdlets][batch_ps]: The Azure Batch cmdlets in the [Azure PowerShell](../powershell-install-configure.md) module enable you to manage Batch resources with PowerShell.
 
-- [Azure CLI](../xplat-cli-install.md)：Azure 命令列介面 (Azure CLI) 是跨平台工具組，可提供用來與許多 Azure 服務 (包括 Batch) 互動的殼層命令。
+- [Azure CLI](../xplat-cli-install.md): The Azure Command-Line Interface (Azure CLI) is a cross-platform toolset that provides shell commands for interacting with many Azure services, including Batch.
 
-- [Batch Management .NET](batch-management-dotnet.md) 用戶端程式庫：也可以透過 [NuGet][api_net_mgmt_nuget] 取得，您可以使用 Batch Management .NET 用戶端程式庫，以程式設計方式管理 Batch 帳戶、配額和應用程式封裝。管理程式庫的參考資料位於 [MSDN][api_net_mgmt]。
+- [Batch Management .NET](batch-management-dotnet.md) client library: Also available via [NuGet][api_net_mgmt_nuget], you can use the Batch Management .NET client library to programmatically manage Batch accounts, quotas, and application packages. Reference for the management library is on [MSDN][api_net_mgmt].
 
-### Batch 工具
+### <a name="batch-tools"></a>Batch tools
 
-雖然不一定要使用 Batch 建置解決方案，但以下是建置和偵錯 Batch 應用程式和服務時所要使用的一些重要工具。
+While not required to build solutions using Batch, here are some valuable tools to use while building and debugging your Batch applications and services.
 
- - [Azure 入口網站][portal]︰您可以在 Azure 入口網站的 Batch 刀鋒視窗中建立、監視和刪除 Batch 集區、作業和工作。您可以在執行作業時檢視上述和其他資源的狀態資訊，甚至從您集區中的計算節點下載檔案 (例如，在進行疑難排解時下載失敗的工作 `stderr.txt`)。您也可以下載可用來登入計算節點的遠端桌面 (RDP) 檔案。
+ - [Azure portal][portal]: You can create, monitor, and delete Batch pools, jobs, and tasks in the Azure portal's Batch blades. You can view the status information for these and other resources while you run your jobs, and even download files from the compute nodes in your pools (download a failed task's `stderr.txt` while troubleshooting, for example). You can also download Remote Desktop (RDP) files that you can use to log in to compute nodes.
 
- - [Azure Batch 總管][batch_explorer]︰Batch 總管可提供與 Azure 入口網站類似的 Batch 資源管理功能，但是在獨立的 Windows Presentation Foundation (WPF) 用戶端應用程式中。在 [GitHub][github_samples] 上可取得其中一個 Batch .NET 範例應用程式，您可以使用 Visual Studio 2015 建置此種應用程式，並在開發及偵錯 Batch 解決方案時，使用它來瀏覽和管理 Batch 帳戶中的資源。檢視作業、集區和工作詳細資訊、從計算節點下載檔案，以及使用您可透過 Batch 總管下載的遠端桌面 (RDP) 檔案從遠端連接到節點。
+ - [Azure Batch Explorer][batch_explorer]: Batch Explorer provides similar Batch resource management functionality as the Azure portal, but in a standalone Windows Presentation Foundation (WPF) client application. One of the Batch .NET sample applications available on [GitHub][github_samples], you can build it with Visual Studio 2015 or above and use it to browse and manage the resources in your Batch account while you develop and debug your Batch solutions. View job, pool, and task details, download files from compute nodes, and connect to nodes remotely by using Remote Desktop (RDP) files you can download with Batch Explorer.
 
- - [Microsoft Azure 儲存體 Explorer][storage_explorer]：嚴格來說，雖然儲存體 Explorer 不算是 Azure Batch 工具，但卻是您開發和偵錯 Batch 解決方案時的另一個很實用的工具。
+ - [Microsoft Azure Storage Explorer][storage_explorer]: While not strictly an Azure Batch tool, the Storage Explorer is another valuable tool to have while you are developing and debugging your Batch solutions.
 
-## 案例：相應放大平行工作負載
+## <a name="scenario:-scale-out-a-parallel-workload"></a>Scenario: Scale out a parallel workload
 
-使用 Batch API 來與 Batch 服務互動的一個常見案例涉及在一組計算節點上相應放大本質平行工作，例如轉譯 3D 場景的影像。例如，這組計算節點可能是您的「轉譯伺服器陣列」，提供數十、數百或甚至數千個核心來呈現作業。
+A common solution that uses the Batch APIs to interact with the Batch service involves scaling out intrinsically parallel work--such as the rendering of images for 3D scenes--on a pool of compute nodes. This pool of compute nodes can be your "render farm" that provides tens, hundreds, or even thousands of cores to your rendering job, for example.
 
-下圖顯示一個常見的 Batch 工作流程，其中有一個用戶端應用程式或託管服務使用 Batch 執行平行工作負載。
+The following diagram shows a common Batch workflow, with a client application or hosted service using Batch to run a parallel workload.
 
-![Batch 解決方案工作流程][2]
+![Batch solution workflow][2]
 
-在這個常見的案例中，應用程式或服務執行下列步驟，在 Azure Batch 中處理計算工作負載：
+In this common scenario, your application or service processes a computational workload in Azure Batch by performing the following steps:
 
-1. 將**輸入檔**和處理這些檔案的**應用程式**上傳到您的 Azure 儲存體帳戶。輸入檔可以是您的應用程式將會處理的任何資料，例如財務模型化資料或要轉碼的視訊檔案。應用程式檔案可以是任何用於處理資料的應用程式，例如 3D 轉譯應用程式或媒體轉碼器。
+1. Upload the **input files** and the **application** that will process those files to your Azure Storage account. The input files can be any data that your application will process, such as financial modeling data, or video files to be transcoded. The application files can be any application that is used for processing the data, such as a 3D rendering application or media transcoder.
 
-2. 在 Batch 帳戶中建立計算節點的 Batch **集區** -- 這些節點是將執行工作的虛擬機器。您需要指定屬性，例如[節點大小](./../cloud-services/cloud-services-sizes-specs.md)、其作業系統，以及節點加入集區時要安裝的應用程式在 Azure 儲存體中的位置 (您在步驟 #1 中上傳的應用程式)。您也可以設定集區來隨著工作所產生的工作負載而[自動調整](batch-automatic-scaling.md) - 動態調整集區中的計算節點數目。
+2. Create a Batch **pool** of compute nodes in your Batch account--these nodes are the virtual machines that will execute your tasks. You specify properties such as the [node size](./../cloud-services/cloud-services-sizes-specs.md), their operating system, and the location in Azure Storage of the application to install when the nodes join the pool (the application that you uploaded in step #1). You can also configure the pool to [automatically scale](batch-automatic-scaling.md)--dynamically adjust the number of compute nodes in the pool--in response to the workload that your tasks generate.
 
-3. 建立 Batch **作業**以在計算節點集區上執行工作負載。當您建立作業時，您需要將它與 Batch 集區建立關聯。
+3. Create a Batch **job** to run the workload on the pool of compute nodes. When you create a job, you associate it with a Batch pool.
 
-4. 將**工作**加入至作業。當您將工作加入至作業時，Batch 服務會自動排程工作在集區中的計算節點上執行。每一項工作會使用您上傳的應用程式來處理輸入檔。
+4. Add **tasks** to the job. When you add tasks to a job, the Batch service automatically schedules the tasks for execution on the compute nodes in the pool. Each task uses the application that you uploaded to process the input files.
 
-    - 4a.工作執行之前，它可以將它要處理的資料 (輸入檔) 下載至它被指派的計算節點。如果應用程式未安裝在節點上 (請參閱步驟 2#)，您可以從這裡下載它。下載完成時，工作就會在它被指派的節點上執行。
+    - 4a. Before a task executes, it can download the data (the input files) that it is to process to the compute node it is assigned to. If the application has not already been installed on the node (see step #2), it can be downloaded here instead. When the downloads are complete, the tasks execute on their assigned nodes.
 
-5. 工作執行時，您可以查詢 Batch 來監視作業及其工作的進度。用戶端應用程式或服務會透過 HTTPS 而與 Batch 服務通訊，因為您可能會監視數千個計算節點上執行的數千個工作，請務必[有效率地查詢 Batch 服務](batch-efficient-list-queries.md)。
+5. As the tasks run, you can query Batch to monitor the progress of the job and its tasks. Your client application or service communicates with the Batch service over HTTPS, and because you might be monitoring thousands of tasks running on thousands of compute nodes, be sure to [query the Batch service efficiently](batch-efficient-list-queries.md).
 
-6. 當工作完成時，它們可以將其輸出資料上傳至 Azure 儲存體。您也可以直接從計算節點擷取檔案。
+6. As the tasks complete, they can upload their result data to Azure Storage. You can also retrieve files directly from compute nodes.
 
-7. 當您的監視偵測到作業中的工作已完成時，用戶端應用程式或服務可以下載輸出資料來進一步處理或評估。
+7. When your monitoring detects that the tasks in your job have completed, your client application or service can download the output data for further processing or evaluation.
 
-請記住，這只是使用 Batch 的一種方式，此案例只描述它可用的幾項功能。例如，您可以在每個計算節點上[以平行方式執行多項工作](batch-parallel-node-tasks.md)，也可以使用[作業準備和完成工作](batch-job-prep-release.md)來準備作業的節點，然後再清除。
+Keep in mind this is just one way to use Batch, and this scenario describes only a few of its available features. For example, you can execute [multiple tasks in parallel](batch-parallel-node-tasks.md) on each compute node, and you can use [job preparation and completion tasks](batch-job-prep-release.md) to prepare the nodes for your jobs, then clean up afterward.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-既然您已大致了解 Batch 服務，現在可以更深入探索服務，了解如何使用它來處理計算密集平行工作負載。
+Now that you have a high-level overview of the Batch service, it's time to dig deeper to learn how you can use it to process your compute-intensive parallel workloads.
 
-- 請參閱[適用於開發人員的 Batch 功能概觀](batch-api-basics.md)，這是任何準備使用 Batch 的人員不可或缺的資訊。本文包含 Batch 服務資源 (例如集區、節點、作業和工作) 的詳細資訊，以及在建置 Batch 應用程式時可使用的許多 API 功能。
+- Read the [Batch feature overview for developers](batch-api-basics.md), essential information for anyone preparing to use Batch. The article contains more detailed information about Batch service resources like pools, nodes, jobs, and tasks, and the many API features that you can use while building your Batch application.
 
-- [開始使用適用於 .NET 的 Azure Batch 程式庫](batch-dotnet-get-started.md)，了解如何使用 C# 和 Batch .NET 程式庫，透過一般的批次工作流程來執行簡單的工作負載。本文應該是您學習如何使用 Batch 服務的第一站。另外還有 [Python 版本](batch-python-tutorial.md)的教學課程。
+- [Get started with the Azure Batch library for .NET](batch-dotnet-get-started.md) to learn how to use C# and the Batch .NET library to execute a simple workload using a common Batch workflow. This article should be one of your first stops while learning how to use the Batch service. There is also a [Python version](batch-python-tutorial.md) of the tutorial.
 
-- 下載 [GitHub 上的程式碼範例][github_samples]，看看 C# 和 Python 如何與 Batch 相互作用，以排程和處理範例工作負載。
+- Download the [code samples on GitHub][github_samples] to see how both C# and Python can interface with Batch to schedule and process sample workloads.
 
-- 查看 [Batch 學習路徑][learning_path]，了解您在學習使用 Batch 時可用的資源。
+- Check out the [Batch Learning Path][learning_path] to get an idea of the resources available to you as you learn to work with Batch.
 
 [azure_storage]: https://azure.microsoft.com/services/storage/
 [api_java]: http://azure.github.io/azure-sdk-for-java/
@@ -161,4 +162,8 @@ Batch 也可以執行平行計算 (最後加上歸納步驟)，以及執行其�
 [1]: ./media/batch-technical-overview/tech_overview_01.png
 [2]: ./media/batch-technical-overview/tech_overview_02.png
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="教學課程：Azure Active Directory 與 Bime 整合 | Microsoft Azure" 
-    description="了解如何使用 Bime 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
+    pageTitle="Tutorial: Azure Active Directory Integration with Bime | Microsoft Azure" 
+    description="Learn how to use Bime with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,141 +11,150 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="07/11/2016" 
+    ms.date="09/29/2016" 
     ms.author="jeedes" />
 
-#教學課程：Azure Active Directory 與 Bime 整合
 
-本教學課程的目的是要示範 Azure 與 Bime 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+#<a name="tutorial:-azure-active-directory-integration-with-bime"></a>Tutorial: Azure Active Directory Integration with Bime
 
--   有效的 Azure 訂閱
--   Bime 租用戶
+The objective of this tutorial is to show the integration of Azure and Bime.  
+The scenario outlined in this tutorial assumes that you already have the following items:
 
-完成本教學課程之後，您指派給 Bime 的 Azure AD 使用者就能夠單一登入您 Bime 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+-   A valid Azure subscription
+-   A Bime tenant
 
-本教學課程中說明的案例由下列建置組塊組成：
+After completing this tutorial, the Azure AD users you have assigned to Bime will be able to single sign into the application at your Bime company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-1.  啟用 Bime 的應用程式整合
-2.  設定單一登入
-3.  設定使用者佈建
-4.  指派使用者
+The scenario outlined in this tutorial consists of the following building blocks:
 
-![案例](./media/active-directory-saas-bime-tutorial/IC775552.png "案例")
-##啟用 Bime 的應用程式整合
+1.  Enabling the application integration for Bime
+2.  Configuring single sign-on
+3.  Configuring user provisioning
+4.  Assigning users
 
-本節的目的是要說明如何啟用 Bime 的應用程式整合。
+![Scenario](./media/active-directory-saas-bime-tutorial/IC775552.png "Scenario")
+##<a name="enabling-the-application-integration-for-bime"></a>Enabling the application integration for Bime
 
-###若要啟用 Bime 的應用程式整合，請執行下列步驟：
+The objective of this section is to outline how to enable the application integration for Bime.
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+###<a name="to-enable-the-application-integration-for-bime,-perform-the-following-steps:"></a>To enable the application integration for Bime, perform the following steps:
+
+1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
 
     ![Active Directory](./media/active-directory-saas-bime-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  To open the applications view, in the directory view, click **Applications** in the top menu.
 
-    ![應用程式](./media/active-directory-saas-bime-tutorial/IC700994.png "應用程式")
+    ![Applications](./media/active-directory-saas-bime-tutorial/IC700994.png "Applications")
 
-4.  按一下頁面底部的 [新增]。
+4.  Click **Add** at the bottom of the page.
 
-    ![新增應用程式](./media/active-directory-saas-bime-tutorial/IC749321.png "新增應用程式")
+    ![Add application](./media/active-directory-saas-bime-tutorial/IC749321.png "Add application")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
 
-    ![從組件庫新增應用程式](./media/active-directory-saas-bime-tutorial/IC749322.png "從組件庫新增應用程式")
+    ![Add an application from gallerry](./media/active-directory-saas-bime-tutorial/IC749322.png "Add an application from gallerry")
 
-6.  在**搜尋方塊**中，輸入 **Bime**。
+6.  In the **search box**, type **Bime**.
 
-    ![應用程式庫](./media/active-directory-saas-bime-tutorial/IC775553.png "應用程式庫")
+    ![Application Gallery](./media/active-directory-saas-bime-tutorial/IC775553.png "Application Gallery")
 
-7.  在結果窗格中，選取 [Bime]，然後按一下 [完成] 以加入應用程式。
+7.  In the results pane, select **Bime**, and then click **Complete** to add the application.
 
     ![Bime](./media/active-directory-saas-bime-tutorial/IC775554.png "Bime")
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>Configuring single sign-on
 
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證至 Bime。您必須從憑證擷取指紋值，才能設定 Bime 的單一登入。如果您不熟悉這個程序，請參閱[如何擷取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
+The objective of this section is to outline how to enable users to authenticate to Bime with their account in Azure AD using federation based on the SAML protocol.  
+Configuring single sign-on for Bime requires you to retrieve a thumbprint value from a certificate.  
+If you are not familiar with this procedure, see [How to retrieve a certificate's thumbprint value](http://youtu.be/YKQF266SAxI).
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
 
-1.  在 Azure 傳統入口網站的 [Bime] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1.  In the Azure classic portal, on the **Bime** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-bime-tutorial/IC771709.png "設定單一登入")
+    ![Configure single sign-on](./media/active-directory-saas-bime-tutorial/IC771709.png "Configure single sign-on")
 
-2.  在 [要如何讓使用者登入 Bime] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
+2.  On the **How would you like users to sign on to Bime** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
 
-    ![設定單一登入](./media/active-directory-saas-bime-tutorial/IC775555.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-bime-tutorial/IC775555.png "Configure Single Sign-On")
 
-3.  在 [設定應用程式 URL] 頁面的 [Bime 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："*https://\<租用戶名稱>.Bimeapp.com*"，然後按 [下一步]。
+3.  On the **Configure App URL** page, in the **Bime Sign In URL** textbox, type your URL using the following pattern "*https://\<tenant-name\>.Bimeapp.com*", and then click **Next**.
 
-    ![設定應用程式 URL](./media/active-directory-saas-bime-tutorial/IC775556.png "設定應用程式 URL")
+    ![Configure App URL](./media/active-directory-saas-bime-tutorial/IC775556.png "Configure App URL")
 
-4.  於 [在 Bime 設定單一登入] 頁面上，按 [下載憑證] 以下載您的憑證，然後在本機將憑證檔案另存為 **c:\\Bime.cer**。
+4.  On the **Configure single sign-on at Bime** page, to download your certificate, click **Download certificate**, and then save the certificate file locally as **c:\\Bime.cer**.
 
-    ![設定單一登入](./media/active-directory-saas-bime-tutorial/IC775557.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-bime-tutorial/IC775557.png "Configure Single Sign-On")
 
-5.  在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 Bime 公司網站。
+5.  In a different web browser window, log into your Bime company site as an administrator.
 
-6.  在工具列中，按一下 [管理]，然後按一下 [帳戶]。
+6.  In the toolbar, click **Admin**, and then **Account**.
 
     ![Admin](./media/active-directory-saas-bime-tutorial/IC775558.png "Admin")
 
-7.  在 [帳戶組態] 頁面上，執行下列步驟：
+7.  On the account configuration page, perform the following steps:
 
-    ![設定單一登入](./media/active-directory-saas-bime-tutorial/IC775559.png "設定單一登入")
+    ![Configure Single Sign-On](./media/active-directory-saas-bime-tutorial/IC775559.png "Configure Single Sign-On")
 
-    1.  選取 [啟用 SAML 驗證]。
-    2.  在 Azure 傳統入口網站的 [在 Bime 設定單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後將它貼至 [遠端登入 URL] 文字方塊中。
-    3.  從匯出的憑證複製 [指紋] 值，然後將它貼入 [憑證指紋] 文字方塊。
+    1.  Select **Enable SAML authentication**.
+    2.  In the Azure classic portal, on the **Configure single sign-on at Bime** dialog page, copy the **Remote Login URL** value, and then paste it into the **Remote Login URL** textbox.
+    3.  Copy the **Thumbprint** value from the exported certificate, and then paste it into the **Certificate Fingerprint** textbox.  
 
-        >[AZURE.TIP] 如需詳細資訊，請參閱[如何擷取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
+        >[AZURE.TIP] For more details, see [How to retrieve a certificate's thumbprint value](http://youtu.be/YKQF266SAxI)
 
-    4.  按一下 [儲存]。
+    4.  Click **Save**.
 
-8.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
+8.  On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
 
-    ![設定單一登入](./media/active-directory-saas-bime-tutorial/IC775560.png "設定單一登入")
-##設定使用者佈建
+    ![Configure Single Sign-On](./media/active-directory-saas-bime-tutorial/IC775560.png "Configure Single Sign-On")
+##<a name="configuring-user-provisioning"></a>Configuring user provisioning
 
-若要讓 Azure AD 使用者可以登入 Bime，必須將他們佈建到 Bime。Bime 需以手動方式佈建。
+In order to enable Azure AD users to log into Bime, they must be provisioned into Bime.  
+In the case of Bime, provisioning is a manual task.
 
-###若要設定使用者佈建，請執行下列步驟：
+###<a name="to-configure-user-provisioning,-perform-the-following-steps:"></a>To configure user provisioning, perform the following steps:
 
-1.  登入您的 **Bime** 租用戶。
+1.  Log in to your **Bime** tenant.
 
-2.  在工具列中，按一下 [管理]，然後按一下 [使用者]。
+2.  In the toolbar, click **Admin**, and then **Users**.
 
     ![Admin](./media/active-directory-saas-bime-tutorial/IC775561.png "Admin")
 
-3.  在 [使用者清單] 中，按一下 [新增使用者] \("+")。
+3.  In the **Users List**, click **Add New User** (“+”).
 
-    ![使用者](./media/active-directory-saas-bime-tutorial/IC775562.png "使用者")
+    ![Users](./media/active-directory-saas-bime-tutorial/IC775562.png "Users")
 
-4.  在 [使用者詳細資料] 對話頁面上，執行下列步驟：
+4.  On the **User Details** dialog page, perform the following steps:
 
-    ![使用者詳細資料](./media/active-directory-saas-bime-tutorial/IC775563.png "使用者詳細資料")
+    ![User Details](./media/active-directory-saas-bime-tutorial/IC775563.png "User Details")
 
-    1.  輸入您想要佈建之有效 AAD 帳戶的名字、姓氏、登入、電子郵件。
-    2.  按一下 [儲存]。
+    1.  Enter the First Name, Last Name, Login, Email of a valid AAD account you want to provision.
+    2.  Click Save.
 
->[AZURE.NOTE] 您可以使用任何其他的 Bime 使用者帳戶建立工具或 Bime 提供的 API 來佈建 AAD 使用者帳戶。
+>[AZURE.NOTE] You can use any other Bime user account creation tools or APIs provided by Bime to provision AAD user accounts.
 
-##指派使用者
+##<a name="assigning-users"></a>Assigning users
 
-若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
+To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
 
-###若要指派使用者給 Bime，請執行下列步驟：
+###<a name="to-assign-users-to-bime,-perform-the-following-steps:"></a>To assign users to Bime, perform the following steps:
 
-1.  在 Azure 傳統入口網站中建立測試帳戶。
+1.  In the Azure classic portal, create a test account.
 
-2.  在 [Bime] 應用程式整合頁面上，按一下 [指派使用者]。
+2.  On the **Bime **application integration page, click **Assign users**.
 
-    ![指派使用者](./media/active-directory-saas-bime-tutorial/IC775564.png "指派使用者")
+    ![Assign users](./media/active-directory-saas-bime-tutorial/IC775564.png "Assign users")
 
-3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
 
-    ![是](./media/active-directory-saas-bime-tutorial/IC767830.png "是")
+    ![Yes](./media/active-directory-saas-bime-tutorial/IC767830.png "Yes")
 
-如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+
