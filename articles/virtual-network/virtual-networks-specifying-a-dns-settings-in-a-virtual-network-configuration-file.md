@@ -1,33 +1,34 @@
 <properties 
-   pageTitle="指定虛擬網路組態檔中的 DNS 設定 | Microsoft Azure"
-   description="如何使用傳統部署模型中的虛擬網路組態檔變更虛擬網路的 DNS 伺服器設定"
+   pageTitle="Specifying DNS Settings in a virtual network configuration file | Microsoft Azure"
+   description="How to change DNS server settings in a virtual network using a virtual network configuration file in the classic deployment model"
    services="virtual-network"
    documentationCenter="na"
    authors="jimdial"
    manager="carmonm"
    editor="tysonn" 
    tags="azure-service-management" />
-<tags  
+<tags 
    ms.service="virtual-network"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="02/23/2016"
-   ms.author="jdial" />
+   ms.author="jdial" /> 
 
 
-# 指定虛擬網路組態檔中的 DNS 設定
 
-網路組態檔有兩種您可以用來指定網域名稱系統 (DNS) 設定的項目：**DnsServers** 和 **DnsServerRef**。您可以藉由指定其 IP 位址並參考 **DnsServers** 項目的名稱，新增 DNS 伺服器的清單。然後您可以使用 **DnsServerRef** 項目，來針對您虛擬網路內的不同網站，指定要使用 DnsServers 項目中哪些 DNS 伺服器項目。
+# <a name="specifying-dns-settings-in-a-virtual-network-configuration-file"></a>Specifying DNS settings in a virtual network configuration file
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] 本文涵蓋之內容包括傳統部署模型。
+A network configuration file has two elements that you can use to specify Domain Name System (DNS) settings: **DnsServers** and **DnsServerRef**. You can add a list of DNS servers by specifying their IP addresses and reference names to the **DnsServers** element. You can then use a **DnsServerRef** element to specify which DNS server entries from the DnsServers element are used for different network sites within your virtual network.
 
-網路組態檔可能包含下列項目。每個項目的標題會連結至提供項目值設定之其他相關資訊的網頁。
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] This article covers the classic deployment model.
 
->[AZURE.IMPORTANT] 如需如何設定網路組態檔的相關資訊，請參閱[使用網路組態檔設定虛擬網路](virtual-networks-using-network-configuration-file.md)。如需網路組態檔中所包含之各個項目的相關資訊，請參閱 [Azure 虛擬網路組態結構描述](https://msdn.microsoft.com/library/azure/jj157100.aspx)。
+The network configuration file may contain the following elements. The title of each element is linked to a page that provides additional information about the element value settings.
 
-[Dns 項目](http://go.microsoft.com/fwlink/?LinkId=248093)
+>[AZURE.IMPORTANT] For information about how to configure the network configuration file, see [Configure a Virtual Network Using a Network Configuration File](virtual-networks-using-network-configuration-file.md). For information about each element contained in the network configuration file, see [Azure Virtual Network Configuration Schema](https://msdn.microsoft.com/library/azure/jj157100.aspx).
+
+[Dns Element](http://go.microsoft.com/fwlink/?LinkId=248093)
 
     <Dns>
       <DnsServers>
@@ -37,22 +38,26 @@
       </DnsServers>
     </Dns>
 
->[AZURE.WARNING] **DnsServer** 項目中的 **name** 屬性僅做為 **DnsServerRef** 項目的參考。它不代表 DNS 伺服器的主機名稱。每個 **DnsServer** 屬性值在整個 Microsoft Azure 訂用帳戶中必須是唯一的。
+>[AZURE.WARNING] The **name** attribute in the **DnsServer** element is used only as a reference for the **DnsServerRef** element. It does not represent the host name for the DNS server. Each **DnsServer** attribute value must be unique across the entire Microsoft Azure subscription
 
-[Virtual Network Sites 項目](http://go.microsoft.com/fwlink/?LinkId=248093)
+[Virtual Network Sites Element](http://go.microsoft.com/fwlink/?LinkId=248093)
 
-	<DnsServersRef>
-	  <DnsServerRef name="ID1" />
-	  <DnsServerRef name="ID2" />
-	  <DnsServerRef name="ID3" />
-	</DnsServersRef>
+    <DnsServersRef>
+      <DnsServerRef name="ID1" />
+      <DnsServerRef name="ID2" />
+      <DnsServerRef name="ID3" />
+    </DnsServersRef>
 
->[AZURE.NOTE] 若要指定 Virtual Network Sites 項目的這項設定，先前在 DNS 項目中必須定義它。Virtual Network Sites 項目中的 DnsServerRef *name* 必須參考 DnsServer *name* 的 DNS 項目中指定的名稱值。
+>[AZURE.NOTE] In order to specify this setting for the Virtual Network Sites element, it must be previously defined in the DNS element. The DnsServerRef *name* in the Virtual Network Sites element must refer to a name value specified in the DNS element for DnsServer *name*.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 了解 [Azure 虛擬網路組態結構描述](http://go.microsoft.com/fwlink/?LinkId=248093)。
-- 了解 [Azure 服務組態結構描述](https://msdn.microsoft.com/library/windowsazure/ee758710)。
-- [使用網路組態檔設定虛擬網路](virtual-networks-using-network-configuration-file.md)
+- Understand the [Azure Virtual Network Configuration Schema](http://go.microsoft.com/fwlink/?LinkId=248093).
+- Understand the [Azure Service Configuration Schema](https://msdn.microsoft.com/library/windowsazure/ee758710).
+- [Configure a virtual network using Network configuration files](virtual-networks-using-network-configuration-file.md).
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO2-->
+
+

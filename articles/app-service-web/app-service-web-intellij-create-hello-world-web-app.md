@@ -1,252 +1,251 @@
 <properties 
-	pageTitle="在 IntelliJ 中建立 Azure 的 Hello World Web 應用程式 | Microsoft Azure" 
-	description="本教學課程將示範如何使用適用於 IntelliJ 的 Azure 工具組來建立 Azure 的 Hello World Web 應用程式。" 
-	services="app-service\web" 
-	documentationCenter="java" 
-	authors="selvasingh" 
-	manager="wpickett" 
-	editor=""/>
+    pageTitle="Create a Hello World Web App for Azure in IntelliJ | Microsoft Azure" 
+    description="This tutorial shows you how to use the Azure Toolkit for IntelliJ to create a Hello World Web App for Azure." 
+    services="app-service\web" 
+    documentationCenter="java" 
+    authors="selvasingh" 
+    manager="wpickett" 
+    editor=""/>
 
 <tags 
-	ms.service="app-service-web" 
-	ms.workload="web" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="Java" 
-	ms.topic="article" 
-	ms.date="08/11/2016" 
-	ms.author="asirveda;robmcm"/>
+    ms.service="app-service-web" 
+    ms.workload="web" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="Java" 
+    ms.topic="article" 
+    ms.date="08/11/2016" 
+    ms.author="asirveda;robmcm"/>
 
-# 在 IntelliJ 中建立 Azure 的 Hello World Web 應用程式
 
-本教學課程示範如何使用 [Azure Toolkit for IntelliJ (適用於 IntelliJ 的 Azure 工具組)]，建立基本的 Hello World 應用程式，並做為 Web 應用程式部署到 Azure。下文所示的基本 JSP 範例乃力求簡潔，不過只要與 Azure 部署相關，幾乎類似的步驟皆適用於 Java servlet。
+# <a name="create-a-hello-world-web-app-for-azure-in-intellij"></a>Create a Hello World Web App for Azure in IntelliJ
 
-當您完成本教學課程，在網頁瀏覽器中檢視您的應用程式時，看起來會如下圖所示：
+This tutorial shows how to create and deploy a basic Hello World application to Azure as a Web App by using the [Azure Toolkit for IntelliJ]. A basic JSP example is shown for simplicity, but highly similar steps would be appropriate for a Java servlet, as far as Azure deployment is concerned.
+
+When you have completed this tutorial, your application will look similar to the following illustration when you view it in a web browser:
 
 ![][01]
  
-## 必要條件
+## <a name="prerequisites"></a>Prerequisites
 
-* Java Developer Kit (JDK) 1.8 版或更新版本。
-* IntelliJ 概念旗艦版。這可透過 <https://www.jetbrains.com/idea/download/index.html> 下載。
-* Java 型 Web 伺服器或應用程式伺服器的散發套件，例如 Apache Tomcat 或 Jetty。
-* Azure 訂用帳戶，可從 <https://azure.microsoft.com/free/> 或 <http://azure.microsoft.com/pricing/purchase-options/> 取得。
-* 適用於 IntelliJ 的 Azure 工具組。如需詳細資訊，請參閱 [Installing the Azure Toolkit for IntelliJ (安裝適用於 IntelliJ 的 Azure 工具組)]。
+* A Java Developer Kit (JDK), v 1.8 or later.
+* IntelliJ IDEA Ultimate Edition. This can be downloaded from <https://www.jetbrains.com/idea/download/index.html>.
+* A distribution of a Java-based web server or application server, such as Apache Tomcat or Jetty.
+* An Azure subscription, which can be acquired from <https://azure.microsoft.com/free/> or <http://azure.microsoft.com/pricing/purchase-options/>.
+* The Azure Toolkit for IntelliJ. For more information, see [Installing the Azure Toolkit for IntelliJ].
 
-## 建立 Hello World 應用程式
+## <a name="to-create-a-hello-world-application"></a>To Create a Hello World Application
 
-首先，我們將從建立 Java 專案開始。
+First, we'll start off with creating a Java project.
 
-1. 啟動 IntelliJ，在功能表上依序按一下 [檔案]、[新增] 及 [專案]。
+1. Start IntelliJ, and at the menu click **File**, then **New**, and then click **Project**.
 
    ![][02]
 
-1. 在 [新增專案] 對話方塊中，依序選取 [Java] 和 [Web 應用程式]，然後按 [下一步]。
+1. In the New Project dialog box, select **Java**, then **Web Application**, and then click **Next**.
 
    ![][03a]
 
-   如果系統提示不指派任何 SDK 並繼續，請按一下 [是]。
+   If prompted to continue with no SDK assigned, click **Yes**.
 
    ![][03b]
 
-1. 基於本教學課程的目的，將專案命名為 **Java-Web-App-On-Azure**，然後按一下 [完成]。
+1. For purposes of this tutorial, name the project **Java-Web-App-On-Azure**, and then click **Finish**.
 
    ![][04]
 
-1. 在 IntelliJ 的專案總管檢視中，依序展開 [Java-Web-App-On-Azure] 和 [web]，然後按兩下 [index.jsp]。
+1. Within IntelliJ's Project Explorer view, expand **Java-Web-App-On-Azure**, then expand **web**, and then double-click **index.jsp**.
 
    ![][05]
 
-1. 當 index.jsp 檔案在 IntelliJ 中開啟時，於現有的 `<body>` 元素中加入文字以動態顯示 **Hello World!**。您已更新的 `<body>` 內容看起來應該與下列範例類似：
+1. When your index.jsp file opens in IntelliJ, add in text to dynamically display **Hello World!** within the existing `<body>` element. Your updated `<body>` content should resemble the following example:
 
-   `<body><b><% out.println("Hello World!"); %></b></body>`
+   `<body><b><% out.println("Hello World!"); %></b></body>` 
 
-1. 儲存 index.jsp。
+1. Save index.jsp.
 
-## 將應用程式部署至 Azure Web 應用程式容器
+## <a name="to-deploy-your-application-to-an-azure-web-app-container"></a>To Deploy your Application to an Azure Web App Container
 
-您有數種方式可以將 Java Web 應用程式部署至 Azure。本教學課程說明其中一個最簡單的方式：將您的應用程式部署至 Azure Web 應用程式容器，無需特殊的專案類型或額外的工具。Azure 會為您提供 JDK 及 Web 容器軟體，因此您不需要自己上傳；只需要您的 Java Web 應用程式。如此一來，您的應用程式發行程序只需數秒，連一分鐘都不用。
+There are several ways by which you can deploy a Java web application to Azure. This tutorial describes one of the simplest: your application will be deployed to an Azure Web App Container - no special project type nor additional tools are needed. The JDK and the web container software will be provided for you by Azure, so there is no need to upload your own; all you need is your Java Web App. As a result, the publishing process for your application will take seconds, not minutes.
 
-1. 在 IntelliJ 的專案總管中，以滑鼠右鍵按一下 [Java-Web-App-On-Azure] 專案。操作功能表顯示時，選取 [Azure]，然後按一下 [發佈為 Azure Web 應用程式...]
+1. In IntelliJ's Project Explorer, right-click the **Java-Web-App-On-Azure** project. When the context menu appears, select **Azure**, and then click **Publish as Azure Web App...**
 
    ![][06]
 
-1. 如果尚未從 IntelliJ 登入 Azure，系統會提示您登入 Azure 帳戶︰
+1. If you have not already signed into Azure from IntelliJ, you will be prompted to sign into your Azure account:
 
    ![][07]
 
-   注意︰如果您有多個 Azure 帳戶，登入程序期間的某些提示即使內容相同也可能會出現多次。發生此情況時，請遵循登入指示繼續。
+   Note: If you have multiple Azure accounts, some of the prompts during the sign in process may be shown more than once, even if they appear to be the same. When this happens, continue following the sign in instructions.
 
-1. 在您成功登入 Azure 帳戶後，[管理訂用帳戶] 對話方塊將會顯示與您的認證相關聯的訂用帳戶清單。如果列出多個訂用帳戶，而您只想使用其中幾個帳戶，您可以選擇取消選取要使用的訂用帳戶。當您選取訂用帳戶之後，按一下 [關閉]。
+1. After you have successfully signed into your Azure account, the **Manage Subscriptions** dialog box will display a list of subscriptions that are associated with your credentials. If there are multiple subscriptions listed and you want to work with only a specific subset of them, you may optionally uncheck the ones you do want to use. When you have selected your subscriptions, click **Close**.
 
    ![][08]
 
-1. 當 [部署至 Azure Web 應用程式容器] 對話方塊出現時，它會顯示您先前建立的所有 Web 應用程式容器；如果您尚未建立任何容器，清單將會是空白的。
+1. When the **Deploy to Azure Web App Container** dialog box appears, it will display any Web App containers that you have previously created; if you have not created any containers, the list will be empty.   
 
    ![][09]
 
-1. 如果您之前尚未建立 Azure Web 應用程式容器，或您想要將應用程式發佈到新的容器中，請使用下列步驟。否則，請選取現有的 Web 應用程式容器，並跳至以下的步驟 6。
+1. If you have not created an Azure Web App Container before, or if you would like to publish your application to a new container, use the following steps. Otherwise, select an existing Web App Container and skip to step 6 below.
 
-  1. 按一下 **+**。
+  1. Click **+**
 
         ![][10]
 
-  1. [新增 Web 應用程式容器] 對話方塊會隨即顯示，此對話方塊將用來進行接下來的幾個步驟。
+  1. The **New Web App Container** dialog box will be displayed, which will be used for the next several steps.
 
         ![][11]
 
-  1. 為您的 Web 應用程式容器輸入 **DNS 標籤**，這會為您在 Azure 中的 Web 應用程式構成主機 URL 的分葉 DNS 標籤。注意：名稱必須可用，且符合 Azure Web 應用程式命名需求。
+  1. Enter a **DNS Label** for your Web App Container; this will form the leaf DNS label of the host URL for your web application in Azure. Note: The name must be available and conform to Azure Web App naming requirements.
 
-  1. 在 [Web Container] \(Web 容器) 下拉式功能表中，為您的應用程式選取適當的軟體。
+  1. In the **Web Container** drop-down menu, select the appropriate software for your application.
 
-        目前，您可以從 Tomcat 8、Tomcat 7 或 Jetty 9 選擇。 所選軟體最新發行的版本由 Azure 提供，會在最新發行的 JDK 8 (由 Oracle 建立並由 Azure 提供) 中運作。
+        Currently, you can choose from Tomcat 8, Tomcat 7 or Jetty 9. A recent distribution of the selected software will be provided by Azure, and it will run on a recent distribution of JDK 8 created by Oracle and provided by Azure.
 
-  1. 在 [訂用帳戶] 下拉式選單中，選取您希望此部署使用的訂用帳戶。
+  1. In the **Subscription** drop-down menu, select the subscription you want to use for this deployment.
 
-  1. 在 [Resource Group] \(資源群組) 下拉式功能表中，選取您要與 Web 應用程式相關聯的資源群組。
+  1. In the **Resource Group** drop-down menu, select the Resource Group with which you want to associate your Web App.
 
-        注意：Azure 資源群組可讓您將相關的資源分在同一組，方便一次刪除。
+        Note: Azure Resource Groups allow you to group related resources together so that, for example, they can be deleted together.
 
-        您可以選取現有的資源群組 (如果有)，並略過下方步驟 g，或使用以下步驟建立新的資源群組：
+        You can select an existing Resource Group (if you have any) and skip to step g below, or use the following these steps to create a new Resource Group:
 
-      * 按一下 [New...] \(新增...)
+      * Click **New...**
 
-      * [New Resource Group] \(新增資源群組) 對話方塊會隨即顯示：
+      * The **New Resource Group** dialog box will be displayed:
 
             ![][12]
 
-      * 在 [Name] \(名稱) 文字方塊中，為新的資源群組指定名稱。
+      * In the the **Name** textbox, specify a name for your new Resource Group.
 
-      * 在 [Region] \(區域) 下拉式功能表中，為資源群組選取適當的 Azure 資料中心位置。
+      * In the the **Region** drop-down menu, select the appropriate Azure data center location for your Resource Group.
 
-      * 按一下 [確定]。
+      * Click **OK**.
 
-  1. [App Service Plan] \(App Service 方案) 下拉式功能表會列出與您選取之資源群組相關聯的應用程式服務方案。
+  1. The **App Service Plan** drop-down menu lists the app service plans that are associated with the Resource Group that you selected.
 
-        注意：App Service 方案會指定特定資訊，例如您 Web 應用程式的位置、定價層以及計算執行個體大小。 單一 App Service 方案可用於多個 Web Apps，這也就是要與特定 Web 應用程式部署分開維護的原因。
+        Note: An App Service Plan specifies information such as the location of your Web App, the pricing tier and the compute instance size. A single App Service Plan can be used for multiple Web Apps, which is why it is maintained separately from a specific Web App deployment.
 
-        您可以選取現有的 App Service 方案 (如果有)，並略過下方步驟 h，或使用以下步驟建立新的 App Service 方案：
+        You can select an existing App Service Plan (if you have any) and skip to step h below, or use the following these steps to create a new App Service Plan:
 
-      * 按一下 [New...] \(新增...)
+      * Click **New...**
 
-      * [New App Service Plan] \(新增 App Service 方案) 對話方塊會隨即顯示：
+      * The **New App Service Plan** dialog box will be displayed:
 
             ![][13]
 
-      * 在 [Name] \(名稱) 文字方塊中，為新的 App Service 方案指定名稱。
+      * In the the **Name** textbox, specify a name for your new App Service Plan.
 
-      * 在 [Location] \(位置) 下拉式功能表中，為該方案選取適當的 Azure 資料中心位置。
+      * In the the **Location** drop-down menu, select the appropriate Azure data center location for the plan.
 
-      * 在 [Pricing Tier] \(定價層) 下拉式功能表中，為方案選取適當的價格。若為測試用途，您可以選擇 [Free] \(免費)。
+      * In the the **Pricing Tier** drop-down menu, select the appropriate pricing for the plan. For testing purposes you can choose **Free**.
 
-      * 在 [Instance Size] \(執行個體大小) 下拉式功能表中，為方案選取適當的執行個體大小。若為測試用途，您可以選擇 [Small] \(小型)。
+      * In the the **Instance Size** drop-down menu, select the appropriate instance size for the plan. For testing purposes you can choose **Small**.
 
-  1. 一旦您完成所有上述步驟之後，[New Web App Container] \(新增 Web 應用程式容器) 對話方塊看起來應該如下圖所示：
+  1. Once you have completed all of the above steps, the New Web App Container dialog box should resemble the following illustration:
 
         ![][14]
 
-  1. 按一下 [確定] 來完成建立新的 Web 應用程式容器。
+  1. Click **OK** to complete the creation of your new Web App container.
 
-        等待數秒鐘，讓 Web 應用程式容器清單重新整理；接著，您應該會在清單中看到新建立的 Web 應用程式容器已被選取。
+        Wait a few seconds for the list of the Web App containers to be refreshed, and your newly-created web app container should now be selected in the list.
 
-1. 現在您已準備好將 Web 應用程式初始部署至 Azure；按一下 [確定]，將您的 Java 應用程式部署至選取的 Web 應用程式容器。
+1. You are now ready to complete the initial deployment of your Web App to Azure; click **OK** to deploy your Java application to the selected Web App container.
 
     ![][15]
 
-    注意：根據預設，您的應用程式將會部署為應用程式伺服器的子目錄。如果您想要部署為根應用程式，請選取 [部署到根目錄] 核取方塊，然後按一下 [確定]。
+    Note: By default, your application will be deployed as a subdirectory of the application server. If you want it to be deployed as the root application, check the **Deploy to root** checkbox before clicking **OK**.
 
-1. 接下來，您應該會看到 [Azure 活動記錄檔] 檢視，它會指出 Web 應用程式的部署狀態。
+1. Next, you should see the **Azure Activity Log** view, which will indicate the deployment status of your Web App.
 
     ![][16]
 
-    將您的 Web 應用程式部署至 Azure 的程序，應該只需幾秒鐘即可完成。當您的應用程式就緒時，您會在 [狀態] 欄中看到名為**已發佈**的連結。當您按一下連結時，它會帶您到已部署的 Web 應用程式首頁，或者您也可以使用下一節中的步驟，以瀏覽至您的 Web 應用程式。
+    The process of deploying your Web App to Azure should take only a few seconds to complete. When your application ready, you will see a link named **Published** in the **Status** column. When you click the link, it will take you to your deployed Web App's home page, or you can use the steps in the following section to browse to your web app.
 
-## 瀏覽至您在 Azure 上的 Web 應用程式
+## <a name="browsing-to-your-web-app-on-azure"></a>Browsing to your Web App on Azure
 
-若要瀏覽至您在 Azure 上的 Web 應用程式，您可以使用 [Azure 總管] 檢視。
+To brows to your Web App on Azure, you can use the **Azure Explorer** view.
 
-如果 [Azure 總管] 檢視尚未開啟，您可以按一下 IntelliJ 中的 [檢視] 功能表，按一下 [工具視窗]，然後按一下 [服務總管] 來開啟。如果您之前尚未登入，系統將會提示您登入。
+If the **Azure Explorer** view is not already open, you can open it by clicking then **View** menu in IntelliJ, then click **Tool Windows**, and then click **Service Explorer**. If you have not previously logged in, it will prompt you to do so.
 
-顯示 [Azure 總管] 之後，使用下列這些步驟來停止您的 Web 應用程式：
+When the **Azure Explorer** view is displayed, use follow these steps to stop your Web App: 
 
-1. 展開 [Azure] 節點。
+1. Expand the **Azure** node.
 
-1. 展開 [Web Apps] 節點。
+1. Expand the **Web Apps** node. 
 
-1. 以滑鼠右鍵按一下所需的 Web 應用程式。
+1. Right-click the desired Web App.
 
-1. 操作功能表出現時，按一下 [在瀏覽器中開啟]。
+1. When the context menu appears, click **Open in Browser**.
 
     ![][17]
 
-## 更新 Web 應用程式
+## <a name="updating-your-web-app"></a>Updating your Web App
 
-更新現有執行中的 Azure Web 應用程式是一項快速又簡單的程序，而且您有兩個更新選項：
+Updating an existing running Azure Web App is a quick and easy process, and you have two options for updating:
 
-* 您可以更新現有 Java Web 應用程式的部署。
-* 您可以將其他的 Java 應用程式發佈到相同的 Web 應用程式容器。
+* You can update the deployment of an existing Java Web App.
+* You can publish an additional Java application to the same Web App Container.
 
-在任一種情況中，程序都是相同的，而且只需幾秒鐘：
+In either case, the process is identical and takes only a few seconds:
 
-1. 在 IntelliJ 專案總管中，以滑鼠右鍵按一下您要更新或新增到現有 Web 應用程式容器的 Java 應用程式。
+1. In the IntelliJ project explorer, right-click the Java application you want to update or add to an existing Web App Container.
 
-1. 操作功能表顯示時，選取 [Azure]，然後選取 [發佈為 Azure Web 應用程式...]
+1. When the context menu appears, select **Azure** and then **Publish as Azure Web App...**
 
-1. 由於您之前已經登入，因此會看到您現有 Web 應用程式容器的清單。選取您要發佈或重新發佈 Java 應用程式的 Web 應用程式容器，然後按一下 [確定]。
+1. Since you have already logged in previously, you will see a list of your existing Web App containers. Select the one you want to publish or re-publish your Java application to and click **OK**.
 
-幾秒鐘之後，[Azure 活動記錄檔] 檢視將會將您已更新的部署顯示為 [已發佈]，而您將可以在網頁瀏覽器中確認已更新的應用程式。
+A few seconds later, the **Azure Activity Log** view will show your updated deployment as **Published** and you will be able to verify your updated application in a web browser.
 
-## 啟動或停止現有的 Web 應用程式
+## <a name="starting-or-stopping-an-existing-web-app"></a>Starting or Stopping an Existing Web App
 
-若要啟動或停止現有的 Azure Web 應用程式容器 (包括其中所有已部署的 Java 應用程式)，您可以使用 [Azure 總管] 檢視。
+To start or stop an existing Azure Web App container, (including all the deployed Java applications in it), you can use the **Azure Explorer** view.
 
-如果 [Azure 總管] 檢視尚未開啟，您可以按一下 IntelliJ 中的 [檢視] 功能表，按一下 [工具視窗]，然後按一下 [服務總管] 來開啟。如果您之前尚未登入，系統將會提示您登入。
+If the **Azure Explorer** view is not already open, you can open it by clicking then **View** menu in IntelliJ, then click **Tool Windows**, and then click **Service Explorer**. If you have not previously logged in, it will prompt you to do so.
 
-顯示 [Azure 總管] 之後，使用下列這些步驟來啟動或停止您的 Web 應用程式：
+When the **Azure Explorer** view is displayed, use follow these steps to start or stop your Web App: 
 
-1. 展開 [Azure] 節點。
+1. Expand the **Azure** node.
 
-1. 展開 [Web Apps] 節點。
+1. Expand the **Web Apps** node. 
 
-1. 以滑鼠右鍵按一下所需的 Web 應用程式。
+1. Right-click the desired Web App.
 
-1. 操作功能表出現時，按一下 [啟動] 或 [停止]。請注意，功能表選項是內容感知的，因此您只能停止執行中的 Web 應用程式，或是啟動目前尚未執行的 Web 應用程式。
+1. When the context menu appears, click **Start** or **Stop**. Note that the menu choices are context-aware, so you can only stop a running web app or start a web app which is not currently running.
 
     ![][18]
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-如需適用於 Java IDE 的 Azure 套件組的詳細資訊，請參閱下列連結：
+For more information about the Azure Toolkits for Java IDEs, see the following links:
 
-- [適用於 Eclipse 的 Azure 工具組]
-  - [安裝 Azure Toolkit for Eclipse]
-  - [Create a Hello World Web App for Azure in Eclipse (在 Eclipse 中建立 Azure Hello World Web 應用程式)]
-  - [適用於 Eclipse 的 Azure 工具組的新功能]
+- [Azure Toolkit for Eclipse]
+  - [Installing the Azure Toolkit for Eclipse]
+  - [Create a Hello World Web App for Azure in Eclipse]
+  - [What's New in the Azure Toolkit for Eclipse]
 - [Azure Toolkit for IntelliJ]
-  - [安裝 Azure Toolkit for IntelliJ]
-  - 在 IntelliJ 中建立 Azure 的 Hello World Web 應用程式 (本文)
-  - [適用於 IntelliJ 的 Azure 工具組新增功能]
+  - [Installing the Azure Toolkit for IntelliJ]
+  - *Create a Hello World Web App for Azure in IntelliJ (This Article)*
+  - [What's New in the Azure Toolkit for IntelliJ]
 
-如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]。
+For more information about using Azure with Java, see the [Azure Java Developer Center].
 
-如需建立 Azure Web Apps 的詳細資訊，請參閱 [Web 應用程式概觀]。
+For additional information about creating Azure Web Apps, see the [Web Apps Overview].
 
 [AZURE.INCLUDE [app-service-web-try-app-service](../../includes/app-service-web-try-app-service.md)]
 
 <!-- URL List -->
 
-[適用於 Eclipse 的 Azure 工具組]: ../azure-toolkit-for-eclipse.md
+[Azure Toolkit for Eclipse]: ../azure-toolkit-for-eclipse.md
 [Azure Toolkit for IntelliJ]: ../azure-toolkit-for-intellij.md
-[Azure Toolkit for IntelliJ (適用於 IntelliJ 的 Azure 工具組)]: ../azure-toolkit-for-intellij.md
-[Create a Hello World Web App for Azure in Eclipse (在 Eclipse 中建立 Azure Hello World Web 應用程式)]: ./app-service-web-eclipse-create-hello-world-web-app.md
+[Create a Hello World Web App for Azure in Eclipse]: ./app-service-web-eclipse-create-hello-world-web-app.md
 [Create a Hello World Web App for Azure in IntelliJ]: ./app-service-web-intellij-create-hello-world-web-app.md
-[安裝 Azure Toolkit for Eclipse]: ../azure-toolkit-for-eclipse-installation.md
-[Installing the Azure Toolkit for IntelliJ (安裝適用於 IntelliJ 的 Azure 工具組)]: ../azure-toolkit-for-intellij-installation.md
-[安裝 Azure Toolkit for IntelliJ]: ../azure-toolkit-for-intellij-installation.md
-[適用於 Eclipse 的 Azure 工具組的新功能]: ../azure-toolkit-for-eclipse-whats-new.md
-[適用於 IntelliJ 的 Azure 工具組新增功能]: ../azure-toolkit-for-intellij-whats-new.md
+[Installing the Azure Toolkit for Eclipse]: ../azure-toolkit-for-eclipse-installation.md
+[Installing the Azure Toolkit for IntelliJ]: ../azure-toolkit-for-intellij-installation.md
+[What's New in the Azure Toolkit for Eclipse]: ../azure-toolkit-for-eclipse-whats-new.md
+[What's New in the Azure Toolkit for IntelliJ]: ../azure-toolkit-for-intellij-whats-new.md
 
-[Azure Java 開發人員中心]: https://azure.microsoft.com/develop/java/
-[Web 應用程式概觀]: ./app-service-web-overview.md
+[Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
+[Web Apps Overview]: ./app-service-web-overview.md
 
 <!-- IMG List -->
 
@@ -270,4 +269,8 @@
 [17]: ./media/app-service-web-intellij-create-hello-world-web-app/17-Browse-Web-App.png
 [18]: ./media/app-service-web-intellij-create-hello-world-web-app/18-Stop-Web-App.png
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

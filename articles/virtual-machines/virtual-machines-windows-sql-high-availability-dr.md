@@ -1,156 +1,161 @@
 <properties
-	pageTitle="SQL Server 高可用性和災害復原 | Microsoft Azure"
-	description="討論適用於在「Azure 虛擬機器」中執行之 SQL Server 的各種 HADR 策略。"
-	services="virtual-machines-windows"
-	documentationCenter="na"
-	authors="MikeRayMSFT"
-	manager="jhubbard"
-	editor=""
-	tags="azure-service-management"/>
+    pageTitle="High Availability and Disaster Recovery for SQL Server | Microsoft Azure"
+    description="A discussion of the various types of HADR strategies for SQL Server running in Azure Virtual Machines."
+    services="virtual-machines-windows"
+    documentationCenter="na"
+    authors="MikeRayMSFT"
+    manager="jhubbard"
+    editor=""
+    tags="azure-service-management"/>
 <tags
-	ms.service="virtual-machines-windows"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="vm-windows-sql-server"
-	ms.workload="infrastructure-services"
-	ms.date="07/12/2016"
-	ms.author="MikeRayMSFT" />
+    ms.service="virtual-machines-windows"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="vm-windows-sql-server"
+    ms.workload="infrastructure-services"
+    ms.date="07/12/2016"
+    ms.author="MikeRayMSFT" />
 
-# Azure 虛擬機器中的 SQL Server 高可用性和災害復原
 
-## 概觀
+# <a name="high-availability-and-disaster-recovery-for-sql-server-in-azure-virtual-machines"></a>High availability and disaster recovery for SQL Server in Azure Virtual Machines
 
-內含 SQL Server 的 Microsoft Azure 虛擬機器 (VM) 可協助降低高可用性和嚴重損壞修復 (HADR) 資料庫解決方案的成本。Azure 虛擬機器中支援大部分的 SQL Server HADR 解決方案 (僅限 Azure 以及混合式解決方案兩種)。在僅限 Azure 解決方案中，整個 HADR 系統會在 Azure 中執行。在混合式組態中，解決方案的一部分會在 Azure 中執行，而其他部分會在組織中的內部部署執行。Azure 環境的彈性可讓您將解決方案部分或完全移動至 Azure，以滿足 SQL Server 資料庫系統的預算與 HADR 需求。
+## <a name="overview"></a>Overview
+
+Microsoft Azure virtual machines (VMs) with SQL Server can help lower the cost of a high availability and disaster recovery (HADR) database solution. Most SQL Server HADR solutions are supported in Azure virtual machines, both as Azure-only and as hybrid solutions. In an Azure-only solution, the entire HADR system runs in Azure. In a hybrid configuration, part of the solution runs in Azure and the other part runs on-premises in your organization. The flexibility of the Azure environment enables you to move partially or completely to Azure to satisfy the budget and HADR requirements of your SQL Server database systems.
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
 
-## 了解 HADR 解決方案的需求
+## <a name="understanding-the-need-for-an-hadr-solution"></a>Understanding the need for an HADR solution
 
-您可以決定是否要讓資料庫系統擁有服務等級協定 (SLA) 需要的 HADR 功能。即使 Azure 提供高可用性機制 (例如雲端服務的服務修復，以及虛擬機器的失敗修復偵測)，也無法保證您能夠符合需要的 SLA。這些機制能保護 VM 的高可用性，但無法保護在 VM 中執行之 SQL Server 的高可用性。因此，即使 VM 保持連線且運作正常，SQL Server 執行個體仍可能會失敗。此外，Azure 提供的高可用性機制甚至會允許因為事件 (例如，從軟體或硬體失敗修復，以及作業系統升級) 導致的 VM 停機。
+It is up to you to ensure that your database system possesses the HADR capabilities that the service-level agreement (SLA) requires. The fact that Azure provides high availability mechanisms, such as service healing for cloud services and failure recovery detection for the Virtual Machines, does not itself guarantee you can meet the desired SLA.  These mechanisms protect the high availability of the VMs but not the high availability of SQL Server running inside the VMs. It is possible for the SQL Server instance to fail while the VM is online and healthy. Moreover, even the high availability mechanisms provided by Azure allow for  downtime of the VMs due to events such as recovery from software or hardware failures and operating system upgrades.
 
-再者，Azure 中的異地備援儲存體 (GRS) (使用名為異地複寫功能進行實作) 對您的資料庫而言，可能不足以當作嚴重損壞修復解決方案使用。由於異地複寫會以非同步方式傳送資料，因此最近的更新可能會在發生嚴重損壞事件時遺失。有關地理複寫限制的詳細資訊，皆記載於[異地複寫不支援不同磁碟上的資料和記錄檔](#geo-replication-support)一節。
+In addition, Geo Redundant Storage (GRS) in Azure, which is implemented with a feature called geo-replication, may not be an adequate disaster recovery solution for your databases. Because geo-replication sends data asynchronously, recent updates can be lost in the event of disaster.  More information regarding geo-replication limitations are covered in the [Geo-replication not supported for data and log files on separate disks](#geo-replication-support) section.
 
-## HADR 部署架構
+## <a name="hadr-deployment-architectures"></a>HADR deployment architectures
 
-在 Azure 中支援的 SQL Server HADR 技術包括：
+SQL Server HADR technologies that are supported in Azure include:
 
-- [Always On 可用性群組](https://technet.microsoft.com/library/hh510230.aspx)
-- [資料庫鏡像](https://technet.microsoft.com/library/ms189852.aspx)
-- [記錄傳送](https://technet.microsoft.com/library/ms187103.aspx)
-- [備份及還原與 Azure Blob 儲存體服務](https://msdn.microsoft.com/library/jj919148.aspx)
-- [Always On 容錯移轉叢集執行個體](https://technet.microsoft.com/library/ms189134.aspx)
+- [Always On Availability Groups](https://technet.microsoft.com/library/hh510230.aspx)
+- [Database Mirroring](https://technet.microsoft.com/library/ms189852.aspx)
+- [Log Shipping](https://technet.microsoft.com/library/ms187103.aspx)
+- [Backup and Restore with Azure Blob Storage Service](https://msdn.microsoft.com/library/jj919148.aspx)
+- [Always On Failover Cluster Instances](https://technet.microsoft.com/library/ms189134.aspx)
 
-您可以將這些技術合併在一起，以實作同時具有高可用性及嚴重損壞修復功能的 SQL Server 解決方案。根據您使用的技術而定，混合式部署可能會需要使用 Azure 虛擬網路的 VPN 通道。下列各節會說明部分範例部署架構。
+It is possible to combine the technologies together to implement a SQL Server solution that has both high availability and disaster recovery capabilities.  Depending on the technology you use, a hybrid deployment may require a VPN tunnel with the Azure virtual network. The sections below show you some of the example deployment architectures.
 
-## 僅限 Azure：高可用性解決方案
+## <a name="azure-only:-high-availability-solutions"></a>Azure-only: High availability solutions
 
-您可以使用 Always On 可用性群組或資料庫鏡像，為 Azure 中的 SQL Server 資料庫提供高可用性解決方案。
+You can have a high availability solution for your SQL Server databases in Azure using Always On Availability Groups or database mirroring.
 
-|Technology|範例架構|
+|Technology|Example Architectures|
 |---|---|
-|**Always On 可用性群組**|為了相同區域內的高可用性，所有可用性複本都會在 Azure VM 中執行。由於「Windows Server 容錯移轉叢集」(WSFC) 需要使用 Active Directory 網域，因此您需要設定網域控制站 VM。<br/> ![Always On 可用性群組](./media/virtual-machines-windows-sql-high-availability-dr/azure_only_ha_always_on.gif)<br/>如需詳細資訊，請參閱[在 Azure 中設定 AlwaysOn 可用性群組 (GUI)](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)。|**資料庫鏡像**|為了高可用性，所有主體、鏡像和見證伺服器都會在相同的 Azure 資料中心執行。您可以使用網域控制站進行部署。<br/>![資料庫鏡像](./media/virtual-machines-windows-sql-high-availability-dr/azure_only_ha_dbmirroring1.gif)<br/>您也可以改用伺服器憑證，不需網域控制站即可部署相同的資料庫鏡像組態。<br/>![資料庫鏡像](./media/virtual-machines-windows-sql-high-availability-dr/azure_only_ha_dbmirroring2.gif)|
-|**Always On 容錯移轉叢集執行個體**|有兩種不同的方式可以建立需要使用共用儲存體的「容錯移轉叢集執行個體」(FCI)。<br/><br/>1.在於 Azure VM 中執行的雙節點 WSFC 上建立 FCI，搭配受協力廠商叢集解決方案支援的儲存體。如需使用 SIOS DataKeeper 的特定範例，請參閱[使用 WSFC 和協力廠商軟體 SIOS Datakeeper 之檔案共用的高可用性](https://azure.microsoft.com/blog/high-availability-for-a-file-share-using-wsfc-ilb-and-3rd-party-software-sios-datakeeper/)。<br/><br/>2.在於 Azure VM 中執行的雙節點 WSFC 上建立 FCI，搭配透過 ExpressRoute 的遠端「iSCSI 目標」共用區塊儲存體例如，「NetApp 私有儲存體」(NPS) 會使用 Equinix 透過 ExpressRoute 對 Azuer VM 公開 iSCSI 目標。<br/><br/>針對協力廠商的共用儲存體和資料複寫解決方案，如有任何關於在容錯移轉時存取資料的問題，請連絡廠商。<br/><br/>請注意，目前還不支援在 [Azure 檔案儲存體](https://azure.microsoft.com/services/storage/files/)之外使用 FCI，因為這個解決方案不會使用「進階儲存體」。我們正在努力，很快就會推出這項支援。|
+|**Always On Availability Groups**|All availability replicas running in Azure VMs for high availability within the same region. You need to configure a domain controller VM, because Windows Server Failover Clustering (WSFC) requires an Active Directory domain.<br/> ![Always On Availability Groups](./media/virtual-machines-windows-sql-high-availability-dr/azure_only_ha_always_on.gif)<br/>For more information, see [Configure Always On Availability Groups in Azure (GUI)](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md).|**Database Mirroring**|Principal, mirror, and witness servers all running in the same Azure datacenter for high availability. You can deploy using a domain controller.<br/>![Database Mirroring](./media/virtual-machines-windows-sql-high-availability-dr/azure_only_ha_dbmirroring1.gif)<br/>You can also deploy the same database mirroring configuration without a domain controller by using server certificates instead.<br/>![Database Mirroring](./media/virtual-machines-windows-sql-high-availability-dr/azure_only_ha_dbmirroring2.gif)|
+|**Always On Failover Cluster Instances**|Failover Cluster Instances (FCI), which require shared storage, can be created in 2 different ways.<br/><br/>1. An FCI on a two-node WSFC running in Azure VMs with storage supported by a third-party clustering solution. For a specific example that uses SIOS DataKeeper, see [High availability for a file share using WSFC and 3rd party software SIOS Datakeeper](https://azure.microsoft.com/blog/high-availability-for-a-file-share-using-wsfc-ilb-and-3rd-party-software-sios-datakeeper/).<br/><br/>2. An FCI on a two-node WSFC running in Azure VMs with remote iSCSI Target shared block storage via ExpressRoute. For example, NetApp Private Storage (NPS) exposes an iSCSI target via ExpressRoute with Equinix to Azure VMs.<br/><br/>For third-party shared storage and data replication solutions, you should contact the vendor for any issues related to accessing data on failover.<br/><br/>Note that using FCI on top of [Azure File storage](https://azure.microsoft.com/services/storage/files/) is not supported yet, because this solution does not utilize Premium Storage. We are working to support this soon.|
 
-## 僅限 Azure：災害復原解決方案
+## <a name="azure-only:-disaster-recovery-solutions"></a>Azure-only: Disaster recovery solutions
 
-您可以使用 Always On 可用性群組和資料庫鏡像，為 Azure 中的 SQL Server 資料庫提供災害復原解決方案，或者使用儲存體 Blob 進行備份和還原。
+You can have a disaster recovery solution for your SQL Server databases in Azure using Always On Availability Groups, database mirroring, or backup and restore with storage blobs.
 
-|Technology|範例架構|
+|Technology|Example Architectures|
 |---|---|
-|**Always On 可用性群組**|為了進行嚴重損壞修復，可用性複本會在 Azure VM 的多個資料中心執行。這種跨區域解決方案可防止網站完全中斷。<br/> ![Always On 可用性群組](./media/virtual-machines-windows-sql-high-availability-dr/azure_only_dr_alwayson.png)<br/>在區域內，所有複本都應位於相同的雲端服務與 VNet 中。由於每個區域會有不同的 VNet，因此這些解決方案會需要 VNet 對 VNet 連線。如需詳細資訊，請參閱[在 Azure 傳統入口網站中設定站對站 VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md)。|
-|**資料庫鏡像**|為了進行嚴重損壞修復，主體、鏡像和伺服器會在不同的資料中心內執行。由於 Active Directory 網域無法跨多個資料中心，因此您必須使用伺服器憑證進行部署。<br/>![資料庫鏡像](./media/virtual-machines-windows-sql-high-availability-dr/azure_only_dr_dbmirroring.gif)|
-|**備份及還原與 Azure Blob 儲存體服務**|為了進行嚴重損害修復，生產資料庫會直接備份至不同資料中心內的 Blob 儲存體。<br/>![備份與還原](./media/virtual-machines-windows-sql-high-availability-dr/azure_only_dr_backup_restore.gif)<br/>如需詳細資訊，請參閱[Azure 虛擬機器中的 SQL Server 備份和還原](virtual-machines-windows-sql-backup-recovery.md)。|
+|**Always On Availability Groups**|Availability replicas running across multiple datacenters in Azure VMs for disaster recovery.  This cross-region solution protects against complete site outage. <br/> ![Always On Availability Groups](./media/virtual-machines-windows-sql-high-availability-dr/azure_only_dr_alwayson.png)<br/>Within a region, all replicas should be within the same cloud service and the same VNet. Because each region will have a separate VNet, these solutions require VNet to VNet connectivity. For more information, see [Configure a Site-to-Site VPN in the Azure classic portal](../vpn-gateway/vpn-gateway-site-to-site-create.md).|
+|**Database Mirroring**|Principal and mirror and servers running in different  datacenters for disaster recovery. You must deploy using server certificates because an active directory domain cannot span multiple  datacenters.<br/>![Database Mirroring](./media/virtual-machines-windows-sql-high-availability-dr/azure_only_dr_dbmirroring.gif)|
+|**Backup and Restore with Azure Blob Storage Service**|Production databases backed up directly to blob storage in a different  datacenter for disaster recovery.<br/>![Backup and Restore](./media/virtual-machines-windows-sql-high-availability-dr/azure_only_dr_backup_restore.gif)<br/>For more information, see [Backup and Restore  for SQL Server in Azure Virtual Machines](virtual-machines-windows-sql-backup-recovery.md).|
 
-## 混合式 IT：災害復原解決方案
+## <a name="hybrid-it:-disaster-recovery-solutions"></a>Hybrid IT: Disaster recovery solutions
 
-您可以使用 Always On 可用性群組、資料庫鏡像及記錄傳送，為混合式 IT 環境中的 SQL Server 資料庫提供災害復原解決方案，以及使用 Azure Blob 儲存體進行備份和還原。
+You can have a disaster recovery solution for your SQL Server databases in a hybrid-IT environment using Always On Availability Groups, database mirroring, log shipping, and backup and restore with Azure blog storage.
 
-|Technology|範例架構|
+|Technology|Example Architectures|
 |---|---|
-|**Always On 可用性群組**|為了進行跨網站的嚴重損壞修復，部分可用性複本會在 Azure VM 中執行，而其他複本會在內部部署執行。生產網站可以在內部部署或 Azure 資料中心內運作。<br/>![Always On 可用性群組](./media/virtual-machines-windows-sql-high-availability-dr/hybrid_dr_alwayson.gif)<br/>由於所有可用性複本都必須位於相同的 WSFC 叢集中，因此該叢集必須同時跨這兩個網路 (多重子網路 WSFC 叢集)。此組態需要 Azure 及內部部署網路之間的 VPN 連線。<br/><br/>為了成功進行資料庫的嚴重損壞修復，您也應該在災害復原站台中安裝複本網域控制站。<br/><br/>您可以使用 SSMS 中的 [加入複本精靈]，將 Azure 複本加入至現有的 Always On 可用性群組。如需詳細資訊，請參閱教學課程：將您的 Always On 可用性群組延伸至 Azure。|
-|**資料庫鏡像**|為了使用伺服器憑證進行跨網站嚴重損壞修復，一個合作夥伴會在 Azure VM 中執行，而其他合作夥伴會在內部部署中執行。合作夥伴不需要位於相同的 Active Directory 網域，且不需要 VPN 連線。<br/>![資料庫鏡像](./media/virtual-machines-windows-sql-high-availability-dr/hybrid_dr_dbmirroring.gif)<br/>另一個資料庫鏡像案例，則是為了進行跨網站嚴重損壞修復，讓一個合作夥伴在 Azure VM 中執行，並讓其他合作夥伴在相同 Active Directory 網域的內部部署中執行。需要 [Azure 虛擬網路及內部部署網路之間的 VPN 連線](../vpn-gateway/vpn-gateway-site-to-site-create.md)。<br/><br/>為了成功進行資料庫的嚴重損壞修復，您也應該在嚴重損壞修復站台中安裝複本控制站。|
-|**記錄傳送**|為了進行跨網站嚴重損壞修復，一個合作夥伴會在 Azure VM 中執行，而其他合作夥伴會在內部部署中執行。由於記錄傳送須仰賴 Windows 檔案共用，因此需要 Azure 虛擬網路及內部部署網路之間的 VPN 連線。<br/>![記錄傳送](./media/virtual-machines-windows-sql-high-availability-dr/hybrid_dr_log_shipping.gif)<br/>為了成功進行資料庫的嚴重損壞修復，您也應該在嚴重損壞修復站台中安裝複本網域控制站。|
-|**備份及還原與 Azure Blob 儲存體服務**|為了進行嚴重損害修復，內部部署生產資料庫會直接備份至 Blob 儲存體。<br/>![備份與還原](./media/virtual-machines-windows-sql-high-availability-dr/hybrid_dr_backup_restore.gif)<br/>如需詳細資訊，請參閱[Azure 虛擬機器中的 SQL Server 備份和還原](virtual-machines-windows-sql-backup-recovery.md)。|
+|**Always On Availability Groups**|Some availability replicas running in Azure VMs and other replicas running on-premises for cross-site disaster recovery. The production site can be either on-premises or in an Azure datacenter.<br/>![Always On Availability Groups](./media/virtual-machines-windows-sql-high-availability-dr/hybrid_dr_alwayson.gif)<br/>Because all availability replicas must be in the same WSFC cluster, the WSFC cluster must span both networks (a multi-subnet WSFC cluster). This configuration requires a VPN connection between Azure and the on-premises network.<br/><br/>For successful disaster recovery of your databases, you should also install a replica domain controller at the disaster recovery site.<br/><br/>It is possible to use the Add Replica Wizard in SSMS to add an Azure replica to an existing Always On Availability Group. For more information, see Tutorial: Extend your Always On Availability Group to Azure.|
+|**Database Mirroring**|One partner running in an Azure VM and the other running on-premises for cross-site disaster recovery using server certificates. Partners do not need to be in the same Active Directory domain, and no VPN connection is required.<br/>![Database Mirroring](./media/virtual-machines-windows-sql-high-availability-dr/hybrid_dr_dbmirroring.gif)<br/>Another database mirroring sceanario involves one partner running in an Azure VM and the other running on-premises in the same Active Directory domain for cross-site disaster recovery. A [VPN connection between the Azure virtual network and the on-premises network](../vpn-gateway/vpn-gateway-site-to-site-create.md) is required.<br/><br/>For successful disaster recovery of your databases, you should also install a replica domain controller at the disaster recovery site.|
+|**Log Shipping**|One server running in an Azure VM and the other running on-premises for cross-site disaster recovery. Log shipping depends on Windows file sharing, so a VPN connection between the Azure virtual network and the on-premises network is required.<br/>![Log Shipping](./media/virtual-machines-windows-sql-high-availability-dr/hybrid_dr_log_shipping.gif)<br/>For successful disaster recovery of your databases, you should also install a replica domain controller at the disaster recovery site.|
+|**Backup and Restore with Azure Blob Storage Service**|On-premises production databases backed up directly to Azure blob storage for disaster recovery.<br/>![Backup and Restore](./media/virtual-machines-windows-sql-high-availability-dr/hybrid_dr_backup_restore.gif)<br/>For more information, see [Backup and Restore  for SQL Server in Azure Virtual Machines](virtual-machines-windows-sql-backup-recovery.md).|
 
-## Azure 中 SQL Server HADR 的重要考量
+## <a name="important-considerations-for-sql-server-hadr-in-azure"></a>Important considerations for SQL Server HADR in Azure
 
-與內部部署、非虛擬化的 IT 基礎結構相較之下，Azure VM、儲存體和網路各有不同的作業特性。若要在 Azure 中成功實作 HADR SQL Server 解決方案，您必須了解這些差異，並配合這些差異設計您的解決方案。
+Azure VMs, storage, and networking have different operational characteristics than an on-premises, non-virtualized IT infrastructure. A successful implementation of a HADR SQL Server solution in Azure requires that you understand these differences and design your solution to accommodate them.
 
-### 可用性設定組中的高可用性節點
+### <a name="high-availability-nodes-in-an-availability-set"></a>High availability nodes in an availability set
 
-Azure 中的可用性設定組可讓您將高可用性節點分別放入容錯網域 (FD) 和更新網域 (UD)。若要將 Azure VM 放入相同的可用性設定組中，您必須將其部署至相同的雲端服務中。只有相同雲端服務內的節點可以參與相同的可用性設定組。如需詳細資訊，請參閱[管理虛擬機器的可用性](virtual-machines-windows-manage-availability.md)。
+Availability sets in Azure enable you to place the high availability nodes into separate Fault Domains (FDs) and Update Domains (UDs). For Azure VMs to be placed in the same availability set, you must deploy them in the same cloud service. Only nodes in the same cloud service can participate in the same availability set. For more information, see [Manage the Availability of Virtual Machines](virtual-machines-windows-manage-availability.md).
 
-### Azure 網路中的 WSFC 叢集行為
+### <a name="wsfc-cluster-behavior-in-azure-networking"></a>WSFC cluster behavior in Azure networking
 
-由於您將重複的 IP 位址指派為叢集網路名稱 (例如，將相同的 IP 位址指派為其中一個叢集節點)，因此 Azure 中的非 RFC 相容 DHCP 服務可能會導致特定 WSFC 叢集組態的建立作業失敗。這是您實作 Always On 可用性群組 (仰賴 WSFC 功能) 時會發生的問題。
+The non-RFC-compliant DHCP service in Azure can cause the creation of certain WSFC cluster configurations to fail, due to the cluster network name being assigned a duplicate IP address, such as the same IP address as one of the cluster nodes. This is an issue when you implement Always On Availability Groups, which depends on the WSFC feature.
 
-當雙節點叢集建立且上線時，請考慮以下案例：
+Consider the scenario when a two-node cluster is created and brought online:
 
-1. 當叢集上線後，NODE1 會要求一個叢集網路名稱的動態指派 IP 位址。
+1. The cluster comes online, then NODE1 requests a dynamically assigned IP address for the cluster network name.
 
-1. 由於 DHCP 服務會辨識來自 NODE1 本身的要求，因此除了 NODE1 本身的 IP 位址外，DHCP 服務不會指定任何 IP 位址。
+1. No IP address other than NODE1’s own IP address is given by the DHCP service, since the DHCP service recognizes that the request comes from NODE1 itself.
 
-1. 如果 Windows 偵測到同時指派至 NODE1 和叢集網路名稱的重複位址，則預設的叢集群組就會無法上線。
+1. Windows detects that a duplicate address is assigned both to NODE1 and to the cluster network name, and the default cluster group fails to come online.
 
-1. 此時預設的叢集群組就會移動至 NODE2，而該群組會將 NODE1 的 IP 位址視為叢集 IP 位址，並讓預設叢集群組上線。
+1. The default cluster group moves to NODE2, which treats NODE1’s IP address as the cluster IP address and brings the default cluster group online.
 
-1. 當 NODE2 嘗試與 NODE1 建立連線時，於 NODE1 導向的封包不會離開 NODE2，因為它將 NODE1 的 IP 位址解析至其本身。NODE2 無法與 NODE1 建立連線，因此會失去仲裁並關閉叢集。
+1. When NODE2 attempts to establish connectivity with NODE1, packets directed at NODE1 never leave NODE2 because it resolves NODE1’s IP address to itself. NODE2 cannot establish connectivity with NODE1, then loses quorum and shuts down the cluster.
 
-1. 在此同時，NODE1 可以傳送封包至 NODE2，但是 NODE2 無法回覆。NODE1 會失去仲裁並關閉叢集。
+1. In the meantime, NODE1 can send packets to NODE2, but NODE2 cannot reply. NODE1 loses quorum and shuts down the cluster.
 
-若要避免這種情況，可以將未使用的靜態 IP 位址 (例如，連結本機的 IP 位址為 169.254.1.1) 指派至叢集網路名稱，使叢集網路名稱上線。若要簡化此程序，請參閱[在 Azure 中為 Always On 可用性群組設定 Windows 容錯移轉叢集](http://social.technet.microsoft.com/wiki/contents/articles/14776.configuring-windows-failover-cluster-in-windows-azure-for-alwayson-availability-groups.aspx)。
+This scenario can be avoided by assigning an unused static IP address, such as a link-local IP address like 169.254.1.1, to the cluster network name in order to bring the cluster network name online. To simplify this process, see [Configuring Windows Failover Cluster in Azure for Always On Availability Groups](http://social.technet.microsoft.com/wiki/contents/articles/14776.configuring-windows-failover-cluster-in-windows-azure-for-alwayson-availability-groups.aspx).
 
-如需詳細資訊，請參閱[在 Azure 中設定 AlwaysOn 可用性群組 (GUI)](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)。
+For more information, see [Configure Always On Availability Groups in Azure (GUI)](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md).
 
-### 可用性群組接聽程式支援
+### <a name="availability-group-listener-support"></a>Availability group listener support
 
-可用性群組接聽程式支援執行 Windows Server 2008 R2、Windows Server 2012 和 Windows Server 2012 R2 的 Azure VM。透過使用在為可用性群組節點的 Azure VM 上啟用的負載平衡端點，即可提供支援。您必須遵循特殊組態步驟，以便接聽程式在 Azure 中執行的用戶端應用程式，以及在內部部署中執行的用戶端應用程式運作。
+Availability group listeners are supported on Azure VMs running Windows Server 2008 R2, Windows Server 2012, and Windows Server 2012 R2. This support is made possible by the use of load-balanced endpoints enabled on the Azure VMs that are availability group nodes. You must follow special configuration steps for the listeners to work for both client applications that are running in Azure as well as those running on-premises.
 
-設定接聽程式有主要兩個選項：外部 (公用) 或內部。外部 (公用) 接聽程式與可透過網際網路存取的公用虛擬 IP (VIP) 相關聯。使用外部的接聽程式時，您必須啟用伺服器直接回傳，意即您必須從和 Always On 可用性群組節點位處不同雲端服務的電腦連接至接聽程式。另一個選項是使用內部負載平衡器 (ILB) 的內部接聽程式。內部接聽程式只支援位於相同虛擬網路的用戶端。
+There are two main options for setting up your listener: external (public) or internal. The external (public) listener is associated with a public Virtual IP (VIP) that is accessible over the internet. With an external listener, you must enable Direct Server Return, which means that you must connect to the listener from a machine that is not in the same cloud service as the Always On Availability Group nodes. The other option is an internal listener that uses the Internal Load Balancer (ILB). An internal listener only support clients within the same Virtual Network.
 
-如果可用性群組跨越多個 Azure 子網路 (例如跨越多個 Azure 區域的部署)，用戶端連接字串就必須包含 "**MultisubnetFailover = True**"。這會導致對於不同子網路中的複本進行平行連接嘗試。如需有關設定接聽程式的指示，請參閱
+If the Availability Group spans multiple Azure subnets (such as a deployment that crosses Azure regions), the client connection string must include "**MultisubnetFailover=True**". This results in parallel connection attempts to the replicas in the different subnets. For instructions on setting up a listener, see
 
-- [設定 Azure 中 Always On 可用性群組的 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
-- [設定 Azure 中 Always On 可用性群組的外部接聽程式](virtual-machines-windows-classic-ps-sql-ext-listener.md)。
+- [Configure an ILB listener for Always On Availability Groups in Azure](virtual-machines-windows-classic-ps-sql-int-listener.md).
+- [Configure an external listener for Always On Availability Groups in Azure](virtual-machines-windows-classic-ps-sql-ext-listener.md).
 
-您仍可以透過直接連接至服務執行個體，分別連接至各個可用性複本。此外，由於 Always On 可用性群組能與資料庫鏡像用戶端回溯相容，因此只要將可用性複本設定成類似資料庫鏡像，即可連接至該複本 (例如資料庫鏡像合作夥伴)：
+You can still connect to each availability replica separately by connecting directly to the service instance. Also, since Always On Availability Groups are backward compatible with database mirroring clients, you can connect to the availability replicas like database mirroring partners as long as the replicas are configured similar to database mirroring:
 
-- 一個主要複本與一個次要複本
+- One primary replica and one secondary replica
 
-- 次要複本被設定為不可讀取 ([**可讀取次要**] 選項設為 [**否**])
+- The secondary replica is configured as non-readable (**Readable Secondary** option set to **No**)
 
-使用 ADO.NET 或 SQL Server Native Client 對應至類似此資料庫鏡像組態的範例用戶端連接字串如下：
+An example client connection string that corresponds to this database mirroring-like configuration using ADO.NET or SQL Server Native Client is below:
 
-	Data Source=ReplicaServer1;Failover Partner=ReplicaServer2;Initial Catalog=AvailabilityDatabase;
+    Data Source=ReplicaServer1;Failover Partner=ReplicaServer2;Initial Catalog=AvailabilityDatabase;
 
-如需用戶端連線的詳細資訊，請參閱：
+For more information on client connectivity, see:
 
-- [搭配 SQL Server Native Client 使用連接字串關鍵字](https://msdn.microsoft.com/library/ms130822.aspx)
-- [將用戶端連接至資料庫鏡像工作階段 (SQL Server)](https://technet.microsoft.com/library/ms175484.aspx)
-- [連線至混合式 IT 中的可用性群組接聽程式 (英文)](http://blogs.msdn.com/b/sqlalwayson/archive/2013/02/14/connecting-to-availability-group-listener-in-hybrid-it.aspx)
-- [可用性群組接聽程式、用戶端連接及應用程式容錯移轉 (SQL Server)](https://technet.microsoft.com/library/hh213417.aspx)
-- [搭配可用性群組使用資料庫鏡像連接字串](https://technet.microsoft.com/library/hh213417.aspx)
+- [Using Connection String Keywords with SQL Server Native Client](https://msdn.microsoft.com/library/ms130822.aspx)
+- [Connect Clients to a Database Mirroring Session (SQL Server)](https://technet.microsoft.com/library/ms175484.aspx)
+- [Connecting to Availability Group Listener in Hybrid IT](http://blogs.msdn.com/b/sqlalwayson/archive/2013/02/14/connecting-to-availability-group-listener-in-hybrid-it.aspx)
+- [Availability Group Listeners, Client Connectivity, and Application Failover (SQL Server)](https://technet.microsoft.com/library/hh213417.aspx)
+- [Using Database-Mirroring Connection Strings with Availability Groups](https://technet.microsoft.com/library/hh213417.aspx)
 
-### 混合式 IT 中的網路延遲
+### <a name="network-latency-in-hybrid-it"></a>Network latency in hybrid IT
 
-假設內部部署網路與 Azure 之間可能會有一段時間發生嚴重網路延遲，您應該部署 HADR 解決方案。當您將複本部署至 Azure 時，應該使用非同步認可，而不是同步處理模式的同步認可。當您將資料庫鏡像伺服器同時部署至內部部署與 Azure 時，請使用高效能模式，而不是高安全性模式。
+You should deploy your HADR solution with the assumption that there may be periods of time with high network latency between your on-premises network and Azure. When deploying replicas to Azure, you should use asynchronous commit instead of synchronous commit for the synchronization mode. When deploying database mirroring servers both on-premises and in Azure, use the high performance mode instead of the high safety mode.
 
-### 異地複寫支援
+### <a name="geo-replication-support"></a>Geo-replication support
 
-Azure 磁碟中的異地複寫不支援將相同資料庫的資料檔與記錄檔儲存在不同的磁碟上。GRS 會在每個磁碟上進行獨立與非同步變更複寫。此機制能保證異地複寫複本之單一磁碟內的寫入順序，但無法為多個磁碟的跨異地複寫複本保證。如果您設定資料庫將其資料檔與記錄檔儲存在不同磁碟中，嚴重損壞後修復的磁碟可能會包含更新的資料檔 (而非記錄檔) 複本，該情形會中斷 SQL Server 與 ACID 屬性交易的預寫記錄。如果您沒有可停用儲存體帳戶中異地複寫的選項，則應該將指定資料庫的所有資料和記錄檔保留在相同磁碟上。如果因為資料庫大小的緣故，而必須使用一個以上的磁碟，則您需要部署以上列出的其中一個嚴重損壞修復解決方案，以確保能進行資料備援。
+Geo-replication in Azure disks does not support the data file and log file of the same database to be stored on separate disks. GRS replicates changes on each disk independently and asynchronously. This mechanism guarantees the write order within a single disk on the geo-replicated copy, but not across geo-replicated copies of multiple disks. If you configure a database to store its data file and its log file on separate disks, the recovered disks after a disaster may contain a more up-to-date copy of the data file than the log file, which breaks the write-ahead log in SQL Server and the ACID properties of transactions. If you do not have the option to disable geo-replication on the storage account, you should keep all data and log files for a given database on the same disk. If you must use more than one disk due to the size of the database, you need to deploy one of the disaster recovery solutions listed above to ensure data redundancy.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-如果您需要透過 SQL Server 建立 Azure 虛擬機器，請參閱[在 Azure 上佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)。
+If you need to create an Azure virtual machine with SQL Server, see [Provisioning a SQL Server Virtual Machine on Azure](virtual-machines-windows-portal-sql-server-provision.md).
 
-若要獲得在 Azure VM 上執行的 SQL Server 的最佳效能，請參閱 [Azure 虛擬機器中 SQL Server 的效能最佳作法](virtual-machines-windows-sql-performance.md)中的指引。
+To get the best performance from SQL Server running on an Azure VM, see the guidance in [Performance Best Practices for SQL Server in Azure Virtual Machines](virtual-machines-windows-sql-performance.md).
 
-如需在 Azure VM 中執行 SQL Server 的其他相關主題，請參閱 [Azure 虛擬機器上的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。
+For other topics related to running SQL Server in Azure VMs, see [SQL Server on Azure Virtual Machines](virtual-machines-windows-sql-server-iaas-overview.md).
 
-### 其他資源
+### <a name="other-resources"></a>Other resources
 
-- [在 Azure 中安裝新的 Active Directory 樹系](../active-directory/active-directory-new-forest-virtual-machine.md)
-- [在 Azure VM 中建立 Always On 可用性群組的 WSFC 叢集](http://gallery.technet.microsoft.com/scriptcenter/Create-WSFC-Cluster-for-7c207d3a)
+- [Install a new Active Directory forest in Azure](../active-directory/active-directory-new-forest-virtual-machine.md)
+- [Create WSFC Cluster for Always On Availability Groups in Azure VM](http://gallery.technet.microsoft.com/scriptcenter/Create-WSFC-Cluster-for-7c207d3a)
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

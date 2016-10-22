@@ -1,6 +1,6 @@
 <properties
-   pageTitle="建構資料表設計工具的篩選字串 | Microsoft Azure"
-   description="建構資料表設計工具的篩選字串"
+   pageTitle="Constructing filter strings for the table designer | Microsoft Azure"
+   description="Constructing filter strings for the table designer"
    services="visual-studio-online"
    documentationCenter="na"
    authors="TomArcher"
@@ -15,88 +15,93 @@
    ms.date="08/15/2016"
    ms.author="tarcher" />
 
-# 建構資料表設計工具的篩選字串
 
-## Overview
+# <a name="constructing-filter-strings-for-the-table-designer"></a>Constructing Filter Strings for the Table Designer
 
-若要在 Visual Studio [資料表設計工具] 中顯示的 Azure 資料表中篩選資料，您可以建構篩選字串並在篩選欄位中輸入它。篩選條件字串語法由 WCF Data Services 定義，類似於 SQL WHERE 子句，但會透過 HTTP 要求傳送至表格服務。[資料表設計工具] 會為您處理適當的編碼，因此，若要篩選所需的屬性值，您只需要在篩選欄位中輸入屬性名稱、比較運算子、準則值和 (選擇性) 布林運算子。您不需要像透過[儲存體服務 REST API 參考](http://go.microsoft.com/fwlink/p/?LinkId=400447)建構 URL 來查詢資料表一樣包含 $filter 查詢選項。
+## <a name="overview"></a>Overview
 
-WCF Data Services 以[開放式資料通訊協定](http://go.microsoft.com/fwlink/p/?LinkId=214805) (OData) 為基礎。如需篩選系統查詢選項 (**$filter**) 的詳細資訊，請參閱 [OData URI 轉換規格](http://go.microsoft.com/fwlink/p/?LinkId=214806)。
+To filter data in an Azure table that is displayed in the Visual Studio **Table Designer**, you construct a filter string and enter it into the filter field. The filter string syntax is defined by the WCF Data Services and is similar to a SQL WHERE clause, but is sent to the Table service via an HTTP request. The **Table Designer** handles the proper encoding for you, so to filter on a desired property value, you need only enter the property name, comparison operator, criteria value, and optionally, Boolean operator in the filter field. You do not need to include the $filter query option as you would if you were constructing a URL to query the table via the [Storage Services REST API Reference](http://go.microsoft.com/fwlink/p/?LinkId=400447).
 
-## 比較運算子
+The WCF Data Services are based on the [Open Data Protocol](http://go.microsoft.com/fwlink/p/?LinkId=214805) (OData). For details on the filter system query option (**$filter**), see the [OData URI Conventions specification](http://go.microsoft.com/fwlink/p/?LinkId=214806).
 
-所有屬性類型都支援下列邏輯運算子：
+## <a name="comparison-operators"></a>Comparison Operators
 
-|邏輯運算子|說明|篩選字串範例|
+The following logical operators are supported for all property types:
+
+|Logical operator|Description|Example filter string|
 |---|---|---|
-|eq|等於|City eq 'Redmond'|
-|gt|大於|Price gt 20|
-|ge|大於或等於|Price ge 10|
-|lt|小於|Price lt 20|
-|le|小於或等於|Price le 100|
-|ne|不等於|City ne 'London'|
-|和|和|Price le 200 and Price gt 3.5|
-|或|或|Price le 3.5 or Price gt 200|
-|否|否|not isAvailable|
+|eq|Equal|City eq 'Redmond'|
+|gt|Greater than|Price gt 20|
+|ge|Greater than or equal to|Price ge 10|
+|lt|Less than|Price lt 20|
+|le|Less than or equal|Price le 100|
+|ne|Not equal|City ne 'London'|
+|and|And|Price le 200 and Price gt 3.5|
+|or|Or|Price le 3.5 or Price gt 200|
+|not|Not|not isAvailable|
 
-建構篩選字串時，下列規則很重要：
+When constructing a filter string, the following rules are important:
 
-- 使用邏輯運算子來比較屬性與值。請注意，無法比較屬性與動態值。運算式的一端必須是常數。
+- Use the logical operators to compare a property to a value. Note that it is not possible to compare a property to a dynamic value; one side of the expression must be a constant.
 
-- 篩選字串的所有部分都區分大小寫。
+- All parts of the filter string are case-sensitive.
 
-- 常數和屬性必須是相同的資料類型，篩選才能傳回有效的結果。如需支援的屬性類型的詳細資訊，請參閱[了解表格服務資料模型](http://go.microsoft.com/fwlink/p/?LinkId=400448)。
+- The constant value must be of the same data type as the property in order for the filter to return valid results. For more information about supported property types, see [Understanding the Table Service Data Model](http://go.microsoft.com/fwlink/p/?LinkId=400448).
 
-## 篩選字串屬性
+## <a name="filtering-on-string-properties"></a>Filtering on String Properties
 
-當您篩選字串屬性時，請用單引號括住字串常數。
+When you filter on string properties, enclose the string constant in single quotation marks.
 
-下列範例會篩選 **PartitionKey** 和 **RowKey** 屬性。額外的非索引鍵屬性也可以加入至篩選字串：
+The following example filters on the **PartitionKey** and **RowKey** properties; additional non-key properties could also be added to the filter string:
 
     PartitionKey eq 'Partition1' and RowKey eq '00001'
 
-您可以用括號括住每個篩選運算式 (雖然並非必要)：
+You can enclose each filter expression in parentheses, although it is not required:
 
     (PartitionKey eq 'Partition1') and (RowKey eq '00001')
 
-請注意，表格服務不支援萬用字元查詢，在 [資料表設計工具] 中也不支援。不過，您可以在所需的前置詞上使用比較運算子，以執行前置詞比對。下列範例會傳回 LastName 屬性開頭為字母 'A' 的實體：
+Note that the Table service does not support wildcard queries, and they are not supported in the Table Designer either. However, you can perform prefix matching by using comparison operators on the desired prefix. The following example returns entities with a LastName property beginning with the letter 'A':
 
     LastName ge 'A' and LastName lt 'B'
 
-## 篩選數值屬性
+## <a name="filtering-on-numeric-properties"></a>Filtering on Numeric Properties
 
-若要篩選整數或浮點數，指定數值且不加引號。
+To filter on an integer or floating-point number, specify the number without quotation marks.
 
-這個範例會傳回與 Age 屬性的值大於 30 的所有實體：
+This example returns all entities with an Age property whose value is greater than 30:
 
     Age gt 30
 
-這個範例會傳回與 AmountDue 屬性的值小於或等於 100.25 的所有實體：
+This example returns all entities with an AmountDue property whose value is less than or equal to 100.25:
 
     AmountDue le 100.25
 
-## 篩選布林值屬性
+## <a name="filtering-on-boolean-properties"></a>Filtering on Boolean Properties
 
-若要篩選布林值，請指定 **true** 或 **false** 且不加引號。
+To filter on a Boolean value, specify **true** or **false** without quotation marks.
 
-下列範例會傳回 IsActive 屬性設定為 **true** 的所有實體：
+The following example returns all entities where the IsActive property is set to **true**:
 
     IsActive eq true
 
-您也可以不加邏輯運算子來撰寫這個篩選運算式。在下列範例中，表格服務也會傳回 IsActive 為 **true** 的所有實體：
+You can also write this filter expression without the logical operator. In the following example, the Table service will also return all entities where IsActive is **true**:
 
     IsActive
 
-若要傳回 IsActive 為 false 的所有實體，您可以使用 not 運算子：
+To return all entities where IsActive is false, you can use the not operator:
 
     not IsActive
 
-## 篩選 DateTime 屬性
+## <a name="filtering-on-datetime-properties"></a>Filtering on DateTime Properties
 
-若要 DateTime 值，請指定 **datetime** 關鍵字，後面加上以單引號括住的日期/時間常數。日期/時間常數必須使用 UTC 組合格式，如[格式化 DateTime 屬性值](http://go.microsoft.com/fwlink/p/?LinkId=400449)所述。
+To filter on a DateTime value, specify the **datetime** keyword, followed by the date/time constant in single quotation marks. The date/time constant must be in combined UTC format, as described in [Formatting DateTime Property Values](http://go.microsoft.com/fwlink/p/?LinkId=400449).
 
-下列範例會傳回 CustomerSince 屬性等於 2008 年 7 月 10 日的實體：
+The following example returns entities where the CustomerSince property is equal to July 10, 2008:
 
     CustomerSince eq datetime'2008-07-10T00:00:00Z'
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

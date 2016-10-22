@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用 PowerShell 對 VM 開啟連接埠 | Microsoft Azure"
-   description="了解如何使用 Azure Resource Manager 部署模式和 Azure PowerShell 對 Windows VM 開啟連接埠 / 建立端點"
+   pageTitle="Open ports to a VM using PowerShell | Microsoft Azure"
+   description="Learn how to open a port / create an endpoint to your Windows VM using the Azure resource manager deployment mode and Azure PowerShell"
    services="virtual-machines-windows"
    documentationCenter=""
    authors="iainfoulds"
@@ -16,13 +16,14 @@
    ms.date="08/08/2016"
    ms.author="iainfou"/>
 
-# 使用 PowerShell 對 Azure 中的 VM 開啟連接埠
+
+# <a name="opening-ports-to-a-vm-in-azure-using-powershell"></a>Opening ports to a VM in Azure using PowerShell
 [AZURE.INCLUDE [virtual-machines-common-nsg-quickstart](../../includes/virtual-machines-common-nsg-quickstart.md)]
 
-## 快速命令
-若要建立網路安全性群組和 ACL 規則，您需要[安裝最新版的 Azure PowerShell](../powershell-install-configure.md)。您也可以[使用 Azure 入口網站來執行這些步驟](virtual-machines-windows-nsg-quickstart-portal.md)。
+## <a name="quick-commands"></a>Quick commands
+To create a Network Security Group and ACL rules you need [the latest version of Azure PowerShell installed](../powershell-install-configure.md). You can also [perform these steps using the Azure portal](virtual-machines-windows-nsg-quickstart-portal.md).
 
-首先，您必須建立規則以允許 TCP 連接埠 80 上的 HTTP 流量，其中請輸入您自己的名稱和描述︰
+First, you need to create a rule to allow HTTP traffic on TCP port 80 entering your own name and description:
 
 ```
 $httprule = New-AzureRmNetworkSecurityRuleConfig -Name http-rule -Description "Allow HTTP" `
@@ -31,45 +32,48 @@ $httprule = New-AzureRmNetworkSecurityRuleConfig -Name http-rule -Description "A
     -DestinationAddressPrefix * -DestinationPortRange 80
 ```
 
-接著，依下列方式建立「網路安全性群組」並指派您剛才建立的 HTTP 規則，其中請輸入您自己的資源群組名稱和位置︰
+Next, create your Network Security group and assign the HTTP rule you just created as follows, entering your own resource group name and location:
 
 ```
 $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName TestRG -Location westus `
     -Name "TestNSG" -SecurityRules $httprule
 ```
 
-現在，讓我們將「網路安全性群組」指派給子網路。首先，選取虛擬網路：
+Now let's assign your Network Security Group to a subnet. First, select the virtual network:
 
 ```
 $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName TestRG -Name TestVNet
 ```
 
-將「網路安全性群組」與子網路建立關聯：
+Associate your Network Security Group with your subnet:
 
 ```
 Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name TestSubnet `
     -NetworkSecurityGroup $nsg
 ```
 
-最後，更新虛擬網路，以便讓變更生效︰
+Finally, update your virtual network in order for your changes to take effect:
 
 ```
 Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 ```
 
 
-## 網路安全性群組的詳細資訊
-這裡的快速命令可讓您使流向您 VM 的流量開始正常運作。「網路安全性群組」提供許多絕佳的功能和細微性來控制對您資源的存取。您可以深入了解[建立網路安全性群組和 ACL 規則](../virtual-network/virtual-networks-create-nsg-arm-ps.md)。
+## <a name="more-information-on-network-security-groups"></a>More information on Network Security Groups
+The quick commands here allow you to get up and running with traffic flowing to your VM. Network Security Groups provide many great features and granularity for controlling access to your resources. You can read more about [creating a Network Security Group and ACL rules here](../virtual-network/virtual-networks-create-nsg-arm-ps.md).
 
-您可以在 Azure Resource Manager 範本中定義網路安全性群組和 ACL 規則。深入了解[使用範本建立網路安全性群組](../virtual-network/virtual-networks-create-nsg-arm-template.md)。
+You can define Network Security Groups and ACL rules as part of Azure Resource Manager templates. Read more about [creating Network Security Groups with templates](../virtual-network/virtual-networks-create-nsg-arm-template.md).
 
-如果您需要使用連接埠轉送來將唯一的外部連接埠對應至您 VM 上的內部連接埠，請使用負載平衡器和「網路位址轉譯」(NAT) 規則。例如，您可能會想要對外公開 TCP 連接埠 8080，然後讓流量導向到 VM 上的 TCP 連接埠 80。您可以深入了解[建立網際網路面向的負載平衡器](../load-balancer/load-balancer-get-started-internet-arm-ps.md)。
+If you need to use port-forwarding to map a unique external port to an internal port on your VM, use a load balancer and Network Address Translation (NAT) rules. For example, you may want to expose TCP port 8080 externally and have traffic directed to TCP port 80 on a VM. You can learn about [creating an Internet-facing load balancer](../load-balancer/load-balancer-get-started-internet-arm-ps.md).
 
-## 後續步驟
-在此範例中，您建立了簡單的規則來允許 HTTP 流量。您可以從下列文章中，找到有關建立更詳細環境的資訊︰
+## <a name="next-steps"></a>Next steps
+In this example, you created a simple rule to allow HTTP traffic. You can find information on creating more detailed environments in the following articles:
 
-- [Azure 資源管理員概觀](../resource-group-overview.md)
-- [什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)
-- [負載平衡器的 Azure Resource Manager 概觀](../load-balancer/load-balancer-arm.md)
+- [Azure Resource Manager overview](../resource-group-overview.md)
+- [What is a Network Security Group (NSG)?](../virtual-network/virtual-networks-nsg.md)
+- [Azure Resource Manager Overview for Load Balancers](../load-balancer/load-balancer-arm.md)
 
-<!----HONumber=AcomDC_0907_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

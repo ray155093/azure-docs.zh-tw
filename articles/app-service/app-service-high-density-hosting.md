@@ -1,43 +1,44 @@
 <properties
-	pageTitle="Azure App Service 上的高密度裝載 | Microsoft Azure"
-	description="Azure App Service 上的高密度裝載"
-	authors="btardif"
-	manager="wpickett"
-	editor=""
-	services="app-service\web"
-	documentationCenter=""/>
+    pageTitle="High-density hosting on Azure App Service | Microsoft Azure"
+    description="High-density hosting on Azure App Service"
+    authors="btardif"
+    manager="wpickett"
+    editor=""
+    services="app-service\web"
+    documentationCenter=""/>
 
 <tags
-	ms.service="app-service-web"
-	ms.workload="web"
-	ms.tgt_pltfrm="na"
-	ms.devlang="multiple"
-	ms.topic="article"
-	ms.date="08/07/2016"
-	ms.author="byvinyal"/>
+    ms.service="app-service-web"
+    ms.workload="web"
+    ms.tgt_pltfrm="na"
+    ms.devlang="multiple"
+    ms.topic="article"
+    ms.date="08/07/2016"
+    ms.author="byvinyal"/>
 
-# Azure App Service 上的高密度裝載#
 
-在使用 App Service 時，應用程式會經由 2 種概念與其所配置的容量分離︰
+# <a name="high-density-hosting-on-azure-app-service#"></a>High-density hosting on Azure App Service#
 
-- **應用程式︰**代表應用程式和其執行階段組態。例如，它包含執行階段應載入的 .NET 版本、應用程式設定等等。
+When using App Service, your application will be decoupled from the capacity allocated to it by 2 concepts:
 
-- **App Service 方案︰**定義容量、可用功能集和應用程式位置的特性。例如，特性可能是大型 (四個核心) 機器、四個執行個體、美國東部的進階功能。
+- **The Application:** Represents the app and its runtime configuration. For example, it includes the version of .NET that the runtime should load, the app settings, etc.
 
-應用程式一律會連結至 App Service 方案，但 App Service 方案可以提供容量給一或多個應用程式。
+- **The App Service Plan:** Defines the characteristics of the capacity, available feature set, and locality of the application. For example, characteristics might be large (four cores) machine, four instances, Premium features in East US.
 
-這表示平台可提供隔離單一應用程式的彈性，或透過共用 App Service 方案而讓多個應用程式共用資源。
+An app is always linked to an App Service plan, but an App Service plan can provide capacity to one or more apps.
 
-不過，當多個應用程式共用 App Service 方案時，該 App Service 方案的每個執行個體上便會執行該應用程式的執行個體。
+This means that the platform provides the flexibility to isolate a single app or have multiple apps share resources by sharing an App Service plan.
 
-## 每一應用程式調整##
-*每一應用程式調整*是可在 App Service 方案層級啟用，然後以每一應用程式為基礎來使用的功能。
+However, when multiple apps share an App Service plan, an instance of that app runs on every instance of that App Service plan.
 
-每一應用程式調整會獨立縮放應用程式，不受裝載它的 App Service 方案所影響。如此一來，App Service 方案便可設定為提供 10 個執行個體，但應用程式可以設定為調整到只有其中 5 個。
+## <a name="per-app-scaling##"></a>Per app scaling##
+*Per app scaling* is a feature that can be enabled at the App Service plan level and then used per application.
 
-下列 Azure Resource Manager 範本會建立相應放大為 10 個執行個體的 App Service 方案，以及設定為使用每一應用程式調整並調整為只有 5 個執行個體的應用程式。
+Per app scaling scales an app independently from the App Service plan that hosts it. This way, an App Service plan can be configured to provide 10 instances, but an app can be set to scale to only 5 of them.
 
-為了這樣做，App Service 方案會將**每一網站調整**屬性設定為 true (`"perSiteScaling": true`)，而且應用程式會將**背景工作角色數目**設定為使用 1 (`"properties": { "numberOfWorkers": "1" }`)。
+The following Azure Resource Manager template will create an App Service plan that's scaled out to 10 instances and an app that's configured to use per app scaling and scale to only 5 instances.
+
+To do this, the App Service plan is setting the **per-site scaling** property to true ( `"perSiteScaling": true`), and the app is setting the **number of workers** to use to 1 (`"properties": { "numberOfWorkers": "1" }`).
 
     {
         "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -85,20 +86,24 @@
     }
 
 
-## 高密度裝載的建議組態
+## <a name="recommended-configuration-for-high-density-hosting"></a>Recommended configuration for high-density hosting
 
-每一應用程式調整是公用 Azure 區域和 App Service 環境中啟用的功能。不過，建議策略是使用 App Service 環境，以利用其進階功能和較大的容量集區。
+Per app scaling is a feature that is enabled in both public Azure regions and App Service Environments. However, the recommended strategy is to use App Service Environments to take advantage of their advanced features and the larger pools of capacity.  
 
-請遵循下列步驟來設定應用程式的高密度裝載︰
+Follow these steps to configure high-density hosting for your apps:
 
-1. 設定 App Service 環境，並選擇專用於高密度裝載案例的背景工作角色集區。
+1. Configure the App Service Environment and choose a worker pool that will be dedicated to the high-density hosting scenario.
 
-1. 建立單一 App Service 方案，並將其調整為使用背景工作角色集區上所有可用的容量。
+1. Create a single App Service plan, and scale it to use all the available capacity on the worker pool.
 
-1. 在 App Service 方案上將每一網站調整旗標設定為 true。
+1. Set the per-site scaling flag to true on the App Service plan.
 
-1. 新網站便會建立並指派給該 App Service 方案，其中 **numberOfWorkers** 屬性會設定為 **1**。這會產生此背景工作角色集區上所能允許的最高密度。
+1. New sites are created and assigned to that App Service plan with the **numberOfWorkers** property set to **1**. This will yield the highest density possible on this worker pool.
 
-1. 背景工作角色數目可以每個網站單獨設定，以視需要授與其他資源。例如，高使用率網站可以將 **numberOfWorkers** 設定為 **3**，讓該應用程式擁有更多處理容量，而低使用率網站則可將 **numberOfWorkers** 設定為 **1**。
+1. The number of workers can be configured independently per site to grant additional resources as needed. For example, a high-use site might set **numberOfWorkers** to **3** to have more processing capacity for that app, while low-use sites would set **numberOfWorkers** to **1**.
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

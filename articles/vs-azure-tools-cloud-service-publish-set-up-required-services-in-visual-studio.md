@@ -1,6 +1,6 @@
 <properties
-   pageTitle="準備從 Visual Studio 發佈或部署 Azure 應用程式 | Microsoft Azure"
-   description="了解設定雲端和儲存體帳戶服務以及 Azure 應用程式的程序。"
+   pageTitle="Prepare to publish or deploy an Azure application from Visual Studio | Microsoft Azure"
+   description="Learn the procedures to set up cloud and storage account services and configure your Azure application."
    services="visual-studio-online"
    documentationCenter="na"
    authors="TomArcher"
@@ -15,142 +15,148 @@
    ms.date="08/15/2016"
    ms.author="tarcher" />
 
-# 準備從 Visual Studio 發佈或部署 Azure 應用程式
 
-## Overview
+# <a name="prepare-to-publish-or-deploy-an-azure-application-from-visual-studio"></a>Prepare to Publish or Deploy an Azure Application from Visual Studio
 
-在您可以發佈雲端服務專案之前，您必須設定下列服務：
+## <a name="overview"></a>Overview
 
-- 要在 Azure 環境中執行角色的**雲端服務**
+Before you can publish a cloud service project, you must set up the following services:
 
-- 提供 Blob、佇列和表格服務等存取權的**儲存體帳戶**。
+- A **cloud service** to run your roles in the Azure environment
 
-使用下列程序來設定這些服務並設定您的應用程式
+- A **storage account** that provides access to the Blob, Queue, and Table services.
 
+Use the following procedures to set up these services and configure your application
 
-## 建立雲端服務
 
-若要將雲端服務發佈至 Azure，您必須先建立在 Azure 環境中執行角色的雲端服務。您可以在 **Azure 傳統入口網站**建立雲端服務，本主題稍後將在[使用 Azure 傳統入口網站建立雲端服務](http://go.microsoft.com/fwlink/?LinkID=213885)一節中說明。您也可以使用發佈精靈，在 Visual Studio 中建立雲端服務。
+## <a name="create-a-cloud-service"></a>Create a cloud service
 
-### 使用 Visual Studio 建立雲端服務
+To publish a cloud service to Azure, you must first create a cloud service, which runs your roles in the Azure environment. You can create a cloud service in the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885), as described in the section **To create a cloud service by using the Azure classic portal**, later in this topic. You can also create a cloud service in Visual Studio by using the publishing wizard.
 
-1. 開啟 Azure 專案的捷徑功能表，然後選擇 [發佈]。
+### <a name="to-create-a-cloud-service-by-using-visual-studio"></a>To create a cloud service by using Visual Studio
 
-    ![VST\_PublishMenu](./media/vs-azure-tools-cloud-service-publish-set-up-required-services-in-visual-studio/vst-publish-menu.png)
+1. Open the shortcut menu for the Azure project, and choose **Publish**.
 
-1. 如果您尚未登入，請以您的使用者名稱和密碼登入 Microsoft 帳戶或與您的 Azure 訂用帳戶相關聯的組織帳戶。
+    ![VST_PublishMenu](./media/vs-azure-tools-cloud-service-publish-set-up-required-services-in-visual-studio/vst-publish-menu.png)
 
-1. 選擇 [下一步] 按鈕，前進到 [設定] 頁面。
+1. If you haven't signed in, sign in with your username and password for the Microsoft account or organizational account that's associated with your Azure subscription.
 
-    ![發佈精靈一般設定](./media/vs-azure-tools-cloud-service-publish-set-up-required-services-in-visual-studio/publish-settings-page.png)
+1. Choose the **Next** button to advance to the **Settings** page.
 
-1. 在 [雲端服務] 清單中，選擇 [建立新的]。[建立 Azure 服務] 對話方塊隨即出現。
+    ![Publishing Wizard Common Settings](./media/vs-azure-tools-cloud-service-publish-set-up-required-services-in-visual-studio/publish-settings-page.png)
 
-1. 輸入雲端服務的名稱。名稱是構成服務之 URL 的一部分，因此必須是全域唯一的。名稱不區分大小寫。
+1. In the **Cloud Services** list, choose **Create New**. The **Create Azure Services** dialog appears.
 
-### 使用 Azure 傳統入口網站建立雲端服務
+1. Enter the name of your cloud service. The name forms part of the URL for your service and therefore must be globally unique. The name is not case-sensitive.
 
-1. 登入 Microsoft 網站上的 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkId=253103)。
+### <a name="to-create-a-cloud-service-by-using-the-azure-classic-portal"></a>To create a cloud service by using the Azure classic portal
 
-1. (選擇性) 若要顯示您已經建立的雲端服務清單，請選擇頁面左邊的雲端服務連結。
+1. Sign in to the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkId=253103) on the Microsoft website.
 
-1. 選擇左下角的 **+** 圖示，然後在出現的功能表上選擇 [雲端服務]。有 [快速建立] 和 [自訂建立] 兩個選項的另一個畫面會隨即出現。如果選擇 [快速建立]，便可藉由指定雲端服務的 URL 以及將實際裝載服務的區域，建立雲端服務。如果選擇 [自訂建立]，則可藉由指定封裝 (.cspkg 檔)、組態 (.cscfg) 檔和憑證，立即發佈雲端服務。如果您想要使用 Azure 專案中的**發佈**命令發佈您的雲端服務，就不需要選擇 [自訂建立]。您可在 Azure 專案的捷徑功能表上找到**發佈**命令。
+1. (optional) To display a list of cloud services that you've already created, choose the Cloud Services link on the left side of the page.
 
-1. 選擇 [快速建立]，以便稍後使用 Visual Studio 發佈雲端服務。
+1. Choose the **+** icon in the lower-left corner, and then choose **Cloud Service** on the menu that appears. Another screen with two options, **Quick Create** and **Custom Create**, appears. If you choose **Quick Create**, you can create a cloud service just by specifying its URL and the region where it will be physically hosted. If you choose **Custom Create**, you can immediately publish a cloud service by specifying a package (.cspkg file), a configuration (.cscfg) file, and a certificate. Custom Create isn’t required if you intend to publish your cloud service by using the **Publish** command in an Azure project. The **Publish** command is available on the shortcut menu for an Azure project.
 
-1. 指定您的雲端服務名稱。名稱旁會出現完整 URL。
+1. Choose **Quick Create** to later publish your cloud service by using Visual Studio.
 
-1. 在清單中，選擇大部分使用者所在的區域。
+1. Specify a name for your cloud service.The complete URL appears next to the name.
 
-1. 選擇視窗底部的 [建立雲端服務] 連結。
+1. In the list, choose the region where most of your users are located.
 
-## 建立儲存體帳戶
+1. At the bottom of the window, choose the **Create Cloud Service** link.
 
-儲存體帳戶會提供 Blob、佇列和表格服務等存取權。您可以使用 Visual Studio 或 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkId=253103)建立儲存體帳戶。
+## <a name="create-a-storage-account"></a>Create a storage account
 
-### 使用 Visual Studio 建立儲存體帳戶
+A storage account provides access to the Blob, Queue, and Table services. You can create a storage account by using Visual Studio or the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkId=253103).
 
-1. 在 [方案總管] 中，開啟**儲存體**節點的捷徑功能表，然後選擇 [建立儲存體帳戶]。
+### <a name="to-create-a-storage-account-by-using-visual-studio"></a>To create a storage account by using Visual Studio
 
-    ![建立新的 Azure 儲存體帳戶](./media/vs-azure-tools-cloud-service-publish-set-up-required-services-in-visual-studio/IC744166.png)
+1. In **Solution Explorer**, open the shortcut menu for the **Storage** node, and then choose **Create Storage Account**.
 
-1. 在 [建立儲存體帳戶] 對話方塊中選取或輸入新儲存體帳戶的下列資訊。
-    - 您要新增至儲存體帳戶的 Azure 訂用帳戶。
-    - 您想要用於新儲存體帳戶的名稱。
-    - 區域或同質群組 (例如美國西部或東亞)。
-    - 您要用於儲存體帳戶的複寫類型，例如異地備援。
+    ![Create a new Azure storage account](./media/vs-azure-tools-cloud-service-publish-set-up-required-services-in-visual-studio/IC744166.png)
 
-1. 完成後，選擇 [建立]。新的儲存體帳戶會出現在 [伺服器總管] 的 [儲存體] 清單中。
+1. Select or enter the following information for the new storage account in the **Create Storage Account** dialog box.
+    - The Azure subscription to which you want to add the storage account.
+    - The name you want to use for the new storage account.
+    - The region or affinity group (such as West US or East Asia).
+    - The type of replication you want to use for the storage account, such as Geo-Redundant.
 
-### 使用 Azure 傳統入口網站建立儲存體帳戶
+1. When you’re done, choose **Create**.The new storage account appears in the **Storage** list in **Server Explorer**.
 
-1. 登入 Microsoft 網站上的 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkId=253103)。
+### <a name="to-create-a-storage-account-by-using-the-azure-classic-portal"></a>To create a storage account by using the Azure classic portal
 
-1. (選擇性) 若要檢視您的儲存體帳戶，請選擇頁面左側面板中的 [儲存體] 連結。
+1. Sign in to the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkId=253103) on the Microsoft website.
 
-1. 選擇頁面左下角的 **+** 圖示。
+1. (Optional) To view your storage accounts, choose the **Storage** link in the panel on the left side of the page.
 
-1. 在出現的功能表中，選擇 [儲存體]，然後選擇 [快速建立]。
+1. In the lower-left corner of the page, choose the **+** icon.
 
-1. 提供儲存體帳戶將會產生唯一 url 的名稱。
+1. In the menu that appears, choose **Storage**, and then choose **Quick Create**.
 
-1. 提供名稱給您的雲端服務。完整的 URL 會出現在名稱旁邊。
+1. Give the storage account a name that will result in a unique url.
 
-1. 在區預清單中，選擇大部分使用者所在的區域。
+1. Give your cloud service a name. The complete URL appears next to the name.
 
-1. 指定是否要啟用異地複寫。如果您啟用異地複寫，您的資料會儲存在多個實體位置，以降低遺失的可能性。這項功能會讓儲存體更昂貴，但您可以藉由建立儲存體帳戶時 (而不是稍後新增此功能時) 啟用地理位置來降低成本。如需詳細資訊，請參閱[異地複寫](http://go.microsoft.com/fwlink/?LinkId=253108)。
+1. In the list of regions, choose a region where most of your users are located.
 
-1. 選擇視窗底部的 [建立儲存體帳戶] 連結。
+1. Specify whether you want to enable geo-replication. If you enable geo-replication, your data will be saved in multiple physical locations to reduce the chance of loss. This feature makes storage more expensive, but you can reduce the cost by enabling geo-location when you create the storage account instead of adding the feature later. For more information, see [Geo-replication](http://go.microsoft.com/fwlink/?LinkId=253108).
 
-建立儲存體帳戶之後，您會看到可用來存取每個 Azure 儲存體服務中之資源的 URL，以及帳戶的主要和次要存取金鑰。您可以使用這些金鑰來驗證對儲存體服務提出的要求。
+1. At the bottom of the window, choose the **Create Storage Account** link.
 
->[AZURE.NOTE] 次要存取金鑰提供和主要存取金鑰相同的儲存體帳戶存取權，並會在主要存取金鑰遭到入侵時產生做為備份。此外，建議您定期重新產生存取金鑰。您可以修改連接字串設定以在您重新產生主要金鑰時使用次要金鑰，然後您可以修改它以在重新產生次要金鑰時使用重新產生的主要金鑰。
+After you create your storage account, you will see the URLs that you can use to access resources in each of the Azure storage services, and also the primary and secondary access keys for your account. You use these keys to authenticate requests made against the storage services.
 
-## 設定您的應用程式以使用儲存體帳戶所提供的服務
+>[AZURE.NOTE] The secondary access key provides the same access to your storage account as the primary access key and is generated as a backup should your primary access key be compromised. Additionally, it is recommended that you regenerate your access keys on a regular basis. You can modify a connection string setting to use the secondary key while you regenerate the primary key, then you can modify it to use the regenerated primary key while you regenerate the secondary key.
 
-您必須設定任何存取儲存體服務的角色，以使用您已建立的 Azure 儲存體服務。若要這樣做，您可以使用 Azure 專案的多個服務組態。根據預設，兩者都會建立在您的 Azure 專案中。藉由使用多個服務組態，您可以利用您的程式碼使用相同的連接字串，但在每個服務組態中會有不同的連接字串值。例如，您可以使用服務組態在本機使用 Azure 儲存體模擬器和不同的服務組態來執行和偵錯您的應用程式，以將您的應用程式發佈到 Azure。如需服務組態的詳細資訊，請參閱[使用多個服務組態設定 Azure 專案](vs-azure-tools-multiple-services-project-configurations.md)。
+## <a name="configure-your-app-to-use-services-provided-by-the-storage-account"></a>Configure your app to use services provided by the storage account
 
-### 設定您的應用程式以使用儲存體帳戶所提供的服務
+You must configure any role that accesses storage services to use the Azure storage services that you have created. To do this, you can use multiple service configurations for your Azure project. By default, two are created in your Azure project. By using multiple service configurations, you can use the same connection string in your code, but have a different value for a connection string in each service configuration. For example, you can use one service configuration to run and debug your application locally using the Azure storage emulator and a different service configuration to publish your application to Azure. For more information about service configurations, see [Configuring Your Azure Project Using Multiple Service Configurations](vs-azure-tools-multiple-services-project-configurations.md).
 
-1. 在 Visual Studio 中開啟您的 Azure 方案。在 [方案總管] 中，開啟 Azure 專案中存取儲存體服務之每個角色的捷徑功能表，並選擇 [屬性]。在 Visual Studio 編輯器中會顯示具有角色名稱的頁面。此頁面會顯示 [組態] 索引標籤的欄位。
+### <a name="to-configure-your-application-to-use-services-that-the-storage-account-provides"></a>To configure your application to use services that the storage account provides
 
-1. 在角色的屬性頁面中，選擇 [設定]。
+1. In Visual Studio open your Azure solution. In Solution Explorer, open the shortcut menu for each role in your Azure project that accesses the storage services and choose **Properties**. A page with the name of the role is displayed in the Visual Studio editor. The page displays the fields for the **Configuration** tab.
 
-1. 在 [服務組態] 清單中，選擇您想要編輯的服務組態名稱。如果您想要變更此角色的所有服務組態，可以選擇 [所有組態]。如需關於如何更新服務組態的詳細資訊，請參閱[使用 Visual Studio 設定 Azure 雲端服務的角色](vs-azure-tools-configure-roles-for-cloud-service.md)主題的**管理儲存體帳戶的連接字串**一節。
+1. In the property pages for the role, choose **Settings**.
 
-1. 若要修改任何連接字串設定，請選擇設定旁邊的 [...] 按鈕。[建立儲存體連接字串] 對話方塊會隨即出現。
+1. In the **Service Configuration** list, choose the name of the service configuration that you want to edit. If you want to make changes to all of the service configurations for this role, you can choose **All Configurations**.  For more information about how to update service configurations, see the section **Manage Connection Strings for Storage Accounts** in the topic [Configure the Roles for an Azure Cloud Service with Visual Studio](vs-azure-tools-configure-roles-for-cloud-service.md).
 
-1. 在 [連接方式] 下，選擇 [您的訂用帳戶] 選項。
+1. To modify any connection string settings, choose the **…** button next to the setting. The **Create Storage Connection String** dialog box appears.
 
-1. 在 [訂用帳戶] 清單中，選擇您的訂用帳戶。如果訂用帳戶清單中沒有您想要的訂用帳戶，請選擇 [下載發佈設定] 連結。
+1. Under **Connect using**, choose the **Your subscription** option.
 
-1. 在 [帳戶名稱] 清單中，選擇您的儲存體帳戶名稱。Azure Tools 會自動使用.publishsettings 檔案取得儲存體帳戶認證。若要手動指定儲存體帳戶認證，請選擇 [手動輸入的認證] 選項，然後繼續此程序。您可以從 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/p/?LinkID=213885)取得您的儲存體帳戶名稱和主要金鑰。如果您不想手動指定儲存體帳戶設定，請選擇 [確定] 按鈕以關閉對話方塊。
+1. In the **Subscription** list, choose your subscription. If the list of subscriptions doesn't include the one that you want, choose the **Download Publish Settings** link.
 
-1. 選擇 [輸入儲存體帳戶] 認證連結。
+1. In the **Account name** list, choose your storage account name. Azure Tools obtains storage account credentials automatically by using the .publishsettings file. To specify your storage account credentials manually, choose the **Manually entered credentials** option, and then continue with this procedure. You can get your storage account name and primary key from the [Azure classic portal](http://go.microsoft.com/fwlink/p/?LinkID=213885). If you don’t want to specify your storage account settings manually, choose the **OK** button to close the dialog box.
 
-1. 在 [帳戶名稱] 方塊中，輸入您的儲存體帳戶名稱。
+1. Choose the **Enter storage account** credentials link.
 
-    >[AZURE.NOTE] 登入 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)，然後選擇 [儲存體] 按鈕。入口網站會顯示儲存體帳戶的清單。如果您選擇帳戶，其頁面就會開啟。您可以從這個頁面複製儲存體帳戶的名稱。如果您使用舊版傳統入口網站，儲存體帳戶的名稱會出現在 [儲存體帳戶] 檢視中。若要複製這個名稱，請在該檢視的 [屬性] 視窗中將其反白顯示，然後選擇 Ctrl-C 鍵。若要將名稱貼到 Visual Studio，請選擇 [帳戶名稱] 文字方塊，然後選擇 Ctrl+V 鍵。
+1. In the **Account name** box, enter the name of your storage account.
 
-1. 在 [帳戶金鑰] 方塊中，輸入您的主要金鑰，或從[Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)將其複製並貼上。若要複製此金鑰︰
+    >[AZURE.NOTE] Log into the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885), and then choose the **Storage** button. The portal shows a list of storage accounts. If you choose an account, a page for it opens. You can copy the name of the storage account from this page. If you are using a previous version of the classic portal, the name of your storage account appears in the **Storage Accounts** view. To copy this name, highlight it in the **Properties** window of this view, and then choose the Ctrl-C keys. To paste the name into Visual Studio, choose the **Account name** text box, and then choose the Ctrl+V keys.
 
-    1. 在適當儲存體帳戶的頁面底部，選擇 [管理金鑰] 按鈕。
+1. In the **Account key** box, enter your primary key, or copy and paste it from the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885).
+    To copy this key:
 
-    1. 在 [管理存取金鑰] 頁面上，選取主要存取金鑰的文字，然後選擇 Ctrl+C 鍵。
+    1. At the bottom of the page for the appropriate storage account, choose the **Manage Keys** button.
 
-    1. 在 Azure Tools 中，將金鑰貼到 [帳戶金鑰] 方塊中。
+    1. On the **Manage Keys Access** page, select the text of the primary access key, and then choose the Ctrl+C keys.
 
-    1. 您必須選取下列選項之一來決定服務存取儲存體帳戶的方式：
-        - **使用 HTTP**。這是標準選項。例如，`http://<account name>.blob.core.windows.net`。
-        - **使用 HTTPS**，以確保連線安全無虞。例如，`https://<accountname>.blob.core.windows.net`。
-        - 為三項服務的每一項**指定自訂端點**。然後您可以將這些端點輸入特定服務的欄位。
+    1. In Azure Tools, paste the key into the **Account key** box.
 
-        >[AZURE.NOTE] 如果您建立自訂端點，您可以建立更複雜的連接字串。當您使用這個字串格式，您可以指定儲存體服務端點，其包含您向 Blob 服務註冊儲存體帳戶的自訂網域名稱。您也可以透過共用的存取簽章，只在單一容器中授與 blob 資源的存取權。如需關於如何建立自訂端點的詳細資訊，請參閱[設定 Azure 儲存體連接字串](storage-configure-connection-string.md)。
+    1. You must select one of the following options to determine how the service will access the storage account:
+        - **Use HTTP**. This is the standard option. For example, `http://<account name>.blob.core.windows.net`.
+        - **Use HTTPS** for a secure connection. For example, `https://<accountname>.blob.core.windows.net`.
+        - **Specify custom endpoints** for each of the three services. You can then type these endpoints into the field for the specific service.
 
-1. 若要儲存這些連接字串的變更，請選擇 [確定] 按鈕，然後選擇工具列上的 [儲存] 按鈕。儲存這些變更後，您可以使用 [GetConfigurationSettingValue](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.getconfigurationsettingvalue.aspx)，在程式碼中取得這個連接字串的值。當您將應用程式發佈至 Azure 時，請選擇包含連接字串之 Azure 儲存體帳戶的服務組態。發佈您的應用程式之後，請確認應用程式如預期般對 Azure 儲存體服務運作
+        >[AZURE.NOTE] If you create custom endpoints, you can create a more complex connection string. When you use this string format, you can specify storage service endpoints that include a custom domain name that you have registered for your storage account with the Blob service. Also you can grant access only to blob resources in a single container through a shared access signature. For more information about how to create custom endpoints, see [Configure Azure Storage Connection Strings](storage-configure-connection-string.md).
 
-## 後續步驟
+1. To save these connection string changes, choose the **OK** button and then choose the **Save** button on the toolbar. After you save these changes, you can get the value of this connection string in your code by using [GetConfigurationSettingValue](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.getconfigurationsettingvalue.aspx). When you publish your application to Azure, choose the service configuration that contains the Azure storage account for the connection string. After your application is published, verify that the application works as expected against the Azure storage services
 
-若要深入了解如何將應用程式從 Visual Studio 發佈至 Azure，請參閱[使用 Azure Tools 發佈雲端服務](vs-azure-tools-publishing-a-cloud-service.md)。
+## <a name="next-steps"></a>Next steps
 
-<!---HONumber=AcomDC_0817_2016-->
+To learn more about publishing apps to Azure from Visual Studio, see [Publishing a Cloud Service using the Azure Tools](vs-azure-tools-publishing-a-cloud-service.md).
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

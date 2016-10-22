@@ -1,113 +1,118 @@
 <properties 
-	pageTitle="使用 Application Insights 的 SCOM 整合 | Microsoft Azure" 
-	description="如果您是 SCOM 使用者，請使用 Application Insights 來監視效能和診斷問題。完整的儀表板、智慧警示、功能強大的診斷工具和分析查詢。" 
-	services="application-insights" 
+    pageTitle="SCOM integration with Application Insights | Microsoft Azure" 
+    description="If you're an SCOM user, monitor performance and diagnose issues with Application Insights. Comprehensive dashboards, smart alerts, powerful diagnostic tools and analysis queries." 
+    services="application-insights" 
     documentationCenter=""
-	authors="alancameronwills" 
-	manager="douge"/>
+    authors="alancameronwills" 
+    manager="douge"/>
 
 <tags 
-	ms.service="application-insights" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="ibiza" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/12/2016" 
-	ms.author="awills"/>
+    ms.service="application-insights" 
+    ms.workload="tbd" 
+    ms.tgt_pltfrm="ibiza" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="08/12/2016" 
+    ms.author="awills"/>
  
-# 使用 Application Insights 的 SCOM 應用程式效能監視
 
-如果您使用 System Center Operations Manager (SCOM) 來管理您的伺服器，您可以透過 [Visual Studio Application Insights](app-insights-asp-net.md) 的協助來監視效能及診斷效能問題。Application Insights 會監視 Web 應用程式的連入要求、REST 和 SQL 傳出呼叫、例外狀況，以及記錄追蹤。它提供的儀表板具有度量圖表和智慧警示，以及透過此遙測來實現的強大診斷搜尋和分析查詢功能。
+# <a name="application-performance-monitoring-using-application-insights-for-scom"></a>Application Performance Monitoring using Application Insights for SCOM
 
-您可以使用 SCOM 管理組件來開啟 Application Insights 監視。
+If you use System Center Operations Manager (SCOM) to manage your servers, you can monitor performance and diagnose performance issues with the help of [Visual Studio Application Insights](app-insights-asp-net.md). Application Insights monitors your web application's incoming requests, outgoing REST and SQL calls, exceptions, and log traces. It provides dashboards with metric charts and smart alerts, as well as powerful diagnostic search and analytical queries over this telemetry. 
 
-## 開始之前
+You can switch on Application Insights monitoring by using an SCOM management pack.
 
-我們假設︰
+## <a name="before-you-start"></a>Before you start
 
-* 您熟悉 SCOM，而且您使用 SCOM 2012 R2 或 2016 來管理您的 IIS Web 伺服器。
-* 您已在伺服器上安裝想要使用 Application Insights 監視的 Web 應用程式。
-* 應用程式架構版本是 .NET 4.5 或更新版本。
-* 您可以存取 [Microsoft Azure](https://azure.com) 中的訂用帳戶，而且可以登入 [Azure 入口網站](https://portal.azure.com)。您的組織可能擁有訂用帳戶，並且可以在其中新增您的 Microsoft 帳戶。
+We assume:
 
-(開發小組可以將 [Application Insights SDK](app-insights-asp-net.md) 建置到 Web 應用程式。此建置階段檢測可讓他們獲得更大的彈性來撰寫自訂遙測。不過，這並不重要︰您可以依照此處所述的步驟來進行，不論有沒有內建 SDK 都可以。)
+* You're familiar with SCOM, and that you use SCOM 2012 R2 or 2016 to manage your IIS web servers.
+* You have already installed on your servers a web application that you want to monitor with Application Insights.
+* App framework version is .NET 4.5 or later.
+* You have access to a subscription in [Microsoft Azure](https://azure.com) and can sign in to the [Azure portal](https://portal.azure.com). Your organization may have a subscription, and can add your Microsoft account to it.
 
-## (一次) 安裝 Application Insights 管理組件
+(The development team might build the [Application Insights SDK](app-insights-asp-net.md) into the web app. This build-time instrumentation gives them greater flexibility in writing custom telemetry. However, it doesn't matter: you can follow the steps described here either with or without the SDK built in.)
 
-在執行 Operations Manager 的電腦上：
+## <a name="(one-time)-install-application-insights-management-pack"></a>(One time) Install Application Insights management pack
 
-2. 解除安裝任何舊版管理組件︰
- 1. 在 Operations Manager 中，開啟 [系統管理] > [管理組件]。
- 2. 刪除舊版本。
-1. 從目錄下載並安裝管理組件。
-2. 重新啟動 Operations Manager。
+On the machine where you run Operations Manager:
+
+2. Uninstall any old version of the management pack:
+ 1. In Operations Manager, open Administration, Management Packs. 
+ 2. Delete the old version.
+1. Download and install the management pack from the catalog.
+2. Restart Operations Manager.
 
 
-## 建立管理組件
+## <a name="create-a-management-pack"></a>Create a management pack
 
-1. 在 Operations Manager 中，開啟 [撰寫] > [.NET...(使用 Application Insights)] > [新增監視精靈]，然後再次選擇 [.NET...(使用 Application Insights)]。
+1. In Operations Manager, open **Authoring**, **.NET...with Application Insights**, **Add Monitoring Wizard**, and again choose **.NET...with Application Insights**.
 
     ![](./media/app-insights-scom/020.png)
 
-2. 以您的應用程式命名組態 (您必須一次檢測一個應用程式)。
+2. Name the configuration after your app. (You have to instrument one app at a time.)
     
     ![](./media/app-insights-scom/030.png)
 
-3. 在相同的精靈頁面上，建立新的管理組件或選取您稍早為 Application Insights 建立的組件。
+3. On the same wizard page, either create a new management pack, or select a pack that you created for Application Insights earlier.
 
-     (Application Insights [管理組件](https://technet.microsoft.com/library/cc974491.aspx)是可供您用來建立執行個體的範本。稍後您可以重複使用相同的執行個體。)
+     (The Application Insights [management pack](https://technet.microsoft.com/library/cc974491.aspx) is a template, from which you create an instance. You can reuse the same instance later.)
 
 
-    ![在 [一般屬性] 索引標籤中，輸入應用程式的名稱。按一下 [新增]，然後輸入管理組件的名稱。按一下 [確定]，然後按 [下一步]。](./media/app-insights-scom/040.png)
+    ![In the General Properties tab, type the name of the app. Click New and type a name for a management pack. Click OK, then click Next.](./media/app-insights-scom/040.png)
 
-4. 選擇一個您想要監視的應用程式。搜尋功能會搜尋伺服器上所安裝的應用程式。
+4. Choose one app that you want to monitor. The search feature searches among apps installed on your servers.
 
-    ![在 [要監視的項目] 索引標籤上按一下 [新增]、輸入部分應用程式名稱、按一下 [搜尋]、選擇應用程式，然後按一下 [新增] 和 [確定]。](./media/app-insights-scom/050.png)
+    ![On What to Monitor tab, click Add, type part of the app name, click Search, choose the app, and then Add, OK.](./media/app-insights-scom/050.png)
 
-    如果您不想要在所有伺服器監視應用程式，選用的 [監視範圍] 欄位可用來指定伺服器的子集。
+    The optional Monitoring scope field can be used to specify a subset of your servers, if you don't want to monitor the app in all servers.
 
-5. 在下一個精靈頁面上，您必須先提供用來登入 Microsoft Azure 的認證。
+5. On the next wizard page, you must first provide your credentials to sign in to Microsoft Azure.
 
-    在這個頁面上，您可以選擇想要在其中分析和顯示遙測資料的 Application Insights 資源。
+    On this page, you choose the Application Insights resource where you want the telemetry data to be analyzed and displayed. 
 
- * 如果在開發期間已針對 Application Insights 設定了應用程式，請選取其現有資源。
- * 否則，請建立以應用程式命名的新資源。如果有其他應用程式是同一個系統的元件，請將它們放在相同的資源群組，以便能更輕鬆地管理遙測的存取權。
+ * If the application was configured for Application Insights during development, select its existing resource.
+ * Otherwise, create a new resource named for the app. If there are other apps that are components of the same system, put them in the same resource group, to make access to the telemetry easier to manage.
 
-    您稍後可以變更這些設定。
+    You can change these settings later.
 
-    ![在 [Application Insights 設定] 索引標籤上按一下 [登入]，並提供適用於 Azure 的 Microsoft 帳戶認證。然後選擇訂用帳戶、資源群組和資源。](./media/app-insights-scom/060.png)
+    ![On Application Insights settings tab, click 'sign in' and provide your Microsoft account credentials for Azure. Then choose a subscription, resource group, and resource.](./media/app-insights-scom/060.png)
 
-6. 完成精靈。
+6. Complete the wizard.
 
     ![Click Create](./media/app-insights-scom/070.png)
     
-針對您想要監視的每個應用程式重複此程序。
+Repeat this procedure for each app that you want to monitor.
 
-如果您稍後需要變更設定，請從 [撰寫] 視窗重新開啟監視屬性。
+If you need to change settings later, re-open the properties of the monitor from the Authoring window.
 
-![在 [撰寫] 中，選取 [使用 Application Insights 的 .NET 應用程式監視效能]、選取監視器，然後按一下 [屬性]。](./media/app-insights-scom/080.png)
+![In Authoring, select .NET Application Performance Monitoring with Application Insights, select your monitor, and click Properties.](./media/app-insights-scom/080.png)
 
-## 驗證監視
+## <a name="verify-monitoring"></a>Verify monitoring
 
-您已安裝的監視器會在每一部伺服器上搜尋您的應用程式。它會在找到應用程式的地方設定 Application Insights 狀態監視器來監視應用程式。如有必要，它會先在伺服器上安裝狀態監視器。
+The monitor that you have installed searches for your app on every server. Where it finds the app, it configures Application Insights Status Monitor to monitor the app. If necessary, it first installs Status Monitor on the server.
 
-您可以驗證它已找到之應用程式的執行個體︰
+You can verify which instances of the app it has found:
 
-![在 [監視] 中開啟 Application Insights](./media/app-insights-scom/100.png)
-
-
-## 在 Application Insights 中檢視遙測
-
-在 [Azure 入口網站](https://portal.azure.com)中，瀏覽至應用程式的資源。您會[看到顯示應用程式之遙測的圖表](app-insights-dashboards.md) (如果它尚未顯示在主頁面上，請按一下 [即時度量串流])。
+![In Monitoring, open Application Insights](./media/app-insights-scom/100.png)
 
 
-## 後續步驟
+## <a name="view-telemetry-in-application-insights"></a>View telemetry in Application Insights
 
-* [設定儀表板](app-insights-dashboards.md)以將監視此應用程式和其他應用程式的最重要圖表結合在一起。
-* [深入了解度量](app-insights-metrics-explorer.md)
-* [設定警示](app-insights-alerts.md)
-* [診斷效能問題](app-insights-detect-triage-diagnose.md)
-* [功能強大的分析查詢](app-insights-analytics.md)
-* [可用性 Web 測試](app-insights-monitor-web-app-availability.md)
+In the [Azure portal](https://portal.azure.com), browse to the resource for your app. You [see charts showing telemetry](app-insights-dashboards.md) from your app. (If it hasn't shown up on the main page yet, click Live Metrics Stream.)
 
-<!---HONumber=AcomDC_0817_2016-->
+
+## <a name="next-steps"></a>Next steps
+
+* [Set up a dashboard](app-insights-dashboards.md) to bring together the most important charts monitoring this and other apps.
+* [Learn about metrics](app-insights-metrics-explorer.md)
+* [Set up alerts](app-insights-alerts.md)
+* [Diagnosing performance issues](app-insights-detect-triage-diagnose.md)
+* [Powerful Analytics queries](app-insights-analytics.md)
+* [Availability web tests](app-insights-monitor-web-app-availability.md)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,303 +1,310 @@
 <properties
-	pageTitle="教學課程：Azure Active Directory 與 Flatter Files 整合 | Microsoft Azure"
-	description="了解如何設定 Azure Active Directory 與 Flatter Files 之間的單一登入。"
-	services="active-directory"
-	documentationCenter=""
-	authors="jeevansd"
-	manager="femila"
-	editor=""/>
+    pageTitle="Tutorial: Azure Active Directory integration with Flatter Files | Microsoft Azure"
+    description="Learn how to configure single sign-on between Azure Active Directory and Flatter Files."
+    services="active-directory"
+    documentationCenter=""
+    authors="jeevansd"
+    manager="femila"
+    editor=""/>
 
 <tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/11/2016"
-	ms.author="jeedes"/>
+    ms.service="active-directory"
+    ms.workload="identity"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/29/2016"
+    ms.author="jeedes"/>
 
 
-# 教學課程：Azure Active Directory 與 Flatter Files 整合
 
-本教學課程旨在說明如何整合 Flatter Files 與 Azure Active Directory (Azure AD)。Flatter Files 與 Azure AD 整合提供下列優點：
+# <a name="tutorial:-azure-active-directory-integration-with-flatter-files"></a>Tutorial: Azure Active Directory integration with Flatter Files
 
-- 您可以在 Azure AD 中控制可存取 Flatter Files 的人員
-- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Flatter Files (單一登入)
-- 您可以在 Azure Active Directory 傳統入口網站集中管理您的帳戶
+The objective of this tutorial is to show you how to integrate Flatter Files with Azure Active Directory (Azure AD).  
+Integrating Flatter Files with Azure AD provides you with the following benefits: 
 
-若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
+- You can control in Azure AD who has access to Flatter Files 
+- You can enable your users to automatically get signed-on to Flatter Files (Single Sign-On) with their Azure AD accounts
+- You can manage your accounts in one central location - the Azure Active Directory classic portal
 
-## 先決條件 
+If you want to know more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
-若要設定 Azure AD 與 Flatter Files 整合，您需要下列項目：
+## <a name="prerequisites"></a>Prerequisites 
 
-- Azure AD 訂用帳戶
-- 啟用 Flatter Files 單一登入的訂用帳戶
+To configure Azure AD integration with Flatter Files, you need the following items:
+
+- An Azure AD subscription
+- A Flatter Files single-sign on enabled subscription
 
 
-> [AZURE.NOTE] 若要測試本教學課程中的步驟，我們不建議使用生產環境。
+> [AZURE.NOTE] To test the steps in this tutorial, we do not recommend using a production environment.
 
 
-若要測試本教學課程中的步驟，您應該遵循這些建議：
+To test the steps in this tutorial, you should follow these recommendations:
 
-- 除非必要，否則您不應使用生產環境，。
-- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+- You should not use your production environment, unless this is necessary.
+- If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/). 
 
  
-## 案例描述
-此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。本教學課程中說明的案例由二個主要建置組塊組成：
+## <a name="scenario-description"></a>Scenario description
+The objective of this tutorial is to enable you to test Azure AD single sign-on in a test environment.  
+The scenario outlined in this tutorial consists of two main building blocks:
 
-1. 從資源庫加入 Flatter Files
-2. 設定並測試 Azure AD 單一登入
-
-
-## 從資源庫加入 Flatter Files
-若要設定 Flatter Files 與 Azure AD 整合，您需要從資源庫將 Flatter Files 加入到受管理的 SaaS 應用程式清單。
-
-**若要從資源庫加入 Flatter Files，請執行下列步驟：**
-
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
-
-	![Active Directory][1]
-
-2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
-
-3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
-
-	![應用程式][2]
-
-4. 按一下頁面底部的 [新增]。
-
-	![應用程式][3]
-
-5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
-
-	![應用程式][4]
-
-6. 在搜尋方塊中，輸入 **Flatter Files**。
+1. Adding Flatter Files from the gallery 
+2. Configuring and testing Azure AD single sign-on
 
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_01.png)
+## <a name="adding-flatter-files-from-the-gallery"></a>Adding Flatter Files from the gallery
+To configure the integration of Flatter Files into Azure AD, you need to add Flatter Files from the gallery to your list of managed SaaS apps.
 
-7. 在結果窗格中，選取 [Flatter Files]，然後按一下 [完成] 以加入應用程式。
+**To add Flatter Files from the gallery, perform the following steps:**
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_500.png)
+1. In the **Azure classic portal**, on the left navigation pane, click **Active Directory**. 
 
-##  設定並測試 Azure AD 單一登入
-本節的目標是說明如何以名為 "Britta Simon" 的測試使用者為基礎，使用 Flatter Files 來設定及測試 Azure AD 單一登入。
+    ![Active Directory][1]
 
-若要讓單一登入運作，Azure AD 必須知道 Flatter Files 與 Azure AD 中互相對應的使用者。換句話說，必須在 Azure AD 使用者和 Flatter Files 中的相關使用者之間，建立連結關聯性。建立此連結關聯性的方法，就是將 Azure AD 中 [使用者名稱] 的值指定為 Flatter Files 中 [Username] 的值。
+2. From the **Directory** list, select the directory for which you want to enable directory integration.
+
+3. To open the applications view, in the directory view, click **Applications** in the top menu.
+
+    ![Applications][2]
+
+4. Click **Add** at the bottom of the page.
+
+    ![Applications][3]
+
+5. On the **What do you want to do** dialog, click **Add an application from the gallery**.
+
+    ![Applications][4]
+
+6. In the search box, type **Flatter Files**.
+
+
+    ![Creating an Azure AD test user](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_01.png)
+
+7. In the results pane, select **Flatter Files**, and then click **Complete** to add the application.
+
+    ![Creating an Azure AD test user](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_500.png)
+
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuring and testing Azure AD single sign-on
+The objective of this section is to show you how to configure and test Azure AD single sign-on with Flatter Files based on a test user called "Britta Simon".
+
+For single sign-on to work, Azure AD needs to know what the counterpart user in Flatter Files to an user in Azure AD is. In other words, a link relationship between an Azure AD user and the related user in Flatter Files needs to be established.  
+This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in Flatter Files.
  
-若要使用 Flatter Files 來設定並測試 Azure AD 單一登入，您需要完成下列建置組塊：
+To configure and test Azure AD single sign-on with Flatter Files, you need to complete the following building blocks:
 
-1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
-2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
-4. **[建立 Flatter Files 測試使用者](#creating-a-halogen-software-test-user)** - 在 Flatter Files 中建立一個 Britta Simon 對應項目，其要與 Azure AD 中代表她的項目連結。
-5. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
-5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-single-sign-on)** - to enable your users to use this feature.
+2. **[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.
+4. **[Creating a Flatter Files test user](#creating-a-halogen-software-test-user)** - to have a counterpart of Britta Simon in Flatter Files that is linked to the Azure AD representation of her.
+5. **[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.
 
-### 設定 Azure AD 單一登入
+### <a name="configuring-azure-ad-single-sign-on"></a>Configuring Azure AD single sign-on
 
-本節的目標是在 Azure AD 傳統入口網站啟用 Azure AD 單一登入，並在您的 Flatter Files 應用程式中設定單一登入。在此程序中，您必須建立 Base-64 編碼的憑證檔案。如果您不熟悉此程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
+The objective of this section is to enable Azure AD single sign-on in the Azure AD classic portal and to configure single sign-on in your Flatter Files application. As part of this procedure, you are required to create a base-64 encoded certificate file. If you are not familiar with this procedure, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o).
 
-若要為 Flatter Files 設定單一登入，您需要已註冊的網域。如果您沒有已註冊的網域，請透過 [support@flatterfiles.com](mailto:support@flatterfiles.com) 連絡 Flatter Files 支援小組。
+To configure single sign-on for Flatter Files, you need a registered domain. If you don't have a registered domain yet, contact your Flatter Files support team via [support@flatterfiles.com](mailto:support@flatterfiles.com).  
 
 
 
-**若要使用 Flatter Files 設定 Azure AD 單一登入，請執行下列步驟：**
+**To configure Azure AD single sign-on with Flatter Files, perform the following steps:**
 
-1. 在 Azure AD 傳統入口網站的 [Flatter Files] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+1. In the Azure AD classic portal, on the **Flatter Files** application integration page, click **Configure single sign-on** to open the **Configure Single Sign-On**  dialog.
 
-	![設定單一登入][6]
+    ![Configure Single Sign-On][6] 
 
-2. 在 [要如何讓使用者登入 Flatter] 頁面上，選取 [Azure AD 單一登入]，然後按一下 [下一步]。
+2. On the **How would you like users to sign on to Flatter Files** page, select **Azure AD Single Sign-On**, and then click **Next**.
  
-	![設定單一登入](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_02.png)
+    ![Configure Single Sign-On](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_02.png) 
 
-3. 在 [設定應用程式設定] 對話方塊頁面上，按一下 [下一步]。
+3. On the **Configure App Settings** dialog page, click **Next**.
 
-	![設定單一登入](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_03.png)
+    ![Configure Single Sign-On](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_03.png) 
 
-    > [AZURE.NOTE] Flatter Files 對所有客戶使用相同的 SSO 登入 URL：[https://www.flatterfiles.com/site/login/sso/](https://www.flatterfiles.com/site/login/sso/)。
+    > [AZURE.NOTE] Flatter Files uses the same SSO login URL for all the customers: [https://www.flatterfiles.com/site/login/sso/](https://www.flatterfiles.com/site/login/sso/).
+.
  
  
-4. 在 [設定在 Flatter Files 單一登入] 頁面上，執行下列步驟：
+4. On the **Configure single sign-on at Flatter Files** page, perform the following steps:
 
-	![設定單一登入](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_04.png)
+    ![Configure Single Sign-On](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_04.png)  
 
-    a.按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
+    a. Click **Download certificate**, and then save the file on your computer.
 
-    b.按 [下一步]。
-
-
-1. 以系統管理員身分登入您的 Flatter Files 應用程式。
-
-2. 按一下 [儀表板]。
-
-	![設定單一登入](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_05.png)
+    b. Click **Next**.
 
 
+1. Sign-on to your Flatter Files application as an administrator.
 
-2. 按一下 [設定]，然後在 [公司] 索引標籤上執行下列步驟：
+2. Click Dashboard. 
 
-	![設定單一登入](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_06.png)
-
-    a.選取 [使用 SAML 2.0 進行驗證]。
-
-    b.按一下 [設定 SAML]。
+    ![Configure Single Sign-On](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_05.png)  
 
 
 
-2. 在 [SAML 設定] 對話方塊上，執行下列步驟：
+2. Click **Settings**, and then perform the following steps on the **Company** tab: 
 
-	![設定單一登入](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_08.png)
+    ![Configure Single Sign-On](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_06.png)  
 
-    a.在 [網域] 文字方塊中，輸入您註冊的網域。
+    a. Select **Use SAML 2.0 for Authentication**.
 
-    > [AZURE.NOTE] 如果您沒有已註冊的網域，請透過 [support@flatterfiles.com](mailto:support@flatterfiles.com) 連絡 Flatter Files 支援小組。
+    b. Click **Configure SAML**.
+
+
+
+2. On the **SAML Configuration** dialog, perform the following steps: 
+
+    ![Configure Single Sign-On](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_08.png)  
+
+    a. In the Domain textbox, type your registered domain.
+
+    > [AZURE.NOTE] If you don't have a registered domain yet, contact your Flatter Files support team via [support@flatterfiles.com](mailto:support@flatterfiles.com).
     
-    b.在 Azure 傳統入口網站的 [設定在 Flatter Files 單一登入] 對話方塊中，複製單一登入服務 URL，然後貼到 [身分識別提供者 URL] 文字方塊中。
+    b. In the Azure classic portal, on the Configure single sign-on at Flatter Files dialog, copt the Single Sign-On Service URL, and then paste it into the Identity Provider URL textbox.
 
-    c.從您下載的憑證建立「Base-64 編碼」檔案。
+    c.  Create a **base-64 encoded** file from your downloaded certificate.  
 
-    >[AZURE.TIP] 如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
+    >[AZURE.TIP] For more details, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o)
 
-    d.在記事本中開啟 Base-64 編碼的憑證，將其內容複製到您的剪貼簿，然後貼到 [FlatterFiles 身分識別提供者憑證] 文字方塊。
+    d.  Open your base-64 encoded certificate in notepad, copy the content of it into your clipboard, and then paste it to the **FlatterFiles Identity Provider Certificate** textbox.
 
-    e.按一下 [更新]。
+    e. Click **Update**.
 
-6. 在 Azure AD 傳統入口網站中，選取單一登入設定確認，然後按一下 [下一步]。
+6. In the Azure AD classic portal, select the single sign-on configuration confirmation, and then click **Next**. 
 
-	![Azure AD 單一登入][10]
+    ![Azure AD Single Sign-On][10]
 
-7. 在 [單一登入確認] 頁面上，按一下 [完成]。
+7. On the **Single sign-on confirmation** page, click **Complete**.  
 
-	![Azure AD 單一登入][11]
-
-
+    ![Azure AD Single Sign-On][11]
 
 
-### 建立 Azure AD 測試使用者
-本節目標是在 Azure 傳統入口網站中建立名為 Britta Simon 的測試使用者。
 
-![建立 Azure AD 使用者][20]
 
-**若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
+### <a name="creating-an-azure-ad-test-user"></a>Creating an Azure AD test user
+The objective of this section is to create a test user in the Azure classic portal called Britta Simon.
 
-1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
+![Create Azure AD User][20]
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_09.png)
+**To create a test user in Azure AD, perform the following steps:**
 
-2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+1. In the **Azure classic portal**, on the left navigation pane, click **Active Directory**.
 
-3. 若要顯示使用者清單，請在頂端的功能表中，按一下 [使用者]。
+    ![Creating an Azure AD test user](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_09.png) 
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_03.png)
+2. From the **Directory** list, select the directory for which you want to enable directory integration.
+
+3. To display the list of users, in the menu on the top, click **Users**.
+
+    ![Creating an Azure AD test user](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_03.png) 
  
-4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列上的 [加入使用者]。
+4. To open the **Add User** dialog, in the toolbar on the bottom, click **Add User**. 
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_04.png)
+    ![Creating an Azure AD test user](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_04.png) 
 
-5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟：
+5. On the **Tell us about this user** dialog page, perform the following steps: 
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_05.png)
+    ![Creating an Azure AD test user](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_05.png)  
 
-    a.針對 [使用者類型]，選取 [您組織中的新使用者]。
+    a. As Type Of User, select New user in your organization.
 
-    b.在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+    b. In the User Name **textbox**, type **BrittaSimon**.
 
-    c.按 [下一步]。
+    c. Click **Next**.
 
-6.  在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：
+6.  On the **User Profile** dialog page, perform the following steps: 
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_06.png)
+    ![Creating an Azure AD test user](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_06.png) 
  
-    a.在 [名字] 文字方塊中，輸入 **Britta**。
+    a. In the **First Name** textbox, type **Britta**.  
 
-    b.在 [姓氏] 文字方塊中，輸入 **Simon**。
+    b. In the **Last Name** textbox, type, **Simon**.
 
-    c.在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+    c. In the **Display Name** textbox, type **Britta Simon**.
 
-    d.在 [角色] 清單中，選取 [使用者]。按 [下一步]。
+    d. In the **Role** list, select **User**.
+    e. Click **Next**.
 
-7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
+7. On the **Get temporary password** dialog page, click **create**.
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_07.png)
+    ![Creating an Azure AD test user](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_07.png) 
  
-8. 在 [取得暫時密碼] 對話方塊頁面上，執行下列步驟：
+8. On the **Get temporary password** dialog page, perform the following steps:
 
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_08.png)
+    ![Creating an Azure AD test user](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_08.png) 
   
-    a.記下 [新密碼] 的值。
+    a. Write down the value of the **New Password**.
 
-    b.按一下 [完成]。
+    b. Click **Complete**.   
 
   
  
-### 建立 Flatter Files 測試使用者
+### <a name="creating-a-flatter-files-test-user"></a>Creating a Flatter Files test user
 
-本節的目標是在 Flatter Files 中建立名為 Britta Simon 的使用者。
+The objective of this section is to create a user called Britta Simon in Flatter Files.
 
-**若要在 Flatter Files 中建立名為 Britta Simon 的使用者，請執行以下步驟：**
+**To create a user called Britta Simon in Flatter Files, perform the following steps:**
 
-1. 以系統管理員身分登入您的 **Flatter Files** 公司網站。
+1. Sign on to your **Flatter Files** company site as administrator.
 
-2. 在左側導覽窗格中，按一下 [設定]，然後按一下 [使用者] 索引標籤。
+2. In the navigation pane on the left, click **Settings**, and then click the Users **tab**.
 
-	![Cfreate Flatter Files 使用者](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_09.png)
+    ![Cfreate a Flatter Files User](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_09.png)
 
-3. 按一下 [新增使用者]。
+3. Click **Add User**. 
 
-4. 在 [加入使用者] 對話方塊中，執行下列步驟：
+4. On the **Add User** dialog, perform the following steps:
 
-	![Cfreate Flatter Files 使用者](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_10.png)
+    ![Cfreate a Flatter Files User](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_10.png)
 
-    a.在 [名字] 文字方塊中，輸入 **Britta**。
+    a. In the **First Name** textbox, type **Britta**.
 
-    b.在 [姓氏] 文字方塊中，輸入 **Simon**。
+    b. In the **Last Name** textbox, type **Simon**. 
 
-    c.在 [電子郵件位址] 文字方塊中，輸入 Britta 在 Azure 傳統入口網站中的電子郵件地址。
+    c. In the **Email Address** textbox, type Britta's email address in the Azure classic portal.
 
-    d.按一下 [提交]。
-
-
-### 指派 Azure AD 測試使用者
-
-本節的目標是要將 Flatter Files 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
-
-![指派使用者][200]
-
-**若要將 Britta Simon 指派到 Flatter Files，請執行以下步驟：**
-
-1. 在 Azure 傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
-
-	![指派使用者][201]
-
-2. 在應用程式清單中，選取 [Flatter Files]。
-
-	![指派使用者](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_11.png)
-
-1. 在頂端的功能表中，按一下 [使用者]。
-
-	![指派使用者][203]
-
-1. 在 [使用者] 清單中，選取 [Britta Simon]。
-
-2. 在底部的工具列中，按一下 [指派]。
-
-	![指派使用者][205]
+    d. Click **Submit**.   
 
 
+### <a name="assigning-the-azure-ad-test-user"></a>Assigning the Azure AD test user
 
-### 測試單一登入
+The objective of this section is to enabling Britta Simon to use Azure single sign-on by granting her access to Flatter Files.
 
-本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。當您在存取面板中按一下 Flatter Files 磚時，應該會自動登入您的 Flatter Files 應用程式。
+![Assign User][200] 
+
+**To assign Britta Simon to Flatter Files, perform the following steps:**
+
+1. On the Azure classic portal, to open the applications view, in the directory view, click **Applications** in the top menu.
+
+    ![Assign User][201] 
+
+2. In the applications list, select **Flatter Files**.
+
+    ![Assign User](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_11.png) 
+
+1. In the menu on the top, click **Users**.
+
+    ![Assign User][203] 
+
+1. In the Users list, select **Britta Simon**.
+
+2. In the toolbar on the bottom, click **Assign**.
+
+    ![Assign User][205]
 
 
-## 其他資源
 
-* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
-* [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
+### <a name="testing-single-sign-on"></a>Testing single sign-on
+
+The objective of this section is to test your Azure AD single sign-on configuration using the Access Panel.  
+When you click the Flatter Files tile in the Access Panel, you should get automatically signed-on to your Flatter Files application.
+
+
+## <a name="additional-resources"></a>Additional resources
+
+* [List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [What is application access and single sign-on with Azure Active Directory?](active-directory-appssoaccess-whatis.md)
 
 
 <!--Image references-->
@@ -318,4 +325,14 @@
 [204]: ./media/active-directory-saas-flatter-files-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-flatter-files-tutorial/tutorial_general_205.png
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+
+
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

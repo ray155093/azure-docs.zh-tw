@@ -1,300 +1,305 @@
 <properties
-	pageTitle="如何在 Android 上使用 Engagement API"
-	description="最新 Android SDK - 如何在 Android 上使用 Engagement API"
-	services="mobile-engagement"
-	documentationCenter="mobile"
-	authors="piyushjo"
-	manager="erikre"
-	editor="" />
+    pageTitle="How to Use the Engagement API on Android"
+    description="Latest Android SDK - How to Use the Engagement API on Android"
+    services="mobile-engagement"
+    documentationCenter="mobile"
+    authors="piyushjo"
+    manager="erikre"
+    editor="" />
 
 <tags
-	ms.service="mobile-engagement"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="mobile-android"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/25/2016"
-	ms.author="piyushjo;ricksal" />
+    ms.service="mobile-engagement"
+    ms.workload="mobile"
+    ms.tgt_pltfrm="mobile-android"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="07/25/2016"
+    ms.author="piyushjo;ricksal" />
 
-#如何在 Android 上使用 Engagement API
 
-此文件是 [Android Mobile Engagement SDK 的進階報告選項](mobile-engagement-android-advanced-reporting.md)文件的補充。它會提供關於如何使用 Engagement API 來回報您應用程式的統計資料之詳細資訊。
+#<a name="how-to-use-the-engagement-api-on-android"></a>How to Use the Engagement API on Android
 
-請記住，如果您只想要 Engagement 向您報告應用程式的工作階段、活動、當機和技術資訊，那麼最簡單的方法是讓所有 `Activity` 子類別繼承自對應的 `EngagementActivity` 類別。
+This document is an add-on to the document [Advanced Reporting options for Android Mobile Engagement SDK](mobile-engagement-android-advanced-reporting.md). It provides in depth details about how to use the Engagement API to report your application statistics.
 
-如果您想要執行更多工作 (例如，若您需要報告應用程式的特定事件、錯誤和作業，或者您需要以不同於 `EngagementActivity` 類別中的方式來報告應用程式的活動)，則您需要使用 Engagement API。
+Keep in mind that if you only want Engagement to report your application's sessions, activities, crashes and technical information, then the simplest way is to make all your `Activity` sub-classes inherit from the corresponding `EngagementActivity` class.
 
-Engagement API 是由 `EngagementAgent` 類別提供。此類別的執行個體，可以藉由呼叫 `EngagementAgent.getInstance(Context)` 靜態方法 (請注意，傳回的 `EngagementAgent` 物件為單一值) 來擷取。
+If you want to do more, for example if you need to report application specific events, errors and jobs, or if you have to report your application's activities in a different way than the one implemented in the `EngagementActivity` classes, then you need to use the Engagement API.
 
-##Engagement 概念
+The Engagement API is provided by the `EngagementAgent` class. An instance of this class can be retrieved by calling the `EngagementAgent.getInstance(Context)` static method (note that the `EngagementAgent` object returned is a singleton).
 
-以下部分簡要說明適用於 Android 平台的一般 [Mobile Engagement 概念](mobile-engagement-concepts.md)。
+##<a name="engagement-concepts"></a>Engagement concepts
 
-### `Session`和`Activity`
+The following parts refine the common [Mobile Engagement Concepts](mobile-engagement-concepts.md), for the Android platform.
 
-如果使用者在兩個活動之間維持閒置超過幾秒鐘，其活動序列會分割成兩個相異的工作階段。這幾秒稱為「工作階段逾時」。
+### <a name="`session`-and-`activity`"></a>`Session` and `Activity`
 
-活動通常會與應用程式的某個畫面相關聯，也就是說，活動會在畫面顯示時啟動，並在畫面關閉時停止：這是使用 `EngagementActivity` 類別整合 Engagement SDK 時的情況。
+If the user stays more than a few seconds idle between two *activities*, then his sequence of *activities* is split in two distinct *sessions*. These few seconds are called the "session timeout".
 
-但您也可以透過 Engagement API 手動控制活動。這樣可以將指定的畫面分隔為數個子部分，以取得關於此畫面使用方式的詳細資料 (例如，可了解此畫面內對話方塊的使用頻率與使用時間長度)。
+An *activity* is usually associated with one screen of the application, that is to say the *activity* starts when the screen is displayed and stops when the screen is closed: this is the case when the Engagement SDK is integrated by using the `EngagementActivity` classes.
 
-##報告活動
+But *activities* can also be controlled manually by using the Engagement API. This allows to split a given screen in several sub parts to get more details about the usage of this screen (for example to known how often and how long dialogs are used inside this screen).
 
-> [AZURE.IMPORTANT] 如果您依照＜如何在 Android 上整合 Engagement＞文件所述使用 `EngagementActivity` 類別與變體，您就不需要報告本節所述的各項活動。
+##<a name="reporting-activities"></a>Reporting Activities
 
-### 使用者啟動新的活動
+> [AZURE.IMPORTANT] You don't need to report activities like described in this section if you are using the `EngagementActivity` class and its variants as explained in the How to Integrate Engagement on Android document.
 
-			EngagementAgent.getInstance(this).startActivity(this, "MyUserActivity", null);
-			// Passing the current activity is required for Reach to display in-app notifications, passing null will postpone such announcements and polls.
+### <a name="user-starts-a-new-activity"></a>User starts a new Activity
 
-每當使用者活動變更，您就需要呼叫 `startActivity()`。第一次呼叫此函式會啟動新的使用者工作階段。
+            EngagementAgent.getInstance(this).startActivity(this, "MyUserActivity", null);
+            // Passing the current activity is required for Reach to display in-app notifications, passing null will postpone such announcements and polls.
 
-呼叫此函式的最佳位置是在每個活動 `onResume` 回呼。
+You need to call `startActivity()` each time the user activity changes. The first call to this function starts a new user session.
 
-### 使用者結束其目前的活動
+The best place to call this function is on each activity `onResume` callback.
 
-			EngagementAgent.getInstance(this).endActivity();
+### <a name="user-ends-his-current-activity"></a>User ends his current Activity
 
-使用者完成最後一個活動時，您至少需要呼叫 `endActivity()` 一次。這會通知 Engagement SDK，說明使用者目前處於閒置狀態，且工作階段逾時到期時就得關閉使用者工作階段 (如果您在工作階段逾時到期前就呼叫 `startActivity()`，工作階段只會繼續)。
+            EngagementAgent.getInstance(this).endActivity();
 
-呼叫此函式的最佳位置是在每個活動 `onPause` 回呼。
+You need to call `endActivity()` at least once when the user finishes his last activity. This informs the Engagement SDK that the user is currently idle, and that the user session need to be closed once the session timeout will expire (if you call `startActivity()` before the session timeout expires, the session is simply resumed).
 
-##報告事件
+The best place to call this function is on each activity `onPause` callback.
 
-### 工作階段事件
+##<a name="reporting-events"></a>Reporting Events
 
-工作階段事件通常用來報告在其工作階段期間由使用者所執行的動作。
+### <a name="session-events"></a>Session events
 
-**不含額外資料的範例：**
+Session events are usually used to report the actions performed by a user during his session.
 
-			public MyActivity extends EngagementActivity {
-			   [...]
-			   @Override
-			   public boolean onPrepareOptionsMenu(Menu menu) {
-			      getEngagementAgent().sendSessionEvent("menu_shown", null);
-			   }
-			   [...]
-			}
+**Example without extra data:**
 
-**含額外資料的範例：**
+            public MyActivity extends EngagementActivity {
+               [...]
+               @Override
+               public boolean onPrepareOptionsMenu(Menu menu) {
+                  getEngagementAgent().sendSessionEvent("menu_shown", null);
+               }
+               [...]
+            }
 
-			public MyActivity extends EngagementActivity {
-			  [...]
-			  @Override
-			  public boolean onMenuItemSelected(int featureId, MenuItem item) {
-			    Bundle extras = new Bundle();
-			    extras.putInt("id", item.getItemId());
-			    getEngagementAgent().sendSessionEvent("menu_selected", extras);
-			  }
-			  [...]
-			}
+**Example with extra data:**
 
-### 獨立事件
+            public MyActivity extends EngagementActivity {
+              [...]
+              @Override
+              public boolean onMenuItemSelected(int featureId, MenuItem item) {
+                Bundle extras = new Bundle();
+                extras.putInt("id", item.getItemId());
+                getEngagementAgent().sendSessionEvent("menu_selected", extras);
+              }
+              [...]
+            }
 
-與工作階段事件相反，獨立的事件可能發生在工作階段的內容之外。
+### <a name="standalone-events"></a>Standalone Events
 
-**範例：**
+Contrary to session events, standalone events can occur outside of the context of a session.
 
-假設您想要在觸發廣播接收器時，報告發生事件：
+**Example:**
 
-			/** Triggered by Intent.ACTION_BATTERY_LOW */
-			public BatteryLowReceiver extends BroadcastReceiver {
-			  [...]
-			  @Override
-			  public void onReceive(Context context, Intent intent) {
-			    EngagementAgent.getInstance(context).sendEvent("battery_low", null);
-			  }
-			  [...]
-			}
+Suppose you want to report events occurring when a broadcast receiver is triggered:
 
-##報告錯誤
+            /** Triggered by Intent.ACTION_BATTERY_LOW */
+            public BatteryLowReceiver extends BroadcastReceiver {
+              [...]
+              @Override
+              public void onReceive(Context context, Intent intent) {
+                EngagementAgent.getInstance(context).sendEvent("battery_low", null);
+              }
+              [...]
+            }
 
-### 工作階段錯誤
+##<a name="reporting-errors"></a>Reporting Errors
 
-工作階段錯誤通常用來報告在其工作階段期間影響使用者的錯誤。
+### <a name="session-errors"></a>Session errors
 
-**範例：**
+Session errors are usually used to report the errors impacting the user during his session.
 
-			/** The user has entered invalid data in a form */
-			public MyActivity extends EngagementActivity {
-			  [...]
-			  public void onMyFormSubmitted(MyForm form) {
-			    [...]
-			    /* The user has entered an invalid email address */
-			    getEngagementAgent().sendSessionError("sign_up_email", null);
-			    [...]
-			  }
-			  [...]
-			}
+**Example:**
 
-### 獨立錯誤
+            /** The user has entered invalid data in a form */
+            public MyActivity extends EngagementActivity {
+              [...]
+              public void onMyFormSubmitted(MyForm form) {
+                [...]
+                /* The user has entered an invalid email address */
+                getEngagementAgent().sendSessionError("sign_up_email", null);
+                [...]
+              }
+              [...]
+            }
 
-不同於工作階段錯誤，獨立錯誤可以出現在工作階段的內容之外。
+### <a name="standalone-errors"></a>Standalone errors
 
-**範例：**
+Contrary to session errors, standalone errors can occur outside of the context of a session.
 
-下列範例示範如何在應用程式處理程序執行時，每當手機記憶體不足時便報告錯誤。
+**Example:**
 
-			public MyApplication extends EngagementApplication {
+The following example shows how to report an error whenever the memory becomes low on the phone while your application process is running.
 
-			  @Override
-			  protected void onApplicationProcessLowMemory() {
-			    EngagementAgent.getInstance(this).sendError("low_memory", null);
-			  }
-			}
+            public MyApplication extends EngagementApplication {
 
-##報告工作
+              @Override
+              protected void onApplicationProcessLowMemory() {
+                EngagementAgent.getInstance(this).sendError("low_memory", null);
+              }
+            }
 
-### 範例
+##<a name="reporting-jobs"></a>Reporting Jobs
 
-假設您想要報告登入程序持續時間：
+### <a name="example"></a>Example
 
-			[...]
-			public void signIn(Context context, ...) {
+Suppose you want to report the duration of your login process:
 
-			  /* We need an Android context to call the Engagement API, if you are extending Activity, Service, you can pass "this" */
-			  EngagementAgent engagementAgent = EngagementAgent.getInstance(context);
+            [...]
+            public void signIn(Context context, ...) {
 
-			  /* Report sign in job has started */
-			  engagementAgent.startJob("sign_in", null);
+              /* We need an Android context to call the Engagement API, if you are extending Activity, Service, you can pass "this" */
+              EngagementAgent engagementAgent = EngagementAgent.getInstance(context);
 
-			  [... sign in ...]
+              /* Report sign in job has started */
+              engagementAgent.startJob("sign_in", null);
 
-			  /* Report sign in job is now ended */
-			  engagementAgent.endJob("sign_in");
-			}
-			[...]
+              [... sign in ...]
 
-### 報告工作期間的錯誤
+              /* Report sign in job is now ended */
+              engagementAgent.endJob("sign_in");
+            }
+            [...]
 
-錯誤可能與正在執行的工作關聯，而不是與目前的使用者工作階段關聯。
+### <a name="report-errors-during-a-job"></a>Report Errors during a Job
 
-**範例：**
+Errors can be related to a running job instead of being related to the current user session.
 
-假設您想要報告登入程序期間的錯誤：
+**Example:**
+
+Suppose you want to report an error during you login process:
 
 [...] public void signIn(Context context, ...) {
 
-			  /* We need an Android context to call the Engagement API, if you are extending Activity, Service, you can pass "this" */
-			  EngagementAgent engagementAgent = EngagementAgent.getInstance(context);
+              /* We need an Android context to call the Engagement API, if you are extending Activity, Service, you can pass "this" */
+              EngagementAgent engagementAgent = EngagementAgent.getInstance(context);
 
-			  /* Report sign in job has been started */
-			  engagementAgent.startJob("sign_in", null);
+              /* Report sign in job has been started */
+              engagementAgent.startJob("sign_in", null);
 
-			  /* Try to sign in */
-			  while(true)
-			    try {
-			      trySignin();
-			      break;
-			    }
-			    catch(Exception e) {
-			      /* Report the error to Engagement */
-			      engagementAgent.sendJobError("sign_in_error", "sign_in", null);
+              /* Try to sign in */
+              while(true)
+                try {
+                  trySignin();
+                  break;
+                }
+                catch(Exception e) {
+                  /* Report the error to Engagement */
+                  engagementAgent.sendJobError("sign_in_error", "sign_in", null);
 
-			      /* Retry after a moment */
-			      sleep(2000);
-			    }
-			  [...]
-			  /* Report sign in job is now ended */
-			  engagementAgent.endJob("sign_in");
-			}
-			[...]
+                  /* Retry after a moment */
+                  sleep(2000);
+                }
+              [...]
+              /* Report sign in job is now ended */
+              engagementAgent.endJob("sign_in");
+            }
+            [...]
 
-### 在工作期間報告事件
+### <a name="reporting-events-during-a-job"></a>Reporting Events during a job
 
-事件可以與執行中的工作相關，而不是與目前的使用者工作階段相關。
+Events can be related to a running job instead of being related to the current user session.
 
-**範例：**
+**Example:**
 
-假設我們有社交網路，且使用工作來報告使用者連線到伺服器這段期間的總時間。使用者可以在使用另一個應用程式或行動電話在休眠狀態時，保持在背景中連線，因此沒有工作階段。
+Suppose we have a social network, and we use a job to report the total time during which the user is connected to the server. The user can stay connected in background even when he's using another application or when the phone is sleeping, so there is no session.
 
-使用者可以接收來自朋友的訊息，這就是工作事件。
+The user can receive messages from his friends, this is a job event.
 
-			[...]
-			public void signin(Context context, ...) {
-			  [...Sign in code...]
-			  EngagementAgent.getInstance(context).startJob("connection", null);
-			}
-			[...]
-			public void signout(Context context) {
-			  [...Sign out code...]
-			  EngagementAgent.getInstance(context).endJob("connection");
-			}
-			[...]
-			public void onMessageReceived(Context context) {
-			  [...Notify in status bar...]
-			  EngagementAgent.getInstance(context).sendJobEvent("message_received", "connection", null);
-			}
-			[...]
+            [...]
+            public void signin(Context context, ...) {
+              [...Sign in code...]
+              EngagementAgent.getInstance(context).startJob("connection", null);
+            }
+            [...]
+            public void signout(Context context) {
+              [...Sign out code...]
+              EngagementAgent.getInstance(context).endJob("connection");
+            }
+            [...]
+            public void onMessageReceived(Context context) {
+              [...Notify in status bar...]
+              EngagementAgent.getInstance(context).sendJobEvent("message_received", "connection", null);
+            }
+            [...]
 
-##額外的參數
+##<a name="extra-parameters"></a>Extra parameters
 
-可以將任意資料附加到事件、錯誤、活動及工作。
+Arbitrary data can be attached to events, errors, activities and jobs.
 
-此資料可以結構化，它會使用 Android 的組合類別 (事實上，它的運作方式如同在 Android Intents 的額外參數)。請注意，組合可以包含陣列或另一個組合執行個體。
+This data can be structured, it uses Android's Bundle class (actually, it works like extra parameters in Android Intents). Note that a Bundle can contain arrays or another Bundle instances.
 
-> [AZURE.IMPORTANT] 如果您放入 parcelable 或 serializable 參數，請確定已實作其 `toString()` 方法，以傳回使用者可閱讀的字串。包含無法序列化之非暫時性欄位的 serializable 類別，會使 Android 在您呼叫 `bundle.putSerializable("key",value);` 時當機
+> [AZURE.IMPORTANT] If you put in parcelable or serializable parameters, make sure their `toString()` method is implemented to return a human-readable string. Serializable classes that contain non transient fields that are not serializable will make Android crash when you will call `bundle.putSerializable("key",value);`
 
-> [AZURE.WARNING] 不支援額外參數中的疏鬆陣列，也就是它不會序列化為陣列。您應該將它們轉換成標準的陣列，然後才用於額外的參數。
+> [AZURE.WARNING] Sparse arrays in extra parameters are not supported, that is, it won't be serialized as an array. You should convert them into standard arrays before using it in extra parameters.
 
-### 範例
+### <a name="example"></a>Example
 
-			Bundle extras = new Bundle();
-			extras.putString("video_id", 123);
-			extras.putString("ref_click", "http://foobar.com/blog");
-			EngagementAgent.getInstance(context).sendEvent("video_clicked", extras);
+            Bundle extras = new Bundle();
+            extras.putString("video_id", 123);
+            extras.putString("ref_click", "http://foobar.com/blog");
+            EngagementAgent.getInstance(context).sendEvent("video_clicked", extras);
 
-### 限制
+### <a name="limits"></a>Limits
 
-#### 之間的信任
+#### <a name="keys"></a>Keys
 
-`Bundle` 中的每個索引鍵都必須符合下列規則運算式：
-
-`^[a-zA-Z][a-zA-Z_0-9]*`
-
-這表示索引鍵必須至少以一個字母開頭，後面連接字母、數字或底線 (\_)。
-
-#### 大小
-
-額外項目限制為一次呼叫 **1024** 個字元 (由 Engagement 服務以 JSON 編碼之後)。
-
-在上述範例中，傳送到伺服器的 JSON 會是 58 個字元：
-
-			{"ref_click":"http:\/\/foobar.com\/blog","video_id":"123"}
-
-##報告應用程式資訊
-
-您可以使用 `sendAppInfo()` 函式手動報告追蹤資訊 (或是任何其他應用程式特定資訊)。
-
-請注意，這些資訊可以累加地傳送：只有指定的索引鍵的最新值會保留給指定的裝置。
-
-就像事件的額外項目，Bundle 類別用來摘要應用程式資訊，請注意陣列或子組合會被視為一般字串 (使用 JSON 序列化)。
-
-### 範例
-
-以下是傳送使用者性別和出生日期的程式碼範例：
-
-			Bundle appInfo = new Bundle();
-			appInfo.putString("status", "premium");
-			appInfo.putString("expiration", "2016-12-07"); // December 7th 2016
-			EngagementAgent.getInstance(context).sendAppInfo(appInfo);
-
-### 限制
-
-#### 之間的信任
-
-`Bundle` 中的每個索引鍵都必須符合下列規則運算式：
+Each key in the `Bundle` must match the following regular expression:
 
 `^[a-zA-Z][a-zA-Z_0-9]*`
 
-這表示索引鍵必須至少以一個字母開頭，後面連接字母、數字或底線 (\_)。
+It means that keys must start with at least one letter, followed by letters, digits or underscores (\_).
 
-#### 大小
+#### <a name="size"></a>Size
 
-應用程式資訊限制為一次呼叫 **1024** 個字元 (由 Engagement 服務以 JSON 編碼之後)。
+Extras are limited to **1024** characters per call (once encoded in JSON by the Engagement service).
 
-在上述範例中，傳送到伺服器的 JSON 會是 44 個字元：
+In the previous example, the JSON sent to the server is 58 characters long:
 
-			{"expiration":"2016-12-07","status":"premium"}
+            {"ref_click":"http:\/\/foobar.com\/blog","video_id":"123"}
 
-<!---HONumber=AcomDC_0727_2016-->
+##<a name="reporting-application-information"></a>Reporting Application Information
+
+You can manually report tracking information (or any other application specific information) using the `sendAppInfo()` function.
+
+Note that these information can be sent incrementally: only the latest value for a given key will be kept for a given device.
+
+Like event extras, the Bundle class is used to abstract application information, note that arrays or sub-bundles will be treated as flat strings (using JSON serialization).
+
+### <a name="example"></a>Example
+
+Here is a code sample to send user gender and birthdate:
+
+            Bundle appInfo = new Bundle();
+            appInfo.putString("status", "premium");
+            appInfo.putString("expiration", "2016-12-07"); // December 7th 2016
+            EngagementAgent.getInstance(context).sendAppInfo(appInfo);
+
+### <a name="limits"></a>Limits
+
+#### <a name="keys"></a>Keys
+
+Each key in the `Bundle` must match the following regular expression:
+
+`^[a-zA-Z][a-zA-Z_0-9]*`
+
+It means that keys must start with at least one letter, followed by letters, digits or underscores (\_).
+
+#### <a name="size"></a>Size
+
+Application information are limited to **1024** characters per call (once encoded in JSON by the Engagement service).
+
+In the previous example, the JSON sent to the server is 44 characters long:
+
+            {"expiration":"2016-12-07","status":"premium"}
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

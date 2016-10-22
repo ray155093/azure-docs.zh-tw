@@ -1,32 +1,34 @@
-## 佈建解決方案
+## <a name="provision-the-solution"></a>Provision the solution
 
-1.  使用您的 Azure 帳戶認證登入 [azureiotsuite.com][lnk-azureiotsuite]，然後按一下 **+** 建立新的解決方案。
+1.  Log on to [azureiotsuite.com][lnk-azureiotsuite] using your Azure account credentials, and click **+** to create a new solution.
 
-2.  按一下 [遠端監視] 磚上的 [選取]。
+2.  Click **Select** on the **Remote monitoring** tile.
 
-3.  輸入遠端監視預先設定的解決方案的 [解決方案名稱]。
+3.  Enter a **Solution name** for your remote monitoring preconfigured solution.
 
-4.  驗證您要用來佈建此解決方案的 [區域] 和 [訂用帳戶]。
+4.  Select the **Region** and **Subscription** you want to use to provision the solution.
 
-5.  按一下 [建立解決方案] 開始佈建程序。這通常需要數分鐘的執行時間。
+5.  Click **Create Solution** to begin the provisioning process. This typically takes several minutes to run.
 
-### 等候佈建程序完成
+### <a name="wait-for-the-provisioning-process-to-complete"></a>Wait for the provisioning process to complete
 
-1. 按一下狀態為 **佈建中** 的解決方案圖格。
+1. Click on the tile for your solution with **Provisioning** status.
  
-2. 請注意，**佈建狀態** 說明您的 Azure 訂用帳戶中已經佈建 Azure 服務。
+2. Notice the **Provisioning states** as Azure services are deployed in your Azure subscription.
 
-3. 佈建完成之後，狀態會變更為 **就緒**。
+3. Once provisioning completes, the status changes to **Ready**.
 
-4. 按一下磚，就會在右邊窗格中看到解決方案的詳細資料。
+4. Click on the tile and you'll see the details of your solution in the right-hand pane.
 
-> [AZURE.NOTE] 如果您在佈建預先設定的解決方案時遇到問題，請參閱 [azureiotsuite.com 網站的權限][lnk-permissions] 和 [常見問題集][lnk-faq]。如果問題持續發生，請在 [入口網站][lnk-portal] 建立服務票證。
+> [AZURE.NOTE] If you are encountering issues deploying the pre-configured solution, take a look at [Permissions on the azureiotsuite.com site][lnk-permissions] and the [FAQ][lnk-faq]. If the issues persist, please create a service ticket on the [portal][lnk-portal].
 
-是否有您預期會看到但沒有列出的解決方案詳細資料？ 請在 [使用者心聲](https://feedback.azure.com/forums/321918-azure-iot) 中提供功能建議給我們。
+Are there details you'd expect to see that aren't listed for your solution? Give us feature suggestions on [User Voice](https://feedback.azure.com/forums/321918-azure-iot).
 
 [lnk-azureiotsuite]: https://www.azureiotsuite.com
 [lnk-permissions]: ../articles/iot-suite/iot-suite-permissions.md
 [lnk-portal]: http://portal.azure.com/
 [lnk-faq]: ../articles/iot-suite/iot-suite-faq.md
 
-<!---HONumber=AcomDC_0720_2016-->
+<!--HONumber=Oct16_HO2-->
+
+

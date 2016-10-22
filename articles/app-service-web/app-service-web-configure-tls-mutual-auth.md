@@ -1,51 +1,54 @@
 <properties 
-	pageTitle="如何設定 Web 應用程式的 TLS 相互驗證" 
-	description="了解如何設定 Web 應用程式在 TLS 上使用用戶端憑證驗證。" 
-	services="app-service" 
-	documentationCenter="" 
-	authors="naziml" 
-	manager="wpickett" 
-	editor="jimbe"/>
+    pageTitle="How To Configure TLS Mutual Authentication for Web App" 
+    description="Learn how to configure your web app to use client certificate authentication on TLS." 
+    services="app-service" 
+    documentationCenter="" 
+    authors="naziml" 
+    manager="wpickett" 
+    editor="jimbe"/>
 
 <tags 
-	ms.service="app-service" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/08/2016" 
-	ms.author="naziml"/>
-
-# 如何設定 Web 應用程式的 TLS 相互驗證
-
-## Overview ##
-為 Azure Web 應用程式啟用不同類型的驗證，即可限制其存取。這樣做的其中一種方法是要求透過 TLS/SSL 時使用用戶端憑證進行驗證。這項機制稱為 TLS 相互驗證或用戶端憑證驗證，本文將詳細說明如何設定 Web 應用程式使用用戶端憑證驗證。
-
-> **附註：**如果您透過 HTTP 存取您的網站，而非 HTTPS，將不會收到任何用戶端憑證。因此如果您的應用程式需要用戶端憑證，請勿允許透過 HTTP 傳入您應用程式的要求。
+    ms.service="app-service" 
+    ms.workload="na" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="08/08/2016" 
+    ms.author="naziml"/>    
 
 
-[AZURE.INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
+# <a name="how-to-configure-tls-mutual-authentication-for-web-app"></a>How To Configure TLS Mutual Authentication for Web App
 
-## 設定 Web 應用程式進行用戶端憑證驗證 ##
-若要設定 Web 應用程式要求用戶端憑證，則您需要為 Web 應用程式加入 clientCertEnabled 網站設定，並將它設為 true。此設定目前無法透過入口網站中的管理經驗使用，而且需要使用 REST API 才能完成這項作業。
+## <a name="overview"></a>Overview ##
+You can restrict access to your Azure web app by enabling different types of authentication for it. One way to do so is to authenticate using a client certificate when the request is over TLS/SSL. This mechanism is called TLS mutual authentication or client certificate authentication and this article will detail how to setup your web app to use client certificate authentication.
 
-您可以使用 [ARMClient 工具](https://github.com/projectkudu/ARMClient)，輕鬆地製作 REST API 呼叫。使用此工具登入之後，需要發出下列命令：
+> **Note:** If you access your site over HTTP and not HTTPS, you will not receive any client certificate. So if your application requires client certificates you should not allow requests to your application over HTTP.
+
+
+[AZURE.INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)] 
+
+## <a name="configure-web-app-for-client-certificate-authentication"></a>Configure Web App for Client Certificate Authentication ##
+To setup your web app to require client certificates you need to add the clientCertEnabled site setting for your web app and set it to true. This setting is not currently available through the management experience in the Portal, and the REST API will need to be used to accomplish this.
+
+You can use the [ARMClient tool](https://github.com/projectkudu/ARMClient) to make it easy to craft the REST API call. After you log in with the tool you will need to issue the following command:
 
     ARMClient PUT subscriptions/{Subscription Id}/resourcegroups/{Resource Group Name}/providers/Microsoft.Web/sites/{Website Name}?api-version=2015-04-01 @enableclientcert.json -verbose
     
-將 {} 中的所有內容取代為您 Web 應用程式的資訊，並使用下列 JSON 內容建立稱為 enableclientcert.json 的檔案：
+replacing everything in {} with information for your web app and creating a file called enableclientcert.json with the following JSON content:
 
-> { "location": "My Web App Location", "properties": { "clientCertEnabled": true } }
+> { "location": "My Web App Location",   
+>   "properties": {  
+>     "clientCertEnabled": true } }  
 
-請一定要將 "location" 的值變更為您 Web 應用程式所在的位置 (例如 North Central US 或 West US 等)。
+Make sure to change the value of "location" to wherever your web app is located e.g. North Central US or West US etc.
 
-> **附註︰**如果您從 Powershell 執行 ARMClient，您必須使用重音符 ` 為 JSON 檔案逸出 @ 符號。
+> **Note:** If you run ARMClient from Powershell, you will need to escape the @ symbol for the JSON file with a back tick `.
 
-## 從 Web 應用程式存取用戶端憑證 ##
-如果您使用 ASP.NET，並將您的應用程式設定為使用用戶端憑證，便可透過 **HttpRequest.ClientCertificate** 屬性取得憑證。若為其他應用程式堆疊，您則可透過「X-ARR-ClientCert」要求標頭中的 base64 編碼值取得用戶端憑證。您的應用程式可以從這個值建立憑證，然後將它用於您應用程式中的驗證和授權用途。
+## <a name="accessing-the-client-certificate-from-your-web-app"></a>Accessing the Client Certificate From Your Web App ##
+If you are using ASP.NET and configure your app to use client certificate authentication, the certificate will be available through the **HttpRequest.ClientCertificate** property. For other application stacks, the client cert will be available in your app through a base64 encoded value in the "X-ARR-ClientCert" request header. Your application can create a certificate from this value and then use it for authentication and authorization purposes in your application.
 
-## 憑證驗證的特殊考量 ##
-Azure Web 應用程式平台不會對傳送給應用程式的用戶端憑證進行任何驗證。驗證此憑證是 Web 應用程式的責任。以下是基於驗證而驗證憑證內容的範例 ASP.NET 程式碼。
+## <a name="special-considerations-for-certificate-validation"></a>Special Considerations for Certificate Validation ##
+The client certificate that is sent to the application does not go through any validation by the Azure Web Apps platform. Validating this certificate is the responsibility of the web app. Here is sample ASP.NET code that validates certificate properties for authentication purposes.
 
     using System;
     using System.Collections.Specialized;
@@ -182,4 +185,8 @@ Azure Web 應用程式平台不會對傳送給應用程式的用戶端憑證進�
         }
     }
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO2-->
+
+

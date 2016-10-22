@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="在向外延展的雲端資料庫之間移動資料 | Microsoft Azure" 
-    description="說明如何使用彈性資料庫 API 透過自我託管服務操作分區和移動資料。" 
+    pageTitle="Moving data between scaled-out cloud databases | Microsoft Azure" 
+    description="Explains how to manipulate shards and move data via a self-hosted service using elastic database APIs." 
     services="sql-database" 
     documentationCenter="" 
     manager="jhubbard" 
@@ -15,80 +15,81 @@
     ms.date="05/27/2016" 
     ms.author="ddove" />
 
-# 在向外延展的雲端資料庫之間移動資料
 
-如果您是軟體服務開發人員，您的應用程式突然出現巨量需求，您需要因應這種成長。所以，您加入了更多的資料庫 (分區)。您該如何將資料重新發佈到新的資料庫，卻不打斷資料的完整性？ 使用**分割合併工具**將資料從受條件約束的資料庫移到新的資料庫。
+# <a name="moving-data-between-scaled-out-cloud-databases"></a>Moving data between scaled-out cloud databases
 
-分割合併工具執行的方式如同 Azure Web 服務。系統管理員或開發人員使用工具在不同的資料庫 (分區) 之間移動 Shardlet (分區的資料)。此工具會使用分區對應管理來維護服務中繼資料資料庫，並確保一致的對應。
+If you are a Software as a Service developer, and suddenly your app undergoes tremendous demand, you need to accommodate the growth. So you add more databases (shards). How do you redistribute the data to the new databases without disrupting the data integrity? Use the **split-merge tool** to move data from constrained databases to the new databases.  
 
-![概觀][1]
+The split-merge tool runs as an Azure web service. An administrator or developer uses the tool to move shardlets (data from a shard) between different databases (shards). The tool uses shard map management to maintain the service metadata database, and ensure consistent mappings.
 
-## 下載
+![Overview][1]
+
+## <a name="download"></a>Download
 [Microsoft.Azure.SqlDatabase.ElasticScale.Service.SplitMerge](http://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Service.SplitMerge/)
 
 
-## 文件
-1. [彈性資料庫分割合併工具教學課程](sql-database-elastic-scale-configure-deploy-split-and-merge.md)
-* [Split-Merge 安全性設定](sql-database-elastic-scale-split-merge-security-configuration.md)
-* [分割合併安全性考量](sql-database-elastic-scale-split-merge-security-configuration.md)
-* [分區對應管理](sql-database-elastic-scale-shard-map-management.md)
-* [轉換現有的資料庫以使用彈性資料庫工具](sql-database-elastic-convert-to-use-elastic-tools.md)
-* [彈性資料庫功能概觀](sql-database-elastic-scale-introduction.md)
-* [彈性資料庫工具字彙](sql-database-elastic-scale-glossary.md)
+## <a name="documentation"></a>Documentation
+1. [Elastic database Split-Merge tool tutorial](sql-database-elastic-scale-configure-deploy-split-and-merge.md)
+* [Split-Merge security configuration](sql-database-elastic-scale-split-merge-security-configuration.md)
+* [Split-merge security considerations](sql-database-elastic-scale-split-merge-security-configuration.md)
+* [Shard map management](sql-database-elastic-scale-shard-map-management.md)
+* [Migrate existing databases to scale-out](sql-database-elastic-convert-to-use-elastic-tools.md)
+* [Elastic database tools](sql-database-elastic-scale-introduction.md)
+* [Elastic Database tools glossary](sql-database-elastic-scale-glossary.md)
 
-## 為何使用分割合併工具？
+## <a name="why-use-the-split-merge-tool?"></a>Why use the split-merge tool?
 
-**彈性**
+**Flexibility**
 
-應用程式需要靈活地伸展，才能超越單一 Azure SQL DB 資料庫的限制。使用工具依需要將資料移至新的資料庫，同時保有完整性。
+Applications need to stretch flexibly beyond the limits of a single Azure SQL DB database. Use the tool to move data as needed to new databases while retaining integrity.
 
-**分割以成長**
+**Split to grow** 
 
-您需要增加整體容量，處理爆炸性的成長。若要達到這個目標，請將資料分區，並分散到越來越多的資料庫上，來提供更多的容量，直到滿足容量需求為止。這是主要的「分割」功能範例。
+You need to increase overall capacity to handle explosive growth. To do so, create additional capacity by sharding the data and by distributing it across incrementally more databases until capacity needs are fulfilled. This is a prime example of the ‘split’ feature. 
 
-**合併以縮減**
+**Merge to shrink**
 
-容量因為業務的季節特性需要縮減。當業務減緩時，此工具可讓您相應減少至較少的縮放單位。Elastic Scale 分割合併服務的「合併」功能可滿足此需求。
+Capacity needs shrink due to the seasonal nature of a business. The tool lets you scale down to fewer scale units when business slows. The ‘merge’ feature in the Elastic Scale split-merge Service covers this requirement. 
 
-**移動 Shardlet 來管理作用區**
+**Manage hotspots by moving shardlets**
 
-在每個資料庫有多個租用戶的情況下，分區的 Shardlet 配置可能造成某些分區出現容量瓶頸。這需要重新配置 Shardlet，或將忙碌的 Shardlet 移到新的或較少使用的分區。
+With multiple tenants per database, the allocation of shardlets to shards can lead to capacity bottlenecks on some shards. This requires re-allocating shardlets or moving busy shardlets to new or less utilized shards. 
 
-## 概念和重要功能
+## <a name="concepts-&-key-features"></a>Concepts & key features
 
-**客戶主控式服務**
+**Customer-hosted services**
 
-分割合併提供為客戶主控式服務。您必須將服務部署並裝載於 Microsoft Azure 訂用帳戶中。您從 NuGet 下載的封裝包含設定範本，可加入您特定部署的資訊而使之完備。如需詳細資訊，請參閱[分割合併教學課程](sql-database-elastic-scale-configure-deploy-split-and-merge.md)。因為服務是在您的 Azure 訂用帳戶中執行，您可以控制和設定服務的大部分安全性層面。預設範本包含設定 SSL、以憑證為基礎的用戶端驗證、加密儲存的認證、DoS 防護及 IP 限制等選項。您可以在下列文件中找到安全性層面的詳細資訊：[分割合併安全性組態](sql-database-elastic-scale-split-merge-security-configuration.md)。
+The split-merge is delivered as a customer-hosted service. You must deploy and host the service in your Microsoft Azure subscription. The package you download from NuGet contains a configuration template to complete with the information for your specific deployment. See the [split-merge tutorial](sql-database-elastic-scale-configure-deploy-split-and-merge.md) for details. Since the service runs in your Azure subscription, you can control and configure most security aspects of the service. The default template includes the options to configure SSL, certificate-based client authentication, encryption for stored credentials, DoS guarding and IP restrictions. You can find more information on the security aspects in the following document [split-merge security configuration](sql-database-elastic-scale-split-merge-security-configuration.md).
 
-預設部署服務以一個背景工作角色和一個 Web 角色執行。各角色在 Azure 雲端服務中使用 A1 VM 大小。雖然您無法在部署封裝時修改這些設定，但可以在部署成功後在執行中的雲端服務中變更它們 (透過 Azure 入口網站)。請注意，基於技術原因，不可以將背景工作角色設定多個執行個體。
+The default deployed service runs with one worker and one web role. Each uses the A1 VM size in Azure Cloud Services. While you cannot modify these settings when deploying the package, you could change them after a successful deployment in the running cloud service, (through the Azure portal). Note that the worker role must not be configured for more than a single instance for technical reasons. 
 
-**分區對應整合**
+**Shard map integration**
 
-分割合併服務會與應用程式的分區對應互動。當使用分割合併服務來分割或合併範圍，或在分區之間移動 Shardlet 時，服務會自動將分區對應保持在最新狀態。為了這樣做，服務會連接到應用程式的分區對應管理員資料庫，並於分割/合併/移動要求進行時維護範圍和對應。這可確保當分割合併作業持續進行時，分區對應一律呈現最新的檢視。分割、合併和 Shardlet 移動作業的實作方式是將一批 Shardlet 從來源分區移至目標分區。在 Shardlet 移動作業期間，屬於目前批次中的 Shardlet 在分區對應中會標示為離線，也無法供使用 **OpenConnectionForKey** API 的資料相依路由連線使用。
+The split-merge service interacts with the shard map of the application. When using the split-merge service to split or merge ranges or to move shardlets between shards, the service automatically keeps the shard map up to date. To do so, the service connects to the shard map manager database of the application and maintains ranges and mappings as split/merge/move requests progress. This ensures that the shard map always presents an up-to-date view when split-merge operations are going on. Split, merge and shardlet movement operations are implemented by moving a batch of shardlets from the source shard to the target shard. During the shardlet movement operation the shardlets subject to the current batch are marked as offline in the shard map and are unavailable for data-dependent routing connections using the **OpenConnectionForKey** API. 
 
-**一致的 Shardlet 連線**
+**Consistent shardlet connections**
 
-當新一批 Shardlet 的資料移動開始時，分區對應提供指向分區 (儲存 Shardlet) 的任何資料相依路由連接會終止，而當資料移動正在進行時，也會封鎖後續從分區對應 API 至這些 Shardlet 的連接，以避免不一致。對同一個分區的其他 Shardlet 的連接也會終止，但重試就會立即成功。移動批次後，目標分區的 Shardlet 會再次標示為線上，並從來源分區移除來源資料。服務會對每個批次執行這些步驟，直到所有 Shardlet 都已經移動為止。在整個分割/合併/移動作業的過程中，這將會產生數個連接終止作業。
+When data movement starts for a new batch of shardlets, any shard-map provided data-dependent routing connections to the shard storing the shardlet are killed and subsequent connections from the shard map APIs to the these shardlets are blocked while the data movement is in progress in order to avoid inconsistencies. Connections to other shardlets on the same shard will also get killed, but will succeed again immediately on retry. Once the batch is moved, the shardlets are marked online again for the target shard and the source data is removed from the source shard. The service goes through these steps for every batch until all shardlets have been moved. This will lead to several connection kill operations during the course of the complete split/merge/move operation.  
 
-**管理 Shardlet 可用性**
+**Managing shardlet availability**
 
-如上所述，只限制終止目前 Shardlet 批次的連接，可將無法使用的範圍限制在一次一批 Shardlet。這比分割或合併作業過程中整個分區對其所有 Shardlet 仍保持離線的作法更好。批次大小 (定義為一次要移動的相異 Shardlet 數目) 是組態參數。每個分割和合併作業中都可定義它，視應用程式的可用性和效能需求而定。請注意，分區對應中鎖定的範圍可能大於指定的批次大小。這是因為服務挑選範圍大小時，都希望資料中的分區化索引鍵值的實際數大約符合批次大小。對於稀疏填入的分區化索引鍵，尤其要記住這一點。
+Limiting the connection killing to the current batch of shardlets as discussed above restricts the scope of unavailability to one batch of shardlets at a time. This is preferred over an approach where the complete shard would remain offline for all its shardlets during the course of a split or merge operation. The size of a batch, defined as the number of distinct shardlets to move at a time, is a configuration parameter. It can be defined for each split and merge operation depending on the application’s availability and performance needs. Note that the range that is being locked in the shard map may be larger than the batch size specified. This is because the service picks the range size such that the actual number of sharding key values in the data approximately matches the batch size. This is important to remember in particular for sparsely populated sharding keys. 
 
-**中繼資料儲存體**
+**Metadata storage**
 
-分割合併服務使用資料庫來維護其狀態，並在要求處理期間保留記錄檔。使用者在其訂用帳戶中建立此資料庫，並在服務部署的組態檔中提供連接字串。使用者組織的系統管理員也可以連接到此資料庫來檢閱要求進度，並調查關於潛在失敗的詳細資訊。
+The split-merge service uses a database to maintain its status and to keep logs during request processing. The user creates this database in their subscription and provides the connection string for it in the configuration file for the service deployment. Administrators from the user’s organization can also connect to this database to review request progress and to investigate detailed information regarding potential failures.
 
-**分區化感知**
+**Sharding-awareness**
 
-分割合併服務會區別 (1) 分區化資料表、(2) 參考資料表和 (3) 一般資料表。分割/合併移動作業的語意視使用的資料表類型而定，定義如下：
+The split-merge service differentiates between (1) sharded tables, (2) reference tables, and (3) normal tables. The semantics of a split/merge/move operation depend on the type of the table used and are defined as follows: 
 
-* **分區化資料表**：分割、合併和移動作業會將 Shardlet 從來源移至目標分區。成功完成整體要求之後，這些 Shardlet 就不存在於來源。請注意，目標資料表必須存在於目標分區，而且在處理作業之前不能包含目標範圍中的資料。 
+* **Sharded tables**: Split, merge, and move operations move shardlets from source to target shard. After successful completion of the overall request, those shardlets are no longer present on the source. Note that the target tables need to exist on the target shard and must not contain data in the target range prior to processing of the operation. 
 
-* **參考資料表**：對於參考資料表，分割、合併和移動作業會將資料從來源複製到目標分區。但是請注意，若目標上給定資料表中已存在任何資料列，則此資料表的目標分區不會發生任何變更。資料表必須是空的，才會處理任何參考資料表複製作業。
+* **Reference tables**: For reference tables, the split, merge and move operations copy the data from the source to the target shard. Note, however, that no changes occur on the target shard for a given table if any row is already present in this table on the target. The table has to be empty for any reference table copy operation to get processed.
 
-* **其他資料表**：分割和合併作業的來源或目標上可以存在其他資料表。在任何資料移動或複製作業中，分割合併服務會忽略這些資料表。但是請注意，在有條件約束時，它們會干擾這些作業。
+* **Other Tables**: Other tables can be present on either the source or the target of a split and merge operation. The split-merge service disregards these tables for any data movement or copy operations. Note, however, that they can interfere with these operations in case of constraints.
 
-分區對應的 **SchemaInfo** API 提供參考資料表與分區化資料表的比較資訊。下列範例說明如何在給定的分區對應管理員物件 smm 上使用這些 API：
+The information on reference vs. sharded tables is provided by the **SchemaInfo** APIs on the shard map. The following example illustrates the use of these APIs on a given shard map manager object smm: 
 
     // Create the schema annotations 
     SchemaInfo schemaInfo = new SchemaInfo(); 
@@ -104,84 +105,84 @@
     // Publish 
     smm.GetSchemaInfoCollection().Add(Configuration.ShardMapName, schemaInfo); 
 
-資料表 '‘region’ 及 ‘nation’ 定義為參考資料表，將透過分割/合併/移動作業來複製。‘customer’ 和 ‘orders’ 接著定義為分區化資料表。C\_CUSTKEY 和 O\_CUSTKEY 作為分區化索引鍵。
+The tables ‘region’ and ‘nation’ are defined as reference tables and will be copied with split/merge/move operations. ‘customer’ and ‘orders’ in turn are defined as sharded tables. C_CUSTKEY and O_CUSTKEY serve as the sharding key. 
 
-**參考完整性**
+**Referential Integrity**
 
-分割合併服務會分析資料表之間的相依性，並使用外部主索引鍵關聯性來接移作業，以移動參考資料表和 Shardlet。一般而言會先根據相依性順序複製參考資料表，然後在每個批次中再根據相依性順序複製 Shardlet。這是必要的，當新資料到達時，才能符合目標分區的 FK PK 條件約束。
+The split-merge service analyzes dependencies between tables and uses foreign key-primary key relationships to stage the operations for moving reference tables and shardlets. In general, reference tables are copied first in dependency order, then shardlets are copied in order of their dependencies within each batch. This is necessary so that FK-PK constraints on the target shard are honored as the new data arrives. 
 
-**分區對應一致性與最終完成**
+**Shard Map Consistency and Eventual Completion**
 
-失敗時，分割合併服務會在任何中斷之後繼續作業，以完成任何進行中的要求。不過，可能有無法復原的情況，例如，當目標分區遺失或損壞到無法修復的程度。在這些情況下，原本要移動的一些 Shardlet 可能繼續留在來源分區。服務可以確保只有當必要的資料成功複製到目標之後，才會更新 Shardlet 對應。只有當所有資料都已複製到目標，並已成功更新對應的對應之後，才會在來源刪除 Shardlet。當範圍在目標分區上已上線時，刪除作業會在幕後執行。分割合併服務永遠確保儲存在分區對應中的對應的正確性。
-
-
-## 分割合併使用者介面
-
-分割合併 Service Pack 包含背景工作角色和 Web 角色。Web 角色用互動方式提交分割合併要求。使用者介面的主要元件如下：
-
--    作業類型：作業類型是選項按鈕，控制服務針對此要求所執行的作業類型。您可以選擇分割、合併和移動案例。您也可以取消先前提交的作業。您可以在範圍分區對應中使用分割、合併和移動等要求。清單分區對應僅支援移動作業。
-
--    分區對應：下一節的要求參數討論分區對應和主控分區對應之資料庫的相關資訊。特別的是，您需要提供 Azure SQL Database 伺服器名稱和裝載 shardmap 的資料庫名稱、用以連接到分區對應資料庫的認證，以及分區對應名稱的名稱。目前，此作業只接受一組認證。這些認證必須有足夠權限來變更分區對應及分區上的使用者資料。
-
--    來源範圍 (分割和合併)：分割及合併作業會採用其低和高索引鍵處理該範圍。若要指定無限制高索引鍵值的作業，請勾選 [高索引鍵為最大值] 核取方塊，並將高索引鍵欄位留空。指定的範圍索引鍵值不需要精確地符合分區對應中的對應及其界限。如果您未指定任何範圍界限，此服務將會自動為您推斷最接近的範圍。您可以使用 GetMappings.ps1 PowerShell 指令碼來擷取給定分區對應中目前的對應。
-
--    分割來源行為 (分割)：在分割作業中，定義來源範圍中要分割的點。您可以提供想要從何處分割的分區化索引鍵。請使用選項按鈕指定要移動範圍的下半部 (不含分割索引鍵)，還是要移動上半部 (包括分割索引鍵)。
-
--    來源 Shardlet (移動)：移動作業不同於分割或合併作業，它們不需要範圍來描述來源。使用您打算移動的分區化索引鍵值，即可識別移動的來源。
-
--    目標分區 (分割)：提供分割作業的來源相關資訊之後，您需要提供目標的 Azure SQL Db 伺服器和資料庫名稱，以定義您想要將資料複製到何處。
-
--    目標範圍 (合併)：合併作業會將 Shardlet 移至現有的分區。您可以提供想要合併的現有範圍的範圍界限，以識別現有的分區。
-
--    批次大小：批次大小控制資料移動期間會一次離線的 Shardlet 數目。這是整數值，當您無法忍受長時間沒有 Shardlet 可用時，您可以使用較小的值。較大的值會延長給定 Shardlet 離線的時間，但可改善效能。
-
--    作業識別碼 (取消)：如果您不再需要某個進行中的作業，您可以在此欄位中提供其作業識別碼來取消作業。您可以從要求狀態資料表 (請參閱 8.1 節)，或從您提交要求的網頁瀏覽器中的輸出，擷取作業識別碼。
+In the presence of failures, the split-merge service resumes operations after any outage and aims to complete any in progress requests. However, there may be unrecoverable situations, e.g., when the target shard is lost or compromised beyond repair. Under those circumstances, some shardlets that were supposed to be moved may continue to reside on the source shard. The service ensures that shardlet mappings are only updated after the necessary data has been successfully copied to the target. Shardlets are only deleted on the source once all their data has been copied to the target and the corresponding mappings have been updated successfully. The deletion operation happens in the background while the range is already online on the target shard. The split-merge service always ensures correctness of the mappings stored in the shard map.
 
 
-## 需求和限制 
+## <a name="the-split-merge-user-interface"></a>The split-merge user interface
 
-目前的分割合併服務實作有下列需求和限制：
+The split-merge service package includes a worker role and a web role. The web role is used to submit split-merge requests in an interactive way. The main components of the user interface are as follows:
 
-* 分區必須存在且在分區對應中註冊，才能對這些分區執行分割合併作業。 
+-    Operation Type: The operation type is a radio button that controls the kind of operation performed by the service for this request. You can choose between the split, merge and move scenarios. You can also cancel a previously submitted operation. You can use split, merge and move requests for range shard maps. List shard maps only support move operations.
 
-* 服務不會在其作業中自動建立資料表或其他任何資料庫物件。這表示執行任何分割/合併/移動作業之前，所有分區化資料表和參考資料表的結構描述必須存在於目標分區。尤其，在由分割/合併/移動作業加入新 Shardlet 的範圍中，分區化資料表必須是空的。否則，作業無法通過目標分區上的初始一致性檢查。另請注意，只有當參考資料表是空的時，才會複製參考資料，而對於參考資料表上的其他並行寫入作業，也無法保證一致性。我們建議 – 在執行分割/合併作業時，沒有其他寫入作業在變更參考資料表。
+-    Shard Map: The next section of request parameters cover information about the shard map and the database hosting your shard map. In particular, you need to provide the name of the Azure SQL Database server and database hosting the shardmap, credentials to connect to the shard map database, and finally the name of the shard map. Currently, the operation only accepts a single set of credentials. These credentials need to have sufficient permissions to perform changes to the shard map as well as to the user data on the shards.
 
-* 服務依賴唯一索引或索引鍵 (包含分區化索引鍵) 所建立的資料列識別，以改善大型 Shardlet 的效能和可靠性。這可讓服務移動比分區化索引鍵值更精細的資料。這有助於減少作業期間所需的記錄檔空間和鎖定數目上限。如果您想要透過分割/合併/移動要求來使用特定的資料表，請考慮在此資料表上建立唯一索引或主索引鍵 (包含分區化索引鍵)。基於效能考量，分區化索引鍵應該為索引鍵或索引中的開頭資料行。
+-    Source Range (split and merge): A split and merge operation processes a range using its low and high key. To specify an operation with an unbounded high key value, check the “High key is max” check box and leave the high key field empty. The range key values that you specify do not need to precisely match a mapping and its boundaries in your shard map. If you do not specify any range boundaries at all the service will infer the closest range for you automatically. You can use the GetMappings.ps1 PowerShell script to retrieve the current mappings in a given shard map.
 
-* 要求處理期間，某些 Shardlet 資料可能會同時出現在來源和目標分區。為了防止 Shardlet 移動期間失敗，這是必要的。分割合併與分區對應的整合，可確保在分區對應上透過資料相依路由 API 使用 **OpenConnectionForKey** 方法來連線時，不會出現任何不一致的過渡狀態。不過，當連線到來源或目標分區不是使用 **OpenConnectionForKey** 方法時，則在分割/合併/移動要求進行時，可能會出現不一致的過渡狀態。這些連接可能會顯示不完整或重複的結果，視連接之下的時間或分區而定。這項限制目前包括 Elastic Scale 多分區查詢所建立的連接。
+-    Split Source Behavior (split): For split operations, define the point to split the source range. You do this by providing the sharding key where you want the split to occur. Use the radio button specify whether you want the lower part of the range (excluding the split key) to move, or whether you want the upper part to move (including the split key).
 
-* 不同角色之間不可共用分割合併服務的中繼資料資料庫。例如，在預備環境中執行分割合併服務的角色，必須指向與生產角色不同的中繼資料資料庫。
+-    Source Shardlet (move): Move operations are different from split or merge operations as they do not require a range to describe the source. A source for move is simply identified by the sharding key value that you plan to move.
+
+-    Target Shard (split): Once you have provided the information on the source of your split operation, you need to define where you want the data to be copied to by providing the Azure SQL Db server and database name for the target.
+
+-    Target Range (merge): Merge operations move shardlets to an existing shard. You identify the existing shard by providing the range boundaries of the existing range that you want to merge with.
+
+-    Batch Size: The batch size controls the number of shardlets that will go offline at a time during the data movement. This is an integer value where you can use smaller values when you are sensitive to long periods of downtime for shardlets. Larger values will increase the time that a given shardlet is offline but may improve performance.
+
+-    Operation Id (Cancel): If you have an ongoing operation that is no longer needed, you can cancel the operation by providing its operation ID in this field. You can retrieve the operation ID from the request status table (see Section 8.1) or from the output in the web browser where you submitted the request.
+
+
+## <a name="requirements-and-limitations"></a>Requirements and Limitations 
+
+The current implementation of the split-merge service is subject to the following requirements and limitations: 
+
+* The shards need to exist and be registered in the shard map before a split-merge operation on these shards can be performed. 
+
+* The service does not create tables or any other database objects automatically as part of its operations. This means that the schema for all sharded tables and reference tables need to exist on the target shard prior to any split/merge/move operation. Sharded tables in particular are required to be empty in the range where new shardlets are to be added by a split/merge/move operation. Otherwise, the operation will fail the initial consistency check on the target shard. Also note that reference data is only copied if the reference table is empty and that there are no consistency guarantees with regard to other concurrent write operations on the reference tables. We recommend this: when running split/merge operations, no other write operations make changes to the reference tables.
+
+* The service relies on row identity established by a unique index or key that includes the sharding key to improve performance and reliability for large shardlets. This allows the service to move data at an even finer granularity than just the sharding key value. This helps to reduce the maximum amount of log space and locks that are required during the operation. Consider creating a unique index or a primary key including the sharding key on a given table if you want to use that table with split/merge/move requests. For performance reasons, the sharding key should be the leading column in the key or the index.
+
+* During the course of request processing, some shardlet data may be present both on the source and the target shard. This is necessary to protect against failures during the shardlet movement. The integration of split-merge with the shard map ensures that connections through the data dependent routing APIs using the **OpenConnectionForKey** method on the shard map do not see any inconsistent intermediate states. However, when connecting to the source or the target shards without using the **OpenConnectionForKey** method, inconsistent intermediate states might be visible when split/merge/move requests are going on. These connections may show partial or duplicate results depending on the timing or the shard underlying the connection. This limitation currently includes the connections made by Elastic Scale Multi-Shard-Queries.
+
+* The metadata database for the split-merge service must not be shared between different roles. For example, a role of the split-merge service running in staging needs to point to a different metadata database than the production role.
  
 
-## 計費 
+## <a name="billing"></a>Billing 
 
-分割合併服務是以 Microsoft Azure 訂用帳戶中的雲端服務執行。因此會對您的服務執行個體收取雲端服務的費用。除非您經常執行分割/合併/移動作業，否則建議您刪除分割合併雲端服務。這可以節省執行中或已部署的雲端服務執行個體的成本。每當您需要執行分割或合併作業時，您可以重新部署和啟動可立即運作的組態。
+The split-merge service runs as a cloud service in your Microsoft Azure subscription. Therefore charges for cloud services apply to your instance of the service. Unless you frequently perform split/merge/move operations, we recommend you delete your split-merge cloud service. That saves costs for running or deployed cloud service instances. You can re-deploy and start your readily runnable configuration whenever you need to perform split or merge operations. 
  
-## 監視 
-### 狀態資料表 
+## <a name="monitoring"></a>Monitoring 
+### <a name="status-tables"></a>Status tables 
 
-分割合併服務在中繼資料儲存資料庫中提供 **RequestStatus** 資料表，以監視已完成和進行中的要求。已提交至這個分割合併服務執行個體的每一個分割合併要求，在此資料表中都會列出一個資料列。它針對每個要求提供以下的資訊：
+The split-merge Service provides the **RequestStatus** table in the metadata store database for monitoring of completed and ongoing requests. The table lists a row for each split-merge request that has been submitted to this instance of the split-merge service. It gives the following information for each request:
 
-* **Timestamp**：要求開始的時間和日期。
+* **Timestamp**: The time and date when the request was started.
 
-* **OperationId**：唯一識別要求的 GUID。這項要求也可用來取消仍在進行中的作業。
+* **OperationId**: A GUID that uniquely identifies the request. This request can also be used to cancel the operation while it is still ongoing.
 
-* **Status**：要求的目前狀態。對於持續進行的要求，它也列出要求目前所處的階段。
+* **Status**: The current state of the request. For ongoing requests, it also lists the current phase in which the request is.
 
-* **CancelRequest**：旗標，指出是否已取消要求。
+* **CancelRequest**: A flag that indicates whether the request has been cancelled.
 
-* **Progress**：作業完成的估計百分比。值為 50 表示作業已完成大約 50%。
+* **Progress**: A percentage estimate of completion for the operation. A value of 50 indicates that the operation is approximately 50% complete.
 
-* **Details**：XML 值，提供更詳細的進度報表。隨著資料列從來源複製到目標，進度報表會定期更新。如果發生錯誤或例外狀況，此資料行也包含失敗的詳細資訊。
+* **Details**: An XML value that provides a more detailed progress report. The progress report is periodically updated as sets of rows are copied from source to target. In case of failures or exceptions, this column also includes more detailed information about the failure.
 
 
-### Azure 診斷
+### <a name="azure-diagnostics"></a>Azure Diagnostics
 
-分割合併服務會根據 Azure SDK 2.5 使用 Azure 診斷來監控與診斷。您可以如這裡所述控制診斷組態：[在 Azure 雲端服務和虛擬機器中啟用診斷](../cloud-services/cloud-services-dotnet-diagnostics.md)。下載封裝包含兩個診斷組態 – 一個用於 Web 角色，另一個用於背景工作角色。這些服務診斷組態遵循 [Microsoft Azure 雲端服務基本概念](https://code.msdn.microsoft.com/windowsazure/Cloud-Service-Fundamentals-4ca72649)中的指引。其中包含定義來記錄效能計數器、IIS 記錄檔、Windows 事件記錄檔，以及分割合併應用程式事件記錄檔。
+The split-merge service uses Azure Diagnostics based on Azure SDK 2.5 for monitoring and diagnostics. You control the diagnostics configuration as explained here: [Enabling Diagnostics in Azure Cloud Services and Virtual Machines](../cloud-services/cloud-services-dotnet-diagnostics.md). The download package includes two diagnostics configurations – one for the web role and one for the worker role. These diagnostics configurations for the service follow the guidance from [Cloud Service Fundamentals in Microsoft Azure](https://code.msdn.microsoft.com/windowsazure/Cloud-Service-Fundamentals-4ca72649). It includes the definitions to log Performance Counters, IIS logs, Windows Event Logs, and split-merge application event logs. 
 
-## 部署診斷 
+## <a name="deploy-diagnostics"></a>Deploy Diagnostics 
 
-針對 NuGet 封裝所提供的 Web 和背景工作角色，若要使用診斷組態啟用監視和診斷，請使用 Azure PowerShell 執行下列命令：
+To enable monitoring and diagnostics using the diagnostic configuration for the web and worker roles provided by the NuGet package, run the following commands using Azure PowerShell: 
 
     $storage_name = "<YourAzureStorageAccount>" 
     
@@ -203,43 +204,43 @@
     
     Set-AzureServiceDiagnosticsExtension -StorageContext $storageContext -DiagnosticsConfigurationPath $config_path -ServiceName $service_name -Slot Production -Role "SplitMergeWorker" 
 
-您可以在這裡找到有關如何設定和部署診斷設定的詳細資訊：[在 Azure 雲端服務和虛擬機器中啟用診斷](../cloud-services/cloud-services-dotnet-diagnostics.md)。
+You can find more information on how to configure and deploy diagnostics settings here: [Enabling Diagnostics in Azure Cloud Services and Virtual Machines](../cloud-services/cloud-services-dotnet-diagnostics.md). 
 
-## 擷取診斷 
+## <a name="retrieve-diagnostics"></a>Retrieve diagnostics 
 
-從 Visual Studio 伺服器總管，您可以在伺服器總管樹狀目錄的 Azure 部分中輕鬆存取診斷。開啟 Visual Studio 執行個體，在功能表列按一下 [檢視] 和 [伺服器總管]。按一下 [Azure] 圖示，連接至您的 Azure 訂用帳戶。然後瀏覽至 [Azure] -> [儲存體] -> <your storage account> -> [資料表] -> [WADLogsTable]。如需詳細資訊，請參閱[使用伺服器總管瀏覽儲存體資源](http://msdn.microsoft.com/library/azure/ff683677.aspx)。
+You can easily access your diagnostics from the Visual Studio Server Explorer in the Azure part of the Server Explorer tree. Open a Visual Studio instance, and in the menu bar click View, and Server Explorer. Click the Azure icon to connect to your Azure subscription. Then navigate to Azure -> Storage -> <your storage account> -> Tables -> WADLogsTable. For more information, see [Browsing Storage Resources with Server Explorer](http://msdn.microsoft.com/library/azure/ff683677.aspx). 
 
 ![WADLogsTable][2]
 
-在上圖中反白顯示的 WADLogsTable 包含分割合併服務應用程式記錄檔中的詳細事件。請注意，下載的封裝的預設組態是特別針對生產部署而設計。因此，從服務執行個體提取記錄檔和計數器的間隔時間很大 (5 分鐘)。在測試和開發時，請依需要調整 Web 或背景工作角色的診斷設定，以縮短間隔。請以滑鼠右鍵按一下 Visual Studio 伺服器總管 (請參閱上圖) 中的角色，然後調整 [診斷組態] 設定對話方塊中的 [傳輸期間]：
+The WADLogsTable highlighted in the figure above contains the detailed events from the split-merge service’s application log. Note that the default configuration of the downloaded package is geared towards a production deployment. Therefore the interval at which logs and counters are pulled from the service instances is large (5 minutes). For test and development, lower the interval by adjusting the diagnostics settings of the web or the worker role to your needs. Right-click on the role in the Visual Studio Server Explorer (see above) and then adjust the Transfer Period in the dialog for the Diagnostics configuration settings: 
 
-![組態][3]
+![Configuration][3]
 
 
-## 效能
+## <a name="performance"></a>Performance
 
-一般而言，Azure SQL Database 中越高階、越有效能的服務層，預期會有較佳的效能。越高的服務層使用越高的 IO、CPU 和記憶體配置，有利於分割合併服務使用的大量複製和刪除作業。基於這個理由，請只針對這些資料庫，在一段已定義的有限期間內增加服務層。
+In general, better performance is to be expected from the higher, more performant service tiers in Azure SQL Database. Higher IO, CPU and memory allocations for the higher service tiers benefit the bulk copy and delete operations that the split-merge service uses. For that reason, increase the service tier just for those databases for a defined, limited period of time.
 
-服務在其正常作業中也會執行驗證查詢。這些驗證查詢會檢查目標範圍中是否存在非預期的資料，並確保任何分割/合併/移動作業是從一致的狀態開始。這些查詢全部都會檢查作業領域所定義的分區化索引鍵範圍，以及要求定義中所提供的批次大小。當索引存在且以分區化索引鍵做為開頭資料行時，這些查詢的表現最好。
+The service also performs validation queries as part of its normal operations. These validation queries check for unexpected presence of data in the target range and ensure that any split/merge/move operation starts from a consistent state. These queries all work over sharding key ranges defined by the scope of the operation and the batch size provided as part of the request definition. These queries perform best when an index is present that has the sharding key as the leading column. 
 
-此外，以分區化索引鍵做為開頭資料行的唯一性屬性，可讓服務使用最佳化方法來限制記錄檔空間和記憶體方面的資源消耗。移動大型資料時 (通常超過 1 GB) 需要這個唯一性屬性。
+In addition, a uniqueness property with the sharding key as the leading column will allow the service to use an optimized approach that limits resource consumption in terms of log space and memory. This uniqueness property is required to move large data sizes (typically above 1GB). 
 
-## 如何升級
+## <a name="how-to-upgrade"></a>How to upgrade
 
-1. 請遵循[部署分割-合併服務](sql-database-elastic-scale-configure-deploy-split-and-merge.md)中的步驟執行。
-2. 變更分割合併部署的雲端服務組態檔，以反映新的組態參數。新的必要參數是用於加密的憑證相關資訊。若要這樣做，一個簡單方法是將下載的新組態範本檔案與現有組態進行比較。請確定您新增 Web 和背景工作角色的 "DataEncryptionPrimaryCertificateThumbprint" 和 "DataEncryptionPrimary" 設定。
-3. 將更新部署至 Azure 之前，請確定目前執行的所有分割合併作業都已完成。作法很簡單，您可以針對進行中的要求，查詢分割合併中繼資料資料庫中的 RequestStatus 和 PendingWorkflows 資料表。
-4. 使用新的封裝和更新的服務組態檔，在您的 Azure 訂用帳戶中更新分割合併的現有雲端服務部署。
+1. Follow the steps in [Deploy a split-merge service](sql-database-elastic-scale-configure-deploy-split-and-merge.md).
+2. Change your cloud service configuration file for your split-merge deployment to reflect the new configuration parameters. A new required parameter is the information about the certificate used for encryption. An easy way to do this is to compare the new configuration template file from the download against your existing configuration. Make sure you add the settings for “DataEncryptionPrimaryCertificateThumbprint” and “DataEncryptionPrimary” for both the web and the worker role.
+3. Before deploying the update to Azure, ensure that all currently running split-merge operations have finished. You can easily do this by querying the RequestStatus and PendingWorkflows tables in the split-merge metadata database for ongoing requests.
+4. Update your existing cloud service deployment for split-merge in your Azure subscription with the new package and your updated service configuration file.
 
-您無需佈建新的中繼資料資料庫，即可升級分割合併。新的版本會自動將現有的中繼資料資料庫升級到新的版本。
+You do not need to provision a new metadata database for split-merge to upgrade. The new version will automatically upgrade your existing metadata database to the new version. 
 
-## 最佳作法和疑難排解
+## <a name="best-practices-&-troubleshooting"></a>Best practices & troubleshooting
  
--    定義測試租用戶，並在數個分區上對測試租用戶練習您最重要的分割/合併/移動作業。確定分區對應中定義的所有中繼資料都正確，且作業未違反條件約束或外部索引鍵。
--    將測試租用戶資料大小保持大於您最大租用戶的最大資料大小，以確保不會發生資料大小的相關問題。這有助於您評估移動單一租用戶所花費的時間上限。 
--    請確定您的結構描述允許刪除動作。一旦資料成功複製到目標，分割合併服務必須能夠從來源分區移除資料。例如，**刪除觸發程序**可能防止服務刪除來源上的資料，也可能造成作業失敗。
--    分區化索引鍵應該為主索引鍵或唯一索引定義中的開頭資料行。如此可確保分割或合併驗證查詢，以及永遠在分區化索引鍵範圍上執行的實際資料移動和刪除作業，獲得最佳效能。
--    將分割合併服務共置在您的資料庫所在的區域和資料中心。 
+-    Define a test tenant and exercise your most important split/merge/move operations with the test tenant across several shards. Ensure that all metadata is defined correctly in your shard map and that the operations do not violate constraints or foreign keys.
+-    Keep the test tenant data size above the maximum data size of your largest tenant to ensure you are not encountering data size related issues. This helps you assess an upper bound on the time it takes to move a single tenant around. 
+-    Make sure that your schema allows deletions. The split-merge service requires the ability to remove data from the source shard once the data has been successfully copied to the target. For example, **delete triggers** can prevent the service from deleting the data on the source and may cause operations to fail.
+-    The sharding key should be the leading column in your primary key or unique index definition. That ensures the best performance for the split or merge validation queries, and for the actual data movement and deletion operations which always operate on sharding key ranges.
+-    Collocate your split-merge service in the region and data center where your databases reside. 
 
 [AZURE.INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 
@@ -247,9 +248,13 @@
 
 <!--Anchors-->
 <!--Image references-->
-[1]: ./media/sql-database-elastic-scale-overview-split-and-merge/split-merge-overview.png
-[2]: ./media/sql-database-elastic-scale-overview-split-and-merge/diagnostics.png
-[3]: ./media/sql-database-elastic-scale-overview-split-and-merge/diagnostics-config.png
+[1]:./media/sql-database-elastic-scale-overview-split-and-merge/split-merge-overview.png
+[2]:./media/sql-database-elastic-scale-overview-split-and-merge/diagnostics.png
+[3]:./media/sql-database-elastic-scale-overview-split-and-merge/diagnostics-config.png
  
 
-<!---HONumber=AcomDC_0601_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

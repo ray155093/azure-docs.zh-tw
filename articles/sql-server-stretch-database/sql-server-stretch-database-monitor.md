@@ -1,62 +1,67 @@
 <properties
-	pageTitle="資料移轉的監視及疑難排解 (Stretch Database) | Microsoft Azure"
-	description="了解如何監視資料移轉的狀態。"
-	services="sql-server-stretch-database"
-	documentationCenter=""
-	authors="douglaslMS"
-	manager=""
-	editor=""/>
+    pageTitle="Monitor and troubleshoot data migration (Stretch Database) | Microsoft Azure"
+    description="Learn how to monitor the status of data migration."
+    services="sql-server-stretch-database"
+    documentationCenter=""
+    authors="douglaslMS"
+    manager=""
+    editor=""/>
 
 <tags
-	ms.service="sql-server-stretch-database"
-	ms.workload="data-management"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="06/14/2016"
-	ms.author="douglasl"/>
+    ms.service="sql-server-stretch-database"
+    ms.workload="data-management"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="06/14/2016"
+    ms.author="douglasl"/>
 
-# 資料移轉的監視及疑難排解 (Stretch Database)
 
-若要在 Stretch Database 監視器中監視資料移轉，請在 SQL Server Management Studio 中針對資料庫選取 [工作 | Stretch | 監視]。
+# <a name="monitor-and-troubleshoot-data-migration-(stretch-database)"></a>Monitor and troubleshoot data migration (Stretch Database)
 
-## 在 Stretch Database 監視器中檢查資料移轉狀態
-在 SQL Server Management Studio 中針對資料庫選取 [工作 | Stretch |監視]，即可開啟 Stretch Database 監視器並監視資料移轉。
+To monitor data migration in Stretch Database Monitor, select **Tasks | Stretch | Monitor** for a database in SQL Server Management Studio .
 
--   監視器上半部會顯示啟用 Stretch 的 SQL Server Database 和遠端 Azure 資料庫一般資訊。
+## <a name="check-the-status-of-data-migration-in-the-stretch-database-monitor"></a>Check the status of data migration in the Stretch Database Monitor
+Select **Tasks | Stretch | Monitor** for a database in SQL Server Management Studio to open Stretch Database Monitor and monitor data migration.
 
--   監視器的下半部會顯示資料庫中每個啟用 Stretch 的資料表資料移轉狀態。
+-   The top portion of the monitor displays general information about both the Stretch\-enabled SQL Server database and the remote Azure database.
 
-![Stretch Database 監視器][StretchMonitorImage1]
+-   The bottom portion of the monitor displays the status of data migration for each Stretch\-enabled table in the database.
 
-## <a name="Migration"></a>以動態管理檢視檢查資料移轉的狀態
-開啟動態管理檢視 **sys.dm\_db\_rda\_migration\_status**，查看已移轉的批次和資料列數量。如需詳細資訊，請參閱 [sys.dm\_db\_rda\_migration\_status (Transact-SQL)](https://msdn.microsoft.com/library/dn935017.aspx)。
+![Stretch Database Monitor][StretchMonitorImage1]
 
-## <a name="Firewall"></a>資料移轉的疑難排解
+## <a name="<a-name="migration"></a>check-the-status-of-data-migration-in-a-dynamic-management-view"></a><a name="Migration"></a>Check the status of data migration in a dynamic management view
+Open the dynamic management view **sys.dm\_db\_rda\_migration\_status** to see how many batches and rows of data have been migrated. For more info, see [sys.dm_db_rda_migration_status (Transact-SQL)](https://msdn.microsoft.com/library/dn935017.aspx).
 
-**已啟用延展功能之資料表中的資料列未移轉到 Azure。問題出在哪裡？**
+## <a name="<a-name="firewall"></a>troubleshoot-data-migration"></a><a name="Firewall"></a>Troubleshoot data migration
 
-有幾個問題可能會影響移轉。請檢查下列項目。
+**Rows from my Stretch-enabled table are not being migrated to Azure. What’s the problem?**
 
--   檢查 SQL Server 電腦的網路連線。
+There are several problems that can affect migration. Check the following things.
 
--   檢查 Azure 防火牆沒有阻擋您的 SQL Server 連線到遠端端點。
+-   Check network connectivity for the SQL Server computer.
 
--   檢查動態管理檢視 **sys.dm\_db\_rda\_migration\_status** 以取得最新批次的狀態。如果發生錯誤，請檢查批次的 error\_number、error\_state 和 error\_severity 值。
+-   Check that the Azure firewall is not blocking your SQL Server from connecting to the remote endpoint.
 
-    -   如需有關檢視的詳細資訊，請參閱 [sys.dm\_db\_rda\_migration\_status (Transact-SQL)](https://msdn.microsoft.com/library/dn935017.aspx)。
+-   Check the dynamic management view **sys.dm\_db\_rda\_migration\_status** for the status of the latest batch. If an error has occurred, check the error\_number, error\_state, and error\_severity values for the batch.
 
-    -   如需 SQL Server 錯誤訊息內容的詳細資訊，請參閱 [sys.messages (Transact-SQL)](https://msdn.microsoft.com/library/ms187382.aspx)。
+    -   For more info about the view, see [sys.dm_db_rda_migration_status (Transact-SQL)](https://msdn.microsoft.com/library/dn935017.aspx).
 
-**Azure 防火牆正在封鎖來自本機伺服器的連線。**
+    -   For more info about the content of a SQL Server error message, see [sys.messages (Transact-SQL)](https://msdn.microsoft.com/library/ms187382.aspx).
 
-您可能必須在 Azure 伺服器的 Azure 防火牆設定中新增一個規則，讓 SQL Server 與遠端 Azure 伺服器進行通訊。
+**The Azure firewall is blocking connections from my local server.**
 
-## 另請參閱
+You may have to add a rule in the Azure firewall settings of the Azure server to let SQL Server communicate with the remote Azure server.
 
-[Stretch Database 的管理和疑難排解](sql-server-stretch-database-manage.md)
+## <a name="see-also"></a>See Also
+
+[Manage and troubleshoot Stretch Database](sql-server-stretch-database-manage.md)
 
 <!--Image references-->
 [StretchMonitorImage1]: ./media/sql-server-stretch-database-monitor/StretchDBMonitor.png
 
-<!---HONumber=AcomDC_0615_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

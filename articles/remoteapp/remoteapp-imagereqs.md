@@ -1,9 +1,9 @@
 
 <properties
-    pageTitle="Azure RemoteApp 映像需求 | Microsoft Azure"
-    description="深入了解建立可用於 Azure RemoteApp 的映像需求"
+    pageTitle="Azure RemoteApp image requirements | Microsoft Azure"
+    description="Learn about the requirements for creating images to be used with Azure RemoteApp"
     services="remoteapp"
-	documentationCenter=""
+    documentationCenter=""
     authors="lizap"
     manager="mbaldwin" />
 
@@ -18,34 +18,39 @@
 
 
 
-# Azure RemoteApp 映像的需求
+
+# <a name="requirements-for-azure-remoteapp-images"></a>Requirements for Azure RemoteApp images
 
 > [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
 
-Azure RemoteApp 會使用 Windows Server 2012 R2 映像來主控您要與使用者共用的所有程式。若要建立自訂映像，您可以從現有的映像建立，或[建立新映像](remoteapp-create-custom-image.md)。
+Azure RemoteApp uses a Windows Server 2012 R2 image to host all the programs that you want to share with your users. To create a custom image, you can start with an existing image or [create a new one](remoteapp-create-custom-image.md).
 
-> [AZURE.TIP] 您是否知道 Azure RemoteApp 訂用帳戶可讓您存取 Azure VM 資源庫中可用來建立專屬範本映像的 Windows Server 2012 R2 映像？ [立即使用](remoteapp-image-on-azurevm.md)。
-
-
-可上傳用於 Azure RemoteApp 的映像有下列需求：
+> [AZURE.TIP] Did you know that your Azure RemoteApp subscription gives you access to a Windows Server 2012 R2 image in the Azure VM gallery that you can use to create your own template image? [Check it out](remoteapp-image-on-azurevm.md).  
 
 
-- 自訂應用程式不會在映像上本機儲存資料。這些都是無狀態的映像，而且應該只包含應用程式。
-- 映像不包含可能會遺失的資料。
-- 映像大小應為 MB 的倍數。如果您嘗試上傳的映像大小不是正確的倍數，上傳作業會失敗。
-- 映像大小必須為 127 GB 或更小。
-- 必須在 VHD 檔案上 (VHDX 檔案目前不受支援)。
-- VHD 不能是第 2 代虛擬機器。
-- VHD 可以固定大小或動態擴充。建議採用動態擴充 VHD 的做法，因為這會比固定大小 VHD 檔案更快速地上傳至 Azure。
-- 磁碟必須使用主開機記錄 (MBR) 分割樣式進行初始化。GUID 磁碟分割資料表 (GPT) 磁碟分割樣式不受支援。
-- VHD 必須包含單一 Windows Server 2012 R2 安裝。它可包含多個磁碟區，但只有其中一個包含 Windows 安裝。
-- 必須安裝「遠端桌面工作階段主機 (RDSH)」角色和「桌面體驗」功能。
-- *請勿*安裝「遠端桌面連線代理人」角色。
-- 必須停用「加密檔案系統 (EFS)」。
-- 映像必須使用參數 **/oobe /generalize /shutdown** 進行 SYSPREP 處理 (請不要使用 **/mode:vm** 參數)。
-- 不支援從快照鏈結上傳您 VHD。
+The requirements for the image that can be uploaded for use with Azure RemoteApp are:
 
-如需建立 Azure RemoteApp 映像的詳細資訊，請參閱[建立 Azure RemoteApp 映像](remoteapp-imageoptions.md)。
 
-<!---HONumber=AcomDC_0817_2016-->
+- Custom applications don’t store data locally on the image. These images are stateless and should only contain applications.
+- The image does not contain data that can be lost.
+- The image size should be a multiple of MBs. If you try to upload an image that is not an exact multiple, the upload will fail.
+- The image size must be 127 GB or smaller.
+- It must be on a VHD file (VHDX files are not currently supported).
+- The VHD must not be a generation 2 virtual machine.
+- The VHD can be either fixed-size or dynamically expanding. A dynamically expanding VHD is recommended because it takes less time to upload to Azure than a fixed-size VHD file.
+- The disk must be initialized using the Master Boot Record (MBR) partitioning style. The GUID partition table (GPT) partition style is not supported.
+- The VHD must contain a single installation of Windows Server 2012 R2. It can contain multiple volumes, but only one that contains an installation of Windows.
+- The Remote Desktop Session Host (RDSH) role and the Desktop Experience feature must be installed.
+- The Remote Desktop Connection Broker role must *not* be installed.
+- The Encrypting File System (EFS) must be disabled.
+- The image must be SYSPREPed using the parameters **/oobe /generalize /shutdown** (DO NOT use the **/mode:vm** parameter).
+- Uploading your VHD from a snapshot chain is not supported.
+
+See [Create an Azure RemoteApp image](remoteapp-imageoptions.md) for more information about creating images for Azure RemoteApp.
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+
